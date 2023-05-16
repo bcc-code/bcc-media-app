@@ -107,20 +107,21 @@ class AchievementShareRender extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = BccMediaDesignSystem();
     return DesignSystem(
-      designSystem: BccMediaDesignSystem(),
+      designSystem: design,
       child: (context) => MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: Container(
             width: 400,
             height: 350,
-            color: DesignSystem.of(context).colors.background2,
+            color: design.colors.background2,
             child: Stack(
               children: [
                 Positioned.fill(
                   child: Container(
-                    decoration: BoxDecoration(gradient: FlavorConfig.current.flavorGradients.achievementBackground),
+                    decoration: BoxDecoration(gradient: design.appThemeData.achievementBackgroundGradient),
                   ),
                 ),
                 SizedBox(

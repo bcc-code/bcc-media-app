@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../flavors.dart';
 import '../../theme/bccm_gradients.dart';
 import '../../helpers/ui/svg_icons.dart';
+import '../../theme/design_system/design_system.dart';
 
 enum LessonProgressTreeVariant { border2, border3 }
 
@@ -39,6 +40,7 @@ class LessonProgressTree extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -62,7 +64,7 @@ class LessonProgressTree extends ConsumerWidget {
           child: OverflowBox(
             child: CustomPaint(
               painter: ArcPainter(
-                gradient: FlavorConfig.current.flavorGradients.study,
+                gradient: design.appThemeData.studyGradient,
                 strokeWidth: outerStrokeWidth,
                 progress: completedFraction,
               ),
@@ -73,7 +75,7 @@ class LessonProgressTree extends ConsumerWidget {
           padding: EdgeInsets.all(arcToTreePadding),
           child: ShaderMask(
               shaderCallback: (bounds) {
-                return FlavorConfig.current.flavorGradients.study.createShader(bounds);
+                return design.appThemeData.studyGradient.createShader(bounds);
               },
               blendMode: BlendMode.srcATop,
               child: treeWidget),

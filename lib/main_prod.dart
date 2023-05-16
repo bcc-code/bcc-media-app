@@ -9,12 +9,8 @@ Future<void> main() async {
     FlavorConfig(
       flavor: Flavor.bccmedia_prod,
       firebaseOptions: prod_firebase.DefaultFirebaseOptions.currentPlatform,
-      flavorGradients: FlavorGradients(
-        study: BccmGradients.greenYellow,
-        achievementBackground: BccmGradients.purpleTransparent,
-        tabIconActive: BccmGradients.softPurpleBlue,
-      ),
       flavorImages: FlavorImages(
+        logoHeight: 20,
         logo: const AssetImage('assets/flavors/prod/logo.png'),
         home: StateImageProvider(
           image: const AssetImage('assets/icons/Home_Default.png'),

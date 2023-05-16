@@ -144,6 +144,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Stack(
       children: [
         Scaffold(
@@ -153,12 +154,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
               : AppBar(
                   toolbarHeight: 44,
                   shadowColor: Colors.black,
-                  backgroundColor: Colors.transparent,
+                  backgroundColor: design.appThemeData.appBarTransparent ? Colors.transparent : design.colors.background1,
                   elevation: 0,
                   centerTitle: true,
                   title: Image(
                     image: FlavorConfig.current.flavorImages.logo,
-                    height: 25,
+                    height: FlavorConfig.current.flavorImages.logoHeight,
                     gaplessPlayback: true,
                   ),
                   leadingWidth: kIsWeb ? 300 : 100,
@@ -183,22 +184,24 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                       child: ConstrainedBox(constraints: BoxConstraints.loose(const Size(24, 24)), child: const BccmCastButton()),
                     ),
                   ],
-                  flexibleSpace: ClipRect(
-                    clipBehavior: Clip.hardEdge,
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [DesignSystem.of(context).colors.background1, Colors.transparent],
+                  flexibleSpace: !design.appThemeData.appBarTransparent
+                      ? null
+                      : ClipRect(
+                          clipBehavior: Clip.hardEdge,
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [DesignSystem.of(context).colors.background1, Colors.transparent],
+                                ),
+                              ),
+                              height: 1000,
+                            ),
                           ),
                         ),
-                        height: 1000,
-                      ),
-                    ),
-                  ),
                 ),
           body: SafeArea(
             top: false,

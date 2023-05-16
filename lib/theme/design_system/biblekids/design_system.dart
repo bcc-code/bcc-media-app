@@ -1,6 +1,8 @@
+import 'package:brunstadtv_app/theme/design_system/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../bccm_gradients.dart';
 import '../design_system.dart';
 import '../bccmedia/buttons.dart';
 import '../bccmedia/decorations.dart';
@@ -11,6 +13,7 @@ class BibleKidsDesignSystem extends DesignSystemData {
   BibleKidsDesignSystem._raw({
     required super.colors,
     required super.textStyles,
+    required super.appThemeData,
     required super.materialThemeData,
     required super.buttons,
     required super.inputDecorations,
@@ -23,6 +26,19 @@ class BibleKidsDesignSystem extends DesignSystemData {
       textStyles: textStyles,
       buttons: BccMediaButtons(colors: colors, textStyles: textStyles),
       inputDecorations: BccMediaInputDecorations(colors: colors, textStyles: textStyles),
+      appThemeData: AppThemeData(
+        studyGradient: BccmGradients.greenYellow,
+        achievementBackgroundGradient: BccmGradients.purpleTransparent,
+        appBarTransparent: false,
+        tabTheme: AppTabThemeData(
+          activeColor: colors.tint3,
+          iconActiveGradient: LinearGradient(
+            colors: [colors.tint3, colors.tint3],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+      ),
       materialThemeData: ThemeData(
         //useMaterial3: true,
         cupertinoOverrideTheme: CupertinoThemeData(

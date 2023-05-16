@@ -36,7 +36,7 @@ class CustomTabBar extends HookConsumerWidget {
         image: image,
         gaplessPlayback: true,
       );
-      final gradient = FlavorConfig.current.flavorGradients.tabIconActive;
+      final gradient = design.appThemeData.tabTheme?.iconActiveGradient;
       return Padding(
         padding: EdgeInsets.only(top: 2, bottom: useMaterial ? 2 : 0),
         child: SizedBox(
@@ -102,7 +102,7 @@ class CustomTabBar extends HookConsumerWidget {
       currentIndex: tabsRouter.activeIndex,
       onTap: onTabTap,
       inactiveColor: design.colors.label3,
-      activeColor: design.colors.tint1,
+      activeColor: design.appThemeData.tabTheme?.activeColor,
       border: Border(top: BorderSide(width: 1, color: design.colors.separatorOnLight)),
       items: items,
     );

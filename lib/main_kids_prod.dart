@@ -12,16 +12,8 @@ Future<void> main() async {
       firebaseOptions: kids_prod_firebase.DefaultFirebaseOptions.currentPlatform,
       applicationCode: 'kids',
       designSystem: () => BibleKidsDesignSystem(),
-      flavorGradients: FlavorGradients(
-        study: BccmGradients.greenYellow,
-        achievementBackground: BccmGradients.purpleTransparent,
-        tabIconActive: const LinearGradient(
-          colors: [Color.fromRGBO(160, 113, 165, 1), Color.fromRGBO(104, 87, 233, 1)],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
       flavorImages: FlavorImages(
+        logoHeight: 23,
         logo: const AssetImage('assets/flavors/kids_prod/logo.png'),
         home: StateImageProvider(
           image: const AssetImage('assets/icons/Home_Default.png'),
