@@ -194,6 +194,10 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                             )
                           ] else ...[
                             OptionButton(
+                              optionName: S.of(context).faq,
+                              onPressed: () => context.router.push(const FAQScreenRoute()),
+                            ),
+                            OptionButton(
                               optionName: S.of(context).contactSupport,
                               onPressed: () => _contactSupportEmail(),
                             ),

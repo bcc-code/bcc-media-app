@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
 
+import '../../components/custom_back_button.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../theme/design_system/design_system.dart';
 
@@ -64,38 +64,12 @@ class _FAQScreenState extends State<FAQScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final design = DesignSystem.of(context);
     return DialogOnWeb(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: design.colors.background1,
-          leadingWidth: 90,
-          leading: GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTapDown: (details) {
-              context.router.pop();
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Icon(
-                  Icons.arrow_back_ios_new,
-                  color: design.colors.tint1,
-                ),
-                Text(
-                  S.of(context).faq,
-                  overflow: TextOverflow.ellipsis,
-                  style: design.textStyles.button2,
-                ),
-              ],
-            ),
-          ),
-          centerTitle: true,
-          title: Text(
-            S.of(context).faq,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
-          ),
+          elevation: 0,
+          leading: const CustomBackButton(),
+          title: Text(S.of(context).faq),
         ),
         body: SafeArea(
           child: SingleChildScrollView(
