@@ -69,7 +69,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
     }
     final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
     final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingCompleted) == true;
-    final alwaysShowOnboarding = !ref.read(authEnabledProvider);
+    final alwaysShowOnboarding = ref.read(authEnabledProvider);
     if (!hasCredentials && (!hasCompletedOnboarding || alwaysShowOnboarding)) {
       router.replaceAll([OnboardingScreenRoute()]);
     } else {
