@@ -91,5 +91,7 @@
 		<false/>
 		<key>FLTDisableImpeller</key>
 		<true/>
+		<key>FirebaseMessagingAutoInitEnabled</key>
+		<false/>
 	</dict>
 </plist>
