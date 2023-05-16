@@ -66,12 +66,24 @@ class _EpisodeDetailsState extends ConsumerState<EpisodeDetails> {
   @override
   void initState() {
     super.initState();
-    episodeFuture = ref
-        .read(gqlClientProvider)
-        .query$EpisodeDetails(Options$Query$EpisodeDetails(variables: Variables$Query$EpisodeDetails(id: widget.episodeId)))
-        .then((value) {
-      return value.parsedData?.episode;
+    setState(() {
+      episodeFuture = loadEpisode();
     });
+  }
+
+  @override
+  void didUpdateWidget(previous) {
+    super.didUpdateWidget(previous);
+    setState(() {
+      episodeFuture = loadEpisode();
+    });
+  }
+
+  Future<Fragment$EpisodeDetails?> loadEpisode() async {
+    final result = await ref
+        .read(gqlClientProvider)
+        .query$EpisodeDetails(Options$Query$EpisodeDetails(variables: Variables$Query$EpisodeDetails(id: widget.episodeId)));
+    return result.parsedData?.episode;
   }
 
   @override
