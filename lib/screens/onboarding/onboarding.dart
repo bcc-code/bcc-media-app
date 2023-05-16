@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/providers/shared_preferences.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
@@ -11,11 +11,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../components/onboarding/onboarding_buttons_auth_enabled.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../flavors.dart';
 import '../../theme/design_system/design_system.dart';
-import '../../helpers/widget_keys.dart';
 import '../../l10n/app_localizations.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -95,8 +95,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authEnabled = ref.watch(featureFlagsProvider.select((value) => value.auth));
-    final signupEnabled = ref.watch(featureFlagsProvider.select((value) => value.publicSignup));
     return CupertinoScaffold(
       body: DialogOnWeb(
         child: Scaffold(
@@ -106,7 +104,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             elevation: 0,
             centerTitle: true,
             title: Image(
-              image: FlavorConfig.current.flavorImages.logo,
+              image: FlavorConfig.current.images.logo,
               height: 25,
               gaplessPlayback: true,
             ),
@@ -122,14 +120,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       if (kIsWeb)
-                        Padding(padding: const EdgeInsets.all(16), child: Image.asset('assets/images/Onboarding.png'))
+                        Padding(padding: const EdgeInsets.all(16), child: Image(image: FlavorConfig.current.images.onboarding))
                       else
                         Container(
                           height: 220 * (MediaQuery.of(context).size.height / 600),
                           margin: const EdgeInsets.only(top: 40, bottom: 30),
                           child: Transform.scale(
                             scale: 1.3 * (MediaQuery.of(context).size.height / 800),
-                            child: Image.asset('assets/images/Onboarding.png'),
+                            child: Image(image: FlavorConfig.current.images.onboarding),
                           ),
                         ),
                       Expanded(
@@ -140,14 +138,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                S.of(context).loginPageDisplay1,
-                                style: DesignSystem.of(context).textStyles.title1,
+                                FlavorConfig.current.strings(context).onboardingTitle,
+                                style: DesignSystem.of(context).textStyles.headline2,
                                 textAlign: TextAlign.center,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 12),
                                 child: Text(
-                                  S.of(context).loginPageDisplay2,
+                                  FlavorConfig.current.strings(context).onboardingSecondaryTitle,
                                   textAlign: TextAlign.center,
                                   style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
                                 ),
@@ -172,6 +170,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                         exploreAction: () {
                           context.router.popUntil((route) => false);
                           context.router.push(const TabsRootScreenRoute());
+                          ref.read(sharedPreferencesProvider).setBool('onboardingCompleted', true);
                         },
                         signupAction: () {
                           CupertinoScaffold.showCupertinoModalBottomSheet(

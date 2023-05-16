@@ -21,7 +21,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
   static FeatureFlags getFlags(UnleashClient? client) {
     if (client == null) return const FeatureFlags();
     return FeatureFlags(
-      auth: FlavorConfig.current.flavor != Flavor.kids_prod || client.isEnabled('kids-auth'),
+      auth: FlavorConfig.current.flavor != Flavor.kids || client.isEnabled('kids-auth'),
       publicSignup: client.isEnabled('public-signup'),
       socialSignup: client.isEnabled('social-signup'),
       autoplayNext: client.isEnabled('autoplay-next'),

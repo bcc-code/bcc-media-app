@@ -5,11 +5,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/event_bus.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../components/status_indicators/loading_indicator.dart';
 import '../models/events/app_ready.dart';
+import '../providers/shared_preferences.dart';
 import '../theme/design_system/design_system.dart';
 
 import '../helpers/navigation/navigation_utils.dart';
@@ -64,7 +67,9 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
       return;
     }
     final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
-    if (!hasCredentials) {
+    final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool('onboardingCompleted') == true;
+    final alwaysShowOnboarding = !ref.read(authEnabledProvider);
+    if (!hasCredentials && (!hasCompletedOnboarding || alwaysShowOnboarding)) {
       router.replaceAll([OnboardingScreenRoute()]);
     } else {
       router.replaceAll([const TabsRootScreenRoute()]);

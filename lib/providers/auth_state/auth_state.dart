@@ -18,18 +18,18 @@ abstract class AuthStateNotifier implements StateNotifier<AuthState> {
   factory AuthStateNotifier(Ref ref) => getPlatformSpecificAuthStateNotifier(ref);
 }
 
-final _enableAuth = StateProvider<bool>((ref) {
+final authEnabledProvider = StateProvider<bool>((ref) {
   return true;
 });
 
 final authFeatureFlagListener = Provider<void>((ref) {
   ref.listen<FeatureFlags>(featureFlagsProvider, (previous, next) {
-    ref.read(_enableAuth.notifier).state = next.auth;
+    ref.read(authEnabledProvider.notifier).state = next.auth;
   });
 });
 
 final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
-  if (!ref.watch(_enableAuth)) {
+  if (!ref.watch(authEnabledProvider)) {
     debugPrint('authStateProvider: $AuthStateNotifierDisabled');
     return AuthStateNotifierDisabled();
   }

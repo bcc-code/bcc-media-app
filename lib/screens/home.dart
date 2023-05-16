@@ -158,8 +158,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                   elevation: 0,
                   centerTitle: true,
                   title: Image(
-                    image: FlavorConfig.current.flavorImages.logo,
-                    height: FlavorConfig.current.flavorImages.logoHeight,
+                    image: FlavorConfig.current.images.logo,
+                    height: FlavorConfig.current.images.logoHeight,
                     gaplessPlayback: true,
                   ),
                   leadingWidth: kIsWeb ? 300 : 100,

@@ -35,6 +35,12 @@ class SEs extends S {
   String get loginPageDisplay2 => 'Ver series, espectáculos y películas basadas en Valores cristianos';
 
   @override
+  String get kidsOnboardingTitle => 'Captivating and faith-filled videos your kids will love!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+
+  @override
   String get loginPageDisplay3 => 'Producida por BCC Media';
 
   @override
@@ -511,6 +517,9 @@ class SEs extends S {
 
   @override
   String get explorePublicContent => 'Explora el contenido público';
+
+  @override
+  String get startExploring => 'Start exploring';
 
   @override
   String get taskCompleted => 'tarea terminada';

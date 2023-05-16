@@ -35,6 +35,12 @@ class SPl extends S {
   String get loginPageDisplay2 => 'Oglądaj seriale, produkcje i filmy bazujące na chrześcijańskich wartościach';
 
   @override
+  String get kidsOnboardingTitle => 'Captivating and faith-filled videos your kids will love!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+
+  @override
   String get loginPageDisplay3 => 'Wyprodukowano przez BCC Media';
 
   @override
@@ -511,6 +517,9 @@ class SPl extends S {
 
   @override
   String get explorePublicContent => 'Explore public content';
+
+  @override
+  String get startExploring => 'Start exploring';
 
   @override
   String get taskCompleted => 'ukończono zadanie';
