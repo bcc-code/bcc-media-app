@@ -10,5 +10,6 @@ class FeatureFlags with _$FeatureFlags {
     @Default(true) bool auth,
     @Default(false) bool publicSignup,
     @Default(false) bool socialSignup,
+    @Default(false) bool autoplayNext,
   }) = _FeatureFlags;
 }

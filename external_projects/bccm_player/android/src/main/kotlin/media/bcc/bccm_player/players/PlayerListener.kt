@@ -8,6 +8,7 @@ import androidx.media3.common.Timeline
 import com.npaw.youbora.lib6.Timer
 import media.bcc.bccm_player.BccmPlayerPlugin
 import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
+import media.bcc.bccm_player.pigeon.PlaybackPlatformApi.PlayerStateUpdateEvent
 
 class PlayerListener(private val playerController: PlayerController, val plugin: BccmPlayerPlugin) :
     Player.Listener {
@@ -17,7 +18,7 @@ class PlayerListener(private val playerController: PlayerController, val plugin:
                 "bccm",
                 "refreshStateTimer onTimerEvent(), hashCode:" + this@PlayerListener.hashCode()
             )
-            plugin.playbackPigeon?.onPlayerStateUpdate(playerController.getPlayerStateSnapshot()) {}
+            onManualPlayerStateUpdate()
         }
     }, 15000)
 
@@ -35,6 +36,29 @@ class PlayerListener(private val playerController: PlayerController, val plugin:
             "refreshStateTimer stop(), ${playerController}, hashCode:" + this@PlayerListener.hashCode()
         )
         refreshStateTimer.stop()
+    }
+
+    fun onManualPlayerStateUpdate() {
+        val event = PlayerStateUpdateEvent.Builder()
+            .setPlayerId(playerController.id)
+            .setSnapshot(playerController.getPlayerStateSnapshot())
+        plugin.playbackPigeon?.onPlayerStateUpdate(event.build()) {}
+    }
+
+    override fun onPlaybackStateChanged(playbackState: Int) {
+        if (playbackState == Player.STATE_ENDED) {
+            val event =
+                PlaybackPlatformApi.PlaybackEndedEvent.Builder()
+                    .setPlayerId(playerController.id)
+            val mediaItem = playerController.player.currentMediaItem;
+            if (mediaItem != null) {
+                val bccmMediaItem = playerController.mapMediaItem(mediaItem)
+                event.setMediaItem(bccmMediaItem)
+            } else {
+                event.setMediaItem(null)
+            }
+            plugin.playbackPigeon?.onPlaybackEnded(event.build()) {}
+        }
     }
 
     override fun onIsPlayingChanged(isPlaying: Boolean) {

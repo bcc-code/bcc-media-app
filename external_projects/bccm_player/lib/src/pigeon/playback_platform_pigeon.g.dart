@@ -187,6 +187,7 @@ class PlayerStateSnapshot {
   PlayerStateSnapshot({
     required this.playerId,
     required this.playbackState,
+    required this.isFullscreen,
     this.currentMediaItem,
     this.playbackPositionMs,
   });
@@ -194,6 +195,8 @@ class PlayerStateSnapshot {
   String playerId;
 
   PlaybackState playbackState;
+
+  bool isFullscreen;
 
   MediaItem? currentMediaItem;
 
@@ -203,6 +206,7 @@ class PlayerStateSnapshot {
     return <Object?>[
       playerId,
       playbackState.index,
+      isFullscreen,
       currentMediaItem?.encode(),
       playbackPositionMs,
     ];
@@ -213,10 +217,11 @@ class PlayerStateSnapshot {
     return PlayerStateSnapshot(
       playerId: result[0]! as String,
       playbackState: PlaybackState.values[result[1]! as int],
-      currentMediaItem: result[2] != null
-          ? MediaItem.decode(result[2]! as List<Object?>)
+      isFullscreen: result[2]! as bool,
+      currentMediaItem: result[3] != null
+          ? MediaItem.decode(result[3]! as List<Object?>)
           : null,
-      playbackPositionMs: result[3] as double?,
+      playbackPositionMs: result[4] as double?,
     );
   }
 }
@@ -245,6 +250,53 @@ class ChromecastState {
       mediaItem: result[1] != null
           ? MediaItem.decode(result[1]! as List<Object?>)
           : null,
+    );
+  }
+}
+
+class PrimaryPlayerChangedEvent {
+  PrimaryPlayerChangedEvent({
+    this.playerId,
+  });
+
+  String? playerId;
+
+  Object encode() {
+    return <Object?>[
+      playerId,
+    ];
+  }
+
+  static PrimaryPlayerChangedEvent decode(Object result) {
+    result as List<Object?>;
+    return PrimaryPlayerChangedEvent(
+      playerId: result[0] as String?,
+    );
+  }
+}
+
+class PlayerStateUpdateEvent {
+  PlayerStateUpdateEvent({
+    required this.playerId,
+    required this.snapshot,
+  });
+
+  String playerId;
+
+  PlayerStateSnapshot snapshot;
+
+  Object encode() {
+    return <Object?>[
+      playerId,
+      snapshot.encode(),
+    ];
+  }
+
+  static PlayerStateUpdateEvent decode(Object result) {
+    result as List<Object?>;
+    return PlayerStateUpdateEvent(
+      playerId: result[0]! as String,
+      snapshot: PlayerStateSnapshot.decode(result[1]! as List<Object?>),
     );
   }
 }
@@ -297,6 +349,34 @@ class PlaybackStateChangedEvent {
     return PlaybackStateChangedEvent(
       playerId: result[0]! as String,
       playbackState: PlaybackState.values[result[1]! as int],
+    );
+  }
+}
+
+class PlaybackEndedEvent {
+  PlaybackEndedEvent({
+    required this.playerId,
+    this.mediaItem,
+  });
+
+  String playerId;
+
+  MediaItem? mediaItem;
+
+  Object encode() {
+    return <Object?>[
+      playerId,
+      mediaItem?.encode(),
+    ];
+  }
+
+  static PlaybackEndedEvent decode(Object result) {
+    result as List<Object?>;
+    return PlaybackEndedEvent(
+      playerId: result[0]! as String,
+      mediaItem: result[1] != null
+          ? MediaItem.decode(result[1]! as List<Object?>)
+          : null,
     );
   }
 }
@@ -616,6 +696,28 @@ class PlaybackPlatformPigeon {
     }
   }
 
+  Future<void> exitFullscreen(String arg_playerId) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.exitFullscreen', codec,
+        binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList =
+        await channel.send(<Object?>[arg_playerId]) as List<Object?>?;
+    if (replyList == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyList.length > 1) {
+      throw PlatformException(
+        code: replyList[0]! as String,
+        message: replyList[1] as String?,
+        details: replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
   Future<void> setNpawConfig(NpawConfig? arg_config) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.PlaybackPlatformPigeon.setNpawConfig', codec,
@@ -765,14 +867,23 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
     } else if (value is PictureInPictureModeChangedEvent) {
       buffer.putUint8(131);
       writeValue(buffer, value.encode());
-    } else if (value is PlaybackStateChangedEvent) {
+    } else if (value is PlaybackEndedEvent) {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
-    } else if (value is PlayerStateSnapshot) {
+    } else if (value is PlaybackStateChangedEvent) {
       buffer.putUint8(133);
       writeValue(buffer, value.encode());
-    } else if (value is PositionDiscontinuityEvent) {
+    } else if (value is PlayerStateSnapshot) {
       buffer.putUint8(134);
+      writeValue(buffer, value.encode());
+    } else if (value is PlayerStateUpdateEvent) {
+      buffer.putUint8(135);
+      writeValue(buffer, value.encode());
+    } else if (value is PositionDiscontinuityEvent) {
+      buffer.putUint8(136);
+      writeValue(buffer, value.encode());
+    } else if (value is PrimaryPlayerChangedEvent) {
+      buffer.putUint8(137);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -791,11 +902,17 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
       case 131: 
         return PictureInPictureModeChangedEvent.decode(readValue(buffer)!);
       case 132: 
-        return PlaybackStateChangedEvent.decode(readValue(buffer)!);
+        return PlaybackEndedEvent.decode(readValue(buffer)!);
       case 133: 
-        return PlayerStateSnapshot.decode(readValue(buffer)!);
+        return PlaybackStateChangedEvent.decode(readValue(buffer)!);
       case 134: 
+        return PlayerStateSnapshot.decode(readValue(buffer)!);
+      case 135: 
+        return PlayerStateUpdateEvent.decode(readValue(buffer)!);
+      case 136: 
         return PositionDiscontinuityEvent.decode(readValue(buffer)!);
+      case 137: 
+        return PrimaryPlayerChangedEvent.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
     }
@@ -806,13 +923,15 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
 abstract class PlaybackListenerPigeon {
   static const MessageCodec<Object?> codec = _PlaybackListenerPigeonCodec();
 
-  void onPrimaryPlayerChanged(String? playerId);
+  void onPrimaryPlayerChanged(PrimaryPlayerChangedEvent event);
 
   void onPositionDiscontinuity(PositionDiscontinuityEvent event);
 
-  void onPlayerStateUpdate(PlayerStateSnapshot event);
+  void onPlayerStateUpdate(PlayerStateUpdateEvent event);
 
   void onPlaybackStateChanged(PlaybackStateChangedEvent event);
+
+  void onPlaybackEnded(PlaybackEndedEvent event);
 
   void onMediaItemTransition(MediaItemTransitionEvent event);
 
@@ -830,8 +949,10 @@ abstract class PlaybackListenerPigeon {
           assert(message != null,
           'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final String? arg_playerId = (args[0] as String?);
-          api.onPrimaryPlayerChanged(arg_playerId);
+          final PrimaryPlayerChangedEvent? arg_event = (args[0] as PrimaryPlayerChangedEvent?);
+          assert(arg_event != null,
+              'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged was null, expected non-null PrimaryPlayerChangedEvent.');
+          api.onPrimaryPlayerChanged(arg_event!);
           return;
         });
       }
@@ -866,9 +987,9 @@ abstract class PlaybackListenerPigeon {
           assert(message != null,
           'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final PlayerStateSnapshot? arg_event = (args[0] as PlayerStateSnapshot?);
+          final PlayerStateUpdateEvent? arg_event = (args[0] as PlayerStateUpdateEvent?);
           assert(arg_event != null,
-              'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate was null, expected non-null PlayerStateSnapshot.');
+              'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate was null, expected non-null PlayerStateUpdateEvent.');
           api.onPlayerStateUpdate(arg_event!);
           return;
         });
@@ -889,6 +1010,25 @@ abstract class PlaybackListenerPigeon {
           assert(arg_event != null,
               'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackStateChanged was null, expected non-null PlaybackStateChangedEvent.');
           api.onPlaybackStateChanged(arg_event!);
+          return;
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackEnded', codec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMessageHandler(null);
+      } else {
+        channel.setMessageHandler((Object? message) async {
+          assert(message != null,
+          'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackEnded was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final PlaybackEndedEvent? arg_event = (args[0] as PlaybackEndedEvent?);
+          assert(arg_event != null,
+              'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackEnded was null, expected non-null PlaybackEndedEvent.');
+          api.onPlaybackEnded(arg_event!);
           return;
         });
       }

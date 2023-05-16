@@ -2,10 +2,13 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/env/env.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -39,9 +42,8 @@ class PlaybackService {
         appName: 'mobile',
       ),
     );
-    platformApi.addPlaybackListener(
-      BccmPlaybackListener(ref: ref, apiProvider: apiProvider),
-    );
+
+    BccmPlaybackListener(ref: ref, apiProvider: apiProvider);
 
     // Keep the analytics session alive while playing stuff.
     ref.listen<PlayerState?>(primaryPlayerProvider, (_, next) {
@@ -64,7 +66,7 @@ class PlaybackService {
     }
   }
 
-  MediaItem _mapEpisode(Query$FetchEpisode$episode episode) {
+  MediaItem _mapEpisode(Fragment$PlayableEpisode episode) {
     final collectionId = episode.context.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id;
     return MediaItem(
       url: episode.streams.getBestStreamUrl(),
@@ -85,7 +87,32 @@ class PlaybackService {
     );
   }
 
-  Future playEpisode({required String playerId, required Query$FetchEpisode$episode episode, bool? autoplay, int? playbackPositionMs}) async {
+  Future<Fragment$PlayableEpisode?> getNextEpisodeForPlayer({
+    required String playerId,
+  }) async {
+    final episodeId = ref.read(playerProviderFor(playerId))?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
+    if (episodeId == null) {
+      debugPrint('playNextForPlayer($playerId): No episode id found in currentMediaItem.');
+      return null;
+    }
+    final collectionId = ref.read(playerProviderFor(playerId))?.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
+    final episode = await ref.read(gqlClientProvider).query$getNextEpisodes(
+          Options$Query$getNextEpisodes(
+            variables: Variables$Query$getNextEpisodes(
+              episodeId: episodeId,
+              context: collectionId != null ? Input$EpisodeContext(collectionId: collectionId) : null,
+            ),
+          ),
+        );
+    final nextEpisode = episode.parsedData!.episode.next.firstOrNull;
+    if (nextEpisode == null) {
+      debugPrint('playNextForPlayer($playerId): getNextEpisodes returned no next episode.');
+      return null;
+    }
+    return nextEpisode;
+  }
+
+  Future playEpisode({required String playerId, required Fragment$PlayableEpisode episode, bool? autoplay, int? playbackPositionMs}) async {
     var mediaItem = _mapEpisode(episode);
     mediaItem.playbackStartPositionMs = playbackPositionMs?.toDouble();
     await platformApi.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);

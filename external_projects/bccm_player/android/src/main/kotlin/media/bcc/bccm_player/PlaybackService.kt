@@ -4,11 +4,12 @@ import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
 import android.util.Log
-import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import com.google.android.gms.cast.framework.CastContext
 import com.google.android.gms.cast.framework.CastState
+import media.bcc.bccm_player.pigeon.PlaybackPlatformApi.PlayerStateUpdateEvent
+import media.bcc.bccm_player.pigeon.PlaybackPlatformApi.PrimaryPlayerChangedEvent
 import media.bcc.bccm_player.players.PlayerController
 import media.bcc.bccm_player.players.chromecast.CastPlayerController
 import media.bcc.bccm_player.players.exoplayer.ExoPlayerController
@@ -64,8 +65,14 @@ class PlaybackService : MediaSessionService() {
             primaryPlayerController = pc
             mediaSession.player = pc.player
             if (plugin != null) {
-                plugin!!.playbackPigeon?.onPrimaryPlayerChanged(playerId) {}
-                plugin!!.playbackPigeon?.onPlayerStateUpdate(primaryPlayerController!!.getPlayerStateSnapshot()) {}
+                plugin!!.playbackPigeon?.onPrimaryPlayerChanged(
+                    PrimaryPlayerChangedEvent.Builder().setPlayerId(playerId).build()
+                ) {}
+                val stateUpdateEvent =
+                    PlayerStateUpdateEvent.Builder()
+                        .setPlayerId(playerId)
+                        .setSnapshot(primaryPlayerController!!.getPlayerStateSnapshot())
+                plugin!!.playbackPigeon?.onPlayerStateUpdate(stateUpdateEvent.build()) {}
                 pc.attachPlugin(plugin!!)
             }
         }

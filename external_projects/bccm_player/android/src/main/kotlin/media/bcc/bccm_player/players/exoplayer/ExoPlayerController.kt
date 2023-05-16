@@ -42,7 +42,7 @@ class ExoPlayerController(private val context: Context) :
         .setVideoScalingMode(VIDEO_SCALING_MODE_SCALE_TO_FIT)
         .build()
     override val player: ForwardingPlayer
-    override var currentPlayerViewController: ExoPlayerView? = null
+    override var currentPlayerViewController: BccmPlayerViewController? = null
     private var textLanguageThatShouldBeSelected: String? = null
 
     private var _currentPlayerView: PlayerView? = null
@@ -155,9 +155,10 @@ class ExoPlayerController(private val context: Context) :
         Log.d("bccm", if (isDisabled) "Disabled video" else "Enabled video")
     }
 
-    fun takeOwnership(playerView: PlayerView, viewController: ExoPlayerView) {
-        if (currentPlayerView != null) {
+    fun takeOwnership(playerView: PlayerView, viewController: BccmPlayerViewController) {
+        if (currentPlayerView != null && currentPlayerView != playerView) {
             PlayerView.switchTargetView(player, currentPlayerView, playerView)
+            currentPlayerViewController?.onOwnershipLost();
         } else {
             playerView.player = player
         }
@@ -170,6 +171,7 @@ class ExoPlayerController(private val context: Context) :
             currentPlayerView = null
             currentPlayerViewController = null
         }
+        pluginPlayerListener?.onManualPlayerStateUpdate()
     }
 
     override fun release() {

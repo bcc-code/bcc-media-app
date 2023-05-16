@@ -5,6 +5,7 @@ query FetchEpisode(
 ) {
   episode(id: $id, context: $context) {
     id
+    ...PlayableEpisode
     uuid
     status
     title
@@ -36,8 +37,6 @@ query FetchEpisode(
     }
     streams {
       ...BasicStream
-      audioLanguages
-      subtitleLanguages
     }
     lessons {
       items {
@@ -86,6 +85,8 @@ fragment BasicStream on Stream {
   id
   url
   type
+  audioLanguages
+  subtitleLanguages
 }
 
 fragment SeasonListEpisode on Episode {
@@ -115,6 +116,28 @@ query EpisodeDetails($id: ID!) {
   }
 }
 
+fragment PlayableEpisode on Episode {
+  id
+  streams {
+    ...BasicStream
+  }
+  context {
+    ... on ContextCollection {
+      id
+    }
+  }
+  title
+  image
+  season {
+    id
+    title
+    show {
+      id
+      title
+    }
+  }
+}
+
 fragment EpisodeDetails on Episode {
   id
   publishDate
@@ -133,6 +156,14 @@ query getDefaultEpisodeForShow($showId: ID!) {
   show(id: $showId) {
     defaultEpisode {
       id
+    }
+  }
+}
+
+query getNextEpisodes($episodeId: ID!, $context: EpisodeContext) {
+  episode(id: $episodeId, context: $context) {
+    next {
+      ...PlayableEpisode
     }
   }
 }

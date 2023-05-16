@@ -23,21 +23,23 @@ import kotlinx.coroutines.cancel
 import media.bcc.bccm_player.BccmPlayerPlugin
 import media.bcc.bccm_player.PlaybackService
 import media.bcc.bccm_player.R
+import media.bcc.bccm_player.players.exoplayer.BccmPlayerViewController
 import media.bcc.bccm_player.players.exoplayer.ExoPlayerController
-import media.bcc.bccm_player.players.exoplayer.ExoPlayerView
 
 
 class FlutterExoPlayerView(
     private val playbackService: PlaybackService,
     private val context: Context,
     private var playerId: String
-) : PlatformView, ExoPlayerView {
+) : PlatformView, BccmPlayerViewController {
     private var playerController: ExoPlayerController? = null
     private val _v: LinearLayout = LinearLayout(context)
     private var _playerView: PlayerView? = null
     private val ioScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private var setupDone = false
-
+    override val isFullscreen = false
+    override val shouldPipAutomatically
+        get() = playerController?.player?.isPlaying ?: false
 
     class Factory(private val plugin: BccmPlayerPlugin?) :
         PlatformViewFactory(StandardMessageCodec.INSTANCE) {
@@ -75,9 +77,6 @@ class FlutterExoPlayerView(
         ioScope.cancel()
     }
 
-    fun getPlayerView(): PlayerView? {
-        return _playerView
-    }
 
     private fun setup() {
         if (_playerView?.player != null) {
@@ -174,10 +173,6 @@ class FlutterExoPlayerView(
         playerController = null
         _v.removeAllViews()
         setupDone = false
-    }
-
-    override fun shouldPipAutomatically(): Boolean {
-        return playerController?.player?.isPlaying ?: false
     }
 
     override fun enterPictureInPicture() {

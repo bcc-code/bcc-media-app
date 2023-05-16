@@ -16,7 +16,7 @@ import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
 import media.bcc.bccm_player.players.PlayerController
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_SUBTITLE_LANGUAGE
-import media.bcc.bccm_player.players.exoplayer.ExoPlayerView
+import media.bcc.bccm_player.players.exoplayer.BccmPlayerViewController
 
 
 class CastPlayerController(
@@ -24,7 +24,7 @@ class CastPlayerController(
     private val playbackService: PlaybackService
 ) : PlayerController(), SessionManagerListener<Session>, SessionAvailabilityListener {
     override val player = CastPlayer(castContext, CastMediaItemConverter())
-    override var currentPlayerViewController: ExoPlayerView? = null
+    override var currentPlayerViewController: BccmPlayerViewController? = null
 
     override val id: String = "chromecast"
 

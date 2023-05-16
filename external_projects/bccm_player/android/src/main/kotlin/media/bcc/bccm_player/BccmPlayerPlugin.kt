@@ -191,7 +191,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
     override fun onUserLeaveHint() {
         val currentPlayerViewController =
             playbackService?.getPrimaryController()?.currentPlayerViewController
-        if (currentPlayerViewController?.shouldPipAutomatically() == true && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (currentPlayerViewController?.shouldPipAutomatically == true && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             currentPlayerViewController.enterPictureInPicture()
         }
     }
