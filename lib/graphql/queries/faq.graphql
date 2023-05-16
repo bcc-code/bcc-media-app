@@ -1,0 +1,23 @@
+fragment Question on Question {
+  question
+  answer
+}
+
+fragment FAQCategory on FAQCategory {
+  title
+  questions {
+    items {
+      ... Question
+    }
+  }
+}
+
+query FAQ {
+  faq {
+    categories {
+      items {
+        ... FAQCategory
+      }
+    }
+  }
+}
