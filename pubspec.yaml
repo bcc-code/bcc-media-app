@@ -86,7 +86,6 @@ dependencies:
   rudder_sdk_flutter: ^2.2.0
   rudder_sdk_flutter_platform_interface: ^2.2.0
   share_plus: ^6.3.0
-  firebase_performance: ^0.9.0+6
   restart_app: ^1.1.1
   flutter_inappwebview: ^6.0.0-beta.20
   app_links: ^3.3.0

@@ -94,5 +94,9 @@
 	<true/>
 	<key>FirebaseMessagingAutoInitEnabled</key>
 	<false/>
+	<key>FirebaseCrashlyticsCollectionEnabled</key>
+	<false/>
+	<key>FirebaseDataCollectionDefaultEnabled</key>
+	<false/>
 </dict>
 </plist>
