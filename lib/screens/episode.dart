@@ -9,6 +9,7 @@ import 'package:brunstadtv_app/components/episode/episode_info.dart';
 import 'package:brunstadtv_app/components/episode/episode_related.dart';
 import 'package:brunstadtv_app/components/episode/episode_season.dart';
 import 'package:brunstadtv_app/components/episode/player_poster.dart';
+import 'package:brunstadtv_app/components/parents/parental_gate.dart';
 import 'package:brunstadtv_app/components/status_indicators/error_generic.dart';
 import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
 import 'package:brunstadtv_app/components/episode/share_episode_sheet.dart';
@@ -240,11 +241,14 @@ class _EpisodeDisplay extends HookConsumerWidget {
         .timeout(const Duration(milliseconds: 12000));
   }
 
-  void shareVideo(BuildContext context, WidgetRef ref, Query$FetchEpisode$episode episode) {
+  void shareVideo(BuildContext context, WidgetRef ref, Query$FetchEpisode$episode episode) async {
     final player = ref.read(primaryPlayerProvider);
     final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
     if (player != null && player.playerId != 'chromecast') {
       ref.read(playbackServiceProvider).platformApi.pause(player.playerId);
+    }
+    if (!await checkParentalGate(context) || !context.mounted) {
+      return;
     }
     showModalBottomSheet(
       useRootNavigator: true,

@@ -25,6 +25,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       publicSignup: client.isEnabled('public-signup'),
       socialSignup: client.isEnabled('social-signup'),
       autoplayNext: client.isEnabled('autoplay-next'),
+      shareVideoButton: FlavorConfig.current.flavor != Flavor.kids,
     );
   }
 
