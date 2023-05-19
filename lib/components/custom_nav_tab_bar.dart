@@ -15,8 +15,8 @@ import '../l10n/app_localizations.dart';
 
 const double _iconSize = 28;
 
-class CustomTabBar extends HookConsumerWidget {
-  const CustomTabBar({
+class CustomNavTabBar extends HookConsumerWidget {
+  const CustomNavTabBar({
     Key? key,
     required this.tabsRouter,
     required this.onTabTap,

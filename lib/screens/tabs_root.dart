@@ -13,7 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
 import '../components/bottom_sheet_mini_player.dart';
-import '../components/custom_tab_bar.dart';
+import '../components/custom_nav_tab_bar.dart';
 import '../components/prompts/prompts.dart';
 import '../components/web/web_app_bar.dart';
 import '../models/scroll_screen.dart';
@@ -159,7 +159,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
             ),
             bottomNavigationBar: kIsWeb
                 ? null
-                : CustomTabBar(
+                : CustomNavTabBar(
                     tabsRouter: tabsRouter,
                     onTabTap: (i) => onTabTap(context, i),
                   ),
