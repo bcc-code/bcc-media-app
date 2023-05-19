@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:clock/clock.dart';
@@ -166,7 +167,9 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       await launchUrl(url, mode: LaunchMode.externalApplication);
     }
     state = AuthState(signedOutManually: manual);
-    FirebaseMessaging.instance.deleteToken();
+    if (FlavorConfig.current.enableNotifications) {
+      FirebaseMessaging.instance.deleteToken();
+    }
     RudderController.instance.reset();
     _settingsService.setAnalyticsId(null);
     _settingsService.refreshSessionId();

@@ -35,6 +35,12 @@ class SFi extends S {
   String get loginPageDisplay2 => 'Katsele Kristillisten arvojen mukaisia videoita, esityksiä, ja sarjoja';
 
   @override
+  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+
+  @override
   String get loginPageDisplay3 => 'BCC Median tuottama';
 
   @override
@@ -56,7 +62,7 @@ class SFi extends S {
   String get signInButton => 'Kirjaudu sisään';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'Kirjautuminen';
 
   @override
   String get signUpButton => 'Luo tunnus nyt';
@@ -68,7 +74,7 @@ class SFi extends S {
   String get signUpDescription => 'Luomalla tunnuksen saat enemmän sisältöä ja paremmat ominaisuudet.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Voin osoittaa olevani vähintään 13 vuotias, ja hyväksyn <a>Yksityisyydensuojakäytännöt</a>sekä <a>Käyttöehdot</a>.';
 
   @override
   String get setPassword => 'Aseta salasana';
@@ -98,7 +104,7 @@ class SFi extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Open';
+  String get open => 'Avaa';
 
   @override
   String get loginFailedCheckNetwork => 'Kirjautuminen epäonnistui. Tarkista nettiyhteys ja koita uudelleen.';
@@ -140,16 +146,16 @@ class SFi extends S {
   String get cancel => 'Peru';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Varmastiko haluat perua?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Tallentamattomat muutokset katoavat.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Palaa';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Niin, hylkää';
 
   @override
   String get upNext => 'Tulossa';
@@ -191,7 +197,7 @@ class SFi extends S {
   String get search => 'Haku';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Lähetä palautetta';
 
   @override
   String get noResults => 'Mitään ei löytynyt';
@@ -403,10 +409,10 @@ class SFi extends S {
   String get share => 'Jaa';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Näytä lisää';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Näytä vähemmän';
 
   @override
   String get liveNow => 'Suorana nyt';
@@ -513,6 +519,9 @@ class SFi extends S {
   String get explorePublicContent => 'Tutustu avoimeen sisältöön';
 
   @override
+  String get startExploring => 'Start exploring';
+
+  @override
   String get taskCompleted => 'tehtävä suoritettu';
 
   @override
@@ -586,18 +595,18 @@ class SFi extends S {
   String get continueButton => 'Jatka';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Ilmoittaudu';
 
   @override
   String get achievements => 'Saavutukset';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Vähintään $n merkkiä';
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Täytyy sisältää isoja ja pieniä kirjaimia sekä numeroita.';
 
   @override
   String get oops => 'Hupsista!';
@@ -630,10 +639,10 @@ class SFi extends S {
   String get selectSeason => 'Valitse tuotantokausi';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'Poista tilini';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Aivan varmasti haluan poistaa tilini ja tietoni BCC Media sovelluksesta.';
 
   @override
   String get areYouSure => 'Oletko varma?';

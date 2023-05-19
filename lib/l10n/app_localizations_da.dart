@@ -35,6 +35,12 @@ class SDa extends S {
   String get loginPageDisplay2 => 'Se serier, shows og film baseret på kristne værdier';
 
   @override
+  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+
+  @override
   String get loginPageDisplay3 => 'Produceret af BCC Media';
 
   @override
@@ -511,6 +517,9 @@ class SDa extends S {
 
   @override
   String get explorePublicContent => 'Udforsk offentligt indhold';
+
+  @override
+  String get startExploring => 'Start exploring';
 
   @override
   String get taskCompleted => 'Opgave udført';

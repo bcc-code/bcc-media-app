@@ -1,21 +1,24 @@
 import 'package:brunstadtv_app/env/dev/firebase_options.dart' as dev_firebase;
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/main.dart';
-import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:flutter/material.dart';
+
+import 'l10n/app_localizations.dart';
 
 void main() async {
   FlavorConfig.register(
     FlavorConfig(
-      flavor: Flavor.bccmedia_dev,
+      flavor: Flavor.bccmedia,
       firebaseOptions: dev_firebase.DefaultFirebaseOptions.currentPlatform,
-      flavorGradients: FlavorGradients(
-        study: BccmGradients.greenYellow,
-        achievementBackground: BccmGradients.purpleTransparent,
-        tabIconActive: BccmGradients.softPurpleBlue,
+      enableNotifications: true,
+      strings: (context) => FlavorStrings(
+        onboardingTitle: S.of(context).loginPageDisplay1,
+        onboardingSecondaryTitle: S.of(context).loginPageDisplay2,
       ),
-      flavorImages: FlavorImages(
+      images: FlavorImages(
+        logoHeight: 20,
         logo: const AssetImage('assets/flavors/prod/logo.png'),
+        onboarding: const AssetImage('assets/flavors/prod/onboarding.png'),
         home: StateImageProvider(
           image: const AssetImage('assets/icons/Home_Default.png'),
           activeImage: const AssetImage('assets/icons/Home_Selected.png'),

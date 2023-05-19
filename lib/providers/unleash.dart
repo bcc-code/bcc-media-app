@@ -27,6 +27,9 @@ final unleashRawProvider = Provider<UnleashClient?>((ref) {
     clientKey: isBetaTester ? Env.unleashClientKeyBetaTester : Env.unleashClientKey,
     appName: Env.unleashAppName,
     refreshInterval: 60,
+    customHeaders: {
+      'UNLEASH-APPNAME': Env.unleashAppName,
+    },
   );
   client.on(
     'error',
@@ -51,6 +54,11 @@ final unleashRawProvider = Provider<UnleashClient?>((ref) {
 
 final unleashContextProvider = Provider<UnleashContext>((ref) {
   return UnleashContext(
-    userId: ref.watch(authStateProvider.select((value) => value.user?.bccPersonId)),
+    properties: {
+      'appName': Env.unleashAppName,
+    },
+    userId: ref.watch(
+      authStateProvider.select((value) => value.user?.bccPersonId),
+    ),
   );
 });

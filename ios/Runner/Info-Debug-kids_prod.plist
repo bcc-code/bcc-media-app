@@ -92,5 +92,13 @@
 	<false/>
 	<key>FLTDisableImpeller</key>
 	<true/>
+	<key>FLTEnableImpeller</key>
+	<false/>
+	<key>FirebaseMessagingAutoInitEnabled</key>
+	<false/>
+	<key>FirebaseCrashlyticsCollectionEnabled</key>
+	<false/>
+	<key>FirebaseDataCollectionDefaultEnabled</key>
+	<false/>
 </dict>
 </plist>

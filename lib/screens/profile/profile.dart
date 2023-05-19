@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/components/parents/parental_gate.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
@@ -7,6 +8,7 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:universal_io/io.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -88,153 +90,166 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
     final user = ref.read(authStateProvider.select((value) => value.user));
     final settings = ref.watch(settingsProvider);
     return DialogOnWeb(
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          toolbarHeight: 44,
-          leadingWidth: 92,
-          leading: const CustomBackButton(),
-          title: authEnabled ? Text(S.of(context).profileTab) : Text(S.of(context).settings),
-        ),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              alignment: Alignment.center,
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  if (authEnabled) ...[
-                    if (user != null)
-                      const Avatar()
-                    else
-                      Padding(
-                        padding: const EdgeInsets.only(top: 24, bottom: 16),
-                        child: Padding(
-                          padding: const EdgeInsets.all(6),
-                          child: SvgPicture.string(
-                            SvgIcons.avatar,
-                            color: DesignSystem.of(context).colors.tint1,
+      child: CupertinoScaffold(
+        body: Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            toolbarHeight: 44,
+            leadingWidth: 92,
+            leading: const CustomBackButton(),
+            title: authEnabled ? Text(S.of(context).profileTab) : Text(S.of(context).settings),
+          ),
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Container(
+                alignment: Alignment.center,
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    if (authEnabled) ...[
+                      if (user != null)
+                        const Avatar()
+                      else
+                        Padding(
+                          padding: const EdgeInsets.only(top: 24, bottom: 16),
+                          child: Padding(
+                            padding: const EdgeInsets.all(6),
+                            child: SvgPicture.string(
+                              SvgIcons.avatar,
+                              color: DesignSystem.of(context).colors.tint1,
+                            ),
                           ),
                         ),
-                      ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 24),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          if (user != null)
-                            GestureDetector(
-                              onLongPress: () => ref.read(authStateProvider.notifier).logout(manual: false),
-                              child: DesignSystem.of(context).buttons.smallSecondary(
-                                    onPressed: () => {ref.read(authStateProvider.notifier).logout()},
-                                    labelText: S.of(context).logOutButton,
-                                  ),
-                            )
-                          else
-                            DesignSystem.of(context).buttons.small(
-                                  onPressed: () => context.router.navigate(OnboardingScreenRoute()),
-                                  labelText: S.of(context).signInOrSignUp,
-                                )
-                        ],
-                      ),
-                    ),
-                  ] else ...[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 48),
-                      child: Image(
-                        image: FlavorConfig.current.flavorImages.logo,
-                        height: 25,
-                        gaplessPlayback: true,
-                      ),
-                    ),
-                  ],
-                  Column(
-                    children: [
-                      SettingList(
-                        buttons: [
-                          OptionButton(
-                            optionName: S.of(context).appLanguage,
-                            currentSelection: getLanguageName(settings.appLanguage.languageCode),
-                            onPressed: () {
-                              context.router.push(const AppLanguageScreenRoute());
-                            },
-                          ),
-                          OptionButton(
-                            optionName: S.of(context).audioLanguage,
-                            currentSelection: getLanguageName(settings.audioLanguage),
-                            onPressed: () {
-                              context.router.push(const AudioLanguageScreenRoute());
-                            },
-                          ),
-                          OptionButton(
-                            optionName: S.of(context).subtitleLanguage,
-                            currentSelection: settings.subtitleLanguage == null ? S.of(context).none : getLanguageName(settings.subtitleLanguage),
-                            onPressed: () {
-                              context.router.push(const SubtitleLanguageScreenRoute());
-                            },
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 24),
-                      SettingList(
-                        buttons: [
-                          if (!ref.read(authStateProvider).guestMode) ...[
-                            OptionButton(
-                              optionName: S.of(context).contactSupport,
-                              onPressed: () {
-                                context.router.push(const ContactSupportScreenRoute());
-                              },
-                            ),
-                            OptionButton(
-                              optionName: S.of(context).userVoice,
-                              onPressed: () {
-                                launchUrlString('https://uservoice.bcc.no/?tags=bcc-media', mode: LaunchMode.externalApplication);
-                              },
-                            )
-                          ] else ...[
-                            OptionButton(
-                              optionName: S.of(context).faq,
-                              onPressed: () => context.router.push(const FAQScreenRoute()),
-                            ),
-                            OptionButton(
-                              optionName: S.of(context).contactSupport,
-                              onPressed: () => _contactSupportEmail(),
-                            ),
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 24),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (user != null)
+                              GestureDetector(
+                                onLongPress: () => ref.read(authStateProvider.notifier).logout(manual: false),
+                                child: DesignSystem.of(context).buttons.smallSecondary(
+                                      onPressed: () => {ref.read(authStateProvider.notifier).logout()},
+                                      labelText: S.of(context).logOutButton,
+                                    ),
+                              )
+                            else
+                              DesignSystem.of(context).buttons.small(
+                                    onPressed: () => context.router.navigate(OnboardingScreenRoute()),
+                                    labelText: S.of(context).signInOrSignUp,
+                                  )
                           ],
-                          OptionButton(
-                            optionName: S.of(context).about,
-                            onPressed: () {
-                              context.router.push(const AboutScreenRoute());
-                            },
-                          ),
-                        ],
+                        ),
                       ),
-                      const SizedBox(height: 24),
-                      SettingList(
-                        buttons: [
-                          OptionButton(
-                            optionName: S.of(context).privacyPolicy,
-                            currentSelection: '(external page)',
-                            onPressed: () {
-                              context.router.push(const PrivacyPolicyScreenRoute());
-                            },
-                          ),
-                        ],
+                    ] else ...[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 48),
+                        child: Image(
+                          image: FlavorConfig.current.images.logo,
+                          height: 25,
+                          gaplessPlayback: true,
+                        ),
                       ),
-                      const SizedBox(height: 48),
-                      if (user != null)
+                    ],
+                    Column(
+                      children: [
                         SettingList(
                           buttons: [
                             OptionButton(
-                              optionName: S.of(context).deleteMyAccount,
-                              onPressed: () => context.router.navigate(const AccountDeletionScreenRoute()),
+                              optionName: S.of(context).appLanguage,
+                              currentSelection: getLanguageName(settings.appLanguage.languageCode),
+                              onPressed: () {
+                                context.router.push(const AppLanguageScreenRoute());
+                              },
+                            ),
+                            OptionButton(
+                              optionName: S.of(context).audioLanguage,
+                              currentSelection: getLanguageName(settings.audioLanguage),
+                              onPressed: () {
+                                context.router.push(const AudioLanguageScreenRoute());
+                              },
+                            ),
+                            OptionButton(
+                              optionName: S.of(context).subtitleLanguage,
+                              currentSelection: settings.subtitleLanguage == null ? S.of(context).none : getLanguageName(settings.subtitleLanguage),
+                              onPressed: () {
+                                context.router.push(const SubtitleLanguageScreenRoute());
+                              },
                             ),
                           ],
-                        )
-                    ],
-                  ),
-                ],
+                        ),
+                        const SizedBox(height: 24),
+                        SettingList(
+                          buttons: [
+                            if (!ref.read(authStateProvider).guestMode) ...[
+                              OptionButton(
+                                optionName: S.of(context).contactSupport,
+                                onPressed: () {
+                                  context.router.push(const ContactSupportScreenRoute());
+                                },
+                              ),
+                              OptionButton(
+                                optionName: S.of(context).userVoice,
+                                onPressed: () {
+                                  launchUrlString('https://uservoice.bcc.no/?tags=bcc-media', mode: LaunchMode.externalApplication);
+                                },
+                              )
+                            ] else if (FlavorConfig.current.flavor != Flavor.kids) ...[
+                              OptionButton(
+                                optionName: S.of(context).faq,
+                                onPressed: () => context.router.push(const FAQScreenRoute()),
+                              ),
+                              OptionButton(
+                                optionName: S.of(context).contactSupport,
+                                onPressed: () => _contactSupportEmail(),
+                              ),
+                            ],
+                            OptionButton(
+                              optionName: S.of(context).about,
+                              onPressed: () {
+                                showParentalGateIfNeeded(context, onSuccess: () {
+                                  if (context.mounted) {
+                                    context.router.push(const AboutScreenRoute());
+                                  }
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 24),
+                        Builder(
+                          builder: (context) {
+                            return SettingList(
+                              buttons: [
+                                OptionButton(
+                                  optionName: S.of(context).privacyPolicy,
+                                  onPressed: () async {
+                                    showParentalGateIfNeeded(context, onSuccess: () {
+                                      if (context.mounted) {
+                                        context.router.push(const PrivacyPolicyScreenRoute());
+                                      }
+                                    });
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 48),
+                        if (user != null)
+                          SettingList(
+                            buttons: [
+                              OptionButton(
+                                optionName: S.of(context).deleteMyAccount,
+                                onPressed: () => context.router.navigate(const AccountDeletionScreenRoute()),
+                              ),
+                            ],
+                          )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

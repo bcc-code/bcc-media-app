@@ -15,6 +15,7 @@ class StudyProgressRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Row(
       children: [
         SizedBox(
@@ -32,7 +33,7 @@ class StudyProgressRow extends StatelessWidget {
           padding: const EdgeInsets.only(left: 6, right: 12),
           child: Text(
             '$completed/$total',
-            style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label1),
+            style: design.textStyles.caption1.copyWith(color: design.colors.label1),
           ),
         ),
         Expanded(
@@ -41,7 +42,7 @@ class StudyProgressRow extends StatelessWidget {
               Container(
                 height: 6,
                 decoration: BoxDecoration(
-                  color: DesignSystem.of(context).colors.separatorOnLight,
+                  color: design.colors.separatorOnLight,
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
@@ -50,7 +51,7 @@ class StudyProgressRow extends StatelessWidget {
                 child: Container(
                   height: 6,
                   decoration: BoxDecoration(
-                    gradient: FlavorConfig.current.flavorGradients.study,
+                    gradient: design.appThemeData.studyGradient,
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),

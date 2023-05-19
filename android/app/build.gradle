@@ -24,7 +24,6 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 // START: FlutterFire Configuration
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.firebase-perf'
 // END: FlutterFire Configuration
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
@@ -83,8 +82,8 @@ android {
             dimension 'env'
             applicationIdSuffix ''
             manifestPlaceholders += [
-                applicationLabel: 'BCC Media',
-                appAuthRedirectScheme: 'tv.brunstad.app',
+                    applicationLabel     : 'BCC Media',
+                    appAuthRedirectScheme: 'tv.brunstad.app',
             ]
             flutter.target 'lib/main_prod.dart'
         }
@@ -93,8 +92,8 @@ android {
             applicationIdSuffix '.dev'
             flutter.target 'lib/main_dev.dart'
             manifestPlaceholders += [
-                applicationLabel: 'DEV BCC Media',
-                appAuthRedirectScheme: 'tv.brunstad.app.dev',
+                    applicationLabel     : 'DEV BCC Media',
+                    appAuthRedirectScheme: 'tv.brunstad.app.dev',
             ]
         }
         kids_prod {
@@ -103,8 +102,8 @@ android {
             applicationId 'media.bcc.kids'
             flutter.target 'lib/main_kids_prod.dart'
             manifestPlaceholders += [
-                applicationLabel: 'Bible Kids',
-                appAuthRedirectScheme: 'media.bcc.kids',
+                    applicationLabel     : 'Bible Kids',
+                    appAuthRedirectScheme: 'media.bcc.kids',
             ]
         }
     }
@@ -115,7 +114,7 @@ flutter {
 }
 
 repositories {
-    maven { url  'https://npaw.jfrog.io/artifactory/youbora/' }
+    maven { url 'https://npaw.jfrog.io/artifactory/youbora/' }
 }
 
 dependencies {

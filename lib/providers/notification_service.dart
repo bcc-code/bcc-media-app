@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/navigation/navigation_utils.dart';
 import 'package:brunstadtv_app/main.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -14,10 +15,24 @@ import '../models/events/app_ready.dart';
 import '../theme/design_system/design_system.dart';
 
 final notificationServiceProvider = Provider<NotificationService>((ref) {
-  return NotificationService(ref: ref);
+  if (!FlavorConfig.current.enableNotifications) {
+    return DisabledNotificationService();
+  }
+  return FcmNotificationService(ref: ref);
 });
 
-class NotificationService {
+abstract class NotificationService {
+  Future<void> requestPermissionAndSetup();
+}
+
+class DisabledNotificationService implements NotificationService {
+  @override
+  Future<void> requestPermissionAndSetup() {
+    return Future.value();
+  }
+}
+
+class FcmNotificationService implements NotificationService {
   Ref ref;
   String? fcmToken;
   late StreamSubscription<AppReadyEvent> _appReadySubscription;
@@ -26,7 +41,7 @@ class NotificationService {
   StreamSubscription<String>? _tokenSubscription;
   ProviderSubscription<Settings>? _settingsSubscription;
 
-  NotificationService({required this.ref}) {
+  FcmNotificationService({required this.ref}) {
     _appReadySubscription = globalEventBus.on<AppReadyEvent>().listen(_onAppReady);
     ref.onDispose(dispose);
   }
@@ -40,7 +55,8 @@ class NotificationService {
   }
 
   /// Request permission and get token to start receiving push notifications
-  Future requestPermissionAndSetup() async {
+  @override
+  Future<void> requestPermissionAndSetup() async {
     var result = await FirebaseMessaging.instance.requestPermission();
     print('NotificationStatus: ${result.authorizationStatus}');
     FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: false, badge: false, sound: true);

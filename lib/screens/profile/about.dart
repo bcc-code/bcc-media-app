@@ -63,7 +63,8 @@ class _AboutScreenState extends State<AboutScreen> {
                         },
                         child: SizedBox(
                           child: Image(
-                            image: FlavorConfig.current.flavorImages.logo,
+                            image: FlavorConfig.current.images.logo,
+                            height: FlavorConfig.current.images.logoHeight,
                             gaplessPlayback: true,
                           ),
                         ),
@@ -77,13 +78,23 @@ class _AboutScreenState extends State<AboutScreen> {
                         ),
                       ),
                       InkWell(
-                        onTap: _launchUrl,
+                        onTap: () async {
+                          if (FlavorConfig.current.flavor == Flavor.kids) return;
+                          await launchUrl(Uri.parse('https://bcc.media'),
+                              mode: LaunchMode.externalApplication); // We do not particularly care if this fails.
+                        },
                         child: Text(
                           'bcc.media',
                           style: DesignSystem.of(context).textStyles.body2,
                           textAlign: TextAlign.center,
                         ),
-                      )
+                      ),
+                      const SizedBox(height: 24),
+                      Text(
+                        'You can contact us at support@bcc.media',
+                        style: DesignSystem.of(context).textStyles.body2,
+                        textAlign: TextAlign.center,
+                      ),
                     ],
                   ),
                 ),
@@ -106,9 +117,4 @@ class _AboutScreenState extends State<AboutScreen> {
       ),
     );
   }
-}
-
-final Uri _url = Uri.parse('https://bcc.media');
-Future<void> _launchUrl() async {
-  await launchUrl(_url, mode: LaunchMode.externalApplication); // We do not particularly care if this fails.
 }

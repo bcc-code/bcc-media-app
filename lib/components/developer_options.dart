@@ -1,7 +1,9 @@
 import 'package:brunstadtv_app/components/bottom_sheet_select.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:brunstadtv_app/providers/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,8 +19,8 @@ import 'option_list.dart';
 class DeveloperOptions extends ConsumerWidget {
   const DeveloperOptions({super.key});
 
-  void showOverrideEnvModal(BuildContext context) async {
-    var currentEnvOverride = (await SharedPreferences.getInstance()).getString(PrefKeys.envOverride);
+  void showOverrideEnvModal(BuildContext context, WidgetRef ref) {
+    var currentEnvOverride = ref.read(sharedPreferencesProvider).getString(PrefKeys.envOverride);
     // ignore: use_build_context_synchronously
     showDialog(
       useRootNavigator: true,
@@ -32,8 +34,7 @@ class DeveloperOptions extends ConsumerWidget {
           children: [EnvironmentOverride.none, EnvironmentOverride.dev, EnvironmentOverride.sta, EnvironmentOverride.prod]
               .map((env) => SimpleDialogOption(
                     onPressed: () async {
-                      var prefs = await SharedPreferences.getInstance();
-                      await prefs.setString(PrefKeys.envOverride, env);
+                      await ref.read(sharedPreferencesProvider).setString(PrefKeys.envOverride, env);
                       Restart.restartApp();
                     },
                     child: currentEnvOverride != env
@@ -74,7 +75,9 @@ class DeveloperOptions extends ConsumerWidget {
                     const Text('accessToken: '),
                     TextField(controller: TextEditingController()..text = auth.auth0AccessToken.toString()),
                     const Text('fcmToken: '),
-                    TextField(controller: TextEditingController()..text = notificationService.fcmToken.toString()),
+                    TextField(
+                        controller: TextEditingController()
+                          ..text = notificationService.asOrNull<FcmNotificationService>()?.fcmToken.toString() ?? 'disabled'),
                     const SizedBox(height: 8),
                     Text('auth.expiresAt: ${auth.expiresAt}'),
                     Text('session_id: ${settings.sessionId}'),
@@ -101,7 +104,7 @@ class DeveloperOptions extends ConsumerWidget {
         WidgetsBinding.instance.scheduleFrameCallback((d) {
           switch (id) {
             case 'override_env':
-              showOverrideEnvModal(context);
+              showOverrideEnvModal(context, ref);
               break;
             case 'show_technical_details':
               showTechnicalDetails(context, ref);

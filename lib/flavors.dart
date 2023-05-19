@@ -4,9 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 enum Flavor {
-  bccmedia_prod,
-  bccmedia_dev,
-  kids_prod;
+  bccmedia,
+  kids;
 }
 
 class StateImageProvider extends Iterable<ImageProvider> {
@@ -22,20 +21,19 @@ class StateImageProvider extends Iterable<ImageProvider> {
   Iterator<ImageProvider<Object>> get iterator => [image, activeImage].iterator;
 }
 
-class FlavorGradients {
-  final Gradient? tabIconActive;
-  final Gradient study;
-  final Gradient achievementBackground;
-
-  FlavorGradients({
-    required this.tabIconActive,
-    required this.study,
-    required this.achievementBackground,
+class FlavorStrings {
+  final String onboardingTitle;
+  final String onboardingSecondaryTitle;
+  FlavorStrings({
+    required this.onboardingTitle,
+    required this.onboardingSecondaryTitle,
   });
 }
 
 class FlavorImages extends Iterable<ImageProvider> {
+  final double logoHeight;
   final ImageProvider logo;
+  final ImageProvider onboarding;
   final StateImageProvider home;
   final StateImageProvider search;
   final StateImageProvider live;
@@ -43,7 +41,9 @@ class FlavorImages extends Iterable<ImageProvider> {
   final StateImageProvider myList;
 
   FlavorImages({
+    required this.logoHeight,
     required this.logo,
+    required this.onboarding,
     required this.home,
     required this.search,
     required this.live,
@@ -54,6 +54,7 @@ class FlavorImages extends Iterable<ImageProvider> {
   @override
   Iterator<ImageProvider<Object>> get iterator => [
         logo,
+        onboarding,
         ...home,
         ...search,
         ...live,
@@ -66,8 +67,9 @@ class FlavorConfig {
   const FlavorConfig({
     required this.flavor,
     required this.firebaseOptions,
-    required this.flavorImages,
-    required this.flavorGradients,
+    required this.images,
+    required this.strings,
+    required this.enableNotifications,
     this.designSystem,
     this.applicationCode,
   });
@@ -75,10 +77,11 @@ class FlavorConfig {
   // Config
   final Flavor flavor;
   final FirebaseOptions? firebaseOptions;
-  final FlavorGradients flavorGradients;
-  final FlavorImages flavorImages;
+  final FlavorImages images;
   final DesignSystemData Function()? designSystem;
   final String? applicationCode;
+  final FlavorStrings Function(BuildContext context) strings;
+  final bool enableNotifications;
 
   // Static stuff for setting the flavor on startup
   static FlavorConfig? _current;

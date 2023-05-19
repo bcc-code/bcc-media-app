@@ -39,6 +39,14 @@
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
+  "kidsOnboardingTitle": "We bring the message of the Bible to life!",
+  "@kidsOnboardingTitle": {
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
+  },
+  "kidsOnboardingSecondaryTitle": "Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.",
+  "@kidsOnboardingSecondaryTitle": {
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
+  },
   "loginPageDisplay3": "Produsert av BCC Media",
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
@@ -170,6 +178,10 @@
   "contactSupport": "Kontakt support",
   "@contactSupport": {
     "description": "Settings item on profile page"
+  },
+  "userVoice": "Suggest a feature",
+  "@userVoice": {
+    "description": "Settings item on profile page to navigate to uservoice"
   },
   "cancel": "Avbryt",
   "@cancel": {
@@ -687,6 +699,10 @@
   "@explorePublicContent": {
     "description": "A button on the welcome page"
   },
+  "startExploring": "Start exploring",
+  "@startExploring": {
+    "description": "A button on the welcome page"
+  },
   "taskCompleted": "oppgave fullført",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
@@ -840,6 +856,18 @@
   "details": "Detaljer",
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
+  },
+  "myList": "My list",
+  "@myList": {
+    "description": "My list tab name"
+  },
+  "didYouKnowTitle": "Did you know?",
+  "@didYouKnowTitle": {
+    "description": "Title for info displayed on 'My list' page."
+  },
+  "didYouKnowContent": "You can add your favorite shows to \"My List\" by tapping the heart.",
+  "@didYouKnowContent": {
+    "description": "Content for info displayed on 'My list' page."
   },
   "selectSeason": "Select season",
   "@selectSeason": {

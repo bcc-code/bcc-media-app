@@ -1,5 +1,6 @@
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
+import 'package:brunstadtv_app/providers/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -40,10 +41,8 @@ class SettingsService extends StateNotifier<Settings> {
 
   final Ref ref;
 
-  final Future<SharedPreferences> prefsF = SharedPreferences.getInstance();
-
-  Future<void> init() async {
-    var prefs = await prefsF;
+  void init() {
+    var prefs = ref.read(sharedPreferencesProvider);
     state = state.copyWith(
       appLanguage: Locale(prefs.getString(PrefKeys.appLanguage) ?? 'en'),
       audioLanguage: prefs.getString(PrefKeys.audioLanguage),
@@ -56,16 +55,13 @@ class SettingsService extends StateNotifier<Settings> {
   }
 
   Future<void> setAppLanguage(String code) async {
-    var prefs = await prefsF;
-
-    prefs.setString(PrefKeys.appLanguage, code);
+    ref.read(sharedPreferencesProvider).setString(PrefKeys.appLanguage, code);
     state = state.copyWith(appLanguage: getLocale(code) ?? const Locale('en'));
     // update the rest of the app
   }
 
   Future<void> setAudioLanguage(String code) async {
-    var prefs = await prefsF;
-    prefs.setString(PrefKeys.audioLanguage, code);
+    ref.read(sharedPreferencesProvider).setString(PrefKeys.audioLanguage, code);
     state = state.copyWith(audioLanguage: code);
   }
 
@@ -76,7 +72,7 @@ class SettingsService extends StateNotifier<Settings> {
   }
 
   Future<void> setSubtitleLanguage(String? code) async {
-    var prefs = await prefsF;
+    var prefs = ref.read(sharedPreferencesProvider);
     if (code == null) {
       prefs.remove(PrefKeys.subtitleLanguage);
     } else {
@@ -86,7 +82,7 @@ class SettingsService extends StateNotifier<Settings> {
   }
 
   Future<void> setAnalyticsId(String? analyticsId) async {
-    var prefs = await prefsF;
+    var prefs = ref.read(sharedPreferencesProvider);
     if (analyticsId == null) {
       prefs.remove(PrefKeys.analyticsId);
     } else {
@@ -96,7 +92,7 @@ class SettingsService extends StateNotifier<Settings> {
   }
 
   Future<void> setBetaTester(bool value) async {
-    var prefs = await prefsF;
+    var prefs = ref.read(sharedPreferencesProvider);
     if (!value) {
       prefs.remove(PrefKeys.isBetaTester);
     } else {

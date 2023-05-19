@@ -35,6 +35,12 @@ class SRo extends S {
   String get loginPageDisplay2 => 'Vezi seriale, emisiuni și filme bazate pe valori Creștine';
 
   @override
+  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+
+  @override
   String get loginPageDisplay3 => 'Produs de BCC Media';
 
   @override
@@ -56,7 +62,7 @@ class SRo extends S {
   String get signInButton => 'Conectare';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'Înregistrare / Autentificare';
 
   @override
   String get signUpButton => 'Înregistrează-te acum';
@@ -68,7 +74,7 @@ class SRo extends S {
   String get signUpDescription => 'Obține acces la mai mult conținut și funcții mai bune prin crearea unui cont.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Confirm faptul că am 13 ani sau mai mult, și sunt de acord cu <a>Privacy Policy</a> și <a>Terms of use</a>.';
 
   @override
   String get setPassword => 'Setează-ți parola';
@@ -98,7 +104,7 @@ class SRo extends S {
   String get ok => 'Bine';
 
   @override
-  String get open => 'Open';
+  String get open => 'Deschide';
 
   @override
   String get loginFailedCheckNetwork => 'Conectarea a eșuat. Verifică conexiunea la internet și încearcă din nou.';
@@ -140,16 +146,16 @@ class SRo extends S {
   String get cancel => 'Anulare';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Ești sigur că vrei să anulezi?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Orice modificări nesalvate vor fi pierdute.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Mergi înapoi';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Da, Anulează';
 
   @override
   String get upNext => 'Urmează';
@@ -191,7 +197,7 @@ class SRo extends S {
   String get search => 'Căutare';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Trimite Feedback';
 
   @override
   String get noResults => 'Nici un rezultat gasit';
@@ -403,7 +409,7 @@ class SRo extends S {
   String get share => 'Distribuie';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Arată mai mult';
 
   @override
   String get showLess => 'Show less';
@@ -511,6 +517,9 @@ class SRo extends S {
 
   @override
   String get explorePublicContent => 'Explorează conținut public';
+
+  @override
+  String get startExploring => 'Start exploring';
 
   @override
   String get taskCompleted => 'sarcină îndeplinită';

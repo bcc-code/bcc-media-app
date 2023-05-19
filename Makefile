@@ -13,10 +13,10 @@ rm-locales:
 	for file in $$(find ./lib/l10n/ -name *.arb -mindepth 1 -type f); do sed -i '' '/\@\@locale/d' $$file; done
 
 git-tag-recreate:
-	read -p "delete tag v${BUILD_NUMBER} (local and origin), and recreate it with current commit? (CTRL+C to abort)"
-	git push --delete origin v${BUILD_NUMBER}
-	git tag --delete v${BUILD_NUMBER}
-	git tag v${BUILD_NUMBER}
+	read -p "delete tag ${TAG_PREFIX}v${BUILD_NUMBER} (local and origin), and recreate it with current commit? (CTRL+C to abort)"
+	git push --delete origin ${TAG_PREFIX}v${BUILD_NUMBER}
+	git tag --delete ${TAG_PREFIX}v${BUILD_NUMBER}
+	git tag ${TAG_PREFIX}v${BUILD_NUMBER}
 	git push --tags
 
 web-build:

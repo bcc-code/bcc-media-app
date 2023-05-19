@@ -101,5 +101,7 @@
 		<false/>
 		<key>FLTDisableImpeller</key>
 		<true/>
+		<key>FLTEnableImpeller</key>
+		<false/>
 	</dict>
 </plist>

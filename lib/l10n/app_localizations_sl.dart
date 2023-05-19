@@ -35,6 +35,12 @@ class SSl extends S {
   String get loginPageDisplay2 => 'Oglej si serije in filme, narejene na podlagi krščanskih vrednot';
 
   @override
+  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+
+  @override
   String get loginPageDisplay3 => 'Produkcija: BCC Media';
 
   @override
@@ -511,6 +517,9 @@ class SSl extends S {
 
   @override
   String get explorePublicContent => 'Razišči javno vsebino';
+
+  @override
+  String get startExploring => 'Start exploring';
 
   @override
   String get taskCompleted => 'naloga opravljena';
