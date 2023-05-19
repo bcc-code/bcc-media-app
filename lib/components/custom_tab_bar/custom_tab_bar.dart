@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'tab_selector.dart';
-import '../../components/fade_indexed_stack.dart';
+import '../fade_indexed_stack.dart';
 import '../../theme/design_system/design_system.dart';
 
 class CustomTabBar extends HookWidget {

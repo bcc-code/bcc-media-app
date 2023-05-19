@@ -25,7 +25,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../api/brunstadtv.dart';
 import '../components/custom_back_button.dart';
-import '../components/episode/custom_tab_bar.dart';
+import '../components/custom_tab_bar/custom_tab_bar.dart';
 import '../components/episode/player_error.dart';
 import '../components/episode/episode_details.dart';
 import '../components/status_indicators/error_no_access.dart';
