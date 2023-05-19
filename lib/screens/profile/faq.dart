@@ -73,7 +73,8 @@ class FAQScreen extends HookConsumerWidget {
           title: Text(S.of(context).faq),
         ),
         body: SafeArea(
-          child: Container(
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 250),
             child: child,
           ),
         ),
