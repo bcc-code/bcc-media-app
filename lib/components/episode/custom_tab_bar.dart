@@ -38,12 +38,14 @@ class CustomTabBar extends HookWidget {
         Flexible(
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onHorizontalDragUpdate: (details) {
-              // Note: Sensitivity is integer used when you don't want to mess up vertical drag
-              int sensitivity = 12;
-              if (details.delta.dx > sensitivity && index.value > 0) {
+            onHorizontalDragEnd: (details) {
+              final velocity = details.primaryVelocity ?? 0;
+              if (velocity.abs() < 200) {
+                return;
+              }
+              if (velocity > 0 && index.value > 0) {
                 index.value--;
-              } else if (details.delta.dx < -sensitivity && index.value + 1 < tabs.length) {
+              } else if (velocity < 0 && index.value < tabs.length - 1) {
                 index.value++;
               }
             },
