@@ -3,27 +3,26 @@ import 'dart:math';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-
-import '../../l10n/app_localizations.dart';
 import '../../theme/design_system/design_system.dart';
 
-void showParentalGateIfNeeded(BuildContext context, {required void Function() onSuccess}) async {
+Future<bool> checkParentalGate(BuildContext context) async {
   if (FlavorConfig.current.flavor != Flavor.kids) {
-    onSuccess();
-    return;
+    return true;
   }
-  await showDialog<bool>(
+  final result = await showDialog<bool>(
     context: context,
-    builder: (context) => ParentalGate(
-      onSuccess: onSuccess,
-    ),
+    builder: (context) => const ParentalGate(),
   );
+  if (result == true) {
+    return true;
+  }
+  return false;
 }
 
 class ParentalGate extends HookWidget {
-  const ParentalGate({super.key, required this.onSuccess});
-
-  final void Function() onSuccess;
+  const ParentalGate({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +36,7 @@ class ParentalGate extends HookWidget {
 
     void checkAnswer() {
       if (answerText.value.text.isNotEmpty && int.tryParse(answerText.value.text) == correct) {
-        onSuccess();
-        Navigator.pop(context);
+        Navigator.pop(context, true);
       } else {
         showErrorColor.value = true;
         Future.delayed(const Duration(milliseconds: 500)).then((_) {

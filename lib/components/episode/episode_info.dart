@@ -7,11 +7,13 @@ import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../flavors.dart';
 import '../../graphql/queries/my_list.graphql.dart';
 import '../../helpers/event_bus.dart';
 import '../../models/events/my_list_changed.dart';
@@ -91,17 +93,18 @@ class EpisodeInfo extends HookConsumerWidget {
                             ),
                           ),
                         ),
-                      GestureDetector(
-                        onTap: onShareVideoTapped,
-                        behavior: HitTestBehavior.opaque,
-                        child: FocusableActionDetector(
-                          mouseCursor: MaterialStateMouseCursor.clickable,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
-                            child: SvgPicture.string(SvgIcons.share),
+                      if (ref.read(featureFlagsProvider).shareVideoButton)
+                        GestureDetector(
+                          onTap: onShareVideoTapped,
+                          behavior: HitTestBehavior.opaque,
+                          child: FocusableActionDetector(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
+                              child: SvgPicture.string(SvgIcons.share),
+                            ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                   const SizedBox(height: 4),

@@ -20,6 +20,7 @@ mixin _$FeatureFlags {
   bool get publicSignup => throw _privateConstructorUsedError;
   bool get socialSignup => throw _privateConstructorUsedError;
   bool get autoplayNext => throw _privateConstructorUsedError;
+  bool get shareVideoButton => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FeatureFlagsCopyWith<FeatureFlags> get copyWith =>
@@ -33,7 +34,11 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       _$FeatureFlagsCopyWithImpl<$Res, FeatureFlags>;
   @useResult
   $Res call(
-      {bool auth, bool publicSignup, bool socialSignup, bool autoplayNext});
+      {bool auth,
+      bool publicSignup,
+      bool socialSignup,
+      bool autoplayNext,
+      bool shareVideoButton});
 }
 
 /// @nodoc
@@ -53,6 +58,7 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? publicSignup = null,
     Object? socialSignup = null,
     Object? autoplayNext = null,
+    Object? shareVideoButton = null,
   }) {
     return _then(_value.copyWith(
       auth: null == auth
@@ -71,6 +77,10 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
           ? _value.autoplayNext
           : autoplayNext // ignore: cast_nullable_to_non_nullable
               as bool,
+      shareVideoButton: null == shareVideoButton
+          ? _value.shareVideoButton
+          : shareVideoButton // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -84,7 +94,11 @@ abstract class _$$_FeatureFlagsCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool auth, bool publicSignup, bool socialSignup, bool autoplayNext});
+      {bool auth,
+      bool publicSignup,
+      bool socialSignup,
+      bool autoplayNext,
+      bool shareVideoButton});
 }
 
 /// @nodoc
@@ -102,6 +116,7 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
     Object? publicSignup = null,
     Object? socialSignup = null,
     Object? autoplayNext = null,
+    Object? shareVideoButton = null,
   }) {
     return _then(_$_FeatureFlags(
       auth: null == auth
@@ -120,6 +135,10 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
           ? _value.autoplayNext
           : autoplayNext // ignore: cast_nullable_to_non_nullable
               as bool,
+      shareVideoButton: null == shareVideoButton
+          ? _value.shareVideoButton
+          : shareVideoButton // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -131,7 +150,8 @@ class _$_FeatureFlags extends _FeatureFlags {
       {this.auth = true,
       this.publicSignup = false,
       this.socialSignup = false,
-      this.autoplayNext = false})
+      this.autoplayNext = false,
+      this.shareVideoButton = true})
       : super._();
 
   @override
@@ -146,10 +166,13 @@ class _$_FeatureFlags extends _FeatureFlags {
   @override
   @JsonKey()
   final bool autoplayNext;
+  @override
+  @JsonKey()
+  final bool shareVideoButton;
 
   @override
   String toString() {
-    return 'FeatureFlags(auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext)';
+    return 'FeatureFlags(auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, shareVideoButton: $shareVideoButton)';
   }
 
   @override
@@ -163,12 +186,14 @@ class _$_FeatureFlags extends _FeatureFlags {
             (identical(other.socialSignup, socialSignup) ||
                 other.socialSignup == socialSignup) &&
             (identical(other.autoplayNext, autoplayNext) ||
-                other.autoplayNext == autoplayNext));
+                other.autoplayNext == autoplayNext) &&
+            (identical(other.shareVideoButton, shareVideoButton) ||
+                other.shareVideoButton == shareVideoButton));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, auth, publicSignup, socialSignup, autoplayNext);
+  int get hashCode => Object.hash(runtimeType, auth, publicSignup, socialSignup,
+      autoplayNext, shareVideoButton);
 
   @JsonKey(ignore: true)
   @override
@@ -182,7 +207,8 @@ abstract class _FeatureFlags extends FeatureFlags {
       {final bool auth,
       final bool publicSignup,
       final bool socialSignup,
-      final bool autoplayNext}) = _$_FeatureFlags;
+      final bool autoplayNext,
+      final bool shareVideoButton}) = _$_FeatureFlags;
   const _FeatureFlags._() : super._();
 
   @override
@@ -193,6 +219,8 @@ abstract class _FeatureFlags extends FeatureFlags {
   bool get socialSignup;
   @override
   bool get autoplayNext;
+  @override
+  bool get shareVideoButton;
   @override
   @JsonKey(ignore: true)
   _$$_FeatureFlagsCopyWith<_$_FeatureFlags> get copyWith =>

@@ -3,17 +3,16 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i7;
+import 'dart:async' as _i6;
 
-import 'package:brunstadtv_app/providers/settings.dart' as _i5;
-import 'package:flutter_appauth/src/flutter_appauth.dart' as _i6;
+import 'package:brunstadtv_app/providers/settings.dart' as _i4;
+import 'package:flutter_appauth/src/flutter_appauth.dart' as _i5;
 import 'package:flutter_appauth_platform_interface/flutter_appauth_platform_interface.dart'
-    as _i8;
+    as _i7;
 import 'package:flutter_riverpod/flutter_riverpod.dart' as _i3;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:shared_preferences/shared_preferences.dart' as _i4;
-import 'package:state_notifier/state_notifier.dart' as _i9;
+import 'package:state_notifier/state_notifier.dart' as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -99,19 +98,8 @@ class _FakeRef_6<State extends Object?> extends _i1.SmartFake
         );
 }
 
-class _FakeSharedPreferences_7 extends _i1.SmartFake
-    implements _i4.SharedPreferences {
-  _FakeSharedPreferences_7(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeSettings_8 extends _i1.SmartFake implements _i5.Settings {
-  _FakeSettings_8(
+class _FakeSettings_7 extends _i1.SmartFake implements _i4.Settings {
+  _FakeSettings_7(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -123,52 +111,52 @@ class _FakeSettings_8 extends _i1.SmartFake implements _i5.Settings {
 /// A class which mocks [FlutterAppAuth].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFlutterAppAuth extends _i1.Mock implements _i6.FlutterAppAuth {
+class MockFlutterAppAuth extends _i1.Mock implements _i5.FlutterAppAuth {
   @override
-  _i7.Future<_i8.AuthorizationTokenResponse?> authorizeAndExchangeCode(
-          _i8.AuthorizationTokenRequest? request) =>
+  _i6.Future<_i7.AuthorizationTokenResponse?> authorizeAndExchangeCode(
+          _i7.AuthorizationTokenRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #authorizeAndExchangeCode,
           [request],
         ),
-        returnValue: _i7.Future<_i8.AuthorizationTokenResponse?>.value(),
+        returnValue: _i6.Future<_i7.AuthorizationTokenResponse?>.value(),
         returnValueForMissingStub:
-            _i7.Future<_i8.AuthorizationTokenResponse?>.value(),
-      ) as _i7.Future<_i8.AuthorizationTokenResponse?>);
+            _i6.Future<_i7.AuthorizationTokenResponse?>.value(),
+      ) as _i6.Future<_i7.AuthorizationTokenResponse?>);
   @override
-  _i7.Future<_i8.AuthorizationResponse?> authorize(
-          _i8.AuthorizationRequest? request) =>
+  _i6.Future<_i7.AuthorizationResponse?> authorize(
+          _i7.AuthorizationRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #authorize,
           [request],
         ),
-        returnValue: _i7.Future<_i8.AuthorizationResponse?>.value(),
+        returnValue: _i6.Future<_i7.AuthorizationResponse?>.value(),
         returnValueForMissingStub:
-            _i7.Future<_i8.AuthorizationResponse?>.value(),
-      ) as _i7.Future<_i8.AuthorizationResponse?>);
+            _i6.Future<_i7.AuthorizationResponse?>.value(),
+      ) as _i6.Future<_i7.AuthorizationResponse?>);
   @override
-  _i7.Future<_i8.TokenResponse?> token(_i8.TokenRequest? request) =>
+  _i6.Future<_i7.TokenResponse?> token(_i7.TokenRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #token,
           [request],
         ),
-        returnValue: _i7.Future<_i8.TokenResponse?>.value(),
-        returnValueForMissingStub: _i7.Future<_i8.TokenResponse?>.value(),
-      ) as _i7.Future<_i8.TokenResponse?>);
+        returnValue: _i6.Future<_i7.TokenResponse?>.value(),
+        returnValueForMissingStub: _i6.Future<_i7.TokenResponse?>.value(),
+      ) as _i6.Future<_i7.TokenResponse?>);
   @override
-  _i7.Future<_i8.EndSessionResponse?> endSession(
-          _i8.EndSessionRequest? request) =>
+  _i6.Future<_i7.EndSessionResponse?> endSession(
+          _i7.EndSessionRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #endSession,
           [request],
         ),
-        returnValue: _i7.Future<_i8.EndSessionResponse?>.value(),
-        returnValueForMissingStub: _i7.Future<_i8.EndSessionResponse?>.value(),
-      ) as _i7.Future<_i8.EndSessionResponse?>);
+        returnValue: _i6.Future<_i7.EndSessionResponse?>.value(),
+        returnValueForMissingStub: _i6.Future<_i7.EndSessionResponse?>.value(),
+      ) as _i6.Future<_i7.EndSessionResponse?>);
 }
 
 /// A class which mocks [FlutterSecureStorage].
@@ -249,7 +237,7 @@ class MockFlutterSecureStorage extends _i1.Mock
         ),
       ) as _i2.MacOsOptions);
   @override
-  _i7.Future<void> write({
+  _i6.Future<void> write({
     required String? key,
     required String? value,
     _i2.IOSOptions? iOptions,
@@ -274,11 +262,11 @@ class MockFlutterSecureStorage extends _i1.Mock
             #wOptions: wOptions,
           },
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  _i7.Future<String?> read({
+  _i6.Future<String?> read({
     required String? key,
     _i2.IOSOptions? iOptions,
     _i2.AndroidOptions? aOptions,
@@ -301,11 +289,11 @@ class MockFlutterSecureStorage extends _i1.Mock
             #wOptions: wOptions,
           },
         ),
-        returnValue: _i7.Future<String?>.value(),
-        returnValueForMissingStub: _i7.Future<String?>.value(),
-      ) as _i7.Future<String?>);
+        returnValue: _i6.Future<String?>.value(),
+        returnValueForMissingStub: _i6.Future<String?>.value(),
+      ) as _i6.Future<String?>);
   @override
-  _i7.Future<bool> containsKey({
+  _i6.Future<bool> containsKey({
     required String? key,
     _i2.IOSOptions? iOptions,
     _i2.AndroidOptions? aOptions,
@@ -328,11 +316,11 @@ class MockFlutterSecureStorage extends _i1.Mock
             #wOptions: wOptions,
           },
         ),
-        returnValue: _i7.Future<bool>.value(false),
-        returnValueForMissingStub: _i7.Future<bool>.value(false),
-      ) as _i7.Future<bool>);
+        returnValue: _i6.Future<bool>.value(false),
+        returnValueForMissingStub: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
   @override
-  _i7.Future<void> delete({
+  _i6.Future<void> delete({
     required String? key,
     _i2.IOSOptions? iOptions,
     _i2.AndroidOptions? aOptions,
@@ -355,11 +343,11 @@ class MockFlutterSecureStorage extends _i1.Mock
             #wOptions: wOptions,
           },
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  _i7.Future<Map<String, String>> readAll({
+  _i6.Future<Map<String, String>> readAll({
     _i2.IOSOptions? iOptions,
     _i2.AndroidOptions? aOptions,
     _i2.LinuxOptions? lOptions,
@@ -380,12 +368,12 @@ class MockFlutterSecureStorage extends _i1.Mock
             #wOptions: wOptions,
           },
         ),
-        returnValue: _i7.Future<Map<String, String>>.value(<String, String>{}),
+        returnValue: _i6.Future<Map<String, String>>.value(<String, String>{}),
         returnValueForMissingStub:
-            _i7.Future<Map<String, String>>.value(<String, String>{}),
-      ) as _i7.Future<Map<String, String>>);
+            _i6.Future<Map<String, String>>.value(<String, String>{}),
+      ) as _i6.Future<Map<String, String>>);
   @override
-  _i7.Future<void> deleteAll({
+  _i6.Future<void> deleteAll({
     _i2.IOSOptions? iOptions,
     _i2.AndroidOptions? aOptions,
     _i2.LinuxOptions? lOptions,
@@ -406,15 +394,15 @@ class MockFlutterSecureStorage extends _i1.Mock
             #wOptions: wOptions,
           },
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 }
 
 /// A class which mocks [SettingsService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSettingsService extends _i1.Mock implements _i5.SettingsService {
+class MockSettingsService extends _i1.Mock implements _i4.SettingsService {
   @override
   _i3.Ref<Object?> get ref => (super.noSuchMethod(
         Invocation.getter(#ref),
@@ -427,20 +415,6 @@ class MockSettingsService extends _i1.Mock implements _i5.SettingsService {
           Invocation.getter(#ref),
         ),
       ) as _i3.Ref<Object?>);
-  @override
-  _i7.Future<_i4.SharedPreferences> get prefsF => (super.noSuchMethod(
-        Invocation.getter(#prefsF),
-        returnValue:
-            _i7.Future<_i4.SharedPreferences>.value(_FakeSharedPreferences_7(
-          this,
-          Invocation.getter(#prefsF),
-        )),
-        returnValueForMissingStub:
-            _i7.Future<_i4.SharedPreferences>.value(_FakeSharedPreferences_7(
-          this,
-          Invocation.getter(#prefsF),
-        )),
-      ) as _i7.Future<_i4.SharedPreferences>);
   @override
   set onError(_i3.ErrorListener? _onError) => super.noSuchMethod(
         Invocation.setter(
@@ -456,25 +430,25 @@ class MockSettingsService extends _i1.Mock implements _i5.SettingsService {
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  _i7.Stream<_i5.Settings> get stream => (super.noSuchMethod(
+  _i6.Stream<_i4.Settings> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i7.Stream<_i5.Settings>.empty(),
-        returnValueForMissingStub: _i7.Stream<_i5.Settings>.empty(),
-      ) as _i7.Stream<_i5.Settings>);
+        returnValue: _i6.Stream<_i4.Settings>.empty(),
+        returnValueForMissingStub: _i6.Stream<_i4.Settings>.empty(),
+      ) as _i6.Stream<_i4.Settings>);
   @override
-  _i5.Settings get state => (super.noSuchMethod(
+  _i4.Settings get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _FakeSettings_8(
+        returnValue: _FakeSettings_7(
           this,
           Invocation.getter(#state),
         ),
-        returnValueForMissingStub: _FakeSettings_8(
+        returnValueForMissingStub: _FakeSettings_7(
           this,
           Invocation.getter(#state),
         ),
-      ) as _i5.Settings);
+      ) as _i4.Settings);
   @override
-  set state(_i5.Settings? value) => super.noSuchMethod(
+  set state(_i4.Settings? value) => super.noSuchMethod(
         Invocation.setter(
           #state,
           value,
@@ -482,17 +456,17 @@ class MockSettingsService extends _i1.Mock implements _i5.SettingsService {
         returnValueForMissingStub: null,
       );
   @override
-  _i5.Settings get debugState => (super.noSuchMethod(
+  _i4.Settings get debugState => (super.noSuchMethod(
         Invocation.getter(#debugState),
-        returnValue: _FakeSettings_8(
+        returnValue: _FakeSettings_7(
           this,
           Invocation.getter(#debugState),
         ),
-        returnValueForMissingStub: _FakeSettings_8(
+        returnValueForMissingStub: _FakeSettings_7(
           this,
           Invocation.getter(#debugState),
         ),
-      ) as _i5.Settings);
+      ) as _i4.Settings);
   @override
   bool get hasListeners => (super.noSuchMethod(
         Invocation.getter(#hasListeners),
@@ -500,32 +474,31 @@ class MockSettingsService extends _i1.Mock implements _i5.SettingsService {
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  _i7.Future<void> init() => (super.noSuchMethod(
+  void init() => super.noSuchMethod(
         Invocation.method(
           #init,
           [],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValueForMissingStub: null,
+      );
   @override
-  _i7.Future<void> setAppLanguage(String? code) => (super.noSuchMethod(
+  _i6.Future<void> setAppLanguage(String? code) => (super.noSuchMethod(
         Invocation.method(
           #setAppLanguage,
           [code],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  _i7.Future<void> setAudioLanguage(String? code) => (super.noSuchMethod(
+  _i6.Future<void> setAudioLanguage(String? code) => (super.noSuchMethod(
         Invocation.method(
           #setAudioLanguage,
           [code],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
   void refreshSessionId() => super.noSuchMethod(
         Invocation.method(
@@ -535,36 +508,36 @@ class MockSettingsService extends _i1.Mock implements _i5.SettingsService {
         returnValueForMissingStub: null,
       );
   @override
-  _i7.Future<void> setSubtitleLanguage(String? code) => (super.noSuchMethod(
+  _i6.Future<void> setSubtitleLanguage(String? code) => (super.noSuchMethod(
         Invocation.method(
           #setSubtitleLanguage,
           [code],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  _i7.Future<void> setAnalyticsId(String? analyticsId) => (super.noSuchMethod(
+  _i6.Future<void> setAnalyticsId(String? analyticsId) => (super.noSuchMethod(
         Invocation.method(
           #setAnalyticsId,
           [analyticsId],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  _i7.Future<void> setBetaTester(bool? value) => (super.noSuchMethod(
+  _i6.Future<void> setBetaTester(bool? value) => (super.noSuchMethod(
         Invocation.method(
           #setBetaTester,
           [value],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
   bool updateShouldNotify(
-    _i5.Settings? old,
-    _i5.Settings? current,
+    _i4.Settings? old,
+    _i4.Settings? current,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -579,7 +552,7 @@ class MockSettingsService extends _i1.Mock implements _i5.SettingsService {
       ) as bool);
   @override
   _i3.RemoveListener addListener(
-    _i9.Listener<_i5.Settings>? listener, {
+    _i8.Listener<_i4.Settings>? listener, {
     bool? fireImmediately = true,
   }) =>
       (super.noSuchMethod(

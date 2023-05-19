@@ -207,12 +207,11 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                             ],
                             OptionButton(
                               optionName: S.of(context).about,
-                              onPressed: () {
-                                showParentalGateIfNeeded(context, onSuccess: () {
-                                  if (context.mounted) {
-                                    context.router.push(const AboutScreenRoute());
-                                  }
-                                });
+                              onPressed: () async {
+                                if (!await checkParentalGate(context) || !context.mounted) {
+                                  return;
+                                }
+                                context.router.push(const AboutScreenRoute());
                               },
                             ),
                           ],
@@ -225,11 +224,10 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                                 OptionButton(
                                   optionName: S.of(context).privacyPolicy,
                                   onPressed: () async {
-                                    showParentalGateIfNeeded(context, onSuccess: () {
-                                      if (context.mounted) {
-                                        context.router.push(const PrivacyPolicyScreenRoute());
-                                      }
-                                    });
+                                    if (!await checkParentalGate(context) || !context.mounted) {
+                                      return;
+                                    }
+                                    context.router.push(const PrivacyPolicyScreenRoute());
                                   },
                                 ),
                               ],
