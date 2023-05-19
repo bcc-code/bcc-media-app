@@ -1,10 +1,16 @@
+import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../components/custom_back_button.dart';
+import '../../components/episode/custom_tab_bar.dart';
+import '../../components/status_indicators/error_generic.dart';
+import '../../components/status_indicators/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../theme/design_system/design_system.dart';
-
+import '../../graphql/queries/faq.graphql.dart';
 import '../../l10n/app_localizations.dart';
 
 class FAQItem {
@@ -19,51 +25,43 @@ class FAQItem {
   });
 }
 
-class FAQScreen extends StatefulWidget {
+class FAQScreen extends HookConsumerWidget {
   const FAQScreen({super.key});
 
   @override
-  State<FAQScreen> createState() => _FAQScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final categories = useState(ref.read(gqlClientProvider).query$FAQ());
+    final categoriesFuture = useFuture(categories.value);
 
-class _FAQScreenState extends State<FAQScreen> {
-  var listOfList = [
-    FAQItem(
-      id: 1,
-      question: 'Title 1 Title 1 Title 1 Title 1 Title 1 Title1',
-      answer: 'title 2',
-      // question: 'Hvorfor funker dette ikke som jeg forventer?',
-      // answer: 'Fordi lorem ipsum dolor sit amet consectur osv.',
-    ),
-    FAQItem(
-      id: 2,
-      question: 'Hvorfor funker dette ikke som jeg forventer?',
-      answer: 'Fordi lorem ipsum dolor sit amet consectur osv.',
-    ),
-    FAQItem(
-      id: 3,
-      question: 'Hvorfor funker dette ikke som jeg forventer?',
-      answer: 'Fordi lorem ipsum dolor sit amet consectur osv.',
-    ),
-    FAQItem(
-      id: 4,
-      question: 'Hvorfor funker dette ikke som jeg forventer?',
-      answer: 'Fordi lorem ipsum dolor sit amet consectur osv.',
-    ),
-    FAQItem(
-      id: 5,
-      question: 'Hvorfor funker dette ikke som jeg forventer?',
-      answer: 'Fordi lorem ipsum dolor sit amet consectur osv.',
-    ),
-    FAQItem(
-      id: 6,
-      question: 'Hvorfor funker dette ikke som jeg forventer?',
-      answer: 'Fordi lorem ipsum dolor sit amet consectur osv.',
-    ),
-  ];
+    void refresh() => categories.value = ref.read(gqlClientProvider).query$FAQ();
 
-  @override
-  Widget build(BuildContext context) {
+    Widget? child;
+    if (categoriesFuture.connectionState == ConnectionState.waiting) {
+      child = const LoadingGeneric();
+    } else if (!categoriesFuture.hasData || categoriesFuture.data!.parsedData == null) {
+      child = ErrorGeneric(onRetry: refresh);
+    } else {
+      final categoryItems = categoriesFuture.data!.parsedData!.faq.categories?.items;
+      if (categoryItems != null) {
+        child = DefaultTabController(
+          length: categoryItems.length,
+          child: CustomTabBar(
+            padding: const EdgeInsets.all(16),
+            tabs: categoryItems.map((categoryItem) => categoryItem.title).toList(),
+            children: categoryItems
+                .map((categoryItem) => categoryItem.questions != null
+                    ? ListView(
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 17),
+                        children: categoryItem.questions!.items.map((question) => _ExpansionTileDropDown(question)).toList(),
+                      )
+                    : const SizedBox.shrink())
+                .toList(),
+          ),
+        );
+      }
+    }
+
     return DialogOnWeb(
       child: Scaffold(
         appBar: AppBar(
@@ -72,13 +70,8 @@ class _FAQScreenState extends State<FAQScreen> {
           title: Text(S.of(context).faq),
         ),
         body: SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 17),
-              child: Column(
-                children: <Widget>[for (var i in listOfList) _ExpansionTileDropDown(i, listOfList.indexOf(i))],
-              ),
-            ),
+          child: Container(
+            child: child,
           ),
         ),
       ),
@@ -87,32 +80,22 @@ class _FAQScreenState extends State<FAQScreen> {
 }
 
 class _ExpansionTileDropDown extends StatefulWidget {
-  final FAQItem questionList;
-  final int index;
+  final Fragment$Question questionItem;
 
-  const _ExpansionTileDropDown(this.questionList, this.index);
+  const _ExpansionTileDropDown(this.questionItem);
 
   @override
   State<_ExpansionTileDropDown> createState() => _ExpansionTileDropDownState();
 }
 
 class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
-  bool _customTileExpanded = false;
+  bool expanded = false;
 
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
     return Container(
-      padding: const EdgeInsets.only(
-        left: 16,
-        top: 18,
-        right: 19,
-        bottom: 16,
-      ),
-      margin: const EdgeInsets.symmetric(
-        // vertical: MediaQuery.of(context).size.height * 0.006,
-        vertical: 8,
-      ),
+      margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
         color: design.colors.background2,
         borderRadius: BorderRadius.circular(12),
@@ -124,12 +107,13 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
           dense: true,
           contentPadding: const EdgeInsets.all(0),
           child: ExpansionTile(
+            tilePadding: const EdgeInsets.only(left: 16, top: 18, right: 12, bottom: 18),
+            childrenPadding: const EdgeInsets.all(16).copyWith(top: 12),
             title: Text(
-              widget.questionList.question,
+              widget.questionItem.question,
               style: design.textStyles.title3,
             ),
-            textColor: Colors.teal,
-            trailing: !_customTileExpanded
+            trailing: !expanded
                 ? Icon(
                     Icons.keyboard_arrow_down,
                     color: design.colors.tint1,
@@ -138,18 +122,15 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
                     Icons.keyboard_arrow_up,
                     color: design.colors.tint2,
                   ),
-            childrenPadding: const EdgeInsets.only(
-              top: 12,
-            ),
             expandedAlignment: Alignment.centerLeft,
             children: <Widget>[
               Text(
-                widget.questionList.answer,
+                widget.questionItem.answer,
                 style: design.textStyles.body2.copyWith(color: design.colors.label3),
               )
             ],
-            onExpansionChanged: (bool expanded) {
-              setState(() => _customTileExpanded = expanded);
+            onExpansionChanged: (state) {
+              setState(() => expanded = state);
             },
           ),
         ),
