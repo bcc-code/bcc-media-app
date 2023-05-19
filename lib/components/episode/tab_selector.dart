@@ -23,7 +23,6 @@ class TabSelector extends StatelessWidget {
       builder: (context, constraints) => ConstrainedBox(
         constraints: BoxConstraints.tightFor(width: (constraints.maxWidth)),
         child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           scrollDirection: Axis.horizontal,
           child: Padding(
             padding: padding,

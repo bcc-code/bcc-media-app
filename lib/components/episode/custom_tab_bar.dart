@@ -21,6 +21,7 @@ class CustomTabBar extends HookWidget {
   Widget build(BuildContext context) {
     final index = useState(0);
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
@@ -34,20 +35,22 @@ class CustomTabBar extends HookWidget {
             padding: padding,
           ),
         ),
-        GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onHorizontalDragUpdate: (details) {
-            // Note: Sensitivity is integer used when you don't want to mess up vertical drag
-            int sensitivity = 12;
-            if (details.delta.dx > sensitivity && index.value > 0) {
-              index.value--;
-            } else if (details.delta.dx < -sensitivity && index.value + 1 < tabs.length) {
-              index.value++;
-            }
-          },
-          child: FadeIndexedStack(
-            index: index.value,
-            children: children,
+        Flexible(
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onHorizontalDragUpdate: (details) {
+              // Note: Sensitivity is integer used when you don't want to mess up vertical drag
+              int sensitivity = 12;
+              if (details.delta.dx > sensitivity && index.value > 0) {
+                index.value--;
+              } else if (details.delta.dx < -sensitivity && index.value + 1 < tabs.length) {
+                index.value++;
+              }
+            },
+            child: FadeIndexedStack(
+              index: index.value,
+              children: children,
+            ),
           ),
         ),
       ],

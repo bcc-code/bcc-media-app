@@ -43,21 +43,24 @@ class FAQScreen extends HookConsumerWidget {
     } else {
       final categoryItems = categoriesFuture.data!.parsedData!.faq.categories?.items;
       if (categoryItems != null) {
-        child = DefaultTabController(
-          length: categoryItems.length,
-          child: CustomTabBar(
-            padding: const EdgeInsets.all(16),
-            tabs: categoryItems.map((categoryItem) => categoryItem.title).toList(),
-            children: categoryItems
-                .map((categoryItem) => categoryItem.questions != null
-                    ? ListView(
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 17),
-                        children: categoryItem.questions!.items.map((question) => _ExpansionTileDropDown(question)).toList(),
+        child = CustomTabBar(
+          padding: const EdgeInsets.all(16),
+          tabs: categoryItems.map((categoryItem) => categoryItem.title).toList(),
+          children: categoryItems
+              .map(
+                (categoryItem) => categoryItem.questions != null
+                    ? SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 17),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: categoryItem.questions!.items.map((question) => _ExpansionTileDropDown(question)).toList(),
+                          ),
+                        ),
                       )
-                    : const SizedBox.shrink())
-                .toList(),
-          ),
+                    : const SizedBox.shrink(),
+              )
+              .toList(),
         );
       }
     }
