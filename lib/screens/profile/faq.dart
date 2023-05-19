@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../components/custom_back_button.dart';
-import '../../components/episode/custom_tab_bar.dart';
+import '../../components/custom_tab_bar/custom_tab_bar.dart';
 import '../../components/status_indicators/error_generic.dart';
 import '../../components/status_indicators/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
@@ -51,7 +51,7 @@ class FAQScreen extends HookConsumerWidget {
                 (categoryItem) => categoryItem.questions != null
                     ? SingleChildScrollView(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 17),
+                          padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 16),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: categoryItem.questions!.items.map((question) => _ExpansionTileDropDown(question)).toList(),
