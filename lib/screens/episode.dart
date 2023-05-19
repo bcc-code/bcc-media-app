@@ -25,11 +25,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../api/brunstadtv.dart';
 import '../components/custom_back_button.dart';
-import '../components/episode/episode_tabs.dart';
+import '../components/episode/custom_tab_bar.dart';
 import '../components/episode/player_error.dart';
 import '../components/episode/episode_details.dart';
 import '../components/status_indicators/error_no_access.dart';
-import '../components/option_list.dart';
 import '../components/study/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
@@ -391,13 +390,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
           ],
         ),
         if (screenParams.hideBottomSection != true && (episode.status != Enum$Status.unlisted || episode.type == Enum$EpisodeType.standalone))
-          EpisodeTabs(
+          CustomTabBar(
             tabs: [
-              Option(
-                id: 'episodes',
-                title: episode.context is Fragment$EpisodeContext$$Season ? S.of(context).episodes.toUpperCase() : S.of(context).videos.toUpperCase(),
-              ),
-              Option(id: 'details', title: (S.of(context).details.toUpperCase())),
+              episode.context is Fragment$EpisodeContext$$Season ? S.of(context).episodes.toUpperCase() : S.of(context).videos.toUpperCase(),
+              S.of(context).details.toUpperCase()
             ],
             children: [
               if (episode.context is Fragment$EpisodeContext$$Season)
