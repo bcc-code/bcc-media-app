@@ -55,6 +55,8 @@ class SectionUpdateHandler extends HookConsumerWidget {
 
     ref.listen(sectionUpdatesProvider(section.id), (prev, next) => refreshSection());
 
-    return Section(section: updatedSection.value, extraItems: extraItems);
+    return updatedSection.value.asOrNull<Fragment$ItemSection>()?.items.items.isEmpty == true
+        ? const SizedBox.shrink()
+        : Section(section: updatedSection.value, extraItems: extraItems);
   }
 }

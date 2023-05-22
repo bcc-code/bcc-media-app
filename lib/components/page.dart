@@ -49,12 +49,7 @@ class _BccmPageState extends ConsumerState<BccmPage> {
   }
 
   Widget getPage(context, Query$Page$page pageData) {
-    final sectionItems = pageData.sections.items.where((section) {
-      if (section.asOrNull<Fragment$ItemSection>()?.items.items.isEmpty == true) {
-        return false;
-      }
-      return true;
-    }).toList();
+    final sectionItems = pageData.sections.items;
     final mediaQueryData = MediaQuery.of(context);
     return MediaQuery(
       data: mediaQueryData.copyWith(padding: mediaQueryData.padding.copyWith(bottom: mediaQueryData.padding.bottom + 32)),
