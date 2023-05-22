@@ -31,8 +31,22 @@ class MyListScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    getMyList() {
+      return ref.read(gqlClientProvider).query$MyList().then(
+        (result) {
+          if (result.hasException) {
+            throw result.exception!;
+          }
+          if (result.parsedData == null) {
+            throw ErrorDescription('MyList result is null.');
+          }
+          return result.parsedData!.myList;
+        },
+      );
+    }
+
     final showAppBar = useState(false);
-    final myListFuture = useState(getMyList(ref));
+    final myListFuture = useState(useMemoized(getMyList));
 
     useEffect(() {
       showAppBar.value = false;
@@ -40,7 +54,7 @@ class MyListScreen extends HookConsumerWidget {
       return null;
     }, [myListFuture.value]);
 
-    onRefresh() => myListFuture.value = getMyList(ref);
+    onRefresh() => myListFuture.value = getMyList();
 
     return Scaffold(
       appBar: showAppBar.value ? AppBar(title: Text(S.of(context).myList)) : null,
@@ -64,20 +78,6 @@ class MyListScreen extends HookConsumerWidget {
           return AnimatedSwitcher(duration: const Duration(milliseconds: 250), child: child);
         },
       ),
-    );
-  }
-
-  Future<Query$MyList$myList> getMyList(WidgetRef ref) {
-    return ref.read(gqlClientProvider).query$MyList().then(
-      (result) {
-        if (result.hasException) {
-          throw result.exception!;
-        }
-        if (result.parsedData == null) {
-          throw ErrorDescription('MyList result is null.');
-        }
-        return result.parsedData!.myList;
-      },
     );
   }
 }
