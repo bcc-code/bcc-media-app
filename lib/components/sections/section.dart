@@ -31,6 +31,10 @@ class Section extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (section.asOrNull<Fragment$ItemSection>()?.items.items.isEmpty == true) {
+      return const SizedBox.shrink();
+    }
+
     final iconSection = section.asOrNull<Fragment$Section$$IconSection>();
     if (iconSection != null) {
       return PageSection.fromFragment(iconSection, child: IconSection(iconSection));
