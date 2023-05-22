@@ -104,7 +104,7 @@ class SettingsService extends StateNotifier<Settings> {
 
 final settingsProvider = StateNotifierProvider<SettingsService, Settings>((ref) {
   final settingsService = SettingsService(ref);
-  settingsService.addListener(fireImmediately: false, (state) {
+  settingsService.addListener(fireImmediately: true, (state) {
     BccmPlayerInterface.instance.setAppConfig(state.toAppConfig());
   });
   settingsService.addListener(fireImmediately: false, (state) {
