@@ -53,7 +53,7 @@ class CastPlayerController: NSObject, PlayerController {
         castState = GCKCastContext.sharedInstance().castState
     }
     
-    func updateNpawConfig(npawConfig: NpawConfig?) {}
+    func setNpawConfig(npawConfig: NpawConfig?) {}
     
     func updateAppConfig(appConfig: AppConfig?) {
         self.appConfig = appConfig

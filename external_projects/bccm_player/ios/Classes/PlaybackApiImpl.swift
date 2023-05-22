@@ -43,6 +43,9 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
 
     public func setNpawConfig(_ config: NpawConfig?, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         npawConfig = config
+        for p in players {
+            p.setNpawConfig(npawConfig: npawConfig)
+        }
     }
 
     public func getPlayer(_ id: String) -> PlayerController? {
