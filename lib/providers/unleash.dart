@@ -5,6 +5,7 @@ import 'package:unleash_proxy_client_flutter/unleash_context.dart';
 import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
 
 import '../env/env.dart';
+import '../flavors.dart';
 import 'auth_state/auth_state.dart';
 
 final unleashProvider = FutureProvider<UnleashClient?>((ref) async {
@@ -25,7 +26,7 @@ final unleashRawProvider = Provider<UnleashClient?>((ref) {
   final client = UnleashClient(
     url: Uri.parse(Env.unleashProxyUrl),
     clientKey: isBetaTester ? Env.unleashClientKeyBetaTester : Env.unleashClientKey,
-    appName: Env.unleashAppName,
+    appName: FlavorConfig.current.applicationCode ?? 'default',
     refreshInterval: 60,
     customHeaders: {
       'UNLEASH-APPNAME': Env.unleashAppName,
@@ -55,7 +56,7 @@ final unleashRawProvider = Provider<UnleashClient?>((ref) {
 final unleashContextProvider = Provider<UnleashContext>((ref) {
   return UnleashContext(
     properties: {
-      'appName': Env.unleashAppName,
+      'appName': FlavorConfig.current.applicationCode ?? 'default',
     },
     userId: ref.watch(
       authStateProvider.select((value) => value.user?.bccPersonId),

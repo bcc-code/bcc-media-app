@@ -2,6 +2,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/env/env.dart';
+import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
@@ -36,13 +37,7 @@ class PlaybackService {
   });
 
   Future init() async {
-    await platformApi.setNpawConfig(
-      NpawConfig(
-        accountCode: Env.npawAccountCode,
-        appName: 'mobile',
-      ),
-    );
-
+    final npawAppName = FlavorConfig.current.flavor == Flavor.bccmedia ? 'mobile' : FlavorConfig.current.applicationCode;
     BccmPlaybackListener(ref: ref, apiProvider: apiProvider);
 
     // Keep the analytics session alive while playing stuff.
@@ -58,7 +53,7 @@ class PlaybackService {
         (packageInfo) => platformApi.setNpawConfig(
           NpawConfig(
             accountCode: Env.npawAccountCode,
-            appName: 'mobile',
+            appName: npawAppName,
             appReleaseVersion: formatAppVersion(packageInfo),
           ),
         ),
