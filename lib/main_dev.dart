@@ -11,6 +11,7 @@ void main() async {
       flavor: Flavor.bccmedia,
       firebaseOptions: dev_firebase.DefaultFirebaseOptions.currentPlatform,
       enableNotifications: true,
+      defaultLanguage: 'no',
       strings: (context) => FlavorStrings(
         onboardingTitle: S.of(context).loginPageDisplay1,
         onboardingSecondaryTitle: S.of(context).loginPageDisplay2,

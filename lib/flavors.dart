@@ -72,6 +72,7 @@ class FlavorConfig {
     required this.enableNotifications,
     this.designSystem,
     this.applicationCode,
+    this.defaultLanguage = 'en',
   });
 
   // Config
@@ -82,6 +83,7 @@ class FlavorConfig {
   final String? applicationCode;
   final FlavorStrings Function(BuildContext context) strings;
   final bool enableNotifications;
+  final String defaultLanguage;
 
   // Static stuff for setting the flavor on startup
   static FlavorConfig? _current;
