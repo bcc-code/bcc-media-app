@@ -18,18 +18,22 @@ class FAQScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categories = useState(ref.read(gqlClientProvider).query$FAQ());
-    final categoriesFuture = useFuture(categories.value);
+    final refreshKey = useState(UniqueKey());
+    final categoriesFuture = useMemoized(() => ref.read(gqlClientProvider).query$FAQ(), [refreshKey.value]);
+    final categoriesSnapshot = useFuture(categoriesFuture);
 
-    void refresh() => categories.value = ref.read(gqlClientProvider).query$FAQ();
+    void refresh() => refreshKey.value = UniqueKey();
+
+    final tempState = useState(0);
+    Future.delayed(const Duration(seconds: 5), () => tempState.value++);
 
     Widget? child;
-    if (categoriesFuture.connectionState == ConnectionState.waiting) {
+    if (categoriesSnapshot.connectionState == ConnectionState.waiting) {
       child = const LoadingGeneric();
-    } else if (!categoriesFuture.hasData || categoriesFuture.data!.parsedData == null) {
+    } else if (!categoriesSnapshot.hasData || categoriesSnapshot.data!.parsedData == null) {
       child = ErrorGeneric(onRetry: refresh);
     } else {
-      final categoryItems = categoriesFuture.data!.parsedData!.faq.categories?.items;
+      final categoryItems = categoriesSnapshot.data!.parsedData!.faq.categories?.items;
       if (categoryItems != null) {
         child = CustomTabBar(
           padding: const EdgeInsets.all(16),
