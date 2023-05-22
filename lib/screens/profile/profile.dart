@@ -182,6 +182,10 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                         const SizedBox(height: 24),
                         SettingList(
                           buttons: [
+                            OptionButton(
+                              optionName: S.of(context).faq,
+                              onPressed: () => context.router.push(const FAQScreenRoute()),
+                            ),
                             if (!ref.read(authStateProvider).guestMode) ...[
                               OptionButton(
                                 optionName: S.of(context).contactSupport,
@@ -196,10 +200,6 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                                 },
                               )
                             ] else if (FlavorConfig.current.flavor != Flavor.kids) ...[
-                              OptionButton(
-                                optionName: S.of(context).faq,
-                                onPressed: () => context.router.push(const FAQScreenRoute()),
-                              ),
                               OptionButton(
                                 optionName: S.of(context).contactSupport,
                                 onPressed: () => _contactSupportEmail(),
