@@ -182,6 +182,10 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                         const SizedBox(height: 24),
                         SettingList(
                           buttons: [
+                            OptionButton(
+                              optionName: S.of(context).faq,
+                              onPressed: () => context.router.push(const FAQScreenRoute()),
+                            ),
                             if (!ref.read(authStateProvider).guestMode) ...[
                               OptionButton(
                                 optionName: S.of(context).contactSupport,

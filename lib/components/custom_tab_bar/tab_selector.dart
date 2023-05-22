@@ -1,15 +1,21 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/design_system/design_system.dart';
 
-import '../option_list.dart';
+class TabSelector extends StatelessWidget {
+  const TabSelector({
+    super.key,
+    required this.tabs,
+    required this.selectedIndex,
+    required this.onSelectionChange,
+    required this.padding,
+  });
 
-class EpisodeTabSelector extends StatelessWidget {
-  const EpisodeTabSelector({super.key, required this.tabs, required this.selectedIndex, required this.onSelectionChange});
-
-  final List<Option> tabs;
+  final List<String> tabs;
   final int selectedIndex;
   final void Function(int id) onSelectionChange;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
@@ -18,21 +24,22 @@ class EpisodeTabSelector extends StatelessWidget {
         constraints: BoxConstraints.tightFor(width: (constraints.maxWidth)),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(
-            children: tabs
-                .map(
-                  (tab) => Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: TabButton(
-                      tab.title,
-                      selected: selectedIndex == tabs.indexOf(tab),
-                      onTap: () {
-                        onSelectionChange(tabs.indexOf(tab));
-                      },
+          child: Padding(
+            padding: padding,
+            child: Row(
+              children: tabs
+                  .mapIndexed(
+                    (index, tabName) => Padding(
+                      padding: EdgeInsets.only(right: tabName == tabs.last ? 0 : 8),
+                      child: TabButton(
+                        tabName,
+                        selected: selectedIndex == index,
+                        onTap: () => onSelectionChange(index),
+                      ),
                     ),
-                  ),
-                )
-                .toList(),
+                  )
+                  .toList(),
+            ),
           ),
         ),
       ),
