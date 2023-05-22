@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import '../flavors.dart';
 import '../helpers/languages.dart';
 
 part 'settings.freezed.dart';
@@ -36,16 +36,16 @@ extension on Settings {
   }
 }
 
-class SettingsService extends StateNotifier<Settings> {
-  SettingsService(this.ref, Settings settings) : super(settings);
+final _defaultLanguage = Intl.defaultLocale ?? FlavorConfig.current.defaultLanguage;
 
+class SettingsService extends StateNotifier<Settings> {
   final Ref ref;
 
-  void init() {
+  SettingsService(this.ref) : super(Settings(appLanguage: Locale(_defaultLanguage))) {
     var prefs = ref.read(sharedPreferencesProvider);
     state = state.copyWith(
-      appLanguage: Locale(prefs.getString(PrefKeys.appLanguage) ?? 'en'),
-      audioLanguage: prefs.getString(PrefKeys.audioLanguage),
+      appLanguage: Locale(prefs.getString(PrefKeys.appLanguage) ?? _defaultLanguage),
+      audioLanguage: prefs.getString(PrefKeys.audioLanguage) ?? _defaultLanguage,
       subtitleLanguage: prefs.getString(PrefKeys.subtitleLanguage),
       analyticsId: prefs.getString(PrefKeys.analyticsId),
       envOverride: prefs.getString(PrefKeys.envOverride),
@@ -56,7 +56,7 @@ class SettingsService extends StateNotifier<Settings> {
 
   Future<void> setAppLanguage(String code) async {
     ref.read(sharedPreferencesProvider).setString(PrefKeys.appLanguage, code);
-    state = state.copyWith(appLanguage: getLocale(code) ?? const Locale('en'));
+    state = state.copyWith(appLanguage: getLocale(code) ?? Locale(_defaultLanguage));
     // update the rest of the app
   }
 
@@ -103,7 +103,7 @@ class SettingsService extends StateNotifier<Settings> {
 }
 
 final settingsProvider = StateNotifierProvider<SettingsService, Settings>((ref) {
-  final settingsService = SettingsService(ref, const Settings(appLanguage: Locale('en')));
+  final settingsService = SettingsService(ref);
   settingsService.addListener(fireImmediately: false, (state) {
     BccmPlayerInterface.instance.setAppConfig(state.toAppConfig());
   });

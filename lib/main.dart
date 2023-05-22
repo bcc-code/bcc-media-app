@@ -90,7 +90,7 @@ Future setDefaults() async {
 
 Future<String?> getDefaultLocale() async {
   final String systemLocale = await findSystemLocale();
-  final verifiedLocale = Intl.verifiedLocale(systemLocale, NumberFormat.localeExists, onFailure: (String _) => 'en');
+  final verifiedLocale = Intl.verifiedLocale(systemLocale, NumberFormat.localeExists, onFailure: (String _) => FlavorConfig.current.defaultLanguage);
   if (verifiedLocale != null) {
     final locale = Intl.shortLocale(verifiedLocale);
     switch (locale) {
@@ -108,7 +108,7 @@ Future<String?> getDefaultLocale() async {
 
 Future<ProviderContainer> initProviderContainer(List<Override> overrides) async {
   var providerContainer = ProviderContainer(overrides: overrides);
-  providerContainer.read(settingsProvider.notifier).init();
+  providerContainer.read(settingsProvider.notifier);
   providerContainer.read(appConfigProvider);
   providerContainer.read(analyticsProvider);
   providerContainer.read(deepLinkServiceProvider);
