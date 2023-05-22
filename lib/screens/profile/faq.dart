@@ -13,18 +13,6 @@ import '../../theme/design_system/design_system.dart';
 import '../../graphql/queries/faq.graphql.dart';
 import '../../l10n/app_localizations.dart';
 
-class FAQItem {
-  final int id;
-  final String question;
-  final String answer;
-
-  FAQItem({
-    required this.id,
-    required this.question,
-    required this.answer,
-  });
-}
-
 class FAQScreen extends HookConsumerWidget {
   const FAQScreen({super.key});
 
