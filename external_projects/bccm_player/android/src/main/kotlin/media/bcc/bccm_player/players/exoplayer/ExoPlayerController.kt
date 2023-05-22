@@ -8,7 +8,6 @@ import androidx.media3.common.C
 import androidx.media3.common.C.VIDEO_SCALING_MODE_SCALE_TO_FIT
 import androidx.media3.common.ForwardingPlayer
 import androidx.media3.common.MediaItem
-import androidx.media3.common.MediaMetadata
 import androidx.media3.common.TrackSelectionOverride
 import androidx.media3.common.Tracks
 import androidx.media3.exoplayer.ExoPlayer
@@ -22,13 +21,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import media.bcc.bccm_player.BccmPlayerPluginSingleton
 import media.bcc.bccm_player.PictureInPictureModeChangedEvent
 import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
+import media.bcc.bccm_player.pigeon.PlaybackPlatformApi.NpawConfig
 import media.bcc.bccm_player.players.PlayerController
-import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
+import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter
 import java.util.UUID
 
 
@@ -70,34 +69,23 @@ class ExoPlayerController(private val context: Context) :
         }
 
     private val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
-    private val youboraPlugin: Plugin
+    private var youboraPlugin: Plugin? = null
 
     init {
         player = BccmForwardingPlayer(this)
-
-        val youboraOptions = Options()
-        youboraOptions.isAutoDetectBackground = false
-        youboraOptions.userObfuscateIp = true
-        youboraOptions.isEnabled = false
-        youboraOptions.isParseManifest = true
-        setBasicYouboraOptions(youboraOptions, BccmPlayerPluginSingleton.npawConfigState.value)
-
-        youboraPlugin = Plugin(youboraOptions, context)
-        val adapter = Media3Adapter(exoPlayer)
-        youboraPlugin.adapter = adapter
         player.addListener(this)
 
         handleUpdatedAppConfig(BccmPlayerPluginSingleton.appConfigState.value)
+        BccmPlayerPluginSingleton.npawConfigState.value?.let {
+            handleUpdatedNpawConfig(it)
+        }
         mainScope.launch {
-            BccmPlayerPluginSingleton.npawConfigState.collectLatest {
-                setBasicYouboraOptions(
-                    youboraPlugin.options,
-                    it
-                )
+            BccmPlayerPluginSingleton.npawConfigState.collect {
+                handleUpdatedNpawConfig(it)
             }
         }
         mainScope.launch {
-            BccmPlayerPluginSingleton.appConfigState.collectLatest { handleUpdatedAppConfig(it) }
+            BccmPlayerPluginSingleton.appConfigState.collect { handleUpdatedAppConfig(it) }
         }
     }
 
@@ -119,17 +107,74 @@ class ExoPlayerController(private val context: Context) :
             .build()
 
         textLanguageThatShouldBeSelected = appConfigState?.subtitleLanguage
-
-        youboraPlugin.options.username = appConfigState?.analyticsId
-        youboraPlugin.options.contentCustomDimension1 =
-            if (appConfigState?.sessionId != null) appConfigState.sessionId.toString() else null
+        updateYouboraOptions()
     }
 
-    private fun setBasicYouboraOptions(options: Options, config: PlaybackPlatformApi.NpawConfig?) {
-        options.isEnabled = config != null
-        options.accountCode = config?.accountCode
-        options.appReleaseVersion = config?.appReleaseVersion
-        options.appName = config?.appName
+    private fun handleUpdatedNpawConfig(npawConfig: NpawConfig?) {
+        if (npawConfig == null) {
+            youboraPlugin?.disable()
+            return
+        }
+        if (youboraPlugin != null) {
+            youboraPlugin?.enable()
+            return
+        }
+        initYoubora(npawConfig)
+    }
+
+    private fun initYoubora(config: NpawConfig) {
+        Log.d("bccm", "ExoPlayerController: Initializing youbora")
+        val options = Options()
+        options.isAutoDetectBackground = false
+        options.userObfuscateIp = true
+        options.isParseManifest = true
+        options.isEnabled = true
+        options.accountCode = config.accountCode
+        options.appReleaseVersion = config.appReleaseVersion
+        options.appName = config.appName
+        youboraPlugin = Plugin(options, context).also {
+            it.adapter = Media3Adapter(exoPlayer)
+        }
+        updateYouboraOptions()
+    }
+
+    fun updateYouboraOptions() {
+        val youboraPlugin = youboraPlugin ?: return
+        Log.d(
+            "bccm",
+            "ExoPlayerController: Updating youbora options: ${player.mediaMetadata.title}"
+        )
+
+        // App config based options
+        val appConfig = BccmPlayerPluginSingleton.appConfigState.value
+        youboraPlugin.options.username = appConfig?.analyticsId
+        youboraPlugin.options.contentCustomDimension1 =
+            if (appConfig?.sessionId != null) appConfig.sessionId.toString() else null
+
+        // Metadata options
+        val mediaMetadata = player.mediaMetadata
+        val extras = mediaMetadata.extras?.let { extractExtrasFromAndroid(it) }
+        youboraPlugin.options.contentIsLive = extras?.get("npaw.content.isLive")?.toBoolean()
+            ?: extras?.get(CastMediaItemConverter.PLAYER_DATA_IS_LIVE)?.toBoolean()
+                    ?: player.isCurrentMediaItemLive
+        youboraPlugin.options.contentId = extras?.get("npaw.content.id")
+            ?: mediaMetadata.extras?.getString("id")
+        youboraPlugin.options.contentTitle = extras?.get("npaw.content.title")
+            ?: mediaMetadata.title?.toString() ?: mediaMetadata.displayTitle?.toString()
+        youboraPlugin.options.contentTvShow = extras?.get("npaw.content.tvShow")
+        youboraPlugin.options.contentSeason = extras?.get("npaw.content.season")
+        youboraPlugin.options.contentEpisodeTitle = extras?.get("npaw.content.episodeTitle")
+        youboraPlugin.options.contentTransactionCode
+
+        for (t in player.currentTracks.groups) {
+            if (!t.isSelected) continue
+
+            if (t.type == C.TRACK_TYPE_TEXT) {
+                youboraPlugin.options?.contentSubtitles = t.mediaTrackGroup.getFormat(0).language
+            } else if (t.type == C.TRACK_TYPE_AUDIO) {
+                youboraPlugin.options?.contentLanguage = t.mediaTrackGroup.getFormat(0).language
+            }
+        }
     }
 
     fun getExoPlayer(): ExoPlayer {
@@ -192,16 +237,7 @@ class ExoPlayerController(private val context: Context) :
                 textLanguageThatShouldBeSelected = null
             }
         }
-
-        for (t in tracks.groups) {
-            if (!t.isSelected) continue
-
-            if (t.type == C.TRACK_TYPE_TEXT) {
-                youboraPlugin.options.contentSubtitles = t.mediaTrackGroup.getFormat(0).language
-            } else if (t.type == C.TRACK_TYPE_AUDIO) {
-                youboraPlugin.options.contentLanguage = t.mediaTrackGroup.getFormat(0).language
-            }
-        }
+        updateYouboraOptions()
     }
 
     /**
@@ -231,18 +267,9 @@ class ExoPlayerController(private val context: Context) :
         mediaItem?.mediaMetadata?.let { onMediaMetadataChanged(it) }
     }
 
-    override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
-        val extras = mediaMetadata.extras?.let { extractExtrasFromAndroid(it) }
-        youboraPlugin.options.contentIsLive = extras?.get("npaw.content.isLive")?.toBoolean()
-            ?: extras?.get(PLAYER_DATA_IS_LIVE)?.toBoolean() ?: player.isCurrentMediaItemLive
-        youboraPlugin.options.contentId = extras?.get("npaw.content.id")
-            ?: mediaMetadata.extras?.getString("id")
-        youboraPlugin.options.contentTitle = extras?.get("npaw.content.title")
-            ?: mediaMetadata.title?.toString() ?: mediaMetadata.displayTitle?.toString()
-        youboraPlugin.options.contentTvShow = extras?.get("npaw.content.tvShow")
-        youboraPlugin.options.contentSeason = extras?.get("npaw.content.season")
-        youboraPlugin.options.contentEpisodeTitle = extras?.get("npaw.content.episodeTitle")
-    }
+    /*override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
+        updateYouboraOptions()
+    }*/
 
     val emitter = object : Emitter {
         override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {

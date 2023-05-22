@@ -201,13 +201,15 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
 
     public func setNpawConfig(npawConfig: NpawConfig?) {
+        guard let npawConfig = npawConfig else {
+            youboraPlugin?.disable()
+            return
+        }
         if youboraPlugin != nil {
             youboraPlugin?.enable()
-        } else if let npawConfig = npawConfig {
-            initYoubora(npawConfig)
-        } else {
-            youboraPlugin?.disable()
+            return
         }
+        initYoubora(npawConfig)
     }
 
     public func updateAppConfig(appConfig: AppConfig?) {
