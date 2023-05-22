@@ -74,6 +74,9 @@ class _EpisodeDetailsState extends ConsumerState<EpisodeDetails> {
   @override
   void didUpdateWidget(previous) {
     super.didUpdateWidget(previous);
+    if (previous.episodeId == widget.episodeId) {
+      return;
+    }
     setState(() {
       episodeFuture = loadEpisode();
     });
