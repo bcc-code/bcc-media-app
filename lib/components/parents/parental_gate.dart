@@ -27,9 +27,9 @@ class ParentalGate extends HookWidget {
   @override
   Widget build(BuildContext context) {
     // random number between 1 and 100
-    final number1 = useMemoized(() => Random().nextInt(100) + 1);
-    final number2 = useMemoized(() => Random().nextInt(100) + 1);
-    final correct = number1 + number2;
+    final number1 = useMemoized(() => Random().nextInt(10) + 1);
+    final number2 = useMemoized(() => Random().nextInt(10) + 1);
+    final correct = number1 * number2;
     final answerText = useTextEditingController();
     final showErrorColor = useState(false);
     final isMounted = useIsMounted();
@@ -64,7 +64,7 @@ class ParentalGate extends HookWidget {
             Text('Ask your parents', style: DesignSystem.of(context).textStyles.headline2),
             Padding(
               padding: const EdgeInsets.only(top: 8),
-              child: Text('What is $number1 + $number2?',
+              child: Text('What is $number1 x $number2?',
                   style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3)),
             ),
             const SizedBox(height: 24),

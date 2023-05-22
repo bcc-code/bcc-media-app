@@ -10,6 +10,7 @@ Future<void> main() async {
       flavor: Flavor.bccmedia,
       firebaseOptions: prod_firebase.DefaultFirebaseOptions.currentPlatform,
       enableNotifications: false,
+      defaultLanguage: 'no',
       strings: (context) => FlavorStrings(
         onboardingTitle: S.of(context).loginPageDisplay1,
         onboardingSecondaryTitle: S.of(context).loginPageDisplay2,

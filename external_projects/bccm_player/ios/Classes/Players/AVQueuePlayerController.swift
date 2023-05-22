@@ -11,7 +11,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     final let playbackListener: PlaybackListenerPigeon
     final var observers = [NSKeyValueObservation]()
     var temporaryStatusObserver: NSKeyValueObservation? = nil
-    var youboraPlugin: YBPlugin
+    var youboraPlugin: YBPlugin?
     var pipController: AVPlayerViewController? = nil
     var appConfig: AppConfig? = nil
     var refreshStateTimer: Timer? = nil
@@ -21,20 +21,14 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     init(id: String? = nil, playbackListener: PlaybackListenerPigeon, npawConfig: NpawConfig?, appConfig: AppConfig?) {
         self.id = id ?? UUID().uuidString
         self.playbackListener = playbackListener
-        
-        let youboraOptions = YBOptions()
-        youboraOptions.enabled = npawConfig != nil
-        youboraOptions.accountCode = npawConfig?.accountCode
-        youboraOptions.appName = npawConfig?.appName
-        youboraOptions.autoDetectBackground = false
-        youboraOptions.appReleaseVersion = npawConfig?.appReleaseVersion
-        youboraPlugin = YBPlugin(options: youboraOptions)
         super.init()
         updateAppConfig(appConfig: appConfig)
-        youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
         addObservers()
         refreshStateTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
             self.onManualPlayerStateUpdate()
+        }
+        if let npawConfig = npawConfig {
+            initYoubora(npawConfig)
         }
         print("BTV DEBUG: end of init playerController")
     }
@@ -167,8 +161,27 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         player.pause()
     }
     
-    func npawHandleMediaItemUpdate(mediaItem: MediaItem?) {
-        guard let mediaItem = mediaItem else {
+    private func initYoubora(_ npawConfig: NpawConfig) {
+        print("Initializing youbora")
+        let youboraOptions = YBOptions()
+        youboraOptions.enabled = true
+        youboraOptions.accountCode = npawConfig.accountCode
+        youboraOptions.appName = npawConfig.appName
+        youboraOptions.autoDetectBackground = false
+        youboraOptions.userObfuscateIp = true as NSValue
+        youboraOptions.appReleaseVersion = npawConfig.appReleaseVersion
+        youboraPlugin = YBPlugin(options: youboraOptions)
+        youboraPlugin!.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
+        updateYouboraOptions()
+    }
+    
+    func updateYouboraOptions(mediaItemOverride: MediaItem? = nil) {
+        guard let youboraPlugin = youboraPlugin else {
+            return
+        }
+        youboraPlugin.options.username = appConfig?.analyticsId
+        youboraPlugin.options.contentCustomDimension1 = appConfig?.sessionId != nil ? appConfig?.sessionId?.stringValue : nil
+        guard var mediaItem = mediaItemOverride ?? getCurrentItem() else {
             youboraPlugin.options.contentIsLive = nil
             youboraPlugin.options.contentId = nil
             youboraPlugin.options.contentTitle = nil
@@ -187,17 +200,19 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         youboraPlugin.options.contentEpisodeTitle = extras?["npaw.content.episodeTitle"] as? String
     }
 
-    public func updateNpawConfig(npawConfig: NpawConfig?) {
-        youboraPlugin.options.enabled = npawConfig != nil
-        youboraPlugin.options.accountCode = npawConfig?.accountCode
-        youboraPlugin.options.appName = npawConfig?.appName
-        youboraPlugin.options.appReleaseVersion = npawConfig?.appReleaseVersion
+    public func setNpawConfig(npawConfig: NpawConfig?) {
+        if youboraPlugin != nil {
+            youboraPlugin?.enable()
+        } else if let npawConfig = npawConfig {
+            initYoubora(npawConfig)
+        } else {
+            youboraPlugin?.disable()
+        }
     }
 
     public func updateAppConfig(appConfig: AppConfig?) {
         self.appConfig = appConfig
-        youboraPlugin.options.username = appConfig?.analyticsId
-        youboraPlugin.options.contentCustomDimension1 = appConfig?.sessionId != nil ? appConfig?.sessionId?.stringValue : nil
+        updateYouboraOptions()
     }
     
     public func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?, completion: @escaping (FlutterError?) -> Void) {
@@ -205,7 +220,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             guard let playerItem = playerItem else {
                 return
             }
-            self.npawHandleMediaItemUpdate(mediaItem: mediaItem)
+            self.updateYouboraOptions(mediaItemOverride: mediaItem)
             DispatchQueue.main.async {
                 self.player.replaceCurrentItem(with: playerItem)
                 self.temporaryStatusObserver = playerItem.observe(\.status, options: [.new, .old]) {
@@ -225,8 +240,8 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
                         }
                         
                         // This is the initial signal. If this is not set the language is generally empty in NPAW
-                        self.youboraPlugin.options.contentSubtitles = self.player.currentItem?.getSelectedSubtitleLanguage()
-                        self.youboraPlugin.options.contentLanguage = self.player.currentItem?.getSelectedAudioLanguage()
+                        self.youboraPlugin?.options.contentSubtitles = self.player.currentItem?.getSelectedSubtitleLanguage()
+                        self.youboraPlugin?.options.contentLanguage = self.player.currentItem?.getSelectedAudioLanguage()
                         
                         completion(nil)
                     } else if playerItem.status == .failed || playerItem.status == .unknown {
@@ -330,7 +345,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
             self.playbackListener.onMediaItemTransition(event, completion: { _ in })
             
-            self.npawHandleMediaItemUpdate(mediaItem: mediaItem)
+            self.updateYouboraOptions(mediaItemOverride: mediaItem)
             
             self.observers.append(player.observe(\.currentItem?.duration, options: [.old, .new]) {
                 player, _ in
@@ -340,8 +355,8 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             self.observers.append(player.observe(\.currentItem?.currentMediaSelection, options: [.old, .new]) {
                 player, _ in
                 // Update language in NPAW
-                self.youboraPlugin.options.contentLanguage = player.currentItem?.getSelectedAudioLanguage()
-                self.youboraPlugin.options.contentSubtitles = player.currentItem?.getSelectedSubtitleLanguage()
+                self.youboraPlugin?.options.contentLanguage = player.currentItem?.getSelectedAudioLanguage()
+                self.youboraPlugin?.options.contentSubtitles = player.currentItem?.getSelectedSubtitleLanguage()
             })
             NotificationCenter.default
                 .addObserver(self,
@@ -351,7 +366,6 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         })
         observers.append(player.observe(\.rate, options: [.old, .new]) {
             player, change in
-            debugPrint("change observed: rate")
             let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = change.newValue
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
@@ -360,7 +374,6 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         })
         observers.append(player.observe(\.timeControlStatus, options: [.old, .new]) {
             player, _ in
-            debugPrint("change observed: timeControlStatus")
             let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = player.rate
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds

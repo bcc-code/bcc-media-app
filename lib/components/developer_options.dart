@@ -98,7 +98,11 @@ class DeveloperOptions extends ConsumerWidget {
     return BottomSheetSelect(
       title: 'Developer options',
       selectedId: 'fromStart',
-      items: [Option(id: 'override_env', title: 'Override environment'), Option(id: 'show_technical_details', title: 'Show technical details')],
+      items: [
+        Option(id: 'override_env', title: 'Override environment'),
+        Option(id: 'show_technical_details', title: 'Show technical details'),
+        Option(id: 'reset_settings', title: 'Reset settings'),
+      ],
       showSelection: false,
       onSelectionChanged: (id) async {
         WidgetsBinding.instance.scheduleFrameCallback((d) {
@@ -108,6 +112,9 @@ class DeveloperOptions extends ConsumerWidget {
               break;
             case 'show_technical_details':
               showTechnicalDetails(context, ref);
+              break;
+            case 'reset_settings':
+              ref.read(sharedPreferencesProvider).clear();
               break;
           }
         });

@@ -10,7 +10,7 @@ import Foundation
 
 public protocol PlayerController {
     var id: String { get }
-    func updateNpawConfig(npawConfig: NpawConfig?)
+    func setNpawConfig(npawConfig: NpawConfig?)
     func updateAppConfig(appConfig: AppConfig?)
     func getCurrentItem() -> MediaItem?
     func getPlayerStateSnapshot() -> PlayerStateSnapshot
