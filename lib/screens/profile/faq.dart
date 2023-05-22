@@ -19,7 +19,10 @@ class FAQScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final refreshKey = useState(UniqueKey());
-    final categoriesFuture = useMemoized(() => ref.read(gqlClientProvider).query$FAQ(), [refreshKey.value]);
+    final categoriesFuture = useMemoized(
+      () => ref.read(gqlClientProvider).query$FAQ(),
+      [refreshKey.value],
+    );
     final categoriesSnapshot = useFuture(categoriesFuture);
 
     void refresh() => refreshKey.value = UniqueKey();
