@@ -86,7 +86,7 @@ class FeaturedSection extends ConsumerWidget {
   ) {
     final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
     return SizedBox(
-      height: 313,
+      height: constraints.maxWidth > 600 ? 425 : 325,
       child: PageView.builder(
         physics: const _CustomPageViewScrollPhysics(),
         controller: PageController(viewportFraction: viewportFraction),
@@ -219,7 +219,6 @@ class _FeaturedItem extends StatelessWidget {
 
 class _GradientImage extends StatelessWidget {
   final String? image;
-  final height = kIsWeb ? 800.0 : 290.0;
 
   const _GradientImage({this.image});
 
@@ -228,7 +227,7 @@ class _GradientImage extends StatelessWidget {
     final design = DesignSystem.of(context);
     return Container(
         width: double.infinity,
-        height: height,
+        height: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: design.colors.background2,
@@ -253,8 +252,9 @@ class _GradientImage extends StatelessWidget {
           final imageUri = image == null ? null : getImageUri(image!, height: imageHeight, cropMode: ImageCropMode.center);
           return ClipRRect(
             borderRadius: BorderRadius.circular(6),
-            child: SizedBox(
+            child: Container(
               height: constraints.maxHeight,
+              padding: const EdgeInsets.only(bottom: 32),
               child: imageUri == null
                   ? null
                   : FadeInImage.memoryNetwork(
