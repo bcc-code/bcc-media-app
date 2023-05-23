@@ -8,6 +8,7 @@ import androidx.media3.common.C
 import androidx.media3.common.C.VIDEO_SCALING_MODE_SCALE_TO_FIT
 import androidx.media3.common.ForwardingPlayer
 import androidx.media3.common.MediaItem
+import androidx.media3.common.TrackGroup
 import androidx.media3.common.TrackSelectionOverride
 import androidx.media3.common.Tracks
 import androidx.media3.exoplayer.ExoPlayer
@@ -53,7 +54,7 @@ class ExoPlayerController(private val context: Context) :
                 mainScope.launch {
                     delay(6000)
                     if (_currentPlayerView == null) {
-                        setRendererDisabled(true)
+                        setForceLowestVideoBitrate(true)
                         val activity = BccmPlayerPluginSingleton.activityState.value
                         Log.d("bccm", "FLAG_KEEP_SCREEN_ON cleared")
                         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -61,7 +62,7 @@ class ExoPlayerController(private val context: Context) :
                 }
             } else {
                 Log.d("bccm", "Enabling video, playerView attached")
-                setRendererDisabled(false)
+                setForceLowestVideoBitrate(false)
                 val activity = BccmPlayerPluginSingleton.activityState.value
                 Log.d("bccm", "FLAG_KEEP_SCREEN_ON added")
                 activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -181,7 +182,14 @@ class ExoPlayerController(private val context: Context) :
         return exoPlayer
     }
 
-    private fun setRendererDisabled(isDisabled: Boolean) {
+    /**
+     * This function forces the lowest video bitrate to be used.
+     *
+     * This was originally a "setRendererDisabled" function.
+     * Expected it to stop loading video segments if you disable the renderer,
+     * but it doesn't. This is still an open issue: https://github.com/google/ExoPlayer/issues/9282
+     */
+    private fun setForceLowestVideoBitrate(enabled: Boolean) {
         var indexOfVideoRenderer = -1
 
         exoPlayer.let {
@@ -195,9 +203,35 @@ class ExoPlayerController(private val context: Context) :
         }
 
         val parametersBuilder = trackSelector.buildUponParameters()
-        parametersBuilder.setRendererDisabled(indexOfVideoRenderer, isDisabled)
+        parametersBuilder.clearOverridesOfType(C.TRACK_TYPE_VIDEO)
+
+        if (enabled) {
+            // Force lowest quality
+            val mappedTrackInfo = trackSelector.currentMappedTrackInfo
+            val trackGroup = mappedTrackInfo?.getTrackGroups(indexOfVideoRenderer)?.get(0) ?: return
+            parametersBuilder.setOverrideForType(
+                TrackSelectionOverride(trackGroup, getLowestBitrateTrackIndex(trackGroup))
+            )
+        }
+
         trackSelector.setParameters(parametersBuilder)
-        Log.d("bccm", if (isDisabled) "Disabled video" else "Enabled video")
+        Log.d(
+            "bccm",
+            if (enabled) "Forcing lowest bitrate" else "No longer forcing lowest bitrate"
+        )
+    }
+
+    private fun getLowestBitrateTrackIndex(trackGroup: TrackGroup): Int {
+        var lowestQuality = 0
+        var lowestQualityBitrate = Int.MAX_VALUE
+        for (trackIndex in 0 until trackGroup.length) {
+            val format = trackGroup.getFormat(trackIndex)
+            if (format.bitrate < lowestQualityBitrate) {
+                lowestQuality = trackIndex
+                lowestQualityBitrate = format.bitrate
+            }
+        }
+        return lowestQuality
     }
 
     fun takeOwnership(playerView: PlayerView, viewController: BccmPlayerViewController) {
