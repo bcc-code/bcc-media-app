@@ -65,7 +65,7 @@ class FeaturedSection extends ConsumerWidget {
     return LayoutBuilder(builder: (context, constraints) {
       final filteredItems = data.items.items.where((e) {
         final episode = e.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
-        return episode?.locked == false;
+        return episode == null || !episode.locked;
       }).toList();
       final sectionItems = getItemsWithLiveItem(filteredItems, curLiveEpisode);
 
