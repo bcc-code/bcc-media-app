@@ -646,4 +646,10 @@ class SFi extends S {
 
   @override
   String get areYouSure => 'Oletko varma?';
+
+  @override
+  String get youCanContactUsAt => 'You can contact us at';
+
+  @override
+  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
 }

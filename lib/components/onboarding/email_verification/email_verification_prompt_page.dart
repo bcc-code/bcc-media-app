@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
+import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
@@ -48,9 +49,12 @@ class EmailVerificationPromptPage extends HookConsumerWidget {
           return SimpleDialog(
             title: Text('Verification email sent', style: DesignSystem.of(context).textStyles.title1),
             children: [
-              const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
-                  child: Text('If you still did not receive an email, please contact support at support@bcc.media.')),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Text(
+                  'If you still did not receive an email, please contact support at ${FlavorConfig.current.strings(context).contactEmail}.',
+                ),
+              ),
               Container(
                 padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 12),
                 child: DesignSystem.of(context).buttons.medium(onPressed: () => Navigator.pop(context), labelText: S.of(context).ok),

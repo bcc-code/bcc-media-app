@@ -14,6 +14,9 @@ Future<void> main() async {
       strings: (context) => FlavorStrings(
         onboardingTitle: S.of(context).loginPageDisplay1,
         onboardingSecondaryTitle: S.of(context).loginPageDisplay2,
+        aboutText: S.of(context).bccMediaCenter,
+        contactEmail: 'support@bcc.media',
+        contactWebsite: Uri.parse('https://bcc.media'),
       ),
       images: FlavorImages(
         logoHeight: 20,
