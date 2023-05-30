@@ -14,9 +14,10 @@ class IconSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isTablet = MediaQuery.of(context).size.width > 600;
     return HorizontalSlider(
       padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
-      height: 148,
+      height: isTablet ? 170 : 148,
       itemCount: data.items.items.length,
       itemBuilder: (BuildContext context, int index) {
         var item = data.items.items[index];
@@ -26,7 +27,8 @@ class IconSection extends StatelessWidget {
           child: CategoryButton(
             label: item.title,
             networkImage: item.image,
-            width: 80,
+            width: isTablet ? 180 : 80,
+            aspectRatio: isTablet ? 16 / 9 : 1,
             padding: const EdgeInsets.all(8),
           ),
         );
