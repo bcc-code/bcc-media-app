@@ -167,9 +167,12 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
           leadingWidth: 92,
           title: Text(S.of(context).liveHeader),
           actions: [
-            const Padding(
-              padding: EdgeInsets.only(right: 2.0),
-              child: SizedBox(width: 24, child: BccmCastButton()),
+            Padding(
+              padding: const EdgeInsets.only(right: 2.0),
+              child: SizedBox(
+                width: 24,
+                child: BccmCastButton(color: DesignSystem.of(context).colors.tint1),
+              ),
             ),
             if (!kIsWeb)
               Padding(

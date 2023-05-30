@@ -181,7 +181,10 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                   actions: [
                     Padding(
                       padding: const EdgeInsets.only(right: 16.0),
-                      child: ConstrainedBox(constraints: BoxConstraints.loose(const Size(24, 24)), child: const BccmCastButton()),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints.loose(const Size(24, 24)),
+                        child: BccmCastButton(color: DesignSystem.of(context).colors.tint1),
+                      ),
                     ),
                   ],
                   flexibleSpace: !design.appThemeData.appBarTransparent

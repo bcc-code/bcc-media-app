@@ -138,10 +138,10 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
             leadingWidth: 92,
             leading: const CustomBackButton(padding: kIsWeb ? EdgeInsets.zero : null),
             title: Text(episodeSnapshot.data?.season?.$show.title ?? episodeSnapshot.data?.title ?? ''),
-            actions: const [
+            actions: [
               Padding(
-                padding: EdgeInsets.only(left: 16, right: 16.0),
-                child: SizedBox(width: 24, child: BccmCastButton()),
+                padding: const EdgeInsets.only(left: 16, right: 16.0),
+                child: SizedBox(width: 24, child: BccmCastButton(color: DesignSystem.of(context).colors.tint1)),
               ),
             ],
           ),
