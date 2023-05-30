@@ -130,6 +130,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     var routes = [
       const HomeScreenWrapperRoute(),
       SearchScreenWrapperRoute(children: [SearchScreenRoute(key: GlobalKey<SearchScreenState>())]),
+      const GamesWrapperRoute(),
     ];
     if (!ref.watch(authStateProvider).guestMode) {
       routes.addAll([

@@ -65,6 +65,11 @@ class CustomNavTabBar extends HookConsumerWidget {
         icon: icon(icons.search.image, false),
         activeIcon: icon(icons.search.activeImage, true),
       ),
+      BottomNavigationBarItem(
+        label: 'Games',
+        icon: Container(),
+        activeIcon: Container(),
+      ),
     ];
     final guestMode = ref.watch(authStateProvider.select((value) => value.guestMode));
     debugPrint('custom_tab_bar rebuild. guestMode: $guestMode');

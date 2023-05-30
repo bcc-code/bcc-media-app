@@ -67,7 +67,7 @@
       ], // Remember to change the "program" property too
       "program": "lib/main_kids_prod.dart"
     },
-    /// Biblekids
+    /// Biblekids release
     {
       "name": "kids_prod (release)",
       "request": "launch",
