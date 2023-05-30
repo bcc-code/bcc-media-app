@@ -24,9 +24,15 @@ class StateImageProvider extends Iterable<ImageProvider> {
 class FlavorStrings {
   final String onboardingTitle;
   final String onboardingSecondaryTitle;
+  final String aboutText;
+  final String contactEmail;
+  final Uri contactWebsite;
   FlavorStrings({
     required this.onboardingTitle,
     required this.onboardingSecondaryTitle,
+    required this.aboutText,
+    required this.contactEmail,
+    required this.contactWebsite,
   });
 }
 

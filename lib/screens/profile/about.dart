@@ -1,31 +1,16 @@
+import 'package:brunstadtv_app/components/app_version.dart';
 import 'package:brunstadtv_app/components/developer_options.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../components/custom_back_button.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../flavors.dart';
-import '../../helpers/version.dart';
-
 import '../../l10n/app_localizations.dart';
 import '../../theme/design_system/design_system.dart';
 
-class AboutScreen extends StatefulWidget {
+class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
-
-  @override
-  State<AboutScreen> createState() => _AboutScreenState();
-}
-
-class _AboutScreenState extends State<AboutScreen> {
-  int timesPressedLogo = 0;
-
-  Future<String> get appVersion async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    return formatAppVersion(packageInfo);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,20 +32,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 Expanded(
                   child: Column(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          timesPressedLogo++;
-                          if (timesPressedLogo == 7) {
-                            timesPressedLogo = 0;
-                            HapticFeedback.heavyImpact();
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return const DeveloperOptions();
-                              },
-                            );
-                          }
-                        },
+                      DeveloperOptionsTrigger(
                         child: SizedBox(
                           child: Image(
                             image: FlavorConfig.current.images.logo,
@@ -72,44 +44,34 @@ class _AboutScreenState extends State<AboutScreen> {
                       Container(
                         margin: const EdgeInsets.symmetric(vertical: 16),
                         child: Text(
-                          S.of(context).bccMediaCenter,
+                          FlavorConfig.current.strings(context).aboutText,
                           style: DesignSystem.of(context).textStyles.body2,
                           textAlign: TextAlign.center,
                         ),
                       ),
                       InkWell(
                         onTap: () async {
-                          if (FlavorConfig.current.flavor == Flavor.kids) return;
-                          await launchUrl(Uri.parse('https://bcc.media'),
-                              mode: LaunchMode.externalApplication); // We do not particularly care if this fails.
+                          await launchUrl(
+                            FlavorConfig.current.strings(context).contactWebsite,
+                            mode: LaunchMode.externalApplication,
+                          ); // We do not particularly care if this fails.
                         },
                         child: Text(
-                          'bcc.media',
+                          FlavorConfig.current.strings(context).contactWebsite.host,
                           style: DesignSystem.of(context).textStyles.body2,
                           textAlign: TextAlign.center,
                         ),
                       ),
                       const SizedBox(height: 24),
                       Text(
-                        'You can contact us at support@bcc.media',
+                        '${S.of(context).youCanContactUsAt} ${FlavorConfig.current.strings(context).contactEmail}',
                         style: DesignSystem.of(context).textStyles.body2,
                         textAlign: TextAlign.center,
                       ),
                     ],
                   ),
                 ),
-                FutureBuilder<String>(
-                  future: appVersion,
-                  builder: (context, snapshot) {
-                    return snapshot.hasData
-                        ? SelectableText(
-                            '${S.of(context).version}: ${snapshot.data!}',
-                            style: DesignSystem.of(context).textStyles.caption1,
-                            textAlign: TextAlign.center,
-                          )
-                        : const Text('');
-                  },
-                ),
+                AppVersion()
               ],
             ),
           ),

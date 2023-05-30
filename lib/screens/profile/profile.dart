@@ -47,6 +47,7 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
 
   Future<void> _contactSupportEmail() async {
     String? deviceModel, manufacturer, os, screenSize, appVer, userId;
+    final contactEmail = FlavorConfig.current.strings(context).contactEmail;
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     final screenWidth = WidgetsBinding.instance.window.physicalSize.width.toInt().toString();
     final screenHeight = WidgetsBinding.instance.window.physicalSize.height.toInt().toString();
@@ -69,7 +70,7 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
 
     final Uri mailtoUri = Uri(
       scheme: 'mailto',
-      path: 'support@bcc.media',
+      path: contactEmail,
       query: 'subject=App Support&body='
           '\n\n\n\n\n\n-- Technical details -- \n'
           'Device Model: $deviceModel\n'

@@ -1364,6 +1364,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Are you sure?'**
   String get areYouSure;
+
+  /// Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media.
+  ///
+  /// In en, this message translates to:
+  /// **'You can contact us at'**
+  String get youCanContactUsAt;
+
+  /// Shown on about page
+  ///
+  /// In en, this message translates to:
+  /// **'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.'**
+  String get biblekidsAbout;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
