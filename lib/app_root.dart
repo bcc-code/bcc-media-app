@@ -125,7 +125,13 @@ class _AppRootState extends ConsumerState<AppRoot> {
         child: MaterialApp.router(
           localizationsDelegates: S.localizationsDelegates,
           localeResolutionCallback: (locale, supportedLocales) {
-            return locale?.languageCode == 'no' ? const Locale('nb') : locale;
+            if (locale?.languageCode == 'no') {
+              return const Locale('nb');
+            }
+            if (supportedLocales.map((e) => e.languageCode).contains(locale?.languageCode)) {
+              return locale;
+            }
+            return Locale(FlavorConfig.current.defaultLanguage);
           },
           supportedLocales: S.supportedLocales,
           locale: ref.watch(settingsProvider).appLanguage,

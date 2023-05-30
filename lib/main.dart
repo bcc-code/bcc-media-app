@@ -24,6 +24,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_root.dart';
 import 'flavors.dart';
+import 'l10n/app_localizations.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -88,22 +89,25 @@ Future setDefaults() async {
   Intl.defaultLocale = await getDefaultLocale();
 }
 
-Future<String?> getDefaultLocale() async {
+Future<String> getDefaultLocale() async {
   final String systemLocale = await findSystemLocale();
   final verifiedLocale = Intl.verifiedLocale(systemLocale, NumberFormat.localeExists, onFailure: (String _) => FlavorConfig.current.defaultLanguage);
-  if (verifiedLocale != null) {
-    final locale = Intl.shortLocale(verifiedLocale);
-    switch (locale) {
-      case 'tk':
-        return 'tr';
-      case 'nb':
-      case 'nn':
-        return 'no';
-      default:
-        return locale;
-    }
+  if (verifiedLocale == null) {
+    return FlavorConfig.current.defaultLanguage;
   }
-  return null;
+  final shortLocale = Intl.shortLocale(verifiedLocale);
+  if (!S.supportedLocales.map((l) => l.languageCode).contains(shortLocale)) {
+    return FlavorConfig.current.defaultLanguage;
+  }
+  switch (shortLocale) {
+    case 'tk':
+      return 'tr';
+    case 'nb':
+    case 'nn':
+      return 'no';
+    default:
+      return shortLocale;
+  }
 }
 
 Future<ProviderContainer> initProviderContainer(List<Override> overrides) async {
