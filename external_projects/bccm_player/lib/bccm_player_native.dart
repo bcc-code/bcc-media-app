@@ -102,6 +102,11 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
+  void enterFullscreen(String playerId) {
+    _pigeon.enterFullscreen(playerId);
+  }
+
+  @override
   Future setNpawConfig(NpawConfig? config) {
     return _pigeon.setNpawConfig(config);
   }

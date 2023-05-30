@@ -14,10 +14,12 @@ import 'package:brunstadtv_app/components/status_indicators/error_generic.dart';
 import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
 import 'package:brunstadtv_app/components/episode/share_episode_sheet.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/providers/gyroscope_orientation.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
@@ -266,6 +268,55 @@ class _EpisodeDisplay extends HookConsumerWidget {
     final episode = episodeSnapshot.data;
     var player = ref.watch(primaryPlayerProvider);
     if (player == null || episode == null) return const SizedBox.shrink();
+    final hasRotated = useState(false);
+
+    useMemoized(() {
+      // allow landscape orientation
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+        DeviceOrientation.portraitUp,
+      ]);
+      debugPrint('set preferred orientations');
+    });
+
+    ref.listen<bool?>(primaryPlayerProvider.select((value) => value?.isFullscreen), (previous, next) {
+      if (next != true) {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+        ]);
+      }
+    });
+
+    ref.listen(gyroOrientationProvider, (previous, next) {
+      debugPrint('Gyro event: $next');
+      if (previous == next) {
+        debugPrint('previous == next?????');
+        return;
+      }
+      if (next == GyroOrientation.landscape) {
+        hasRotated.value = true;
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.landscapeLeft,
+          DeviceOrientation.landscapeRight,
+          DeviceOrientation.portraitUp,
+        ]);
+      } else {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+        ]);
+      }
+    });
+
+    // Detect landscape orientation and enter fullscreen
+    final mediaQueryOrientation = MediaQuery.of(context).orientation;
+    useEffect(() {
+      if (mediaQueryOrientation == Orientation.landscape) {
+        ref.read(playbackServiceProvider).platformApi.enterFullscreen(player.playerId);
+      } else {
+        ref.read(playbackServiceProvider).platformApi.exitFullscreen(player.playerId);
+      }
+    }, [mediaQueryOrientation]);
 
     final playerSetupFuture = useState<Future?>(null);
     Future setupPlayer() {

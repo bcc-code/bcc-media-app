@@ -83,6 +83,22 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         onManualPlayerStateUpdate()
     }
     
+    public func enterFullscreen() {
+        // present currentViewController fullscreen on rootviewcontroller
+        guard let currentViewController = currentViewController else {
+            return
+        }
+        currentViewController.willMove(toParent: nil)
+        currentViewController.removeFromParent()
+        // do the following next tick
+        DispatchQueue.main.async {
+            let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+            rootViewController?.present(currentViewController, animated: true)
+            self.fullscreenViewController = currentViewController
+            self.onManualPlayerStateUpdate()
+        }
+    }
+    
     public func playerViewController(_ playerViewController: AVPlayerViewController, willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         // Disable animations while transitioning to fullscreen, because it sometimes does a 360deg spin.
         UIView.setAnimationsEnabled(false)
@@ -95,8 +111,12 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
     
     public func playerViewController(_ playerViewController: AVPlayerViewController, willEndFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        fullscreenViewController = nil
-        onManualPlayerStateUpdate()
+        // fullscreenViewController = nil
+        coordinator.animate(alongsideTransition: { _ in }, completion: {
+            _ in
+            self.fullscreenViewController = nil
+            self.onManualPlayerStateUpdate()
+        })
     }
 
     public func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
@@ -129,10 +149,12 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
     
     func releasePlayerView(_ playerView: AVPlayerViewController) {
-        if playerView != pipController {
+        if playerView != pipController && playerView != fullscreenViewController {
             print("releasing")
             playerView.player = nil
-            currentViewController = nil
+            if currentViewController == playerView {
+                currentViewController = nil
+            }
         }
     }
     

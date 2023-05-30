@@ -20,6 +20,7 @@ dependencies:
   plugin_platform_interface: ^2.0.2
   pointer_interceptor: ^0.9.3+4
   riverpod: ^2.2.0
+  sensors_plus: ^3.0.1
   state_notifier: ^0.7.2+1
   universal_io: ^2.0.4
   visibility_detector: ^0.3.3
