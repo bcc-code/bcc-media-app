@@ -162,6 +162,14 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
         playerController.currentPlayerViewController?.exitFullscreen()
     }
 
+    override fun enterFullscreen(playerId: String) {
+        val playbackService = plugin.getPlaybackService() ?: return
+        val playerController = playbackService.getController(playerId)
+            ?: throw Error("Player with id $playerId does not exist.")
+
+        playerController.currentPlayerViewController?.enterFullscreen()
+    }
+
     override fun getChromecastState(result: PlaybackPlatformApi.Result<PlaybackPlatformApi.ChromecastState>) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {

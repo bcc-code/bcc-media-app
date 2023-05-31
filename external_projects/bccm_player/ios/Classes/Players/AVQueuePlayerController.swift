@@ -111,9 +111,11 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
     
     public func playerViewController(_ playerViewController: AVPlayerViewController, willEndFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        UIView.setAnimationsEnabled(false)
         // fullscreenViewController = nil
         coordinator.animate(alongsideTransition: { _ in }, completion: {
             _ in
+            UIView.setAnimationsEnabled(true)
             self.fullscreenViewController = nil
             self.onManualPlayerStateUpdate()
         })
