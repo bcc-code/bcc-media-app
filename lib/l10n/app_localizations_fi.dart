@@ -35,10 +35,10 @@ class SFi extends S {
   String get loginPageDisplay2 => 'Katsele Kristillisten arvojen mukaisia videoita, esityksiä, ja sarjoja';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Teemme Raamatun sanomasta elävää!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Haluamme että lapset saavat kokea Jeesuken parhaana ystävänään. Loppuelämäkseen.';
 
   @override
   String get loginPageDisplay3 => 'BCC Median tuottama';
@@ -74,7 +74,7 @@ class SFi extends S {
   String get signUpDescription => 'Luomalla tunnuksen saat enemmän sisältöä ja paremmat ominaisuudet.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Voin osoittaa olevani vähintään 13 vuotias, ja hyväksyn <a>Yksityisyydensuojakäytännöt</a>sekä <a>Käyttöehdot</a>.';
+  String get signUpAgreePrivacyPolicy => 'Voin osoittaa olevani vähintään 13 vuotias, ja hyväksyn <a>Tietosuojakäytännöt</a>sekä <a>Käyttöehdot</a>.';
 
   @override
   String get setPassword => 'Aseta salasana';
@@ -140,7 +140,7 @@ class SFi extends S {
   String get contactSupport => 'Tukipyyntö';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Ehdota ominaisuutta';
 
   @override
   String get cancel => 'Peru';
@@ -402,7 +402,7 @@ class SFi extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Kellonajat noudattavat aikavyöhykettäsi: $timeZone';
+    return 'Kellonajat ovat sinun paikallista aikaa: $timeZone';
   }
 
   @override
@@ -519,7 +519,7 @@ class SFi extends S {
   String get explorePublicContent => 'Tutustu avoimeen sisältöön';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Tutustu sisältöön';
 
   @override
   String get taskCompleted => 'tehtävä suoritettu';
@@ -627,13 +627,13 @@ class SFi extends S {
   String get details => 'Lisätietoa';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Listani';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Tiesitkö?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Sydäntä painamalla voit lisätä jakson \"Listaani\".';
 
   @override
   String get selectSeason => 'Valitse tuotantokausi';
@@ -652,4 +652,71 @@ class SFi extends S {
 
   @override
   String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+
+  @override
+  String get askYourParents => 'Ask your parents';
+
+  @override
+  String get whatIsMath => 'What is';
+
+  @override
+  String get answerLabel => 'Answer';
+
+  @override
+  String get checkAnswerButton => 'Check answer';
+
+  @override
+  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+
+  @override
+  String get verifyYourAccount => 'Verify your account';
+
+  @override
+  String get weHaveSentAnEmailTo => 'We have sent an email to';
+
+  @override
+  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+
+  @override
+  String get openEmailApp => 'Open email app';
+
+  @override
+  String get resendEmail => 'Resend email';
+
+  @override
+  String get noMailAppsDescription => 'No mail apps installed';
+
+  @override
+  String get verificationEmailSent => 'Verification email sent';
+
+  @override
+  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+
+  @override
+  String get accountCreated => 'Account created';
+
+  @override
+  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+
+  @override
+  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+
+  @override
+  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+
+  @override
+  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+
+  @override
+  String accountDeletionTimeframe(int x) {
+    return 'Account deletion will usually be done within $x business days.';
+  }
+
+  @override
+  String get accountDeletionTitle => 'Poista tilini';
+
+  @override
+  String accountDeletionSuccess(String email) {
+    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+  }
 }

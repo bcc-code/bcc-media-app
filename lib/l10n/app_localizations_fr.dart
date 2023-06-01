@@ -35,10 +35,10 @@ class SFr extends S {
   String get loginPageDisplay2 => 'Regarde des séries, des émissions et des films basés sur les valeurs chrétiennes';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Nous donnons vie au message de la Bible !';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Notre vision est que les enfants fassent l\'expérience de Jésus comme leur meilleur ami - pour le reste de leur vie.';
 
   @override
   String get loginPageDisplay3 => 'Produit par BCC Media';
@@ -140,7 +140,7 @@ class SFr extends S {
   String get contactSupport => 'Contacter le support';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Suggérer une fonction';
 
   @override
   String get cancel => 'Annuler';
@@ -519,7 +519,7 @@ class SFr extends S {
   String get explorePublicContent => 'Explorer le contenu public';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Commencer à explorer';
 
   @override
   String get taskCompleted => 'tâche terminée';
@@ -627,13 +627,13 @@ class SFr extends S {
   String get details => 'Détails';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Ma liste';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Le savais-tu ?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Tu peux ajouter tes programmes préférés à \"Ma liste\" en touchant le cœur.';
 
   @override
   String get selectSeason => 'Sélectionner une saison';
@@ -652,4 +652,71 @@ class SFr extends S {
 
   @override
   String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+
+  @override
+  String get askYourParents => 'Ask your parents';
+
+  @override
+  String get whatIsMath => 'What is';
+
+  @override
+  String get answerLabel => 'Answer';
+
+  @override
+  String get checkAnswerButton => 'Check answer';
+
+  @override
+  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+
+  @override
+  String get verifyYourAccount => 'Verify your account';
+
+  @override
+  String get weHaveSentAnEmailTo => 'We have sent an email to';
+
+  @override
+  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+
+  @override
+  String get openEmailApp => 'Open email app';
+
+  @override
+  String get resendEmail => 'Resend email';
+
+  @override
+  String get noMailAppsDescription => 'No mail apps installed';
+
+  @override
+  String get verificationEmailSent => 'Verification email sent';
+
+  @override
+  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+
+  @override
+  String get accountCreated => 'Account created';
+
+  @override
+  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+
+  @override
+  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+
+  @override
+  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+
+  @override
+  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+
+  @override
+  String accountDeletionTimeframe(int x) {
+    return 'Account deletion will usually be done within $x business days.';
+  }
+
+  @override
+  String get accountDeletionTitle => 'Supprimer mon compte';
+
+  @override
+  String accountDeletionSuccess(String email) {
+    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+  }
 }

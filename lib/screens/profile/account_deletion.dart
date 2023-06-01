@@ -47,7 +47,7 @@ class AccountDeletionScreen extends HookConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          title: const Text('Delete my account'),
+          title: Text(S.of(context).deleteMyAccount),
         ),
         body: deleteEmailFuture.value != null
             ? simpleFutureBuilder(
@@ -57,7 +57,7 @@ class AccountDeletionScreen extends HookConsumerWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(16),
                     child: Text(
-                      'Account deletion successfully requested. You will receive an email at ${ref.read(authStateProvider).user?.email}. To confirm your identity, we need you reply to that email to proceed with the deletion.',
+                      S.of(context).accountDeletionSuccess(ref.read(authStateProvider).user?.email ?? ''),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -72,10 +72,10 @@ class AccountDeletionScreen extends HookConsumerWidget {
                         children: [
                           Text(S.of(context).areYouSure, style: DesignSystem.of(context).textStyles.headline1),
                           const SizedBox(height: 12),
-                          const Text('You are about to request to delete your account with BCC Media and all your data related to this app.'),
-                          const Text('This is an action that cannot be undone.'),
+                          Text(S.of(context).accountDeletionExplanation),
+                          Text(S.of(context).accountDeletionWarning),
                           const SizedBox(height: 12),
-                          const Text('Account deletion will usually be done within 7 business days.'),
+                          Text(S.of(context).accountDeletionTimeframe(7)),
                           const SizedBox(height: 24),
                           Row(
                             children: [

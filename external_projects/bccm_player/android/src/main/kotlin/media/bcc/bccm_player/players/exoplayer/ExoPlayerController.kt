@@ -243,6 +243,7 @@ class ExoPlayerController(private val context: Context) :
         }
         currentPlayerView = playerView
         currentPlayerViewController = viewController
+        pluginPlayerListener?.onManualPlayerStateUpdate()
     }
 
     fun releasePlayerView(playerView: PlayerView) {

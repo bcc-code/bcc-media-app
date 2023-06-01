@@ -57,8 +57,16 @@ class FullscreenPlayerView(
         )
 
         playerView?.setFullscreenButtonClickListener {
+            playerController.player.pause()
             exit()
         }
+
+        val exitButton = findViewById<ImageButton>(R.id.bccm_exit)
+        exitButton.setOnClickListener {
+            playerController.player.pause()
+            exit()
+        }
+        exitButton.visibility = View.VISIBLE
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val pipButton = findViewById<ImageButton>(R.id.pip_button)

@@ -1376,6 +1376,132 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.'**
   String get biblekidsAbout;
+
+  /// Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask your parents'**
+  String get askYourParents;
+
+  /// Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'
+  ///
+  /// In en, this message translates to:
+  /// **'What is'**
+  String get whatIsMath;
+
+  /// Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer'**
+  String get answerLabel;
+
+  /// Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct.
+  ///
+  /// In en, this message translates to:
+  /// **'Check answer'**
+  String get checkAnswerButton;
+
+  /// Shown when sharing a video, to make it clear which video is public and which isn't.
+  ///
+  /// In en, this message translates to:
+  /// **'This video is only accessible to users that are logged in to the app.'**
+  String get videoOnlyAccessibleToLoggedIn;
+
+  /// Title of the page where you can verify your email/account.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your account'**
+  String get verifyYourAccount;
+
+  /// Shown on the verify account page, followed by the email address that the verification email was sent to.
+  ///
+  /// In en, this message translates to:
+  /// **'We have sent an email to'**
+  String get weHaveSentAnEmailTo;
+
+  /// Shown on the verify account page.
+  ///
+  /// In en, this message translates to:
+  /// **'Click the link in the email to verify your account.'**
+  String get clickTheLinkToVerify;
+
+  /// Shown on the verify account page. Button to open your email app.
+  ///
+  /// In en, this message translates to:
+  /// **'Open email app'**
+  String get openEmailApp;
+
+  /// Shown on the verify account page. Button to resend the verification email.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend email'**
+  String get resendEmail;
+
+  /// Shown when you click a 'open email app' button. Description when no email apps are installed on the device.
+  ///
+  /// In en, this message translates to:
+  /// **'No mail apps installed'**
+  String get noMailAppsDescription;
+
+  /// Shown when the user has requested a new verification email.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification email sent'**
+  String get verificationEmailSent;
+
+  /// Shown when the user has requested a new verification email.
+  ///
+  /// In en, this message translates to:
+  /// **'If you still did not receive an email, please contact support at'**
+  String get ifYouDidntReceiveVerificationEmail;
+
+  /// Shown when the user has successfully created an account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created'**
+  String get accountCreated;
+
+  /// Shown when the user has successfully completed account setup.
+  ///
+  /// In en, this message translates to:
+  /// **'You can now use your account and explore a variety of edifying content.'**
+  String get youCanNowUseYourAccount;
+
+  /// Shown when the user has successfully completed account setup (a variant text when you need to log in first).
+  ///
+  /// In en, this message translates to:
+  /// **'You can now log in to your account and explore a variety of edifying content.'**
+  String get youCanNowLogInToYourAccount;
+
+  /// Shown on the account deletion page.
+  ///
+  /// In en, this message translates to:
+  /// **'You are about to request to delete your account with BCC Media and all your data related to this app.'**
+  String get accountDeletionExplanation;
+
+  /// Shown on the account deletion page.
+  ///
+  /// In en, this message translates to:
+  /// **'This is an action that cannot be undone.'**
+  String get accountDeletionWarning;
+
+  /// Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.
+  ///
+  /// In en, this message translates to:
+  /// **'Account deletion will usually be done within {x} business days.'**
+  String accountDeletionTimeframe(int x);
+
+  /// Title of the account deletion page.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete my account'**
+  String get accountDeletionTitle;
+
+  /// KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account deletion successfully requested. You will receive an email at {email}. To confirm your identity, we need you reply to that email to proceed with the deletion.'**
+  String accountDeletionSuccess(String email);
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
