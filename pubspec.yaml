@@ -74,7 +74,7 @@ dependencies:
   firebase_crashlytics: ^3.0.4
   flutter_svg_provider:
     git:
-      url: https://github.com/andreasgan/flutter_svg_provider.git
+      url: https://github.com/andreasgangso/flutter_svg_provider.git
       ref: fix/deps
   on_screen_ruler: ^0.0.1
   url_launcher: ^6.1.6
@@ -194,4 +194,6 @@ flutter:
 
 dependency_overrides:
   flutter_inappwebview:
-    path: ../flutter/flutter_inappwebview
+    git:
+      url: https://github.com/andreasgangso/flutter_inappwebview.git
+      ref: feat/disable-ios-delay

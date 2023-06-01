@@ -557,9 +557,11 @@ packages:
   flutter_inappwebview:
     dependency: "direct main"
     description:
-      path: "../flutter/flutter_inappwebview"
-      relative: true
-    source: path
+      path: "."
+      ref: "feat/disable-ios-delay"
+      resolved-ref: d1f5a6721c1a6abceff61ee9712464ed6fb2a11a
+      url: "https://github.com/andreasgangso/flutter_inappwebview.git"
+    source: git
     version: "6.0.0-beta.24"
   flutter_inappwebview_internal_annotations:
     dependency: transitive
@@ -692,7 +694,7 @@ packages:
       path: "."
       ref: "fix/deps"
       resolved-ref: "8539dfcb4871d6343e0cb2c7456c360d1115816f"
-      url: "https://github.com/andreasgan/flutter_svg_provider.git"
+      url: "https://github.com/andreasgangso/flutter_svg_provider.git"
     source: git
     version: "1.0.3"
   flutter_test:
