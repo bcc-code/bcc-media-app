@@ -35,10 +35,10 @@ class SDa extends S {
   String get loginPageDisplay2 => 'Se serier, shows og film baseret på kristne værdier';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Vi vækker Bibelens budskab til live!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Vores vision er at børnene skal opleve Jesus som deres allerbedste ven - for resten af deres liv.';
 
   @override
   String get loginPageDisplay3 => 'Produceret af BCC Media';
@@ -62,7 +62,7 @@ class SDa extends S {
   String get signInButton => 'Log ind';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'Tilmeld dig / Log ind';
 
   @override
   String get signUpButton => 'Tilmeld dig nu';
@@ -74,7 +74,7 @@ class SDa extends S {
   String get signUpDescription => 'Få adgang til mere indhold og bedre funktioner ved at oprette en konto.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Jeg bekræfter, at jeg er 13 år eller ældre, og jeg er indforstået med følgende  <a>Privatlivspolitik</a> og <a>Vilkår for brug</a>. ';
 
   @override
   String get setPassword => 'Skriv password';
@@ -104,7 +104,7 @@ class SDa extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Open';
+  String get open => 'Åben';
 
   @override
   String get loginFailedCheckNetwork => 'Login mislykkedes. Tjek din netværksforbindelse, og prøv igen.';
@@ -140,22 +140,22 @@ class SDa extends S {
   String get contactSupport => 'Kontakt support';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Foreslå en funktion';
 
   @override
   String get cancel => 'Annuller';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Er du sikker på at du vil annullere?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Alle ændringer, der ikke er gemt, vil gå tabt.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Tilbage';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Ja, annullér';
 
   @override
   String get upNext => 'Næste';
@@ -197,7 +197,7 @@ class SDa extends S {
   String get search => 'Søg';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Indsend feedback';
 
   @override
   String get noResults => 'Ingen resultater fundet';
@@ -409,10 +409,10 @@ class SDa extends S {
   String get share => 'Del';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Vis mere';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Vis mindre';
 
   @override
   String get liveNow => 'Live nu';
@@ -519,7 +519,7 @@ class SDa extends S {
   String get explorePublicContent => 'Udforsk offentligt indhold';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Udforsk';
 
   @override
   String get taskCompleted => 'Opgave udført';
@@ -595,18 +595,18 @@ class SDa extends S {
   String get continueButton => 'Fortsæt';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Tilmeld';
 
   @override
   String get achievements => 'Streaks';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Mindst $n tegn';
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Skal indeholde små bogstaver, store bogstaver og tal.';
 
   @override
   String get oops => 'Ups!';
@@ -627,22 +627,22 @@ class SDa extends S {
   String get details => 'Detaljer';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Min liste';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Vidste du?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Du kan tilføje dine favoritudsendelser til \"Min liste\" ved at trykke på hjertet.';
 
   @override
   String get selectSeason => 'Vælg sæson';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'Slet min konto';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Jeg er sikker på, at jeg vil slette min konto og mine data i BCC Media-appen.';
 
   @override
   String get areYouSure => 'Er du sikker?';

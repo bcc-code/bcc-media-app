@@ -35,10 +35,10 @@ class SRu extends S {
   String get loginPageDisplay2 => 'Смотрите сериалы, шоу и фильмы, основанные на христианских ценностях';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Мы воплощаем Библейское послание в жизнь!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Мы хотим, чтобы дети узнали Иисуса как своего лучшего друга - на всю оставшуюся жизнь.';
 
   @override
   String get loginPageDisplay3 => 'Произведено BCC Media';
@@ -62,22 +62,22 @@ class SRu extends S {
   String get signInButton => 'Войти';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'Зарегистрироваться / Войти';
 
   @override
-  String get signUpButton => 'Sign up now';
+  String get signUpButton => 'Зарегистрироваться сейчас';
 
   @override
-  String get signUpTitle => 'Sign up';
+  String get signUpTitle => 'Зарегистрироваться';
 
   @override
-  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+  String get signUpDescription => 'Получите доступ к большему количеству контента и расширенным возможностям, создав учетную запись.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Я подтверждаю, что мне исполнилось 13 лет, и я принимаю <a>Политику конфиденциальности</a> и <a>Условия использования</a>.';
 
   @override
-  String get setPassword => 'Set password';
+  String get setPassword => 'Задать пароль';
 
   @override
   String get tryAgainButton => 'Попробовать еще раз';
@@ -104,7 +104,7 @@ class SRu extends S {
   String get ok => 'ОК';
 
   @override
-  String get open => 'Open';
+  String get open => 'Открыть';
 
   @override
   String get loginFailedCheckNetwork => 'Ошибка входа. Проверьте подключение к сети и попробуйте снова.';
@@ -140,22 +140,22 @@ class SRu extends S {
   String get contactSupport => 'Связаться с поддержкой';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Предложить функцию';
 
   @override
   String get cancel => 'Отмена';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Вы уверены, что хотите отменить?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Любые несохраненные изменения будут потеряны.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Назад';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Да, отменить';
 
   @override
   String get upNext => 'К следующему';
@@ -197,7 +197,7 @@ class SRu extends S {
   String get search => 'Поиск';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Отправить отзыв';
 
   @override
   String get noResults => 'Результатов не найдено';
@@ -209,7 +209,7 @@ class SRu extends S {
   String get play => 'Играть';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Пауза';
 
   @override
   String get castQueue => 'Показывать очередь';
@@ -409,10 +409,10 @@ class SRu extends S {
   String get share => 'Поделиться';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Показать ещё';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Показать меньше';
 
   @override
   String get liveNow => 'В прямом эфире';
@@ -516,10 +516,10 @@ class SRu extends S {
   String get exploreContent => 'Исследуйте контент';
 
   @override
-  String get explorePublicContent => 'Explore public content';
+  String get explorePublicContent => 'Исследовать открытый контент';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Начать исследовать';
 
   @override
   String get taskCompleted => 'задание выполнено';
@@ -595,18 +595,18 @@ class SRu extends S {
   String get continueButton => 'Продолжить';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Регистрация';
 
   @override
   String get achievements => 'Достижения';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Минимум $n символов';
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Должен содержать строчные, прописные и цифры.';
 
   @override
   String get oops => 'Ой!';
@@ -627,22 +627,22 @@ class SRu extends S {
   String get details => 'Подробности';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Мой список';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Знаете ли вы?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Вы можете добавить свои любимые передачи в \"Мой список\", нажав на сердечко.';
 
   @override
-  String get selectSeason => 'Select season';
+  String get selectSeason => 'Выбрать сезон';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'Удалить мой аккаунт';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Я уверен, что хочу удалить свою учетную запись и данные, связанные с приложением BCC Media.';
 
   @override
   String get areYouSure => 'Ты уверен(а)?';

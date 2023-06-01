@@ -35,10 +35,10 @@ class SFi extends S {
   String get loginPageDisplay2 => 'Katsele Kristillisten arvojen mukaisia videoita, esityksiä, ja sarjoja';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Teemme Raamatun sanomasta elävää!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Haluamme että lapset saavat kokea Jeesuken parhaana ystävänään. Loppuelämäkseen.';
 
   @override
   String get loginPageDisplay3 => 'BCC Median tuottama';
@@ -74,7 +74,7 @@ class SFi extends S {
   String get signUpDescription => 'Luomalla tunnuksen saat enemmän sisältöä ja paremmat ominaisuudet.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Voin osoittaa olevani vähintään 13 vuotias, ja hyväksyn <a>Yksityisyydensuojakäytännöt</a>sekä <a>Käyttöehdot</a>.';
+  String get signUpAgreePrivacyPolicy => 'Voin osoittaa olevani vähintään 13 vuotias, ja hyväksyn <a>Tietosuojakäytännöt</a>sekä <a>Käyttöehdot</a>.';
 
   @override
   String get setPassword => 'Aseta salasana';
@@ -140,7 +140,7 @@ class SFi extends S {
   String get contactSupport => 'Tukipyyntö';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Ehdota ominaisuutta';
 
   @override
   String get cancel => 'Peru';
@@ -402,7 +402,7 @@ class SFi extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Kellonajat noudattavat aikavyöhykettäsi: $timeZone';
+    return 'Kellonajat ovat sinun paikallista aikaa: $timeZone';
   }
 
   @override
@@ -519,7 +519,7 @@ class SFi extends S {
   String get explorePublicContent => 'Tutustu avoimeen sisältöön';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Tutustu sisältöön';
 
   @override
   String get taskCompleted => 'tehtävä suoritettu';
@@ -627,13 +627,13 @@ class SFi extends S {
   String get details => 'Lisätietoa';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Listani';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Tiesitkö?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Sydäntä painamalla voit lisätä jakson \"Listaani\".';
 
   @override
   String get selectSeason => 'Valitse tuotantokausi';

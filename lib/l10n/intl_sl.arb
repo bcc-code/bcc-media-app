@@ -39,11 +39,11 @@
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "kidsOnboardingTitle": "We bring the message of the Bible to life!",
+  "kidsOnboardingTitle": "Oznanilo Svetega pisma oživimo!",
   "@kidsOnboardingTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "kidsOnboardingSecondaryTitle": "Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.",
+  "kidsOnboardingSecondaryTitle": "Naša vizija je, da otroci doživijo Jezusa kot najboljšega prijatelja - do konca življenja.",
   "@kidsOnboardingSecondaryTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
@@ -179,7 +179,7 @@
   "@contactSupport": {
     "description": "Settings item on profile page"
   },
-  "userVoice": "Suggest a feature",
+  "userVoice": "Predlagaj funkcijo",
   "@userVoice": {
     "description": "Settings item on profile page to navigate to uservoice"
   },
@@ -699,7 +699,7 @@
   "@explorePublicContent": {
     "description": "A button on the welcome page"
   },
-  "startExploring": "Start exploring",
+  "startExploring": "Začni raziskovati",
   "@startExploring": {
     "description": "A button on the welcome page"
   },
@@ -857,15 +857,15 @@
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   },
-  "myList": "My list",
+  "myList": "Moj seznam",
   "@myList": {
     "description": "My list tab name"
   },
-  "didYouKnowTitle": "Did you know?",
+  "didYouKnowTitle": "Ali si vedel?",
   "@didYouKnowTitle": {
     "description": "Title for info displayed on 'My list' page."
   },
-  "didYouKnowContent": "You can add your favorite shows to \"My List\" by tapping the heart.",
+  "didYouKnowContent": "S klikom na srce lahko dodaš svoje najljubše serije na \"Moj seznam\".",
   "@didYouKnowContent": {
     "description": "Content for info displayed on 'My list' page."
   },
@@ -884,5 +884,13 @@
   "areYouSure": "Si prepričan?",
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
+  },
+  "youCanContactUsAt": "You can contact us at",
+  "@youCanContactUsAt": {
+    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
+  },
+  "biblekidsAbout": "Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.",
+  "@biblekidsAbout": {
+    "description": "Shown on about page"
   }
 }

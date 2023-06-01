@@ -35,10 +35,10 @@ class SNl extends S {
   String get loginPageDisplay2 => 'Bekijk series, shows en films gebasseerd op Christelijke waarden';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Wij brengen de boodschap uit de Bijbel tot leven!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Onze visie is dat de kinderen Jezus als hun beste vriend gaan ervaren - voor de rest van hun leven.';
 
   @override
   String get loginPageDisplay3 => 'Geproduceerd door BCC Media';
@@ -140,7 +140,7 @@ class SNl extends S {
   String get contactSupport => 'Contact support';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Stel een feature voor';
 
   @override
   String get cancel => 'Annuleren';
@@ -519,7 +519,7 @@ class SNl extends S {
   String get explorePublicContent => 'Verken publieke content';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Begin met onderzoeken';
 
   @override
   String get taskCompleted => 'taak afgerond';
@@ -627,13 +627,13 @@ class SNl extends S {
   String get details => 'Details';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Mijn lijst';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Wist je dit?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Je kunt je favoriete shows toevoegen aan \"Mijn lijst\" door op het hart te klikken.';
 
   @override
   String get selectSeason => 'Selecteer een seizoen';

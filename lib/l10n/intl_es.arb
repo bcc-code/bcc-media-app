@@ -39,11 +39,11 @@
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "kidsOnboardingTitle": "We bring the message of the Bible to life!",
+  "kidsOnboardingTitle": "¡Damos vida al mensaje de la Biblia!",
   "@kidsOnboardingTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "kidsOnboardingSecondaryTitle": "Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.",
+  "kidsOnboardingSecondaryTitle": "Nuestra visión es que los niños experimenten a Jesús como su mejor amigo, por el resto de sus vidas.",
   "@kidsOnboardingSecondaryTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
@@ -75,7 +75,7 @@
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
-  "signInOrSignUp": "Sign up / Sign in",
+  "signInOrSignUp": "Registrarse/ ingresar",
   "@signInOrSignUp": {
     "description": "Button to go to the onboarding page (short)"
   },
@@ -91,7 +91,7 @@
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.",
+  "signUpAgreePrivacyPolicy": "Certifico que tengo 13 años o más y acepto la <a>Política de privacidad</a> y los <a>Términos de uso</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
@@ -131,7 +131,7 @@
   "@ok": {
     "description": "Popup confirmation button"
   },
-  "open": "Open",
+  "open": "Abierta",
   "@open": {
     "description": "Open button"
   },
@@ -179,7 +179,7 @@
   "@contactSupport": {
     "description": "Settings item on profile page"
   },
-  "userVoice": "Suggest a feature",
+  "userVoice": "Sugerir una característica",
   "@userVoice": {
     "description": "Settings item on profile page to navigate to uservoice"
   },
@@ -187,19 +187,19 @@
   "@cancel": {
     "description": "General cancel action button"
   },
-  "cancelConfirmation": "Are you sure you want to cancel?",
+  "cancelConfirmation": "¿Estás seguro/a de que quieres cancelar?",
   "@cancelConfirmation": {
     "description": "Title text for cancel confirmation dialog."
   },
-  "cancelConfirmationDescription": "Any unsaved changes will be lost.",
+  "cancelConfirmationDescription": "Cualquier cambio no guardado se perderá.",
   "@cancelConfirmationDescription": {
     "description": "Description for cancel confirmation dialog."
   },
-  "goBack": "Go back",
+  "goBack": "Volver",
   "@goBack": {
     "description": "Text for back button."
   },
-  "yesCancel": "Yes, Cancel",
+  "yesCancel": "Sí, Cancelar",
   "@yesCancel": {
     "description": "Confirm cancel."
   },
@@ -255,7 +255,7 @@
   "@search": {
     "description": "Button to clear cache"
   },
-  "sendFeedback": "Send Feedback",
+  "sendFeedback": "Enviar comentarios",
   "@sendFeedback": {
     "description": "Button to submit feedback(Survey)"
   },
@@ -550,11 +550,11 @@
   "@share": {
     "description": "Generic."
   },
-  "showMore": "Show more",
+  "showMore": "Ver más",
   "@showMore": {
     "description": "Text used on link to expand collapsed text."
   },
-  "showLess": "Show less",
+  "showLess": "Ver menos",
   "@showLess": {
     "description": "Text used on link to collapse expanded text."
   },
@@ -699,7 +699,7 @@
   "@explorePublicContent": {
     "description": "A button on the welcome page"
   },
-  "startExploring": "Start exploring",
+  "startExploring": "Empieza a explorar",
   "@startExploring": {
     "description": "A button on the welcome page"
   },
@@ -812,7 +812,7 @@
   "@continueButton": {
     "description": "Generic button text."
   },
-  "registerButton": "Register",
+  "registerButton": "Registro",
   "@registerButton": {
     "description": "Generic button text."
   },
@@ -820,7 +820,7 @@
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "passwordConditionLength": "Minimum {n} characters",
+  "passwordConditionLength": "Mínimo {n} caracteres",
   "@passwordConditionLength": {
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
@@ -829,7 +829,7 @@
       }
     }
   },
-  "passwordConditionComplexity": "Must contain lower case, uppercase and numbers.",
+  "passwordConditionComplexity": "Debe contener minúsculas, mayúsculas y números.",
   "@passwordConditionComplexity": {
     "description": "Password condition, shown when signing up."
   },
@@ -857,15 +857,15 @@
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   },
-  "myList": "My list",
+  "myList": "Mi lista",
   "@myList": {
     "description": "My list tab name"
   },
-  "didYouKnowTitle": "Did you know?",
+  "didYouKnowTitle": "¿Sabías?",
   "@didYouKnowTitle": {
     "description": "Title for info displayed on 'My list' page."
   },
-  "didYouKnowContent": "You can add your favorite shows to \"My List\" by tapping the heart.",
+  "didYouKnowContent": "Puede agregar sus programas favoritos a \"Mi lista\" tocando el corazón.",
   "@didYouKnowContent": {
     "description": "Content for info displayed on 'My list' page."
   },
@@ -873,16 +873,24 @@
   "@selectSeason": {
     "description": "A title prompting to select a season from the list."
   },
-  "deleteMyAccount": "Delete my account",
+  "deleteMyAccount": "Borrar mi cuenta",
   "@deleteMyAccount": {
     "description": "Button to request to delete your account"
   },
-  "iAmSureIWantToDelete": "I am sure I want to delete my account and my data related to the BCC Media app.",
+  "iAmSureIWantToDelete": "Estoy seguro de que quiero eliminar mi cuenta y mis datos relacionados con la aplicación BCC Media.",
   "@iAmSureIWantToDelete": {
     "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
   },
   "areYouSure": "¿Estás seguro?",
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
+  },
+  "youCanContactUsAt": "You can contact us at",
+  "@youCanContactUsAt": {
+    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
+  },
+  "biblekidsAbout": "Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.",
+  "@biblekidsAbout": {
+    "description": "Shown on about page"
   }
 }

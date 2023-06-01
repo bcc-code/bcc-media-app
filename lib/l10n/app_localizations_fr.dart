@@ -35,10 +35,10 @@ class SFr extends S {
   String get loginPageDisplay2 => 'Regarde des séries, des émissions et des films basés sur les valeurs chrétiennes';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Nous donnons vie au message de la Bible !';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Notre vision est que les enfants fassent l\'expérience de Jésus comme leur meilleur ami - pour le reste de leur vie.';
 
   @override
   String get loginPageDisplay3 => 'Produit par BCC Media';
@@ -140,7 +140,7 @@ class SFr extends S {
   String get contactSupport => 'Contacter le support';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Suggérer une fonction';
 
   @override
   String get cancel => 'Annuler';
@@ -519,7 +519,7 @@ class SFr extends S {
   String get explorePublicContent => 'Explorer le contenu public';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Commencer à explorer';
 
   @override
   String get taskCompleted => 'tâche terminée';
@@ -627,13 +627,13 @@ class SFr extends S {
   String get details => 'Détails';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Ma liste';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Le savais-tu ?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Tu peux ajouter tes programmes préférés à \"Ma liste\" en touchant le cœur.';
 
   @override
   String get selectSeason => 'Sélectionner une saison';

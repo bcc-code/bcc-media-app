@@ -39,11 +39,11 @@
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "kidsOnboardingTitle": "We bring the message of the Bible to life!",
+  "kidsOnboardingTitle": "Teemme Raamatun sanomasta elävää!",
   "@kidsOnboardingTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "kidsOnboardingSecondaryTitle": "Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.",
+  "kidsOnboardingSecondaryTitle": "Haluamme että lapset saavat kokea Jeesuken parhaana ystävänään. Loppuelämäkseen.",
   "@kidsOnboardingSecondaryTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
@@ -91,7 +91,7 @@
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Voin osoittaa olevani vähintään 13 vuotias, ja hyväksyn <a>Yksityisyydensuojakäytännöt</a>sekä <a>Käyttöehdot</a>.",
+  "signUpAgreePrivacyPolicy": "Voin osoittaa olevani vähintään 13 vuotias, ja hyväksyn <a>Tietosuojakäytännöt</a>sekä <a>Käyttöehdot</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
@@ -179,7 +179,7 @@
   "@contactSupport": {
     "description": "Settings item on profile page"
   },
-  "userVoice": "Suggest a feature",
+  "userVoice": "Ehdota ominaisuutta",
   "@userVoice": {
     "description": "Settings item on profile page to navigate to uservoice"
   },
@@ -537,7 +537,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Kellonajat noudattavat aikavyöhykettäsi: {timeZone}",
+  "timezoneInformation": "Kellonajat ovat sinun paikallista aikaa: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -699,7 +699,7 @@
   "@explorePublicContent": {
     "description": "A button on the welcome page"
   },
-  "startExploring": "Start exploring",
+  "startExploring": "Tutustu sisältöön",
   "@startExploring": {
     "description": "A button on the welcome page"
   },
@@ -857,15 +857,15 @@
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   },
-  "myList": "My list",
+  "myList": "Listani",
   "@myList": {
     "description": "My list tab name"
   },
-  "didYouKnowTitle": "Did you know?",
+  "didYouKnowTitle": "Tiesitkö?",
   "@didYouKnowTitle": {
     "description": "Title for info displayed on 'My list' page."
   },
-  "didYouKnowContent": "You can add your favorite shows to \"My List\" by tapping the heart.",
+  "didYouKnowContent": "Sydäntä painamalla voit lisätä jakson \"Listaani\".",
   "@didYouKnowContent": {
     "description": "Content for info displayed on 'My list' page."
   },
@@ -884,5 +884,13 @@
   "areYouSure": "Oletko varma?",
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
+  },
+  "youCanContactUsAt": "You can contact us at",
+  "@youCanContactUsAt": {
+    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
+  },
+  "biblekidsAbout": "Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.",
+  "@biblekidsAbout": {
+    "description": "Shown on about page"
   }
 }

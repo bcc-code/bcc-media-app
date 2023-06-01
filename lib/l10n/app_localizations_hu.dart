@@ -35,10 +35,10 @@ class SHu extends S {
   String get loginPageDisplay2 => 'Keresztény értékeken alapuló sorozatok, műsorok és filmek megtekintése';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Életre keltjük a Biblia üzenetét!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Az a célunk, hogy a gyerekek megtapasztalják Jézust, mint a legjobb barátjukat - életük végéig.';
 
   @override
   String get loginPageDisplay3 => 'Készítette a BCC Media';
@@ -140,7 +140,7 @@ class SHu extends S {
   String get contactSupport => 'Vedd fel a kapcsolatot a supporttal';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Javasolj egy funkciót';
 
   @override
   String get cancel => 'Mégse';
@@ -519,7 +519,7 @@ class SHu extends S {
   String get explorePublicContent => 'Nyilvános tartalmak felfedezése';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Kezdd el a felfedezést';
 
   @override
   String get taskCompleted => 'feladat elvégezve';
@@ -627,13 +627,13 @@ class SHu extends S {
   String get details => 'Részletek';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'A listám';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Tudtad?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'A szívre koppintva hozzáadhatod kedvenc műsoraidat \"A listámhoz\".';
 
   @override
   String get selectSeason => 'Évad kiválasztása';

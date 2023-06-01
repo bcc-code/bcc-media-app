@@ -884,5 +884,13 @@
   "areYouSure": "Tem certeza?",
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
+  },
+  "youCanContactUsAt": "You can contact us at",
+  "@youCanContactUsAt": {
+    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
+  },
+  "biblekidsAbout": "Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.",
+  "@biblekidsAbout": {
+    "description": "Shown on about page"
   }
 }

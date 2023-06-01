@@ -35,10 +35,10 @@ class SRo extends S {
   String get loginPageDisplay2 => 'Vezi seriale, emisiuni și filme bazate pe valori Creștine';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Aducem mesajul Bibliei la viață!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Viziunea noastră este ca copiii să îl experimenteze pe Isus ca fiind cel mai bun prieten al lor - pentru tot restul vieții.';
 
   @override
   String get loginPageDisplay3 => 'Produs de BCC Media';
@@ -74,7 +74,7 @@ class SRo extends S {
   String get signUpDescription => 'Obține acces la mai mult conținut și funcții mai bune prin crearea unui cont.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Confirm faptul că am 13 ani sau mai mult, și sunt de acord cu <a>Privacy Policy</a> și <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Confirm faptul că am 13 ani sau mai mult, și sunt de acord cu <a>Politica de confidențialitate</a> și <a>Termenii de utilizare</a>.';
 
   @override
   String get setPassword => 'Setează-ți parola';
@@ -140,7 +140,7 @@ class SRo extends S {
   String get contactSupport => 'Contactare suport';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Propune o funcție';
 
   @override
   String get cancel => 'Anulare';
@@ -412,7 +412,7 @@ class SRo extends S {
   String get showMore => 'Arată mai mult';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Arată mai puțin';
 
   @override
   String get liveNow => 'Acum în direct';
@@ -519,7 +519,7 @@ class SRo extends S {
   String get explorePublicContent => 'Explorează conținut public';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Începe explorarea';
 
   @override
   String get taskCompleted => 'sarcină îndeplinită';
@@ -595,18 +595,18 @@ class SRo extends S {
   String get continueButton => 'Continuă';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Înregistrare';
 
   @override
   String get achievements => 'Realizări';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Minimum $n caractere';
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Trebuie să conțină litere mici, majuscule și numere.';
 
   @override
   String get oops => 'Oops!';
@@ -627,22 +627,22 @@ class SRo extends S {
   String get details => 'Detalii';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Lista mea';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Știai că?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Poți adăuga emisiunile tale preferate pe „Lista mea\" apăsând pe inimă.';
 
   @override
   String get selectSeason => 'Selectează sezonul';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'Șterge contul meu';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Sunt sigur că vreau să-mi șterg contul și datele legate de aplicația BCC Media.';
 
   @override
   String get areYouSure => 'Ești sigur?';

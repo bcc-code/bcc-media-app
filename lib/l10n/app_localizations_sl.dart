@@ -35,10 +35,10 @@ class SSl extends S {
   String get loginPageDisplay2 => 'Oglej si serije in filme, narejene na podlagi krščanskih vrednot';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Oznanilo Svetega pisma oživimo!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Naša vizija je, da otroci doživijo Jezusa kot najboljšega prijatelja - do konca življenja.';
 
   @override
   String get loginPageDisplay3 => 'Produkcija: BCC Media';
@@ -140,7 +140,7 @@ class SSl extends S {
   String get contactSupport => 'Podpora';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Predlagaj funkcijo';
 
   @override
   String get cancel => 'Prekliči';
@@ -519,7 +519,7 @@ class SSl extends S {
   String get explorePublicContent => 'Razišči javno vsebino';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Začni raziskovati';
 
   @override
   String get taskCompleted => 'naloga opravljena';
@@ -627,13 +627,13 @@ class SSl extends S {
   String get details => 'Podrobnosti';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Moj seznam';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Ali si vedel?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'S klikom na srce lahko dodaš svoje najljubše serije na \"Moj seznam\".';
 
   @override
   String get selectSeason => 'Izberi sezono';
