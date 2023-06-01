@@ -7,6 +7,7 @@ interface BccmPlayerViewController {
     val shouldPipAutomatically: Boolean
     fun onOwnershipLost() {}
     fun exitFullscreen() {}
+    fun enterFullscreen() {}
 
     @RequiresApi(value = 26)
     fun enterPictureInPicture()

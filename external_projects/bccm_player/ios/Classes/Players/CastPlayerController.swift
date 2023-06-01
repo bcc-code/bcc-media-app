@@ -107,6 +107,10 @@ class CastPlayerController: NSObject, PlayerController {
         // no-op
     }
     
+    func enterFullscreen() {
+        // no-op
+    }
+    
     private func playbackStateFromMediaStatus(mediaStatus: GCKMediaStatus?) -> PlaybackState {
         if mediaStatus == nil {
             return PlaybackState.stopped

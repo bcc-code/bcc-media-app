@@ -167,6 +167,13 @@ class FlutterExoPlayerView(
         resetPlayerView()
     }
 
+    override fun exitFullscreen() {
+    }
+
+    override fun enterFullscreen() {
+        goFullscreen()
+    }
+
 
     private fun resetPlayerView() {
         _playerView = null

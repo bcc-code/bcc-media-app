@@ -41,6 +41,9 @@ abstract class PlaybackPlatformPigeon {
   @ObjCSelector("exitFullscreen:")
   void exitFullscreen(String playerId);
 
+  @ObjCSelector("enterFullscreen:")
+  void enterFullscreen(String playerId);
+
   @ObjCSelector("setNpawConfig:")
   void setNpawConfig(NpawConfig? config);
 

@@ -26,6 +26,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       socialSignup: client.isEnabled('social-signup'),
       autoplayNext: client.isEnabled('autoplay-next'),
       shareVideoButton: FlavorConfig.current.flavor != Flavor.kids,
+      autoFullscreenOnPlay: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('auto-fullscreen-on-play'),
     );
   }
 
