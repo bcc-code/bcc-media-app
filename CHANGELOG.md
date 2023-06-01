@@ -1,4 +1,91 @@
-#  (2023-05-09)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v4.4.6+2300065...v) (2023-06-01)
+
+
+
+## [4.4.6+2300065](https://github.com/bcc-code/bcc-media-app/compare/v4.4.5+2300064...v4.4.6+2300065) (2023-06-01)
+
+
+### Features
+
+* customizable cast button color ([3b40b06](https://github.com/bcc-code/bcc-media-app/commit/3b40b067754f68e66f5759e87174d6ba48ce4c32))
+* flavor-specific contact details, etc. ([#173](https://github.com/bcc-code/bcc-media-app/issues/173)) ([8c90198](https://github.com/bcc-code/bcc-media-app/commit/8c901983133cbc88331294950eae15ad5782935d))
+* fullscreen on play (hotfix for ux issue [#174](https://github.com/bcc-code/bcc-media-app/issues/174)) ([#175](https://github.com/bcc-code/bcc-media-app/issues/175)) ([f7fd063](https://github.com/bcc-code/bcc-media-app/commit/f7fd0634bf6145df574451df8687ffd48643f430))
+* **icon-section:** Use tiles witth 16:9 aspect ratio in case of tablets ([#166](https://github.com/bcc-code/bcc-media-app/issues/166)) ([0bbe3d5](https://github.com/bcc-code/bcc-media-app/commit/0bbe3d5c714269ab5a128af9968cb94f5fe84d7b))
+
+
+
+## [4.4.5+2300064](https://github.com/bcc-code/bcc-media-app/compare/v4.4.4+2300063...v4.4.5+2300064) (2023-05-30)
+
+
+### Bug Fixes
+
+* **android:** force lowest bitrate in audio-only mode ([#164](https://github.com/bcc-code/bcc-media-app/issues/164)) ([45c687a](https://github.com/bcc-code/bcc-media-app/commit/45c687a671fd8161f4ec214166ce135adbf50ce0))
+* check if system language is supported ([36197a0](https://github.com/bcc-code/bcc-media-app/commit/36197a0f9b8f36437428a0beb007a33b6c87e10f))
+
+
+### Features
+
+* **faq:** Wire up with API, Add tabs for different categories. ([#159](https://github.com/bcc-code/bcc-media-app/issues/159)) ([066ef8c](https://github.com/bcc-code/bcc-media-app/commit/066ef8c4cda48cbd6447fd76a9b203f117c8a3c9))
+* **featured-section:** Increase height for tablets ([#165](https://github.com/bcc-code/bcc-media-app/issues/165)) ([5285c42](https://github.com/bcc-code/bcc-media-app/commit/5285c421b085ccaa4d94fb7586100dcfef43b9e9))
+
+
+
+## [4.4.4+2300063](https://github.com/bcc-code/bcc-media-app/compare/v4.4.4+2300062...v4.4.4+2300063) (2023-05-22)
+
+
+### Bug Fixes
+
+* hotfix for spamming api with episode requests ([23fb816](https://github.com/bcc-code/bcc-media-app/commit/23fb8163c20876c7c076191d2331f709f910db65))
+
+
+
+## [4.4.4+2300062](https://github.com/bcc-code/bcc-media-app/compare/v4.3.9+2300054...v4.4.4+2300062) (2023-05-22)
+
+
+### Bug Fixes
+
+* episode details not updating ([#126](https://github.com/bcc-code/bcc-media-app/issues/126)) ([a040139](https://github.com/bcc-code/bcc-media-app/commit/a040139d1898ca95dfef33f34b74a727023f7526))
+* **ios:** disable impeller (docs is wrong) ([042f105](https://github.com/bcc-code/bcc-media-app/commit/042f10546d3ab52e433d18897d4e8aaded08dc01))
+* **my-list:** Fix issue with 'My favourites' section not showing/hiding correctly. ([#163](https://github.com/bcc-code/bcc-media-app/issues/163)) ([c900bd1](https://github.com/bcc-code/bcc-media-app/commit/c900bd190616870bf71fc29984f5483a48e9878d))
+* **npaw:** android - dont initialize before npawConfig is set ([30cc1d3](https://github.com/bcc-code/bcc-media-app/commit/30cc1d3085b191ff7ec5ba2ced56adf073e02870))
+* **npaw:** dont initialize before npawConfig is set ([6e9ac9d](https://github.com/bcc-code/bcc-media-app/commit/6e9ac9dc9faea5e5704762d3b76fe81e9168023b))
+* onboarding was not being shown only once ([5a19dd3](https://github.com/bcc-code/bcc-media-app/commit/5a19dd311a43135ccdb008a34a44a95947397600))
+
+
+### Features
+
+* customizable appbar and tabbar per design system ([6917477](https://github.com/bcc-code/bcc-media-app/commit/6917477a759965d114e244d9b0ebb3f4defbe503))
+* customizable onboarding page ([#153](https://github.com/bcc-code/bcc-media-app/issues/153)) ([940da2d](https://github.com/bcc-code/bcc-media-app/commit/940da2d7da9b72b2d6433b1b287e03b479cf6251))
+* disable crashlytics collection for kids app ([f748ce6](https://github.com/bcc-code/bcc-media-app/commit/f748ce60a430ed5b8687a63cf13b6040c003463b))
+* disable notifications for kids app ([e7332c6](https://github.com/bcc-code/bcc-media-app/commit/e7332c6376490e1415de8f1619e9992d1eba89f5))
+* disable notifications for kids app on ios too ([dafbc5c](https://github.com/bcc-code/bcc-media-app/commit/dafbc5ccb0c99e44153859930af65ca1e3b61be8))
+* easier parental gate ([9b263ee](https://github.com/bcc-code/bcc-media-app/commit/9b263ee534e21665f3bc6b60920815423652fb82))
+* flavor-specific npaw and unleash app code ([0257ba8](https://github.com/bcc-code/bcc-media-app/commit/0257ba86a9756411cc72a0680f33456c83627929))
+* hide share button on kids app ([09426c5](https://github.com/bcc-code/bcc-media-app/commit/09426c5e8cc406ca0bc74a891cf12fc98ac4c373))
+* include appName in unleash context ([42671ea](https://github.com/bcc-code/bcc-media-app/commit/42671eaf638a59788191e69e0927fd17cf795429))
+* **kids:** contact email in "about" ([754edbc](https://github.com/bcc-code/bcc-media-app/commit/754edbcd0c8447a5e1d34bf1766a760a2f8d8951))
+* parental gate ([26d39fd](https://github.com/bcc-code/bcc-media-app/commit/26d39fdf800f1a505a40a6d89910bc06912acf7c))
+* prefer device language or flavor-specific default ([1dface8](https://github.com/bcc-code/bcc-media-app/commit/1dface8ca6a74711298e86e388d0ac033301d7ef))
+
+
+
+## [4.3.9+2300054](https://github.com/bcc-code/bcc-media-app/compare/4.3.8+2300053...v4.3.9+2300054) (2023-05-16)
+
+
+### Bug Fixes
+
+* **android:** Be able to disable the subtitles ([ec680e2](https://github.com/bcc-code/bcc-media-app/commit/ec680e28e2b512bdf5e18ab329008441b1c4f23d))
+* auth disabled logic was opposite (enabled when disabled) ([59608ac](https://github.com/bcc-code/bcc-media-app/commit/59608ac82370a5ed257d9e2557934c14330e6e97))
+* **ui:** achievement share missing designsystem ([5e9db9e](https://github.com/bcc-code/bcc-media-app/commit/5e9db9e30b10654b36b81564997dce3827c7d3be))
+
+
+### Features
+
+* "My List" - save your favorite episodes ([0fa3762](https://github.com/bcc-code/bcc-media-app/commit/0fa3762cfc82bc53159ad81ade555ae727ef7c39))
+* autoplay next (mvp) ([#152](https://github.com/bcc-code/bcc-media-app/issues/152)) ([4683fd7](https://github.com/bcc-code/bcc-media-app/commit/4683fd7133ea92737c102809812cfc606b2b3413))
+* disable auth for kids-app via a feature flag ([2410ce6](https://github.com/bcc-code/bcc-media-app/commit/2410ce6bdcb429a04acf551cb842722a2b165b3d))
+* more customizable flavors (logo, design system) ([a93ade9](https://github.com/bcc-code/bcc-media-app/commit/a93ade9dc7f15f6a857ce885da16305b3f84a46a))
+* open episode in context of show when in collection ([0ae3f18](https://github.com/bcc-code/bcc-media-app/commit/0ae3f187139acb54b7833c9b27a51841d0fe92b4))
 
 
 
@@ -8,6 +95,7 @@
 ### Bug Fixes
 
 * conditionally include inMyList in query ([36f8762](https://github.com/bcc-code/bcc-media-app/commit/36f8762b9cfc8a23e3aa4d5ca168938c8c97ce87))
+* **graphql:** support [@include](https://github.com/include) and [@skip](https://github.com/skip) via graphql^5.1.3 ([9e4e2e5](https://github.com/bcc-code/bcc-media-app/commit/9e4e2e51a839153e9e278d3c1aaf4d2f2e222347))
 
 
 ### Features
