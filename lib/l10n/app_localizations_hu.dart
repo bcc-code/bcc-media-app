@@ -713,7 +713,7 @@ class SHu extends S {
   }
 
   @override
-  String get accountDeletionTitle => 'Delete my account';
+  String get accountDeletionTitle => 'Fiókom törlése';
 
   @override
   String accountDeletionSuccess(String email) {

@@ -713,7 +713,7 @@ class SFr extends S {
   }
 
   @override
-  String get accountDeletionTitle => 'Delete my account';
+  String get accountDeletionTitle => 'Supprimer mon compte';
 
   @override
   String accountDeletionSuccess(String email) {

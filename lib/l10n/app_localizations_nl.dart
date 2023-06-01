@@ -713,7 +713,7 @@ class SNl extends S {
   }
 
   @override
-  String get accountDeletionTitle => 'Delete my account';
+  String get accountDeletionTitle => 'mijn account verwijderen';
 
   @override
   String accountDeletionSuccess(String email) {

@@ -648,7 +648,7 @@ class SNb extends S {
   String get areYouSure => 'Er du sikker?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Du kan kontakte oss på';
 
   @override
   String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';

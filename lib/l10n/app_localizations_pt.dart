@@ -713,7 +713,7 @@ class SPt extends S {
   }
 
   @override
-  String get accountDeletionTitle => 'Delete my account';
+  String get accountDeletionTitle => 'Excluir minha conta';
 
   @override
   String accountDeletionSuccess(String email) {

@@ -713,7 +713,7 @@ class SFi extends S {
   }
 
   @override
-  String get accountDeletionTitle => 'Delete my account';
+  String get accountDeletionTitle => 'Poista tilini';
 
   @override
   String accountDeletionSuccess(String email) {

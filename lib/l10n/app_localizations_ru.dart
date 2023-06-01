@@ -713,7 +713,7 @@ class SRu extends S {
   }
 
   @override
-  String get accountDeletionTitle => 'Delete my account';
+  String get accountDeletionTitle => 'Удалить мой аккаунт';
 
   @override
   String accountDeletionSuccess(String email) {

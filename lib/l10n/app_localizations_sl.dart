@@ -713,7 +713,7 @@ class SSl extends S {
   }
 
   @override
-  String get accountDeletionTitle => 'Delete my account';
+  String get accountDeletionTitle => 'Izbriši moj račun';
 
   @override
   String accountDeletionSuccess(String email) {
