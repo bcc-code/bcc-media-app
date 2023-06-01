@@ -15,8 +15,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'l10n/app_localizations.dart';
 import 'models/auth_state.dart';
+import 'models/breakpoints.dart';
 import 'providers/auth_state/auth_state.dart';
 
 class AppRoot extends ConsumerStatefulWidget {
@@ -146,9 +148,13 @@ class _AppRootState extends ConsumerState<AppRoot> {
           ),
           routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
           builder: (BuildContext context, Widget? child) {
-            return MediaQuery(
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              child: child!,
+            return ResponsiveBreakpoints.builder(
+              child: MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: child!,
+              ),
+              breakpoints: breakpoints,
+              breakpointsLandscape: breakpoints,
             );
           },
         ),
