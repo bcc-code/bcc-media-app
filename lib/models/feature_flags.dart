@@ -11,6 +11,7 @@ class FeatureFlags with _$FeatureFlags {
     @Default(false) bool publicSignup,
     @Default(false) bool socialSignup,
     @Default(false) bool autoplayNext,
+    @Default(false) bool autoFullscreenOnPlay,
     @Default(true) bool shareVideoButton,
   }) = _FeatureFlags;
 }

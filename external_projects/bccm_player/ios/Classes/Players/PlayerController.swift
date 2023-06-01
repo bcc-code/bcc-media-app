@@ -20,5 +20,6 @@ public protocol PlayerController {
     func pause()
     func stop(reset: Bool)
     func exitFullscreen()
+    func enterFullscreen()
     func hasBecomePrimary()
 }

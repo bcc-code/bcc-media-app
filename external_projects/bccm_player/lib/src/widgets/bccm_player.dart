@@ -11,7 +11,10 @@ import 'package:flutter/services.dart';
 class BccmPlayer extends StatefulWidget {
   final String id;
 
-  const BccmPlayer({super.key, required this.id});
+  const BccmPlayer({
+    super.key,
+    required this.id,
+  });
 
   @override
   State<BccmPlayer> createState() => _BccmPlayerState();

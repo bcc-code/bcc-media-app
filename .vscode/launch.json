@@ -66,6 +66,23 @@
         "canvaskit"
       ], // Remember to change the "program" property too
       "program": "lib/main_kids_prod.dart"
+    },
+    /// Biblekids
+    {
+      "name": "kids_prod (release)",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "flutterMode": "release",
+      "args": [
+        "--flavor",
+        "kids_prod",
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit"
+      ], // Remember to change the "program" property too
+      "program": "lib/main_kids_prod.dart"
     }
   ]
 }
