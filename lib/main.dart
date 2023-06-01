@@ -10,6 +10,7 @@ import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/firebase.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ import 'flavors.dart';
 import 'l10n/app_localizations.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+const useDevicePreview = false;
 
 /// This function is called from the flavor-specific entrypoints
 /// E.g. main_dev.dart, main_prod.dart
@@ -60,7 +62,14 @@ Future<void> $main({
       appRouter: appRouter,
     ),
   );
-  final maybeWrappedApp = kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app;
+  Widget maybeWrappedApp;
+  if (kDebugMode && !kIsWeb) {
+    final interactiveViewer = InteractiveViewer(maxScale: 10, child: app);
+    maybeWrappedApp = useDevicePreview ? DevicePreview(builder: (context) => interactiveViewer) : interactiveViewer;
+  } else {
+    maybeWrappedApp = app;
+  }
+
   runApp(maybeWrappedApp);
 }
 

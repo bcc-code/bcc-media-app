@@ -108,6 +108,8 @@ dependencies:
   cloud_firestore: ^4.5.0
   riverpod_annotation: ^2.0.4
   image: ^4.0.15
+  responsive_framework: ^1.0.0
+  device_preview: ^1.1.0
   #smooth: any
 
 dev_dependencies:

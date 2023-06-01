@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/components/sections/section_item_click_wrapper.da
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../../helpers/navigation/navigation_utils.dart';
@@ -13,6 +14,7 @@ import '../../l10n/app_localizations.dart';
 import '../../models/analytics/sections.dart';
 
 import '../../graphql/queries/page.graphql.dart';
+import '../../models/breakpoints.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../helpers/extensions.dart';
 import '../../helpers/ui/btv_buttons.dart';
@@ -73,20 +75,30 @@ class FeaturedSection extends ConsumerWidget {
         padding: const EdgeInsets.only(top: 16),
         child: ScrollConfiguration(
           behavior: AnyPointerScrollBehavior(),
-          child: kIsWeb ? buildSlider(sectionItems, constraints, curLiveEpisode) : buildPageView(sectionItems, constraints, curLiveEpisode),
+          child: kIsWeb || ResponsiveBreakpoints.of(context).largerThan(BP.lg)
+              ? buildSlider(context, sectionItems, constraints, curLiveEpisode)
+              : buildPageView(context, sectionItems, constraints, curLiveEpisode),
         ),
       );
     });
   }
 
   Widget buildPageView(
+    BuildContext context,
     List<Fragment$Section$$FeaturedSection$items$items> sectionItems,
     BoxConstraints constraints,
     Fragment$CalendarEntryEpisode? curLiveEpisode,
   ) {
     final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
     return SizedBox(
-      height: constraints.maxWidth > 600 ? 425 : 325,
+      height: ResponsiveValue(
+        context,
+        defaultValue: 325.0,
+        conditionalValues: [
+          const Condition.equals(name: BP.md, value: 380.0),
+          const Condition.largerThan(name: BP.md, value: 470.0),
+        ],
+      ).value,
       child: PageView.builder(
         physics: const _CustomPageViewScrollPhysics(),
         controller: PageController(viewportFraction: viewportFraction),
@@ -108,19 +120,30 @@ class FeaturedSection extends ConsumerWidget {
   }
 
   Widget buildSlider(
+    context,
     List<Fragment$Section$$FeaturedSection$items$items> sectionItems,
     BoxConstraints constraints,
     Fragment$CalendarEntryEpisode? curLiveEpisode,
   ) {
-    final numItems = constraints.maxWidth > 1000 ? 2 : 1;
+    final numItems = ResponsiveValue(
+      context,
+      defaultValue: 1,
+      conditionalValues: [
+        const Condition.equals(name: BP.xl, value: 2),
+        const Condition.largerThan(name: BP.xl, value: 3),
+      ],
+    ).value!;
+    const paddingX = kIsWeb ? 80.0 : 16.0;
+    const gap = kIsWeb ? 16.0 : 4.0;
     return HorizontalSlider(
       height: 500,
-      padding: const EdgeInsets.symmetric(horizontal: 80),
+      gap: gap,
+      padding: const EdgeInsets.symmetric(horizontal: paddingX),
       itemCount: sectionItems.length,
       itemBuilder: (context, index) {
         final item = sectionItems[index % sectionItems.length];
         return SizedBox(
-          width: (constraints.maxWidth - (32 - 2 * marginX) - 160) / numItems,
+          width: (constraints.maxWidth - (2 * paddingX) - gap) / numItems,
           child: SectionItemClickWrapper(
             item: item.item,
             analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),

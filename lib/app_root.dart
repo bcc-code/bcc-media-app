@@ -15,9 +15,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'l10n/app_localizations.dart';
 import 'models/auth_state.dart';
+import 'models/breakpoints.dart';
 import 'providers/auth_state/auth_state.dart';
+
+const breakpoints = [
+  Breakpoint(start: 0, end: 450, name: BP.sm),
+  Breakpoint(start: 451, end: 800, name: BP.md),
+  Breakpoint(start: 801, end: 1024, name: BP.lg),
+  Breakpoint(start: 1025, end: 1920, name: BP.xl),
+  Breakpoint(start: 1921, end: double.infinity, name: BP.xxl),
+];
 
 class AppRoot extends ConsumerStatefulWidget {
   const AppRoot({super.key, required this.navigatorKey, required this.appRouter});
@@ -146,9 +156,13 @@ class _AppRootState extends ConsumerState<AppRoot> {
           ),
           routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
           builder: (BuildContext context, Widget? child) {
-            return MediaQuery(
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              child: child!,
+            return ResponsiveBreakpoints.builder(
+              child: MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: child!,
+              ),
+              breakpoints: breakpoints,
+              breakpointsLandscape: breakpoints,
             );
           },
         ),
