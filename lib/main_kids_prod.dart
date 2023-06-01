@@ -16,6 +16,9 @@ Future<void> main() async {
       strings: (context) => FlavorStrings(
         onboardingTitle: S.of(context).kidsOnboardingTitle,
         onboardingSecondaryTitle: S.of(context).kidsOnboardingSecondaryTitle,
+        aboutText: S.of(context).biblekidsAbout,
+        contactEmail: 'hello@biblekids.io',
+        contactWebsite: Uri.parse('https://biblekids.io'),
       ),
       images: FlavorImages(
         logoHeight: 23,
