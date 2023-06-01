@@ -109,7 +109,6 @@ dependencies:
   riverpod_annotation: ^2.0.4
   image: ^4.0.15
   responsive_framework: ^1.0.0
-  device_preview: ^1.1.0
   #smooth: any
 
 dev_dependencies:
@@ -134,6 +133,7 @@ dev_dependencies:
   flutter_oss_licenses: ^2.0.1
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.2.19
+  device_preview: ^1.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

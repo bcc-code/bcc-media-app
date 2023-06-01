@@ -21,14 +21,6 @@ import 'models/auth_state.dart';
 import 'models/breakpoints.dart';
 import 'providers/auth_state/auth_state.dart';
 
-const breakpoints = [
-  Breakpoint(start: 0, end: 450, name: BP.sm),
-  Breakpoint(start: 451, end: 800, name: BP.md),
-  Breakpoint(start: 801, end: 1024, name: BP.lg),
-  Breakpoint(start: 1025, end: 1920, name: BP.xl),
-  Breakpoint(start: 1921, end: double.infinity, name: BP.xxl),
-];
-
 class AppRoot extends ConsumerStatefulWidget {
   const AppRoot({super.key, required this.navigatorKey, required this.appRouter});
 
