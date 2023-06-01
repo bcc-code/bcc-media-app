@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import '../../l10n/app_localizations.dart';
 import '../../theme/design_system/design_system.dart';
 
 Future<bool> checkParentalGate(BuildContext context) async {
@@ -61,10 +62,10 @@ class ParentalGate extends HookWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Ask your parents', style: DesignSystem.of(context).textStyles.headline2),
+            Text(S.of(context).askYourParents, style: DesignSystem.of(context).textStyles.headline2),
             Padding(
               padding: const EdgeInsets.only(top: 8),
-              child: Text('What is $number1 x $number2?',
+              child: Text('${S.of(context).whatIsMath} $number1 x $number2?',
                   style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3)),
             ),
             const SizedBox(height: 24),
@@ -73,7 +74,7 @@ class ParentalGate extends HookWidget {
               keyboardType: TextInputType.number,
               decoration: DesignSystem.of(context).inputDecorations.textFormField.copyWith(
                     fillColor: DesignSystem.of(context).colors.separatorOnLight,
-                    hintText: 'Answer',
+                    hintText: S.of(context).answerLabel,
                   ),
               onSubmitted: (value) {
                 checkAnswer();
@@ -82,7 +83,7 @@ class ParentalGate extends HookWidget {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 16),
               width: double.infinity,
-              child: DesignSystem.of(context).buttons.largeSecondary(onPressed: checkAnswer, labelText: 'Check answer'),
+              child: DesignSystem.of(context).buttons.largeSecondary(onPressed: checkAnswer, labelText: S.of(context).checkAnswerButton),
             ),
           ],
         ),

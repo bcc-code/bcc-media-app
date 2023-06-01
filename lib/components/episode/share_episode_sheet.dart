@@ -66,7 +66,7 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8, right: 16),
                         child: Text(
-                          'This video is only accessible to users that are logged in to the app.',
+                          S.of(context).videoOnlyAccessibleToLoggedIn,
                           style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
                         ),
                       ),

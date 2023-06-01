@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/api/auth0_api.dart';
 import 'package:brunstadtv_app/components/status_indicators/error_generic.dart';
 import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/models/auth0/auth0_api.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
@@ -93,12 +91,9 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
-                    child: Text('Account created', style: design.textStyles.headline1),
+                    child: Text(S.of(context).accountCreated, style: design.textStyles.headline1),
                   ),
-                  if (user == null)
-                    Text('You can now log in to your account and explore a variety of edifying content.')
-                  else
-                    Text('You can now use your account and explore a variety of edifying content.'),
+                  if (user == null) Text(S.of(context).youCanNowLogInToYourAccount) else Text(S.of(context).youCanNowUseYourAccount),
                 ],
               ),
             ),
