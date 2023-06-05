@@ -41,16 +41,16 @@ String? getFormattedProductionDate(String? prodDate) {
   return DateFormat('dd. MMM y').format(parsedDateTime);
 }
 
-/// Get current UTC offset in the format 'hh:mm'
+/// Get current UTC offset in the format '(+/-)hh:mm'
 String getUtcOffset() {
   final timeZoneOffset = DateTime.now().timeZoneOffset;
-  final hours = timeZoneOffset.inHours.toString().padLeft(2, '0');
-  final minutes = (timeZoneOffset.inMinutes % 60).toString().padLeft(2, '0');
-  return '$hours:$minutes';
+  final hours = timeZoneOffset.inHours.abs().toString().padLeft(2, '0');
+  final minutes = (timeZoneOffset.inMinutes.abs() % 60).toString().padLeft(2, '0');
+  return '${timeZoneOffset.isNegative ? '-' : '+'}$hours:$minutes';
 }
 
 /// Get date in ISO8601 format with UTC offset
 String getFormattedDateTime(DateTime date) {
   final localDateTime = DateFormat('yyyy-MM-ddTHH:mm:ss').format(date);
-  return '$localDateTime+${getUtcOffset()}';
+  return '$localDateTime${getUtcOffset()}';
 }
