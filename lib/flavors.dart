@@ -45,6 +45,7 @@ class FlavorImages extends Iterable<ImageProvider> {
   final StateImageProvider live;
   final StateImageProvider calendar;
   final StateImageProvider myList;
+  final StateImageProvider games;
 
   FlavorImages({
     required this.logoHeight,
@@ -55,6 +56,7 @@ class FlavorImages extends Iterable<ImageProvider> {
     required this.live,
     required this.calendar,
     required this.myList,
+    required this.games,
   });
 
   @override
@@ -66,6 +68,7 @@ class FlavorImages extends Iterable<ImageProvider> {
         ...live,
         ...calendar,
         ...myList,
+        ...games,
       ].iterator;
 }
 

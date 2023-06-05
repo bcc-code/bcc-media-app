@@ -40,7 +40,7 @@ class BibleKidsDesignSystem extends DesignSystemData {
         ),
       ),
       materialThemeData: ThemeData(
-        //useMaterial3: true,
+        useMaterial3: true,
         cupertinoOverrideTheme: CupertinoThemeData(
           barBackgroundColor: colors.background1,
           textTheme: CupertinoTextThemeData(

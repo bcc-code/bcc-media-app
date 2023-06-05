@@ -276,7 +276,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
             ),
             CupertinoRoute<void>(
               page: GameScreen,
-              path: 'test',
+              path: ':gameId',
             ),
           ],
         ),

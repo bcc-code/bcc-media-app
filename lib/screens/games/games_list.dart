@@ -9,32 +9,37 @@ class GamesListScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Widget gameCard(String gameId) {
+      return GestureDetector(
+        onTap: () => context.router.navigate(GameScreenRoute(gameId: gameId)),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Column(
+              children: [
+                // Unsplash image
+                Image.network(
+                  'https://source.unsplash.com/random/?puzzle+games&w=1000&q=80&g=$gameId',
+                  fit: BoxFit.cover,
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(title: const Text("Games")),
       body: ListView(
         children: [
           // Card representing a game with a placeholder image and a button to start the game
-          GestureDetector(
-            onTap: () => context.router.navigate(const GameScreenRoute()),
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Column(
-                  children: [
-                    // Unsplash image
-                    Image.network(
-                      'https://source.unsplash.com/random/?games&w=1000&q=80',
-                      fit: BoxFit.cover,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
+          gameCard('heart-defense'),
+          gameCard('cable-connector'),
         ],
       ),
     );

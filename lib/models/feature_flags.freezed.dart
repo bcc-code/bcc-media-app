@@ -22,6 +22,7 @@ mixin _$FeatureFlags {
   bool get autoplayNext => throw _privateConstructorUsedError;
   bool get autoFullscreenOnPlay => throw _privateConstructorUsedError;
   bool get shareVideoButton => throw _privateConstructorUsedError;
+  bool get gamesTab => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FeatureFlagsCopyWith<FeatureFlags> get copyWith =>
@@ -40,7 +41,8 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       bool socialSignup,
       bool autoplayNext,
       bool autoFullscreenOnPlay,
-      bool shareVideoButton});
+      bool shareVideoButton,
+      bool gamesTab});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? autoplayNext = null,
     Object? autoFullscreenOnPlay = null,
     Object? shareVideoButton = null,
+    Object? gamesTab = null,
   }) {
     return _then(_value.copyWith(
       auth: null == auth
@@ -88,6 +91,10 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
           ? _value.shareVideoButton
           : shareVideoButton // ignore: cast_nullable_to_non_nullable
               as bool,
+      gamesTab: null == gamesTab
+          ? _value.gamesTab
+          : gamesTab // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -106,7 +113,8 @@ abstract class _$$_FeatureFlagsCopyWith<$Res>
       bool socialSignup,
       bool autoplayNext,
       bool autoFullscreenOnPlay,
-      bool shareVideoButton});
+      bool shareVideoButton,
+      bool gamesTab});
 }
 
 /// @nodoc
@@ -126,6 +134,7 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
     Object? autoplayNext = null,
     Object? autoFullscreenOnPlay = null,
     Object? shareVideoButton = null,
+    Object? gamesTab = null,
   }) {
     return _then(_$_FeatureFlags(
       auth: null == auth
@@ -152,6 +161,10 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
           ? _value.shareVideoButton
           : shareVideoButton // ignore: cast_nullable_to_non_nullable
               as bool,
+      gamesTab: null == gamesTab
+          ? _value.gamesTab
+          : gamesTab // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -165,7 +178,8 @@ class _$_FeatureFlags extends _FeatureFlags {
       this.socialSignup = false,
       this.autoplayNext = false,
       this.autoFullscreenOnPlay = false,
-      this.shareVideoButton = true})
+      this.shareVideoButton = true,
+      this.gamesTab = false})
       : super._();
 
   @override
@@ -186,10 +200,13 @@ class _$_FeatureFlags extends _FeatureFlags {
   @override
   @JsonKey()
   final bool shareVideoButton;
+  @override
+  @JsonKey()
+  final bool gamesTab;
 
   @override
   String toString() {
-    return 'FeatureFlags(auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, autoFullscreenOnPlay: $autoFullscreenOnPlay, shareVideoButton: $shareVideoButton)';
+    return 'FeatureFlags(auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, autoFullscreenOnPlay: $autoFullscreenOnPlay, shareVideoButton: $shareVideoButton, gamesTab: $gamesTab)';
   }
 
   @override
@@ -207,12 +224,14 @@ class _$_FeatureFlags extends _FeatureFlags {
             (identical(other.autoFullscreenOnPlay, autoFullscreenOnPlay) ||
                 other.autoFullscreenOnPlay == autoFullscreenOnPlay) &&
             (identical(other.shareVideoButton, shareVideoButton) ||
-                other.shareVideoButton == shareVideoButton));
+                other.shareVideoButton == shareVideoButton) &&
+            (identical(other.gamesTab, gamesTab) ||
+                other.gamesTab == gamesTab));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, auth, publicSignup, socialSignup,
-      autoplayNext, autoFullscreenOnPlay, shareVideoButton);
+      autoplayNext, autoFullscreenOnPlay, shareVideoButton, gamesTab);
 
   @JsonKey(ignore: true)
   @override
@@ -228,7 +247,8 @@ abstract class _FeatureFlags extends FeatureFlags {
       final bool socialSignup,
       final bool autoplayNext,
       final bool autoFullscreenOnPlay,
-      final bool shareVideoButton}) = _$_FeatureFlags;
+      final bool shareVideoButton,
+      final bool gamesTab}) = _$_FeatureFlags;
   const _FeatureFlags._() : super._();
 
   @override
@@ -243,6 +263,8 @@ abstract class _FeatureFlags extends FeatureFlags {
   bool get autoFullscreenOnPlay;
   @override
   bool get shareVideoButton;
+  @override
+  bool get gamesTab;
   @override
   @JsonKey(ignore: true)
   _$$_FeatureFlagsCopyWith<_$_FeatureFlags> get copyWith =>
