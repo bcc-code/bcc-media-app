@@ -27,6 +27,7 @@ class NpawConfig {
     this.appName,
     this.appReleaseVersion,
     this.accountCode,
+    this.deviceIsAnonymous,
   });
 
   String? appName;
@@ -35,11 +36,14 @@ class NpawConfig {
 
   String? accountCode;
 
+  bool? deviceIsAnonymous;
+
   Object encode() {
     return <Object?>[
       appName,
       appReleaseVersion,
       accountCode,
+      deviceIsAnonymous,
     ];
   }
 
@@ -49,6 +53,7 @@ class NpawConfig {
       appName: result[0] as String?,
       appReleaseVersion: result[1] as String?,
       accountCode: result[2] as String?,
+      deviceIsAnonymous: result[3] as bool?,
     );
   }
 }
