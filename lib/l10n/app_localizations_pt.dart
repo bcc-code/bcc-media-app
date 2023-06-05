@@ -35,10 +35,10 @@ class SPt extends S {
   String get loginPageDisplay2 => 'Assistir séries, programas e filmes baseados nos valores cristãos';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Nós trazemos a mensagem da Bíblia para a vida!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Nossa visão é que as crianças experimentem Jesus como seu melhor amigo - pelo resto de suas vidas.';
 
   @override
   String get loginPageDisplay3 => 'Produzido por BCC Mídia ';
@@ -140,7 +140,7 @@ class SPt extends S {
   String get contactSupport => 'Entre em contato com o suporte';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Sugerir um recurso';
 
   @override
   String get cancel => 'Cancelar';
@@ -519,7 +519,7 @@ class SPt extends S {
   String get explorePublicContent => 'Explorar conteúdo público';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Comece a explorar';
 
   @override
   String get taskCompleted => 'tarefa completa';
@@ -627,13 +627,13 @@ class SPt extends S {
   String get details => 'Detalhes ';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Minha lista';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Você sabia?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Você pode adicionar seus programas favoritos à \"Minha lista\" tocando no coração';
 
   @override
   String get selectSeason => 'Selecione a temporada';
@@ -648,68 +648,68 @@ class SPt extends S {
   String get areYouSure => 'Tem certeza?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Você pode entrar em contato conosco em';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'Bible Kids é uma iniciativa de BCC Media, uma fundação de mídia dentro da Federação BCC que produz e distribui conteúdo com valores positivos e cristãos.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Pergunte aos seus pais';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'O que é';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Responder';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Checar resposta';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Este vídeo é acessível apenas para usuários que estão logados no aplicativo.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Verifique sua conta';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'Enviamos um e-mail para';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Clique no link no e-mail para verificar sua conta.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'Abra o aplicativo do e-mail';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'Reenviar e-mail';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Nenhum aplicativo de e-mail instalado';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'E-mail de verificação enviado';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Se você ainda não recebeu um e-mail, entre em contato com o suporte em';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Conta criada';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Agora você pode usar sua conta e explorar uma variedade de conteúdos edificantes.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Agora você pode fazer login em sua conta e explorar uma variedade de conteúdos edificantes.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'Você está prestes a solicitar a exclusão de sua conta da BCC Media e de todos os seus dados relacionados a este aplicativo.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'Esta é uma ação que não pode ser desfeita.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'A exclusão da conta geralmente será feita em $x dias úteis.';
   }
 
   @override
@@ -717,6 +717,6 @@ class SPt extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'Exclusão de conta solicitada com sucesso. Você receberá um e-mail em $email. Para confirmar sua identidade, precisamos que você responda a esse e-mail para prosseguir com a exclusão.';
   }
 }

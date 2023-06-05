@@ -648,68 +648,68 @@ class SFi extends S {
   String get areYouSure => 'Oletko varma?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Yhteydenotot:';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'Bible Kids on BCC Median tuote. BCC Liiton alainen BCC Media tuottaa ja toimittaa positiivista Kristillisten arvojen mukaista sisältöä.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Pyydä vanhempiasi';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'Mitä on';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Vastaus';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Tarkista vastaus';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Tämä video näkyy vain sisäänkirjautuneille.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Vahvista tili';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'Sähköposti on lähetetty osoitteeseen';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Klikkaa sähköpostissa olevaa linkkiä.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'Avaa sähköpostisovellus';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'Lähetä sähköposti uudelleen';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Ei sähköpostisovellusta asennettuna';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'Vahvistussähköposti lähetetty';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Jos et vieläkään saanut sähköpostia, ota meihin yhteyttä: ';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Tili luotu';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Tilin kautta voit nyt tutustua laajaan valikoimaan rakentavaa sisältöä.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Voit nyt kirjautua sisään ja tutustua laajaan valikoimaan rakentavaa sisältöä.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'Olet pyytämässä BCC Media -tilisi poistamista mukaanlukien kaikki sovelluksen tallentama tieto.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'Tilin poistamista ei voi peruuttaa.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'Tilin poistaminen tapahtuu yleensä $x työpäivän kuluessa.';
   }
 
   @override
@@ -717,6 +717,6 @@ class SFi extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'Pyyntö tilin poistamiseksi on lähetetty. Saat asiasta sähköpostin osoitteeseen $email. Identiteettisi varmistamiseksi sinun tulee vastata sähköpostiin - jolloin tili voidaan poistaa.';
   }
 }
