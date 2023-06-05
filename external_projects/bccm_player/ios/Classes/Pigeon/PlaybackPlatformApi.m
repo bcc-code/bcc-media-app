@@ -102,11 +102,13 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 @implementation NpawConfig
 + (instancetype)makeWithAppName:(nullable NSString *)appName
     appReleaseVersion:(nullable NSString *)appReleaseVersion
-    accountCode:(nullable NSString *)accountCode {
+    accountCode:(nullable NSString *)accountCode
+    deviceIsAnonymous:(nullable NSNumber *)deviceIsAnonymous {
   NpawConfig* pigeonResult = [[NpawConfig alloc] init];
   pigeonResult.appName = appName;
   pigeonResult.appReleaseVersion = appReleaseVersion;
   pigeonResult.accountCode = accountCode;
+  pigeonResult.deviceIsAnonymous = deviceIsAnonymous;
   return pigeonResult;
 }
 + (NpawConfig *)fromList:(NSArray *)list {
@@ -114,6 +116,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   pigeonResult.appName = GetNullableObjectAtIndex(list, 0);
   pigeonResult.appReleaseVersion = GetNullableObjectAtIndex(list, 1);
   pigeonResult.accountCode = GetNullableObjectAtIndex(list, 2);
+  pigeonResult.deviceIsAnonymous = GetNullableObjectAtIndex(list, 3);
   return pigeonResult;
 }
 + (nullable NpawConfig *)nullableFromList:(NSArray *)list {
@@ -124,6 +127,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
     (self.appName ?: [NSNull null]),
     (self.appReleaseVersion ?: [NSNull null]),
     (self.accountCode ?: [NSNull null]),
+    (self.deviceIsAnonymous ?: [NSNull null]),
   ];
 }
 @end

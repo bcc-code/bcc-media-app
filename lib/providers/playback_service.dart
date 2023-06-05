@@ -55,6 +55,7 @@ class PlaybackService {
             accountCode: Env.npawAccountCode,
             appName: npawAppName,
             appReleaseVersion: formatAppVersion(packageInfo),
+            deviceIsAnonymous: FlavorConfig.current.strictAnonymousAnalytics,
           ),
         ),
       );

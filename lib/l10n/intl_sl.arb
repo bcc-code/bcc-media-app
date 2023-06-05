@@ -885,7 +885,7 @@
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
   },
-  "youCanContactUsAt": "You can contact us at",
+  "youCanContactUsAt": "Z nami lahko vzpostaviš kontakt na",
   "@youCanContactUsAt": {
     "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
   },

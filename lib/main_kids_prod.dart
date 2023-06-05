@@ -12,6 +12,7 @@ Future<void> main() async {
       firebaseOptions: kids_prod_firebase.DefaultFirebaseOptions.currentPlatform,
       enableNotifications: false,
       applicationCode: 'kids',
+      strictAnonymousAnalytics: true,
       designSystem: () => BibleKidsDesignSystem(),
       strings: (context) => FlavorStrings(
         onboardingTitle: S.of(context).kidsOnboardingTitle,

@@ -648,7 +648,7 @@ class SSl extends S {
   String get areYouSure => 'Si prepričan?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Z nami lahko vzpostaviš kontakt na';
 
   @override
   String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
