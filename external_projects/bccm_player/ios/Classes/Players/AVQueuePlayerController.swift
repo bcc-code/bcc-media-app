@@ -194,6 +194,9 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         youboraOptions.autoDetectBackground = false
         youboraOptions.userObfuscateIp = true as NSValue
         youboraOptions.appReleaseVersion = npawConfig.appReleaseVersion
+        if let deviceIsAnonymous = npawConfig.deviceIsAnonymous {
+            youboraOptions.deviceIsAnonymous = deviceIsAnonymous
+        }
         youboraPlugin = YBPlugin(options: youboraOptions)
         youboraPlugin!.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
         updateYouboraOptions()

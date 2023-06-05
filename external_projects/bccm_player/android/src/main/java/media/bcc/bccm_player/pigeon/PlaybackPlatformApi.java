@@ -115,6 +115,16 @@ public class PlaybackPlatformApi {
       this.accountCode = setterArg;
     }
 
+    private @Nullable Boolean deviceIsAnonymous;
+
+    public @Nullable Boolean getDeviceIsAnonymous() {
+      return deviceIsAnonymous;
+    }
+
+    public void setDeviceIsAnonymous(@Nullable Boolean setterArg) {
+      this.deviceIsAnonymous = setterArg;
+    }
+
     public static final class Builder {
 
       private @Nullable String appName;
@@ -138,21 +148,30 @@ public class PlaybackPlatformApi {
         return this;
       }
 
+      private @Nullable Boolean deviceIsAnonymous;
+
+      public @NonNull Builder setDeviceIsAnonymous(@Nullable Boolean setterArg) {
+        this.deviceIsAnonymous = setterArg;
+        return this;
+      }
+
       public @NonNull NpawConfig build() {
         NpawConfig pigeonReturn = new NpawConfig();
         pigeonReturn.setAppName(appName);
         pigeonReturn.setAppReleaseVersion(appReleaseVersion);
         pigeonReturn.setAccountCode(accountCode);
+        pigeonReturn.setDeviceIsAnonymous(deviceIsAnonymous);
         return pigeonReturn;
       }
     }
 
     @NonNull
     ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(3);
+      ArrayList<Object> toListResult = new ArrayList<Object>(4);
       toListResult.add(appName);
       toListResult.add(appReleaseVersion);
       toListResult.add(accountCode);
+      toListResult.add(deviceIsAnonymous);
       return toListResult;
     }
 
@@ -164,6 +183,8 @@ public class PlaybackPlatformApi {
       pigeonResult.setAppReleaseVersion((String) appReleaseVersion);
       Object accountCode = list.get(2);
       pigeonResult.setAccountCode((String) accountCode);
+      Object deviceIsAnonymous = list.get(3);
+      pigeonResult.setDeviceIsAnonymous((Boolean) deviceIsAnonymous);
       return pigeonResult;
     }
   }

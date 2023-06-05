@@ -133,6 +133,7 @@ class ExoPlayerController(private val context: Context) :
         options.accountCode = config.accountCode
         options.appReleaseVersion = config.appReleaseVersion
         options.appName = config.appName
+        options.deviceIsAnonymous = config.deviceIsAnonymous ?: false
         youboraPlugin = Plugin(options, context).also {
             it.adapter = Media3Adapter(exoPlayer)
         }
