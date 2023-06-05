@@ -3,14 +3,16 @@ import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../graphql/queries/page.graphql.dart';
 import '../../graphql/schema/pages.graphql.dart';
+import '../../models/breakpoints.dart';
 import '../custom_grid_view.dart';
 import '../category_button.dart';
 
 const Map<Enum$GridSectionSize, int> _columnSize = {
-  Enum$GridSectionSize.half: kIsWeb ? 8 : 2,
+  Enum$GridSectionSize.half: 2,
 };
 
 class IconGridSection extends StatelessWidget {
@@ -33,9 +35,29 @@ class _IconGridSectionList extends StatelessWidget {
   final Enum$GridSectionSize size;
   final List<Fragment$ItemSectionItem> sectionItems;
 
+  int getColumnCount(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size.width;
+    switch (size) {
+      case Enum$GridSectionSize.half:
+      default:
+        if (screenSize > 1920) return 6;
+        if (screenSize > 1000) return 4;
+        return 2;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final colSize = _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!;
+    final colSize = ResponsiveValue(
+      context,
+      defaultValue: _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!,
+      conditionalValues: const [
+        Condition.equals(name: BP.md, value: 3),
+        Condition.equals(name: BP.lg, value: 4),
+        Condition.equals(name: BP.xl, value: 5),
+        Condition.largerThan(name: BP.xl, value: 6),
+      ],
+    ).value!;
 
     return CustomGridView(
       verticalSpacing: 12,
