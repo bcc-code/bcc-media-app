@@ -6,10 +6,13 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
+import 'package:universal_io/io.dart';
 
+import '../flavors.dart';
 import '../helpers/version.dart';
 import '../models/analytics/achievement_shared.dart';
 import '../models/analytics/audio_only_clicked.dart';
@@ -24,15 +27,51 @@ import '../models/analytics/content_shared.dart';
 const kMinimumSessionTimeout = Duration(minutes: 30);
 
 final analyticsProvider = Provider<Analytics>((ref) {
-  return Analytics(ref: ref);
+  if (Platform.isAndroid && FlavorConfig.current.strictAnonymousAnalytics == true) {
+    return Analytics();
+  }
+  return RudderAnalytics(ref: ref);
 });
 
 class Analytics {
+  @mustBeOverridden
+  void checkSession() {}
+  @mustBeOverridden
+  void heyJustHereToTellYouIBelieveTheSessionIsStillAlive() {}
+  @mustBeOverridden
+  void sectionItemClicked(BuildContext context) {}
+  @mustBeOverridden
+  void myListTabEntryClicked(BuildContext context) {}
+  @mustBeOverridden
+  void searchPerformed(SearchPerformedEvent event) {}
+  @mustBeOverridden
+  void searchResultClicked(BuildContext context) {}
+  @mustBeOverridden
+  void deepLinkOpened(DeepLinkOpenedEvent event) {}
+  @mustBeOverridden
+  void languageChanged(LanguageChangedEvent event) {}
+  @mustBeOverridden
+  void contentShared(ContentSharedEvent event) {}
+  @mustBeOverridden
+  void achievementClicked(AchievementClickedEvent event) {}
+  @mustBeOverridden
+  void achievementShared(AchievementSharedEvent event) {}
+  @mustBeOverridden
+  void identify(Auth0IdToken profile, String analyticsId) {}
+  @mustBeOverridden
+  void screen(screenName, {Map<String, Object?>? properties}) {}
+  @mustBeOverridden
+  void audioOnlyClicked(AudioOnlyClickedEvent event) {}
+  @mustBeOverridden
+  void calendarDayClicked(CalendarDayClickedEvent event) {}
+}
+
+class RudderAnalytics extends Analytics {
   PackageInfo? packageInfo;
   final Ref ref;
   DateTime _lastAlive = DateTime.now();
 
-  Analytics({required this.ref}) {
+  RudderAnalytics({required this.ref}) {
     final RudderController controller = RudderController.instance;
     RudderLogger.init(RudderLogger.VERBOSE);
     RudderConfigBuilder builder = RudderConfigBuilder();
@@ -42,6 +81,7 @@ class Analytics {
     PackageInfo.fromPlatform().then((value) => packageInfo = value);
   }
 
+  @override
   void checkSession() {
     final now = DateTime.now();
     final shouldRefreshSession = now.difference(_lastAlive) > kMinimumSessionTimeout;
@@ -54,6 +94,7 @@ class Analytics {
     debugPrint('checkSession _lastAlive: $_lastAlive');
   }
 
+  @override
   void heyJustHereToTellYouIBelieveTheSessionIsStillAlive() {
     _lastAlive = DateTime.now();
   }
@@ -71,6 +112,7 @@ class Analytics {
     return commonData;
   }
 
+  @override
   void sectionItemClicked(BuildContext context) {
     var sectionAnalytics = InheritedData.read<SectionAnalytics>(context);
     if (sectionAnalytics == null) {
@@ -96,6 +138,7 @@ class Analytics {
     RudderController.instance.track('section_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 
+  @override
   void myListTabEntryClicked(BuildContext context) {
     var sectionItemAnalytics = InheritedData.read<SectionItemAnalytics>(context);
     if (sectionItemAnalytics == null) {
@@ -117,10 +160,12 @@ class Analytics {
     RudderController.instance.track('section_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 
+  @override
   void searchPerformed(SearchPerformedEvent event) {
     RudderController.instance.track('search_performed', properties: getCommonData().putValue(map: event.toJson()));
   }
 
+  @override
   void searchResultClicked(BuildContext context) {
     final searchAnalytics = InheritedData.read<SearchAnalytics>(context);
     if (searchAnalytics == null) {
@@ -144,26 +189,32 @@ class Analytics {
     RudderController.instance.track('searchresult_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 
+  @override
   void deepLinkOpened(DeepLinkOpenedEvent event) {
     RudderController.instance.track('deep_link_opened', properties: getCommonData().putValue(map: event.toJson()));
   }
 
+  @override
   void languageChanged(LanguageChangedEvent event) {
     RudderController.instance.track('language_changed', properties: getCommonData().putValue(map: event.toJson()));
   }
 
+  @override
   void contentShared(ContentSharedEvent event) {
     RudderController.instance.track('content_shared', properties: getCommonData().putValue(map: event.toJson()));
   }
 
+  @override
   void achievementClicked(AchievementClickedEvent event) {
     RudderController.instance.track('achievement_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 
+  @override
   void achievementShared(AchievementSharedEvent event) {
     RudderController.instance.track('achievement_shared', properties: getCommonData().putValue(map: event.toJson()));
   }
 
+  @override
   void identify(Auth0IdToken profile, String analyticsId) {
     ref.read(settingsProvider.notifier).setAnalyticsId(analyticsId);
     final traits = RudderTraits();
@@ -184,14 +235,17 @@ class Analytics {
     RudderController.instance.identify(analyticsId, traits: traits);
   }
 
+  @override
   void screen(screenName, {Map<String, Object?>? properties}) {
     RudderController.instance.screen(screenName, properties: getCommonData().putValue(map: properties));
   }
 
+  @override
   void audioOnlyClicked(AudioOnlyClickedEvent event) {
     RudderController.instance.track('audioonly_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 
+  @override
   void calendarDayClicked(CalendarDayClickedEvent event) {
     RudderController.instance.track('calendarday_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
