@@ -210,11 +210,11 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                               OptionButton(
                                 optionName: S.of(context).makeDonation,
                                 onPressed: () async {
-                                  if (!await checkParentalGate(context) || !context.mounted) {
+                                  if (!await checkParentalGate(context)) {
                                     return;
                                   }
-                                  launchUrlString('https://biblekids.io/${S.of(context).localeName}/support-our-work',
-                                      mode: LaunchMode.externalApplication);
+                                  final locale = ref.read(settingsProvider).appLanguage.toLanguageTag();
+                                  launchUrlString('https://biblekids.io/${locale}/support-our-work', mode: LaunchMode.externalApplication);
                                 },
                               ),
                             OptionButton(
