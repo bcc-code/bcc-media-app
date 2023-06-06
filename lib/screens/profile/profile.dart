@@ -213,7 +213,7 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                                   if (!await checkParentalGate(context)) {
                                     return;
                                   }
-                                  final locale = ref.read(settingsProvider).appLanguage.toLanguageTag();
+                                  final locale = ref.read(settingsProvider).appLanguage.languageCode;
                                   launchUrlString('https://biblekids.io/${locale}/support-our-work', mode: LaunchMode.externalApplication);
                                 },
                               ),
