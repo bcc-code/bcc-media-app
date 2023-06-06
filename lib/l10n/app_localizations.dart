@@ -291,6 +291,12 @@ abstract class S {
   /// **'You have been logged out. Please log in again.'**
   String get loggedOutMessage;
 
+  /// Text for button which opens donation page.
+  ///
+  /// In en, this message translates to:
+  /// **'Make a donation'**
+  String get makeDonation;
+
   /// Sorting option on audience page
   ///
   /// In en, this message translates to:

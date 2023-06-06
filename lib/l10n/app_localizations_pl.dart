@@ -89,6 +89,9 @@ class SPl extends S {
   String get loggedOutMessage => 'Zostałeś wylogowany, prosimy o ponowne zalogowanie.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Najpopularniejsze';
 
   @override

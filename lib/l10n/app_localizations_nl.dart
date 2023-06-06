@@ -89,6 +89,9 @@ class SNl extends S {
   String get loggedOutMessage => 'Je bent nu uitgelogd. Log opnieuw in.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Meest bekeken';
 
   @override
