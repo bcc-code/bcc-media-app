@@ -2,44 +2,43 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/env/env.dart';
+import 'package:brunstadtv_app/flavors.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
+import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../api/brunstadtv.dart';
+import '../graphql/schema/episodes.graphql.dart';
 import '../helpers/version.dart';
 
 final playbackServiceProvider = Provider<PlaybackService>((ref) {
   return PlaybackService(
     ref: ref,
-    playbackApi: BccmPlayerInterface.instance,
+    platformApi: BccmPlayerInterface.instance,
     analyticsService: ref.watch(analyticsProvider),
   );
 });
 
 class PlaybackService {
-  BccmPlayerInterface playbackApi;
+  BccmPlayerInterface platformApi;
   Analytics analyticsService;
   Ref ref;
 
   PlaybackService({
-    required this.playbackApi,
+    required this.platformApi,
     required this.analyticsService,
     required this.ref,
   });
 
   Future init() async {
-    await playbackApi.setNpawConfig(
-      NpawConfig(
-        accountCode: Env.npawAccountCode,
-        appName: 'mobile',
-      ),
-    );
-    playbackApi.addRiverpod(ref);
-    playbackApi.addPlaybackListener(BccmPlaybackListener(ref: ref, apiProvider: apiProvider));
+    final npawAppName = FlavorConfig.current.flavor == Flavor.bccmedia ? 'mobile' : FlavorConfig.current.applicationCode;
+    BccmPlaybackListener(ref: ref, apiProvider: apiProvider);
 
     // Keep the analytics session alive while playing stuff.
     ref.listen<PlayerState?>(primaryPlayerProvider, (_, next) {
@@ -51,39 +50,73 @@ class PlaybackService {
     // Initialize npaw
     if (Env.npawAccountCode != '') {
       PackageInfo.fromPlatform().then(
-        (packageInfo) => playbackApi.setNpawConfig(
+        (packageInfo) => platformApi.setNpawConfig(
           NpawConfig(
             accountCode: Env.npawAccountCode,
-            appName: 'mobile',
+            appName: npawAppName,
             appReleaseVersion: formatAppVersion(packageInfo),
+            deviceIsAnonymous: FlavorConfig.current.strictAnonymousAnalytics,
           ),
         ),
       );
     }
   }
 
-  MediaItem _mapEpisode(Query$FetchEpisode$episode episode) {
+  MediaItem _mapEpisode(Fragment$PlayableEpisode episode) {
+    final collectionId = episode.context.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id;
     return MediaItem(
-        url: episode.streams.getBestStreamUrl(),
-        mimeType: 'application/x-mpegURL',
-        metadata: MediaMetadata(title: episode.title, artist: episode.season?.$show.title, artworkUri: episode.image, extras: {
+      url: episode.streams.getBestStreamUrl(),
+      mimeType: 'application/x-mpegURL',
+      metadata: MediaMetadata(
+        title: episode.title,
+        artist: episode.season?.$show.title,
+        artworkUri: episode.image,
+        extras: {
           'id': episode.id.toString(),
+          if (collectionId != null) 'context.collectionId': collectionId,
           'npaw.content.id': episode.id,
           'npaw.content.tvShow': episode.season?.$show.id,
-          'npaw.content.season': episode.season?.title,
+          if (episode.season != null) 'npaw.content.season': '${episode.season!.id} - ${episode.season!.title}',
           'npaw.content.episodeTitle': episode.title,
-        }));
+        },
+      ),
+    );
   }
 
-  Future playEpisode({required String playerId, required Query$FetchEpisode$episode episode, bool? autoplay, int? playbackPositionMs}) async {
+  Future<Fragment$PlayableEpisode?> getNextEpisodeForPlayer({
+    required String playerId,
+  }) async {
+    final episodeId = ref.read(playerProviderFor(playerId))?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
+    if (episodeId == null) {
+      debugPrint('playNextForPlayer($playerId): No episode id found in currentMediaItem.');
+      return null;
+    }
+    final collectionId = ref.read(playerProviderFor(playerId))?.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
+    final episode = await ref.read(gqlClientProvider).query$getNextEpisodes(
+          Options$Query$getNextEpisodes(
+            variables: Variables$Query$getNextEpisodes(
+              episodeId: episodeId,
+              context: collectionId != null ? Input$EpisodeContext(collectionId: collectionId) : null,
+            ),
+          ),
+        );
+    final nextEpisode = episode.parsedData!.episode.next.firstOrNull;
+    if (nextEpisode == null) {
+      debugPrint('playNextForPlayer($playerId): getNextEpisodes returned no next episode.');
+      return null;
+    }
+    return nextEpisode;
+  }
+
+  Future playEpisode({required String playerId, required Fragment$PlayableEpisode episode, bool? autoplay, int? playbackPositionMs}) async {
     var mediaItem = _mapEpisode(episode);
     mediaItem.playbackStartPositionMs = playbackPositionMs?.toDouble();
-    await playbackApi.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
+    await platformApi.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
   }
 
   Future queueEpisode({required String playerId, required Query$FetchEpisode$episode episode}) async {
     var mediaItem = _mapEpisode(episode);
-    playbackApi.queueMediaItem(playerId, mediaItem);
+    platformApi.queueMediaItem(playerId, mediaItem);
   }
 }
 

@@ -23,7 +23,7 @@ class SSl extends S {
   String get calendarWeek => 'teden';
 
   @override
-  String get close => 'Close';
+  String get close => 'Zapri';
 
   @override
   String get loading => 'Nalaganje';
@@ -33,6 +33,12 @@ class SSl extends S {
 
   @override
   String get loginPageDisplay2 => 'Oglej si serije in filme, narejene na podlagi krščanskih vrednot';
+
+  @override
+  String get kidsOnboardingTitle => 'Oznanilo Svetega pisma oživimo!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Naša vizija je, da otroci doživijo Jezusa kot najboljšega prijatelja - do konca življenja.';
 
   @override
   String get loginPageDisplay3 => 'Produkcija: BCC Media';
@@ -54,6 +60,24 @@ class SSl extends S {
 
   @override
   String get signInButton => 'Vpis';
+
+  @override
+  String get signInOrSignUp => 'Registracija / Prijava';
+
+  @override
+  String get signUpButton => 'Prijavi se zdaj';
+
+  @override
+  String get signUpTitle => 'Prijavi se';
+
+  @override
+  String get signUpDescription => 'Z ustvarjenim računom dobiš dostop do več vsebin in boljših funkcij.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'Potrjujem, da sem star 13 let ali več, in se strinjam s <a>Pravili zasebnosti</a> in <a>Pogoji uporabe</a>.';
+
+  @override
+  String get setPassword => 'Nastavi geslo';
 
   @override
   String get tryAgainButton => 'Poskusite znova';
@@ -80,7 +104,7 @@ class SSl extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Open';
+  String get open => 'Odpri';
 
   @override
   String get loginFailedCheckNetwork => 'Napaka pri prijavi. Preverite internetno povezavo in poskusite znova.';
@@ -116,19 +140,22 @@ class SSl extends S {
   String get contactSupport => 'Podpora';
 
   @override
+  String get userVoice => 'Predlagaj funkcijo';
+
+  @override
   String get cancel => 'Prekliči';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Ali si prepričan, da želiš preklicati?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Neshranjene spremembe bodo izgubljene.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Nazaj';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Ja, prekliči';
 
   @override
   String get upNext => 'Sledi';
@@ -143,7 +170,7 @@ class SSl extends S {
   String get settings => 'Nastavitve';
 
   @override
-  String get none => 'Noben';
+  String get none => 'Brez';
 
   @override
   String get auto => 'Samodejno';
@@ -170,7 +197,7 @@ class SSl extends S {
   String get search => 'Išči';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Povratne informacije';
 
   @override
   String get noResults => 'Ni najdenih rezultatov';
@@ -182,7 +209,7 @@ class SSl extends S {
   String get play => 'Predvajaj';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Premor';
 
   @override
   String get castQueue => 'Predvajaj čakalno vrsto';
@@ -348,7 +375,7 @@ class SSl extends S {
   String get sendFailDescription => 'Nekaj je šlo narobe. Preveri svojo internetno povezavo in poskusi znova.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Cenimo tvojo povratno informacijo.';
 
   @override
   String get today => 'Danes';
@@ -382,7 +409,19 @@ class SSl extends S {
   String get share => 'Deli';
 
   @override
+  String get showMore => 'Pokaži več';
+
+  @override
+  String get showLess => 'Pokaži manj';
+
+  @override
   String get liveNow => 'V živo';
+
+  @override
+  String get comingSoon => 'Pride kmalu';
+
+  @override
+  String get newEpisode => 'Novo';
 
   @override
   String get tomorrow => 'Jutri';
@@ -477,6 +516,12 @@ class SSl extends S {
   String get exploreContent => 'Razišči vsebino';
 
   @override
+  String get explorePublicContent => 'Razišči javno vsebino';
+
+  @override
+  String get startExploring => 'Začni raziskovati';
+
+  @override
   String get taskCompleted => 'naloga opravljena';
 
   @override
@@ -550,7 +595,18 @@ class SSl extends S {
   String get continueButton => 'Nadaljuj';
 
   @override
+  String get registerButton => 'Registracija';
+
+  @override
   String get achievements => 'Dosežki';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Najmanj $n znakov';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Vsebovati mora male in velike črke ter številke.';
 
   @override
   String get oops => 'Oops!';
@@ -571,5 +627,96 @@ class SSl extends S {
   String get details => 'Podrobnosti';
 
   @override
-  String get selectSeason => 'Select season';
+  String get myList => 'Moj seznam';
+
+  @override
+  String get didYouKnowTitle => 'Ali si vedel?';
+
+  @override
+  String get didYouKnowContent => 'S klikom na srce lahko dodaš svoje najljubše serije na \"Moj seznam\".';
+
+  @override
+  String get selectSeason => 'Izberi sezono';
+
+  @override
+  String get deleteMyAccount => 'Izbriši moj račun';
+
+  @override
+  String get iAmSureIWantToDelete => 'Prepričan sem, da želim izbrisati svoj račun in podatke, povezane z aplikacijo BCC Media.';
+
+  @override
+  String get areYouSure => 'Si prepričan?';
+
+  @override
+  String get youCanContactUsAt => 'Z nami lahko vzpostaviš kontakt na';
+
+  @override
+  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+
+  @override
+  String get askYourParents => 'Ask your parents';
+
+  @override
+  String get whatIsMath => 'What is';
+
+  @override
+  String get answerLabel => 'Answer';
+
+  @override
+  String get checkAnswerButton => 'Check answer';
+
+  @override
+  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+
+  @override
+  String get verifyYourAccount => 'Verify your account';
+
+  @override
+  String get weHaveSentAnEmailTo => 'We have sent an email to';
+
+  @override
+  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+
+  @override
+  String get openEmailApp => 'Open email app';
+
+  @override
+  String get resendEmail => 'Resend email';
+
+  @override
+  String get noMailAppsDescription => 'No mail apps installed';
+
+  @override
+  String get verificationEmailSent => 'Verification email sent';
+
+  @override
+  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+
+  @override
+  String get accountCreated => 'Account created';
+
+  @override
+  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+
+  @override
+  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+
+  @override
+  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+
+  @override
+  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+
+  @override
+  String accountDeletionTimeframe(int x) {
+    return 'Account deletion will usually be done within $x business days.';
+  }
+
+  @override
+  String get accountDeletionTitle => 'Izbriši moj račun';
+
+  @override
+  String accountDeletionSuccess(String email) {
+    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+  }
 }

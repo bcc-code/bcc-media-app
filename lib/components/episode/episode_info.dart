@@ -1,15 +1,27 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class EpisodeInfo extends StatelessWidget {
+import '../../flavors.dart';
+import '../../graphql/queries/my_list.graphql.dart';
+import '../../helpers/event_bus.dart';
+import '../../models/events/my_list_changed.dart';
+import '../../router/router.gr.dart';
+import '../../theme/design_system/design_system.dart';
+import '../text_collapsible.dart';
+
+class EpisodeInfo extends HookConsumerWidget {
   const EpisodeInfo(this.episode, {super.key, required this.onShareVideoTapped, this.extraChildren});
 
   final Query$FetchEpisode$episode episode;
@@ -17,14 +29,42 @@ class EpisodeInfo extends StatelessWidget {
   final List<Widget>? extraChildren;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     const showEpisodeNumber = false;
     final episodeNumberFormatted = '${S.of(context).seasonLetter}${episode.season?.number}:${S.of(context).episodeLetter}${episode.number}';
+    final design = DesignSystem.of(context);
 
+    final inMyList = useState(episode.inMyList);
+
+    useEffect(() {
+      inMyList.value = episode.inMyList;
+      return null;
+      // ignore: exhaustive_keys
+    }, [episode.id, episode.inMyList]);
+
+    void toggleInMyList() async {
+      final previousValue = inMyList.value ?? false;
+      Future? myListUpdateFuture;
+      if (previousValue) {
+        myListUpdateFuture = ref.read(gqlClientProvider).mutate$removeEntryFromMyList(Options$Mutation$removeEntryFromMyList(
+              variables: Variables$Mutation$removeEntryFromMyList(entryId: episode.uuid),
+            ));
+      } else {
+        myListUpdateFuture = ref.read(gqlClientProvider).mutate$addEpisodeToMyList(Options$Mutation$addEpisodeToMyList(
+              variables: Variables$Mutation$addEpisodeToMyList(episodeId: episode.id),
+            ));
+      }
+      inMyList.value = !previousValue;
+      await myListUpdateFuture;
+      globalEventBus.fire(MyListChangedEvent());
+    }
+
+    final inMyListValue = inMyList.value;
     return Container(
-      color: BccmColors.background2,
+      color: design.colors.background2,
       child: AnimatedSize(
         duration: const Duration(milliseconds: 800),
+        alignment: Alignment.topCenter,
         curve: Curves.easeOutExpo,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,15 +77,34 @@ class EpisodeInfo extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: BccmTextStyles.title1)),
-                      GestureDetector(
-                        onTap: onShareVideoTapped,
-                        behavior: HitTestBehavior.opaque,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 4, left: 16),
-                          child: SvgPicture.string(SvgIcons.share, color: BccmColors.label3),
+                      Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: design.textStyles.title1)),
+                      if (ref.read(authStateProvider.select((value) => value.auth0AccessToken != null)) && inMyListValue != null)
+                        GestureDetector(
+                          onTap: toggleInMyList,
+                          behavior: HitTestBehavior.opaque,
+                          child: FocusableActionDetector(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
+                              child: AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 150),
+                                child: SvgPicture.string(key: ValueKey(inMyListValue), inMyListValue ? SvgIcons.heartFilled : SvgIcons.heart),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                      if (ref.read(featureFlagsProvider).shareVideoButton)
+                        GestureDetector(
+                          onTap: onShareVideoTapped,
+                          behavior: HitTestBehavior.opaque,
+                          child: FocusableActionDetector(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
+                              child: SvgPicture.string(SvgIcons.share),
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                   const SizedBox(height: 4),
@@ -56,21 +115,32 @@ class EpisodeInfo extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 3, right: 4),
                         child: FeatureBadge(
                           label: getFormattedAgeRating(episode.ageRating),
-                          color: BccmColors.background2,
+                          color: design.colors.background2,
                         ),
                       ),
                       if (episode.season?.$show.title != null)
-                        Center(
-                          child: Text(episode.season!.$show.title, style: BccmTextStyles.caption1.copyWith(color: BccmColors.tint1)),
+                        GestureDetector(
+                          onTap: () => context.pushRoute(EpisodeScreenRoute(episodeId: episode.id)),
+                          child: FocusableActionDetector(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            child: Center(
+                              child: Text(episode.season!.$show.title, style: design.textStyles.caption1.copyWith(color: design.colors.tint1)),
+                            ),
+                          ),
                         ),
                       if (showEpisodeNumber)
                         Padding(
                             padding: const EdgeInsets.only(left: 4),
-                            child: Text(episodeNumberFormatted, style: BccmTextStyles.caption1.copyWith(color: BccmColors.label4)))
+                            child: Text(episodeNumberFormatted, style: design.textStyles.caption1.copyWith(color: design.colors.label4)))
                     ],
                   ),
                   const SizedBox(height: 14.5),
-                  if (episode.description.isNotEmpty) Text(episode.description, style: BccmTextStyles.body2.copyWith(color: BccmColors.label3)),
+                  if (episode.description.isNotEmpty)
+                    TextCollapsible(
+                      text: episode.description,
+                      style: design.textStyles.body2.copyWith(color: design.colors.label3),
+                      maxLines: 2,
+                    ),
                   ...?extraChildren
                 ],
               ),

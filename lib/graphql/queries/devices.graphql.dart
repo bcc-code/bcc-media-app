@@ -361,7 +361,7 @@ Mutation$SetDeviceToken _parserFn$Mutation$SetDeviceToken(
         Map<String, dynamic> data) =>
     Mutation$SetDeviceToken.fromJson(data);
 typedef OnMutationCompleted$Mutation$SetDeviceToken = FutureOr<void> Function(
-  dynamic,
+  Map<String, dynamic>?,
   Mutation$SetDeviceToken?,
 );
 
@@ -374,6 +374,7 @@ class Options$Mutation$SetDeviceToken
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$SetDeviceToken? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$SetDeviceToken? onCompleted,
     graphql.OnMutationUpdate<Mutation$SetDeviceToken>? update,
@@ -385,7 +386,7 @@ class Options$Mutation$SetDeviceToken
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -421,6 +422,7 @@ class WatchOptions$Mutation$SetDeviceToken
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$SetDeviceToken? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -432,7 +434,7 @@ class WatchOptions$Mutation$SetDeviceToken
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeMutationSetDeviceToken,
           pollInterval: pollInterval,
@@ -468,9 +470,10 @@ Mutation$SetDeviceToken$HookResult useMutation$SetDeviceToken(
   final result = graphql_flutter
       .useMutation(options ?? WidgetOptions$Mutation$SetDeviceToken());
   return Mutation$SetDeviceToken$HookResult(
-    (variables, {optimisticResult}) => result.runMutation(
+    (variables, {optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
       variables.toJson(),
-      optimisticResult: optimisticResult,
+      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
     ),
     result.result,
   );
@@ -489,6 +492,7 @@ class WidgetOptions$Mutation$SetDeviceToken
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$SetDeviceToken? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$SetDeviceToken? onCompleted,
     graphql.OnMutationUpdate<Mutation$SetDeviceToken>? update,
@@ -499,7 +503,7 @@ class WidgetOptions$Mutation$SetDeviceToken
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -530,6 +534,7 @@ typedef RunMutation$Mutation$SetDeviceToken
     = graphql.MultiSourceResult<Mutation$SetDeviceToken> Function(
   Variables$Mutation$SetDeviceToken, {
   Object? optimisticResult,
+  Mutation$SetDeviceToken? typedOptimisticResult,
 });
 typedef Builder$Mutation$SetDeviceToken = widgets.Widget Function(
   RunMutation$Mutation$SetDeviceToken,
@@ -553,10 +558,12 @@ class Mutation$SetDeviceToken$Widget
             (
               variables, {
               optimisticResult,
+              typedOptimisticResult,
             }) =>
                 run(
               variables.toJson(),
-              optimisticResult: optimisticResult,
+              optimisticResult:
+                  optimisticResult ?? typedOptimisticResult?.toJson(),
             ),
             result,
           ),

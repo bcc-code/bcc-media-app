@@ -23,7 +23,7 @@ class SNb extends S {
   String get calendarWeek => 'uke';
 
   @override
-  String get close => 'Close';
+  String get close => 'Lukk';
 
   @override
   String get loading => 'Laster';
@@ -33,6 +33,12 @@ class SNb extends S {
 
   @override
   String get loginPageDisplay2 => 'Se serier, programmer og filmer basert på kristne verdier';
+
+  @override
+  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
 
   @override
   String get loginPageDisplay3 => 'Produsert av BCC Media';
@@ -54,6 +60,24 @@ class SNb extends S {
 
   @override
   String get signInButton => 'Logg inn';
+
+  @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+
+  @override
+  String get setPassword => 'Set password';
 
   @override
   String get tryAgainButton => 'Prøv igjen';
@@ -114,6 +138,9 @@ class SNb extends S {
 
   @override
   String get contactSupport => 'Kontakt support';
+
+  @override
+  String get userVoice => 'Suggest a feature';
 
   @override
   String get cancel => 'Avbryt';
@@ -348,7 +375,7 @@ class SNb extends S {
   String get sendFailDescription => 'Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Vi setter pris på din tilbakemelding.';
 
   @override
   String get today => 'I dag';
@@ -382,7 +409,19 @@ class SNb extends S {
   String get share => 'Del';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'Direkte nå';
+
+  @override
+  String get comingSoon => 'Kommer snart';
+
+  @override
+  String get newEpisode => 'Ny';
 
   @override
   String get tomorrow => 'I morgen';
@@ -477,6 +516,12 @@ class SNb extends S {
   String get exploreContent => 'Utforsk innhold';
 
   @override
+  String get explorePublicContent => 'Explore public content';
+
+  @override
+  String get startExploring => 'Start exploring';
+
+  @override
   String get taskCompleted => 'oppgave fullført';
 
   @override
@@ -550,7 +595,18 @@ class SNb extends S {
   String get continueButton => 'Fortsett';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Prestasjoner';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Uups!';
@@ -571,5 +627,96 @@ class SNb extends S {
   String get details => 'Detaljer';
 
   @override
+  String get myList => 'My list';
+
+  @override
+  String get didYouKnowTitle => 'Did you know?';
+
+  @override
+  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+
+  @override
   String get selectSeason => 'Select season';
+
+  @override
+  String get deleteMyAccount => 'Delete my account';
+
+  @override
+  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+
+  @override
+  String get areYouSure => 'Er du sikker?';
+
+  @override
+  String get youCanContactUsAt => 'Du kan kontakte oss på';
+
+  @override
+  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+
+  @override
+  String get askYourParents => 'Ask your parents';
+
+  @override
+  String get whatIsMath => 'What is';
+
+  @override
+  String get answerLabel => 'Answer';
+
+  @override
+  String get checkAnswerButton => 'Check answer';
+
+  @override
+  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+
+  @override
+  String get verifyYourAccount => 'Verify your account';
+
+  @override
+  String get weHaveSentAnEmailTo => 'We have sent an email to';
+
+  @override
+  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+
+  @override
+  String get openEmailApp => 'Open email app';
+
+  @override
+  String get resendEmail => 'Resend email';
+
+  @override
+  String get noMailAppsDescription => 'No mail apps installed';
+
+  @override
+  String get verificationEmailSent => 'Verification email sent';
+
+  @override
+  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+
+  @override
+  String get accountCreated => 'Account created';
+
+  @override
+  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+
+  @override
+  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+
+  @override
+  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+
+  @override
+  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+
+  @override
+  String accountDeletionTimeframe(int x) {
+    return 'Account deletion will usually be done within $x business days.';
+  }
+
+  @override
+  String get accountDeletionTitle => 'Delete my account';
+
+  @override
+  String accountDeletionSuccess(String email) {
+    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+  }
 }

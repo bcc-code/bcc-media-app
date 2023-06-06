@@ -4,7 +4,7 @@ import '../../../helpers/date_time.dart';
 import '../../../helpers/ui/ui_utils.dart';
 import '../../../models/episode_thumbnail_data.dart';
 import '../../bordered_image_container.dart';
-import '../../episode_duration.dart';
+import '../../episode/episode_duration.dart';
 import '../../watch_progress_indicator.dart';
 import '../../watched_badge.dart';
 
@@ -77,6 +77,13 @@ class EpisodeThumbnailStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final featuredTag = getFeaturedTag(
+      context: context,
+      publishDate: episode.publishDate,
+      locked: episode.locked,
+      isLive: isLive,
+      watched: watched,
+    );
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -86,7 +93,7 @@ class EpisodeThumbnailStack extends StatelessWidget {
                 child: BorderedImageContainer(imageUrl: episode.image),
               )
             : BorderedImageContainer(imageUrl: episode.image),
-        if (episode.locked)
+        if (episode.locked && !isLive)
           Container(
             width: double.infinity,
             height: double.infinity,
@@ -119,12 +126,7 @@ class EpisodeThumbnailStack extends StatelessWidget {
               ),
             ),
           ),
-        if (getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked, isLive: isLive) != null)
-          Positioned(
-            top: -4,
-            right: -4,
-            child: getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked, isLive: isLive)!,
-          ),
+        if (featuredTag != null) Positioned(top: -4, right: -4, child: featuredTag),
       ],
     );
   }

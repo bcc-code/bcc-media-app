@@ -10,14 +10,12 @@ abstract class BccmPlayerInterface extends PlatformInterface {
   BccmPlayerInterface() : super(token: _token);
 
   static final Object _token = Object();
-
   static BccmPlayerInterface _instance = BccmPlayerNative();
   static BccmPlayerInterface get instance => _instance;
   static Object? playerHtmlElement;
-
   final PlayerPluginStateNotifier stateNotifier = PlayerPluginStateNotifier(keepAlive: true);
-
-  Stream<ChromecastEvent> chromecastEventStream();
+  Stream<ChromecastEvent> get chromecastEventStream;
+  Stream<dynamic> get playerEventStream;
 
   /// Platform-specific implementations should set this with their own
   /// platform-specific class that extends [BccmPlayerInterface] when
@@ -26,6 +24,9 @@ abstract class BccmPlayerInterface extends PlatformInterface {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }
+
+  /// MUST be run first
+  Future<void> setup();
 
   Future<String> newPlayer({String? url}) {
     throw UnimplementedError('newPlayer() has not been implemented.');
@@ -45,6 +46,11 @@ abstract class BccmPlayerInterface extends PlatformInterface {
 
   Future<ChromecastState?> getChromecastState() async {
     throw UnimplementedError('getChromecastState() has not been implemented.');
+  }
+
+  /// If `playerId` is null, this returns the primary player's state.
+  Future<PlayerStateSnapshot?> getPlayerState({String? playerId}) async {
+    throw UnimplementedError('getPlayerState() has not been implemented.');
   }
 
   void openExpandedCastController() {
@@ -72,6 +78,14 @@ abstract class BccmPlayerInterface extends PlatformInterface {
   }
 
   void stop(String playerId, bool reset) {
+    throw UnimplementedError('stop() has not been implemented.');
+  }
+
+  void exitFullscreen(String playerId) {
+    throw UnimplementedError('stop() has not been implemented.');
+  }
+
+  void enterFullscreen(String playerId) {
     throw UnimplementedError('stop() has not been implemented.');
   }
 

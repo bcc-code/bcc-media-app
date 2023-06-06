@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>617519323732-lkdhqa2vj63tmgq8h87g3o2tcdm3nosn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.617519323732-lkdhqa2vj63tmgq8h87g3o2tcdm3nosn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCV5dcov2D9S2b9wjTzkKDQRTWnqMUhcAU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>617519323732</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>media.bcc.kids</string>
+	<key>PROJECT_ID</key>
+	<string>btv-platform-prod-2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>btv-platform-prod-2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:617519323732:ios:66c2b6796bb6e59689ebc1</string>
+</dict>
+</plist>

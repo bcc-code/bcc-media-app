@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/components/general_app_bar.dart';
-import 'package:brunstadtv_app/components/loading_indicator.dart';
+import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
 import 'package:auto_route/auto_route.dart';
@@ -8,23 +8,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../components/web/dialog_on_web.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
 import '../../helpers/version.dart';
-import '../../theme/bccm_colors.dart';
-import '../../theme/bccm_input_decorations.dart';
-import '../../theme/bccm_typography.dart';
+import '../../providers/shared_preferences.dart';
+import '../../theme/design_system/design_system.dart';
+
 import '../../helpers/constants.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/auth_state/auth_state.dart';
 import '../../helpers/extensions.dart';
 
-class ContactSupport extends ConsumerStatefulWidget {
-  const ContactSupport({super.key});
+class ContactSupportScreen extends ConsumerStatefulWidget {
+  const ContactSupportScreen({super.key});
 
   @override
-  ConsumerState<ContactSupport> createState() => _ContactSupportState();
+  ConsumerState<ContactSupportScreen> createState() => _ContactSupportState();
 }
 
 class ListItem {
@@ -34,7 +35,7 @@ class ListItem {
   ListItem({required this.title, this.content});
 }
 
-class _ContactSupportState extends ConsumerState<ContactSupport> {
+class _ContactSupportState extends ConsumerState<ContactSupportScreen> {
   bool isOnInputPage = true;
   List<ListItem>? deviceInfo;
   String title = '';
@@ -65,43 +66,45 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        appBar: GeneralAppBar(
-          leftActions: [
-            BtvButton(
-              labelText: S.of(context).cancel,
-              onPressed: context.router.pop,
-            )
-          ],
-          rightActions: [
-            if (isOnInputPage && content.isNotEmpty)
-              BtvButton.small(
-                labelText: S.of(context).send,
-                onPressed: onSend,
+    return DialogOnWeb(
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
+          appBar: GeneralAppBar(
+            leftActions: [
+              BtvButton(
+                labelText: S.of(context).cancel,
+                onPressed: context.router.pop,
               )
-          ],
-        ),
-        body: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            child: IndexedStack(
-              index: isOnInputPage ? 0 : 1,
-              children: [
-                _InputPage(deviceInfo: deviceInfo, onContentChanged: onContentChanged),
-                FutureBuilder<bool>(
-                  future: sendSupportEmailFuture,
-                  builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                    if (snapshot.hasData) {
-                      return _SuccessPage();
-                    } else if (snapshot.hasError) {
-                      return _FailurePage(onTryAgain: onTryAgain);
-                    }
-                    return sendingIndicator;
-                  },
-                ),
-              ],
+            ],
+            rightActions: [
+              if (isOnInputPage && content.isNotEmpty)
+                DesignSystem.of(context).buttons.small(
+                      labelText: S.of(context).send,
+                      onPressed: onSend,
+                    )
+            ],
+          ),
+          body: SafeArea(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              child: IndexedStack(
+                index: isOnInputPage ? 0 : 1,
+                children: [
+                  _InputPage(deviceInfo: deviceInfo, onContentChanged: onContentChanged),
+                  FutureBuilder<bool>(
+                    future: sendSupportEmailFuture,
+                    builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                      if (snapshot.hasData) {
+                        return _SuccessPage();
+                      } else if (snapshot.hasError) {
+                        return _FailurePage(onTryAgain: onTryAgain);
+                      }
+                      return sendingIndicator;
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -111,16 +114,14 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
 
   Future setDeviceInfo() async {
     String? device, manufacturer, os, screenSize, appVer, userId;
+    List<ListItem>? deviceInfoTmp;
 
-    final sharedPrefs = await SharedPreferences.getInstance();
+    final screenWidth = View.of(context).physicalSize.width.toInt().toString();
+    final screenHeight = View.of(context).physicalSize.height.toInt().toString();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    final screenWidth = WidgetsBinding.instance.window.physicalSize.width.toInt().toString();
-    final screenHeight = WidgetsBinding.instance.window.physicalSize.height.toInt().toString();
     screenSize = '${screenHeight}x$screenWidth';
     appVer = formatAppVersion(packageInfo);
     userId = ref.read(authStateProvider).user?.name;
-
-    List<ListItem>? deviceInfoTmp;
 
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await DeviceInfoPlugin().androidInfo;
@@ -144,7 +145,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
       ),
       ListItem(
         title: 'Environment override',
-        content: sharedPrefs.getString(PrefKeys.envOverride),
+        content: ref.read(sharedPreferencesProvider).getString(PrefKeys.envOverride),
       ),
       ListItem(
         title: 'Manufacturer',
@@ -186,7 +187,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
           ),
           Text(
             S.of(context).sending,
-            style: BccmTextStyles.body1,
+            style: DesignSystem.of(context).textStyles.body1,
           ),
         ],
       ),
@@ -245,13 +246,14 @@ class _InputPageState extends State<_InputPage> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Padding(
         padding: const EdgeInsets.only(bottom: 32),
         child: Text(
           S.of(context).contactSupport,
-          style: BccmTextStyles.headline1,
+          style: design.textStyles.headline1,
         ),
       ),
       Container(
@@ -260,15 +262,15 @@ class _InputPageState extends State<_InputPage> {
           minLines: 9,
           maxLines: 13,
           controller: textController,
-          decoration: BccmInputDecorations.textFormField.copyWith(hintText: S.of(context).concernTextPlaceholder),
-          style: BccmTextStyles.body1.copyWith(color: BccmColors.label1),
+          decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).concernTextPlaceholder),
+          style: design.textStyles.body1.copyWith(color: design.colors.label1),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 20, bottom: 10),
         child: Text(
           S.of(context).debugInfoExplanation,
-          style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
+          style: design.textStyles.body2.copyWith(color: design.colors.label1),
         ),
       ),
       widget.deviceInfo != null ? _DeviceInfoList(data: widget.deviceInfo!) : Text('${S.of(context).loading}...'),
@@ -286,6 +288,7 @@ class _DeviceInfoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       children: [
         for (var item in data)
@@ -301,7 +304,7 @@ class _DeviceInfoList extends StatelessWidget {
                       fit: FlexFit.tight,
                       child: Text(
                         item.title,
-                        style: BccmTextStyles.body2,
+                        style: design.textStyles.body2,
                       ),
                     ),
                     Flexible(
@@ -309,15 +312,15 @@ class _DeviceInfoList extends StatelessWidget {
                       child: Text(
                         item.content ?? 'N/A',
                         textAlign: TextAlign.right,
-                        style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
+                        style: design.textStyles.body2.copyWith(color: design.colors.label1),
                       ),
                     ),
                   ],
                 ),
               ),
-              const Divider(
+              Divider(
                 height: 1,
-                color: BccmColors.separatorOnLight,
+                color: design.colors.separatorOnLight,
               ),
             ],
           ),
@@ -329,6 +332,7 @@ class _DeviceInfoList extends StatelessWidget {
 class _SuccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -339,18 +343,18 @@ class _SuccessPage extends StatelessWidget {
               Text(
                 S.of(context).thankYouSupportTitle,
                 textAlign: TextAlign.center,
-                style: BccmTextStyles.headline1,
+                style: design.textStyles.headline1,
               ),
               const SizedBox(height: 12),
               Text(
                 S.of(context).thankYouSupportDescription,
                 textAlign: TextAlign.center,
-                style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+                style: design.textStyles.body1.copyWith(color: design.colors.label3),
               ),
             ],
           ),
         ),
-        BtvButton.large(
+        design.buttons.large(
           labelText: S.of(context).done,
           onPressed: context.router.pop,
         ),
@@ -366,6 +370,7 @@ class _FailurePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -376,18 +381,18 @@ class _FailurePage extends StatelessWidget {
               Text(
                 S.of(context).sendFail,
                 textAlign: TextAlign.center,
-                style: BccmTextStyles.headline1,
+                style: design.textStyles.headline1,
               ),
               const SizedBox(height: 12),
               Text(
                 S.of(context).sendFailDescription,
                 textAlign: TextAlign.center,
-                style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+                style: design.textStyles.body1.copyWith(color: design.colors.label3),
               ),
             ],
           ),
         ),
-        BtvButton.large(
+        design.buttons.large(
           onPressed: onTryAgain,
           labelText: S.of(context).tryAgainButton,
         ),

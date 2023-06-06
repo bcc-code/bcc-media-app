@@ -6,22 +6,38 @@ import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/live_mini_player.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../helpers/insets.dart';
+import '../providers/todays_calendar_entries.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../helpers/ui/svg_icons.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/audio_only_clicked.dart';
 import '../providers/analytics.dart';
-import 'calendar/calendar.dart';
+import 'calendar.dart';
 
 final liveMetadataProvider = Provider<MediaMetadata>((ref) {
+  final currentEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
   return MediaMetadata(
-      artist: 'BrunstadTV', title: 'Live', extras: {'id': 'livestream'}, artworkUri: 'https://static.bcc.media/images/live-placeholder.jpg');
+    artist: 'BrunstadTV',
+    title: 'Live',
+    extras: {
+      'id': 'livestream',
+      if (currentEpisode != null) ...{
+        'npaw.content.id': currentEpisode.id,
+        'npaw.content.tvShow': currentEpisode.season?.$show.id,
+        'npaw.content.season': currentEpisode.season?.title,
+        'npaw.content.episodeTitle': currentEpisode.title
+      },
+    },
+    artworkUri: 'https://static.bcc.media/images/live-placeholder.jpg',
+  );
 });
 
 class LiveScreen extends ConsumerStatefulWidget {
@@ -63,8 +79,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       settingUp = true;
     });
     await () async {
-      var castingNow = ref.read(isCasting);
-      var player = castingNow ? ref.read(castPlayerProvider) : ref.read(primaryPlayerProvider);
+      var player = ref.read(primaryPlayerProvider);
 
       if (player == null) {
         throw ErrorDescription('player cant be null');
@@ -85,7 +100,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
 
       if (!mounted) return;
 
-      ensurePlayingWithinReasonableTime(castingNow ? castPlayerProvider : primaryPlayerProvider);
+      ensurePlayingWithinReasonableTime();
 
       scheduleRefreshBasedOn(liveUrl.expiryTime);
     }();
@@ -105,7 +120,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     setState(fn);
   }
 
-  Future ensurePlayingWithinReasonableTime(StateNotifierProvider<PlayerStateNotifier, PlayerState?> playerProvider) async {
+  Future ensurePlayingWithinReasonableTime() async {
     setStateIfMounted(() {
       setupCompleter = Completer();
     });
@@ -115,7 +130,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
         await Future.delayed(const Duration(milliseconds: 100));
         if (!mounted) return;
         debugPrint('bccm: setupCompleter watch loop ${DateTime.now()}');
-        if (isCorrectItem(ref.read(playerProvider)?.currentMediaItem)) {
+        if (isCorrectItem(ref.read(primaryPlayerProvider)?.currentMediaItem)) {
           debugPrint('bccm: isCorrectItem ${DateTime.now()}');
           setupCompleter?.complete();
           setStateIfMounted(() {
@@ -143,57 +158,64 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
 
   @override
   Widget build(BuildContext context) {
-    final casting = ref.watch(isCasting);
-    var playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
-    var player = ref.watch(playerProvider);
+    var player = ref.watch(primaryPlayerProvider);
 
     if (player == null) return const SizedBox.shrink();
     return Scaffold(
-      appBar: AppBar(
-        leadingWidth: 92,
-        title: Text(S.of(context).liveHeader),
-        actions: [
-          const Padding(
-            padding: EdgeInsets.only(right: 2.0),
-            child: SizedBox(width: 24, child: BccmCastButton()),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Switch(
-              inactiveTrackColor: BccmColors.tint2,
-              inactiveThumbColor: BccmColors.label1,
-              inactiveThumbImage: const Svg('assets/icons/headphones.svg', size: Size(12, 12)),
-              activeColor: BccmColors.label1,
-              activeTrackColor: BccmColors.tint1,
-              activeThumbImage: const Svg('assets/icons/play_alt.svg', size: Size(9, 9)),
-              value: !audioOnly,
-              onChanged: (value) {
-                setState(() {
-                  audioOnly = !value;
-                });
-                ref.read(analyticsProvider).audioOnlyClicked(AudioOnlyClickedEvent(audioOnly: !value));
-              },
+      appBar: ScreenInsetAppBar(
+        appBar: AppBar(
+          leadingWidth: 92,
+          title: Text(S.of(context).liveHeader),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 2.0),
+              child: SizedBox(
+                width: 24,
+                child: BccmCastButton(color: DesignSystem.of(context).colors.tint1),
+              ),
             ),
-          ),
-        ],
+            if (!kIsWeb)
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Switch(
+                  inactiveTrackColor: DesignSystem.of(context).colors.tint2,
+                  inactiveThumbColor: DesignSystem.of(context).colors.label1,
+                  inactiveThumbImage: const Svg('assets/icons/headphones.svg', size: Size(12, 12)),
+                  activeColor: DesignSystem.of(context).colors.label1,
+                  activeTrackColor: DesignSystem.of(context).colors.tint1,
+                  activeThumbImage: const Svg('assets/icons/play_alt.svg', size: Size(9, 9)),
+                  value: !audioOnly,
+                  onChanged: (value) {
+                    setState(() {
+                      audioOnly = !value;
+                    });
+                    ref.read(analyticsProvider).audioOnlyClicked(AudioOnlyClickedEvent(audioOnly: !value));
+                  },
+                ),
+              ),
+          ],
+        ),
       ),
       body: SizedBox(
         height: double.infinity,
         child: SingleChildScrollView(
           primary: true,
           physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(children: [
-            if (audioOnly)
-              LiveMiniPlayer(onStartRequest: () {
-                setup();
-              })
-            else if (player.currentMediaItem?.metadata?.extras?['id'] != 'livestream')
-              _playPoster(player)
-            else
-              _player(player),
-            _info()
-            //
-          ]),
+          child: Padding(
+            padding: screenInsets(context),
+            child: Column(children: [
+              if (audioOnly)
+                LiveMiniPlayer(onStartRequest: () {
+                  setup();
+                })
+              else if (player.currentMediaItem?.metadata?.extras?['id'] != 'livestream')
+                _playPoster(player)
+              else
+                _player(player),
+              _info()
+              //
+            ]),
+          ),
         ),
       ),
     );
@@ -206,7 +228,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       children: [
         if (episodeInfo != null)
           Container(
-            color: BccmColors.background2,
+            color: DesignSystem.of(context).colors.background2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -214,8 +236,8 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text('Episode title', style: BccmTextStyles.title2),
+                    children: [
+                      Text('Episode title', style: DesignSystem.of(context).textStyles.title2),
                     ],
                   ),
                 )

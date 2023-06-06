@@ -23,7 +23,7 @@ class SRu extends S {
   String get calendarWeek => 'неделя';
 
   @override
-  String get close => 'Close';
+  String get close => 'Закрыть';
 
   @override
   String get loading => 'Загрузка';
@@ -33,6 +33,12 @@ class SRu extends S {
 
   @override
   String get loginPageDisplay2 => 'Смотрите сериалы, шоу и фильмы, основанные на христианских ценностях';
+
+  @override
+  String get kidsOnboardingTitle => 'Мы воплощаем Библейское послание в жизнь!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Мы хотим, чтобы дети узнали Иисуса как своего лучшего друга - на всю оставшуюся жизнь.';
 
   @override
   String get loginPageDisplay3 => 'Произведено BCC Media';
@@ -54,6 +60,24 @@ class SRu extends S {
 
   @override
   String get signInButton => 'Войти';
+
+  @override
+  String get signInOrSignUp => 'Зарегистрироваться / Войти';
+
+  @override
+  String get signUpButton => 'Зарегистрироваться сейчас';
+
+  @override
+  String get signUpTitle => 'Зарегистрироваться';
+
+  @override
+  String get signUpDescription => 'Получите доступ к большему количеству контента и расширенным возможностям, создав учетную запись.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'Я подтверждаю, что мне исполнилось 13 лет, и я принимаю <a>Политику конфиденциальности</a> и <a>Условия использования</a>.';
+
+  @override
+  String get setPassword => 'Задать пароль';
 
   @override
   String get tryAgainButton => 'Попробовать еще раз';
@@ -80,7 +104,7 @@ class SRu extends S {
   String get ok => 'ОК';
 
   @override
-  String get open => 'Open';
+  String get open => 'Открыть';
 
   @override
   String get loginFailedCheckNetwork => 'Ошибка входа. Проверьте подключение к сети и попробуйте снова.';
@@ -116,19 +140,22 @@ class SRu extends S {
   String get contactSupport => 'Связаться с поддержкой';
 
   @override
+  String get userVoice => 'Предложить функцию';
+
+  @override
   String get cancel => 'Отмена';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Вы уверены, что хотите отменить?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Любые несохраненные изменения будут потеряны.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Назад';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Да, отменить';
 
   @override
   String get upNext => 'К следующему';
@@ -170,7 +197,7 @@ class SRu extends S {
   String get search => 'Поиск';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Отправить отзыв';
 
   @override
   String get noResults => 'Результатов не найдено';
@@ -182,7 +209,7 @@ class SRu extends S {
   String get play => 'Играть';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Пауза';
 
   @override
   String get castQueue => 'Показывать очередь';
@@ -348,7 +375,7 @@ class SRu extends S {
   String get sendFailDescription => 'Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Мы ценим Ваш отзыв.';
 
   @override
   String get today => 'Сегодня';
@@ -382,7 +409,19 @@ class SRu extends S {
   String get share => 'Поделиться';
 
   @override
+  String get showMore => 'Показать ещё';
+
+  @override
+  String get showLess => 'Показать меньше';
+
+  @override
   String get liveNow => 'В прямом эфире';
+
+  @override
+  String get comingSoon => 'Скоро выйдут';
+
+  @override
+  String get newEpisode => 'Новика';
 
   @override
   String get tomorrow => 'Завтра';
@@ -465,7 +504,7 @@ class SRu extends S {
   String get liveHeader => 'Прямой эфир';
 
   @override
-  String get programsSection => 'Программы';
+  String get programsSection => 'Передачи';
 
   @override
   String get noPlannedEvents => 'В этот день мероприятий не запланировано';
@@ -475,6 +514,12 @@ class SRu extends S {
 
   @override
   String get exploreContent => 'Исследуйте контент';
+
+  @override
+  String get explorePublicContent => 'Исследовать открытый контент';
+
+  @override
+  String get startExploring => 'Начать исследовать';
 
   @override
   String get taskCompleted => 'задание выполнено';
@@ -550,7 +595,18 @@ class SRu extends S {
   String get continueButton => 'Продолжить';
 
   @override
+  String get registerButton => 'Регистрация';
+
+  @override
   String get achievements => 'Достижения';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Минимум $n символов';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Должен содержать строчные, прописные и цифры.';
 
   @override
   String get oops => 'Ой!';
@@ -571,5 +627,96 @@ class SRu extends S {
   String get details => 'Подробности';
 
   @override
-  String get selectSeason => 'Select season';
+  String get myList => 'Мой список';
+
+  @override
+  String get didYouKnowTitle => 'Знаете ли вы?';
+
+  @override
+  String get didYouKnowContent => 'Вы можете добавить свои любимые передачи в \"Мой список\", нажав на сердечко.';
+
+  @override
+  String get selectSeason => 'Выбрать сезон';
+
+  @override
+  String get deleteMyAccount => 'Удалить мой аккаунт';
+
+  @override
+  String get iAmSureIWantToDelete => 'Я уверен, что хочу удалить свою учетную запись и данные, связанные с приложением BCC Media.';
+
+  @override
+  String get areYouSure => 'Ты уверен(а)?';
+
+  @override
+  String get youCanContactUsAt => 'You can contact us at';
+
+  @override
+  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+
+  @override
+  String get askYourParents => 'Ask your parents';
+
+  @override
+  String get whatIsMath => 'What is';
+
+  @override
+  String get answerLabel => 'Answer';
+
+  @override
+  String get checkAnswerButton => 'Check answer';
+
+  @override
+  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+
+  @override
+  String get verifyYourAccount => 'Verify your account';
+
+  @override
+  String get weHaveSentAnEmailTo => 'We have sent an email to';
+
+  @override
+  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+
+  @override
+  String get openEmailApp => 'Open email app';
+
+  @override
+  String get resendEmail => 'Resend email';
+
+  @override
+  String get noMailAppsDescription => 'No mail apps installed';
+
+  @override
+  String get verificationEmailSent => 'Verification email sent';
+
+  @override
+  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+
+  @override
+  String get accountCreated => 'Account created';
+
+  @override
+  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+
+  @override
+  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+
+  @override
+  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+
+  @override
+  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+
+  @override
+  String accountDeletionTimeframe(int x) {
+    return 'Account deletion will usually be done within $x business days.';
+  }
+
+  @override
+  String get accountDeletionTitle => 'Удалить мой аккаунт';
+
+  @override
+  String accountDeletionSuccess(String email) {
+    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+  }
 }

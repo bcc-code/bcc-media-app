@@ -5,18 +5,8 @@ import 'chromecast_events.dart';
 
 class ChromecastPigeonListener implements ChromecastPigeon {
   ChromecastPigeonListener();
-
   StreamController<ChromecastEvent> streamController = StreamController.broadcast();
-
-  Stream<ChromecastEvent> stream() => streamController.stream;
-
-  Stream<T> on<T>() {
-    if (T == dynamic) {
-      return streamController.stream as Stream<T>;
-    } else {
-      return streamController.stream.where((event) => event is T).cast<T>();
-    }
-  }
+  Stream<ChromecastEvent> get stream => streamController.stream;
 
   @override
   void onSessionEnded() {

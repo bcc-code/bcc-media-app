@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -5,8 +6,8 @@ import '../../graphql/queries/prompts.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
 import '../../helpers/ui/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
-import '../../theme/bccm_colors.dart';
-import '../../theme/bccm_typography.dart';
+import '../../theme/design_system/design_system.dart';
+
 import '../surveys/bottom_sheet_survey.dart';
 
 class PromptSurvey extends StatelessWidget {
@@ -34,10 +35,10 @@ class PromptSurvey extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 62,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: const BoxDecoration(
-        color: BccmColors.background2,
-        border: Border(top: BorderSide(color: BccmColors.separatorOnLight, width: 1)),
+      padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: DesignSystem.of(context).colors.background2,
+        border: Border(top: BorderSide(color: DesignSystem.of(context).colors.separatorOnLight, width: 1)),
       ),
       child: SizedBox(
         child: Row(
@@ -47,18 +48,18 @@ class PromptSurvey extends StatelessWidget {
               margin: const EdgeInsets.only(right: 16),
               child: SvgPicture.string(
                 SvgIcons.feedbackStar,
-                colorFilter: const ColorFilter.mode(BccmColors.tint1, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.tint1, BlendMode.srcIn),
                 width: 24,
                 height: 24,
               ),
             ),
-            Expanded(child: Text(prompt.title, style: BccmTextStyles.title3)),
+            Expanded(child: Text(prompt.title, style: DesignSystem.of(context).textStyles.title3)),
             Container(
               margin: const EdgeInsets.only(right: 8),
-              child: BtvButton.small(
-                labelText: S.of(context).open,
-                onPressed: () => openBottomSheet(context),
-              ),
+              child: DesignSystem.of(context).buttons.small(
+                    labelText: S.of(context).open,
+                    onPressed: () => openBottomSheet(context),
+                  ),
             ),
             GestureDetector(
               onTap: onClose,

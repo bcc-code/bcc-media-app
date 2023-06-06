@@ -5,8 +5,7 @@ import 'package:collection/collection.dart';
 
 import '../components/bottom_sheet_select.dart';
 import '../components/option_list.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
 
 class DropDownSelect extends StatelessWidget {
   final String selectedId;
@@ -51,7 +50,7 @@ class DropDownSelect extends StatelessWidget {
           if (selectedItem != null)
             Text(
               selectedItem.title.toUpperCase(),
-              style: BccmTextStyles.button2.copyWith(color: BccmColors.label1),
+              style: DesignSystem.of(context).textStyles.button2.copyWith(color: DesignSystem.of(context).colors.label1),
             ),
           Padding(
             padding: const EdgeInsets.only(left: 6),

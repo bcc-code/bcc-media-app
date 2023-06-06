@@ -3,7 +3,7 @@ set -e
 set -x
 
 #install maestro
-export MAESTRO_VERSION=1.23.0; curl -Ls "https://get.maestro.mobile.dev" | bash
+export MAESTRO_VERSION=1.28.0; curl -Ls "https://get.maestro.mobile.dev" | bash
 export PATH="$PATH":"$HOME/.maestro/bin"
 
 #run maestro e2e tests

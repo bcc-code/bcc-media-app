@@ -36,10 +36,26 @@ target 'Runner' do
   target 'RunnerUITests' do
     inherit! :complete
   end
+
+  pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '10.7.0'
 end
 
+#post_install do |installer|
+#  installer.pods_project.targets.each do |target|
+#    flutter_additional_ios_build_settings(target)
+#  end
+#end
+
+# TODO: Temporary workaround until https://github.com/flutter/flutter/issues/126549 is resolved.
 post_install do |installer|
-  installer.pods_project.targets.each do |target|
+  installer.generated_projects.each do |project|
+        project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+             end
+        end
+ end
+    installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
   end
 end

@@ -1,15 +1,35 @@
-query FetchEpisode($id: ID!) {
-  episode(id: $id) {
+query FetchEpisode(
+  $id: ID!
+  $context: EpisodeContext
+  $authenticated: Boolean!
+) {
+  episode(id: $id, context: $context) {
     id
+    ...PlayableEpisode
+    uuid
+    status
     title
     number
     description
     extraDescription
+    type
     image
     duration
     progress
     shareRestriction
     ageRating
+    season {
+      id
+      number
+      title
+      show {
+        id
+        title
+      }
+    }
+    context {
+      ...EpisodeContext
+    }
     relatedItems {
       items {
         ...GridSectionItem
@@ -17,32 +37,44 @@ query FetchEpisode($id: ID!) {
     }
     streams {
       ...BasicStream
-      audioLanguages
-      subtitleLanguages
     }
     lessons {
       items {
         id
       }
     }
-    season {
-      id
-      title
-      number
-      episodes(first: 70) {
-        items {
+    inMyList @include(if: $authenticated)
+  }
+}
+
+fragment EpisodeContext on EpisodeContextUnion {
+  ... on ContextCollection {
+    id
+    items {
+      items {
+        item {
           ...SeasonListEpisode
         }
       }
-      show {
-        id
-        title
-        type
-        seasons {
-          items {
-            id
-            title
-          }
+    }
+  }
+  ... on Season {
+    id
+    title
+    number
+    episodes(first: 70) {
+      items {
+        ...SeasonListEpisode
+      }
+    }
+    show {
+      id
+      title
+      type
+      seasons {
+        items {
+          id
+          title
         }
       }
     }
@@ -53,6 +85,8 @@ fragment BasicStream on Stream {
   id
   url
   type
+  audioLanguages
+  subtitleLanguages
 }
 
 fragment SeasonListEpisode on Episode {
@@ -82,6 +116,28 @@ query EpisodeDetails($id: ID!) {
   }
 }
 
+fragment PlayableEpisode on Episode {
+  id
+  streams {
+    ...BasicStream
+  }
+  context {
+    ... on ContextCollection {
+      id
+    }
+  }
+  title
+  image
+  season {
+    id
+    title
+    show {
+      id
+      title
+    }
+  }
+}
+
 fragment EpisodeDetails on Episode {
   id
   publishDate
@@ -100,6 +156,14 @@ query getDefaultEpisodeForShow($showId: ID!) {
   show(id: $showId) {
     defaultEpisode {
       id
+    }
+  }
+}
+
+query getNextEpisodes($episodeId: ID!, $context: EpisodeContext) {
+  episode(id: $episodeId, context: $context) {
+    next {
+      ...PlayableEpisode
     }
   }
 }

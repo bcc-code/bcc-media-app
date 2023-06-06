@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../components/feature_badge.dart';
-import '../../theme/bccm_colors.dart';
+import '../../l10n/app_localizations.dart';
+import '../../theme/design_system/design_system.dart';
 import '../episode_state.dart';
 
 // Parse color from hex string in the formats "aabbcc", "#aabbcc", "ffaabbcc", "#ffaabbcc"
@@ -22,22 +23,27 @@ Color? getColorFromHex(String hexString) {
   return Color(color);
 }
 
-Widget? getFeaturedTag({required String? publishDate, required bool locked, bool isLive = false}) {
-  bool isNewItem = false;
-  if (isLive) {
-    return const FeatureBadge(
-      label: 'Live now',
-      color: BccmColors.tint2,
+Widget? getFeaturedTag({
+  required BuildContext context,
+  required String? publishDate,
+  required bool locked,
+  bool watched = false,
+  bool isLive = false,
+}) {
+  if (isLive && locked) {
+    return FeatureBadge(
+      label: S.of(context).liveNow,
+      color: DesignSystem.of(context).colors.tint2,
     );
   } else if (isComingSoon(publishDate: publishDate, locked: locked)) {
-    return const FeatureBadge(
-      label: 'Coming soon',
-      color: BccmColors.background2,
+    return FeatureBadge(
+      label: S.of(context).comingSoon,
+      color: DesignSystem.of(context).colors.background2,
     );
-  } else if (isNewItem) {
-    return const FeatureBadge(
-      label: 'New',
-      color: BccmColors.tint2,
+  } else if (isNewEpisode(publishDate) && !watched) {
+    return FeatureBadge(
+      label: S.of(context).newEpisode,
+      color: DesignSystem.of(context).colors.tint2,
     );
   }
   return null;

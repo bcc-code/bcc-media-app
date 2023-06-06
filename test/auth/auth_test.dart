@@ -12,6 +12,7 @@ import 'dart:convert';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/models/auth_state.dart';
 import 'package:brunstadtv_app/providers/auth_state/implementations/auth_state_notifier_mobile.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,6 +24,7 @@ import '../utils/tokens.dart';
 @GenerateNiceMocks([
   MockSpec<FlutterAppAuth>(),
   MockSpec<FlutterSecureStorage>(),
+  MockSpec<SettingsService>(),
 ])
 import 'auth_test.mocks.dart';
 import '../utils/basic_init.dart';
@@ -54,7 +56,7 @@ void main() {
 
       final mockAppAuth = MockFlutterAppAuth();
 
-      final auth = AuthStateNotifierMobile(appAuth: MockFlutterAppAuth(), secureStorage: secureStorage);
+      final auth = AuthStateNotifierMobile(appAuth: MockFlutterAppAuth(), secureStorage: secureStorage, settingsService: MockSettingsService());
       auth.state = AuthState(
         auth0AccessToken: 'something',
         expiresAt: DateTime.now().add(const Duration(days: 1)),
@@ -72,7 +74,7 @@ void main() {
       final mockAppAuth = MockFlutterAppAuth();
       when(mockAppAuth.token(any)).thenAnswer((_) async => mockTokenResponse(expiresAt: DateTime.now().add(const Duration(days: 1))));
 
-      final auth = AuthStateNotifierMobile(appAuth: mockAppAuth, secureStorage: secureStorage);
+      final auth = AuthStateNotifierMobile(appAuth: mockAppAuth, secureStorage: secureStorage, settingsService: MockSettingsService());
       auth.state = AuthState(
         auth0AccessToken: 'something',
         expiresAt: DateTime.now(),

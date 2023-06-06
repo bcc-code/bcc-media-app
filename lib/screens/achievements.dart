@@ -1,14 +1,14 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/loading_generic.dart';
-import 'package:brunstadtv_app/components/achievement_list.dart';
+import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';
+import 'package:brunstadtv_app/components/achievements/achievement_list.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/custom_back_button.dart';
-import '../components/error_generic.dart';
-import '../components/page_section.dart';
+import '../components/status_indicators/error_generic.dart';
+import '../components/sections/page_section.dart';
 import '../components/see_more.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';

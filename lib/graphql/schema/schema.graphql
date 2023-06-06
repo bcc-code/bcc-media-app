@@ -24,15 +24,42 @@ type Settings {
   subtitleLanguages: [Language!]!
 }
 
+type Image {
+  style: String!
+  url: String!
+}
+
+enum ImageStyle {
+  poster
+  featured
+  default
+}
+
+enum Status {
+  published
+  unlisted
+}
+
+enum Gender {
+  male
+  female
+  unknown
+}
+
 type User {
   id: ID
   anonymous: Boolean!
   bccMember: Boolean!
   audience: String
   email: String
+  emailVerified: Boolean! @goField(forceResolver: true)
   settings: Settings!
   roles: [String!]!
   analytics: Analytics!
+  gender: Gender!
+  firstName: String!
+  displayName: String!
+  completedRegistration: Boolean! @goField(forceResolver: true)
 }
 
 input LegacyIDLookupOptions {
@@ -59,6 +86,8 @@ type RedirectParam {
 
 type QueryRoot{
   application: Application!
+  languages: [Language!]!
+
   export(
     # Only export for this groups. The groups will be filtered by the groups the users has access to.
     # NOT IMPLEMENTED YET!
@@ -131,5 +160,5 @@ type QueryRoot{
 
   legacyIDLookup(options: LegacyIDLookupOptions): LegacyIDLookup!
 
-  prompts: [Prompt!]!
+  prompts(timestamp: Date): [Prompt!]!
 }

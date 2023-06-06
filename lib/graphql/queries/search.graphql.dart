@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -153,6 +154,69 @@ extension UtilityExtension$Fragment$SearchResultItem
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Fragment$SearchResultItem$$EpisodeSearchItem)
+        episodeSearchItem,
+    required _T Function(Fragment$SearchResultItem$$ShowSearchItem)
+        showSearchItem,
+    required _T Function(Fragment$SearchResultItem$$SeasonSearchItem)
+        seasonSearchItem,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "EpisodeSearchItem":
+        return episodeSearchItem(
+            this as Fragment$SearchResultItem$$EpisodeSearchItem);
+
+      case "ShowSearchItem":
+        return showSearchItem(
+            this as Fragment$SearchResultItem$$ShowSearchItem);
+
+      case "SeasonSearchItem":
+        return seasonSearchItem(
+            this as Fragment$SearchResultItem$$SeasonSearchItem);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$SearchResultItem$$EpisodeSearchItem)?
+        episodeSearchItem,
+    _T Function(Fragment$SearchResultItem$$ShowSearchItem)? showSearchItem,
+    _T Function(Fragment$SearchResultItem$$SeasonSearchItem)? seasonSearchItem,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "EpisodeSearchItem":
+        if (episodeSearchItem != null) {
+          return episodeSearchItem(
+              this as Fragment$SearchResultItem$$EpisodeSearchItem);
+        } else {
+          return orElse();
+        }
+
+      case "ShowSearchItem":
+        if (showSearchItem != null) {
+          return showSearchItem(
+              this as Fragment$SearchResultItem$$ShowSearchItem);
+        } else {
+          return orElse();
+        }
+
+      case "SeasonSearchItem":
+        if (seasonSearchItem != null) {
+          return seasonSearchItem(
+              this as Fragment$SearchResultItem$$SeasonSearchItem);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$SearchResultItem<TRes> {
@@ -1511,6 +1575,10 @@ const documentNodeQuerySearch = DocumentNode(definitions: [
 ]);
 Query$Search _parserFn$Query$Search(Map<String, dynamic> data) =>
     Query$Search.fromJson(data);
+typedef OnQueryComplete$Query$Search = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$Search?,
+);
 
 class Options$Query$Search extends graphql.QueryOptions<Query$Search> {
   Options$Query$Search({
@@ -1520,20 +1588,41 @@ class Options$Query$Search extends graphql.QueryOptions<Query$Search> {
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$Search? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$Search? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$Search(data),
+                  ),
+          onError: onError,
           document: documentNodeQuerySearch,
           parserFn: _parserFn$Query$Search,
         );
+
+  final OnQueryComplete$Query$Search? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$Search
@@ -1545,6 +1634,7 @@ class WatchOptions$Query$Search
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$Search? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -1556,7 +1646,7 @@ class WatchOptions$Query$Search
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQuerySearch,
           pollInterval: pollInterval,

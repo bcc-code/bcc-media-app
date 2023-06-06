@@ -1,8 +1,7 @@
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import 'package:flutter/material.dart';
 
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
 
 class CategoryButton extends StatelessWidget {
   final String label;
@@ -42,8 +41,8 @@ class CategoryButton extends StatelessWidget {
                 padding: padding,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(width: 1, color: BccmColors.separatorOnLight),
-                  color: BccmColors.background2,
+                  border: Border.all(width: 1, color: DesignSystem.of(context).colors.separatorOnLight),
+                  color: DesignSystem.of(context).colors.background2,
                 ),
                 child: LayoutBuilder(builder: (context, constraints) {
                   return Center(
@@ -70,7 +69,7 @@ class CategoryButton extends StatelessWidget {
               child: Text(
                 label,
                 textAlign: TextAlign.center,
-                style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
+                style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label1),
               ),
             )
           ],

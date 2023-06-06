@@ -1,5 +1,5 @@
 import 'package:auth0_flutter_web/auth0_flutter_web.dart';
-import 'package:brunstadtv_app/models/auth/auth0_id_token.dart';
+import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../env/env.dart';
@@ -9,7 +9,7 @@ import '../auth_state.dart';
 // Careful. This line is very important,
 // but because it's conditionally imported (see auth_state_notifier_interface.dart)
 // IDEs don't show any errors when you remove it..
-AuthStateNotifier getPlatformSpecificAuthStateNotifier() => AuthStateNotifierWeb();
+AuthStateNotifier getPlatformSpecificAuthStateNotifier(Ref ref) => AuthStateNotifierWeb();
 
 final _auth0 = createAuth0Client(Auth0ClientOptions(
     domain: Env.auth0Domain, client_id: Env.auth0ClientId, audience: Env.auth0Audience, scope: 'openid profile offline_access church country'
@@ -63,7 +63,7 @@ class AuthStateNotifierWeb extends StateNotifier<AuthState> implements AuthState
   }
 
   @override
-  Future<bool> login() async {
+  Future<bool> login({String? connection}) async {
     final auth0 = await _auth0;
     await auth0.loginWithPopup(
       options: PopupLoginOptions(
@@ -73,5 +73,11 @@ class AuthStateNotifierWeb extends StateNotifier<AuthState> implements AuthState
     );
     await setStateFromResult(auth0);
     return true;
+  }
+
+  @override
+  Future<bool> forceRefresh() {
+    // TODO: implement forceRefresh
+    throw UnimplementedError();
   }
 }

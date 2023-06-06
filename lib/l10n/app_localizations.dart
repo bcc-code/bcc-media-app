@@ -183,6 +183,18 @@ abstract class S {
   /// **'Watch series, shows and films based on Christian values'**
   String get loginPageDisplay2;
 
+  /// Text displayed on onboarding screen for the Bible Kids app.
+  ///
+  /// In en, this message translates to:
+  /// **'We bring the message of the Bible to life!'**
+  String get kidsOnboardingTitle;
+
+  /// Text displayed on onboarding screen for the Bible Kids app.
+  ///
+  /// In en, this message translates to:
+  /// **'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.'**
+  String get kidsOnboardingSecondaryTitle;
+
   /// Text displayed on login screen.
   ///
   /// In en, this message translates to:
@@ -224,6 +236,42 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Sign in'**
   String get signInButton;
+
+  /// Button to go to the onboarding page (short)
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up / Sign in'**
+  String get signInOrSignUp;
+
+  /// Button to start the sign up process
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up now'**
+  String get signUpButton;
+
+  /// Title on the sign up page
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get signUpTitle;
+
+  /// A description on the sign up page explaining why you would want to sign up
+  ///
+  /// In en, this message translates to:
+  /// **'Get access to more content and better features by creating an account.'**
+  String get signUpDescription;
+
+  /// REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside.
+  ///
+  /// In en, this message translates to:
+  /// **'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.'**
+  String get signUpAgreePrivacyPolicy;
+
+  /// Title for the 'Set password' page of the signup process.
+  ///
+  /// In en, this message translates to:
+  /// **'Set password'**
+  String get setPassword;
 
   /// Button on error alert that lets user to retry failed action
   ///
@@ -344,6 +392,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Contact support'**
   String get contactSupport;
+
+  /// Settings item on profile page to navigate to uservoice
+  ///
+  /// In en, this message translates to:
+  /// **'Suggest a feature'**
+  String get userVoice;
 
   /// General cancel action button
   ///
@@ -861,11 +915,35 @@ abstract class S {
   /// **'Share'**
   String get share;
 
+  /// Text used on link to expand collapsed text.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more'**
+  String get showMore;
+
+  /// Text used on link to collapse expanded text.
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get showLess;
+
   /// Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now.
   ///
   /// In en, this message translates to:
   /// **'Live now'**
   String get liveNow;
+
+  /// Generic, short. Used in buttons, badges, etc to indicate that an item is available soon.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming soon'**
+  String get comingSoon;
+
+  /// Generic, short. Used in buttons, badges, etc to indicate that an item was recently published.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get newEpisode;
 
   /// Day of transmission in tv guide.
   ///
@@ -1041,11 +1119,23 @@ abstract class S {
   /// **'Watch now'**
   String get watchNow;
 
-  /// A button on the login page
+  /// A button
   ///
   /// In en, this message translates to:
   /// **'Explore content'**
   String get exploreContent;
+
+  /// A button on the welcome page
+  ///
+  /// In en, this message translates to:
+  /// **'Explore public content'**
+  String get explorePublicContent;
+
+  /// A button on the welcome page
+  ///
+  /// In en, this message translates to:
+  /// **'Start exploring'**
+  String get startExploring;
 
   /// SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'.
   ///
@@ -1173,11 +1263,29 @@ abstract class S {
   /// **'Continue'**
   String get continueButton;
 
+  /// Generic button text.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get registerButton;
+
   /// Generic. Used as page title, etc.
   ///
   /// In en, this message translates to:
   /// **'Achievements'**
   String get achievements;
+
+  /// REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum {n} characters'**
+  String passwordConditionLength(int n);
+
+  /// Password condition, shown when signing up.
+  ///
+  /// In en, this message translates to:
+  /// **'Must contain lower case, uppercase and numbers.'**
+  String get passwordConditionComplexity;
 
   /// An informal title on some error screens.
   ///
@@ -1215,11 +1323,185 @@ abstract class S {
   /// **'Details'**
   String get details;
 
+  /// My list tab name
+  ///
+  /// In en, this message translates to:
+  /// **'My list'**
+  String get myList;
+
+  /// Title for info displayed on 'My list' page.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you know?'**
+  String get didYouKnowTitle;
+
+  /// Content for info displayed on 'My list' page.
+  ///
+  /// In en, this message translates to:
+  /// **'You can add your favorite shows to \"My List\" by tapping the heart.'**
+  String get didYouKnowContent;
+
   /// A title prompting to select a season from the list.
   ///
   /// In en, this message translates to:
   /// **'Select season'**
   String get selectSeason;
+
+  /// Button to request to delete your account
+  ///
+  /// In en, this message translates to:
+  /// **'Delete my account'**
+  String get deleteMyAccount;
+
+  /// Text next to a switch/toggle button, confirming that you want to delete your account.
+  ///
+  /// In en, this message translates to:
+  /// **'I am sure I want to delete my account and my data related to the BCC Media app.'**
+  String get iAmSureIWantToDelete;
+
+  /// Generic text. Used at least as a title on the account deletion page.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure?'**
+  String get areYouSure;
+
+  /// Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media.
+  ///
+  /// In en, this message translates to:
+  /// **'You can contact us at'**
+  String get youCanContactUsAt;
+
+  /// Shown on about page
+  ///
+  /// In en, this message translates to:
+  /// **'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.'**
+  String get biblekidsAbout;
+
+  /// Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask your parents'**
+  String get askYourParents;
+
+  /// Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'
+  ///
+  /// In en, this message translates to:
+  /// **'What is'**
+  String get whatIsMath;
+
+  /// Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer'**
+  String get answerLabel;
+
+  /// Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct.
+  ///
+  /// In en, this message translates to:
+  /// **'Check answer'**
+  String get checkAnswerButton;
+
+  /// Shown when sharing a video, to make it clear which video is public and which isn't.
+  ///
+  /// In en, this message translates to:
+  /// **'This video is only accessible to users that are logged in to the app.'**
+  String get videoOnlyAccessibleToLoggedIn;
+
+  /// Title of the page where you can verify your email/account.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your account'**
+  String get verifyYourAccount;
+
+  /// Shown on the verify account page, followed by the email address that the verification email was sent to.
+  ///
+  /// In en, this message translates to:
+  /// **'We have sent an email to'**
+  String get weHaveSentAnEmailTo;
+
+  /// Shown on the verify account page.
+  ///
+  /// In en, this message translates to:
+  /// **'Click the link in the email to verify your account.'**
+  String get clickTheLinkToVerify;
+
+  /// Shown on the verify account page. Button to open your email app.
+  ///
+  /// In en, this message translates to:
+  /// **'Open email app'**
+  String get openEmailApp;
+
+  /// Shown on the verify account page. Button to resend the verification email.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend email'**
+  String get resendEmail;
+
+  /// Shown when you click a 'open email app' button. Description when no email apps are installed on the device.
+  ///
+  /// In en, this message translates to:
+  /// **'No mail apps installed'**
+  String get noMailAppsDescription;
+
+  /// Shown when the user has requested a new verification email.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification email sent'**
+  String get verificationEmailSent;
+
+  /// Shown when the user has requested a new verification email.
+  ///
+  /// In en, this message translates to:
+  /// **'If you still did not receive an email, please contact support at'**
+  String get ifYouDidntReceiveVerificationEmail;
+
+  /// Shown when the user has successfully created an account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created'**
+  String get accountCreated;
+
+  /// Shown when the user has successfully completed account setup.
+  ///
+  /// In en, this message translates to:
+  /// **'You can now use your account and explore a variety of edifying content.'**
+  String get youCanNowUseYourAccount;
+
+  /// Shown when the user has successfully completed account setup (a variant text when you need to log in first).
+  ///
+  /// In en, this message translates to:
+  /// **'You can now log in to your account and explore a variety of edifying content.'**
+  String get youCanNowLogInToYourAccount;
+
+  /// Shown on the account deletion page.
+  ///
+  /// In en, this message translates to:
+  /// **'You are about to request to delete your account with BCC Media and all your data related to this app.'**
+  String get accountDeletionExplanation;
+
+  /// Shown on the account deletion page.
+  ///
+  /// In en, this message translates to:
+  /// **'This is an action that cannot be undone.'**
+  String get accountDeletionWarning;
+
+  /// Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.
+  ///
+  /// In en, this message translates to:
+  /// **'Account deletion will usually be done within {x} business days.'**
+  String accountDeletionTimeframe(int x);
+
+  /// Title of the account deletion page.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete my account'**
+  String get accountDeletionTitle;
+
+  /// KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account deletion successfully requested. You will receive an email at {email}. To confirm your identity, we need you reply to that email to proceed with the deletion.'**
+  String accountDeletionSuccess(String email);
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

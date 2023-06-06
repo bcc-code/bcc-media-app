@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import '../../components/option_list.dart';
-import '../../theme/bccm_colors.dart';
+import '../../components/web/dialog_on_web.dart';
+import '../../theme/design_system/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
-class VideoQuality extends StatefulWidget {
-  const VideoQuality({super.key});
+class VideoQualityScreen extends StatefulWidget {
+  const VideoQualityScreen({super.key});
 
   @override
-  State<VideoQuality> createState() => _VideoQualityState();
+  State<VideoQualityScreen> createState() => _VideoQualityScreenState();
 }
 
-class _VideoQualityState extends State<VideoQuality> {
+class _VideoQualityScreenState extends State<VideoQualityScreen> {
   var qualityList = [
     Option(
       id: 'Automatisk',
@@ -45,28 +46,30 @@ class _VideoQualityState extends State<VideoQuality> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: BccmColors.background1,
-        title: Text(S.of(context).videoQuality),
-        centerTitle: true,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(6),
-          child: Divider(
-            color: BccmColors.separatorOnLight.withOpacity(0.3),
-            height: 1,
+    return DialogOnWeb(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: DesignSystem.of(context).colors.background1,
+          title: Text(S.of(context).videoQuality),
+          centerTitle: true,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(6),
+            child: Divider(
+              color: DesignSystem.of(context).colors.separatorOnLight.withOpacity(0.3),
+              height: 1,
+            ),
           ),
         ),
-      ),
-      body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: OptionList(
-            optionData: qualityList,
-            currentSelection: selected,
-            onSelectionChange: _onSelectionChanged,
+        body: SafeArea(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: OptionList(
+              optionData: qualityList,
+              currentSelection: selected,
+              onSelectionChange: _onSelectionChanged,
+            ),
           ),
         ),
       ),

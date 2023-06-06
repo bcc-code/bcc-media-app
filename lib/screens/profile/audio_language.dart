@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/custom_back_button.dart';
 import '../../components/option_list.dart';
+import '../../components/web/dialog_on_web.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/analytics/language_changed.dart';
 import '../../providers/analytics.dart';
 import '../../providers/settings.dart';
 
-class AppAudioLanguage extends ConsumerStatefulWidget {
-  const AppAudioLanguage({super.key});
+class AudioLanguageScreen extends ConsumerStatefulWidget {
+  const AudioLanguageScreen({super.key});
 
   @override
-  ConsumerState<AppAudioLanguage> createState() => _AppAudioLanguageState();
+  ConsumerState<AudioLanguageScreen> createState() => _AppAudioLanguageState();
 }
 
-class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
+class _AppAudioLanguageState extends ConsumerState<AudioLanguageScreen> {
   late String? selected;
 
   void _onSelectionChanged(String? id) {
@@ -39,22 +40,24 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 44,
-        leadingWidth: 92,
-        leading: const CustomBackButton(),
-        title: Text(S.of(context).audioLanguage),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: OptionList(
-            optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
-            currentSelection: selected,
-            backgroundColor: Colors.transparent,
-            onSelectionChange: _onSelectionChanged,
+    return DialogOnWeb(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          toolbarHeight: 44,
+          leadingWidth: 92,
+          leading: const CustomBackButton(),
+          title: Text(S.of(context).audioLanguage),
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: OptionList(
+              optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
+              currentSelection: selected,
+              backgroundColor: Colors.transparent,
+              onSelectionChange: _onSelectionChanged,
+            ),
           ),
         ),
       ),

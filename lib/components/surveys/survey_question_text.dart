@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../graphql/queries/prompts.graphql.dart';
-import '../../theme/bccm_colors.dart';
-import '../../theme/bccm_input_decorations.dart';
-import '../../theme/bccm_typography.dart';
+
+import '../../theme/design_system/design_system.dart';
 
 class SurveyQuestionText extends StatefulWidget {
   final Fragment$SurveyQuestion$$SurveyTextQuestion question;
@@ -34,6 +33,7 @@ class _SurveyQuestionTextState extends State<SurveyQuestionText> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 24),
       child: Column(
@@ -41,14 +41,14 @@ class _SurveyQuestionTextState extends State<SurveyQuestionText> {
         children: [
           Container(
             margin: const EdgeInsets.only(bottom: 4),
-            child: Text(widget.question.title, style: BccmTextStyles.title2),
+            child: Text(widget.question.title, style: design.textStyles.title2),
           ),
           if (widget.question.description != null)
             Container(
               margin: const EdgeInsets.only(bottom: 8),
               child: Text(
                 widget.question.description!,
-                style: BccmTextStyles.body2.copyWith(color: BccmColors.label3),
+                style: design.textStyles.body2.copyWith(color: design.colors.label3),
               ),
             ),
           TextField(
@@ -56,8 +56,8 @@ class _SurveyQuestionTextState extends State<SurveyQuestionText> {
             maxLines: 10,
             controller: textController,
             autofocus: widget.autoFocus,
-            style: BccmTextStyles.body1.copyWith(color: BccmColors.label1),
-            decoration: BccmInputDecorations.textFormField,
+            style: design.textStyles.body1.copyWith(color: design.colors.label1),
+            decoration: design.inputDecorations.textFormField,
           ),
         ],
       ),

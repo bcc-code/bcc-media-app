@@ -23,7 +23,7 @@ class SPt extends S {
   String get calendarWeek => 'Semana ';
 
   @override
-  String get close => 'Close';
+  String get close => 'Fechar';
 
   @override
   String get loading => 'Carregando';
@@ -33,6 +33,12 @@ class SPt extends S {
 
   @override
   String get loginPageDisplay2 => 'Assistir séries, programas e filmes baseados nos valores cristãos';
+
+  @override
+  String get kidsOnboardingTitle => 'Nós trazemos a mensagem da Bíblia para a vida!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Nossa visão é que as crianças experimentem Jesus como seu melhor amigo - pelo resto de suas vidas.';
 
   @override
   String get loginPageDisplay3 => 'Produzido por BCC Mídia ';
@@ -54,6 +60,24 @@ class SPt extends S {
 
   @override
   String get signInButton => 'Entrar';
+
+  @override
+  String get signInOrSignUp => 'Inscreva-se / Entrar';
+
+  @override
+  String get signUpButton => 'Inscreva-se agora';
+
+  @override
+  String get signUpTitle => 'Inscrever-se';
+
+  @override
+  String get signUpDescription => 'Obtenha acesso a mais conteúdo e melhores recursos criando uma conta.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'Certifico que tenho 13 anos ou mais e concordo com a <a>Política de Privacidade</a> e os <a>Termos de uso</a>.';
+
+  @override
+  String get setPassword => 'Configurar senha';
 
   @override
   String get tryAgainButton => 'Tente novamente';
@@ -80,7 +104,7 @@ class SPt extends S {
   String get ok => 'Ok';
 
   @override
-  String get open => 'Open';
+  String get open => 'Abrir';
 
   @override
   String get loginFailedCheckNetwork => 'Falha na autenticação. Verifique sua conexão de rede e tente novamente.';
@@ -116,19 +140,22 @@ class SPt extends S {
   String get contactSupport => 'Entre em contato com o suporte';
 
   @override
+  String get userVoice => 'Sugerir um recurso';
+
+  @override
   String get cancel => 'Cancelar';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Tem certeza que deseja cancelar?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Quaisquer alterações não salvas serão perdidas.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Voltar';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Sim, Cancelar';
 
   @override
   String get upNext => 'A seguir';
@@ -170,7 +197,7 @@ class SPt extends S {
   String get search => 'Busca';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Enviar comentário';
 
   @override
   String get noResults => 'Nenhum resultado encontrado';
@@ -179,10 +206,10 @@ class SPt extends S {
   String get doYouWantCast => 'Deseja transmitir este vídeo?';
 
   @override
-  String get play => 'Play';
+  String get play => 'Jogar';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Pausa';
 
   @override
   String get castQueue => 'Fila de transmissão';
@@ -348,7 +375,7 @@ class SPt extends S {
   String get sendFailDescription => 'Algo deu errado. Verifique sua conexão com a internet e tente novamente.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Agradecemos seus comentários.';
 
   @override
   String get today => 'Hoje';
@@ -382,7 +409,19 @@ class SPt extends S {
   String get share => 'Compartilhar';
 
   @override
+  String get showMore => 'Mostrar mais';
+
+  @override
+  String get showLess => 'Mostrar menos';
+
+  @override
   String get liveNow => 'Ao vivo agora';
+
+  @override
+  String get comingSoon => 'Em breve';
+
+  @override
+  String get newEpisode => 'Novo';
 
   @override
   String get tomorrow => 'Amanhã';
@@ -477,6 +516,12 @@ class SPt extends S {
   String get exploreContent => 'Explorar conteúdo';
 
   @override
+  String get explorePublicContent => 'Explorar conteúdo público';
+
+  @override
+  String get startExploring => 'Comece a explorar';
+
+  @override
   String get taskCompleted => 'tarefa completa';
 
   @override
@@ -550,7 +595,18 @@ class SPt extends S {
   String get continueButton => 'Continuar';
 
   @override
+  String get registerButton => 'Registar';
+
+  @override
   String get achievements => 'Conquistas';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Mínimo de $n caracteres';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Deve conter minúsculas, maiúsculas e números.';
 
   @override
   String get oops => 'Oops! ';
@@ -571,5 +627,96 @@ class SPt extends S {
   String get details => 'Detalhes ';
 
   @override
-  String get selectSeason => 'Select season';
+  String get myList => 'Minha lista';
+
+  @override
+  String get didYouKnowTitle => 'Você sabia?';
+
+  @override
+  String get didYouKnowContent => 'Você pode adicionar seus programas favoritos à \"Minha lista\" tocando no coração';
+
+  @override
+  String get selectSeason => 'Selecione a temporada';
+
+  @override
+  String get deleteMyAccount => 'Excluir minha conta';
+
+  @override
+  String get iAmSureIWantToDelete => 'Tenho certeza de que quero excluir minha conta e meus dados relacionados ao aplicativo BCC Media.';
+
+  @override
+  String get areYouSure => 'Tem certeza?';
+
+  @override
+  String get youCanContactUsAt => 'Você pode entrar em contato conosco em';
+
+  @override
+  String get biblekidsAbout => 'Bible Kids é uma iniciativa de BCC Media, uma fundação de mídia dentro da Federação BCC que produz e distribui conteúdo com valores positivos e cristãos.';
+
+  @override
+  String get askYourParents => 'Pergunte aos seus pais';
+
+  @override
+  String get whatIsMath => 'O que é';
+
+  @override
+  String get answerLabel => 'Responder';
+
+  @override
+  String get checkAnswerButton => 'Checar resposta';
+
+  @override
+  String get videoOnlyAccessibleToLoggedIn => 'Este vídeo é acessível apenas para usuários que estão logados no aplicativo.';
+
+  @override
+  String get verifyYourAccount => 'Verifique sua conta';
+
+  @override
+  String get weHaveSentAnEmailTo => 'Enviamos um e-mail para';
+
+  @override
+  String get clickTheLinkToVerify => 'Clique no link no e-mail para verificar sua conta.';
+
+  @override
+  String get openEmailApp => 'Abra o aplicativo do e-mail';
+
+  @override
+  String get resendEmail => 'Reenviar e-mail';
+
+  @override
+  String get noMailAppsDescription => 'Nenhum aplicativo de e-mail instalado';
+
+  @override
+  String get verificationEmailSent => 'E-mail de verificação enviado';
+
+  @override
+  String get ifYouDidntReceiveVerificationEmail => 'Se você ainda não recebeu um e-mail, entre em contato com o suporte em';
+
+  @override
+  String get accountCreated => 'Conta criada';
+
+  @override
+  String get youCanNowUseYourAccount => 'Agora você pode usar sua conta e explorar uma variedade de conteúdos edificantes.';
+
+  @override
+  String get youCanNowLogInToYourAccount => 'Agora você pode fazer login em sua conta e explorar uma variedade de conteúdos edificantes.';
+
+  @override
+  String get accountDeletionExplanation => 'Você está prestes a solicitar a exclusão de sua conta da BCC Media e de todos os seus dados relacionados a este aplicativo.';
+
+  @override
+  String get accountDeletionWarning => 'Esta é uma ação que não pode ser desfeita.';
+
+  @override
+  String accountDeletionTimeframe(int x) {
+    return 'A exclusão da conta geralmente será feita em $x dias úteis.';
+  }
+
+  @override
+  String get accountDeletionTitle => 'Excluir minha conta';
+
+  @override
+  String accountDeletionSuccess(String email) {
+    return 'Exclusão de conta solicitada com sucesso. Você receberá um e-mail em $email. Para confirmar sua identidade, precisamos que você responda a esse e-mail para prosseguir com a exclusão.';
+  }
 }

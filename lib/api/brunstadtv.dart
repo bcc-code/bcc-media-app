@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
+import 'package:brunstadtv_app/graphql/queries/my_list.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
@@ -19,6 +20,7 @@ import '../graphql/queries/application.graphql.dart';
 import '../graphql/queries/progress.graphql.dart';
 // import '../graphql/queries/survey.graphql.dart';
 import '../graphql/queries/prompts.graphql.dart';
+import '../graphql/schema/schema.graphql.dart';
 import '../helpers/date_time.dart';
 
 class ApiErrorCodes {
@@ -33,10 +35,14 @@ class Api implements BccmApi {
 
   Api({this.accessToken, required this.gqlClient});
 
-  Future<Query$FetchEpisode$episode?> fetchEpisode(String id) async {
+  Future<Query$FetchEpisode$episode?> fetchEpisode(String id, {Input$EpisodeContext? context}) async {
     final result = await gqlClient.query$FetchEpisode(
       Options$Query$FetchEpisode(
-        variables: Variables$Query$FetchEpisode(id: id),
+        variables: Variables$Query$FetchEpisode(
+          id: id,
+          context: context,
+          authenticated: accessToken != null,
+        ),
       ),
     );
     if (result.exception != null) {

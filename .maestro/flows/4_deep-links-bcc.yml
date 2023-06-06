@@ -1,14 +1,16 @@
 appId: tv.brunstad.app
 ---
 - runScript: scripts/.env.js
-- runScript: scripts/init.js
+- runFlow: subflows/init.yml
 # Login
 - stopApp: tv.brunstad.app
 - runFlow: subflows/login.yml
 # Stopped 1 - Redirect
 - stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/r/donation"
-- assertVisible: "Donation App"
+- assertVisible:
+    id: "TabBarItemTitle"
+- assertVisible: "Email"
 - launchApp:
     appId: "tv.brunstad.app"
     stopApp: false
@@ -22,10 +24,16 @@ appId: tv.brunstad.app
 - stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/live"
 - assertVisible: Today,.*
+# Stopped 4
+- stopApp: tv.brunstad.app
+- openLink: "https://app.bcc.media/episode/51/769"
+- assertVisible: .*Joseph.*
 # Backgrounded 1 - Redirect
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/r/donation"
-- assertVisible: "Donation App"
+- assertVisible:
+    id: "TabBarItemTitle"
+- assertVisible: "Email"
 - launchApp:
     appId: "tv.brunstad.app"
     stopApp: false
@@ -39,9 +47,15 @@ appId: tv.brunstad.app
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/live"
 - assertVisible: Today,.*
+# Backgrounded 4
+- runFlow: subflows/home.yml
+- openLink: "https://app.bcc.media/episode/51/769"
+- assertVisible: .*Joseph.*
 # Foreground 1 - Redirect
 - openLink: "https://app.bcc.media/r/donation"
-- assertVisible: "Donation App"
+- assertVisible:
+    id: "TabBarItemTitle"
+- assertVisible: "Email"
 - launchApp:
     appId: "tv.brunstad.app"
     stopApp: false
@@ -53,3 +67,6 @@ appId: tv.brunstad.app
 # Foreground 3
 - openLink: "https://app.bcc.media/live"
 - assertVisible: Today,.*
+# Foreground 4
+- openLink: "https://app.bcc.media/episode/51/769"
+- assertVisible: .*Joseph.*

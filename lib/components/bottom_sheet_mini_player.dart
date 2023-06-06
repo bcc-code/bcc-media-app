@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
 import '../providers/fun.dart';
 import 'mini_player.dart';
 
@@ -25,12 +25,8 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    PlayerState? player;
-    if (ref.watch(isCasting)) {
-      player = ref.watch(castPlayerProvider);
-    } else {
-      player = ref.watch(primaryPlayerProvider);
-    }
+    PlayerState? player = ref.watch(primaryPlayerProvider);
+
     if (previousMetadata != player?.currentMediaItem?.metadata) {
       WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
             previousMetadata = player?.currentMediaItem?.metadata;
@@ -56,12 +52,13 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
       behavior: HitTestBehavior.opaque,
       onTap: () {
         var id = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
+        var collectionId = player.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
         if (id == 'livestream') {
           context.router.navigate(const LiveScreenRoute());
         } else if (id != null) {
           ref.read(tempTitleProvider.notifier).state = title;
           try {
-            context.navigateTo(EpisodeScreenRoute(episodeId: id));
+            context.navigateTo(EpisodeScreenRoute(episodeId: id, collectionId: collectionId));
           } catch (_) {
             context.navigateTo(HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: id)]));
           }
@@ -104,7 +101,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     return Container(
         height: kMiniPlayerHeight,
         width: MediaQuery.of(context).size.width,
-        color: BccmColors.background2,
+        color: DesignSystem.of(context).colors.background2,
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,

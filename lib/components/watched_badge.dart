@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
 
 class WatchedBadge extends StatelessWidget {
   const WatchedBadge({super.key});
@@ -10,7 +10,7 @@ class WatchedBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       decoration: BoxDecoration(
-        color: BccmColors.background1.withOpacity(0.7),
+        color: DesignSystem.of(context).colors.background1.withOpacity(0.7),
         borderRadius: BorderRadius.circular(2),
       ),
       child: Image.asset('assets/icons/Seen.png'),

@@ -23,7 +23,7 @@ class SHu extends S {
   String get calendarWeek => 'hét';
 
   @override
-  String get close => 'Close';
+  String get close => 'Bezárás';
 
   @override
   String get loading => 'Betöltés';
@@ -33,6 +33,12 @@ class SHu extends S {
 
   @override
   String get loginPageDisplay2 => 'Keresztény értékeken alapuló sorozatok, műsorok és filmek megtekintése';
+
+  @override
+  String get kidsOnboardingTitle => 'Életre keltjük a Biblia üzenetét!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Az a célunk, hogy a gyerekek megtapasztalják Jézust, mint a legjobb barátjukat - életük végéig.';
 
   @override
   String get loginPageDisplay3 => 'Készítette a BCC Media';
@@ -54,6 +60,24 @@ class SHu extends S {
 
   @override
   String get signInButton => 'Bejelentkezés';
+
+  @override
+  String get signInOrSignUp => 'Feliratkozás / Bejelentkezés';
+
+  @override
+  String get signUpButton => 'Regisztrálj most';
+
+  @override
+  String get signUpTitle => 'Regisztráció';
+
+  @override
+  String get signUpDescription => 'Hozzáférés több tartalomhoz és jobb funkciókhoz fiók létrehozásával.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'Kijelentem, hogy betöltöttem a 13. életévemet, és elfogadom az <a>adatvédelmi szabályzatot</a> és <a>a felhasználási feltételeket</a>.';
+
+  @override
+  String get setPassword => 'Jelszó létrehozása';
 
   @override
   String get tryAgainButton => 'Próbálj újra';
@@ -80,7 +104,7 @@ class SHu extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Open';
+  String get open => 'Megnyitás';
 
   @override
   String get loginFailedCheckNetwork => 'Hibás bejelentkezés. Ellenőrizd a hálózati csatlakozásodat és próbálj újra.';
@@ -116,19 +140,22 @@ class SHu extends S {
   String get contactSupport => 'Vedd fel a kapcsolatot a supporttal';
 
   @override
+  String get userVoice => 'Javasolj egy funkciót';
+
+  @override
   String get cancel => 'Mégse';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Biztosan le akarod mondani?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Minden el nem mentett változtatás elveszik.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Vissza';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Igen, törlés';
 
   @override
   String get upNext => 'Következő';
@@ -170,7 +197,7 @@ class SHu extends S {
   String get search => 'Keresés';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Visszajelzés küldése';
 
   @override
   String get noResults => 'Nincs eredmény';
@@ -182,7 +209,7 @@ class SHu extends S {
   String get play => 'Lejátszás';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Szünet';
 
   @override
   String get castQueue => 'Lejátszási listát közvetíteni';
@@ -348,7 +375,7 @@ class SHu extends S {
   String get sendFailDescription => 'Valami nem sikerült. Vizsgáld meg az internett kapcsolatodat és próbáld újra.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Nagyra értékeljük visszajelzésedet.';
 
   @override
   String get today => 'Ma';
@@ -382,7 +409,19 @@ class SHu extends S {
   String get share => 'Megosztás';
 
   @override
+  String get showMore => 'Mutass többet';
+
+  @override
+  String get showLess => 'Mutass kevesebbet';
+
+  @override
   String get liveNow => 'Most élőben';
+
+  @override
+  String get comingSoon => 'Hamarosan jön';
+
+  @override
+  String get newEpisode => 'Új';
 
   @override
   String get tomorrow => 'Holnap';
@@ -477,13 +516,19 @@ class SHu extends S {
   String get exploreContent => 'Tartalom felfedezése';
 
   @override
+  String get explorePublicContent => 'Nyilvános tartalmak felfedezése';
+
+  @override
+  String get startExploring => 'Kezdd el a felfedezést';
+
+  @override
   String get taskCompleted => 'feladat elvégezve';
 
   @override
-  String get tasksCompleted => 'feladat elvégezve';
+  String get tasksCompleted => 'feladatből elvégezve';
 
   @override
-  String get studyCompleteTaskDescription => 'Feladatok elvégzése és a kapcsolódó erőforrások felfedezése';
+  String get studyCompleteTaskDescription => 'Feladatok elvégzése és a kapcsolódó tartalom felfedezése';
 
   @override
   String get discoverMore => 'Fedezz fel többet';
@@ -492,7 +537,7 @@ class SHu extends S {
   String get completePreviousTasks => 'Fejezd be a korábbi feladatokat a feloldáshoz';
 
   @override
-  String get studyDiscoverMoreDescription => 'További inspiráció és betekintés a kapcsolódó forrásokból';
+  String get studyDiscoverMoreDescription => 'További inspiráció és betekintés kapcsolódó tartalmakból';
 
   @override
   String get watchAgain => 'Nézd meg újra';
@@ -550,7 +595,18 @@ class SHu extends S {
   String get continueButton => 'Folytatás';
 
   @override
+  String get registerButton => 'Jelentkezés';
+
+  @override
   String get achievements => 'Eredmények';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Legalább $n karakter';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Kisbetűket, nagybetűket és számokat kell tartalmaznia.';
 
   @override
   String get oops => 'Uups!';
@@ -571,5 +627,96 @@ class SHu extends S {
   String get details => 'Részletek';
 
   @override
-  String get selectSeason => 'Select season';
+  String get myList => 'A listám';
+
+  @override
+  String get didYouKnowTitle => 'Tudtad?';
+
+  @override
+  String get didYouKnowContent => 'A szívre koppintva hozzáadhatod kedvenc műsoraidat \"A listámhoz\".';
+
+  @override
+  String get selectSeason => 'Évad kiválasztása';
+
+  @override
+  String get deleteMyAccount => 'Fiókom törlése';
+
+  @override
+  String get iAmSureIWantToDelete => 'Biztos vagyok benne, hogy törölni szeretném a fiókomat és a BCC Media alkalmazással kapcsolatos adataimat.';
+
+  @override
+  String get areYouSure => 'Biztos vagy abban?';
+
+  @override
+  String get youCanContactUsAt => 'You can contact us at';
+
+  @override
+  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+
+  @override
+  String get askYourParents => 'Ask your parents';
+
+  @override
+  String get whatIsMath => 'What is';
+
+  @override
+  String get answerLabel => 'Answer';
+
+  @override
+  String get checkAnswerButton => 'Check answer';
+
+  @override
+  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+
+  @override
+  String get verifyYourAccount => 'Verify your account';
+
+  @override
+  String get weHaveSentAnEmailTo => 'We have sent an email to';
+
+  @override
+  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+
+  @override
+  String get openEmailApp => 'Open email app';
+
+  @override
+  String get resendEmail => 'Resend email';
+
+  @override
+  String get noMailAppsDescription => 'No mail apps installed';
+
+  @override
+  String get verificationEmailSent => 'Verification email sent';
+
+  @override
+  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+
+  @override
+  String get accountCreated => 'Account created';
+
+  @override
+  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+
+  @override
+  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+
+  @override
+  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+
+  @override
+  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+
+  @override
+  String accountDeletionTimeframe(int x) {
+    return 'Account deletion will usually be done within $x business days.';
+  }
+
+  @override
+  String get accountDeletionTitle => 'Fiókom törlése';
+
+  @override
+  String accountDeletionSuccess(String email) {
+    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+  }
 }

@@ -8,7 +8,7 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    throw new GradleException('Flutter SDK not found. Define location with flutter.sdk in the local.properties file.')
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -24,7 +24,6 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 // START: FlutterFire Configuration
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.firebase-perf'
 // END: FlutterFire Configuration
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
@@ -53,13 +52,13 @@ android {
     }
 
     defaultConfig {
-        applicationId "tv.brunstad.app"
-        minSdkVersion 21
+        applicationId 'tv.brunstad.app'
+        minSdkVersion 23
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     signingConfigs {
@@ -76,42 +75,35 @@ android {
         }
     }
 
-    flavorDimensions "env"
+    flavorDimensions 'env'
     productFlavors {
         prod {
-            dimension "env"
-            applicationIdSuffix ""
+            getIsDefault().set(true)
+            dimension 'env'
+            applicationIdSuffix ''
             manifestPlaceholders += [
-                appName: "BCC Media",
-                appAuthRedirectScheme: 'tv.brunstad.app'
+                    applicationLabel     : 'BCC Media',
+                    appAuthRedirectScheme: 'tv.brunstad.app',
             ]
-            flutter.target "lib/main_prod.dart"
+            flutter.target 'lib/main_prod.dart'
         }
         dev {
-            dimension "env"
-            applicationIdSuffix ".dev"
-            flutter.target "lib/main_dev.dart"
+            dimension 'env'
+            applicationIdSuffix '.dev'
+            flutter.target 'lib/main_dev.dart'
             manifestPlaceholders += [
-                appName: "DEV BCC Media",
-                appAuthRedirectScheme: 'tv.brunstad.app.dev'
+                    applicationLabel     : 'DEV BCC Media',
+                    appAuthRedirectScheme: 'tv.brunstad.app.dev',
             ]
         }
-        v4_prod {
-            dimension "env"
-            applicationIdSuffix ".v4"
-            flutter.target "lib/main_v4_prod.dart"
+        kids_prod {
+            dimension 'env'
+            applicationIdSuffix ''
+            applicationId 'media.bcc.kids'
+            flutter.target 'lib/main_kids_prod.dart'
             manifestPlaceholders += [
-                appName: "BCC Media v4",
-                appAuthRedirectScheme: 'tv.brunstad.app.v4'
-            ]
-        }
-        v4_dev {
-            dimension "env"
-            applicationIdSuffix ".v4.dev"
-            flutter.target "lib/main_v4_dev.dart"
-            manifestPlaceholders += [
-                appName: "DEV BCC Media v4",
-                appAuthRedirectScheme: 'tv.brunstad.app.v4.dev'
+                    applicationLabel     : 'Bible Kids',
+                    appAuthRedirectScheme: 'media.bcc.kids',
             ]
         }
     }
@@ -122,22 +114,15 @@ flutter {
 }
 
 repositories {
-    maven { url  "https://npaw.jfrog.io/artifactory/youbora/" }
+    maven { url 'https://npaw.jfrog.io/artifactory/youbora/' }
 }
 
 dependencies {
-    def youboraVersion = "6.8.0"
+    def youboraVersion = '6.8.0'
     implementation "com.nicepeopleatwork:youboralib:$youboraVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     /*implementation 'com.google.android.exoplayer:exoplayer:2.18.1'*/
-    def media3_version = "1.0.0-beta02"
-    implementation "androidx.media3:media3-exoplayer:$media3_version"
-    implementation "androidx.media3:media3-exoplayer-hls:$media3_version"
-    implementation "androidx.media3:media3-cast:$media3_version"
-    implementation "androidx.media3:media3-test-utils:$media3_version"
-    implementation "androidx.media3:media3-session:$media3_version"
-    implementation "androidx.media3:media3-ui:$media3_version"
-    testImplementation "junit:junit:4.13.2"
+    testImplementation 'junit:junit:4.13.2'
 }
 
 apply plugin: 'com.google.firebase.crashlytics'

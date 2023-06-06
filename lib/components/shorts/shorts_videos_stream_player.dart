@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:brunstadtv_app/components/loading_generic.dart';
-
 import 'package:brunstadtv_app/providers/shorts_videos_service.dart';
 import 'package:brunstadtv_app/components/shorts/shorts_video_player_screen.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
+
+import '../status_indicators/loading_generic.dart';
 
 class ShortsVideosStreamPlayer extends ConsumerStatefulWidget {
   const ShortsVideosStreamPlayer({

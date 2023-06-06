@@ -67,7 +67,7 @@
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>$(LAUNCH_SCREEN_STORYBOARD)</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>
@@ -86,6 +86,10 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>FLTDisableImpeller</key>
+	<true/>
+	<key>FLTEnableImpeller</key>
 	<false/>
 </dict>
 </plist>

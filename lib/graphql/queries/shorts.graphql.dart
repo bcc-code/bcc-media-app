@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'episode.graphql.dart';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
@@ -66,6 +67,71 @@ extension UtilityExtension$Fragment$ShortsEpisode on Fragment$ShortsEpisode {
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Fragment$ShortsEpisode$$EpisodeItem) episodeItem,
+    required _T Function(Fragment$ShortsEpisode$$ShowItem) showItem,
+    required _T Function(Fragment$ShortsEpisode$$SeasonItem) seasonItem,
+    required _T Function(Fragment$ShortsEpisode$$PageItem) pageItem,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "EpisodeItem":
+        return episodeItem(this as Fragment$ShortsEpisode$$EpisodeItem);
+
+      case "ShowItem":
+        return showItem(this as Fragment$ShortsEpisode$$ShowItem);
+
+      case "SeasonItem":
+        return seasonItem(this as Fragment$ShortsEpisode$$SeasonItem);
+
+      case "PageItem":
+        return pageItem(this as Fragment$ShortsEpisode$$PageItem);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$ShortsEpisode$$EpisodeItem)? episodeItem,
+    _T Function(Fragment$ShortsEpisode$$ShowItem)? showItem,
+    _T Function(Fragment$ShortsEpisode$$SeasonItem)? seasonItem,
+    _T Function(Fragment$ShortsEpisode$$PageItem)? pageItem,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "EpisodeItem":
+        if (episodeItem != null) {
+          return episodeItem(this as Fragment$ShortsEpisode$$EpisodeItem);
+        } else {
+          return orElse();
+        }
+
+      case "ShowItem":
+        if (showItem != null) {
+          return showItem(this as Fragment$ShortsEpisode$$ShowItem);
+        } else {
+          return orElse();
+        }
+
+      case "SeasonItem":
+        if (seasonItem != null) {
+          return seasonItem(this as Fragment$ShortsEpisode$$SeasonItem);
+        } else {
+          return orElse();
+        }
+
+      case "PageItem":
+        if (pageItem != null) {
+          return pageItem(this as Fragment$ShortsEpisode$$PageItem);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$ShortsEpisode<TRes> {
@@ -1136,6 +1202,10 @@ const documentNodeQueryGetEpisodesForShorts = DocumentNode(definitions: [
 Query$GetEpisodesForShorts _parserFn$Query$GetEpisodesForShorts(
         Map<String, dynamic> data) =>
     Query$GetEpisodesForShorts.fromJson(data);
+typedef OnQueryComplete$Query$GetEpisodesForShorts = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$GetEpisodesForShorts?,
+);
 
 class Options$Query$GetEpisodesForShorts
     extends graphql.QueryOptions<Query$GetEpisodesForShorts> {
@@ -1146,20 +1216,43 @@ class Options$Query$GetEpisodesForShorts
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetEpisodesForShorts? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$GetEpisodesForShorts? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$GetEpisodesForShorts(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryGetEpisodesForShorts,
           parserFn: _parserFn$Query$GetEpisodesForShorts,
         );
+
+  final OnQueryComplete$Query$GetEpisodesForShorts? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$GetEpisodesForShorts
@@ -1171,6 +1264,7 @@ class WatchOptions$Query$GetEpisodesForShorts
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetEpisodesForShorts? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -1182,7 +1276,7 @@ class WatchOptions$Query$GetEpisodesForShorts
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryGetEpisodesForShorts,
           pollInterval: pollInterval,
@@ -1866,6 +1960,10 @@ const documentNodeQueryGetStreamsForEpisode = DocumentNode(definitions: [
 Query$GetStreamsForEpisode _parserFn$Query$GetStreamsForEpisode(
         Map<String, dynamic> data) =>
     Query$GetStreamsForEpisode.fromJson(data);
+typedef OnQueryComplete$Query$GetStreamsForEpisode = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$GetStreamsForEpisode?,
+);
 
 class Options$Query$GetStreamsForEpisode
     extends graphql.QueryOptions<Query$GetStreamsForEpisode> {
@@ -1876,20 +1974,43 @@ class Options$Query$GetStreamsForEpisode
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetStreamsForEpisode? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$GetStreamsForEpisode? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$GetStreamsForEpisode(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryGetStreamsForEpisode,
           parserFn: _parserFn$Query$GetStreamsForEpisode,
         );
+
+  final OnQueryComplete$Query$GetStreamsForEpisode? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$GetStreamsForEpisode
@@ -1901,6 +2022,7 @@ class WatchOptions$Query$GetStreamsForEpisode
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetStreamsForEpisode? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -1912,7 +2034,7 @@ class WatchOptions$Query$GetStreamsForEpisode
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryGetStreamsForEpisode,
           pollInterval: pollInterval,

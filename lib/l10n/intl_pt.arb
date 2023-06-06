@@ -23,6 +23,10 @@
   "@calendarWeek": {
     "description": "Text week."
   },
+  "close": "Fechar",
+  "@close": {
+    "description": "Text displayed on 'Close' button"
+  },
   "loading": "Carregando",
   "@loading": {
     "description": "Text to indicate loading state."
@@ -34,6 +38,14 @@
   "loginPageDisplay2": "Assistir séries, programas e filmes baseados nos valores cristãos",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
+  },
+  "kidsOnboardingTitle": "Nós trazemos a mensagem da Bíblia para a vida!",
+  "@kidsOnboardingTitle": {
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
+  },
+  "kidsOnboardingSecondaryTitle": "Nossa visão é que as crianças experimentem Jesus como seu melhor amigo - pelo resto de suas vidas.",
+  "@kidsOnboardingSecondaryTitle": {
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
   "loginPageDisplay3": "Produzido por BCC Mídia ",
   "@loginPageDisplay3": {
@@ -62,6 +74,30 @@
   "signInButton": "Entrar",
   "@signInButton": {
     "description": "Text displayed on Sign in button"
+  },
+  "signInOrSignUp": "Inscreva-se / Entrar",
+  "@signInOrSignUp": {
+    "description": "Button to go to the onboarding page (short)"
+  },
+  "signUpButton": "Inscreva-se agora",
+  "@signUpButton": {
+    "description": "Button to start the sign up process"
+  },
+  "signUpTitle": "Inscrever-se",
+  "@signUpTitle": {
+    "description": "Title on the sign up page"
+  },
+  "signUpDescription": "Obtenha acesso a mais conteúdo e melhores recursos criando uma conta.",
+  "@signUpDescription": {
+    "description": "A description on the sign up page explaining why you would want to sign up"
+  },
+  "signUpAgreePrivacyPolicy": "Certifico que tenho 13 anos ou mais e concordo com a <a>Política de Privacidade</a> e os <a>Termos de uso</a>.",
+  "@signUpAgreePrivacyPolicy": {
+    "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
+  },
+  "setPassword": "Configurar senha",
+  "@setPassword": {
+    "description": "Title for the 'Set password' page of the signup process."
   },
   "tryAgainButton": "Tente novamente",
   "@tryAgainButton": {
@@ -94,6 +130,10 @@
   "ok": "Ok",
   "@ok": {
     "description": "Popup confirmation button"
+  },
+  "open": "Abrir",
+  "@open": {
+    "description": "Open button"
   },
   "loginFailedCheckNetwork": "Falha na autenticação. Verifique sua conexão de rede e tente novamente.",
   "@loginFailedCheckNetwork": {
@@ -139,9 +179,29 @@
   "@contactSupport": {
     "description": "Settings item on profile page"
   },
+  "userVoice": "Sugerir um recurso",
+  "@userVoice": {
+    "description": "Settings item on profile page to navigate to uservoice"
+  },
   "cancel": "Cancelar",
   "@cancel": {
     "description": "General cancel action button"
+  },
+  "cancelConfirmation": "Tem certeza que deseja cancelar?",
+  "@cancelConfirmation": {
+    "description": "Title text for cancel confirmation dialog."
+  },
+  "cancelConfirmationDescription": "Quaisquer alterações não salvas serão perdidas.",
+  "@cancelConfirmationDescription": {
+    "description": "Description for cancel confirmation dialog."
+  },
+  "goBack": "Voltar",
+  "@goBack": {
+    "description": "Text for back button."
+  },
+  "yesCancel": "Sim, Cancelar",
+  "@yesCancel": {
+    "description": "Confirm cancel."
   },
   "upNext": "A seguir",
   "@upNext": {
@@ -195,6 +255,10 @@
   "@search": {
     "description": "Button to clear cache"
   },
+  "sendFeedback": "Enviar comentário",
+  "@sendFeedback": {
+    "description": "Button to submit feedback(Survey)"
+  },
   "noResults": "Nenhum resultado encontrado",
   "@noResults": {
     "description": "No search results."
@@ -203,9 +267,13 @@
   "@doYouWantCast": {
     "description": "Prompt displayed to the user"
   },
-  "play": "Play",
+  "play": "Jogar",
   "@play": {
     "description": "Option in prompt dialog."
+  },
+  "pause": "Pausa",
+  "@pause": {
+    "description": "A button to pause the video."
   },
   "castQueue": "Fila de transmissão",
   "@castQueue": {
@@ -432,6 +500,10 @@
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
+  "sendSuccessDescription": "Agradecemos seus comentários.",
+  "@sendSuccessDescription": {
+    "description": "General message when sending is successful"
+  },
   "today": "Hoje",
   "@today": {
     "description": "First category in tv guide"
@@ -478,9 +550,25 @@
   "@share": {
     "description": "Generic."
   },
+  "showMore": "Mostrar mais",
+  "@showMore": {
+    "description": "Text used on link to expand collapsed text."
+  },
+  "showLess": "Mostrar menos",
+  "@showLess": {
+    "description": "Text used on link to collapse expanded text."
+  },
   "liveNow": "Ao vivo agora",
   "@liveNow": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
+  },
+  "comingSoon": "Em breve",
+  "@comingSoon": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
+  },
+  "newEpisode": "Novo",
+  "@newEpisode": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
   },
   "tomorrow": "Amanhã",
   "@tomorrow": {
@@ -605,7 +693,15 @@
   },
   "exploreContent": "Explorar conteúdo",
   "@exploreContent": {
-    "description": "A button on the login page"
+    "description": "A button"
+  },
+  "explorePublicContent": "Explorar conteúdo público",
+  "@explorePublicContent": {
+    "description": "A button on the welcome page"
+  },
+  "startExploring": "Comece a explorar",
+  "@startExploring": {
+    "description": "A button on the welcome page"
   },
   "taskCompleted": "tarefa completa",
   "@taskCompleted": {
@@ -716,9 +812,26 @@
   "@continueButton": {
     "description": "Generic button text."
   },
+  "registerButton": "Registar",
+  "@registerButton": {
+    "description": "Generic button text."
+  },
   "achievements": "Conquistas",
   "@achievements": {
     "description": "Generic. Used as page title, etc."
+  },
+  "passwordConditionLength": "Mínimo de {n} caracteres",
+  "@passwordConditionLength": {
+    "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "passwordConditionComplexity": "Deve conter minúsculas, maiúsculas e números.",
+  "@passwordConditionComplexity": {
+    "description": "Password condition, shown when signing up."
   },
   "oops": "Oops! ",
   "@oops": {
@@ -743,5 +856,135 @@
   "details": "Detalhes ",
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
+  },
+  "myList": "Minha lista",
+  "@myList": {
+    "description": "My list tab name"
+  },
+  "didYouKnowTitle": "Você sabia?",
+  "@didYouKnowTitle": {
+    "description": "Title for info displayed on 'My list' page."
+  },
+  "didYouKnowContent": "Você pode adicionar seus programas favoritos à \"Minha lista\" tocando no coração",
+  "@didYouKnowContent": {
+    "description": "Content for info displayed on 'My list' page."
+  },
+  "selectSeason": "Selecione a temporada",
+  "@selectSeason": {
+    "description": "A title prompting to select a season from the list."
+  },
+  "deleteMyAccount": "Excluir minha conta",
+  "@deleteMyAccount": {
+    "description": "Button to request to delete your account"
+  },
+  "iAmSureIWantToDelete": "Tenho certeza de que quero excluir minha conta e meus dados relacionados ao aplicativo BCC Media.",
+  "@iAmSureIWantToDelete": {
+    "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
+  },
+  "areYouSure": "Tem certeza?",
+  "@areYouSure": {
+    "description": "Generic text. Used at least as a title on the account deletion page."
+  },
+  "youCanContactUsAt": "Você pode entrar em contato conosco em",
+  "@youCanContactUsAt": {
+    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
+  },
+  "biblekidsAbout": "Bible Kids é uma iniciativa de BCC Media, uma fundação de mídia dentro da Federação BCC que produz e distribui conteúdo com valores positivos e cristãos.",
+  "@biblekidsAbout": {
+    "description": "Shown on about page"
+  },
+  "askYourParents": "Pergunte aos seus pais",
+  "@askYourParents": {
+    "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
+  },
+  "whatIsMath": "O que é",
+  "@whatIsMath": {
+    "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
+  },
+  "answerLabel": "Responder",
+  "@answerLabel": {
+    "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
+  },
+  "checkAnswerButton": "Checar resposta",
+  "@checkAnswerButton": {
+    "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
+  },
+  "videoOnlyAccessibleToLoggedIn": "Este vídeo é acessível apenas para usuários que estão logados no aplicativo.",
+  "@videoOnlyAccessibleToLoggedIn": {
+    "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
+  },
+  "verifyYourAccount": "Verifique sua conta",
+  "@verifyYourAccount": {
+    "description": "Title of the page where you can verify your email/account."
+  },
+  "weHaveSentAnEmailTo": "Enviamos um e-mail para",
+  "@weHaveSentAnEmailTo": {
+    "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
+  },
+  "clickTheLinkToVerify": "Clique no link no e-mail para verificar sua conta.",
+  "@clickTheLinkToVerify": {
+    "description": "Shown on the verify account page."
+  },
+  "openEmailApp": "Abra o aplicativo do e-mail",
+  "@openEmailApp": {
+    "description": "Shown on the verify account page. Button to open your email app."
+  },
+  "resendEmail": "Reenviar e-mail",
+  "@resendEmail": {
+    "description": "Shown on the verify account page. Button to resend the verification email."
+  },
+  "noMailAppsDescription": "Nenhum aplicativo de e-mail instalado",
+  "@noMailAppsDescription": {
+    "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
+  },
+  "verificationEmailSent": "E-mail de verificação enviado",
+  "@verificationEmailSent": {
+    "description": "Shown when the user has requested a new verification email."
+  },
+  "ifYouDidntReceiveVerificationEmail": "Se você ainda não recebeu um e-mail, entre em contato com o suporte em",
+  "@ifYouDidntReceiveVerificationEmail": {
+    "description": "Shown when the user has requested a new verification email."
+  },
+  "accountCreated": "Conta criada",
+  "@accountCreated": {
+    "description": "Shown when the user has successfully created an account."
+  },
+  "youCanNowUseYourAccount": "Agora você pode usar sua conta e explorar uma variedade de conteúdos edificantes.",
+  "@youCanNowUseYourAccount": {
+    "description": "Shown when the user has successfully completed account setup."
+  },
+  "youCanNowLogInToYourAccount": "Agora você pode fazer login em sua conta e explorar uma variedade de conteúdos edificantes.",
+  "@youCanNowLogInToYourAccount": {
+    "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
+  },
+  "accountDeletionExplanation": "Você está prestes a solicitar a exclusão de sua conta da BCC Media e de todos os seus dados relacionados a este aplicativo.",
+  "@accountDeletionExplanation": {
+    "description": "Shown on the account deletion page."
+  },
+  "accountDeletionWarning": "Esta é uma ação que não pode ser desfeita.",
+  "@accountDeletionWarning": {
+    "description": "Shown on the account deletion page."
+  },
+  "accountDeletionTimeframe": "A exclusão da conta geralmente será feita em {x} dias úteis.",
+  "@accountDeletionTimeframe": {
+    "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
+  },
+  "accountDeletionTitle": "Excluir minha conta",
+  "@accountDeletionTitle": {
+    "description": "Title of the account deletion page."
+  },
+  "accountDeletionSuccess": "Exclusão de conta solicitada com sucesso. Você receberá um e-mail em {email}. Para confirmar sua identidade, precisamos que você responda a esse e-mail para prosseguir com a exclusão.",
+  "@accountDeletionSuccess": {
+    "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
   }
 }

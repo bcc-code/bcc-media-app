@@ -4,6 +4,12 @@ type StudyTopic {
     description: String!
     image(style: ImageStyle): String @goField(forceResolver: true)
     images: [Image!]!
+
+    """
+    The default lesson.
+    Should not be used actively in lists, as it could affect query speeds.
+    """
+    defaultLesson: Lesson! @goField(forceResolver: true)
     lessons(first: Int, offset: Int): LessonPagination! @goField(forceResolver: true)
 
     progress: LessonsProgress! @goField(forceResolver: true)
@@ -16,6 +22,12 @@ type Lesson {
     image(style: ImageStyle): String @goField(forceResolver: true)
     tasks(first: Int, offset: Int): TaskPagination! @goField(forceResolver: true)
     topic: StudyTopic! @goField(forceResolver: true)
+
+    """
+    The default episode.
+    Should not be used actively in lists, as it could affect query speeds.
+    """
+    defaultEpisode: Episode @goField(forceResolver: true)
     episodes(first: Int, offset: Int): EpisodePagination! @goField(forceResolver: true)
     links(first: Int, offset: Int): LinkPagination! @goField(forceResolver: true)
 

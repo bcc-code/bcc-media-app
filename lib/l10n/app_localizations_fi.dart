@@ -23,7 +23,7 @@ class SFi extends S {
   String get calendarWeek => 'viikko';
 
   @override
-  String get close => 'Close';
+  String get close => 'Sulje';
 
   @override
   String get loading => 'Ladataan';
@@ -33,6 +33,12 @@ class SFi extends S {
 
   @override
   String get loginPageDisplay2 => 'Katsele Kristillisten arvojen mukaisia videoita, esityksiä, ja sarjoja';
+
+  @override
+  String get kidsOnboardingTitle => 'Teemme Raamatun sanomasta elävää!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Haluamme että lapset saavat kokea Jeesuken parhaana ystävänään. Loppuelämäkseen.';
 
   @override
   String get loginPageDisplay3 => 'BCC Median tuottama';
@@ -54,6 +60,24 @@ class SFi extends S {
 
   @override
   String get signInButton => 'Kirjaudu sisään';
+
+  @override
+  String get signInOrSignUp => 'Kirjautuminen';
+
+  @override
+  String get signUpButton => 'Luo tunnus nyt';
+
+  @override
+  String get signUpTitle => 'Luo tunnus';
+
+  @override
+  String get signUpDescription => 'Luomalla tunnuksen saat enemmän sisältöä ja paremmat ominaisuudet.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'Voin osoittaa olevani vähintään 13 vuotias, ja hyväksyn <a>Tietosuojakäytännöt</a>sekä <a>Käyttöehdot</a>.';
+
+  @override
+  String get setPassword => 'Aseta salasana';
 
   @override
   String get tryAgainButton => 'Koita uudelleen';
@@ -80,7 +104,7 @@ class SFi extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Open';
+  String get open => 'Avaa';
 
   @override
   String get loginFailedCheckNetwork => 'Kirjautuminen epäonnistui. Tarkista nettiyhteys ja koita uudelleen.';
@@ -116,19 +140,22 @@ class SFi extends S {
   String get contactSupport => 'Tukipyyntö';
 
   @override
+  String get userVoice => 'Ehdota ominaisuutta';
+
+  @override
   String get cancel => 'Peru';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Varmastiko haluat perua?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Tallentamattomat muutokset katoavat.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Palaa';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Niin, hylkää';
 
   @override
   String get upNext => 'Tulossa';
@@ -170,7 +197,7 @@ class SFi extends S {
   String get search => 'Haku';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Lähetä palautetta';
 
   @override
   String get noResults => 'Mitään ei löytynyt';
@@ -182,7 +209,7 @@ class SFi extends S {
   String get play => 'Toista';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Tauko';
 
   @override
   String get castQueue => 'Toista kaikki isolle ruudulle';
@@ -348,7 +375,7 @@ class SFi extends S {
   String get sendFailDescription => 'Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Kiitos palautteesta.';
 
   @override
   String get today => 'Tänään';
@@ -375,14 +402,26 @@ class SFi extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Kellonajat noudattavat aikavyöhykettäsi: $timeZone';
+    return 'Kellonajat ovat sinun paikallista aikaa: $timeZone';
   }
 
   @override
   String get share => 'Jaa';
 
   @override
+  String get showMore => 'Näytä lisää';
+
+  @override
+  String get showLess => 'Näytä vähemmän';
+
+  @override
   String get liveNow => 'Suorana nyt';
+
+  @override
+  String get comingSoon => 'Tulossa pian';
+
+  @override
+  String get newEpisode => 'Uutta';
 
   @override
   String get tomorrow => 'Huomenna';
@@ -477,6 +516,12 @@ class SFi extends S {
   String get exploreContent => 'Tutustu sisältöön';
 
   @override
+  String get explorePublicContent => 'Tutustu avoimeen sisältöön';
+
+  @override
+  String get startExploring => 'Tutustu sisältöön';
+
+  @override
   String get taskCompleted => 'tehtävä suoritettu';
 
   @override
@@ -550,7 +595,18 @@ class SFi extends S {
   String get continueButton => 'Jatka';
 
   @override
+  String get registerButton => 'Ilmoittaudu';
+
+  @override
   String get achievements => 'Saavutukset';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Vähintään $n merkkiä';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Täytyy sisältää isoja ja pieniä kirjaimia sekä numeroita.';
 
   @override
   String get oops => 'Hupsista!';
@@ -571,5 +627,96 @@ class SFi extends S {
   String get details => 'Lisätietoa';
 
   @override
-  String get selectSeason => 'Select season';
+  String get myList => 'Listani';
+
+  @override
+  String get didYouKnowTitle => 'Tiesitkö?';
+
+  @override
+  String get didYouKnowContent => 'Sydäntä painamalla voit lisätä jakson \"Listaani\".';
+
+  @override
+  String get selectSeason => 'Valitse tuotantokausi';
+
+  @override
+  String get deleteMyAccount => 'Poista tilini';
+
+  @override
+  String get iAmSureIWantToDelete => 'Aivan varmasti haluan poistaa tilini ja tietoni BCC Media sovelluksesta.';
+
+  @override
+  String get areYouSure => 'Oletko varma?';
+
+  @override
+  String get youCanContactUsAt => 'Yhteydenotot:';
+
+  @override
+  String get biblekidsAbout => 'Bible Kids on BCC Median tuote. BCC Liiton alainen BCC Media tuottaa ja toimittaa positiivista Kristillisten arvojen mukaista sisältöä.';
+
+  @override
+  String get askYourParents => 'Pyydä vanhempiasi';
+
+  @override
+  String get whatIsMath => 'Mitä on';
+
+  @override
+  String get answerLabel => 'Vastaus';
+
+  @override
+  String get checkAnswerButton => 'Tarkista vastaus';
+
+  @override
+  String get videoOnlyAccessibleToLoggedIn => 'Tämä video näkyy vain sisäänkirjautuneille.';
+
+  @override
+  String get verifyYourAccount => 'Vahvista tili';
+
+  @override
+  String get weHaveSentAnEmailTo => 'Sähköposti on lähetetty osoitteeseen';
+
+  @override
+  String get clickTheLinkToVerify => 'Klikkaa sähköpostissa olevaa linkkiä.';
+
+  @override
+  String get openEmailApp => 'Avaa sähköpostisovellus';
+
+  @override
+  String get resendEmail => 'Lähetä sähköposti uudelleen';
+
+  @override
+  String get noMailAppsDescription => 'Ei sähköpostisovellusta asennettuna';
+
+  @override
+  String get verificationEmailSent => 'Vahvistussähköposti lähetetty';
+
+  @override
+  String get ifYouDidntReceiveVerificationEmail => 'Jos et vieläkään saanut sähköpostia, ota meihin yhteyttä: ';
+
+  @override
+  String get accountCreated => 'Tili luotu';
+
+  @override
+  String get youCanNowUseYourAccount => 'Tilin kautta voit nyt tutustua laajaan valikoimaan rakentavaa sisältöä.';
+
+  @override
+  String get youCanNowLogInToYourAccount => 'Voit nyt kirjautua sisään ja tutustua laajaan valikoimaan rakentavaa sisältöä.';
+
+  @override
+  String get accountDeletionExplanation => 'Olet pyytämässä BCC Media -tilisi poistamista mukaanlukien kaikki sovelluksen tallentama tieto.';
+
+  @override
+  String get accountDeletionWarning => 'Tilin poistamista ei voi peruuttaa.';
+
+  @override
+  String accountDeletionTimeframe(int x) {
+    return 'Tilin poistaminen tapahtuu yleensä $x työpäivän kuluessa.';
+  }
+
+  @override
+  String get accountDeletionTitle => 'Poista tilini';
+
+  @override
+  String accountDeletionSuccess(String email) {
+    return 'Pyyntö tilin poistamiseksi on lähetetty. Saat asiasta sähköpostin osoitteeseen $email. Identiteettisi varmistamiseksi sinun tulee vastata sähköpostiin - jolloin tili voidaan poistaa.';
+  }
 }

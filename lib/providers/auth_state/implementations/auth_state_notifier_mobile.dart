@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:clock/clock.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -19,27 +21,39 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../env/env.dart';
 import '../../../helpers/constants.dart';
-import '../../../models/auth/auth0_id_token.dart';
+import '../../../models/auth0/auth0_id_token.dart';
 import '../../../models/auth_state.dart';
 import '../auth_state.dart';
 
-// Careful. This line is very important,
+// Careful. The function naming here is very important,
 // but because it's conditionally imported (see auth_state_notifier_interface.dart)
-// IDEs don't show any errors when you remove it..
-AuthStateNotifier getPlatformSpecificAuthStateNotifier() =>
-    AuthStateNotifierMobile(appAuth: const FlutterAppAuth(), secureStorage: const FlutterSecureStorage());
+// IDEs don't show any errors when you remove/change it..
+AuthStateNotifier getPlatformSpecificAuthStateNotifier(Ref ref) {
+  return AuthStateNotifierMobile(
+    appAuth: const FlutterAppAuth(),
+    secureStorage: const FlutterSecureStorage(
+      aOptions: AndroidOptions(
+        encryptedSharedPreferences: true, // https://github.com/mogol/flutter_secure_storage/issues/354
+        sharedPreferencesName: 'auth',
+      ),
+    ),
+    settingsService: ref.watch(settingsProvider.notifier),
+  );
+}
 
 const kMinimumCredentialsTTL = Duration(hours: 1);
 
 class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthStateNotifier {
-  AuthStateNotifierMobile({required FlutterAppAuth appAuth, required FlutterSecureStorage secureStorage})
+  AuthStateNotifierMobile({required FlutterAppAuth appAuth, required FlutterSecureStorage secureStorage, required SettingsService settingsService})
       : _appAuth = appAuth,
         _secureStorage = secureStorage,
+        _settingsService = settingsService,
         super(const AuthState());
 
   final appAuthLock = Lock();
   final FlutterAppAuth _appAuth;
   final FlutterSecureStorage _secureStorage;
+  final SettingsService _settingsService;
 
   Future<T> _syncAppAuth<T>(Future<T> Function() call) {
     return appAuthLock.synchronized(
@@ -54,7 +68,7 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       return null;
     }
     if (state.expiresAt!.difference(clock.now()) < kMinimumCredentialsTTL) {
-      await refresh();
+      await _refresh();
     }
     if (state.expiresAt!.difference(clock.now()) < kMinimumCredentialsTTL) {
       throw Exception('Auth state is still expired after attempting to renew.');
@@ -79,7 +93,7 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       return false;
     }
     if (expiry.difference(clock.now()) < kMinimumCredentialsTTL) {
-      return await refresh();
+      return await _refresh();
     }
     state = state.copyWith(
       auth0AccessToken: accessToken,
@@ -91,7 +105,12 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
     return true;
   }
 
-  Future<bool> refresh() async {
+  @override
+  Future<bool> forceRefresh() {
+    return _refresh();
+  }
+
+  Future<bool> _refresh() async {
     final refreshToken = await _secureStorage.read(key: SecureStorageKeys.refreshToken);
 
     if (refreshToken == null) {
@@ -148,23 +167,31 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       await launchUrl(url, mode: LaunchMode.externalApplication);
     }
     state = AuthState(signedOutManually: manual);
-    FirebaseMessaging.instance.deleteToken();
+    if (FlavorConfig.current.enableNotifications) {
+      FirebaseMessaging.instance.deleteToken();
+    }
     RudderController.instance.reset();
+    _settingsService.setAnalyticsId(null);
+    _settingsService.refreshSessionId();
 
     return;
   }
 
   @override
-  Future<bool> login() async {
+  Future<bool> login({String? connection}) async {
     final PackageInfo info = await PackageInfo.fromPlatform();
     try {
+      var additionalParameters = {'audience': Env.auth0Audience};
+      if (connection != null) {
+        additionalParameters['connection'] = connection;
+      }
       final authorizationTokenRequest = AuthorizationTokenRequest(
         Env.auth0ClientId,
         '${info.packageName}://login-callback',
         issuer: 'https://${Env.auth0Domain}',
-        scopes: ['openid', 'profile', 'offline_access', 'church', 'country'],
+        scopes: ['openid', 'profile', 'offline_access', 'church', 'country', 'email'],
         promptValues: state.signedOutManually == true ? ['login'] : null,
-        additionalParameters: {'audience': Env.auth0Audience},
+        additionalParameters: additionalParameters,
       );
 
       final AuthorizationTokenResponse? result = await _syncAppAuth(

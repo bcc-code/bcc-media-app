@@ -1,9 +1,10 @@
-import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/shorts/shorts_videos_stream_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/shorts_videos_service.dart';
+
+import '../../components/status_indicators/loading_generic.dart';
 
 class ShortsMain extends ConsumerStatefulWidget {
   const ShortsMain({Key? key}) : super(key: key);

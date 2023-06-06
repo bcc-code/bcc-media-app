@@ -3,32 +3,30 @@ import 'package:universal_io/io.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class BccmCastButton extends StatefulWidget {
-  const BccmCastButton({super.key});
+class BccmCastButton extends StatelessWidget {
+  const BccmCastButton({super.key, this.color});
 
   final methodChannel = const MethodChannel('bccm_player/cast_button');
-
-  @override
-  State<BccmCastButton> createState() => _BccmCastButtonState();
-}
-
-class _BccmCastButtonState extends State<BccmCastButton> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
+    final creationParams = <String, dynamic>{
+      if (color != null) 'color': color!.value,
+    };
     if (Platform.isAndroid) {
-      return const AndroidView(
+      return AndroidView(
         viewType: 'bccm_player/cast_button',
         layoutDirection: TextDirection.ltr,
-        creationParams: <String, dynamic>{},
-        creationParamsCodec: StandardMessageCodec(),
+        creationParams: creationParams,
+        creationParamsCodec: const StandardMessageCodec(),
       );
     } else if (Platform.isIOS && const String.fromEnvironment('IS_MAESTRO_TEST', defaultValue: 'false') != 'true') {
-      return const UiKitView(viewType: 'bccm_player/cast_button');
+      return UiKitView(
+        viewType: 'bccm_player/cast_button',
+        creationParams: creationParams,
+        creationParamsCodec: const StandardMessageCodec(),
+      );
     }
     return Container();
   }

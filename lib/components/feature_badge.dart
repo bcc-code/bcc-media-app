@@ -1,7 +1,6 @@
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:flutter/material.dart';
 
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
 
 class FeatureBadge extends StatelessWidget {
   final String label;
@@ -26,7 +25,7 @@ class FeatureBadge extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
                   width: 1,
-                  color: BccmColors.separatorOnLight,
+                  color: DesignSystem.of(context).colors.separatorOnLight,
                 ),
               ),
             ),
@@ -35,7 +34,7 @@ class FeatureBadge extends StatelessWidget {
             padding: const EdgeInsets.only(left: 4, bottom: 2, right: 4),
             child: Text(
               label,
-              style: BccmTextStyles.caption2.copyWith(color: BccmColors.onTint),
+              style: DesignSystem.of(context).textStyles.caption2.copyWith(color: DesignSystem.of(context).colors.onTint),
             ),
           )
         ],

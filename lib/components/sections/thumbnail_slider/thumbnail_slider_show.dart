@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../graphql/queries/page.graphql.dart';
 import '../../../l10n/app_localizations.dart';
 
-import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_typography.dart';
+import '../../../theme/design_system/design_system.dart';
+
 import '../thumbnail/show_thumbnail.dart';
 
 class ThumbnailSliderShow extends StatelessWidget {
@@ -26,6 +26,7 @@ class ThumbnailSliderShow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return SizedBox(
       width: imageSize.width,
       child: Column(
@@ -40,13 +41,13 @@ class ThumbnailSliderShow extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 2),
             child: Text(
               sectionItem.title,
-              style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
+              style: design.textStyles.caption1.copyWith(color: design.colors.label1),
             ),
           ),
           if (showSeasonEpisodeCounts)
             Text(
               '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
-              style: BccmTextStyles.caption2,
+              style: design.textStyles.caption2,
             )
         ],
       ),

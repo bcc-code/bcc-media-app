@@ -8,6 +8,9 @@ class Book {
 @HostApi()
 abstract class PlaybackPlatformPigeon {
   @async
+  void attach();
+
+  @async
   @ObjCSelector("newPlayer:")
   String newPlayer(String? url);
 
@@ -35,8 +38,11 @@ abstract class PlaybackPlatformPigeon {
   @ObjCSelector("stop:reset:")
   void stop(String playerId, bool reset);
 
-  @ObjCSelector("setUser:")
-  void setUser(User? user);
+  @ObjCSelector("exitFullscreen:")
+  void exitFullscreen(String playerId);
+
+  @ObjCSelector("enterFullscreen:")
+  void enterFullscreen(String playerId);
 
   @ObjCSelector("setNpawConfig:")
   void setNpawConfig(NpawConfig? config);
@@ -46,7 +52,7 @@ abstract class PlaybackPlatformPigeon {
 
   @async
   @ObjCSelector("getPlayerState:")
-  PlayerState? getPlayerState(String playerId);
+  PlayerStateSnapshot? getPlayerState(String? playerId);
 
   @async
   @ObjCSelector("getChromecastState")
@@ -63,6 +69,7 @@ class NpawConfig {
   late String? appName;
   late String? appReleaseVersion;
   late String? accountCode;
+  late bool? deviceIsAnonymous;
 }
 
 class AppConfig {
@@ -97,16 +104,19 @@ class MediaMetadata {
   String? artworkUri;
   String? title;
   String? artist;
-  String? episodeId;
   Map<String?, Object?>? extras;
 }
 
-class PlayerState {
+class PlayerStateSnapshot {
   late String playerId;
-  late bool isPlaying;
+  late PlaybackState playbackState;
+  late bool isFullscreen;
+  MediaItem? currentMediaItem;
   // This is double because pigeon uses NSNumber for int :(
   double? playbackPositionMs;
 }
+
+enum PlaybackState { stopped, paused, playing }
 
 class ChromecastState {
   late CastConnectionState connectionState;
@@ -115,7 +125,7 @@ class ChromecastState {
 
 enum CastConnectionState {
   // ignore: unused_field
-  _,
+  none,
   noDevicesAvailable,
   notConnected,
   connecting,
@@ -126,36 +136,65 @@ enum CastConnectionState {
 
 @FlutterApi()
 abstract class PlaybackListenerPigeon {
+  @ObjCSelector("onPrimaryPlayerChanged:")
+  void onPrimaryPlayerChanged(PrimaryPlayerChangedEvent event);
   @ObjCSelector("onPositionDiscontinuity:")
   void onPositionDiscontinuity(PositionDiscontinuityEvent event);
   @ObjCSelector("onPlayerStateUpdate:")
-  void onPlayerStateUpdate(PlayerState event);
-  @ObjCSelector("onIsPlayingChanged:")
-  void onIsPlayingChanged(IsPlayingChangedEvent event);
+  void onPlayerStateUpdate(PlayerStateUpdateEvent event);
+  @ObjCSelector("onPlaybackStateChanged:")
+  void onPlaybackStateChanged(PlaybackStateChangedEvent event);
+  @ObjCSelector("onPlaybackEnded:")
+  void onPlaybackEnded(PlaybackEndedEvent event);
   @ObjCSelector("onMediaItemTransition:")
   void onMediaItemTransition(MediaItemTransitionEvent event);
   @ObjCSelector("onPictureInPictureModeChanged:")
   void onPictureInPictureModeChanged(PictureInPictureModeChangedEvent event);
 }
 
-class PositionDiscontinuityEvent {
+class PrimaryPlayerChangedEvent {
+  late String? playerId;
+}
+
+abstract class PlayerEvent {
+  late String playerId;
+}
+
+class PlayerStateUpdateEvent implements PlayerEvent {
+  @override
+  late String playerId;
+  late PlayerStateSnapshot snapshot;
+}
+
+class PositionDiscontinuityEvent implements PlayerEvent {
+  @override
   late String playerId;
   double? playbackPositionMs;
 }
 
-class IsPlayingChangedEvent {
+class PlaybackStateChangedEvent implements PlayerEvent {
+  @override
   String playerId;
-  bool isPlaying;
-  IsPlayingChangedEvent({required this.playerId, required this.isPlaying});
+  PlaybackState playbackState;
+  PlaybackStateChangedEvent({required this.playerId, required this.playbackState});
 }
 
-class PictureInPictureModeChangedEvent {
+class PlaybackEndedEvent implements PlayerEvent {
+  @override
+  String playerId;
+  MediaItem? mediaItem;
+  PlaybackEndedEvent({required this.playerId, required this.mediaItem});
+}
+
+class PictureInPictureModeChangedEvent implements PlayerEvent {
+  @override
   String playerId;
   bool isInPipMode;
   PictureInPictureModeChangedEvent({required this.playerId, required this.isInPipMode});
 }
 
-class MediaItemTransitionEvent {
+class MediaItemTransitionEvent implements PlayerEvent {
+  @override
   String playerId;
   MediaItem? mediaItem;
   MediaItemTransitionEvent({required this.playerId, this.mediaItem});

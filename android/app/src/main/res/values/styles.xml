@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="btvBackground1">#0D1623</color>
     <!-- Theme applied to the Android Window while the process is starting when the OS's Dark Mode setting is off -->
     <style name="LaunchTheme" parent="@style/Theme.AppCompat.NoActionBar">
         <!-- Show a splash screen on the activity. Automatically removed when

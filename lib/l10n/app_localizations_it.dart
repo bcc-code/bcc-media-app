@@ -23,7 +23,7 @@ class SIt extends S {
   String get calendarWeek => 'settimana';
 
   @override
-  String get close => 'Close';
+  String get close => 'Chiudi';
 
   @override
   String get loading => 'In fase di caricamento';
@@ -33,6 +33,12 @@ class SIt extends S {
 
   @override
   String get loginPageDisplay2 => 'Guarda serie, spettacoli e film basati sui valori cristiani';
+
+  @override
+  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
 
   @override
   String get loginPageDisplay3 => 'Prodotto da BCC Media';
@@ -54,6 +60,24 @@ class SIt extends S {
 
   @override
   String get signInButton => '7 / 5000\nRegistrati';
+
+  @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
+  String get signUpButton => 'Registrati ora';
+
+  @override
+  String get signUpTitle => '7 / 5000\nRegistrati';
+
+  @override
+  String get signUpDescription => 'Ottieni l\'accesso a più contenuti e funzioni migliori creando un account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+
+  @override
+  String get setPassword => 'Imposta la password';
 
   @override
   String get tryAgainButton => 'Riprova';
@@ -114,6 +138,9 @@ class SIt extends S {
 
   @override
   String get contactSupport => 'Contatta il supporto';
+
+  @override
+  String get userVoice => 'Suggest a feature';
 
   @override
   String get cancel => 'Annulla';
@@ -182,7 +209,7 @@ class SIt extends S {
   String get play => 'Play';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Pausa';
 
   @override
   String get castQueue => 'Coda di trasmissione';
@@ -348,7 +375,7 @@ class SIt extends S {
   String get sendFailDescription => 'Qualcosa è andato storto. Controlla la tua connessione Internet e riprova.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Apprezziamo il tuo feedback.';
 
   @override
   String get today => 'Oggi';
@@ -382,7 +409,19 @@ class SIt extends S {
   String get share => 'Condividi';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'In onda adesso';
+
+  @override
+  String get comingSoon => 'Prossimamente';
+
+  @override
+  String get newEpisode => 'Nuovo';
 
   @override
   String get tomorrow => 'Domani';
@@ -477,6 +516,12 @@ class SIt extends S {
   String get exploreContent => 'Esplora i contenuti';
 
   @override
+  String get explorePublicContent => 'Esplora i contenuti pubblici';
+
+  @override
+  String get startExploring => 'Start exploring';
+
+  @override
   String get taskCompleted => 'compito completato';
 
   @override
@@ -550,7 +595,18 @@ class SIt extends S {
   String get continueButton => 'Continua';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Risultati';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Oops!';
@@ -571,5 +627,96 @@ class SIt extends S {
   String get details => 'Dettagli';
 
   @override
-  String get selectSeason => 'Select season';
+  String get myList => 'My list';
+
+  @override
+  String get didYouKnowTitle => 'Did you know?';
+
+  @override
+  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+
+  @override
+  String get selectSeason => 'Seleziona la stagione';
+
+  @override
+  String get deleteMyAccount => 'Delete my account';
+
+  @override
+  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+
+  @override
+  String get areYouSure => 'Sei sicuro?';
+
+  @override
+  String get youCanContactUsAt => 'You can contact us at';
+
+  @override
+  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+
+  @override
+  String get askYourParents => 'Ask your parents';
+
+  @override
+  String get whatIsMath => 'What is';
+
+  @override
+  String get answerLabel => 'Answer';
+
+  @override
+  String get checkAnswerButton => 'Check answer';
+
+  @override
+  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+
+  @override
+  String get verifyYourAccount => 'Verify your account';
+
+  @override
+  String get weHaveSentAnEmailTo => 'We have sent an email to';
+
+  @override
+  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+
+  @override
+  String get openEmailApp => 'Open email app';
+
+  @override
+  String get resendEmail => 'Resend email';
+
+  @override
+  String get noMailAppsDescription => 'No mail apps installed';
+
+  @override
+  String get verificationEmailSent => 'Verification email sent';
+
+  @override
+  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+
+  @override
+  String get accountCreated => 'Account created';
+
+  @override
+  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+
+  @override
+  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+
+  @override
+  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+
+  @override
+  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+
+  @override
+  String accountDeletionTimeframe(int x) {
+    return 'Account deletion will usually be done within $x business days.';
+  }
+
+  @override
+  String get accountDeletionTitle => 'Delete my account';
+
+  @override
+  String accountDeletionSuccess(String email) {
+    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+  }
 }

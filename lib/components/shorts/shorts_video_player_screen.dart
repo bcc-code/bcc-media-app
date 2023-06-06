@@ -8,8 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:video_player/video_player.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
+import '../../theme/design_system/design_system.dart';
 
 class ShortsVideoPlayerScreen extends ConsumerStatefulWidget {
   final VideoPlayerController controller;
@@ -39,7 +38,7 @@ class _VideoPlayerScreenState extends ConsumerState<ShortsVideoPlayerScreen> {
 
   openEpisode() async {
     //this will open the video inside the episode.dart and turn the device's orientation to portrait, and back to landscape when it's finished
-    final PlayerState? player = ref.watch(isCasting) ? ref.watch(castPlayerProvider) : ref.watch(primaryPlayerProvider);
+    final PlayerState? player = ref.watch(primaryPlayerProvider);
     final playerId = player?.playerId ?? '';
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
@@ -54,6 +53,7 @@ class _VideoPlayerScreenState extends ConsumerState<ShortsVideoPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Stack(
       children: [
         GestureDetector(
@@ -103,7 +103,7 @@ class _VideoPlayerScreenState extends ConsumerState<ShortsVideoPlayerScreen> {
           left: 30,
           top: 30,
           child: IconButton(
-              color: BccmColors.label4,
+              color: design.colors.label4,
               onPressed: () {
                 context.router.pop();
               },
@@ -173,6 +173,7 @@ class VideoDescription extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
     return Positioned(
       bottom: -10,
       left: 0.0,
@@ -189,7 +190,7 @@ class VideoDescription extends ConsumerWidget {
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               title,
-              style: BccmTextStyles.body1.copyWith(color: BccmColors.onTint),
+              style: design.textStyles.body1.copyWith(color: design.colors.onTint),
             ),
           ),
         ),

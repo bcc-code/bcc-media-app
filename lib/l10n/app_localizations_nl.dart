@@ -23,7 +23,7 @@ class SNl extends S {
   String get calendarWeek => 'week';
 
   @override
-  String get close => 'Close';
+  String get close => 'Sluiten';
 
   @override
   String get loading => 'Laden';
@@ -33,6 +33,12 @@ class SNl extends S {
 
   @override
   String get loginPageDisplay2 => 'Bekijk series, shows en films gebasseerd op Christelijke waarden';
+
+  @override
+  String get kidsOnboardingTitle => 'Wij brengen de boodschap uit de Bijbel tot leven!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Onze visie is dat de kinderen Jezus als hun beste vriend gaan ervaren - voor de rest van hun leven.';
 
   @override
   String get loginPageDisplay3 => 'Geproduceerd door BCC Media';
@@ -54,6 +60,24 @@ class SNl extends S {
 
   @override
   String get signInButton => 'Log in';
+
+  @override
+  String get signInOrSignUp => 'Registreren / Aanmelden';
+
+  @override
+  String get signUpButton => 'Meld je nu aan';
+
+  @override
+  String get signUpTitle => 'Aanmelden';
+
+  @override
+  String get signUpDescription => 'Krijg toegang tot meer content en betere functionaliteit door een account aan te maken.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'Ik bevestig dat ik 13 jaar of ouder ben, en ik ga akkoord met het  <a>Privacybeleid</a> en de <a>Algemene voorwaarden</a>.';
+
+  @override
+  String get setPassword => 'Stel een wachtwoord in';
 
   @override
   String get tryAgainButton => 'Probeer opnieuw';
@@ -89,13 +113,13 @@ class SNl extends S {
   String get loginFailedTryAgain => 'Er ging iets mis bij het inloggen. Probeer het later opnieuw.';
 
   @override
-  String get soundLanguage => 'Geluidstaal';
+  String get soundLanguage => 'Taal geluid';
 
   @override
-  String get subtitleLanguage => 'Taal ondertitels';
+  String get subtitleLanguage => 'Taal ondertiteling';
 
   @override
-  String get appLanguage => 'Taal voor app';
+  String get appLanguage => 'Taal app';
 
   @override
   String get checkNetwork => 'Controleer je netwerkverbinding en probeer opnieuw';
@@ -116,19 +140,22 @@ class SNl extends S {
   String get contactSupport => 'Contact support';
 
   @override
+  String get userVoice => 'Stel een feature voor';
+
+  @override
   String get cancel => 'Annuleren';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Weet u het zeker dat u wilt annuleren?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Niet opgeslagen wijzigingen gaan verloren.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Ga terug';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Ja, Annuleer';
 
   @override
   String get upNext => 'Volgende';
@@ -170,7 +197,7 @@ class SNl extends S {
   String get search => 'Zoeken';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Geef feedback';
 
   @override
   String get noResults => 'Geen resultaten';
@@ -182,7 +209,7 @@ class SNl extends S {
   String get play => 'Afspelen';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Pauzeer';
 
   @override
   String get castQueue => 'Lijst verwijderen';
@@ -348,7 +375,7 @@ class SNl extends S {
   String get sendFailDescription => 'Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'We stellen je feedback op prijs.';
 
   @override
   String get today => 'Vandaag';
@@ -382,7 +409,19 @@ class SNl extends S {
   String get share => 'Deel';
 
   @override
+  String get showMore => 'Toon meer';
+
+  @override
+  String get showLess => 'Toon minder';
+
+  @override
   String get liveNow => 'Nu live';
+
+  @override
+  String get comingSoon => 'Komt binnenkort';
+
+  @override
+  String get newEpisode => 'Nieuw';
 
   @override
   String get tomorrow => 'Morgen';
@@ -444,10 +483,10 @@ class SNl extends S {
   String get eventsTab => 'Evenementen';
 
   @override
-  String get audioLanguage => 'Geluidstaal';
+  String get audioLanguage => 'Taal geluid';
 
   @override
-  String get subtitlesLanguage => 'Taal ondertitels';
+  String get subtitlesLanguage => 'Taal ondertiteling';
 
   @override
   String get removeFromRecentSearches => 'Wilt u dit element verwijderen uit het overzicht met recente zoekopdrachten?';
@@ -475,6 +514,12 @@ class SNl extends S {
 
   @override
   String get exploreContent => 'Inhoud verkennen';
+
+  @override
+  String get explorePublicContent => 'Verken publieke content';
+
+  @override
+  String get startExploring => 'Begin met onderzoeken';
 
   @override
   String get taskCompleted => 'taak afgerond';
@@ -550,7 +595,18 @@ class SNl extends S {
   String get continueButton => 'Doorgaan';
 
   @override
+  String get registerButton => 'Registreer';
+
+  @override
   String get achievements => 'Prestaties';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimaal $n tekens';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Moet kleine letters, hoofdletters en cijfers bevatten.';
 
   @override
   String get oops => 'Oeps!';
@@ -571,5 +627,96 @@ class SNl extends S {
   String get details => 'Details';
 
   @override
-  String get selectSeason => 'Select season';
+  String get myList => 'Mijn lijst';
+
+  @override
+  String get didYouKnowTitle => 'Wist je dit?';
+
+  @override
+  String get didYouKnowContent => 'Je kunt je favoriete shows toevoegen aan \"Mijn lijst\" door op het hart te klikken.';
+
+  @override
+  String get selectSeason => 'Selecteer een seizoen';
+
+  @override
+  String get deleteMyAccount => 'mijn account verwijderen';
+
+  @override
+  String get iAmSureIWantToDelete => 'Ik weet zeker dat ik mijn account en mijn gegevens met betrekking tot de BCC Media app wil verwijderen.';
+
+  @override
+  String get areYouSure => 'Weet je het zeker?';
+
+  @override
+  String get youCanContactUsAt => 'You can contact us at';
+
+  @override
+  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+
+  @override
+  String get askYourParents => 'Ask your parents';
+
+  @override
+  String get whatIsMath => 'What is';
+
+  @override
+  String get answerLabel => 'Answer';
+
+  @override
+  String get checkAnswerButton => 'Check answer';
+
+  @override
+  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+
+  @override
+  String get verifyYourAccount => 'Verify your account';
+
+  @override
+  String get weHaveSentAnEmailTo => 'We have sent an email to';
+
+  @override
+  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+
+  @override
+  String get openEmailApp => 'Open email app';
+
+  @override
+  String get resendEmail => 'Resend email';
+
+  @override
+  String get noMailAppsDescription => 'No mail apps installed';
+
+  @override
+  String get verificationEmailSent => 'Verification email sent';
+
+  @override
+  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+
+  @override
+  String get accountCreated => 'Account created';
+
+  @override
+  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+
+  @override
+  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+
+  @override
+  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+
+  @override
+  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+
+  @override
+  String accountDeletionTimeframe(int x) {
+    return 'Account deletion will usually be done within $x business days.';
+  }
+
+  @override
+  String get accountDeletionTitle => 'mijn account verwijderen';
+
+  @override
+  String accountDeletionSuccess(String email) {
+    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+  }
 }

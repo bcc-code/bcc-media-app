@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
+import '../../components/web/dialog_on_web.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/analytics/language_changed.dart';
 import '../../providers/analytics.dart';
 import '../../providers/settings.dart';
 
-class AppSubtitleLanguage extends ConsumerStatefulWidget {
-  const AppSubtitleLanguage({super.key});
+class SubtitleLanguageScreen extends ConsumerStatefulWidget {
+  const SubtitleLanguageScreen({super.key});
 
   @override
-  ConsumerState<AppSubtitleLanguage> createState() => _AppSubtitleLanguageState();
+  ConsumerState<SubtitleLanguageScreen> createState() => _AppSubtitleLanguageState();
 }
 
-class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
+class _AppSubtitleLanguageState extends ConsumerState<SubtitleLanguageScreen> {
   late String? selected;
   @override
   void initState() {
@@ -36,20 +37,22 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(S.of(context).subtitleLanguage),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: OptionList(
-            optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
-            currentSelection: selected,
-            onSelectionChange: _onSelectionChanged,
-            backgroundColor: Colors.transparent,
-            showNoneOption: true,
+    return DialogOnWeb(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: Text(S.of(context).subtitleLanguage),
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: OptionList(
+              optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
+              currentSelection: selected,
+              onSelectionChange: _onSelectionChanged,
+              backgroundColor: Colors.transparent,
+              showNoneOption: true,
+            ),
           ),
         ),
       ),

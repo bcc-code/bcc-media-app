@@ -1,33 +1,37 @@
+import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 
-class Fragment$Episode {
-  Fragment$Episode({
+class Fragment$CalendarEntryEpisode {
+  Fragment$CalendarEntryEpisode({
     required this.id,
     required this.title,
     this.image,
+    required this.locked,
     required this.description,
     this.season,
     this.$__typename = 'Episode',
   });
 
-  factory Fragment$Episode.fromJson(Map<String, dynamic> json) {
+  factory Fragment$CalendarEntryEpisode.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$image = json['image'];
+    final l$locked = json['locked'];
     final l$description = json['description'];
     final l$season = json['season'];
     final l$$__typename = json['__typename'];
-    return Fragment$Episode(
+    return Fragment$CalendarEntryEpisode(
       id: (l$id as String),
       title: (l$title as String),
       image: (l$image as String?),
+      locked: (l$locked as bool),
       description: (l$description as String),
       season: l$season == null
           ? null
-          : Fragment$Episode$season.fromJson(
+          : Fragment$CalendarEntryEpisode$season.fromJson(
               (l$season as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
@@ -39,9 +43,11 @@ class Fragment$Episode {
 
   final String? image;
 
+  final bool locked;
+
   final String description;
 
-  final Fragment$Episode$season? season;
+  final Fragment$CalendarEntryEpisode$season? season;
 
   final String $__typename;
 
@@ -53,6 +59,8 @@ class Fragment$Episode {
     _resultData['title'] = l$title;
     final l$image = image;
     _resultData['image'] = l$image;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$description = description;
     _resultData['description'] = l$description;
     final l$season = season;
@@ -67,6 +75,7 @@ class Fragment$Episode {
     final l$id = id;
     final l$title = title;
     final l$image = image;
+    final l$locked = locked;
     final l$description = description;
     final l$season = season;
     final l$$__typename = $__typename;
@@ -74,6 +83,7 @@ class Fragment$Episode {
       l$id,
       l$title,
       l$image,
+      l$locked,
       l$description,
       l$season,
       l$$__typename,
@@ -85,7 +95,8 @@ class Fragment$Episode {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Fragment$Episode) || runtimeType != other.runtimeType) {
+    if (!(other is Fragment$CalendarEntryEpisode) ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -101,6 +112,11 @@ class Fragment$Episode {
     final l$image = image;
     final lOther$image = other.image;
     if (l$image != lOther$image) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$description = description;
@@ -122,44 +138,46 @@ class Fragment$Episode {
   }
 }
 
-extension UtilityExtension$Fragment$Episode on Fragment$Episode {
-  CopyWith$Fragment$Episode<Fragment$Episode> get copyWith =>
-      CopyWith$Fragment$Episode(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Fragment$CalendarEntryEpisode
+    on Fragment$CalendarEntryEpisode {
+  CopyWith$Fragment$CalendarEntryEpisode<Fragment$CalendarEntryEpisode>
+      get copyWith => CopyWith$Fragment$CalendarEntryEpisode(
+            this,
+            (i) => i,
+          );
 }
 
-abstract class CopyWith$Fragment$Episode<TRes> {
-  factory CopyWith$Fragment$Episode(
-    Fragment$Episode instance,
-    TRes Function(Fragment$Episode) then,
-  ) = _CopyWithImpl$Fragment$Episode;
+abstract class CopyWith$Fragment$CalendarEntryEpisode<TRes> {
+  factory CopyWith$Fragment$CalendarEntryEpisode(
+    Fragment$CalendarEntryEpisode instance,
+    TRes Function(Fragment$CalendarEntryEpisode) then,
+  ) = _CopyWithImpl$Fragment$CalendarEntryEpisode;
 
-  factory CopyWith$Fragment$Episode.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$Episode;
+  factory CopyWith$Fragment$CalendarEntryEpisode.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$CalendarEntryEpisode;
 
   TRes call({
     String? id,
     String? title,
     String? image,
+    bool? locked,
     String? description,
-    Fragment$Episode$season? season,
+    Fragment$CalendarEntryEpisode$season? season,
     String? $__typename,
   });
-  CopyWith$Fragment$Episode$season<TRes> get season;
+  CopyWith$Fragment$CalendarEntryEpisode$season<TRes> get season;
 }
 
-class _CopyWithImpl$Fragment$Episode<TRes>
-    implements CopyWith$Fragment$Episode<TRes> {
-  _CopyWithImpl$Fragment$Episode(
+class _CopyWithImpl$Fragment$CalendarEntryEpisode<TRes>
+    implements CopyWith$Fragment$CalendarEntryEpisode<TRes> {
+  _CopyWithImpl$Fragment$CalendarEntryEpisode(
     this._instance,
     this._then,
   );
 
-  final Fragment$Episode _instance;
+  final Fragment$CalendarEntryEpisode _instance;
 
-  final TRes Function(Fragment$Episode) _then;
+  final TRes Function(Fragment$CalendarEntryEpisode) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -167,38 +185,42 @@ class _CopyWithImpl$Fragment$Episode<TRes>
     Object? id = _undefined,
     Object? title = _undefined,
     Object? image = _undefined,
+    Object? locked = _undefined,
     Object? description = _undefined,
     Object? season = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Fragment$Episode(
+      _then(Fragment$CalendarEntryEpisode(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
         image: image == _undefined ? _instance.image : (image as String?),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         description: description == _undefined || description == null
             ? _instance.description
             : (description as String),
         season: season == _undefined
             ? _instance.season
-            : (season as Fragment$Episode$season?),
+            : (season as Fragment$CalendarEntryEpisode$season?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-  CopyWith$Fragment$Episode$season<TRes> get season {
+  CopyWith$Fragment$CalendarEntryEpisode$season<TRes> get season {
     final local$season = _instance.season;
     return local$season == null
-        ? CopyWith$Fragment$Episode$season.stub(_then(_instance))
-        : CopyWith$Fragment$Episode$season(
+        ? CopyWith$Fragment$CalendarEntryEpisode$season.stub(_then(_instance))
+        : CopyWith$Fragment$CalendarEntryEpisode$season(
             local$season, (e) => call(season: e));
   }
 }
 
-class _CopyWithStubImpl$Fragment$Episode<TRes>
-    implements CopyWith$Fragment$Episode<TRes> {
-  _CopyWithStubImpl$Fragment$Episode(this._res);
+class _CopyWithStubImpl$Fragment$CalendarEntryEpisode<TRes>
+    implements CopyWith$Fragment$CalendarEntryEpisode<TRes> {
+  _CopyWithStubImpl$Fragment$CalendarEntryEpisode(this._res);
 
   TRes _res;
 
@@ -206,17 +228,18 @@ class _CopyWithStubImpl$Fragment$Episode<TRes>
     String? id,
     String? title,
     String? image,
+    bool? locked,
     String? description,
-    Fragment$Episode$season? season,
+    Fragment$CalendarEntryEpisode$season? season,
     String? $__typename,
   }) =>
       _res;
-  CopyWith$Fragment$Episode$season<TRes> get season =>
-      CopyWith$Fragment$Episode$season.stub(_res);
+  CopyWith$Fragment$CalendarEntryEpisode$season<TRes> get season =>
+      CopyWith$Fragment$CalendarEntryEpisode$season.stub(_res);
 }
 
-const fragmentDefinitionEpisode = FragmentDefinitionNode(
-  name: NameNode(value: 'Episode'),
+const fragmentDefinitionCalendarEntryEpisode = FragmentDefinitionNode(
+  name: NameNode(value: 'CalendarEntryEpisode'),
   typeCondition: TypeConditionNode(
       on: NamedTypeNode(
     name: NameNode(value: 'Episode'),
@@ -246,6 +269,13 @@ const fragmentDefinitionEpisode = FragmentDefinitionNode(
       selectionSet: null,
     ),
     FieldNode(
+      name: NameNode(value: 'locked'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
       name: NameNode(value: 'description'),
       alias: null,
       arguments: [],
@@ -259,11 +289,32 @@ const fragmentDefinitionEpisode = FragmentDefinitionNode(
       directives: [],
       selectionSet: SelectionSetNode(selections: [
         FieldNode(
+          name: NameNode(value: 'id'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'title'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
           name: NameNode(value: 'show'),
           alias: null,
           arguments: [],
           directives: [],
           selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
             FieldNode(
               name: NameNode(value: 'title'),
               alias: null,
@@ -298,13 +349,14 @@ const fragmentDefinitionEpisode = FragmentDefinitionNode(
     ),
   ]),
 );
-const documentNodeFragmentEpisode = DocumentNode(definitions: [
-  fragmentDefinitionEpisode,
+const documentNodeFragmentCalendarEntryEpisode = DocumentNode(definitions: [
+  fragmentDefinitionCalendarEntryEpisode,
 ]);
 
-extension ClientExtension$Fragment$Episode on graphql.GraphQLClient {
-  void writeFragment$Episode({
-    required Fragment$Episode data,
+extension ClientExtension$Fragment$CalendarEntryEpisode
+    on graphql.GraphQLClient {
+  void writeFragment$CalendarEntryEpisode({
+    required Fragment$CalendarEntryEpisode data,
     required Map<String, dynamic> idFields,
     bool broadcast = true,
   }) =>
@@ -312,14 +364,14 @@ extension ClientExtension$Fragment$Episode on graphql.GraphQLClient {
         graphql.FragmentRequest(
           idFields: idFields,
           fragment: const graphql.Fragment(
-            fragmentName: 'Episode',
-            document: documentNodeFragmentEpisode,
+            fragmentName: 'CalendarEntryEpisode',
+            document: documentNodeFragmentCalendarEntryEpisode,
           ),
         ),
         data: data.toJson(),
         broadcast: broadcast,
       );
-  Fragment$Episode? readFragment$Episode({
+  Fragment$CalendarEntryEpisode? readFragment$CalendarEntryEpisode({
     required Map<String, dynamic> idFields,
     bool optimistic = true,
   }) {
@@ -327,38 +379,55 @@ extension ClientExtension$Fragment$Episode on graphql.GraphQLClient {
       graphql.FragmentRequest(
         idFields: idFields,
         fragment: const graphql.Fragment(
-          fragmentName: 'Episode',
-          document: documentNodeFragmentEpisode,
+          fragmentName: 'CalendarEntryEpisode',
+          document: documentNodeFragmentCalendarEntryEpisode,
         ),
       ),
       optimistic: optimistic,
     );
-    return result == null ? null : Fragment$Episode.fromJson(result);
+    return result == null
+        ? null
+        : Fragment$CalendarEntryEpisode.fromJson(result);
   }
 }
 
-class Fragment$Episode$season {
-  Fragment$Episode$season({
+class Fragment$CalendarEntryEpisode$season {
+  Fragment$CalendarEntryEpisode$season({
+    required this.id,
+    required this.title,
     required this.$show,
     this.$__typename = 'Season',
   });
 
-  factory Fragment$Episode$season.fromJson(Map<String, dynamic> json) {
+  factory Fragment$CalendarEntryEpisode$season.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
     final l$$show = json['show'];
     final l$$__typename = json['__typename'];
-    return Fragment$Episode$season(
-      $show: Fragment$Episode$season$show.fromJson(
+    return Fragment$CalendarEntryEpisode$season(
+      id: (l$id as String),
+      title: (l$title as String),
+      $show: Fragment$CalendarEntryEpisode$season$show.fromJson(
           (l$$show as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Fragment$Episode$season$show $show;
+  final String id;
+
+  final String title;
+
+  final Fragment$CalendarEntryEpisode$season$show $show;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
     final l$$show = $show;
     _resultData['show'] = l$$show.toJson();
     final l$$__typename = $__typename;
@@ -368,9 +437,13 @@ class Fragment$Episode$season {
 
   @override
   int get hashCode {
+    final l$id = id;
+    final l$title = title;
     final l$$show = $show;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$id,
+      l$title,
       l$$show,
       l$$__typename,
     ]);
@@ -381,8 +454,18 @@ class Fragment$Episode$season {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Fragment$Episode$season) ||
+    if (!(other is Fragment$CalendarEntryEpisode$season) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
       return false;
     }
     final l$$show = $show;
@@ -399,91 +482,109 @@ class Fragment$Episode$season {
   }
 }
 
-extension UtilityExtension$Fragment$Episode$season on Fragment$Episode$season {
-  CopyWith$Fragment$Episode$season<Fragment$Episode$season> get copyWith =>
-      CopyWith$Fragment$Episode$season(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Fragment$CalendarEntryEpisode$season
+    on Fragment$CalendarEntryEpisode$season {
+  CopyWith$Fragment$CalendarEntryEpisode$season<
+          Fragment$CalendarEntryEpisode$season>
+      get copyWith => CopyWith$Fragment$CalendarEntryEpisode$season(
+            this,
+            (i) => i,
+          );
 }
 
-abstract class CopyWith$Fragment$Episode$season<TRes> {
-  factory CopyWith$Fragment$Episode$season(
-    Fragment$Episode$season instance,
-    TRes Function(Fragment$Episode$season) then,
-  ) = _CopyWithImpl$Fragment$Episode$season;
+abstract class CopyWith$Fragment$CalendarEntryEpisode$season<TRes> {
+  factory CopyWith$Fragment$CalendarEntryEpisode$season(
+    Fragment$CalendarEntryEpisode$season instance,
+    TRes Function(Fragment$CalendarEntryEpisode$season) then,
+  ) = _CopyWithImpl$Fragment$CalendarEntryEpisode$season;
 
-  factory CopyWith$Fragment$Episode$season.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$Episode$season;
+  factory CopyWith$Fragment$CalendarEntryEpisode$season.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$CalendarEntryEpisode$season;
 
   TRes call({
-    Fragment$Episode$season$show? $show,
+    String? id,
+    String? title,
+    Fragment$CalendarEntryEpisode$season$show? $show,
     String? $__typename,
   });
-  CopyWith$Fragment$Episode$season$show<TRes> get $show;
+  CopyWith$Fragment$CalendarEntryEpisode$season$show<TRes> get $show;
 }
 
-class _CopyWithImpl$Fragment$Episode$season<TRes>
-    implements CopyWith$Fragment$Episode$season<TRes> {
-  _CopyWithImpl$Fragment$Episode$season(
+class _CopyWithImpl$Fragment$CalendarEntryEpisode$season<TRes>
+    implements CopyWith$Fragment$CalendarEntryEpisode$season<TRes> {
+  _CopyWithImpl$Fragment$CalendarEntryEpisode$season(
     this._instance,
     this._then,
   );
 
-  final Fragment$Episode$season _instance;
+  final Fragment$CalendarEntryEpisode$season _instance;
 
-  final TRes Function(Fragment$Episode$season) _then;
+  final TRes Function(Fragment$CalendarEntryEpisode$season) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
     Object? $show = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Fragment$Episode$season(
+      _then(Fragment$CalendarEntryEpisode$season(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
         $show: $show == _undefined || $show == null
             ? _instance.$show
-            : ($show as Fragment$Episode$season$show),
+            : ($show as Fragment$CalendarEntryEpisode$season$show),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-  CopyWith$Fragment$Episode$season$show<TRes> get $show {
+  CopyWith$Fragment$CalendarEntryEpisode$season$show<TRes> get $show {
     final local$$show = _instance.$show;
-    return CopyWith$Fragment$Episode$season$show(
+    return CopyWith$Fragment$CalendarEntryEpisode$season$show(
         local$$show, (e) => call($show: e));
   }
 }
 
-class _CopyWithStubImpl$Fragment$Episode$season<TRes>
-    implements CopyWith$Fragment$Episode$season<TRes> {
-  _CopyWithStubImpl$Fragment$Episode$season(this._res);
+class _CopyWithStubImpl$Fragment$CalendarEntryEpisode$season<TRes>
+    implements CopyWith$Fragment$CalendarEntryEpisode$season<TRes> {
+  _CopyWithStubImpl$Fragment$CalendarEntryEpisode$season(this._res);
 
   TRes _res;
 
   call({
-    Fragment$Episode$season$show? $show,
+    String? id,
+    String? title,
+    Fragment$CalendarEntryEpisode$season$show? $show,
     String? $__typename,
   }) =>
       _res;
-  CopyWith$Fragment$Episode$season$show<TRes> get $show =>
-      CopyWith$Fragment$Episode$season$show.stub(_res);
+  CopyWith$Fragment$CalendarEntryEpisode$season$show<TRes> get $show =>
+      CopyWith$Fragment$CalendarEntryEpisode$season$show.stub(_res);
 }
 
-class Fragment$Episode$season$show {
-  Fragment$Episode$season$show({
+class Fragment$CalendarEntryEpisode$season$show {
+  Fragment$CalendarEntryEpisode$season$show({
+    required this.id,
     required this.title,
     this.$__typename = 'Show',
   });
 
-  factory Fragment$Episode$season$show.fromJson(Map<String, dynamic> json) {
+  factory Fragment$CalendarEntryEpisode$season$show.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
-    return Fragment$Episode$season$show(
+    return Fragment$CalendarEntryEpisode$season$show(
+      id: (l$id as String),
       title: (l$title as String),
       $__typename: (l$$__typename as String),
     );
   }
+
+  final String id;
 
   final String title;
 
@@ -491,6 +592,8 @@ class Fragment$Episode$season$show {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
     final l$$__typename = $__typename;
@@ -500,9 +603,11 @@ class Fragment$Episode$season$show {
 
   @override
   int get hashCode {
+    final l$id = id;
     final l$title = title;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$id,
       l$title,
       l$$__typename,
     ]);
@@ -513,8 +618,13 @@ class Fragment$Episode$season$show {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Fragment$Episode$season$show) ||
+    if (!(other is Fragment$CalendarEntryEpisode$season$show) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$title = title;
@@ -531,48 +641,52 @@ class Fragment$Episode$season$show {
   }
 }
 
-extension UtilityExtension$Fragment$Episode$season$show
-    on Fragment$Episode$season$show {
-  CopyWith$Fragment$Episode$season$show<Fragment$Episode$season$show>
-      get copyWith => CopyWith$Fragment$Episode$season$show(
+extension UtilityExtension$Fragment$CalendarEntryEpisode$season$show
+    on Fragment$CalendarEntryEpisode$season$show {
+  CopyWith$Fragment$CalendarEntryEpisode$season$show<
+          Fragment$CalendarEntryEpisode$season$show>
+      get copyWith => CopyWith$Fragment$CalendarEntryEpisode$season$show(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Fragment$Episode$season$show<TRes> {
-  factory CopyWith$Fragment$Episode$season$show(
-    Fragment$Episode$season$show instance,
-    TRes Function(Fragment$Episode$season$show) then,
-  ) = _CopyWithImpl$Fragment$Episode$season$show;
+abstract class CopyWith$Fragment$CalendarEntryEpisode$season$show<TRes> {
+  factory CopyWith$Fragment$CalendarEntryEpisode$season$show(
+    Fragment$CalendarEntryEpisode$season$show instance,
+    TRes Function(Fragment$CalendarEntryEpisode$season$show) then,
+  ) = _CopyWithImpl$Fragment$CalendarEntryEpisode$season$show;
 
-  factory CopyWith$Fragment$Episode$season$show.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$Episode$season$show;
+  factory CopyWith$Fragment$CalendarEntryEpisode$season$show.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$CalendarEntryEpisode$season$show;
 
   TRes call({
+    String? id,
     String? title,
     String? $__typename,
   });
 }
 
-class _CopyWithImpl$Fragment$Episode$season$show<TRes>
-    implements CopyWith$Fragment$Episode$season$show<TRes> {
-  _CopyWithImpl$Fragment$Episode$season$show(
+class _CopyWithImpl$Fragment$CalendarEntryEpisode$season$show<TRes>
+    implements CopyWith$Fragment$CalendarEntryEpisode$season$show<TRes> {
+  _CopyWithImpl$Fragment$CalendarEntryEpisode$season$show(
     this._instance,
     this._then,
   );
 
-  final Fragment$Episode$season$show _instance;
+  final Fragment$CalendarEntryEpisode$season$show _instance;
 
-  final TRes Function(Fragment$Episode$season$show) _then;
+  final TRes Function(Fragment$CalendarEntryEpisode$season$show) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
+    Object? id = _undefined,
     Object? title = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Fragment$Episode$season$show(
+      _then(Fragment$CalendarEntryEpisode$season$show(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
@@ -582,13 +696,14 @@ class _CopyWithImpl$Fragment$Episode$season$show<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Fragment$Episode$season$show<TRes>
-    implements CopyWith$Fragment$Episode$season$show<TRes> {
-  _CopyWithStubImpl$Fragment$Episode$season$show(this._res);
+class _CopyWithStubImpl$Fragment$CalendarEntryEpisode$season$show<TRes>
+    implements CopyWith$Fragment$CalendarEntryEpisode$season$show<TRes> {
+  _CopyWithStubImpl$Fragment$CalendarEntryEpisode$season$show(this._res);
 
   TRes _res;
 
   call({
+    String? id,
     String? title,
     String? $__typename,
   }) =>
@@ -793,7 +908,7 @@ const fragmentDefinitionCalendarDayEntries = FragmentDefinitionNode(
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FragmentSpreadNode(
-                  name: NameNode(value: 'Episode'),
+                  name: NameNode(value: 'CalendarEntryEpisode'),
                   directives: [],
                 ),
                 FieldNode(
@@ -834,7 +949,7 @@ const fragmentDefinitionCalendarDayEntries = FragmentDefinitionNode(
 );
 const documentNodeFragmentCalendarDayEntries = DocumentNode(definitions: [
   fragmentDefinitionCalendarDayEntries,
-  fragmentDefinitionEpisode,
+  fragmentDefinitionCalendarEntryEpisode,
 ]);
 
 extension ClientExtension$Fragment$CalendarDayEntries on graphql.GraphQLClient {
@@ -975,6 +1090,90 @@ extension UtilityExtension$Fragment$CalendarDayEntries$entries
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry)
+        episodeCalendarEntry,
+    required _T Function(
+            Fragment$CalendarDayEntries$entries$$SimpleCalendarEntry)
+        simpleCalendarEntry,
+    required _T Function(
+            Fragment$CalendarDayEntries$entries$$SeasonCalendarEntry)
+        seasonCalendarEntry,
+    required _T Function(Fragment$CalendarDayEntries$entries$$ShowCalendarEntry)
+        showCalendarEntry,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "EpisodeCalendarEntry":
+        return episodeCalendarEntry(
+            this as Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry);
+
+      case "SimpleCalendarEntry":
+        return simpleCalendarEntry(
+            this as Fragment$CalendarDayEntries$entries$$SimpleCalendarEntry);
+
+      case "SeasonCalendarEntry":
+        return seasonCalendarEntry(
+            this as Fragment$CalendarDayEntries$entries$$SeasonCalendarEntry);
+
+      case "ShowCalendarEntry":
+        return showCalendarEntry(
+            this as Fragment$CalendarDayEntries$entries$$ShowCalendarEntry);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry)?
+        episodeCalendarEntry,
+    _T Function(Fragment$CalendarDayEntries$entries$$SimpleCalendarEntry)?
+        simpleCalendarEntry,
+    _T Function(Fragment$CalendarDayEntries$entries$$SeasonCalendarEntry)?
+        seasonCalendarEntry,
+    _T Function(Fragment$CalendarDayEntries$entries$$ShowCalendarEntry)?
+        showCalendarEntry,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "EpisodeCalendarEntry":
+        if (episodeCalendarEntry != null) {
+          return episodeCalendarEntry(this
+              as Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry);
+        } else {
+          return orElse();
+        }
+
+      case "SimpleCalendarEntry":
+        if (simpleCalendarEntry != null) {
+          return simpleCalendarEntry(
+              this as Fragment$CalendarDayEntries$entries$$SimpleCalendarEntry);
+        } else {
+          return orElse();
+        }
+
+      case "SeasonCalendarEntry":
+        if (seasonCalendarEntry != null) {
+          return seasonCalendarEntry(
+              this as Fragment$CalendarDayEntries$entries$$SeasonCalendarEntry);
+        } else {
+          return orElse();
+        }
+
+      case "ShowCalendarEntry":
+        if (showCalendarEntry != null) {
+          return showCalendarEntry(
+              this as Fragment$CalendarDayEntries$entries$$ShowCalendarEntry);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$CalendarDayEntries$entries<TRes> {
@@ -1054,14 +1253,15 @@ class Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry
     return Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry(
       episode: l$episode == null
           ? null
-          : Fragment$Episode.fromJson((l$episode as Map<String, dynamic>)),
+          : Fragment$CalendarEntryEpisode.fromJson(
+              (l$episode as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
       start: (l$start as String),
       end: (l$end as String),
     );
   }
 
-  final Fragment$Episode? episode;
+  final Fragment$CalendarEntryEpisode? episode;
 
   final String $__typename;
 
@@ -1153,12 +1353,12 @@ abstract class CopyWith$Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntr
       _CopyWithStubImpl$Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry;
 
   TRes call({
-    Fragment$Episode? episode,
+    Fragment$CalendarEntryEpisode? episode,
     String? $__typename,
     String? start,
     String? end,
   });
-  CopyWith$Fragment$Episode<TRes> get episode;
+  CopyWith$Fragment$CalendarEntryEpisode<TRes> get episode;
 }
 
 class _CopyWithImpl$Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry<
@@ -1187,7 +1387,7 @@ class _CopyWithImpl$Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry<
       _then(Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry(
         episode: episode == _undefined
             ? _instance.episode
-            : (episode as Fragment$Episode?),
+            : (episode as Fragment$CalendarEntryEpisode?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -1196,11 +1396,12 @@ class _CopyWithImpl$Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry<
             : (start as String),
         end: end == _undefined || end == null ? _instance.end : (end as String),
       ));
-  CopyWith$Fragment$Episode<TRes> get episode {
+  CopyWith$Fragment$CalendarEntryEpisode<TRes> get episode {
     final local$episode = _instance.episode;
     return local$episode == null
-        ? CopyWith$Fragment$Episode.stub(_then(_instance))
-        : CopyWith$Fragment$Episode(local$episode, (e) => call(episode: e));
+        ? CopyWith$Fragment$CalendarEntryEpisode.stub(_then(_instance))
+        : CopyWith$Fragment$CalendarEntryEpisode(
+            local$episode, (e) => call(episode: e));
   }
 }
 
@@ -1215,14 +1416,14 @@ class _CopyWithStubImpl$Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntr
   TRes _res;
 
   call({
-    Fragment$Episode? episode,
+    Fragment$CalendarEntryEpisode? episode,
     String? $__typename,
     String? start,
     String? end,
   }) =>
       _res;
-  CopyWith$Fragment$Episode<TRes> get episode =>
-      CopyWith$Fragment$Episode.stub(_res);
+  CopyWith$Fragment$CalendarEntryEpisode<TRes> get episode =>
+      CopyWith$Fragment$CalendarEntryEpisode.stub(_res);
 }
 
 class Fragment$CalendarDayEntries$entries$$SimpleCalendarEntry
@@ -1997,11 +2198,16 @@ const documentNodeQueryCalendarDayEpisodeEntries = DocumentNode(definitions: [
     ]),
   ),
   fragmentDefinitionCalendarDayEntries,
-  fragmentDefinitionEpisode,
+  fragmentDefinitionCalendarEntryEpisode,
 ]);
 Query$CalendarDayEpisodeEntries _parserFn$Query$CalendarDayEpisodeEntries(
         Map<String, dynamic> data) =>
     Query$CalendarDayEpisodeEntries.fromJson(data);
+typedef OnQueryComplete$Query$CalendarDayEpisodeEntries = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Query$CalendarDayEpisodeEntries?,
+);
 
 class Options$Query$CalendarDayEpisodeEntries
     extends graphql.QueryOptions<Query$CalendarDayEpisodeEntries> {
@@ -2012,20 +2218,43 @@ class Options$Query$CalendarDayEpisodeEntries
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$CalendarDayEpisodeEntries? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$CalendarDayEpisodeEntries? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$CalendarDayEpisodeEntries(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryCalendarDayEpisodeEntries,
           parserFn: _parserFn$Query$CalendarDayEpisodeEntries,
         );
+
+  final OnQueryComplete$Query$CalendarDayEpisodeEntries? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$CalendarDayEpisodeEntries
@@ -2037,6 +2266,7 @@ class WatchOptions$Query$CalendarDayEpisodeEntries
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$CalendarDayEpisodeEntries? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -2048,7 +2278,7 @@ class WatchOptions$Query$CalendarDayEpisodeEntries
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryCalendarDayEpisodeEntries,
           pollInterval: pollInterval,

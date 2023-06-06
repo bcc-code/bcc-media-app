@@ -23,7 +23,7 @@ class SRo extends S {
   String get calendarWeek => 'săptămână';
 
   @override
-  String get close => 'Close';
+  String get close => 'Închide';
 
   @override
   String get loading => 'Se încarcă';
@@ -33,6 +33,12 @@ class SRo extends S {
 
   @override
   String get loginPageDisplay2 => 'Vezi seriale, emisiuni și filme bazate pe valori Creștine';
+
+  @override
+  String get kidsOnboardingTitle => 'Aducem mesajul Bibliei la viață!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Viziunea noastră este ca copiii să îl experimenteze pe Isus ca fiind cel mai bun prieten al lor - pentru tot restul vieții.';
 
   @override
   String get loginPageDisplay3 => 'Produs de BCC Media';
@@ -50,10 +56,28 @@ class SRo extends S {
   String get faq => 'Întrebări frecvente';
 
   @override
-  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
+  String get bccMediaCenter => 'BCC Media este o fundație media din cadrul federației BCC care produce și distribuie conținut cu valori pozitive și creștine.';
 
   @override
   String get signInButton => 'Conectare';
+
+  @override
+  String get signInOrSignUp => 'Înregistrare / Autentificare';
+
+  @override
+  String get signUpButton => 'Înregistrează-te acum';
+
+  @override
+  String get signUpTitle => 'Înregistrează-te';
+
+  @override
+  String get signUpDescription => 'Obține acces la mai mult conținut și funcții mai bune prin crearea unui cont.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'Confirm faptul că am 13 ani sau mai mult, și sunt de acord cu <a>Politica de confidențialitate</a> și <a>Termenii de utilizare</a>.';
+
+  @override
+  String get setPassword => 'Setează-ți parola';
 
   @override
   String get tryAgainButton => 'Încearcă din nou';
@@ -80,7 +104,7 @@ class SRo extends S {
   String get ok => 'Bine';
 
   @override
-  String get open => 'Open';
+  String get open => 'Deschide';
 
   @override
   String get loginFailedCheckNetwork => 'Conectarea a eșuat. Verifică conexiunea la internet și încearcă din nou.';
@@ -116,19 +140,22 @@ class SRo extends S {
   String get contactSupport => 'Contactare suport';
 
   @override
+  String get userVoice => 'Propune o funcție';
+
+  @override
   String get cancel => 'Anulare';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Ești sigur că vrei să anulezi?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Orice modificări nesalvate vor fi pierdute.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Mergi înapoi';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Da, Anulează';
 
   @override
   String get upNext => 'Urmează';
@@ -170,7 +197,7 @@ class SRo extends S {
   String get search => 'Căutare';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Trimite Feedback';
 
   @override
   String get noResults => 'Nici un rezultat gasit';
@@ -182,7 +209,7 @@ class SRo extends S {
   String get play => 'Redare';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Pauză';
 
   @override
   String get castQueue => 'Lista de redare';
@@ -238,7 +265,7 @@ class SRo extends S {
   String get high => 'Înaltă';
 
   @override
-  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
+  String get emptySearch => 'Poți căuta tot conținutul de la BCC Media. Serii, videouri și episoade.';
 
   @override
   String get back => 'Înapoi';
@@ -348,7 +375,7 @@ class SRo extends S {
   String get sendFailDescription => 'Ceva n-a mers bine. Verifică conexiunea la internet și încearcă din nou.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Apreciem feedbackul tău.';
 
   @override
   String get today => 'Astăzi';
@@ -382,7 +409,19 @@ class SRo extends S {
   String get share => 'Distribuie';
 
   @override
+  String get showMore => 'Arată mai mult';
+
+  @override
+  String get showLess => 'Arată mai puțin';
+
+  @override
   String get liveNow => 'Acum în direct';
+
+  @override
+  String get comingSoon => 'Apare în curând';
+
+  @override
+  String get newEpisode => 'Nou';
 
   @override
   String get tomorrow => 'Mâine';
@@ -477,99 +516,207 @@ class SRo extends S {
   String get exploreContent => 'Descoperă conținut';
 
   @override
-  String get taskCompleted => 'task completed';
+  String get explorePublicContent => 'Explorează conținut public';
 
   @override
-  String get tasksCompleted => 'tasks completed';
+  String get startExploring => 'Începe explorarea';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get taskCompleted => 'sarcină îndeplinită';
 
   @override
-  String get discoverMore => 'Discover more';
+  String get tasksCompleted => 'sarcini îndeplinite';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get studyCompleteTaskDescription => 'Îndeplinește sarcini și descoperă resurse aferente';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get discoverMore => 'Descoperă mai mult';
+
+  @override
+  String get completePreviousTasks => 'Completează sarcini anterioare pentru a debloca';
+
+  @override
+  String get studyDiscoverMoreDescription => 'Găsește mai multă inspirație și perspectivă din resurse aferente';
 
   @override
   String get watchAgain => 'Vezi din nou';
 
   @override
-  String get continueToTaskIn => 'Continue to task in';
+  String get continueToTaskIn => 'Continuă să lucrezi la';
 
   @override
-  String get continueToTasksIn => 'Continue to tasks in';
+  String get continueToTasksIn => 'Continuă să lucrezi la';
 
   @override
-  String get studyLessonCompleted => 'lesson completed';
+  String get studyLessonCompleted => 'temă finalizată';
 
   @override
-  String get studyLessonsCompleted => 'lessons completed';
+  String get studyLessonsCompleted => 'teme finalizate';
 
   @override
-  String get continueStudy => 'Continue study';
+  String get continueStudy => 'Continuă studiul';
 
   @override
-  String get startStudy => 'Start study';
+  String get startStudy => 'Începe studiul';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Foarte bine! Ai finalizat videoul.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription => 'Foarte bine! Ai finalizat videoul și ai obținut primul progres.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Great job on completing the study topic $name';
+    return 'Foarte bine! Ai finalizat subiectului de studiu $name';
   }
 
   @override
   String videoCount(int count) {
-    return '$count videos';
+    return '$count videouri';
   }
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    return '$count sarcini';
   }
 
   @override
   String posterCount(int count) {
-    return '$count posters';
+    return '$count postere';
   }
 
   @override
   String resourceCount(int count) {
-    return '$count resources';
+    return '$count resurse';
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Continuă';
 
   @override
-  String get achievements => 'Achievements';
+  String get registerButton => 'Înregistrare';
+
+  @override
+  String get achievements => 'Realizări';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n caractere';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Trebuie să conțină litere mici, majuscule și numere.';
 
   @override
   String get oops => 'Oops!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Nu ai acces la acest conținut.';
 
   @override
   String get mustBeLoggedIn => 'Trebuie să fii conectat cu contul propriu pentru a urmări acest conținut';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Stai liniștit, este foarte mult conținut de care te poți bucura!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Nerealizat încă';
 
   @override
   String get details => 'Detalii';
 
   @override
-  String get selectSeason => 'Select season';
+  String get myList => 'Lista mea';
+
+  @override
+  String get didYouKnowTitle => 'Știai că?';
+
+  @override
+  String get didYouKnowContent => 'Poți adăuga emisiunile tale preferate pe „Lista mea\" apăsând pe inimă.';
+
+  @override
+  String get selectSeason => 'Selectează sezonul';
+
+  @override
+  String get deleteMyAccount => 'Șterge contul meu';
+
+  @override
+  String get iAmSureIWantToDelete => 'Sunt sigur că vreau să-mi șterg contul și datele legate de aplicația BCC Media.';
+
+  @override
+  String get areYouSure => 'Ești sigur?';
+
+  @override
+  String get youCanContactUsAt => 'Ne poți contacta la';
+
+  @override
+  String get biblekidsAbout => 'Bible Kids este o inițiativă a BCC Media, o fundație media din cadrul Federației BCC care produce și distribuie conținut cu valori pozitive și Creștine.';
+
+  @override
+  String get askYourParents => 'Întreabă părinții tăi';
+
+  @override
+  String get whatIsMath => 'Cât este';
+
+  @override
+  String get answerLabel => 'Răspuns';
+
+  @override
+  String get checkAnswerButton => 'Verifică răspunsul';
+
+  @override
+  String get videoOnlyAccessibleToLoggedIn => 'Acest video este accesibil doar utilizatorilor care sunt conectați în aplicație.';
+
+  @override
+  String get verifyYourAccount => 'Verifică contul tău';
+
+  @override
+  String get weHaveSentAnEmailTo => 'Am trimis un email pe';
+
+  @override
+  String get clickTheLinkToVerify => 'Apasă pe linkul din e-mail pentru a vă verifica contul.';
+
+  @override
+  String get openEmailApp => 'Deschide aplicația de e-mail';
+
+  @override
+  String get resendEmail => 'Retrimite e-mail';
+
+  @override
+  String get noMailAppsDescription => 'Nu sunt instalate aplicații de poștă electronică';
+
+  @override
+  String get verificationEmailSent => 'E-mail de verificare trimis';
+
+  @override
+  String get ifYouDidntReceiveVerificationEmail => 'Dacă tot nu ați primit un e-mail, te rugăm să contactezi serviciul de asistență la adresa';
+
+  @override
+  String get accountCreated => 'Cont creat';
+
+  @override
+  String get youCanNowUseYourAccount => 'Acum îți poți folosi contul și explora o varietate de conținut edificator.';
+
+  @override
+  String get youCanNowLogInToYourAccount => 'Acum poți să te conectezi în contul tău și să explorezi o varietate de conținut edificator.';
+
+  @override
+  String get accountDeletionExplanation => 'Ești pe cale să soliciți ștergerea contului tău din BCC Media și a tuturor datelor tale legate de această aplicație.';
+
+  @override
+  String get accountDeletionWarning => 'Aceasta este o acțiune care nu poate fi anulată.';
+
+  @override
+  String accountDeletionTimeframe(int x) {
+    return 'Ștergerea contului se va face de obicei în termen de $x zile lucrătoare.';
+  }
+
+  @override
+  String get accountDeletionTitle => 'Șterge contul meu';
+
+  @override
+  String accountDeletionSuccess(String email) {
+    return 'Ștergerea contului a fost solicitată cu succes. Vei primi un e-mail pe $email. Pentru a confirma identitatea trebuie să ne răspunzi la acel e-mail pentru a continua ștergerea.';
+  }
 }

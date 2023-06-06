@@ -2,6 +2,11 @@ import 'dart:async';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/screens/shorts/shorts_main.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:flutter/foundation.dart';
 import 'package:universal_io/io.dart';
 import 'dart:ui';
 
@@ -17,17 +22,15 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../api/brunstadtv.dart';
 import '../env/env.dart';
+import '../flavors.dart';
 import '../graphql/queries/application.graphql.dart';
-import '../helpers/ui/btv_buttons.dart';
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
 import '../components/page.dart';
 import '../graphql/queries/page.graphql.dart';
-import '../theme/bccm_typography.dart';
+
 import '../helpers/page_mixin.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/app_config.dart';
-
-final logo = Image.asset('assets/images/logo.png');
 
 class HomeScreen extends ConsumerStatefulWidget {
   HomeScreen({Key? key}) : super(key: key ?? GlobalKey<HomeScreenState>());
@@ -76,12 +79,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
             return SimpleDialog(
               title: Text(
                 S.of(context).appUpdateTitle,
-                style: BccmTextStyles.title3,
+                style: DesignSystem.of(context).textStyles.title3,
               ),
               contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
               children: [
                 Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(S.of(context).appUpdateRequest)),
-                BtvButton.medium(
+                DesignSystem.of(context).buttons.medium(
                     onPressed: () {
                       if (Platform.isIOS) {
                         launchUrlString('itms-apps://itunes.apple.com', mode: LaunchMode.externalApplication);
@@ -93,6 +96,36 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
               ],
             );
           });
+    }
+
+    if (ref.read(authStateProvider).auth0AccessToken != null) {
+      final me = await ref.read(gqlClientProvider).query$me();
+      if (!ref.read(featureFlagsProvider).publicSignup &&
+          (me.parsedData?.me.completedRegistration != true || me.parsedData?.me.emailVerified != true)) {
+        // ignore: use_build_context_synchronously
+        await showDialog(
+          context: context,
+          builder: (context) {
+            return SimpleDialog(
+              title: Text(
+                S.of(context).appUpdateTitle,
+                style: DesignSystem.of(context).textStyles.title3,
+              ),
+              contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
+              children: [
+                const Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: Text("Unfortunately, we don't support signing up yet. Are you sure you signed in with the correct email?")),
+                DesignSystem.of(context).buttons.medium(
+                      onPressed: () => Navigator.pop(context),
+                      labelText: S.of(context).ok,
+                    )
+              ],
+            );
+          },
+        );
+        ref.read(authStateProvider.notifier).logout();
+      }
     }
   }
 
@@ -114,51 +147,68 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Stack(
       children: [
         Scaffold(
           extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            toolbarHeight: 44,
-            shadowColor: Colors.black,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            centerTitle: true,
-            title: logo,
-            leadingWidth: 100,
-            leading: Align(
-              alignment: Alignment.centerLeft,
-              child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    context.router.pushNamed('/profile');
-                  },
-                  child: Padding(
-                      padding: const EdgeInsets.only(left: 18, top: 12, bottom: 12, right: 32),
-                      child: SvgPicture.string(
-                        SvgIcons.profile,
-                        semanticsLabel: S.of(context).profileTab,
-                      ))),
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 16.0),
-                child: ConstrainedBox(constraints: BoxConstraints.loose(const Size(24, 24)), child: const BccmCastButton()),
-              ),
-            ],
-            flexibleSpace: ClipRect(
-              clipBehavior: Clip.hardEdge,
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
-                child: Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [BccmColors.background1, Colors.transparent])),
-                  height: 1000,
+          appBar: kIsWeb
+              ? null
+              : AppBar(
+                  toolbarHeight: 44,
+                  shadowColor: Colors.black,
+                  backgroundColor: design.appThemeData.appBarTransparent ? Colors.transparent : design.colors.background1,
+                  elevation: 0,
+                  centerTitle: true,
+                  title: Image(
+                    image: FlavorConfig.current.images.logo,
+                    height: FlavorConfig.current.images.logoHeight,
+                    gaplessPlayback: true,
+                  ),
+                  leadingWidth: kIsWeb ? 300 : 100,
+                  leading: Align(
+                    alignment: Alignment.centerLeft,
+                    child: GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () {
+                          context.router.pushNamed('/profile');
+                        },
+                        child: Padding(
+                            padding: const EdgeInsets.only(left: kIsWeb ? 80 : 18, top: 12, bottom: 12, right: 32),
+                            child: SvgPicture.string(
+                              SvgIcons.profile,
+                              colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.tint1, BlendMode.srcIn),
+                              semanticsLabel: S.of(context).profileTab,
+                            ))),
+                  ),
+                  actions: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints.loose(const Size(24, 24)),
+                        child: BccmCastButton(color: DesignSystem.of(context).colors.tint1),
+                      ),
+                    ),
+                  ],
+                  flexibleSpace: !design.appThemeData.appBarTransparent
+                      ? null
+                      : ClipRect(
+                          clipBehavior: Clip.hardEdge,
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [DesignSystem.of(context).colors.background1, Colors.transparent],
+                                ),
+                              ),
+                              height: 1000,
+                            ),
+                          ),
+                        ),
                 ),
-              ),
-            ),
-          ),
           body: SafeArea(
             top: false,
             child: BccmPage(

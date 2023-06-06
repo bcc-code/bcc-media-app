@@ -23,7 +23,7 @@ class SDa extends S {
   String get calendarWeek => 'uge';
 
   @override
-  String get close => 'Close';
+  String get close => 'Luk';
 
   @override
   String get loading => 'Indlæser';
@@ -33,6 +33,12 @@ class SDa extends S {
 
   @override
   String get loginPageDisplay2 => 'Se serier, shows og film baseret på kristne værdier';
+
+  @override
+  String get kidsOnboardingTitle => 'Vi vækker Bibelens budskab til live!';
+
+  @override
+  String get kidsOnboardingSecondaryTitle => 'Vores vision er at børnene skal opleve Jesus som deres allerbedste ven - for resten af deres liv.';
 
   @override
   String get loginPageDisplay3 => 'Produceret af BCC Media';
@@ -54,6 +60,24 @@ class SDa extends S {
 
   @override
   String get signInButton => 'Log ind';
+
+  @override
+  String get signInOrSignUp => 'Tilmeld dig / Log ind';
+
+  @override
+  String get signUpButton => 'Tilmeld dig nu';
+
+  @override
+  String get signUpTitle => 'Tilmeld dig';
+
+  @override
+  String get signUpDescription => 'Få adgang til mere indhold og bedre funktioner ved at oprette en konto.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'Jeg bekræfter, at jeg er 13 år eller ældre, og jeg er indforstået med følgende  <a>Privatlivspolitik</a> og <a>Vilkår for brug</a>. ';
+
+  @override
+  String get setPassword => 'Skriv password';
 
   @override
   String get tryAgainButton => 'Prøv igen';
@@ -80,7 +104,7 @@ class SDa extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Open';
+  String get open => 'Åben';
 
   @override
   String get loginFailedCheckNetwork => 'Login mislykkedes. Tjek din netværksforbindelse, og prøv igen.';
@@ -116,19 +140,22 @@ class SDa extends S {
   String get contactSupport => 'Kontakt support';
 
   @override
+  String get userVoice => 'Foreslå en funktion';
+
+  @override
   String get cancel => 'Annuller';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Er du sikker på at du vil annullere?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Alle ændringer, der ikke er gemt, vil gå tabt.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Tilbage';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Ja, annullér';
 
   @override
   String get upNext => 'Næste';
@@ -170,7 +197,7 @@ class SDa extends S {
   String get search => 'Søg';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Indsend feedback';
 
   @override
   String get noResults => 'Ingen resultater fundet';
@@ -348,7 +375,7 @@ class SDa extends S {
   String get sendFailDescription => 'Kunne gik galt. Tjek din internetforbindelse og prøv igen.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Vi sætter pris på din feedback.';
 
   @override
   String get today => 'I dag';
@@ -382,7 +409,19 @@ class SDa extends S {
   String get share => 'Del';
 
   @override
+  String get showMore => 'Vis mere';
+
+  @override
+  String get showLess => 'Vis mindre';
+
+  @override
   String get liveNow => 'Live nu';
+
+  @override
+  String get comingSoon => 'Kommer snart';
+
+  @override
+  String get newEpisode => 'Ny';
 
   @override
   String get tomorrow => 'I morgen';
@@ -477,6 +516,12 @@ class SDa extends S {
   String get exploreContent => 'Udforsk indhold';
 
   @override
+  String get explorePublicContent => 'Udforsk offentligt indhold';
+
+  @override
+  String get startExploring => 'Udforsk';
+
+  @override
   String get taskCompleted => 'Opgave udført';
 
   @override
@@ -550,7 +595,18 @@ class SDa extends S {
   String get continueButton => 'Fortsæt';
 
   @override
+  String get registerButton => 'Tilmeld';
+
+  @override
   String get achievements => 'Streaks';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Mindst $n tegn';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Skal indeholde små bogstaver, store bogstaver og tal.';
 
   @override
   String get oops => 'Ups!';
@@ -571,5 +627,96 @@ class SDa extends S {
   String get details => 'Detaljer';
 
   @override
-  String get selectSeason => 'Select season';
+  String get myList => 'Min liste';
+
+  @override
+  String get didYouKnowTitle => 'Vidste du?';
+
+  @override
+  String get didYouKnowContent => 'Du kan tilføje dine favoritudsendelser til \"Min liste\" ved at trykke på hjertet.';
+
+  @override
+  String get selectSeason => 'Vælg sæson';
+
+  @override
+  String get deleteMyAccount => 'Slet min konto';
+
+  @override
+  String get iAmSureIWantToDelete => 'Jeg er sikker på, at jeg vil slette min konto og mine data i BCC Media-appen.';
+
+  @override
+  String get areYouSure => 'Er du sikker?';
+
+  @override
+  String get youCanContactUsAt => 'You can contact us at';
+
+  @override
+  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+
+  @override
+  String get askYourParents => 'Ask your parents';
+
+  @override
+  String get whatIsMath => 'What is';
+
+  @override
+  String get answerLabel => 'Answer';
+
+  @override
+  String get checkAnswerButton => 'Check answer';
+
+  @override
+  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+
+  @override
+  String get verifyYourAccount => 'Verify your account';
+
+  @override
+  String get weHaveSentAnEmailTo => 'We have sent an email to';
+
+  @override
+  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+
+  @override
+  String get openEmailApp => 'Open email app';
+
+  @override
+  String get resendEmail => 'Resend email';
+
+  @override
+  String get noMailAppsDescription => 'No mail apps installed';
+
+  @override
+  String get verificationEmailSent => 'Verification email sent';
+
+  @override
+  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+
+  @override
+  String get accountCreated => 'Account created';
+
+  @override
+  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+
+  @override
+  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+
+  @override
+  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+
+  @override
+  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+
+  @override
+  String accountDeletionTimeframe(int x) {
+    return 'Account deletion will usually be done within $x business days.';
+  }
+
+  @override
+  String get accountDeletionTitle => 'Slet min konto';
+
+  @override
+  String accountDeletionSuccess(String email) {
+    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+  }
 }
