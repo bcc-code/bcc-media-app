@@ -89,6 +89,9 @@ class SDa extends S {
   String get loggedOutMessage => 'Du er blevet logget ud. Venligst log ind igen.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Mest sete';
 
   @override
