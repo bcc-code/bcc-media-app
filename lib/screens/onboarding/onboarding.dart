@@ -97,95 +97,97 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoScaffold(
-      body: DialogOnWeb(
-        child: Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 44,
-            shadowColor: Colors.black,
-            elevation: 0,
-            centerTitle: true,
-            title: Image(
-              image: FlavorConfig.current.images.logo,
-              height: 25,
-              gaplessPlayback: true,
+      body: Builder(
+        builder: (context) => DialogOnWeb(
+          child: Scaffold(
+            appBar: AppBar(
+              toolbarHeight: 44,
+              shadowColor: Colors.black,
+              elevation: 0,
+              centerTitle: true,
+              title: Image(
+                image: FlavorConfig.current.images.logo,
+                height: 25,
+                gaplessPlayback: true,
+              ),
+              automaticallyImplyLeading: false,
             ),
-            automaticallyImplyLeading: false,
-          ),
-          body: AnimatedOpacity(
-            opacity: imagesLoaded ? 1 : 0,
-            duration: const Duration(milliseconds: 500),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (kIsWeb)
-                        Padding(padding: const EdgeInsets.all(16), child: Image(image: FlavorConfig.current.images.onboarding))
-                      else
-                        Container(
-                          height: 220 * (MediaQuery.of(context).size.height / 600),
-                          margin: const EdgeInsets.only(top: 40, bottom: 30),
-                          child: Transform.scale(
-                            scale: 1.3 * (MediaQuery.of(context).size.height / 800),
-                            child: Image(image: FlavorConfig.current.images.onboarding),
+            body: AnimatedOpacity(
+              opacity: imagesLoaded ? 1 : 0,
+              duration: const Duration(milliseconds: 500),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (kIsWeb)
+                          Padding(padding: const EdgeInsets.all(16), child: Image(image: FlavorConfig.current.images.onboarding))
+                        else
+                          Container(
+                            height: 220 * (MediaQuery.of(context).size.height / 600),
+                            margin: const EdgeInsets.only(top: 40, bottom: 30),
+                            child: Transform.scale(
+                              scale: 1.3 * (MediaQuery.of(context).size.height / 800),
+                              child: Image(image: FlavorConfig.current.images.onboarding),
+                            ),
                           ),
-                        ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.only(right: 38, bottom: 12, left: 38),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                FlavorConfig.current.strings(context).onboardingTitle,
-                                style: DesignSystem.of(context).textStyles.headline2,
-                                textAlign: TextAlign.center,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 12),
-                                child: Text(
-                                  FlavorConfig.current.strings(context).onboardingSecondaryTitle,
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.only(right: 38, bottom: 12, left: 38),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  FlavorConfig.current.strings(context).onboardingTitle,
+                                  style: DesignSystem.of(context).textStyles.headline2,
                                   textAlign: TextAlign.center,
-                                  style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 12),
+                                  child: Text(
+                                    FlavorConfig.current.strings(context).onboardingSecondaryTitle,
+                                    textAlign: TextAlign.center,
+                                    style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: max(36, MediaQuery.of(context).padding.bottom)),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      if (errorMessage != '')
-                        Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(errorMessage, textAlign: TextAlign.center)),
-                      OnboardingButtons(
-                        loginAction: loginAction,
-                        exploreAction: () {
-                          context.router.popUntil((route) => false);
-                          context.router.push(const TabsRootScreenRoute());
-                          ref.read(sharedPreferencesProvider).setBool(PrefKeys.onboardingCompleted, true);
-                        },
-                        signupAction: () {
-                          CupertinoScaffold.showCupertinoModalBottomSheet(
-                            context: context,
-                            builder: (context) => const SignupScreen(),
-                            enableDrag: false,
-                            duration: const Duration(milliseconds: 250),
-                          );
-                        },
-                      ),
-                    ],
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: max(36, MediaQuery.of(context).padding.bottom)),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (errorMessage != '')
+                          Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(errorMessage, textAlign: TextAlign.center)),
+                        OnboardingButtons(
+                          loginAction: loginAction,
+                          exploreAction: () {
+                            context.router.popUntil((route) => false);
+                            context.router.push(const TabsRootScreenRoute());
+                            ref.read(sharedPreferencesProvider).setBool(PrefKeys.onboardingCompleted, true);
+                          },
+                          signupAction: () {
+                            CupertinoScaffold.showCupertinoModalBottomSheet(
+                              context: context,
+                              builder: (context) => const SignupScreen(),
+                              enableDrag: false,
+                              duration: const Duration(milliseconds: 250),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
