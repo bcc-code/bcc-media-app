@@ -1,4 +1,5 @@
-include ':app'
+include ':app', ':rudder-sdk-android-core'
+project(':rudder-sdk-android-core').projectDir = new File('../external_projects/rudder-sdk-android/core')
 
 def localPropertiesFile = new File(rootProject.projectDir, "local.properties")
 def properties = new Properties()

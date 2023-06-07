@@ -27,9 +27,6 @@ import '../models/analytics/content_shared.dart';
 const kMinimumSessionTimeout = Duration(minutes: 30);
 
 final analyticsProvider = Provider<Analytics>((ref) {
-  if (Platform.isAndroid && FlavorConfig.current.strictAnonymousAnalytics == true) {
-    return Analytics();
-  }
   return RudderAnalytics(ref: ref);
 });
 
