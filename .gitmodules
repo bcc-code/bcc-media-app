@@ -1,0 +1,3 @@
+[submodule "external_projects/rudder-sdk-android"]
+	path = external_projects/rudder-sdk-android
+	url = https://github.com/andreasgangso/rudder-sdk-android.git

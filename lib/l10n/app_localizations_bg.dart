@@ -89,6 +89,9 @@ class SBg extends S {
   String get loggedOutMessage => 'You have been logged out. Please log in again.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Most watched';
 
   @override

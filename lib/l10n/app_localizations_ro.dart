@@ -89,6 +89,9 @@ class SRo extends S {
   String get loggedOutMessage => 'Ai fost deconectat. Te rugăm să te conectezi din nou.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Cele mai vizionate';
 
   @override

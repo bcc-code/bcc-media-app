@@ -89,6 +89,9 @@ class STr extends S {
   String get loggedOutMessage => 'Çıkış yaptınız. Lütfen tekrar giriş yapın.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'En çok izlenen';
 
   @override

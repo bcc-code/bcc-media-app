@@ -89,6 +89,9 @@ class SFi extends S {
   String get loggedOutMessage => 'Et ole kirjautuneena. Kirjaudu sisään uudelleen.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Eniten katsellut';
 
   @override
