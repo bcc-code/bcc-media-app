@@ -173,6 +173,9 @@ class SIt extends S {
   String get none => 'Nessuno';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Auto';
 
   @override

@@ -459,6 +459,12 @@ abstract class S {
   /// **'None'**
   String get none;
 
+  /// Button indicating the next video will play soon.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Episode'**
+  String get nextEpisode;
+
   /// Indicator on profile page that audio and app language are chosen automatically.
   ///
   /// In en, this message translates to:

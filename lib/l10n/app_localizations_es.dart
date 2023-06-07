@@ -173,6 +173,9 @@ class SEs extends S {
   String get none => 'Ninguno';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Automatico';
 
   @override

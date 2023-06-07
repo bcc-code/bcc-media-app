@@ -173,6 +173,9 @@ class SHu extends S {
   String get none => 'Nincs';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Autó';
 
   @override

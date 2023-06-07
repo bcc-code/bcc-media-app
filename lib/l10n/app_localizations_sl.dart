@@ -173,6 +173,9 @@ class SSl extends S {
   String get none => 'Brez';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Samodejno';
 
   @override

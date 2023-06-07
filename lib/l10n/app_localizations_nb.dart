@@ -173,6 +173,9 @@ class SNb extends S {
   String get none => 'Ingen';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Auto';
 
   @override

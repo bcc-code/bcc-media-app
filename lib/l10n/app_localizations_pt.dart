@@ -173,6 +173,9 @@ class SPt extends S {
   String get none => 'Nenhum';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Automático';
 
   @override

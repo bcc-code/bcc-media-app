@@ -173,6 +173,9 @@ class SRu extends S {
   String get none => 'Нет';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Авто';
 
   @override

@@ -173,6 +173,9 @@ class SNl extends S {
   String get none => 'Geen';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Auto';
 
   @override

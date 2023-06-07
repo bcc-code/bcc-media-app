@@ -173,6 +173,9 @@ class STr extends S {
   String get none => 'Hiçbiri';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Otomatik';
 
   @override
