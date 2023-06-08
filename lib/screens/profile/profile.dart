@@ -206,6 +206,17 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                                 onPressed: () => _contactSupportEmail(),
                               ),
                             ],
+                            if (FlavorConfig.current.flavor == Flavor.kids)
+                              OptionButton(
+                                optionName: S.of(context).makeDonation,
+                                onPressed: () async {
+                                  if (!await checkParentalGate(context)) {
+                                    return;
+                                  }
+                                  final locale = ref.read(settingsProvider).appLanguage.languageCode;
+                                  launchUrlString('https://biblekids.io/${locale}/support-our-work', mode: LaunchMode.externalApplication);
+                                },
+                              ),
                             OptionButton(
                               optionName: S.of(context).about,
                               onPressed: () async {

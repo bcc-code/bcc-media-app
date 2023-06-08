@@ -89,6 +89,9 @@ class SEs extends S {
   String get loggedOutMessage => 'Tu sesión ha sido cerrada. Por favor inicia sesión nuevamente.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Más vistos';
 
   @override
@@ -171,6 +174,9 @@ class SEs extends S {
 
   @override
   String get none => 'Ninguno';
+
+  @override
+  String get nextEpisode => 'Next Episode';
 
   @override
   String get auto => 'Automatico';

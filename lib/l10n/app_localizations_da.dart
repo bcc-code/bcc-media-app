@@ -89,6 +89,9 @@ class SDa extends S {
   String get loggedOutMessage => 'Du er blevet logget ud. Venligst log ind igen.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Mest sete';
 
   @override
@@ -171,6 +174,9 @@ class SDa extends S {
 
   @override
   String get none => 'Ingen';
+
+  @override
+  String get nextEpisode => 'Next Episode';
 
   @override
   String get auto => 'Auto';
@@ -648,68 +654,68 @@ class SDa extends S {
   String get areYouSure => 'Er du sikker?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Du kan kontakte os på';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'Bible Kids er et initiativ fra BCC Media, en mediestiftelsen under BCC-forbundet, som producerer og distribuerer indhold med positive og kristne værdier.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Spørg dine forældre';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'Hvad er';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Svar';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Se svar';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Denne video er kun tilgængelig for brugere, der er logget ind i appen.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Bekræft din konto';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'Vi har sendt en e-mail til';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Klik på linket i e-mailen for at bekræfte din konto.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'Åbn e-mail-appen';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'Send e-mail igen';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Ingen mail-apps installeret';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'Bekræftelses-e-mail sendt';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Hvis du stadig ikke har modtaget en e-mail, bedes du kontakte support på';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Brugerkonto oprettet';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Du kan nu bruge din brugerkonto og udforske et udvalg af opbyggeligt indhold.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Du kan nu logge ind på din brugerkonto og udforske et udvalg af opbyggeligt indhold.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'Du er ved at anmode om at slette din konto hos BCC Media og alle dine data relateret til denne app.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'Det er en handling, der ikke kan fortrydes.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'Din brugerkonto vil blive slettet inden for $x arbejdsdage.';
   }
 
   @override
@@ -717,6 +723,6 @@ class SDa extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'Anmodning om at slette din brugerkonto gennemført. Du vil modtage en e-mail på $email. For at bekræfte din identitet har vi brug for, at du svarer på den e-mail for at fortsætte med at slette din brugerkonto.';
   }
 }

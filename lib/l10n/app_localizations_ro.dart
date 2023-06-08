@@ -89,6 +89,9 @@ class SRo extends S {
   String get loggedOutMessage => 'Ai fost deconectat. Te rugăm să te conectezi din nou.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Cele mai vizionate';
 
   @override
@@ -171,6 +174,9 @@ class SRo extends S {
 
   @override
   String get none => 'Niciunul';
+
+  @override
+  String get nextEpisode => 'Next Episode';
 
   @override
   String get auto => 'Auto';
@@ -648,68 +654,68 @@ class SRo extends S {
   String get areYouSure => 'Ești sigur?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Ne poți contacta la';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'Bible Kids este o inițiativă a BCC Media, o fundație media din cadrul Federației BCC care produce și distribuie conținut cu valori pozitive și Creștine.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Întreabă părinții tăi';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'Cât este';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Răspuns';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Verifică răspunsul';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Acest video este accesibil doar utilizatorilor care sunt conectați în aplicație.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Verifică contul tău';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'Am trimis un email pe';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Apasă pe linkul din e-mail pentru a vă verifica contul.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'Deschide aplicația de e-mail';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'Retrimite e-mail';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Nu sunt instalate aplicații de poștă electronică';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'E-mail de verificare trimis';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Dacă tot nu ați primit un e-mail, te rugăm să contactezi serviciul de asistență la adresa';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Cont creat';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Acum îți poți folosi contul și explora o varietate de conținut edificator.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Acum poți să te conectezi în contul tău și să explorezi o varietate de conținut edificator.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'Ești pe cale să soliciți ștergerea contului tău din BCC Media și a tuturor datelor tale legate de această aplicație.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'Aceasta este o acțiune care nu poate fi anulată.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'Ștergerea contului se va face de obicei în termen de $x zile lucrătoare.';
   }
 
   @override
@@ -717,6 +723,6 @@ class SRo extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'Ștergerea contului a fost solicitată cu succes. Vei primi un e-mail pe $email. Pentru a confirma identitatea trebuie să ne răspunzi la acel e-mail pentru a continua ștergerea.';
   }
 }

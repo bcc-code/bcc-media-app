@@ -69,6 +69,7 @@ class NpawConfig {
   late String? appName;
   late String? appReleaseVersion;
   late String? accountCode;
+  late bool? deviceIsAnonymous;
 }
 
 class AppConfig {

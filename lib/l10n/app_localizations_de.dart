@@ -89,6 +89,9 @@ class SDe extends S {
   String get loggedOutMessage => 'Du wurdest ausgeloggt. Bitte logge dich wieder ein.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Meistgesehen';
 
   @override
@@ -171,6 +174,9 @@ class SDe extends S {
 
   @override
   String get none => 'Keine';
+
+  @override
+  String get nextEpisode => 'Next Episode';
 
   @override
   String get auto => 'Auto';

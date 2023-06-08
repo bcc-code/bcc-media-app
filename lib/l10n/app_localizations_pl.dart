@@ -89,6 +89,9 @@ class SPl extends S {
   String get loggedOutMessage => 'Zostałeś wylogowany, prosimy o ponowne zalogowanie.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Najpopularniejsze';
 
   @override
@@ -171,6 +174,9 @@ class SPl extends S {
 
   @override
   String get none => 'Bez napisów';
+
+  @override
+  String get nextEpisode => 'Next Episode';
 
   @override
   String get auto => 'Auto';

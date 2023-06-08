@@ -111,6 +111,10 @@
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
+  "makeDonation": "Make a donation",
+  "@makeDonation": {
+    "description": "Text for button which opens donation page."
+  },
   "mostWatched": "Most watched",
   "@mostWatched": {
     "description": "Sorting option on audience page"
@@ -222,6 +226,10 @@
   "none": "None",
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "nextEpisode": "Next Episode",
+  "@nextEpisode": {
+    "description": "Button indicating the next video will play soon."
   },
   "auto": "Auto",
   "@auto": {
