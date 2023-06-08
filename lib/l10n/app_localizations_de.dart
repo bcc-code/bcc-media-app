@@ -176,6 +176,9 @@ class SDe extends S {
   String get none => 'Keine';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Auto';
 
   @override

@@ -176,6 +176,9 @@ class SPl extends S {
   String get none => 'Bez napisów';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Auto';
 
   @override

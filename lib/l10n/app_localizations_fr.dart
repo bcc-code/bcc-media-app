@@ -176,6 +176,9 @@ class SFr extends S {
   String get none => 'Aucun';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Auto';
 
   @override

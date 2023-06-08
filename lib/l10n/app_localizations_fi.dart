@@ -176,6 +176,9 @@ class SFi extends S {
   String get none => 'Ei mikään';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Automaattinen';
 
   @override

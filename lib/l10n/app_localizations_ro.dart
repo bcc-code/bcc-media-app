@@ -176,6 +176,9 @@ class SRo extends S {
   String get none => 'Niciunul';
 
   @override
+  String get nextEpisode => 'Next Episode';
+
+  @override
   String get auto => 'Auto';
 
   @override
