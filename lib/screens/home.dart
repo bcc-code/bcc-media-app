@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/components/parents/parental_gate.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
@@ -167,7 +168,10 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                         behavior: HitTestBehavior.opaque,
-                        onTap: () {
+                        onTap: () async {
+                          if ((FlavorConfig.current.flavor == Flavor.kids && !await checkParentalGate(context)) || !context.mounted) {
+                            return;
+                          }
                           context.router.pushNamed('/profile');
                         },
                         child: Padding(
