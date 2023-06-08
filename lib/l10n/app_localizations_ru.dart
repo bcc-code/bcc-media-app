@@ -89,6 +89,9 @@ class SRu extends S {
   String get loggedOutMessage => 'Вы вышли из аккаунта. Пожалуйста, войдите снова.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Самое просматриваемое';
 
   @override
@@ -171,6 +174,9 @@ class SRu extends S {
 
   @override
   String get none => 'Нет';
+
+  @override
+  String get nextEpisode => 'Next Episode';
 
   @override
   String get auto => 'Авто';

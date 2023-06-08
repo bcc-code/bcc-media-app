@@ -291,6 +291,12 @@ abstract class S {
   /// **'You have been logged out. Please log in again.'**
   String get loggedOutMessage;
 
+  /// Text for button which opens donation page.
+  ///
+  /// In en, this message translates to:
+  /// **'Make a donation'**
+  String get makeDonation;
+
   /// Sorting option on audience page
   ///
   /// In en, this message translates to:
@@ -458,6 +464,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'None'**
   String get none;
+
+  /// Button indicating the next video will play soon.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Episode'**
+  String get nextEpisode;
 
   /// Indicator on profile page that audio and app language are chosen automatically.
   ///

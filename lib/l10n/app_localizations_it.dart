@@ -89,6 +89,9 @@ class SIt extends S {
   String get loggedOutMessage => 'Sei stato disconnesso. Per favore esegui nuovamente l\'accesso.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'I più visti';
 
   @override
@@ -171,6 +174,9 @@ class SIt extends S {
 
   @override
   String get none => 'Nessuno';
+
+  @override
+  String get nextEpisode => 'Next Episode';
 
   @override
   String get auto => 'Auto';

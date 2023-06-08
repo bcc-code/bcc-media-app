@@ -912,10 +912,10 @@ packages:
     dependency: "direct main"
     description:
       name: intl
-      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
+      sha256: a3715e3bc90294e971cb7dc063fbf3cd9ee0ebf8604ffeafabd9e6f16abbdbe6
       url: "https://pub.dev"
     source: hosted
-    version: "0.18.1"
+    version: "0.18.0"
   io:
     dependency: transitive
     description:
@@ -1328,42 +1328,42 @@ packages:
     dependency: transitive
     description:
       name: rudder_plugin_android
-      sha256: f7a966531ea60f0ca8d0477c0eb9ddf4cac2ccc10efb1365656642ab04c7bb48
+      sha256: f599915a9024d324da41372825d321e04dd452d37a8a61bb44ef5c7302f0bfa0
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.1"
+    version: "2.2.2"
   rudder_plugin_ios:
     dependency: transitive
     description:
       name: rudder_plugin_ios
-      sha256: a7753ca9f0def96fcf68ad44ae46377bacc35a264b149ec34da6c096c4b7176d
+      sha256: "29a6ddb561c1673169cd79bde18574163f7ab3b97955e8a9475afdf8129ff3c3"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.1"
+    version: "2.2.2"
   rudder_plugin_web:
     dependency: transitive
     description:
       name: rudder_plugin_web
-      sha256: "69e643c7dccd5fb1698a624373f394ba0eac4a5264a5f53f75d1b6497b04f902"
+      sha256: "650941ee413f26b25e690f6ab43d1cc6538e9d86240578db2939b5f618f40dcb"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.1"
+    version: "2.2.3"
   rudder_sdk_flutter:
     dependency: "direct main"
     description:
       name: rudder_sdk_flutter
-      sha256: ab4fc53c14c075d4cd26224c82acb37aa1bec3b1c3ebacacaacab712410b24ba
+      sha256: "4eab622e0c5e183682769d416cda68752513a9f0c64a4c2215bff2f90b1fddc0"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.1"
+    version: "2.3.3"
   rudder_sdk_flutter_platform_interface:
     dependency: "direct main"
     description:
       name: rudder_sdk_flutter_platform_interface
-      sha256: "186e8b68dd887e98b81cd2f352cf326527e3c904e1ca90ae6877ecb4374ac02b"
+      sha256: d4f6c849e4fb1e10b3b3cd46dd75c169ea48500739695b944978fc73eb603dc2
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.1"
   rxdart:
     dependency: transitive
     description:
@@ -1565,10 +1565,10 @@ packages:
     dependency: "direct main"
     description:
       name: table_calendar
-      sha256: "7f1270313c0cdb245b583ed8518982c01d4a7e95869b3c30abcbae3b642c45d0"
+      sha256: "1e3521a3e6d3fc7f645a58b135ab663d458ab12504f1ea7f9b4b81d47086c478"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.8"
+    version: "3.0.9"
   term_glyph:
     dependency: transitive
     description:

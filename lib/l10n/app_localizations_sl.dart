@@ -89,6 +89,9 @@ class SSl extends S {
   String get loggedOutMessage => 'Odjavili ste se. Prosim, ponovno se prijavite.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Najbolj gledano';
 
   @override
@@ -171,6 +174,9 @@ class SSl extends S {
 
   @override
   String get none => 'Brez';
+
+  @override
+  String get nextEpisode => 'Next Episode';
 
   @override
   String get auto => 'Samodejno';

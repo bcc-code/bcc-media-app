@@ -38,6 +38,7 @@ class ItemSectionThumbnailGrid extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16),
       child: ThumbnailGrid(
         gridSize: data.gridSize,
+        aspectRatio: aspectRatio,
         sectionItems: data.items.items,
         showSecondaryTitle: showSecondaryTitle,
       ),

@@ -89,6 +89,9 @@ class SHu extends S {
   String get loggedOutMessage => 'Ki lettél jelentkezve. Jelentkezz újból be.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Legnézetebb';
 
   @override
@@ -171,6 +174,9 @@ class SHu extends S {
 
   @override
   String get none => 'Nincs';
+
+  @override
+  String get nextEpisode => 'Next Episode';
 
   @override
   String get auto => 'Autó';

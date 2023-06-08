@@ -89,6 +89,9 @@ class SFr extends S {
   String get loggedOutMessage => 'Tu as été déconnecté. Merci de te connecter à nouveau.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Le plus regardé';
 
   @override
@@ -171,6 +174,9 @@ class SFr extends S {
 
   @override
   String get none => 'Aucun';
+
+  @override
+  String get nextEpisode => 'Next Episode';
 
   @override
   String get auto => 'Auto';
