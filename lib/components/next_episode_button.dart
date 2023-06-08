@@ -18,17 +18,8 @@ class NextEpiosodeButton extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final progressOverlayWidth = useState(0.0);
-
-    // ignore: exhaustive_keys
-    useMemoized(
-      () => SchedulerBinding.instance.scheduleFrameCallback(
-        (_) {
-          progressOverlayWidth.value = double.infinity;
-          Future.delayed(waitDuration, action);
-        },
-      ),
-    );
+    final controller = useAnimationController(duration: waitDuration);
+    controller.forward().whenComplete(action);
 
     final design = DesignSystem.of(context);
     return GestureDetector(
@@ -46,12 +37,10 @@ class NextEpiosodeButton extends HookWidget {
               Positioned.fill(
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: AnimatedSize(
-                    duration: waitDuration,
-                    child: Container(
-                      width: progressOverlayWidth.value,
-                      color: design.colors.tint1,
-                    ),
+                  child: SizeTransition(
+                    axis: Axis.horizontal,
+                    sizeFactor: controller,
+                    child: Container(color: design.colors.tint1),
                   ),
                 ),
               ),
