@@ -18,6 +18,7 @@ import 'package:brunstadtv_app/screens/profile/account_deletion.dart';
 import 'package:brunstadtv_app/screens/onboarding/onboarding.dart';
 import 'package:brunstadtv_app/screens/profile/profile.dart';
 import 'package:brunstadtv_app/screens/search.dart';
+import 'package:brunstadtv_app/screens/shorts/shorts_main.dart';
 import 'package:brunstadtv_app/screens/study.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -211,6 +212,16 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
         meta: {
           RouteMetaConstants.analyticsName: 'achievement-group',
         }),
+    CustomRoute<void>(
+        name: 'ShortsMainRoute',
+        page: ShortsMain,
+        path: '/shorts',
+        durationInMilliseconds: 400,
+        reverseDurationInMilliseconds: 300,
+        transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+        children: [
+          _episodeScreenRoute,
+        ]),
     CustomRoute<void>(
       page: TabsRootScreen,
       path: '/',

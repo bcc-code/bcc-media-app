@@ -110,6 +110,10 @@ dependencies:
   responsive_framework: ^1.0.0
   intl: ^0.18.0
   #smooth: any
+  #shorts
+  video_player: ^2.5.1
+  
+
 
 dev_dependencies:
   integration_test:

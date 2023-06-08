@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:brunstadtv_app/screens/shorts/shorts_main.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
@@ -19,6 +21,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../api/brunstadtv.dart';
+import '../env/env.dart';
 import '../flavors.dart';
 import '../graphql/queries/application.graphql.dart';
 import '../theme/design_system/design_system.dart';
@@ -218,6 +221,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
               scrollController: pageScrollController,
             ),
           ),
+          floatingActionButton: !Env.enableShorts
+              ? null
+              : FloatingActionButton(
+                  child: const Icon(Icons.token_outlined),
+                  onPressed: () => context.router.navigate(const ShortsMainRoute()),
+                ),
         ),
       ],
     );

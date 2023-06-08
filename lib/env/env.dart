@@ -14,6 +14,7 @@ class Env {
   static const npawAccountCode = _Secrets.npawAccountCode;
   static const rudderstackWriteKey = _Secrets.rudderstackWriteKey;
   static final webUrl = _Secrets.webUrl.isNotEmpty ? _Secrets.webUrl : 'https://app.bcc.media';
+  static const enableShorts = false;
   static const unleashClientKey = _Secrets.unleashClientKey;
   static const unleashClientKeyBetaTester = _Secrets.unleashClientKeyBetaTester;
   static const unleashProxyUrl = _Secrets.unleashProxyUrl;

@@ -1,7 +1,6 @@
 name: bccm_player
 description: A new Flutter plugin project.
 version: 0.0.1
-homepage:
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
