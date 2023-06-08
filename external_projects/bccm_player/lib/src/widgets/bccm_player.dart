@@ -102,10 +102,9 @@ class _AndroidPlayerState extends State<AndroidPlayer> {
         return AndroidViewSurface(
           controller: controller as AndroidViewController,
           hitTestBehavior: PlatformViewHitTestBehavior.opaque,
-          gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-            Factory<OneSequenceGestureRecognizer>(
-              () => EagerGestureRecognizer(),
-            ),
+          gestureRecognizers: {
+            Factory<TapGestureRecognizer>(() => TapGestureRecognizer()),
+            Factory<HorizontalDragGestureRecognizer>(() => HorizontalDragGestureRecognizer()),
           },
         );
       },
