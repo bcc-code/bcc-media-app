@@ -35,17 +35,6 @@ class _IconGridSectionList extends StatelessWidget {
   final Enum$GridSectionSize size;
   final List<Fragment$ItemSectionItem> sectionItems;
 
-  int getColumnCount(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size.width;
-    switch (size) {
-      case Enum$GridSectionSize.half:
-      default:
-        if (screenSize > 1920) return 6;
-        if (screenSize > 1000) return 4;
-        return 2;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final colSize = ResponsiveValue(
