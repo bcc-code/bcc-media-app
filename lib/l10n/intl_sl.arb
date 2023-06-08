@@ -111,6 +111,10 @@
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
+  "makeDonation": "Make a donation",
+  "@makeDonation": {
+    "description": "Text for button which opens donation page."
+  },
   "mostWatched": "Najbolj gledano",
   "@mostWatched": {
     "description": "Sorting option on audience page"
@@ -885,7 +889,7 @@
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
   },
-  "youCanContactUsAt": "You can contact us at",
+  "youCanContactUsAt": "Z nami lahko vzpostaviš kontakt na",
   "@youCanContactUsAt": {
     "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
   },

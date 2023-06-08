@@ -5,10 +5,12 @@ import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../env/env.dart';
 import '../../helpers/date_time.dart';
 import '../../helpers/ui/ui_utils.dart';
+import '../../models/breakpoints.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../helpers/utils.dart';
 import '../../l10n/app_localizations.dart';
@@ -87,7 +89,15 @@ class _Episode extends StatelessWidget {
             ),
           ),
         Container(
-          height: 98,
+          height: ResponsiveValue(
+            context,
+            defaultValue: 98.0,
+            conditionalValues: const [
+              Condition.equals(name: BP.md, value: 130.0),
+              Condition.equals(name: BP.lg, value: 160.0),
+              Condition.largerThan(name: BP.lg, value: 180.0),
+            ],
+          ).value!,
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,12 +105,13 @@ class _Episode extends StatelessWidget {
               Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  data.episode.locked
-                      ? Opacity(
-                          opacity: 0.5,
-                          child: BorderedImageContainer(width: 128, imageUrl: data.episode.image),
-                        )
-                      : BorderedImageContainer(width: 128, imageUrl: data.episode.image),
+                  Opacity(
+                    opacity: data.episode.locked ? 0.5 : 1,
+                    child: AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: BorderedImageContainer(imageUrl: data.episode.image),
+                    ),
+                  ),
                   if (data.episode.locked)
                     Positioned.fill(
                       child: Container(

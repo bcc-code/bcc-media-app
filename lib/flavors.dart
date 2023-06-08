@@ -76,6 +76,7 @@ class FlavorConfig {
     required this.images,
     required this.strings,
     required this.enableNotifications,
+    this.strictAnonymousAnalytics,
     this.designSystem,
     this.applicationCode,
     this.defaultLanguage = 'en',
@@ -90,6 +91,7 @@ class FlavorConfig {
   final FlavorStrings Function(BuildContext context) strings;
   final bool enableNotifications;
   final String defaultLanguage;
+  final bool? strictAnonymousAnalytics;
 
   // Static stuff for setting the flavor on startup
   static FlavorConfig? _current;

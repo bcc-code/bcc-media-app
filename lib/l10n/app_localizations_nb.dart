@@ -89,6 +89,9 @@ class SNb extends S {
   String get loggedOutMessage => 'Du har blitt logget ut. Vennligst logg inn igjen.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Mest sett';
 
   @override

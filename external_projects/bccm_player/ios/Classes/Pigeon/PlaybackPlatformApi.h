@@ -41,10 +41,12 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @interface NpawConfig : NSObject
 + (instancetype)makeWithAppName:(nullable NSString *)appName
     appReleaseVersion:(nullable NSString *)appReleaseVersion
-    accountCode:(nullable NSString *)accountCode;
+    accountCode:(nullable NSString *)accountCode
+    deviceIsAnonymous:(nullable NSNumber *)deviceIsAnonymous;
 @property(nonatomic, copy, nullable) NSString * appName;
 @property(nonatomic, copy, nullable) NSString * appReleaseVersion;
 @property(nonatomic, copy, nullable) NSString * accountCode;
+@property(nonatomic, strong, nullable) NSNumber * deviceIsAnonymous;
 @end
 
 @interface AppConfig : NSObject
