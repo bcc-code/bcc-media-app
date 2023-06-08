@@ -89,7 +89,7 @@ class SPt extends S {
   String get loggedOutMessage => 'Você foi desconectado. Por favor faça login novamente.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Faça uma doação';
 
   @override
   String get mostWatched => 'Mais assistidos';

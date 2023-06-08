@@ -227,6 +227,10 @@
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
+  "nextEpisode": "Next Episode",
+  "@nextEpisode": {
+    "description": "Button indicating the next video will play soon."
+  },
   "auto": "Samodejno",
   "@auto": {
     "description": "Indicator on profile page that audio and app language are chosen automatically."
