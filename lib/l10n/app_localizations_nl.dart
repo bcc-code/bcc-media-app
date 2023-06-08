@@ -89,6 +89,9 @@ class SNl extends S {
   String get loggedOutMessage => 'Je bent nu uitgelogd. Log opnieuw in.';
 
   @override
+  String get makeDonation => 'Make a donation';
+
+  @override
   String get mostWatched => 'Meest bekeken';
 
   @override
@@ -630,7 +633,7 @@ class SNl extends S {
   String get myList => 'Mijn lijst';
 
   @override
-  String get didYouKnowTitle => 'Wist je dit?';
+  String get didYouKnowTitle => 'Wist je dat?';
 
   @override
   String get didYouKnowContent => 'Je kunt je favoriete shows toevoegen aan \"Mijn lijst\" door op het hart te klikken.';
@@ -648,68 +651,68 @@ class SNl extends S {
   String get areYouSure => 'Weet je het zeker?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Neem contact op via';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'Bible Kids is een initiatief van BCC Media, een mediastichting binnen de BCC Federatie die inhoud met positieve en christelijke waarden produceert en verspreidt.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Vraag je ouders';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'Wat is';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Antwoord';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Controleer antwoord';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Deze video is alleen beschikbaar voor ingelogde gebruikers.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Verifieer je account';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'We hebben een email gestuurd naar';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Klik op de link in de e-mail om je account te verifiëren.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'Open e-mail app';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'E-mail opnieuw verzenden';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Geen mail-apps geïnstalleerd';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'E-mail ter verificatie verzonden';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Als je nog steeds geen e-mail hebt ontvangen, neem dan contact op via';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Account aangemaakt';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Je kunt nu je account gebruiken en een heleboel opbouwende onderwerpen ontdekken.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Je kunt nu je account gebruiken en een heleboel opbouwende onderwerpen ontdekken.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'Je staat op het punt een verzoek in te dienen om je account bij BCC Media en al je gegevens met betrekking tot deze app te verwijderen.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'Dit is een actie die niet ongedaan kan worden gemaakt.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'Accounts worden gewoonlijk binnen $x werkdagen verwijderd.';
   }
 
   @override
@@ -717,6 +720,6 @@ class SNl extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'Account verwijderen succesvol aangevraagd. Je ontvangt een e-mail op $email. Om je identiteit te bevestigen, hebben we je antwoord op die e-mail nodig om verder te gaan met de verwijdering.';
   }
 }

@@ -111,6 +111,10 @@
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
+  "makeDonation": "Make a donation",
+  "@makeDonation": {
+    "description": "Text for button which opens donation page."
+  },
   "mostWatched": "Mais assistidos",
   "@mostWatched": {
     "description": "Sorting option on audience page"

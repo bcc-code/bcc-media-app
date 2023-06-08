@@ -111,6 +111,10 @@
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
+  "makeDonation": "Make a donation",
+  "@makeDonation": {
+    "description": "Text for button which opens donation page."
+  },
   "mostWatched": "Mest sete",
   "@mostWatched": {
     "description": "Sorting option on audience page"
@@ -885,87 +889,87 @@
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
   },
-  "youCanContactUsAt": "You can contact us at",
+  "youCanContactUsAt": "Du kan kontakte os på",
   "@youCanContactUsAt": {
     "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
   },
-  "biblekidsAbout": "Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.",
+  "biblekidsAbout": "Bible Kids er et initiativ fra BCC Media, en mediestiftelsen under BCC-forbundet, som producerer og distribuerer indhold med positive og kristne værdier.",
   "@biblekidsAbout": {
     "description": "Shown on about page"
   },
-  "askYourParents": "Ask your parents",
+  "askYourParents": "Spørg dine forældre",
   "@askYourParents": {
     "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
   },
-  "whatIsMath": "What is",
+  "whatIsMath": "Hvad er",
   "@whatIsMath": {
     "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
   },
-  "answerLabel": "Answer",
+  "answerLabel": "Svar",
   "@answerLabel": {
     "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
   },
-  "checkAnswerButton": "Check answer",
+  "checkAnswerButton": "Se svar",
   "@checkAnswerButton": {
     "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
   },
-  "videoOnlyAccessibleToLoggedIn": "This video is only accessible to users that are logged in to the app.",
+  "videoOnlyAccessibleToLoggedIn": "Denne video er kun tilgængelig for brugere, der er logget ind i appen.",
   "@videoOnlyAccessibleToLoggedIn": {
     "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
   },
-  "verifyYourAccount": "Verify your account",
+  "verifyYourAccount": "Bekræft din konto",
   "@verifyYourAccount": {
     "description": "Title of the page where you can verify your email/account."
   },
-  "weHaveSentAnEmailTo": "We have sent an email to",
+  "weHaveSentAnEmailTo": "Vi har sendt en e-mail til",
   "@weHaveSentAnEmailTo": {
     "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
   },
-  "clickTheLinkToVerify": "Click the link in the email to verify your account.",
+  "clickTheLinkToVerify": "Klik på linket i e-mailen for at bekræfte din konto.",
   "@clickTheLinkToVerify": {
     "description": "Shown on the verify account page."
   },
-  "openEmailApp": "Open email app",
+  "openEmailApp": "Åbn e-mail-appen",
   "@openEmailApp": {
     "description": "Shown on the verify account page. Button to open your email app."
   },
-  "resendEmail": "Resend email",
+  "resendEmail": "Send e-mail igen",
   "@resendEmail": {
     "description": "Shown on the verify account page. Button to resend the verification email."
   },
-  "noMailAppsDescription": "No mail apps installed",
+  "noMailAppsDescription": "Ingen mail-apps installeret",
   "@noMailAppsDescription": {
     "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
   },
-  "verificationEmailSent": "Verification email sent",
+  "verificationEmailSent": "Bekræftelses-e-mail sendt",
   "@verificationEmailSent": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "ifYouDidntReceiveVerificationEmail": "If you still did not receive an email, please contact support at",
+  "ifYouDidntReceiveVerificationEmail": "Hvis du stadig ikke har modtaget en e-mail, bedes du kontakte support på",
   "@ifYouDidntReceiveVerificationEmail": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "accountCreated": "Account created",
+  "accountCreated": "Brugerkonto oprettet",
   "@accountCreated": {
     "description": "Shown when the user has successfully created an account."
   },
-  "youCanNowUseYourAccount": "You can now use your account and explore a variety of edifying content.",
+  "youCanNowUseYourAccount": "Du kan nu bruge din brugerkonto og udforske et udvalg af opbyggeligt indhold.",
   "@youCanNowUseYourAccount": {
     "description": "Shown when the user has successfully completed account setup."
   },
-  "youCanNowLogInToYourAccount": "You can now log in to your account and explore a variety of edifying content.",
+  "youCanNowLogInToYourAccount": "Du kan nu logge ind på din brugerkonto og udforske et udvalg af opbyggeligt indhold.",
   "@youCanNowLogInToYourAccount": {
     "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
   },
-  "accountDeletionExplanation": "You are about to request to delete your account with BCC Media and all your data related to this app.",
+  "accountDeletionExplanation": "Du er ved at anmode om at slette din konto hos BCC Media og alle dine data relateret til denne app.",
   "@accountDeletionExplanation": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionWarning": "This is an action that cannot be undone.",
+  "accountDeletionWarning": "Det er en handling, der ikke kan fortrydes.",
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Account deletion will usually be done within {x} business days.",
+  "accountDeletionTimeframe": "Din brugerkonto vil blive slettet inden for {x} arbejdsdage.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -978,7 +982,7 @@
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Account deletion successfully requested. You will receive an email at {email}. To confirm your identity, we need you reply to that email to proceed with the deletion.",
+  "accountDeletionSuccess": "Anmodning om at slette din brugerkonto gennemført. Du vil modtage en e-mail på {email}. For at bekræfte din identitet har vi brug for, at du svarer på den e-mail for at fortsætte med at slette din brugerkonto.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
