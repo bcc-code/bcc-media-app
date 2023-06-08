@@ -474,14 +474,6 @@ class MockSettingsService extends _i1.Mock implements _i4.SettingsService {
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  void init() => super.noSuchMethod(
-        Invocation.method(
-          #init,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
   _i6.Future<void> setAppLanguage(String? code) => (super.noSuchMethod(
         Invocation.method(
           #setAppLanguage,

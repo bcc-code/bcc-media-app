@@ -44,7 +44,8 @@ import '../screens/tabs_root.dart' as _i19;
 import 'router.dart' as _i28;
 
 class AppRouter extends _i26.RootStackRouter {
-  AppRouter([_i27.GlobalKey<_i27.NavigatorState>? navigatorKey]) : super(navigatorKey);
+  AppRouter([_i27.GlobalKey<_i27.NavigatorState>? navigatorKey])
+      : super(navigatorKey);
 
   @override
   final Map<String, _i26.PageFactory> pagesMap = {
@@ -195,7 +196,8 @@ class AppRouter extends _i26.RootStackRouter {
       );
     },
     PublicHomeRoute.name: (routeData) {
-      final args = routeData.argsAs<PublicHomeRouteArgs>(orElse: () => const PublicHomeRouteArgs());
+      final args = routeData.argsAs<PublicHomeRouteArgs>(
+          orElse: () => const PublicHomeRouteArgs());
       return _i26.CustomPage<void>(
         routeData: routeData,
         child: _i14.HomeScreen(key: args.key),
@@ -263,8 +265,9 @@ class AppRouter extends _i26.RootStackRouter {
     },
     AchievementGroupScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args =
-          routeData.argsAs<AchievementGroupScreenRouteArgs>(orElse: () => AchievementGroupScreenRouteArgs(groupId: pathParams.getString('groupId')));
+      final args = routeData.argsAs<AchievementGroupScreenRouteArgs>(
+          orElse: () => AchievementGroupScreenRouteArgs(
+              groupId: pathParams.getString('groupId')));
       return _i26.CustomPage<void>(
         routeData: routeData,
         child: _i18.AchievementGroupScreen(
@@ -323,7 +326,9 @@ class AppRouter extends _i26.RootStackRouter {
     },
     SearchScreenRoute.name: (routeData) {
       final queryParams = routeData.queryParams;
-      final args = routeData.argsAs<SearchScreenRouteArgs>(orElse: () => SearchScreenRouteArgs(query: queryParams.optString('q')));
+      final args = routeData.argsAs<SearchScreenRouteArgs>(
+          orElse: () =>
+              SearchScreenRouteArgs(query: queryParams.optString('q')));
       return _i26.MaterialPageX<void>(
         routeData: routeData,
         child: _i23.SearchScreen(
@@ -390,7 +395,9 @@ class AppRouter extends _i26.RootStackRouter {
     },
     PageScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<PageScreenRouteArgs>(orElse: () => PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
+      final args = routeData.argsAs<PageScreenRouteArgs>(
+          orElse: () =>
+              PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
       return _i26.CustomPage<void>(
         routeData: routeData,
         child: _i24.PageScreen(
@@ -655,7 +662,8 @@ class AutoLoginScreenRoute extends _i26.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.OnboardingScreen]
-class OnboardingScreenRoute extends _i26.PageRouteInfo<OnboardingScreenRouteArgs> {
+class OnboardingScreenRoute
+    extends _i26.PageRouteInfo<OnboardingScreenRouteArgs> {
   OnboardingScreenRoute({
     _i30.Key? key,
     String? loginError,
@@ -968,7 +976,8 @@ class AchievementsScreenRoute extends _i26.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i18.AchievementGroupScreen]
-class AchievementGroupScreenRoute extends _i26.PageRouteInfo<AchievementGroupScreenRouteArgs> {
+class AchievementGroupScreenRoute
+    extends _i26.PageRouteInfo<AchievementGroupScreenRouteArgs> {
   AchievementGroupScreenRoute({
     _i30.Key? key,
     required String groupId,
@@ -1175,7 +1184,8 @@ class EpisodeScreenRouteArgs {
 
 /// generated route for
 /// [_i15.CollectionEpisodeScreen]
-class CollectionEpisodeScreenRoute extends _i26.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
+class CollectionEpisodeScreenRoute
+    extends _i26.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
   CollectionEpisodeScreenRoute({
     _i30.Key? key,
     required String episodeId,
