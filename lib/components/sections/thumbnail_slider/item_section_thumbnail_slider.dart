@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import '../../../graphql/schema/pages.graphql.dart';
 import '../../../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../../../graphql/queries/page.graphql.dart';
 
+import '../../../graphql/schema/sections.graphql.dart';
 import '../../../models/breakpoints.dart';
 import '../../../models/episode_thumbnail_data.dart';
 import '../../../providers/todays_calendar_entries.dart';

@@ -1,11 +1,11 @@
 import 'package:brunstadtv_app/components/study/study_topic_card_mini.dart';
-import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../graphql/queries/page.graphql.dart';
+import '../../graphql/schema/sections.graphql.dart';
 import '../../providers/inherited_data.dart';
 import '../study/study_topic_card_large.dart';
 

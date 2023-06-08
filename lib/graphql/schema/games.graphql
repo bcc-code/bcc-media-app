@@ -1,0 +1,7 @@
+type Game {
+    id: UUID!
+    title: String!
+    description: String
+    url: String!
+    image(style: ImageStyle): String @goField(forceResolver: true)
+}

@@ -2,163 +2,137 @@ directive @goField(forceResolver: Boolean, name: String) on INPUT_FIELD_DEFINITI
     | FIELD_DEFINITION
 
 schema{
-  query: QueryRoot
-  mutation: MutationRoot
+    query: QueryRoot
+    mutation: MutationRoot
 }
 
 interface Pagination {
-  total: Int!
-  first: Int!
-  offset: Int!
+    total: Int!
+    first: Int!
+    offset: Int!
 }
 
 scalar Language
-
-scalar Cursor
 scalar Date
-
 scalar UUID
 
-type Settings {
-  audioLanguages: [Language!]!
-  subtitleLanguages: [Language!]!
-}
-
 type Image {
-  style: String!
-  url: String!
+    style: String!
+    url: String!
 }
 
 enum ImageStyle {
-  poster
-  featured
-  default
+    poster
+    featured
+    default
 }
 
 enum Status {
-  published
-  unlisted
-}
-
-enum Gender {
-  male
-  female
-  unknown
-}
-
-type User {
-  id: ID
-  anonymous: Boolean!
-  bccMember: Boolean!
-  audience: String
-  email: String
-  emailVerified: Boolean! @goField(forceResolver: true)
-  settings: Settings!
-  roles: [String!]!
-  analytics: Analytics!
-  gender: Gender!
-  firstName: String!
-  displayName: String!
-  completedRegistration: Boolean! @goField(forceResolver: true)
+    published
+    unlisted
 }
 
 input LegacyIDLookupOptions {
-  episodeID: Int
-  programID: Int
+    episodeID: Int
+    programID: Int
 }
 
 type LegacyIDLookup {
-  id: ID!
+    id: ID!
 }
 
 input EpisodeContext {
-  collectionId: String
+    collectionId: String
 }
 
 type RedirectLink {
-  url: String!
+    url: String!
 }
 
 type RedirectParam {
-  key: String!
-  value: String!
+    key: String!
+    value: String!
 }
 
 type QueryRoot{
-  application: Application!
-  languages: [Language!]!
+    application: Application!
+    languages: [Language!]!
 
-  export(
-    # Only export for this groups. The groups will be filtered by the groups the users has access to.
-    # NOT IMPLEMENTED YET!
-    groups: [String!]
-  ): Export!
+    export(
+        # Only export for this groups. The groups will be filtered by the groups the users has access to.
+        # NOT IMPLEMENTED YET!
+        groups: [String!]
+    ): Export!
 
-  redirect(id: String!): RedirectLink!
+    redirect(id: String!): RedirectLink!
 
-  page(
-    id: ID
-    code: String
-  ): Page!
+    page(
+        id: ID
+        code: String
+    ): Page!
 
-  section(
-    id: ID!
-    timestamp: String
-  ): Section!
+    section(
+        id: ID!
+        timestamp: String
+    ): Section!
 
-  show(
-    id: ID!
-  ): Show!
+    show(
+        id: ID!
+    ): Show!
 
-  season(
-    id: ID!
-  ): Season!
+    season(
+        id: ID!
+    ): Season!
 
-  episode(
-    id: ID!
-    context: EpisodeContext
-  ): Episode!
+    episode(
+        id: ID!
+        context: EpisodeContext
+    ): Episode!
 
-  collection(
-    id: ID
-    slug: String
-  ): Collection!
+    collection(
+        id: ID
+        slug: String
+    ): Collection!
 
-  search(
-    queryString: String!
-    first: Int
-    offset: Int
-    type: String
-    minScore: Int
-  ): SearchResult!
+    search(
+        queryString: String!
+        first: Int
+        offset: Int
+        type: String
+        minScore: Int
+    ): SearchResult!
 
-  pendingAchievements: [Achievement!]!
+    game(
+        id: UUID!
+    ): Game!
 
-  achievement(id: ID!): Achievement!
+    pendingAchievements: [Achievement!]!
 
-  achievementGroup(id: ID!): AchievementGroup!
-  achievementGroups(first: Int, offset: Int): AchievementGroupPagination!
+    achievement(id: ID!): Achievement!
 
-  studyTopic(id: ID!): StudyTopic!
-  studyLesson(id: ID!): Lesson!
+    achievementGroup(id: ID!): AchievementGroup!
+    achievementGroups(first: Int, offset: Int): AchievementGroupPagination!
 
-  calendar: Calendar
-  event(id: ID!): Event
+    studyTopic(id: ID!): StudyTopic!
+    studyLesson(id: ID!): Lesson!
 
-  faq: FAQ!
+    calendar: Calendar
+    event(id: ID!): Event
 
-  me: User!
+    faq: FAQ!
 
-  myList: UserCollection!
+    me: User!
 
-  userCollection(id: UUID!): UserCollection!
+    myList: UserCollection!
 
-  config: Config!
+    userCollection(id: UUID!): UserCollection!
 
-  profiles: [Profile!]!
-  profile: Profile!
+    config: Config!
 
-  legacyIDLookup(options: LegacyIDLookupOptions): LegacyIDLookup!
+    profiles: [Profile!]!
+    profile: Profile!
 
-  prompts(timestamp: Date): [Prompt!]!
+    legacyIDLookup(options: LegacyIDLookupOptions): LegacyIDLookup!
+
+    prompts(timestamp: Date): [Prompt!]!
 }

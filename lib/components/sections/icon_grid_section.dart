@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../graphql/queries/page.graphql.dart';
-import '../../graphql/schema/pages.graphql.dart';
+import '../../graphql/schema/sections.graphql.dart';
 import '../../models/breakpoints.dart';
 import '../custom_grid_view.dart';
 import '../category_button.dart';
