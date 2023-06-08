@@ -5,7 +5,7 @@ Feel free to delete sections that you don't think are relevant.
 -->
 
 <!--
-Describe the changes introduced. 
+About the changes
 - What are they and why are they being introduced? 
 - If the changes are visual, consider adding screenshots or steps to see the changes.
 - Write "Closes #issue" if this PR has an issue it closes.
@@ -13,14 +13,16 @@ Describe the changes introduced.
 ## About the changes
 
 <!--
-If the PR is big:
+Important files
 - Where should a reviewer start looking to get an overview of the changes?
 - Are any files particularly important? 
+- Not needed for small commits
 -->
 ### Important files
 
 <!--
-Anything about the PR you'd like to discuss? Got any questions or doubts?
+Discussion points
+- Anything about the PR you'd like to discuss? Got any questions or doubts?
 -->
 ## Discussion points
 
