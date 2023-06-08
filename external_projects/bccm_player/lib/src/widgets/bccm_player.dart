@@ -56,9 +56,10 @@ class _BccmPlayerState extends State<BccmPlayer> {
                 child: UiKitView(
                     viewType: 'bccm-player',
                     hitTestBehavior: PlatformViewHitTestBehavior.translucent,
-                    gestureRecognizers: {
-                      Factory<TapGestureRecognizer>(() => TapGestureRecognizer()),
-                      Factory<HorizontalDragGestureRecognizer>(() => HorizontalDragGestureRecognizer()),
+                    gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                      Factory<OneSequenceGestureRecognizer>(
+                        () => EagerGestureRecognizer(),
+                      ),
                     },
                     creationParams: <String, dynamic>{
                       'player_id': widget.id,
