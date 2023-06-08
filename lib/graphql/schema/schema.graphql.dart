@@ -294,66 +294,36 @@ Enum$Status fromJson$Enum$Status(String value) {
   }
 }
 
-enum Enum$Gender { male, female, unknown, $unknown }
-
-String toJson$Enum$Gender(Enum$Gender e) {
-  switch (e) {
-    case Enum$Gender.male:
-      return r'male';
-    case Enum$Gender.female:
-      return r'female';
-    case Enum$Gender.unknown:
-      return r'unknown';
-    case Enum$Gender.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$Gender fromJson$Enum$Gender(String value) {
-  switch (value) {
-    case r'male':
-      return Enum$Gender.male;
-    case r'female':
-      return Enum$Gender.female;
-    case r'unknown':
-      return Enum$Gender.unknown;
-    default:
-      return Enum$Gender.$unknown;
-  }
-}
-
 const possibleTypesMap = <String, Set<String>>{
   'Pagination': {
-    'AchievementPagination',
-    'AchievementGroupPagination',
-    'CollectionItemPagination',
-    'EpisodePagination',
-    'QuestionPagination',
-    'FAQCategoryPagination',
-    'SectionPagination',
+    'SurveyQuestionPagination',
     'LinkPagination',
+    'UserCollectionEntryPagination',
+    'CollectionItemPagination',
+    'SectionPagination',
     'SectionItemPagination',
     'SeasonPagination',
+    'QuestionPagination',
+    'FAQCategoryPagination',
     'LessonPagination',
     'TaskPagination',
-    'SurveyQuestionPagination',
-    'UserCollectionEntryPagination',
+    'AchievementPagination',
+    'AchievementGroupPagination',
+    'EpisodePagination',
   },
-  'CalendarEntry': {
-    'SimpleCalendarEntry',
-    'EpisodeCalendarEntry',
-    'SeasonCalendarEntry',
-    'ShowCalendarEntry',
+  'SurveyQuestion': {
+    'SurveyTextQuestion',
+    'SurveyRatingQuestion',
+  },
+  'UserCollectionEntryItem': {
+    'Show',
+    'Episode',
   },
   'CollectionItem': {
     'ShowItem',
     'SeasonItem',
     'EpisodeItem',
     'PageItem',
-  },
-  'EpisodeContextUnion': {
-    'Season',
-    'ContextCollection',
   },
   'Section': {
     'PosterSection',
@@ -397,13 +367,20 @@ const possibleTypesMap = <String, Set<String>>{
     'Page',
     'Link',
     'StudyTopic',
+    'Game',
   },
-  'Prompt': {'SurveyPrompt'},
+  'CalendarEntry': {
+    'SimpleCalendarEntry',
+    'EpisodeCalendarEntry',
+    'SeasonCalendarEntry',
+    'ShowCalendarEntry',
+  },
   'SearchResultItem': {
     'EpisodeSearchItem',
     'SeasonSearchItem',
     'ShowSearchItem',
   },
+  'Prompt': {'SurveyPrompt'},
   'Task': {
     'AlternativesTask',
     'TextTask',
@@ -412,12 +389,8 @@ const possibleTypesMap = <String, Set<String>>{
     'VideoTask',
     'LinkTask',
   },
-  'SurveyQuestion': {
-    'SurveyTextQuestion',
-    'SurveyRatingQuestion',
-  },
-  'UserCollectionEntryItem': {
-    'Show',
-    'Episode',
+  'EpisodeContextUnion': {
+    'Season',
+    'ContextCollection',
   },
 };

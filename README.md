@@ -9,6 +9,7 @@ We would love your help! See https://developer.bcc.no/get-involved.html.
 
 Recommended editor: VS Code, because we have some default debug options set up in [launch.json](./.vscode/launch.json).
 
+0. Clone the submodules with `git submodule update --init`.
 1. Install flutter, then run `flutter doctor -v` until it reports everything is OK.
 2. Run in a terminal: `flutter pub get`
 3. Inside lib/env/, copy the .env.dart.template file to .env.dart, and update the values according to the comments.

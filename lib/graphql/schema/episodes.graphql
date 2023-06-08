@@ -25,14 +25,16 @@ type Episode {
     availableFrom: Date! @goField(forceResolver: true)
     availableTo: Date!
     ageRating: String!
-    title: String!
+    title: String! @goField(forceResolver: true)
     description: String!
     extraDescription: String!
     image(style: ImageStyle): String @goField(forceResolver: true)
     imageUrl: String @deprecated(reason: "Replaced by the image field")
+
     streams: [Stream!]! @goField(forceResolver: true)
     files: [File!]! @goField(forceResolver: true)
-    chapters: [Chapter!]!
+    chapters: [Chapter!]! @goField(forceResolver: true)
+
     season: Season @goField(forceResolver: true)
     duration: Int!
     progress: Int @goField(forceResolver: true)
@@ -47,6 +49,9 @@ type Episode {
     shareRestriction: ShareRestriction! @goField(forceResolver: true)
     inMyList: Boolean! @goField(forceResolver: true)
 
+    """
+    Should probably be used asynchronously, and retrieved separately from the episode, as it can be slow in some cases (a few db requests can occur)
+    """
     next: [Episode!]! @goField(forceResolver: true)
 }
 
@@ -58,9 +63,10 @@ type EpisodePagination implements Pagination {
 }
 
 type Chapter {
-    id: ID!
+    id: UUID!
     start: Int!
     title: String!
+    description: String
 }
 
 type File {
@@ -68,9 +74,10 @@ type File {
     url: String!
     audioLanguage: Language!
     subtitleLanguage: Language
-    size: Int
+    size: Int!
     fileName: String!
     mimeType: String!
+    resolution: String
 }
 
 enum StreamType {

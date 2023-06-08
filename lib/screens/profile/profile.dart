@@ -1,6 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/parents/parental_gate.dart';
-import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
@@ -209,22 +207,14 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                             if (FlavorConfig.current.flavor == Flavor.kids)
                               OptionButton(
                                 optionName: S.of(context).makeDonation,
-                                onPressed: () async {
-                                  if (!await checkParentalGate(context)) {
-                                    return;
-                                  }
+                                onPressed: () {
                                   final locale = ref.read(settingsProvider).appLanguage.languageCode;
                                   launchUrlString('https://biblekids.io/${locale}/support-our-work', mode: LaunchMode.externalApplication);
                                 },
                               ),
                             OptionButton(
                               optionName: S.of(context).about,
-                              onPressed: () async {
-                                if (!await checkParentalGate(context) || !context.mounted) {
-                                  return;
-                                }
-                                context.router.push(const AboutScreenRoute());
-                              },
+                              onPressed: () => context.router.push(const AboutScreenRoute()),
                             ),
                           ],
                         ),
@@ -235,12 +225,7 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                               buttons: [
                                 OptionButton(
                                   optionName: S.of(context).privacyPolicy,
-                                  onPressed: () async {
-                                    if (!await checkParentalGate(context) || !context.mounted) {
-                                      return;
-                                    }
-                                    context.router.push(const PrivacyPolicyScreenRoute());
-                                  },
+                                  onPressed: () => context.router.push(const PrivacyPolicyScreenRoute()),
                                 ),
                               ],
                             );
