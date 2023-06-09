@@ -994,5 +994,9 @@
         "type": "String"
       }
     }
+  },
+  "gamesTab": "Games",
+  "@gamesTab": {
+    "description": "Title of the games page"
   }
 }

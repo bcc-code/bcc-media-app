@@ -18,6 +18,7 @@ import '../models/analytics/achievement_shared.dart';
 import '../models/analytics/audio_only_clicked.dart';
 import '../models/analytics/calendar_day_clicked.dart';
 import '../models/analytics/deep_link_opened.dart';
+import '../models/analytics/game_closed.dart';
 import '../models/analytics/language_changed.dart';
 import '../models/analytics/search_performed.dart';
 import '../models/analytics/search_result_clicked.dart';
@@ -61,6 +62,8 @@ class Analytics {
   void audioOnlyClicked(AudioOnlyClickedEvent event) {}
   @mustBeOverridden
   void calendarDayClicked(CalendarDayClickedEvent event) {}
+  @mustBeOverridden
+  void gameClosed(GameClosedEvent event) {}
 }
 
 class RudderAnalytics extends Analytics {
@@ -245,6 +248,11 @@ class RudderAnalytics extends Analytics {
   @override
   void calendarDayClicked(CalendarDayClickedEvent event) {
     RudderController.instance.track('calendarday_clicked', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  @override
+  void gameClosed(GameClosedEvent event) {
+    RudderController.instance.track('game_closed', properties: getCommonData().putValue(map: event.toJson()));
   }
 
   String _getAgeGroup(int? age) {

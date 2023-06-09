@@ -725,4 +725,7 @@ class SFi extends S {
   String accountDeletionSuccess(String email) {
     return 'Pyyntö tilin poistamiseksi on lähetetty. Saat asiasta sähköpostin osoitteeseen $email. Identiteettisi varmistamiseksi sinun tulee vastata sähköpostiin - jolloin tili voidaan poistaa.';
   }
+
+  @override
+  String get gamesTab => 'Games';
 }

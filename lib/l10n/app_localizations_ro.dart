@@ -725,4 +725,7 @@ class SRo extends S {
   String accountDeletionSuccess(String email) {
     return 'Ștergerea contului a fost solicitată cu succes. Vei primi un e-mail pe $email. Pentru a confirma identitatea trebuie să ne răspunzi la acel e-mail pentru a continua ștergerea.';
   }
+
+  @override
+  String get gamesTab => 'Games';
 }

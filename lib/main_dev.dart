@@ -8,6 +8,7 @@ import 'l10n/app_localizations.dart';
 void main() async {
   FlavorConfig.register(
     FlavorConfig(
+      applicationCode: 'btv',
       flavor: Flavor.bccmedia,
       firebaseOptions: dev_firebase.DefaultFirebaseOptions.currentPlatform,
       enableNotifications: true,

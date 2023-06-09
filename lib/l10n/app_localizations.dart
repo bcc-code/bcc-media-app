@@ -1514,6 +1514,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Account deletion successfully requested. You will receive an email at {email}. To confirm your identity, we need you reply to that email to proceed with the deletion.'**
   String accountDeletionSuccess(String email);
+
+  /// Title of the games page
+  ///
+  /// In en, this message translates to:
+  /// **'Games'**
+  String get gamesTab;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
