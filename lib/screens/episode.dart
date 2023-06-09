@@ -208,6 +208,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     playbackService.playEpisode(
       playerId: playerId,
       episode: nextEpisode,
+      playbackPositionMs: 0,
       autoplay: true,
     );
     router.navigate(
@@ -215,6 +216,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
         episodeId: nextEpisode.id,
         collectionId: nextEpisode.context?.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id,
         autoplay: true,
+        queryParamStartPosition: 0,
       ),
     );
     return true;
