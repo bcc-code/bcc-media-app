@@ -19,6 +19,7 @@ class ThumbnailGrid extends ConsumerWidget {
     super.key,
     required this.gridSize,
     this.aspectRatio = 16 / 9,
+    this.collectionId,
     required this.sectionItems,
     this.showSecondaryTitle = true,
   });
@@ -27,6 +28,7 @@ class ThumbnailGrid extends ConsumerWidget {
   final List<Fragment$GridSectionItem> sectionItems;
   final bool showSecondaryTitle;
   final double aspectRatio;
+  final String? collectionId;
 
   int getColumnCount(BuildContext context) {
     final screenSize = MediaQuery.of(context).size.width;
@@ -92,6 +94,7 @@ class ThumbnailGrid extends ConsumerWidget {
       children: items.mapIndexed((index, item) {
         return SectionItemClickWrapper(
           item: item.item,
+          collectionId: collectionId,
           analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
           child: getItemWidget(item, curLiveEpisode),
         );

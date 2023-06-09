@@ -8,11 +8,13 @@ class ItemSectionThumbnailGrid extends StatelessWidget {
   final Fragment$GridSection data;
   final double aspectRatio;
   final bool showSecondaryTitle;
+  final String? collectionId;
 
   const ItemSectionThumbnailGrid({
     required this.data,
     required this.aspectRatio,
     required this.showSecondaryTitle,
+    required this.collectionId,
     super.key,
   });
 
@@ -21,6 +23,7 @@ class ItemSectionThumbnailGrid extends StatelessWidget {
       data: data,
       showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
       aspectRatio: 16 / 9,
+      collectionId: data.metadata?.collectionId,
     );
   }
 
@@ -29,6 +32,7 @@ class ItemSectionThumbnailGrid extends StatelessWidget {
       data: data,
       showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
       aspectRatio: 0.67,
+      collectionId: data.metadata?.collectionId,
     );
   }
 
@@ -41,6 +45,7 @@ class ItemSectionThumbnailGrid extends StatelessWidget {
         aspectRatio: aspectRatio,
         sectionItems: data.items.items,
         showSecondaryTitle: showSecondaryTitle,
+        collectionId: collectionId,
       ),
     );
   }
