@@ -725,4 +725,10 @@ class SNl extends S {
   String accountDeletionSuccess(String email) {
     return 'Account verwijderen succesvol aangevraagd. Je ontvangt een e-mail op $email. Om je identiteit te bevestigen, hebben we je antwoord op die e-mail nodig om verder te gaan met de verwijdering.';
   }
+
+  @override
+  String get gamesTab => 'Games';
+
+  @override
+  String get playGame => 'Play Game';
 }

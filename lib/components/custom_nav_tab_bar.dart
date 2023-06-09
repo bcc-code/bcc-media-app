@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../flavors.dart';
+import '../providers/feature_flags.dart';
 import '../theme/design_system/design_system.dart';
 
 import '../l10n/app_localizations.dart';
@@ -54,22 +55,25 @@ class CustomNavTabBar extends HookConsumerWidget {
       );
     }
 
-    var items = [
+    final guestMode = ref.watch(authStateProvider.select((value) => value.guestMode));
+    final items = [
       BottomNavigationBarItem(
         label: S.of(context).homeTab,
         icon: icon(icons.home.image, false),
         activeIcon: icon(icons.home.activeImage, true),
       ),
+      if (ref.watch(featureFlagsProvider.select((value) => value.gamesTab)))
+        BottomNavigationBarItem(
+          label: 'Games',
+          icon: icon(icons.games.image, false),
+          activeIcon: icon(icons.games.activeImage, true),
+        ),
       BottomNavigationBarItem(
         label: S.of(context).search,
         icon: icon(icons.search.image, false),
         activeIcon: icon(icons.search.activeImage, true),
       ),
-    ];
-    final guestMode = ref.watch(authStateProvider.select((value) => value.guestMode));
-    debugPrint('custom_tab_bar rebuild. guestMode: $guestMode');
-    if (!guestMode) {
-      items.addAll([
+      if (!guestMode) ...[
         BottomNavigationBarItem(
           label: S.of(context).liveTab,
           icon: icon(icons.live.image, false),
@@ -80,8 +84,9 @@ class CustomNavTabBar extends HookConsumerWidget {
           icon: icon(icons.calendar.image, false),
           activeIcon: icon(icons.calendar.activeImage, true),
         ),
-      ]);
-    }
+      ]
+    ];
+    debugPrint('custom_tab_bar rebuild. guestMode: $guestMode');
 
     if (useMaterial) {
       return Container(

@@ -725,4 +725,10 @@ class SPt extends S {
   String accountDeletionSuccess(String email) {
     return 'Exclusão de conta solicitada com sucesso. Você receberá um e-mail em $email. Para confirmar sua identidade, precisamos que você responda a esse e-mail para prosseguir com a exclusão.';
   }
+
+  @override
+  String get gamesTab => 'Games';
+
+  @override
+  String get playGame => 'Play Game';
 }

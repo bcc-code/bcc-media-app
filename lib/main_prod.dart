@@ -7,6 +7,7 @@ import 'l10n/app_localizations.dart';
 Future<void> main() async {
   FlavorConfig.register(
     FlavorConfig(
+      applicationCode: 'btv',
       flavor: Flavor.bccmedia,
       firebaseOptions: prod_firebase.DefaultFirebaseOptions.currentPlatform,
       enableNotifications: false,
@@ -41,6 +42,10 @@ Future<void> main() async {
         myList: StateImageProvider(
           image: const AssetImage('assets/icons/My_List_Default.png'),
           activeImage: const AssetImage('assets/icons/My_List_Selected.png'),
+        ),
+        games: StateImageProvider(
+          image: const AssetImage('assets/icons/Games_Default.png'),
+          activeImage: const AssetImage('assets/icons/Games_Selected.png'),
         ),
       ),
     ),

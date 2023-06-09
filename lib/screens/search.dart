@@ -63,7 +63,7 @@ class SearchScreenState extends ConsumerState<SearchScreen> implements ScrollScr
 
   Future<Query$Page$page> getSearchPage() async {
     final api = ref.read(apiProvider);
-    return ref.read(appConfigProvider).then((value) {
+    return ref.read(appConfigFutureProvider).then((value) {
       final code = value?.application.searchPage?.code;
       if (code == null) {
         throw ErrorHint('Application config error');

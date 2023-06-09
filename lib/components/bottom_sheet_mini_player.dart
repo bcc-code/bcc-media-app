@@ -28,9 +28,13 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     PlayerState? player = ref.watch(primaryPlayerProvider);
 
     if (previousMetadata != player?.currentMediaItem?.metadata) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => setState(
+          () {
             previousMetadata = player?.currentMediaItem?.metadata;
-          }));
+          },
+        ),
+      );
     }
 
     return AnimatedAlign(
@@ -50,7 +54,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () {
+      onTap: () async {
         var id = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
         var collectionId = player.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
         if (id == 'livestream') {
@@ -58,9 +62,9 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         } else if (id != null) {
           ref.read(tempTitleProvider.notifier).state = title;
           try {
-            context.navigateTo(EpisodeScreenRoute(episodeId: id, collectionId: collectionId));
+            await context.navigateTo(EpisodeScreenRoute(episodeId: id, collectionId: collectionId));
           } catch (_) {
-            context.navigateTo(HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: id)]));
+            await context.navigateTo(HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: id)]));
           }
         }
       },

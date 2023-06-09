@@ -122,7 +122,7 @@ Future<String> getDefaultLocale() async {
 Future<ProviderContainer> initProviderContainer(List<Override> overrides) async {
   var providerContainer = ProviderContainer(overrides: overrides);
   providerContainer.read(settingsProvider.notifier);
-  providerContainer.read(appConfigProvider);
+  providerContainer.read(appConfigFutureProvider);
   providerContainer.read(analyticsProvider);
   providerContainer.read(deepLinkServiceProvider);
   providerContainer.read(notificationServiceProvider);

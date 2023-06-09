@@ -26,7 +26,7 @@ final unleashRawProvider = Provider<UnleashClient?>((ref) {
   final client = UnleashClient(
     url: Uri.parse(Env.unleashProxyUrl),
     clientKey: isBetaTester ? Env.unleashClientKeyBetaTester : Env.unleashClientKey,
-    appName: FlavorConfig.current.applicationCode ?? 'default',
+    appName: FlavorConfig.current.applicationCode,
     refreshInterval: 60,
     customHeaders: {
       'UNLEASH-APPNAME': Env.unleashAppName,
