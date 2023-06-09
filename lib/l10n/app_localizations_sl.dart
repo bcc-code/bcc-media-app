@@ -89,7 +89,7 @@ class SSl extends S {
   String get loggedOutMessage => 'Odjavili ste se. Prosim, ponovno se prijavite.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Doniraj';
 
   @override
   String get mostWatched => 'Najbolj gledano';
@@ -176,7 +176,7 @@ class SSl extends S {
   String get none => 'Brez';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Naslednja epizoda';
 
   @override
   String get auto => 'Samodejno';
@@ -660,52 +660,52 @@ class SSl extends S {
   String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Vprašaj starše';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'Kaj je';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Odgovor';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Preveri odgovor';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Ta video je na voljo samo prijavljenim uporabnikom.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Potrdi svoj račun';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'Pošto smo poslali na';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Klikni na povezavo v elektronski pošti, da potrdiš svoj račun.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'Odpri pošto';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'Ponovno pošlji pošto';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Ni naloženih aplikacij za pošto';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'Poslana pošta za potrditev';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Če še vedno nisi prejel pošte, kontaktiraj podporo na';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Račun je ustvarjen';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Sedaj lahko uporabiš svoj račun in raziščeš različne izgrajujoče vsebine.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Sedaj se lahko vpišeš v svoj račun in raziščeš različne izgrajujoče vsebine.';
 
   @override
   String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';

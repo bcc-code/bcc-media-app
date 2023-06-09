@@ -227,7 +227,7 @@
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
-  "nextEpisode": "Next Episode",
+  "nextEpisode": "Prochain épisode",
   "@nextEpisode": {
     "description": "Button indicating the next video will play soon."
   },
@@ -994,5 +994,13 @@
         "type": "String"
       }
     }
+  },
+  "gamesTab": "Games",
+  "@gamesTab": {
+    "description": "Title of the games page"
+  },
+  "playGame": "Play Game",
+  "@playGame": {
+    "description": "Title on a game"
   }
 }
