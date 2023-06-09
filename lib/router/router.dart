@@ -29,6 +29,7 @@ import '../screens/achievements.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
 import '../screens/onboarding/signup.dart';
+import '../screens/profile/contact_support_public.dart';
 import '../screens/tabs_root.dart';
 
 const _collectionEpisodeScreenRoute = CustomRoute<void>(
@@ -134,6 +135,14 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
     CustomRoute<void>(
       page: ContactSupportScreen,
       path: '/contact-support',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: profileRouteBuilder,
+      meta: {RouteMetaConstants.analyticsName: 'support'},
+    ),
+    CustomRoute<void>(
+      page: ContactSupportPublicScreen,
+      path: '/contact-support-public',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
       customRouteBuilder: profileRouteBuilder,

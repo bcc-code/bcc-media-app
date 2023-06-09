@@ -1,12 +1,13 @@
 import 'package:brunstadtv_app/components/general_app_bar.dart';
 import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:universal_io/io.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../components/contact_support/contact_support_failure.dart';
 import '../../components/contact_support/contact_support_success.dart';
@@ -14,6 +15,7 @@ import '../../components/web/dialog_on_web.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
+import '../../helpers/ui/svg_icons.dart';
 import '../../helpers/version.dart';
 import '../../providers/shared_preferences.dart';
 import '../../theme/design_system/design_system.dart';
@@ -23,11 +25,11 @@ import '../../l10n/app_localizations.dart';
 import '../../providers/auth_state/auth_state.dart';
 import '../../helpers/extensions.dart';
 
-class ContactSupportScreen extends ConsumerStatefulWidget {
-  const ContactSupportScreen({super.key});
+class ContactSupportPublicScreen extends ConsumerStatefulWidget {
+  const ContactSupportPublicScreen({super.key});
 
   @override
-  ConsumerState<ContactSupportScreen> createState() => _ContactSupportState();
+  ConsumerState<ContactSupportPublicScreen> createState() => _ContactSupportState();
 }
 
 class ListItem {
@@ -37,12 +39,15 @@ class ListItem {
   ListItem({required this.title, this.content});
 }
 
-class _ContactSupportState extends ConsumerState<ContactSupportScreen> {
+class _ContactSupportState extends ConsumerState<ContactSupportPublicScreen> {
   bool isOnInputPage = true;
   List<ListItem>? deviceInfo;
   String title = '';
-  String content = '';
   Future<bool>? sendSupportEmailFuture;
+
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final messageController = TextEditingController();
 
   @override
   void initState() {
@@ -52,10 +57,6 @@ class _ContactSupportState extends ConsumerState<ContactSupportScreen> {
 
   void onTryAgain() {
     setState(() => isOnInputPage = true);
-  }
-
-  void onContentChanged(content_) {
-    setState(() => content = content_);
   }
 
   void onSend() {
@@ -80,7 +81,7 @@ class _ContactSupportState extends ConsumerState<ContactSupportScreen> {
               )
             ],
             rightActions: [
-              if (isOnInputPage && content.isNotEmpty)
+              if (isOnInputPage && messageController.text.isNotEmpty)
                 DesignSystem.of(context).buttons.small(
                       labelText: S.of(context).send,
                       onPressed: onSend,
@@ -93,7 +94,12 @@ class _ContactSupportState extends ConsumerState<ContactSupportScreen> {
               child: IndexedStack(
                 index: isOnInputPage ? 0 : 1,
                 children: [
-                  _InputPage(deviceInfo: deviceInfo, onContentChanged: onContentChanged),
+                  _InputPage(
+                    deviceInfo: deviceInfo,
+                    nameController: nameController,
+                    emailController: emailController,
+                    messageController: messageController,
+                  ),
                   FutureBuilder<bool>(
                     future: sendSupportEmailFuture,
                     builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -212,7 +218,7 @@ class _ContactSupportState extends ConsumerState<ContactSupportScreen> {
 
   Future<bool> sendSupportEmail() async {
     var sendResult = await ref.read(gqlClientProvider).mutate$sendSupportEmail(Options$Mutation$sendSupportEmail(
-        variables: Variables$Mutation$sendSupportEmail(title: title, content: '', html: '<p>$content</p>$deviceInfoHtml')));
+        variables: Variables$Mutation$sendSupportEmail(title: title, content: '', html: '<p>${messageController.text}</p>$deviceInfoHtml')));
     if (sendResult.exception != null) {
       throw ErrorDescription(sendResult.exception.toString());
     }
@@ -221,112 +227,119 @@ class _ContactSupportState extends ConsumerState<ContactSupportScreen> {
   }
 }
 
-class _InputPage extends StatefulWidget {
+class _InputPage extends HookWidget {
   final List<ListItem>? deviceInfo;
-  final Function onContentChanged;
+  final TextEditingController nameController;
+  final TextEditingController emailController;
+  final TextEditingController messageController;
 
-  const _InputPage({required this.deviceInfo, required this.onContentChanged});
-
-  @override
-  State<_InputPage> createState() => _InputPageState();
-}
-
-class _InputPageState extends State<_InputPage> {
-  final textController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    textController.addListener(() => widget.onContentChanged(textController.text));
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    textController.dispose();
-  }
+  const _InputPage({
+    required this.deviceInfo,
+    required this.nameController,
+    required this.emailController,
+    required this.messageController,
+  });
 
   @override
   Widget build(BuildContext context) {
+    useListenable(nameController);
+    useListenable(emailController);
+    useListenable(messageController);
     final design = DesignSystem.of(context);
     return SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Padding(
-        padding: const EdgeInsets.only(bottom: 32),
-        child: Text(
-          S.of(context).contactSupport,
-          style: design.textStyles.headline1,
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(top: 8),
-        child: TextField(
-          minLines: 9,
-          maxLines: 13,
-          controller: textController,
-          decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).concernTextPlaceholder),
-          style: design.textStyles.body1.copyWith(color: design.colors.label1),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 20, bottom: 10),
-        child: Text(
-          S.of(context).debugInfoExplanation,
-          style: design.textStyles.body2.copyWith(color: design.colors.label1),
-        ),
-      ),
-      widget.deviceInfo != null ? _DeviceInfoList(data: widget.deviceInfo!) : Text('${S.of(context).loading}...'),
-    ]));
-  }
-}
-
-class _DeviceInfoList extends StatelessWidget {
-  const _DeviceInfoList({
-    Key? key,
-    required this.data,
-  }) : super(key: key);
-
-  final List<ListItem> data;
-
-  @override
-  Widget build(BuildContext context) {
-    final design = DesignSystem.of(context);
-    return Column(
-      children: [
-        for (var item in data)
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 11.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start, //control the LH bar vertical alignment
-                  children: <Widget>[
-                    Flexible(
-                      fit: FlexFit.tight,
-                      child: Text(
-                        item.title,
-                        style: design.textStyles.body2,
-                      ),
-                    ),
-                    Flexible(
-                      fit: FlexFit.tight,
-                      child: Text(
-                        item.content ?? 'N/A',
-                        textAlign: TextAlign.right,
-                        style: design.textStyles.body2.copyWith(color: design.colors.label1),
-                      ),
-                    ),
-                  ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(bottom: 32),
+            child: Text(
+              S.of(context).contactSupport,
+              style: design.textStyles.headline1,
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              'Name',
+              style: design.textStyles.caption1.copyWith(color: design.colors.label2),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 12),
+            child: TextFormField(
+              cursorColor: design.colors.tint1,
+              cursorWidth: 1,
+              controller: nameController,
+              style: design.textStyles.body2.copyWith(color: design.colors.label1),
+              decoration: design.inputDecorations.textFormField.copyWith(
+                hintText: 'Type in your name',
+                suffixIcon: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 100),
+                  child: nameController.text.isEmpty
+                      ? null
+                      : GestureDetector(
+                          onTap: () => nameController.value = TextEditingValue.empty,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: SvgPicture.string(
+                              SvgIcons.clearXIcon,
+                              theme: SvgTheme(currentColor: design.colors.label3),
+                            ),
+                          ),
+                        ),
                 ),
               ),
-              Divider(
-                height: 1,
-                color: design.colors.separatorOnLight,
-              ),
-            ],
+            ),
           ),
-      ],
+          Container(
+            margin: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              'Your contact email',
+              style: design.textStyles.caption1.copyWith(color: design.colors.label2),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 12),
+            child: TextFormField(
+              cursorColor: design.colors.tint1,
+              cursorWidth: 1,
+              controller: emailController,
+              style: design.textStyles.body2.copyWith(color: design.colors.label1),
+              decoration: design.inputDecorations.textFormField.copyWith(
+                hintText: 'Type in your email address',
+                suffixIcon: emailController.text.isEmpty
+                    ? null
+                    : GestureDetector(
+                        onTap: () => emailController.value = TextEditingValue.empty,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: SvgPicture.string(
+                            SvgIcons.clearXIcon,
+                            theme: SvgTheme(currentColor: design.colors.label3),
+                          ),
+                        ),
+                      ),
+              ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              'Message',
+              style: design.textStyles.caption1.copyWith(color: design.colors.label2),
+            ),
+          ),
+          TextField(
+            cursorColor: design.colors.tint1,
+            cursorWidth: 1,
+            minLines: 9,
+            maxLines: 13,
+            controller: messageController,
+            decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).concernTextPlaceholder),
+            style: design.textStyles.body2.copyWith(color: design.colors.label1),
+          ),
+        ],
+      ),
     );
   }
 }
