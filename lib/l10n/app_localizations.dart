@@ -1520,6 +1520,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Games'**
   String get gamesTab;
+
+  /// Title on a game
+  ///
+  /// In en, this message translates to:
+  /// **'Play Game'**
+  String get playGame;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

@@ -728,4 +728,7 @@ class SNb extends S {
 
   @override
   String get gamesTab => 'Games';
+
+  @override
+  String get playGame => 'Play Game';
 }

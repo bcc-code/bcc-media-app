@@ -18,29 +18,39 @@ class CardSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardSectionItem = data.items.items.first;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
-      child: InheritedData<SectionItemAnalytics>(
-        inheritedData: SectionItemAnalytics(position: 0, id: cardSectionItem.id, type: cardSectionItem.item.$__typename, name: cardSectionItem.title),
-        child: (context) {
-          final studyTopic = cardSectionItem.item.asOrNull<Fragment$Section$$CardSection$items$items$item$$StudyTopic>();
-          if (studyTopic != null) {
-            if (data.cardSize == Enum$CardSectionSize.mini) {
-              return StudyTopicCardMini(studyTopic: studyTopic);
-            } else if (data.cardSize == Enum$CardSectionSize.large) {
-              return StudyTopicCardLarge(studyTopic: studyTopic);
-            }
-          }
-          if (data.cardSize == Enum$CardSectionSize.large) {
-            return GenericCardLarge(item: cardSectionItem);
-          } else if (data.cardSize == Enum$CardSectionSize.mini) {
-            return GenericCardMini(item: cardSectionItem);
-          } else {
-            return const SizedBox.shrink();
-          }
-        },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: data.items.items.asMap().entries.map(
+          (kv) {
+            final cardSectionItem = kv.value;
+            return Padding(
+              padding: kv.key == data.items.items.length - 1 ? EdgeInsets.zero : const EdgeInsets.only(bottom: 8),
+              child: InheritedData<SectionItemAnalytics>(
+                inheritedData: SectionItemAnalytics(
+                    position: kv.key, id: cardSectionItem.id, type: cardSectionItem.item.$__typename, name: cardSectionItem.title),
+                child: (context) {
+                  final studyTopic = cardSectionItem.item.asOrNull<Fragment$Section$$CardSection$items$items$item$$StudyTopic>();
+                  if (studyTopic != null) {
+                    if (data.cardSize == Enum$CardSectionSize.mini) {
+                      return StudyTopicCardMini(studyTopic: studyTopic);
+                    } else if (data.cardSize == Enum$CardSectionSize.large) {
+                      return StudyTopicCardLarge(studyTopic: studyTopic);
+                    }
+                  }
+                  if (data.cardSize == Enum$CardSectionSize.large) {
+                    return GenericCardLarge(item: cardSectionItem);
+                  } else if (data.cardSize == Enum$CardSectionSize.mini) {
+                    return GenericCardMini(item: cardSectionItem);
+                  } else {
+                    return const SizedBox.shrink();
+                  }
+                },
+              ),
+            );
+          },
+        ).toList(),
       ),
     );
   }

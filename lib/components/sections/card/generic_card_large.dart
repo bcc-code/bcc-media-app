@@ -19,8 +19,6 @@ class GenericCardLarge extends StatefulWidget {
 class _GenericCardLargeState extends State<GenericCardLarge> {
   Future? navigationFuture;
 
-  String? get imageUrl => widget.item.image;
-
   void onCardTapped() {
     setState(() {
       navigationFuture = handleSectionItemClick(context, widget.item.item);
@@ -30,6 +28,7 @@ class _GenericCardLargeState extends State<GenericCardLarge> {
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
+
     return Stack(
       children: [
         GestureDetector(
@@ -42,7 +41,7 @@ class _GenericCardLargeState extends State<GenericCardLarge> {
               children: [
                 AspectRatio(
                   aspectRatio: 16 / 9,
-                  child: imageUrl == null ? const SizedBox.shrink() : simpleFadeInImage(url: imageUrl!),
+                  child: widget.item.image == null ? const SizedBox.shrink() : simpleFadeInImage(url: widget.item.image!),
                 ),
                 Container(
                   color: design.colors.separatorOnLight,
@@ -70,7 +69,10 @@ class _GenericCardLargeState extends State<GenericCardLarge> {
                         alignment: Alignment.centerRight,
                         child: design.buttons.smallSecondary(
                           onPressed: onCardTapped,
-                          labelText: S.of(context).open,
+                          labelText: widget.item.item.maybeWhen(
+                            game: (_) => S.of(context).playGame,
+                            orElse: () => S.of(context).open,
+                          ),
                           image: Image.asset('assets/icons/Play.png'),
                         ),
                       )

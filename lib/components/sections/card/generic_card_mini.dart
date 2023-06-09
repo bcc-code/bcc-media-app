@@ -71,17 +71,19 @@ class _GenericCardMiniState extends State<GenericCardMini> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
+                        padding: const EdgeInsets.only(bottom: 4),
                         child: Text(
                           widget.item.title,
                           style: design.textStyles.title3,
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
+                        padding: const EdgeInsets.only(bottom: 4),
                         child: Text(
                           widget.item.description,
                           style: design.textStyles.body2.copyWith(color: design.colors.label3),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],

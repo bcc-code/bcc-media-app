@@ -28,7 +28,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       autoplayNext: client.isEnabled('autoplay-next'),
       shareVideoButton: FlavorConfig.current.flavor != Flavor.kids,
       autoFullscreenOnPlay: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('auto-fullscreen-on-play'),
-      gamesTab: kDebugMode && FlavorConfig.current.flavor == Flavor.kids ? true : client.isEnabled('games-tab'),
+      gamesTab: kDebugMode && FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('games-tab'),
     );
   }
 
