@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 class CustomGridView extends StatelessWidget {
@@ -60,19 +61,20 @@ class GridRow extends StatelessWidget {
 
   List<Widget> get spacedChildren {
     final newChildren = <Widget>[];
-    for (var child in children) {
-      newChildren.add(Expanded(child: child));
-      if (child != children.last) {
-        newChildren.add(SizedBox(width: gap));
-      }
-    }
 
     var missingColumns = columnCount - children.length;
-    if (missingColumns > 0) {
-      newChildren.addAll(
-        List<Widget>.generate(missingColumns, (_) => const Spacer()),
-      );
-    }
+    final childrenFilled = [
+      ...children,
+      ...List.generate(missingColumns, (_) => const SizedBox.shrink()),
+    ];
+
+    childrenFilled.forEachIndexed((index, child) {
+      newChildren.add(Expanded(child: child));
+      if (index < columnCount - 1) {
+        newChildren.add(SizedBox(width: gap));
+      }
+    });
+
     return newChildren;
   }
 
