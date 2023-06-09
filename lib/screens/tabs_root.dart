@@ -70,7 +70,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     const indexToNameMap = ['home', 'search', 'livestream', 'calendar'];
     if (index < 0 || index > indexToNameMap.length - 1) return;
     final tabName = indexToNameMap[index];
-    final appConfig = ref.read(appConfigProvider);
+    final appConfig = ref.read(appConfigFutureProvider);
     appConfig.then((value) {
       String? pageCode;
       if (tabName == 'home') {

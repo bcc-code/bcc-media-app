@@ -1,5 +1,7 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';
+import 'package:brunstadtv_app/graphql/queries/games.graphql.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -7,16 +9,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../components/status_indicators/error_generic.dart';
+import '../../flavors.dart';
 import '../../theme/design_system/design_system.dart';
-
-//https://app.bcc.media/game-embeds/v1
-
-const baseUrl = 'https://app.bcc.media/game-embeds/v2/';
-
-const gameUrls = {
-  'heart-defense': '$baseUrl?game=heart-defense',
-  'cable-connector': '$baseUrl?game=cable-connector',
-};
 
 class GameScreen extends HookConsumerWidget {
   const GameScreen({
@@ -28,23 +23,50 @@ class GameScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final router = AutoTabsRouter.of(context);
+    useEffect(() {
+      void tabListener() {
+        if (router.topPage?.child != this) {
+          Navigator.maybePop(context);
+        }
+      }
+
+      router.addListener(tabListener);
+      return () => router.removeListener(tabListener);
+    }, [router]);
+
     final design = DesignSystem.of(context);
-    final gameFuture = useMemoized(() {
-      return Future.delayed(const Duration(milliseconds: 500), () => gameUrls[gameId]);
-    }, [gameId]);
-    final gameSnapshot = useFuture(gameFuture);
+    final gameQuery = useQuery$GetGame(Options$Query$GetGame(variables: Variables$Query$GetGame(id: gameId)));
     final firstLoadDone = useState(false);
 
     String toCSSRGBA(Color color) {
       return 'rgba(${color.red}, ${color.green}, ${color.blue}, ${color.opacity})';
     }
 
-    if (gameSnapshot.connectionState == ConnectionState.waiting) {
-      return Scaffold(appBar: AppBar(title: Text("Game")), body: LoadingGeneric());
+    if (gameQuery.result.isLoading) {
+      return const Scaffold(body: LoadingGeneric());
+    }
+    final game = gameQuery.result.parsedData?.game;
+    if (game == null) {
+      final exception = gameQuery.result.exception;
+      return Scaffold(
+        body: ErrorGeneric(
+          onRetry: gameQuery.refetch,
+          details: exception?.toString(),
+        ),
+      );
     }
 
+    final uri = WebUri(game.url);
+    uri.replace(queryParameters: {
+      'appCode': FlavorConfig.current.applicationCode,
+      ...uri.queryParameters,
+    });
+
+    debugPrint('Opening game "${game.title}" with url: $uri');
+
     return Scaffold(
-      appBar: AppBar(title: Text("Game")),
+      appBar: AppBar(title: Text(game.title)),
       body: Stack(
         children: [
           Opacity(
@@ -66,7 +88,7 @@ class GameScreen extends HookConsumerWidget {
                 Factory<ForcePressGestureRecognizer>(() => ForcePressGestureRecognizer()),
               },
               preventGestureDelay: true,
-              initialUrlRequest: URLRequest(url: WebUri(gameSnapshot.data!)),
+              initialUrlRequest: URLRequest(url: uri),
               onLoadResource: (controller, url) async {
                 await controller.injectCSSCode(source: '''
                     :root {

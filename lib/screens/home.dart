@@ -48,7 +48,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
     super.initState();
     pageResult = wrapInCompleter(getHomePage());
     showDialogIfOldAppVersion();
-    _appConfigListener = ref.listenManual<Future<Query$Application?>>(appConfigProvider, (prev, next) async {
+    _appConfigListener = ref.listenManual<Future<Query$Application?>>(appConfigFutureProvider, (prev, next) async {
       showDialogIfOldAppVersion();
     });
   }
@@ -65,7 +65,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
   }
 
   void showDialogIfOldAppVersion() async {
-    final appConfig = await ref.read(appConfigProvider);
+    final appConfig = await ref.read(appConfigFutureProvider);
     if (appConfig == null) return;
     final packageInfo = await PackageInfo.fromPlatform();
     final minVersionNumber = appConfig.application.clientVersion;
@@ -129,7 +129,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
 
   Future<Query$Page$page> getHomePage() async {
     final api = ref.read(apiProvider);
-    return ref.read(appConfigProvider).then((value) {
+    return ref.read(appConfigFutureProvider).then((value) {
       final code = value?.application.page?.code;
       if (code == null) {
         throw ErrorHint('Application config error');

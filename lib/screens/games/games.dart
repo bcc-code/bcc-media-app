@@ -1,11 +1,16 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
+import 'package:brunstadtv_app/components/page.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class GamesListScreen extends HookConsumerWidget {
-  const GamesListScreen({Key? key}) : super(key: key);
+import '../../api/brunstadtv.dart';
+import '../../graphql/queries/page.graphql.dart';
+import '../../providers/app_config.dart';
+
+class GamesScreen extends HookConsumerWidget {
+  const GamesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,14 +38,25 @@ class GamesListScreen extends HookConsumerWidget {
       );
     }
 
+    Future<Query$Page$page> getGamesPage() async {
+      final api = ref.read(apiProvider);
+      final appConfig = await ref.read(appConfigFutureProvider);
+      final code = appConfig?.application.gamesPage?.code;
+      if (code == null) {
+        throw Exception('Application config error');
+      }
+      return api.getPage(code);
+    }
+
+    final pageFuture = useMemoized(getGamesPage);
+
     return Scaffold(
-      appBar: AppBar(title: const Text("Games")),
-      body: ListView(
-        children: [
-          // Card representing a game with a placeholder image and a button to start the game
-          gameCard('heart-defense'),
-          gameCard('cable-connector'),
-        ],
+      appBar: AppBar(title: const Text('Games')),
+      body: SafeArea(
+        child: BccmPage(
+          pageFuture: pageFuture,
+          onRefresh: ({retry}) => getGamesPage(),
+        ),
       ),
     );
   }

@@ -1,28 +1,24 @@
 import 'package:brunstadtv_app/components/bordered_image_container.dart';
 import 'package:brunstadtv_app/components/shiny_clipper.dart';
-
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/svg.dart';
 
-import '../../theme/design_system/design_system.dart';
-import '../../../helpers/ui/svg_icons.dart';
-import '../../graphql/queries/page.graphql.dart';
-import '../../helpers/navigation/navigation_utils.dart';
-import '../../helpers/utils.dart';
-import '../status_indicators/loading_indicator.dart';
-import 'study_progress_row.dart';
+import '../../../theme/design_system/design_system.dart';
+import '../../../../helpers/ui/svg_icons.dart';
+import '../../../graphql/queries/page.graphql.dart';
+import '../../../helpers/navigation/navigation_utils.dart';
+import '../../../helpers/utils.dart';
+import '../../status_indicators/loading_indicator.dart';
 
-class StudyTopicCardMini extends StatefulWidget {
-  final Fragment$Section$$CardSection$items$items$item$$StudyTopic studyTopic;
-  const StudyTopicCardMini({super.key, required this.studyTopic});
+class GenericCardMini extends StatefulWidget {
+  final Fragment$Section$$CardSection$items$items item;
+  const GenericCardMini({super.key, required this.item});
 
   @override
-  State<StudyTopicCardMini> createState() => _StudyTopicCardMiniState();
+  State<GenericCardMini> createState() => _GenericCardMiniState();
 }
 
-class _StudyTopicCardMiniState extends State<StudyTopicCardMini> {
+class _GenericCardMiniState extends State<GenericCardMini> {
   Future? navigationFuture;
 
   @override
@@ -35,14 +31,12 @@ class _StudyTopicCardMiniState extends State<StudyTopicCardMini> {
     super.dispose();
   }
 
-  String? get imageUrl => widget.studyTopic.images.firstWhereOrNull((element) => element.style == 'icon')?.url;
-
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
     return GestureDetector(
       onTap: () => setState(() {
-        navigationFuture = navigateToStudyTopic(context, widget.studyTopic.id);
+        navigationFuture = navigateToStudyTopic(context, widget.item.id);
       }),
       child: Stack(
         children: [
@@ -69,7 +63,7 @@ class _StudyTopicCardMiniState extends State<StudyTopicCardMini> {
                       height: 60,
                       child: BorderedImageContainer(
                         borderRadius: BorderRadius.circular(12),
-                        imageUrl: imageUrl,
+                        imageUrl: widget.item.image,
                       ),
                     )),
                 Expanded(
@@ -79,13 +73,16 @@ class _StudyTopicCardMiniState extends State<StudyTopicCardMini> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8),
                         child: Text(
-                          widget.studyTopic.title,
+                          widget.item.title,
                           style: design.textStyles.title3,
                         ),
                       ),
-                      StudyProgressRow(
-                        completed: widget.studyTopic.lessonsProgress.completed,
-                        total: widget.studyTopic.lessonsProgress.total,
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          widget.item.description,
+                          style: design.textStyles.body2.copyWith(color: design.colors.label3),
+                        ),
                       ),
                     ],
                   ),

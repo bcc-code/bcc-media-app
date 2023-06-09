@@ -7,6 +7,7 @@ import 'l10n/app_localizations.dart';
 Future<void> main() async {
   FlavorConfig.register(
     FlavorConfig(
+      applicationCode: 'btv',
       flavor: Flavor.bccmedia,
       firebaseOptions: prod_firebase.DefaultFirebaseOptions.currentPlatform,
       enableNotifications: false,

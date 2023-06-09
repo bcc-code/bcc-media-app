@@ -74,6 +74,7 @@ class FlavorImages extends Iterable<ImageProvider> {
 
 class FlavorConfig {
   const FlavorConfig({
+    required this.applicationCode,
     required this.flavor,
     required this.firebaseOptions,
     required this.images,
@@ -81,7 +82,6 @@ class FlavorConfig {
     required this.enableNotifications,
     this.strictAnonymousAnalytics,
     this.designSystem,
-    this.applicationCode,
     this.defaultLanguage = 'en',
   });
 
@@ -90,7 +90,7 @@ class FlavorConfig {
   final FirebaseOptions? firebaseOptions;
   final FlavorImages images;
   final DesignSystemData Function()? designSystem;
-  final String? applicationCode;
+  final String applicationCode;
   final FlavorStrings Function(BuildContext context) strings;
   final bool enableNotifications;
   final String defaultLanguage;

@@ -1,0 +1,12 @@
+query GetGame($id: UUID!) {
+  game(id: $id) {
+    id
+    title
+    ...UrlGame
+  }
+}
+
+fragment UrlGame on Game {
+  id
+  url
+}

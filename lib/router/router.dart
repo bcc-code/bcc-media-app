@@ -28,7 +28,7 @@ import '../helpers/navigation/custom_transitions.dart';
 import '../screens/achievement_group.dart';
 import '../screens/achievements.dart';
 import '../screens/episode.dart';
-import '../screens/games/games_list.dart';
+import '../screens/games/games.dart';
 import '../screens/page.dart';
 import '../screens/onboarding/signup.dart';
 import '../screens/tabs_root.dart';
@@ -266,17 +266,18 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
           name: 'GamesWrapperRoute',
           page: EmptyRouterPage,
           path: 'games',
-          maintainState: false,
+          maintainState: true,
           children: [
-            CustomRoute<void>(
-              page: GamesListScreen,
+            CupertinoRoute<void>(
+              page: GamesScreen,
               path: '',
-              maintainState: false,
+              maintainState: true,
               meta: {RouteMetaConstants.navTabRoute: true},
             ),
             CupertinoRoute<void>(
               page: GameScreen,
               path: ':gameId',
+              maintainState: false,
             ),
           ],
         ),

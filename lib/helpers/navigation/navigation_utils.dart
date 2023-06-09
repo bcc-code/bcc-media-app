@@ -120,7 +120,7 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
 
   final navigationOverride = NavigationOverride.of(context);
   final router = context.router;
-  var episodeItem = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
+  final episodeItem = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
   if (episodeItem != null) {
     final isLive = ref.read(currentLiveEpisodeProvider)?.episode?.id == episodeItem.id;
     if (!episodeItem.locked) {
@@ -130,19 +130,24 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
     }
   }
 
-  var showItem = item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
+  final showItem = item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
   if (showItem != null) {
     return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id, collectionId: collectionId));
   }
 
-  var pageItem = item.asOrNull<Fragment$ItemSectionItem$item$$Page>();
+  final pageItem = item.asOrNull<Fragment$ItemSectionItem$item$$Page>();
   if (pageItem != null) {
     return overrideAwareNavigation(navigationOverride, router, PageScreenRoute(pageCode: pageItem.code));
   }
 
-  var linkItem = item.asOrNull<Fragment$ItemSectionItem$item$$Link>();
+  final linkItem = item.asOrNull<Fragment$ItemSectionItem$item$$Link>();
   if (linkItem != null) {
     return launchUrlString(linkItem.url, mode: LaunchMode.externalApplication);
+  }
+
+  final gameItem = item.asOrNull<Fragment$ItemSectionItem$item$$Game>();
+  if (gameItem != null) {
+    return router.navigate(GameScreenRoute(gameId: gameItem.uuid));
   }
 
   return null;

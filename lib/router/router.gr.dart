@@ -23,7 +23,7 @@ import '../screens/auto_login.dart' as _i1;
 import '../screens/calendar.dart' as _i22;
 import '../screens/episode.dart' as _i15;
 import '../screens/games/game.dart' as _i27;
-import '../screens/games/games_list.dart' as _i26;
+import '../screens/games/games.dart' as _i26;
 import '../screens/home.dart' as _i14;
 import '../screens/live.dart' as _i20;
 import '../screens/my_list.dart' as _i25;
@@ -322,7 +322,6 @@ class AppRouter extends _i28.RootStackRouter {
       return _i28.CustomPage<void>(
         routeData: routeData,
         child: const _i21.EmptyRouterPage(),
-        maintainState: false,
         opaque: true,
         barrierDismissible: false,
       );
@@ -431,13 +430,10 @@ class AppRouter extends _i28.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    GamesListScreenRoute.name: (routeData) {
-      return _i28.CustomPage<void>(
+    GamesScreenRoute.name: (routeData) {
+      return _i28.CupertinoPageX<void>(
         routeData: routeData,
-        child: const _i26.GamesListScreen(),
-        maintainState: false,
-        opaque: true,
-        barrierDismissible: false,
+        child: const _i26.GamesScreen(),
       );
     },
     GameScreenRoute.name: (routeData) {
@@ -451,6 +447,7 @@ class AppRouter extends _i28.RootStackRouter {
           key: args.key,
           gameId: args.gameId,
         ),
+        maintainState: false,
       );
     },
     Home.name: (routeData) {
@@ -651,7 +648,7 @@ class AppRouter extends _i28.RootStackRouter {
               parent: TabsRootScreenRoute.name,
               children: [
                 _i28.RouteConfig(
-                  GamesListScreenRoute.name,
+                  GamesScreenRoute.name,
                   path: '',
                   parent: GamesWrapperRoute.name,
                   meta: <String, dynamic>{'nav_tab_route': true},
@@ -1358,15 +1355,15 @@ class MyListScreenRoute extends _i28.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i26.GamesListScreen]
-class GamesListScreenRoute extends _i28.PageRouteInfo<void> {
-  const GamesListScreenRoute()
+/// [_i26.GamesScreen]
+class GamesScreenRoute extends _i28.PageRouteInfo<void> {
+  const GamesScreenRoute()
       : super(
-          GamesListScreenRoute.name,
+          GamesScreenRoute.name,
           path: '',
         );
 
-  static const String name = 'GamesListScreenRoute';
+  static const String name = 'GamesScreenRoute';
 }
 
 /// generated route for

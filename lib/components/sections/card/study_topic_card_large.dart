@@ -1,16 +1,14 @@
 import 'package:brunstadtv_app/components/study/study_progress_row.dart';
-import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
-
 import 'package:brunstadtv_app/helpers/ui/image.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import '../../graphql/queries/page.graphql.dart';
-import '../../theme/design_system/design_system.dart';
-import '../../helpers/navigation/navigation_utils.dart';
-import '../../helpers/utils.dart';
-import '../../l10n/app_localizations.dart';
-import '../status_indicators/loading_indicator.dart';
+import '../../../graphql/queries/page.graphql.dart';
+import '../../../theme/design_system/design_system.dart';
+import '../../../helpers/navigation/navigation_utils.dart';
+import '../../../helpers/utils.dart';
+import '../../../l10n/app_localizations.dart';
+import '../../status_indicators/loading_indicator.dart';
 
 class StudyTopicCardLarge extends StatefulWidget {
   final Fragment$Section$$CardSection$items$items$item$$StudyTopic studyTopic;
