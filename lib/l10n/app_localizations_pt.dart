@@ -176,7 +176,7 @@ class SPt extends S {
   String get none => 'Nenhum';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Próximo episódio';
 
   @override
   String get auto => 'Automático';
@@ -727,8 +727,8 @@ class SPt extends S {
   }
 
   @override
-  String get gamesTab => 'Games';
+  String get gamesTab => 'Jogos';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'Jogar um jogo ';
 }

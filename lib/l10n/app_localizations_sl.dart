@@ -727,8 +727,8 @@ class SSl extends S {
   }
 
   @override
-  String get gamesTab => 'Games';
+  String get gamesTab => 'Igre';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'Igraj igre';
 }

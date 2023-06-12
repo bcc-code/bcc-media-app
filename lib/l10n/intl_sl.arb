@@ -995,11 +995,11 @@
       }
     }
   },
-  "gamesTab": "Games",
+  "gamesTab": "Igre",
   "@gamesTab": {
     "description": "Title of the games page"
   },
-  "playGame": "Play Game",
+  "playGame": "Igraj igre",
   "@playGame": {
     "description": "Title on a game"
   }
