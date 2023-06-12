@@ -47,28 +47,32 @@ class GameScreen extends HookConsumerWidget {
       return 'rgba(${color.red}, ${color.green}, ${color.blue}, ${color.opacity})';
     }
 
+    final game = gameQuery.result.parsedData?.game;
+    final uri = useMemoized(() {
+      if (game == null) return null;
+      final u = Uri.tryParse(game.url);
+      if (u == null) return null;
+      return u.replace(queryParameters: {
+        'appCode': FlavorConfig.current.applicationCode,
+        ...u.queryParameters,
+      });
+    }, [game]);
+
     if (gameQuery.result.isLoading) {
       return const Scaffold(body: LoadingGeneric());
     }
-    final game = gameQuery.result.parsedData?.game;
-    if (game == null) {
+
+    if (game == null || uri == null) {
       final exception = gameQuery.result.exception;
       return Scaffold(
         body: ErrorGeneric(
           onRetry: gameQuery.refetch,
-          details: exception?.toString(),
+          details: exception?.toString() ?? (uri == null ? 'Invalid URL: $uri' : 'Unknown error'),
         ),
       );
     }
 
-    final uri = WebUri(game.url);
-    uri.replace(queryParameters: {
-      'appCode': FlavorConfig.current.applicationCode,
-      ...uri.queryParameters,
-    });
-
-    debugPrint('Opening game "${game.title}" with url: $uri');
-
+    debugPrint('Game "${game.title}" is open with url: $uri');
     return WillPopScope(
       onWillPop: () async {
         final timeSpent = DateTime.now().difference(openedAt).inSeconds;
@@ -80,13 +84,12 @@ class GameScreen extends HookConsumerWidget {
         body: Stack(
           children: [
             Opacity(
-              opacity: firstLoadDone.value ? 1 : 0,
+              opacity: firstLoadDone.value ? 1 : 0.1,
               child: InAppWebView(
                 initialSettings: InAppWebViewSettings(
                   useHybridComposition: false,
                   transparentBackground: true,
                   verticalScrollBarEnabled: false,
-                  useShouldOverrideUrlLoading: true,
                 ),
                 gestureRecognizers: {
                   Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer()),
@@ -98,7 +101,7 @@ class GameScreen extends HookConsumerWidget {
                   Factory<ForcePressGestureRecognizer>(() => ForcePressGestureRecognizer()),
                 },
                 preventGestureDelay: true,
-                initialUrlRequest: URLRequest(url: uri),
+                initialUrlRequest: URLRequest(url: WebUri.uri(uri)),
                 onLoadResource: (controller, url) async {
                   await controller.injectCSSCode(source: '''
                       :root {
@@ -106,7 +109,14 @@ class GameScreen extends HookConsumerWidget {
                       }
                     ''');
                 },
-                onLoadStop: (controller, url) {
+                onReceivedError: (controller, req, err) {
+                  debugPrint('Error loading game: $err');
+                },
+                onLoadStop: (controller, url) async {
+                  await controller.callAsyncJavaScript(functionBody: '''
+                    let event = new CustomEvent("app-webview-loaded");
+                    document.dispatchEvent(event);
+                  ''');
                   firstLoadDone.value = true;
                 },
               ),
