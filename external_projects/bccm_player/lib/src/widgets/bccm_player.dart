@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
-class BccmPlayer extends StatefulWidget {
+class BccmPlayer extends StatelessWidget {
   final String id;
 
   const BccmPlayer({
@@ -17,82 +17,67 @@ class BccmPlayer extends StatefulWidget {
   });
 
   @override
-  State<BccmPlayer> createState() => _BccmPlayerState();
-}
-
-class _BccmPlayerState extends State<BccmPlayer> {
-  bool _hidePlayer = false;
-
-  void playVideoNative(BuildContext context) {
-    setState(() {
-      _hidePlayer = true;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (widget.id == 'chromecast') {
+    if (id == 'chromecast') {
       return const BccmCastPlayer();
     }
-    if (kIsWeb) {
-      return Column(
-        children: [
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: HtmlElementView(viewType: 'bccm-player-${widget.id}'),
-          ),
-        ],
-      );
+
+    Widget getPlatformSpecificPlayer() {
+      if (kIsWeb) {
+        return HtmlElementView(viewType: 'bccm-player-$id');
+      } else if (Platform.isAndroid) {
+        return _AndroidPlayer(id: id);
+      } else if (Platform.isIOS) {
+        return _IOSPlayer(id: id);
+      }
+      return const SizedBox.shrink();
     }
-    return Column(
-      children: [
-        if (!_hidePlayer && Platform.isIOS)
-          AspectRatio(
-              aspectRatio: 16 / 9,
-              child: InkWell(
-                onTap: () {
-                  BccmPlayerInterface.instance.play(widget.id);
-                },
-                child: UiKitView(
-                    viewType: 'bccm-player',
-                    hitTestBehavior: PlatformViewHitTestBehavior.translucent,
-                    gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                      Factory<OneSequenceGestureRecognizer>(
-                        () => EagerGestureRecognizer(),
-                      ),
-                    },
-                    creationParams: <String, dynamic>{
-                      'player_id': widget.id,
-                    },
-                    creationParamsCodec: const StandardMessageCodec()),
-              )),
-        if (!_hidePlayer && Platform.isAndroid)
-          Column(
-            children: [
-              //SizedBox(height: 100, child: AndroidNativeText(widget: widget)),
-              AspectRatio(aspectRatio: 16 / 9, child: AndroidPlayer(id: widget.id)),
-            ],
-          )
-      ],
+
+    return AspectRatio(
+      aspectRatio: 16 / 9,
+      child: getPlatformSpecificPlayer(),
     );
   }
 }
 
-class AndroidPlayer extends StatefulWidget {
-  const AndroidPlayer({
+class _IOSPlayer extends StatelessWidget {
+  const _IOSPlayer({
+    required this.id,
+  });
+
+  final String id;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        BccmPlayerInterface.instance.play(id);
+      },
+      child: UiKitView(
+        viewType: 'bccm-player',
+        hitTestBehavior: PlatformViewHitTestBehavior.translucent,
+        gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+          Factory<OneSequenceGestureRecognizer>(
+            () => EagerGestureRecognizer(),
+          ),
+        },
+        creationParams: <String, dynamic>{
+          'player_id': id,
+        },
+        creationParamsCodec: const StandardMessageCodec(),
+      ),
+    );
+  }
+}
+
+class _AndroidPlayer extends StatelessWidget {
+  const _AndroidPlayer({
     Key? key,
     required this.id,
   }) : super(key: key);
 
   final String id;
 
-  @override
-  State<AndroidPlayer> createState() => _AndroidPlayerState();
-}
-
-class _AndroidPlayerState extends State<AndroidPlayer> {
-  bool hide = false;
-  int? viewId;
   @override
   Widget build(BuildContext context) {
     return PlatformViewLink(
@@ -114,7 +99,7 @@ class _AndroidPlayerState extends State<AndroidPlayer> {
           viewType: 'bccm-player',
           layoutDirection: TextDirection.ltr,
           creationParams: <String, dynamic>{
-            'player_id': widget.id,
+            'player_id': id,
           },
           creationParamsCodec: const StandardMessageCodec(),
           onFocus: () {
@@ -123,12 +108,6 @@ class _AndroidPlayerState extends State<AndroidPlayer> {
         );
         controller
           ..addOnPlatformViewCreatedListener((val) {
-            if (mounted) {
-              setState(() {
-                viewId = controller.viewId;
-              });
-            }
-
             params.onPlatformViewCreated(val);
           })
           ..create();
