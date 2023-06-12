@@ -7,6 +7,8 @@ import GoogleCast
 // TODO: this file should be a pure api towards flutter,
 // we should move the "players" array and state into a dedicated class
 public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
+    public func showFullscreenOverlay(_ playerId: String, config: FullscreenOverlayConfig, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {}
+
     var players = [PlayerController]()
     private var primaryPlayerId: String? = nil
     private var previousPrimaryPlayerId: String? = nil

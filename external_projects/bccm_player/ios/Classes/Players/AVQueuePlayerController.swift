@@ -108,6 +108,38 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         })
         fullscreenViewController = playerViewController
         onManualPlayerStateUpdate()
+        
+        let flutterEngine = FlutterEngine(name: "play flutter engine")
+        flutterEngine.run(withEntrypoint: "extraOverlayEntryPoint", libraryURI: "package:brunstadtv_app/main.dart")
+            
+        let flutterViewController =
+            FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
+            
+        flutterViewController.isViewOpaque = false
+            
+        let uiViewController = UIViewController()
+            
+        flutterViewController.modalPresentationStyle = .custom
+        flutterViewController.modalTransitionStyle = .crossDissolve // use whatever transition you want
+        flutterViewController.transitioningDelegate = customTransitioningDelegate
+            
+        FlutterMethodChannel(name: "player_overlay", binaryMessenger: flutterEngine.binaryMessenger).setMethodCallHandler {
+            (call: FlutterMethodCall, result: @escaping FlutterResult) in
+            // This method is invoked on the UI thread.
+            guard call.method == "go_to_quiz" else {
+                result(FlutterMethodNotImplemented)
+                return
+            }
+                
+            playerViewController.dismiss(animated: true)
+        }
+        
+        let viewController: UIViewController? = UIApplication.shared.delegate?.window??.rootViewController
+        
+        // do next tick
+        DispatchQueue.main.async {
+            playerViewController.present(flutterViewController, animated: false, completion: nil)
+        }
     }
     
     public func playerViewController(_ playerViewController: AVPlayerViewController, willEndFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -144,14 +176,12 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         }
     }
     
-    
     func fetchCurrentVC(_ viewController: UIViewController?) -> UIViewController? {
-
         if let tabBarController = viewController as? UITabBarController {
             return fetchCurrentVC(tabBarController.selectedViewController)
         }
 
-        if let navigationController = viewController as? UINavigationController{
+        if let navigationController = viewController as? UINavigationController {
             return fetchCurrentVC(navigationController.visibleViewController)
         }
 
@@ -160,41 +190,6 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         }
 
         return viewController
-    }
-    
-    public func playerViewController(_ playerViewController: AVPlayerViewController, willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        
-        let flutterEngine = FlutterEngine(name: "play flutter engine")
-        flutterEngine.run(withEntrypoint: "extraOverlayEntryPoint", libraryURI: "package:brunstadtv_app/main.dart")
-        
-        let flutterViewController =
-            FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
-        
-        flutterViewController.isViewOpaque = false;
-        
-        let uiViewController = UIViewController();
-        
-        flutterViewController.modalPresentationStyle = .custom
-        flutterViewController.modalTransitionStyle = .crossDissolve              // use whatever transition you want
-        flutterViewController.transitioningDelegate = customTransitioningDelegate
-        
-        FlutterMethodChannel(name: "player_overlay", binaryMessenger: flutterEngine.binaryMessenger).setMethodCallHandler({
-            (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
-            // This method is invoked on the UI thread.
-            guard call.method == "go_to_quiz" else {
-              result(FlutterMethodNotImplemented)
-              return
-            }
-            
-            playerViewController.dismiss(animated: true);
-            
-        })
-    
-        
-        let viewController : UIViewController? = UIApplication.shared.delegate?.window??.rootViewController
-        
-        fetchCurrentVC(viewController)?.present(flutterViewController, animated:false, completion: nil)
-        
     }
     
     func registerPipController(_ playerView: AVPlayerViewController?) {
@@ -529,12 +524,6 @@ extension AVPlayerItem {
     }
 }
 
-
-
-
-
-
-
 /// Just testing some flutter overlay stuff:
 
 class PresentationController: UIPresentationController {
@@ -577,4 +566,3 @@ class TransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
 }
 
 private var customTransitioningDelegate = TransitioningDelegate()
-

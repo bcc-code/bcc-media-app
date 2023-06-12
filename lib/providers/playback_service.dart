@@ -41,9 +41,30 @@ class PlaybackService {
     BccmPlaybackListener(ref: ref, apiProvider: apiProvider);
 
     // Keep the analytics session alive while playing stuff.
-    ref.listen<PlayerState?>(primaryPlayerProvider, (_, next) {
+    ref.listen<PlayerState?>(primaryPlayerProvider, (prev, next) {
       if (next?.currentMediaItem != null && next?.playbackState == PlaybackState.playing) {
         analyticsService.heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
+      }
+      final prevMs = prev?.playbackPositionMs ?? 0;
+      final nextMs = next?.playbackPositionMs;
+      if (next == null || nextMs == null) return;
+      final showOverlayAtMsString = next.currentMediaItem?.metadata?.extras?['show_overlay_at']?.asOrNull<String>();
+      if (showOverlayAtMsString != null) {
+        final showOverlayAtMs = double.tryParse(showOverlayAtMsString);
+        if (showOverlayAtMs != null && prevMs < showOverlayAtMs && nextMs > showOverlayAtMs) {
+          platformApi.showFullscreenOverlay(
+            next.playerId,
+            FullscreenOverlayConfig(
+              id: 'go_to_quiz',
+              entrypoint: 'extraOverlayEntryPoint',
+              libraryPath: 'package:brunstadtv_app/main.dart',
+              width: 150,
+              height: 50,
+              left: 16,
+              bottom: 150,
+            ),
+          );
+        }
       }
     });
 

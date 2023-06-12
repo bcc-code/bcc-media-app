@@ -40,15 +40,18 @@ void extraOverlayEntryPoint() {
   debugPrint('hello world from extraOverlayEntryPoint');
   final design = BccMediaDesignSystem();
   runApp(
-    MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: design.materialThemeData,
-        home: design.buttons.small(
-            onPressed: () {
-              debugPrint('I will do something now!!');
-              fullscreenOverlayMethodChannel.invokeMethod('go_to_quiz');
-            },
-            labelText: 'Go to quiz')),
+    DesignSystem(
+      designSystem: design,
+      child: (context) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: design.materialThemeData,
+          home: design.buttons.small(
+              onPressed: () {
+                debugPrint('I will do something now!!');
+                fullscreenOverlayMethodChannel.invokeMethod('go_to_quiz');
+              },
+              labelText: 'Go to quiz')),
+    ),
   );
 }
 

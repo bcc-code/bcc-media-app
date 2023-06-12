@@ -1,3 +1,3 @@
 import 'package:flutter/services.dart';
 
-const fullscreenOverlayMethodChannel = MethodChannel('bccm_player');
+const fullscreenOverlayMethodChannel = MethodChannel('player_overlay');
