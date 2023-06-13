@@ -64,7 +64,9 @@ class GridRow extends StatelessWidget {
       margin: margin,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final itemWidth = (constraints.maxWidth - gap * (columnCount - 1)) / columnCount;
+          final widthUsedForGaps = gap * (columnCount - 1);
+          final widthAvailableForItems = constraints.maxWidth - widthUsedForGaps;
+          final itemWidth = widthAvailableForItems / columnCount;
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: children
