@@ -13,5 +13,6 @@ class FeatureFlags with _$FeatureFlags {
     @Default(false) bool autoplayNext,
     @Default(false) bool autoFullscreenOnPlay,
     @Default(true) bool shareVideoButton,
+    @Default(false) bool gamesTab,
   }) = _FeatureFlags;
 }

@@ -201,6 +201,28 @@ const documentNodeQueryApplication = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
+            name: NameNode(value: 'gamesPage'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'code'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -361,6 +383,7 @@ class Query$Application$application {
     required this.clientVersion,
     this.page,
     this.searchPage,
+    this.gamesPage,
     this.$__typename = 'Application',
   });
 
@@ -368,6 +391,7 @@ class Query$Application$application {
     final l$clientVersion = json['clientVersion'];
     final l$page = json['page'];
     final l$searchPage = json['searchPage'];
+    final l$gamesPage = json['gamesPage'];
     final l$$__typename = json['__typename'];
     return Query$Application$application(
       clientVersion: (l$clientVersion as String),
@@ -379,6 +403,10 @@ class Query$Application$application {
           ? null
           : Query$Application$application$searchPage.fromJson(
               (l$searchPage as Map<String, dynamic>)),
+      gamesPage: l$gamesPage == null
+          ? null
+          : Query$Application$application$gamesPage.fromJson(
+              (l$gamesPage as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -388,6 +416,8 @@ class Query$Application$application {
   final Query$Application$application$page? page;
 
   final Query$Application$application$searchPage? searchPage;
+
+  final Query$Application$application$gamesPage? gamesPage;
 
   final String $__typename;
 
@@ -399,6 +429,8 @@ class Query$Application$application {
     _resultData['page'] = l$page?.toJson();
     final l$searchPage = searchPage;
     _resultData['searchPage'] = l$searchPage?.toJson();
+    final l$gamesPage = gamesPage;
+    _resultData['gamesPage'] = l$gamesPage?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -409,11 +441,13 @@ class Query$Application$application {
     final l$clientVersion = clientVersion;
     final l$page = page;
     final l$searchPage = searchPage;
+    final l$gamesPage = gamesPage;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$clientVersion,
       l$page,
       l$searchPage,
+      l$gamesPage,
       l$$__typename,
     ]);
   }
@@ -440,6 +474,11 @@ class Query$Application$application {
     final l$searchPage = searchPage;
     final lOther$searchPage = other.searchPage;
     if (l$searchPage != lOther$searchPage) {
+      return false;
+    }
+    final l$gamesPage = gamesPage;
+    final lOther$gamesPage = other.gamesPage;
+    if (l$gamesPage != lOther$gamesPage) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -473,10 +512,12 @@ abstract class CopyWith$Query$Application$application<TRes> {
     String? clientVersion,
     Query$Application$application$page? page,
     Query$Application$application$searchPage? searchPage,
+    Query$Application$application$gamesPage? gamesPage,
     String? $__typename,
   });
   CopyWith$Query$Application$application$page<TRes> get page;
   CopyWith$Query$Application$application$searchPage<TRes> get searchPage;
+  CopyWith$Query$Application$application$gamesPage<TRes> get gamesPage;
 }
 
 class _CopyWithImpl$Query$Application$application<TRes>
@@ -496,6 +537,7 @@ class _CopyWithImpl$Query$Application$application<TRes>
     Object? clientVersion = _undefined,
     Object? page = _undefined,
     Object? searchPage = _undefined,
+    Object? gamesPage = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Application$application(
@@ -508,6 +550,9 @@ class _CopyWithImpl$Query$Application$application<TRes>
         searchPage: searchPage == _undefined
             ? _instance.searchPage
             : (searchPage as Query$Application$application$searchPage?),
+        gamesPage: gamesPage == _undefined
+            ? _instance.gamesPage
+            : (gamesPage as Query$Application$application$gamesPage?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -528,6 +573,15 @@ class _CopyWithImpl$Query$Application$application<TRes>
         : CopyWith$Query$Application$application$searchPage(
             local$searchPage, (e) => call(searchPage: e));
   }
+
+  CopyWith$Query$Application$application$gamesPage<TRes> get gamesPage {
+    final local$gamesPage = _instance.gamesPage;
+    return local$gamesPage == null
+        ? CopyWith$Query$Application$application$gamesPage.stub(
+            _then(_instance))
+        : CopyWith$Query$Application$application$gamesPage(
+            local$gamesPage, (e) => call(gamesPage: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$Application$application<TRes>
@@ -540,6 +594,7 @@ class _CopyWithStubImpl$Query$Application$application<TRes>
     String? clientVersion,
     Query$Application$application$page? page,
     Query$Application$application$searchPage? searchPage,
+    Query$Application$application$gamesPage? gamesPage,
     String? $__typename,
   }) =>
       _res;
@@ -547,6 +602,8 @@ class _CopyWithStubImpl$Query$Application$application<TRes>
       CopyWith$Query$Application$application$page.stub(_res);
   CopyWith$Query$Application$application$searchPage<TRes> get searchPage =>
       CopyWith$Query$Application$application$searchPage.stub(_res);
+  CopyWith$Query$Application$application$gamesPage<TRes> get gamesPage =>
+      CopyWith$Query$Application$application$gamesPage.stub(_res);
 }
 
 class Query$Application$application$page {
@@ -793,6 +850,133 @@ class _CopyWithImpl$Query$Application$application$searchPage<TRes>
 class _CopyWithStubImpl$Query$Application$application$searchPage<TRes>
     implements CopyWith$Query$Application$application$searchPage<TRes> {
   _CopyWithStubImpl$Query$Application$application$searchPage(this._res);
+
+  TRes _res;
+
+  call({
+    String? code,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$Application$application$gamesPage {
+  Query$Application$application$gamesPage({
+    required this.code,
+    this.$__typename = 'Page',
+  });
+
+  factory Query$Application$application$gamesPage.fromJson(
+      Map<String, dynamic> json) {
+    final l$code = json['code'];
+    final l$$__typename = json['__typename'];
+    return Query$Application$application$gamesPage(
+      code: (l$code as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String code;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$code = code;
+    _resultData['code'] = l$code;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$code,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Application$application$gamesPage) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Application$application$gamesPage
+    on Query$Application$application$gamesPage {
+  CopyWith$Query$Application$application$gamesPage<
+          Query$Application$application$gamesPage>
+      get copyWith => CopyWith$Query$Application$application$gamesPage(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Application$application$gamesPage<TRes> {
+  factory CopyWith$Query$Application$application$gamesPage(
+    Query$Application$application$gamesPage instance,
+    TRes Function(Query$Application$application$gamesPage) then,
+  ) = _CopyWithImpl$Query$Application$application$gamesPage;
+
+  factory CopyWith$Query$Application$application$gamesPage.stub(TRes res) =
+      _CopyWithStubImpl$Query$Application$application$gamesPage;
+
+  TRes call({
+    String? code,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Application$application$gamesPage<TRes>
+    implements CopyWith$Query$Application$application$gamesPage<TRes> {
+  _CopyWithImpl$Query$Application$application$gamesPage(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Application$application$gamesPage _instance;
+
+  final TRes Function(Query$Application$application$gamesPage) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? code = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Application$application$gamesPage(
+        code: code == _undefined || code == null
+            ? _instance.code
+            : (code as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Application$application$gamesPage<TRes>
+    implements CopyWith$Query$Application$application$gamesPage<TRes> {
+  _CopyWithStubImpl$Query$Application$application$gamesPage(this._res);
 
   TRes _res;
 

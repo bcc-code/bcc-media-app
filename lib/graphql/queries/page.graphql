@@ -23,6 +23,9 @@ fragment ItemSectionItem on SectionItem {
   title
   image
   item {
+    ... on Game {
+      uuid: id
+    }
     ... on Link {
       url
     }
@@ -70,7 +73,6 @@ fragment ItemSection on ItemSection {
     }
   }
 }
-
 
 fragment GridSection on GridSection {
   gridSize: size
@@ -159,6 +161,9 @@ fragment Section on Section {
     cardSize: size
     items(first: $first, offset: $offset) {
       items {
+        title
+        description
+        image
         item {
           ... on StudyTopic {
             id

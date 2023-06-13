@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # major.minor.patch+xxxxxxx
 # Note: On play store, any dots in the build
 # number (i.e. the number after +) gets removed
-version: 4.4.9+2300069
+version: 4.5.1+2300071
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -74,7 +74,7 @@ dependencies:
   firebase_crashlytics: ^3.0.4
   flutter_svg_provider:
     git:
-      url: https://github.com/andreasgan/flutter_svg_provider.git
+      url: https://github.com/andreasgangso/flutter_svg_provider.git
       ref: fix/deps
   on_screen_ruler: ^0.0.1
   url_launcher: ^6.1.6
@@ -191,3 +191,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+dependency_overrides:
+  flutter_inappwebview:
+    git:
+      url: https://github.com/andreasgangso/flutter_inappwebview.git
+      ref: feat/disable-ios-delay

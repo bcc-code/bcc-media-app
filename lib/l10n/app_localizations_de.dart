@@ -725,4 +725,10 @@ class SDe extends S {
   String accountDeletionSuccess(String email) {
     return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
   }
+
+  @override
+  String get gamesTab => 'Games';
+
+  @override
+  String get playGame => 'Play Game';
 }

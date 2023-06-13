@@ -4,6 +4,7 @@ import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/mini_player.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/screens/search.dart';
 import 'package:collection/collection.dart';
@@ -69,7 +70,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     const indexToNameMap = ['home', 'search', 'livestream', 'calendar'];
     if (index < 0 || index > indexToNameMap.length - 1) return;
     final tabName = indexToNameMap[index];
-    final appConfig = ref.read(appConfigProvider);
+    final appConfig = ref.read(appConfigFutureProvider);
     appConfig.then((value) {
       String? pageCode;
       if (tabName == 'home') {
@@ -129,13 +130,21 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
   Widget build(BuildContext context) {
     var routes = [
       const HomeScreenWrapperRoute(),
-      SearchScreenWrapperRoute(children: [SearchScreenRoute(key: GlobalKey<SearchScreenState>())]),
-    ];
-    if (!ref.watch(authStateProvider).guestMode) {
-      routes.addAll([
+      if (ref.watch(featureFlagsProvider.select((value) => value.gamesTab))) ...[
+        const GamesWrapperRoute(),
+      ],
+      SearchScreenWrapperRoute(
+        children: [
+          SearchScreenRoute(key: GlobalKey<SearchScreenState>()),
+        ],
+      ),
+      if (!ref.watch(authStateProvider).guestMode) ...[
         const LiveScreenRoute(),
         const CalendarPageRoute(),
-      ]);
+      ]
+    ];
+    if (!ref.watch(authStateProvider).guestMode) {
+      routes.addAll([]);
     }
     return AutoTabsRouter(
       navigatorObservers: () => [HeroController()],

@@ -1,39 +1,34 @@
-import 'package:brunstadtv_app/components/study/study_progress_row.dart';
-import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
-
 import 'package:brunstadtv_app/helpers/ui/image.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import '../../graphql/queries/page.graphql.dart';
-import '../../theme/design_system/design_system.dart';
-import '../../helpers/navigation/navigation_utils.dart';
-import '../../helpers/utils.dart';
-import '../../l10n/app_localizations.dart';
-import '../status_indicators/loading_indicator.dart';
+import '../../../graphql/queries/page.graphql.dart';
+import '../../../theme/design_system/design_system.dart';
+import '../../../helpers/navigation/navigation_utils.dart';
+import '../../../helpers/utils.dart';
+import '../../../l10n/app_localizations.dart';
+import '../../status_indicators/loading_indicator.dart';
 
-class StudyTopicCardLarge extends StatefulWidget {
-  final Fragment$Section$$CardSection$items$items$item$$StudyTopic studyTopic;
-  const StudyTopicCardLarge({super.key, required this.studyTopic});
+class GenericCardLarge extends StatefulWidget {
+  final Fragment$Section$$CardSection$items$items item;
+  const GenericCardLarge({super.key, required this.item});
 
   @override
-  State<StudyTopicCardLarge> createState() => _StudyTopicCardLargeState();
+  State<GenericCardLarge> createState() => _GenericCardLargeState();
 }
 
-class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
+class _GenericCardLargeState extends State<GenericCardLarge> {
   Future? navigationFuture;
-
-  String? get imageUrl => widget.studyTopic.images.firstWhereOrNull((element) => element.style == 'featured')?.url;
 
   void onCardTapped() {
     setState(() {
-      navigationFuture = navigateToStudyTopic(context, widget.studyTopic.id);
+      navigationFuture = handleSectionItemClick(context, widget.item.item);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
+
     return Stack(
       children: [
         GestureDetector(
@@ -46,7 +41,7 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
               children: [
                 AspectRatio(
                   aspectRatio: 16 / 9,
-                  child: imageUrl == null ? const SizedBox.shrink() : simpleFadeInImage(url: imageUrl!),
+                  child: widget.item.image == null ? const SizedBox.shrink() : simpleFadeInImage(url: widget.item.image!),
                 ),
                 Container(
                   color: design.colors.separatorOnLight,
@@ -56,29 +51,28 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.studyTopic.title,
+                        widget.item.title,
                         textAlign: TextAlign.left,
                         style: design.textStyles.title1,
                       ),
-                      if (widget.studyTopic.description.isNotEmpty)
+                      if (widget.item.description.isNotEmpty)
                         Padding(
                           padding: const EdgeInsets.only(top: 8),
                           child: Text(
-                            widget.studyTopic.description,
+                            widget.item.description,
                             textAlign: TextAlign.left,
                             style: design.textStyles.body2.copyWith(color: design.colors.label2),
                           ),
                         ),
-                      Padding(
-                          padding: const EdgeInsets.only(top: 24),
-                          child: StudyProgressRow(
-                              completed: widget.studyTopic.lessonsProgress.completed, total: widget.studyTopic.lessonsProgress.total)),
                       Container(
                         padding: const EdgeInsets.only(top: 10),
                         alignment: Alignment.centerRight,
                         child: design.buttons.smallSecondary(
                           onPressed: onCardTapped,
-                          labelText: widget.studyTopic.lessonsProgress.completed > 0 ? S.of(context).continueStudy : S.of(context).startStudy,
+                          labelText: widget.item.item.maybeWhen(
+                            game: (_) => S.of(context).playGame,
+                            orElse: () => S.of(context).open,
+                          ),
                           image: Image.asset('assets/icons/Play.png'),
                         ),
                       )

@@ -45,6 +45,7 @@ class FlavorImages extends Iterable<ImageProvider> {
   final StateImageProvider live;
   final StateImageProvider calendar;
   final StateImageProvider myList;
+  final StateImageProvider games;
 
   FlavorImages({
     required this.logoHeight,
@@ -55,6 +56,7 @@ class FlavorImages extends Iterable<ImageProvider> {
     required this.live,
     required this.calendar,
     required this.myList,
+    required this.games,
   });
 
   @override
@@ -66,11 +68,13 @@ class FlavorImages extends Iterable<ImageProvider> {
         ...live,
         ...calendar,
         ...myList,
+        ...games,
       ].iterator;
 }
 
 class FlavorConfig {
   const FlavorConfig({
+    required this.applicationCode,
     required this.flavor,
     required this.firebaseOptions,
     required this.images,
@@ -78,7 +82,6 @@ class FlavorConfig {
     required this.enableNotifications,
     this.strictAnonymousAnalytics,
     this.designSystem,
-    this.applicationCode,
     this.defaultLanguage = 'en',
   });
 
@@ -87,7 +90,7 @@ class FlavorConfig {
   final FirebaseOptions? firebaseOptions;
   final FlavorImages images;
   final DesignSystemData Function()? designSystem;
-  final String? applicationCode;
+  final String applicationCode;
   final FlavorStrings Function(BuildContext context) strings;
   final bool enableNotifications;
   final String defaultLanguage;
