@@ -23,6 +23,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import '../screens/profile/device_info.dart';
 import '../helpers/navigation/custom_transitions.dart';
 import '../screens/achievement_group.dart';
 import '../screens/achievements.dart';
@@ -143,6 +144,14 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
     CustomRoute<void>(
       page: ContactSupportPublicScreen,
       path: '/contact-support-public',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: profileRouteBuilder,
+      meta: {RouteMetaConstants.analyticsName: 'support'},
+    ),
+    CustomRoute<void>(
+      page: DeviceInfoScreen,
+      path: '/device-info',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
       customRouteBuilder: profileRouteBuilder,
