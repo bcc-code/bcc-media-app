@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -9,10 +10,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../components/contact_support/contact_support_failure.dart';
+import '../../components/contact_support/contact_support_sending_indicator.dart';
 import '../../components/contact_support/contact_support_success.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../components/general_app_bar.dart';
-import '../../components/status_indicators/loading_indicator.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
@@ -32,9 +33,12 @@ class ContactSupportPublicScreen extends HookConsumerWidget {
     final messageController = useTextEditingController();
     final includeDeviceInfo = useRef(true);
     final isOnInputPage = useState(true);
+    final formKey = useRef(GlobalKey<FormState>());
     final sendSupportEmailFuture = useState<Future<QueryResult>?>(null);
     final sendSupportEmailSnapshot = useFuture(sendSupportEmailFuture.value);
     final deviceInfo = ref.watch(deviceInfoProvider).valueOrNull;
+    useListenableSelector(nameController, () => nameController.text.isEmpty);
+    useListenableSelector(emailController, () => emailController.text.isEmpty);
     useListenableSelector(messageController, () => messageController.text.isEmpty);
 
     void onIncludeDeviceInfoChange(bool state) => includeDeviceInfo.value = state;
@@ -42,11 +46,7 @@ class ContactSupportPublicScreen extends HookConsumerWidget {
     void onTryAgain() => isOnInputPage.value = true;
 
     String getDeviceInfoHtml() {
-      final rows = deviceInfo?.entries
-          .map(
-            (entry) => '<th>${entry.key}</th><td>${entry.value}</td>',
-          )
-          .join('\n');
+      final rows = deviceInfo?.entries.map((entry) => '<th>${entry.key}</th><td>${entry.value}</td>').join('\n');
       return '<table><tbody>$rows</tbody></table>';
     }
 
@@ -66,24 +66,32 @@ class ContactSupportPublicScreen extends HookConsumerWidget {
 
     void onSend() {
       FocusManager.instance.primaryFocus?.unfocus();
+
+      if (formKey.value.currentState?.validate() != true) {
+        return;
+      }
+
       sendSupportEmailFuture.value = getSendSupportEmailFuture();
       isOnInputPage.value = false;
     }
 
     final Widget body;
     if (isOnInputPage.value) {
-      body = _InputPage(
-        nameController: nameController,
-        emailController: emailController,
-        messageController: messageController,
-        onIncludeDeviceInfoChange: onIncludeDeviceInfoChange,
+      body = Form(
+        key: formKey.value,
+        child: _InputPage(
+          nameController: nameController,
+          emailController: emailController,
+          messageController: messageController,
+          onIncludeDeviceInfoChange: onIncludeDeviceInfoChange,
+        ),
       );
     } else if (sendSupportEmailSnapshot.hasError || sendSupportEmailSnapshot.data?.hasException == true) {
       body = ContactSupportFailure(onTryAgain: onTryAgain);
     } else if (sendSupportEmailSnapshot.hasData) {
       body = const ContactSupportSuccess();
     } else {
-      body = const _SendingIndicator();
+      body = const ContactSupportSendingIndicator();
     }
 
     return DialogOnWeb(
@@ -100,7 +108,7 @@ class ContactSupportPublicScreen extends HookConsumerWidget {
             rightActions: [
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 150),
-                child: isOnInputPage.value && messageController.text.isNotEmpty
+                child: isOnInputPage.value && messageController.text.isNotEmpty && nameController.text.isNotEmpty && emailController.text.isNotEmpty
                     ? DesignSystem.of(context).buttons.small(
                           labelText: S.of(context).send,
                           onPressed: onSend,
@@ -168,9 +176,8 @@ class _InputPage extends HookWidget {
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 12),
-                child: TextFormField(
+                child: TextField(
                   cursorColor: design.colors.tint1,
-                  cursorWidth: 1,
                   controller: nameController,
                   style: design.textStyles.body2.copyWith(color: design.colors.label1),
                   decoration: design.inputDecorations.textFormField.copyWith(
@@ -204,9 +211,14 @@ class _InputPage extends HookWidget {
                 margin: const EdgeInsets.only(bottom: 12),
                 child: TextFormField(
                   cursorColor: design.colors.tint1,
-                  cursorWidth: 1,
                   controller: emailController,
                   style: design.textStyles.body2.copyWith(color: design.colors.label1),
+                  validator: (email) {
+                    if (email == null || !EmailValidator.validate(email)) {
+                      return ('Invalid email');
+                    }
+                    return null;
+                  },
                   decoration: design.inputDecorations.textFormField.copyWith(
                     hintText: 'Type in your email address',
                     suffixIcon: emailController.text.isEmpty
@@ -233,7 +245,6 @@ class _InputPage extends HookWidget {
               ),
               TextField(
                 cursorColor: design.colors.tint1,
-                cursorWidth: 1,
                 minLines: 9,
                 maxLines: 13,
                 controller: messageController,
@@ -274,30 +285,6 @@ class _InputPage extends HookWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _SendingIndicator extends StatelessWidget {
-  const _SendingIndicator();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const LoadingIndicator(),
-          const SizedBox(
-            height: 12,
-          ),
-          Text(
-            S.of(context).sending,
-            style: DesignSystem.of(context).textStyles.body1,
-          ),
-        ],
-      ),
     );
   }
 }

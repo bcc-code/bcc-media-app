@@ -34,11 +34,7 @@ class ContactSupportScreen extends HookConsumerWidget {
     void onTryAgain() => isOnInputPage.value = true;
 
     String getDeviceInfoHtml() {
-      final rows = deviceInfo?.entries
-          .map(
-            (entry) => '<th>${entry.key}</th><td>${entry.value}</td>',
-          )
-          .join('\n');
+      final rows = deviceInfo?.entries.map((entry) => '<th>${entry.key}</th><td>${entry.value}</td>').join('\n');
       return '<table><tbody>$rows</tbody></table>';
     }
 
