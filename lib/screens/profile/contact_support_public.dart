@@ -16,6 +16,7 @@ import '../../components/web/dialog_on_web.dart';
 import '../../components/general_app_bar.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
+import '../../graphql/schema/mutations.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
 import '../../helpers/ui/svg_icons.dart';
 import '../../providers/device_info.dart';
@@ -33,7 +34,7 @@ class ContactSupportPublicScreen extends HookConsumerWidget {
     final messageController = useTextEditingController();
     final includeDeviceInfo = useRef(true);
     final isOnInputPage = useState(true);
-    final formKey = useRef(GlobalKey<FormState>());
+    final formKey = useMemoized(() => GlobalKey<FormState>());
     final sendSupportEmailFuture = useState<Future<QueryResult>?>(null);
     final sendSupportEmailSnapshot = useFuture(sendSupportEmailFuture.value);
     final deviceInfo = ref.watch(deviceInfoProvider).valueOrNull;
@@ -59,6 +60,7 @@ class ContactSupportPublicScreen extends HookConsumerWidget {
                 title: 'BTV $appVer $os',
                 content: '',
                 html: '<p>${messageController.text}</p>${includeDeviceInfo.value ? getDeviceInfoHtml() : ''}',
+                options: Input$EmailOptions(name: nameController.text, email: emailController.text),
               ),
             ),
           );
@@ -67,7 +69,7 @@ class ContactSupportPublicScreen extends HookConsumerWidget {
     void onSend() {
       FocusManager.instance.primaryFocus?.unfocus();
 
-      if (formKey.value.currentState?.validate() != true) {
+      if (formKey.currentState?.validate() != true) {
         return;
       }
 
@@ -78,7 +80,7 @@ class ContactSupportPublicScreen extends HookConsumerWidget {
     final Widget body;
     if (isOnInputPage.value) {
       body = Form(
-        key: formKey.value,
+        key: formKey,
         child: _InputPage(
           nameController: nameController,
           emailController: emailController,
