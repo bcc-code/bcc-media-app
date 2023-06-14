@@ -3927,6 +3927,7 @@ class Fragment$PlayableEpisode {
     this.context,
     required this.title,
     this.image,
+    required this.duration,
     this.season,
     this.$__typename = 'Episode',
   });
@@ -3937,6 +3938,7 @@ class Fragment$PlayableEpisode {
     final l$context = json['context'];
     final l$title = json['title'];
     final l$image = json['image'];
+    final l$duration = json['duration'];
     final l$season = json['season'];
     final l$$__typename = json['__typename'];
     return Fragment$PlayableEpisode(
@@ -3951,6 +3953,7 @@ class Fragment$PlayableEpisode {
               (l$context as Map<String, dynamic>)),
       title: (l$title as String),
       image: (l$image as String?),
+      duration: (l$duration as int),
       season: l$season == null
           ? null
           : Fragment$PlayableEpisode$season.fromJson(
@@ -3969,6 +3972,8 @@ class Fragment$PlayableEpisode {
 
   final String? image;
 
+  final int duration;
+
   final Fragment$PlayableEpisode$season? season;
 
   final String $__typename;
@@ -3985,6 +3990,8 @@ class Fragment$PlayableEpisode {
     _resultData['title'] = l$title;
     final l$image = image;
     _resultData['image'] = l$image;
+    final l$duration = duration;
+    _resultData['duration'] = l$duration;
     final l$season = season;
     _resultData['season'] = l$season?.toJson();
     final l$$__typename = $__typename;
@@ -3999,6 +4006,7 @@ class Fragment$PlayableEpisode {
     final l$context = context;
     final l$title = title;
     final l$image = image;
+    final l$duration = duration;
     final l$season = season;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -4007,6 +4015,7 @@ class Fragment$PlayableEpisode {
       l$context,
       l$title,
       l$image,
+      l$duration,
       l$season,
       l$$__typename,
     ]);
@@ -4053,6 +4062,11 @@ class Fragment$PlayableEpisode {
     if (l$image != lOther$image) {
       return false;
     }
+    final l$duration = duration;
+    final lOther$duration = other.duration;
+    if (l$duration != lOther$duration) {
+      return false;
+    }
     final l$season = season;
     final lOther$season = other.season;
     if (l$season != lOther$season) {
@@ -4091,6 +4105,7 @@ abstract class CopyWith$Fragment$PlayableEpisode<TRes> {
     Fragment$PlayableEpisode$context? context,
     String? title,
     String? image,
+    int? duration,
     Fragment$PlayableEpisode$season? season,
     String? $__typename,
   });
@@ -4121,6 +4136,7 @@ class _CopyWithImpl$Fragment$PlayableEpisode<TRes>
     Object? context = _undefined,
     Object? title = _undefined,
     Object? image = _undefined,
+    Object? duration = _undefined,
     Object? season = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -4136,6 +4152,9 @@ class _CopyWithImpl$Fragment$PlayableEpisode<TRes>
             ? _instance.title
             : (title as String),
         image: image == _undefined ? _instance.image : (image as String?),
+        duration: duration == _undefined || duration == null
+            ? _instance.duration
+            : (duration as int),
         season: season == _undefined
             ? _instance.season
             : (season as Fragment$PlayableEpisode$season?),
@@ -4182,6 +4201,7 @@ class _CopyWithStubImpl$Fragment$PlayableEpisode<TRes>
     Fragment$PlayableEpisode$context? context,
     String? title,
     String? image,
+    int? duration,
     Fragment$PlayableEpisode$season? season,
     String? $__typename,
   }) =>
@@ -4276,6 +4296,13 @@ const fragmentDefinitionPlayableEpisode = FragmentDefinitionNode(
     ),
     FieldNode(
       name: NameNode(value: 'image'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'duration'),
       alias: null,
       arguments: [],
       directives: [],
@@ -6547,6 +6574,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     this.context,
     required this.title,
     this.image,
+    required this.duration,
     this.season,
     this.$__typename = 'Episode',
     required this.uuid,
@@ -6555,7 +6583,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     required this.description,
     required this.extraDescription,
     required this.type,
-    required this.duration,
     this.progress,
     required this.shareRestriction,
     required this.ageRating,
@@ -6570,6 +6597,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$context = json['context'];
     final l$title = json['title'];
     final l$image = json['image'];
+    final l$duration = json['duration'];
     final l$season = json['season'];
     final l$$__typename = json['__typename'];
     final l$uuid = json['uuid'];
@@ -6578,7 +6606,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$description = json['description'];
     final l$extraDescription = json['extraDescription'];
     final l$type = json['type'];
-    final l$duration = json['duration'];
     final l$progress = json['progress'];
     final l$shareRestriction = json['shareRestriction'];
     final l$ageRating = json['ageRating'];
@@ -6597,6 +6624,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
               (l$context as Map<String, dynamic>)),
       title: (l$title as String),
       image: (l$image as String?),
+      duration: (l$duration as int),
       season: l$season == null
           ? null
           : Query$FetchEpisode$episode$season.fromJson(
@@ -6608,7 +6636,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
       description: (l$description as String),
       extraDescription: (l$extraDescription as String),
       type: fromJson$Enum$EpisodeType((l$type as String)),
-      duration: (l$duration as int),
       progress: (l$progress as int?),
       shareRestriction:
           fromJson$Enum$ShareRestriction((l$shareRestriction as String)),
@@ -6633,6 +6660,8 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
 
   final String? image;
 
+  final int duration;
+
   final Query$FetchEpisode$episode$season? season;
 
   final String $__typename;
@@ -6648,8 +6677,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
   final String extraDescription;
 
   final Enum$EpisodeType type;
-
-  final int duration;
 
   final int? progress;
 
@@ -6675,6 +6702,8 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     _resultData['title'] = l$title;
     final l$image = image;
     _resultData['image'] = l$image;
+    final l$duration = duration;
+    _resultData['duration'] = l$duration;
     final l$season = season;
     _resultData['season'] = l$season?.toJson();
     final l$$__typename = $__typename;
@@ -6691,8 +6720,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     _resultData['extraDescription'] = l$extraDescription;
     final l$type = type;
     _resultData['type'] = toJson$Enum$EpisodeType(l$type);
-    final l$duration = duration;
-    _resultData['duration'] = l$duration;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$shareRestriction = shareRestriction;
@@ -6716,6 +6743,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$context = context;
     final l$title = title;
     final l$image = image;
+    final l$duration = duration;
     final l$season = season;
     final l$$__typename = $__typename;
     final l$uuid = uuid;
@@ -6724,7 +6752,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$description = description;
     final l$extraDescription = extraDescription;
     final l$type = type;
-    final l$duration = duration;
     final l$progress = progress;
     final l$shareRestriction = shareRestriction;
     final l$ageRating = ageRating;
@@ -6737,6 +6764,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
       l$context,
       l$title,
       l$image,
+      l$duration,
       l$season,
       l$$__typename,
       l$uuid,
@@ -6745,7 +6773,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
       l$description,
       l$extraDescription,
       l$type,
-      l$duration,
       l$progress,
       l$shareRestriction,
       l$ageRating,
@@ -6796,6 +6823,11 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     if (l$image != lOther$image) {
       return false;
     }
+    final l$duration = duration;
+    final lOther$duration = other.duration;
+    if (l$duration != lOther$duration) {
+      return false;
+    }
     final l$season = season;
     final lOther$season = other.season;
     if (l$season != lOther$season) {
@@ -6834,11 +6866,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$type = type;
     final lOther$type = other.type;
     if (l$type != lOther$type) {
-      return false;
-    }
-    final l$duration = duration;
-    final lOther$duration = other.duration;
-    if (l$duration != lOther$duration) {
       return false;
     }
     final l$progress = progress;
@@ -6899,6 +6926,7 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
     Query$FetchEpisode$episode$context? context,
     String? title,
     String? image,
+    int? duration,
     Query$FetchEpisode$episode$season? season,
     String? $__typename,
     String? uuid,
@@ -6907,7 +6935,6 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
     String? description,
     String? extraDescription,
     Enum$EpisodeType? type,
-    int? duration,
     int? progress,
     Enum$ShareRestriction? shareRestriction,
     String? ageRating,
@@ -6944,6 +6971,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
     Object? context = _undefined,
     Object? title = _undefined,
     Object? image = _undefined,
+    Object? duration = _undefined,
     Object? season = _undefined,
     Object? $__typename = _undefined,
     Object? uuid = _undefined,
@@ -6952,7 +6980,6 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
     Object? description = _undefined,
     Object? extraDescription = _undefined,
     Object? type = _undefined,
-    Object? duration = _undefined,
     Object? progress = _undefined,
     Object? shareRestriction = _undefined,
     Object? ageRating = _undefined,
@@ -6972,6 +6999,9 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
             ? _instance.title
             : (title as String),
         image: image == _undefined ? _instance.image : (image as String?),
+        duration: duration == _undefined || duration == null
+            ? _instance.duration
+            : (duration as int),
         season: season == _undefined
             ? _instance.season
             : (season as Query$FetchEpisode$episode$season?),
@@ -6995,9 +7025,6 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
         type: type == _undefined || type == null
             ? _instance.type
             : (type as Enum$EpisodeType),
-        duration: duration == _undefined || duration == null
-            ? _instance.duration
-            : (duration as int),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         shareRestriction:
@@ -7070,6 +7097,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
     Query$FetchEpisode$episode$context? context,
     String? title,
     String? image,
+    int? duration,
     Query$FetchEpisode$episode$season? season,
     String? $__typename,
     String? uuid,
@@ -7078,7 +7106,6 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
     String? description,
     String? extraDescription,
     Enum$EpisodeType? type,
-    int? duration,
     int? progress,
     Enum$ShareRestriction? shareRestriction,
     String? ageRating,

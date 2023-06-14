@@ -20,6 +20,7 @@ mixin _$PlayerState {
   MediaItem? get currentMediaItem => throw _privateConstructorUsedError;
   int? get playbackPositionMs => throw _privateConstructorUsedError;
   bool get isFullscreen => throw _privateConstructorUsedError;
+  bool get isFlutterFullscreen => throw _privateConstructorUsedError;
   PlaybackState get playbackState => throw _privateConstructorUsedError;
   bool get isInPipMode => throw _privateConstructorUsedError;
 
@@ -39,6 +40,7 @@ abstract class $PlayerStateCopyWith<$Res> {
       MediaItem? currentMediaItem,
       int? playbackPositionMs,
       bool isFullscreen,
+      bool isFlutterFullscreen,
       PlaybackState playbackState,
       bool isInPipMode});
 }
@@ -60,6 +62,7 @@ class _$PlayerStateCopyWithImpl<$Res, $Val extends PlayerState>
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
     Object? isFullscreen = null,
+    Object? isFlutterFullscreen = null,
     Object? playbackState = null,
     Object? isInPipMode = null,
   }) {
@@ -79,6 +82,10 @@ class _$PlayerStateCopyWithImpl<$Res, $Val extends PlayerState>
       isFullscreen: null == isFullscreen
           ? _value.isFullscreen
           : isFullscreen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFlutterFullscreen: null == isFlutterFullscreen
+          ? _value.isFlutterFullscreen
+          : isFlutterFullscreen // ignore: cast_nullable_to_non_nullable
               as bool,
       playbackState: null == playbackState
           ? _value.playbackState
@@ -105,6 +112,7 @@ abstract class _$$_PlayerStateCopyWith<$Res>
       MediaItem? currentMediaItem,
       int? playbackPositionMs,
       bool isFullscreen,
+      bool isFlutterFullscreen,
       PlaybackState playbackState,
       bool isInPipMode});
 }
@@ -124,6 +132,7 @@ class __$$_PlayerStateCopyWithImpl<$Res>
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
     Object? isFullscreen = null,
+    Object? isFlutterFullscreen = null,
     Object? playbackState = null,
     Object? isInPipMode = null,
   }) {
@@ -143,6 +152,10 @@ class __$$_PlayerStateCopyWithImpl<$Res>
       isFullscreen: null == isFullscreen
           ? _value.isFullscreen
           : isFullscreen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFlutterFullscreen: null == isFlutterFullscreen
+          ? _value.isFlutterFullscreen
+          : isFlutterFullscreen // ignore: cast_nullable_to_non_nullable
               as bool,
       playbackState: null == playbackState
           ? _value.playbackState
@@ -164,6 +177,7 @@ class _$_PlayerState implements _PlayerState {
       this.currentMediaItem,
       this.playbackPositionMs,
       this.isFullscreen = false,
+      this.isFlutterFullscreen = false,
       this.playbackState = PlaybackState.stopped,
       this.isInPipMode = false});
 
@@ -178,6 +192,9 @@ class _$_PlayerState implements _PlayerState {
   final bool isFullscreen;
   @override
   @JsonKey()
+  final bool isFlutterFullscreen;
+  @override
+  @JsonKey()
   final PlaybackState playbackState;
   @override
   @JsonKey()
@@ -185,7 +202,7 @@ class _$_PlayerState implements _PlayerState {
 
   @override
   String toString() {
-    return 'PlayerState(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs, isFullscreen: $isFullscreen, playbackState: $playbackState, isInPipMode: $isInPipMode)';
+    return 'PlayerState(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs, isFullscreen: $isFullscreen, isFlutterFullscreen: $isFlutterFullscreen, playbackState: $playbackState, isInPipMode: $isInPipMode)';
   }
 
   @override
@@ -201,6 +218,8 @@ class _$_PlayerState implements _PlayerState {
                 other.playbackPositionMs == playbackPositionMs) &&
             (identical(other.isFullscreen, isFullscreen) ||
                 other.isFullscreen == isFullscreen) &&
+            (identical(other.isFlutterFullscreen, isFlutterFullscreen) ||
+                other.isFlutterFullscreen == isFlutterFullscreen) &&
             (identical(other.playbackState, playbackState) ||
                 other.playbackState == playbackState) &&
             (identical(other.isInPipMode, isInPipMode) ||
@@ -208,8 +227,15 @@ class _$_PlayerState implements _PlayerState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, playerId, currentMediaItem,
-      playbackPositionMs, isFullscreen, playbackState, isInPipMode);
+  int get hashCode => Object.hash(
+      runtimeType,
+      playerId,
+      currentMediaItem,
+      playbackPositionMs,
+      isFullscreen,
+      isFlutterFullscreen,
+      playbackState,
+      isInPipMode);
 
   @JsonKey(ignore: true)
   @override
@@ -224,6 +250,7 @@ abstract class _PlayerState implements PlayerState {
       final MediaItem? currentMediaItem,
       final int? playbackPositionMs,
       final bool isFullscreen,
+      final bool isFlutterFullscreen,
       final PlaybackState playbackState,
       final bool isInPipMode}) = _$_PlayerState;
 
@@ -235,6 +262,8 @@ abstract class _PlayerState implements PlayerState {
   int? get playbackPositionMs;
   @override
   bool get isFullscreen;
+  @override
+  bool get isFlutterFullscreen;
   @override
   PlaybackState get playbackState;
   @override

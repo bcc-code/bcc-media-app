@@ -64,6 +64,10 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         player.play()
     }
     
+    public func seekTo(_ positionMs: NSNumber) {
+        player.seek(to: CMTime(value: Int64(truncating: positionMs), timescale: 1000))
+    }
+    
     public func pause() {
         player.pause()
     }

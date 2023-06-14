@@ -123,6 +123,11 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         player?.play()
     }
 
+    public func play(_ playerId: String, positionMs: NSNumber, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
+        let player = getPlayer(playerId)
+        player?.seekTo(positionMs)
+    }
+
     public func pause(_ playerId: String, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         let player = getPlayer(playerId)
         player?.pause()

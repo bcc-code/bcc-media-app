@@ -38,6 +38,10 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
     state = state.copyWith(playbackState: playbackState);
   }
 
+  void setIsFlutterFullscreen(bool value) {
+    state = state.copyWith(isFlutterFullscreen: value);
+  }
+
   void setPlaybackPosition(int? ms) {
     state = state.copyWith(playbackPositionMs: ms);
   }
@@ -58,6 +62,7 @@ class PlayerState with _$PlayerState {
     MediaItem? currentMediaItem,
     int? playbackPositionMs,
     @Default(false) bool isFullscreen,
+    @Default(false) bool isFlutterFullscreen,
     @Default(PlaybackState.stopped) PlaybackState playbackState,
     @Default(false) bool isInPipMode,
   }) = _PlayerState;
@@ -77,6 +82,7 @@ extension on PlayerState {
   PlayerState copyWithSnapshot(PlayerStateSnapshot snapshot) {
     return PlayerState.fromPlayerStateSnapshot(snapshot).copyWith(
       isInPipMode: isInPipMode, // not part of snapshot
+      isFlutterFullscreen: isFlutterFullscreen, // not part of snapshot
     );
   }
 }

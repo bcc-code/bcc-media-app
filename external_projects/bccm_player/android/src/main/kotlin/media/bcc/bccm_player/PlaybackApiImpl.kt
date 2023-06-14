@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
 import media.bcc.bccm_player.players.chromecast.CastExpandedControlsActivity
 import media.bcc.bccm_player.players.chromecast.CastPlayerController
+import kotlin.math.roundToLong
 
 
 class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
@@ -136,6 +137,14 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
             ?: throw Error("Player with id $playerId does not exist.")
 
         playerController.play()
+    }
+
+    override fun seekTo(playerId: String, positionMs: Double) {
+        val playbackService = plugin.getPlaybackService() ?: return
+        val playerController = playbackService.getController(playerId)
+            ?: throw Error("Player with id $playerId does not exist.")
+
+        playerController.player.seekTo(positionMs.toLong());
     }
 
     override fun pause(playerId: String) {

@@ -517,6 +517,16 @@ public class PlaybackPlatformApi {
       this.artist = setterArg;
     }
 
+    private @Nullable Double durationMs;
+
+    public @Nullable Double getDurationMs() {
+      return durationMs;
+    }
+
+    public void setDurationMs(@Nullable Double setterArg) {
+      this.durationMs = setterArg;
+    }
+
     private @Nullable Map<String, Object> extras;
 
     public @Nullable Map<String, Object> getExtras() {
@@ -550,6 +560,13 @@ public class PlaybackPlatformApi {
         return this;
       }
 
+      private @Nullable Double durationMs;
+
+      public @NonNull Builder setDurationMs(@Nullable Double setterArg) {
+        this.durationMs = setterArg;
+        return this;
+      }
+
       private @Nullable Map<String, Object> extras;
 
       public @NonNull Builder setExtras(@Nullable Map<String, Object> setterArg) {
@@ -562,6 +579,7 @@ public class PlaybackPlatformApi {
         pigeonReturn.setArtworkUri(artworkUri);
         pigeonReturn.setTitle(title);
         pigeonReturn.setArtist(artist);
+        pigeonReturn.setDurationMs(durationMs);
         pigeonReturn.setExtras(extras);
         return pigeonReturn;
       }
@@ -569,10 +587,11 @@ public class PlaybackPlatformApi {
 
     @NonNull
     ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(4);
+      ArrayList<Object> toListResult = new ArrayList<Object>(5);
       toListResult.add(artworkUri);
       toListResult.add(title);
       toListResult.add(artist);
+      toListResult.add(durationMs);
       toListResult.add(extras);
       return toListResult;
     }
@@ -585,7 +604,9 @@ public class PlaybackPlatformApi {
       pigeonResult.setTitle((String) title);
       Object artist = list.get(2);
       pigeonResult.setArtist((String) artist);
-      Object extras = list.get(3);
+      Object durationMs = list.get(3);
+      pigeonResult.setDurationMs((Double) durationMs);
+      Object extras = list.get(4);
       pigeonResult.setExtras((Map<String, Object>) extras);
       return pigeonResult;
     }
@@ -1347,6 +1368,8 @@ public class PlaybackPlatformApi {
 
     void play(@NonNull String playerId);
 
+    void seekTo(@NonNull String playerId, @NonNull Double positionMs);
+
     void pause(@NonNull String playerId);
 
     void stop(@NonNull String playerId, @NonNull Boolean reset);
@@ -1557,6 +1580,31 @@ public class PlaybackPlatformApi {
                 String playerIdArg = (String) args.get(0);
                 try {
                   api.play(playerIdArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  ArrayList<Object> wrappedError = wrapError(exception);
+                  wrapped = wrappedError;
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.seekTo", getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<Object>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                String playerIdArg = (String) args.get(0);
+                Double positionMsArg = (Double) args.get(1);
+                try {
+                  api.seekTo(playerIdArg, positionMsArg);
                   wrapped.add(0, null);
                 }
  catch (Throwable exception) {

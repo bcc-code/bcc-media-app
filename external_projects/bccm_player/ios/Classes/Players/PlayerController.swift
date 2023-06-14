@@ -17,6 +17,7 @@ public protocol PlayerController {
     func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?, completion: @escaping (FlutterError?) -> ())
     func queueItem(_ mediaItem: MediaItem)
     func play()
+    func seekTo(_ positionMs: NSNumber)
     func pause()
     func stop(reset: Bool)
     func exitFullscreen()

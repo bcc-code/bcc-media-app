@@ -157,6 +157,7 @@ class MediaMetadata {
     this.artworkUri,
     this.title,
     this.artist,
+    this.durationMs,
     this.extras,
   });
 
@@ -166,6 +167,8 @@ class MediaMetadata {
 
   String? artist;
 
+  double? durationMs;
+
   Map<String?, Object?>? extras;
 
   Object encode() {
@@ -173,6 +176,7 @@ class MediaMetadata {
       artworkUri,
       title,
       artist,
+      durationMs,
       extras,
     ];
   }
@@ -183,7 +187,8 @@ class MediaMetadata {
       artworkUri: result[0] as String?,
       title: result[1] as String?,
       artist: result[2] as String?,
-      extras: (result[3] as Map<Object?, Object?>?)?.cast<String?, Object?>(),
+      durationMs: result[3] as double?,
+      extras: (result[4] as Map<Object?, Object?>?)?.cast<String?, Object?>(),
     );
   }
 }
@@ -641,6 +646,28 @@ class PlaybackPlatformPigeon {
         binaryMessenger: _binaryMessenger);
     final List<Object?>? replyList =
         await channel.send(<Object?>[arg_playerId]) as List<Object?>?;
+    if (replyList == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyList.length > 1) {
+      throw PlatformException(
+        code: replyList[0]! as String,
+        message: replyList[1] as String?,
+        details: replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> seekTo(String arg_playerId, double arg_positionMs) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.seekTo', codec,
+        binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList =
+        await channel.send(<Object?>[arg_playerId, arg_positionMs]) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',

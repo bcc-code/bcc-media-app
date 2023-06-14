@@ -1,10 +1,5 @@
 import 'package:pigeon/pigeon.dart';
 
-class Book {
-  String? title;
-  String? author;
-}
-
 @HostApi()
 abstract class PlaybackPlatformPigeon {
   @async
@@ -31,6 +26,9 @@ abstract class PlaybackPlatformPigeon {
 
   @ObjCSelector("play:")
   void play(String playerId);
+
+  @ObjCSelector("play:positionMs:")
+  void seekTo(String playerId, double positionMs);
 
   @ObjCSelector("pause:")
   void pause(String playerId);
@@ -104,6 +102,7 @@ class MediaMetadata {
   String? artworkUri;
   String? title;
   String? artist;
+  double? durationMs;
   Map<String?, Object?>? extras;
 }
 

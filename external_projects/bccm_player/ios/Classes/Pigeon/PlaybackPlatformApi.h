@@ -83,10 +83,12 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 + (instancetype)makeWithArtworkUri:(nullable NSString *)artworkUri
     title:(nullable NSString *)title
     artist:(nullable NSString *)artist
+    durationMs:(nullable NSNumber *)durationMs
     extras:(nullable NSDictionary<NSString *, id> *)extras;
 @property(nonatomic, copy, nullable) NSString * artworkUri;
 @property(nonatomic, copy, nullable) NSString * title;
 @property(nonatomic, copy, nullable) NSString * artist;
+@property(nonatomic, strong, nullable) NSNumber * durationMs;
 @property(nonatomic, strong, nullable) NSDictionary<NSString *, id> * extras;
 @end
 
@@ -184,6 +186,7 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 - (void)setPlayerViewVisibility:(NSNumber *)viewId visible:(NSNumber *)visible error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setPrimary:(NSString *)id completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)play:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)play:(NSString *)playerId positionMs:(NSNumber *)positionMs error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)pause:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)stop:(NSString *)playerId reset:(NSNumber *)reset error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)exitFullscreen:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;

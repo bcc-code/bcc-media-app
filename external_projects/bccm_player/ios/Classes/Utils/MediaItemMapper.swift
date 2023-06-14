@@ -23,6 +23,7 @@ class MediaItemMapper {
                 withArtworkUri: artworkUri,
                 title: playerItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierTitle })?.stringValue,
                 artist: playerItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtist })?.stringValue,
+                durationMs: nil,
                 extras: extras
             )
 

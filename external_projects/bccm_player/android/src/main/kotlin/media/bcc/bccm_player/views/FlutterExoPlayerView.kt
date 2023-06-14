@@ -30,7 +30,8 @@ import media.bcc.bccm_player.players.exoplayer.ExoPlayerController
 class FlutterExoPlayerView(
     private val playbackService: PlaybackService,
     private val context: Context,
-    private var playerId: String
+    private val playerId: String,
+    private val showControls: Boolean?,
 ) : PlatformView, BccmPlayerViewController {
     private var playerController: ExoPlayerController? = null
     private val _v: LinearLayout = LinearLayout(context)
@@ -52,11 +53,12 @@ class FlutterExoPlayerView(
             val playbackService = plugin?.getPlaybackService()
                 ?: throw Error("PlaybackService is null, but you tried making a platformview.")
 
-            val creationParams = args as Map<String?, Any?>?
+            val creationParams = args as Map<String?, Any?>
             return FlutterExoPlayerView(
                 playbackService,
                 context,
-                creationParams?.get("player_id") as String
+                creationParams["player_id"] as String,
+                creationParams["show_controls"] as? Boolean?,
             )
         }
     }
@@ -82,6 +84,7 @@ class FlutterExoPlayerView(
         if (_playerView?.player != null) {
             return
         }
+        Log.d("bccm", "Setting up flutter view for playerId: $playerId")
         _v.removeAllViews()
         LayoutInflater.from(context).inflate(R.layout.player_view, _v, true)
         playerController = playbackService.getController(playerId) as ExoPlayerController
@@ -92,6 +95,8 @@ class FlutterExoPlayerView(
 
         val playerView = _v.findViewById<PlayerView>(R.id.brunstad_player)
             .also { _playerView = it }
+
+        playerView?.useController = showControls ?: true;
 
         playerView.setFullscreenButtonClickListener {
             goFullscreen()

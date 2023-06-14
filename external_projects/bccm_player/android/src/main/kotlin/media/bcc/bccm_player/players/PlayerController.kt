@@ -6,6 +6,7 @@ import androidx.annotation.CallSuper
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
+import androidx.media3.common.Player.STATE_READY
 import media.bcc.bccm_player.BccmPlayerPlugin
 import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.BCCM_EXTRAS
@@ -116,7 +117,6 @@ abstract class PlayerController : Player.Listener {
     }
 
     fun mapMediaItem(mediaItem: MediaItem): PlaybackPlatformApi.MediaItem {
-
         val metaBuilder = PlaybackPlatformApi.MediaMetadata.Builder()
         if (mediaItem.mediaMetadata.artworkUri != null) {
             metaBuilder.setArtworkUri(mediaItem.mediaMetadata.artworkUri?.toString())
@@ -128,6 +128,9 @@ abstract class PlayerController : Player.Listener {
         if (sourceExtras != null) {
             extraMeta = extractExtrasFromAndroid(sourceExtras)
         }
+        if (player.currentMediaItem == mediaItem) {
+            metaBuilder.setDurationMs(player.duration.toDouble());
+        }
         metaBuilder.setExtras(extraMeta)
         val miBuilder = PlaybackPlatformApi.MediaItem.Builder()
             .setUrl(mediaItem.localConfiguration?.uri?.toString())
@@ -137,6 +140,7 @@ abstract class PlayerController : Player.Listener {
         } else if (mediaItem.localConfiguration?.mimeType != null) {
             miBuilder.setMimeType(mediaItem.localConfiguration?.mimeType)
         }
+
         return miBuilder.build()
     }
 

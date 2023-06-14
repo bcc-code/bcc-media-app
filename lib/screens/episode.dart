@@ -272,7 +272,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     ref.listen<bool>(primaryPlayerProvider.select((p) => p?.playbackState == PlaybackState.playing), (prev, next) {
       if (!ref.read(featureFlagsProvider).autoFullscreenOnPlay) return;
       if (next == true && ref.read(primaryPlayerProvider)?.isFullscreen == false) {
-        ref.read(playbackServiceProvider).platformApi.enterFullscreen(player.playerId);
+        //ref.read(playbackServiceProvider).platformApi.enterFullscreen(player.playerId);
       }
     });
 
@@ -366,7 +366,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || player.isFullscreen,
                   )
                 else
-                  BccmPlayer(id: player.playerId),
+                  BccmPlayer(id: player.playerId, showControls: false),
                 EpisodeInfo(
                   episode,
                   onShareVideoTapped: () => shareVideo(context, ref, episode),

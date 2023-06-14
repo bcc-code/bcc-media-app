@@ -25,6 +25,7 @@ class BccmPlayerFactory: NSObject, FlutterPlatformViewFactory {
         debugPrint("BccmPlayerFactory create")
         let argDictionary = args as! [String: Any]?
         let playerId = argDictionary?["player_id"] as? String
+        let showControls = argDictionary?["show_controls"] as? Bool ?? true
         guard playerId != nil else {
             fatalError("argument 'player_id' cannot be null")
         }
@@ -35,7 +36,8 @@ class BccmPlayerFactory: NSObject, FlutterPlatformViewFactory {
         if let pc = playerController as? AVQueuePlayerController {
             return AVPlayerBccmPlayerView(
                 frame: frame,
-                playerController: pc
+                playerController: pc,
+                showControls: showControls
             )
         } else if let pc = playerController as? CastPlayerController {
             return CastPlayerView(frame: frame, playerController: pc)
@@ -49,14 +51,17 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
     private var _view: UIView = .init()
     private var _playerController: AVQueuePlayerController
     private var playerViewController: AVPlayerViewController? = nil
+    private var _showControls: Bool
 
     init(
         frame: CGRect,
-        playerController: AVQueuePlayerController
+        playerController: AVQueuePlayerController,
+        showControls: Bool
     ) {
         debugPrint("AVPlayerBccmPlayerView init")
         _view.frame = frame
         _playerController = playerController
+        _showControls = showControls
         super.init()
 
         createNativeView()
@@ -121,7 +126,7 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
 
         if let playerViewController = playerViewController {
             playerViewController.view.frame = _view.frame
-            playerViewController.showsPlaybackControls = true
+            playerViewController.showsPlaybackControls = _showControls
             playerViewController.delegate = _playerController
             playerViewController.exitsFullScreenWhenPlaybackEnds = false
             playerViewController.allowsPictureInPicturePlayback = true

@@ -90,6 +90,12 @@ class CastPlayerController: NSObject, PlayerController {
         GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.play()
     }
     
+    func seekTo(_ positionMs: NSNumber) {
+        let options = GCKMediaSeekOptions()
+        options.interval = max(positionMs.doubleValue, 0)
+        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.seek(with: options)
+    }
+    
     func pause() {
         GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.pause()
     }

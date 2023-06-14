@@ -218,11 +218,13 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 + (instancetype)makeWithArtworkUri:(nullable NSString *)artworkUri
     title:(nullable NSString *)title
     artist:(nullable NSString *)artist
+    durationMs:(nullable NSNumber *)durationMs
     extras:(nullable NSDictionary<NSString *, id> *)extras {
   MediaMetadata* pigeonResult = [[MediaMetadata alloc] init];
   pigeonResult.artworkUri = artworkUri;
   pigeonResult.title = title;
   pigeonResult.artist = artist;
+  pigeonResult.durationMs = durationMs;
   pigeonResult.extras = extras;
   return pigeonResult;
 }
@@ -231,7 +233,8 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   pigeonResult.artworkUri = GetNullableObjectAtIndex(list, 0);
   pigeonResult.title = GetNullableObjectAtIndex(list, 1);
   pigeonResult.artist = GetNullableObjectAtIndex(list, 2);
-  pigeonResult.extras = GetNullableObjectAtIndex(list, 3);
+  pigeonResult.durationMs = GetNullableObjectAtIndex(list, 3);
+  pigeonResult.extras = GetNullableObjectAtIndex(list, 4);
   return pigeonResult;
 }
 + (nullable MediaMetadata *)nullableFromList:(NSArray *)list {
@@ -242,6 +245,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
     (self.artworkUri ?: [NSNull null]),
     (self.title ?: [NSNull null]),
     (self.artist ?: [NSNull null]),
+    (self.durationMs ?: [NSNull null]),
     (self.extras ?: [NSNull null]),
   ];
 }
@@ -693,6 +697,26 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
         FlutterError *error;
         [api play:arg_playerId error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.seekTo"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(play:positionMs:error:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(play:positionMs:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
+        NSNumber *arg_positionMs = GetNullableObjectAtIndex(args, 1);
+        FlutterError *error;
+        [api play:arg_playerId positionMs:arg_positionMs error:&error];
         callback(wrapResult(nil, error));
       }];
     } else {

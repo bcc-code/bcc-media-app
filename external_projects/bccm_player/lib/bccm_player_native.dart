@@ -87,6 +87,11 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
+  void seekTo(String playerId, double positionMs) {
+    _pigeon.seekTo(playerId, positionMs);
+  }
+
+  @override
   void pause(String playerId) {
     _pigeon.pause(playerId);
   }
