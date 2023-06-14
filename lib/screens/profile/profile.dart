@@ -207,10 +207,10 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                             if (FlavorConfig.current.flavor == Flavor.kids)
                               OptionButton(
                                 optionName: S.of(context).makeDonation,
-                                onPressed: () {
-                                  final locale = ref.read(settingsProvider).appLanguage.languageCode;
-                                  launchUrlString('https://biblekids.io/${locale}/support-our-work', mode: LaunchMode.externalApplication);
-                                },
+                                onPressed: () => launchUrlString(
+                                  'https://www.paypal.com/donate/?hosted_button_id=M5HU747LQCRQC',
+                                  mode: LaunchMode.externalApplication,
+                                ),
                               ),
                             OptionButton(
                               optionName: S.of(context).about,
