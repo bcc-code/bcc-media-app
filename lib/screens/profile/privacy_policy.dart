@@ -31,7 +31,6 @@ class PrivacyPolicyScreen extends ConsumerWidget {
           useHybridComposition: false,
           transparentBackground: true,
           verticalScrollBarEnabled: false,
-          requestedWithHeaderMode: RequestedWithHeaderMode.NO_HEADER,
           useShouldOverrideUrlLoading: true,
         ),
         shouldOverrideUrlLoading: (c, navigationAction) async {

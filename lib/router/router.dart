@@ -3,6 +3,7 @@ import 'package:auto_route/empty_router_widgets.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/screens/auto_login.dart';
 import 'package:brunstadtv_app/screens/calendar.dart';
+import 'package:brunstadtv_app/screens/games/game.dart';
 import 'package:brunstadtv_app/screens/my_list.dart';
 import 'package:brunstadtv_app/screens/profile/about.dart';
 import 'package:brunstadtv_app/screens/profile/app_language.dart';
@@ -28,6 +29,7 @@ import '../helpers/navigation/custom_transitions.dart';
 import '../screens/achievement_group.dart';
 import '../screens/achievements.dart';
 import '../screens/episode.dart';
+import '../screens/games/games.dart';
 import '../screens/page.dart';
 import '../screens/onboarding/signup.dart';
 import '../screens/profile/contact_support_public.dart';
@@ -276,6 +278,25 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
             ),
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute
+          ],
+        ),
+        CustomRoute<void>(
+          name: 'GamesWrapperRoute',
+          page: EmptyRouterPage,
+          path: 'games',
+          maintainState: true,
+          children: [
+            CupertinoRoute<void>(
+              page: GamesScreen,
+              path: '',
+              maintainState: true,
+              meta: {RouteMetaConstants.navTabRoute: true},
+            ),
+            CupertinoRoute<void>(
+              page: GameScreen,
+              path: ':gameId',
+              maintainState: false,
+            ),
           ],
         ),
         CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [

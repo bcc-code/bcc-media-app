@@ -111,7 +111,7 @@
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
-  "makeDonation": "Make a donation",
+  "makeDonation": "Doniraj",
   "@makeDonation": {
     "description": "Text for button which opens donation page."
   },
@@ -227,7 +227,7 @@
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
-  "nextEpisode": "Next Episode",
+  "nextEpisode": "Naslednja epizoda",
   "@nextEpisode": {
     "description": "Button indicating the next video will play soon."
   },
@@ -901,67 +901,67 @@
   "@biblekidsAbout": {
     "description": "Shown on about page"
   },
-  "askYourParents": "Ask your parents",
+  "askYourParents": "Vprašaj starše",
   "@askYourParents": {
     "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
   },
-  "whatIsMath": "What is",
+  "whatIsMath": "Kaj je",
   "@whatIsMath": {
     "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
   },
-  "answerLabel": "Answer",
+  "answerLabel": "Odgovor",
   "@answerLabel": {
     "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
   },
-  "checkAnswerButton": "Check answer",
+  "checkAnswerButton": "Preveri odgovor",
   "@checkAnswerButton": {
     "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
   },
-  "videoOnlyAccessibleToLoggedIn": "This video is only accessible to users that are logged in to the app.",
+  "videoOnlyAccessibleToLoggedIn": "Ta video je na voljo samo prijavljenim uporabnikom.",
   "@videoOnlyAccessibleToLoggedIn": {
     "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
   },
-  "verifyYourAccount": "Verify your account",
+  "verifyYourAccount": "Potrdi svoj račun",
   "@verifyYourAccount": {
     "description": "Title of the page where you can verify your email/account."
   },
-  "weHaveSentAnEmailTo": "We have sent an email to",
+  "weHaveSentAnEmailTo": "Pošto smo poslali na",
   "@weHaveSentAnEmailTo": {
     "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
   },
-  "clickTheLinkToVerify": "Click the link in the email to verify your account.",
+  "clickTheLinkToVerify": "Klikni na povezavo v elektronski pošti, da potrdiš svoj račun.",
   "@clickTheLinkToVerify": {
     "description": "Shown on the verify account page."
   },
-  "openEmailApp": "Open email app",
+  "openEmailApp": "Odpri pošto",
   "@openEmailApp": {
     "description": "Shown on the verify account page. Button to open your email app."
   },
-  "resendEmail": "Resend email",
+  "resendEmail": "Ponovno pošlji pošto",
   "@resendEmail": {
     "description": "Shown on the verify account page. Button to resend the verification email."
   },
-  "noMailAppsDescription": "No mail apps installed",
+  "noMailAppsDescription": "Ni naloženih aplikacij za pošto",
   "@noMailAppsDescription": {
     "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
   },
-  "verificationEmailSent": "Verification email sent",
+  "verificationEmailSent": "Poslana pošta za potrditev",
   "@verificationEmailSent": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "ifYouDidntReceiveVerificationEmail": "If you still did not receive an email, please contact support at",
+  "ifYouDidntReceiveVerificationEmail": "Če še vedno nisi prejel pošte, kontaktiraj podporo na",
   "@ifYouDidntReceiveVerificationEmail": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "accountCreated": "Account created",
+  "accountCreated": "Račun je ustvarjen",
   "@accountCreated": {
     "description": "Shown when the user has successfully created an account."
   },
-  "youCanNowUseYourAccount": "You can now use your account and explore a variety of edifying content.",
+  "youCanNowUseYourAccount": "Sedaj lahko uporabiš svoj račun in raziščeš različne izgrajujoče vsebine.",
   "@youCanNowUseYourAccount": {
     "description": "Shown when the user has successfully completed account setup."
   },
-  "youCanNowLogInToYourAccount": "You can now log in to your account and explore a variety of edifying content.",
+  "youCanNowLogInToYourAccount": "Sedaj se lahko vpišeš v svoj račun in raziščeš različne izgrajujoče vsebine.",
   "@youCanNowLogInToYourAccount": {
     "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
   },
@@ -994,5 +994,13 @@
         "type": "String"
       }
     }
+  },
+  "gamesTab": "Igre",
+  "@gamesTab": {
+    "description": "Title of the games page"
+  },
+  "playGame": "Igraj igre",
+  "@playGame": {
+    "description": "Title on a game"
   }
 }

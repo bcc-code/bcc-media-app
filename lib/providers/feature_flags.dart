@@ -1,5 +1,6 @@
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
@@ -27,6 +28,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       autoplayNext: client.isEnabled('autoplay-next'),
       shareVideoButton: FlavorConfig.current.flavor != Flavor.kids,
       autoFullscreenOnPlay: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('auto-fullscreen-on-play'),
+      gamesTab: kDebugMode && FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('games-tab'),
     );
   }
 

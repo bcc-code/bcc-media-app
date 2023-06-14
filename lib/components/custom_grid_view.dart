@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 class CustomGridView extends StatelessWidget {
@@ -59,32 +58,28 @@ class GridRow extends StatelessWidget {
     this.gap = 16.0,
   });
 
-  List<Widget> get spacedChildren {
-    final newChildren = <Widget>[];
-
-    var missingColumns = columnCount - children.length;
-    final childrenFilled = [
-      ...children,
-      ...List.generate(missingColumns, (_) => const SizedBox.shrink()),
-    ];
-
-    childrenFilled.forEachIndexed((index, child) {
-      newChildren.add(Expanded(child: child));
-      if (index < columnCount - 1) {
-        newChildren.add(SizedBox(width: gap));
-      }
-    });
-
-    return newChildren;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: spacedChildren,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final widthUsedForGaps = gap * (columnCount - 1);
+          final widthAvailableForItems = constraints.maxWidth - widthUsedForGaps;
+          final itemWidth = widthAvailableForItems / columnCount;
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: children
+                .map(
+                  (child) => Container(
+                    width: itemWidth,
+                    margin: child != children.last ? EdgeInsets.only(right: gap) : null,
+                    child: child,
+                  ),
+                )
+                .toList(),
+          );
+        },
       ),
     );
   }

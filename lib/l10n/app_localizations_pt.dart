@@ -209,7 +209,7 @@ class SPt extends S {
   String get none => 'Nenhum';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Próximo episódio';
 
   @override
   String get auto => 'Automático';
@@ -755,4 +755,10 @@ class SPt extends S {
   String accountDeletionSuccess(String email) {
     return 'Exclusão de conta solicitada com sucesso. Você receberá um e-mail em $email. Para confirmar sua identidade, precisamos que você responda a esse e-mail para prosseguir com a exclusão.';
   }
+
+  @override
+  String get gamesTab => 'Jogos';
+
+  @override
+  String get playGame => 'Jogar um jogo ';
 }

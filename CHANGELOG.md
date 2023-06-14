@@ -1,4 +1,25 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v4.4.9+2300069...v) (2023-06-08)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v4.5.0+2300070...v) (2023-06-09)
+
+
+
+# [4.5.0+2300070](https://github.com/bcc-code/bcc-media-app/compare/v4.4.9+2300069...v4.5.0+2300070) (2023-06-09)
+
+
+### Bug Fixes
+
+* alignment issue for last row elements in grid sections ([#196](https://github.com/bcc-code/bcc-media-app/issues/196)) ([3146c3b](https://github.com/bcc-code/bcc-media-app/commit/3146c3b800d3733fe3497efb1e445bd293ec2f6b))
+
+
+### Features
+
+* games analytics ([448162e](https://github.com/bcc-code/bcc-media-app/commit/448162e209aeb46716aad6c471a7564768f11223))
+* games page ([0dc4325](https://github.com/bcc-code/bcc-media-app/commit/0dc4325c1e573628d86c1d631d87d4c89d6a88c3))
+* games tab ([b0204c6](https://github.com/bcc-code/bcc-media-app/commit/b0204c64549f6f262db4acfb58fe82a35d30ee58))
+* heart defense ([cd7035e](https://github.com/bcc-code/bcc-media-app/commit/cd7035e9f3664d8a7fa229d25a1fd0c44ddeac19))
+* multiple cards in cardsection ([bd50c32](https://github.com/bcc-code/bcc-media-app/commit/bd50c323ae3cb6172956964a47b8b3839786a42e))
+* no continue watching on autoplay next ([876f4fb](https://github.com/bcc-code/bcc-media-app/commit/876f4fbe50d697b858bf2c53a08a388dbe46a37c))
+* **parent-gate:** move parent gate check to profile ([#193](https://github.com/bcc-code/bcc-media-app/issues/193)) ([6d4097f](https://github.com/bcc-code/bcc-media-app/commit/6d4097f2b292938f1cf648a6be2e688a5fd7737a))
+* send context in grid sections ([7753a72](https://github.com/bcc-code/bcc-media-app/commit/7753a72344566b5ad3712c7de081825bc80817e3))
 
 
 

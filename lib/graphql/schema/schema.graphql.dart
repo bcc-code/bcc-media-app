@@ -302,14 +302,14 @@ const possibleTypesMap = <String, Set<String>>{
     'EpisodePagination',
     'QuestionPagination',
     'FAQCategoryPagination',
+    'LinkPagination',
     'SeasonPagination',
+    'SectionPagination',
+    'SectionItemPagination',
     'LessonPagination',
     'TaskPagination',
     'SurveyQuestionPagination',
     'UserCollectionEntryPagination',
-    'LinkPagination',
-    'SectionPagination',
-    'SectionItemPagination',
   },
   'CalendarEntry': {
     'SimpleCalendarEntry',
@@ -332,22 +332,6 @@ const possibleTypesMap = <String, Set<String>>{
     'EpisodeSearchItem',
     'SeasonSearchItem',
     'ShowSearchItem',
-  },
-  'Task': {
-    'AlternativesTask',
-    'TextTask',
-    'PosterTask',
-    'QuoteTask',
-    'VideoTask',
-    'LinkTask',
-  },
-  'SurveyQuestion': {
-    'SurveyTextQuestion',
-    'SurveyRatingQuestion',
-  },
-  'UserCollectionEntryItem': {
-    'Show',
-    'Episode',
   },
   'Section': {
     'PosterSection',
@@ -392,5 +376,21 @@ const possibleTypesMap = <String, Set<String>>{
     'Link',
     'StudyTopic',
     'Game',
+  },
+  'Task': {
+    'AlternativesTask',
+    'TextTask',
+    'PosterTask',
+    'QuoteTask',
+    'VideoTask',
+    'LinkTask',
+  },
+  'SurveyQuestion': {
+    'SurveyTextQuestion',
+    'SurveyRatingQuestion',
+  },
+  'UserCollectionEntryItem': {
+    'Show',
+    'Episode',
   },
 };

@@ -755,4 +755,10 @@ class SDa extends S {
   String accountDeletionSuccess(String email) {
     return 'Anmodning om at slette din brugerkonto gennemført. Du vil modtage en e-mail på $email. For at bekræfte din identitet har vi brug for, at du svarer på den e-mail for at fortsætte med at slette din brugerkonto.';
   }
+
+  @override
+  String get gamesTab => 'Games';
+
+  @override
+  String get playGame => 'Play Game';
 }

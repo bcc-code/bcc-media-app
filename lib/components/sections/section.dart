@@ -8,7 +8,7 @@ import '../../router/router.gr.dart';
 import 'achievement_section.dart';
 import 'icon_section.dart';
 import 'page_section.dart';
-import 'card_section.dart';
+import 'card/card_section.dart';
 import 'featured_section.dart';
 import 'message_section.dart';
 import 'page_details_section.dart';

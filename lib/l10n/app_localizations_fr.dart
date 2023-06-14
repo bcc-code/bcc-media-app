@@ -89,7 +89,7 @@ class SFr extends S {
   String get loggedOutMessage => 'Tu as été déconnecté. Merci de te connecter à nouveau.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Faire un don';
 
   @override
   String get mostWatched => 'Le plus regardé';
@@ -209,7 +209,7 @@ class SFr extends S {
   String get none => 'Aucun';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Prochain épisode';
 
   @override
   String get auto => 'Auto';
@@ -684,19 +684,19 @@ class SFr extends S {
   String get areYouSure => 'Es-tu sûr ?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Vous pouvez nous contacter à';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'Bible Kids est une initiative de BCC Media, une fondation de média au sein de la Fédération BCC qui produit et distribue du contenu avec des valeurs positives et chrétiennes.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Demande à tes parents';
 
   @override
   String get whatIsMath => 'What is';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Réponse';
 
   @override
   String get checkAnswerButton => 'Check answer';
@@ -705,47 +705,47 @@ class SFr extends S {
   String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Vérifier son compte';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'Nous avons envoyé un email à';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Cliquez sur le lien contenu dans l\'e-mail pour vérifier votre compte.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'Ouvrir l\'application de messagerie';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'Renvoyer l\'email';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Aucune application de messagerie installée';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'Email de vérification envoyé';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Si vous n\'avez toujours pas reçu d\'e-mail, contactez le service d\'assistance à l\'adresse suivante';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Compte créé';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Vous pouvez maintenant utiliser votre compte et consulter une multitude de contenus édifiants.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Vous pouvez maintenant vous connecter à votre compte et consulter toute une série de contenus édifiants.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'Vous allez demander la suppression de votre compte chez BCC Media et de toutes vos données liées à cette application.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'Il s\'agit d\'une action irréversible.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'La suppression du compte est généralement effectuée dans un délai de $x jours ouvrables.';
   }
 
   @override
@@ -753,6 +753,12 @@ class SFr extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'La suppression du compte a été demandée avec succès. Vous recevrez un courriel à l\'adresse $email. Pour confirmer votre identité, nous avons besoin que vous répondiez à cet e-mail pour procéder à la suppression.';
   }
+
+  @override
+  String get gamesTab => 'Games';
+
+  @override
+  String get playGame => 'Play Game';
 }
