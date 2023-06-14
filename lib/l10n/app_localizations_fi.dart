@@ -155,6 +155,24 @@ class SFi extends S {
   String get contactSupportSeeData => 'Click to see data.';
 
   @override
+  String get contactSupportName => 'Name';
+
+  @override
+  String get contactSupportNameHint => 'Type in your name';
+
+  @override
+  String get contactSupportEmail => 'Your contact email';
+
+  @override
+  String get contactSupportEmailHint => 'Type in your email address';
+
+  @override
+  String get contactSupportMessage => 'Message';
+
+  @override
+  String get contactSupportMessageHint => 'Describe the issue';
+
+  @override
   String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
 
   @override
@@ -370,9 +388,6 @@ class SFi extends S {
 
   @override
   String get now => 'Nyt';
-
-  @override
-  String get concernTextPlaceholder => 'Kuvaile ongelmaa';
 
   @override
   String get debugInfoExplanation => 'Palautteesi sisältää myös seuraavat tiedot, jotta ymmärrämme ongelman paremmin.';

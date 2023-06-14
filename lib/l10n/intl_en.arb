@@ -199,6 +199,30 @@
   "@contactSupportSeeData": {
     "description": "Text for link to see device data"
   },
+  "contactSupportName": "Name",
+  "@contactSupportName": {
+    "description": "Label for name field in contact support page"
+  },
+  "contactSupportNameHint": "Type in your name",
+  "@contactSupportNameHint": {
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactSupportEmail": "Your contact email",
+  "@contactSupportEmail": {
+    "description": "Label for email field in contact support page"
+  },
+  "contactSupportEmailHint": "Type in your email address",
+  "@contactSupportEmailHint": {
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactSupportMessage": "Message",
+  "@contactSupportMessage": {
+    "description": "Label for message field in contact support page"
+  },
+  "contactSupportMessageHint": "Describe the issue",
+  "@contactSupportMessageHint": {
+    "description": "Hint text for message field in contact support page"
+  },
   "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
   "@deviceInfoPageDesc": {
     "description": "Description text on device info page."
@@ -495,10 +519,6 @@
   "now": "Now",
   "@now": {
     "description": "Tv guide now playing label"
-  },
-  "concernTextPlaceholder": "Describe the issue",
-  "@concernTextPlaceholder": {
-    "description": "Placeholder text in text field on contact support page"
   },
   "debugInfoExplanation": "Your message will include this information, to help us better understand the issue.",
   "@debugInfoExplanation": {

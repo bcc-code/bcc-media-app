@@ -155,6 +155,24 @@ class SNl extends S {
   String get contactSupportSeeData => 'Click to see data.';
 
   @override
+  String get contactSupportName => 'Name';
+
+  @override
+  String get contactSupportNameHint => 'Type in your name';
+
+  @override
+  String get contactSupportEmail => 'Your contact email';
+
+  @override
+  String get contactSupportEmailHint => 'Type in your email address';
+
+  @override
+  String get contactSupportMessage => 'Message';
+
+  @override
+  String get contactSupportMessageHint => 'Describe the issue';
+
+  @override
   String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
 
   @override
@@ -370,9 +388,6 @@ class SNl extends S {
 
   @override
   String get now => 'Nu';
-
-  @override
-  String get concernTextPlaceholder => 'Beschrijf het probleem';
 
   @override
   String get debugInfoExplanation => 'Je bericht zal deze informatie meenemen, om ons te helpen het probleem beter te begrijpen.';

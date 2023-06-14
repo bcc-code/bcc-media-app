@@ -423,6 +423,42 @@ abstract class S {
   /// **'Click to see data.'**
   String get contactSupportSeeData;
 
+  /// Label for name field in contact support page
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get contactSupportName;
+
+  /// Hint text for name field in contact support page
+  ///
+  /// In en, this message translates to:
+  /// **'Type in your name'**
+  String get contactSupportNameHint;
+
+  /// Label for email field in contact support page
+  ///
+  /// In en, this message translates to:
+  /// **'Your contact email'**
+  String get contactSupportEmail;
+
+  /// Hint text for name field in contact support page
+  ///
+  /// In en, this message translates to:
+  /// **'Type in your email address'**
+  String get contactSupportEmailHint;
+
+  /// Label for message field in contact support page
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get contactSupportMessage;
+
+  /// Hint text for message field in contact support page
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the issue'**
+  String get contactSupportMessageHint;
+
   /// Description text on device info page.
   ///
   /// In en, this message translates to:
@@ -848,12 +884,6 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Now'**
   String get now;
-
-  /// Placeholder text in text field on contact support page
-  ///
-  /// In en, this message translates to:
-  /// **'Describe the issue'**
-  String get concernTextPlaceholder;
 
   /// Info about debug info usage on contact support page
   ///

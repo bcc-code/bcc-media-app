@@ -155,6 +155,24 @@ class SPt extends S {
   String get contactSupportSeeData => 'Click to see data.';
 
   @override
+  String get contactSupportName => 'Name';
+
+  @override
+  String get contactSupportNameHint => 'Type in your name';
+
+  @override
+  String get contactSupportEmail => 'Your contact email';
+
+  @override
+  String get contactSupportEmailHint => 'Type in your email address';
+
+  @override
+  String get contactSupportMessage => 'Message';
+
+  @override
+  String get contactSupportMessageHint => 'Describe the issue';
+
+  @override
   String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
 
   @override
@@ -370,9 +388,6 @@ class SPt extends S {
 
   @override
   String get now => 'Agora';
-
-  @override
-  String get concernTextPlaceholder => 'Descreva o problema';
 
   @override
   String get debugInfoExplanation => 'Sua mensagem incluirá essas informações para nos ajudar a entender melhor o problema.';

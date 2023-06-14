@@ -155,6 +155,24 @@ class STr extends S {
   String get contactSupportSeeData => 'Click to see data.';
 
   @override
+  String get contactSupportName => 'Name';
+
+  @override
+  String get contactSupportNameHint => 'Type in your name';
+
+  @override
+  String get contactSupportEmail => 'Your contact email';
+
+  @override
+  String get contactSupportEmailHint => 'Type in your email address';
+
+  @override
+  String get contactSupportMessage => 'Message';
+
+  @override
+  String get contactSupportMessageHint => 'Describe the issue';
+
+  @override
   String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
 
   @override
@@ -370,9 +388,6 @@ class STr extends S {
 
   @override
   String get now => 'Şimdi';
-
-  @override
-  String get concernTextPlaceholder => 'Sorunu tanımlayın';
 
   @override
   String get debugInfoExplanation => 'Mesajınız, sorunu daha iyi anlamamıza yardımcı olmak için bu bilgileri içerecektir.';

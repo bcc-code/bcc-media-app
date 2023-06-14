@@ -172,7 +172,7 @@ class _InputPage extends HookWidget {
               Container(
                 margin: const EdgeInsets.only(bottom: 10),
                 child: Text(
-                  'Name',
+                  S.of(context).contactSupportName,
                   style: design.textStyles.caption1.copyWith(color: design.colors.label2),
                 ),
               ),
@@ -183,7 +183,7 @@ class _InputPage extends HookWidget {
                   controller: nameController,
                   style: design.textStyles.body2.copyWith(color: design.colors.label1),
                   decoration: design.inputDecorations.textFormField.copyWith(
-                    hintText: 'Type in your name',
+                    hintText: S.of(context).contactSupportNameHint,
                     suffixIcon: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 100),
                       child: nameController.text.isEmpty
@@ -205,7 +205,7 @@ class _InputPage extends HookWidget {
               Container(
                 margin: const EdgeInsets.only(bottom: 10),
                 child: Text(
-                  'Your contact email',
+                  S.of(context).contactSupportEmail,
                   style: design.textStyles.caption1.copyWith(color: design.colors.label2),
                 ),
               ),
@@ -222,7 +222,7 @@ class _InputPage extends HookWidget {
                     return null;
                   },
                   decoration: design.inputDecorations.textFormField.copyWith(
-                    hintText: 'Type in your email address',
+                    hintText: S.of(context).contactSupportEmailHint,
                     suffixIcon: emailController.text.isEmpty
                         ? null
                         : GestureDetector(
@@ -241,7 +241,7 @@ class _InputPage extends HookWidget {
               Container(
                 margin: const EdgeInsets.only(bottom: 10),
                 child: Text(
-                  'Message',
+                  S.of(context).contactSupportMessage,
                   style: design.textStyles.caption1.copyWith(color: design.colors.label2),
                 ),
               ),
@@ -250,7 +250,7 @@ class _InputPage extends HookWidget {
                 minLines: 9,
                 maxLines: 13,
                 controller: messageController,
-                decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).concernTextPlaceholder),
+                decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).contactSupportMessageHint),
                 style: design.textStyles.body2.copyWith(color: design.colors.label1),
               ),
               GestureDetector(

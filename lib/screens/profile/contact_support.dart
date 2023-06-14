@@ -131,7 +131,7 @@ class _InputPage extends HookWidget {
                 minLines: 9,
                 maxLines: 13,
                 controller: messageController,
-                decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).concernTextPlaceholder),
+                decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).contactSupportMessageHint),
                 style: design.textStyles.body1.copyWith(color: design.colors.label1),
               ),
               Padding(

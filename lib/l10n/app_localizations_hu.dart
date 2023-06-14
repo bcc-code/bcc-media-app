@@ -155,6 +155,24 @@ class SHu extends S {
   String get contactSupportSeeData => 'Click to see data.';
 
   @override
+  String get contactSupportName => 'Name';
+
+  @override
+  String get contactSupportNameHint => 'Type in your name';
+
+  @override
+  String get contactSupportEmail => 'Your contact email';
+
+  @override
+  String get contactSupportEmailHint => 'Type in your email address';
+
+  @override
+  String get contactSupportMessage => 'Message';
+
+  @override
+  String get contactSupportMessageHint => 'Describe the issue';
+
+  @override
   String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
 
   @override
@@ -370,9 +388,6 @@ class SHu extends S {
 
   @override
   String get now => 'Most';
-
-  @override
-  String get concernTextPlaceholder => 'Írd le a kérdésedet';
 
   @override
   String get debugInfoExplanation => 'Az üzeneted tartalmazza ezeket az információkat, hogy jobban megértsük a problémát.';
