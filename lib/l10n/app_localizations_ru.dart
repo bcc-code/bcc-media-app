@@ -143,6 +143,21 @@ class SRu extends S {
   String get contactSupport => 'Связаться с поддержкой';
 
   @override
+  String get contactUs => 'Contact us';
+
+  @override
+  String get deviceInfo => 'Device info';
+
+  @override
+  String get contactSupportIncludeDeviceInfo => 'Include device information for better support.';
+
+  @override
+  String get contactSupportSeeData => 'Click to see data.';
+
+  @override
+  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+
+  @override
   String get userVoice => 'Предложить функцию';
 
   @override

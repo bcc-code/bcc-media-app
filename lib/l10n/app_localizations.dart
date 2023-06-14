@@ -393,11 +393,41 @@ abstract class S {
   /// **'Version'**
   String get version;
 
-  /// Settings item on profile page
+  /// Title for contact support page
   ///
   /// In en, this message translates to:
   /// **'Contact support'**
   String get contactSupport;
+
+  /// Title for contact us page
+  ///
+  /// In en, this message translates to:
+  /// **'Contact us'**
+  String get contactUs;
+
+  /// Device info page title
+  ///
+  /// In en, this message translates to:
+  /// **'Device info'**
+  String get deviceInfo;
+
+  /// Text for checkbox to include device information
+  ///
+  /// In en, this message translates to:
+  /// **'Include device information for better support.'**
+  String get contactSupportIncludeDeviceInfo;
+
+  /// Text for link to see device data
+  ///
+  /// In en, this message translates to:
+  /// **'Click to see data.'**
+  String get contactSupportSeeData;
+
+  /// Description text on device info page.
+  ///
+  /// In en, this message translates to:
+  /// **'Your message will include this information, to help us provide better support.'**
+  String get deviceInfoPageDesc;
 
   /// Settings item on profile page to navigate to uservoice
   ///

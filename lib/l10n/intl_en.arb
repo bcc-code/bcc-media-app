@@ -181,7 +181,27 @@
   },
   "contactSupport": "Contact support",
   "@contactSupport": {
-    "description": "Settings item on profile page"
+    "description": "Title for contact support page"
+  },
+  "contactUs": "Contact us",
+  "@contactUs": {
+    "description": "Title for contact us page"
+  },
+  "deviceInfo": "Device info",
+  "@deviceInfo": {
+    "description": "Device info page title"
+  },
+  "contactSupportIncludeDeviceInfo": "Include device information for better support.",
+  "@contactSupportIncludeDeviceInfo": {
+    "description": "Text for checkbox to include device information"
+  },
+  "contactSupportSeeData": "Click to see data.",
+  "@contactSupportSeeData": {
+    "description": "Text for link to see device data"
+  },
+  "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
+  "@deviceInfoPageDesc": {
+    "description": "Description text on device info page."
   },
   "userVoice": "Suggest a feature",
   "@userVoice": {
