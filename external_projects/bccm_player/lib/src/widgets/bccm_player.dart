@@ -17,6 +17,16 @@ import 'package:flutter/services.dart';
 // PlayerControls: Just pure controls (play/pause, seek, fullscreen)
 // BccmPlayerView; On fullscreen button: push fullscreen route with BccmPlayerView - Stack(Video, Controls).
 
+// flutter-based ui MVP:
+// Airplay
+// Audio selection
+// Playback speed selection
+// Seek and progress
+// Play/pause
+// Fullscreen
+// Next:
+// Subtitle selection
+
 class VideoPlatformView extends StatelessWidget {
   final String id;
   final bool showControls;
@@ -75,15 +85,16 @@ class BccmPlayerView extends HookWidget {
     }
 
     Future goFullscreen() async {
-      disableLocally.value = true;
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
       // set landscape
       SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
 
       BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.setIsFlutterFullscreen(true);
+      disableLocally.value = true;
       await Navigator.of(context, rootNavigator: true).push(
-        MaterialPageRoute(
-          builder: (context) => FullscreenPlayer(playerId: id),
+        PageRouteBuilder(
+          pageBuilder: (context, aAnim, bAnim) => FullscreenPlayer(playerId: id),
+          transitionsBuilder: (context, aAnim, bAnim, child) => FadeTransition(opacity: aAnim, child: child),
         ),
       );
       if (isMounted()) {
@@ -129,24 +140,19 @@ class _IOSPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        BccmPlayerInterface.instance.play(parent.id);
+    return UiKitView(
+      viewType: 'bccm-player',
+      hitTestBehavior: PlatformViewHitTestBehavior.translucent,
+      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+        Factory<OneSequenceGestureRecognizer>(
+          () => EagerGestureRecognizer(),
+        ),
       },
-      child: UiKitView(
-        viewType: 'bccm-player',
-        hitTestBehavior: PlatformViewHitTestBehavior.translucent,
-        gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-          Factory<OneSequenceGestureRecognizer>(
-            () => EagerGestureRecognizer(),
-          ),
-        },
-        creationParams: <String, dynamic>{
-          'player_id': parent.id,
-          'show_controls': parent.showControls,
-        },
-        creationParamsCodec: const StandardMessageCodec(),
-      ),
+      creationParams: <String, dynamic>{
+        'player_id': parent.id,
+        'show_controls': parent.showControls,
+      },
+      creationParamsCodec: const StandardMessageCodec(),
     );
   }
 }
@@ -217,16 +223,8 @@ class FullscreenPlayer extends HookWidget {
         alignment: Alignment.center,
         children: [
           // black widget that fades in
-          AnimatedBuilder(
-            animation: animation,
-            builder: (context, child) {
-              return Opacity(
-                opacity: animation.value,
-                child: Container(
-                  color: Colors.black,
-                ),
-              );
-            },
+          Container(
+            color: Colors.black,
           ),
           SizedBox.expand(
             child: Align(
@@ -257,10 +255,18 @@ class _VideoWithControls extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final player = useStream(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(parent.id)?.stream);
-    final currentMs = player.data?.playbackPositionMs ?? 0;
-    final duration = player.data?.currentMediaItem?.metadata?.durationMs ?? player.data?.playbackPositionMs?.toDouble() ?? 1;
-    final isFullscreen = player.data?.isFlutterFullscreen == true;
+    final player = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(parent.id)?.state);
+    useEffect(() {
+      void listener(PlayerState state) {
+        player.value = state;
+      }
+
+      return BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(parent.id)?.addListener(listener);
+    });
+    final currentMs = player.value?.playbackPositionMs ?? 0;
+    final duration = player.value?.currentMediaItem?.metadata?.durationMs ?? player.value?.playbackPositionMs?.toDouble() ?? 1;
+    debugPrint('bccm: player data: ${player.value?.toString() ?? 'no player data'}');
+    final isFullscreen = player.value?.isFlutterFullscreen == true;
     void seekTo(double positionMs) {
       BccmPlayerInterface.instance.seekTo(parent.id, positionMs);
     }
@@ -287,10 +293,10 @@ class _VideoWithControls extends HookWidget {
                 children: [
                   IconButton(
                     icon: Icon(
-                      player.data?.playbackState != PlaybackState.playing ? Icons.play_arrow : Icons.pause,
+                      player.value?.playbackState != PlaybackState.playing ? Icons.play_arrow : Icons.pause,
                     ),
                     onPressed: () {
-                      if (player.data?.playbackState != PlaybackState.playing) {
+                      if (player.value?.playbackState != PlaybackState.playing) {
                         BccmPlayerInterface.instance.play(parent.id);
                       } else {
                         BccmPlayerInterface.instance.pause(parent.id);
