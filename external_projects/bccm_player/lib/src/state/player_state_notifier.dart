@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/utils/extensions.dart';
+import 'package:flutter/foundation.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -39,6 +40,7 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
   }
 
   void setIsFlutterFullscreen(bool value) {
+    debugPrint("setIsFlutterFullscreen: $value");
     state = state.copyWith(isFlutterFullscreen: value);
   }
 

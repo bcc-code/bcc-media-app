@@ -250,7 +250,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
   }
 
   Widget _player(PlayerState player) {
-    return BccmPlayer(id: player.playerId);
+    return BccmPlayerView(id: player.playerId);
   }
 
   Widget _playPoster(PlayerState player) {

@@ -17,11 +17,11 @@ import 'package:flutter/services.dart';
 // PlayerControls: Just pure controls (play/pause, seek, fullscreen)
 // BccmPlayerView; On fullscreen button: push fullscreen route with BccmPlayerView - Stack(Video, Controls).
 
-class BccmPlayer extends StatelessWidget {
+class VideoPlatformView extends StatelessWidget {
   final String id;
   final bool showControls;
 
-  const BccmPlayer({
+  const VideoPlatformView({
     super.key,
     required this.id,
     this.showControls = true,
@@ -29,11 +29,6 @@ class BccmPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMounted = useIsMounted();
-    if (id == 'chromecast') {
-      return const BccmCastPlayer();
-    }
-
     Widget getPlatformSpecificPlayer() {
       if (kIsWeb) {
         return _WebPlayer(parent: this);
@@ -45,9 +40,42 @@ class BccmPlayer extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    final video = getPlatformSpecificPlayer();
+    return AspectRatio(
+      aspectRatio: 16 / 9,
+      child: getPlatformSpecificPlayer(),
+    );
+  }
+}
+
+class BccmPlayerView extends HookWidget {
+  final String id;
+  final bool showNativeControls;
+
+  const BccmPlayerView({
+    super.key,
+    required this.id,
+    this.showNativeControls = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isMounted = useIsMounted();
+    final disableLocally = useState(false);
+    if (id == 'chromecast') {
+      return const BccmCastPlayer();
+    }
+    if (showNativeControls) {
+      return VideoPlatformView(
+        id: id,
+        showControls: true,
+      );
+    }
+    if (disableLocally.value) {
+      return const SizedBox.shrink();
+    }
 
     Future goFullscreen() async {
+      disableLocally.value = true;
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
       // set landscape
       SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
@@ -55,10 +83,11 @@ class BccmPlayer extends StatelessWidget {
       BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.setIsFlutterFullscreen(true);
       await Navigator.of(context, rootNavigator: true).push(
         MaterialPageRoute(
-          builder: (context) => FullscreenPlayer(parent: this, video: video),
+          builder: (context) => FullscreenPlayer(playerId: id),
         ),
       );
       if (isMounted()) {
+        disableLocally.value = false;
         BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.setIsFlutterFullscreen(false);
       }
     }
@@ -70,17 +99,10 @@ class BccmPlayer extends StatelessWidget {
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     }
 
-    return _CustomControls(
+    return _VideoWithControls(
       parent: this,
       goFullscreen: goFullscreen,
       exitFullscreen: exitFullscreen,
-      video: IgnorePointer(
-        ignoring: !showControls,
-        child: AspectRatio(
-          aspectRatio: 16 / 9,
-          child: video,
-        ),
-      ),
     );
   }
 }
@@ -90,7 +112,7 @@ class _WebPlayer extends StatelessWidget {
     required this.parent,
   });
 
-  final BccmPlayer parent;
+  final VideoPlatformView parent;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +125,7 @@ class _IOSPlayer extends StatelessWidget {
     required this.parent,
   });
 
-  final BccmPlayer parent;
+  final VideoPlatformView parent;
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +157,7 @@ class _AndroidPlayer extends StatelessWidget {
     required this.parent,
   }) : super(key: key);
 
-  final BccmPlayer parent;
+  final VideoPlatformView parent;
 
   @override
   Widget build(BuildContext context) {
@@ -180,54 +202,64 @@ class _AndroidPlayer extends StatelessWidget {
 class FullscreenPlayer extends HookWidget {
   const FullscreenPlayer({
     super.key,
-    required this.parent,
-    required this.video,
+    required this.playerId,
   });
 
-  final BccmPlayer parent;
-  final Widget video;
+  final String playerId;
 
   @override
   Widget build(BuildContext context) {
+    final animation = useAnimationController(duration: const Duration(milliseconds: 400));
+    animation.forward();
     return Scaffold(
-      backgroundColor: Colors.black,
       resizeToAvoidBottomInset: false,
-      body: Center(
-        child: _CustomControls(
-          parent: parent,
-          goFullscreen: () async {},
-          exitFullscreen: () async => await Navigator.maybeOf(context)?.maybePop(),
-          video: IgnorePointer(
-            ignoring: true,
-            child: AspectRatio(
-              aspectRatio: 16 / 9,
-              child: video,
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          // black widget that fades in
+          AnimatedBuilder(
+            animation: animation,
+            builder: (context, child) {
+              return Opacity(
+                opacity: animation.value,
+                child: Container(
+                  color: Colors.black,
+                ),
+              );
+            },
+          ),
+          SizedBox.expand(
+            child: Align(
+              alignment: Alignment.center,
+              child: BccmPlayerView(
+                id: playerId,
+                showNativeControls: false,
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
 }
 
-class _CustomControls extends HookWidget {
-  const _CustomControls({
+class _VideoWithControls extends HookWidget {
+  const _VideoWithControls({
+    super.key,
     required this.parent,
-    required this.video,
     required this.goFullscreen,
     required this.exitFullscreen,
   });
 
-  final BccmPlayer parent;
+  final BccmPlayerView parent;
   final Future Function() goFullscreen;
   final Future Function() exitFullscreen;
-  final Widget video;
 
   @override
   Widget build(BuildContext context) {
     final player = useStream(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(parent.id)?.stream);
     final currentMs = player.data?.playbackPositionMs ?? 0;
-    final duration = player.data?.currentMediaItem?.metadata?.durationMs ?? player.data?.playbackPositionMs ?? 1;
+    final duration = player.data?.currentMediaItem?.metadata?.durationMs ?? player.data?.playbackPositionMs?.toDouble() ?? 1;
     final isFullscreen = player.data?.isFlutterFullscreen == true;
     void seekTo(double positionMs) {
       BccmPlayerInterface.instance.seekTo(parent.id, positionMs);
@@ -235,48 +267,62 @@ class _CustomControls extends HookWidget {
 
     return Stack(
       children: [
-        video,
-        Align(
-          alignment: Alignment.bottomCenter,
+        Center(
+          child: IgnorePointer(
+            ignoring: true,
+            child: VideoPlatformView(
+              id: parent.id,
+              showControls: false,
+            ),
+          ),
+        ),
+        Positioned.fill(
           child: Container(
+            alignment: Alignment.bottomCenter,
+            color: Colors.black.withOpacity(0.1),
             padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    player.data?.playbackState != PlaybackState.playing ? Icons.play_arrow : Icons.pause,
-                  ),
-                  onPressed: () {
-                    if (player.data?.playbackState != PlaybackState.playing) {
-                      BccmPlayerInterface.instance.play(parent.id);
-                    } else {
-                      BccmPlayerInterface.instance.pause(parent.id);
-                    }
-                  },
-                ),
-                Expanded(
-                  child: Slider(
-                    value: currentMs / duration,
-                    onChanged: (double value) {
-                      final positionMs = value * duration;
-                      seekTo(positionMs);
+            child: SizedBox(
+              height: 50,
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      player.data?.playbackState != PlaybackState.playing ? Icons.play_arrow : Icons.pause,
+                    ),
+                    onPressed: () {
+                      if (player.data?.playbackState != PlaybackState.playing) {
+                        BccmPlayerInterface.instance.play(parent.id);
+                      } else {
+                        BccmPlayerInterface.instance.pause(parent.id);
+                      }
                     },
                   ),
-                ),
-                IconButton(
-                  icon: Icon(
-                    isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
+                  Expanded(
+                    child: Slider(
+                      value: (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1),
+                      onChanged: (double value) {
+                        final positionMs = value * duration;
+                        seekTo(positionMs);
+                      },
+                    ),
                   ),
-                  onPressed: () {
-                    if (!isFullscreen) {
-                      goFullscreen();
-                    } else {
-                      exitFullscreen();
-                    }
-                  },
-                ),
-                Text('Fullscreen: $isFullscreen'),
-              ],
+                  IconButton(
+                    icon: Icon(
+                      isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
+                    ),
+                    onPressed: () {
+                      if (!isFullscreen) {
+                        debugPrint('bccm: not fullscreen, so go fullscreen');
+                        goFullscreen();
+                      } else {
+                        debugPrint('bccm: is fullscreen, so exit fullscreen');
+                        exitFullscreen();
+                      }
+                    },
+                  ),
+                  Text('Fullscreen: $isFullscreen'),
+                ],
+              ),
             ),
           ),
         ),

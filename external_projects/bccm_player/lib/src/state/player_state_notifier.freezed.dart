@@ -171,7 +171,7 @@ class __$$_PlayerStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PlayerState implements _PlayerState {
+class _$_PlayerState with DiagnosticableTreeMixin implements _PlayerState {
   const _$_PlayerState(
       {required this.playerId,
       this.currentMediaItem,
@@ -201,8 +201,22 @@ class _$_PlayerState implements _PlayerState {
   final bool isInPipMode;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PlayerState(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs, isFullscreen: $isFullscreen, isFlutterFullscreen: $isFlutterFullscreen, playbackState: $playbackState, isInPipMode: $isInPipMode)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PlayerState'))
+      ..add(DiagnosticsProperty('playerId', playerId))
+      ..add(DiagnosticsProperty('currentMediaItem', currentMediaItem))
+      ..add(DiagnosticsProperty('playbackPositionMs', playbackPositionMs))
+      ..add(DiagnosticsProperty('isFullscreen', isFullscreen))
+      ..add(DiagnosticsProperty('isFlutterFullscreen', isFlutterFullscreen))
+      ..add(DiagnosticsProperty('playbackState', playbackState))
+      ..add(DiagnosticsProperty('isInPipMode', isInPipMode));
   }
 
   @override

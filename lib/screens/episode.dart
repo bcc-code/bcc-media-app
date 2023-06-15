@@ -366,7 +366,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || player.isFullscreen,
                   )
                 else
-                  BccmPlayer(id: player.playerId, showControls: false),
+                  BccmPlayerView(id: player.playerId, showNativeControls: false),
                 EpisodeInfo(
                   episode,
                   onShareVideoTapped: () => shareVideo(context, ref, episode),
