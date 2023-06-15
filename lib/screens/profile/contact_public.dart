@@ -4,8 +4,8 @@ import 'package:graphql/client.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../components/contact_support/contact_support_public_input_page.dart';
-import '../../components/contact_support/contact_support_success.dart';
+import '../../components/contact/contact_public_input_page.dart';
+import '../../components/contact/contact_success.dart';
 import '../../components/status_indicators/error_generic.dart';
 import '../../components/status_indicators/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
@@ -19,8 +19,8 @@ import '../../theme/design_system/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
 
-class ContactSupportPublicScreen extends HookConsumerWidget {
-  const ContactSupportPublicScreen({super.key});
+class ContactPublicScreen extends HookConsumerWidget {
+  const ContactPublicScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -32,13 +32,13 @@ class ContactSupportPublicScreen extends HookConsumerWidget {
     final formKey = useMemoized(() => GlobalKey<FormState>());
     final sendSupportEmailFuture = useState<Future<QueryResult>?>(null);
     final sendSupportEmailSnapshot = useFuture(sendSupportEmailFuture.value);
-    final deviceInfo = ref.watch(supportDeviceInfoProvider).valueOrNull;
+    final deviceInfo = ref.watch(contactDeviceInfoProvider).valueOrNull;
     useListenableSelector(nameController, () => nameController.text.isEmpty);
     useListenableSelector(emailController, () => emailController.text.isEmpty);
     useListenableSelector(messageController, () => messageController.text.isEmpty);
 
     String getDeviceInfoHtml() {
-      final rows = deviceInfo?.asMap(context).entries.map((entry) => '<th>${entry.key}</th><td>${entry.value}</td>').join('\n');
+      final rows = deviceInfo?.asLocalizedMap(context).entries.map((entry) => '<th>${entry.key}</th><td>${entry.value}</td>').join('\n');
       return '<table><tbody>$rows</tbody></table>';
     }
 
@@ -72,7 +72,7 @@ class ContactSupportPublicScreen extends HookConsumerWidget {
     if (isOnInputPage.value) {
       body = Form(
         key: formKey,
-        child: ContactSupportPublicInputPage(
+        child: ContactPublicInputPage(
           nameController: nameController,
           emailController: emailController,
           messageController: messageController,
@@ -89,7 +89,7 @@ class ContactSupportPublicScreen extends HookConsumerWidget {
     } else if (sendSupportEmailSnapshot.connectionState == ConnectionState.waiting) {
       body = LoadingGeneric(text: S.of(context).sending);
     } else {
-      body = const ContactSupportSuccess();
+      body = const ContactSuccess();
     }
 
     return DialogOnWeb(

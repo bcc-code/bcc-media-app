@@ -34,8 +34,8 @@ import '../screens/profile/about.dart' as _i12;
 import '../screens/profile/account_deletion.dart' as _i15;
 import '../screens/profile/app_language.dart' as _i5;
 import '../screens/profile/audio_language.dart' as _i6;
-import '../screens/profile/contact_support.dart' as _i9;
-import '../screens/profile/contact_support_public.dart' as _i10;
+import '../screens/profile/contact.dart' as _i9;
+import '../screens/profile/contact_public.dart' as _i10;
 import '../screens/profile/device_info.dart' as _i11;
 import '../screens/profile/faq.dart' as _i13;
 import '../screens/profile/privacy_policy.dart' as _i14;
@@ -48,8 +48,7 @@ import '../screens/tabs_root.dart' as _i21;
 import 'router.dart' as _i32;
 
 class AppRouter extends _i30.RootStackRouter {
-  AppRouter([_i31.GlobalKey<_i31.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+  AppRouter([_i31.GlobalKey<_i31.NavigatorState>? navigatorKey]) : super(navigatorKey);
 
   @override
   final Map<String, _i30.PageFactory> pagesMap = {
@@ -147,7 +146,7 @@ class AppRouter extends _i30.RootStackRouter {
     ContactSupportScreenRoute.name: (routeData) {
       return _i30.CustomPage<void>(
         routeData: routeData,
-        child: const _i9.ContactSupportScreen(),
+        child: const _i9.ContactScreen(),
         customRouteBuilder: _i32.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -158,7 +157,7 @@ class AppRouter extends _i30.RootStackRouter {
     ContactSupportPublicScreenRoute.name: (routeData) {
       return _i30.CustomPage<void>(
         routeData: routeData,
-        child: const _i10.ContactSupportPublicScreen(),
+        child: const _i10.ContactPublicScreen(),
         customRouteBuilder: _i32.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -222,8 +221,7 @@ class AppRouter extends _i30.RootStackRouter {
       );
     },
     PublicHomeRoute.name: (routeData) {
-      final args = routeData.argsAs<PublicHomeRouteArgs>(
-          orElse: () => const PublicHomeRouteArgs());
+      final args = routeData.argsAs<PublicHomeRouteArgs>(orElse: () => const PublicHomeRouteArgs());
       return _i30.CustomPage<void>(
         routeData: routeData,
         child: _i16.HomeScreen(key: args.key),
@@ -291,9 +289,8 @@ class AppRouter extends _i30.RootStackRouter {
     },
     AchievementGroupScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<AchievementGroupScreenRouteArgs>(
-          orElse: () => AchievementGroupScreenRouteArgs(
-              groupId: pathParams.getString('groupId')));
+      final args =
+          routeData.argsAs<AchievementGroupScreenRouteArgs>(orElse: () => AchievementGroupScreenRouteArgs(groupId: pathParams.getString('groupId')));
       return _i30.CustomPage<void>(
         routeData: routeData,
         child: _i20.AchievementGroupScreen(
@@ -360,9 +357,7 @@ class AppRouter extends _i30.RootStackRouter {
     },
     SearchScreenRoute.name: (routeData) {
       final queryParams = routeData.queryParams;
-      final args = routeData.argsAs<SearchScreenRouteArgs>(
-          orElse: () =>
-              SearchScreenRouteArgs(query: queryParams.optString('q')));
+      final args = routeData.argsAs<SearchScreenRouteArgs>(orElse: () => SearchScreenRouteArgs(query: queryParams.optString('q')));
       return _i30.MaterialPageX<void>(
         routeData: routeData,
         child: _i25.SearchScreen(
@@ -429,9 +424,7 @@ class AppRouter extends _i30.RootStackRouter {
     },
     PageScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<PageScreenRouteArgs>(
-          orElse: () =>
-              PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
+      final args = routeData.argsAs<PageScreenRouteArgs>(orElse: () => PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
       return _i30.CustomPage<void>(
         routeData: routeData,
         child: _i26.PageScreen(
@@ -462,9 +455,7 @@ class AppRouter extends _i30.RootStackRouter {
     },
     GameScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<GameScreenRouteArgs>(
-          orElse: () =>
-              GameScreenRouteArgs(gameId: pathParams.getString('gameId')));
+      final args = routeData.argsAs<GameScreenRouteArgs>(orElse: () => GameScreenRouteArgs(gameId: pathParams.getString('gameId')));
       return _i30.CupertinoPageX<void>(
         routeData: routeData,
         child: _i29.GameScreen(
@@ -744,8 +735,7 @@ class AutoLoginScreenRoute extends _i30.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.OnboardingScreen]
-class OnboardingScreenRoute
-    extends _i30.PageRouteInfo<OnboardingScreenRouteArgs> {
+class OnboardingScreenRoute extends _i30.PageRouteInfo<OnboardingScreenRouteArgs> {
   OnboardingScreenRoute({
     _i34.Key? key,
     String? loginError,
@@ -861,7 +851,7 @@ class VideoQualityScreenRoute extends _i30.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.ContactSupportScreen]
+/// [_i9.ContactScreen]
 class ContactSupportScreenRoute extends _i30.PageRouteInfo<void> {
   const ContactSupportScreenRoute()
       : super(
@@ -873,7 +863,7 @@ class ContactSupportScreenRoute extends _i30.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.ContactSupportPublicScreen]
+/// [_i10.ContactPublicScreen]
 class ContactSupportPublicScreenRoute extends _i30.PageRouteInfo<void> {
   const ContactSupportPublicScreenRoute()
       : super(
@@ -1082,8 +1072,7 @@ class AchievementsScreenRoute extends _i30.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i20.AchievementGroupScreen]
-class AchievementGroupScreenRoute
-    extends _i30.PageRouteInfo<AchievementGroupScreenRouteArgs> {
+class AchievementGroupScreenRoute extends _i30.PageRouteInfo<AchievementGroupScreenRouteArgs> {
   AchievementGroupScreenRoute({
     _i34.Key? key,
     required String groupId,
@@ -1303,8 +1292,7 @@ class EpisodeScreenRouteArgs {
 
 /// generated route for
 /// [_i17.CollectionEpisodeScreen]
-class CollectionEpisodeScreenRoute
-    extends _i30.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
+class CollectionEpisodeScreenRoute extends _i30.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
   CollectionEpisodeScreenRoute({
     _i34.Key? key,
     required String episodeId,

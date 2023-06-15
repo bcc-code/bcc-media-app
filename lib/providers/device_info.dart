@@ -9,7 +9,7 @@ import '../helpers/constants.dart';
 import '../helpers/version.dart';
 import '../helpers/extensions.dart';
 import '../main.dart';
-import '../models/device_info.dart';
+import '../models/contact_device_info.dart';
 import 'auth_state/auth_state.dart';
 import 'shared_preferences.dart';
 
@@ -26,7 +26,7 @@ final isPhysicalDeviceProvider = FutureProvider<bool>((ref) {
   return future;
 });
 
-final supportDeviceInfoProvider = FutureProvider<SupportDeviceInfo?>((ref) async {
+final contactDeviceInfoProvider = FutureProvider<ContactDeviceInfo?>((ref) async {
   final context = navigatorKey.currentContext;
   if (context == null) {
     return null;
@@ -58,7 +58,7 @@ final supportDeviceInfoProvider = FutureProvider<SupportDeviceInfo?>((ref) async
     return null;
   }
 
-  return SupportDeviceInfo(
+  return ContactDeviceInfo(
     device: device,
     envOverride: ref.watch(sharedPreferencesProvider).getString(PrefKeys.envOverride),
     manufacturer: manufacturer,

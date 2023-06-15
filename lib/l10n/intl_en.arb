@@ -183,6 +183,10 @@
   "@contactSupport": {
     "description": "Title for contact support page"
   },
+  "contactIssueHint": "Describe the issue",
+  "@contactIncludeDeviceInfo": {
+    "description": "Hint for the message box for logged in users"
+  },
   "contactUs": "Contact us",
   "@contactUs": {
     "description": "Title for contact us page"
@@ -191,36 +195,36 @@
   "@deviceInfo": {
     "description": "Device info page title"
   },
-  "contactSupportIncludeDeviceInfo": "Include device information for better support.",
-  "@contactSupportIncludeDeviceInfo": {
+  "contactIncludeDeviceInfo": "Include device information for better support.",
+  "@contactIncludeDeviceInfo": {
     "description": "Text for checkbox to include device information"
   },
-  "contactSupportSeeData": "Click to see data.",
-  "@contactSupportSeeData": {
+  "contactSeeData": "Click to see data.",
+  "@contactSeeData": {
     "description": "Text for link to see device data"
   },
-  "contactSupportName": "Name",
-  "@contactSupportName": {
+  "contactName": "Name",
+  "@contactName": {
     "description": "Label for name field in contact support page"
   },
-  "contactSupportNameHint": "Type in your name",
-  "@contactSupportNameHint": {
+  "contactNameHint": "Type in your name",
+  "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactSupportEmail": "Your contact email",
-  "@contactSupportEmail": {
+  "contactEmail": "Your contact email",
+  "@contactEmail": {
     "description": "Label for email field in contact support page"
   },
-  "contactSupportEmailHint": "Type in your email address",
-  "@contactSupportEmailHint": {
+  "contactEmailHint": "Type in your email address",
+  "@contactEmailHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactSupportMessage": "Message",
-  "@contactSupportMessage": {
+  "contactMessage": "Message",
+  "@contactMessage": {
     "description": "Label for message field in contact support page"
   },
-  "contactSupportMessageHint": "Describe the issue",
-  "@contactSupportMessageHint": {
+  "contactMessageHint": "Enter your message here",
+  "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
 

@@ -11,8 +11,8 @@ import '../../router/router.gr.dart';
 import '../../theme/design_system/design_system.dart';
 import '../onboarding/email_text_field.dart';
 
-class ContactSupportPublicInputPage extends HookWidget {
-  const ContactSupportPublicInputPage({
+class ContactPublicInputPage extends HookWidget {
+  const ContactPublicInputPage({
     super.key,
     required this.nameController,
     required this.emailController,
@@ -55,7 +55,7 @@ class ContactSupportPublicInputPage extends HookWidget {
               Container(
                 margin: const EdgeInsets.only(bottom: 10),
                 child: Text(
-                  S.of(context).contactSupportName,
+                  S.of(context).contactName,
                   style: design.textStyles.caption1.copyWith(color: design.colors.label2),
                 ),
               ),
@@ -67,7 +67,7 @@ class ContactSupportPublicInputPage extends HookWidget {
                   style: design.textStyles.body2.copyWith(color: design.colors.label1),
                   onEditingComplete: () => emailFocusNode.requestFocus(),
                   decoration: design.inputDecorations.textFormField.copyWith(
-                    hintText: S.of(context).contactSupportNameHint,
+                    hintText: S.of(context).contactNameHint,
                     suffixIcon: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 100),
                       child: nameController.text.isEmpty
@@ -89,7 +89,7 @@ class ContactSupportPublicInputPage extends HookWidget {
               Container(
                 margin: const EdgeInsets.only(bottom: 10),
                 child: Text(
-                  S.of(context).contactSupportEmail,
+                  S.of(context).contactEmail,
                   style: design.textStyles.caption1.copyWith(color: design.colors.label2),
                 ),
               ),
@@ -99,13 +99,13 @@ class ContactSupportPublicInputPage extends HookWidget {
                   emailFocusNode: emailFocusNode,
                   emailTextController: emailController,
                   onEditingComplete: () => messageFocusNode.requestFocus(),
-                  hintText: S.of(context).contactSupportEmailHint,
+                  hintText: S.of(context).contactEmailHint,
                 ),
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 10),
                 child: Text(
-                  S.of(context).contactSupportMessage,
+                  S.of(context).contactMessage,
                   style: design.textStyles.caption1.copyWith(color: design.colors.label2),
                 ),
               ),
@@ -115,7 +115,7 @@ class ContactSupportPublicInputPage extends HookWidget {
                 minLines: 9,
                 maxLines: 13,
                 controller: messageController,
-                decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).contactSupportMessageHint),
+                decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).contactMessageHint),
                 style: design.textStyles.body2.copyWith(color: design.colors.label1),
               ),
               GestureDetector(
@@ -132,10 +132,10 @@ class ContactSupportPublicInputPage extends HookWidget {
                     Expanded(
                       child: RichText(
                         text: TextSpan(children: [
-                          TextSpan(text: '${S.of(context).contactSupportIncludeDeviceInfo} ', style: design.textStyles.caption1),
+                          TextSpan(text: '${S.of(context).contactIncludeDeviceInfo} ', style: design.textStyles.caption1),
                           TextSpan(
                             recognizer: TapGestureRecognizer()..onTap = () => context.router.push(const DeviceInfoScreenRoute()),
-                            text: S.of(context).contactSupportSeeData,
+                            text: S.of(context).contactSeeData,
                             style: design.textStyles.caption1.copyWith(
                               fontWeight: FontWeight.w700,
                               decoration: TextDecoration.underline,

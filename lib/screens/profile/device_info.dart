@@ -3,7 +3,7 @@ import 'package:brunstadtv_app/components/web/dialog_on_web.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:flutter/material.dart';
 
-import '../../components/contact_support/device_info_table.dart';
+import '../../components/contact/device_info_table.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../components/general_app_bar.dart';

@@ -143,34 +143,37 @@ class SPt extends S {
   String get contactSupport => 'Entre em contato com o suporte';
 
   @override
+  String get contactIssueHint => 'Describe the issue';
+
+  @override
   String get contactUs => 'Contact us';
 
   @override
   String get deviceInfo => 'Device info';
 
   @override
-  String get contactSupportIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Include device information for better support.';
 
   @override
-  String get contactSupportSeeData => 'Click to see data.';
+  String get contactSeeData => 'Click to see data.';
 
   @override
-  String get contactSupportName => 'Name';
+  String get contactName => 'Name';
 
   @override
-  String get contactSupportNameHint => 'Type in your name';
+  String get contactNameHint => 'Type in your name';
 
   @override
-  String get contactSupportEmail => 'Your contact email';
+  String get contactEmail => 'Your contact email';
 
   @override
-  String get contactSupportEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'Type in your email address';
 
   @override
-  String get contactSupportMessage => 'Message';
+  String get contactMessage => 'Message';
 
   @override
-  String get contactSupportMessageHint => 'Describe the issue';
+  String get contactMessageHint => 'Enter your message here';
 
   @override
   String get deviceInfoDevice => 'Device';

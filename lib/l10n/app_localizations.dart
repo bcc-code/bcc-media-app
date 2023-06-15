@@ -399,6 +399,12 @@ abstract class S {
   /// **'Contact support'**
   String get contactSupport;
 
+  /// No description provided for @contactIssueHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the issue'**
+  String get contactIssueHint;
+
   /// Title for contact us page
   ///
   /// In en, this message translates to:
@@ -415,49 +421,49 @@ abstract class S {
   ///
   /// In en, this message translates to:
   /// **'Include device information for better support.'**
-  String get contactSupportIncludeDeviceInfo;
+  String get contactIncludeDeviceInfo;
 
   /// Text for link to see device data
   ///
   /// In en, this message translates to:
   /// **'Click to see data.'**
-  String get contactSupportSeeData;
+  String get contactSeeData;
 
   /// Label for name field in contact support page
   ///
   /// In en, this message translates to:
   /// **'Name'**
-  String get contactSupportName;
+  String get contactName;
 
   /// Hint text for name field in contact support page
   ///
   /// In en, this message translates to:
   /// **'Type in your name'**
-  String get contactSupportNameHint;
+  String get contactNameHint;
 
   /// Label for email field in contact support page
   ///
   /// In en, this message translates to:
   /// **'Your contact email'**
-  String get contactSupportEmail;
+  String get contactEmail;
 
   /// Hint text for name field in contact support page
   ///
   /// In en, this message translates to:
   /// **'Type in your email address'**
-  String get contactSupportEmailHint;
+  String get contactEmailHint;
 
   /// Label for message field in contact support page
   ///
   /// In en, this message translates to:
   /// **'Message'**
-  String get contactSupportMessage;
+  String get contactMessage;
 
   /// Hint text for message field in contact support page
   ///
   /// In en, this message translates to:
-  /// **'Describe the issue'**
-  String get contactSupportMessageHint;
+  /// **'Enter your message here'**
+  String get contactMessageHint;
 
   /// Label for device
   ///

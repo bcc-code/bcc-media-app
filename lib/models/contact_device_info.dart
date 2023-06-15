@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/app_localizations.dart';
 
-class SupportDeviceInfo {
+class ContactDeviceInfo {
   final String? device;
   final String? envOverride;
   final String? manufacturer;
@@ -11,7 +11,7 @@ class SupportDeviceInfo {
   final String appVer;
   final String? userId;
 
-  const SupportDeviceInfo({
+  const ContactDeviceInfo({
     required this.device,
     required this.envOverride,
     required this.manufacturer,
@@ -21,7 +21,7 @@ class SupportDeviceInfo {
     required this.userId,
   });
 
-  Map<String, String?> asMap(BuildContext cxt) => {
+  Map<String, String?> asLocalizedMap(BuildContext cxt) => {
         S.of(cxt).deviceInfoDevice: device,
         S.of(cxt).deviceInfoEnvOverride: envOverride,
         S.of(cxt).deviceInfoManufacturer: manufacturer,

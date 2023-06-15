@@ -5,8 +5,8 @@ import '../../l10n/app_localizations.dart';
 import '../../theme/design_system/design_system.dart';
 import 'device_info_table.dart';
 
-class ContactSupportInputPage extends HookWidget {
-  const ContactSupportInputPage(this.messageController, {super.key});
+class ContactInputPage extends HookWidget {
+  const ContactInputPage(this.messageController, {super.key});
 
   final TextEditingController messageController;
 
@@ -32,7 +32,7 @@ class ContactSupportInputPage extends HookWidget {
                 minLines: 9,
                 maxLines: 13,
                 controller: messageController,
-                decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).contactSupportMessageHint),
+                decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).contactIssueHint),
                 style: design.textStyles.body1.copyWith(color: design.colors.label1),
               ),
               Padding(

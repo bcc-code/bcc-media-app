@@ -11,7 +11,7 @@ import 'package:brunstadtv_app/screens/profile/audio_language.dart';
 import 'package:brunstadtv_app/screens/profile/privacy_policy.dart';
 import 'package:brunstadtv_app/screens/profile/subtitle_language.dart';
 import 'package:brunstadtv_app/screens/profile/video_quality.dart';
-import 'package:brunstadtv_app/screens/profile/contact_support.dart';
+import 'package:brunstadtv_app/screens/profile/contact.dart';
 import 'package:brunstadtv_app/screens/profile/faq.dart';
 import 'package:brunstadtv_app/screens/home.dart';
 import 'package:brunstadtv_app/screens/live.dart';
@@ -32,7 +32,7 @@ import '../screens/episode.dart';
 import '../screens/games/games.dart';
 import '../screens/page.dart';
 import '../screens/onboarding/signup.dart';
-import '../screens/profile/contact_support_public.dart';
+import '../screens/profile/contact_public.dart';
 import '../screens/tabs_root.dart';
 
 const _collectionEpisodeScreenRoute = CustomRoute<void>(
@@ -136,7 +136,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'videoQuality'},
     ),
     CustomRoute<void>(
-      page: ContactSupportScreen,
+      page: ContactScreen,
       path: '/contact-support',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
@@ -144,7 +144,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       meta: {RouteMetaConstants.analyticsName: 'support'},
     ),
     CustomRoute<void>(
-      page: ContactSupportPublicScreen,
+      page: ContactPublicScreen,
       path: '/contact-support-public',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,

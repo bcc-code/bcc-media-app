@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/design_system/design_system.dart';
 
-class ContactSupportSuccess extends StatelessWidget {
-  const ContactSupportSuccess({super.key});
+class ContactSuccess extends StatelessWidget {
+  const ContactSuccess({super.key});
 
   @override
   Widget build(BuildContext context) {
