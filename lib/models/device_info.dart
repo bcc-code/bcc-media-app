@@ -1,6 +1,8 @@
-import 'dart:collection';
+import 'package:flutter/material.dart';
 
-class SupportDeviceInfo extends UnmodifiableMapView<String, String?> {
+import '../l10n/app_localizations.dart';
+
+class SupportDeviceInfo {
   final String? device;
   final String? envOverride;
   final String? manufacturer;
@@ -9,7 +11,7 @@ class SupportDeviceInfo extends UnmodifiableMapView<String, String?> {
   final String appVer;
   final String? userId;
 
-  SupportDeviceInfo({
+  const SupportDeviceInfo({
     required this.device,
     required this.envOverride,
     required this.manufacturer,
@@ -17,13 +19,15 @@ class SupportDeviceInfo extends UnmodifiableMapView<String, String?> {
     required this.screenSize,
     required this.appVer,
     required this.userId,
-  }) : super({
-          'Device': device,
-          'Environment override': envOverride,
-          'Manufacturer': manufacturer,
-          'Operating System': os,
-          'Screen Size': screenSize,
-          'App Version': appVer,
-          'User ID': userId,
-        });
+  });
+
+  Map<String, String?> asMap(BuildContext cxt) => {
+        S.of(cxt).deviceInfoDevice: device,
+        S.of(cxt).deviceInfoEnvOverride: envOverride,
+        S.of(cxt).deviceInfoManufacturer: manufacturer,
+        S.of(cxt).deviceInfoOs: os,
+        S.of(cxt).deviceInfoScreenSize: screenSize,
+        S.of(cxt).deviceInfoAppVer: appVer,
+        S.of(cxt).deviceInfoUserId: userId,
+      };
 }

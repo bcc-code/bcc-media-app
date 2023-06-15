@@ -26,7 +26,7 @@ final isPhysicalDeviceProvider = FutureProvider<bool>((ref) {
   return future;
 });
 
-final deviceInfoProvider = FutureProvider<SupportDeviceInfo?>((ref) async {
+final supportDeviceInfoProvider = FutureProvider<SupportDeviceInfo?>((ref) async {
   final context = navigatorKey.currentContext;
   if (context == null) {
     return null;

@@ -173,6 +173,27 @@ class SEn extends S {
   String get contactSupportMessageHint => 'Describe the issue';
 
   @override
+  String get deviceInfoDevice => 'Device';
+
+  @override
+  String get deviceInfoEnvOverride => 'Environment override';
+
+  @override
+  String get deviceInfoManufacturer => 'Manufacturer';
+
+  @override
+  String get deviceInfoOs => 'Operating System';
+
+  @override
+  String get deviceInfoScreenSize => 'Screen Size';
+
+  @override
+  String get deviceInfoAppVer => 'App Version';
+
+  @override
+  String get deviceInfoUserId => 'User ID';
+
+  @override
   String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
 
   @override

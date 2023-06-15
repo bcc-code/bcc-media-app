@@ -9,12 +9,15 @@ class DeviceInfoTable extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final deviceInfo = ref.watch(deviceInfoProvider).valueOrNull;
+    final deviceInfo = ref.watch(supportDeviceInfoProvider).valueOrNull;
 
     final design = DesignSystem.of(context);
-    return deviceInfo != null
+
+    final deviceInfoEntries = deviceInfo?.asMap(context).entries.where((entry) => entry.value != null);
+
+    return deviceInfoEntries != null
         ? Column(
-            children: deviceInfo.entries
+            children: deviceInfoEntries
                 .map(
                   (entry) => Container(
                     padding: const EdgeInsets.symmetric(vertical: 12),
@@ -35,7 +38,7 @@ class DeviceInfoTable extends HookConsumerWidget {
                         ),
                         Expanded(
                           child: Text(
-                            entry.value ?? 'N/A',
+                            entry.value!,
                             textAlign: TextAlign.right,
                             style: design.textStyles.body2.copyWith(color: design.colors.label1),
                           ),

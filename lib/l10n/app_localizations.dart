@@ -459,7 +459,49 @@ abstract class S {
   /// **'Describe the issue'**
   String get contactSupportMessageHint;
 
-  /// Description text on device info page.
+  /// Label for device
+  ///
+  /// In en, this message translates to:
+  /// **'Device'**
+  String get deviceInfoDevice;
+
+  /// Label for environment override
+  ///
+  /// In en, this message translates to:
+  /// **'Environment override'**
+  String get deviceInfoEnvOverride;
+
+  /// Label for manufacturer
+  ///
+  /// In en, this message translates to:
+  /// **'Manufacturer'**
+  String get deviceInfoManufacturer;
+
+  /// Label for operating system
+  ///
+  /// In en, this message translates to:
+  /// **'Operating System'**
+  String get deviceInfoOs;
+
+  /// Label for screen size
+  ///
+  /// In en, this message translates to:
+  /// **'Screen Size'**
+  String get deviceInfoScreenSize;
+
+  /// Label for app Version
+  ///
+  /// In en, this message translates to:
+  /// **'App Version'**
+  String get deviceInfoAppVer;
+
+  /// Label for user id
+  ///
+  /// In en, this message translates to:
+  /// **'User ID'**
+  String get deviceInfoUserId;
+
+  /// Label for manufacturer
   ///
   /// In en, this message translates to:
   /// **'Your message will include this information, to help us provide better support.'**

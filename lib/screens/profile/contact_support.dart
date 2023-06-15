@@ -5,10 +5,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../components/contact_support/contact_support_failure.dart';
-import '../../components/contact_support/contact_support_sending_indicator.dart';
+import '../../components/contact_support/contact_support_input_page.dart';
 import '../../components/contact_support/contact_support_success.dart';
-import '../../components/contact_support/device_info_table.dart';
+import '../../components/status_indicators/error_generic.dart';
+import '../../components/status_indicators/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
@@ -27,14 +27,12 @@ class ContactSupportScreen extends HookConsumerWidget {
     final isOnInputPage = useState(true);
     final sendSupportEmailFuture = useState<Future<QueryResult>?>(null);
     final sendSupportEmailSnapshot = useFuture(sendSupportEmailFuture.value);
-    final deviceInfo = ref.watch(deviceInfoProvider).valueOrNull;
+    final deviceInfo = ref.watch(supportDeviceInfoProvider).valueOrNull;
 
     useListenableSelector(messageController, () => messageController.text.isEmpty);
 
-    void onTryAgain() => isOnInputPage.value = true;
-
     String getDeviceInfoHtml() {
-      final rows = deviceInfo?.entries.map((entry) => '<th>${entry.key}</th><td>${entry.value}</td>').join('\n');
+      final rows = deviceInfo?.asMap(context).entries.map((entry) => '<th>${entry.key}</th><td>${entry.value}</td>').join('\n');
       return '<table><tbody>$rows</tbody></table>';
     }
 
@@ -60,13 +58,18 @@ class ContactSupportScreen extends HookConsumerWidget {
 
     final Widget body;
     if (isOnInputPage.value) {
-      body = _InputPage(messageController);
-    } else if (sendSupportEmailSnapshot.hasError || sendSupportEmailSnapshot.data?.hasException == true) {
-      body = ContactSupportFailure(onTryAgain: onTryAgain);
-    } else if (sendSupportEmailSnapshot.hasData) {
-      body = const ContactSupportSuccess();
+      body = ContactSupportInputPage(messageController);
+    } else if ((sendSupportEmailSnapshot.hasError || sendSupportEmailSnapshot.data?.hasException == true) &&
+        sendSupportEmailSnapshot.connectionState != ConnectionState.waiting) {
+      body = ErrorGeneric(
+        title: S.of(context).sendFail,
+        description: S.of(context).sendFailDescription,
+        onRetry: () => isOnInputPage.value = true,
+      );
+    } else if (sendSupportEmailSnapshot.connectionState == ConnectionState.waiting) {
+      body = LoadingGeneric(text: S.of(context).sending);
     } else {
-      body = const ContactSupportSendingIndicator();
+      body = const ContactSupportSuccess();
     }
 
     return DialogOnWeb(
@@ -100,52 +103,6 @@ class ContactSupportScreen extends HookConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _InputPage extends HookWidget {
-  const _InputPage(this.messageController);
-
-  final TextEditingController messageController;
-
-  @override
-  Widget build(BuildContext context) {
-    final design = DesignSystem.of(context);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16).copyWith(top: 0),
-          child: Text(
-            S.of(context).contactSupport,
-            style: design.textStyles.headline1,
-          ),
-        ),
-        Expanded(
-          child: ListView(
-            padding: const EdgeInsets.all(16),
-            children: [
-              TextField(
-                minLines: 9,
-                maxLines: 13,
-                controller: messageController,
-                decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).contactSupportMessageHint),
-                style: design.textStyles.body1.copyWith(color: design.colors.label1),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 10),
-                child: Text(
-                  S.of(context).debugInfoExplanation,
-                  style: design.textStyles.body2.copyWith(color: design.colors.label1),
-                ),
-              ),
-              const DeviceInfoTable(),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
