@@ -132,7 +132,7 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
 
   final showItem = item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
   if (showItem != null) {
-    return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id, collectionId: collectionId));
+    return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
   }
 
   final pageItem = item.asOrNull<Fragment$ItemSectionItem$item$$Page>();
