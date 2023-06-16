@@ -49,6 +49,11 @@ abstract class BccmPlayerInterface extends PlatformInterface {
   }
 
   /// If `playerId` is null, this returns the primary player's state.
+  Future<PlayerTracksSnapshot?> getPlayerTracks({String? playerId}) async {
+    throw UnimplementedError('getPlayerTracks() has not been implemented.');
+  }
+
+  /// If `playerId` is null, this returns the primary player's state.
   Future<PlayerStateSnapshot?> getPlayerState({String? playerId}) async {
     throw UnimplementedError('getPlayerState() has not been implemented.');
   }
@@ -73,7 +78,7 @@ abstract class BccmPlayerInterface extends PlatformInterface {
     throw UnimplementedError('play() has not been implemented.');
   }
 
-  void seekTo(String playerId, double positionMs) {
+  Future<void> seekTo(String playerId, double positionMs) {
     throw UnimplementedError('play() has not been implemented.');
   }
 
@@ -85,12 +90,16 @@ abstract class BccmPlayerInterface extends PlatformInterface {
     throw UnimplementedError('stop() has not been implemented.');
   }
 
+  Future<void> setSelectedTrack(String playerId, TrackType type, String trackId) {
+    throw UnimplementedError('setSelectedTrack() has not been implemented.');
+  }
+
   void exitFullscreen(String playerId) {
-    throw UnimplementedError('stop() has not been implemented.');
+    throw UnimplementedError('exitFullscreen() has not been implemented.');
   }
 
   void enterFullscreen(String playerId) {
-    throw UnimplementedError('stop() has not been implemented.');
+    throw UnimplementedError('enterFullscreen() has not been implemented.');
   }
 
   Future? setNpawConfig(NpawConfig? config) {

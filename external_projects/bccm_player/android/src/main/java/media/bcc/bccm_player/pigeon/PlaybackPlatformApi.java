@@ -83,6 +83,17 @@ public class PlaybackPlatformApi {
     }
   }
 
+  public enum TrackType {
+    AUDIO(0),
+    TEXT(1);
+
+    final int index;
+
+    private TrackType(final int index) {
+      this.index = index;
+    }
+  }
+
   /** Generated class from Pigeon that represents data sent in messages. */
   public static final class NpawConfig {
     private @Nullable String appName;
@@ -822,6 +833,218 @@ public class PlaybackPlatformApi {
   }
 
   /** Generated class from Pigeon that represents data sent in messages. */
+  public static final class PlayerTracksSnapshot {
+    private @NonNull String playerId;
+
+    public @NonNull String getPlayerId() {
+      return playerId;
+    }
+
+    public void setPlayerId(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+      }
+      this.playerId = setterArg;
+    }
+
+    private @NonNull List<Track> audioTracks;
+
+    public @NonNull List<Track> getAudioTracks() {
+      return audioTracks;
+    }
+
+    public void setAudioTracks(@NonNull List<Track> setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"audioTracks\" is null.");
+      }
+      this.audioTracks = setterArg;
+    }
+
+    private @NonNull List<Track> textTracks;
+
+    public @NonNull List<Track> getTextTracks() {
+      return textTracks;
+    }
+
+    public void setTextTracks(@NonNull List<Track> setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"textTracks\" is null.");
+      }
+      this.textTracks = setterArg;
+    }
+
+    /** Constructor is non-public to enforce null safety; use Builder. */
+    PlayerTracksSnapshot() {}
+
+    public static final class Builder {
+
+      private @Nullable String playerId;
+
+      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+        this.playerId = setterArg;
+        return this;
+      }
+
+      private @Nullable List<Track> audioTracks;
+
+      public @NonNull Builder setAudioTracks(@NonNull List<Track> setterArg) {
+        this.audioTracks = setterArg;
+        return this;
+      }
+
+      private @Nullable List<Track> textTracks;
+
+      public @NonNull Builder setTextTracks(@NonNull List<Track> setterArg) {
+        this.textTracks = setterArg;
+        return this;
+      }
+
+      public @NonNull PlayerTracksSnapshot build() {
+        PlayerTracksSnapshot pigeonReturn = new PlayerTracksSnapshot();
+        pigeonReturn.setPlayerId(playerId);
+        pigeonReturn.setAudioTracks(audioTracks);
+        pigeonReturn.setTextTracks(textTracks);
+        return pigeonReturn;
+      }
+    }
+
+    @NonNull
+    ArrayList<Object> toList() {
+      ArrayList<Object> toListResult = new ArrayList<Object>(3);
+      toListResult.add(playerId);
+      toListResult.add(audioTracks);
+      toListResult.add(textTracks);
+      return toListResult;
+    }
+
+    static @NonNull PlayerTracksSnapshot fromList(@NonNull ArrayList<Object> list) {
+      PlayerTracksSnapshot pigeonResult = new PlayerTracksSnapshot();
+      Object playerId = list.get(0);
+      pigeonResult.setPlayerId((String) playerId);
+      Object audioTracks = list.get(1);
+      pigeonResult.setAudioTracks((List<Track>) audioTracks);
+      Object textTracks = list.get(2);
+      pigeonResult.setTextTracks((List<Track>) textTracks);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static final class Track {
+    private @NonNull String id;
+
+    public @NonNull String getId() {
+      return id;
+    }
+
+    public void setId(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"id\" is null.");
+      }
+      this.id = setterArg;
+    }
+
+    private @Nullable String label;
+
+    public @Nullable String getLabel() {
+      return label;
+    }
+
+    public void setLabel(@Nullable String setterArg) {
+      this.label = setterArg;
+    }
+
+    private @Nullable String language;
+
+    public @Nullable String getLanguage() {
+      return language;
+    }
+
+    public void setLanguage(@Nullable String setterArg) {
+      this.language = setterArg;
+    }
+
+    private @NonNull Boolean isSelected;
+
+    public @NonNull Boolean getIsSelected() {
+      return isSelected;
+    }
+
+    public void setIsSelected(@NonNull Boolean setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"isSelected\" is null.");
+      }
+      this.isSelected = setterArg;
+    }
+
+    /** Constructor is non-public to enforce null safety; use Builder. */
+    Track() {}
+
+    public static final class Builder {
+
+      private @Nullable String id;
+
+      public @NonNull Builder setId(@NonNull String setterArg) {
+        this.id = setterArg;
+        return this;
+      }
+
+      private @Nullable String label;
+
+      public @NonNull Builder setLabel(@Nullable String setterArg) {
+        this.label = setterArg;
+        return this;
+      }
+
+      private @Nullable String language;
+
+      public @NonNull Builder setLanguage(@Nullable String setterArg) {
+        this.language = setterArg;
+        return this;
+      }
+
+      private @Nullable Boolean isSelected;
+
+      public @NonNull Builder setIsSelected(@NonNull Boolean setterArg) {
+        this.isSelected = setterArg;
+        return this;
+      }
+
+      public @NonNull Track build() {
+        Track pigeonReturn = new Track();
+        pigeonReturn.setId(id);
+        pigeonReturn.setLabel(label);
+        pigeonReturn.setLanguage(language);
+        pigeonReturn.setIsSelected(isSelected);
+        return pigeonReturn;
+      }
+    }
+
+    @NonNull
+    ArrayList<Object> toList() {
+      ArrayList<Object> toListResult = new ArrayList<Object>(4);
+      toListResult.add(id);
+      toListResult.add(label);
+      toListResult.add(language);
+      toListResult.add(isSelected);
+      return toListResult;
+    }
+
+    static @NonNull Track fromList(@NonNull ArrayList<Object> list) {
+      Track pigeonResult = new Track();
+      Object id = list.get(0);
+      pigeonResult.setId((String) id);
+      Object label = list.get(1);
+      pigeonResult.setLabel((String) label);
+      Object language = list.get(2);
+      pigeonResult.setLanguage((String) language);
+      Object isSelected = list.get(3);
+      pigeonResult.setIsSelected((Boolean) isSelected);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
   public static final class PrimaryPlayerChangedEvent {
     private @Nullable String playerId;
 
@@ -1320,6 +1543,10 @@ public class PlaybackPlatformApi {
           return NpawConfig.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 133:
           return PlayerStateSnapshot.fromList((ArrayList<Object>) readValue(buffer));
+        case (byte) 134:
+          return PlayerTracksSnapshot.fromList((ArrayList<Object>) readValue(buffer));
+        case (byte) 135:
+          return Track.fromList((ArrayList<Object>) readValue(buffer));
         default:
           return super.readValueOfType(type, buffer);
       }
@@ -1345,6 +1572,12 @@ public class PlaybackPlatformApi {
       } else if (value instanceof PlayerStateSnapshot) {
         stream.write(133);
         writeValue(stream, ((PlayerStateSnapshot) value).toList());
+      } else if (value instanceof PlayerTracksSnapshot) {
+        stream.write(134);
+        writeValue(stream, ((PlayerTracksSnapshot) value).toList());
+      } else if (value instanceof Track) {
+        stream.write(135);
+        writeValue(stream, ((Track) value).toList());
       } else {
         super.writeValue(stream, value);
       }
@@ -1368,11 +1601,13 @@ public class PlaybackPlatformApi {
 
     void play(@NonNull String playerId);
 
-    void seekTo(@NonNull String playerId, @NonNull Double positionMs);
+    void seekTo(@NonNull String playerId, @NonNull Double positionMs, @NonNull Result<Void> result);
 
     void pause(@NonNull String playerId);
 
     void stop(@NonNull String playerId, @NonNull Boolean reset);
+
+    void setSelectedTrack(@NonNull String playerId, @NonNull TrackType type, @NonNull String trackId, @NonNull Result<Void> result);
 
     void exitFullscreen(@NonNull String playerId);
 
@@ -1381,6 +1616,8 @@ public class PlaybackPlatformApi {
     void setNpawConfig(@Nullable NpawConfig config);
 
     void setAppConfig(@Nullable AppConfig config);
+
+    void getTracks(@Nullable String playerId, @NonNull Result<PlayerTracksSnapshot> result);
 
     void getPlayerState(@Nullable String playerId, @NonNull Result<PlayerStateSnapshot> result);
 
@@ -1603,15 +1840,20 @@ public class PlaybackPlatformApi {
                 ArrayList<Object> args = (ArrayList<Object>) message;
                 String playerIdArg = (String) args.get(0);
                 Double positionMsArg = (Double) args.get(1);
-                try {
-                  api.seekTo(playerIdArg, positionMsArg);
-                  wrapped.add(0, null);
-                }
- catch (Throwable exception) {
-                  ArrayList<Object> wrappedError = wrapError(exception);
-                  wrapped = wrappedError;
-                }
-                reply.reply(wrapped);
+                Result<Void> resultCallback =
+                    new Result<Void>() {
+                      public void success(Void result) {
+                        wrapped.add(0, null);
+                        reply.reply(wrapped);
+                      }
+
+                      public void error(Throwable error) {
+                        ArrayList<Object> wrappedError = wrapError(error);
+                        reply.reply(wrappedError);
+                      }
+                    };
+
+                api.seekTo(playerIdArg, positionMsArg, resultCallback);
               });
         } else {
           channel.setMessageHandler(null);
@@ -1661,6 +1903,37 @@ public class PlaybackPlatformApi {
                   wrapped = wrappedError;
                 }
                 reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setSelectedTrack", getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<Object>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                String playerIdArg = (String) args.get(0);
+                TrackType typeArg = args.get(1) == null ? null : TrackType.values()[(int) args.get(1)];
+                String trackIdArg = (String) args.get(2);
+                Result<Void> resultCallback =
+                    new Result<Void>() {
+                      public void success(Void result) {
+                        wrapped.add(0, null);
+                        reply.reply(wrapped);
+                      }
+
+                      public void error(Throwable error) {
+                        ArrayList<Object> wrappedError = wrapError(error);
+                        reply.reply(wrappedError);
+                      }
+                    };
+
+                api.setSelectedTrack(playerIdArg, typeArg, trackIdArg, resultCallback);
               });
         } else {
           channel.setMessageHandler(null);
@@ -1757,6 +2030,35 @@ public class PlaybackPlatformApi {
                   wrapped = wrappedError;
                 }
                 reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.getTracks", getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<Object>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                String playerIdArg = (String) args.get(0);
+                Result<PlayerTracksSnapshot> resultCallback =
+                    new Result<PlayerTracksSnapshot>() {
+                      public void success(PlayerTracksSnapshot result) {
+                        wrapped.add(0, result);
+                        reply.reply(wrapped);
+                      }
+
+                      public void error(Throwable error) {
+                        ArrayList<Object> wrappedError = wrapError(error);
+                        reply.reply(wrappedError);
+                      }
+                    };
+
+                api.getTracks(playerIdArg, resultCallback);
               });
         } else {
           channel.setMessageHandler(null);

@@ -1,10 +1,14 @@
+import 'dart:math';
+
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/src/pigeon/pigeon_extensions.dart';
+import 'package:bccm_player/src/utils/debouncer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-
-import 'popup_menu.dart';
 
 class DefaultControls extends HookWidget {
   const DefaultControls({
@@ -21,6 +25,7 @@ class DefaultControls extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final player = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state);
+    final seekDebouncer = useMemoized(() => Debouncer(milliseconds: 1000));
     useEffect(() {
       void listener(PlayerState state) {
         player.value = state;
@@ -32,8 +37,21 @@ class DefaultControls extends HookWidget {
     final duration = player.value?.currentMediaItem?.metadata?.durationMs ?? player.value?.playbackPositionMs?.toDouble() ?? 1;
     debugPrint('bccm: player data: ${player.value?.toString() ?? 'no player data'}');
     final isFullscreen = player.value?.isFlutterFullscreen == true;
-    void seekTo(double positionMs) {
-      BccmPlayerInterface.instance.seekTo(playerId, positionMs);
+    final seeking = useState(false);
+    final currentScrub = useState(0.0);
+    void scrubTo(double value) {
+      if ((currentScrub.value - value).abs() < 0.01) {
+        debugPrint(currentScrub.value.toString() + ' ,,,, ' + value.toString());
+        currentScrub.value = value;
+        return;
+      }
+      currentScrub.value = value;
+      seeking.value = true;
+      seekDebouncer.run(() async {
+        if (!context.mounted) return;
+        await BccmPlayerInterface.instance.seekTo(playerId, currentScrub.value * duration);
+        seeking.value = false;
+      });
     }
 
     final w = Container(
@@ -58,14 +76,18 @@ class DefaultControls extends HookWidget {
             ),
             Expanded(
               child: Slider(
-                value: (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1),
+                value: seeking.value
+                    ? currentScrub.value
+                    : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
                 onChanged: (double value) {
-                  final positionMs = value * duration;
-                  seekTo(positionMs);
+                  scrubTo(value);
+                },
+                onChangeEnd: (double value) {
+                  seekDebouncer.forceEarly();
                 },
               ),
             ),
-            _SettingsWidget(),
+            _SettingsWidget(playerId: playerId),
             IconButton(
               icon: Icon(
                 isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
@@ -89,98 +111,121 @@ class DefaultControls extends HookWidget {
   }
 }
 
-/// An arbitrary widget that lives in a popup menu
-class PopupMenuWidget extends PopupMenuEntry<Never> {
-  const PopupMenuWidget({super.key, required this.height, required this.child});
-
-  final Widget child;
-
-  @override
-  final double height;
-
-  @override
-  _PopupMenuWidgetState createState() => _PopupMenuWidgetState();
-
-  @override
-  bool represents(value) => false;
-}
-
-class _PopupMenuWidgetState extends State<PopupMenuWidget> {
-  bool clicked = false;
-  @override
-  Widget build(BuildContext context) => widget.child;
-}
-
 class _SettingsWidget extends HookWidget {
+  const _SettingsWidget({required this.playerId});
+
+  final String playerId;
+
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton(
-      offset: Offset(0, 50),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      padding: EdgeInsets.zero,
-      elevation: 0,
-      constraints: null,
-      surfaceTintColor: Colors.transparent,
-      itemBuilder: (context) => <PopupMenuEntry>[
-        PopupMenuWidget(
-          height: 100.0,
-          child: ClipRRect(borderRadius: BorderRadius.circular(16), child: SettingsTabs()),
-        ),
-      ],
+    return IconButton(
+        onPressed: () {
+          // open bottom sheet with settings
+          showModalBottomSheet(
+            context: context,
+            isDismissible: true,
+            builder: (context) => _Settings(playerId: playerId),
+          );
+        },
+        icon: const Icon(Icons.settings));
+  }
+}
+
+class _Settings extends HookWidget {
+  const _Settings({required this.playerId});
+  final String playerId;
+  @override
+  Widget build(BuildContext context) {
+    final tracksFuture = useMemoized(() {
+      return BccmPlayerInterface.instance.getPlayerTracks(playerId: playerId);
+    }, [playerId]);
+    final tracksSnapshot = useFuture(tracksFuture);
+
+    if (tracksSnapshot.connectionState == ConnectionState.waiting) {
+      return const Center(child: CircularProgressIndicator());
+    } else if (tracksSnapshot.hasError) {
+      return Center(child: Text(tracksSnapshot.error.toString()));
+    }
+
+    final tracksData = tracksSnapshot.data;
+    if (tracksData == null) {}
+
+    final selectedAudioTrack = tracksData?.audioTracks.safe.firstWhereOrNull((element) => element.isSelected);
+    final selectedTextTrack = tracksData?.textTracks.safe.firstWhereOrNull((element) => element.isSelected);
+
+    return Container(
+      color: Theme.of(context).dialogBackgroundColor,
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          if (tracksData?.audioTracks.isNotEmpty == true)
+            ListTile(
+              dense: true,
+              onTap: () async {
+                final selected = await showModalBottomSheet<String>(
+                  context: context,
+                  isDismissible: true,
+                  builder: (context) => SettingsTrackList(tracks: tracksData!.audioTracks),
+                );
+                if (selected != null && context.mounted) {
+                  BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.audio, selected);
+                  Navigator.pop(context);
+                }
+              },
+              title: Text(
+                'Audio: ${selectedAudioTrack?.labelWithFallback ?? 'N/A'}',
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+            ),
+          if (tracksData?.textTracks.isNotEmpty == true)
+            ListTile(
+              dense: true,
+              title: Text('Subtitles: ${selectedTextTrack?.labelWithFallback ?? 'N/A'}', style: Theme.of(context).textTheme.labelMedium),
+              onTap: () async {
+                final selected = await showModalBottomSheet<String>(
+                  context: context,
+                  isDismissible: true,
+                  builder: (context) => SettingsTrackList(tracks: tracksData!.textTracks),
+                );
+                if (selected != null && context.mounted) {
+                  BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.text, selected);
+                  Navigator.pop(context);
+                }
+              },
+            ),
+        ],
+      ),
     );
   }
 }
 
-class SettingsTabs extends HookWidget {
+class SettingsTrackList extends StatelessWidget {
+  const SettingsTrackList({
+    super.key,
+    required this.tracks,
+  });
+
+  final List<Track?> tracks;
+
   @override
   Widget build(BuildContext context) {
-    final color = PopupMenuTheme.of(context).color ?? Theme.of(context).colorScheme.surface;
-    final height = useState(100.0);
+    // show list of audio tracks with a tick on the selected one
     return Container(
-      color: color,
-      width: 150,
-      height: height.value,
-      child: Navigator(
-        onGenerateRoute: (routeSettings) {
-          // if audio route
-          switch (routeSettings.name) {
-            case 'audio':
-              height.value = 200;
-              return CupertinoPageRoute(
-                builder: (context) => Container(
-                  color: color,
-                  height: height.value,
-                  width: 150,
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      ListTile(dense: true, title: Text('English', style: Theme.of(context).textTheme.labelMedium)),
-                      ListTile(dense: true, title: Text('Norsk', style: Theme.of(context).textTheme.labelMedium)),
-                    ],
-                  ),
-                ),
-              );
-          }
-          return CupertinoPageRoute(
-            builder: (context) => GestureDetector(
+      color: Theme.of(context).dialogBackgroundColor,
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          for (final track in tracks.safe)
+            ListTile(
+              dense: true,
               onTap: () {
-                Navigator.of(context).pushNamed('audio');
+                // select this track
+                Navigator.pop(context, track.id);
               },
-              child: Container(
-                color: color,
-                height: height.value,
-                width: 150,
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    ListTile(dense: true, title: Text('Audio language', style: Theme.of(context).textTheme.labelMedium)),
-                    ListTile(dense: true, title: Text('Subtitle language', style: Theme.of(context).textTheme.labelMedium)),
-                  ],
-                ),
-              ),
+              title: Text(track.labelWithFallback, style: Theme.of(context).textTheme.labelMedium),
+              trailing: track.isSelected ? const Icon(Icons.check) : null,
             ),
-          );
-        },
+        ],
       ),
     );
   }

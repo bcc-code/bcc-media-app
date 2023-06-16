@@ -62,6 +62,11 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
+  Future<PlayerTracksSnapshot?> getPlayerTracks({String? playerId}) {
+    return _pigeon.getTracks(playerId);
+  }
+
+  @override
   Future<PlayerStateSnapshot?> getPlayerState({String? playerId}) {
     return _pigeon.getPlayerState(playerId);
   }
@@ -87,8 +92,8 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
-  void seekTo(String playerId, double positionMs) {
-    _pigeon.seekTo(playerId, positionMs);
+  Future<void> seekTo(String playerId, double positionMs) {
+    return _pigeon.seekTo(playerId, positionMs);
   }
 
   @override
@@ -99,6 +104,11 @@ class BccmPlayerNative extends BccmPlayerInterface {
   @override
   void stop(String playerId, bool reset) {
     _pigeon.stop(playerId, reset);
+  }
+
+  @override
+  Future<void> setSelectedTrack(String playerId, TrackType type, String trackId) {
+    return _pigeon.setSelectedTrack(playerId, type, trackId);
   }
 
   @override

@@ -24,12 +24,19 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
   CastConnectionStateConnected = 4,
 };
 
+typedef NS_ENUM(NSUInteger, TrackType) {
+  TrackTypeAudio = 0,
+  TrackTypeText = 1,
+};
+
 @class NpawConfig;
 @class AppConfig;
 @class MediaItem;
 @class MediaMetadata;
 @class PlayerStateSnapshot;
 @class ChromecastState;
+@class PlayerTracksSnapshot;
+@class Track;
 @class PrimaryPlayerChangedEvent;
 @class PlayerStateUpdateEvent;
 @class PositionDiscontinuityEvent;
@@ -116,6 +123,30 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @property(nonatomic, strong, nullable) MediaItem * mediaItem;
 @end
 
+@interface PlayerTracksSnapshot : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    audioTracks:(NSArray<Track *> *)audioTracks
+    textTracks:(NSArray<Track *> *)textTracks;
+@property(nonatomic, copy) NSString * playerId;
+@property(nonatomic, strong) NSArray<Track *> * audioTracks;
+@property(nonatomic, strong) NSArray<Track *> * textTracks;
+@end
+
+@interface Track : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithId:(NSString *)id
+    label:(nullable NSString *)label
+    language:(nullable NSString *)language
+    isSelected:(NSNumber *)isSelected;
+@property(nonatomic, copy) NSString * id;
+@property(nonatomic, copy, nullable) NSString * label;
+@property(nonatomic, copy, nullable) NSString * language;
+@property(nonatomic, strong) NSNumber * isSelected;
+@end
+
 @interface PrimaryPlayerChangedEvent : NSObject
 + (instancetype)makeWithPlayerId:(nullable NSString *)playerId;
 @property(nonatomic, copy, nullable) NSString * playerId;
@@ -186,13 +217,15 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 - (void)setPlayerViewVisibility:(NSNumber *)viewId visible:(NSNumber *)visible error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setPrimary:(NSString *)id completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)play:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
-- (void)play:(NSString *)playerId positionMs:(NSNumber *)positionMs error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)play:(NSString *)playerId positionMs:(NSNumber *)positionMs completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)pause:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)stop:(NSString *)playerId reset:(NSNumber *)reset error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setSelectedTrack:(NSString *)playerId type:(TrackType)type trackId:(NSString *)trackId completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)exitFullscreen:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)enterFullscreen:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setNpawConfig:(nullable NpawConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setAppConfig:(nullable AppConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)getPlayerState:(nullable NSString *)playerId completion:(void (^)(PlayerTracksSnapshot *_Nullable, FlutterError *_Nullable))completion;
 - (void)getPlayerState:(nullable NSString *)playerId completion:(void (^)(PlayerStateSnapshot *_Nullable, FlutterError *_Nullable))completion;
 - (void)getChromecastState:(void (^)(ChromecastState *_Nullable, FlutterError *_Nullable))completion;
 - (void)openExpandedCastController:(FlutterError *_Nullable *_Nonnull)error;

@@ -269,34 +269,11 @@ class ExoPlayerController(private val context: Context) :
         // the language is available for the current track.
         val textLanguage = textLanguageThatShouldBeSelected
         if (textLanguage != null && !tracks.groups.any { it.type == C.TRACK_TYPE_TEXT && it.isSelected }) {
-            if (setTextLanguage(tracks, textLanguage)) {
+            if (setSelectedTrackByLanguage(C.TRACK_TYPE_TEXT, textLanguage, tracks)) {
                 textLanguageThatShouldBeSelected = null
             }
         }
         updateYouboraOptions()
-    }
-
-    /**
-     * Sets the language of the subtitles. Returns false if there is the language
-     * is not available for the current media item.
-     */
-    private fun setTextLanguage(tracks: Tracks, language: String): Boolean {
-        val trackGroup = tracks.groups.firstOrNull {
-            it.type == C.TRACK_TYPE_TEXT
-                    && it.mediaTrackGroup.length > 0
-                    && it.mediaTrackGroup.getFormat(0).language == language
-        }
-
-        return if (trackGroup != null) {
-            player.trackSelectionParameters = player.trackSelectionParameters
-                .buildUpon()
-                .clearOverridesOfType(C.TRACK_TYPE_TEXT)
-                .setOverrideForType(TrackSelectionOverride(trackGroup.mediaTrackGroup, 0))
-                .build()
-            true
-        } else {
-            false
-        }
     }
 
     override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {

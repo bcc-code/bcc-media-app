@@ -4,11 +4,18 @@ import 'dart:async';
 class Debouncer {
   final int milliseconds;
   Timer? _timer;
+  VoidCallback? _currentAction;
 
   Debouncer({required this.milliseconds});
 
   run(VoidCallback action) {
     _timer?.cancel();
+    _currentAction = action;
     _timer = Timer(Duration(milliseconds: milliseconds), action);
+  }
+
+  forceEarly() {
+    _timer?.cancel();
+    _currentAction?.call();
   }
 }

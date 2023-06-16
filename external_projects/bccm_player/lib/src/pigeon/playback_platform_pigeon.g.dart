@@ -22,6 +22,11 @@ enum CastConnectionState {
   connected,
 }
 
+enum TrackType {
+  audio,
+  text,
+}
+
 class NpawConfig {
   NpawConfig({
     this.appName,
@@ -264,6 +269,73 @@ class ChromecastState {
   }
 }
 
+class PlayerTracksSnapshot {
+  PlayerTracksSnapshot({
+    required this.playerId,
+    required this.audioTracks,
+    required this.textTracks,
+  });
+
+  String playerId;
+
+  List<Track?> audioTracks;
+
+  List<Track?> textTracks;
+
+  Object encode() {
+    return <Object?>[
+      playerId,
+      audioTracks,
+      textTracks,
+    ];
+  }
+
+  static PlayerTracksSnapshot decode(Object result) {
+    result as List<Object?>;
+    return PlayerTracksSnapshot(
+      playerId: result[0]! as String,
+      audioTracks: (result[1] as List<Object?>?)!.cast<Track?>(),
+      textTracks: (result[2] as List<Object?>?)!.cast<Track?>(),
+    );
+  }
+}
+
+class Track {
+  Track({
+    required this.id,
+    this.label,
+    this.language,
+    required this.isSelected,
+  });
+
+  String id;
+
+  String? label;
+
+  String? language;
+
+  bool isSelected;
+
+  Object encode() {
+    return <Object?>[
+      id,
+      label,
+      language,
+      isSelected,
+    ];
+  }
+
+  static Track decode(Object result) {
+    result as List<Object?>;
+    return Track(
+      id: result[0]! as String,
+      label: result[1] as String?,
+      language: result[2] as String?,
+      isSelected: result[3]! as bool,
+    );
+  }
+}
+
 class PrimaryPlayerChangedEvent {
   PrimaryPlayerChangedEvent({
     this.playerId,
@@ -467,6 +539,12 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
     } else if (value is PlayerStateSnapshot) {
       buffer.putUint8(133);
       writeValue(buffer, value.encode());
+    } else if (value is PlayerTracksSnapshot) {
+      buffer.putUint8(134);
+      writeValue(buffer, value.encode());
+    } else if (value is Track) {
+      buffer.putUint8(135);
+      writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
     }
@@ -487,6 +565,10 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
         return NpawConfig.decode(readValue(buffer)!);
       case 133: 
         return PlayerStateSnapshot.decode(readValue(buffer)!);
+      case 134: 
+        return PlayerTracksSnapshot.decode(readValue(buffer)!);
+      case 135: 
+        return Track.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
     }
@@ -728,6 +810,28 @@ class PlaybackPlatformPigeon {
     }
   }
 
+  Future<void> setSelectedTrack(String arg_playerId, TrackType arg_type, String arg_trackId) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.setSelectedTrack', codec,
+        binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList =
+        await channel.send(<Object?>[arg_playerId, arg_type.index, arg_trackId]) as List<Object?>?;
+    if (replyList == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyList.length > 1) {
+      throw PlatformException(
+        code: replyList[0]! as String,
+        message: replyList[1] as String?,
+        details: replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
   Future<void> exitFullscreen(String arg_playerId) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.PlaybackPlatformPigeon.exitFullscreen', codec,
@@ -813,6 +917,28 @@ class PlaybackPlatformPigeon {
       );
     } else {
       return;
+    }
+  }
+
+  Future<PlayerTracksSnapshot?> getTracks(String? arg_playerId) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.getTracks', codec,
+        binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList =
+        await channel.send(<Object?>[arg_playerId]) as List<Object?>?;
+    if (replyList == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyList.length > 1) {
+      throw PlatformException(
+        code: replyList[0]! as String,
+        message: replyList[1] as String?,
+        details: replyList[2],
+      );
+    } else {
+      return (replyList[0] as PlayerTracksSnapshot?);
     }
   }
 

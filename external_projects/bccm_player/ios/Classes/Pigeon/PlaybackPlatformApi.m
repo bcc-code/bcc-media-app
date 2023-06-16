@@ -57,6 +57,18 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 - (NSArray *)toList;
 @end
 
+@interface PlayerTracksSnapshot ()
++ (PlayerTracksSnapshot *)fromList:(NSArray *)list;
++ (nullable PlayerTracksSnapshot *)nullableFromList:(NSArray *)list;
+- (NSArray *)toList;
+@end
+
+@interface Track ()
++ (Track *)fromList:(NSArray *)list;
++ (nullable Track *)nullableFromList:(NSArray *)list;
+- (NSArray *)toList;
+@end
+
 @interface PrimaryPlayerChangedEvent ()
 + (PrimaryPlayerChangedEvent *)fromList:(NSArray *)list;
 + (nullable PrimaryPlayerChangedEvent *)nullableFromList:(NSArray *)list;
@@ -315,6 +327,73 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 }
 @end
 
+@implementation PlayerTracksSnapshot
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    audioTracks:(NSArray<Track *> *)audioTracks
+    textTracks:(NSArray<Track *> *)textTracks {
+  PlayerTracksSnapshot* pigeonResult = [[PlayerTracksSnapshot alloc] init];
+  pigeonResult.playerId = playerId;
+  pigeonResult.audioTracks = audioTracks;
+  pigeonResult.textTracks = textTracks;
+  return pigeonResult;
+}
++ (PlayerTracksSnapshot *)fromList:(NSArray *)list {
+  PlayerTracksSnapshot *pigeonResult = [[PlayerTracksSnapshot alloc] init];
+  pigeonResult.playerId = GetNullableObjectAtIndex(list, 0);
+  NSAssert(pigeonResult.playerId != nil, @"");
+  pigeonResult.audioTracks = GetNullableObjectAtIndex(list, 1);
+  NSAssert(pigeonResult.audioTracks != nil, @"");
+  pigeonResult.textTracks = GetNullableObjectAtIndex(list, 2);
+  NSAssert(pigeonResult.textTracks != nil, @"");
+  return pigeonResult;
+}
++ (nullable PlayerTracksSnapshot *)nullableFromList:(NSArray *)list {
+  return (list) ? [PlayerTracksSnapshot fromList:list] : nil;
+}
+- (NSArray *)toList {
+  return @[
+    (self.playerId ?: [NSNull null]),
+    (self.audioTracks ?: [NSNull null]),
+    (self.textTracks ?: [NSNull null]),
+  ];
+}
+@end
+
+@implementation Track
++ (instancetype)makeWithId:(NSString *)id
+    label:(nullable NSString *)label
+    language:(nullable NSString *)language
+    isSelected:(NSNumber *)isSelected {
+  Track* pigeonResult = [[Track alloc] init];
+  pigeonResult.id = id;
+  pigeonResult.label = label;
+  pigeonResult.language = language;
+  pigeonResult.isSelected = isSelected;
+  return pigeonResult;
+}
++ (Track *)fromList:(NSArray *)list {
+  Track *pigeonResult = [[Track alloc] init];
+  pigeonResult.id = GetNullableObjectAtIndex(list, 0);
+  NSAssert(pigeonResult.id != nil, @"");
+  pigeonResult.label = GetNullableObjectAtIndex(list, 1);
+  pigeonResult.language = GetNullableObjectAtIndex(list, 2);
+  pigeonResult.isSelected = GetNullableObjectAtIndex(list, 3);
+  NSAssert(pigeonResult.isSelected != nil, @"");
+  return pigeonResult;
+}
++ (nullable Track *)nullableFromList:(NSArray *)list {
+  return (list) ? [Track fromList:list] : nil;
+}
+- (NSArray *)toList {
+  return @[
+    (self.id ?: [NSNull null]),
+    (self.label ?: [NSNull null]),
+    (self.language ?: [NSNull null]),
+    (self.isSelected ?: [NSNull null]),
+  ];
+}
+@end
+
 @implementation PrimaryPlayerChangedEvent
 + (instancetype)makeWithPlayerId:(nullable NSString *)playerId {
   PrimaryPlayerChangedEvent* pigeonResult = [[PrimaryPlayerChangedEvent alloc] init];
@@ -511,6 +590,10 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
       return [NpawConfig fromList:[self readValue]];
     case 133: 
       return [PlayerStateSnapshot fromList:[self readValue]];
+    case 134: 
+      return [PlayerTracksSnapshot fromList:[self readValue]];
+    case 135: 
+      return [Track fromList:[self readValue]];
     default:
       return [super readValueOfType:type];
   }
@@ -538,6 +621,12 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
     [self writeValue:[value toList]];
   } else if ([value isKindOfClass:[PlayerStateSnapshot class]]) {
     [self writeByte:133];
+    [self writeValue:[value toList]];
+  } else if ([value isKindOfClass:[PlayerTracksSnapshot class]]) {
+    [self writeByte:134];
+    [self writeValue:[value toList]];
+  } else if ([value isKindOfClass:[Track class]]) {
+    [self writeByte:135];
     [self writeValue:[value toList]];
   } else {
     [super writeValue:value];
@@ -710,14 +799,14 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         binaryMessenger:binaryMessenger
         codec:PlaybackPlatformPigeonGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(play:positionMs:error:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(play:positionMs:error:)", api);
+      NSCAssert([api respondsToSelector:@selector(play:positionMs:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(play:positionMs:completion:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
         NSNumber *arg_positionMs = GetNullableObjectAtIndex(args, 1);
-        FlutterError *error;
-        [api play:arg_playerId positionMs:arg_positionMs error:&error];
-        callback(wrapResult(nil, error));
+        [api play:arg_playerId positionMs:arg_positionMs completion:^(FlutterError *_Nullable error) {
+          callback(wrapResult(nil, error));
+        }];
       }];
     } else {
       [channel setMessageHandler:nil];
@@ -757,6 +846,27 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         FlutterError *error;
         [api stop:arg_playerId reset:arg_reset error:&error];
         callback(wrapResult(nil, error));
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.setSelectedTrack"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(setSelectedTrack:type:trackId:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(setSelectedTrack:type:trackId:completion:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
+        TrackType arg_type = [GetNullableObjectAtIndex(args, 1) integerValue];
+        NSString *arg_trackId = GetNullableObjectAtIndex(args, 2);
+        [api setSelectedTrack:arg_playerId type:arg_type trackId:arg_trackId completion:^(FlutterError *_Nullable error) {
+          callback(wrapResult(nil, error));
+        }];
       }];
     } else {
       [channel setMessageHandler:nil];
@@ -833,6 +943,25 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         FlutterError *error;
         [api setAppConfig:arg_config error:&error];
         callback(wrapResult(nil, error));
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.getTracks"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(getPlayerState:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(getPlayerState:completion:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
+        [api getPlayerState:arg_playerId completion:^(PlayerTracksSnapshot *_Nullable output, FlutterError *_Nullable error) {
+          callback(wrapResult(output, error));
+        }];
       }];
     } else {
       [channel setMessageHandler:nil];

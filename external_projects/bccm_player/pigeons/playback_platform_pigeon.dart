@@ -27,6 +27,7 @@ abstract class PlaybackPlatformPigeon {
   @ObjCSelector("play:")
   void play(String playerId);
 
+  @async
   @ObjCSelector("play:positionMs:")
   void seekTo(String playerId, double positionMs);
 
@@ -35,6 +36,10 @@ abstract class PlaybackPlatformPigeon {
 
   @ObjCSelector("stop:reset:")
   void stop(String playerId, bool reset);
+
+  @async
+  @ObjCSelector("setSelectedTrack:type:trackId:")
+  void setSelectedTrack(String playerId, TrackType type, String trackId);
 
   @ObjCSelector("exitFullscreen:")
   void exitFullscreen(String playerId);
@@ -47,6 +52,10 @@ abstract class PlaybackPlatformPigeon {
 
   @ObjCSelector("setAppConfig:")
   void setAppConfig(AppConfig? config);
+
+  @async
+  @ObjCSelector("getPlayerState:")
+  PlayerTracksSnapshot? getTracks(String? playerId);
 
   @async
   @ObjCSelector("getPlayerState:")
@@ -129,6 +138,21 @@ enum CastConnectionState {
   notConnected,
   connecting,
   connected,
+}
+
+enum TrackType { audio, text }
+
+class PlayerTracksSnapshot {
+  late String playerId;
+  late List<Track?> audioTracks;
+  late List<Track?> textTracks;
+}
+
+class Track {
+  late String id;
+  late String? label;
+  late String? language;
+  late bool isSelected;
 }
 
 ////////////////// Playback Listener

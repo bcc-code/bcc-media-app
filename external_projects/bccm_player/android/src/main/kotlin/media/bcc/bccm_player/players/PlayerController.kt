@@ -3,10 +3,12 @@ package media.bcc.bccm_player.players
 import android.net.Uri
 import android.os.Bundle
 import androidx.annotation.CallSuper
+import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
-import androidx.media3.common.Player.STATE_READY
+import androidx.media3.common.TrackSelectionOverride
+import androidx.media3.common.Tracks
 import media.bcc.bccm_player.BccmPlayerPlugin
 import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.BCCM_EXTRAS
@@ -156,6 +158,94 @@ abstract class PlayerController : Player.Listener {
             .setPlaybackState(getPlaybackState())
             .setIsFullscreen(currentPlayerViewController?.isFullscreen == true)
             .build()
+    }
+
+    fun getTracksSnapshot(): PlaybackPlatformApi.PlayerTracksSnapshot {
+        // get tracks from player
+        val currentTracks = player.currentTracks;
+        val currentAudioTrack =
+            currentTracks.groups.firstOrNull { it.isSelected && it.type == C.TRACK_TYPE_AUDIO }
+                ?.getTrackFormat(0)
+        val currentTextTrack =
+            currentTracks.groups.firstOrNull { it.isSelected && it.type == C.TRACK_TYPE_TEXT }
+                ?.getTrackFormat(0)
+
+        val audioTracks = mutableListOf<PlaybackPlatformApi.Track>()
+        val textTracks = mutableListOf<PlaybackPlatformApi.Track>()
+        for (trackGroup in currentTracks.groups) {
+            if (trackGroup.type == C.TRACK_TYPE_AUDIO) {
+                val track = trackGroup.getTrackFormat(0)
+                val id = track.id ?: track.language ?: continue;
+                audioTracks.add(
+                    PlaybackPlatformApi.Track.Builder()
+                        .setId(id)
+                        .setLanguage(track.language)
+                        .setLabel(track.label)
+                        .setIsSelected(track == currentAudioTrack)
+                        .build()
+                )
+            } else if (trackGroup.type == C.TRACK_TYPE_TEXT) {
+                val track = trackGroup.getTrackFormat(0)
+                val id = track.id ?: track.language ?: continue;
+                textTracks.add(
+                    PlaybackPlatformApi.Track.Builder()
+                        .setId(id)
+                        .setLanguage(track.language)
+                        .setLabel(track.label)
+                        .setIsSelected(track == currentTextTrack)
+                        .build()
+                )
+            }
+        }
+        return PlaybackPlatformApi.PlayerTracksSnapshot.Builder()
+            .setPlayerId(id)
+            .setAudioTracks(audioTracks)
+            .setTextTracks(textTracks)
+            .build()
+    }
+
+    fun setSelectedTrack(type: @C.TrackType Int, trackId: String, tracksOverride: Tracks? = null) {
+        val tracks = tracksOverride ?: player.currentTracks
+        val trackGroup = tracks.groups.firstOrNull {
+            it.type == type
+                    && it.mediaTrackGroup.length > 0
+                    && it.mediaTrackGroup.getFormat(0).id == trackId
+        }
+        if (trackGroup != null) {
+            player.trackSelectionParameters = player.trackSelectionParameters
+                .buildUpon()
+                .clearOverridesOfType(type)
+                .setOverrideForType(TrackSelectionOverride(trackGroup.mediaTrackGroup, 0))
+                .build()
+        }
+    }
+
+    /**
+     * Sets the language of the subtitles. Returns false if there is the language
+     * is not available for the current media item.
+     */
+    fun setSelectedTrackByLanguage(
+        type: @C.TrackType Int,
+        language: String,
+        tracksOverride: Tracks? = null,
+    ): Boolean {
+        val tracks = tracksOverride ?: player.currentTracks
+        val trackGroup = tracks.groups.firstOrNull {
+            it.type == type
+                    && it.mediaTrackGroup.length > 0
+                    && it.mediaTrackGroup.getFormat(0).language == language
+        }
+
+        return if (trackGroup != null) {
+            player.trackSelectionParameters = player.trackSelectionParameters
+                .buildUpon()
+                .clearOverridesOfType(type)
+                .setOverrideForType(TrackSelectionOverride(trackGroup.mediaTrackGroup, 0))
+                .build()
+            true
+        } else {
+            false
+        }
     }
 
     private fun getCurrentMediaItem(): PlaybackPlatformApi.MediaItem? {
