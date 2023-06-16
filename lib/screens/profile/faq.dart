@@ -2,13 +2,16 @@ import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../components/custom_back_button.dart';
 import '../../components/custom_tab_bar/custom_tab_bar.dart';
 import '../../components/status_indicators/error_generic.dart';
 import '../../components/status_indicators/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
+import '../../helpers/utils.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../graphql/queries/faq.graphql.dart';
 import '../../l10n/app_localizations.dart';
@@ -115,11 +118,16 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
                     color: design.colors.tint2,
                   ),
             expandedAlignment: Alignment.centerLeft,
-            children: <Widget>[
-              Text(
-                widget.questionItem.answer,
-                style: design.textStyles.body2.copyWith(color: design.colors.label3),
-              )
+            children: [
+              MarkdownBody(
+                data: widget.questionItem.answer,
+                onTapLink: (text, href, title) {
+                  if (href != null) {
+                    launchUrlString(href, mode: LaunchMode.externalApplication);
+                  }
+                },
+                styleSheet: getMarkdownStyleSheet(context),
+              ),
             ],
             onExpansionChanged: (state) {
               setState(() => expanded = state);
