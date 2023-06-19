@@ -1,4 +1,24 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v4.5.0+2300070...v) (2023-06-09)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v4.5.2+2300072...v) (2023-06-19)
+
+
+
+## [4.5.2+2300072](https://github.com/bcc-code/bcc-media-app/compare/v4.5.0+2300070...v4.5.2+2300072) (2023-06-19)
+
+
+### Bug Fixes
+
+* **episode-screen:** episode list not loading when next season is autoplayed ([#208](https://github.com/bcc-code/bcc-media-app/issues/208)) ([4e428a2](https://github.com/bcc-code/bcc-media-app/commit/4e428a28b410c985a591c57c5e8504b3e77fad70))
+* **ios:** game issues ([66f5ddd](https://github.com/bcc-code/bcc-media-app/commit/66f5ddd2f3fa16fb2bcbb0d2475542719a2b9fd3))
+* never open defaultEpisode with collection context [#203](https://github.com/bcc-code/bcc-media-app/issues/203) ([6147507](https://github.com/bcc-code/bcc-media-app/commit/61475070576198b8e214c37edf159b8866577273))
+
+
+### Features
+
+* "Contact support" for guest users ([#204](https://github.com/bcc-code/bcc-media-app/issues/204)) ([9b7f977](https://github.com/bcc-code/bcc-media-app/commit/9b7f977be885c68345782c16b753c599dd609dec))
+* **bccm_player:** track selection via flutter ([98f46d9](https://github.com/bcc-code/bcc-media-app/commit/98f46d94907de47f31d882f7eb710965682cbc23))
+* feature flag for flutter controls and fullscreen from anywhere ([79f0f3c](https://github.com/bcc-code/bcc-media-app/commit/79f0f3ce4a95e0ce06853ed69c7e4ff0000ed1db))
+* **kids-donation:** change donation link to paypal donation url ([#205](https://github.com/bcc-code/bcc-media-app/issues/205)) ([6354afd](https://github.com/bcc-code/bcc-media-app/commit/6354afd300da2f3d22a19c7d748974447b43cf7e))
+* **player:** ios track selection via flutter ([4a88e55](https://github.com/bcc-code/bcc-media-app/commit/4a88e551a3b0badfa904fe2757f1341b2f14c9fc))
 
 
 
