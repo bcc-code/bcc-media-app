@@ -25,7 +25,7 @@ changelog:
 
 # Release
 release:
-	git tag ${TAG_PREFIX}v${BUILD_NUMBER}
+	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
 
 release-kids:
@@ -35,11 +35,11 @@ release-kids:
 # Rerelease (recreate the release tag with a different commit)
 # This can happen often, e.g. because you forgot to sync translations or a ci script needed to be fixed
 rerelease:
-	read -p "delete tag ${TAG_PREFIX}v${BUILD_NUMBER} (local and origin), and recreate it with current commit? (CTRL+C to abort)"
-	git push --delete origin ${TAG_PREFIX}v${BUILD_NUMBER}
-	git tag --delete ${TAG_PREFIX}v${BUILD_NUMBER}
-	git tag ${TAG_PREFIX}v${BUILD_NUMBER}
+	read -p "delete tag v${BUILD_NUMBER}${TAG_SUFFIX} (local and origin), and recreate it with current commit? (CTRL+C to abort)"
+	git push --delete origin v${BUILD_NUMBER}${TAG_SUFFIX}
+	git tag --delete v${BUILD_NUMBER}${TAG_SUFFIX}
+	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
 
 rerelease-kids:
-	TAG_PREFIX=kids- make rerelease
+	TAG_SUFFIX=-kids make rerelease
