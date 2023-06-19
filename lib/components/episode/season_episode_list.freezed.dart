@@ -56,13 +56,13 @@ class _$SeasonEpisodeListEpisodeDataCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? episode = freezed,
+    Object? episode = null,
     Object? seasonNumber = freezed,
     Object? lessonProgressOverview = freezed,
     Object? highlighted = freezed,
   }) {
     return _then(_value.copyWith(
-      episode: freezed == episode
+      episode: null == episode
           ? _value.episode
           : episode // ignore: cast_nullable_to_non_nullable
               as Fragment$SeasonListEpisode,
@@ -111,13 +111,13 @@ class __$$_SeasonEpisodeListEpisodeDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? episode = freezed,
+    Object? episode = null,
     Object? seasonNumber = freezed,
     Object? lessonProgressOverview = freezed,
     Object? highlighted = freezed,
   }) {
     return _then(_$_SeasonEpisodeListEpisodeData(
-      episode: freezed == episode
+      episode: null == episode
           ? _value.episode
           : episode // ignore: cast_nullable_to_non_nullable
               as Fragment$SeasonListEpisode,
@@ -165,22 +165,18 @@ class _$_SeasonEpisodeListEpisodeData implements _SeasonEpisodeListEpisodeData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SeasonEpisodeListEpisodeData &&
-            const DeepCollectionEquality().equals(other.episode, episode) &&
+            (identical(other.episode, episode) || other.episode == episode) &&
             (identical(other.seasonNumber, seasonNumber) ||
                 other.seasonNumber == seasonNumber) &&
-            const DeepCollectionEquality()
-                .equals(other.lessonProgressOverview, lessonProgressOverview) &&
+            (identical(other.lessonProgressOverview, lessonProgressOverview) ||
+                other.lessonProgressOverview == lessonProgressOverview) &&
             (identical(other.highlighted, highlighted) ||
                 other.highlighted == highlighted));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(episode),
-      seasonNumber,
-      const DeepCollectionEquality().hash(lessonProgressOverview),
-      highlighted);
+      runtimeType, episode, seasonNumber, lessonProgressOverview, highlighted);
 
   @JsonKey(ignore: true)
   @override

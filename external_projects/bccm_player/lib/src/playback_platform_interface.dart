@@ -1,4 +1,5 @@
 import 'package:bccm_player/src/native/chromecast_events.dart';
+import 'package:flutter/material.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'pigeon/playback_platform_pigeon.g.dart';
@@ -49,6 +50,11 @@ abstract class BccmPlayerInterface extends PlatformInterface {
   }
 
   /// If `playerId` is null, this returns the primary player's state.
+  Future<PlayerTracksSnapshot?> getPlayerTracks({String? playerId}) async {
+    throw UnimplementedError('getPlayerTracks() has not been implemented.');
+  }
+
+  /// If `playerId` is null, this returns the primary player's state.
   Future<PlayerStateSnapshot?> getPlayerState({String? playerId}) async {
     throw UnimplementedError('getPlayerState() has not been implemented.');
   }
@@ -73,6 +79,10 @@ abstract class BccmPlayerInterface extends PlatformInterface {
     throw UnimplementedError('play() has not been implemented.');
   }
 
+  Future<void> seekTo(String playerId, double positionMs) {
+    throw UnimplementedError('play() has not been implemented.');
+  }
+
   void pause(String playerId) {
     throw UnimplementedError('pause() has not been implemented.');
   }
@@ -81,12 +91,16 @@ abstract class BccmPlayerInterface extends PlatformInterface {
     throw UnimplementedError('stop() has not been implemented.');
   }
 
-  void exitFullscreen(String playerId) {
-    throw UnimplementedError('stop() has not been implemented.');
+  Future<void> setSelectedTrack(String playerId, TrackType type, String trackId) {
+    throw UnimplementedError('setSelectedTrack() has not been implemented.');
   }
 
-  void enterFullscreen(String playerId) {
-    throw UnimplementedError('stop() has not been implemented.');
+  void exitFullscreen(String playerId) {
+    throw UnimplementedError('exitFullscreen() has not been implemented.');
+  }
+
+  Future enterFullscreen(String playerId, {bool? useNativeControls = true, BuildContext? context, void Function()? resetSystemOverlays}) {
+    throw UnimplementedError('enterFullscreen() has not been implemented.');
   }
 
   Future? setNpawConfig(NpawConfig? config) {

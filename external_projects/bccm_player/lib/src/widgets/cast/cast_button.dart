@@ -3,8 +3,8 @@ import 'package:universal_io/io.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class BccmCastButton extends StatelessWidget {
-  const BccmCastButton({super.key, this.color});
+class CastButton extends StatelessWidget {
+  const CastButton({super.key, this.color});
 
   final methodChannel = const MethodChannel('bccm_player/cast_button');
   final Color? color;

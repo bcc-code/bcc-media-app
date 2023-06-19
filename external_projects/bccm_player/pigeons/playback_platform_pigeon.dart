@@ -1,10 +1,5 @@
 import 'package:pigeon/pigeon.dart';
 
-class Book {
-  String? title;
-  String? author;
-}
-
 @HostApi()
 abstract class PlaybackPlatformPigeon {
   @async
@@ -32,11 +27,19 @@ abstract class PlaybackPlatformPigeon {
   @ObjCSelector("play:")
   void play(String playerId);
 
+  @async
+  @ObjCSelector("seek:positionMs:")
+  void seekTo(String playerId, double positionMs);
+
   @ObjCSelector("pause:")
   void pause(String playerId);
 
   @ObjCSelector("stop:reset:")
   void stop(String playerId, bool reset);
+
+  @async
+  @ObjCSelector("setSelectedTrack:type:trackId:")
+  void setSelectedTrack(String playerId, TrackType type, String trackId);
 
   @ObjCSelector("exitFullscreen:")
   void exitFullscreen(String playerId);
@@ -49,6 +52,10 @@ abstract class PlaybackPlatformPigeon {
 
   @ObjCSelector("setAppConfig:")
   void setAppConfig(AppConfig? config);
+
+  @async
+  @ObjCSelector("getTracks:")
+  PlayerTracksSnapshot? getTracks(String? playerId);
 
   @async
   @ObjCSelector("getPlayerState:")
@@ -104,6 +111,7 @@ class MediaMetadata {
   String? artworkUri;
   String? title;
   String? artist;
+  double? durationMs;
   Map<String?, Object?>? extras;
 }
 
@@ -130,6 +138,21 @@ enum CastConnectionState {
   notConnected,
   connecting,
   connected,
+}
+
+enum TrackType { audio, text }
+
+class PlayerTracksSnapshot {
+  late String playerId;
+  late List<Track?> audioTracks;
+  late List<Track?> textTracks;
+}
+
+class Track {
+  late String id;
+  late String? label;
+  late String? language;
+  late bool isSelected;
 }
 
 ////////////////// Playback Listener

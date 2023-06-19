@@ -23,6 +23,7 @@ class MediaItemMapper {
                 withArtworkUri: artworkUri,
                 title: playerItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierTitle })?.stringValue,
                 artist: playerItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtist })?.stringValue,
+                durationMs: !playerItem.duration.seconds.isFinite ? nil : NSNumber(floatLiteral: playerItem.duration.seconds * 1000),
                 extras: extras
             )
 

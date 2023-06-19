@@ -19,7 +19,8 @@ mixin _$PlayerState {
   String get playerId => throw _privateConstructorUsedError;
   MediaItem? get currentMediaItem => throw _privateConstructorUsedError;
   int? get playbackPositionMs => throw _privateConstructorUsedError;
-  bool get isFullscreen => throw _privateConstructorUsedError;
+  bool get isNativeFullscreen => throw _privateConstructorUsedError;
+  bool get isFlutterFullscreen => throw _privateConstructorUsedError;
   PlaybackState get playbackState => throw _privateConstructorUsedError;
   bool get isInPipMode => throw _privateConstructorUsedError;
 
@@ -38,7 +39,8 @@ abstract class $PlayerStateCopyWith<$Res> {
       {String playerId,
       MediaItem? currentMediaItem,
       int? playbackPositionMs,
-      bool isFullscreen,
+      bool isNativeFullscreen,
+      bool isFlutterFullscreen,
       PlaybackState playbackState,
       bool isInPipMode});
 }
@@ -59,7 +61,8 @@ class _$PlayerStateCopyWithImpl<$Res, $Val extends PlayerState>
     Object? playerId = null,
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
-    Object? isFullscreen = null,
+    Object? isNativeFullscreen = null,
+    Object? isFlutterFullscreen = null,
     Object? playbackState = null,
     Object? isInPipMode = null,
   }) {
@@ -76,9 +79,13 @@ class _$PlayerStateCopyWithImpl<$Res, $Val extends PlayerState>
           ? _value.playbackPositionMs
           : playbackPositionMs // ignore: cast_nullable_to_non_nullable
               as int?,
-      isFullscreen: null == isFullscreen
-          ? _value.isFullscreen
-          : isFullscreen // ignore: cast_nullable_to_non_nullable
+      isNativeFullscreen: null == isNativeFullscreen
+          ? _value.isNativeFullscreen
+          : isNativeFullscreen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFlutterFullscreen: null == isFlutterFullscreen
+          ? _value.isFlutterFullscreen
+          : isFlutterFullscreen // ignore: cast_nullable_to_non_nullable
               as bool,
       playbackState: null == playbackState
           ? _value.playbackState
@@ -104,7 +111,8 @@ abstract class _$$_PlayerStateCopyWith<$Res>
       {String playerId,
       MediaItem? currentMediaItem,
       int? playbackPositionMs,
-      bool isFullscreen,
+      bool isNativeFullscreen,
+      bool isFlutterFullscreen,
       PlaybackState playbackState,
       bool isInPipMode});
 }
@@ -123,7 +131,8 @@ class __$$_PlayerStateCopyWithImpl<$Res>
     Object? playerId = null,
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
-    Object? isFullscreen = null,
+    Object? isNativeFullscreen = null,
+    Object? isFlutterFullscreen = null,
     Object? playbackState = null,
     Object? isInPipMode = null,
   }) {
@@ -140,9 +149,13 @@ class __$$_PlayerStateCopyWithImpl<$Res>
           ? _value.playbackPositionMs
           : playbackPositionMs // ignore: cast_nullable_to_non_nullable
               as int?,
-      isFullscreen: null == isFullscreen
-          ? _value.isFullscreen
-          : isFullscreen // ignore: cast_nullable_to_non_nullable
+      isNativeFullscreen: null == isNativeFullscreen
+          ? _value.isNativeFullscreen
+          : isNativeFullscreen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFlutterFullscreen: null == isFlutterFullscreen
+          ? _value.isFlutterFullscreen
+          : isFlutterFullscreen // ignore: cast_nullable_to_non_nullable
               as bool,
       playbackState: null == playbackState
           ? _value.playbackState
@@ -158,14 +171,16 @@ class __$$_PlayerStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PlayerState implements _PlayerState {
+class _$_PlayerState extends _PlayerState with DiagnosticableTreeMixin {
   const _$_PlayerState(
       {required this.playerId,
       this.currentMediaItem,
       this.playbackPositionMs,
-      this.isFullscreen = false,
+      this.isNativeFullscreen = false,
+      this.isFlutterFullscreen = false,
       this.playbackState = PlaybackState.stopped,
-      this.isInPipMode = false});
+      this.isInPipMode = false})
+      : super._();
 
   @override
   final String playerId;
@@ -175,7 +190,10 @@ class _$_PlayerState implements _PlayerState {
   final int? playbackPositionMs;
   @override
   @JsonKey()
-  final bool isFullscreen;
+  final bool isNativeFullscreen;
+  @override
+  @JsonKey()
+  final bool isFlutterFullscreen;
   @override
   @JsonKey()
   final PlaybackState playbackState;
@@ -184,8 +202,22 @@ class _$_PlayerState implements _PlayerState {
   final bool isInPipMode;
 
   @override
-  String toString() {
-    return 'PlayerState(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs, isFullscreen: $isFullscreen, playbackState: $playbackState, isInPipMode: $isInPipMode)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'PlayerState(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs, isNativeFullscreen: $isNativeFullscreen, isFlutterFullscreen: $isFlutterFullscreen, playbackState: $playbackState, isInPipMode: $isInPipMode)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PlayerState'))
+      ..add(DiagnosticsProperty('playerId', playerId))
+      ..add(DiagnosticsProperty('currentMediaItem', currentMediaItem))
+      ..add(DiagnosticsProperty('playbackPositionMs', playbackPositionMs))
+      ..add(DiagnosticsProperty('isNativeFullscreen', isNativeFullscreen))
+      ..add(DiagnosticsProperty('isFlutterFullscreen', isFlutterFullscreen))
+      ..add(DiagnosticsProperty('playbackState', playbackState))
+      ..add(DiagnosticsProperty('isInPipMode', isInPipMode));
   }
 
   @override
@@ -199,8 +231,10 @@ class _$_PlayerState implements _PlayerState {
                 other.currentMediaItem == currentMediaItem) &&
             (identical(other.playbackPositionMs, playbackPositionMs) ||
                 other.playbackPositionMs == playbackPositionMs) &&
-            (identical(other.isFullscreen, isFullscreen) ||
-                other.isFullscreen == isFullscreen) &&
+            (identical(other.isNativeFullscreen, isNativeFullscreen) ||
+                other.isNativeFullscreen == isNativeFullscreen) &&
+            (identical(other.isFlutterFullscreen, isFlutterFullscreen) ||
+                other.isFlutterFullscreen == isFlutterFullscreen) &&
             (identical(other.playbackState, playbackState) ||
                 other.playbackState == playbackState) &&
             (identical(other.isInPipMode, isInPipMode) ||
@@ -208,8 +242,15 @@ class _$_PlayerState implements _PlayerState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, playerId, currentMediaItem,
-      playbackPositionMs, isFullscreen, playbackState, isInPipMode);
+  int get hashCode => Object.hash(
+      runtimeType,
+      playerId,
+      currentMediaItem,
+      playbackPositionMs,
+      isNativeFullscreen,
+      isFlutterFullscreen,
+      playbackState,
+      isInPipMode);
 
   @JsonKey(ignore: true)
   @override
@@ -218,14 +259,16 @@ class _$_PlayerState implements _PlayerState {
       __$$_PlayerStateCopyWithImpl<_$_PlayerState>(this, _$identity);
 }
 
-abstract class _PlayerState implements PlayerState {
+abstract class _PlayerState extends PlayerState {
   const factory _PlayerState(
       {required final String playerId,
       final MediaItem? currentMediaItem,
       final int? playbackPositionMs,
-      final bool isFullscreen,
+      final bool isNativeFullscreen,
+      final bool isFlutterFullscreen,
       final PlaybackState playbackState,
       final bool isInPipMode}) = _$_PlayerState;
+  const _PlayerState._() : super._();
 
   @override
   String get playerId;
@@ -234,7 +277,9 @@ abstract class _PlayerState implements PlayerState {
   @override
   int? get playbackPositionMs;
   @override
-  bool get isFullscreen;
+  bool get isNativeFullscreen;
+  @override
+  bool get isFlutterFullscreen;
   @override
   PlaybackState get playbackState;
   @override

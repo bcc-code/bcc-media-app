@@ -18,6 +18,7 @@ import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
@@ -141,7 +142,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
             actions: [
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16.0),
-                child: SizedBox(width: 24, child: BccmCastButton(color: DesignSystem.of(context).colors.tint1)),
+                child: SizedBox(width: 24, child: CastButton(color: DesignSystem.of(context).colors.tint1)),
               ),
             ],
           ),
@@ -272,7 +273,14 @@ class _EpisodeDisplay extends HookConsumerWidget {
     ref.listen<bool>(primaryPlayerProvider.select((p) => p?.playbackState == PlaybackState.playing), (prev, next) {
       if (!ref.read(featureFlagsProvider).autoFullscreenOnPlay) return;
       if (next == true && ref.read(primaryPlayerProvider)?.isFullscreen == false) {
-        ref.read(playbackServiceProvider).platformApi.enterFullscreen(player.playerId);
+        ref.read(playbackServiceProvider).platformApi.enterFullscreen(
+          player.playerId,
+          context: context,
+          useNativeControls: !ref.read(featureFlagsProvider).flutterPlayerControls,
+          resetSystemOverlays: () {
+            SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+          },
+        );
       }
     });
 
@@ -366,7 +374,13 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || player.isFullscreen,
                   )
                 else
-                  BccmPlayer(id: player.playerId),
+                  VideoPlayerView(
+                    id: player.playerId,
+                    useNativeControls: !ref.watch(featureFlagsProvider.select((value) => value.flutterPlayerControls)),
+                    resetSystemOverlays: () {
+                      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+                    },
+                  ),
                 EpisodeInfo(
                   episode,
                   onShareVideoTapped: () => shareVideo(context, ref, episode),

@@ -71,6 +71,7 @@ class PlaybackService {
         title: episode.title,
         artist: episode.season?.$show.title,
         artworkUri: episode.image,
+        durationMs: (episode.duration * 1000).toDouble(),
         extras: {
           'id': episode.id.toString(),
           if (collectionId != null) 'context.collectionId': collectionId,

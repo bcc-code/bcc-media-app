@@ -36,7 +36,7 @@ class MyApp extends HookConsumerWidget {
           child: Column(
             children: [
               Text(player?.playerId ?? 'Player id not set'),
-              if (player?.playerId != null) BccmPlayer(id: player!.playerId),
+              if (player?.playerId != null) VideoPlayerView(id: player!.playerId),
             ],
           ),
         ),

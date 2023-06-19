@@ -13,10 +13,13 @@ public protocol PlayerController {
     func setNpawConfig(npawConfig: NpawConfig?)
     func updateAppConfig(appConfig: AppConfig?)
     func getCurrentItem() -> MediaItem?
+    func getPlayerTracksSnapshot() -> PlayerTracksSnapshot
+    func setSelectedTrack(type: TrackType, trackId: String)
     func getPlayerStateSnapshot() -> PlayerStateSnapshot
-    func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?, completion: @escaping (FlutterError?) -> ())
+    func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?, completion: @escaping (FlutterError?) -> Void)
     func queueItem(_ mediaItem: MediaItem)
     func play()
+    func seekTo(_ positionMs: NSNumber, _ completion: @escaping (Bool) -> Void)
     func pause()
     func stop(reset: Bool)
     func exitFullscreen()

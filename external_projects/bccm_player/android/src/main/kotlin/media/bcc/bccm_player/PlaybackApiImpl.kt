@@ -10,6 +10,8 @@ import kotlinx.coroutines.launch
 import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
 import media.bcc.bccm_player.players.chromecast.CastExpandedControlsActivity
 import media.bcc.bccm_player.players.chromecast.CastPlayerController
+import media.bcc.bccm_player.utils.toMedia3Type
+import kotlin.math.roundToLong
 
 
 class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
@@ -36,6 +38,24 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
         }
     }
 
+    override fun getTracks(
+        playerId: String?,
+        result: PlaybackPlatformApi.Result<PlaybackPlatformApi.PlayerTracksSnapshot>
+    ) {
+        val playbackService = plugin.getPlaybackService()
+        if (playbackService == null) {
+            result.error(Error())
+            return
+        }
+        val playerController =
+            if (playerId != null) playbackService.getController(playerId) else playbackService.getPrimaryController()
+        if (playerController == null) {
+            result.error(Error("Player with id $playerId does not exist."))
+            return
+        }
+        result.success(playerController.getTracksSnapshot())
+    }
+
     override fun getPlayerState(
         playerId: String?,
         result: PlaybackPlatformApi.Result<PlaybackPlatformApi.PlayerStateSnapshot>
@@ -52,6 +72,26 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
             return
         }
         result.success(playerController.getPlayerStateSnapshot())
+    }
+
+    override fun setSelectedTrack(
+        playerId: String,
+        type: PlaybackPlatformApi.TrackType,
+        trackId: String,
+        result: PlaybackPlatformApi.Result<Void>
+    ) {
+        val playbackService = plugin.getPlaybackService()
+        if (playbackService == null) {
+            result.error(Error())
+            return
+        }
+        val playerController = playbackService.getController(playerId)
+        if (playerController == null) {
+            result.error(Error("Player with id $playerId does not exist."))
+            return
+        }
+        playerController.setSelectedTrack(type.toMedia3Type(), trackId)
+        result.success(null)
     }
 
     override fun newPlayer(url: String?, result: PlaybackPlatformApi.Result<String>) {
@@ -136,6 +176,22 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
             ?: throw Error("Player with id $playerId does not exist.")
 
         playerController.play()
+    }
+
+    override fun seekTo(
+        playerId: String,
+        positionMs: Double,
+        result: PlaybackPlatformApi.Result<Void>
+    ) {
+        val playbackService = plugin.getPlaybackService() ?: return
+        val playerController = playbackService.getController(playerId)
+            ?: throw Error("Player with id $playerId does not exist.")
+        try {
+            playerController.player.seekTo(positionMs.toLong());
+            result.success(null);
+        } catch (e: Exception) {
+            result.error(e)
+        } 
     }
 
     override fun pause(playerId: String) {

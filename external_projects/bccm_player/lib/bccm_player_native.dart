@@ -3,6 +3,10 @@ import 'package:bccm_player/src/native/root_pigeon_playback_listener.dart';
 import 'package:bccm_player/src/native/chromecast_pigeon_listener.dart';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/state/state_playback_listener.dart';
+import 'package:bccm_player/src/widgets/video/video_player_view_fullscreen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:wakelock/wakelock.dart';
 
 import 'bccm_player.dart';
 
@@ -62,6 +66,11 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
+  Future<PlayerTracksSnapshot?> getPlayerTracks({String? playerId}) {
+    return _pigeon.getTracks(playerId);
+  }
+
+  @override
   Future<PlayerStateSnapshot?> getPlayerState({String? playerId}) {
     return _pigeon.getPlayerState(playerId);
   }
@@ -87,6 +96,11 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
+  Future<void> seekTo(String playerId, double positionMs) {
+    return _pigeon.seekTo(playerId, positionMs);
+  }
+
+  @override
   void pause(String playerId) {
     _pigeon.pause(playerId);
   }
@@ -97,13 +111,37 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
+  Future<void> setSelectedTrack(String playerId, TrackType type, String trackId) {
+    return _pigeon.setSelectedTrack(playerId, type, trackId);
+  }
+
+  @override
   void exitFullscreen(String playerId) {
     _pigeon.exitFullscreen(playerId);
   }
 
   @override
-  void enterFullscreen(String playerId) {
-    _pigeon.enterFullscreen(playerId);
+  Future enterFullscreen(String playerId, {bool? useNativeControls = true, BuildContext? context, void Function()? resetSystemOverlays}) async {
+    if (useNativeControls == true) {
+      _pigeon.enterFullscreen(playerId);
+    } else if (context == null) {
+      throw ErrorDescription('enterFullscreen: context cant be null if useNativeControls is false.');
+    } else {
+      Wakelock.enable();
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+      SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+      debugPrint('bccm: setPreferredOrientations landscape');
+
+      stateNotifier.getPlayerNotifier(playerId)?.setIsFlutterFullscreen(true);
+      await Navigator.of(context, rootNavigator: true).push(
+        PageRouteBuilder(
+          pageBuilder: (context, aAnim, bAnim) => VideoPlayerViewFullscreen(playerId: playerId),
+          transitionsBuilder: (context, aAnim, bAnim, child) => FadeTransition(opacity: aAnim, child: child),
+        ),
+      );
+      stateNotifier.getPlayerNotifier(playerId)?.setIsFlutterFullscreen(false);
+      Wakelock.disable();
+    }
   }
 
   @override

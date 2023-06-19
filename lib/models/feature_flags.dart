@@ -14,5 +14,6 @@ class FeatureFlags with _$FeatureFlags {
     @Default(false) bool autoFullscreenOnPlay,
     @Default(true) bool shareVideoButton,
     @Default(false) bool gamesTab,
+    @Default(false) bool flutterPlayerControls,
   }) = _FeatureFlags;
 }

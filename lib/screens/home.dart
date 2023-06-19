@@ -187,7 +187,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                       padding: const EdgeInsets.only(right: 16.0),
                       child: ConstrainedBox(
                         constraints: BoxConstraints.loose(const Size(24, 24)),
-                        child: BccmCastButton(color: DesignSystem.of(context).colors.tint1),
+                        child: CastButton(color: DesignSystem.of(context).colors.tint1),
                       ),
                     ),
                   ],

@@ -296,26 +296,20 @@ Enum$Status fromJson$Enum$Status(String value) {
 
 const possibleTypesMap = <String, Set<String>>{
   'Pagination': {
-    'AchievementPagination',
-    'AchievementGroupPagination',
+    'LinkPagination',
     'CollectionItemPagination',
-    'EpisodePagination',
     'QuestionPagination',
     'FAQCategoryPagination',
-    'LinkPagination',
-    'SeasonPagination',
-    'SectionPagination',
-    'SectionItemPagination',
-    'LessonPagination',
-    'TaskPagination',
     'SurveyQuestionPagination',
     'UserCollectionEntryPagination',
-  },
-  'CalendarEntry': {
-    'SimpleCalendarEntry',
-    'EpisodeCalendarEntry',
-    'SeasonCalendarEntry',
-    'ShowCalendarEntry',
+    'SectionPagination',
+    'SectionItemPagination',
+    'SeasonPagination',
+    'LessonPagination',
+    'TaskPagination',
+    'AchievementPagination',
+    'AchievementGroupPagination',
+    'EpisodePagination',
   },
   'CollectionItem': {
     'ShowItem',
@@ -323,15 +317,24 @@ const possibleTypesMap = <String, Set<String>>{
     'EpisodeItem',
     'PageItem',
   },
-  'EpisodeContextUnion': {
-    'Season',
-    'ContextCollection',
+  'CalendarEntry': {
+    'SimpleCalendarEntry',
+    'EpisodeCalendarEntry',
+    'SeasonCalendarEntry',
+    'ShowCalendarEntry',
   },
-  'Prompt': {'SurveyPrompt'},
   'SearchResultItem': {
     'EpisodeSearchItem',
     'SeasonSearchItem',
     'ShowSearchItem',
+  },
+  'SurveyQuestion': {
+    'SurveyTextQuestion',
+    'SurveyRatingQuestion',
+  },
+  'UserCollectionEntryItem': {
+    'Show',
+    'Episode',
   },
   'Section': {
     'PosterSection',
@@ -377,6 +380,7 @@ const possibleTypesMap = <String, Set<String>>{
     'StudyTopic',
     'Game',
   },
+  'Prompt': {'SurveyPrompt'},
   'Task': {
     'AlternativesTask',
     'TextTask',
@@ -385,12 +389,8 @@ const possibleTypesMap = <String, Set<String>>{
     'VideoTask',
     'LinkTask',
   },
-  'SurveyQuestion': {
-    'SurveyTextQuestion',
-    'SurveyRatingQuestion',
-  },
-  'UserCollectionEntryItem': {
-    'Show',
-    'Episode',
+  'EpisodeContextUnion': {
+    'Season',
+    'ContextCollection',
   },
 };

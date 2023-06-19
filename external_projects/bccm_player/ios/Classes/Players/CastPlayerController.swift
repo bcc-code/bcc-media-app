@@ -38,6 +38,70 @@ class CastPlayerController: NSObject, PlayerController {
         )
     }
     
+    public func getPlayerTracksSnapshot() -> PlayerTracksSnapshot {
+        let mediaStatus = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.mediaStatus
+        guard let tracks = mediaStatus?.mediaInformation?.mediaTracks, let mediaStatus = mediaStatus else {
+            return PlayerTracksSnapshot.make(
+                withPlayerId: id,
+                audioTracks: [],
+                textTracks: []
+            )
+        }
+        var audioTracks = [Track]()
+        var textTracks = [Track]()
+         
+        for track in tracks {
+            let isSelected = mediaStatus.activeTrackIDs?.contains(where: { $0.intValue == track.identifier }) ?? false
+            let convertedTrack = Track.make(withId: "\(track.identifier)",
+                                            label: track.name,
+                                            language: track.languageCode,
+                                            isSelected: NSNumber(booleanLiteral: isSelected))
+             
+            switch track.type {
+            case .audio:
+                audioTracks.append(convertedTrack)
+            case .text:
+                textTracks.append(convertedTrack)
+            default:
+                continue
+            }
+        }
+
+        return PlayerTracksSnapshot.make(withPlayerId: id, audioTracks: audioTracks, textTracks: textTracks)
+    }
+    
+    func setSelectedTrack(type: TrackType, trackId: String) {
+        guard let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentSession?.remoteMediaClient,
+              let tracks = remoteMediaClient.mediaStatus?.mediaInformation?.mediaTracks
+        else {
+            print("No active media session or no tracks")
+            return
+        }
+
+        guard let trackIdInt = Int(trackId) else {
+            print("Invalid trackId for chromecast, needs to be int but was: \(trackId)")
+            return
+        }
+        guard let castTrackType = type.asCastType() else {
+            print("Unknown trackType for chromecast: \(type.rawValue.description)")
+            return
+        }
+        var activeTrackIds = remoteMediaClient.mediaStatus?.activeTrackIDs ?? []
+
+        // filter out all of type
+        activeTrackIds = activeTrackIds.filter { activeTrackId in
+            if let track = tracks.first(where: { NSNumber(value: $0.identifier) == activeTrackId }) {
+                // keep if its an irrelevant type
+                return track.type != castTrackType
+            }
+            // keep by default if the track isnt found (unsure if this makes sense)
+            return true
+        }
+        activeTrackIds.append(NSNumber(value: trackIdInt))
+
+        remoteMediaClient.setActiveTrackIDs(activeTrackIds)
+    }
+    
     func getCurrentItem() -> MediaItem? {
         if let currentItem = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.mediaStatus?.currentQueueItem {
             return mapMediaQueueItem(currentItem)
@@ -88,6 +152,27 @@ class CastPlayerController: NSObject, PlayerController {
     
     func play() {
         GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.play()
+    }
+    
+    var activeSeekRequest: GCKRequest? = nil
+    var activeSeekRequestDelegate: GCKRequestDelegate? = nil
+    func seekTo(_ positionMs: NSNumber, _ completion: @escaping (Bool) -> Void) {
+        let options = GCKMediaSeekOptions()
+        options.interval = max(positionMs.doubleValue, 0)
+        guard let request = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.seek(with: options) else {
+            completion(false)
+            return
+        }
+        if let activeSeekRequest = activeSeekRequest {
+            activeSeekRequestDelegate?.request?(activeSeekRequest, didAbortWith: .replaced)
+        }
+        activeSeekRequest = request
+        activeSeekRequestDelegate = SimpleGCKRequestDelegate(
+            didComplete: { completion(true) },
+            didFailWithError: { _ in completion(false) },
+            didAbort: { _ in completion(false) }
+        )
+        request.delegate = activeSeekRequestDelegate
     }
     
     func pause() {
@@ -378,5 +463,17 @@ extension CastPlayerController: GCKSessionManagerListener {
         session.remoteMediaClient?.remove(self)
         playbackApi.chromecastPigeon.onSessionEnded { _ in }
         playbackApi.chromecastPigeon.onCastSessionUnavailable(CastSessionUnavailableEvent.make(withPlaybackPositionMs: positionMs)) { _ in }
+    }
+}
+
+extension TrackType {
+    func asCastType() -> GCKMediaTrackType? {
+        if self == .audio {
+            return .audio
+        } else if self == .text {
+            return .text
+        } else {
+            return nil
+        }
     }
 }

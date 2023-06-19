@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/utils/extensions.dart';
+import 'package:flutter/foundation.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -38,6 +39,11 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
     state = state.copyWith(playbackState: playbackState);
   }
 
+  void setIsFlutterFullscreen(bool value) {
+    debugPrint("setIsFlutterFullscreen: $value");
+    state = state.copyWith(isFlutterFullscreen: value);
+  }
+
   void setPlaybackPosition(int? ms) {
     state = state.copyWith(playbackPositionMs: ms);
   }
@@ -53,14 +59,18 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
 
 @freezed
 class PlayerState with _$PlayerState {
+  const PlayerState._();
   const factory PlayerState({
     required String playerId,
     MediaItem? currentMediaItem,
     int? playbackPositionMs,
-    @Default(false) bool isFullscreen,
+    @Default(false) bool isNativeFullscreen,
+    @Default(false) bool isFlutterFullscreen,
     @Default(PlaybackState.stopped) PlaybackState playbackState,
     @Default(false) bool isInPipMode,
   }) = _PlayerState;
+
+  bool get isFullscreen => isNativeFullscreen || isFlutterFullscreen;
 
   factory PlayerState.fromPlayerStateSnapshot(PlayerStateSnapshot state) {
     return PlayerState(
@@ -68,7 +78,7 @@ class PlayerState with _$PlayerState {
       currentMediaItem: state.currentMediaItem,
       playbackPositionMs: state.playbackPositionMs?.finiteOrNull()?.round(),
       playbackState: state.playbackState,
-      isFullscreen: state.isFullscreen,
+      isNativeFullscreen: state.isFullscreen,
     );
   }
 }
@@ -77,6 +87,7 @@ extension on PlayerState {
   PlayerState copyWithSnapshot(PlayerStateSnapshot snapshot) {
     return PlayerState.fromPlayerStateSnapshot(snapshot).copyWith(
       isInPipMode: isInPipMode, // not part of snapshot
+      isFlutterFullscreen: isFlutterFullscreen, // not part of snapshot
     );
   }
 }
