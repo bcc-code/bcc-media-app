@@ -799,12 +799,12 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         binaryMessenger:binaryMessenger
         codec:PlaybackPlatformPigeonGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(play:positionMs:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(play:positionMs:completion:)", api);
+      NSCAssert([api respondsToSelector:@selector(seek:positionMs:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(seek:positionMs:completion:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
         NSNumber *arg_positionMs = GetNullableObjectAtIndex(args, 1);
-        [api play:arg_playerId positionMs:arg_positionMs completion:^(FlutterError *_Nullable error) {
+        [api seek:arg_playerId positionMs:arg_positionMs completion:^(FlutterError *_Nullable error) {
           callback(wrapResult(nil, error));
         }];
       }];
@@ -955,11 +955,11 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         binaryMessenger:binaryMessenger
         codec:PlaybackPlatformPigeonGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(getPlayerState:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(getPlayerState:completion:)", api);
+      NSCAssert([api respondsToSelector:@selector(getTracks:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(getTracks:completion:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
-        [api getPlayerState:arg_playerId completion:^(PlayerTracksSnapshot *_Nullable output, FlutterError *_Nullable error) {
+        [api getTracks:arg_playerId completion:^(PlayerTracksSnapshot *_Nullable output, FlutterError *_Nullable error) {
           callback(wrapResult(output, error));
         }];
       }];

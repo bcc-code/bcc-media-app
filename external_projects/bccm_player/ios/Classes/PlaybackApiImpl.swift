@@ -112,10 +112,22 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         player?.replaceCurrentMediaItem(mediaItem, autoplay: autoplay, completion: completion)
     }
 
+    public func getTracks(_ playerId: String?, completion: @escaping (PlayerTracksSnapshot?, FlutterError?) -> Void) {
+        let player = playerId == nil ? getPrimaryPlayer() : getPlayer(playerId!)
+        let snapshot = player?.getPlayerTracksSnapshot()
+        completion(snapshot, nil)
+    }
+
     public func getPlayerState(_ playerId: String?, completion: @escaping (PlayerStateSnapshot?, FlutterError?) -> Void) {
         let player = playerId == nil ? getPrimaryPlayer() : getPlayer(playerId!)
         let snapshot = player?.getPlayerStateSnapshot()
         completion(snapshot, nil)
+    }
+
+    public func setSelectedTrack(_ playerId: String, type: TrackType, trackId: String, completion: @escaping (FlutterError?) -> Void) {
+        let player = getPlayer(playerId)
+        player?.setSelectedTrack(type: type, trackId: trackId)
+        completion(nil)
     }
 
     public func play(_ playerId: String, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
@@ -123,7 +135,7 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         player?.play()
     }
 
-    public func play(_ playerId: String, positionMs: NSNumber, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
+    public func seek(_ playerId: String, positionMs: NSNumber, completion: @escaping (FlutterError?) -> Void) {
         let player = getPlayer(playerId)
         player?.seekTo(positionMs)
     }

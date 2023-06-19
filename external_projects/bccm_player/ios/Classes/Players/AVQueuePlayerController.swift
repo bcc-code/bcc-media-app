@@ -52,6 +52,68 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         )
     }
     
+    public func getPlayerTracksSnapshot() -> PlayerTracksSnapshot {
+        guard let currentItem = player.currentItem else {
+            return PlayerTracksSnapshot.make(withPlayerId: id, audioTracks: [], textTracks: [])
+        }
+            
+        // Get the asset
+        let asset = currentItem.asset
+
+        // Get the audio selection group
+        var audioTracks: [Track] = []
+        if let audioGroup = asset.mediaSelectionGroup(forMediaCharacteristic: .audible) {
+            for (index, option) in audioGroup.options.enumerated() {
+                let track = Track.make(withId: "\(index)",
+                                       label: option.displayName,
+                                       language: option.locale?.identifier,
+                                       isSelected: NSNumber(value: currentItem.currentMediaSelection.selectedMediaOption(in: audioGroup) == option))
+                audioTracks.append(track)
+            }
+        }
+
+        // Get the subtitle selection group
+        var textTracks: [Track] = []
+        if let subtitleGroup = asset.mediaSelectionGroup(forMediaCharacteristic: .legible) {
+            for (index, option) in subtitleGroup.options.enumerated() {
+                let track = Track.make(withId: "\(index)",
+                                       label: option.displayName,
+                                       language: option.locale?.identifier,
+                                       isSelected: NSNumber(value: currentItem.currentMediaSelection.selectedMediaOption(in: subtitleGroup) == option))
+                textTracks.append(track)
+            }
+        }
+
+        return PlayerTracksSnapshot.make(withPlayerId: id, audioTracks: audioTracks, textTracks: textTracks)
+    }
+    
+    public func setSelectedTrack(type: TrackType, trackId: String) {
+        guard let currentItem = player.currentItem else {
+            debugPrint("Tried to setSelectedTrack, but no item is currently loaded in the player")
+            return
+        }
+        guard let mediaCharacteristic = type.asAVMediaCharacteristic() else {
+            debugPrint("Tried to setSelectedTrack, but type is unknown: " + type.rawValue.description)
+            return
+        }
+        guard let trackIdInt = Int(trackId) else {
+            debugPrint("Tried to setSelectedTrack, but invalid trackId: " + trackId)
+            return
+        }
+        
+        let selectionGroup = currentItem.asset.mediaSelectionGroup(forMediaCharacteristic: mediaCharacteristic)
+        guard let selectionGroup = selectionGroup else {
+            debugPrint("Tried to setSelectedTrack, but couldn't find a mediaSelectionGroup with characteristic: " + mediaCharacteristic.rawValue)
+            return
+        }
+        if trackIdInt < selectionGroup.options.count {
+            let optionToSelect = selectionGroup.options[trackIdInt]
+            currentItem.select(optionToSelect, in: selectionGroup)
+        } else {
+            print("trackId is out of bounds: " + trackId + " of " + selectionGroup.options.count.description)
+        }
+    }
+    
     public func getCurrentItem() -> MediaItem? {
         return MediaItemMapper.mapPlayerItem(player.currentItem)
     }

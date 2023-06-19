@@ -28,7 +28,7 @@ abstract class PlaybackPlatformPigeon {
   void play(String playerId);
 
   @async
-  @ObjCSelector("play:positionMs:")
+  @ObjCSelector("seek:positionMs:")
   void seekTo(String playerId, double positionMs);
 
   @ObjCSelector("pause:")
@@ -54,7 +54,7 @@ abstract class PlaybackPlatformPigeon {
   void setAppConfig(AppConfig? config);
 
   @async
-  @ObjCSelector("getPlayerState:")
+  @ObjCSelector("getTracks:")
   PlayerTracksSnapshot? getTracks(String? playerId);
 
   @async
