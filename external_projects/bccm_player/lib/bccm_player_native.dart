@@ -5,6 +5,7 @@ import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/state/state_playback_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:wakelock/wakelock.dart';
 
 import 'bccm_player.dart';
 
@@ -125,6 +126,7 @@ class BccmPlayerNative extends BccmPlayerInterface {
     } else if (context == null) {
       throw ErrorDescription('enterFullscreen: context cant be null if useNativeControls is false.');
     } else {
+      Wakelock.enable();
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
       debugPrint('bccm: setPreferredOrientations landscape');
@@ -137,6 +139,7 @@ class BccmPlayerNative extends BccmPlayerInterface {
         ),
       );
       stateNotifier.getPlayerNotifier(playerId)?.setIsFlutterFullscreen(false);
+      Wakelock.disable();
     }
   }
 

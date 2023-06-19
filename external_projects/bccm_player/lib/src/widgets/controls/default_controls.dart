@@ -4,11 +4,14 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/pigeon/pigeon_extensions.dart';
 import 'package:bccm_player/src/utils/debouncer.dart';
+import 'package:bccm_player/src/widgets/controls/controls_wrapper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/time.dart';
 
 class DefaultControls extends HookWidget {
   const DefaultControls({
@@ -58,53 +61,132 @@ class DefaultControls extends HookWidget {
     debugPrint('bccm: seeking: $seeking');
     debugPrint('bccm: seeking: $currentScrub');
 
-    final w = Container(
-      alignment: Alignment.bottomCenter,
-      color: Colors.black.withOpacity(0.1),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: SizedBox(
-        height: 50,
-        child: Row(
+    final title = player.value?.currentMediaItem?.metadata?.title;
+
+    final w = SizedBox.expand(
+      child: ControlsWrapper(
+        child: Stack(
           children: [
-            IconButton(
-              icon: Icon(
-                player.value?.playbackState != PlaybackState.playing ? Icons.play_arrow : Icons.pause,
+            Positioned.fill(
+              child: Container(
+                alignment: Alignment.topLeft,
+                width: double.infinity,
+                height: 50,
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    if (isFullscreen) ...[
+                      IconButton(
+                        icon: const Icon(Icons.close, size: 32),
+                        onPressed: () {
+                          Navigator.maybePop(context);
+                        },
+                      ),
+                      if (title != null)
+                        Container(
+                          child: Text(
+                            title,
+                            style: Theme.of(context).textTheme.labelMedium,
+                          ),
+                        ),
+                    ]
+                  ],
+                ),
               ),
-              onPressed: () {
-                if (player.value?.playbackState != PlaybackState.playing) {
-                  BccmPlayerInterface.instance.play(playerId);
-                } else {
-                  BccmPlayerInterface.instance.pause(playerId);
-                }
-              },
             ),
-            Expanded(
-              child: Slider(
-                value: seeking.value
-                    ? currentScrub.value
-                    : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
-                onChanged: (double value) {
-                  scrubTo(value);
-                },
-                onChangeEnd: (double value) {
-                  seekDebouncer.forceEarly();
-                },
+            Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.only(bottom: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      player.value?.playbackState != PlaybackState.playing ? Icons.play_arrow : Icons.pause,
+                      size: 54,
+                    ),
+                    onPressed: () {
+                      if (player.value?.playbackState != PlaybackState.playing) {
+                        BccmPlayerInterface.instance.play(playerId);
+                      } else {
+                        BccmPlayerInterface.instance.pause(playerId);
+                      }
+                    },
+                  ),
+                ],
               ),
             ),
-            _SettingsWidget(playerId: playerId),
-            IconButton(
-              icon: Icon(
-                isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
+            Container(
+              alignment: Alignment.bottomLeft,
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: SliderTheme(
+                            data: SliderTheme.of(context).copyWith(
+                              trackHeight: 2,
+                              thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+                              overlayShape: SliderComponentShape.noOverlay,
+                            ),
+                            child: SizedBox(
+                              height: 10,
+                              child: Slider(
+                                value: seeking.value
+                                    ? currentScrub.value
+                                    : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
+                                onChanged: (double value) {
+                                  scrubTo(value);
+                                },
+                                onChangeEnd: (double value) {
+                                  seekDebouncer.forceEarly();
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 3),
+                          child: Text(
+                            '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 48,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(right: 12),
+                          child: _SettingsWidget(playerId: playerId),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            if (!isFullscreen) {
+                              debugPrint('bccm: not fullscreen, so go fullscreen');
+                              goFullscreen();
+                            } else {
+                              debugPrint('bccm: is fullscreen, so exit fullscreen');
+                              exitFullscreen();
+                            }
+                          },
+                          child: Icon(
+                            isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
-              onPressed: () {
-                if (!isFullscreen) {
-                  debugPrint('bccm: not fullscreen, so go fullscreen');
-                  goFullscreen();
-                } else {
-                  debugPrint('bccm: is fullscreen, so exit fullscreen');
-                  exitFullscreen();
-                }
-              },
             ),
           ],
         ),
@@ -122,16 +204,17 @@ class _SettingsWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-        onPressed: () {
-          // open bottom sheet with settings
-          showModalBottomSheet(
-            context: context,
-            isDismissible: true,
-            builder: (context) => _Settings(playerId: playerId),
-          );
-        },
-        icon: const Icon(Icons.settings));
+    return GestureDetector(
+      onTap: () {
+        // open bottom sheet with settings
+        showModalBottomSheet(
+          context: context,
+          isDismissible: true,
+          builder: (context) => _Settings(playerId: playerId),
+        );
+      },
+      child: const Icon(Icons.settings),
+    );
   }
 }
 

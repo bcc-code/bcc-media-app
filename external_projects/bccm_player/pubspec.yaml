@@ -24,6 +24,7 @@ dependencies:
   state_notifier: ^0.7.2+1
   universal_io: ^2.0.4
   visibility_detector: ^0.3.3
+  wakelock: ^0.6.2
 
 dev_dependencies:
   flutter_test:
