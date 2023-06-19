@@ -154,10 +154,25 @@ class CastPlayerController: NSObject, PlayerController {
         GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.play()
     }
     
-    func seekTo(_ positionMs: NSNumber) {
+    var activeSeekRequest: GCKRequest? = nil
+    var activeSeekRequestDelegate: GCKRequestDelegate? = nil
+    func seekTo(_ positionMs: NSNumber, _ completion: @escaping (Bool) -> Void) {
         let options = GCKMediaSeekOptions()
         options.interval = max(positionMs.doubleValue, 0)
-        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.seek(with: options)
+        guard let request = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.seek(with: options) else {
+            completion(false)
+            return
+        }
+        if let activeSeekRequest = activeSeekRequest {
+            activeSeekRequestDelegate?.request?(activeSeekRequest, didAbortWith: .replaced)
+        }
+        activeSeekRequest = request
+        activeSeekRequestDelegate = SimpleGCKRequestDelegate(
+            didComplete: { completion(true) },
+            didFailWithError: { _ in completion(false) },
+            didAbort: { _ in completion(false) }
+        )
+        request.delegate = activeSeekRequestDelegate
     }
     
     func pause() {

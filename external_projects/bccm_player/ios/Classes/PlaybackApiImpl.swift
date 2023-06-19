@@ -137,7 +137,9 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
 
     public func seek(_ playerId: String, positionMs: NSNumber, completion: @escaping (FlutterError?) -> Void) {
         let player = getPlayer(playerId)
-        player?.seekTo(positionMs)
+        player?.seekTo(positionMs) { _ in
+            completion(nil)
+        }
     }
 
     public func pause(_ playerId: String, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {

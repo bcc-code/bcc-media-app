@@ -35,7 +35,6 @@ class DefaultControls extends HookWidget {
     });
     final currentMs = player.value?.playbackPositionMs ?? 0;
     final duration = player.value?.currentMediaItem?.metadata?.durationMs ?? player.value?.playbackPositionMs?.toDouble() ?? 1;
-    debugPrint('bccm: player data: ${player.value?.toString() ?? 'no player data'}');
     final isFullscreen = player.value?.isFlutterFullscreen == true;
     final seeking = useState(false);
     final currentScrub = useState(0.0);
@@ -53,6 +52,11 @@ class DefaultControls extends HookWidget {
         seeking.value = false;
       });
     }
+
+    debugPrint('bccm: duration: ${player.value?.currentMediaItem?.metadata?.durationMs}');
+    debugPrint('bccm: player data: ${player.value?.toString() ?? 'no player data'}');
+    debugPrint('bccm: seeking: $seeking');
+    debugPrint('bccm: seeking: $currentScrub');
 
     final w = Container(
       alignment: Alignment.bottomCenter,

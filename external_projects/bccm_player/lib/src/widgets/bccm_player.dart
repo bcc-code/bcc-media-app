@@ -61,19 +61,22 @@ class BccmPlayerView extends HookWidget {
   final String id;
   final bool useNativeControls;
   final bool isFullscreenPlayer;
+  final VoidCallback? resetSystemOverlays;
 
   const BccmPlayerView({
     super.key,
     required this.id,
     this.useNativeControls = true,
     this.isFullscreenPlayer = false,
+    this.resetSystemOverlays,
   });
 
   @override
   Widget build(BuildContext context) {
     final isMounted = useIsMounted();
-    final disableLocally =
-        useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.state.isFlutterFullscreen == true && !isFullscreenPlayer);
+    final disableLocally = useState(
+      BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.state.isFlutterFullscreen == true && !isFullscreenPlayer,
+    );
     useEffect(() {
       return BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.addListener((state) {
         state.isFlutterFullscreen == true && !isFullscreenPlayer ? disableLocally.value = true : disableLocally.value = false;
@@ -94,7 +97,7 @@ class BccmPlayerView extends HookWidget {
     }
 
     Future goFullscreen() async {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       // set landscape
       SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
       debugPrint('bccm: setPreferredOrientations landscape');
@@ -114,7 +117,11 @@ class BccmPlayerView extends HookWidget {
     }
 
     Future exitFullscreen() async {
-      SystemChrome.restoreSystemUIOverlays();
+      if (resetSystemOverlays != null) {
+        resetSystemOverlays!();
+      } else {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+      }
       BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.setIsFlutterFullscreen(false);
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
       debugPrint('bccm: setPreferredOrientations portraitUp');
