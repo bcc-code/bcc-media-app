@@ -149,7 +149,7 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                               optionName: S.of(context).contactSupport,
                               onPressed: () {
                                 context.router.push(
-                                  ref.read(authStateProvider).guestMode ? const ContactSupportPublicScreenRoute() : const ContactSupportScreenRoute(),
+                                  ref.read(authStateProvider).guestMode ? const ContactPublicScreenRoute() : const ContactScreenRoute(),
                                 );
                               },
                             ),
