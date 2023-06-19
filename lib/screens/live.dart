@@ -171,7 +171,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
               padding: const EdgeInsets.only(right: 2.0),
               child: SizedBox(
                 width: 24,
-                child: BccmCastButton(color: DesignSystem.of(context).colors.tint1),
+                child: CastButton(color: DesignSystem.of(context).colors.tint1),
               ),
             ),
             if (!kIsWeb)
@@ -250,7 +250,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
   }
 
   Widget _player(PlayerState player) {
-    return BccmPlayerView(id: player.playerId);
+    return VideoPlayerView(id: player.playerId);
   }
 
   Widget _playPoster(PlayerState player) {

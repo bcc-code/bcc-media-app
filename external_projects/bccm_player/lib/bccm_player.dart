@@ -15,5 +15,5 @@ export 'src/state/player_state_notifier.dart';
 export 'src/state/plugin_state_notifier.dart';
 export 'src/native/chromecast_events.dart';
 export 'src/playback_platform_interface.dart';
-export 'src/widgets/bccm_player.dart';
-export 'src/widgets/bccm_cast_button.dart';
+export 'src/widgets/video/video_player_view.dart';
+export 'src/widgets/cast/cast_button.dart';

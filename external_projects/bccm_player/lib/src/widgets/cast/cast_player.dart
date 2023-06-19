@@ -2,14 +2,14 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class BccmCastPlayer extends StatefulWidget {
-  const BccmCastPlayer({super.key});
+class CastPlayer extends StatefulWidget {
+  const CastPlayer({super.key});
 
   @override
-  State<BccmCastPlayer> createState() => _BccmPlayerState();
+  State<CastPlayer> createState() => _BccmPlayerState();
 }
 
-class _BccmPlayerState extends State<BccmCastPlayer> {
+class _BccmPlayerState extends State<CastPlayer> {
   @override
   Widget build(BuildContext context) {
     return InkWell(

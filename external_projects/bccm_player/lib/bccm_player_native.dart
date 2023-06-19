@@ -3,6 +3,7 @@ import 'package:bccm_player/src/native/root_pigeon_playback_listener.dart';
 import 'package:bccm_player/src/native/chromecast_pigeon_listener.dart';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/state/state_playback_listener.dart';
+import 'package:bccm_player/src/widgets/video/video_player_view_fullscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wakelock/wakelock.dart';
@@ -134,7 +135,7 @@ class BccmPlayerNative extends BccmPlayerInterface {
       stateNotifier.getPlayerNotifier(playerId)?.setIsFlutterFullscreen(true);
       await Navigator.of(context, rootNavigator: true).push(
         PageRouteBuilder(
-          pageBuilder: (context, aAnim, bAnim) => FullscreenPlayer(playerId: playerId),
+          pageBuilder: (context, aAnim, bAnim) => VideoPlayerViewFullscreen(playerId: playerId),
           transitionsBuilder: (context, aAnim, bAnim, child) => FadeTransition(opacity: aAnim, child: child),
         ),
       );

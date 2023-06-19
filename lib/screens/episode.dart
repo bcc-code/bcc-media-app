@@ -142,7 +142,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
             actions: [
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16.0),
-                child: SizedBox(width: 24, child: BccmCastButton(color: DesignSystem.of(context).colors.tint1)),
+                child: SizedBox(width: 24, child: CastButton(color: DesignSystem.of(context).colors.tint1)),
               ),
             ],
           ),
@@ -374,7 +374,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || player.isFullscreen,
                   )
                 else
-                  BccmPlayerView(
+                  VideoPlayerView(
                     id: player.playerId,
                     useNativeControls: !ref.watch(featureFlagsProvider.select((value) => value.flutterPlayerControls)),
                     resetSystemOverlays: () {

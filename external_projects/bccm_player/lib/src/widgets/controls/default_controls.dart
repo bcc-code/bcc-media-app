@@ -5,7 +5,6 @@ import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/pigeon/pigeon_extensions.dart';
 import 'package:bccm_player/src/utils/debouncer.dart';
 import 'package:bccm_player/src/widgets/controls/controls_wrapper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:collection/collection.dart';
@@ -97,7 +96,7 @@ class DefaultControls extends HookWidget {
             ),
             Container(
               alignment: Alignment.center,
-              padding: EdgeInsets.only(bottom: 16),
+              padding: const EdgeInsets.only(bottom: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -150,7 +149,7 @@ class DefaultControls extends HookWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(right: 3),
+                          padding: const EdgeInsets.only(right: 3),
                           child: Text(
                             '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
                             style: Theme.of(context).textTheme.labelSmall,
@@ -165,7 +164,7 @@ class DefaultControls extends HookWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
-                          padding: EdgeInsets.only(right: 12),
+                          padding: const EdgeInsets.only(right: 12),
                           child: _SettingsWidget(playerId: playerId),
                         ),
                         GestureDetector(
