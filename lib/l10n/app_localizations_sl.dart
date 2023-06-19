@@ -143,6 +143,63 @@ class SSl extends S {
   String get contactSupport => 'Podpora';
 
   @override
+  String get contactIssueHint => 'Describe the issue';
+
+  @override
+  String get contactUs => 'Contact us';
+
+  @override
+  String get deviceInfo => 'Device info';
+
+  @override
+  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+
+  @override
+  String get contactSeeData => 'Click to see data.';
+
+  @override
+  String get contactName => 'Name';
+
+  @override
+  String get contactNameHint => 'Type in your name';
+
+  @override
+  String get contactEmail => 'Your contact email';
+
+  @override
+  String get contactEmailHint => 'Type in your email address';
+
+  @override
+  String get contactMessage => 'Message';
+
+  @override
+  String get contactMessageHint => 'Enter your message here';
+
+  @override
+  String get deviceInfoDevice => 'Device';
+
+  @override
+  String get deviceInfoEnvOverride => 'Environment override';
+
+  @override
+  String get deviceInfoManufacturer => 'Manufacturer';
+
+  @override
+  String get deviceInfoOs => 'Operating System';
+
+  @override
+  String get deviceInfoScreenSize => 'Screen Size';
+
+  @override
+  String get deviceInfoAppVer => 'App Version';
+
+  @override
+  String get deviceInfoUserId => 'User ID';
+
+  @override
+  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+
+  @override
   String get userVoice => 'Predlagaj funkcijo';
 
   @override
@@ -355,9 +412,6 @@ class SSl extends S {
 
   @override
   String get now => 'Zdaj';
-
-  @override
-  String get concernTextPlaceholder => 'Opiši težavo';
 
   @override
   String get debugInfoExplanation => 'Tvoje sporočilo bo vsebovalo to informacijo. To nam bo pomagalo, da bomo bolje razumeli težavo.';

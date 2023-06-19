@@ -296,34 +296,42 @@ Enum$Status fromJson$Enum$Status(String value) {
 
 const possibleTypesMap = <String, Set<String>>{
   'Pagination': {
-    'SurveyQuestionPagination',
-    'LinkPagination',
-    'UserCollectionEntryPagination',
-    'CollectionItemPagination',
-    'SectionPagination',
-    'SectionItemPagination',
-    'SeasonPagination',
-    'QuestionPagination',
-    'FAQCategoryPagination',
-    'LessonPagination',
-    'TaskPagination',
     'AchievementPagination',
     'AchievementGroupPagination',
+    'CollectionItemPagination',
     'EpisodePagination',
+    'QuestionPagination',
+    'FAQCategoryPagination',
+    'LinkPagination',
+    'SeasonPagination',
+    'SectionPagination',
+    'SectionItemPagination',
+    'LessonPagination',
+    'TaskPagination',
+    'SurveyQuestionPagination',
+    'UserCollectionEntryPagination',
   },
-  'SurveyQuestion': {
-    'SurveyTextQuestion',
-    'SurveyRatingQuestion',
-  },
-  'UserCollectionEntryItem': {
-    'Show',
-    'Episode',
+  'CalendarEntry': {
+    'SimpleCalendarEntry',
+    'EpisodeCalendarEntry',
+    'SeasonCalendarEntry',
+    'ShowCalendarEntry',
   },
   'CollectionItem': {
     'ShowItem',
     'SeasonItem',
     'EpisodeItem',
     'PageItem',
+  },
+  'EpisodeContextUnion': {
+    'Season',
+    'ContextCollection',
+  },
+  'Prompt': {'SurveyPrompt'},
+  'SearchResultItem': {
+    'EpisodeSearchItem',
+    'SeasonSearchItem',
+    'ShowSearchItem',
   },
   'Section': {
     'PosterSection',
@@ -369,18 +377,6 @@ const possibleTypesMap = <String, Set<String>>{
     'StudyTopic',
     'Game',
   },
-  'CalendarEntry': {
-    'SimpleCalendarEntry',
-    'EpisodeCalendarEntry',
-    'SeasonCalendarEntry',
-    'ShowCalendarEntry',
-  },
-  'SearchResultItem': {
-    'EpisodeSearchItem',
-    'SeasonSearchItem',
-    'ShowSearchItem',
-  },
-  'Prompt': {'SurveyPrompt'},
   'Task': {
     'AlternativesTask',
     'TextTask',
@@ -389,8 +385,12 @@ const possibleTypesMap = <String, Set<String>>{
     'VideoTask',
     'LinkTask',
   },
-  'EpisodeContextUnion': {
-    'Season',
-    'ContextCollection',
+  'SurveyQuestion': {
+    'SurveyTextQuestion',
+    'SurveyRatingQuestion',
+  },
+  'UserCollectionEntryItem': {
+    'Show',
+    'Episode',
   },
 };

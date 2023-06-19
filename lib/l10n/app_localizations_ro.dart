@@ -143,6 +143,63 @@ class SRo extends S {
   String get contactSupport => 'Contactare suport';
 
   @override
+  String get contactIssueHint => 'Describe the issue';
+
+  @override
+  String get contactUs => 'Contact us';
+
+  @override
+  String get deviceInfo => 'Device info';
+
+  @override
+  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+
+  @override
+  String get contactSeeData => 'Click to see data.';
+
+  @override
+  String get contactName => 'Name';
+
+  @override
+  String get contactNameHint => 'Type in your name';
+
+  @override
+  String get contactEmail => 'Your contact email';
+
+  @override
+  String get contactEmailHint => 'Type in your email address';
+
+  @override
+  String get contactMessage => 'Message';
+
+  @override
+  String get contactMessageHint => 'Enter your message here';
+
+  @override
+  String get deviceInfoDevice => 'Device';
+
+  @override
+  String get deviceInfoEnvOverride => 'Environment override';
+
+  @override
+  String get deviceInfoManufacturer => 'Manufacturer';
+
+  @override
+  String get deviceInfoOs => 'Operating System';
+
+  @override
+  String get deviceInfoScreenSize => 'Screen Size';
+
+  @override
+  String get deviceInfoAppVer => 'App Version';
+
+  @override
+  String get deviceInfoUserId => 'User ID';
+
+  @override
+  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+
+  @override
   String get userVoice => 'Propune o funcție';
 
   @override
@@ -355,9 +412,6 @@ class SRo extends S {
 
   @override
   String get now => 'Acum';
-
-  @override
-  String get concernTextPlaceholder => 'Descrie problema';
 
   @override
   String get debugInfoExplanation => 'Mesajul tău va include aceste informații, pentru a ne ajuta să înțelegem mai bine problema.';

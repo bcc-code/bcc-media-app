@@ -1,3 +1,4 @@
+import '../schema/mutations.graphql.dart';
 import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
@@ -9,11 +10,13 @@ class Variables$Mutation$sendSupportEmail {
     required String title,
     required String content,
     required String html,
+    Input$EmailOptions? options,
   }) =>
       Variables$Mutation$sendSupportEmail._({
         r'title': title,
         r'content': content,
         r'html': html,
+        if (options != null) r'options': options,
       });
 
   Variables$Mutation$sendSupportEmail._(this._$data);
@@ -27,6 +30,12 @@ class Variables$Mutation$sendSupportEmail {
     result$data['content'] = (l$content as String);
     final l$html = data['html'];
     result$data['html'] = (l$html as String);
+    if (data.containsKey('options')) {
+      final l$options = data['options'];
+      result$data['options'] = l$options == null
+          ? null
+          : Input$EmailOptions.fromJson((l$options as Map<String, dynamic>));
+    }
     return Variables$Mutation$sendSupportEmail._(result$data);
   }
 
@@ -35,6 +44,7 @@ class Variables$Mutation$sendSupportEmail {
   String get title => (_$data['title'] as String);
   String get content => (_$data['content'] as String);
   String get html => (_$data['html'] as String);
+  Input$EmailOptions? get options => (_$data['options'] as Input$EmailOptions?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$title = title;
@@ -43,6 +53,10 @@ class Variables$Mutation$sendSupportEmail {
     result$data['content'] = l$content;
     final l$html = html;
     result$data['html'] = l$html;
+    if (_$data.containsKey('options')) {
+      final l$options = options;
+      result$data['options'] = l$options?.toJson();
+    }
     return result$data;
   }
 
@@ -76,6 +90,14 @@ class Variables$Mutation$sendSupportEmail {
     if (l$html != lOther$html) {
       return false;
     }
+    final l$options = options;
+    final lOther$options = other.options;
+    if (_$data.containsKey('options') != other._$data.containsKey('options')) {
+      return false;
+    }
+    if (l$options != lOther$options) {
+      return false;
+    }
     return true;
   }
 
@@ -84,10 +106,12 @@ class Variables$Mutation$sendSupportEmail {
     final l$title = title;
     final l$content = content;
     final l$html = html;
+    final l$options = options;
     return Object.hashAll([
       l$title,
       l$content,
       l$html,
+      _$data.containsKey('options') ? l$options : const {},
     ]);
   }
 }
@@ -105,6 +129,7 @@ abstract class CopyWith$Variables$Mutation$sendSupportEmail<TRes> {
     String? title,
     String? content,
     String? html,
+    Input$EmailOptions? options,
   });
 }
 
@@ -125,6 +150,7 @@ class _CopyWithImpl$Variables$Mutation$sendSupportEmail<TRes>
     Object? title = _undefined,
     Object? content = _undefined,
     Object? html = _undefined,
+    Object? options = _undefined,
   }) =>
       _then(Variables$Mutation$sendSupportEmail._({
         ..._instance._$data,
@@ -132,6 +158,7 @@ class _CopyWithImpl$Variables$Mutation$sendSupportEmail<TRes>
         if (content != _undefined && content != null)
           'content': (content as String),
         if (html != _undefined && html != null) 'html': (html as String),
+        if (options != _undefined) 'options': (options as Input$EmailOptions?),
       }));
 }
 
@@ -145,6 +172,7 @@ class _CopyWithStubImpl$Variables$Mutation$sendSupportEmail<TRes>
     String? title,
     String? content,
     String? html,
+    Input$EmailOptions? options,
   }) =>
       _res;
 }
@@ -307,6 +335,15 @@ const documentNodeMutationsendSupportEmail = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'options')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'EmailOptions'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -325,6 +362,10 @@ const documentNodeMutationsendSupportEmail = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'html'),
             value: VariableNode(name: NameNode(value: 'html')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'options'),
+            value: VariableNode(name: NameNode(value: 'options')),
           ),
         ],
         directives: [],

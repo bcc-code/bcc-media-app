@@ -393,11 +393,125 @@ abstract class S {
   /// **'Version'**
   String get version;
 
-  /// Settings item on profile page
+  /// Title for contact support page
   ///
   /// In en, this message translates to:
   /// **'Contact support'**
   String get contactSupport;
+
+  /// No description provided for @contactIssueHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the issue'**
+  String get contactIssueHint;
+
+  /// Title for contact us page
+  ///
+  /// In en, this message translates to:
+  /// **'Contact us'**
+  String get contactUs;
+
+  /// Device info page title
+  ///
+  /// In en, this message translates to:
+  /// **'Device info'**
+  String get deviceInfo;
+
+  /// Text for checkbox to include device information
+  ///
+  /// In en, this message translates to:
+  /// **'Include device information for better support.'**
+  String get contactIncludeDeviceInfo;
+
+  /// Text for link to see device data
+  ///
+  /// In en, this message translates to:
+  /// **'Click to see data.'**
+  String get contactSeeData;
+
+  /// Label for name field in contact support page
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get contactName;
+
+  /// Hint text for name field in contact support page
+  ///
+  /// In en, this message translates to:
+  /// **'Type in your name'**
+  String get contactNameHint;
+
+  /// Label for email field in contact support page
+  ///
+  /// In en, this message translates to:
+  /// **'Your contact email'**
+  String get contactEmail;
+
+  /// Hint text for name field in contact support page
+  ///
+  /// In en, this message translates to:
+  /// **'Type in your email address'**
+  String get contactEmailHint;
+
+  /// Label for message field in contact support page
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get contactMessage;
+
+  /// Hint text for message field in contact support page
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your message here'**
+  String get contactMessageHint;
+
+  /// Label for device
+  ///
+  /// In en, this message translates to:
+  /// **'Device'**
+  String get deviceInfoDevice;
+
+  /// Label for environment override
+  ///
+  /// In en, this message translates to:
+  /// **'Environment override'**
+  String get deviceInfoEnvOverride;
+
+  /// Label for manufacturer
+  ///
+  /// In en, this message translates to:
+  /// **'Manufacturer'**
+  String get deviceInfoManufacturer;
+
+  /// Label for operating system
+  ///
+  /// In en, this message translates to:
+  /// **'Operating System'**
+  String get deviceInfoOs;
+
+  /// Label for screen size
+  ///
+  /// In en, this message translates to:
+  /// **'Screen Size'**
+  String get deviceInfoScreenSize;
+
+  /// Label for app Version
+  ///
+  /// In en, this message translates to:
+  /// **'App Version'**
+  String get deviceInfoAppVer;
+
+  /// Label for user id
+  ///
+  /// In en, this message translates to:
+  /// **'User ID'**
+  String get deviceInfoUserId;
+
+  /// Label for manufacturer
+  ///
+  /// In en, this message translates to:
+  /// **'Your message will include this information, to help us provide better support.'**
+  String get deviceInfoPageDesc;
 
   /// Settings item on profile page to navigate to uservoice
   ///
@@ -818,12 +932,6 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Now'**
   String get now;
-
-  /// Placeholder text in text field on contact support page
-  ///
-  /// In en, this message translates to:
-  /// **'Describe the issue'**
-  String get concernTextPlaceholder;
 
   /// Info about debug info usage on contact support page
   ///
