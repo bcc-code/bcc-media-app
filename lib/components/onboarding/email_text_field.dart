@@ -11,10 +11,12 @@ class EmailTextField extends HookWidget {
     required this.emailFocusNode,
     required this.emailTextController,
     required this.onEditingComplete,
+    this.hintText = 'Email address',
   });
 
   final FocusNode emailFocusNode;
   final TextEditingController emailTextController;
+  final String hintText;
   final void Function() onEditingComplete;
 
   @override
@@ -41,7 +43,7 @@ class EmailTextField extends HookWidget {
       decoration: InputDecoration(
         filled: true,
         isDense: true,
-        hintText: 'Email address',
+        hintText: hintText,
         fillColor: design.colors.background2,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(6), borderSide: BorderSide.none),
         contentPadding: const EdgeInsets.all(12),

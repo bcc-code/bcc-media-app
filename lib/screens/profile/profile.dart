@@ -43,46 +43,6 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
     }
   }
 
-  Future<void> _contactSupportEmail() async {
-    String? deviceModel, manufacturer, os, screenSize, appVer, userId;
-    final contactEmail = FlavorConfig.current.strings(context).contactEmail;
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    final screenWidth = WidgetsBinding.instance.window.physicalSize.width.toInt().toString();
-    final screenHeight = WidgetsBinding.instance.window.physicalSize.height.toInt().toString();
-    screenSize = '${screenHeight}x$screenWidth';
-    appVer = formatAppVersion(packageInfo);
-
-    if (Platform.isAndroid) {
-      AndroidDeviceInfo androidInfo = await DeviceInfoPlugin().androidInfo;
-      os = '${Platform.operatingSystem.capitalized} ${androidInfo.version.release}';
-      deviceModel = androidInfo.model;
-      manufacturer = androidInfo.manufacturer;
-    } else if (Platform.isIOS) {
-      IosDeviceInfo iosInfo = await DeviceInfoPlugin().iosInfo;
-      os = '${Platform.operatingSystem.capitalized} ${iosInfo.systemVersion}';
-      deviceModel = iosInfo.model;
-      manufacturer = 'Apple';
-    } else {
-      //Windows or Chrome or Linux
-    }
-
-    final Uri mailtoUri = Uri(
-      scheme: 'mailto',
-      path: contactEmail,
-      query: 'subject=App Support&body='
-          '\n\n\n\n\n\n-- Technical details -- \n'
-          'Device Model: $deviceModel\n'
-          'Manufacturer: $manufacturer\n'
-          'Operating System: $os\n'
-          'Screen Size: $screenSize\n'
-          'App Version: $appVer',
-    );
-    if (!await launchUrl(mailtoUri)) {
-      debugPrint('Could not launchUrl $mailtoUri');
-      throw Exception('Could not launch $mailtoUri');
-    } else {}
-  }
-
   @override
   Widget build(BuildContext context) {
     final authEnabled = ref.watch(featureFlagsProvider).auth;
@@ -185,24 +145,21 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                               optionName: S.of(context).faq,
                               onPressed: () => context.router.push(const FAQScreenRoute()),
                             ),
+                            OptionButton(
+                              optionName: S.of(context).contactSupport,
+                              onPressed: () {
+                                context.router.push(
+                                  ref.read(authStateProvider).guestMode ? const ContactSupportPublicScreenRoute() : const ContactSupportScreenRoute(),
+                                );
+                              },
+                            ),
                             if (!ref.read(authStateProvider).guestMode) ...[
-                              OptionButton(
-                                optionName: S.of(context).contactSupport,
-                                onPressed: () {
-                                  context.router.push(const ContactSupportScreenRoute());
-                                },
-                              ),
                               OptionButton(
                                 optionName: S.of(context).userVoice,
                                 onPressed: () {
                                   launchUrlString('https://uservoice.bcc.no/?tags=bcc-media', mode: LaunchMode.externalApplication);
                                 },
                               )
-                            ] else if (FlavorConfig.current.flavor != Flavor.kids) ...[
-                              OptionButton(
-                                optionName: S.of(context).contactSupport,
-                                onPressed: () => _contactSupportEmail(),
-                              ),
                             ],
                             if (FlavorConfig.current.flavor == Flavor.kids)
                               OptionButton(

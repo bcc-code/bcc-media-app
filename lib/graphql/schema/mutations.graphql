@@ -2,7 +2,7 @@ type MutationRoot {
     setDevicePushToken(token: String!, languages: [String!]!): Device
     setEpisodeProgress(id: ID!, progress: Int, duration: Int, context: EpisodeContext): Episode!
 
-    sendSupportEmail(title: String!, content: String!, html: String!): Boolean!
+    sendSupportEmail(title: String!, content: String!, html: String!, options: EmailOptions): Boolean!
 
     completeTask(
         id: ID!,
@@ -47,4 +47,9 @@ input BirthOptions {
 input NameOptions {
     first: String!
     last: String!
+}
+
+input EmailOptions {
+    name: String!
+    email: String!
 }

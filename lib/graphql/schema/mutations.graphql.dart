@@ -212,3 +212,126 @@ class _CopyWithStubImpl$Input$NameOptions<TRes>
   }) =>
       _res;
 }
+
+class Input$EmailOptions {
+  factory Input$EmailOptions({
+    required String name,
+    required String email,
+  }) =>
+      Input$EmailOptions._({
+        r'name': name,
+        r'email': email,
+      });
+
+  Input$EmailOptions._(this._$data);
+
+  factory Input$EmailOptions.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$name = data['name'];
+    result$data['name'] = (l$name as String);
+    final l$email = data['email'];
+    result$data['email'] = (l$email as String);
+    return Input$EmailOptions._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get name => (_$data['name'] as String);
+  String get email => (_$data['email'] as String);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$name = name;
+    result$data['name'] = l$name;
+    final l$email = email;
+    result$data['email'] = l$email;
+    return result$data;
+  }
+
+  CopyWith$Input$EmailOptions<Input$EmailOptions> get copyWith =>
+      CopyWith$Input$EmailOptions(
+        this,
+        (i) => i,
+      );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$EmailOptions) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$email = email;
+    final lOther$email = other.email;
+    if (l$email != lOther$email) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$name = name;
+    final l$email = email;
+    return Object.hashAll([
+      l$name,
+      l$email,
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$EmailOptions<TRes> {
+  factory CopyWith$Input$EmailOptions(
+    Input$EmailOptions instance,
+    TRes Function(Input$EmailOptions) then,
+  ) = _CopyWithImpl$Input$EmailOptions;
+
+  factory CopyWith$Input$EmailOptions.stub(TRes res) =
+      _CopyWithStubImpl$Input$EmailOptions;
+
+  TRes call({
+    String? name,
+    String? email,
+  });
+}
+
+class _CopyWithImpl$Input$EmailOptions<TRes>
+    implements CopyWith$Input$EmailOptions<TRes> {
+  _CopyWithImpl$Input$EmailOptions(
+    this._instance,
+    this._then,
+  );
+
+  final Input$EmailOptions _instance;
+
+  final TRes Function(Input$EmailOptions) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? name = _undefined,
+    Object? email = _undefined,
+  }) =>
+      _then(Input$EmailOptions._({
+        ..._instance._$data,
+        if (name != _undefined && name != null) 'name': (name as String),
+        if (email != _undefined && email != null) 'email': (email as String),
+      }));
+}
+
+class _CopyWithStubImpl$Input$EmailOptions<TRes>
+    implements CopyWith$Input$EmailOptions<TRes> {
+  _CopyWithStubImpl$Input$EmailOptions(this._res);
+
+  TRes _res;
+
+  call({
+    String? name,
+    String? email,
+  }) =>
+      _res;
+}

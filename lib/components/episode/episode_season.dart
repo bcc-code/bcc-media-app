@@ -51,6 +51,7 @@ class EpisodeSeason extends HookConsumerWidget {
     }
 
     useEffect(() {
+      selectedSeasonId.value = season.id;
       episodesCache.value = {
         season.id: season.episodes.items.map((ep) {
           return SeasonEpisodeListEpisodeData(

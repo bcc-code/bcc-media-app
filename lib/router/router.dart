@@ -11,7 +11,7 @@ import 'package:brunstadtv_app/screens/profile/audio_language.dart';
 import 'package:brunstadtv_app/screens/profile/privacy_policy.dart';
 import 'package:brunstadtv_app/screens/profile/subtitle_language.dart';
 import 'package:brunstadtv_app/screens/profile/video_quality.dart';
-import 'package:brunstadtv_app/screens/profile/contact_support.dart';
+import 'package:brunstadtv_app/screens/profile/contact.dart';
 import 'package:brunstadtv_app/screens/profile/faq.dart';
 import 'package:brunstadtv_app/screens/home.dart';
 import 'package:brunstadtv_app/screens/live.dart';
@@ -24,6 +24,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import '../screens/profile/device_info.dart';
 import '../helpers/navigation/custom_transitions.dart';
 import '../screens/achievement_group.dart';
 import '../screens/achievements.dart';
@@ -31,6 +32,7 @@ import '../screens/episode.dart';
 import '../screens/games/games.dart';
 import '../screens/page.dart';
 import '../screens/onboarding/signup.dart';
+import '../screens/profile/contact_public.dart';
 import '../screens/tabs_root.dart';
 
 const _collectionEpisodeScreenRoute = CustomRoute<void>(
@@ -134,8 +136,24 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'videoQuality'},
     ),
     CustomRoute<void>(
-      page: ContactSupportScreen,
+      page: ContactScreen,
       path: '/contact-support',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: profileRouteBuilder,
+      meta: {RouteMetaConstants.analyticsName: 'support'},
+    ),
+    CustomRoute<void>(
+      page: ContactPublicScreen,
+      path: '/contact-support-public',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: profileRouteBuilder,
+      meta: {RouteMetaConstants.analyticsName: 'support'},
+    ),
+    CustomRoute<void>(
+      page: DeviceInfoScreen,
+      path: '/device-info',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
       customRouteBuilder: profileRouteBuilder,
