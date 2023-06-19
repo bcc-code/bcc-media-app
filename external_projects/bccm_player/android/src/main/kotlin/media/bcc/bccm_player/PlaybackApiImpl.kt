@@ -191,7 +191,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
             result.success(null);
         } catch (e: Exception) {
             result.error(e)
-        }
+        } 
     }
 
     override fun pause(playerId: String) {

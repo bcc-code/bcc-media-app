@@ -60,17 +60,26 @@ class VideoPlatformView extends StatelessWidget {
 class BccmPlayerView extends HookWidget {
   final String id;
   final bool useNativeControls;
+  final bool isFullscreenPlayer;
 
   const BccmPlayerView({
     super.key,
     required this.id,
     this.useNativeControls = true,
+    this.isFullscreenPlayer = false,
   });
 
   @override
   Widget build(BuildContext context) {
     final isMounted = useIsMounted();
-    final disableLocally = useState(false);
+    final disableLocally =
+        useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.state.isFlutterFullscreen == true && !isFullscreenPlayer);
+    useEffect(() {
+      return BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.addListener((state) {
+        state.isFlutterFullscreen == true && !isFullscreenPlayer ? disableLocally.value = true : disableLocally.value = false;
+      });
+    }, [id, isFullscreenPlayer]);
+
     if (id == 'chromecast') {
       return const BccmCastPlayer();
     }
@@ -88,6 +97,7 @@ class BccmPlayerView extends HookWidget {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
       // set landscape
       SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+      debugPrint('bccm: setPreferredOrientations landscape');
 
       BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.setIsFlutterFullscreen(true);
       disableLocally.value = true;
@@ -105,9 +115,9 @@ class BccmPlayerView extends HookWidget {
 
     Future exitFullscreen() async {
       SystemChrome.restoreSystemUIOverlays();
-      await Navigator.of(context).maybePop();
       BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.setIsFlutterFullscreen(false);
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+      debugPrint('bccm: setPreferredOrientations portraitUp');
     }
 
     return _VideoWithControls(
@@ -232,6 +242,7 @@ class FullscreenPlayer extends HookWidget {
               child: BccmPlayerView(
                 id: playerId,
                 useNativeControls: false,
+                isFullscreenPlayer: true,
               ),
             ),
           ),
@@ -255,25 +266,35 @@ class _VideoWithControls extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Center(
-          child: IgnorePointer(
-            ignoring: true,
-            child: VideoPlatformView(
-              id: parent.id,
-              showControls: false,
+    return WillPopScope(
+      onWillPop: () async {
+        if (BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(parent.id)?.state.isFlutterFullscreen == true) {
+          exitFullscreen();
+        }
+        return true;
+      },
+      child: Stack(
+        children: [
+          Center(
+            child: IgnorePointer(
+              ignoring: true,
+              child: VideoPlatformView(
+                id: parent.id,
+                showControls: false,
+              ),
             ),
           ),
-        ),
-        Positioned.fill(
-          child: DefaultControls(
-            playerId: parent.id,
-            exitFullscreen: exitFullscreen,
-            goFullscreen: goFullscreen,
+          Positioned.fill(
+            child: Builder(builder: (context) {
+              return DefaultControls(
+                playerId: parent.id,
+                exitFullscreen: () => Navigator.of(context).maybePop(),
+                goFullscreen: goFullscreen,
+              );
+            }),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
