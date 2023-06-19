@@ -143,10 +143,10 @@ class SRu extends S {
   String get contactSupport => 'Связаться с поддержкой';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Опишите проблему';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Свяжитесь с нами';
 
   @override
   String get deviceInfo => 'Device info';

@@ -143,10 +143,10 @@ class SIt extends S {
   String get contactSupport => 'Contatta il supporto';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Descrivi il problema';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Contattaci';
 
   @override
   String get deviceInfo => 'Device info';

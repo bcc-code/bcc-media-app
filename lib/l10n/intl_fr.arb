@@ -181,7 +181,80 @@
   },
   "contactSupport": "Contacter le support",
   "@contactSupport": {
-    "description": "Settings item on profile page"
+    "description": "Title for contact support page"
+  },
+  "contactIssueHint": "Décris le problème",
+  "@contactIncludeDeviceInfo": {
+    "description": "Text for checkbox to include device information"
+  },
+  "contactUs": "Nous contacter",
+  "@contactUs": {
+    "description": "Title for contact us page"
+  },
+  "deviceInfo": "Device info",
+  "@deviceInfo": {
+    "description": "Device info page title"
+  },
+  "contactIncludeDeviceInfo": "Include device information for better support.",
+  "contactSeeData": "Click to see data.",
+  "@contactSeeData": {
+    "description": "Text for link to see device data"
+  },
+  "contactName": "Name",
+  "@contactName": {
+    "description": "Label for name field in contact support page"
+  },
+  "contactNameHint": "Type in your name",
+  "@contactNameHint": {
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactEmail": "Your contact email",
+  "@contactEmail": {
+    "description": "Label for email field in contact support page"
+  },
+  "contactEmailHint": "Type in your email address",
+  "@contactEmailHint": {
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactMessage": "Message",
+  "@contactMessage": {
+    "description": "Label for message field in contact support page"
+  },
+  "contactMessageHint": "Enter your message here",
+  "@contactMessageHint": {
+    "description": "Hint text for message field in contact support page"
+  },
+  "deviceInfoDevice": "Device",
+  "@deviceInfoDevice": {
+    "description": "Label for device"
+  },
+  "deviceInfoEnvOverride": "Environment override",
+  "@deviceInfoEnvOverride": {
+    "description": "Label for environment override"
+  },
+  "deviceInfoManufacturer": "Manufacturer",
+  "@deviceInfoManufacturer": {
+    "description": "Label for manufacturer"
+  },
+  "deviceInfoOs": "Operating System",
+  "@deviceInfoOs": {
+    "description": "Label for operating system"
+  },
+  "deviceInfoScreenSize": "Screen Size",
+  "@deviceInfoScreenSize": {
+    "description": "Label for screen size"
+  },
+  "deviceInfoAppVer": "App Version",
+  "@deviceInfoAppVer": {
+    "description": "Label for app Version"
+  },
+  "deviceInfoUserId": "User ID",
+  "@deviceInfoUserId": {
+    "description": "Label for user id"
+  },
+  "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
+  "@deviceInfoPageDesc": {
+    "description": "Label for manufacturer"
   },
   "userVoice": "Suggérer une fonction",
   "@userVoice": {
@@ -475,10 +548,6 @@
   "now": "Maintenant",
   "@now": {
     "description": "Tv guide now playing label"
-  },
-  "concernTextPlaceholder": "Décris le problème",
-  "@concernTextPlaceholder": {
-    "description": "Placeholder text in text field on contact support page"
   },
   "debugInfoExplanation": "Ton message inclura cette information, pour nous aider à mieux comprendre le problème.",
   "@debugInfoExplanation": {
@@ -905,7 +974,7 @@
   "@askYourParents": {
     "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
   },
-  "whatIsMath": "What is",
+  "whatIsMath": "Combien font",
   "@whatIsMath": {
     "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
   },
@@ -913,11 +982,11 @@
   "@answerLabel": {
     "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
   },
-  "checkAnswerButton": "Check answer",
+  "checkAnswerButton": "Vérifier la réponse",
   "@checkAnswerButton": {
     "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
   },
-  "videoOnlyAccessibleToLoggedIn": "This video is only accessible to users that are logged in to the app.",
+  "videoOnlyAccessibleToLoggedIn": "Cette vidéo n'est accessible qu'aux utilisateurs connectés à l'application.",
   "@videoOnlyAccessibleToLoggedIn": {
     "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
   },
@@ -995,11 +1064,11 @@
       }
     }
   },
-  "gamesTab": "Games",
+  "gamesTab": "Jeux",
   "@gamesTab": {
     "description": "Title of the games page"
   },
-  "playGame": "Play Game",
+  "playGame": "Jouer au jeu",
   "@playGame": {
     "description": "Title on a game"
   }

@@ -143,10 +143,10 @@ class SFr extends S {
   String get contactSupport => 'Contacter le support';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Décris le problème';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Nous contacter';
 
   @override
   String get deviceInfo => 'Device info';
@@ -717,16 +717,16 @@ class SFr extends S {
   String get askYourParents => 'Demande à tes parents';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'Combien font';
 
   @override
   String get answerLabel => 'Réponse';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Vérifier la réponse';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Cette vidéo n\'est accessible qu\'aux utilisateurs connectés à l\'application.';
 
   @override
   String get verifyYourAccount => 'Vérifier son compte';
@@ -781,8 +781,8 @@ class SFr extends S {
   }
 
   @override
-  String get gamesTab => 'Games';
+  String get gamesTab => 'Jeux';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'Jouer au jeu';
 }

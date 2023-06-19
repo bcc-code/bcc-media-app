@@ -35,10 +35,10 @@ class SNb extends S {
   String get loginPageDisplay2 => 'Se serier, programmer og filmer basert på kristne verdier';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Vi gjør Bibelens budskap levende!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Vår visjon er at barna skal oppleve Jesus som sin aller beste venn - resten av livet.';
 
   @override
   String get loginPageDisplay3 => 'Produsert av BCC Media';
@@ -62,22 +62,22 @@ class SNb extends S {
   String get signInButton => 'Logg inn';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'Registrer deg / Logg inn';
 
   @override
-  String get signUpButton => 'Sign up now';
+  String get signUpButton => 'Registrer deg nå';
 
   @override
-  String get signUpTitle => 'Sign up';
+  String get signUpTitle => 'Registrer deg';
 
   @override
-  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+  String get signUpDescription => 'Få tilgang til mer innhold og bedre funksjoner ved å opprette en konto.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Jeg bekrefter at jeg er 13 år eller eldre, og jeg er enig i <a>Personvernreglene</a>og <a>Vilkår for bruk</a>.';
 
   @override
-  String get setPassword => 'Set password';
+  String get setPassword => 'Nytt passord';
 
   @override
   String get tryAgainButton => 'Prøv igjen';
@@ -89,7 +89,7 @@ class SNb extends S {
   String get loggedOutMessage => 'Du har blitt logget ut. Vennligst logg inn igjen.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Gi en donasjon';
 
   @override
   String get mostWatched => 'Mest sett';
@@ -107,7 +107,7 @@ class SNb extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Open';
+  String get open => 'Åpne';
 
   @override
   String get loginFailedCheckNetwork => 'Det har oppstått en feil. Sjekk nettverksforbindelsen og prøv en gang til.';
@@ -143,10 +143,10 @@ class SNb extends S {
   String get contactSupport => 'Kontakt support';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Beskriv problemet';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Kontakt oss';
 
   @override
   String get deviceInfo => 'Device info';
@@ -200,22 +200,22 @@ class SNb extends S {
   String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Foreslå en funksjon';
 
   @override
   String get cancel => 'Avbryt';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Er du sikker på at du vil avslutte?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Alle ulagrede endringer vil gå tapt.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Gå tilbake';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Ja, Avbryt';
 
   @override
   String get upNext => 'Neste';
@@ -233,7 +233,7 @@ class SNb extends S {
   String get none => 'Ingen';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Neste episode';
 
   @override
   String get auto => 'Auto';
@@ -260,7 +260,7 @@ class SNb extends S {
   String get search => 'Søk';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Send tilbakemelding';
 
   @override
   String get noResults => 'Ingen resultater funnet';
@@ -469,10 +469,10 @@ class SNb extends S {
   String get share => 'Del';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Vis mer';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Vis mindre';
 
   @override
   String get liveNow => 'Direkte nå';
@@ -576,10 +576,10 @@ class SNb extends S {
   String get exploreContent => 'Utforsk innhold';
 
   @override
-  String get explorePublicContent => 'Explore public content';
+  String get explorePublicContent => 'Utforsk offentlig innhold';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Begynn å utforske';
 
   @override
   String get taskCompleted => 'oppgave fullført';
@@ -655,18 +655,18 @@ class SNb extends S {
   String get continueButton => 'Fortsett';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Meld på';
 
   @override
   String get achievements => 'Prestasjoner';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Minimum $n tegn';
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Må inneholde små bokstaver, store bokstaver og tall.';
 
   @override
   String get oops => 'Uups!';
@@ -687,22 +687,22 @@ class SNb extends S {
   String get details => 'Detaljer';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Min liste';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Visste du?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Du kan legge til favorittprogrammene dine i «Min liste» ved å trykke på hjertet.';
 
   @override
-  String get selectSeason => 'Select season';
+  String get selectSeason => 'Velg sesong';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'Slett min konto';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Jeg er sikker på at jeg vil slette min konto og mine data relatert til BCC Media appen.';
 
   @override
   String get areYouSure => 'Er du sikker?';
@@ -711,78 +711,78 @@ class SNb extends S {
   String get youCanContactUsAt => 'Du kan kontakte oss på';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'Bible Kids er et initiativ av BCC Media, en mediestiftelse i BCC-forbundet som produserer og distribuerer innhold med positive og kristne verdier.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Spør dine foresatte';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'Hva er';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Svar';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Sjekk svar';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Denne videoen er kun tilgjengelig for brukere som er logget inn.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Bekreft din konto';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'Vi har sendt en e-post til';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Klikk på linken i e-posten for å bekrefte din konto.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'Åpne e-post appen';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'Send e-post på nytt';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Ingen e-post apper innstallert';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'Bekreftelses e-post sendt';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Hvis du fortsatt ikke har mottatt en e-post, vennligst kontakt støtte på';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Konto oprettet';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Du kan nå bruke din konto og utforske et utvalg av oppbyggelig innhold.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Du kan nå logge inn på din konto og utforske et utvalg av oppbyggelig innhold.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'Du er i ferd med å be om å slette din konto hos BCC Media og alle dine data knyttet til denne appen.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'Dette er en hendelse som ikke kan gjøres om.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'Sletting av konto vil vanligvis være ferdig innen $x arbeidsdager.';
   }
 
   @override
-  String get accountDeletionTitle => 'Delete my account';
+  String get accountDeletionTitle => 'Slett min konto';
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'Forespørsel om sletting av konto vellykket. Du vil motta en e-post på $email. For å bekrefte din identitet trenger vi at du svarer på den e-posten for å kunne gå videre med slettingen.';
   }
 
   @override
-  String get gamesTab => 'Games';
+  String get gamesTab => 'Spill';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'Spille spill';
 }

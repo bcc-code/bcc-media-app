@@ -143,10 +143,10 @@ class SEs extends S {
   String get contactSupport => 'Contactar al soporte';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Describa el problema';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Contactenos';
 
   @override
   String get deviceInfo => 'Device info';

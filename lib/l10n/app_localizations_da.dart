@@ -143,10 +143,10 @@ class SDa extends S {
   String get contactSupport => 'Kontakt support';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Beskriv problemet';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Kontakt os';
 
   @override
   String get deviceInfo => 'Device info';

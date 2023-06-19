@@ -89,7 +89,7 @@ class SHu extends S {
   String get loggedOutMessage => 'Ki lettél jelentkezve. Jelentkezz újból be.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Adományozzál';
 
   @override
   String get mostWatched => 'Legnézetebb';
@@ -143,10 +143,10 @@ class SHu extends S {
   String get contactSupport => 'Vedd fel a kapcsolatot a supporttal';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Írd le a kérdést';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Kapcsolat';
 
   @override
   String get deviceInfo => 'Device info';
@@ -233,7 +233,7 @@ class SHu extends S {
   String get none => 'Nincs';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Következő epizód';
 
   @override
   String get auto => 'Autó';
@@ -708,68 +708,68 @@ class SHu extends S {
   String get areYouSure => 'Biztos vagy abban?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Kapcsolatba léphetsz velünk az alábbi címen';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'A Bible Kids a BCC Media kezdeményezése, amely a BCC Szövetségen belül működő médiaalapítvány, amely pozitív és keresztény értékeket képviselő tartalmakat állít elő és terjeszt.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Kérdezd meg a szüleidet';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'Mit jelent';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Válasz';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Válasz ellenőrzése';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Ez a videó csak bejelentkezett felhasználók számára érhető el.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Ellenőrizd a fiókodat';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'Küldtünk egy e-mailt a következő címre';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Kattints az e-mailben található linkre a fiókod ellenőrzéséhez.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'E-mail alkalmazás megnyitása';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'E-mail újraküldése';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Nincs telepített levelező alkalmazás';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'Ellenőrző e-mail elküldve';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Ha még mindig nem kaptál e-mailt, kérjük, vedd fel a kapcsolatot az ügyfélszolgálattal a következő címen';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Létrehozott fiók';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Most már használhatod a fiókodat, és felfedezheted a különböző építő tartalmakat.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Most már bejelentkezhetsz a fiókodba, és felfedezheted a különböző építő tartalmakat.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'Éppen kéred a BCC Media fiókod és az alkalmazással kapcsolatos összes adatod törlését.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'Ezt a műveletet nem lehet visszafordítani.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'A fiók törlése általában $x munkanapon belül megtörténik.';
   }
 
   @override
@@ -777,12 +777,12 @@ class SHu extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'Fiók törlését sikeresen kértük. E-mailt fogsz kapni a $email címre. Személyazonosságának megerősítése érdekében válaszolnod kell erre az e-mailre, hogy folytathassuk a törlést.';
   }
 
   @override
-  String get gamesTab => 'Games';
+  String get gamesTab => 'Játékok';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'A játék lejátszása';
 }

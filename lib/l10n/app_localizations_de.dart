@@ -143,10 +143,10 @@ class SDe extends S {
   String get contactSupport => 'Support kontaktieren';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Beschreibe dein Anliegen';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Kontaktiere uns';
 
   @override
   String get deviceInfo => 'Device info';

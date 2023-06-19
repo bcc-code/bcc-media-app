@@ -143,10 +143,10 @@ class SSl extends S {
   String get contactSupport => 'Podpora';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Opiši težavo';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Kontaktiraj nas';
 
   @override
   String get deviceInfo => 'Device info';

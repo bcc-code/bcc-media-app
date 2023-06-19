@@ -143,10 +143,10 @@ class SPt extends S {
   String get contactSupport => 'Entre em contato com o suporte';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Descreva o problema';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Entre em contato ';
 
   @override
   String get deviceInfo => 'Device info';

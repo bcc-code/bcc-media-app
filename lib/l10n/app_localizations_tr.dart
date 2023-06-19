@@ -143,10 +143,10 @@ class STr extends S {
   String get contactSupport => 'İletişim desteği';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Sorunu tanımlayın';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Bize Ulaşın';
 
   @override
   String get deviceInfo => 'Device info';

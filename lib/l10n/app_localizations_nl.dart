@@ -143,10 +143,10 @@ class SNl extends S {
   String get contactSupport => 'Contact support';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Beschrijf het probleem';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Contact';
 
   @override
   String get deviceInfo => 'Device info';

@@ -143,10 +143,10 @@ class SFi extends S {
   String get contactSupport => 'Tukipyyntö';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Kuvaile ongelmaa';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Yhteydenotto';
 
   @override
   String get deviceInfo => 'Device info';

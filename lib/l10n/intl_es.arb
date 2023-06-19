@@ -181,7 +181,80 @@
   },
   "contactSupport": "Contactar al soporte",
   "@contactSupport": {
-    "description": "Settings item on profile page"
+    "description": "Title for contact support page"
+  },
+  "contactIssueHint": "Describa el problema",
+  "@contactIncludeDeviceInfo": {
+    "description": "Text for checkbox to include device information"
+  },
+  "contactUs": "Contactenos",
+  "@contactUs": {
+    "description": "Title for contact us page"
+  },
+  "deviceInfo": "Device info",
+  "@deviceInfo": {
+    "description": "Device info page title"
+  },
+  "contactIncludeDeviceInfo": "Include device information for better support.",
+  "contactSeeData": "Click to see data.",
+  "@contactSeeData": {
+    "description": "Text for link to see device data"
+  },
+  "contactName": "Name",
+  "@contactName": {
+    "description": "Label for name field in contact support page"
+  },
+  "contactNameHint": "Type in your name",
+  "@contactNameHint": {
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactEmail": "Your contact email",
+  "@contactEmail": {
+    "description": "Label for email field in contact support page"
+  },
+  "contactEmailHint": "Type in your email address",
+  "@contactEmailHint": {
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactMessage": "Message",
+  "@contactMessage": {
+    "description": "Label for message field in contact support page"
+  },
+  "contactMessageHint": "Enter your message here",
+  "@contactMessageHint": {
+    "description": "Hint text for message field in contact support page"
+  },
+  "deviceInfoDevice": "Device",
+  "@deviceInfoDevice": {
+    "description": "Label for device"
+  },
+  "deviceInfoEnvOverride": "Environment override",
+  "@deviceInfoEnvOverride": {
+    "description": "Label for environment override"
+  },
+  "deviceInfoManufacturer": "Manufacturer",
+  "@deviceInfoManufacturer": {
+    "description": "Label for manufacturer"
+  },
+  "deviceInfoOs": "Operating System",
+  "@deviceInfoOs": {
+    "description": "Label for operating system"
+  },
+  "deviceInfoScreenSize": "Screen Size",
+  "@deviceInfoScreenSize": {
+    "description": "Label for screen size"
+  },
+  "deviceInfoAppVer": "App Version",
+  "@deviceInfoAppVer": {
+    "description": "Label for app Version"
+  },
+  "deviceInfoUserId": "User ID",
+  "@deviceInfoUserId": {
+    "description": "Label for user id"
+  },
+  "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
+  "@deviceInfoPageDesc": {
+    "description": "Label for manufacturer"
   },
   "userVoice": "Sugerir una característica",
   "@userVoice": {
@@ -475,10 +548,6 @@
   "now": "Ahora",
   "@now": {
     "description": "Tv guide now playing label"
-  },
-  "concernTextPlaceholder": "Describa el problema",
-  "@concernTextPlaceholder": {
-    "description": "Placeholder text in text field on contact support page"
   },
   "debugInfoExplanation": "Su mensaje incluirá esta información para ayudarnos a comprender mejor el problema.",
   "@debugInfoExplanation": {

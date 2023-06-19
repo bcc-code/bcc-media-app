@@ -143,10 +143,10 @@ class SRo extends S {
   String get contactSupport => 'Contactare suport';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Descrie problema';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Contactează-ne';
 
   @override
   String get deviceInfo => 'Device info';

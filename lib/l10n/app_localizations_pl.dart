@@ -143,10 +143,10 @@ class SPl extends S {
   String get contactSupport => 'Zgłoś problem';
 
   @override
-  String get contactIssueHint => 'Describe the issue';
+  String get contactIssueHint => 'Opisz problem';
 
   @override
-  String get contactUs => 'Contact us';
+  String get contactUs => 'Kontakt';
 
   @override
   String get deviceInfo => 'Device info';
