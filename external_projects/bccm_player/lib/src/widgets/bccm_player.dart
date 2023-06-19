@@ -97,22 +97,15 @@ class BccmPlayerView extends HookWidget {
     }
 
     Future goFullscreen() async {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-      // set landscape
-      SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
-      debugPrint('bccm: setPreferredOrientations landscape');
-
-      BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.setIsFlutterFullscreen(true);
       disableLocally.value = true;
-      await Navigator.of(context, rootNavigator: true).push(
-        PageRouteBuilder(
-          pageBuilder: (context, aAnim, bAnim) => FullscreenPlayer(playerId: id),
-          transitionsBuilder: (context, aAnim, bAnim, child) => FadeTransition(opacity: aAnim, child: child),
-        ),
+      await BccmPlayerInterface.instance.enterFullscreen(
+        id,
+        useNativeControls: useNativeControls,
+        context: context,
+        resetSystemOverlays: resetSystemOverlays,
       );
       if (isMounted()) {
         disableLocally.value = false;
-        BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.setIsFlutterFullscreen(false);
       }
     }
 

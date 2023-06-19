@@ -1,4 +1,5 @@
 import 'package:bccm_player/src/native/chromecast_events.dart';
+import 'package:flutter/material.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'pigeon/playback_platform_pigeon.g.dart';
@@ -98,7 +99,7 @@ abstract class BccmPlayerInterface extends PlatformInterface {
     throw UnimplementedError('exitFullscreen() has not been implemented.');
   }
 
-  void enterFullscreen(String playerId) {
+  Future enterFullscreen(String playerId, {bool? useNativeControls = true, BuildContext? context, void Function()? resetSystemOverlays}) {
     throw UnimplementedError('enterFullscreen() has not been implemented.');
   }
 

@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:flutter/foundation.dart';
@@ -13,13 +14,13 @@ final featureFlagsProvider = StateNotifierProvider<FeatureFlagsNotifier, Feature
 
 class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
   final UnleashClient? client;
-  FeatureFlagsNotifier(this.client) : super(getFlags(client)) {
+  FeatureFlagsNotifier(this.client) : super(_getFlags(client)) {
     _update();
     client?.on('update', (_) => _update());
     client?.on('ready', (_) => _update(readyOverride: true));
   }
 
-  static FeatureFlags getFlags(UnleashClient? client) {
+  static FeatureFlags _getFlags(UnleashClient? client) {
     if (client == null) return const FeatureFlags();
     return FeatureFlags(
       auth: FlavorConfig.current.flavor != Flavor.kids || client.isEnabled('kids-auth'),
@@ -29,11 +30,12 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       shareVideoButton: FlavorConfig.current.flavor != Flavor.kids,
       autoFullscreenOnPlay: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('auto-fullscreen-on-play'),
       gamesTab: kDebugMode && FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('games-tab'),
+      flutterPlayerControls: Env.forceFlutterControls || client.isEnabled('flutter-player-controls'),
     );
   }
 
   _update({bool? readyOverride}) {
-    state = getFlags(client);
+    state = _getFlags(client);
     debugPrint('Feature flags refreshed: $state');
   }
 }

@@ -59,15 +59,18 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
 
 @freezed
 class PlayerState with _$PlayerState {
+  const PlayerState._();
   const factory PlayerState({
     required String playerId,
     MediaItem? currentMediaItem,
     int? playbackPositionMs,
-    @Default(false) bool isFullscreen,
+    @Default(false) bool isNativeFullscreen,
     @Default(false) bool isFlutterFullscreen,
     @Default(PlaybackState.stopped) PlaybackState playbackState,
     @Default(false) bool isInPipMode,
   }) = _PlayerState;
+
+  bool get isFullscreen => isNativeFullscreen || isFlutterFullscreen;
 
   factory PlayerState.fromPlayerStateSnapshot(PlayerStateSnapshot state) {
     return PlayerState(
@@ -75,7 +78,7 @@ class PlayerState with _$PlayerState {
       currentMediaItem: state.currentMediaItem,
       playbackPositionMs: state.playbackPositionMs?.finiteOrNull()?.round(),
       playbackState: state.playbackState,
-      isFullscreen: state.isFullscreen,
+      isNativeFullscreen: state.isFullscreen,
     );
   }
 }

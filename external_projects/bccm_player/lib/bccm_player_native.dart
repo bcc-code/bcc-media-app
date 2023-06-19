@@ -3,6 +3,8 @@ import 'package:bccm_player/src/native/root_pigeon_playback_listener.dart';
 import 'package:bccm_player/src/native/chromecast_pigeon_listener.dart';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/state/state_playback_listener.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'bccm_player.dart';
 
@@ -117,8 +119,25 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
-  void enterFullscreen(String playerId) {
-    _pigeon.enterFullscreen(playerId);
+  Future enterFullscreen(String playerId, {bool? useNativeControls = true, BuildContext? context, void Function()? resetSystemOverlays}) async {
+    if (useNativeControls == true) {
+      _pigeon.enterFullscreen(playerId);
+    } else if (context == null) {
+      throw ErrorDescription('enterFullscreen: context cant be null if useNativeControls is false.');
+    } else {
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+      SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+      debugPrint('bccm: setPreferredOrientations landscape');
+
+      stateNotifier.getPlayerNotifier(playerId)?.setIsFlutterFullscreen(true);
+      await Navigator.of(context, rootNavigator: true).push(
+        PageRouteBuilder(
+          pageBuilder: (context, aAnim, bAnim) => FullscreenPlayer(playerId: playerId),
+          transitionsBuilder: (context, aAnim, bAnim, child) => FadeTransition(opacity: aAnim, child: child),
+        ),
+      );
+      stateNotifier.getPlayerNotifier(playerId)?.setIsFlutterFullscreen(false);
+    }
   }
 
   @override

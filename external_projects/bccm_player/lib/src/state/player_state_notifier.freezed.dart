@@ -19,7 +19,7 @@ mixin _$PlayerState {
   String get playerId => throw _privateConstructorUsedError;
   MediaItem? get currentMediaItem => throw _privateConstructorUsedError;
   int? get playbackPositionMs => throw _privateConstructorUsedError;
-  bool get isFullscreen => throw _privateConstructorUsedError;
+  bool get isNativeFullscreen => throw _privateConstructorUsedError;
   bool get isFlutterFullscreen => throw _privateConstructorUsedError;
   PlaybackState get playbackState => throw _privateConstructorUsedError;
   bool get isInPipMode => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $PlayerStateCopyWith<$Res> {
       {String playerId,
       MediaItem? currentMediaItem,
       int? playbackPositionMs,
-      bool isFullscreen,
+      bool isNativeFullscreen,
       bool isFlutterFullscreen,
       PlaybackState playbackState,
       bool isInPipMode});
@@ -61,7 +61,7 @@ class _$PlayerStateCopyWithImpl<$Res, $Val extends PlayerState>
     Object? playerId = null,
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
-    Object? isFullscreen = null,
+    Object? isNativeFullscreen = null,
     Object? isFlutterFullscreen = null,
     Object? playbackState = null,
     Object? isInPipMode = null,
@@ -79,9 +79,9 @@ class _$PlayerStateCopyWithImpl<$Res, $Val extends PlayerState>
           ? _value.playbackPositionMs
           : playbackPositionMs // ignore: cast_nullable_to_non_nullable
               as int?,
-      isFullscreen: null == isFullscreen
-          ? _value.isFullscreen
-          : isFullscreen // ignore: cast_nullable_to_non_nullable
+      isNativeFullscreen: null == isNativeFullscreen
+          ? _value.isNativeFullscreen
+          : isNativeFullscreen // ignore: cast_nullable_to_non_nullable
               as bool,
       isFlutterFullscreen: null == isFlutterFullscreen
           ? _value.isFlutterFullscreen
@@ -111,7 +111,7 @@ abstract class _$$_PlayerStateCopyWith<$Res>
       {String playerId,
       MediaItem? currentMediaItem,
       int? playbackPositionMs,
-      bool isFullscreen,
+      bool isNativeFullscreen,
       bool isFlutterFullscreen,
       PlaybackState playbackState,
       bool isInPipMode});
@@ -131,7 +131,7 @@ class __$$_PlayerStateCopyWithImpl<$Res>
     Object? playerId = null,
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
-    Object? isFullscreen = null,
+    Object? isNativeFullscreen = null,
     Object? isFlutterFullscreen = null,
     Object? playbackState = null,
     Object? isInPipMode = null,
@@ -149,9 +149,9 @@ class __$$_PlayerStateCopyWithImpl<$Res>
           ? _value.playbackPositionMs
           : playbackPositionMs // ignore: cast_nullable_to_non_nullable
               as int?,
-      isFullscreen: null == isFullscreen
-          ? _value.isFullscreen
-          : isFullscreen // ignore: cast_nullable_to_non_nullable
+      isNativeFullscreen: null == isNativeFullscreen
+          ? _value.isNativeFullscreen
+          : isNativeFullscreen // ignore: cast_nullable_to_non_nullable
               as bool,
       isFlutterFullscreen: null == isFlutterFullscreen
           ? _value.isFlutterFullscreen
@@ -171,15 +171,16 @@ class __$$_PlayerStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PlayerState with DiagnosticableTreeMixin implements _PlayerState {
+class _$_PlayerState extends _PlayerState with DiagnosticableTreeMixin {
   const _$_PlayerState(
       {required this.playerId,
       this.currentMediaItem,
       this.playbackPositionMs,
-      this.isFullscreen = false,
+      this.isNativeFullscreen = false,
       this.isFlutterFullscreen = false,
       this.playbackState = PlaybackState.stopped,
-      this.isInPipMode = false});
+      this.isInPipMode = false})
+      : super._();
 
   @override
   final String playerId;
@@ -189,7 +190,7 @@ class _$_PlayerState with DiagnosticableTreeMixin implements _PlayerState {
   final int? playbackPositionMs;
   @override
   @JsonKey()
-  final bool isFullscreen;
+  final bool isNativeFullscreen;
   @override
   @JsonKey()
   final bool isFlutterFullscreen;
@@ -202,7 +203,7 @@ class _$_PlayerState with DiagnosticableTreeMixin implements _PlayerState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PlayerState(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs, isFullscreen: $isFullscreen, isFlutterFullscreen: $isFlutterFullscreen, playbackState: $playbackState, isInPipMode: $isInPipMode)';
+    return 'PlayerState(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs, isNativeFullscreen: $isNativeFullscreen, isFlutterFullscreen: $isFlutterFullscreen, playbackState: $playbackState, isInPipMode: $isInPipMode)';
   }
 
   @override
@@ -213,7 +214,7 @@ class _$_PlayerState with DiagnosticableTreeMixin implements _PlayerState {
       ..add(DiagnosticsProperty('playerId', playerId))
       ..add(DiagnosticsProperty('currentMediaItem', currentMediaItem))
       ..add(DiagnosticsProperty('playbackPositionMs', playbackPositionMs))
-      ..add(DiagnosticsProperty('isFullscreen', isFullscreen))
+      ..add(DiagnosticsProperty('isNativeFullscreen', isNativeFullscreen))
       ..add(DiagnosticsProperty('isFlutterFullscreen', isFlutterFullscreen))
       ..add(DiagnosticsProperty('playbackState', playbackState))
       ..add(DiagnosticsProperty('isInPipMode', isInPipMode));
@@ -230,8 +231,8 @@ class _$_PlayerState with DiagnosticableTreeMixin implements _PlayerState {
                 other.currentMediaItem == currentMediaItem) &&
             (identical(other.playbackPositionMs, playbackPositionMs) ||
                 other.playbackPositionMs == playbackPositionMs) &&
-            (identical(other.isFullscreen, isFullscreen) ||
-                other.isFullscreen == isFullscreen) &&
+            (identical(other.isNativeFullscreen, isNativeFullscreen) ||
+                other.isNativeFullscreen == isNativeFullscreen) &&
             (identical(other.isFlutterFullscreen, isFlutterFullscreen) ||
                 other.isFlutterFullscreen == isFlutterFullscreen) &&
             (identical(other.playbackState, playbackState) ||
@@ -246,7 +247,7 @@ class _$_PlayerState with DiagnosticableTreeMixin implements _PlayerState {
       playerId,
       currentMediaItem,
       playbackPositionMs,
-      isFullscreen,
+      isNativeFullscreen,
       isFlutterFullscreen,
       playbackState,
       isInPipMode);
@@ -258,15 +259,16 @@ class _$_PlayerState with DiagnosticableTreeMixin implements _PlayerState {
       __$$_PlayerStateCopyWithImpl<_$_PlayerState>(this, _$identity);
 }
 
-abstract class _PlayerState implements PlayerState {
+abstract class _PlayerState extends PlayerState {
   const factory _PlayerState(
       {required final String playerId,
       final MediaItem? currentMediaItem,
       final int? playbackPositionMs,
-      final bool isFullscreen,
+      final bool isNativeFullscreen,
       final bool isFlutterFullscreen,
       final PlaybackState playbackState,
       final bool isInPipMode}) = _$_PlayerState;
+  const _PlayerState._() : super._();
 
   @override
   String get playerId;
@@ -275,7 +277,7 @@ abstract class _PlayerState implements PlayerState {
   @override
   int? get playbackPositionMs;
   @override
-  bool get isFullscreen;
+  bool get isNativeFullscreen;
   @override
   bool get isFlutterFullscreen;
   @override
