@@ -270,20 +270,6 @@ class _EpisodeDisplay extends HookConsumerWidget {
     var player = ref.watch(primaryPlayerProvider);
     if (player == null || episode == null) return const SizedBox.shrink();
 
-    ref.listen<bool>(primaryPlayerProvider.select((p) => p?.playbackState == PlaybackState.playing), (prev, next) {
-      if (!ref.read(featureFlagsProvider).autoFullscreenOnPlay) return;
-      if (next == true && ref.read(primaryPlayerProvider)?.isFullscreen == false) {
-        ref.read(playbackServiceProvider).platformApi.enterFullscreen(
-          player.playerId,
-          context: context,
-          useNativeControls: !ref.read(featureFlagsProvider).flutterPlayerControls,
-          resetSystemOverlays: () {
-            SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-          },
-        );
-      }
-    });
-
     final playerSetupFuture = useState<Future?>(null);
     Future setupPlayer() {
       return playerSetupFuture.value = setupPlayerForEpisode(episode, ref: ref);
@@ -302,6 +288,21 @@ class _EpisodeDisplay extends HookConsumerWidget {
       }
       return null;
     }, [episode.id, screenParams.autoplay, screenParams.queryParamStartPosition]);
+
+    ref.listen<bool>(primaryPlayerProvider.select((p) => p?.playbackState == PlaybackState.playing), (prev, next) {
+      if (!isMounted()) return;
+      if (!ref.read(featureFlagsProvider).autoFullscreenOnPlay) return;
+      if (next == true && episodeIsCurrentItem && ref.read(primaryPlayerProvider)?.isFullscreen == false) {
+        ref.read(playbackServiceProvider).platformApi.enterFullscreen(
+          player.playerId,
+          context: context,
+          useNativeControls: !ref.read(featureFlagsProvider).flutterPlayerControls,
+          resetSystemOverlays: () {
+            SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+          },
+        );
+      }
+    });
 
     // Fetch lesson progress
     final lessonProgressFuture = useState<Future<Query$GetEpisodeLessonProgress?>?>(null);
