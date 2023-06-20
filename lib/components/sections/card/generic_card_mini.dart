@@ -36,7 +36,7 @@ class _GenericCardMiniState extends State<GenericCardMini> {
     final design = DesignSystem.of(context);
     return GestureDetector(
       onTap: () => setState(() {
-        navigationFuture = navigateToStudyTopic(context, widget.item.id);
+        navigationFuture = handleSectionItemClick(context, widget.item.item);
       }),
       child: Stack(
         children: [
