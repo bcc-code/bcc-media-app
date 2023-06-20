@@ -196,8 +196,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
   final Future<Query$FetchEpisode$episode?>? episodeFuture;
   final ScrollController scrollController;
 
-  Future<bool> autoplayNext(PlaybackService playbackService, String playerId, StackRouter router) async {
-    final nextEpisode = await playbackService.getNextEpisodeForPlayer(playerId: playerId);
+  Future<bool> autoplayNext(PlaybackService playbackService, Fragment$PlayableEpisode? nextEpisode, String playerId, StackRouter router) async {
     if (nextEpisode == null) {
       playbackService.platformApi.exitFullscreen(playerId);
       return false;
@@ -281,6 +280,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     final playerEvents = ref.watch(playerEventStreamProvider(player.playerId));
     final enableAutoplayNext = ref.watch(featureFlagsProvider.select((value) => value.autoplayNext));
     final episodeIsCurrentItem = player.currentMediaItem?.metadata?.extras?['id'] == episode.id;
+    final nextEpisode = useState<Fragment$PlayableEpisode?>(null);
 
     useEffect(() {
       if (screenParams.autoplay == true && !episodeIsCurrentItem) {
@@ -342,11 +342,15 @@ class _EpisodeDisplay extends HookConsumerWidget {
       return () => subscription.cancel();
     }, [player.playerId, episode, chromecastEvents, playbackService]);
 
+    void onAutoPlayNext() {
+      autoplayNext(playbackService, nextEpisode.value, player.playerId, context.router);
+    }
+
     // Handle playback ended events, including autoplaying next
     useEffect(() {
       final subscription = playerEvents.where((event) => event is PlaybackEndedEvent).cast<PlaybackEndedEvent>().listen((event) async {
         if (enableAutoplayNext) {
-          autoplayNext(playbackService, player.playerId, context.router);
+          onAutoPlayNext();
           return;
         }
         playbackService.platformApi.exitFullscreen(player.playerId);
@@ -355,6 +359,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
     }, [ref, playerEvents, playbackService, enableAutoplayNext, player.playerId]);
 
     final showLoadingOverlay = (episodeSnapshot.connectionState == ConnectionState.waiting);
+
+    if (enableAutoplayNext && episodeIsCurrentItem && !playerSetupSnapshot.hasError && playerSetupSnapshot.connectionState == ConnectionState.done) {
+      playbackService.getNextEpisodeForPlayer(playerId: player.playerId).then((value) => nextEpisode.value = value);
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -381,6 +389,8 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     resetSystemOverlays: () {
                       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
                     },
+                    showNextEpisodeIndicator: nextEpisode.value != null,
+                    onNextEpisodeTapped: onAutoPlayNext,
                   ),
                 EpisodeInfo(
                   episode,

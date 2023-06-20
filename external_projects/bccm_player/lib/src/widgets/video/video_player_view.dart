@@ -29,6 +29,9 @@ class VideoPlayerView extends HookWidget {
   final bool useNativeControls;
   final bool isFullscreenPlayer;
   final VoidCallback? resetSystemOverlays;
+  final bool showNextEpisodeIndicator;
+  final String? nextEpisodeButtonText;
+  final VoidCallback? onNextEpisodeTapped;
 
   const VideoPlayerView({
     super.key,
@@ -36,6 +39,9 @@ class VideoPlayerView extends HookWidget {
     this.useNativeControls = true,
     this.isFullscreenPlayer = false,
     this.resetSystemOverlays,
+    this.showNextEpisodeIndicator = false,
+    this.nextEpisodeButtonText,
+    this.onNextEpisodeTapped,
   });
 
   @override
@@ -91,6 +97,9 @@ class VideoPlayerView extends HookWidget {
       parent: this,
       goFullscreen: goFullscreen,
       exitFullscreen: exitFullscreen,
+      showNextEpisodeIndicator: showNextEpisodeIndicator,
+      nextEpisodeButtonText: nextEpisodeButtonText,
+      onNextEpisodeTapped: onNextEpisodeTapped,
     );
   }
 }
@@ -101,11 +110,17 @@ class _VideoWithControls extends HookWidget {
     required this.parent,
     required this.goFullscreen,
     required this.exitFullscreen,
+    this.showNextEpisodeIndicator,
+    this.nextEpisodeButtonText,
+    this.onNextEpisodeTapped,
   });
 
   final VideoPlayerView parent;
   final Future Function() goFullscreen;
   final Future Function() exitFullscreen;
+  final bool? showNextEpisodeIndicator;
+  final String? nextEpisodeButtonText;
+  final VoidCallback? onNextEpisodeTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -133,6 +148,9 @@ class _VideoWithControls extends HookWidget {
                 playerId: parent.id,
                 exitFullscreen: () => Navigator.of(context).maybePop(),
                 goFullscreen: goFullscreen,
+                showNextEpisodeIndicator: showNextEpisodeIndicator,
+                nextEpisodeButtonText: nextEpisodeButtonText,
+                onNextEpisodeTapped: onNextEpisodeTapped,
               );
             }),
           ),

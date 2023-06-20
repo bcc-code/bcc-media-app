@@ -1,26 +1,26 @@
-import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../l10n/app_localizations.dart';
-import '../theme/design_system/design_system.dart';
+import '../../helpers/ui/svg_icons.dart';
 
 class NextEpiosodeButton extends HookWidget {
   const NextEpiosodeButton({
     super.key,
     required this.action,
+    this.text,
+    this.waitDuration = const Duration(seconds: 5),
   });
 
-  final VoidCallback action;
-  final waitDuration = const Duration(seconds: 5);
+  final VoidCallback? action;
+  final String? text;
+  final Duration waitDuration;
 
   @override
   Widget build(BuildContext context) {
     final controller = useAnimationController(duration: waitDuration);
-    controller.forward().whenComplete(action);
+    controller.forward().whenComplete(action ?? () {});
 
-    final design = DesignSystem.of(context);
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: action,
@@ -31,7 +31,7 @@ class NextEpiosodeButton extends HookWidget {
           child: Stack(
             children: [
               Positioned.fill(
-                child: Container(color: design.colors.tint1.withOpacity(0.75)),
+                child: Container(color: Colors.blue.withOpacity(0.75)),
               ),
               Positioned.fill(
                 child: Align(
@@ -39,7 +39,7 @@ class NextEpiosodeButton extends HookWidget {
                   child: SizeTransition(
                     axis: Axis.horizontal,
                     sizeFactor: controller,
-                    child: Container(color: design.colors.tint1),
+                    child: Container(color: Colors.blue),
                   ),
                 ),
               ),
@@ -50,12 +50,16 @@ class NextEpiosodeButton extends HookWidget {
                   children: [
                     Container(
                       margin: const EdgeInsets.only(right: 8),
-                      child: SvgPicture.string(SvgIcons.play, width: 20, height: 20),
+                      child: SvgPicture.string(
+                        SvgIcons.play,
+                        width: 20,
+                        height: 20,
+                      ),
                     ),
                     Text(
-                      S.of(context).nextEpisode,
+                      text ?? 'Next Episode',
                       textAlign: TextAlign.center,
-                      style: design.textStyles.button1.copyWith(color: design.colors.label1),
+                      style: Theme.of(context).textTheme.titleMedium,
                     )
                   ],
                 ),
@@ -63,7 +67,7 @@ class NextEpiosodeButton extends HookWidget {
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: design.colors.onTint.withOpacity(0.2), width: 1),
+                    border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
