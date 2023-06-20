@@ -10,7 +10,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restart_app/restart_app.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../providers/notification_service.dart';
 
@@ -146,6 +145,7 @@ class DeveloperOptions extends ConsumerWidget {
               break;
             case 'reset_settings':
               ref.read(sharedPreferencesProvider).clear();
+              // ignore: unused_result
               ref.refresh(settingsProvider);
               debugPrint('cleared shared prefs');
               break;

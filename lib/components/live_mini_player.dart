@@ -56,24 +56,22 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
-    PlayerState? player = ref.watch(primaryPlayerProvider);
+    final player = ref.watch(primaryPlayerProvider);
+    final currentMetadata = player?.currentMediaItem?.metadata;
 
-    if (player == null || player.isInPipMode) {
+    if (player == null || player.isInPipMode || currentMetadata == null) {
       return const SizedBox.shrink();
     }
 
-    if (player.currentMediaItem?.metadata?.extras?['id'] != 'livestream') {
+    if (currentMetadata.extras?['id'] != 'livestream') {
       return _emptyPlayer(player);
     } else if (waitingForMediaItemToBeCorrect == true) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
-            waitingForMediaItemToBeCorrect = false;
-          }));
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => setState(() {
+          waitingForMediaItemToBeCorrect = false;
+        }),
+      );
     }
-
-    var artist = player.currentMediaItem?.metadata?.artist;
-    var title = player.currentMediaItem?.metadata?.title;
-    var artworkUri = player.currentMediaItem?.metadata?.artworkUri;
-    var playbackState = player.playbackState;
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -82,20 +80,20 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
       },
       child: MiniPlayer(
         titleKey: WidgetKeys.miniPlayerTitle,
-        secondaryTitle: artist,
-        title: title ?? '',
-        artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
+        secondaryTitle: currentMetadata.artist,
+        title: currentMetadata.title ?? '',
+        artworkUri: currentMetadata.artworkUri ?? '',
         border: BorderSide(color: design.colors.separatorOnLight, width: 1),
         backgroundColor: design.colors.background2,
         titleStyle: design.textStyles.caption1.copyWith(color: design.colors.label1),
         secondaryTitleStyle: design.textStyles.caption2.copyWith(color: design.colors.tint1),
-        isPlaying: playbackState == PlaybackState.playing,
+        isPlaying: player.playbackState == PlaybackState.playing,
         hideCloseButton: true,
         onPlayTap: () {
-          BccmPlayerInterface.instance.play(player!.playerId);
+          BccmPlayerInterface.instance.play(player.playerId);
         },
         onPauseTap: () {
-          BccmPlayerInterface.instance.pause(player!.playerId);
+          BccmPlayerInterface.instance.pause(player.playerId);
         },
       ),
     );

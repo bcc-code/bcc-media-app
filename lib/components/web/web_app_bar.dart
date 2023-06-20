@@ -7,9 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../helpers/ui/svg_icons.dart';
-import '../../helpers/widget_keys.dart';
 import '../../l10n/app_localizations.dart';
-import 'dart:ui';
 
 import '../../providers/auth_state/auth_state.dart';
 import '../../theme/design_system/design_system.dart';

@@ -1,18 +1,7 @@
-import 'dart:async';
-import 'dart:math';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
-import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import '../../components/web/dialog_on_web.dart';
-import '../../flavors.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../helpers/widget_keys.dart';
 import '../../l10n/app_localizations.dart';

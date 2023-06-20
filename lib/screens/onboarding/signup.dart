@@ -38,8 +38,6 @@ class SignupScreen extends HookConsumerWidget {
     final firstNameFocusNode = useFocusNode();
     final lastNameController = useTextEditingController();
     final lastNameFocusNode = useFocusNode();
-    final monthController = useTextEditingController();
-    final monthFocusNode = useFocusNode();
     final yearController = useState<int?>(null);
     final yearFocusNode = useFocusNode();
     final isMounted = useIsMounted();
@@ -101,11 +99,12 @@ class SignupScreen extends HookConsumerWidget {
 
     Future onSocialAuth(Future<bool> socialAuth) async {
       if (await socialAuth) {
-        if (!isMounted()) return;
-        final user = ref.read(authStateProvider).user;
-        if (user != null) {
-          context.router.popUntil((route) => false);
-          context.router.pushNamed('/');
+        if (context.mounted) {
+          final user = ref.read(authStateProvider).user;
+          if (user != null) {
+            context.router.popUntil((route) => false);
+            context.router.pushNamed('/');
+          }
         }
       }
     }
@@ -133,7 +132,7 @@ class SignupScreen extends HookConsumerWidget {
             firstNameFocusNode: firstNameFocusNode,
             lastNameController: lastNameController,
             lastNameFocusNode: lastNameFocusNode,
-            nextFocusNode: monthFocusNode,
+            nextFocusNode: yearFocusNode,
           ),
       () => SignupBirthDatePage(
             pageController: pageController,

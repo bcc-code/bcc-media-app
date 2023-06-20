@@ -41,7 +41,7 @@ class _PromptsState extends ConsumerState<Prompts> {
           children: openPrompts.map(
             (prompt) {
               final surveyPrompt = prompt.asOrNull<Fragment$Prompt$$SurveyPrompt>();
-              if (surveyPrompt != null && completedSurveys != null && !isCompletedSurvey(completedSurveys!, surveyPrompt)) {
+              if (surveyPrompt != null && completedSurveys != null && !isCompletedSurvey(completedSurveys, surveyPrompt)) {
                 return PromptSurvey(prompt: surveyPrompt, onClose: () => closePrompt(surveyPrompt.id));
               }
               return const SizedBox.shrink();

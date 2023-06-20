@@ -8,10 +8,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:universal_io/io.dart';
-import 'package:device_info_plus/device_info_plus.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../components/custom_back_button.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../flavors.dart';
@@ -21,8 +17,6 @@ import '../../router/router.gr.dart';
 import '../../components/profile/avatar.dart';
 import '../../components/profile/setting_list.dart';
 
-import '../../helpers/version.dart';
-import '../../helpers/extensions.dart';
 import '../../theme/design_system/design_system.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {

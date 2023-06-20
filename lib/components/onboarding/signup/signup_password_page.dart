@@ -1,6 +1,5 @@
 import 'package:brunstadtv_app/components/onboarding/password_text_field.dart';
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
-import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';

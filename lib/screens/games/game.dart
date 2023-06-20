@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/custom_back_button.dart';
 import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';

@@ -1,6 +1,5 @@
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
-import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 import '../../helpers/utils/debouncer.dart';
 import '../../helpers/utils/extensions.dart';

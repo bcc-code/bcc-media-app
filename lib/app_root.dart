@@ -58,6 +58,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
     if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
       widget.navigatorKey.currentContext?.router.root.navigate(OnboardingScreenRoute());
     } else if (next.auth0AccessToken != null && next.user != null) {
+      // ignore: unused_result
       ref.refresh(meProvider);
       ref.read(meProvider.future).then((value) {
         if (!mounted) return;
@@ -90,6 +91,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
       );
     });
     if (!mounted) return;
+    // ignore: unused_result
     ref.refresh(meProvider);
     final me = await ref.read(meProvider.future);
     if (mounted && me?.me.completedRegistration == false) {

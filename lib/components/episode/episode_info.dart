@@ -13,7 +13,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../flavors.dart';
 import '../../graphql/queries/my_list.graphql.dart';
 import '../../helpers/event_bus.dart';
 import '../../models/events/my_list_changed.dart';

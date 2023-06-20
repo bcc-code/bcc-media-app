@@ -71,7 +71,7 @@ class AboutScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                AppVersion()
+                const AppVersion()
               ],
             ),
           ),

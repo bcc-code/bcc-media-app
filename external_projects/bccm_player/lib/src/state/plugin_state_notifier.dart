@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../pigeon/playback_platform_pigeon.g.dart';
 import 'player_state_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:state_notifier/state_notifier.dart';

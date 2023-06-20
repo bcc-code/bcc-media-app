@@ -74,7 +74,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         titleKey: WidgetKeys.miniPlayerTitle,
         secondaryTitle: artist,
         title: title ?? '',
-        artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
+        artworkUri: artworkUri ?? '',
         border: BorderSide(color: design.colors.separatorOnLight, width: 1),
         backgroundColor: design.colors.background2,
         titleStyle: design.textStyles.caption1.copyWith(color: design.colors.label1),
@@ -99,15 +99,13 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
   /// Worst case, just a blank box. Shouldn't happen though, I think.
   Widget _buildDummy() {
     final design = DesignSystem.of(context);
-    if (previousMetadata != null) {
-      var artist = previousMetadata!.artist;
-      var title = previousMetadata!.title;
-      var artworkUri = previousMetadata!.artworkUri;
+    final metadata = previousMetadata;
+    if (metadata != null) {
       return MiniPlayer(
         titleKey: WidgetKeys.miniPlayerTitle,
-        secondaryTitle: artist,
-        title: title ?? '',
-        artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
+        secondaryTitle: metadata.artist,
+        title: metadata.title ?? '',
+        artworkUri: metadata.artworkUri ?? '',
         backgroundColor: design.colors.background2,
         titleStyle: design.textStyles.caption1.copyWith(color: design.colors.label1),
         secondaryTitleStyle: design.textStyles.caption2.copyWith(color: design.colors.tint1),
@@ -115,12 +113,13 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
       );
     }
     return Container(
-        height: kMiniPlayerHeight,
-        width: MediaQuery.of(context).size.width,
-        color: DesignSystem.of(context).colors.background2,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 12,
-        ));
+      height: kMiniPlayerHeight,
+      width: MediaQuery.of(context).size.width,
+      color: DesignSystem.of(context).colors.background2,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 12,
+      ),
+    );
   }
 }

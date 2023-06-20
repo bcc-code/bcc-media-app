@@ -8,7 +8,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../flavors.dart';
 import '../../graphql/queries/achievements.graphql.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../helpers/ui/image.dart';

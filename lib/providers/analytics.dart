@@ -10,9 +10,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
-import 'package:universal_io/io.dart';
 
-import '../flavors.dart';
 import '../helpers/version.dart';
 import '../models/analytics/achievement_shared.dart';
 import '../models/analytics/audio_only_clicked.dart';
