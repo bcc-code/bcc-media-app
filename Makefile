@@ -29,8 +29,7 @@ release:
 	git push --tags
 
 release-kids:
-	git tag kids-v${BUILD_NUMBER}
-	git push --tags
+	TAG_SUFFIX=-kids make release
 
 # Rerelease (recreate the release tag with a different commit)
 # This can happen often, e.g. because you forgot to sync translations or a ci script needed to be fixed

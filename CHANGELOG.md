@@ -1,4 +1,15 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v4.5.2+2300072...v) (2023-06-19)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v4.5.2+2300072-kids...v) (2023-06-20)
+
+
+
+## [4.5.2+2300072-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.5.2+2300072...v4.5.2+2300072-kids) (2023-06-20)
+
+
+### Bug Fixes
+
+* **games:** open games in home and search tab ([d117524](https://github.com/bcc-code/bcc-media-app/commit/d1175249e3f828dceb39cfe1f79605709709dc4f))
+* **ui:** mini card section routing not working ([f46141c](https://github.com/bcc-code/bcc-media-app/commit/f46141cd5700d02ef02c2250f4105ade2233e156))
+* **ui:** minor theme update for material3 ([43ac8a9](https://github.com/bcc-code/bcc-media-app/commit/43ac8a942fd18d64fa292df647705cad26ea5cc4))
 
 
 
