@@ -3,14 +3,14 @@ import 'dart:math';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/pigeon/pigeon_extensions.dart';
-import 'package:bccm_player/src/utils/debouncer.dart';
+import 'package:bccm_player/src/helpers/utils/debouncer.dart';
 import 'package:bccm_player/src/widgets/controls/controls_wrapper.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/time.dart';
+import '../../helpers/utils/time.dart';
 
 class DefaultControls extends HookWidget {
   const DefaultControls({

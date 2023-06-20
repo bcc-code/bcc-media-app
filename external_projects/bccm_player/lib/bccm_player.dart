@@ -17,3 +17,4 @@ export 'src/native/chromecast_events.dart';
 export 'src/playback_platform_interface.dart';
 export 'src/widgets/video/video_player_view.dart';
 export 'src/widgets/cast/cast_button.dart';
+export 'src/widgets/mini_player/bccm_mini_player.dart';
