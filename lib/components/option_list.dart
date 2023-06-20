@@ -58,7 +58,6 @@ class OptionList extends StatelessWidget {
               child: const Divider(
                 height: 1,
                 thickness: 1,
-                indent: 16,
               ),
             );
           },

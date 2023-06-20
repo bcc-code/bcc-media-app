@@ -47,6 +47,10 @@ class BibleKidsDesignSystem extends DesignSystemData {
             tabLabelTextStyle: textStyles.caption3,
           ),
         ),
+        dividerTheme: DividerThemeData(
+          color: colors.separatorOnLight,
+          thickness: 1,
+        ),
         brightness: Brightness.dark,
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,

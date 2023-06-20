@@ -31,7 +31,6 @@ class SettingList extends StatelessWidget {
           return const Divider(
             height: 1,
             thickness: 1,
-            indent: 16,
           );
         },
       ),
