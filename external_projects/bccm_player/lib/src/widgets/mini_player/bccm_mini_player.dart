@@ -1,13 +1,9 @@
-import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../helpers/ui/svg_icons.dart';
-
-import '../helpers/widget_keys.dart';
-import '../l10n/app_localizations.dart';
+import 'loading_indicator.dart';
+import '../../helpers/ui/transparent_image.dart';
+import '../../helpers/ui/svg_icons.dart';
 
 const double kMiniPlayerHeight = 62;
 
@@ -21,7 +17,16 @@ class MiniPlayer extends StatelessWidget {
   final VoidCallback? onPlayTap;
   final VoidCallback? onCloseTap;
   final bool? hideCloseButton;
-  final Border? border;
+  final BorderSide? border;
+
+  final Key? titleKey;
+  final Color? backgroundColor;
+  final Border? thumbnailBorder;
+  final TextStyle? titleStyle;
+  final TextStyle? secondaryTitleStyle;
+  final Widget? loadingIndicator;
+  final String? playSemanticLabel;
+  final String? pauseSemanticLabel;
 
   const MiniPlayer({
     Key? key,
@@ -35,17 +40,24 @@ class MiniPlayer extends StatelessWidget {
     this.loading,
     this.hideCloseButton,
     this.border,
+    this.titleKey,
+    this.backgroundColor,
+    this.titleStyle,
+    this.secondaryTitleStyle,
+    this.thumbnailBorder,
+    this.loadingIndicator,
+    this.playSemanticLabel,
+    this.pauseSemanticLabel,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final design = DesignSystem.of(context);
     return Container(
       height: kMiniPlayerHeight,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: design.colors.background2,
-        border: border ?? Border(top: BorderSide(color: design.colors.separatorOnLight, width: 1)),
+        color: backgroundColor,
+        border: Border(top: border ?? BorderSide.none),
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
@@ -62,10 +74,11 @@ class MiniPlayer extends StatelessWidget {
             height: 36,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
-              border: Border.all(
-                color: design.colors.onTint.withOpacity(0.01),
-                width: 1,
-              ),
+              border: thumbnailBorder ??
+                  Border.all(
+                    color: Colors.white.withOpacity(0.01),
+                    width: 1,
+                  ),
             ),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
@@ -92,21 +105,21 @@ class MiniPlayer extends StatelessWidget {
                       secondaryTitle!,
                       semanticsLabel: secondaryTitle!,
                       overflow: TextOverflow.ellipsis,
-                      style: design.textStyles.caption2.copyWith(color: design.colors.tint1),
+                      style: secondaryTitleStyle,
                     ),
                   ),
                 Text(
                   title,
                   semanticsLabel: title,
-                  key: WidgetKeys.miniPlayerTitle,
+                  key: titleKey,
                   overflow: TextOverflow.ellipsis,
-                  style: design.textStyles.caption1.copyWith(color: design.colors.label1),
+                  style: titleStyle,
                 ),
               ],
             ),
           ),
           if (loading == true)
-            Container(margin: const EdgeInsets.only(left: 16), height: 36, child: const LoadingIndicator(height: 24))
+            Container(margin: const EdgeInsets.only(left: 16), height: 36, child: loadingIndicator ?? const LoadingIndicator(height: 24))
           else
             GestureDetector(
               behavior: HitTestBehavior.opaque,
@@ -115,8 +128,14 @@ class MiniPlayer extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 16),
                 height: 36,
                 child: isPlaying
-                    ? Image.asset(semanticLabel: S.of(context).pause, height: 24, 'assets/icons/Pause.png', gaplessPlayback: true)
-                    : Image.asset(semanticLabel: S.of(context).play, height: 24, 'assets/icons/Play.png', gaplessPlayback: true),
+                    ? SvgPicture.string(
+                        SvgIcons.pause,
+                        semanticsLabel: pauseSemanticLabel,
+                      )
+                    : SvgPicture.string(
+                        SvgIcons.play,
+                        semanticsLabel: playSemanticLabel,
+                      ),
               ),
             ),
           if (hideCloseButton != true)

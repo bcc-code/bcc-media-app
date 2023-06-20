@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
+import '../l10n/app_localizations.dart';
 import '../theme/design_system/design_system.dart';
 import '../providers/fun.dart';
-import 'mini_player.dart';
 
 class BottomSheetMiniPlayer extends ConsumerStatefulWidget {
   const BottomSheetMiniPlayer({Key? key, required this.hidden}) : super(key: key);
@@ -51,6 +51,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     var title = player.currentMediaItem?.metadata?.title;
     var artworkUri = player.currentMediaItem?.metadata?.artworkUri;
     var playbackState = player.playbackState;
+    final design = DesignSystem.of(context);
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -70,9 +71,16 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
       },
       child: MiniPlayer(
         key: WidgetKeys.bottomSheetMiniPlayer,
+        titleKey: WidgetKeys.miniPlayerTitle,
         secondaryTitle: artist,
         title: title ?? '',
         artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
+        border: BorderSide(color: design.colors.separatorOnLight, width: 1),
+        backgroundColor: design.colors.background2,
+        titleStyle: design.textStyles.caption1.copyWith(color: design.colors.label1),
+        secondaryTitleStyle: design.textStyles.caption2.copyWith(color: design.colors.tint1),
+        playSemanticLabel: S.of(context).play,
+        pauseSemanticLabel: S.of(context).pause,
         isPlaying: playbackState == PlaybackState.playing,
         onPlayTap: () {
           BccmPlayerInterface.instance.play(player.playerId);
@@ -90,16 +98,20 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
   /// Builds based on the previous meta (to ensure smooth transition)
   /// Worst case, just a blank box. Shouldn't happen though, I think.
   Widget _buildDummy() {
+    final design = DesignSystem.of(context);
     if (previousMetadata != null) {
       var artist = previousMetadata!.artist;
       var title = previousMetadata!.title;
       var artworkUri = previousMetadata!.artworkUri;
       return MiniPlayer(
+        titleKey: WidgetKeys.miniPlayerTitle,
         secondaryTitle: artist,
         title: title ?? '',
         artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
+        backgroundColor: design.colors.background2,
+        titleStyle: design.textStyles.caption1.copyWith(color: design.colors.label1),
+        secondaryTitleStyle: design.textStyles.caption2.copyWith(color: design.colors.tint1),
         isPlaying: false,
-        border: null,
       );
     }
     return Container(
