@@ -22,11 +22,11 @@ import '../screens/achievements.dart' as _i19;
 import '../screens/auto_login.dart' as _i1;
 import '../screens/calendar.dart' as _i24;
 import '../screens/episode.dart' as _i17;
-import '../screens/games/game.dart' as _i29;
-import '../screens/games/games.dart' as _i28;
+import '../screens/games/game.dart' as _i27;
+import '../screens/games/games.dart' as _i29;
 import '../screens/home.dart' as _i16;
 import '../screens/live.dart' as _i22;
-import '../screens/my_list.dart' as _i27;
+import '../screens/my_list.dart' as _i28;
 import '../screens/onboarding/onboarding.dart' as _i2;
 import '../screens/onboarding/signup.dart' as _i3;
 import '../screens/page.dart' as _i26;
@@ -445,10 +445,24 @@ class AppRouter extends _i30.RootStackRouter {
         barrierDismissible: false,
       );
     },
+    GameScreenRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<GameScreenRouteArgs>(
+          orElse: () =>
+              GameScreenRouteArgs(gameId: pathParams.getString('gameId')));
+      return _i30.CupertinoPageX<void>(
+        routeData: routeData,
+        child: _i27.GameScreen(
+          key: args.key,
+          gameId: args.gameId,
+        ),
+        maintainState: false,
+      );
+    },
     MyListScreenRoute.name: (routeData) {
       return _i30.CustomPage<void>(
         routeData: routeData,
-        child: const _i27.MyListScreen(),
+        child: const _i28.MyListScreen(),
         maintainState: false,
         opaque: true,
         barrierDismissible: false,
@@ -457,21 +471,7 @@ class AppRouter extends _i30.RootStackRouter {
     GamesScreenRoute.name: (routeData) {
       return _i30.CupertinoPageX<void>(
         routeData: routeData,
-        child: const _i28.GamesScreen(),
-      );
-    },
-    GameScreenRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<GameScreenRouteArgs>(
-          orElse: () =>
-              GameScreenRouteArgs(gameId: pathParams.getString('gameId')));
-      return _i30.CupertinoPageX<void>(
-        routeData: routeData,
-        child: _i29.GameScreen(
-          key: args.key,
-          gameId: args.gameId,
-        ),
-        maintainState: false,
+        child: const _i29.GamesScreen(),
       );
     },
     Home.name: (routeData) {
@@ -640,6 +640,11 @@ class AppRouter extends _i30.RootStackRouter {
                   parent: SearchScreenWrapperRoute.name,
                   usesPathAsKey: true,
                 ),
+                _i30.RouteConfig(
+                  GameScreenRoute.name,
+                  path: ':gameId',
+                  parent: SearchScreenWrapperRoute.name,
+                ),
               ],
             ),
             _i30.RouteConfig(
@@ -722,6 +727,11 @@ class AppRouter extends _i30.RootStackRouter {
                   path: ':pageCode',
                   parent: HomeScreenWrapperRoute.name,
                   usesPathAsKey: true,
+                ),
+                _i30.RouteConfig(
+                  GameScreenRoute.name,
+                  path: ':gameId',
+                  parent: HomeScreenWrapperRoute.name,
                 ),
               ],
             ),
@@ -1401,31 +1411,7 @@ class PageScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i27.MyListScreen]
-class MyListScreenRoute extends _i30.PageRouteInfo<void> {
-  const MyListScreenRoute()
-      : super(
-          MyListScreenRoute.name,
-          path: '',
-        );
-
-  static const String name = 'MyListScreenRoute';
-}
-
-/// generated route for
-/// [_i28.GamesScreen]
-class GamesScreenRoute extends _i30.PageRouteInfo<void> {
-  const GamesScreenRoute()
-      : super(
-          GamesScreenRoute.name,
-          path: '',
-        );
-
-  static const String name = 'GamesScreenRoute';
-}
-
-/// generated route for
-/// [_i29.GameScreen]
+/// [_i27.GameScreen]
 class GameScreenRoute extends _i30.PageRouteInfo<GameScreenRouteArgs> {
   GameScreenRoute({
     _i34.Key? key,
@@ -1457,6 +1443,30 @@ class GameScreenRouteArgs {
   String toString() {
     return 'GameScreenRouteArgs{key: $key, gameId: $gameId}';
   }
+}
+
+/// generated route for
+/// [_i28.MyListScreen]
+class MyListScreenRoute extends _i30.PageRouteInfo<void> {
+  const MyListScreenRoute()
+      : super(
+          MyListScreenRoute.name,
+          path: '',
+        );
+
+  static const String name = 'MyListScreenRoute';
+}
+
+/// generated route for
+/// [_i29.GamesScreen]
+class GamesScreenRoute extends _i30.PageRouteInfo<void> {
+  const GamesScreenRoute()
+      : super(
+          GamesScreenRoute.name,
+          path: '',
+        );
+
+  static const String name = 'GamesScreenRoute';
 }
 
 /// generated route for

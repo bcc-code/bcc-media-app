@@ -61,6 +61,12 @@ const _pageScreenRoute = CustomRoute<void>(
     reverseDurationInMilliseconds: 300,
     transitionsBuilder: CustomTransitionsBuilders.slideLeft);
 
+const _gameScreenRoute = CupertinoRoute<void>(
+  page: GameScreen,
+  path: ':gameId',
+  maintainState: false,
+);
+
 Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> page) {
   return ModalSheetRoute(
     settings: page,
@@ -257,6 +263,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
             _pageScreenRoute,
+            _gameScreenRoute,
           ],
         ),
         MaterialRoute<void>(
@@ -292,11 +299,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
               maintainState: true,
               meta: {RouteMetaConstants.navTabRoute: true},
             ),
-            CupertinoRoute<void>(
-              page: GameScreen,
-              path: ':gameId',
-              maintainState: false,
-            ),
+            _gameScreenRoute,
           ],
         ),
         CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [
@@ -311,6 +314,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
           _episodeScreenRoute,
           _collectionEpisodeScreenRoute,
           _pageScreenRoute,
+          _gameScreenRoute,
         ]),
       ],
     ),
