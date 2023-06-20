@@ -56,7 +56,7 @@ final unleashRawProvider = Provider<UnleashClient?>((ref) {
 final unleashContextProvider = Provider<UnleashContext>((ref) {
   return UnleashContext(
     properties: {
-      'appName': FlavorConfig.current.applicationCode ?? 'default',
+      'appName': FlavorConfig.current.applicationCode,
     },
     userId: ref.watch(
       authStateProvider.select((value) => value.user?.bccPersonId),

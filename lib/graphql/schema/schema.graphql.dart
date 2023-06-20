@@ -296,37 +296,20 @@ Enum$Status fromJson$Enum$Status(String value) {
 
 const possibleTypesMap = <String, Set<String>>{
   'Pagination': {
-    'LinkPagination',
-    'CollectionItemPagination',
-    'QuestionPagination',
-    'FAQCategoryPagination',
     'SurveyQuestionPagination',
+    'LinkPagination',
     'UserCollectionEntryPagination',
+    'CollectionItemPagination',
     'SectionPagination',
     'SectionItemPagination',
     'SeasonPagination',
+    'QuestionPagination',
+    'FAQCategoryPagination',
     'LessonPagination',
     'TaskPagination',
     'AchievementPagination',
     'AchievementGroupPagination',
     'EpisodePagination',
-  },
-  'CollectionItem': {
-    'ShowItem',
-    'SeasonItem',
-    'EpisodeItem',
-    'PageItem',
-  },
-  'CalendarEntry': {
-    'SimpleCalendarEntry',
-    'EpisodeCalendarEntry',
-    'SeasonCalendarEntry',
-    'ShowCalendarEntry',
-  },
-  'SearchResultItem': {
-    'EpisodeSearchItem',
-    'SeasonSearchItem',
-    'ShowSearchItem',
   },
   'SurveyQuestion': {
     'SurveyTextQuestion',
@@ -335,6 +318,12 @@ const possibleTypesMap = <String, Set<String>>{
   'UserCollectionEntryItem': {
     'Show',
     'Episode',
+  },
+  'CollectionItem': {
+    'ShowItem',
+    'SeasonItem',
+    'EpisodeItem',
+    'PageItem',
   },
   'Section': {
     'PosterSection',
@@ -379,6 +368,17 @@ const possibleTypesMap = <String, Set<String>>{
     'Link',
     'StudyTopic',
     'Game',
+  },
+  'CalendarEntry': {
+    'SimpleCalendarEntry',
+    'EpisodeCalendarEntry',
+    'SeasonCalendarEntry',
+    'ShowCalendarEntry',
+  },
+  'SearchResultItem': {
+    'EpisodeSearchItem',
+    'SeasonSearchItem',
+    'ShowSearchItem',
   },
   'Prompt': {'SurveyPrompt'},
   'Task': {

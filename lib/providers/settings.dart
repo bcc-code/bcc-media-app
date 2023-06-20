@@ -21,6 +21,7 @@ class Settings with _$Settings {
     int? sessionId,
     String? envOverride,
     bool? isBetaTester,
+    @Default([]) List<String> extraUsergroups,
   }) = _Settings;
 }
 
@@ -51,6 +52,7 @@ class SettingsService extends StateNotifier<Settings> {
       envOverride: prefs.getString(PrefKeys.envOverride),
       isBetaTester: prefs.getBool(PrefKeys.isBetaTester),
       sessionId: (DateTime.now().millisecondsSinceEpoch / 1000).round(),
+      extraUsergroups: prefs.getStringList(PrefKeys.extraUsergroups) ?? [],
     );
   }
 
@@ -99,6 +101,16 @@ class SettingsService extends StateNotifier<Settings> {
       prefs.setBool(PrefKeys.isBetaTester, true);
     }
     state = state.copyWith(isBetaTester: value);
+  }
+
+  Future<void> updateExtraUsergroups(List<String> value) async {
+    var prefs = ref.read(sharedPreferencesProvider);
+    if (value.isEmpty) {
+      prefs.remove(PrefKeys.extraUsergroups);
+    } else {
+      prefs.setStringList(PrefKeys.extraUsergroups, value);
+    }
+    state = state.copyWith(extraUsergroups: value);
   }
 }
 

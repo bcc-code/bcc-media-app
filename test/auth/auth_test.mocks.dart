@@ -527,6 +527,16 @@ class MockSettingsService extends _i1.Mock implements _i4.SettingsService {
         returnValueForMissingStub: _i6.Future<void>.value(),
       ) as _i6.Future<void>);
   @override
+  _i6.Future<void> updateExtraUsergroups(List<String>? value) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateExtraUsergroups,
+          [value],
+        ),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
+  @override
   bool updateShouldNotify(
     _i4.Settings? old,
     _i4.Settings? current,

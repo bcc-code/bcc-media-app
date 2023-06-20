@@ -149,55 +149,55 @@ class SNb extends S {
   String get contactUs => 'Kontakt oss';
 
   @override
-  String get deviceInfo => 'Device info';
+  String get deviceInfo => 'Enhetsinformasjon';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Inkluder enhetsinformasjon for bedre støtte.';
 
   @override
-  String get contactSeeData => 'Click to see data.';
+  String get contactSeeData => 'Klikk for å se data.';
 
   @override
-  String get contactName => 'Name';
+  String get contactName => 'Navn';
 
   @override
-  String get contactNameHint => 'Type in your name';
+  String get contactNameHint => 'Skriv inn ditt navn';
 
   @override
-  String get contactEmail => 'Your contact email';
+  String get contactEmail => 'Din e-post kontakt';
 
   @override
-  String get contactEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'Skriv inn din e-postadresse';
 
   @override
-  String get contactMessage => 'Message';
+  String get contactMessage => 'Melding';
 
   @override
-  String get contactMessageHint => 'Enter your message here';
+  String get contactMessageHint => 'Skriv inn din melding her';
 
   @override
-  String get deviceInfoDevice => 'Device';
+  String get deviceInfoDevice => 'Enhet';
 
   @override
   String get deviceInfoEnvOverride => 'Environment override';
 
   @override
-  String get deviceInfoManufacturer => 'Manufacturer';
+  String get deviceInfoManufacturer => 'Produsent';
 
   @override
-  String get deviceInfoOs => 'Operating System';
+  String get deviceInfoOs => 'Operativsystem';
 
   @override
-  String get deviceInfoScreenSize => 'Screen Size';
+  String get deviceInfoScreenSize => 'Skjermstørrelse';
 
   @override
-  String get deviceInfoAppVer => 'App Version';
+  String get deviceInfoAppVer => 'App-versjon';
 
   @override
-  String get deviceInfoUserId => 'User ID';
+  String get deviceInfoUserId => 'Bruker-ID';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc => 'Meldingen din vil inneholde denne informasjonen for å hjelpe oss å gi bedre støtte.';
 
   @override
   String get userVoice => 'Foreslå en funksjon';

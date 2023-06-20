@@ -23,6 +23,7 @@ mixin _$Settings {
   int? get sessionId => throw _privateConstructorUsedError;
   String? get envOverride => throw _privateConstructorUsedError;
   bool? get isBetaTester => throw _privateConstructorUsedError;
+  List<String> get extraUsergroups => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingsCopyWith<Settings> get copyWith =>
@@ -41,7 +42,8 @@ abstract class $SettingsCopyWith<$Res> {
       String? analyticsId,
       int? sessionId,
       String? envOverride,
-      bool? isBetaTester});
+      bool? isBetaTester,
+      List<String> extraUsergroups});
 }
 
 /// @nodoc
@@ -64,6 +66,7 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
     Object? sessionId = freezed,
     Object? envOverride = freezed,
     Object? isBetaTester = freezed,
+    Object? extraUsergroups = null,
   }) {
     return _then(_value.copyWith(
       appLanguage: null == appLanguage
@@ -94,6 +97,10 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
           ? _value.isBetaTester
           : isBetaTester // ignore: cast_nullable_to_non_nullable
               as bool?,
+      extraUsergroups: null == extraUsergroups
+          ? _value.extraUsergroups
+          : extraUsergroups // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -112,7 +119,8 @@ abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
       String? analyticsId,
       int? sessionId,
       String? envOverride,
-      bool? isBetaTester});
+      bool? isBetaTester,
+      List<String> extraUsergroups});
 }
 
 /// @nodoc
@@ -133,6 +141,7 @@ class __$$_SettingsCopyWithImpl<$Res>
     Object? sessionId = freezed,
     Object? envOverride = freezed,
     Object? isBetaTester = freezed,
+    Object? extraUsergroups = null,
   }) {
     return _then(_$_Settings(
       appLanguage: null == appLanguage
@@ -163,6 +172,10 @@ class __$$_SettingsCopyWithImpl<$Res>
           ? _value.isBetaTester
           : isBetaTester // ignore: cast_nullable_to_non_nullable
               as bool?,
+      extraUsergroups: null == extraUsergroups
+          ? _value._extraUsergroups
+          : extraUsergroups // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -177,7 +190,9 @@ class _$_Settings implements _Settings {
       this.analyticsId,
       this.sessionId,
       this.envOverride,
-      this.isBetaTester});
+      this.isBetaTester,
+      final List<String> extraUsergroups = const []})
+      : _extraUsergroups = extraUsergroups;
 
   @override
   final Locale appLanguage;
@@ -193,10 +208,18 @@ class _$_Settings implements _Settings {
   final String? envOverride;
   @override
   final bool? isBetaTester;
+  final List<String> _extraUsergroups;
+  @override
+  @JsonKey()
+  List<String> get extraUsergroups {
+    if (_extraUsergroups is EqualUnmodifiableListView) return _extraUsergroups;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_extraUsergroups);
+  }
 
   @override
   String toString() {
-    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride, isBetaTester: $isBetaTester)';
+    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride, isBetaTester: $isBetaTester, extraUsergroups: $extraUsergroups)';
   }
 
   @override
@@ -217,12 +240,22 @@ class _$_Settings implements _Settings {
             (identical(other.envOverride, envOverride) ||
                 other.envOverride == envOverride) &&
             (identical(other.isBetaTester, isBetaTester) ||
-                other.isBetaTester == isBetaTester));
+                other.isBetaTester == isBetaTester) &&
+            const DeepCollectionEquality()
+                .equals(other._extraUsergroups, _extraUsergroups));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, appLanguage, audioLanguage,
-      subtitleLanguage, analyticsId, sessionId, envOverride, isBetaTester);
+  int get hashCode => Object.hash(
+      runtimeType,
+      appLanguage,
+      audioLanguage,
+      subtitleLanguage,
+      analyticsId,
+      sessionId,
+      envOverride,
+      isBetaTester,
+      const DeepCollectionEquality().hash(_extraUsergroups));
 
   @JsonKey(ignore: true)
   @override
@@ -239,7 +272,8 @@ abstract class _Settings implements Settings {
       final String? analyticsId,
       final int? sessionId,
       final String? envOverride,
-      final bool? isBetaTester}) = _$_Settings;
+      final bool? isBetaTester,
+      final List<String> extraUsergroups}) = _$_Settings;
 
   @override
   Locale get appLanguage;
@@ -255,6 +289,8 @@ abstract class _Settings implements Settings {
   String? get envOverride;
   @override
   bool? get isBetaTester;
+  @override
+  List<String> get extraUsergroups;
   @override
   @JsonKey(ignore: true)
   _$$_SettingsCopyWith<_$_Settings> get copyWith =>
