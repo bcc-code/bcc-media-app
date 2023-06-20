@@ -3,6 +3,7 @@ import 'package:auto_route/empty_router_widgets.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/screens/auto_login.dart';
 import 'package:brunstadtv_app/screens/calendar.dart';
+import 'package:brunstadtv_app/screens/extra_usergroups.dart';
 import 'package:brunstadtv_app/screens/games/game.dart';
 import 'package:brunstadtv_app/screens/my_list.dart';
 import 'package:brunstadtv_app/screens/profile/about.dart';
@@ -213,6 +214,15 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       reverseDurationInMilliseconds: 300,
       transitionsBuilder: CustomTransitionsBuilders.slideLeft,
       meta: {RouteMetaConstants.analyticsName: 'episode'},
+    ),
+    CustomRoute<void>(
+      page: ExtraUsergroupsScreen,
+      name: 'ExtraUsergroupsScreen',
+      path: '/extra-usergroups',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: profileRouteBuilder,
+      meta: {RouteMetaConstants.analyticsName: 'extra-usergroups'},
     ),
     CustomRoute<void>(
         page: StudyScreen,

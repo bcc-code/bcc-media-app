@@ -12,30 +12,45 @@ import '../flavors.dart';
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
   final settings = ref.watch(settingsProvider);
   final authStateNotifier = ref.watch(authStateProvider.notifier);
+  final extraUsergroups = [
+    if (settings.isBetaTester == true) '${FlavorConfig.current.applicationCode}-betatesters',
+    ...settings.extraUsergroups,
+  ];
   debugPrint('envOverride: ${settings.envOverride}');
-  final httpLink = HttpLink(apiEnvUrls[settings.envOverride] ?? apiEnvUrls[EnvironmentOverride.none]!,
-      defaultHeaders: {
-        'Accept-Language': settings.appLanguage.languageCode,
-        if (FlavorConfig.current.applicationCode != null) 'X-Application': FlavorConfig.current.applicationCode!
-      },
-      httpClient: RetryClient(Client(), retries: 1, when: (response) => response.statusCode == 500 || response.statusCode == 429));
 
-  final authLink = AuthLink(getToken: () async {
-    final authState = await authStateNotifier.getExistingAndEnsureNotExpired();
-    if (authState == null) {
-      return null;
-    }
-    return 'Bearer ${authState.auth0AccessToken}';
-  });
+  final httpLink = HttpLink(
+    apiEnvUrls[settings.envOverride] ?? apiEnvUrls[EnvironmentOverride.none]!,
+    defaultHeaders: {
+      'Accept-Language': settings.appLanguage.languageCode,
+      'X-Application': FlavorConfig.current.applicationCode,
+      if (extraUsergroups.isNotEmpty) 'x-explicit-roles': extraUsergroups.join(','),
+    },
+    httpClient: RetryClient(
+      Client(),
+      retries: 1,
+      when: (response) => response.statusCode == 500 || response.statusCode == 429,
+    ),
+  );
 
-  debugPrint(httpLink.uri.toString());
+  final authLink = AuthLink(
+    getToken: () async {
+      final authState = await authStateNotifier.getExistingAndEnsureNotExpired();
+      if (authState == null) {
+        return null;
+      }
+      return 'Bearer ${authState.auth0AccessToken}';
+    },
+  );
 
   Link link = authLink.concat(httpLink);
-
   final GraphQLClient client = GraphQLClient(
-    /// **NOTE** The default store is the InMemoryStore, which does NOT persist to disk
     cache: GraphQLCache(),
-    defaultPolicies: DefaultPolicies(query: Policies(cacheReread: CacheRereadPolicy.ignoreAll, fetch: FetchPolicy.networkOnly)),
+    defaultPolicies: DefaultPolicies(
+      query: Policies(
+        cacheReread: CacheRereadPolicy.ignoreAll,
+        fetch: FetchPolicy.networkOnly,
+      ),
+    ),
     link: link,
   );
 
