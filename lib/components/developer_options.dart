@@ -131,7 +131,9 @@ class DeveloperOptions extends ConsumerWidget {
         Option(id: 'override_env', title: 'Override environment'),
         Option(id: 'show_technical_details', title: 'Show technical details'),
         Option(id: 'reset_settings', title: 'Reset settings'),
+        Option(id: 'toggle_betatester', title: 'Betatester mode: ${ref.watch(settingsProvider).isBetaTester}'),
       ],
+      popOnChange: false,
       showSelection: false,
       onSelectionChanged: (id) async {
         WidgetsBinding.instance.scheduleFrameCallback((d) {
@@ -144,6 +146,12 @@ class DeveloperOptions extends ConsumerWidget {
               break;
             case 'reset_settings':
               ref.read(sharedPreferencesProvider).clear();
+              ref.refresh(settingsProvider);
+              debugPrint('cleared shared prefs');
+              break;
+            case 'toggle_betatester':
+              final current = ref.read(settingsProvider).isBetaTester ?? false;
+              ref.read(settingsProvider.notifier).setBetaTester(!current);
               break;
           }
         });
