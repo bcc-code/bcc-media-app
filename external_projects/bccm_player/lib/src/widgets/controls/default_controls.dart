@@ -5,6 +5,7 @@ import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/pigeon/pigeon_extensions.dart';
 import 'package:bccm_player/src/helpers/utils/debouncer.dart';
 import 'package:bccm_player/src/widgets/controls/controls_wrapper.dart';
+import 'package:bccm_player/src/widgets/mini_player/loading_indicator.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:collection/collection.dart';
@@ -26,6 +27,7 @@ class DefaultControls extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: invalid_use_of_protected_member
     final player = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state);
     final seekDebouncer = useMemoized(() => Debouncer(milliseconds: 1000));
     useEffect(() {
@@ -61,7 +63,6 @@ class DefaultControls extends HookWidget {
       child: ControlsWrapper(
         autoHide: player.value?.playbackState == PlaybackState.playing,
         child: SafeArea(
-          bottom: false,
           child: Stack(
             children: [
               Positioned.fill(
@@ -81,45 +82,90 @@ class DefaultControls extends HookWidget {
                           },
                         ),
                         if (title != null)
-                          Container(
-                            child: Text(
-                              title,
-                              style: Theme.of(context).textTheme.labelMedium,
-                            ),
+                          Text(
+                            title,
+                            style: Theme.of(context).textTheme.labelMedium,
                           ),
-                      ]
+                      ],
+                      const Spacer(),
+                      Container(
+                        padding: const EdgeInsets.only(top: 12, right: 2),
+                        child: _SettingsWidget(playerId: playerId),
+                      ),
                     ],
                   ),
                 ),
               ),
               Container(
                 alignment: Alignment.center,
-                padding: const EdgeInsets.only(bottom: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    IconButton(
-                      icon: Icon(
-                        player.value?.playbackState != PlaybackState.playing ? Icons.play_arrow : Icons.pause,
-                        size: 54,
-                      ),
-                      onPressed: () {
-                        if (player.value?.playbackState != PlaybackState.playing) {
+                    if (player.value?.playbackState != PlaybackState.playing)
+                      IconButton(
+                        icon: const Icon(
+                          Icons.play_arrow,
+                          size: 54,
+                        ),
+                        onPressed: () {
                           BccmPlayerInterface.instance.play(playerId);
-                        } else {
+                        },
+                      )
+                    else
+                      IconButton(
+                        icon: player.value?.isBuffering == true
+                            ? const LoadingIndicator(
+                                width: 48,
+                                height: 48,
+                              )
+                            : const Icon(
+                                Icons.pause,
+                                size: 54,
+                              ),
+                        onPressed: () {
                           BccmPlayerInterface.instance.pause(playerId);
-                        }
-                      },
-                    ),
+                        },
+                      ),
                   ],
                 ),
               ),
               Container(
                 alignment: Alignment.bottomLeft,
-                padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+                padding: const EdgeInsets.only(left: 16, right: 16, bottom: 24),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    SizedBox(
+                      height: 48,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 6),
+                            child: Text(
+                              '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
+                              style: Theme.of(context).textTheme.labelSmall,
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 2),
+                            child: GestureDetector(
+                              onTap: () {
+                                if (!isFullscreen) {
+                                  goFullscreen();
+                                } else {
+                                  exitFullscreen();
+                                }
+                              },
+                              child: Icon(
+                                isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     SizedBox(
                       child: Row(
                         children: [
@@ -144,39 +190,6 @@ class DefaultControls extends HookWidget {
                                   },
                                 ),
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 3),
-                            child: Text(
-                              '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
-                              style: Theme.of(context).textTheme.labelSmall,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 48,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(right: 12),
-                            child: _SettingsWidget(playerId: playerId),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              if (!isFullscreen) {
-                                debugPrint('bccm: not fullscreen, so go fullscreen');
-                                goFullscreen();
-                              } else {
-                                debugPrint('bccm: is fullscreen, so exit fullscreen');
-                                exitFullscreen();
-                              }
-                            },
-                            child: Icon(
-                              isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
                             ),
                           ),
                         ],
