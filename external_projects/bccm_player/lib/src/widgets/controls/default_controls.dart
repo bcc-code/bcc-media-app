@@ -76,7 +76,8 @@ class DefaultControls extends HookWidget {
                     children: [
                       if (isFullscreen) ...[
                         IconButton(
-                          icon: const Icon(Icons.close, size: 32),
+                          icon: const Icon(Icons.close),
+                          iconSize: 32,
                           onPressed: () {
                             Navigator.maybePop(context);
                           },
@@ -103,10 +104,8 @@ class DefaultControls extends HookWidget {
                   children: [
                     if (player.value?.playbackState != PlaybackState.playing)
                       IconButton(
-                        icon: const Icon(
-                          Icons.play_arrow,
-                          size: 54,
-                        ),
+                        icon: const Icon(Icons.play_arrow),
+                        iconSize: 54,
                         onPressed: () {
                           BccmPlayerInterface.instance.play(playerId);
                         },
@@ -118,10 +117,8 @@ class DefaultControls extends HookWidget {
                                 width: 48,
                                 height: 48,
                               )
-                            : const Icon(
-                                Icons.pause,
-                                size: 54,
-                              ),
+                            : const Icon(Icons.pause),
+                        iconSize: 54,
                         onPressed: () {
                           BccmPlayerInterface.instance.pause(playerId);
                         },
@@ -131,7 +128,7 @@ class DefaultControls extends HookWidget {
               ),
               Container(
                 alignment: Alignment.bottomLeft,
-                padding: const EdgeInsets.only(left: 16, right: 16, bottom: 24),
+                padding: const EdgeInsets.only(left: 16, right: 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -167,10 +164,13 @@ class DefaultControls extends HookWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      child: Row(
-                        children: [
-                          if (player.value?.currentMediaItem?.isLive != true)
+                    if (player.value?.currentMediaItem?.isLive == true)
+                      Padding(padding: const EdgeInsets.only(top: 4))
+                    else
+                      Padding(
+                        padding: const EdgeInsets.only(top: 24),
+                        child: Row(
+                          children: [
                             Expanded(
                               child: SliderTheme(
                                 data: SliderTheme.of(context).copyWith(
@@ -194,9 +194,9 @@ class DefaultControls extends HookWidget {
                                 ),
                               ),
                             ),
-                        ],
-                      ),
-                    )
+                          ],
+                        ),
+                      )
                   ],
                 ),
               ),
