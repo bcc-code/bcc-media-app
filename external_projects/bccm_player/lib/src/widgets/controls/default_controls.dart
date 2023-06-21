@@ -55,11 +55,6 @@ class DefaultControls extends HookWidget {
       });
     }
 
-    debugPrint('bccm: duration: ${player.value?.currentMediaItem?.metadata?.durationMs}');
-    debugPrint('bccm: player data: ${player.value?.toString() ?? 'no player data'}');
-    debugPrint('bccm: seeking: $seeking');
-    debugPrint('bccm: seeking: $currentScrub');
-
     final title = player.value?.currentMediaItem?.metadata?.title;
 
     final w = SizedBox.expand(
