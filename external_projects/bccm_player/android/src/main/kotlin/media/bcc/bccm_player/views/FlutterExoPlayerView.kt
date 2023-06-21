@@ -166,7 +166,7 @@ class FlutterExoPlayerView(
             }
 
             if (startInPip && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                fullScreenPlayer.enterPictureInPicture()
+                fullScreenPlayer.enterPictureInPicture(showControls == false)
             }
         }
         resetPlayerView()

@@ -35,6 +35,7 @@ class FullscreenPlayerView(
     var isInPip: Boolean = false
     val orientationBeforeGoingFullscreen = activity.requestedOrientation
     var onExitListener: (() -> Unit)? = null
+    var exitAfterPictureInPicture: Boolean = false
     override val isFullscreen = true
     override val shouldPipAutomatically = true
 
@@ -106,13 +107,17 @@ class FullscreenPlayerView(
                 .collect { event ->
                     isInPip = event.isInPictureInPictureMode
                     Log.d("bccm", "PictureInPictureModeChangedEvent2, isInPiP: $isInPip")
-                    if (!event.isInPictureInPictureMode) {
-                        delay(500)
-                        makeActivityFullscreen(true)
-                    }
 
                     if (event.lifecycleState == Lifecycle.State.CREATED) {
                         playerController.player.stop()
+                    }
+                    if (!event.isInPictureInPictureMode) {
+                        if (exitAfterPictureInPicture) {
+                            exit();
+                            return@collect
+                        }
+                        delay(500)
+                        makeActivityFullscreen(true)
                     }
                 }
         }
@@ -192,6 +197,12 @@ class FullscreenPlayerView(
                 .build()
         )
         playerView?.hideController()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun enterPictureInPicture(exitAfter: Boolean) {
+        exitAfterPictureInPicture = exitAfter
+        enterPictureInPicture()
     }
 
     private fun release() {
