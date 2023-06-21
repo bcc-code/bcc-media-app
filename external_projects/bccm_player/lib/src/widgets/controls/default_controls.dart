@@ -140,13 +140,14 @@ class DefaultControls extends HookWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 6),
-                            child: Text(
-                              '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
-                              style: Theme.of(context).textTheme.labelSmall,
+                          if (player.value?.currentMediaItem?.isLive != true)
+                            Padding(
+                              padding: const EdgeInsets.only(left: 6),
+                              child: Text(
+                                '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
+                                style: Theme.of(context).textTheme.labelSmall,
+                              ),
                             ),
-                          ),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.only(right: 2),
@@ -169,29 +170,30 @@ class DefaultControls extends HookWidget {
                     SizedBox(
                       child: Row(
                         children: [
-                          Expanded(
-                            child: SliderTheme(
-                              data: SliderTheme.of(context).copyWith(
-                                trackHeight: 2,
-                                thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-                                overlayShape: SliderComponentShape.noOverlay,
-                              ),
-                              child: SizedBox(
-                                height: 10,
-                                child: Slider(
-                                  value: seeking.value
-                                      ? currentScrub.value
-                                      : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
-                                  onChanged: (double value) {
-                                    scrubTo(value);
-                                  },
-                                  onChangeEnd: (double value) {
-                                    seekDebouncer.forceEarly();
-                                  },
+                          if (player.value?.currentMediaItem?.isLive != true)
+                            Expanded(
+                              child: SliderTheme(
+                                data: SliderTheme.of(context).copyWith(
+                                  trackHeight: 2,
+                                  thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+                                  overlayShape: SliderComponentShape.noOverlay,
+                                ),
+                                child: SizedBox(
+                                  height: 10,
+                                  child: Slider(
+                                    value: seeking.value
+                                        ? currentScrub.value
+                                        : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
+                                    onChanged: (double value) {
+                                      scrubTo(value);
+                                    },
+                                    onChangeEnd: (double value) {
+                                      seekDebouncer.forceEarly();
+                                    },
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
                         ],
                       ),
                     )
