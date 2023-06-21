@@ -46,6 +46,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         return PlayerStateSnapshot.make(
             withPlayerId: id,
             playbackState: isPlaying() ? PlaybackState.playing : PlaybackState.paused,
+            isBuffering: NSNumber(booleanLiteral: isBuffering()),
             isFullscreen: (currentViewController != nil && currentViewController == fullscreenViewController) as NSNumber,
             currentMediaItem: MediaItemMapper.mapPlayerItem(player.currentItem),
             playbackPositionMs: NSNumber(value: player.currentTime().seconds * 1000)
@@ -478,11 +479,19 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = player.rate
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
-            let isPlayingEvent = PlaybackStateChangedEvent.make(withPlayerId: self.id, playbackState: self.isPlaying() ? PlaybackState.playing : PlaybackState.stopped)
+            let isPlayingEvent = PlaybackStateChangedEvent.make(
+                withPlayerId: self.id,
+                playbackState: self.isPlaying() ? PlaybackState.playing : PlaybackState.stopped,
+                isBuffering: NSNumber(booleanLiteral: self.isBuffering())
+            )
             self.playbackListener.onPlaybackStateChanged(isPlayingEvent, completion: { _ in })
             let positionDiscontinuityEvent = PositionDiscontinuityEvent.make(withPlayerId: self.id, playbackPositionMs: (player.currentTime().seconds * 1000).rounded() as NSNumber)
             self.playbackListener.onPositionDiscontinuity(positionDiscontinuityEvent, completion: { _ in })
         })
+    }
+    
+    func isBuffering() -> Bool {
+        return player.timeControlStatus == AVPlayer.TimeControlStatus.waitingToPlayAtSpecifiedRate && player.reasonForWaitingToPlay != .noItemToPlay
     }
     
     func isPlaying() -> Bool {

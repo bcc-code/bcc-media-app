@@ -202,6 +202,7 @@ class PlayerStateSnapshot {
   PlayerStateSnapshot({
     required this.playerId,
     required this.playbackState,
+    required this.isBuffering,
     required this.isFullscreen,
     this.currentMediaItem,
     this.playbackPositionMs,
@@ -210,6 +211,8 @@ class PlayerStateSnapshot {
   String playerId;
 
   PlaybackState playbackState;
+
+  bool isBuffering;
 
   bool isFullscreen;
 
@@ -221,6 +224,7 @@ class PlayerStateSnapshot {
     return <Object?>[
       playerId,
       playbackState.index,
+      isBuffering,
       isFullscreen,
       currentMediaItem?.encode(),
       playbackPositionMs,
@@ -232,11 +236,12 @@ class PlayerStateSnapshot {
     return PlayerStateSnapshot(
       playerId: result[0]! as String,
       playbackState: PlaybackState.values[result[1]! as int],
-      isFullscreen: result[2]! as bool,
-      currentMediaItem: result[3] != null
-          ? MediaItem.decode(result[3]! as List<Object?>)
+      isBuffering: result[2]! as bool,
+      isFullscreen: result[3]! as bool,
+      currentMediaItem: result[4] != null
+          ? MediaItem.decode(result[4]! as List<Object?>)
           : null,
-      playbackPositionMs: result[4] as double?,
+      playbackPositionMs: result[5] as double?,
     );
   }
 }
@@ -413,16 +418,20 @@ class PlaybackStateChangedEvent {
   PlaybackStateChangedEvent({
     required this.playerId,
     required this.playbackState,
+    required this.isBuffering,
   });
 
   String playerId;
 
   PlaybackState playbackState;
 
+  bool isBuffering;
+
   Object encode() {
     return <Object?>[
       playerId,
       playbackState.index,
+      isBuffering,
     ];
   }
 
@@ -431,6 +440,7 @@ class PlaybackStateChangedEvent {
     return PlaybackStateChangedEvent(
       playerId: result[0]! as String,
       playbackState: PlaybackState.values[result[1]! as int],
+      isBuffering: result[2]! as bool,
     );
   }
 }

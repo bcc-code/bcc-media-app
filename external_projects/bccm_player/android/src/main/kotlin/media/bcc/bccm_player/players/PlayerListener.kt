@@ -59,16 +59,16 @@ class PlayerListener(private val playerController: PlayerController, val plugin:
             }
             plugin.playbackPigeon?.onPlaybackEnded(event.build()) {}
         }
+        onIsPlayingChanged(playerController.player.isPlaying)
+        Log.d("bccm", "playbackState: " + playerController.player.playbackState.toString())
     }
 
     override fun onIsPlayingChanged(isPlaying: Boolean) {
-        val state =
-            if (isPlaying) PlaybackPlatformApi.PlaybackState.PLAYING
-            else PlaybackPlatformApi.PlaybackState.PAUSED;
         val event =
             PlaybackPlatformApi.PlaybackStateChangedEvent.Builder()
                 .setPlayerId(playerController.id)
-                .setPlaybackState(state)
+                .setPlaybackState(playerController.getPlaybackState())
+                .setIsBuffering(playerController.player.playbackState == Player.STATE_BUFFERING)
         plugin.playbackPigeon?.onPlaybackStateChanged(event.build()) {}
     }
 

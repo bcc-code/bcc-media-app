@@ -118,6 +118,7 @@ class MediaMetadata {
 class PlayerStateSnapshot {
   late String playerId;
   late PlaybackState playbackState;
+  late bool isBuffering;
   late bool isFullscreen;
   MediaItem? currentMediaItem;
   // This is double because pigeon uses NSNumber for int :(
@@ -199,7 +200,8 @@ class PlaybackStateChangedEvent implements PlayerEvent {
   @override
   String playerId;
   PlaybackState playbackState;
-  PlaybackStateChangedEvent({required this.playerId, required this.playbackState});
+  bool isBuffering;
+  PlaybackStateChangedEvent({required this.playerId, required this.playbackState, required this.isBuffering});
 }
 
 class PlaybackEndedEvent implements PlayerEvent {

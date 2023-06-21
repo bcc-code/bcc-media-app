@@ -1,5 +1,6 @@
 package media.bcc.bccm_player.players
 
+import android.media.session.PlaybackState
 import android.net.Uri
 import android.os.Bundle
 import androidx.annotation.CallSuper
@@ -146,8 +147,8 @@ abstract class PlayerController : Player.Listener {
         return miBuilder.build()
     }
 
-    private fun getPlaybackState(): PlaybackPlatformApi.PlaybackState {
-        return if (player.isPlaying) PlaybackPlatformApi.PlaybackState.PLAYING else PlaybackPlatformApi.PlaybackState.PAUSED;
+    fun getPlaybackState(): PlaybackPlatformApi.PlaybackState {
+        return if (player.isPlaying || player.playWhenReady) PlaybackPlatformApi.PlaybackState.PLAYING else PlaybackPlatformApi.PlaybackState.PAUSED;
     }
 
     fun getPlayerStateSnapshot(): PlaybackPlatformApi.PlayerStateSnapshot {
@@ -156,6 +157,7 @@ abstract class PlayerController : Player.Listener {
             .setCurrentMediaItem(getCurrentMediaItem())
             .setPlaybackPositionMs(player.currentPosition.toDouble())
             .setPlaybackState(getPlaybackState())
+            .setIsBuffering(player.playbackState == Player.STATE_BUFFERING)
             .setIsFullscreen(currentPlayerViewController?.isFullscreen == true)
             .build()
     }

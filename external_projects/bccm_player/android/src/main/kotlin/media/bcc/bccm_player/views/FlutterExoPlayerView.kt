@@ -32,6 +32,7 @@ class FlutterExoPlayerView(
     private val context: Context,
     private val playerId: String,
     private val showControls: Boolean?,
+    private val enableDebugView: Boolean?,
 ) : PlatformView, BccmPlayerViewController {
     private var playerController: ExoPlayerController? = null
     private val _v: LinearLayout = LinearLayout(context)
@@ -59,6 +60,7 @@ class FlutterExoPlayerView(
                 context,
                 creationParams["player_id"] as String,
                 creationParams["show_controls"] as? Boolean?,
+                creationParams["enable_debug_view"] as? Boolean?,
             )
         }
     }
@@ -98,30 +100,7 @@ class FlutterExoPlayerView(
 
         playerView?.useController = showControls ?: true;
 
-        playerView.setFullscreenButtonClickListener {
-            goFullscreen()
-        }
-
-        val busyIndicator = _v.findViewById<ProgressBar>(R.id.busyIndicator)
-        playerController!!.player.addListener(object : Player.Listener {
-            private lateinit var player: Player
-            override fun onEvents(player: Player, events: Player.Events) {
-                this.player = player
-            }
-
-            override fun onPlaybackStateChanged(playbackState: Int) {
-                setLiveUIEnabled(playerController?.isLive == true)
-                playerView.setShowNextButton(false)
-                playerView.setShowPreviousButton(false)
-
-                if (playbackState == Player.STATE_READY) {
-                    busyIndicator?.visibility = View.GONE
-                }
-            }
-        })
-
-        val enableDebugView = false
-        if (enableDebugView) {
+        if (enableDebugView == true) {
             val debugTextView = _v.findViewById<TextView>(R.id.debug_text_view)
             val debugHelper = DebugTextViewHelper(playerController!!.getExoPlayer(), debugTextView)
             debugHelper.start()
@@ -129,7 +108,31 @@ class FlutterExoPlayerView(
         }
 
         playerController!!.takeOwnership(playerView, this)
-        setLiveUIEnabled(playerController?.isLive == true)
+
+        if (showControls == true) {
+            setLiveUIEnabled(playerController?.isLive == true)
+            playerView.setFullscreenButtonClickListener {
+                goFullscreen()
+            }
+            val busyIndicator = _v.findViewById<ProgressBar>(R.id.busyIndicator)
+            playerController!!.player.addListener(object : Player.Listener {
+                private lateinit var player: Player
+                override fun onEvents(player: Player, events: Player.Events) {
+                    this.player = player
+                }
+
+                override fun onPlaybackStateChanged(playbackState: Int) {
+                    setLiveUIEnabled(playerController?.isLive == true)
+                    playerView.setShowNextButton(false)
+                    playerView.setShowPreviousButton(false)
+
+                    if (playbackState == Player.STATE_READY) {
+                        busyIndicator?.visibility = View.GONE
+                    }
+                }
+            })
+        }
+
         setupDone = true
     }
 

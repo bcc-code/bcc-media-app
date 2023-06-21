@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:controller_layout_id="@layout/player_controls"
-        app:show_buffering="when_playing"
+        app:show_buffering="never"
         app:show_subtitle_button="true"
         app:surface_type="texture_view"
         tools:layout_conversion_absoluteHeight="0dp"

@@ -32,6 +32,7 @@ class CastPlayerController: NSObject, PlayerController {
         return PlayerStateSnapshot.make(
             withPlayerId: id,
             playbackState: playbackStateFromMediaStatus(mediaStatus: mediaStatus),
+            isBuffering: NSNumber(booleanLiteral: mediaStatus?.playerState == .buffering),
             isFullscreen: false,
             currentMediaItem: currentItem,
             playbackPositionMs: mediaStatus == nil ? nil : NSNumber(value: mediaStatus!.streamPosition * 1000)

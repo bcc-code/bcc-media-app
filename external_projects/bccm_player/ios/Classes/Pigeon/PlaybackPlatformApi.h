@@ -104,11 +104,13 @@ typedef NS_ENUM(NSUInteger, TrackType) {
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithPlayerId:(NSString *)playerId
     playbackState:(PlaybackState)playbackState
+    isBuffering:(NSNumber *)isBuffering
     isFullscreen:(NSNumber *)isFullscreen
     currentMediaItem:(nullable MediaItem *)currentMediaItem
     playbackPositionMs:(nullable NSNumber *)playbackPositionMs;
 @property(nonatomic, copy) NSString * playerId;
 @property(nonatomic, assign) PlaybackState playbackState;
+@property(nonatomic, strong) NSNumber * isBuffering;
 @property(nonatomic, strong) NSNumber * isFullscreen;
 @property(nonatomic, strong, nullable) MediaItem * currentMediaItem;
 @property(nonatomic, strong, nullable) NSNumber * playbackPositionMs;
@@ -174,9 +176,11 @@ typedef NS_ENUM(NSUInteger, TrackType) {
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithPlayerId:(NSString *)playerId
-    playbackState:(PlaybackState)playbackState;
+    playbackState:(PlaybackState)playbackState
+    isBuffering:(NSNumber *)isBuffering;
 @property(nonatomic, copy) NSString * playerId;
 @property(nonatomic, assign) PlaybackState playbackState;
+@property(nonatomic, strong) NSNumber * isBuffering;
 @end
 
 @interface PlaybackEndedEvent : NSObject
