@@ -16,7 +16,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     var appConfig: AppConfig? = nil
     var refreshStateTimer: Timer? = nil
     var currentViewController: AVPlayerViewController? = nil
-    private var fullscreenViewController: AVPlayerViewController? = nil
+    var fullscreenViewController: AVPlayerViewController? = nil
 
     init(id: String? = nil, playbackListener: PlaybackListenerPigeon, npawConfig: NpawConfig?, appConfig: AppConfig?) {
         self.id = id ?? UUID().uuidString
