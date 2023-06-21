@@ -149,55 +149,55 @@ class SFr extends S {
   String get contactUs => 'Nous contacter';
 
   @override
-  String get deviceInfo => 'Device info';
+  String get deviceInfo => 'Informations sur l\'appareil';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Inclure les informations relatives à l\'appareil pour une meilleure assistance.';
 
   @override
-  String get contactSeeData => 'Click to see data.';
+  String get contactSeeData => 'Cliquer pour voir les données.';
 
   @override
-  String get contactName => 'Name';
+  String get contactName => 'Nom';
 
   @override
-  String get contactNameHint => 'Type in your name';
+  String get contactNameHint => 'Saisir votre nom';
 
   @override
-  String get contactEmail => 'Your contact email';
+  String get contactEmail => 'Votre email de contact';
 
   @override
-  String get contactEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'Saisir votre adresse électronique';
 
   @override
   String get contactMessage => 'Message';
 
   @override
-  String get contactMessageHint => 'Enter your message here';
+  String get contactMessageHint => 'Saisir votre message';
 
   @override
-  String get deviceInfoDevice => 'Device';
+  String get deviceInfoDevice => 'Appareil';
 
   @override
-  String get deviceInfoEnvOverride => 'Environment override';
+  String get deviceInfoEnvOverride => 'Remplacement de l\'environnement';
 
   @override
-  String get deviceInfoManufacturer => 'Manufacturer';
+  String get deviceInfoManufacturer => 'Fabricant';
 
   @override
-  String get deviceInfoOs => 'Operating System';
+  String get deviceInfoOs => 'Système d\'exploitation';
 
   @override
-  String get deviceInfoScreenSize => 'Screen Size';
+  String get deviceInfoScreenSize => 'Taille de l\'écran';
 
   @override
-  String get deviceInfoAppVer => 'App Version';
+  String get deviceInfoAppVer => 'Version de l\'application';
 
   @override
-  String get deviceInfoUserId => 'User ID';
+  String get deviceInfoUserId => 'Identifiant de l\'utilisateur';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc => 'Votre message contiendra ces informations, afin de nous aider à fournir une meilleure assistance.';
 
   @override
   String get userVoice => 'Suggérer une fonction';
