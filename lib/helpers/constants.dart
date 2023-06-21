@@ -18,6 +18,7 @@ class PrefKeys {
   static const isBetaTester = 'is_beta_tester';
   static const extraUsergroups = 'extra_usergroups';
   static const onboardingCompleted = 'onboarding_completed';
+  static const useNativePlayer = 'use_native_player';
 }
 
 class SecureStorageKeys {

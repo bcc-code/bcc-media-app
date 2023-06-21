@@ -130,6 +130,7 @@ class DeveloperOptions extends ConsumerWidget {
         Option(id: 'override_env', title: 'Override environment'),
         Option(id: 'show_technical_details', title: 'Show technical details'),
         Option(id: 'reset_settings', title: 'Reset settings'),
+        Option(id: 'toggle_native_player', title: 'Use native player: ${ref.watch(settingsProvider).useNativePlayer}'),
         Option(id: 'toggle_betatester', title: 'Betatester mode: ${ref.watch(settingsProvider).isBetaTester}'),
       ],
       popOnChange: false,
@@ -152,6 +153,10 @@ class DeveloperOptions extends ConsumerWidget {
             case 'toggle_betatester':
               final current = ref.read(settingsProvider).isBetaTester ?? false;
               ref.read(settingsProvider.notifier).setBetaTester(!current);
+              break;
+            case 'toggle_native_player':
+              final current = ref.read(settingsProvider).useNativePlayer ?? false;
+              ref.read(settingsProvider.notifier).setUseNativePlayer(!current);
               break;
           }
         });

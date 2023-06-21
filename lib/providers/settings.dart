@@ -21,6 +21,7 @@ class Settings with _$Settings {
     int? sessionId,
     String? envOverride,
     bool? isBetaTester,
+    bool? useNativePlayer,
     @Default([]) List<String> extraUsergroups,
   }) = _Settings;
 }
@@ -51,6 +52,7 @@ class SettingsService extends StateNotifier<Settings> {
       analyticsId: prefs.getString(PrefKeys.analyticsId),
       envOverride: prefs.getString(PrefKeys.envOverride),
       isBetaTester: prefs.getBool(PrefKeys.isBetaTester),
+      useNativePlayer: prefs.getBool(PrefKeys.useNativePlayer),
       sessionId: (DateTime.now().millisecondsSinceEpoch / 1000).round(),
       extraUsergroups: prefs.getStringList(PrefKeys.extraUsergroups) ?? [],
     );
@@ -101,6 +103,16 @@ class SettingsService extends StateNotifier<Settings> {
       prefs.setBool(PrefKeys.isBetaTester, true);
     }
     state = state.copyWith(isBetaTester: value);
+  }
+
+  Future<void> setUseNativePlayer(bool value) async {
+    var prefs = ref.read(sharedPreferencesProvider);
+    if (!value) {
+      prefs.remove(PrefKeys.useNativePlayer);
+    } else {
+      prefs.setBool(PrefKeys.useNativePlayer, true);
+    }
+    state = state.copyWith(useNativePlayer: value);
   }
 
   Future<void> updateExtraUsergroups(List<String> value) async {

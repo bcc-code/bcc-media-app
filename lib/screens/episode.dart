@@ -15,6 +15,7 @@ import 'package:brunstadtv_app/components/status_indicators/loading_indicator.da
 import 'package:brunstadtv_app/components/episode/share_episode_sheet.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -296,7 +297,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
         ref.read(playbackServiceProvider).platformApi.enterFullscreen(
           player.playerId,
           context: context,
-          useNativeControls: !ref.read(featureFlagsProvider).flutterPlayerControls,
+          useNativeControls: ref.read(settingsProvider).useNativePlayer == true || !ref.read(featureFlagsProvider).flutterPlayerControls,
           resetSystemOverlays: () {
             SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
           },
@@ -377,7 +378,8 @@ class _EpisodeDisplay extends HookConsumerWidget {
                 else
                   VideoPlayerView(
                     id: player.playerId,
-                    useNativeControls: !ref.watch(featureFlagsProvider.select((value) => value.flutterPlayerControls)),
+                    useNativeControls: ref.read(settingsProvider).useNativePlayer == true ||
+                        !ref.watch(featureFlagsProvider.select((value) => value.flutterPlayerControls)),
                     resetSystemOverlays: () {
                       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
                     },

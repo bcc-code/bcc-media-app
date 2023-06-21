@@ -23,6 +23,7 @@ mixin _$Settings {
   int? get sessionId => throw _privateConstructorUsedError;
   String? get envOverride => throw _privateConstructorUsedError;
   bool? get isBetaTester => throw _privateConstructorUsedError;
+  bool? get useNativePlayer => throw _privateConstructorUsedError;
   List<String> get extraUsergroups => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -43,6 +44,7 @@ abstract class $SettingsCopyWith<$Res> {
       int? sessionId,
       String? envOverride,
       bool? isBetaTester,
+      bool? useNativePlayer,
       List<String> extraUsergroups});
 }
 
@@ -66,6 +68,7 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
     Object? sessionId = freezed,
     Object? envOverride = freezed,
     Object? isBetaTester = freezed,
+    Object? useNativePlayer = freezed,
     Object? extraUsergroups = null,
   }) {
     return _then(_value.copyWith(
@@ -97,6 +100,10 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
           ? _value.isBetaTester
           : isBetaTester // ignore: cast_nullable_to_non_nullable
               as bool?,
+      useNativePlayer: freezed == useNativePlayer
+          ? _value.useNativePlayer
+          : useNativePlayer // ignore: cast_nullable_to_non_nullable
+              as bool?,
       extraUsergroups: null == extraUsergroups
           ? _value.extraUsergroups
           : extraUsergroups // ignore: cast_nullable_to_non_nullable
@@ -120,6 +127,7 @@ abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
       int? sessionId,
       String? envOverride,
       bool? isBetaTester,
+      bool? useNativePlayer,
       List<String> extraUsergroups});
 }
 
@@ -141,6 +149,7 @@ class __$$_SettingsCopyWithImpl<$Res>
     Object? sessionId = freezed,
     Object? envOverride = freezed,
     Object? isBetaTester = freezed,
+    Object? useNativePlayer = freezed,
     Object? extraUsergroups = null,
   }) {
     return _then(_$_Settings(
@@ -172,6 +181,10 @@ class __$$_SettingsCopyWithImpl<$Res>
           ? _value.isBetaTester
           : isBetaTester // ignore: cast_nullable_to_non_nullable
               as bool?,
+      useNativePlayer: freezed == useNativePlayer
+          ? _value.useNativePlayer
+          : useNativePlayer // ignore: cast_nullable_to_non_nullable
+              as bool?,
       extraUsergroups: null == extraUsergroups
           ? _value._extraUsergroups
           : extraUsergroups // ignore: cast_nullable_to_non_nullable
@@ -191,6 +204,7 @@ class _$_Settings implements _Settings {
       this.sessionId,
       this.envOverride,
       this.isBetaTester,
+      this.useNativePlayer,
       final List<String> extraUsergroups = const []})
       : _extraUsergroups = extraUsergroups;
 
@@ -208,6 +222,8 @@ class _$_Settings implements _Settings {
   final String? envOverride;
   @override
   final bool? isBetaTester;
+  @override
+  final bool? useNativePlayer;
   final List<String> _extraUsergroups;
   @override
   @JsonKey()
@@ -219,7 +235,7 @@ class _$_Settings implements _Settings {
 
   @override
   String toString() {
-    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride, isBetaTester: $isBetaTester, extraUsergroups: $extraUsergroups)';
+    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride, isBetaTester: $isBetaTester, useNativePlayer: $useNativePlayer, extraUsergroups: $extraUsergroups)';
   }
 
   @override
@@ -241,6 +257,8 @@ class _$_Settings implements _Settings {
                 other.envOverride == envOverride) &&
             (identical(other.isBetaTester, isBetaTester) ||
                 other.isBetaTester == isBetaTester) &&
+            (identical(other.useNativePlayer, useNativePlayer) ||
+                other.useNativePlayer == useNativePlayer) &&
             const DeepCollectionEquality()
                 .equals(other._extraUsergroups, _extraUsergroups));
   }
@@ -255,6 +273,7 @@ class _$_Settings implements _Settings {
       sessionId,
       envOverride,
       isBetaTester,
+      useNativePlayer,
       const DeepCollectionEquality().hash(_extraUsergroups));
 
   @JsonKey(ignore: true)
@@ -273,6 +292,7 @@ abstract class _Settings implements Settings {
       final int? sessionId,
       final String? envOverride,
       final bool? isBetaTester,
+      final bool? useNativePlayer,
       final List<String> extraUsergroups}) = _$_Settings;
 
   @override
@@ -289,6 +309,8 @@ abstract class _Settings implements Settings {
   String? get envOverride;
   @override
   bool? get isBetaTester;
+  @override
+  bool? get useNativePlayer;
   @override
   List<String> get extraUsergroups;
   @override
