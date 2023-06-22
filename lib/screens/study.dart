@@ -93,6 +93,8 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
                   transparentBackground: true,
                   verticalScrollBarEnabled: false,
                   useShouldOverrideUrlLoading: true,
+                  allowsInlineMediaPlayback: true,
+                  iframeAllowFullscreen: true,
                 ),
                 onWebViewCreated: onWebViewCreated,
                 onLoadStop: (controller, url) {

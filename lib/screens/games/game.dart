@@ -90,6 +90,8 @@ class GameScreen extends HookConsumerWidget {
                   useHybridComposition: false,
                   transparentBackground: true,
                   verticalScrollBarEnabled: false,
+                  allowsInlineMediaPlayback: true,
+                  iframeAllowFullscreen: true,
                 ),
                 gestureRecognizers: {
                   Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer()),
