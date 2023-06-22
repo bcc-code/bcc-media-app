@@ -5,6 +5,8 @@ import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/pigeon/pigeon_extensions.dart';
 import 'package:bccm_player/src/helpers/utils/debouncer.dart';
 import 'package:bccm_player/src/widgets/controls/controls_wrapper.dart';
+import 'package:bccm_player/theme/controls_theme_data.dart';
+import 'package:bccm_player/theme/player_theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:collection/collection.dart';
@@ -26,6 +28,11 @@ class DefaultControls extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controlsTheme = PlayerTheme.maybeOf(context)?.controls;
+    final safeControlsTheme = useMemoized(() {
+      return (controlsTheme ?? ControlsThemeData()).fillWithDefaults(context);
+    }, [controlsTheme]);
+
     final player = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state);
     final seekDebouncer = useMemoized(() => Debouncer(milliseconds: 1000));
     useEffect(() {
@@ -78,16 +85,15 @@ class DefaultControls extends HookWidget {
                     if (isFullscreen) ...[
                       IconButton(
                         icon: const Icon(Icons.close, size: 32),
+                        color: safeControlsTheme.iconColor,
                         onPressed: () {
                           Navigator.maybePop(context);
                         },
                       ),
                       if (title != null)
-                        Container(
-                          child: Text(
-                            title,
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
+                        Text(
+                          title,
+                          style: safeControlsTheme.fullScreenTitleStyle,
                         ),
                     ]
                   ],
@@ -101,6 +107,7 @@ class DefaultControls extends HookWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
+                    color: safeControlsTheme.iconColor,
                     icon: Icon(
                       player.value?.playbackState != PlaybackState.playing ? Icons.play_arrow : Icons.pause,
                       size: 54,
@@ -127,11 +134,7 @@ class DefaultControls extends HookWidget {
                       children: [
                         Expanded(
                           child: SliderTheme(
-                            data: SliderTheme.of(context).copyWith(
-                              trackHeight: 2,
-                              thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-                              overlayShape: SliderComponentShape.noOverlay,
-                            ),
+                            data: safeControlsTheme.progressBarTheme!,
                             child: SizedBox(
                               height: 10,
                               child: Slider(
@@ -152,20 +155,23 @@ class DefaultControls extends HookWidget {
                           padding: const EdgeInsets.only(right: 3),
                           child: Text(
                             '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
-                            style: Theme.of(context).textTheme.labelSmall,
+                            style: safeControlsTheme.durationTextStyle,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: 48,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
                           padding: const EdgeInsets.only(right: 12),
-                          child: _SettingsWidget(playerId: playerId),
+                          child: _SettingsWidget(
+                            playerId: playerId,
+                            controlsTheme: safeControlsTheme,
+                          ),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -179,6 +185,7 @@ class DefaultControls extends HookWidget {
                           },
                           child: Icon(
                             isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
+                            color: safeControlsTheme.iconColor,
                           ),
                         ),
                       ],
@@ -197,9 +204,13 @@ class DefaultControls extends HookWidget {
 }
 
 class _SettingsWidget extends HookWidget {
-  const _SettingsWidget({required this.playerId});
+  const _SettingsWidget({
+    required this.playerId,
+    required this.controlsTheme,
+  });
 
   final String playerId;
+  final ControlsThemeData controlsTheme;
 
   @override
   Widget build(BuildContext context) {
@@ -209,17 +220,26 @@ class _SettingsWidget extends HookWidget {
         showModalBottomSheet(
           context: context,
           isDismissible: true,
-          builder: (context) => _Settings(playerId: playerId),
+          builder: (context) => _Settings(
+            playerId: playerId,
+            controlsTheme: controlsTheme,
+          ),
         );
       },
-      child: const Icon(Icons.settings),
+      child: Icon(Icons.settings, color: controlsTheme.iconColor),
     );
   }
 }
 
 class _Settings extends HookWidget {
-  const _Settings({required this.playerId});
+  const _Settings({
+    required this.playerId,
+    required this.controlsTheme,
+  });
+
   final String playerId;
+  final ControlsThemeData controlsTheme;
+
   @override
   Widget build(BuildContext context) {
     final tracksFuture = useMemoized(() {
@@ -240,7 +260,7 @@ class _Settings extends HookWidget {
     final selectedTextTrack = tracksData?.textTracks.safe.firstWhereOrNull((element) => element.isSelected);
 
     return Container(
-      color: Theme.of(context).dialogBackgroundColor,
+      color: controlsTheme.settingsListBackgroundColor,
       child: ListView(
         shrinkWrap: true,
         children: [
@@ -251,7 +271,10 @@ class _Settings extends HookWidget {
                 final selected = await showModalBottomSheet<String>(
                   context: context,
                   isDismissible: true,
-                  builder: (context) => SettingsTrackList(tracks: tracksData!.audioTracks),
+                  builder: (context) => SettingsTrackList(
+                    tracks: tracksData!.audioTracks,
+                    controlsTheme: controlsTheme,
+                  ),
                 );
                 if (selected != null && context.mounted) {
                   BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.audio, selected);
@@ -260,18 +283,21 @@ class _Settings extends HookWidget {
               },
               title: Text(
                 'Audio: ${selectedAudioTrack?.labelWithFallback ?? 'N/A'}',
-                style: Theme.of(context).textTheme.labelMedium,
+                style: controlsTheme.settingsListTextStyle,
               ),
             ),
           if (tracksData?.textTracks.isNotEmpty == true)
             ListTile(
               dense: true,
-              title: Text('Subtitles: ${selectedTextTrack?.labelWithFallback ?? 'N/A'}', style: Theme.of(context).textTheme.labelMedium),
+              title: Text('Subtitles: ${selectedTextTrack?.labelWithFallback ?? 'N/A'}', style: controlsTheme.settingsListTextStyle),
               onTap: () async {
                 final selected = await showModalBottomSheet<String>(
                   context: context,
                   isDismissible: true,
-                  builder: (context) => SettingsTrackList(tracks: tracksData!.textTracks),
+                  builder: (context) => SettingsTrackList(
+                    tracks: tracksData!.textTracks,
+                    controlsTheme: controlsTheme,
+                  ),
                 );
                 if (selected != null && context.mounted) {
                   BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.text, selected);
@@ -289,15 +315,17 @@ class SettingsTrackList extends StatelessWidget {
   const SettingsTrackList({
     super.key,
     required this.tracks,
+    required this.controlsTheme,
   });
 
   final List<Track?> tracks;
+  final ControlsThemeData controlsTheme;
 
   @override
   Widget build(BuildContext context) {
     // show list of audio tracks with a tick on the selected one
     return Container(
-      color: Theme.of(context).dialogBackgroundColor,
+      color: controlsTheme.settingsListBackgroundColor,
       child: ListView(
         shrinkWrap: true,
         children: [
@@ -308,7 +336,7 @@ class SettingsTrackList extends StatelessWidget {
                 // select this track
                 Navigator.pop(context, track.id);
               },
-              title: Text(track.labelWithFallback, style: Theme.of(context).textTheme.labelMedium),
+              title: Text(track.labelWithFallback, style: controlsTheme.settingsListTextStyle),
               trailing: track.isSelected ? const Icon(Icons.check) : null,
             ),
         ],

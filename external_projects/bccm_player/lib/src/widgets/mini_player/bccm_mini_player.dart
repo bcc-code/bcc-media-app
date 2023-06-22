@@ -1,13 +1,16 @@
+import 'package:bccm_player/theme/mini_player_theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../theme/player_theme.dart';
 import 'loading_indicator.dart';
 import '../../helpers/ui/transparent_image.dart';
 import '../../helpers/ui/svg_icons.dart';
 
 const double kMiniPlayerHeight = 62;
 
-class MiniPlayer extends StatelessWidget {
+class MiniPlayer extends HookWidget {
   final String? secondaryTitle;
   final String title;
   final String? artworkUri;
@@ -17,13 +20,9 @@ class MiniPlayer extends StatelessWidget {
   final VoidCallback? onPlayTap;
   final VoidCallback? onCloseTap;
   final bool? hideCloseButton;
-  final BorderSide? border;
+  final bool showBorder;
 
   final Key? titleKey;
-  final Color? backgroundColor;
-  final Border? thumbnailBorder;
-  final TextStyle? titleStyle;
-  final TextStyle? secondaryTitleStyle;
   final Widget? loadingIndicator;
   final String? playSemanticLabel;
   final String? pauseSemanticLabel;
@@ -39,12 +38,8 @@ class MiniPlayer extends StatelessWidget {
     this.onCloseTap,
     this.loading,
     this.hideCloseButton,
-    this.border,
+    this.showBorder = true,
     this.titleKey,
-    this.backgroundColor,
-    this.titleStyle,
-    this.secondaryTitleStyle,
-    this.thumbnailBorder,
     this.loadingIndicator,
     this.playSemanticLabel,
     this.pauseSemanticLabel,
@@ -52,12 +47,17 @@ class MiniPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MiniPlayerThemeData? miniPlayerTheme = PlayerTheme.maybeOf(context)?.miniPlayer;
+    final safeMiniPlayerTheme = useMemoized(() {
+      return (miniPlayerTheme ?? MiniPlayerThemeData()).fillWithDefaults(context);
+    }, [miniPlayerTheme]);
+
     return Container(
       height: kMiniPlayerHeight,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: backgroundColor,
-        border: Border(top: border ?? BorderSide.none),
+        color: safeMiniPlayerTheme.backgroundColor,
+        border: showBorder ? Border(top: BorderSide(color: safeMiniPlayerTheme.topBorderColor!, width: 1)) : null,
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
@@ -74,11 +74,7 @@ class MiniPlayer extends StatelessWidget {
             height: 36,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
-              border: thumbnailBorder ??
-                  Border.all(
-                    color: Colors.white.withOpacity(0.01),
-                    width: 1,
-                  ),
+              border: Border.all(color: safeMiniPlayerTheme.thumbnailBorderColor!, width: 1),
             ),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
@@ -105,7 +101,7 @@ class MiniPlayer extends StatelessWidget {
                       secondaryTitle!,
                       semanticsLabel: secondaryTitle!,
                       overflow: TextOverflow.ellipsis,
-                      style: secondaryTitleStyle,
+                      style: safeMiniPlayerTheme.secondaryTitleStyle,
                     ),
                   ),
                 Text(
@@ -113,7 +109,7 @@ class MiniPlayer extends StatelessWidget {
                   semanticsLabel: title,
                   key: titleKey,
                   overflow: TextOverflow.ellipsis,
-                  style: titleStyle,
+                  style: safeMiniPlayerTheme.titleStyle,
                 ),
               ],
             ),
@@ -131,10 +127,12 @@ class MiniPlayer extends StatelessWidget {
                     ? SvgPicture.string(
                         SvgIcons.pause,
                         semanticsLabel: pauseSemanticLabel,
+                        colorFilter: ColorFilter.mode(safeMiniPlayerTheme.iconColor!, BlendMode.srcIn),
                       )
                     : SvgPicture.string(
                         SvgIcons.play,
                         semanticsLabel: playSemanticLabel,
+                        colorFilter: ColorFilter.mode(safeMiniPlayerTheme.iconColor!, BlendMode.srcIn),
                       ),
               ),
             ),
@@ -145,7 +143,10 @@ class MiniPlayer extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.only(left: 7),
                 height: 36,
-                child: SvgPicture.string(SvgIcons.close),
+                child: SvgPicture.string(
+                  SvgIcons.close,
+                  colorFilter: ColorFilter.mode(safeMiniPlayerTheme.iconColor!, BlendMode.srcIn),
+                ),
               ),
             ),
         ],
