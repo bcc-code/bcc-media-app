@@ -5,8 +5,8 @@ import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/pigeon/pigeon_extensions.dart';
 import 'package:bccm_player/src/helpers/utils/debouncer.dart';
 import 'package:bccm_player/src/widgets/controls/controls_wrapper.dart';
-import 'package:bccm_player/theme/controls_theme_data.dart';
-import 'package:bccm_player/theme/player_theme.dart';
+import 'package:bccm_player/src/widgets/mini_player/loading_indicator.dart';
+import 'package:bccm_player/theme/bccm_player_theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:collection/collection.dart';
@@ -28,11 +28,11 @@ class DefaultControls extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: invalid_use_of_protected_member
     final controlsTheme = PlayerTheme.maybeOf(context)?.controls;
     final safeControlsTheme = useMemoized(() {
       return (controlsTheme ?? ControlsThemeData()).fillWithDefaults(context);
     }, [controlsTheme]);
-
     final player = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state);
     final seekDebouncer = useMemoized(() => Debouncer(milliseconds: 1000));
     useEffect(() {
@@ -62,144 +62,154 @@ class DefaultControls extends HookWidget {
       });
     }
 
-    debugPrint('bccm: duration: ${player.value?.currentMediaItem?.metadata?.durationMs}');
-    debugPrint('bccm: player data: ${player.value?.toString() ?? 'no player data'}');
-    debugPrint('bccm: seeking: $seeking');
-    debugPrint('bccm: seeking: $currentScrub');
-
     final title = player.value?.currentMediaItem?.metadata?.title;
 
-    final w = SizedBox.expand(
+    return SizedBox.expand(
       child: ControlsWrapper(
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: Container(
-                alignment: Alignment.topLeft,
-                width: double.infinity,
-                height: 50,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        autoHide: player.value?.playbackState == PlaybackState.playing,
+        child: SafeArea(
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Container(
+                  alignment: Alignment.topLeft,
+                  width: double.infinity,
+                  height: 50,
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      if (isFullscreen) ...[
+                        IconButton(
+                          icon: const Icon(Icons.close),
+                          iconSize: 32,
+                          color: safeControlsTheme.iconColor,
+                          onPressed: () {
+                            Navigator.maybePop(context);
+                          },
+                        ),
+                        if (title != null)
+                          Text(
+                            title,
+                            style: safeControlsTheme.fullScreenTitleStyle,
+                          ),
+                      ],
+                      const Spacer(),
+                      Container(
+                        padding: const EdgeInsets.only(top: 12, right: 2),
+                        child: _SettingsWidget(playerId: playerId, controlsTheme: safeControlsTheme),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (isFullscreen) ...[
+                    if (player.value?.playbackState != PlaybackState.playing)
                       IconButton(
-                        icon: const Icon(Icons.close, size: 32),
+                        icon: const Icon(Icons.play_arrow),
+                        iconSize: 54,
                         color: safeControlsTheme.iconColor,
                         onPressed: () {
-                          Navigator.maybePop(context);
+                          BccmPlayerInterface.instance.play(playerId);
+                        },
+                      )
+                    else
+                      IconButton(
+                        icon: player.value?.isBuffering == true
+                            ? const LoadingIndicator(
+                                width: 48,
+                                height: 48,
+                              )
+                            : const Icon(Icons.pause),
+                        iconSize: 54,
+                        color: safeControlsTheme.iconColor,
+                        onPressed: () {
+                          BccmPlayerInterface.instance.pause(playerId);
                         },
                       ),
-                      if (title != null)
-                        Text(
-                          title,
-                          style: safeControlsTheme.fullScreenTitleStyle,
-                        ),
-                    ]
                   ],
                 ),
               ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.only(bottom: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    color: safeControlsTheme.iconColor,
-                    icon: Icon(
-                      player.value?.playbackState != PlaybackState.playing ? Icons.play_arrow : Icons.pause,
-                      size: 54,
-                    ),
-                    onPressed: () {
-                      if (player.value?.playbackState != PlaybackState.playing) {
-                        BccmPlayerInterface.instance.play(playerId);
-                      } else {
-                        BccmPlayerInterface.instance.pause(playerId);
-                      }
-                    },
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              alignment: Alignment.bottomLeft,
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  SizedBox(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: SliderTheme(
-                            data: safeControlsTheme.progressBarTheme!,
-                            child: SizedBox(
-                              height: 10,
-                              child: Slider(
-                                value: seeking.value
-                                    ? currentScrub.value
-                                    : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
-                                onChanged: (double value) {
-                                  scrubTo(value);
-                                },
-                                onChangeEnd: (double value) {
-                                  seekDebouncer.forceEarly();
-                                },
+              Container(
+                alignment: Alignment.bottomLeft,
+                padding: const EdgeInsets.only(left: 16, right: 16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      height: 48,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          if (player.value?.currentMediaItem?.isLive != true)
+                            Padding(
+                              padding: const EdgeInsets.only(left: 6),
+                              child: Text(
+                                '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
+                                style: safeControlsTheme.durationTextStyle,
+                              ),
+                            ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 2),
+                            child: GestureDetector(
+                              onTap: () {
+                                if (!isFullscreen) {
+                                  goFullscreen();
+                                } else {
+                                  exitFullscreen();
+                                }
+                              },
+                              child: Icon(
+                                isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
+                                color: safeControlsTheme.iconColor,
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 3),
-                          child: Text(
-                            '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
-                            style: safeControlsTheme.durationTextStyle,
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 48,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.only(right: 12),
-                          child: _SettingsWidget(
-                            playerId: playerId,
-                            controlsTheme: safeControlsTheme,
-                          ),
+                    if (player.value?.currentMediaItem?.isLive == true)
+                      const Padding(padding: EdgeInsets.only(top: 4))
+                    else
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: SliderTheme(
+                                data: safeControlsTheme.progressBarTheme!,
+                                child: SizedBox(
+                                  height: 10,
+                                  child: Slider(
+                                    value: seeking.value
+                                        ? currentScrub.value
+                                        : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
+                                    onChanged: (double value) {
+                                      scrubTo(value);
+                                    },
+                                    onChangeEnd: (double value) {
+                                      seekDebouncer.forceEarly();
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            if (!isFullscreen) {
-                              debugPrint('bccm: not fullscreen, so go fullscreen');
-                              goFullscreen();
-                            } else {
-                              debugPrint('bccm: is fullscreen, so exit fullscreen');
-                              exitFullscreen();
-                            }
-                          },
-                          child: Icon(
-                            isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
-                            color: safeControlsTheme.iconColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                      )
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
-
-    return isFullscreen ? SafeArea(child: w) : w;
   }
 }
 

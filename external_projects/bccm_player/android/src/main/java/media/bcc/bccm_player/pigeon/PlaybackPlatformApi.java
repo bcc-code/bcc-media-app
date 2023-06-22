@@ -4,12 +4,15 @@
 package media.bcc.bccm_player.pigeon;
 
 import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import io.flutter.plugin.common.BasicMessageChannel;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MessageCodec;
 import io.flutter.plugin.common.StandardMessageCodec;
+
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -19,2301 +22,2428 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** Generated class from Pigeon. */
+/**
+ * Generated class from Pigeon.
+ */
 @SuppressWarnings({"unused", "unchecked", "CodeBlock2Expr", "RedundantSuppression", "serial"})
 public class PlaybackPlatformApi {
 
-  /** Error class for passing custom error details to Flutter via a thrown PlatformException. */
-  public static class FlutterError extends RuntimeException {
+    /**
+     * Error class for passing custom error details to Flutter via a thrown PlatformException.
+     */
+    public static class FlutterError extends RuntimeException {
 
-    /** The error code. */
-    public final String code;
+        /**
+         * The error code.
+         */
+        public final String code;
 
-    /** The error details. Must be a datatype supported by the api codec. */
-    public final Object details;
+        /**
+         * The error details. Must be a datatype supported by the api codec.
+         */
+        public final Object details;
 
-    public FlutterError(@NonNull String code, @Nullable String message, @Nullable Object details) 
-    {
-      super(message);
-      this.code = code;
-      this.details = details;
-    }
-  }
-
-  @NonNull
-  protected static ArrayList<Object> wrapError(@NonNull Throwable exception) {
-    ArrayList<Object> errorList = new ArrayList<Object>(3);
-    if (exception instanceof FlutterError) {
-      FlutterError error = (FlutterError) exception;
-      errorList.add(error.code);
-      errorList.add(error.getMessage());
-      errorList.add(error.details);
-    } else {
-      errorList.add(exception.toString());
-      errorList.add(exception.getClass().getSimpleName());
-      errorList.add(
-        "Cause: " + exception.getCause() + ", Stacktrace: " + Log.getStackTraceString(exception));
-    }
-    return errorList;
-  }
-
-  public enum PlaybackState {
-    STOPPED(0),
-    PAUSED(1),
-    PLAYING(2);
-
-    final int index;
-
-    private PlaybackState(final int index) {
-      this.index = index;
-    }
-  }
-
-  public enum CastConnectionState {
-    NONE(0),
-    NO_DEVICES_AVAILABLE(1),
-    NOT_CONNECTED(2),
-    CONNECTING(3),
-    CONNECTED(4);
-
-    final int index;
-
-    private CastConnectionState(final int index) {
-      this.index = index;
-    }
-  }
-
-  public enum TrackType {
-    AUDIO(0),
-    TEXT(1);
-
-    final int index;
-
-    private TrackType(final int index) {
-      this.index = index;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class NpawConfig {
-    private @Nullable String appName;
-
-    public @Nullable String getAppName() {
-      return appName;
-    }
-
-    public void setAppName(@Nullable String setterArg) {
-      this.appName = setterArg;
-    }
-
-    private @Nullable String appReleaseVersion;
-
-    public @Nullable String getAppReleaseVersion() {
-      return appReleaseVersion;
-    }
-
-    public void setAppReleaseVersion(@Nullable String setterArg) {
-      this.appReleaseVersion = setterArg;
-    }
-
-    private @Nullable String accountCode;
-
-    public @Nullable String getAccountCode() {
-      return accountCode;
-    }
-
-    public void setAccountCode(@Nullable String setterArg) {
-      this.accountCode = setterArg;
-    }
-
-    private @Nullable Boolean deviceIsAnonymous;
-
-    public @Nullable Boolean getDeviceIsAnonymous() {
-      return deviceIsAnonymous;
-    }
-
-    public void setDeviceIsAnonymous(@Nullable Boolean setterArg) {
-      this.deviceIsAnonymous = setterArg;
-    }
-
-    public static final class Builder {
-
-      private @Nullable String appName;
-
-      public @NonNull Builder setAppName(@Nullable String setterArg) {
-        this.appName = setterArg;
-        return this;
-      }
-
-      private @Nullable String appReleaseVersion;
-
-      public @NonNull Builder setAppReleaseVersion(@Nullable String setterArg) {
-        this.appReleaseVersion = setterArg;
-        return this;
-      }
-
-      private @Nullable String accountCode;
-
-      public @NonNull Builder setAccountCode(@Nullable String setterArg) {
-        this.accountCode = setterArg;
-        return this;
-      }
-
-      private @Nullable Boolean deviceIsAnonymous;
-
-      public @NonNull Builder setDeviceIsAnonymous(@Nullable Boolean setterArg) {
-        this.deviceIsAnonymous = setterArg;
-        return this;
-      }
-
-      public @NonNull NpawConfig build() {
-        NpawConfig pigeonReturn = new NpawConfig();
-        pigeonReturn.setAppName(appName);
-        pigeonReturn.setAppReleaseVersion(appReleaseVersion);
-        pigeonReturn.setAccountCode(accountCode);
-        pigeonReturn.setDeviceIsAnonymous(deviceIsAnonymous);
-        return pigeonReturn;
-      }
+        public FlutterError(@NonNull String code, @Nullable String message, @Nullable Object details) {
+            super(message);
+            this.code = code;
+            this.details = details;
+        }
     }
 
     @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(4);
-      toListResult.add(appName);
-      toListResult.add(appReleaseVersion);
-      toListResult.add(accountCode);
-      toListResult.add(deviceIsAnonymous);
-      return toListResult;
-    }
-
-    static @NonNull NpawConfig fromList(@NonNull ArrayList<Object> list) {
-      NpawConfig pigeonResult = new NpawConfig();
-      Object appName = list.get(0);
-      pigeonResult.setAppName((String) appName);
-      Object appReleaseVersion = list.get(1);
-      pigeonResult.setAppReleaseVersion((String) appReleaseVersion);
-      Object accountCode = list.get(2);
-      pigeonResult.setAccountCode((String) accountCode);
-      Object deviceIsAnonymous = list.get(3);
-      pigeonResult.setDeviceIsAnonymous((Boolean) deviceIsAnonymous);
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class AppConfig {
-    private @Nullable String appLanguage;
-
-    public @Nullable String getAppLanguage() {
-      return appLanguage;
-    }
-
-    public void setAppLanguage(@Nullable String setterArg) {
-      this.appLanguage = setterArg;
-    }
-
-    private @Nullable String audioLanguage;
-
-    public @Nullable String getAudioLanguage() {
-      return audioLanguage;
-    }
-
-    public void setAudioLanguage(@Nullable String setterArg) {
-      this.audioLanguage = setterArg;
-    }
-
-    private @Nullable String subtitleLanguage;
-
-    public @Nullable String getSubtitleLanguage() {
-      return subtitleLanguage;
-    }
-
-    public void setSubtitleLanguage(@Nullable String setterArg) {
-      this.subtitleLanguage = setterArg;
-    }
-
-    private @Nullable String analyticsId;
-
-    public @Nullable String getAnalyticsId() {
-      return analyticsId;
-    }
-
-    public void setAnalyticsId(@Nullable String setterArg) {
-      this.analyticsId = setterArg;
-    }
-
-    private @Nullable Long sessionId;
-
-    public @Nullable Long getSessionId() {
-      return sessionId;
-    }
-
-    public void setSessionId(@Nullable Long setterArg) {
-      this.sessionId = setterArg;
-    }
-
-    public static final class Builder {
-
-      private @Nullable String appLanguage;
-
-      public @NonNull Builder setAppLanguage(@Nullable String setterArg) {
-        this.appLanguage = setterArg;
-        return this;
-      }
-
-      private @Nullable String audioLanguage;
-
-      public @NonNull Builder setAudioLanguage(@Nullable String setterArg) {
-        this.audioLanguage = setterArg;
-        return this;
-      }
-
-      private @Nullable String subtitleLanguage;
-
-      public @NonNull Builder setSubtitleLanguage(@Nullable String setterArg) {
-        this.subtitleLanguage = setterArg;
-        return this;
-      }
-
-      private @Nullable String analyticsId;
-
-      public @NonNull Builder setAnalyticsId(@Nullable String setterArg) {
-        this.analyticsId = setterArg;
-        return this;
-      }
-
-      private @Nullable Long sessionId;
-
-      public @NonNull Builder setSessionId(@Nullable Long setterArg) {
-        this.sessionId = setterArg;
-        return this;
-      }
-
-      public @NonNull AppConfig build() {
-        AppConfig pigeonReturn = new AppConfig();
-        pigeonReturn.setAppLanguage(appLanguage);
-        pigeonReturn.setAudioLanguage(audioLanguage);
-        pigeonReturn.setSubtitleLanguage(subtitleLanguage);
-        pigeonReturn.setAnalyticsId(analyticsId);
-        pigeonReturn.setSessionId(sessionId);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(5);
-      toListResult.add(appLanguage);
-      toListResult.add(audioLanguage);
-      toListResult.add(subtitleLanguage);
-      toListResult.add(analyticsId);
-      toListResult.add(sessionId);
-      return toListResult;
-    }
-
-    static @NonNull AppConfig fromList(@NonNull ArrayList<Object> list) {
-      AppConfig pigeonResult = new AppConfig();
-      Object appLanguage = list.get(0);
-      pigeonResult.setAppLanguage((String) appLanguage);
-      Object audioLanguage = list.get(1);
-      pigeonResult.setAudioLanguage((String) audioLanguage);
-      Object subtitleLanguage = list.get(2);
-      pigeonResult.setSubtitleLanguage((String) subtitleLanguage);
-      Object analyticsId = list.get(3);
-      pigeonResult.setAnalyticsId((String) analyticsId);
-      Object sessionId = list.get(4);
-      pigeonResult.setSessionId((sessionId == null) ? null : ((sessionId instanceof Integer) ? (Integer) sessionId : (Long) sessionId));
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class MediaItem {
-    private @Nullable String url;
-
-    public @Nullable String getUrl() {
-      return url;
-    }
-
-    public void setUrl(@Nullable String setterArg) {
-      this.url = setterArg;
-    }
-
-    private @Nullable String mimeType;
-
-    public @Nullable String getMimeType() {
-      return mimeType;
-    }
-
-    public void setMimeType(@Nullable String setterArg) {
-      this.mimeType = setterArg;
-    }
-
-    private @Nullable MediaMetadata metadata;
-
-    public @Nullable MediaMetadata getMetadata() {
-      return metadata;
-    }
-
-    public void setMetadata(@Nullable MediaMetadata setterArg) {
-      this.metadata = setterArg;
-    }
-
-    private @Nullable Boolean isLive;
-
-    public @Nullable Boolean getIsLive() {
-      return isLive;
-    }
-
-    public void setIsLive(@Nullable Boolean setterArg) {
-      this.isLive = setterArg;
-    }
-
-    private @Nullable Double playbackStartPositionMs;
-
-    public @Nullable Double getPlaybackStartPositionMs() {
-      return playbackStartPositionMs;
-    }
-
-    public void setPlaybackStartPositionMs(@Nullable Double setterArg) {
-      this.playbackStartPositionMs = setterArg;
-    }
-
-    private @Nullable String lastKnownAudioLanguage;
-
-    public @Nullable String getLastKnownAudioLanguage() {
-      return lastKnownAudioLanguage;
-    }
-
-    public void setLastKnownAudioLanguage(@Nullable String setterArg) {
-      this.lastKnownAudioLanguage = setterArg;
-    }
-
-    private @Nullable String lastKnownSubtitleLanguage;
-
-    public @Nullable String getLastKnownSubtitleLanguage() {
-      return lastKnownSubtitleLanguage;
-    }
-
-    public void setLastKnownSubtitleLanguage(@Nullable String setterArg) {
-      this.lastKnownSubtitleLanguage = setterArg;
-    }
-
-    public static final class Builder {
-
-      private @Nullable String url;
-
-      public @NonNull Builder setUrl(@Nullable String setterArg) {
-        this.url = setterArg;
-        return this;
-      }
-
-      private @Nullable String mimeType;
-
-      public @NonNull Builder setMimeType(@Nullable String setterArg) {
-        this.mimeType = setterArg;
-        return this;
-      }
-
-      private @Nullable MediaMetadata metadata;
-
-      public @NonNull Builder setMetadata(@Nullable MediaMetadata setterArg) {
-        this.metadata = setterArg;
-        return this;
-      }
-
-      private @Nullable Boolean isLive;
-
-      public @NonNull Builder setIsLive(@Nullable Boolean setterArg) {
-        this.isLive = setterArg;
-        return this;
-      }
-
-      private @Nullable Double playbackStartPositionMs;
-
-      public @NonNull Builder setPlaybackStartPositionMs(@Nullable Double setterArg) {
-        this.playbackStartPositionMs = setterArg;
-        return this;
-      }
-
-      private @Nullable String lastKnownAudioLanguage;
-
-      public @NonNull Builder setLastKnownAudioLanguage(@Nullable String setterArg) {
-        this.lastKnownAudioLanguage = setterArg;
-        return this;
-      }
-
-      private @Nullable String lastKnownSubtitleLanguage;
-
-      public @NonNull Builder setLastKnownSubtitleLanguage(@Nullable String setterArg) {
-        this.lastKnownSubtitleLanguage = setterArg;
-        return this;
-      }
-
-      public @NonNull MediaItem build() {
-        MediaItem pigeonReturn = new MediaItem();
-        pigeonReturn.setUrl(url);
-        pigeonReturn.setMimeType(mimeType);
-        pigeonReturn.setMetadata(metadata);
-        pigeonReturn.setIsLive(isLive);
-        pigeonReturn.setPlaybackStartPositionMs(playbackStartPositionMs);
-        pigeonReturn.setLastKnownAudioLanguage(lastKnownAudioLanguage);
-        pigeonReturn.setLastKnownSubtitleLanguage(lastKnownSubtitleLanguage);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(7);
-      toListResult.add(url);
-      toListResult.add(mimeType);
-      toListResult.add((metadata == null) ? null : metadata.toList());
-      toListResult.add(isLive);
-      toListResult.add(playbackStartPositionMs);
-      toListResult.add(lastKnownAudioLanguage);
-      toListResult.add(lastKnownSubtitleLanguage);
-      return toListResult;
-    }
-
-    static @NonNull MediaItem fromList(@NonNull ArrayList<Object> list) {
-      MediaItem pigeonResult = new MediaItem();
-      Object url = list.get(0);
-      pigeonResult.setUrl((String) url);
-      Object mimeType = list.get(1);
-      pigeonResult.setMimeType((String) mimeType);
-      Object metadata = list.get(2);
-      pigeonResult.setMetadata((metadata == null) ? null : MediaMetadata.fromList((ArrayList<Object>) metadata));
-      Object isLive = list.get(3);
-      pigeonResult.setIsLive((Boolean) isLive);
-      Object playbackStartPositionMs = list.get(4);
-      pigeonResult.setPlaybackStartPositionMs((Double) playbackStartPositionMs);
-      Object lastKnownAudioLanguage = list.get(5);
-      pigeonResult.setLastKnownAudioLanguage((String) lastKnownAudioLanguage);
-      Object lastKnownSubtitleLanguage = list.get(6);
-      pigeonResult.setLastKnownSubtitleLanguage((String) lastKnownSubtitleLanguage);
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class MediaMetadata {
-    private @Nullable String artworkUri;
-
-    public @Nullable String getArtworkUri() {
-      return artworkUri;
-    }
-
-    public void setArtworkUri(@Nullable String setterArg) {
-      this.artworkUri = setterArg;
-    }
-
-    private @Nullable String title;
-
-    public @Nullable String getTitle() {
-      return title;
-    }
-
-    public void setTitle(@Nullable String setterArg) {
-      this.title = setterArg;
-    }
-
-    private @Nullable String artist;
-
-    public @Nullable String getArtist() {
-      return artist;
-    }
-
-    public void setArtist(@Nullable String setterArg) {
-      this.artist = setterArg;
-    }
-
-    private @Nullable Double durationMs;
-
-    public @Nullable Double getDurationMs() {
-      return durationMs;
-    }
-
-    public void setDurationMs(@Nullable Double setterArg) {
-      this.durationMs = setterArg;
-    }
-
-    private @Nullable Map<String, Object> extras;
-
-    public @Nullable Map<String, Object> getExtras() {
-      return extras;
-    }
-
-    public void setExtras(@Nullable Map<String, Object> setterArg) {
-      this.extras = setterArg;
-    }
-
-    public static final class Builder {
-
-      private @Nullable String artworkUri;
-
-      public @NonNull Builder setArtworkUri(@Nullable String setterArg) {
-        this.artworkUri = setterArg;
-        return this;
-      }
-
-      private @Nullable String title;
-
-      public @NonNull Builder setTitle(@Nullable String setterArg) {
-        this.title = setterArg;
-        return this;
-      }
-
-      private @Nullable String artist;
-
-      public @NonNull Builder setArtist(@Nullable String setterArg) {
-        this.artist = setterArg;
-        return this;
-      }
-
-      private @Nullable Double durationMs;
-
-      public @NonNull Builder setDurationMs(@Nullable Double setterArg) {
-        this.durationMs = setterArg;
-        return this;
-      }
-
-      private @Nullable Map<String, Object> extras;
-
-      public @NonNull Builder setExtras(@Nullable Map<String, Object> setterArg) {
-        this.extras = setterArg;
-        return this;
-      }
-
-      public @NonNull MediaMetadata build() {
-        MediaMetadata pigeonReturn = new MediaMetadata();
-        pigeonReturn.setArtworkUri(artworkUri);
-        pigeonReturn.setTitle(title);
-        pigeonReturn.setArtist(artist);
-        pigeonReturn.setDurationMs(durationMs);
-        pigeonReturn.setExtras(extras);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(5);
-      toListResult.add(artworkUri);
-      toListResult.add(title);
-      toListResult.add(artist);
-      toListResult.add(durationMs);
-      toListResult.add(extras);
-      return toListResult;
-    }
-
-    static @NonNull MediaMetadata fromList(@NonNull ArrayList<Object> list) {
-      MediaMetadata pigeonResult = new MediaMetadata();
-      Object artworkUri = list.get(0);
-      pigeonResult.setArtworkUri((String) artworkUri);
-      Object title = list.get(1);
-      pigeonResult.setTitle((String) title);
-      Object artist = list.get(2);
-      pigeonResult.setArtist((String) artist);
-      Object durationMs = list.get(3);
-      pigeonResult.setDurationMs((Double) durationMs);
-      Object extras = list.get(4);
-      pigeonResult.setExtras((Map<String, Object>) extras);
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class PlayerStateSnapshot {
-    private @NonNull String playerId;
-
-    public @NonNull String getPlayerId() {
-      return playerId;
-    }
-
-    public void setPlayerId(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
-      }
-      this.playerId = setterArg;
-    }
-
-    private @NonNull PlaybackState playbackState;
-
-    public @NonNull PlaybackState getPlaybackState() {
-      return playbackState;
-    }
-
-    public void setPlaybackState(@NonNull PlaybackState setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"playbackState\" is null.");
-      }
-      this.playbackState = setterArg;
-    }
-
-    private @NonNull Boolean isFullscreen;
-
-    public @NonNull Boolean getIsFullscreen() {
-      return isFullscreen;
-    }
-
-    public void setIsFullscreen(@NonNull Boolean setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"isFullscreen\" is null.");
-      }
-      this.isFullscreen = setterArg;
-    }
-
-    private @Nullable MediaItem currentMediaItem;
-
-    public @Nullable MediaItem getCurrentMediaItem() {
-      return currentMediaItem;
-    }
-
-    public void setCurrentMediaItem(@Nullable MediaItem setterArg) {
-      this.currentMediaItem = setterArg;
-    }
-
-    private @Nullable Double playbackPositionMs;
-
-    public @Nullable Double getPlaybackPositionMs() {
-      return playbackPositionMs;
-    }
-
-    public void setPlaybackPositionMs(@Nullable Double setterArg) {
-      this.playbackPositionMs = setterArg;
-    }
-
-    /** Constructor is non-public to enforce null safety; use Builder. */
-    PlayerStateSnapshot() {}
-
-    public static final class Builder {
-
-      private @Nullable String playerId;
-
-      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
-        this.playerId = setterArg;
-        return this;
-      }
-
-      private @Nullable PlaybackState playbackState;
-
-      public @NonNull Builder setPlaybackState(@NonNull PlaybackState setterArg) {
-        this.playbackState = setterArg;
-        return this;
-      }
-
-      private @Nullable Boolean isFullscreen;
-
-      public @NonNull Builder setIsFullscreen(@NonNull Boolean setterArg) {
-        this.isFullscreen = setterArg;
-        return this;
-      }
-
-      private @Nullable MediaItem currentMediaItem;
-
-      public @NonNull Builder setCurrentMediaItem(@Nullable MediaItem setterArg) {
-        this.currentMediaItem = setterArg;
-        return this;
-      }
-
-      private @Nullable Double playbackPositionMs;
-
-      public @NonNull Builder setPlaybackPositionMs(@Nullable Double setterArg) {
-        this.playbackPositionMs = setterArg;
-        return this;
-      }
-
-      public @NonNull PlayerStateSnapshot build() {
-        PlayerStateSnapshot pigeonReturn = new PlayerStateSnapshot();
-        pigeonReturn.setPlayerId(playerId);
-        pigeonReturn.setPlaybackState(playbackState);
-        pigeonReturn.setIsFullscreen(isFullscreen);
-        pigeonReturn.setCurrentMediaItem(currentMediaItem);
-        pigeonReturn.setPlaybackPositionMs(playbackPositionMs);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(5);
-      toListResult.add(playerId);
-      toListResult.add(playbackState == null ? null : playbackState.index);
-      toListResult.add(isFullscreen);
-      toListResult.add((currentMediaItem == null) ? null : currentMediaItem.toList());
-      toListResult.add(playbackPositionMs);
-      return toListResult;
-    }
-
-    static @NonNull PlayerStateSnapshot fromList(@NonNull ArrayList<Object> list) {
-      PlayerStateSnapshot pigeonResult = new PlayerStateSnapshot();
-      Object playerId = list.get(0);
-      pigeonResult.setPlayerId((String) playerId);
-      Object playbackState = list.get(1);
-      pigeonResult.setPlaybackState(playbackState == null ? null : PlaybackState.values()[(int) playbackState]);
-      Object isFullscreen = list.get(2);
-      pigeonResult.setIsFullscreen((Boolean) isFullscreen);
-      Object currentMediaItem = list.get(3);
-      pigeonResult.setCurrentMediaItem((currentMediaItem == null) ? null : MediaItem.fromList((ArrayList<Object>) currentMediaItem));
-      Object playbackPositionMs = list.get(4);
-      pigeonResult.setPlaybackPositionMs((Double) playbackPositionMs);
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class ChromecastState {
-    private @NonNull CastConnectionState connectionState;
-
-    public @NonNull CastConnectionState getConnectionState() {
-      return connectionState;
-    }
-
-    public void setConnectionState(@NonNull CastConnectionState setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"connectionState\" is null.");
-      }
-      this.connectionState = setterArg;
-    }
-
-    private @Nullable MediaItem mediaItem;
-
-    public @Nullable MediaItem getMediaItem() {
-      return mediaItem;
-    }
-
-    public void setMediaItem(@Nullable MediaItem setterArg) {
-      this.mediaItem = setterArg;
-    }
-
-    /** Constructor is non-public to enforce null safety; use Builder. */
-    ChromecastState() {}
-
-    public static final class Builder {
-
-      private @Nullable CastConnectionState connectionState;
-
-      public @NonNull Builder setConnectionState(@NonNull CastConnectionState setterArg) {
-        this.connectionState = setterArg;
-        return this;
-      }
-
-      private @Nullable MediaItem mediaItem;
-
-      public @NonNull Builder setMediaItem(@Nullable MediaItem setterArg) {
-        this.mediaItem = setterArg;
-        return this;
-      }
-
-      public @NonNull ChromecastState build() {
-        ChromecastState pigeonReturn = new ChromecastState();
-        pigeonReturn.setConnectionState(connectionState);
-        pigeonReturn.setMediaItem(mediaItem);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(2);
-      toListResult.add(connectionState == null ? null : connectionState.index);
-      toListResult.add((mediaItem == null) ? null : mediaItem.toList());
-      return toListResult;
-    }
-
-    static @NonNull ChromecastState fromList(@NonNull ArrayList<Object> list) {
-      ChromecastState pigeonResult = new ChromecastState();
-      Object connectionState = list.get(0);
-      pigeonResult.setConnectionState(connectionState == null ? null : CastConnectionState.values()[(int) connectionState]);
-      Object mediaItem = list.get(1);
-      pigeonResult.setMediaItem((mediaItem == null) ? null : MediaItem.fromList((ArrayList<Object>) mediaItem));
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class PlayerTracksSnapshot {
-    private @NonNull String playerId;
-
-    public @NonNull String getPlayerId() {
-      return playerId;
-    }
-
-    public void setPlayerId(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
-      }
-      this.playerId = setterArg;
-    }
-
-    private @NonNull List<Track> audioTracks;
-
-    public @NonNull List<Track> getAudioTracks() {
-      return audioTracks;
-    }
-
-    public void setAudioTracks(@NonNull List<Track> setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"audioTracks\" is null.");
-      }
-      this.audioTracks = setterArg;
-    }
-
-    private @NonNull List<Track> textTracks;
-
-    public @NonNull List<Track> getTextTracks() {
-      return textTracks;
-    }
-
-    public void setTextTracks(@NonNull List<Track> setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"textTracks\" is null.");
-      }
-      this.textTracks = setterArg;
-    }
-
-    /** Constructor is non-public to enforce null safety; use Builder. */
-    PlayerTracksSnapshot() {}
-
-    public static final class Builder {
-
-      private @Nullable String playerId;
-
-      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
-        this.playerId = setterArg;
-        return this;
-      }
-
-      private @Nullable List<Track> audioTracks;
-
-      public @NonNull Builder setAudioTracks(@NonNull List<Track> setterArg) {
-        this.audioTracks = setterArg;
-        return this;
-      }
-
-      private @Nullable List<Track> textTracks;
-
-      public @NonNull Builder setTextTracks(@NonNull List<Track> setterArg) {
-        this.textTracks = setterArg;
-        return this;
-      }
-
-      public @NonNull PlayerTracksSnapshot build() {
-        PlayerTracksSnapshot pigeonReturn = new PlayerTracksSnapshot();
-        pigeonReturn.setPlayerId(playerId);
-        pigeonReturn.setAudioTracks(audioTracks);
-        pigeonReturn.setTextTracks(textTracks);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(3);
-      toListResult.add(playerId);
-      toListResult.add(audioTracks);
-      toListResult.add(textTracks);
-      return toListResult;
-    }
-
-    static @NonNull PlayerTracksSnapshot fromList(@NonNull ArrayList<Object> list) {
-      PlayerTracksSnapshot pigeonResult = new PlayerTracksSnapshot();
-      Object playerId = list.get(0);
-      pigeonResult.setPlayerId((String) playerId);
-      Object audioTracks = list.get(1);
-      pigeonResult.setAudioTracks((List<Track>) audioTracks);
-      Object textTracks = list.get(2);
-      pigeonResult.setTextTracks((List<Track>) textTracks);
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class Track {
-    private @NonNull String id;
-
-    public @NonNull String getId() {
-      return id;
-    }
-
-    public void setId(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"id\" is null.");
-      }
-      this.id = setterArg;
-    }
-
-    private @Nullable String label;
-
-    public @Nullable String getLabel() {
-      return label;
-    }
-
-    public void setLabel(@Nullable String setterArg) {
-      this.label = setterArg;
-    }
-
-    private @Nullable String language;
-
-    public @Nullable String getLanguage() {
-      return language;
-    }
-
-    public void setLanguage(@Nullable String setterArg) {
-      this.language = setterArg;
-    }
-
-    private @NonNull Boolean isSelected;
-
-    public @NonNull Boolean getIsSelected() {
-      return isSelected;
-    }
-
-    public void setIsSelected(@NonNull Boolean setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"isSelected\" is null.");
-      }
-      this.isSelected = setterArg;
-    }
-
-    /** Constructor is non-public to enforce null safety; use Builder. */
-    Track() {}
-
-    public static final class Builder {
-
-      private @Nullable String id;
-
-      public @NonNull Builder setId(@NonNull String setterArg) {
-        this.id = setterArg;
-        return this;
-      }
-
-      private @Nullable String label;
-
-      public @NonNull Builder setLabel(@Nullable String setterArg) {
-        this.label = setterArg;
-        return this;
-      }
-
-      private @Nullable String language;
-
-      public @NonNull Builder setLanguage(@Nullable String setterArg) {
-        this.language = setterArg;
-        return this;
-      }
-
-      private @Nullable Boolean isSelected;
-
-      public @NonNull Builder setIsSelected(@NonNull Boolean setterArg) {
-        this.isSelected = setterArg;
-        return this;
-      }
-
-      public @NonNull Track build() {
-        Track pigeonReturn = new Track();
-        pigeonReturn.setId(id);
-        pigeonReturn.setLabel(label);
-        pigeonReturn.setLanguage(language);
-        pigeonReturn.setIsSelected(isSelected);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(4);
-      toListResult.add(id);
-      toListResult.add(label);
-      toListResult.add(language);
-      toListResult.add(isSelected);
-      return toListResult;
-    }
-
-    static @NonNull Track fromList(@NonNull ArrayList<Object> list) {
-      Track pigeonResult = new Track();
-      Object id = list.get(0);
-      pigeonResult.setId((String) id);
-      Object label = list.get(1);
-      pigeonResult.setLabel((String) label);
-      Object language = list.get(2);
-      pigeonResult.setLanguage((String) language);
-      Object isSelected = list.get(3);
-      pigeonResult.setIsSelected((Boolean) isSelected);
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class PrimaryPlayerChangedEvent {
-    private @Nullable String playerId;
-
-    public @Nullable String getPlayerId() {
-      return playerId;
-    }
-
-    public void setPlayerId(@Nullable String setterArg) {
-      this.playerId = setterArg;
-    }
-
-    public static final class Builder {
-
-      private @Nullable String playerId;
-
-      public @NonNull Builder setPlayerId(@Nullable String setterArg) {
-        this.playerId = setterArg;
-        return this;
-      }
-
-      public @NonNull PrimaryPlayerChangedEvent build() {
-        PrimaryPlayerChangedEvent pigeonReturn = new PrimaryPlayerChangedEvent();
-        pigeonReturn.setPlayerId(playerId);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(1);
-      toListResult.add(playerId);
-      return toListResult;
-    }
-
-    static @NonNull PrimaryPlayerChangedEvent fromList(@NonNull ArrayList<Object> list) {
-      PrimaryPlayerChangedEvent pigeonResult = new PrimaryPlayerChangedEvent();
-      Object playerId = list.get(0);
-      pigeonResult.setPlayerId((String) playerId);
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class PlayerStateUpdateEvent {
-    private @NonNull String playerId;
-
-    public @NonNull String getPlayerId() {
-      return playerId;
-    }
-
-    public void setPlayerId(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
-      }
-      this.playerId = setterArg;
-    }
-
-    private @NonNull PlayerStateSnapshot snapshot;
-
-    public @NonNull PlayerStateSnapshot getSnapshot() {
-      return snapshot;
-    }
-
-    public void setSnapshot(@NonNull PlayerStateSnapshot setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"snapshot\" is null.");
-      }
-      this.snapshot = setterArg;
-    }
-
-    /** Constructor is non-public to enforce null safety; use Builder. */
-    PlayerStateUpdateEvent() {}
-
-    public static final class Builder {
-
-      private @Nullable String playerId;
-
-      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
-        this.playerId = setterArg;
-        return this;
-      }
-
-      private @Nullable PlayerStateSnapshot snapshot;
-
-      public @NonNull Builder setSnapshot(@NonNull PlayerStateSnapshot setterArg) {
-        this.snapshot = setterArg;
-        return this;
-      }
-
-      public @NonNull PlayerStateUpdateEvent build() {
-        PlayerStateUpdateEvent pigeonReturn = new PlayerStateUpdateEvent();
-        pigeonReturn.setPlayerId(playerId);
-        pigeonReturn.setSnapshot(snapshot);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(2);
-      toListResult.add(playerId);
-      toListResult.add((snapshot == null) ? null : snapshot.toList());
-      return toListResult;
-    }
-
-    static @NonNull PlayerStateUpdateEvent fromList(@NonNull ArrayList<Object> list) {
-      PlayerStateUpdateEvent pigeonResult = new PlayerStateUpdateEvent();
-      Object playerId = list.get(0);
-      pigeonResult.setPlayerId((String) playerId);
-      Object snapshot = list.get(1);
-      pigeonResult.setSnapshot((snapshot == null) ? null : PlayerStateSnapshot.fromList((ArrayList<Object>) snapshot));
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class PositionDiscontinuityEvent {
-    private @NonNull String playerId;
-
-    public @NonNull String getPlayerId() {
-      return playerId;
-    }
-
-    public void setPlayerId(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
-      }
-      this.playerId = setterArg;
-    }
-
-    private @Nullable Double playbackPositionMs;
-
-    public @Nullable Double getPlaybackPositionMs() {
-      return playbackPositionMs;
-    }
-
-    public void setPlaybackPositionMs(@Nullable Double setterArg) {
-      this.playbackPositionMs = setterArg;
-    }
-
-    /** Constructor is non-public to enforce null safety; use Builder. */
-    PositionDiscontinuityEvent() {}
-
-    public static final class Builder {
-
-      private @Nullable String playerId;
-
-      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
-        this.playerId = setterArg;
-        return this;
-      }
-
-      private @Nullable Double playbackPositionMs;
-
-      public @NonNull Builder setPlaybackPositionMs(@Nullable Double setterArg) {
-        this.playbackPositionMs = setterArg;
-        return this;
-      }
-
-      public @NonNull PositionDiscontinuityEvent build() {
-        PositionDiscontinuityEvent pigeonReturn = new PositionDiscontinuityEvent();
-        pigeonReturn.setPlayerId(playerId);
-        pigeonReturn.setPlaybackPositionMs(playbackPositionMs);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(2);
-      toListResult.add(playerId);
-      toListResult.add(playbackPositionMs);
-      return toListResult;
-    }
-
-    static @NonNull PositionDiscontinuityEvent fromList(@NonNull ArrayList<Object> list) {
-      PositionDiscontinuityEvent pigeonResult = new PositionDiscontinuityEvent();
-      Object playerId = list.get(0);
-      pigeonResult.setPlayerId((String) playerId);
-      Object playbackPositionMs = list.get(1);
-      pigeonResult.setPlaybackPositionMs((Double) playbackPositionMs);
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class PlaybackStateChangedEvent {
-    private @NonNull String playerId;
-
-    public @NonNull String getPlayerId() {
-      return playerId;
-    }
-
-    public void setPlayerId(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
-      }
-      this.playerId = setterArg;
-    }
-
-    private @NonNull PlaybackState playbackState;
-
-    public @NonNull PlaybackState getPlaybackState() {
-      return playbackState;
-    }
-
-    public void setPlaybackState(@NonNull PlaybackState setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"playbackState\" is null.");
-      }
-      this.playbackState = setterArg;
-    }
-
-    /** Constructor is non-public to enforce null safety; use Builder. */
-    PlaybackStateChangedEvent() {}
-
-    public static final class Builder {
-
-      private @Nullable String playerId;
-
-      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
-        this.playerId = setterArg;
-        return this;
-      }
-
-      private @Nullable PlaybackState playbackState;
-
-      public @NonNull Builder setPlaybackState(@NonNull PlaybackState setterArg) {
-        this.playbackState = setterArg;
-        return this;
-      }
-
-      public @NonNull PlaybackStateChangedEvent build() {
-        PlaybackStateChangedEvent pigeonReturn = new PlaybackStateChangedEvent();
-        pigeonReturn.setPlayerId(playerId);
-        pigeonReturn.setPlaybackState(playbackState);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(2);
-      toListResult.add(playerId);
-      toListResult.add(playbackState == null ? null : playbackState.index);
-      return toListResult;
-    }
-
-    static @NonNull PlaybackStateChangedEvent fromList(@NonNull ArrayList<Object> list) {
-      PlaybackStateChangedEvent pigeonResult = new PlaybackStateChangedEvent();
-      Object playerId = list.get(0);
-      pigeonResult.setPlayerId((String) playerId);
-      Object playbackState = list.get(1);
-      pigeonResult.setPlaybackState(playbackState == null ? null : PlaybackState.values()[(int) playbackState]);
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class PlaybackEndedEvent {
-    private @NonNull String playerId;
-
-    public @NonNull String getPlayerId() {
-      return playerId;
-    }
-
-    public void setPlayerId(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
-      }
-      this.playerId = setterArg;
-    }
-
-    private @Nullable MediaItem mediaItem;
-
-    public @Nullable MediaItem getMediaItem() {
-      return mediaItem;
-    }
-
-    public void setMediaItem(@Nullable MediaItem setterArg) {
-      this.mediaItem = setterArg;
-    }
-
-    /** Constructor is non-public to enforce null safety; use Builder. */
-    PlaybackEndedEvent() {}
-
-    public static final class Builder {
-
-      private @Nullable String playerId;
-
-      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
-        this.playerId = setterArg;
-        return this;
-      }
-
-      private @Nullable MediaItem mediaItem;
-
-      public @NonNull Builder setMediaItem(@Nullable MediaItem setterArg) {
-        this.mediaItem = setterArg;
-        return this;
-      }
-
-      public @NonNull PlaybackEndedEvent build() {
-        PlaybackEndedEvent pigeonReturn = new PlaybackEndedEvent();
-        pigeonReturn.setPlayerId(playerId);
-        pigeonReturn.setMediaItem(mediaItem);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(2);
-      toListResult.add(playerId);
-      toListResult.add((mediaItem == null) ? null : mediaItem.toList());
-      return toListResult;
-    }
-
-    static @NonNull PlaybackEndedEvent fromList(@NonNull ArrayList<Object> list) {
-      PlaybackEndedEvent pigeonResult = new PlaybackEndedEvent();
-      Object playerId = list.get(0);
-      pigeonResult.setPlayerId((String) playerId);
-      Object mediaItem = list.get(1);
-      pigeonResult.setMediaItem((mediaItem == null) ? null : MediaItem.fromList((ArrayList<Object>) mediaItem));
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class PictureInPictureModeChangedEvent {
-    private @NonNull String playerId;
-
-    public @NonNull String getPlayerId() {
-      return playerId;
-    }
-
-    public void setPlayerId(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
-      }
-      this.playerId = setterArg;
-    }
-
-    private @NonNull Boolean isInPipMode;
-
-    public @NonNull Boolean getIsInPipMode() {
-      return isInPipMode;
-    }
-
-    public void setIsInPipMode(@NonNull Boolean setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"isInPipMode\" is null.");
-      }
-      this.isInPipMode = setterArg;
-    }
-
-    /** Constructor is non-public to enforce null safety; use Builder. */
-    PictureInPictureModeChangedEvent() {}
-
-    public static final class Builder {
-
-      private @Nullable String playerId;
-
-      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
-        this.playerId = setterArg;
-        return this;
-      }
-
-      private @Nullable Boolean isInPipMode;
-
-      public @NonNull Builder setIsInPipMode(@NonNull Boolean setterArg) {
-        this.isInPipMode = setterArg;
-        return this;
-      }
-
-      public @NonNull PictureInPictureModeChangedEvent build() {
-        PictureInPictureModeChangedEvent pigeonReturn = new PictureInPictureModeChangedEvent();
-        pigeonReturn.setPlayerId(playerId);
-        pigeonReturn.setIsInPipMode(isInPipMode);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(2);
-      toListResult.add(playerId);
-      toListResult.add(isInPipMode);
-      return toListResult;
-    }
-
-    static @NonNull PictureInPictureModeChangedEvent fromList(@NonNull ArrayList<Object> list) {
-      PictureInPictureModeChangedEvent pigeonResult = new PictureInPictureModeChangedEvent();
-      Object playerId = list.get(0);
-      pigeonResult.setPlayerId((String) playerId);
-      Object isInPipMode = list.get(1);
-      pigeonResult.setIsInPipMode((Boolean) isInPipMode);
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class MediaItemTransitionEvent {
-    private @NonNull String playerId;
-
-    public @NonNull String getPlayerId() {
-      return playerId;
-    }
-
-    public void setPlayerId(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
-      }
-      this.playerId = setterArg;
-    }
-
-    private @Nullable MediaItem mediaItem;
-
-    public @Nullable MediaItem getMediaItem() {
-      return mediaItem;
-    }
-
-    public void setMediaItem(@Nullable MediaItem setterArg) {
-      this.mediaItem = setterArg;
-    }
-
-    /** Constructor is non-public to enforce null safety; use Builder. */
-    MediaItemTransitionEvent() {}
-
-    public static final class Builder {
-
-      private @Nullable String playerId;
-
-      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
-        this.playerId = setterArg;
-        return this;
-      }
-
-      private @Nullable MediaItem mediaItem;
-
-      public @NonNull Builder setMediaItem(@Nullable MediaItem setterArg) {
-        this.mediaItem = setterArg;
-        return this;
-      }
-
-      public @NonNull MediaItemTransitionEvent build() {
-        MediaItemTransitionEvent pigeonReturn = new MediaItemTransitionEvent();
-        pigeonReturn.setPlayerId(playerId);
-        pigeonReturn.setMediaItem(mediaItem);
-        return pigeonReturn;
-      }
-    }
-
-    @NonNull
-    ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(2);
-      toListResult.add(playerId);
-      toListResult.add((mediaItem == null) ? null : mediaItem.toList());
-      return toListResult;
-    }
-
-    static @NonNull MediaItemTransitionEvent fromList(@NonNull ArrayList<Object> list) {
-      MediaItemTransitionEvent pigeonResult = new MediaItemTransitionEvent();
-      Object playerId = list.get(0);
-      pigeonResult.setPlayerId((String) playerId);
-      Object mediaItem = list.get(1);
-      pigeonResult.setMediaItem((mediaItem == null) ? null : MediaItem.fromList((ArrayList<Object>) mediaItem));
-      return pigeonResult;
-    }
-  }
-
-  public interface Result<T> {
-    @SuppressWarnings("UnknownNullness")
-    void success(T result);
-
-    void error(@NonNull Throwable error);
-  }
-
-  private static class PlaybackPlatformPigeonCodec extends StandardMessageCodec {
-    public static final PlaybackPlatformPigeonCodec INSTANCE = new PlaybackPlatformPigeonCodec();
-
-    private PlaybackPlatformPigeonCodec() {}
-
-    @Override
-    protected Object readValueOfType(byte type, @NonNull ByteBuffer buffer) {
-      switch (type) {
-        case (byte) 128:
-          return AppConfig.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 129:
-          return ChromecastState.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 130:
-          return MediaItem.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 131:
-          return MediaMetadata.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 132:
-          return NpawConfig.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 133:
-          return PlayerStateSnapshot.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 134:
-          return PlayerTracksSnapshot.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 135:
-          return Track.fromList((ArrayList<Object>) readValue(buffer));
-        default:
-          return super.readValueOfType(type, buffer);
-      }
-    }
-
-    @Override
-    protected void writeValue(@NonNull ByteArrayOutputStream stream, Object value) {
-      if (value instanceof AppConfig) {
-        stream.write(128);
-        writeValue(stream, ((AppConfig) value).toList());
-      } else if (value instanceof ChromecastState) {
-        stream.write(129);
-        writeValue(stream, ((ChromecastState) value).toList());
-      } else if (value instanceof MediaItem) {
-        stream.write(130);
-        writeValue(stream, ((MediaItem) value).toList());
-      } else if (value instanceof MediaMetadata) {
-        stream.write(131);
-        writeValue(stream, ((MediaMetadata) value).toList());
-      } else if (value instanceof NpawConfig) {
-        stream.write(132);
-        writeValue(stream, ((NpawConfig) value).toList());
-      } else if (value instanceof PlayerStateSnapshot) {
-        stream.write(133);
-        writeValue(stream, ((PlayerStateSnapshot) value).toList());
-      } else if (value instanceof PlayerTracksSnapshot) {
-        stream.write(134);
-        writeValue(stream, ((PlayerTracksSnapshot) value).toList());
-      } else if (value instanceof Track) {
-        stream.write(135);
-        writeValue(stream, ((Track) value).toList());
-      } else {
-        super.writeValue(stream, value);
-      }
-    }
-  }
-
-  /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
-  public interface PlaybackPlatformPigeon {
-
-    void attach(@NonNull Result<Void> result);
-
-    void newPlayer(@Nullable String url, @NonNull Result<String> result);
-
-    void queueMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, @NonNull Result<Void> result);
-
-    void replaceCurrentMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, @Nullable Boolean playbackPositionFromPrimary, @Nullable Boolean autoplay, @NonNull Result<Void> result);
-
-    void setPlayerViewVisibility(@NonNull Long viewId, @NonNull Boolean visible);
-
-    void setPrimary(@NonNull String id, @NonNull Result<Void> result);
-
-    void play(@NonNull String playerId);
-
-    void seekTo(@NonNull String playerId, @NonNull Double positionMs, @NonNull Result<Void> result);
-
-    void pause(@NonNull String playerId);
-
-    void stop(@NonNull String playerId, @NonNull Boolean reset);
-
-    void setSelectedTrack(@NonNull String playerId, @NonNull TrackType type, @NonNull String trackId, @NonNull Result<Void> result);
-
-    void exitFullscreen(@NonNull String playerId);
-
-    void enterFullscreen(@NonNull String playerId);
-
-    void setNpawConfig(@Nullable NpawConfig config);
-
-    void setAppConfig(@Nullable AppConfig config);
-
-    void getTracks(@Nullable String playerId, @NonNull Result<PlayerTracksSnapshot> result);
-
-    void getPlayerState(@Nullable String playerId, @NonNull Result<PlayerStateSnapshot> result);
-
-    void getChromecastState(@NonNull Result<ChromecastState> result);
-
-    void openExpandedCastController();
-
-    void openCastDialog();
-
-    /** The codec used by PlaybackPlatformPigeon. */
-    static @NonNull MessageCodec<Object> getCodec() {
-      return PlaybackPlatformPigeonCodec.INSTANCE;
-    }
-    /**Sets up an instance of `PlaybackPlatformPigeon` to handle messages through the `binaryMessenger`. */
-    static void setup(@NonNull BinaryMessenger binaryMessenger, @Nullable PlaybackPlatformPigeon api) {
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.attach", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                Result<Void> resultCallback =
-                    new Result<Void>() {
-                      public void success(Void result) {
-                        wrapped.add(0, null);
-                        reply.reply(wrapped);
-                      }
-
-                      public void error(Throwable error) {
-                        ArrayList<Object> wrappedError = wrapError(error);
-                        reply.reply(wrappedError);
-                      }
-                    };
-
-                api.attach(resultCallback);
-              });
+    protected static ArrayList<Object> wrapError(@NonNull Throwable exception) {
+        ArrayList<Object> errorList = new ArrayList<Object>(3);
+        if (exception instanceof FlutterError) {
+            FlutterError error = (FlutterError) exception;
+            errorList.add(error.code);
+            errorList.add(error.getMessage());
+            errorList.add(error.details);
         } else {
-          channel.setMessageHandler(null);
+            errorList.add(exception.toString());
+            errorList.add(exception.getClass().getSimpleName());
+            errorList.add(
+                    "Cause: " + exception.getCause() + ", Stacktrace: " + Log.getStackTraceString(exception));
         }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.newPlayer", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String urlArg = (String) args.get(0);
-                Result<String> resultCallback =
-                    new Result<String>() {
-                      public void success(String result) {
-                        wrapped.add(0, result);
-                        reply.reply(wrapped);
-                      }
-
-                      public void error(Throwable error) {
-                        ArrayList<Object> wrappedError = wrapError(error);
-                        reply.reply(wrappedError);
-                      }
-                    };
-
-                api.newPlayer(urlArg, resultCallback);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.queueMediaItem", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String playerIdArg = (String) args.get(0);
-                MediaItem mediaItemArg = (MediaItem) args.get(1);
-                Result<Void> resultCallback =
-                    new Result<Void>() {
-                      public void success(Void result) {
-                        wrapped.add(0, null);
-                        reply.reply(wrapped);
-                      }
-
-                      public void error(Throwable error) {
-                        ArrayList<Object> wrappedError = wrapError(error);
-                        reply.reply(wrappedError);
-                      }
-                    };
-
-                api.queueMediaItem(playerIdArg, mediaItemArg, resultCallback);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.replaceCurrentMediaItem", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String playerIdArg = (String) args.get(0);
-                MediaItem mediaItemArg = (MediaItem) args.get(1);
-                Boolean playbackPositionFromPrimaryArg = (Boolean) args.get(2);
-                Boolean autoplayArg = (Boolean) args.get(3);
-                Result<Void> resultCallback =
-                    new Result<Void>() {
-                      public void success(Void result) {
-                        wrapped.add(0, null);
-                        reply.reply(wrapped);
-                      }
-
-                      public void error(Throwable error) {
-                        ArrayList<Object> wrappedError = wrapError(error);
-                        reply.reply(wrappedError);
-                      }
-                    };
-
-                api.replaceCurrentMediaItem(playerIdArg, mediaItemArg, playbackPositionFromPrimaryArg, autoplayArg, resultCallback);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setPlayerViewVisibility", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                Number viewIdArg = (Number) args.get(0);
-                Boolean visibleArg = (Boolean) args.get(1);
-                try {
-                  api.setPlayerViewVisibility((viewIdArg == null) ? null : viewIdArg.longValue(), visibleArg);
-                  wrapped.add(0, null);
-                }
- catch (Throwable exception) {
-                  ArrayList<Object> wrappedError = wrapError(exception);
-                  wrapped = wrappedError;
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setPrimary", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String idArg = (String) args.get(0);
-                Result<Void> resultCallback =
-                    new Result<Void>() {
-                      public void success(Void result) {
-                        wrapped.add(0, null);
-                        reply.reply(wrapped);
-                      }
-
-                      public void error(Throwable error) {
-                        ArrayList<Object> wrappedError = wrapError(error);
-                        reply.reply(wrappedError);
-                      }
-                    };
-
-                api.setPrimary(idArg, resultCallback);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.play", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String playerIdArg = (String) args.get(0);
-                try {
-                  api.play(playerIdArg);
-                  wrapped.add(0, null);
-                }
- catch (Throwable exception) {
-                  ArrayList<Object> wrappedError = wrapError(exception);
-                  wrapped = wrappedError;
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.seekTo", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String playerIdArg = (String) args.get(0);
-                Double positionMsArg = (Double) args.get(1);
-                Result<Void> resultCallback =
-                    new Result<Void>() {
-                      public void success(Void result) {
-                        wrapped.add(0, null);
-                        reply.reply(wrapped);
-                      }
-
-                      public void error(Throwable error) {
-                        ArrayList<Object> wrappedError = wrapError(error);
-                        reply.reply(wrappedError);
-                      }
-                    };
-
-                api.seekTo(playerIdArg, positionMsArg, resultCallback);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.pause", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String playerIdArg = (String) args.get(0);
-                try {
-                  api.pause(playerIdArg);
-                  wrapped.add(0, null);
-                }
- catch (Throwable exception) {
-                  ArrayList<Object> wrappedError = wrapError(exception);
-                  wrapped = wrappedError;
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.stop", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String playerIdArg = (String) args.get(0);
-                Boolean resetArg = (Boolean) args.get(1);
-                try {
-                  api.stop(playerIdArg, resetArg);
-                  wrapped.add(0, null);
-                }
- catch (Throwable exception) {
-                  ArrayList<Object> wrappedError = wrapError(exception);
-                  wrapped = wrappedError;
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setSelectedTrack", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String playerIdArg = (String) args.get(0);
-                TrackType typeArg = args.get(1) == null ? null : TrackType.values()[(int) args.get(1)];
-                String trackIdArg = (String) args.get(2);
-                Result<Void> resultCallback =
-                    new Result<Void>() {
-                      public void success(Void result) {
-                        wrapped.add(0, null);
-                        reply.reply(wrapped);
-                      }
-
-                      public void error(Throwable error) {
-                        ArrayList<Object> wrappedError = wrapError(error);
-                        reply.reply(wrappedError);
-                      }
-                    };
-
-                api.setSelectedTrack(playerIdArg, typeArg, trackIdArg, resultCallback);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.exitFullscreen", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String playerIdArg = (String) args.get(0);
-                try {
-                  api.exitFullscreen(playerIdArg);
-                  wrapped.add(0, null);
-                }
- catch (Throwable exception) {
-                  ArrayList<Object> wrappedError = wrapError(exception);
-                  wrapped = wrappedError;
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.enterFullscreen", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String playerIdArg = (String) args.get(0);
-                try {
-                  api.enterFullscreen(playerIdArg);
-                  wrapped.add(0, null);
-                }
- catch (Throwable exception) {
-                  ArrayList<Object> wrappedError = wrapError(exception);
-                  wrapped = wrappedError;
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setNpawConfig", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                NpawConfig configArg = (NpawConfig) args.get(0);
-                try {
-                  api.setNpawConfig(configArg);
-                  wrapped.add(0, null);
-                }
- catch (Throwable exception) {
-                  ArrayList<Object> wrappedError = wrapError(exception);
-                  wrapped = wrappedError;
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setAppConfig", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                AppConfig configArg = (AppConfig) args.get(0);
-                try {
-                  api.setAppConfig(configArg);
-                  wrapped.add(0, null);
-                }
- catch (Throwable exception) {
-                  ArrayList<Object> wrappedError = wrapError(exception);
-                  wrapped = wrappedError;
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.getTracks", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String playerIdArg = (String) args.get(0);
-                Result<PlayerTracksSnapshot> resultCallback =
-                    new Result<PlayerTracksSnapshot>() {
-                      public void success(PlayerTracksSnapshot result) {
-                        wrapped.add(0, result);
-                        reply.reply(wrapped);
-                      }
-
-                      public void error(Throwable error) {
-                        ArrayList<Object> wrappedError = wrapError(error);
-                        reply.reply(wrappedError);
-                      }
-                    };
-
-                api.getTracks(playerIdArg, resultCallback);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.getPlayerState", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String playerIdArg = (String) args.get(0);
-                Result<PlayerStateSnapshot> resultCallback =
-                    new Result<PlayerStateSnapshot>() {
-                      public void success(PlayerStateSnapshot result) {
-                        wrapped.add(0, result);
-                        reply.reply(wrapped);
-                      }
-
-                      public void error(Throwable error) {
-                        ArrayList<Object> wrappedError = wrapError(error);
-                        reply.reply(wrappedError);
-                      }
-                    };
-
-                api.getPlayerState(playerIdArg, resultCallback);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                Result<ChromecastState> resultCallback =
-                    new Result<ChromecastState>() {
-                      public void success(ChromecastState result) {
-                        wrapped.add(0, result);
-                        reply.reply(wrapped);
-                      }
-
-                      public void error(Throwable error) {
-                        ArrayList<Object> wrappedError = wrapError(error);
-                        reply.reply(wrappedError);
-                      }
-                    };
-
-                api.getChromecastState(resultCallback);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.openExpandedCastController", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                try {
-                  api.openExpandedCastController();
-                  wrapped.add(0, null);
-                }
- catch (Throwable exception) {
-                  ArrayList<Object> wrappedError = wrapError(exception);
-                  wrapped = wrappedError;
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.openCastDialog", getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<Object>();
-                try {
-                  api.openCastDialog();
-                  wrapped.add(0, null);
-                }
- catch (Throwable exception) {
-                  ArrayList<Object> wrappedError = wrapError(exception);
-                  wrapped = wrappedError;
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-    }
-  }
-
-  private static class PlaybackListenerPigeonCodec extends StandardMessageCodec {
-    public static final PlaybackListenerPigeonCodec INSTANCE = new PlaybackListenerPigeonCodec();
-
-    private PlaybackListenerPigeonCodec() {}
-
-    @Override
-    protected Object readValueOfType(byte type, @NonNull ByteBuffer buffer) {
-      switch (type) {
-        case (byte) 128:
-          return MediaItem.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 129:
-          return MediaItemTransitionEvent.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 130:
-          return MediaMetadata.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 131:
-          return PictureInPictureModeChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 132:
-          return PlaybackEndedEvent.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 133:
-          return PlaybackStateChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 134:
-          return PlayerStateSnapshot.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 135:
-          return PlayerStateUpdateEvent.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 136:
-          return PositionDiscontinuityEvent.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 137:
-          return PrimaryPlayerChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
-        default:
-          return super.readValueOfType(type, buffer);
-      }
+        return errorList;
     }
 
-    @Override
-    protected void writeValue(@NonNull ByteArrayOutputStream stream, Object value) {
-      if (value instanceof MediaItem) {
-        stream.write(128);
-        writeValue(stream, ((MediaItem) value).toList());
-      } else if (value instanceof MediaItemTransitionEvent) {
-        stream.write(129);
-        writeValue(stream, ((MediaItemTransitionEvent) value).toList());
-      } else if (value instanceof MediaMetadata) {
-        stream.write(130);
-        writeValue(stream, ((MediaMetadata) value).toList());
-      } else if (value instanceof PictureInPictureModeChangedEvent) {
-        stream.write(131);
-        writeValue(stream, ((PictureInPictureModeChangedEvent) value).toList());
-      } else if (value instanceof PlaybackEndedEvent) {
-        stream.write(132);
-        writeValue(stream, ((PlaybackEndedEvent) value).toList());
-      } else if (value instanceof PlaybackStateChangedEvent) {
-        stream.write(133);
-        writeValue(stream, ((PlaybackStateChangedEvent) value).toList());
-      } else if (value instanceof PlayerStateSnapshot) {
-        stream.write(134);
-        writeValue(stream, ((PlayerStateSnapshot) value).toList());
-      } else if (value instanceof PlayerStateUpdateEvent) {
-        stream.write(135);
-        writeValue(stream, ((PlayerStateUpdateEvent) value).toList());
-      } else if (value instanceof PositionDiscontinuityEvent) {
-        stream.write(136);
-        writeValue(stream, ((PositionDiscontinuityEvent) value).toList());
-      } else if (value instanceof PrimaryPlayerChangedEvent) {
-        stream.write(137);
-        writeValue(stream, ((PrimaryPlayerChangedEvent) value).toList());
-      } else {
-        super.writeValue(stream, value);
-      }
-    }
-  }
+    public enum PlaybackState {
+        STOPPED(0),
+        PAUSED(1),
+        PLAYING(2);
 
-  /**
-   * /////////////// Playback Listener
-   *
-   * Generated class from Pigeon that represents Flutter messages that can be called from Java.
-   */
-  public static class PlaybackListenerPigeon {
-    private final @NonNull BinaryMessenger binaryMessenger;
+        final int index;
 
-    public PlaybackListenerPigeon(@NonNull BinaryMessenger argBinaryMessenger) {
-      this.binaryMessenger = argBinaryMessenger;
+        private PlaybackState(final int index) {
+            this.index = index;
+        }
     }
 
-    /** Public interface for sending reply. */ 
-    @SuppressWarnings("UnknownNullness")
-    public interface Reply<T> {
-      void reply(T reply);
+    public enum CastConnectionState {
+        NONE(0),
+        NO_DEVICES_AVAILABLE(1),
+        NOT_CONNECTED(2),
+        CONNECTING(3),
+        CONNECTED(4);
+
+        final int index;
+
+        private CastConnectionState(final int index) {
+            this.index = index;
+        }
     }
-    /** The codec used by PlaybackListenerPigeon. */
-    static @NonNull MessageCodec<Object> getCodec() {
-      return PlaybackListenerPigeonCodec.INSTANCE;
+
+    public enum TrackType {
+        AUDIO(0),
+        TEXT(1);
+
+        final int index;
+
+        private TrackType(final int index) {
+            this.index = index;
+        }
     }
-    public void onPrimaryPlayerChanged(@NonNull PrimaryPlayerChangedEvent eventArg, @NonNull Reply<Void> callback) {
-      BasicMessageChannel<Object> channel =
-          new BasicMessageChannel<>(
-              binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged", getCodec());
-      channel.send(
-          new ArrayList<Object>(Collections.singletonList(eventArg)),
-          channelReply -> callback.reply(null));
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class NpawConfig {
+        private @Nullable String appName;
+
+        public @Nullable String getAppName() {
+            return appName;
+        }
+
+        public void setAppName(@Nullable String setterArg) {
+            this.appName = setterArg;
+        }
+
+        private @Nullable String appReleaseVersion;
+
+        public @Nullable String getAppReleaseVersion() {
+            return appReleaseVersion;
+        }
+
+        public void setAppReleaseVersion(@Nullable String setterArg) {
+            this.appReleaseVersion = setterArg;
+        }
+
+        private @Nullable String accountCode;
+
+        public @Nullable String getAccountCode() {
+            return accountCode;
+        }
+
+        public void setAccountCode(@Nullable String setterArg) {
+            this.accountCode = setterArg;
+        }
+
+        private @Nullable Boolean deviceIsAnonymous;
+
+        public @Nullable Boolean getDeviceIsAnonymous() {
+            return deviceIsAnonymous;
+        }
+
+        public void setDeviceIsAnonymous(@Nullable Boolean setterArg) {
+            this.deviceIsAnonymous = setterArg;
+        }
+
+        public static final class Builder {
+
+            private @Nullable String appName;
+
+            public @NonNull Builder setAppName(@Nullable String setterArg) {
+                this.appName = setterArg;
+                return this;
+            }
+
+            private @Nullable String appReleaseVersion;
+
+            public @NonNull Builder setAppReleaseVersion(@Nullable String setterArg) {
+                this.appReleaseVersion = setterArg;
+                return this;
+            }
+
+            private @Nullable String accountCode;
+
+            public @NonNull Builder setAccountCode(@Nullable String setterArg) {
+                this.accountCode = setterArg;
+                return this;
+            }
+
+            private @Nullable Boolean deviceIsAnonymous;
+
+            public @NonNull Builder setDeviceIsAnonymous(@Nullable Boolean setterArg) {
+                this.deviceIsAnonymous = setterArg;
+                return this;
+            }
+
+            public @NonNull NpawConfig build() {
+                NpawConfig pigeonReturn = new NpawConfig();
+                pigeonReturn.setAppName(appName);
+                pigeonReturn.setAppReleaseVersion(appReleaseVersion);
+                pigeonReturn.setAccountCode(accountCode);
+                pigeonReturn.setDeviceIsAnonymous(deviceIsAnonymous);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(4);
+            toListResult.add(appName);
+            toListResult.add(appReleaseVersion);
+            toListResult.add(accountCode);
+            toListResult.add(deviceIsAnonymous);
+            return toListResult;
+        }
+
+        static @NonNull NpawConfig fromList(@NonNull ArrayList<Object> list) {
+            NpawConfig pigeonResult = new NpawConfig();
+            Object appName = list.get(0);
+            pigeonResult.setAppName((String) appName);
+            Object appReleaseVersion = list.get(1);
+            pigeonResult.setAppReleaseVersion((String) appReleaseVersion);
+            Object accountCode = list.get(2);
+            pigeonResult.setAccountCode((String) accountCode);
+            Object deviceIsAnonymous = list.get(3);
+            pigeonResult.setDeviceIsAnonymous((Boolean) deviceIsAnonymous);
+            return pigeonResult;
+        }
     }
-    public void onPositionDiscontinuity(@NonNull PositionDiscontinuityEvent eventArg, @NonNull Reply<Void> callback) {
-      BasicMessageChannel<Object> channel =
-          new BasicMessageChannel<>(
-              binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPositionDiscontinuity", getCodec());
-      channel.send(
-          new ArrayList<Object>(Collections.singletonList(eventArg)),
-          channelReply -> callback.reply(null));
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class AppConfig {
+        private @Nullable String appLanguage;
+
+        public @Nullable String getAppLanguage() {
+            return appLanguage;
+        }
+
+        public void setAppLanguage(@Nullable String setterArg) {
+            this.appLanguage = setterArg;
+        }
+
+        private @Nullable String audioLanguage;
+
+        public @Nullable String getAudioLanguage() {
+            return audioLanguage;
+        }
+
+        public void setAudioLanguage(@Nullable String setterArg) {
+            this.audioLanguage = setterArg;
+        }
+
+        private @Nullable String subtitleLanguage;
+
+        public @Nullable String getSubtitleLanguage() {
+            return subtitleLanguage;
+        }
+
+        public void setSubtitleLanguage(@Nullable String setterArg) {
+            this.subtitleLanguage = setterArg;
+        }
+
+        private @Nullable String analyticsId;
+
+        public @Nullable String getAnalyticsId() {
+            return analyticsId;
+        }
+
+        public void setAnalyticsId(@Nullable String setterArg) {
+            this.analyticsId = setterArg;
+        }
+
+        private @Nullable Long sessionId;
+
+        public @Nullable Long getSessionId() {
+            return sessionId;
+        }
+
+        public void setSessionId(@Nullable Long setterArg) {
+            this.sessionId = setterArg;
+        }
+
+        public static final class Builder {
+
+            private @Nullable String appLanguage;
+
+            public @NonNull Builder setAppLanguage(@Nullable String setterArg) {
+                this.appLanguage = setterArg;
+                return this;
+            }
+
+            private @Nullable String audioLanguage;
+
+            public @NonNull Builder setAudioLanguage(@Nullable String setterArg) {
+                this.audioLanguage = setterArg;
+                return this;
+            }
+
+            private @Nullable String subtitleLanguage;
+
+            public @NonNull Builder setSubtitleLanguage(@Nullable String setterArg) {
+                this.subtitleLanguage = setterArg;
+                return this;
+            }
+
+            private @Nullable String analyticsId;
+
+            public @NonNull Builder setAnalyticsId(@Nullable String setterArg) {
+                this.analyticsId = setterArg;
+                return this;
+            }
+
+            private @Nullable Long sessionId;
+
+            public @NonNull Builder setSessionId(@Nullable Long setterArg) {
+                this.sessionId = setterArg;
+                return this;
+            }
+
+            public @NonNull AppConfig build() {
+                AppConfig pigeonReturn = new AppConfig();
+                pigeonReturn.setAppLanguage(appLanguage);
+                pigeonReturn.setAudioLanguage(audioLanguage);
+                pigeonReturn.setSubtitleLanguage(subtitleLanguage);
+                pigeonReturn.setAnalyticsId(analyticsId);
+                pigeonReturn.setSessionId(sessionId);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(5);
+            toListResult.add(appLanguage);
+            toListResult.add(audioLanguage);
+            toListResult.add(subtitleLanguage);
+            toListResult.add(analyticsId);
+            toListResult.add(sessionId);
+            return toListResult;
+        }
+
+        static @NonNull AppConfig fromList(@NonNull ArrayList<Object> list) {
+            AppConfig pigeonResult = new AppConfig();
+            Object appLanguage = list.get(0);
+            pigeonResult.setAppLanguage((String) appLanguage);
+            Object audioLanguage = list.get(1);
+            pigeonResult.setAudioLanguage((String) audioLanguage);
+            Object subtitleLanguage = list.get(2);
+            pigeonResult.setSubtitleLanguage((String) subtitleLanguage);
+            Object analyticsId = list.get(3);
+            pigeonResult.setAnalyticsId((String) analyticsId);
+            Object sessionId = list.get(4);
+            pigeonResult.setSessionId((sessionId == null) ? null : ((sessionId instanceof Integer) ? (Integer) sessionId : (Long) sessionId));
+            return pigeonResult;
+        }
     }
-    public void onPlayerStateUpdate(@NonNull PlayerStateUpdateEvent eventArg, @NonNull Reply<Void> callback) {
-      BasicMessageChannel<Object> channel =
-          new BasicMessageChannel<>(
-              binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate", getCodec());
-      channel.send(
-          new ArrayList<Object>(Collections.singletonList(eventArg)),
-          channelReply -> callback.reply(null));
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class MediaItem {
+        private @Nullable String url;
+
+        public @Nullable String getUrl() {
+            return url;
+        }
+
+        public void setUrl(@Nullable String setterArg) {
+            this.url = setterArg;
+        }
+
+        private @Nullable String mimeType;
+
+        public @Nullable String getMimeType() {
+            return mimeType;
+        }
+
+        public void setMimeType(@Nullable String setterArg) {
+            this.mimeType = setterArg;
+        }
+
+        private @Nullable MediaMetadata metadata;
+
+        public @Nullable MediaMetadata getMetadata() {
+            return metadata;
+        }
+
+        public void setMetadata(@Nullable MediaMetadata setterArg) {
+            this.metadata = setterArg;
+        }
+
+        private @Nullable Boolean isLive;
+
+        public @Nullable Boolean getIsLive() {
+            return isLive;
+        }
+
+        public void setIsLive(@Nullable Boolean setterArg) {
+            this.isLive = setterArg;
+        }
+
+        private @Nullable Double playbackStartPositionMs;
+
+        public @Nullable Double getPlaybackStartPositionMs() {
+            return playbackStartPositionMs;
+        }
+
+        public void setPlaybackStartPositionMs(@Nullable Double setterArg) {
+            this.playbackStartPositionMs = setterArg;
+        }
+
+        private @Nullable String lastKnownAudioLanguage;
+
+        public @Nullable String getLastKnownAudioLanguage() {
+            return lastKnownAudioLanguage;
+        }
+
+        public void setLastKnownAudioLanguage(@Nullable String setterArg) {
+            this.lastKnownAudioLanguage = setterArg;
+        }
+
+        private @Nullable String lastKnownSubtitleLanguage;
+
+        public @Nullable String getLastKnownSubtitleLanguage() {
+            return lastKnownSubtitleLanguage;
+        }
+
+        public void setLastKnownSubtitleLanguage(@Nullable String setterArg) {
+            this.lastKnownSubtitleLanguage = setterArg;
+        }
+
+        public static final class Builder {
+
+            private @Nullable String url;
+
+            public @NonNull Builder setUrl(@Nullable String setterArg) {
+                this.url = setterArg;
+                return this;
+            }
+
+            private @Nullable String mimeType;
+
+            public @NonNull Builder setMimeType(@Nullable String setterArg) {
+                this.mimeType = setterArg;
+                return this;
+            }
+
+            private @Nullable MediaMetadata metadata;
+
+            public @NonNull Builder setMetadata(@Nullable MediaMetadata setterArg) {
+                this.metadata = setterArg;
+                return this;
+            }
+
+            private @Nullable Boolean isLive;
+
+            public @NonNull Builder setIsLive(@Nullable Boolean setterArg) {
+                this.isLive = setterArg;
+                return this;
+            }
+
+            private @Nullable Double playbackStartPositionMs;
+
+            public @NonNull Builder setPlaybackStartPositionMs(@Nullable Double setterArg) {
+                this.playbackStartPositionMs = setterArg;
+                return this;
+            }
+
+            private @Nullable String lastKnownAudioLanguage;
+
+            public @NonNull Builder setLastKnownAudioLanguage(@Nullable String setterArg) {
+                this.lastKnownAudioLanguage = setterArg;
+                return this;
+            }
+
+            private @Nullable String lastKnownSubtitleLanguage;
+
+            public @NonNull Builder setLastKnownSubtitleLanguage(@Nullable String setterArg) {
+                this.lastKnownSubtitleLanguage = setterArg;
+                return this;
+            }
+
+            public @NonNull MediaItem build() {
+                MediaItem pigeonReturn = new MediaItem();
+                pigeonReturn.setUrl(url);
+                pigeonReturn.setMimeType(mimeType);
+                pigeonReturn.setMetadata(metadata);
+                pigeonReturn.setIsLive(isLive);
+                pigeonReturn.setPlaybackStartPositionMs(playbackStartPositionMs);
+                pigeonReturn.setLastKnownAudioLanguage(lastKnownAudioLanguage);
+                pigeonReturn.setLastKnownSubtitleLanguage(lastKnownSubtitleLanguage);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(7);
+            toListResult.add(url);
+            toListResult.add(mimeType);
+            toListResult.add((metadata == null) ? null : metadata.toList());
+            toListResult.add(isLive);
+            toListResult.add(playbackStartPositionMs);
+            toListResult.add(lastKnownAudioLanguage);
+            toListResult.add(lastKnownSubtitleLanguage);
+            return toListResult;
+        }
+
+        static @NonNull MediaItem fromList(@NonNull ArrayList<Object> list) {
+            MediaItem pigeonResult = new MediaItem();
+            Object url = list.get(0);
+            pigeonResult.setUrl((String) url);
+            Object mimeType = list.get(1);
+            pigeonResult.setMimeType((String) mimeType);
+            Object metadata = list.get(2);
+            pigeonResult.setMetadata((metadata == null) ? null : MediaMetadata.fromList((ArrayList<Object>) metadata));
+            Object isLive = list.get(3);
+            pigeonResult.setIsLive((Boolean) isLive);
+            Object playbackStartPositionMs = list.get(4);
+            pigeonResult.setPlaybackStartPositionMs((Double) playbackStartPositionMs);
+            Object lastKnownAudioLanguage = list.get(5);
+            pigeonResult.setLastKnownAudioLanguage((String) lastKnownAudioLanguage);
+            Object lastKnownSubtitleLanguage = list.get(6);
+            pigeonResult.setLastKnownSubtitleLanguage((String) lastKnownSubtitleLanguage);
+            return pigeonResult;
+        }
     }
-    public void onPlaybackStateChanged(@NonNull PlaybackStateChangedEvent eventArg, @NonNull Reply<Void> callback) {
-      BasicMessageChannel<Object> channel =
-          new BasicMessageChannel<>(
-              binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackStateChanged", getCodec());
-      channel.send(
-          new ArrayList<Object>(Collections.singletonList(eventArg)),
-          channelReply -> callback.reply(null));
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class MediaMetadata {
+        private @Nullable String artworkUri;
+
+        public @Nullable String getArtworkUri() {
+            return artworkUri;
+        }
+
+        public void setArtworkUri(@Nullable String setterArg) {
+            this.artworkUri = setterArg;
+        }
+
+        private @Nullable String title;
+
+        public @Nullable String getTitle() {
+            return title;
+        }
+
+        public void setTitle(@Nullable String setterArg) {
+            this.title = setterArg;
+        }
+
+        private @Nullable String artist;
+
+        public @Nullable String getArtist() {
+            return artist;
+        }
+
+        public void setArtist(@Nullable String setterArg) {
+            this.artist = setterArg;
+        }
+
+        private @Nullable Double durationMs;
+
+        public @Nullable Double getDurationMs() {
+            return durationMs;
+        }
+
+        public void setDurationMs(@Nullable Double setterArg) {
+            this.durationMs = setterArg;
+        }
+
+        private @Nullable Map<String, Object> extras;
+
+        public @Nullable Map<String, Object> getExtras() {
+            return extras;
+        }
+
+        public void setExtras(@Nullable Map<String, Object> setterArg) {
+            this.extras = setterArg;
+        }
+
+        public static final class Builder {
+
+            private @Nullable String artworkUri;
+
+            public @NonNull Builder setArtworkUri(@Nullable String setterArg) {
+                this.artworkUri = setterArg;
+                return this;
+            }
+
+            private @Nullable String title;
+
+            public @NonNull Builder setTitle(@Nullable String setterArg) {
+                this.title = setterArg;
+                return this;
+            }
+
+            private @Nullable String artist;
+
+            public @NonNull Builder setArtist(@Nullable String setterArg) {
+                this.artist = setterArg;
+                return this;
+            }
+
+            private @Nullable Double durationMs;
+
+            public @NonNull Builder setDurationMs(@Nullable Double setterArg) {
+                this.durationMs = setterArg;
+                return this;
+            }
+
+            private @Nullable Map<String, Object> extras;
+
+            public @NonNull Builder setExtras(@Nullable Map<String, Object> setterArg) {
+                this.extras = setterArg;
+                return this;
+            }
+
+            public @NonNull MediaMetadata build() {
+                MediaMetadata pigeonReturn = new MediaMetadata();
+                pigeonReturn.setArtworkUri(artworkUri);
+                pigeonReturn.setTitle(title);
+                pigeonReturn.setArtist(artist);
+                pigeonReturn.setDurationMs(durationMs);
+                pigeonReturn.setExtras(extras);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(5);
+            toListResult.add(artworkUri);
+            toListResult.add(title);
+            toListResult.add(artist);
+            toListResult.add(durationMs);
+            toListResult.add(extras);
+            return toListResult;
+        }
+
+        static @NonNull MediaMetadata fromList(@NonNull ArrayList<Object> list) {
+            MediaMetadata pigeonResult = new MediaMetadata();
+            Object artworkUri = list.get(0);
+            pigeonResult.setArtworkUri((String) artworkUri);
+            Object title = list.get(1);
+            pigeonResult.setTitle((String) title);
+            Object artist = list.get(2);
+            pigeonResult.setArtist((String) artist);
+            Object durationMs = list.get(3);
+            pigeonResult.setDurationMs((Double) durationMs);
+            Object extras = list.get(4);
+            pigeonResult.setExtras((Map<String, Object>) extras);
+            return pigeonResult;
+        }
     }
-    public void onPlaybackEnded(@NonNull PlaybackEndedEvent eventArg, @NonNull Reply<Void> callback) {
-      BasicMessageChannel<Object> channel =
-          new BasicMessageChannel<>(
-              binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackEnded", getCodec());
-      channel.send(
-          new ArrayList<Object>(Collections.singletonList(eventArg)),
-          channelReply -> callback.reply(null));
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class PlayerStateSnapshot {
+        private @NonNull String playerId;
+
+        public @NonNull String getPlayerId() {
+            return playerId;
+        }
+
+        public void setPlayerId(@NonNull String setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+            }
+            this.playerId = setterArg;
+        }
+
+        private @NonNull PlaybackState playbackState;
+
+        public @NonNull PlaybackState getPlaybackState() {
+            return playbackState;
+        }
+
+        public void setPlaybackState(@NonNull PlaybackState setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"playbackState\" is null.");
+            }
+            this.playbackState = setterArg;
+        }
+
+        private @NonNull Boolean isBuffering;
+
+        public @NonNull Boolean getIsBuffering() {
+            return isBuffering;
+        }
+
+        public void setIsBuffering(@NonNull Boolean setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"isBuffering\" is null.");
+            }
+            this.isBuffering = setterArg;
+        }
+
+        private @NonNull Boolean isFullscreen;
+
+        public @NonNull Boolean getIsFullscreen() {
+            return isFullscreen;
+        }
+
+        public void setIsFullscreen(@NonNull Boolean setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"isFullscreen\" is null.");
+            }
+            this.isFullscreen = setterArg;
+        }
+
+        private @Nullable MediaItem currentMediaItem;
+
+        public @Nullable MediaItem getCurrentMediaItem() {
+            return currentMediaItem;
+        }
+
+        public void setCurrentMediaItem(@Nullable MediaItem setterArg) {
+            this.currentMediaItem = setterArg;
+        }
+
+        private @Nullable Double playbackPositionMs;
+
+        public @Nullable Double getPlaybackPositionMs() {
+            return playbackPositionMs;
+        }
+
+        public void setPlaybackPositionMs(@Nullable Double setterArg) {
+            this.playbackPositionMs = setterArg;
+        }
+
+        /**
+         * Constructor is non-public to enforce null safety; use Builder.
+         */
+        PlayerStateSnapshot() {
+        }
+
+        public static final class Builder {
+
+            private @Nullable String playerId;
+
+            public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+                this.playerId = setterArg;
+                return this;
+            }
+
+            private @Nullable PlaybackState playbackState;
+
+            public @NonNull Builder setPlaybackState(@NonNull PlaybackState setterArg) {
+                this.playbackState = setterArg;
+                return this;
+            }
+
+            private @Nullable Boolean isBuffering;
+
+            public @NonNull Builder setIsBuffering(@NonNull Boolean setterArg) {
+                this.isBuffering = setterArg;
+                return this;
+            }
+
+            private @Nullable Boolean isFullscreen;
+
+            public @NonNull Builder setIsFullscreen(@NonNull Boolean setterArg) {
+                this.isFullscreen = setterArg;
+                return this;
+            }
+
+            private @Nullable MediaItem currentMediaItem;
+
+            public @NonNull Builder setCurrentMediaItem(@Nullable MediaItem setterArg) {
+                this.currentMediaItem = setterArg;
+                return this;
+            }
+
+            private @Nullable Double playbackPositionMs;
+
+            public @NonNull Builder setPlaybackPositionMs(@Nullable Double setterArg) {
+                this.playbackPositionMs = setterArg;
+                return this;
+            }
+
+            public @NonNull PlayerStateSnapshot build() {
+                PlayerStateSnapshot pigeonReturn = new PlayerStateSnapshot();
+                pigeonReturn.setPlayerId(playerId);
+                pigeonReturn.setPlaybackState(playbackState);
+                pigeonReturn.setIsBuffering(isBuffering);
+                pigeonReturn.setIsFullscreen(isFullscreen);
+                pigeonReturn.setCurrentMediaItem(currentMediaItem);
+                pigeonReturn.setPlaybackPositionMs(playbackPositionMs);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(6);
+            toListResult.add(playerId);
+            toListResult.add(playbackState == null ? null : playbackState.index);
+            toListResult.add(isBuffering);
+            toListResult.add(isFullscreen);
+            toListResult.add((currentMediaItem == null) ? null : currentMediaItem.toList());
+            toListResult.add(playbackPositionMs);
+            return toListResult;
+        }
+
+        static @NonNull PlayerStateSnapshot fromList(@NonNull ArrayList<Object> list) {
+            PlayerStateSnapshot pigeonResult = new PlayerStateSnapshot();
+            Object playerId = list.get(0);
+            pigeonResult.setPlayerId((String) playerId);
+            Object playbackState = list.get(1);
+            pigeonResult.setPlaybackState(playbackState == null ? null : PlaybackState.values()[(int) playbackState]);
+            Object isBuffering = list.get(2);
+            pigeonResult.setIsBuffering((Boolean) isBuffering);
+            Object isFullscreen = list.get(3);
+            pigeonResult.setIsFullscreen((Boolean) isFullscreen);
+            Object currentMediaItem = list.get(4);
+            pigeonResult.setCurrentMediaItem((currentMediaItem == null) ? null : MediaItem.fromList((ArrayList<Object>) currentMediaItem));
+            Object playbackPositionMs = list.get(5);
+            pigeonResult.setPlaybackPositionMs((Double) playbackPositionMs);
+            return pigeonResult;
+        }
     }
-    public void onMediaItemTransition(@NonNull MediaItemTransitionEvent eventArg, @NonNull Reply<Void> callback) {
-      BasicMessageChannel<Object> channel =
-          new BasicMessageChannel<>(
-              binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onMediaItemTransition", getCodec());
-      channel.send(
-          new ArrayList<Object>(Collections.singletonList(eventArg)),
-          channelReply -> callback.reply(null));
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class ChromecastState {
+        private @NonNull CastConnectionState connectionState;
+
+        public @NonNull CastConnectionState getConnectionState() {
+            return connectionState;
+        }
+
+        public void setConnectionState(@NonNull CastConnectionState setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"connectionState\" is null.");
+            }
+            this.connectionState = setterArg;
+        }
+
+        private @Nullable MediaItem mediaItem;
+
+        public @Nullable MediaItem getMediaItem() {
+            return mediaItem;
+        }
+
+        public void setMediaItem(@Nullable MediaItem setterArg) {
+            this.mediaItem = setterArg;
+        }
+
+        /**
+         * Constructor is non-public to enforce null safety; use Builder.
+         */
+        ChromecastState() {
+        }
+
+        public static final class Builder {
+
+            private @Nullable CastConnectionState connectionState;
+
+            public @NonNull Builder setConnectionState(@NonNull CastConnectionState setterArg) {
+                this.connectionState = setterArg;
+                return this;
+            }
+
+            private @Nullable MediaItem mediaItem;
+
+            public @NonNull Builder setMediaItem(@Nullable MediaItem setterArg) {
+                this.mediaItem = setterArg;
+                return this;
+            }
+
+            public @NonNull ChromecastState build() {
+                ChromecastState pigeonReturn = new ChromecastState();
+                pigeonReturn.setConnectionState(connectionState);
+                pigeonReturn.setMediaItem(mediaItem);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(2);
+            toListResult.add(connectionState == null ? null : connectionState.index);
+            toListResult.add((mediaItem == null) ? null : mediaItem.toList());
+            return toListResult;
+        }
+
+        static @NonNull ChromecastState fromList(@NonNull ArrayList<Object> list) {
+            ChromecastState pigeonResult = new ChromecastState();
+            Object connectionState = list.get(0);
+            pigeonResult.setConnectionState(connectionState == null ? null : CastConnectionState.values()[(int) connectionState]);
+            Object mediaItem = list.get(1);
+            pigeonResult.setMediaItem((mediaItem == null) ? null : MediaItem.fromList((ArrayList<Object>) mediaItem));
+            return pigeonResult;
+        }
     }
-    public void onPictureInPictureModeChanged(@NonNull PictureInPictureModeChangedEvent eventArg, @NonNull Reply<Void> callback) {
-      BasicMessageChannel<Object> channel =
-          new BasicMessageChannel<>(
-              binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPictureInPictureModeChanged", getCodec());
-      channel.send(
-          new ArrayList<Object>(Collections.singletonList(eventArg)),
-          channelReply -> callback.reply(null));
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class PlayerTracksSnapshot {
+        private @NonNull String playerId;
+
+        public @NonNull String getPlayerId() {
+            return playerId;
+        }
+
+        public void setPlayerId(@NonNull String setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+            }
+            this.playerId = setterArg;
+        }
+
+        private @NonNull List<Track> audioTracks;
+
+        public @NonNull List<Track> getAudioTracks() {
+            return audioTracks;
+        }
+
+        public void setAudioTracks(@NonNull List<Track> setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"audioTracks\" is null.");
+            }
+            this.audioTracks = setterArg;
+        }
+
+        private @NonNull List<Track> textTracks;
+
+        public @NonNull List<Track> getTextTracks() {
+            return textTracks;
+        }
+
+        public void setTextTracks(@NonNull List<Track> setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"textTracks\" is null.");
+            }
+            this.textTracks = setterArg;
+        }
+
+        /**
+         * Constructor is non-public to enforce null safety; use Builder.
+         */
+        PlayerTracksSnapshot() {
+        }
+
+        public static final class Builder {
+
+            private @Nullable String playerId;
+
+            public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+                this.playerId = setterArg;
+                return this;
+            }
+
+            private @Nullable List<Track> audioTracks;
+
+            public @NonNull Builder setAudioTracks(@NonNull List<Track> setterArg) {
+                this.audioTracks = setterArg;
+                return this;
+            }
+
+            private @Nullable List<Track> textTracks;
+
+            public @NonNull Builder setTextTracks(@NonNull List<Track> setterArg) {
+                this.textTracks = setterArg;
+                return this;
+            }
+
+            public @NonNull PlayerTracksSnapshot build() {
+                PlayerTracksSnapshot pigeonReturn = new PlayerTracksSnapshot();
+                pigeonReturn.setPlayerId(playerId);
+                pigeonReturn.setAudioTracks(audioTracks);
+                pigeonReturn.setTextTracks(textTracks);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(3);
+            toListResult.add(playerId);
+            toListResult.add(audioTracks);
+            toListResult.add(textTracks);
+            return toListResult;
+        }
+
+        static @NonNull PlayerTracksSnapshot fromList(@NonNull ArrayList<Object> list) {
+            PlayerTracksSnapshot pigeonResult = new PlayerTracksSnapshot();
+            Object playerId = list.get(0);
+            pigeonResult.setPlayerId((String) playerId);
+            Object audioTracks = list.get(1);
+            pigeonResult.setAudioTracks((List<Track>) audioTracks);
+            Object textTracks = list.get(2);
+            pigeonResult.setTextTracks((List<Track>) textTracks);
+            return pigeonResult;
+        }
     }
-  }
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class Track {
+        private @NonNull String id;
+
+        public @NonNull String getId() {
+            return id;
+        }
+
+        public void setId(@NonNull String setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"id\" is null.");
+            }
+            this.id = setterArg;
+        }
+
+        private @Nullable String label;
+
+        public @Nullable String getLabel() {
+            return label;
+        }
+
+        public void setLabel(@Nullable String setterArg) {
+            this.label = setterArg;
+        }
+
+        private @Nullable String language;
+
+        public @Nullable String getLanguage() {
+            return language;
+        }
+
+        public void setLanguage(@Nullable String setterArg) {
+            this.language = setterArg;
+        }
+
+        private @NonNull Boolean isSelected;
+
+        public @NonNull Boolean getIsSelected() {
+            return isSelected;
+        }
+
+        public void setIsSelected(@NonNull Boolean setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"isSelected\" is null.");
+            }
+            this.isSelected = setterArg;
+        }
+
+        /**
+         * Constructor is non-public to enforce null safety; use Builder.
+         */
+        Track() {
+        }
+
+        public static final class Builder {
+
+            private @Nullable String id;
+
+            public @NonNull Builder setId(@NonNull String setterArg) {
+                this.id = setterArg;
+                return this;
+            }
+
+            private @Nullable String label;
+
+            public @NonNull Builder setLabel(@Nullable String setterArg) {
+                this.label = setterArg;
+                return this;
+            }
+
+            private @Nullable String language;
+
+            public @NonNull Builder setLanguage(@Nullable String setterArg) {
+                this.language = setterArg;
+                return this;
+            }
+
+            private @Nullable Boolean isSelected;
+
+            public @NonNull Builder setIsSelected(@NonNull Boolean setterArg) {
+                this.isSelected = setterArg;
+                return this;
+            }
+
+            public @NonNull Track build() {
+                Track pigeonReturn = new Track();
+                pigeonReturn.setId(id);
+                pigeonReturn.setLabel(label);
+                pigeonReturn.setLanguage(language);
+                pigeonReturn.setIsSelected(isSelected);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(4);
+            toListResult.add(id);
+            toListResult.add(label);
+            toListResult.add(language);
+            toListResult.add(isSelected);
+            return toListResult;
+        }
+
+        static @NonNull Track fromList(@NonNull ArrayList<Object> list) {
+            Track pigeonResult = new Track();
+            Object id = list.get(0);
+            pigeonResult.setId((String) id);
+            Object label = list.get(1);
+            pigeonResult.setLabel((String) label);
+            Object language = list.get(2);
+            pigeonResult.setLanguage((String) language);
+            Object isSelected = list.get(3);
+            pigeonResult.setIsSelected((Boolean) isSelected);
+            return pigeonResult;
+        }
+    }
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class PrimaryPlayerChangedEvent {
+        private @Nullable String playerId;
+
+        public @Nullable String getPlayerId() {
+            return playerId;
+        }
+
+        public void setPlayerId(@Nullable String setterArg) {
+            this.playerId = setterArg;
+        }
+
+        public static final class Builder {
+
+            private @Nullable String playerId;
+
+            public @NonNull Builder setPlayerId(@Nullable String setterArg) {
+                this.playerId = setterArg;
+                return this;
+            }
+
+            public @NonNull PrimaryPlayerChangedEvent build() {
+                PrimaryPlayerChangedEvent pigeonReturn = new PrimaryPlayerChangedEvent();
+                pigeonReturn.setPlayerId(playerId);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(1);
+            toListResult.add(playerId);
+            return toListResult;
+        }
+
+        static @NonNull PrimaryPlayerChangedEvent fromList(@NonNull ArrayList<Object> list) {
+            PrimaryPlayerChangedEvent pigeonResult = new PrimaryPlayerChangedEvent();
+            Object playerId = list.get(0);
+            pigeonResult.setPlayerId((String) playerId);
+            return pigeonResult;
+        }
+    }
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class PlayerStateUpdateEvent {
+        private @NonNull String playerId;
+
+        public @NonNull String getPlayerId() {
+            return playerId;
+        }
+
+        public void setPlayerId(@NonNull String setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+            }
+            this.playerId = setterArg;
+        }
+
+        private @NonNull PlayerStateSnapshot snapshot;
+
+        public @NonNull PlayerStateSnapshot getSnapshot() {
+            return snapshot;
+        }
+
+        public void setSnapshot(@NonNull PlayerStateSnapshot setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"snapshot\" is null.");
+            }
+            this.snapshot = setterArg;
+        }
+
+        /**
+         * Constructor is non-public to enforce null safety; use Builder.
+         */
+        PlayerStateUpdateEvent() {
+        }
+
+        public static final class Builder {
+
+            private @Nullable String playerId;
+
+            public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+                this.playerId = setterArg;
+                return this;
+            }
+
+            private @Nullable PlayerStateSnapshot snapshot;
+
+            public @NonNull Builder setSnapshot(@NonNull PlayerStateSnapshot setterArg) {
+                this.snapshot = setterArg;
+                return this;
+            }
+
+            public @NonNull PlayerStateUpdateEvent build() {
+                PlayerStateUpdateEvent pigeonReturn = new PlayerStateUpdateEvent();
+                pigeonReturn.setPlayerId(playerId);
+                pigeonReturn.setSnapshot(snapshot);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(2);
+            toListResult.add(playerId);
+            toListResult.add((snapshot == null) ? null : snapshot.toList());
+            return toListResult;
+        }
+
+        static @NonNull PlayerStateUpdateEvent fromList(@NonNull ArrayList<Object> list) {
+            PlayerStateUpdateEvent pigeonResult = new PlayerStateUpdateEvent();
+            Object playerId = list.get(0);
+            pigeonResult.setPlayerId((String) playerId);
+            Object snapshot = list.get(1);
+            pigeonResult.setSnapshot((snapshot == null) ? null : PlayerStateSnapshot.fromList((ArrayList<Object>) snapshot));
+            return pigeonResult;
+        }
+    }
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class PositionDiscontinuityEvent {
+        private @NonNull String playerId;
+
+        public @NonNull String getPlayerId() {
+            return playerId;
+        }
+
+        public void setPlayerId(@NonNull String setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+            }
+            this.playerId = setterArg;
+        }
+
+        private @Nullable Double playbackPositionMs;
+
+        public @Nullable Double getPlaybackPositionMs() {
+            return playbackPositionMs;
+        }
+
+        public void setPlaybackPositionMs(@Nullable Double setterArg) {
+            this.playbackPositionMs = setterArg;
+        }
+
+        /**
+         * Constructor is non-public to enforce null safety; use Builder.
+         */
+        PositionDiscontinuityEvent() {
+        }
+
+        public static final class Builder {
+
+            private @Nullable String playerId;
+
+            public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+                this.playerId = setterArg;
+                return this;
+            }
+
+            private @Nullable Double playbackPositionMs;
+
+            public @NonNull Builder setPlaybackPositionMs(@Nullable Double setterArg) {
+                this.playbackPositionMs = setterArg;
+                return this;
+            }
+
+            public @NonNull PositionDiscontinuityEvent build() {
+                PositionDiscontinuityEvent pigeonReturn = new PositionDiscontinuityEvent();
+                pigeonReturn.setPlayerId(playerId);
+                pigeonReturn.setPlaybackPositionMs(playbackPositionMs);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(2);
+            toListResult.add(playerId);
+            toListResult.add(playbackPositionMs);
+            return toListResult;
+        }
+
+        static @NonNull PositionDiscontinuityEvent fromList(@NonNull ArrayList<Object> list) {
+            PositionDiscontinuityEvent pigeonResult = new PositionDiscontinuityEvent();
+            Object playerId = list.get(0);
+            pigeonResult.setPlayerId((String) playerId);
+            Object playbackPositionMs = list.get(1);
+            pigeonResult.setPlaybackPositionMs((Double) playbackPositionMs);
+            return pigeonResult;
+        }
+    }
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class PlaybackStateChangedEvent {
+        private @NonNull String playerId;
+
+        public @NonNull String getPlayerId() {
+            return playerId;
+        }
+
+        public void setPlayerId(@NonNull String setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+            }
+            this.playerId = setterArg;
+        }
+
+        private @NonNull PlaybackState playbackState;
+
+        public @NonNull PlaybackState getPlaybackState() {
+            return playbackState;
+        }
+
+        public void setPlaybackState(@NonNull PlaybackState setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"playbackState\" is null.");
+            }
+            this.playbackState = setterArg;
+        }
+
+        private @NonNull Boolean isBuffering;
+
+        public @NonNull Boolean getIsBuffering() {
+            return isBuffering;
+        }
+
+        public void setIsBuffering(@NonNull Boolean setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"isBuffering\" is null.");
+            }
+            this.isBuffering = setterArg;
+        }
+
+        /**
+         * Constructor is non-public to enforce null safety; use Builder.
+         */
+        PlaybackStateChangedEvent() {
+        }
+
+        public static final class Builder {
+
+            private @Nullable String playerId;
+
+            public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+                this.playerId = setterArg;
+                return this;
+            }
+
+            private @Nullable PlaybackState playbackState;
+
+            public @NonNull Builder setPlaybackState(@NonNull PlaybackState setterArg) {
+                this.playbackState = setterArg;
+                return this;
+            }
+
+            private @Nullable Boolean isBuffering;
+
+            public @NonNull Builder setIsBuffering(@NonNull Boolean setterArg) {
+                this.isBuffering = setterArg;
+                return this;
+            }
+
+            public @NonNull PlaybackStateChangedEvent build() {
+                PlaybackStateChangedEvent pigeonReturn = new PlaybackStateChangedEvent();
+                pigeonReturn.setPlayerId(playerId);
+                pigeonReturn.setPlaybackState(playbackState);
+                pigeonReturn.setIsBuffering(isBuffering);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(3);
+            toListResult.add(playerId);
+            toListResult.add(playbackState == null ? null : playbackState.index);
+            toListResult.add(isBuffering);
+            return toListResult;
+        }
+
+        static @NonNull PlaybackStateChangedEvent fromList(@NonNull ArrayList<Object> list) {
+            PlaybackStateChangedEvent pigeonResult = new PlaybackStateChangedEvent();
+            Object playerId = list.get(0);
+            pigeonResult.setPlayerId((String) playerId);
+            Object playbackState = list.get(1);
+            pigeonResult.setPlaybackState(playbackState == null ? null : PlaybackState.values()[(int) playbackState]);
+            Object isBuffering = list.get(2);
+            pigeonResult.setIsBuffering((Boolean) isBuffering);
+            return pigeonResult;
+        }
+    }
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class PlaybackEndedEvent {
+        private @NonNull String playerId;
+
+        public @NonNull String getPlayerId() {
+            return playerId;
+        }
+
+        public void setPlayerId(@NonNull String setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+            }
+            this.playerId = setterArg;
+        }
+
+        private @Nullable MediaItem mediaItem;
+
+        public @Nullable MediaItem getMediaItem() {
+            return mediaItem;
+        }
+
+        public void setMediaItem(@Nullable MediaItem setterArg) {
+            this.mediaItem = setterArg;
+        }
+
+        /**
+         * Constructor is non-public to enforce null safety; use Builder.
+         */
+        PlaybackEndedEvent() {
+        }
+
+        public static final class Builder {
+
+            private @Nullable String playerId;
+
+            public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+                this.playerId = setterArg;
+                return this;
+            }
+
+            private @Nullable MediaItem mediaItem;
+
+            public @NonNull Builder setMediaItem(@Nullable MediaItem setterArg) {
+                this.mediaItem = setterArg;
+                return this;
+            }
+
+            public @NonNull PlaybackEndedEvent build() {
+                PlaybackEndedEvent pigeonReturn = new PlaybackEndedEvent();
+                pigeonReturn.setPlayerId(playerId);
+                pigeonReturn.setMediaItem(mediaItem);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(2);
+            toListResult.add(playerId);
+            toListResult.add((mediaItem == null) ? null : mediaItem.toList());
+            return toListResult;
+        }
+
+        static @NonNull PlaybackEndedEvent fromList(@NonNull ArrayList<Object> list) {
+            PlaybackEndedEvent pigeonResult = new PlaybackEndedEvent();
+            Object playerId = list.get(0);
+            pigeonResult.setPlayerId((String) playerId);
+            Object mediaItem = list.get(1);
+            pigeonResult.setMediaItem((mediaItem == null) ? null : MediaItem.fromList((ArrayList<Object>) mediaItem));
+            return pigeonResult;
+        }
+    }
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class PictureInPictureModeChangedEvent {
+        private @NonNull String playerId;
+
+        public @NonNull String getPlayerId() {
+            return playerId;
+        }
+
+        public void setPlayerId(@NonNull String setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+            }
+            this.playerId = setterArg;
+        }
+
+        private @NonNull Boolean isInPipMode;
+
+        public @NonNull Boolean getIsInPipMode() {
+            return isInPipMode;
+        }
+
+        public void setIsInPipMode(@NonNull Boolean setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"isInPipMode\" is null.");
+            }
+            this.isInPipMode = setterArg;
+        }
+
+        /**
+         * Constructor is non-public to enforce null safety; use Builder.
+         */
+        PictureInPictureModeChangedEvent() {
+        }
+
+        public static final class Builder {
+
+            private @Nullable String playerId;
+
+            public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+                this.playerId = setterArg;
+                return this;
+            }
+
+            private @Nullable Boolean isInPipMode;
+
+            public @NonNull Builder setIsInPipMode(@NonNull Boolean setterArg) {
+                this.isInPipMode = setterArg;
+                return this;
+            }
+
+            public @NonNull PictureInPictureModeChangedEvent build() {
+                PictureInPictureModeChangedEvent pigeonReturn = new PictureInPictureModeChangedEvent();
+                pigeonReturn.setPlayerId(playerId);
+                pigeonReturn.setIsInPipMode(isInPipMode);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(2);
+            toListResult.add(playerId);
+            toListResult.add(isInPipMode);
+            return toListResult;
+        }
+
+        static @NonNull PictureInPictureModeChangedEvent fromList(@NonNull ArrayList<Object> list) {
+            PictureInPictureModeChangedEvent pigeonResult = new PictureInPictureModeChangedEvent();
+            Object playerId = list.get(0);
+            pigeonResult.setPlayerId((String) playerId);
+            Object isInPipMode = list.get(1);
+            pigeonResult.setIsInPipMode((Boolean) isInPipMode);
+            return pigeonResult;
+        }
+    }
+
+    /**
+     * Generated class from Pigeon that represents data sent in messages.
+     */
+    public static final class MediaItemTransitionEvent {
+        private @NonNull String playerId;
+
+        public @NonNull String getPlayerId() {
+            return playerId;
+        }
+
+        public void setPlayerId(@NonNull String setterArg) {
+            if (setterArg == null) {
+                throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+            }
+            this.playerId = setterArg;
+        }
+
+        private @Nullable MediaItem mediaItem;
+
+        public @Nullable MediaItem getMediaItem() {
+            return mediaItem;
+        }
+
+        public void setMediaItem(@Nullable MediaItem setterArg) {
+            this.mediaItem = setterArg;
+        }
+
+        /**
+         * Constructor is non-public to enforce null safety; use Builder.
+         */
+        MediaItemTransitionEvent() {
+        }
+
+        public static final class Builder {
+
+            private @Nullable String playerId;
+
+            public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+                this.playerId = setterArg;
+                return this;
+            }
+
+            private @Nullable MediaItem mediaItem;
+
+            public @NonNull Builder setMediaItem(@Nullable MediaItem setterArg) {
+                this.mediaItem = setterArg;
+                return this;
+            }
+
+            public @NonNull MediaItemTransitionEvent build() {
+                MediaItemTransitionEvent pigeonReturn = new MediaItemTransitionEvent();
+                pigeonReturn.setPlayerId(playerId);
+                pigeonReturn.setMediaItem(mediaItem);
+                return pigeonReturn;
+            }
+        }
+
+        @NonNull
+        ArrayList<Object> toList() {
+            ArrayList<Object> toListResult = new ArrayList<Object>(2);
+            toListResult.add(playerId);
+            toListResult.add((mediaItem == null) ? null : mediaItem.toList());
+            return toListResult;
+        }
+
+        static @NonNull MediaItemTransitionEvent fromList(@NonNull ArrayList<Object> list) {
+            MediaItemTransitionEvent pigeonResult = new MediaItemTransitionEvent();
+            Object playerId = list.get(0);
+            pigeonResult.setPlayerId((String) playerId);
+            Object mediaItem = list.get(1);
+            pigeonResult.setMediaItem((mediaItem == null) ? null : MediaItem.fromList((ArrayList<Object>) mediaItem));
+            return pigeonResult;
+        }
+    }
+
+    public interface Result<T> {
+        @SuppressWarnings("UnknownNullness")
+        void success(T result);
+
+        void error(@NonNull Throwable error);
+    }
+
+    private static class PlaybackPlatformPigeonCodec extends StandardMessageCodec {
+        public static final PlaybackPlatformPigeonCodec INSTANCE = new PlaybackPlatformPigeonCodec();
+
+        private PlaybackPlatformPigeonCodec() {
+        }
+
+        @Override
+        protected Object readValueOfType(byte type, @NonNull ByteBuffer buffer) {
+            switch (type) {
+                case (byte) 128:
+                    return AppConfig.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 129:
+                    return ChromecastState.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 130:
+                    return MediaItem.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 131:
+                    return MediaMetadata.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 132:
+                    return NpawConfig.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 133:
+                    return PlayerStateSnapshot.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 134:
+                    return PlayerTracksSnapshot.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 135:
+                    return Track.fromList((ArrayList<Object>) readValue(buffer));
+                default:
+                    return super.readValueOfType(type, buffer);
+            }
+        }
+
+        @Override
+        protected void writeValue(@NonNull ByteArrayOutputStream stream, Object value) {
+            if (value instanceof AppConfig) {
+                stream.write(128);
+                writeValue(stream, ((AppConfig) value).toList());
+            } else if (value instanceof ChromecastState) {
+                stream.write(129);
+                writeValue(stream, ((ChromecastState) value).toList());
+            } else if (value instanceof MediaItem) {
+                stream.write(130);
+                writeValue(stream, ((MediaItem) value).toList());
+            } else if (value instanceof MediaMetadata) {
+                stream.write(131);
+                writeValue(stream, ((MediaMetadata) value).toList());
+            } else if (value instanceof NpawConfig) {
+                stream.write(132);
+                writeValue(stream, ((NpawConfig) value).toList());
+            } else if (value instanceof PlayerStateSnapshot) {
+                stream.write(133);
+                writeValue(stream, ((PlayerStateSnapshot) value).toList());
+            } else if (value instanceof PlayerTracksSnapshot) {
+                stream.write(134);
+                writeValue(stream, ((PlayerTracksSnapshot) value).toList());
+            } else if (value instanceof Track) {
+                stream.write(135);
+                writeValue(stream, ((Track) value).toList());
+            } else {
+                super.writeValue(stream, value);
+            }
+        }
+    }
+
+    /**
+     * Generated interface from Pigeon that represents a handler of messages from Flutter.
+     */
+    public interface PlaybackPlatformPigeon {
+
+        void attach(@NonNull Result<Void> result);
+
+        void newPlayer(@Nullable String url, @NonNull Result<String> result);
+
+        void queueMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, @NonNull Result<Void> result);
+
+        void replaceCurrentMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, @Nullable Boolean playbackPositionFromPrimary, @Nullable Boolean autoplay, @NonNull Result<Void> result);
+
+        void setPlayerViewVisibility(@NonNull Long viewId, @NonNull Boolean visible);
+
+        void setPrimary(@NonNull String id, @NonNull Result<Void> result);
+
+        void play(@NonNull String playerId);
+
+        void seekTo(@NonNull String playerId, @NonNull Double positionMs, @NonNull Result<Void> result);
+
+        void pause(@NonNull String playerId);
+
+        void stop(@NonNull String playerId, @NonNull Boolean reset);
+
+        void setSelectedTrack(@NonNull String playerId, @NonNull TrackType type, @NonNull String trackId, @NonNull Result<Void> result);
+
+        void exitFullscreen(@NonNull String playerId);
+
+        void enterFullscreen(@NonNull String playerId);
+
+        void setNpawConfig(@Nullable NpawConfig config);
+
+        void setAppConfig(@Nullable AppConfig config);
+
+        void getTracks(@Nullable String playerId, @NonNull Result<PlayerTracksSnapshot> result);
+
+        void getPlayerState(@Nullable String playerId, @NonNull Result<PlayerStateSnapshot> result);
+
+        void getChromecastState(@NonNull Result<ChromecastState> result);
+
+        void openExpandedCastController();
+
+        void openCastDialog();
+
+        /**
+         * The codec used by PlaybackPlatformPigeon.
+         */
+        static @NonNull MessageCodec<Object> getCodec() {
+            return PlaybackPlatformPigeonCodec.INSTANCE;
+        }
+
+        /**
+         * Sets up an instance of `PlaybackPlatformPigeon` to handle messages through the `binaryMessenger`.
+         */
+        static void setup(@NonNull BinaryMessenger binaryMessenger, @Nullable PlaybackPlatformPigeon api) {
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.attach", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                Result<Void> resultCallback =
+                                        new Result<Void>() {
+                                            public void success(Void result) {
+                                                wrapped.add(0, null);
+                                                reply.reply(wrapped);
+                                            }
+
+                                            public void error(Throwable error) {
+                                                ArrayList<Object> wrappedError = wrapError(error);
+                                                reply.reply(wrappedError);
+                                            }
+                                        };
+
+                                api.attach(resultCallback);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.newPlayer", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String urlArg = (String) args.get(0);
+                                Result<String> resultCallback =
+                                        new Result<String>() {
+                                            public void success(String result) {
+                                                wrapped.add(0, result);
+                                                reply.reply(wrapped);
+                                            }
+
+                                            public void error(Throwable error) {
+                                                ArrayList<Object> wrappedError = wrapError(error);
+                                                reply.reply(wrappedError);
+                                            }
+                                        };
+
+                                api.newPlayer(urlArg, resultCallback);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.queueMediaItem", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String playerIdArg = (String) args.get(0);
+                                MediaItem mediaItemArg = (MediaItem) args.get(1);
+                                Result<Void> resultCallback =
+                                        new Result<Void>() {
+                                            public void success(Void result) {
+                                                wrapped.add(0, null);
+                                                reply.reply(wrapped);
+                                            }
+
+                                            public void error(Throwable error) {
+                                                ArrayList<Object> wrappedError = wrapError(error);
+                                                reply.reply(wrappedError);
+                                            }
+                                        };
+
+                                api.queueMediaItem(playerIdArg, mediaItemArg, resultCallback);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.replaceCurrentMediaItem", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String playerIdArg = (String) args.get(0);
+                                MediaItem mediaItemArg = (MediaItem) args.get(1);
+                                Boolean playbackPositionFromPrimaryArg = (Boolean) args.get(2);
+                                Boolean autoplayArg = (Boolean) args.get(3);
+                                Result<Void> resultCallback =
+                                        new Result<Void>() {
+                                            public void success(Void result) {
+                                                wrapped.add(0, null);
+                                                reply.reply(wrapped);
+                                            }
+
+                                            public void error(Throwable error) {
+                                                ArrayList<Object> wrappedError = wrapError(error);
+                                                reply.reply(wrappedError);
+                                            }
+                                        };
+
+                                api.replaceCurrentMediaItem(playerIdArg, mediaItemArg, playbackPositionFromPrimaryArg, autoplayArg, resultCallback);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setPlayerViewVisibility", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                Number viewIdArg = (Number) args.get(0);
+                                Boolean visibleArg = (Boolean) args.get(1);
+                                try {
+                                    api.setPlayerViewVisibility((viewIdArg == null) ? null : viewIdArg.longValue(), visibleArg);
+                                    wrapped.add(0, null);
+                                } catch (Throwable exception) {
+                                    ArrayList<Object> wrappedError = wrapError(exception);
+                                    wrapped = wrappedError;
+                                }
+                                reply.reply(wrapped);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setPrimary", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String idArg = (String) args.get(0);
+                                Result<Void> resultCallback =
+                                        new Result<Void>() {
+                                            public void success(Void result) {
+                                                wrapped.add(0, null);
+                                                reply.reply(wrapped);
+                                            }
+
+                                            public void error(Throwable error) {
+                                                ArrayList<Object> wrappedError = wrapError(error);
+                                                reply.reply(wrappedError);
+                                            }
+                                        };
+
+                                api.setPrimary(idArg, resultCallback);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.play", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String playerIdArg = (String) args.get(0);
+                                try {
+                                    api.play(playerIdArg);
+                                    wrapped.add(0, null);
+                                } catch (Throwable exception) {
+                                    ArrayList<Object> wrappedError = wrapError(exception);
+                                    wrapped = wrappedError;
+                                }
+                                reply.reply(wrapped);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.seekTo", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String playerIdArg = (String) args.get(0);
+                                Double positionMsArg = (Double) args.get(1);
+                                Result<Void> resultCallback =
+                                        new Result<Void>() {
+                                            public void success(Void result) {
+                                                wrapped.add(0, null);
+                                                reply.reply(wrapped);
+                                            }
+
+                                            public void error(Throwable error) {
+                                                ArrayList<Object> wrappedError = wrapError(error);
+                                                reply.reply(wrappedError);
+                                            }
+                                        };
+
+                                api.seekTo(playerIdArg, positionMsArg, resultCallback);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.pause", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String playerIdArg = (String) args.get(0);
+                                try {
+                                    api.pause(playerIdArg);
+                                    wrapped.add(0, null);
+                                } catch (Throwable exception) {
+                                    ArrayList<Object> wrappedError = wrapError(exception);
+                                    wrapped = wrappedError;
+                                }
+                                reply.reply(wrapped);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.stop", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String playerIdArg = (String) args.get(0);
+                                Boolean resetArg = (Boolean) args.get(1);
+                                try {
+                                    api.stop(playerIdArg, resetArg);
+                                    wrapped.add(0, null);
+                                } catch (Throwable exception) {
+                                    ArrayList<Object> wrappedError = wrapError(exception);
+                                    wrapped = wrappedError;
+                                }
+                                reply.reply(wrapped);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setSelectedTrack", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String playerIdArg = (String) args.get(0);
+                                TrackType typeArg = args.get(1) == null ? null : TrackType.values()[(int) args.get(1)];
+                                String trackIdArg = (String) args.get(2);
+                                Result<Void> resultCallback =
+                                        new Result<Void>() {
+                                            public void success(Void result) {
+                                                wrapped.add(0, null);
+                                                reply.reply(wrapped);
+                                            }
+
+                                            public void error(Throwable error) {
+                                                ArrayList<Object> wrappedError = wrapError(error);
+                                                reply.reply(wrappedError);
+                                            }
+                                        };
+
+                                api.setSelectedTrack(playerIdArg, typeArg, trackIdArg, resultCallback);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.exitFullscreen", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String playerIdArg = (String) args.get(0);
+                                try {
+                                    api.exitFullscreen(playerIdArg);
+                                    wrapped.add(0, null);
+                                } catch (Throwable exception) {
+                                    ArrayList<Object> wrappedError = wrapError(exception);
+                                    wrapped = wrappedError;
+                                }
+                                reply.reply(wrapped);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.enterFullscreen", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String playerIdArg = (String) args.get(0);
+                                try {
+                                    api.enterFullscreen(playerIdArg);
+                                    wrapped.add(0, null);
+                                } catch (Throwable exception) {
+                                    ArrayList<Object> wrappedError = wrapError(exception);
+                                    wrapped = wrappedError;
+                                }
+                                reply.reply(wrapped);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setNpawConfig", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                NpawConfig configArg = (NpawConfig) args.get(0);
+                                try {
+                                    api.setNpawConfig(configArg);
+                                    wrapped.add(0, null);
+                                } catch (Throwable exception) {
+                                    ArrayList<Object> wrappedError = wrapError(exception);
+                                    wrapped = wrappedError;
+                                }
+                                reply.reply(wrapped);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setAppConfig", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                AppConfig configArg = (AppConfig) args.get(0);
+                                try {
+                                    api.setAppConfig(configArg);
+                                    wrapped.add(0, null);
+                                } catch (Throwable exception) {
+                                    ArrayList<Object> wrappedError = wrapError(exception);
+                                    wrapped = wrappedError;
+                                }
+                                reply.reply(wrapped);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.getTracks", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String playerIdArg = (String) args.get(0);
+                                Result<PlayerTracksSnapshot> resultCallback =
+                                        new Result<PlayerTracksSnapshot>() {
+                                            public void success(PlayerTracksSnapshot result) {
+                                                wrapped.add(0, result);
+                                                reply.reply(wrapped);
+                                            }
+
+                                            public void error(Throwable error) {
+                                                ArrayList<Object> wrappedError = wrapError(error);
+                                                reply.reply(wrappedError);
+                                            }
+                                        };
+
+                                api.getTracks(playerIdArg, resultCallback);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.getPlayerState", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                ArrayList<Object> args = (ArrayList<Object>) message;
+                                String playerIdArg = (String) args.get(0);
+                                Result<PlayerStateSnapshot> resultCallback =
+                                        new Result<PlayerStateSnapshot>() {
+                                            public void success(PlayerStateSnapshot result) {
+                                                wrapped.add(0, result);
+                                                reply.reply(wrapped);
+                                            }
+
+                                            public void error(Throwable error) {
+                                                ArrayList<Object> wrappedError = wrapError(error);
+                                                reply.reply(wrappedError);
+                                            }
+                                        };
+
+                                api.getPlayerState(playerIdArg, resultCallback);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                Result<ChromecastState> resultCallback =
+                                        new Result<ChromecastState>() {
+                                            public void success(ChromecastState result) {
+                                                wrapped.add(0, result);
+                                                reply.reply(wrapped);
+                                            }
+
+                                            public void error(Throwable error) {
+                                                ArrayList<Object> wrappedError = wrapError(error);
+                                                reply.reply(wrappedError);
+                                            }
+                                        };
+
+                                api.getChromecastState(resultCallback);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.openExpandedCastController", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                try {
+                                    api.openExpandedCastController();
+                                    wrapped.add(0, null);
+                                } catch (Throwable exception) {
+                                    ArrayList<Object> wrappedError = wrapError(exception);
+                                    wrapped = wrappedError;
+                                }
+                                reply.reply(wrapped);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+            {
+                BasicMessageChannel<Object> channel =
+                        new BasicMessageChannel<>(
+                                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.openCastDialog", getCodec());
+                if (api != null) {
+                    channel.setMessageHandler(
+                            (message, reply) -> {
+                                ArrayList<Object> wrapped = new ArrayList<Object>();
+                                try {
+                                    api.openCastDialog();
+                                    wrapped.add(0, null);
+                                } catch (Throwable exception) {
+                                    ArrayList<Object> wrappedError = wrapError(exception);
+                                    wrapped = wrappedError;
+                                }
+                                reply.reply(wrapped);
+                            });
+                } else {
+                    channel.setMessageHandler(null);
+                }
+            }
+        }
+    }
+
+    private static class PlaybackListenerPigeonCodec extends StandardMessageCodec {
+        public static final PlaybackListenerPigeonCodec INSTANCE = new PlaybackListenerPigeonCodec();
+
+        private PlaybackListenerPigeonCodec() {
+        }
+
+        @Override
+        protected Object readValueOfType(byte type, @NonNull ByteBuffer buffer) {
+            switch (type) {
+                case (byte) 128:
+                    return MediaItem.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 129:
+                    return MediaItemTransitionEvent.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 130:
+                    return MediaMetadata.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 131:
+                    return PictureInPictureModeChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 132:
+                    return PlaybackEndedEvent.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 133:
+                    return PlaybackStateChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 134:
+                    return PlayerStateSnapshot.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 135:
+                    return PlayerStateUpdateEvent.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 136:
+                    return PositionDiscontinuityEvent.fromList((ArrayList<Object>) readValue(buffer));
+                case (byte) 137:
+                    return PrimaryPlayerChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
+                default:
+                    return super.readValueOfType(type, buffer);
+            }
+        }
+
+        @Override
+        protected void writeValue(@NonNull ByteArrayOutputStream stream, Object value) {
+            if (value instanceof MediaItem) {
+                stream.write(128);
+                writeValue(stream, ((MediaItem) value).toList());
+            } else if (value instanceof MediaItemTransitionEvent) {
+                stream.write(129);
+                writeValue(stream, ((MediaItemTransitionEvent) value).toList());
+            } else if (value instanceof MediaMetadata) {
+                stream.write(130);
+                writeValue(stream, ((MediaMetadata) value).toList());
+            } else if (value instanceof PictureInPictureModeChangedEvent) {
+                stream.write(131);
+                writeValue(stream, ((PictureInPictureModeChangedEvent) value).toList());
+            } else if (value instanceof PlaybackEndedEvent) {
+                stream.write(132);
+                writeValue(stream, ((PlaybackEndedEvent) value).toList());
+            } else if (value instanceof PlaybackStateChangedEvent) {
+                stream.write(133);
+                writeValue(stream, ((PlaybackStateChangedEvent) value).toList());
+            } else if (value instanceof PlayerStateSnapshot) {
+                stream.write(134);
+                writeValue(stream, ((PlayerStateSnapshot) value).toList());
+            } else if (value instanceof PlayerStateUpdateEvent) {
+                stream.write(135);
+                writeValue(stream, ((PlayerStateUpdateEvent) value).toList());
+            } else if (value instanceof PositionDiscontinuityEvent) {
+                stream.write(136);
+                writeValue(stream, ((PositionDiscontinuityEvent) value).toList());
+            } else if (value instanceof PrimaryPlayerChangedEvent) {
+                stream.write(137);
+                writeValue(stream, ((PrimaryPlayerChangedEvent) value).toList());
+            } else {
+                super.writeValue(stream, value);
+            }
+        }
+    }
+
+    /**
+     * /////////////// Playback Listener
+     * <p>
+     * Generated class from Pigeon that represents Flutter messages that can be called from Java.
+     */
+    public static class PlaybackListenerPigeon {
+        private final @NonNull BinaryMessenger binaryMessenger;
+
+        public PlaybackListenerPigeon(@NonNull BinaryMessenger argBinaryMessenger) {
+            this.binaryMessenger = argBinaryMessenger;
+        }
+
+        /**
+         * Public interface for sending reply.
+         */
+        @SuppressWarnings("UnknownNullness")
+        public interface Reply<T> {
+            void reply(T reply);
+        }
+
+        /**
+         * The codec used by PlaybackListenerPigeon.
+         */
+        static @NonNull MessageCodec<Object> getCodec() {
+            return PlaybackListenerPigeonCodec.INSTANCE;
+        }
+
+        public void onPrimaryPlayerChanged(@NonNull PrimaryPlayerChangedEvent eventArg, @NonNull Reply<Void> callback) {
+            BasicMessageChannel<Object> channel =
+                    new BasicMessageChannel<>(
+                            binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged", getCodec());
+            channel.send(
+                    new ArrayList<Object>(Collections.singletonList(eventArg)),
+                    channelReply -> callback.reply(null));
+        }
+
+        public void onPositionDiscontinuity(@NonNull PositionDiscontinuityEvent eventArg, @NonNull Reply<Void> callback) {
+            BasicMessageChannel<Object> channel =
+                    new BasicMessageChannel<>(
+                            binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPositionDiscontinuity", getCodec());
+            channel.send(
+                    new ArrayList<Object>(Collections.singletonList(eventArg)),
+                    channelReply -> callback.reply(null));
+        }
+
+        public void onPlayerStateUpdate(@NonNull PlayerStateUpdateEvent eventArg, @NonNull Reply<Void> callback) {
+            BasicMessageChannel<Object> channel =
+                    new BasicMessageChannel<>(
+                            binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate", getCodec());
+            channel.send(
+                    new ArrayList<Object>(Collections.singletonList(eventArg)),
+                    channelReply -> callback.reply(null));
+        }
+
+        public void onPlaybackStateChanged(@NonNull PlaybackStateChangedEvent eventArg, @NonNull Reply<Void> callback) {
+            Log.d("bccm", "sending onPlaybackStateChanged: " + eventArg);
+            BasicMessageChannel<Object> channel =
+                    new BasicMessageChannel<>(
+                            binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackStateChanged", getCodec());
+            channel.send(
+                    new ArrayList<Object>(Collections.singletonList(eventArg)),
+                    channelReply -> callback.reply(null));
+        }
+
+        public void onPlaybackEnded(@NonNull PlaybackEndedEvent eventArg, @NonNull Reply<Void> callback) {
+            BasicMessageChannel<Object> channel =
+                    new BasicMessageChannel<>(
+                            binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackEnded", getCodec());
+            channel.send(
+                    new ArrayList<Object>(Collections.singletonList(eventArg)),
+                    channelReply -> callback.reply(null));
+        }
+
+        public void onMediaItemTransition(@NonNull MediaItemTransitionEvent eventArg, @NonNull Reply<Void> callback) {
+            BasicMessageChannel<Object> channel =
+                    new BasicMessageChannel<>(
+                            binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onMediaItemTransition", getCodec());
+            channel.send(
+                    new ArrayList<Object>(Collections.singletonList(eventArg)),
+                    channelReply -> callback.reply(null));
+        }
+
+        public void onPictureInPictureModeChanged(@NonNull PictureInPictureModeChangedEvent eventArg, @NonNull Reply<Void> callback) {
+            BasicMessageChannel<Object> channel =
+                    new BasicMessageChannel<>(
+                            binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPictureInPictureModeChanged", getCodec());
+            channel.send(
+                    new ArrayList<Object>(Collections.singletonList(eventArg)),
+                    channelReply -> callback.reply(null));
+        }
+    }
 }

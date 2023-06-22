@@ -1,5 +1,6 @@
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/state/plugin_state_notifier.dart';
+import 'package:flutter/material.dart';
 import '../helpers/utils/extensions.dart';
 
 class StatePlaybackListener implements PlaybackListenerPigeon {
@@ -9,7 +10,10 @@ class StatePlaybackListener implements PlaybackListenerPigeon {
 
   @override
   void onPlaybackStateChanged(event) {
-    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setPlaybackState(event.playbackState);
+    debugPrint('bccm received onPlaybackStateChanged ${event.encode()}');
+    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId)
+      ..setIsBuffering(event.isBuffering)
+      ..setPlaybackState(event.playbackState);
   }
 
   @override

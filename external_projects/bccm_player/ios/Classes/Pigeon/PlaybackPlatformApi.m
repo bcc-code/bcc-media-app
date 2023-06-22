@@ -266,12 +266,14 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 @implementation PlayerStateSnapshot
 + (instancetype)makeWithPlayerId:(NSString *)playerId
     playbackState:(PlaybackState)playbackState
+    isBuffering:(NSNumber *)isBuffering
     isFullscreen:(NSNumber *)isFullscreen
     currentMediaItem:(nullable MediaItem *)currentMediaItem
     playbackPositionMs:(nullable NSNumber *)playbackPositionMs {
   PlayerStateSnapshot* pigeonResult = [[PlayerStateSnapshot alloc] init];
   pigeonResult.playerId = playerId;
   pigeonResult.playbackState = playbackState;
+  pigeonResult.isBuffering = isBuffering;
   pigeonResult.isFullscreen = isFullscreen;
   pigeonResult.currentMediaItem = currentMediaItem;
   pigeonResult.playbackPositionMs = playbackPositionMs;
@@ -282,10 +284,12 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   pigeonResult.playerId = GetNullableObjectAtIndex(list, 0);
   NSAssert(pigeonResult.playerId != nil, @"");
   pigeonResult.playbackState = [GetNullableObjectAtIndex(list, 1) integerValue];
-  pigeonResult.isFullscreen = GetNullableObjectAtIndex(list, 2);
+  pigeonResult.isBuffering = GetNullableObjectAtIndex(list, 2);
+  NSAssert(pigeonResult.isBuffering != nil, @"");
+  pigeonResult.isFullscreen = GetNullableObjectAtIndex(list, 3);
   NSAssert(pigeonResult.isFullscreen != nil, @"");
-  pigeonResult.currentMediaItem = [MediaItem nullableFromList:(GetNullableObjectAtIndex(list, 3))];
-  pigeonResult.playbackPositionMs = GetNullableObjectAtIndex(list, 4);
+  pigeonResult.currentMediaItem = [MediaItem nullableFromList:(GetNullableObjectAtIndex(list, 4))];
+  pigeonResult.playbackPositionMs = GetNullableObjectAtIndex(list, 5);
   return pigeonResult;
 }
 + (nullable PlayerStateSnapshot *)nullableFromList:(NSArray *)list {
@@ -295,6 +299,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   return @[
     (self.playerId ?: [NSNull null]),
     @(self.playbackState),
+    (self.isBuffering ?: [NSNull null]),
     (self.isFullscreen ?: [NSNull null]),
     (self.currentMediaItem ? [self.currentMediaItem toList] : [NSNull null]),
     (self.playbackPositionMs ?: [NSNull null]),
@@ -470,10 +475,12 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 
 @implementation PlaybackStateChangedEvent
 + (instancetype)makeWithPlayerId:(NSString *)playerId
-    playbackState:(PlaybackState)playbackState {
+    playbackState:(PlaybackState)playbackState
+    isBuffering:(NSNumber *)isBuffering {
   PlaybackStateChangedEvent* pigeonResult = [[PlaybackStateChangedEvent alloc] init];
   pigeonResult.playerId = playerId;
   pigeonResult.playbackState = playbackState;
+  pigeonResult.isBuffering = isBuffering;
   return pigeonResult;
 }
 + (PlaybackStateChangedEvent *)fromList:(NSArray *)list {
@@ -481,6 +488,8 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   pigeonResult.playerId = GetNullableObjectAtIndex(list, 0);
   NSAssert(pigeonResult.playerId != nil, @"");
   pigeonResult.playbackState = [GetNullableObjectAtIndex(list, 1) integerValue];
+  pigeonResult.isBuffering = GetNullableObjectAtIndex(list, 2);
+  NSAssert(pigeonResult.isBuffering != nil, @"");
   return pigeonResult;
 }
 + (nullable PlaybackStateChangedEvent *)nullableFromList:(NSArray *)list {
@@ -490,6 +499,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   return @[
     (self.playerId ?: [NSNull null]),
     @(self.playbackState),
+    (self.isBuffering ?: [NSNull null]),
   ];
 }
 @end

@@ -8,11 +8,14 @@ import 'package:brunstadtv_app/components/live_mini_player.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import '../helpers/insets.dart';
+import '../providers/feature_flags.dart';
+import '../providers/settings.dart';
 import '../providers/todays_calendar_entries.dart';
 import '../theme/design_system/design_system.dart';
 
@@ -250,7 +253,16 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
   }
 
   Widget _player(PlayerState player) {
-    return VideoPlayerView(id: player.playerId);
+    return VideoPlayerView(
+      id: player.playerId,
+      useNativeControls: ref.read(settingsProvider).useNativePlayer == true ||
+          !ref.watch(
+            featureFlagsProvider.select((value) => value.flutterPlayerControls),
+          ),
+      resetSystemOverlays: () {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+      },
+    );
   }
 
   Widget _playPoster(PlayerState player) {

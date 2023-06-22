@@ -111,7 +111,7 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
             print("Setting category to AVAudioSessionCategoryPlayback failed.")
         }
         print("bccm: audiosession category after: " + audioSession.category.rawValue)
-        if _playerController.pipController != nil {
+        if _playerController.pipController != nil && _playerController.fullscreenViewController == nil {
             print("starting with existing pipController")
             let viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
             playerViewController = _playerController.pipController!

@@ -580,7 +580,20 @@ class _EntriesSlot extends StatelessWidget {
               ),
             );
           }).toList(),
-          const TvGuideTime()
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 23.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Text(
+                    S.of(context).timezoneInformation(DateTime.now().timeZoneName),
+                    style: DesignSystem.of(context).textStyles.caption1,
+                  ),
+                ),
+              ],
+            ),
+          )
         ] else ...[
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 36.0),
@@ -596,28 +609,6 @@ class _EntriesSlot extends StatelessWidget {
           )
         ]
       ],
-    );
-  }
-}
-
-class TvGuideTime extends StatelessWidget {
-  const TvGuideTime({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 23.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Text(
-              S.of(context).timezoneInformation(DateTime.now().timeZoneName),
-              style: DesignSystem.of(context).textStyles.caption1,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

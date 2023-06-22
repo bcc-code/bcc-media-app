@@ -52,6 +52,10 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
     state = state.copyWith(isInPipMode: isInPipMode);
   }
 
+  void setIsBuffering(bool isBuffering) {
+    state = state.copyWith(isBuffering: isBuffering);
+  }
+
   void setStateFromSnapshot(PlayerStateSnapshot snapshot) {
     state = state.copyWithSnapshot(snapshot);
   }
@@ -67,6 +71,7 @@ class PlayerState with _$PlayerState {
     @Default(false) bool isNativeFullscreen,
     @Default(false) bool isFlutterFullscreen,
     @Default(PlaybackState.stopped) PlaybackState playbackState,
+    @Default(false) bool isBuffering,
     @Default(false) bool isInPipMode,
   }) = _PlayerState;
 
@@ -78,6 +83,7 @@ class PlayerState with _$PlayerState {
       currentMediaItem: state.currentMediaItem,
       playbackPositionMs: state.playbackPositionMs?.finiteOrNull()?.round(),
       playbackState: state.playbackState,
+      isBuffering: state.isBuffering,
       isNativeFullscreen: state.isFullscreen,
     );
   }

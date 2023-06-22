@@ -3,9 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class ControlsWrapper extends StatefulWidget {
-  const ControlsWrapper({super.key, required this.child});
+  const ControlsWrapper({
+    super.key,
+    required this.child,
+    required this.autoHide,
+  });
 
   final Widget child;
+  final bool autoHide;
 
   @override
   ControlsWrapperState createState() => ControlsWrapperState();
@@ -30,6 +35,9 @@ class ControlsWrapperState extends State<ControlsWrapper> {
   void _startTimer() {
     _visibilityTimer?.cancel();
     _visibilityTimer = Timer(const Duration(seconds: 3), () {
+      if (!widget.autoHide) {
+        return;
+      }
       setState(() {
         _visible = false;
       });

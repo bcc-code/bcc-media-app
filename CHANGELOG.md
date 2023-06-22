@@ -1,4 +1,40 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v4.5.2+2300072-kids...v) (2023-06-20)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v4.5.4+2300074-kids...v) (2023-06-22)
+
+
+
+## [4.5.4+2300074-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.5.4+2300074...v4.5.4+2300074-kids) (2023-06-21)
+
+
+### Bug Fixes
+
+* **player:** controls background outside safe area ([dce7bdc](https://github.com/bcc-code/bcc-media-app/commit/dce7bdcd4c68be4a1f9bfcb0a0b3439affd0cfa4))
+* **player:** fullscreen + pip crash ([43ef30f](https://github.com/bcc-code/bcc-media-app/commit/43ef30fc036506ab270ff12419f2c036ef8c1ede))
+* **player:** icons positioning on controls ([09020c4](https://github.com/bcc-code/bcc-media-app/commit/09020c4c4f03fc4366b0a11683f2bb658551dbd2))
+* **player:** on android with flutter controls, exit native view after pip ([5a6d285](https://github.com/bcc-code/bcc-media-app/commit/5a6d285bcb69327aa16c0100ea1a029110ae3bcb))
+* **ui:** padding on tvguide timezone info text ([33e8019](https://github.com/bcc-code/bcc-media-app/commit/33e80194241eb46f32793c340e8084211dc8b661))
+
+
+### Features
+
+* force native player via settings ([a2eca51](https://github.com/bcc-code/bcc-media-app/commit/a2eca51f6fe6519241110cd16524cb867678c9c8))
+* live flutter controls ([6e49d03](https://github.com/bcc-code/bcc-media-app/commit/6e49d03f3c26a1e68fda581e6fdd0b14a60293e3))
+* **player:** isBuffering state ([8059d7e](https://github.com/bcc-code/bcc-media-app/commit/8059d7e73f7c4af6b9e2e6cf95b7a15491048593))
+* **player:** polish and use isBuffering in controls ([aea1e9b](https://github.com/bcc-code/bcc-media-app/commit/aea1e9bb187e5df92c962b2d5e2a91f4b4544375))
+
+
+
+## [4.5.3+2300073-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.5.3+2300073...v4.5.3+2300073-kids) (2023-06-20)
+
+
+### Bug Fixes
+
+* **ui:** would go auto-fullscreen on other pages. ([3068e12](https://github.com/bcc-code/bcc-media-app/commit/3068e126454c183acd283688df538c41c38b7fb5))
+
+
+### Features
+
+* "extra" usergroups management (betatesters etc) ([fe4cb04](https://github.com/bcc-code/bcc-media-app/commit/fe4cb047715cab063d8a5a761f7ef8aef878d3a7))
+* added "betatester mode" toggle in developer options ([a8448a5](https://github.com/bcc-code/bcc-media-app/commit/a8448a507df27d73972a1958c0ab50df0a5a6821))
 
 
 
