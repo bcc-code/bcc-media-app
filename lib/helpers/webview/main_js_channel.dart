@@ -31,6 +31,8 @@ class MainJsChannel {
       return _navigate(arguments);
     } else if (arguments[0] == 'push') {
       return _push(arguments);
+    } else if (arguments[0] == 'exit') {
+      return _exit(arguments);
     } else if (arguments[0] == 'get_access_token') {
       return _getAccessToken(arguments);
     } else if (arguments[0] == 'get_locale') {
@@ -55,6 +57,10 @@ class MainJsChannel {
       return router.pushNamed(arguments[1], includePrefixMatches: true);
     }
     throw Exception('Tried to push with invalid argument: ${arguments[1]}');
+  }
+
+  Future _exit(List<dynamic> arguments) async {
+    return router.pop();
   }
 
   String? _getAccessToken(List<dynamic> arguments) {
