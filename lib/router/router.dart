@@ -224,6 +224,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'extra-usergroups'},
     ),
+    _gameScreenRoute,
     CustomRoute<void>(
         page: StudyScreen,
         path: 'study-lesson',

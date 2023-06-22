@@ -147,7 +147,7 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
 
   final gameItem = item.asOrNull<Fragment$ItemSectionItem$item$$Game>();
   if (gameItem != null) {
-    return router.navigate(GameScreenRoute(gameId: gameItem.uuid));
+    return context.router.root.push(GameScreenRoute(gameId: gameItem.uuid));
   }
 
   return null;
