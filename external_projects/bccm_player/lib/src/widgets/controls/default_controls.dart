@@ -120,9 +120,10 @@ class DefaultControls extends HookWidget {
                     else
                       IconButton(
                         icon: player.value?.isBuffering == true
-                            ? const LoadingIndicator(
+                            ? LoadingIndicator(
                                 width: 48,
                                 height: 48,
+                                color: safeControlsTheme.iconColor,
                               )
                             : const Icon(Icons.pause),
                         iconSize: 54,
