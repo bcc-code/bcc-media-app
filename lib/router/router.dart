@@ -36,31 +36,23 @@ import '../screens/onboarding/signup.dart';
 import '../screens/profile/contact_public.dart';
 import '../screens/tabs_root.dart';
 
-const _collectionEpisodeScreenRoute = CustomRoute<void>(
+const _collectionEpisodeScreenRoute = CupertinoRoute<void>(
   page: CollectionEpisodeScreen,
   path: 'episode/:collectionId/:episodeId',
-  durationInMilliseconds: 300,
-  reverseDurationInMilliseconds: 300,
-  transitionsBuilder: CustomTransitionsBuilders.slideLeft,
   meta: {RouteMetaConstants.analyticsName: 'episode'},
 );
 
-const _episodeScreenRoute = CustomRoute<void>(
+const _episodeScreenRoute = CupertinoRoute<void>(
   page: EpisodeScreen,
   path: 'episode/:episodeId',
-  durationInMilliseconds: 300,
-  reverseDurationInMilliseconds: 300,
-  transitionsBuilder: CustomTransitionsBuilders.slideLeft,
   meta: {RouteMetaConstants.analyticsName: 'episode'},
 );
 
-const _pageScreenRoute = CustomRoute<void>(
-    page: PageScreen,
-    path: ':pageCode',
-    usesPathAsKey: true,
-    durationInMilliseconds: 300,
-    reverseDurationInMilliseconds: 300,
-    transitionsBuilder: CustomTransitionsBuilders.slideLeft);
+const _pageScreenRoute = CupertinoRoute<void>(
+  page: PageScreen,
+  path: ':pageCode',
+  usesPathAsKey: true,
+);
 
 Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> page) {
   return ModalSheetRoute(
@@ -192,13 +184,11 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'account-deletion'},
     ),
-    CustomRoute<void>(
+    CupertinoRoute<void>(
       page: HomeScreen,
       name: 'PublicHomeRoute',
       path: '/public-home',
       maintainState: false,
-      durationInMilliseconds: 500,
-      reverseDurationInMilliseconds: 500,
     ),
     CustomRoute<void>(
       page: EpisodeScreen,
@@ -316,7 +306,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
           ],
         ),
         CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [
-          CustomRoute<void>(
+          CupertinoRoute<void>(
             page: HomeScreen,
             path: '',
             name: 'home',

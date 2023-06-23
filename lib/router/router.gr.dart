@@ -225,14 +225,10 @@ class AppRouter extends _i31.RootStackRouter {
     PublicHomeRoute.name: (routeData) {
       final args = routeData.argsAs<PublicHomeRouteArgs>(
           orElse: () => const PublicHomeRouteArgs());
-      return _i31.CustomPage<void>(
+      return _i31.CupertinoPageX<void>(
         routeData: routeData,
         child: _i16.HomeScreen(key: args.key),
         maintainState: false,
-        durationInMilliseconds: 500,
-        reverseDurationInMilliseconds: 500,
-        opaque: true,
-        barrierDismissible: false,
       );
     },
     EmbedScreen.name: (routeData) {
@@ -408,7 +404,7 @@ class AppRouter extends _i31.RootStackRouter {
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
                 collectionId: queryParams.optString('collectionId'),
               ));
-      return _i31.CustomPage<void>(
+      return _i31.CupertinoPageX<void>(
         routeData: routeData,
         child: _i17.EpisodeScreen(
           key: args.key,
@@ -418,11 +414,6 @@ class AppRouter extends _i31.RootStackRouter {
           hideBottomSection: args.hideBottomSection,
           collectionId: args.collectionId,
         ),
-        transitionsBuilder: _i34.CustomTransitionsBuilders.slideLeft,
-        durationInMilliseconds: 300,
-        reverseDurationInMilliseconds: 300,
-        opaque: true,
-        barrierDismissible: false,
       );
     },
     CollectionEpisodeScreenRoute.name: (routeData) {
@@ -436,7 +427,7 @@ class AppRouter extends _i31.RootStackRouter {
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
                 collectionId: pathParams.optString('collectionId'),
               ));
-      return _i31.CustomPage<void>(
+      return _i31.CupertinoPageX<void>(
         routeData: routeData,
         child: _i17.CollectionEpisodeScreen(
           key: args.key,
@@ -446,11 +437,6 @@ class AppRouter extends _i31.RootStackRouter {
           hideBottomSection: args.hideBottomSection,
           collectionId: args.collectionId,
         ),
-        transitionsBuilder: _i34.CustomTransitionsBuilders.slideLeft,
-        durationInMilliseconds: 300,
-        reverseDurationInMilliseconds: 300,
-        opaque: true,
-        barrierDismissible: false,
       );
     },
     PageScreenRoute.name: (routeData) {
@@ -458,17 +444,12 @@ class AppRouter extends _i31.RootStackRouter {
       final args = routeData.argsAs<PageScreenRouteArgs>(
           orElse: () =>
               PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
-      return _i31.CustomPage<void>(
+      return _i31.CupertinoPageX<void>(
         routeData: routeData,
         child: _i28.PageScreen(
           key: args.key,
           pageCode: args.pageCode,
         ),
-        transitionsBuilder: _i34.CustomTransitionsBuilders.slideLeft,
-        durationInMilliseconds: 300,
-        reverseDurationInMilliseconds: 300,
-        opaque: true,
-        barrierDismissible: false,
       );
     },
     MyListScreenRoute.name: (routeData) {
@@ -502,11 +483,9 @@ class AppRouter extends _i31.RootStackRouter {
     },
     Home.name: (routeData) {
       final args = routeData.argsAs<HomeArgs>(orElse: () => const HomeArgs());
-      return _i31.CustomPage<void>(
+      return _i31.CupertinoPageX<void>(
         routeData: routeData,
         child: _i16.HomeScreen(key: args.key),
-        opaque: true,
-        barrierDismissible: false,
       );
     },
   };
