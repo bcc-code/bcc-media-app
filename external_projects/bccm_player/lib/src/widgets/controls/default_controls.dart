@@ -78,6 +78,7 @@ class DefaultControls extends HookWidget {
                         IconButton(
                           icon: const Icon(Icons.close),
                           iconSize: 32,
+                          padding: const EdgeInsets.all(12),
                           onPressed: () {
                             Navigator.maybePop(context);
                           },
@@ -89,9 +90,9 @@ class DefaultControls extends HookWidget {
                           ),
                       ],
                       const Spacer(),
-                      Container(
-                        padding: const EdgeInsets.only(top: 12, right: 8),
-                        child: _SettingsWidget(playerId: playerId),
+                      _SettingsWidget(
+                        playerId: playerId,
+                        padding: const EdgeInsets.only(top: 12, bottom: 24, left: 24, right: 8),
                       ),
                     ],
                   ),
@@ -149,6 +150,7 @@ class DefaultControls extends HookWidget {
                           Padding(
                             padding: const EdgeInsets.only(right: 8),
                             child: GestureDetector(
+                              behavior: HitTestBehavior.opaque,
                               onTap: () {
                                 if (!isFullscreen) {
                                   goFullscreen();
@@ -203,13 +205,15 @@ class DefaultControls extends HookWidget {
 }
 
 class _SettingsWidget extends HookWidget {
-  const _SettingsWidget({required this.playerId});
+  const _SettingsWidget({required this.playerId, this.padding});
 
   final String playerId;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         // open bottom sheet with settings
         showModalBottomSheet(
@@ -218,7 +222,10 @@ class _SettingsWidget extends HookWidget {
           builder: (context) => _Settings(playerId: playerId),
         );
       },
-      child: const Icon(Icons.settings),
+      child: Padding(
+        padding: padding ?? const EdgeInsets.all(0),
+        child: const Icon(Icons.settings),
+      ),
     );
   }
 }
