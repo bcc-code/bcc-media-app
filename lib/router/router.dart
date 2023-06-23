@@ -62,12 +62,6 @@ const _pageScreenRoute = CustomRoute<void>(
     reverseDurationInMilliseconds: 300,
     transitionsBuilder: CustomTransitionsBuilders.slideLeft);
 
-const _gameScreenRoute = CupertinoRoute<void>(
-  page: GameScreen,
-  path: ':gameId',
-  maintainState: false,
-);
-
 Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> page) {
   return ModalSheetRoute(
     settings: page,
@@ -224,7 +218,11 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'extra-usergroups'},
     ),
-    _gameScreenRoute,
+    CupertinoRoute<void>(
+      page: GameScreen,
+      path: '/game/:gameId',
+      maintainState: false,
+    ),
     CustomRoute<void>(
         page: StudyScreen,
         path: 'study-lesson',
@@ -274,7 +272,6 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
             _pageScreenRoute,
-            _gameScreenRoute,
           ],
         ),
         MaterialRoute<void>(
@@ -310,7 +307,12 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
               maintainState: true,
               meta: {RouteMetaConstants.navTabRoute: true},
             ),
-            _gameScreenRoute,
+            CupertinoRoute<void>(
+              page: GameScreen,
+              name: 'GamesGameScreenRoute',
+              path: ':gameId',
+              maintainState: false,
+            )
           ],
         ),
         CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [
@@ -325,7 +327,6 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
           _episodeScreenRoute,
           _collectionEpisodeScreenRoute,
           _pageScreenRoute,
-          _gameScreenRoute,
         ]),
       ],
     ),
