@@ -77,14 +77,7 @@ class VideoPlayerView extends HookWidget {
     }
 
     Future exitFullscreen() async {
-      if (resetSystemOverlays != null) {
-        resetSystemOverlays!();
-      } else {
-        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-      }
-      BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(id)?.setIsFlutterFullscreen(false);
-      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-      debugPrint('bccm: setPreferredOrientations portraitUp');
+      BccmPlayerInterface.instance.exitFullscreen(id);
     }
 
     return _VideoWithControls(
@@ -109,35 +102,27 @@ class _VideoWithControls extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        if (BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(parent.id)?.state.isFlutterFullscreen == true) {
-          exitFullscreen();
-        }
-        return true;
-      },
-      child: Stack(
-        children: [
-          Center(
-            child: IgnorePointer(
-              ignoring: true,
-              child: VideoPlatformView(
-                id: parent.id,
-                showControls: false,
-              ),
+    return Stack(
+      children: [
+        Center(
+          child: IgnorePointer(
+            ignoring: true,
+            child: VideoPlatformView(
+              id: parent.id,
+              showControls: false,
             ),
           ),
-          Positioned.fill(
-            child: Builder(builder: (context) {
-              return DefaultControls(
-                playerId: parent.id,
-                exitFullscreen: () => Navigator.of(context).maybePop(),
-                goFullscreen: goFullscreen,
-              );
-            }),
-          ),
-        ],
-      ),
+        ),
+        Positioned.fill(
+          child: Builder(builder: (context) {
+            return DefaultControls(
+              playerId: parent.id,
+              exitFullscreen: exitFullscreen,
+              goFullscreen: goFullscreen,
+            );
+          }),
+        ),
+      ],
     );
   }
 }
