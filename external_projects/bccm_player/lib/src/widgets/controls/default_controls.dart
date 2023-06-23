@@ -90,7 +90,7 @@ class DefaultControls extends HookWidget {
                       ],
                       const Spacer(),
                       Container(
-                        padding: const EdgeInsets.only(top: 12, right: 2),
+                        padding: const EdgeInsets.only(top: 12, right: 8),
                         child: _SettingsWidget(playerId: playerId),
                       ),
                     ],
@@ -133,13 +133,13 @@ class DefaultControls extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     SizedBox(
-                      height: 48,
+                      height: 42,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           if (player.value?.currentMediaItem?.isLive != true)
                             Padding(
-                              padding: const EdgeInsets.only(left: 6),
+                              padding: const EdgeInsets.only(left: 10),
                               child: Text(
                                 '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
                                 style: Theme.of(context).textTheme.labelSmall,
@@ -147,7 +147,7 @@ class DefaultControls extends HookWidget {
                             ),
                           const Spacer(),
                           Padding(
-                            padding: const EdgeInsets.only(right: 2),
+                            padding: const EdgeInsets.only(right: 8),
                             child: GestureDetector(
                               onTap: () {
                                 if (!isFullscreen) {
@@ -164,39 +164,33 @@ class DefaultControls extends HookWidget {
                         ],
                       ),
                     ),
-                    if (player.value?.currentMediaItem?.isLive == true)
-                      const Padding(padding: EdgeInsets.only(top: 4))
-                    else
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 24),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: SliderTheme(
-                                data: SliderTheme.of(context).copyWith(
-                                  trackHeight: 2,
-                                  thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-                                  overlayShape: SliderComponentShape.noOverlay,
-                                ),
-                                child: SizedBox(
-                                  height: 10,
-                                  child: Slider(
-                                    value: seeking.value
-                                        ? currentScrub.value
-                                        : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
-                                    onChanged: (double value) {
-                                      scrubTo(value);
-                                    },
-                                    onChangeEnd: (double value) {
-                                      seekDebouncer.forceEarly();
-                                    },
-                                  ),
-                                ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: SliderTheme(
+                              data: SliderTheme.of(context).copyWith(
+                                trackHeight: 2,
+                                thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6),
+                                overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
+                              ),
+                              child: Slider(
+                                value: seeking.value
+                                    ? currentScrub.value
+                                    : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
+                                onChanged: (double value) {
+                                  scrubTo(value);
+                                },
+                                onChangeEnd: (double value) {
+                                  seekDebouncer.forceEarly();
+                                },
                               ),
                             ),
-                          ],
-                        ),
-                      )
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
