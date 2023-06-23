@@ -139,27 +139,30 @@ class DefaultControls extends HookWidget {
                       height: 42,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           if (player.value?.currentMediaItem?.isLive != true)
                             Padding(
-                              padding: const EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.only(bottom: 8, left: 10),
                               child: Text(
                                 '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
                                 style: Theme.of(context).textTheme.labelSmall,
                               ),
                             ),
                           const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8),
-                            child: GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () {
-                                if (!isFullscreen) {
-                                  goFullscreen();
-                                } else {
-                                  exitFullscreen();
-                                }
-                              },
+                          GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: () {
+                              if (!isFullscreen) {
+                                goFullscreen();
+                              } else {
+                                exitFullscreen();
+                              }
+                            },
+                            child: Container(
+                              height: double.infinity,
+                              alignment: Alignment.bottomRight,
+                              padding: const EdgeInsets.all(8).copyWith(bottom: 5, left: 20),
                               child: Icon(
                                 isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
                               ),
@@ -168,33 +171,36 @@ class DefaultControls extends HookWidget {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: SliderTheme(
-                              data: SliderTheme.of(context).copyWith(
-                                trackHeight: 2,
-                                thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-                                overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
-                              ),
-                              child: Slider(
-                                value: seeking.value
-                                    ? currentScrub.value
-                                    : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
-                                onChanged: (double value) {
-                                  scrubTo(value);
-                                },
-                                onChangeEnd: (double value) {
-                                  seekDebouncer.forceEarly();
-                                },
+                    if (player.value?.currentMediaItem?.isLive == true)
+                      const Padding(padding: EdgeInsets.only(top: 12))
+                    else
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: SliderTheme(
+                                data: SliderTheme.of(context).copyWith(
+                                  trackHeight: 2,
+                                  thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+                                  overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
+                                ),
+                                child: Slider(
+                                  value: seeking.value
+                                      ? currentScrub.value
+                                      : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
+                                  onChanged: (double value) {
+                                    scrubTo(value);
+                                  },
+                                  onChangeEnd: (double value) {
+                                    seekDebouncer.forceEarly();
+                                  },
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    )
+                          ],
+                        ),
+                      )
                   ],
                 ),
               ),
