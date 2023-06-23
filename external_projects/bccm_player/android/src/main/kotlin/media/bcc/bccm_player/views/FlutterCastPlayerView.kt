@@ -11,11 +11,12 @@ import io.flutter.plugin.platform.PlatformViewFactory
 import media.bcc.bccm_player.BccmPlayerPlugin
 import media.bcc.bccm_player.R
 import media.bcc.bccm_player.players.chromecast.CastPlayerController
+import media.bcc.bccm_player.utils.SystemGestureExcludedLinearLayout
 
 class FlutterCastPlayerView(
     private val context: Context, private val controller: CastPlayerController
 ) : PlatformView {
-    private val _v: LinearLayout = LinearLayout(context)
+    private val _v: LinearLayout = SystemGestureExcludedLinearLayout(context)
     private var _playerView: PlayerView? = null
 
     class Factory(private val plugin: BccmPlayerPlugin) :

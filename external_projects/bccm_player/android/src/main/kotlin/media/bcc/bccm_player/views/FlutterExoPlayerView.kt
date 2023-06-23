@@ -25,6 +25,7 @@ import media.bcc.bccm_player.PlaybackService
 import media.bcc.bccm_player.R
 import media.bcc.bccm_player.players.exoplayer.BccmPlayerViewController
 import media.bcc.bccm_player.players.exoplayer.ExoPlayerController
+import media.bcc.bccm_player.utils.SystemGestureExcludedLinearLayout
 
 
 class FlutterExoPlayerView(
@@ -35,7 +36,7 @@ class FlutterExoPlayerView(
     private val enableDebugView: Boolean?,
 ) : PlatformView, BccmPlayerViewController {
     private var playerController: ExoPlayerController? = null
-    private val _v: LinearLayout = LinearLayout(context)
+    private val _v: LinearLayout = SystemGestureExcludedLinearLayout(context)
     private var _playerView: PlayerView? = null
     private val ioScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private var setupDone = false
