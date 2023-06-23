@@ -149,31 +149,31 @@ class SSl extends S {
   String get contactUs => 'Kontaktiraj nas';
 
   @override
-  String get deviceInfo => 'Device info';
+  String get deviceInfo => 'Informacije o napravi';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Za boljšo podporo vključi informacije o napravi.';
 
   @override
-  String get contactSeeData => 'Click to see data.';
+  String get contactSeeData => 'Klikni za podatke.';
 
   @override
-  String get contactName => 'Name';
+  String get contactName => 'Ime';
 
   @override
-  String get contactNameHint => 'Type in your name';
+  String get contactNameHint => 'Vpiši svoje ime';
 
   @override
-  String get contactEmail => 'Your contact email';
+  String get contactEmail => 'Tvoj elektronski naslov';
 
   @override
-  String get contactEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'Vpiši svoj elektronski naslov';
 
   @override
-  String get contactMessage => 'Message';
+  String get contactMessage => 'Sporočilo';
 
   @override
-  String get contactMessageHint => 'Enter your message here';
+  String get contactMessageHint => 'Tukaj vpiši svoje sporočilo';
 
   @override
   String get deviceInfoDevice => 'Device';
