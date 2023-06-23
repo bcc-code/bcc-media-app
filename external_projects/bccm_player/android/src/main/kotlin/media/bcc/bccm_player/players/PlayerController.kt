@@ -1,6 +1,5 @@
 package media.bcc.bccm_player.players
 
-import android.media.session.PlaybackState
 import android.net.Uri
 import android.os.Bundle
 import androidx.annotation.CallSuper
@@ -12,7 +11,7 @@ import androidx.media3.common.TrackSelectionOverride
 import androidx.media3.common.Tracks
 import media.bcc.bccm_player.BccmPlayerPlugin
 import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
-import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.BCCM_EXTRAS
+import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.BCCM_META_EXTRAS
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_MIME_TYPE
 import media.bcc.bccm_player.players.exoplayer.BccmPlayerViewController
@@ -93,30 +92,36 @@ abstract class PlayerController : Player.Listener {
 
     fun mapMediaItem(mediaItem: PlaybackPlatformApi.MediaItem): MediaItem {
         val metaBuilder = MediaMetadata.Builder()
-        val extraMeta = Bundle()
+        val exoExtras = Bundle()
 
         if (mediaItem.metadata?.artworkUri != null) {
             metaBuilder.setArtworkUri(Uri.parse(mediaItem.metadata?.artworkUri))
         }
+
+        val mimeType = mediaItem.mimeType ?: "application/x-mpegURL"
+        exoExtras.putString(PLAYER_DATA_MIME_TYPE, mimeType)
+
         if (mediaItem.isLive == true) {
-            extraMeta.putString(PLAYER_DATA_IS_LIVE, "true")
+            exoExtras.putString(PLAYER_DATA_IS_LIVE, "true")
         }
+
         val sourceExtra = mediaItem.metadata?.extras
         if (sourceExtra != null) {
             for (extra in sourceExtra) {
                 (extra.value as? String?).let {
-                    extraMeta.putString(BCCM_EXTRAS + "." + extra.key, it)
+                    exoExtras.putString(BCCM_META_EXTRAS + "." + extra.key, it)
                 }
             }
         }
 
-        metaBuilder.setTitle(mediaItem.metadata?.title).setArtist(mediaItem.metadata?.artist)
-            .setExtras(extraMeta).build()
-
-        val miBuilder =
-            MediaItem.Builder().setUri(mediaItem.url).setMediaMetadata(metaBuilder.build())
-        miBuilder.setMimeType(mediaItem.mimeType ?: "application/x-mpegURL")
-        return miBuilder.build()
+        metaBuilder
+            .setTitle(mediaItem.metadata?.title)
+            .setArtist(mediaItem.metadata?.artist)
+            .setExtras(exoExtras).build()
+        return MediaItem.Builder()
+            .setUri(mediaItem.url)
+            .setMimeType(mimeType)
+            .setMediaMetadata(metaBuilder.build()).build()
     }
 
     fun mapMediaItem(mediaItem: MediaItem): PlaybackPlatformApi.MediaItem {
@@ -137,9 +142,11 @@ abstract class PlayerController : Player.Listener {
         metaBuilder.setExtras(extraMeta)
         val miBuilder = PlaybackPlatformApi.MediaItem.Builder()
             .setUrl(mediaItem.localConfiguration?.uri?.toString())
-            .setIsLive(extraMeta[PLAYER_DATA_IS_LIVE] == "true").setMetadata(metaBuilder.build())
-        if (extraMeta[PLAYER_DATA_MIME_TYPE] != null) {
-            miBuilder.setMimeType(extraMeta[PLAYER_DATA_MIME_TYPE])
+            .setIsLive(sourceExtras?.getString(PLAYER_DATA_IS_LIVE) == "true")
+            .setMetadata(metaBuilder.build())
+        val mimeType = sourceExtras?.getString(PLAYER_DATA_MIME_TYPE);
+        if (mimeType != null) {
+            miBuilder.setMimeType(mimeType)
         } else if (mediaItem.localConfiguration?.mimeType != null) {
             miBuilder.setMimeType(mediaItem.localConfiguration?.mimeType)
         }

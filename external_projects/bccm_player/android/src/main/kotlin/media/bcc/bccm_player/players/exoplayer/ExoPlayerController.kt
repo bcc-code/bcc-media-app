@@ -29,6 +29,7 @@ import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
 import media.bcc.bccm_player.pigeon.PlaybackPlatformApi.NpawConfig
 import media.bcc.bccm_player.players.PlayerController
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter
+import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
 import java.util.UUID
 
 
@@ -157,7 +158,7 @@ class ExoPlayerController(private val context: Context) :
         val mediaMetadata = player.mediaMetadata
         val extras = mediaMetadata.extras?.let { extractExtrasFromAndroid(it) }
         youboraPlugin.options.contentIsLive = extras?.get("npaw.content.isLive")?.toBoolean()
-            ?: extras?.get(CastMediaItemConverter.PLAYER_DATA_IS_LIVE)?.toBoolean()
+            ?: player.mediaMetadata.extras?.getString(PLAYER_DATA_IS_LIVE)?.toBoolean()
                     ?: player.isCurrentMediaItemLive
         youboraPlugin.options.contentId = extras?.get("npaw.content.id")
             ?: mediaMetadata.extras?.getString("id")

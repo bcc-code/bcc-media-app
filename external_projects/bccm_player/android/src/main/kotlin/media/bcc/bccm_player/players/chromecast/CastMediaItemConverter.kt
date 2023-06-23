@@ -56,7 +56,7 @@ class CastMediaItemConverter : MediaItemConverter {
             }
 
             for (key in metadata.keySet()
-                .filter { it.contains(BCCM_EXTRAS) || it.contains(BCCM_PLAYER_DATA) }) {
+                .filter { it.contains(BCCM_META_EXTRAS) || it.contains(BCCM_PLAYER_DATA) }) {
                 try {
                     extrasBundle.putString(key, metadata.getString(key))
                 } catch (e: Throwable) {
@@ -148,7 +148,7 @@ class CastMediaItemConverter : MediaItemConverter {
         }
 
         mediaItem.mediaMetadata.extras?.toMap()
-            ?.filter { it.key.contains(BCCM_EXTRAS) || it.key.contains(BCCM_PLAYER_DATA) }
+            ?.filter { it.key.contains(BCCM_META_EXTRAS) || it.key.contains(BCCM_PLAYER_DATA) }
             ?.forEach {
                 metadata.putString(it.key, it.value)
             }
@@ -196,7 +196,7 @@ class CastMediaItemConverter : MediaItemConverter {
         private const val KEY_LICENSE_URI = "licenseUri"
         private const val KEY_REQUEST_HEADERS = "requestHeaders"
         const val BCCM_PLAYER_DATA = "media.bcc.player"
-        const val BCCM_EXTRAS = "media.bcc.extras"
+        const val BCCM_META_EXTRAS = "media.bcc.extras"
         const val PLAYER_DATA_IS_LIVE = "$BCCM_PLAYER_DATA.is_live"
         const val PLAYER_DATA_MIME_TYPE = "$BCCM_PLAYER_DATA.mime_type"
         const val PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE =
