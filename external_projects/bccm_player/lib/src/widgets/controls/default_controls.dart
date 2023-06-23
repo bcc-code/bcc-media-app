@@ -107,6 +107,7 @@ class DefaultControls extends HookWidget {
                       IconButton(
                         icon: const Icon(Icons.play_arrow),
                         iconSize: 54,
+                        color: Colors.white,
                         onPressed: () {
                           BccmPlayerInterface.instance.play(playerId);
                         },
@@ -119,6 +120,7 @@ class DefaultControls extends HookWidget {
                                 height: 48,
                               )
                             : const Icon(Icons.pause),
+                        color: Colors.white,
                         iconSize: 54,
                         onPressed: () {
                           BccmPlayerInterface.instance.pause(playerId);
@@ -174,7 +176,7 @@ class DefaultControls extends HookWidget {
                             child: SliderTheme(
                               data: SliderTheme.of(context).copyWith(
                                 trackHeight: 2,
-                                thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6),
+                                thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
                                 overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
                               ),
                               child: Slider(

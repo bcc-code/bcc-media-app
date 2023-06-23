@@ -51,6 +51,7 @@ class BibleKidsDesignSystem extends DesignSystemData {
           color: colors.separatorOnLight,
           thickness: 1,
         ),
+        sliderTheme: SliderThemeData(inactiveTrackColor: colors.separatorOnLight),
         brightness: Brightness.dark,
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,
