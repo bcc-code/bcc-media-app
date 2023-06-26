@@ -7,7 +7,6 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 
 import '../helpers/widget_keys.dart';
 import '../screens/live.dart';
-import '../theme/design_system/design_system.dart';
 
 class LiveMiniPlayer extends ConsumerStatefulWidget {
   const LiveMiniPlayer({Key? key, required this.onStartRequest}) : super(key: key);
@@ -28,14 +27,9 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
 
   Widget _emptyPlayer(PlayerState player) {
     var metadata = ref.read(liveMetadataProvider);
-    final design = DesignSystem.of(context);
     return MiniPlayer(
       titleKey: WidgetKeys.miniPlayerTitle,
       secondaryTitle: metadata.artist,
-      border: BorderSide(color: design.colors.separatorOnLight, width: 1),
-      backgroundColor: design.colors.background2,
-      titleStyle: design.textStyles.caption1.copyWith(color: design.colors.label1),
-      secondaryTitleStyle: design.textStyles.caption2.copyWith(color: design.colors.tint1),
       title: metadata.title ?? '',
       artworkUri: metadata.artworkUri,
       isPlaying: false,
@@ -55,7 +49,6 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    final design = DesignSystem.of(context);
     final player = ref.watch(primaryPlayerProvider);
     final currentMetadata = player?.currentMediaItem?.metadata;
 
@@ -83,10 +76,6 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
         secondaryTitle: currentMetadata.artist,
         title: currentMetadata.title ?? '',
         artworkUri: currentMetadata.artworkUri ?? '',
-        border: BorderSide(color: design.colors.separatorOnLight, width: 1),
-        backgroundColor: design.colors.background2,
-        titleStyle: design.textStyles.caption1.copyWith(color: design.colors.label1),
-        secondaryTitleStyle: design.textStyles.caption2.copyWith(color: design.colors.tint1),
         isPlaying: player.playbackState == PlaybackState.playing,
         hideCloseButton: true,
         onPlayTap: () {
