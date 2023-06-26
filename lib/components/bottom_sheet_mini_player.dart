@@ -51,7 +51,6 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     var title = player.currentMediaItem?.metadata?.title;
     var artworkUri = player.currentMediaItem?.metadata?.artworkUri;
     var playbackState = player.playbackState;
-    final design = DesignSystem.of(context);
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -75,10 +74,6 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         secondaryTitle: artist,
         title: title ?? '',
         artworkUri: artworkUri ?? '',
-        border: BorderSide(color: design.colors.separatorOnLight, width: 1),
-        backgroundColor: design.colors.background2,
-        titleStyle: design.textStyles.caption1.copyWith(color: design.colors.label1),
-        secondaryTitleStyle: design.textStyles.caption2.copyWith(color: design.colors.tint1),
         playSemanticLabel: S.of(context).play,
         pauseSemanticLabel: S.of(context).pause,
         isPlaying: playbackState == PlaybackState.playing,
@@ -98,7 +93,6 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
   /// Builds based on the previous meta (to ensure smooth transition)
   /// Worst case, just a blank box. Shouldn't happen though, I think.
   Widget _buildDummy() {
-    final design = DesignSystem.of(context);
     final metadata = previousMetadata;
     if (metadata != null) {
       return MiniPlayer(
@@ -106,9 +100,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         secondaryTitle: metadata.artist,
         title: metadata.title ?? '',
         artworkUri: metadata.artworkUri ?? '',
-        backgroundColor: design.colors.background2,
-        titleStyle: design.textStyles.caption1.copyWith(color: design.colors.label1),
-        secondaryTitleStyle: design.textStyles.caption2.copyWith(color: design.colors.tint1),
+        showBorder: false,
         isPlaying: false,
       );
     }

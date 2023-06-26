@@ -1,28 +1,14 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../cast/cast_player.dart';
 import 'package:bccm_player/src/playback_platform_interface.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../controls/default_controls.dart';
 import 'video_platform_view.dart';
-
-// BccmPlayerView - Stack(Video, PlayerControls).
-// Video: Platform specific uikit/android/web (includes video and subs)
-// PlayerControls: Just pure controls (play/pause, seek, fullscreen)
-// BccmPlayerView; On fullscreen button: push fullscreen route with BccmPlayerView - Stack(Video, Controls).
-
-// flutter-based ui MVP:
-// Fullscreen
-// Play/pause
-// Seek and progress
-// Audio selection
-// Airplay
-// Next:
-// Subtitle selection
-// Playback speed selection
 
 class VideoPlayerView extends HookWidget {
   final String id;
@@ -90,7 +76,6 @@ class VideoPlayerView extends HookWidget {
 
 class _VideoWithControls extends HookWidget {
   const _VideoWithControls({
-    super.key,
     required this.parent,
     required this.goFullscreen,
     required this.exitFullscreen,

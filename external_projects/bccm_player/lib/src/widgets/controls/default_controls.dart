@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'dart:math';
 
 import 'package:bccm_player/bccm_player.dart';
@@ -6,6 +8,7 @@ import 'package:bccm_player/src/pigeon/pigeon_extensions.dart';
 import 'package:bccm_player/src/helpers/utils/debouncer.dart';
 import 'package:bccm_player/src/widgets/controls/controls_wrapper.dart';
 import 'package:bccm_player/src/widgets/mini_player/loading_indicator.dart';
+import 'package:bccm_player/theme/bccm_player_theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:collection/collection.dart';
@@ -27,7 +30,7 @@ class DefaultControls extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: invalid_use_of_protected_member
+    final controlsTheme = PlayerTheme.safeOf(context).controls!;
     final player = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state);
     final seekDebouncer = useMemoized(() => Debouncer(milliseconds: 1000));
     useEffect(() {
@@ -44,7 +47,6 @@ class DefaultControls extends HookWidget {
     final currentScrub = useState(0.0);
     void scrubTo(double value) {
       if ((currentScrub.value - value).abs() < 0.01) {
-        debugPrint(currentScrub.value.toString() + ' ,,,, ' + value.toString());
         currentScrub.value = value;
         return;
       }
@@ -78,6 +80,7 @@ class DefaultControls extends HookWidget {
                         IconButton(
                           icon: const Icon(Icons.close),
                           iconSize: 32,
+                          color: controlsTheme.iconColor,
                           padding: const EdgeInsets.all(12),
                           onPressed: () {
                             Navigator.maybePop(context);
@@ -86,13 +89,14 @@ class DefaultControls extends HookWidget {
                         if (title != null)
                           Text(
                             title,
-                            style: Theme.of(context).textTheme.labelMedium,
+                            style: controlsTheme.fullscreenTitleStyle,
                           ),
                       ],
                       const Spacer(),
                       _SettingsWidget(
                         playerId: playerId,
                         padding: const EdgeInsets.only(top: 12, bottom: 24, left: 24, right: 8),
+                        controlsTheme: controlsTheme,
                       ),
                     ],
                   ),
@@ -107,7 +111,7 @@ class DefaultControls extends HookWidget {
                       IconButton(
                         icon: const Icon(Icons.play_arrow),
                         iconSize: 54,
-                        color: Colors.white,
+                        color: controlsTheme.iconColor,
                         onPressed: () {
                           BccmPlayerInterface.instance.play(playerId);
                         },
@@ -115,13 +119,14 @@ class DefaultControls extends HookWidget {
                     else
                       IconButton(
                         icon: player.value?.isBuffering == true
-                            ? const LoadingIndicator(
+                            ? LoadingIndicator(
                                 width: 48,
                                 height: 48,
+                                color: controlsTheme.iconColor,
                               )
                             : const Icon(Icons.pause),
-                        color: Colors.white,
                         iconSize: 54,
+                        color: controlsTheme.iconColor,
                         onPressed: () {
                           BccmPlayerInterface.instance.pause(playerId);
                         },
@@ -146,7 +151,7 @@ class DefaultControls extends HookWidget {
                               padding: const EdgeInsets.only(bottom: 8, left: 10),
                               child: Text(
                                 '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
-                                style: Theme.of(context).textTheme.labelSmall,
+                                style: controlsTheme.durationTextStyle,
                               ),
                             ),
                           const Spacer(),
@@ -165,6 +170,7 @@ class DefaultControls extends HookWidget {
                               padding: const EdgeInsets.all(8).copyWith(bottom: 5, left: 20),
                               child: Icon(
                                 isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
+                                color: controlsTheme.iconColor,
                               ),
                             ),
                           ),
@@ -180,21 +186,20 @@ class DefaultControls extends HookWidget {
                           children: [
                             Expanded(
                               child: SliderTheme(
-                                data: SliderTheme.of(context).copyWith(
-                                  trackHeight: 2,
-                                  thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-                                  overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
-                                ),
-                                child: Slider(
-                                  value: seeking.value
-                                      ? currentScrub.value
-                                      : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
-                                  onChanged: (double value) {
-                                    scrubTo(value);
-                                  },
-                                  onChangeEnd: (double value) {
-                                    seekDebouncer.forceEarly();
-                                  },
+                                data: controlsTheme.progressBarTheme!,
+                                child: SizedBox(
+                                  height: 10,
+                                  child: Slider(
+                                    value: seeking.value
+                                        ? currentScrub.value
+                                        : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
+                                    onChanged: (double value) {
+                                      scrubTo(value);
+                                    },
+                                    onChangeEnd: (double value) {
+                                      seekDebouncer.forceEarly();
+                                    },
+                                  ),
                                 ),
                               ),
                             ),
@@ -213,10 +218,15 @@ class DefaultControls extends HookWidget {
 }
 
 class _SettingsWidget extends HookWidget {
-  const _SettingsWidget({required this.playerId, this.padding});
+  const _SettingsWidget({
+    required this.playerId,
+    this.padding,
+    required this.controlsTheme,
+  });
 
   final String playerId;
   final EdgeInsets? padding;
+  final ControlsThemeData controlsTheme;
 
   @override
   Widget build(BuildContext context) {
@@ -227,20 +237,29 @@ class _SettingsWidget extends HookWidget {
         showModalBottomSheet(
           context: context,
           isDismissible: true,
-          builder: (context) => _Settings(playerId: playerId),
+          builder: (context) => _Settings(
+            playerId: playerId,
+            controlsTheme: controlsTheme,
+          ),
         );
       },
       child: Padding(
         padding: padding ?? const EdgeInsets.all(0),
-        child: const Icon(Icons.settings),
+        child: Icon(Icons.settings, color: controlsTheme.iconColor),
       ),
     );
   }
 }
 
 class _Settings extends HookWidget {
-  const _Settings({required this.playerId});
+  const _Settings({
+    required this.playerId,
+    required this.controlsTheme,
+  });
+
   final String playerId;
+  final ControlsThemeData controlsTheme;
+
   @override
   Widget build(BuildContext context) {
     final tracksFuture = useMemoized(() {
@@ -261,7 +280,7 @@ class _Settings extends HookWidget {
     final selectedTextTrack = tracksData?.textTracks.safe.firstWhereOrNull((element) => element.isSelected);
 
     return Container(
-      color: Theme.of(context).dialogBackgroundColor,
+      color: controlsTheme.settingsListBackgroundColor,
       child: ListView(
         shrinkWrap: true,
         children: [
@@ -272,7 +291,10 @@ class _Settings extends HookWidget {
                 final selected = await showModalBottomSheet<String>(
                   context: context,
                   isDismissible: true,
-                  builder: (context) => SettingsTrackList(tracks: tracksData!.audioTracks),
+                  builder: (context) => SettingsTrackList(
+                    tracks: tracksData!.audioTracks,
+                    controlsTheme: controlsTheme,
+                  ),
                 );
                 if (selected != null && context.mounted) {
                   BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.audio, selected);
@@ -281,18 +303,21 @@ class _Settings extends HookWidget {
               },
               title: Text(
                 'Audio: ${selectedAudioTrack?.labelWithFallback ?? 'N/A'}',
-                style: Theme.of(context).textTheme.labelMedium,
+                style: controlsTheme.settingsListTextStyle,
               ),
             ),
           if (tracksData?.textTracks.isNotEmpty == true)
             ListTile(
               dense: true,
-              title: Text('Subtitles: ${selectedTextTrack?.labelWithFallback ?? 'N/A'}', style: Theme.of(context).textTheme.labelMedium),
+              title: Text('Subtitles: ${selectedTextTrack?.labelWithFallback ?? 'N/A'}', style: controlsTheme.settingsListTextStyle),
               onTap: () async {
                 final selected = await showModalBottomSheet<String>(
                   context: context,
                   isDismissible: true,
-                  builder: (context) => SettingsTrackList(tracks: tracksData!.textTracks),
+                  builder: (context) => SettingsTrackList(
+                    tracks: tracksData!.textTracks,
+                    controlsTheme: controlsTheme,
+                  ),
                 );
                 if (selected != null && context.mounted) {
                   BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.text, selected);
@@ -310,15 +335,17 @@ class SettingsTrackList extends StatelessWidget {
   const SettingsTrackList({
     super.key,
     required this.tracks,
+    required this.controlsTheme,
   });
 
   final List<Track?> tracks;
+  final ControlsThemeData controlsTheme;
 
   @override
   Widget build(BuildContext context) {
     // show list of audio tracks with a tick on the selected one
     return Container(
-      color: Theme.of(context).dialogBackgroundColor,
+      color: controlsTheme.settingsListBackgroundColor,
       child: ListView(
         shrinkWrap: true,
         children: [
@@ -329,7 +356,7 @@ class SettingsTrackList extends StatelessWidget {
                 // select this track
                 Navigator.pop(context, track.id);
               },
-              title: Text(track.labelWithFallback, style: Theme.of(context).textTheme.labelMedium),
+              title: Text(track.labelWithFallback, style: controlsTheme.settingsListTextStyle),
               trailing: track.isSelected ? const Icon(Icons.check) : null,
             ),
         ],
