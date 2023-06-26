@@ -14,6 +14,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../components/status_indicators/error_generic.dart';
 import '../../flavors.dart';
+import '../../helpers/webview/main_js_channel.dart';
 import '../../theme/design_system/design_system.dart';
 
 class GameScreen extends HookConsumerWidget {
@@ -26,7 +27,7 @@ class GameScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = AutoTabsRouter.of(context);
+    final router = AutoRouter.of(context);
     useEffect(() {
       void tabListener() {
         if (router.topPage?.child != this) {
@@ -80,7 +81,12 @@ class GameScreen extends HookConsumerWidget {
         return true;
       },
       child: Scaffold(
-        appBar: AppBar(leading: const CustomBackButton(), leadingWidth: 92, title: Text(game.title)),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          leading: const CustomBackButton(),
+          leadingWidth: 92,
+          title: Text(game.title),
+        ),
         body: Stack(
           children: [
             Opacity(
@@ -90,6 +96,8 @@ class GameScreen extends HookConsumerWidget {
                   useHybridComposition: false,
                   transparentBackground: true,
                   verticalScrollBarEnabled: false,
+                  allowsInlineMediaPlayback: true,
+                  iframeAllowFullscreen: true,
                 ),
                 gestureRecognizers: {
                   Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer()),
@@ -108,6 +116,9 @@ class GameScreen extends HookConsumerWidget {
                         --gradient-dark: linear-gradient(90deg, ${toCSSRGBA(design.colors.background1)}, ${toCSSRGBA(design.colors.background1)});
                       }
                     ''');
+                },
+                onWebViewCreated: (InAppWebViewController controller) {
+                  MainJsChannel.register(context, controller);
                 },
                 onReceivedError: (controller, req, err) {
                   debugPrint('Error loading game: $err');

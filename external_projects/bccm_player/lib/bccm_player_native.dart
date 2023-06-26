@@ -117,9 +117,14 @@ class BccmPlayerNative extends BccmPlayerInterface {
 
   @override
   void exitFullscreen(String playerId) {
-    _pigeon.exitFullscreen(playerId);
+    if (currentFullscreenNavigator != null) {
+      currentFullscreenNavigator?.maybePop();
+    } else {
+      _pigeon.exitFullscreen(playerId);
+    }
   }
 
+  NavigatorState? currentFullscreenNavigator;
   @override
   Future enterFullscreen(String playerId, {bool? useNativeControls = true, BuildContext? context, void Function()? resetSystemOverlays}) async {
     if (useNativeControls == true) {
@@ -133,12 +138,24 @@ class BccmPlayerNative extends BccmPlayerInterface {
       debugPrint('bccm: setPreferredOrientations landscape');
 
       stateNotifier.getPlayerNotifier(playerId)?.setIsFlutterFullscreen(true);
+      currentFullscreenNavigator = Navigator.of(context, rootNavigator: true);
       await Navigator.of(context, rootNavigator: true).push(
         PageRouteBuilder(
           pageBuilder: (context, aAnim, bAnim) => VideoPlayerViewFullscreen(playerId: playerId),
           transitionsBuilder: (context, aAnim, bAnim, child) => FadeTransition(opacity: aAnim, child: child),
+          fullscreenDialog: true,
         ),
       );
+
+      if (resetSystemOverlays != null) {
+        resetSystemOverlays();
+      } else {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+      }
+
+      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+      debugPrint('bccm: setPreferredOrientations portraitUp');
+
       stateNotifier.getPlayerNotifier(playerId)?.setIsFlutterFullscreen(false);
       Wakelock.disable();
     }

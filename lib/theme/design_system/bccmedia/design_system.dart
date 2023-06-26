@@ -53,6 +53,7 @@ class BccMediaDesignSystem extends DesignSystemData {
         canvasColor: colors.background1,
         highlightColor: colors.background2.withOpacity(0.5),
         splashColor: colors.background2.withOpacity(1),
+        sliderTheme: SliderThemeData(inactiveTrackColor: colors.separatorOnLight),
         progressIndicatorTheme: ProgressIndicatorThemeData(
           color: colors.tint1,
         ),

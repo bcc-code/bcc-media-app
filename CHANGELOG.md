@@ -1,4 +1,29 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v4.5.4+2300074-kids...v) (2023-06-22)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v4.5.5+2300075-kids...v) (2023-06-23)
+
+
+
+## [4.5.5+2300075-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.5.5+2300075...v4.5.5+2300075-kids) (2023-06-23)
+
+
+### Bug Fixes
+
+* **android:** isLive and mimeType was not passed correctly around ([319a8c9](https://github.com/bcc-code/bcc-media-app/commit/319a8c96175a97d7b346b06bf8131a19d4eb9861))
+* **android:** prevent system gestures on videos ([9c2819d](https://github.com/bcc-code/bcc-media-app/commit/9c2819d7d37456eb20c97dfd8e6d0b9e853e0ff2))
+* bigger hitbox for video timeline scrubbing ([4094f72](https://github.com/bcc-code/bcc-media-app/commit/4094f72a8113f71099e35ce82bc1ab27cf765034))
+* **ios:** use cupertinoroute to prevent system gesture navigation ([1dd2fca](https://github.com/bcc-code/bcc-media-app/commit/1dd2fcaa3e0585a86bd117c4454eed42af1e4d83))
+* routes for gamescreen was messed up ([0cce35c](https://github.com/bcc-code/bcc-media-app/commit/0cce35c8676ee533bb0205512777f22d9d39dc39))
+* swipe navigation not working because of WillPopScope ([2789237](https://github.com/bcc-code/bcc-media-app/commit/27892374343ede5a1e9e082c692c7ebf39d06bb5))
+
+
+### Features
+
+* allow inline media playback in webviews ([18f7229](https://github.com/bcc-code/bcc-media-app/commit/18f7229641e200d9ef55d22dfd79c1bd05eb6dfc))
+* exit via inappwebview ([75baa1d](https://github.com/bcc-code/bcc-media-app/commit/75baa1d559e5ddb03b6833b62e14165eacfb76c6))
+* game screen is now fullscreen, no tabs ([7457916](https://github.com/bcc-code/bcc-media-app/commit/7457916ad798301a777fdffa0a0567b3fdd89b50))
+* **games:** flutter channel to allow routing, etc via javascript for games webview ([80288df](https://github.com/bcc-code/bcc-media-app/commit/80288df43c117bba33c169aa99c17f598ab8cf3c))
+* **player:** easier to click buttons, v2 ([54b35e6](https://github.com/bcc-code/bcc-media-app/commit/54b35e686744892f3621cacf135c1a65691f35ad))
+* **player:** make fullscreen and settings easier to click ([47055e7](https://github.com/bcc-code/bcc-media-app/commit/47055e7043f3471ef3c9408ca1faa02bc7aa8d5f))
+* **player:** white play/pause button ([a73ce0d](https://github.com/bcc-code/bcc-media-app/commit/a73ce0d0a3451e3fb59f0132c84f7904b0f16edb))
 
 
 

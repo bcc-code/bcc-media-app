@@ -84,6 +84,7 @@ class DefaultControls extends HookWidget {
                           icon: const Icon(Icons.close),
                           iconSize: 32,
                           color: safeControlsTheme.iconColor,
+                          padding: const EdgeInsets.all(12),
                           onPressed: () {
                             Navigator.maybePop(context);
                           },
@@ -95,9 +96,10 @@ class DefaultControls extends HookWidget {
                           ),
                       ],
                       const Spacer(),
-                      Container(
-                        padding: const EdgeInsets.only(top: 12, right: 2),
-                        child: _SettingsWidget(playerId: playerId, controlsTheme: safeControlsTheme),
+                      _SettingsWidget(
+                        playerId: playerId,
+                        padding: const EdgeInsets.only(top: 12, bottom: 24, left: 24, right: 8),
+                        controlsTheme: safeControlsTheme,
                       ),
                     ],
                   ),
@@ -142,29 +144,33 @@ class DefaultControls extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     SizedBox(
-                      height: 48,
+                      height: 42,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           if (player.value?.currentMediaItem?.isLive != true)
                             Padding(
-                              padding: const EdgeInsets.only(left: 6),
+                              padding: const EdgeInsets.only(bottom: 8, left: 10),
                               child: Text(
                                 '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
                                 style: safeControlsTheme.durationTextStyle,
                               ),
                             ),
                           const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 2),
-                            child: GestureDetector(
-                              onTap: () {
-                                if (!isFullscreen) {
-                                  goFullscreen();
-                                } else {
-                                  exitFullscreen();
-                                }
-                              },
+                          GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: () {
+                              if (!isFullscreen) {
+                                goFullscreen();
+                              } else {
+                                exitFullscreen();
+                              }
+                            },
+                            child: Container(
+                              height: double.infinity,
+                              alignment: Alignment.bottomRight,
+                              padding: const EdgeInsets.all(8).copyWith(bottom: 5, left: 20),
                               child: Icon(
                                 isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
                                 color: safeControlsTheme.iconColor,
@@ -175,10 +181,10 @@ class DefaultControls extends HookWidget {
                       ),
                     ),
                     if (player.value?.currentMediaItem?.isLive == true)
-                      const Padding(padding: EdgeInsets.only(top: 4))
+                      const Padding(padding: EdgeInsets.only(top: 12))
                     else
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 24),
+                        padding: const EdgeInsets.only(bottom: 16),
                         child: Row(
                           children: [
                             Expanded(
@@ -217,15 +223,18 @@ class DefaultControls extends HookWidget {
 class _SettingsWidget extends HookWidget {
   const _SettingsWidget({
     required this.playerId,
+    this.padding,
     required this.controlsTheme,
   });
 
   final String playerId;
+  final EdgeInsets? padding;
   final ControlsThemeData controlsTheme;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         // open bottom sheet with settings
         showModalBottomSheet(
@@ -237,7 +246,10 @@ class _SettingsWidget extends HookWidget {
           ),
         );
       },
-      child: Icon(Icons.settings, color: controlsTheme.iconColor),
+      child: Padding(
+        padding: padding ?? const EdgeInsets.all(0),
+        child: Icon(Icons.settings, color: controlsTheme.iconColor),
+      ),
     );
   }
 }

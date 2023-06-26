@@ -12,25 +12,25 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i31;
-import 'package:auto_route/empty_router_widgets.dart' as _i24;
+import 'package:auto_route/empty_router_widgets.dart' as _i25;
 import 'package:flutter/foundation.dart' as _i35;
 import 'package:flutter/material.dart' as _i32;
 
 import '../helpers/navigation/custom_transitions.dart' as _i34;
-import '../screens/achievement_group.dart' as _i21;
-import '../screens/achievements.dart' as _i20;
+import '../screens/achievement_group.dart' as _i22;
+import '../screens/achievements.dart' as _i21;
 import '../screens/auto_login.dart' as _i1;
-import '../screens/calendar.dart' as _i25;
+import '../screens/calendar.dart' as _i26;
 import '../screens/episode.dart' as _i17;
 import '../screens/extra_usergroups.dart' as _i18;
-import '../screens/games/game.dart' as _i28;
+import '../screens/games/game.dart' as _i19;
 import '../screens/games/games.dart' as _i30;
 import '../screens/home.dart' as _i16;
-import '../screens/live.dart' as _i23;
+import '../screens/live.dart' as _i24;
 import '../screens/my_list.dart' as _i29;
 import '../screens/onboarding/onboarding.dart' as _i2;
 import '../screens/onboarding/signup.dart' as _i3;
-import '../screens/page.dart' as _i27;
+import '../screens/page.dart' as _i28;
 import '../screens/profile/about.dart' as _i12;
 import '../screens/profile/account_deletion.dart' as _i15;
 import '../screens/profile/app_language.dart' as _i5;
@@ -43,9 +43,9 @@ import '../screens/profile/privacy_policy.dart' as _i14;
 import '../screens/profile/profile.dart' as _i4;
 import '../screens/profile/subtitle_language.dart' as _i7;
 import '../screens/profile/video_quality.dart' as _i8;
-import '../screens/search.dart' as _i26;
-import '../screens/study.dart' as _i19;
-import '../screens/tabs_root.dart' as _i22;
+import '../screens/search.dart' as _i27;
+import '../screens/study.dart' as _i20;
+import '../screens/tabs_root.dart' as _i23;
 import 'router.dart' as _i33;
 
 class AppRouter extends _i31.RootStackRouter {
@@ -225,14 +225,10 @@ class AppRouter extends _i31.RootStackRouter {
     PublicHomeRoute.name: (routeData) {
       final args = routeData.argsAs<PublicHomeRouteArgs>(
           orElse: () => const PublicHomeRouteArgs());
-      return _i31.CustomPage<void>(
+      return _i31.CupertinoPageX<void>(
         routeData: routeData,
         child: _i16.HomeScreen(key: args.key),
         maintainState: false,
-        durationInMilliseconds: 500,
-        reverseDurationInMilliseconds: 500,
-        opaque: true,
-        barrierDismissible: false,
       );
     },
     EmbedScreen.name: (routeData) {
@@ -274,11 +270,25 @@ class AppRouter extends _i31.RootStackRouter {
         barrierDismissible: false,
       );
     },
+    GameScreenRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<GameScreenRouteArgs>(
+          orElse: () =>
+              GameScreenRouteArgs(gameId: pathParams.getString('gameId')));
+      return _i31.CupertinoPageX<void>(
+        routeData: routeData,
+        child: _i19.GameScreen(
+          key: args.key,
+          gameId: args.gameId,
+        ),
+        maintainState: false,
+      );
+    },
     StudyScreenRoute.name: (routeData) {
       final args = routeData.argsAs<StudyScreenRouteArgs>();
       return _i31.CustomPage<void>(
         routeData: routeData,
-        child: _i19.StudyScreen(
+        child: _i20.StudyScreen(
           key: args.key,
           episodeId: args.episodeId,
           lessonId: args.lessonId,
@@ -293,7 +303,7 @@ class AppRouter extends _i31.RootStackRouter {
     AchievementsScreenRoute.name: (routeData) {
       return _i31.CustomPage<void>(
         routeData: routeData,
-        child: const _i20.AchievementsScreen(),
+        child: const _i21.AchievementsScreen(),
         transitionsBuilder: _i34.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -308,7 +318,7 @@ class AppRouter extends _i31.RootStackRouter {
               groupId: pathParams.getString('groupId')));
       return _i31.CustomPage<void>(
         routeData: routeData,
-        child: _i21.AchievementGroupScreen(
+        child: _i22.AchievementGroupScreen(
           key: args.key,
           groupId: args.groupId,
         ),
@@ -322,7 +332,7 @@ class AppRouter extends _i31.RootStackRouter {
     TabsRootScreenRoute.name: (routeData) {
       return _i31.CustomPage<void>(
         routeData: routeData,
-        child: const _i22.TabsRootScreen(),
+        child: const _i23.TabsRootScreen(),
         opaque: true,
         barrierDismissible: false,
       );
@@ -330,25 +340,25 @@ class AppRouter extends _i31.RootStackRouter {
     LiveScreenRoute.name: (routeData) {
       return _i31.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i23.LiveScreen(),
+        child: const _i24.LiveScreen(),
       );
     },
     SearchScreenWrapperRoute.name: (routeData) {
       return _i31.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i24.EmptyRouterPage(),
+        child: const _i25.EmptyRouterPage(),
       );
     },
     CalendarPageRoute.name: (routeData) {
       return _i31.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i25.CalendarPage(),
+        child: const _i26.CalendarPage(),
       );
     },
     MyListScreenWrapperRoute.name: (routeData) {
       return _i31.CustomPage<void>(
         routeData: routeData,
-        child: const _i24.EmptyRouterPage(),
+        child: const _i25.EmptyRouterPage(),
         maintainState: false,
         opaque: true,
         barrierDismissible: false,
@@ -357,7 +367,7 @@ class AppRouter extends _i31.RootStackRouter {
     GamesWrapperRoute.name: (routeData) {
       return _i31.CustomPage<void>(
         routeData: routeData,
-        child: const _i24.EmptyRouterPage(),
+        child: const _i25.EmptyRouterPage(),
         opaque: true,
         barrierDismissible: false,
       );
@@ -365,7 +375,7 @@ class AppRouter extends _i31.RootStackRouter {
     HomeScreenWrapperRoute.name: (routeData) {
       return _i31.CustomPage<void>(
         routeData: routeData,
-        child: const _i24.EmptyRouterPage(),
+        child: const _i25.EmptyRouterPage(),
         opaque: true,
         barrierDismissible: false,
       );
@@ -377,7 +387,7 @@ class AppRouter extends _i31.RootStackRouter {
               SearchScreenRouteArgs(query: queryParams.optString('q')));
       return _i31.MaterialPageX<void>(
         routeData: routeData,
-        child: _i26.SearchScreen(
+        child: _i27.SearchScreen(
           key: args.key,
           query: args.query,
         ),
@@ -394,7 +404,7 @@ class AppRouter extends _i31.RootStackRouter {
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
                 collectionId: queryParams.optString('collectionId'),
               ));
-      return _i31.CustomPage<void>(
+      return _i31.CupertinoPageX<void>(
         routeData: routeData,
         child: _i17.EpisodeScreen(
           key: args.key,
@@ -404,11 +414,6 @@ class AppRouter extends _i31.RootStackRouter {
           hideBottomSection: args.hideBottomSection,
           collectionId: args.collectionId,
         ),
-        transitionsBuilder: _i34.CustomTransitionsBuilders.slideLeft,
-        durationInMilliseconds: 300,
-        reverseDurationInMilliseconds: 300,
-        opaque: true,
-        barrierDismissible: false,
       );
     },
     CollectionEpisodeScreenRoute.name: (routeData) {
@@ -422,7 +427,7 @@ class AppRouter extends _i31.RootStackRouter {
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
                 collectionId: pathParams.optString('collectionId'),
               ));
-      return _i31.CustomPage<void>(
+      return _i31.CupertinoPageX<void>(
         routeData: routeData,
         child: _i17.CollectionEpisodeScreen(
           key: args.key,
@@ -432,11 +437,6 @@ class AppRouter extends _i31.RootStackRouter {
           hideBottomSection: args.hideBottomSection,
           collectionId: args.collectionId,
         ),
-        transitionsBuilder: _i34.CustomTransitionsBuilders.slideLeft,
-        durationInMilliseconds: 300,
-        reverseDurationInMilliseconds: 300,
-        opaque: true,
-        barrierDismissible: false,
       );
     },
     PageScreenRoute.name: (routeData) {
@@ -444,31 +444,12 @@ class AppRouter extends _i31.RootStackRouter {
       final args = routeData.argsAs<PageScreenRouteArgs>(
           orElse: () =>
               PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
-      return _i31.CustomPage<void>(
+      return _i31.CupertinoPageX<void>(
         routeData: routeData,
-        child: _i27.PageScreen(
+        child: _i28.PageScreen(
           key: args.key,
           pageCode: args.pageCode,
         ),
-        transitionsBuilder: _i34.CustomTransitionsBuilders.slideLeft,
-        durationInMilliseconds: 300,
-        reverseDurationInMilliseconds: 300,
-        opaque: true,
-        barrierDismissible: false,
-      );
-    },
-    GameScreenRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<GameScreenRouteArgs>(
-          orElse: () =>
-              GameScreenRouteArgs(gameId: pathParams.getString('gameId')));
-      return _i31.CupertinoPageX<void>(
-        routeData: routeData,
-        child: _i28.GameScreen(
-          key: args.key,
-          gameId: args.gameId,
-        ),
-        maintainState: false,
       );
     },
     MyListScreenRoute.name: (routeData) {
@@ -486,13 +467,25 @@ class AppRouter extends _i31.RootStackRouter {
         child: const _i30.GamesScreen(),
       );
     },
+    GamesGameScreenRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<GamesGameScreenRouteArgs>(
+          orElse: () =>
+              GamesGameScreenRouteArgs(gameId: pathParams.getString('gameId')));
+      return _i31.CupertinoPageX<void>(
+        routeData: routeData,
+        child: _i19.GameScreen(
+          key: args.key,
+          gameId: args.gameId,
+        ),
+        maintainState: false,
+      );
+    },
     Home.name: (routeData) {
       final args = routeData.argsAs<HomeArgs>(orElse: () => const HomeArgs());
-      return _i31.CustomPage<void>(
+      return _i31.CupertinoPageX<void>(
         routeData: routeData,
         child: _i16.HomeScreen(key: args.key),
-        opaque: true,
-        barrierDismissible: false,
       );
     },
   };
@@ -600,6 +593,10 @@ class AppRouter extends _i31.RootStackRouter {
           meta: <String, dynamic>{'analytics_name': 'extra-usergroups'},
         ),
         _i31.RouteConfig(
+          GameScreenRoute.name,
+          path: '/game/:gameId',
+        ),
+        _i31.RouteConfig(
           StudyScreenRoute.name,
           path: 'study-lesson',
           meta: <String, dynamic>{'analytics_name': 'study-lesson'},
@@ -657,11 +654,6 @@ class AppRouter extends _i31.RootStackRouter {
                   parent: SearchScreenWrapperRoute.name,
                   usesPathAsKey: true,
                 ),
-                _i31.RouteConfig(
-                  GameScreenRoute.name,
-                  path: ':gameId',
-                  parent: SearchScreenWrapperRoute.name,
-                ),
               ],
             ),
             _i31.RouteConfig(
@@ -710,7 +702,7 @@ class AppRouter extends _i31.RootStackRouter {
                   meta: <String, dynamic>{'nav_tab_route': true},
                 ),
                 _i31.RouteConfig(
-                  GameScreenRoute.name,
+                  GamesGameScreenRoute.name,
                   path: ':gameId',
                   parent: GamesWrapperRoute.name,
                 ),
@@ -744,11 +736,6 @@ class AppRouter extends _i31.RootStackRouter {
                   path: ':pageCode',
                   parent: HomeScreenWrapperRoute.name,
                   usesPathAsKey: true,
-                ),
-                _i31.RouteConfig(
-                  GameScreenRoute.name,
-                  path: ':gameId',
-                  parent: HomeScreenWrapperRoute.name,
                 ),
               ],
             ),
@@ -1069,7 +1056,42 @@ class ExtraUsergroupsScreen extends _i31.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i19.StudyScreen]
+/// [_i19.GameScreen]
+class GameScreenRoute extends _i31.PageRouteInfo<GameScreenRouteArgs> {
+  GameScreenRoute({
+    _i35.Key? key,
+    required String gameId,
+  }) : super(
+          GameScreenRoute.name,
+          path: '/game/:gameId',
+          args: GameScreenRouteArgs(
+            key: key,
+            gameId: gameId,
+          ),
+          rawPathParams: {'gameId': gameId},
+        );
+
+  static const String name = 'GameScreenRoute';
+}
+
+class GameScreenRouteArgs {
+  const GameScreenRouteArgs({
+    this.key,
+    required this.gameId,
+  });
+
+  final _i35.Key? key;
+
+  final String gameId;
+
+  @override
+  String toString() {
+    return 'GameScreenRouteArgs{key: $key, gameId: $gameId}';
+  }
+}
+
+/// generated route for
+/// [_i20.StudyScreen]
 class StudyScreenRoute extends _i31.PageRouteInfo<StudyScreenRouteArgs> {
   StudyScreenRoute({
     _i35.Key? key,
@@ -1108,7 +1130,7 @@ class StudyScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i20.AchievementsScreen]
+/// [_i21.AchievementsScreen]
 class AchievementsScreenRoute extends _i31.PageRouteInfo<void> {
   const AchievementsScreenRoute()
       : super(
@@ -1120,7 +1142,7 @@ class AchievementsScreenRoute extends _i31.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i21.AchievementGroupScreen]
+/// [_i22.AchievementGroupScreen]
 class AchievementGroupScreenRoute
     extends _i31.PageRouteInfo<AchievementGroupScreenRouteArgs> {
   AchievementGroupScreenRoute({
@@ -1156,7 +1178,7 @@ class AchievementGroupScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i22.TabsRootScreen]
+/// [_i23.TabsRootScreen]
 class TabsRootScreenRoute extends _i31.PageRouteInfo<void> {
   const TabsRootScreenRoute({List<_i31.PageRouteInfo>? children})
       : super(
@@ -1169,7 +1191,7 @@ class TabsRootScreenRoute extends _i31.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i23.LiveScreen]
+/// [_i24.LiveScreen]
 class LiveScreenRoute extends _i31.PageRouteInfo<void> {
   const LiveScreenRoute()
       : super(
@@ -1181,7 +1203,7 @@ class LiveScreenRoute extends _i31.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i24.EmptyRouterPage]
+/// [_i25.EmptyRouterPage]
 class SearchScreenWrapperRoute extends _i31.PageRouteInfo<void> {
   const SearchScreenWrapperRoute({List<_i31.PageRouteInfo>? children})
       : super(
@@ -1194,7 +1216,7 @@ class SearchScreenWrapperRoute extends _i31.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i25.CalendarPage]
+/// [_i26.CalendarPage]
 class CalendarPageRoute extends _i31.PageRouteInfo<void> {
   const CalendarPageRoute()
       : super(
@@ -1206,7 +1228,7 @@ class CalendarPageRoute extends _i31.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i24.EmptyRouterPage]
+/// [_i25.EmptyRouterPage]
 class MyListScreenWrapperRoute extends _i31.PageRouteInfo<void> {
   const MyListScreenWrapperRoute({List<_i31.PageRouteInfo>? children})
       : super(
@@ -1219,7 +1241,7 @@ class MyListScreenWrapperRoute extends _i31.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i24.EmptyRouterPage]
+/// [_i25.EmptyRouterPage]
 class GamesWrapperRoute extends _i31.PageRouteInfo<void> {
   const GamesWrapperRoute({List<_i31.PageRouteInfo>? children})
       : super(
@@ -1232,7 +1254,7 @@ class GamesWrapperRoute extends _i31.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i24.EmptyRouterPage]
+/// [_i25.EmptyRouterPage]
 class HomeScreenWrapperRoute extends _i31.PageRouteInfo<void> {
   const HomeScreenWrapperRoute({List<_i31.PageRouteInfo>? children})
       : super(
@@ -1245,7 +1267,7 @@ class HomeScreenWrapperRoute extends _i31.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i26.SearchScreen]
+/// [_i27.SearchScreen]
 class SearchScreenRoute extends _i31.PageRouteInfo<SearchScreenRouteArgs> {
   SearchScreenRoute({
     _i35.Key? key,
@@ -1405,7 +1427,7 @@ class CollectionEpisodeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i27.PageScreen]
+/// [_i28.PageScreen]
 class PageScreenRoute extends _i31.PageRouteInfo<PageScreenRouteArgs> {
   PageScreenRoute({
     _i35.Key? key,
@@ -1440,41 +1462,6 @@ class PageScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i28.GameScreen]
-class GameScreenRoute extends _i31.PageRouteInfo<GameScreenRouteArgs> {
-  GameScreenRoute({
-    _i35.Key? key,
-    required String gameId,
-  }) : super(
-          GameScreenRoute.name,
-          path: ':gameId',
-          args: GameScreenRouteArgs(
-            key: key,
-            gameId: gameId,
-          ),
-          rawPathParams: {'gameId': gameId},
-        );
-
-  static const String name = 'GameScreenRoute';
-}
-
-class GameScreenRouteArgs {
-  const GameScreenRouteArgs({
-    this.key,
-    required this.gameId,
-  });
-
-  final _i35.Key? key;
-
-  final String gameId;
-
-  @override
-  String toString() {
-    return 'GameScreenRouteArgs{key: $key, gameId: $gameId}';
-  }
-}
-
-/// generated route for
 /// [_i29.MyListScreen]
 class MyListScreenRoute extends _i31.PageRouteInfo<void> {
   const MyListScreenRoute()
@@ -1496,6 +1483,42 @@ class GamesScreenRoute extends _i31.PageRouteInfo<void> {
         );
 
   static const String name = 'GamesScreenRoute';
+}
+
+/// generated route for
+/// [_i19.GameScreen]
+class GamesGameScreenRoute
+    extends _i31.PageRouteInfo<GamesGameScreenRouteArgs> {
+  GamesGameScreenRoute({
+    _i35.Key? key,
+    required String gameId,
+  }) : super(
+          GamesGameScreenRoute.name,
+          path: ':gameId',
+          args: GamesGameScreenRouteArgs(
+            key: key,
+            gameId: gameId,
+          ),
+          rawPathParams: {'gameId': gameId},
+        );
+
+  static const String name = 'GamesGameScreenRoute';
+}
+
+class GamesGameScreenRouteArgs {
+  const GamesGameScreenRouteArgs({
+    this.key,
+    required this.gameId,
+  });
+
+  final _i35.Key? key;
+
+  final String gameId;
+
+  @override
+  String toString() {
+    return 'GamesGameScreenRouteArgs{key: $key, gameId: $gameId}';
+  }
 }
 
 /// generated route for

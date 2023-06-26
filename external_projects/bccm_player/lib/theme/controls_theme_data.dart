@@ -20,7 +20,7 @@ class ControlsThemeData {
   factory ControlsThemeData.defaultTheme(BuildContext context) {
     final theme = Theme.of(context);
     return ControlsThemeData(
-      iconColor: theme.colorScheme.onBackground,
+      iconColor: Colors.white,
       durationTextStyle: theme.textTheme.labelSmall!.copyWith(color: theme.colorScheme.onBackground),
       settingsListBackgroundColor: theme.colorScheme.background,
       settingsListTextStyle: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onSurface),
