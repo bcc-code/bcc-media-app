@@ -5,7 +5,7 @@ class ControlsThemeData {
   final TextStyle? durationTextStyle;
   final Color? settingsListBackgroundColor;
   final TextStyle? settingsListTextStyle;
-  final TextStyle? fullScreenTitleStyle;
+  final TextStyle? fullscreenTitleStyle;
   final SliderThemeData? progressBarTheme;
 
   ControlsThemeData({
@@ -13,7 +13,7 @@ class ControlsThemeData {
     this.durationTextStyle,
     this.settingsListBackgroundColor,
     this.settingsListTextStyle,
-    this.fullScreenTitleStyle,
+    this.fullscreenTitleStyle,
     this.progressBarTheme,
   });
 
@@ -21,11 +21,11 @@ class ControlsThemeData {
     final theme = Theme.of(context);
     return ControlsThemeData(
       iconColor: Colors.white,
-      durationTextStyle: theme.textTheme.labelSmall!.copyWith(color: theme.colorScheme.onBackground),
+      durationTextStyle: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onBackground),
       settingsListBackgroundColor: theme.colorScheme.background,
-      settingsListTextStyle: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onSurface),
-      fullScreenTitleStyle: theme.textTheme.labelLarge!.copyWith(color: theme.colorScheme.onBackground),
-      progressBarTheme: SliderTheme.of(context).copyWith(
+      settingsListTextStyle: theme.textTheme.labelMedium?.copyWith(color: theme.colorScheme.onSurface),
+      fullscreenTitleStyle: theme.textTheme.labelLarge?.copyWith(color: theme.colorScheme.onBackground),
+      progressBarTheme: SliderThemeData(
         trackHeight: 2,
         thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
         overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
@@ -42,7 +42,7 @@ class ControlsThemeData {
       durationTextStyle: durationTextStyle ?? defaults.durationTextStyle,
       settingsListBackgroundColor: settingsListBackgroundColor ?? defaults.settingsListBackgroundColor,
       settingsListTextStyle: settingsListTextStyle ?? defaults.settingsListTextStyle,
-      fullScreenTitleStyle: fullScreenTitleStyle ?? defaults.fullScreenTitleStyle,
+      fullscreenTitleStyle: fullscreenTitleStyle ?? defaults.fullscreenTitleStyle,
       progressBarTheme: progressBarTheme ?? defaults.progressBarTheme,
     );
   }
@@ -52,7 +52,7 @@ class ControlsThemeData {
     TextStyle? durationTextStyle,
     Color? settingsListBackgroundColor,
     TextStyle? settingsListTextStyle,
-    TextStyle? fullScreenTitleStyle,
+    TextStyle? fullscreenTitleStyle,
     SliderThemeData? progressBarTheme,
   }) {
     return ControlsThemeData(
@@ -60,7 +60,7 @@ class ControlsThemeData {
       durationTextStyle: durationTextStyle ?? this.durationTextStyle,
       settingsListBackgroundColor: settingsListBackgroundColor ?? this.settingsListBackgroundColor,
       settingsListTextStyle: settingsListTextStyle ?? this.settingsListTextStyle,
-      fullScreenTitleStyle: fullScreenTitleStyle ?? this.fullScreenTitleStyle,
+      fullscreenTitleStyle: fullscreenTitleStyle ?? this.fullscreenTitleStyle,
       progressBarTheme: progressBarTheme ?? this.progressBarTheme,
     );
   }

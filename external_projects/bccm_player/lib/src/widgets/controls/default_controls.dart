@@ -89,7 +89,7 @@ class DefaultControls extends HookWidget {
                         if (title != null)
                           Text(
                             title,
-                            style: controlsTheme.fullScreenTitleStyle,
+                            style: controlsTheme.fullscreenTitleStyle,
                           ),
                       ],
                       const Spacer(),
