@@ -148,7 +148,7 @@ class DefaultControls extends HookWidget {
                         children: [
                           if (player.value?.currentMediaItem?.isLive != true)
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 8, left: 10),
+                              padding: const EdgeInsets.only(bottom: 8, left: 12),
                               child: Text(
                                 '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
                                 style: controlsTheme.durationTextStyle,
@@ -167,7 +167,7 @@ class DefaultControls extends HookWidget {
                             child: Container(
                               height: double.infinity,
                               alignment: Alignment.bottomRight,
-                              padding: const EdgeInsets.all(8).copyWith(bottom: 5, left: 20),
+                              padding: const EdgeInsets.only(right: 8, top: 8, bottom: 5, left: 20),
                               child: Icon(
                                 isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
                                 color: controlsTheme.iconColor,
