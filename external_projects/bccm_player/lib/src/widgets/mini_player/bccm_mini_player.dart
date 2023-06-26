@@ -1,4 +1,3 @@
-import 'package:bccm_player/theme/mini_player_theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -47,17 +46,14 @@ class MiniPlayer extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    MiniPlayerThemeData? miniPlayerTheme = PlayerTheme.maybeOf(context)?.miniPlayer;
-    final safeMiniPlayerTheme = useMemoized(() {
-      return (miniPlayerTheme ?? MiniPlayerThemeData()).fillWithDefaults(context);
-    }, [miniPlayerTheme]);
+    final theme = PlayerTheme.safeOf(context).miniPlayer!;
 
     return Container(
       height: kMiniPlayerHeight,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: safeMiniPlayerTheme.backgroundColor,
-        border: showBorder ? Border(top: BorderSide(color: safeMiniPlayerTheme.topBorderColor!, width: 1)) : null,
+        color: theme.backgroundColor,
+        border: showBorder ? Border(top: BorderSide(color: theme.topBorderColor ?? Colors.transparent, width: 1)) : null,
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
@@ -74,7 +70,7 @@ class MiniPlayer extends HookWidget {
             height: 36,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
-              border: Border.all(color: safeMiniPlayerTheme.thumbnailBorderColor!, width: 1),
+              border: Border.all(color: theme.thumbnailBorderColor ?? Colors.transparent, width: 1),
             ),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
@@ -101,7 +97,7 @@ class MiniPlayer extends HookWidget {
                       secondaryTitle!,
                       semanticsLabel: secondaryTitle!,
                       overflow: TextOverflow.ellipsis,
-                      style: safeMiniPlayerTheme.secondaryTitleStyle,
+                      style: theme.secondaryTitleStyle,
                     ),
                   ),
                 Text(
@@ -109,7 +105,7 @@ class MiniPlayer extends HookWidget {
                   semanticsLabel: title,
                   key: titleKey,
                   overflow: TextOverflow.ellipsis,
-                  style: safeMiniPlayerTheme.titleStyle,
+                  style: theme.titleStyle,
                 ),
               ],
             ),
@@ -127,12 +123,12 @@ class MiniPlayer extends HookWidget {
                     ? SvgPicture.string(
                         SvgIcons.pause,
                         semanticsLabel: pauseSemanticLabel,
-                        colorFilter: ColorFilter.mode(safeMiniPlayerTheme.iconColor!, BlendMode.srcIn),
+                        colorFilter: ColorFilter.mode(theme.iconColor ?? Colors.transparent, BlendMode.srcIn),
                       )
                     : SvgPicture.string(
                         SvgIcons.play,
                         semanticsLabel: playSemanticLabel,
-                        colorFilter: ColorFilter.mode(safeMiniPlayerTheme.iconColor!, BlendMode.srcIn),
+                        colorFilter: ColorFilter.mode(theme.iconColor ?? Colors.transparent, BlendMode.srcIn),
                       ),
               ),
             ),
@@ -145,7 +141,7 @@ class MiniPlayer extends HookWidget {
                 height: 36,
                 child: SvgPicture.string(
                   SvgIcons.close,
-                  colorFilter: ColorFilter.mode(safeMiniPlayerTheme.iconColor!, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(theme.iconColor ?? Colors.transparent, BlendMode.srcIn),
                 ),
               ),
             ),

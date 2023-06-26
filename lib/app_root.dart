@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_player/theme/bccm_player_theme.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/main.dart';
@@ -114,35 +113,6 @@ class _AppRootState extends ConsumerState<AppRoot> {
     }
   }
 
-  PlayerThemeData getBccmPlayerTheme(BuildContext context) {
-    final design = DesignSystem.of(context);
-    return PlayerThemeData(
-      miniPlayer: MiniPlayerThemeData(
-        iconColor: design.colors.onTint,
-        backgroundColor: design.colors.background2,
-        thumbnailBorderColor: design.colors.onTint.withOpacity(0.01),
-        topBorderColor: design.colors.separatorOnLight,
-        titleStyle: design.textStyles.caption1.copyWith(color: design.colors.label1),
-        secondaryTitleStyle: design.textStyles.caption2.copyWith(color: design.colors.tint1),
-      ),
-      controls: ControlsThemeData(
-        iconColor: design.colors.onTint,
-        durationTextStyle: design.textStyles.caption2.copyWith(color: design.colors.label1),
-        settingsListBackgroundColor: design.colors.background2,
-        settingsListTextStyle: design.textStyles.caption1.copyWith(color: design.colors.label2),
-        fullScreenTitleStyle: design.textStyles.caption1.copyWith(color: design.colors.label2),
-        progressBarTheme: SliderTheme.of(context).copyWith(
-          trackHeight: 2,
-          thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-          overlayShape: SliderComponentShape.noOverlay,
-          thumbColor: design.colors.onTint,
-          activeTrackColor: design.colors.onTint,
-          inactiveTrackColor: design.colors.onTint.withOpacity(0.2),
-        ),
-      ),
-    );
-  }
-
   @override
   void dispose() {
     authSubscription?.close();
@@ -154,44 +124,41 @@ class _AppRootState extends ConsumerState<AppRoot> {
   Widget build(BuildContext context) {
     return DesignSystem(
       designSystem: FlavorConfig.current.designSystem?.call() ?? BccMediaDesignSystem(),
-      child: (context) => PlayerTheme(
-        playerTheme: getBccmPlayerTheme(context),
-        child: (context) => GraphQLProvider(
-          client: ValueNotifier(ref.watch(gqlClientProvider)),
-          child: MaterialApp.router(
-            localizationsDelegates: S.localizationsDelegates,
-            localeResolutionCallback: (locale, supportedLocales) {
-              if (locale?.languageCode == 'no') {
-                return const Locale('nb');
-              }
-              if (supportedLocales.map((e) => e.languageCode).contains(locale?.languageCode)) {
-                return locale;
-              }
-              return Locale(FlavorConfig.current.defaultLanguage);
-            },
-            supportedLocales: S.supportedLocales,
-            locale: ref.watch(settingsProvider).appLanguage,
-            theme: ThemeData(),
-            darkTheme: DesignSystem.of(context).materialThemeData,
-            themeMode: ThemeMode.dark,
-            debugShowCheckedModeBanner: false,
-            title: 'BCC Media',
-            routerDelegate: widget.appRouter.delegate(
-              initialRoutes: [const AutoLoginScreenRoute()],
-              navigatorObservers: () => [AnalyticsNavigatorObserver()],
-            ),
-            routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
-            builder: (BuildContext context, Widget? child) {
-              return ResponsiveBreakpoints.builder(
-                child: MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                  child: child!,
-                ),
-                breakpoints: breakpoints,
-                breakpointsLandscape: breakpoints,
-              );
-            },
+      child: (context) => GraphQLProvider(
+        client: ValueNotifier(ref.watch(gqlClientProvider)),
+        child: MaterialApp.router(
+          localizationsDelegates: S.localizationsDelegates,
+          localeResolutionCallback: (locale, supportedLocales) {
+            if (locale?.languageCode == 'no') {
+              return const Locale('nb');
+            }
+            if (supportedLocales.map((e) => e.languageCode).contains(locale?.languageCode)) {
+              return locale;
+            }
+            return Locale(FlavorConfig.current.defaultLanguage);
+          },
+          supportedLocales: S.supportedLocales,
+          locale: ref.watch(settingsProvider).appLanguage,
+          theme: ThemeData(),
+          darkTheme: DesignSystem.of(context).materialThemeData,
+          themeMode: ThemeMode.dark,
+          debugShowCheckedModeBanner: false,
+          title: 'BCC Media',
+          routerDelegate: widget.appRouter.delegate(
+            initialRoutes: [const AutoLoginScreenRoute()],
+            navigatorObservers: () => [AnalyticsNavigatorObserver()],
           ),
+          routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
+          builder: (BuildContext context, Widget? child) {
+            return ResponsiveBreakpoints.builder(
+              child: MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: child!,
+              ),
+              breakpoints: breakpoints,
+              breakpointsLandscape: breakpoints,
+            );
+          },
         ),
       ),
     );

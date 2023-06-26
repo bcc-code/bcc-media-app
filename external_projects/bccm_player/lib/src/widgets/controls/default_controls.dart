@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'dart:math';
 
 import 'package:bccm_player/bccm_player.dart';
@@ -28,11 +30,7 @@ class DefaultControls extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: invalid_use_of_protected_member
-    final controlsTheme = PlayerTheme.maybeOf(context)?.controls;
-    final safeControlsTheme = useMemoized(() {
-      return (controlsTheme ?? ControlsThemeData()).fillWithDefaults(context);
-    }, [controlsTheme]);
+    final controlsTheme = PlayerTheme.safeOf(context).controls!;
     final player = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state);
     final seekDebouncer = useMemoized(() => Debouncer(milliseconds: 1000));
     useEffect(() {
@@ -49,7 +47,6 @@ class DefaultControls extends HookWidget {
     final currentScrub = useState(0.0);
     void scrubTo(double value) {
       if ((currentScrub.value - value).abs() < 0.01) {
-        debugPrint(currentScrub.value.toString() + ' ,,,, ' + value.toString());
         currentScrub.value = value;
         return;
       }
@@ -83,7 +80,7 @@ class DefaultControls extends HookWidget {
                         IconButton(
                           icon: const Icon(Icons.close),
                           iconSize: 32,
-                          color: safeControlsTheme.iconColor,
+                          color: controlsTheme.iconColor,
                           padding: const EdgeInsets.all(12),
                           onPressed: () {
                             Navigator.maybePop(context);
@@ -92,14 +89,14 @@ class DefaultControls extends HookWidget {
                         if (title != null)
                           Text(
                             title,
-                            style: safeControlsTheme.fullScreenTitleStyle,
+                            style: controlsTheme.fullScreenTitleStyle,
                           ),
                       ],
                       const Spacer(),
                       _SettingsWidget(
                         playerId: playerId,
                         padding: const EdgeInsets.only(top: 12, bottom: 24, left: 24, right: 8),
-                        controlsTheme: safeControlsTheme,
+                        controlsTheme: controlsTheme,
                       ),
                     ],
                   ),
@@ -114,7 +111,7 @@ class DefaultControls extends HookWidget {
                       IconButton(
                         icon: const Icon(Icons.play_arrow),
                         iconSize: 54,
-                        color: safeControlsTheme.iconColor,
+                        color: controlsTheme.iconColor,
                         onPressed: () {
                           BccmPlayerInterface.instance.play(playerId);
                         },
@@ -125,11 +122,11 @@ class DefaultControls extends HookWidget {
                             ? LoadingIndicator(
                                 width: 48,
                                 height: 48,
-                                color: safeControlsTheme.iconColor,
+                                color: controlsTheme.iconColor,
                               )
                             : const Icon(Icons.pause),
                         iconSize: 54,
-                        color: safeControlsTheme.iconColor,
+                        color: controlsTheme.iconColor,
                         onPressed: () {
                           BccmPlayerInterface.instance.pause(playerId);
                         },
@@ -154,7 +151,7 @@ class DefaultControls extends HookWidget {
                               padding: const EdgeInsets.only(bottom: 8, left: 10),
                               child: Text(
                                 '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
-                                style: safeControlsTheme.durationTextStyle,
+                                style: controlsTheme.durationTextStyle,
                               ),
                             ),
                           const Spacer(),
@@ -173,7 +170,7 @@ class DefaultControls extends HookWidget {
                               padding: const EdgeInsets.all(8).copyWith(bottom: 5, left: 20),
                               child: Icon(
                                 isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
-                                color: safeControlsTheme.iconColor,
+                                color: controlsTheme.iconColor,
                               ),
                             ),
                           ),
@@ -189,7 +186,7 @@ class DefaultControls extends HookWidget {
                           children: [
                             Expanded(
                               child: SliderTheme(
-                                data: safeControlsTheme.progressBarTheme!,
+                                data: controlsTheme.progressBarTheme!,
                                 child: SizedBox(
                                   height: 10,
                                   child: Slider(

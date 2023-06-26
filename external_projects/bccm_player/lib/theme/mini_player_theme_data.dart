@@ -29,8 +29,7 @@ class MiniPlayerThemeData {
     );
   }
 
-  MiniPlayerThemeData fillWithDefaults(BuildContext context) {
-    final defaults = MiniPlayerThemeData.defaultTheme(context);
+  MiniPlayerThemeData fillWithDefaults(MiniPlayerThemeData defaults) {
     return MiniPlayerThemeData(
       iconColor: iconColor ?? defaults.iconColor,
       backgroundColor: backgroundColor ?? defaults.backgroundColor,

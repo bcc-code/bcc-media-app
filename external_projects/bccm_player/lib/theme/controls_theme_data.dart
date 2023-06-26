@@ -28,16 +28,15 @@ class ControlsThemeData {
       progressBarTheme: SliderTheme.of(context).copyWith(
         trackHeight: 2,
         thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-        overlayShape: SliderComponentShape.noOverlay,
-        activeTrackColor: theme.colorScheme.onBackground,
+        overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
+        activeTrackColor: theme.colorScheme.primary,
         inactiveTrackColor: theme.colorScheme.onBackground.withOpacity(0.2),
-        thumbColor: theme.colorScheme.onBackground,
+        thumbColor: theme.colorScheme.primary,
       ),
     );
   }
 
-  ControlsThemeData fillWithDefaults(BuildContext context) {
-    final defaults = ControlsThemeData.defaultTheme(context);
+  ControlsThemeData fillWithDefaults(ControlsThemeData defaults) {
     return ControlsThemeData(
       iconColor: iconColor ?? defaults.iconColor,
       durationTextStyle: durationTextStyle ?? defaults.durationTextStyle,
