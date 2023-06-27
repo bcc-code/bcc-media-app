@@ -150,7 +150,7 @@ class DefaultControls extends HookWidget {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 8, left: 12),
                               child: Text(
-                                '${formatMinutesAndSeconds(currentMs)} / ${formatMinutesAndSeconds(duration)}',
+                                '${getFormattedDuration(currentMs)} / ${getFormattedDuration(duration)}',
                                 style: controlsTheme.durationTextStyle,
                               ),
                             ),
