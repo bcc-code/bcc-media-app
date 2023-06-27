@@ -33,6 +33,7 @@ class DefaultControls extends HookWidget {
     final controlsTheme = PlayerTheme.safeOf(context).controls!;
     final player = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state);
     final seekDebouncer = useMemoized(() => Debouncer(milliseconds: 1000));
+    final forwardRewindDebouncer = useMemoized(() => Debouncer(milliseconds: 500));
     useEffect(() {
       void listener(PlayerState state) {
         player.value = state;
@@ -42,9 +43,16 @@ class DefaultControls extends HookWidget {
     });
     final currentMs = player.value?.playbackPositionMs ?? 0;
     final duration = player.value?.currentMediaItem?.metadata?.durationMs ?? player.value?.playbackPositionMs?.toDouble() ?? 1;
+    final forwardRewindDurationSec = useMemoized(
+      () => Duration(milliseconds: duration.toInt()).inMinutes > 60 ? 30 : 15,
+      // ignore: exhaustive_keys
+      [duration],
+    );
     final isFullscreen = player.value?.isFlutterFullscreen == true;
     final seeking = useState(false);
     final currentScrub = useState(0.0);
+    final totalSeekToDurationMs = useRef(0.0);
+
     void scrubTo(double value) {
       if ((currentScrub.value - value).abs() < 0.01) {
         currentScrub.value = value;
@@ -56,6 +64,20 @@ class DefaultControls extends HookWidget {
         if (!context.mounted) return;
         await BccmPlayerInterface.instance.seekTo(playerId, currentScrub.value * duration);
         seeking.value = false;
+      });
+    }
+
+    void seekToRelative(int differenceSec) {
+      totalSeekToDurationMs.value += differenceSec * 1000;
+      double newPositionMs = currentMs + totalSeekToDurationMs.value;
+      if (newPositionMs < 0) {
+        newPositionMs = 0;
+      } else if (newPositionMs > duration) {
+        newPositionMs = duration;
+      }
+      forwardRewindDebouncer.run(() {
+        BccmPlayerInterface.instance.seekTo(playerId, newPositionMs);
+        totalSeekToDurationMs.value = 0;
       });
     }
 
@@ -107,6 +129,12 @@ class DefaultControls extends HookWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    IconButton(
+                      icon: const Icon(Icons.replay),
+                      iconSize: 32,
+                      color: controlsTheme.iconColor,
+                      onPressed: () => seekToRelative(-forwardRewindDurationSec),
+                    ),
                     if (player.value?.playbackState != PlaybackState.playing)
                       IconButton(
                         icon: const Icon(Icons.play_arrow),
@@ -131,6 +159,16 @@ class DefaultControls extends HookWidget {
                           BccmPlayerInterface.instance.pause(playerId);
                         },
                       ),
+                    IconButton(
+                      icon: Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.rotationY(pi),
+                        child: const Icon(Icons.replay),
+                      ),
+                      iconSize: 32,
+                      color: controlsTheme.iconColor,
+                      onPressed: () => seekToRelative(forwardRewindDurationSec),
+                    ),
                   ],
                 ),
               ),
