@@ -9,9 +9,16 @@ class Debouncer {
   Debouncer({required this.milliseconds});
 
   run(VoidCallback action) {
+    // If first call
+    if (_timer?.isActive != true) {
+      print('>>> Yes');
+      action();
+      _currentAction = () {};
+    } else {
+      _currentAction = action;
+    }
     _timer?.cancel();
-    _currentAction = action;
-    _timer = Timer(Duration(milliseconds: milliseconds), action);
+    _timer = Timer(Duration(milliseconds: milliseconds), _currentAction!);
   }
 
   forceEarly() {

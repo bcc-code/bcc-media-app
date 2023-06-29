@@ -43,11 +43,7 @@ class DefaultControls extends HookWidget {
     });
     final currentMs = player.value?.playbackPositionMs ?? 0;
     final duration = player.value?.currentMediaItem?.metadata?.durationMs ?? player.value?.playbackPositionMs?.toDouble() ?? 1;
-    final forwardRewindDurationSec = useMemoized(
-      () => Duration(milliseconds: duration.toInt()).inMinutes > 60 ? 30 : 15,
-      // ignore: exhaustive_keys
-      [duration],
-    );
+    final forwardRewindDurationSec = Duration(milliseconds: duration.toInt()).inMinutes > 60 ? 30 : 15;
     final isFullscreen = player.value?.isFlutterFullscreen == true;
     final seeking = useState(false);
     final currentScrub = useState(0.0);
@@ -75,9 +71,13 @@ class DefaultControls extends HookWidget {
       } else if (newPositionMs > duration) {
         newPositionMs = duration;
       }
-      forwardRewindDebouncer.run(() {
-        BccmPlayerInterface.instance.seekTo(playerId, newPositionMs);
+      seeking.value = true;
+      currentScrub.value = newPositionMs / duration;
+      forwardRewindDebouncer.run(() async {
+        if (!context.mounted) return;
+        await BccmPlayerInterface.instance.seekTo(playerId, newPositionMs);
         totalSeekToDurationMs.value = 0;
+        seeking.value = false;
       });
     }
 

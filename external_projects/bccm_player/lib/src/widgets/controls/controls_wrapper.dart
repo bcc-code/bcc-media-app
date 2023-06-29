@@ -34,7 +34,7 @@ class ControlsWrapperState extends State<ControlsWrapper> {
 
   void _startTimer() {
     _visibilityTimer?.cancel();
-    _visibilityTimer = Timer(const Duration(seconds: 3), () {
+    _visibilityTimer = Timer(const Duration(seconds: 300), () {
       if (!widget.autoHide) {
         return;
       }
