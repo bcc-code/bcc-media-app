@@ -33,7 +33,7 @@ class DefaultControls extends HookWidget {
     final controlsTheme = PlayerTheme.safeOf(context).controls!;
     final player = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state);
     final seekDebouncer = useMemoized(() => Debouncer(milliseconds: 1000));
-    final forwardRewindDebouncer = useMemoized(() => Debouncer(milliseconds: 500));
+    final forwardRewindDebouncer = useMemoized(() => Debouncer(milliseconds: 200, debounceInitial: false));
     useEffect(() {
       void listener(PlayerState state) {
         player.value = state;
@@ -66,11 +66,7 @@ class DefaultControls extends HookWidget {
     void seekToRelative(int differenceSec) {
       totalSeekToDurationMs.value += differenceSec * 1000;
       double newPositionMs = currentMs + totalSeekToDurationMs.value;
-      if (newPositionMs < 0) {
-        newPositionMs = 0;
-      } else if (newPositionMs > duration) {
-        newPositionMs = duration;
-      }
+      newPositionMs = min(duration, max(newPositionMs, 0));
       seeking.value = true;
       currentScrub.value = newPositionMs / duration;
       forwardRewindDebouncer.run(() async {
