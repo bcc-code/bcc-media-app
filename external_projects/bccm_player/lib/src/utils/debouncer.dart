@@ -5,13 +5,23 @@ class Debouncer {
   final int milliseconds;
   Timer? _timer;
   VoidCallback? _currentAction;
+  bool debounceInitial;
 
-  Debouncer({required this.milliseconds});
+  Debouncer({
+    required this.milliseconds,
+    this.debounceInitial = true,
+  });
 
   run(VoidCallback action) {
+    // If first call
+    if (debounceInitial == false && _timer?.isActive != true) {
+      action();
+      _currentAction = () {};
+    } else {
+      _currentAction = action;
+    }
     _timer?.cancel();
-    _currentAction = action;
-    _timer = Timer(Duration(milliseconds: milliseconds), action);
+    _timer = Timer(Duration(milliseconds: milliseconds), _currentAction!);
   }
 
   forceEarly() {

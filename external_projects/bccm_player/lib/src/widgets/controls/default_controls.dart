@@ -38,6 +38,7 @@ class DefaultControls extends HookWidget {
     final controlsTheme = PlayerTheme.safeOf(context).controls!;
     final player = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state);
     final seekDebouncer = useMemoized(() => Debouncer(milliseconds: 1000));
+    final forwardRewindDebouncer = useMemoized(() => Debouncer(milliseconds: 200, debounceInitial: false));
     useEffect(() {
       void listener(PlayerState state) {
         player.value = state;
@@ -47,9 +48,12 @@ class DefaultControls extends HookWidget {
     });
     final currentMs = player.value?.playbackPositionMs ?? 0;
     final duration = player.value?.currentMediaItem?.metadata?.durationMs ?? player.value?.playbackPositionMs?.toDouble() ?? 1;
+    final forwardRewindDurationSec = Duration(milliseconds: duration.toInt()).inMinutes > 60 ? 30 : 15;
     final isFullscreen = player.value?.isFlutterFullscreen == true;
     final seeking = useState(false);
     final currentScrub = useState(0.0);
+    final totalSeekToDurationMs = useRef(0.0);
+
     void scrubTo(double value) {
       if ((currentScrub.value - value).abs() < 0.01) {
         currentScrub.value = value;
@@ -60,6 +64,20 @@ class DefaultControls extends HookWidget {
       seekDebouncer.run(() async {
         if (!context.mounted) return;
         await BccmPlayerInterface.instance.seekTo(playerId, currentScrub.value * duration);
+        seeking.value = false;
+      });
+    }
+
+    void seekToRelative(int differenceSec) {
+      totalSeekToDurationMs.value += differenceSec * 1000;
+      double newPositionMs = currentMs + totalSeekToDurationMs.value;
+      newPositionMs = min(duration, max(newPositionMs, 0));
+      seeking.value = true;
+      currentScrub.value = newPositionMs / duration;
+      forwardRewindDebouncer.run(() async {
+        if (!context.mounted) return;
+        await BccmPlayerInterface.instance.seekTo(playerId, newPositionMs);
+        totalSeekToDurationMs.value = 0;
         seeking.value = false;
       });
     }
@@ -114,15 +132,28 @@ class DefaultControls extends HookWidget {
                   alignment: Alignment.center,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 24),
+                        child: IconButton(
+                          icon: const Icon(Icons.replay),
+                          iconSize: 42,
+                          color: controlsTheme.iconColor,
+                          onPressed: () => seekToRelative(-forwardRewindDurationSec),
+                        ),
+                      ),
                       if (player.value?.playbackState != PlaybackState.playing)
                         IconButton(
-                          icon: SvgPicture.string(
-                            SvgIcons.play,
-                            width: double.infinity,
-                            height: double.infinity,
+                          constraints: const BoxConstraints.tightFor(width: 68, height: 68),
+                          icon: Padding(
+                            padding: const EdgeInsets.only(left: 4),
+                            child: SvgPicture.string(
+                              SvgIcons.play,
+                              width: double.infinity,
+                              height: double.infinity,
+                            ),
                           ),
-                          iconSize: 42,
                           color: controlsTheme.iconColor,
                           onPressed: () {
                             BccmPlayerInterface.instance.play(playerId);
@@ -130,16 +161,20 @@ class DefaultControls extends HookWidget {
                         )
                       else
                         IconButton(
+                          constraints: const BoxConstraints.tightFor(width: 68, height: 68),
                           icon: player.value?.isBuffering == true
                               ? LoadingIndicator(
                                   width: 42,
                                   height: 42,
                                   color: controlsTheme.iconColor,
                                 )
-                              : SvgPicture.string(
-                                  SvgIcons.pause,
-                                  width: double.infinity,
-                                  height: double.infinity,
+                              : Padding(
+                                  padding: const EdgeInsets.all(2),
+                                  child: SvgPicture.string(
+                                    SvgIcons.pause,
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                  ),
                                 ),
                           iconSize: 42,
                           color: controlsTheme.iconColor,
@@ -147,6 +182,19 @@ class DefaultControls extends HookWidget {
                             BccmPlayerInterface.instance.pause(playerId);
                           },
                         ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 24),
+                        child: IconButton(
+                          icon: Transform(
+                            alignment: Alignment.center,
+                            transform: Matrix4.rotationY(pi),
+                            child: const Icon(Icons.replay),
+                          ),
+                          iconSize: 42,
+                          color: controlsTheme.iconColor,
+                          onPressed: () => seekToRelative(forwardRewindDurationSec),
+                        ),
+                      ),
                     ],
                   ),
                 ),
