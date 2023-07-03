@@ -281,6 +281,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     final chromecastEvents = ref.watch(chromecastEventStreamProvider);
     final playerEvents = ref.watch(playerEventStreamProvider(player.playerId));
     final enableAutoplayNext = ref.watch(featureFlagsProvider.select((value) => value.autoplayNext));
+    final enablePlayNextButton = enableAutoplayNext && ref.watch(featureFlagsProvider.select((value) => value.playNextButton));
     final episodeIsCurrentItem = player.currentMediaItem?.metadata?.extras?['id'] == episode.id;
 
     useEffect(() {
@@ -290,7 +291,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
       return null;
     }, [episode.id, screenParams.autoplay, screenParams.queryParamStartPosition]);
 
-    WidgetBuilder? playNextButtonBuilder = !enableAutoplayNext
+    WidgetBuilder? playNextButtonBuilder = !enablePlayNextButton
         ? null
         : (context) => PlayNextButton(
               playerId: player.playerId,

@@ -54,6 +54,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       autoFullscreenOnPlay: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('auto-fullscreen-on-play'),
       gamesTab: kDebugMode && FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('games-tab'),
       flutterPlayerControls: Env.forceFlutterControls || client.isEnabled('flutter-player-controls'),
+      playNextButton: client.isEnabled('play-next-button'),
     );
   }
 }
