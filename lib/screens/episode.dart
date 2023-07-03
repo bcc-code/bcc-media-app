@@ -290,23 +290,27 @@ class _EpisodeDisplay extends HookConsumerWidget {
       return null;
     }, [episode.id, screenParams.autoplay, screenParams.queryParamStartPosition]);
 
+    WidgetBuilder? playNextButtonBuilder = !enableAutoplayNext
+        ? null
+        : (context) => PlayNextButton(
+              playerId: player.playerId,
+              onTap: () => autoplayNext(playbackService, player.playerId, context.router),
+              text: S.of(context).nextEpisode,
+            );
+
     ref.listen<bool>(primaryPlayerProvider.select((p) => p?.playbackState == PlaybackState.playing), (prev, next) {
       if (!isMounted()) return;
       if (!ref.read(featureFlagsProvider).autoFullscreenOnPlay) return;
       if (next == true && episodeIsCurrentItem && ref.read(primaryPlayerProvider)?.isFullscreen == false) {
         ref.read(playbackServiceProvider).platformApi.enterFullscreen(
-              player.playerId,
-              context: context,
-              useNativeControls: ref.read(settingsProvider).useNativePlayer == true || !ref.read(featureFlagsProvider).flutterPlayerControls,
-              resetSystemOverlays: () {
-                SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-              },
-              playNextButton: (context) => PlayNextButton(
-                playerId: player.playerId,
-                onTap: () => autoplayNext(playbackService, player.playerId, context.router),
-                text: S.of(context).nextEpisode,
-              ),
-            );
+          player.playerId,
+          context: context,
+          useNativeControls: ref.read(settingsProvider).useNativePlayer == true || !ref.read(featureFlagsProvider).flutterPlayerControls,
+          resetSystemOverlays: () {
+            SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+          },
+          playNextButton: playNextButtonBuilder,
+        );
       }
     });
 
@@ -388,11 +392,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     resetSystemOverlays: () {
                       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
                     },
-                    playNextButton: (context) => PlayNextButton(
-                      playerId: player.playerId,
-                      onTap: () => autoplayNext(playbackService, player.playerId, context.router),
-                      text: S.of(context).nextEpisode,
-                    ),
+                    playNextButton: playNextButtonBuilder,
                   ),
                 EpisodeInfo(
                   episode,
