@@ -1,7 +1,7 @@
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/state/plugin_state_notifier.dart';
 import 'package:flutter/material.dart';
-import '../helpers/utils/extensions.dart';
+import '../utils/extensions.dart';
 
 class StatePlaybackListener implements PlaybackListenerPigeon {
   StatePlaybackListener(this.pluginStateNotifier);
