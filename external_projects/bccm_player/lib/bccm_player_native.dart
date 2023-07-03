@@ -101,6 +101,16 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
+  Future<double> getPlaybackSpeed(String playerId) {
+    return _pigeon.getPlaybackSpeed(playerId);
+  }
+
+  @override
+  Future<void> setPlaybackSpeed(String playerId, double playbackSpeed) {
+    return _pigeon.setPlaybackSpeed(playerId, playbackSpeed);
+  }
+
+  @override
   void pause(String playerId) {
     _pigeon.pause(playerId);
   }

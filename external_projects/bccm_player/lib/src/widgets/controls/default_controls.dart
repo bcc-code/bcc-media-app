@@ -3,18 +3,16 @@
 import 'dart:math';
 
 import 'package:bccm_player/bccm_player.dart';
-import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
-import 'package:bccm_player/src/pigeon/pigeon_extensions.dart';
 import 'package:bccm_player/src/helpers/utils/debouncer.dart';
 import 'package:bccm_player/src/widgets/controls/controls_wrapper.dart';
 import 'package:bccm_player/src/widgets/mini_player/loading_indicator.dart';
 import 'package:bccm_player/theme/bccm_player_theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 import '../../helpers/utils/time.dart';
+import 'settings/settings_sheet_wrapper.dart';
 
 class DefaultControls extends HookWidget {
   const DefaultControls({
@@ -93,7 +91,7 @@ class DefaultControls extends HookWidget {
                           ),
                       ],
                       const Spacer(),
-                      _SettingsWidget(
+                      SettingsSheet(
                         playerId: playerId,
                         padding: const EdgeInsets.only(top: 12, bottom: 24, left: 24, right: 8),
                         controlsTheme: controlsTheme,
@@ -212,154 +210,6 @@ class DefaultControls extends HookWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _SettingsWidget extends HookWidget {
-  const _SettingsWidget({
-    required this.playerId,
-    this.padding,
-    required this.controlsTheme,
-  });
-
-  final String playerId;
-  final EdgeInsets? padding;
-  final ControlsThemeData controlsTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () {
-        // open bottom sheet with settings
-        showModalBottomSheet(
-          context: context,
-          isDismissible: true,
-          builder: (context) => _Settings(
-            playerId: playerId,
-            controlsTheme: controlsTheme,
-          ),
-        );
-      },
-      child: Padding(
-        padding: padding ?? const EdgeInsets.all(0),
-        child: Icon(Icons.settings, color: controlsTheme.iconColor),
-      ),
-    );
-  }
-}
-
-class _Settings extends HookWidget {
-  const _Settings({
-    required this.playerId,
-    required this.controlsTheme,
-  });
-
-  final String playerId;
-  final ControlsThemeData controlsTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    final tracksFuture = useMemoized(() {
-      return BccmPlayerInterface.instance.getPlayerTracks(playerId: playerId);
-    }, [playerId]);
-    final tracksSnapshot = useFuture(tracksFuture);
-
-    if (tracksSnapshot.connectionState == ConnectionState.waiting) {
-      return const Center(child: CircularProgressIndicator());
-    } else if (tracksSnapshot.hasError) {
-      return Center(child: Text(tracksSnapshot.error.toString()));
-    }
-
-    final tracksData = tracksSnapshot.data;
-    if (tracksData == null) {}
-
-    final selectedAudioTrack = tracksData?.audioTracks.safe.firstWhereOrNull((element) => element.isSelected);
-    final selectedTextTrack = tracksData?.textTracks.safe.firstWhereOrNull((element) => element.isSelected);
-
-    return Container(
-      color: controlsTheme.settingsListBackgroundColor,
-      child: ListView(
-        shrinkWrap: true,
-        children: [
-          if (tracksData?.audioTracks.isNotEmpty == true)
-            ListTile(
-              dense: true,
-              onTap: () async {
-                final selected = await showModalBottomSheet<String>(
-                  context: context,
-                  isDismissible: true,
-                  builder: (context) => SettingsTrackList(
-                    tracks: tracksData!.audioTracks,
-                    controlsTheme: controlsTheme,
-                  ),
-                );
-                if (selected != null && context.mounted) {
-                  BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.audio, selected);
-                  Navigator.pop(context);
-                }
-              },
-              title: Text(
-                'Audio: ${selectedAudioTrack?.labelWithFallback ?? 'N/A'}',
-                style: controlsTheme.settingsListTextStyle,
-              ),
-            ),
-          if (tracksData?.textTracks.isNotEmpty == true)
-            ListTile(
-              dense: true,
-              title: Text('Subtitles: ${selectedTextTrack?.labelWithFallback ?? 'N/A'}', style: controlsTheme.settingsListTextStyle),
-              onTap: () async {
-                final selected = await showModalBottomSheet<String>(
-                  context: context,
-                  isDismissible: true,
-                  builder: (context) => SettingsTrackList(
-                    tracks: tracksData!.textTracks,
-                    controlsTheme: controlsTheme,
-                  ),
-                );
-                if (selected != null && context.mounted) {
-                  BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.text, selected);
-                  Navigator.pop(context);
-                }
-              },
-            ),
-        ],
-      ),
-    );
-  }
-}
-
-class SettingsTrackList extends StatelessWidget {
-  const SettingsTrackList({
-    super.key,
-    required this.tracks,
-    required this.controlsTheme,
-  });
-
-  final List<Track?> tracks;
-  final ControlsThemeData controlsTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    // show list of audio tracks with a tick on the selected one
-    return Container(
-      color: controlsTheme.settingsListBackgroundColor,
-      child: ListView(
-        shrinkWrap: true,
-        children: [
-          for (final track in tracks.safe)
-            ListTile(
-              dense: true,
-              onTap: () {
-                // select this track
-                Navigator.pop(context, track.id);
-              },
-              title: Text(track.labelWithFallback, style: controlsTheme.settingsListTextStyle),
-              trailing: track.isSelected ? const Icon(Icons.check) : null,
-            ),
-        ],
       ),
     );
   }

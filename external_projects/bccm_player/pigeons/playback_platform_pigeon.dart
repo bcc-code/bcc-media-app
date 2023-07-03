@@ -31,6 +31,14 @@ abstract class PlaybackPlatformPigeon {
   @ObjCSelector("seek:positionMs:")
   void seekTo(String playerId, double positionMs);
 
+  @async
+  @ObjCSelector("getPlaybackSpeed:")
+  double getPlaybackSpeed(String playerId);
+
+  @async
+  @ObjCSelector("setPlaybackSpeed:playbackSpeed:")
+  void setPlaybackSpeed(String playerId, double playbackSpeed);
+
   @ObjCSelector("pause:")
   void pause(String playerId);
 

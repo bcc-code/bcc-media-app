@@ -80,7 +80,15 @@ abstract class BccmPlayerInterface extends PlatformInterface {
   }
 
   Future<void> seekTo(String playerId, double positionMs) {
-    throw UnimplementedError('play() has not been implemented.');
+    throw UnimplementedError('seekTo() has not been implemented.');
+  }
+
+  Future<double> getPlaybackSpeed(String playerId) {
+    throw UnimplementedError('getPlaybackSpeed() has not been implemented.');
+  }
+
+  Future<void> setPlaybackSpeed(String playerId, double playbackSpeed) {
+    throw UnimplementedError('setPlaybackSpeed() has not been implemented.');
   }
 
   void pause(String playerId) {
