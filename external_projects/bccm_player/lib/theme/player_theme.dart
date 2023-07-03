@@ -1,4 +1,4 @@
-import 'package:bccm_player/src/helpers/utils/extensions.dart';
+import 'package:bccm_player/src/utils/extensions.dart';
 import 'package:bccm_player/theme/controls_theme_data.dart';
 import 'package:bccm_player/theme/mini_player_theme_data.dart';
 import 'package:flutter/material.dart';

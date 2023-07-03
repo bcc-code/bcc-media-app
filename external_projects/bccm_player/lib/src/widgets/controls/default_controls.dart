@@ -5,7 +5,7 @@ import 'dart:math';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/src/pigeon/pigeon_extensions.dart';
-import 'package:bccm_player/src/helpers/utils/debouncer.dart';
+import 'package:bccm_player/src/utils/debouncer.dart';
 import 'package:bccm_player/src/widgets/controls/controls_wrapper.dart';
 import 'package:bccm_player/src/widgets/mini_player/loading_indicator.dart';
 import 'package:bccm_player/theme/bccm_player_theme.dart';
@@ -13,8 +13,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
-import '../../helpers/utils/time.dart';
+import '../../utils/svg_icons.dart';
+import '../../utils/time.dart';
+import 'control_fade_out.dart';
 
 class DefaultControls extends HookWidget {
   const DefaultControls({
@@ -22,11 +25,13 @@ class DefaultControls extends HookWidget {
     required this.playerId,
     required this.goFullscreen,
     required this.exitFullscreen,
+    this.playNextButton,
   });
 
   final String playerId;
   final Future Function() goFullscreen;
   final Future Function() exitFullscreen;
+  final WidgetBuilder? playNextButton;
 
   @override
   Widget build(BuildContext context) {
@@ -82,90 +87,116 @@ class DefaultControls extends HookWidget {
     return SizedBox.expand(
       child: ControlsWrapper(
         autoHide: player.value?.playbackState == PlaybackState.playing,
-        child: SafeArea(
+        builder: (context) => SafeArea(
           child: Stack(
             children: [
               Positioned.fill(
-                child: Container(
-                  alignment: Alignment.topLeft,
-                  width: double.infinity,
-                  height: 50,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      if (isFullscreen) ...[
-                        IconButton(
-                          icon: const Icon(Icons.close),
-                          iconSize: 32,
-                          color: controlsTheme.iconColor,
-                          padding: const EdgeInsets.all(12),
-                          onPressed: () {
-                            Navigator.maybePop(context);
-                          },
-                        ),
-                        if (title != null)
-                          Text(
-                            title,
-                            style: controlsTheme.fullscreenTitleStyle,
+                child: ControlFadeOut(
+                  child: Container(
+                    alignment: Alignment.topLeft,
+                    width: double.infinity,
+                    height: 50,
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if (isFullscreen) ...[
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            iconSize: 32,
+                            color: controlsTheme.iconColor,
+                            padding: const EdgeInsets.all(12),
+                            onPressed: () {
+                              Navigator.maybePop(context);
+                            },
                           ),
+                          if (title != null)
+                            Text(
+                              title,
+                              style: controlsTheme.fullscreenTitleStyle,
+                            ),
+                        ],
+                        const Spacer(),
+                        _SettingsWidget(
+                          playerId: playerId,
+                          padding: const EdgeInsets.only(top: 12, bottom: 24, left: 24, right: 8),
+                          controlsTheme: controlsTheme,
+                        ),
                       ],
-                      const Spacer(),
-                      _SettingsWidget(
-                        playerId: playerId,
-                        padding: const EdgeInsets.only(top: 12, bottom: 24, left: 24, right: 8),
-                        controlsTheme: controlsTheme,
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),
-              Container(
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.replay),
-                      iconSize: 32,
-                      color: controlsTheme.iconColor,
-                      onPressed: () => seekToRelative(-forwardRewindDurationSec),
-                    ),
-                    if (player.value?.playbackState != PlaybackState.playing)
-                      IconButton(
-                        icon: const Icon(Icons.play_arrow),
-                        iconSize: 54,
-                        color: controlsTheme.iconColor,
-                        onPressed: () {
-                          BccmPlayerInterface.instance.play(playerId);
-                        },
-                      )
-                    else
-                      IconButton(
-                        icon: player.value?.isBuffering == true
-                            ? LoadingIndicator(
-                                width: 48,
-                                height: 48,
-                                color: controlsTheme.iconColor,
-                              )
-                            : const Icon(Icons.pause),
-                        iconSize: 54,
-                        color: controlsTheme.iconColor,
-                        onPressed: () {
-                          BccmPlayerInterface.instance.pause(playerId);
-                        },
+              ControlFadeOut(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 24),
+                        child: IconButton(
+                          icon: const Icon(Icons.replay),
+                          iconSize: 42,
+                          color: controlsTheme.iconColor,
+                          onPressed: () => seekToRelative(-forwardRewindDurationSec),
+                        ),
                       ),
-                    IconButton(
-                      icon: Transform(
-                        alignment: Alignment.center,
-                        transform: Matrix4.rotationY(pi),
-                        child: const Icon(Icons.replay),
+                      if (player.value?.playbackState != PlaybackState.playing)
+                        IconButton(
+                          constraints: const BoxConstraints.tightFor(width: 68, height: 68),
+                          icon: Padding(
+                            padding: const EdgeInsets.only(left: 4),
+                            child: SvgPicture.string(
+                              SvgIcons.play,
+                              width: double.infinity,
+                              height: double.infinity,
+                            ),
+                          ),
+                          color: controlsTheme.iconColor,
+                          onPressed: () {
+                            BccmPlayerInterface.instance.play(playerId);
+                          },
+                        )
+                      else
+                        IconButton(
+                          constraints: const BoxConstraints.tightFor(width: 68, height: 68),
+                          icon: player.value?.isBuffering == true
+                              ? LoadingIndicator(
+                                  width: 42,
+                                  height: 42,
+                                  color: controlsTheme.iconColor,
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.all(2),
+                                  child: SvgPicture.string(
+                                    SvgIcons.pause,
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                  ),
+                                ),
+                          iconSize: 42,
+                          color: controlsTheme.iconColor,
+                          onPressed: () {
+                            BccmPlayerInterface.instance.pause(playerId);
+                          },
+                        ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 24),
+                        child: IconButton(
+                          icon: Transform(
+                            alignment: Alignment.center,
+                            transform: Matrix4.rotationY(pi),
+                            child: const Icon(Icons.replay),
+                          ),
+                          iconSize: 42,
+                          color: controlsTheme.iconColor,
+                          onPressed: () => seekToRelative(forwardRewindDurationSec),
+                        ),
                       ),
-                      iconSize: 32,
-                      color: controlsTheme.iconColor,
-                      onPressed: () => seekToRelative(forwardRewindDurationSec),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -175,69 +206,82 @@ class DefaultControls extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     SizedBox(
-                      height: 42,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          if (player.value?.currentMediaItem?.isLive != true)
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 8, left: 12),
-                              child: Text(
-                                '${getFormattedDuration(currentMs)} / ${getFormattedDuration(duration)}',
-                                style: controlsTheme.durationTextStyle,
-                              ),
-                            ),
-                          const Spacer(),
-                          GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            onTap: () {
-                              if (!isFullscreen) {
-                                goFullscreen();
-                              } else {
-                                exitFullscreen();
-                              }
-                            },
-                            child: Container(
-                              height: double.infinity,
-                              alignment: Alignment.bottomRight,
-                              padding: const EdgeInsets.only(right: 8, top: 8, bottom: 5, left: 20),
-                              child: Icon(
-                                isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
-                                color: controlsTheme.iconColor,
-                              ),
-                            ),
-                          ),
+                          if (playNextButton != null) Padding(padding: EdgeInsets.only(bottom: 8, right: 12), child: playNextButton!(context)),
                         ],
+                      ),
+                    ),
+                    ControlFadeOut(
+                      child: SizedBox(
+                        height: 42,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            if (player.value?.currentMediaItem?.isLive != true)
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8, left: 12),
+                                child: Text(
+                                  '${getFormattedDuration(currentMs)} / ${getFormattedDuration(duration)}',
+                                  style: controlsTheme.durationTextStyle,
+                                ),
+                              ),
+                            const Spacer(),
+                            GestureDetector(
+                              behavior: HitTestBehavior.opaque,
+                              onTap: () {
+                                if (!isFullscreen) {
+                                  goFullscreen();
+                                } else {
+                                  exitFullscreen();
+                                }
+                              },
+                              child: Container(
+                                height: double.infinity,
+                                alignment: Alignment.bottomRight,
+                                padding: const EdgeInsets.only(right: 8, top: 8, bottom: 5, left: 20),
+                                child: Icon(
+                                  isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
+                                  color: controlsTheme.iconColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     if (player.value?.currentMediaItem?.isLive == true)
                       const Padding(padding: EdgeInsets.only(top: 12))
                     else
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: SliderTheme(
-                                data: controlsTheme.progressBarTheme!,
-                                child: SizedBox(
-                                  height: 10,
-                                  child: Slider(
-                                    value: seeking.value
-                                        ? currentScrub.value
-                                        : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
-                                    onChanged: (double value) {
-                                      scrubTo(value);
-                                    },
-                                    onChangeEnd: (double value) {
-                                      seekDebouncer.forceEarly();
-                                    },
+                      ControlFadeOut(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: SliderTheme(
+                                  data: controlsTheme.progressBarTheme!,
+                                  child: SizedBox(
+                                    height: 10,
+                                    child: Slider(
+                                      value: seeking.value
+                                          ? currentScrub.value
+                                          : min(1, (currentMs.isFinite ? currentMs : 0) / (duration.isFinite && duration > 0 ? duration : 1)),
+                                      onChanged: (double value) {
+                                        scrubTo(value);
+                                      },
+                                      onChangeEnd: (double value) {
+                                        seekDebouncer.forceEarly();
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       )
                   ],

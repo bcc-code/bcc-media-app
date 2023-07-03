@@ -281,6 +281,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     final chromecastEvents = ref.watch(chromecastEventStreamProvider);
     final playerEvents = ref.watch(playerEventStreamProvider(player.playerId));
     final enableAutoplayNext = ref.watch(featureFlagsProvider.select((value) => value.autoplayNext));
+    final enablePlayNextButton = enableAutoplayNext && ref.watch(featureFlagsProvider.select((value) => value.playNextButton));
     final episodeIsCurrentItem = player.currentMediaItem?.metadata?.extras?['id'] == episode.id;
 
     useEffect(() {
@@ -289,6 +290,14 @@ class _EpisodeDisplay extends HookConsumerWidget {
       }
       return null;
     }, [episode.id, screenParams.autoplay, screenParams.queryParamStartPosition]);
+
+    WidgetBuilder? playNextButtonBuilder = !enablePlayNextButton
+        ? null
+        : (context) => PlayNextButton(
+              playerId: player.playerId,
+              onTap: () => autoplayNext(playbackService, player.playerId, context.router),
+              text: S.of(context).nextEpisode,
+            );
 
     ref.listen<bool>(primaryPlayerProvider.select((p) => p?.playbackState == PlaybackState.playing), (prev, next) {
       if (!isMounted()) return;
@@ -301,6 +310,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
           resetSystemOverlays: () {
             SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
           },
+          playNextButton: playNextButtonBuilder,
         );
       }
     });
@@ -383,6 +393,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     resetSystemOverlays: () {
                       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
                     },
+                    playNextButton: playNextButtonBuilder,
                   ),
                 EpisodeInfo(
                   episode,

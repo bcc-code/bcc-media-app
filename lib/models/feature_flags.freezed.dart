@@ -24,6 +24,7 @@ mixin _$FeatureFlags {
   bool get shareVideoButton => throw _privateConstructorUsedError;
   bool get gamesTab => throw _privateConstructorUsedError;
   bool get flutterPlayerControls => throw _privateConstructorUsedError;
+  bool get playNextButton => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FeatureFlagsCopyWith<FeatureFlags> get copyWith =>
@@ -44,7 +45,8 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       bool autoFullscreenOnPlay,
       bool shareVideoButton,
       bool gamesTab,
-      bool flutterPlayerControls});
+      bool flutterPlayerControls,
+      bool playNextButton});
 }
 
 /// @nodoc
@@ -68,6 +70,7 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? shareVideoButton = null,
     Object? gamesTab = null,
     Object? flutterPlayerControls = null,
+    Object? playNextButton = null,
   }) {
     return _then(_value.copyWith(
       auth: null == auth
@@ -102,6 +105,10 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
           ? _value.flutterPlayerControls
           : flutterPlayerControls // ignore: cast_nullable_to_non_nullable
               as bool,
+      playNextButton: null == playNextButton
+          ? _value.playNextButton
+          : playNextButton // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -122,7 +129,8 @@ abstract class _$$_FeatureFlagsCopyWith<$Res>
       bool autoFullscreenOnPlay,
       bool shareVideoButton,
       bool gamesTab,
-      bool flutterPlayerControls});
+      bool flutterPlayerControls,
+      bool playNextButton});
 }
 
 /// @nodoc
@@ -144,6 +152,7 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
     Object? shareVideoButton = null,
     Object? gamesTab = null,
     Object? flutterPlayerControls = null,
+    Object? playNextButton = null,
   }) {
     return _then(_$_FeatureFlags(
       auth: null == auth
@@ -178,6 +187,10 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
           ? _value.flutterPlayerControls
           : flutterPlayerControls // ignore: cast_nullable_to_non_nullable
               as bool,
+      playNextButton: null == playNextButton
+          ? _value.playNextButton
+          : playNextButton // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -193,7 +206,8 @@ class _$_FeatureFlags extends _FeatureFlags {
       this.autoFullscreenOnPlay = false,
       this.shareVideoButton = true,
       this.gamesTab = false,
-      this.flutterPlayerControls = false})
+      this.flutterPlayerControls = false,
+      this.playNextButton = false})
       : super._();
 
   @override
@@ -220,10 +234,13 @@ class _$_FeatureFlags extends _FeatureFlags {
   @override
   @JsonKey()
   final bool flutterPlayerControls;
+  @override
+  @JsonKey()
+  final bool playNextButton;
 
   @override
   String toString() {
-    return 'FeatureFlags(auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, autoFullscreenOnPlay: $autoFullscreenOnPlay, shareVideoButton: $shareVideoButton, gamesTab: $gamesTab, flutterPlayerControls: $flutterPlayerControls)';
+    return 'FeatureFlags(auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, autoFullscreenOnPlay: $autoFullscreenOnPlay, shareVideoButton: $shareVideoButton, gamesTab: $gamesTab, flutterPlayerControls: $flutterPlayerControls, playNextButton: $playNextButton)';
   }
 
   @override
@@ -245,7 +262,9 @@ class _$_FeatureFlags extends _FeatureFlags {
             (identical(other.gamesTab, gamesTab) ||
                 other.gamesTab == gamesTab) &&
             (identical(other.flutterPlayerControls, flutterPlayerControls) ||
-                other.flutterPlayerControls == flutterPlayerControls));
+                other.flutterPlayerControls == flutterPlayerControls) &&
+            (identical(other.playNextButton, playNextButton) ||
+                other.playNextButton == playNextButton));
   }
 
   @override
@@ -258,7 +277,8 @@ class _$_FeatureFlags extends _FeatureFlags {
       autoFullscreenOnPlay,
       shareVideoButton,
       gamesTab,
-      flutterPlayerControls);
+      flutterPlayerControls,
+      playNextButton);
 
   @JsonKey(ignore: true)
   @override
@@ -276,7 +296,8 @@ abstract class _FeatureFlags extends FeatureFlags {
       final bool autoFullscreenOnPlay,
       final bool shareVideoButton,
       final bool gamesTab,
-      final bool flutterPlayerControls}) = _$_FeatureFlags;
+      final bool flutterPlayerControls,
+      final bool playNextButton}) = _$_FeatureFlags;
   const _FeatureFlags._() : super._();
 
   @override
@@ -295,6 +316,8 @@ abstract class _FeatureFlags extends FeatureFlags {
   bool get gamesTab;
   @override
   bool get flutterPlayerControls;
+  @override
+  bool get playNextButton;
   @override
   @JsonKey(ignore: true)
   _$$_FeatureFlagsCopyWith<_$_FeatureFlags> get copyWith =>
