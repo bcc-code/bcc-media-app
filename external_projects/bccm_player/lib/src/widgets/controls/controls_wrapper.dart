@@ -61,7 +61,8 @@ class ControlsWrapperState extends State<ControlsWrapper> with SingleTickerProvi
     super.dispose();
   }
 
-  void setVisible(bool visible) {
+  void _setVisible(bool visible) {
+    if (!mounted) return;
     setState(() {
       _visible = visible;
     });
@@ -74,10 +75,10 @@ class ControlsWrapperState extends State<ControlsWrapper> with SingleTickerProvi
   void _startTimer() {
     _visibilityTimer?.cancel();
     _visibilityTimer = Timer(const Duration(seconds: 3), () {
-      if (!widget.autoHide) {
+      if (!widget.autoHide || !mounted) {
         return;
       }
-      setVisible(false);
+      _setVisible(false);
     });
   }
 
@@ -90,7 +91,7 @@ class ControlsWrapperState extends State<ControlsWrapper> with SingleTickerProvi
         return GestureDetector(
           behavior: HitTestBehavior.translucent,
           onTap: () {
-            setVisible(!_visible);
+            _setVisible(!_visible);
           },
           child: Stack(
             children: [
