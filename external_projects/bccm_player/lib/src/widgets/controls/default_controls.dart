@@ -5,14 +5,14 @@ import 'dart:math';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/src/utils/debouncer.dart';
 import 'package:bccm_player/src/widgets/controls/controls_wrapper.dart';
-import 'package:bccm_player/src/widgets/controls/settings/settings_sheet_wrapper.dart';
+import 'package:bccm_player/src/widgets/controls/settings/settings_sheet.dart';
 import 'package:bccm_player/src/widgets/mini_player/loading_indicator.dart';
-import 'package:bccm_player/theme/bccm_player_theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../configuration/bccm_player_configuration.dart';
 import '../../utils/svg_icons.dart';
 import '../../utils/time.dart';
 import 'control_fade_out.dart';
@@ -33,7 +33,7 @@ class DefaultControls extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controlsTheme = PlayerTheme.safeOf(context).controls!;
+    final controlsTheme = PlayerConfiguration.safeOf(context).theme?.controls;
     final player = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state);
     final seekDebouncer = useMemoized(() => Debouncer(milliseconds: 1000));
     final forwardRewindDebouncer = useMemoized(() => Debouncer(milliseconds: 200, debounceInitial: false));
@@ -102,7 +102,7 @@ class DefaultControls extends HookWidget {
                           IconButton(
                             icon: const Icon(Icons.close),
                             iconSize: 32,
-                            color: controlsTheme.iconColor,
+                            color: controlsTheme?.iconColor,
                             padding: const EdgeInsets.all(12),
                             onPressed: () {
                               Navigator.maybePop(context);
@@ -111,14 +111,13 @@ class DefaultControls extends HookWidget {
                           if (title != null)
                             Text(
                               title,
-                              style: controlsTheme.fullscreenTitleStyle,
+                              style: controlsTheme?.fullscreenTitleStyle,
                             ),
                         ],
                         const Spacer(),
                         SettingsSheet(
                           playerId: playerId,
                           padding: const EdgeInsets.only(top: 12, bottom: 24, left: 24, right: 8),
-                          controlsTheme: controlsTheme,
                         ),
                       ],
                     ),
@@ -137,7 +136,7 @@ class DefaultControls extends HookWidget {
                         child: IconButton(
                           icon: const Icon(Icons.replay),
                           iconSize: 42,
-                          color: controlsTheme.iconColor,
+                          color: controlsTheme?.iconColor,
                           onPressed: () => seekToRelative(-forwardRewindDurationSec),
                         ),
                       ),
@@ -152,7 +151,7 @@ class DefaultControls extends HookWidget {
                               height: double.infinity,
                             ),
                           ),
-                          color: controlsTheme.iconColor,
+                          color: controlsTheme?.iconColor,
                           onPressed: () {
                             BccmPlayerInterface.instance.play(playerId);
                           },
@@ -164,7 +163,7 @@ class DefaultControls extends HookWidget {
                               ? LoadingIndicator(
                                   width: 42,
                                   height: 42,
-                                  color: controlsTheme.iconColor,
+                                  color: controlsTheme?.iconColor,
                                 )
                               : Padding(
                                   padding: const EdgeInsets.all(2),
@@ -175,7 +174,7 @@ class DefaultControls extends HookWidget {
                                   ),
                                 ),
                           iconSize: 42,
-                          color: controlsTheme.iconColor,
+                          color: controlsTheme?.iconColor,
                           onPressed: () {
                             BccmPlayerInterface.instance.pause(playerId);
                           },
@@ -189,7 +188,7 @@ class DefaultControls extends HookWidget {
                             child: const Icon(Icons.replay),
                           ),
                           iconSize: 42,
-                          color: controlsTheme.iconColor,
+                          color: controlsTheme?.iconColor,
                           onPressed: () => seekToRelative(forwardRewindDurationSec),
                         ),
                       ),
@@ -225,7 +224,7 @@ class DefaultControls extends HookWidget {
                                 padding: const EdgeInsets.only(bottom: 8, left: 12),
                                 child: Text(
                                   '${getFormattedDuration(currentMs)} / ${getFormattedDuration(duration)}',
-                                  style: controlsTheme.durationTextStyle,
+                                  style: controlsTheme?.durationTextStyle,
                                 ),
                               ),
                             const Spacer(),
@@ -244,7 +243,7 @@ class DefaultControls extends HookWidget {
                                 padding: const EdgeInsets.only(right: 8, top: 8, bottom: 5, left: 20),
                                 child: Icon(
                                   isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
-                                  color: controlsTheme.iconColor,
+                                  color: controlsTheme?.iconColor,
                                 ),
                               ),
                             ),
@@ -262,7 +261,7 @@ class DefaultControls extends HookWidget {
                             children: [
                               Expanded(
                                 child: SliderTheme(
-                                  data: controlsTheme.progressBarTheme!,
+                                  data: controlsTheme!.progressBarTheme!,
                                   child: SizedBox(
                                     height: 10,
                                     child: Slider(

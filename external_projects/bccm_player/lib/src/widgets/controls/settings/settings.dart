@@ -4,33 +4,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../bccm_player.dart';
-import '../../../../theme/controls_theme_data.dart';
+import '../../../../configuration/bccm_player_configuration.dart';
 import '../../../pigeon/playback_platform_pigeon.g.dart';
 import 'settings_option_list.dart';
 
-final _speeds = <double, String>{
-  0.25: '0.25x',
-  0.5: '0.5x',
-  0.75: '0.75x',
-  1.0: 'Normal',
-  1.25: '1.25x',
-  1.5: '1.5x',
-  1.75: '1.75x',
-  2.0: '2x',
-};
+final _speedsList = <PlaybackSpeed>[
+  PlaybackSpeeds.speed25,
+  PlaybackSpeeds.speed50,
+  PlaybackSpeeds.speed75,
+  PlaybackSpeeds.speed100,
+  PlaybackSpeeds.speed125,
+  PlaybackSpeeds.speed150,
+  PlaybackSpeeds.speed175,
+  PlaybackSpeeds.speed200,
+];
 
 class Settings extends HookWidget {
   const Settings({
     super.key,
     required this.playerId,
-    required this.controlsTheme,
   });
 
   final String playerId;
-  final ControlsThemeData controlsTheme;
 
   @override
   Widget build(BuildContext context) {
+    final playerConfiguration = PlayerConfiguration.safeOf(context);
+    final controlsTheme = playerConfiguration.theme?.controls;
     final tracksFuture = useMemoized(() {
       return BccmPlayerInterface.instance.getPlayerTracks(playerId: playerId);
     }, [playerId]);
@@ -56,11 +56,11 @@ class Settings extends HookWidget {
     final selectedAudioTrack = tracksData?.audioTracks.safe.firstWhereOrNull((element) => element.isSelected);
     final selectedTextTrack = tracksData?.textTracks.safe.firstWhereOrNull((element) => element.isSelected);
 
-    final currentSpeedNum = speedSnapshot.data ?? 1.0;
-    final selectedSpeedLabel = _speeds[currentSpeedNum]!;
+    final currentSpeedNum = speedSnapshot.data ?? PlaybackSpeeds.speed100.speed;
+    final selectedSpeedLabel = _speedsList.firstWhereOrNull((element) => element.speed == currentSpeedNum)!.label;
 
     return Container(
-      color: controlsTheme.settingsListBackgroundColor,
+      color: controlsTheme?.settingsListBackgroundColor,
       child: ListView(
         shrinkWrap: true,
         children: [
@@ -81,7 +81,6 @@ class Settings extends HookWidget {
                           ),
                         )
                         .toList(),
-                    controlsTheme: controlsTheme,
                   ),
                 );
                 if (selected != null && context.mounted) {
@@ -91,13 +90,13 @@ class Settings extends HookWidget {
               },
               title: Text(
                 'Audio: ${selectedAudioTrack?.labelWithFallback ?? 'N/A'}',
-                style: controlsTheme.settingsListTextStyle,
+                style: controlsTheme?.settingsListTextStyle,
               ),
             ),
           if (tracksData?.textTracks.isNotEmpty == true)
             ListTile(
               dense: true,
-              title: Text('Subtitles: ${selectedTextTrack?.labelWithFallback ?? 'N/A'}', style: controlsTheme.settingsListTextStyle),
+              title: Text('Subtitles: ${selectedTextTrack?.labelWithFallback ?? 'N/A'}', style: controlsTheme?.settingsListTextStyle),
               onTap: () async {
                 final selected = await showModalBottomSheet<SettingsOption>(
                   context: context,
@@ -112,7 +111,6 @@ class Settings extends HookWidget {
                           ),
                         )
                         .toList(),
-                    controlsTheme: controlsTheme,
                   ),
                 );
                 if (selected != null && context.mounted) {
@@ -123,22 +121,21 @@ class Settings extends HookWidget {
             ),
           ListTile(
             dense: true,
-            title: Text('Playback speed: $selectedSpeedLabel', style: controlsTheme.settingsListTextStyle),
+            title: Text('Playback speed: $selectedSpeedLabel', style: controlsTheme?.settingsListTextStyle),
             onTap: () async {
               final selected = await showModalBottomSheet<SettingsOption>(
                 context: context,
                 isDismissible: true,
                 builder: (context) => SettingsOptionList(
-                  options: _speeds.entries
+                  options: _speedsList
                       .map(
-                        (e) => SettingsOption(
-                          id: e.key,
-                          label: e.value,
-                          isSelected: e.key == currentSpeedNum,
+                        (speed) => SettingsOption(
+                          id: speed.speed,
+                          label: speed.label,
+                          isSelected: speed.speed == currentSpeedNum,
                         ),
                       )
                       .toList(),
-                  controlsTheme: controlsTheme,
                 ),
               );
               if (selected != null && context.mounted) {

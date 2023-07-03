@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/configuration/bccm_player_configuration.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/episode/episode_collection.dart';
 import 'package:brunstadtv_app/components/episode/episode_info.dart';
@@ -386,14 +387,17 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || player.isFullscreen,
                   )
                 else
-                  VideoPlayerView(
-                    id: player.playerId,
-                    useNativeControls: ref.read(settingsProvider).useNativePlayer == true ||
-                        !ref.watch(featureFlagsProvider.select((value) => value.flutterPlayerControls)),
-                    resetSystemOverlays: () {
-                      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-                    },
-                    playNextButton: playNextButtonBuilder,
+                  PlayerConfiguration(
+                    configuration: PlayerConfigurationData(playbackSpeed: PlaybackSpeeds.speed200),
+                    child: (context) => VideoPlayerView(
+                      id: player.playerId,
+                      useNativeControls: ref.read(settingsProvider).useNativePlayer == true ||
+                          !ref.watch(featureFlagsProvider.select((value) => value.flutterPlayerControls)),
+                      resetSystemOverlays: () {
+                        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+                      },
+                      playNextButton: playNextButtonBuilder,
+                    ),
                   ),
                 EpisodeInfo(
                   episode,

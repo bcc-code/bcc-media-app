@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../bccm_player.dart';
+import '../../../configuration/bccm_player_configuration.dart';
 import '../../../theme/player_theme.dart';
 import '../../utils/svg_icons.dart';
 
@@ -22,6 +23,8 @@ class PlayNextButton extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controlsTheme = PlayerConfiguration.safeOf(context).theme?.controls;
+
     //player state
     final playerNotifier = BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId);
     final duration = useState<double?>(null);
@@ -78,7 +81,7 @@ class PlayNextButton extends HookWidget {
                   child: Stack(
                     children: [
                       Positioned.fill(
-                        child: Container(color: PlayerTheme.safeOf(context).controls?.playNextButtonBackgroundColor),
+                        child: Container(color: controlsTheme?.playNextButtonBackgroundColor),
                       ),
                       Positioned.fill(
                         child: Align(
@@ -86,7 +89,7 @@ class PlayNextButton extends HookWidget {
                           child: SizeTransition(
                             axis: Axis.horizontal,
                             sizeFactor: controller,
-                            child: Container(color: PlayerTheme.safeOf(context).controls?.playNextButtonProgressColor),
+                            child: Container(color: controlsTheme?.playNextButtonProgressColor),
                           ),
                         ),
                       ),

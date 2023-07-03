@@ -1,3 +1,4 @@
+import 'package:bccm_player/configuration/bccm_player_configuration.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../theme/controls_theme_data.dart';
@@ -18,16 +19,15 @@ class SettingsOptionList extends StatelessWidget {
   const SettingsOptionList({
     super.key,
     required this.options,
-    required this.controlsTheme,
   });
 
   final List<SettingsOption> options;
-  final ControlsThemeData controlsTheme;
 
   @override
   Widget build(BuildContext context) {
+    final controlsTheme = PlayerConfiguration.safeOf(context).theme?.controls;
     return Container(
-      color: controlsTheme.settingsListBackgroundColor,
+      color: controlsTheme?.settingsListBackgroundColor,
       child: ListView(
         shrinkWrap: true,
         children: [
@@ -38,7 +38,7 @@ class SettingsOptionList extends StatelessWidget {
                 // select this track
                 Navigator.pop(context, option);
               },
-              title: Text(option.label, style: controlsTheme.settingsListTextStyle),
+              title: Text(option.label, style: controlsTheme?.settingsListTextStyle),
               trailing: option.isSelected ? const Icon(Icons.check) : null,
             ),
         ],
