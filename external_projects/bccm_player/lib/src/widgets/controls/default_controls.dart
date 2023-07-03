@@ -210,7 +210,8 @@ class DefaultControls extends HookWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          if (playNextButton != null) Padding(padding: EdgeInsets.only(bottom: 8, right: 12), child: playNextButton!(context)),
+                          if (playNextButton != null && isFullscreen)
+                            Padding(padding: const EdgeInsets.only(bottom: 8, right: 12), child: playNextButton!(context)),
                         ],
                       ),
                     ),
