@@ -15,5 +15,6 @@ class FeatureFlags with _$FeatureFlags {
     @Default(true) bool shareVideoButton,
     @Default(false) bool gamesTab,
     @Default(false) bool flutterPlayerControls,
+    @Default(false) bool playNextButton,
   }) = _FeatureFlags;
 }

@@ -2,7 +2,6 @@ import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
 
@@ -16,8 +15,32 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
   final UnleashClient? client;
   FeatureFlagsNotifier(this.client) : super(_getFlags(client)) {
     _update();
-    client?.on('update', (_) => _update());
-    client?.on('ready', (_) => _update(readyOverride: true));
+    client?.on('update', onUnleashUpdate);
+    client?.on('ready', onUnleashReady);
+  }
+
+  @override
+  void dispose() {
+    client?.off(type: 'update', callback: onUnleashUpdate);
+    client?.off(type: 'ready', callback: onUnleashReady);
+    super.dispose();
+  }
+
+  void onUnleashUpdate(_) {
+    _update();
+  }
+
+  void onUnleashReady(_) {
+    _update();
+  }
+
+  _update() {
+    if (!mounted) {
+      debugPrint('Tried to call FeatureFlagsNotifier._update but its not mounted. This should not happen.');
+      return;
+    }
+    state = _getFlags(client);
+    debugPrint('Feature flags refreshed: $state');
   }
 
   static FeatureFlags _getFlags(UnleashClient? client) {
@@ -31,11 +54,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       autoFullscreenOnPlay: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('auto-fullscreen-on-play'),
       gamesTab: kDebugMode && FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('games-tab'),
       flutterPlayerControls: Env.forceFlutterControls || client.isEnabled('flutter-player-controls'),
+      playNextButton: client.isEnabled('play-next-button'),
     );
-  }
-
-  _update({bool? readyOverride}) {
-    state = _getFlags(client);
-    debugPrint('Feature flags refreshed: $state');
   }
 }

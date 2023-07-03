@@ -107,7 +107,13 @@ abstract class BccmPlayerInterface extends PlatformInterface {
     throw UnimplementedError('exitFullscreen() has not been implemented.');
   }
 
-  Future enterFullscreen(String playerId, {bool? useNativeControls = true, BuildContext? context, void Function()? resetSystemOverlays}) {
+  Future enterFullscreen(
+    String playerId, {
+    bool? useNativeControls = true,
+    BuildContext? context,
+    void Function()? resetSystemOverlays,
+    WidgetBuilder? playNextButton,
+  }) {
     throw UnimplementedError('enterFullscreen() has not been implemented.');
   }
 

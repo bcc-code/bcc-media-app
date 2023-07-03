@@ -136,7 +136,13 @@ class BccmPlayerNative extends BccmPlayerInterface {
 
   NavigatorState? currentFullscreenNavigator;
   @override
-  Future enterFullscreen(String playerId, {bool? useNativeControls = true, BuildContext? context, void Function()? resetSystemOverlays}) async {
+  Future enterFullscreen(
+    String playerId, {
+    bool? useNativeControls = true,
+    BuildContext? context,
+    void Function()? resetSystemOverlays,
+    WidgetBuilder? playNextButton,
+  }) async {
     if (useNativeControls == true) {
       _pigeon.enterFullscreen(playerId);
     } else if (context == null) {
@@ -151,8 +157,14 @@ class BccmPlayerNative extends BccmPlayerInterface {
       currentFullscreenNavigator = Navigator.of(context, rootNavigator: true);
       await Navigator.of(context, rootNavigator: true).push(
         PageRouteBuilder(
-          pageBuilder: (context, aAnim, bAnim) => VideoPlayerViewFullscreen(playerId: playerId),
-          transitionsBuilder: (context, aAnim, bAnim, child) => FadeTransition(opacity: aAnim, child: child),
+          pageBuilder: (context, aAnim, bAnim) => VideoPlayerViewFullscreen(
+            playerId: playerId,
+            playNextButton: playNextButton,
+          ),
+          transitionsBuilder: (context, aAnim, bAnim, child) => FadeTransition(
+            opacity: aAnim,
+            child: child,
+          ),
           fullscreenDialog: true,
         ),
       );

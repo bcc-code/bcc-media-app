@@ -15,6 +15,7 @@ class VideoPlayerView extends HookWidget {
   final bool useNativeControls;
   final bool isFullscreenPlayer;
   final VoidCallback? resetSystemOverlays;
+  final WidgetBuilder? playNextButton;
 
   const VideoPlayerView({
     super.key,
@@ -22,6 +23,7 @@ class VideoPlayerView extends HookWidget {
     this.useNativeControls = true,
     this.isFullscreenPlayer = false,
     this.resetSystemOverlays,
+    this.playNextButton,
   });
 
   @override
@@ -56,6 +58,7 @@ class VideoPlayerView extends HookWidget {
         useNativeControls: useNativeControls,
         context: context,
         resetSystemOverlays: resetSystemOverlays,
+        playNextButton: playNextButton,
       );
       if (isMounted()) {
         disableLocally.value = false;
@@ -104,6 +107,7 @@ class _VideoWithControls extends HookWidget {
               playerId: parent.id,
               exitFullscreen: exitFullscreen,
               goFullscreen: goFullscreen,
+              playNextButton: parent.playNextButton,
             );
           }),
         ),

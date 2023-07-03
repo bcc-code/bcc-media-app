@@ -3,9 +3,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../theme/player_theme.dart';
+import '../../utils/svg_icons.dart';
+import '../../utils/transparent_image.dart';
 import 'loading_indicator.dart';
-import '../../helpers/ui/transparent_image.dart';
-import '../../helpers/ui/svg_icons.dart';
 
 const double kMiniPlayerHeight = 62;
 
