@@ -89,7 +89,7 @@ class SRo extends S {
   String get loggedOutMessage => 'Ai fost deconectat. Te rugăm să te conectezi din nou.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Depune o donație';
 
   @override
   String get mostWatched => 'Cele mai vizionate';
@@ -149,55 +149,55 @@ class SRo extends S {
   String get contactUs => 'Contactează-ne';
 
   @override
-  String get deviceInfo => 'Device info';
+  String get deviceInfo => 'Informații despre dispozitiv';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Include informații despre dispozitiv pentru o asistență mai bună.';
 
   @override
-  String get contactSeeData => 'Click to see data.';
+  String get contactSeeData => 'Faceți clic pentru a vedea datele.';
 
   @override
-  String get contactName => 'Name';
+  String get contactName => 'Nume';
 
   @override
-  String get contactNameHint => 'Type in your name';
+  String get contactNameHint => 'Introdu numele tău';
 
   @override
-  String get contactEmail => 'Your contact email';
+  String get contactEmail => 'Adresa ta de e-mail de contact';
 
   @override
-  String get contactEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'Introdu adresa ta de e-mail';
 
   @override
-  String get contactMessage => 'Message';
+  String get contactMessage => 'Mesaj';
 
   @override
-  String get contactMessageHint => 'Enter your message here';
+  String get contactMessageHint => 'Introdu mesajul tău aici';
 
   @override
-  String get deviceInfoDevice => 'Device';
+  String get deviceInfoDevice => 'Dispozitiv';
 
   @override
-  String get deviceInfoEnvOverride => 'Environment override';
+  String get deviceInfoEnvOverride => 'Suprascrierea mediului';
 
   @override
-  String get deviceInfoManufacturer => 'Manufacturer';
+  String get deviceInfoManufacturer => 'Producător';
 
   @override
-  String get deviceInfoOs => 'Operating System';
+  String get deviceInfoOs => 'Sistem de operare';
 
   @override
-  String get deviceInfoScreenSize => 'Screen Size';
+  String get deviceInfoScreenSize => 'Mărimea ecranului';
 
   @override
-  String get deviceInfoAppVer => 'App Version';
+  String get deviceInfoAppVer => 'Versiunea aplicației';
 
   @override
-  String get deviceInfoUserId => 'User ID';
+  String get deviceInfoUserId => 'ID de utilizator';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc => 'Mesajul tău va include aceste informații, pentru a ne ajuta să înțelegem mai bine problema.';
 
   @override
   String get userVoice => 'Propune o funcție';
@@ -233,7 +233,7 @@ class SRo extends S {
   String get none => 'Niciunul';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Episodul următor';
 
   @override
   String get auto => 'Auto';
@@ -781,8 +781,8 @@ class SRo extends S {
   }
 
   @override
-  String get gamesTab => 'Games';
+  String get gamesTab => 'Jocuri';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'Joacă jocul';
 }

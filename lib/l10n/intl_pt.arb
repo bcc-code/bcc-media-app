@@ -191,68 +191,68 @@
   "@contactUs": {
     "description": "Title for contact us page"
   },
-  "deviceInfo": "Device info",
+  "deviceInfo": "Informação do dispositivo",
   "@deviceInfo": {
     "description": "Device info page title"
   },
-  "contactIncludeDeviceInfo": "Include device information for better support.",
-  "contactSeeData": "Click to see data.",
+  "contactIncludeDeviceInfo": "Inclua informações do dispositivo para melhor suporte.",
+  "contactSeeData": "Clique para ver os dados.",
   "@contactSeeData": {
     "description": "Text for link to see device data"
   },
-  "contactName": "Name",
+  "contactName": "Nome",
   "@contactName": {
     "description": "Label for name field in contact support page"
   },
-  "contactNameHint": "Type in your name",
+  "contactNameHint": "Digite seu nome",
   "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactEmail": "Your contact email",
+  "contactEmail": "Seu e-mail de contato",
   "@contactEmail": {
     "description": "Label for email field in contact support page"
   },
-  "contactEmailHint": "Type in your email address",
+  "contactEmailHint": "Digite seu endereço de e-mail",
   "@contactEmailHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactMessage": "Message",
+  "contactMessage": "Mensagens",
   "@contactMessage": {
     "description": "Label for message field in contact support page"
   },
-  "contactMessageHint": "Enter your message here",
+  "contactMessageHint": "Digite sua mensagem aqui",
   "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
-  "deviceInfoDevice": "Device",
+  "deviceInfoDevice": "Dispositivo",
   "@deviceInfoDevice": {
     "description": "Label for device"
   },
-  "deviceInfoEnvOverride": "Environment override",
+  "deviceInfoEnvOverride": "Substituição do ambiente",
   "@deviceInfoEnvOverride": {
     "description": "Label for environment override"
   },
-  "deviceInfoManufacturer": "Manufacturer",
+  "deviceInfoManufacturer": "Fabricante",
   "@deviceInfoManufacturer": {
     "description": "Label for manufacturer"
   },
-  "deviceInfoOs": "Operating System",
+  "deviceInfoOs": "Sistema operacional",
   "@deviceInfoOs": {
     "description": "Label for operating system"
   },
-  "deviceInfoScreenSize": "Screen Size",
+  "deviceInfoScreenSize": "Tamanho da tela",
   "@deviceInfoScreenSize": {
     "description": "Label for screen size"
   },
-  "deviceInfoAppVer": "App Version",
+  "deviceInfoAppVer": "Versão do App",
   "@deviceInfoAppVer": {
     "description": "Label for app Version"
   },
-  "deviceInfoUserId": "User ID",
+  "deviceInfoUserId": "ID do usuário",
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-  "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
+  "deviceInfoPageDesc": "Sua mensagem incluirá essas informações para nos ajudar a fornecer um melhor suporte.",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
   },
