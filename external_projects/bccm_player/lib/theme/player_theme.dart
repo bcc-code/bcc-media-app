@@ -2,6 +2,9 @@ import 'package:bccm_player/theme/controls_theme_data.dart';
 import 'package:bccm_player/theme/mini_player_theme_data.dart';
 import 'package:flutter/material.dart';
 
+export 'mini_player_theme_data.dart';
+export 'controls_theme_data.dart';
+
 class PlayerThemeData {
   PlayerThemeData({this.miniPlayer, this.controls});
 

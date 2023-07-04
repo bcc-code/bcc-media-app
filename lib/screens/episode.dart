@@ -387,17 +387,14 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || player.isFullscreen,
                   )
                 else
-                  PlayerConfiguration(
-                    configuration: PlayerConfigurationData(playbackSpeed: PlaybackSpeeds.speed200),
-                    child: (context) => VideoPlayerView(
-                      id: player.playerId,
-                      useNativeControls: ref.read(settingsProvider).useNativePlayer == true ||
-                          !ref.watch(featureFlagsProvider.select((value) => value.flutterPlayerControls)),
-                      resetSystemOverlays: () {
-                        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-                      },
-                      playNextButton: playNextButtonBuilder,
-                    ),
+                  VideoPlayerView(
+                    id: player.playerId,
+                    useNativeControls: ref.read(settingsProvider).useNativePlayer == true ||
+                        !ref.watch(featureFlagsProvider.select((value) => value.flutterPlayerControls)),
+                    resetSystemOverlays: () {
+                      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+                    },
+                    playNextButton: playNextButtonBuilder,
                   ),
                 EpisodeInfo(
                   episode,

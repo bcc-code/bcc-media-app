@@ -8,17 +8,6 @@ import '../../../../configuration/bccm_player_configuration.dart';
 import '../../../pigeon/playback_platform_pigeon.g.dart';
 import 'settings_option_list.dart';
 
-final _speedsList = <PlaybackSpeed>[
-  PlaybackSpeeds.speed25,
-  PlaybackSpeeds.speed50,
-  PlaybackSpeeds.speed75,
-  PlaybackSpeeds.speed100,
-  PlaybackSpeeds.speed125,
-  PlaybackSpeeds.speed150,
-  PlaybackSpeeds.speed175,
-  PlaybackSpeeds.speed200,
-];
-
 class Settings extends HookWidget {
   const Settings({
     super.key,
@@ -26,6 +15,19 @@ class Settings extends HookWidget {
   });
 
   final String playerId;
+
+  String getPlaybackSpeedLabel(double speed) {
+    // Remove unnecessary decimal part. i.e 2x instead of 2.0x
+    final integerPart = speed.truncate();
+    final fractionalPart = speed - integerPart;
+    final cleanSpeed = fractionalPart == 0.0 ? integerPart : speed;
+
+    if (cleanSpeed == 1) {
+      return 'Normal';
+    } else {
+      return '${cleanSpeed}x';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +58,8 @@ class Settings extends HookWidget {
     final selectedAudioTrack = tracksData?.audioTracks.safe.firstWhereOrNull((element) => element.isSelected);
     final selectedTextTrack = tracksData?.textTracks.safe.firstWhereOrNull((element) => element.isSelected);
 
-    final currentSpeedNum = speedSnapshot.data ?? PlaybackSpeeds.speed100.speed;
-    final selectedSpeedLabel = _speedsList.firstWhereOrNull((element) => element.speed == currentSpeedNum)!.label;
+    final currentSpeedNum = speedSnapshot.data ?? playerConfiguration.defaultPlaybackSpeed;
+    final selectedSpeedLabel = getPlaybackSpeedLabel(currentSpeedNum);
 
     return Container(
       color: controlsTheme?.settingsListBackgroundColor,
@@ -127,12 +129,12 @@ class Settings extends HookWidget {
                 context: context,
                 isDismissible: true,
                 builder: (context) => SettingsOptionList(
-                  options: _speedsList
+                  options: playerConfiguration.playbackSpeeds
                       .map(
                         (speed) => SettingsOption(
-                          id: speed.speed,
-                          label: speed.label,
-                          isSelected: speed.speed == currentSpeedNum,
+                          id: speed,
+                          label: getPlaybackSpeedLabel(speed),
+                          isSelected: speed == currentSpeedNum,
                         ),
                       )
                       .toList(),

@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/configuration/bccm_player_configuration.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../cast/cast_player.dart';
@@ -37,6 +38,12 @@ class VideoPlayerView extends HookWidget {
         state.isFlutterFullscreen == true && !isFullscreenPlayer ? disableLocally.value = true : disableLocally.value = false;
       });
     }, [id, isFullscreenPlayer]);
+
+    final defaultPlaybackSpeed = PlayerConfiguration.safeOf(context).defaultPlaybackSpeed;
+    useEffect(() {
+      BccmPlayerInterface.instance.setPlaybackSpeed(id, defaultPlaybackSpeed);
+      return null;
+    }, [id]);
 
     if (id == 'chromecast') {
       return const CastPlayer();
