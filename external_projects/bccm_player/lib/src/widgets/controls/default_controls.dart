@@ -388,18 +388,21 @@ class _Settings extends HookWidget {
           if (tracksData?.textTracks.isNotEmpty == true)
             ListTile(
               dense: true,
-              title: Text('Subtitles: ${selectedTextTrack?.labelWithFallback ?? 'N/A'}', style: controlsTheme.settingsListTextStyle),
+              title: Text('Subtitles: ${selectedTextTrack?.labelWithFallback ?? 'None'}', style: controlsTheme.settingsListTextStyle),
               onTap: () async {
                 final selected = await showModalBottomSheet<String>(
                   context: context,
                   isDismissible: true,
                   builder: (context) => SettingsTrackList(
-                    tracks: tracksData!.textTracks,
+                    tracks: [
+                      Track(id: 'None', label: 'None', isSelected: selectedTextTrack == null),
+                      ...tracksData!.textTracks,
+                    ],
                     controlsTheme: controlsTheme,
                   ),
                 );
                 if (selected != null && context.mounted) {
-                  BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.text, selected);
+                  BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.text, selected == 'None' ? null : selected);
                   Navigator.pop(context);
                 }
               },

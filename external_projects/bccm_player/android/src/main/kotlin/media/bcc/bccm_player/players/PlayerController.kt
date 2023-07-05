@@ -213,7 +213,19 @@ abstract class PlayerController : Player.Listener {
             .build()
     }
 
-    fun setSelectedTrack(type: @C.TrackType Int, trackId: String, tracksOverride: Tracks? = null) {
+    fun setTrackTypeDisabled(type: @C.TrackType Int, state: Boolean) {
+        player.trackSelectionParameters = player.trackSelectionParameters
+            .buildUpon()
+            .setTrackTypeDisabled(type, state)
+            .build()
+    }
+
+    fun setSelectedTrack(type: @C.TrackType Int, trackId: String?, tracksOverride: Tracks? = null) {
+        if (trackId == null) {
+            setTrackTypeDisabled(type, true);
+            return;
+        }
+        setTrackTypeDisabled(type, false);
         val tracks = tracksOverride ?: player.currentTracks
         val trackGroup = tracks.groups.firstOrNull {
             it.type == type

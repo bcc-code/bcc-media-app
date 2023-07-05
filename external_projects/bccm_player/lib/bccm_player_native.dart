@@ -111,7 +111,7 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
-  Future<void> setSelectedTrack(String playerId, TrackType type, String trackId) {
+  Future<void> setSelectedTrack(String playerId, TrackType type, String? trackId) {
     return _pigeon.setSelectedTrack(playerId, type, trackId);
   }
 

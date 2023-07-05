@@ -39,7 +39,7 @@ abstract class PlaybackPlatformPigeon {
 
   @async
   @ObjCSelector("setSelectedTrack:type:trackId:")
-  void setSelectedTrack(String playerId, TrackType type, String trackId);
+  void setSelectedTrack(String playerId, TrackType type, String? trackId);
 
   @ObjCSelector("exitFullscreen:")
   void exitFullscreen(String playerId);

@@ -77,7 +77,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
     override fun setSelectedTrack(
         playerId: String,
         type: PlaybackPlatformApi.TrackType,
-        trackId: String,
+        trackId: String?,
         result: PlaybackPlatformApi.Result<Void>
     ) {
         val playbackService = plugin.getPlaybackService()

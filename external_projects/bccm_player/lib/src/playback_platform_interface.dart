@@ -91,7 +91,7 @@ abstract class BccmPlayerInterface extends PlatformInterface {
     throw UnimplementedError('stop() has not been implemented.');
   }
 
-  Future<void> setSelectedTrack(String playerId, TrackType type, String trackId) {
+  Future<void> setSelectedTrack(String playerId, TrackType type, String? trackId) {
     throw UnimplementedError('setSelectedTrack() has not been implemented.');
   }
 
