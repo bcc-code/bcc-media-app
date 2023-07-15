@@ -89,7 +89,7 @@ class SDa extends S {
   String get loggedOutMessage => 'Du er blevet logget ud. Venligst log ind igen.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Giv en donation';
 
   @override
   String get mostWatched => 'Mest sete';
@@ -149,55 +149,55 @@ class SDa extends S {
   String get contactUs => 'Kontakt os';
 
   @override
-  String get deviceInfo => 'Device info';
+  String get deviceInfo => 'Info om enheden';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Inkluder enhedsoplysninger for bedre support';
 
   @override
-  String get contactSeeData => 'Click to see data.';
+  String get contactSeeData => 'Klik for at se data';
 
   @override
-  String get contactName => 'Name';
+  String get contactName => 'Navn';
 
   @override
-  String get contactNameHint => 'Type in your name';
+  String get contactNameHint => 'Indtast dit navn';
 
   @override
-  String get contactEmail => 'Your contact email';
+  String get contactEmail => 'Din e-mail';
 
   @override
-  String get contactEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'Indtast din e-mailadresse';
 
   @override
-  String get contactMessage => 'Message';
+  String get contactMessage => 'Besked';
 
   @override
-  String get contactMessageHint => 'Enter your message here';
+  String get contactMessageHint => 'Indtast din besked her';
 
   @override
-  String get deviceInfoDevice => 'Device';
+  String get deviceInfoDevice => 'Enhed';
 
   @override
-  String get deviceInfoEnvOverride => 'Environment override';
+  String get deviceInfoEnvOverride => 'Overstyring af miljø';
 
   @override
-  String get deviceInfoManufacturer => 'Manufacturer';
+  String get deviceInfoManufacturer => 'Producent';
 
   @override
-  String get deviceInfoOs => 'Operating System';
+  String get deviceInfoOs => 'Operativ system';
 
   @override
-  String get deviceInfoScreenSize => 'Screen Size';
+  String get deviceInfoScreenSize => 'Skærmstørrelse';
 
   @override
-  String get deviceInfoAppVer => 'App Version';
+  String get deviceInfoAppVer => 'App-version';
 
   @override
-  String get deviceInfoUserId => 'User ID';
+  String get deviceInfoUserId => 'Bruger-ID';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc => 'Din besked vil indeholde disse oplysninger for at hjælpe os med at yde bedre support';
 
   @override
   String get userVoice => 'Foreslå en funktion';
@@ -233,7 +233,7 @@ class SDa extends S {
   String get none => 'Ingen';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Næste episode';
 
   @override
   String get auto => 'Auto';
@@ -781,8 +781,8 @@ class SDa extends S {
   }
 
   @override
-  String get gamesTab => 'Games';
+  String get gamesTab => 'Spil';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'Start spil';
 }

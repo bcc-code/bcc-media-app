@@ -111,7 +111,7 @@
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
-  "makeDonation": "Make a donation",
+  "makeDonation": "Lahjoita rahaa",
   "@makeDonation": {
     "description": "Text for button which opens donation page."
   },
@@ -191,40 +191,40 @@
   "@contactUs": {
     "description": "Title for contact us page"
   },
-  "deviceInfo": "Device info",
+  "deviceInfo": "Tietoa laitteesta",
   "@deviceInfo": {
     "description": "Device info page title"
   },
-  "contactIncludeDeviceInfo": "Include device information for better support.",
-  "contactSeeData": "Click to see data.",
+  "contactIncludeDeviceInfo": "Liitä mukaan laitteen tiedot paremman tuen saamiseksi.",
+  "contactSeeData": "Tästä näet tiedot.",
   "@contactSeeData": {
     "description": "Text for link to see device data"
   },
-  "contactName": "Name",
+  "contactName": "Nimi",
   "@contactName": {
     "description": "Label for name field in contact support page"
   },
-  "contactNameHint": "Type in your name",
+  "contactNameHint": "Kirjoita nimesi",
   "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactEmail": "Your contact email",
+  "contactEmail": "Sähköpostiosoitteesi",
   "@contactEmail": {
     "description": "Label for email field in contact support page"
   },
-  "contactEmailHint": "Type in your email address",
+  "contactEmailHint": "Kirjoita sähköpostiosoitteesi",
   "@contactEmailHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactMessage": "Message",
+  "contactMessage": "Viesti",
   "@contactMessage": {
     "description": "Label for message field in contact support page"
   },
-  "contactMessageHint": "Enter your message here",
+  "contactMessageHint": "Kirjoita viestisi tähän",
   "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
-  "deviceInfoDevice": "Device",
+  "deviceInfoDevice": "Laite",
   "@deviceInfoDevice": {
     "description": "Label for device"
   },
@@ -232,27 +232,27 @@
   "@deviceInfoEnvOverride": {
     "description": "Label for environment override"
   },
-  "deviceInfoManufacturer": "Manufacturer",
+  "deviceInfoManufacturer": "Valmistaja",
   "@deviceInfoManufacturer": {
     "description": "Label for manufacturer"
   },
-  "deviceInfoOs": "Operating System",
+  "deviceInfoOs": "Käyttöjärjestelmä",
   "@deviceInfoOs": {
     "description": "Label for operating system"
   },
-  "deviceInfoScreenSize": "Screen Size",
+  "deviceInfoScreenSize": "Ruutukoko",
   "@deviceInfoScreenSize": {
     "description": "Label for screen size"
   },
-  "deviceInfoAppVer": "App Version",
+  "deviceInfoAppVer": "Sovellusversio",
   "@deviceInfoAppVer": {
     "description": "Label for app Version"
   },
-  "deviceInfoUserId": "User ID",
+  "deviceInfoUserId": "Käyttäjätunniste",
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-  "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
+  "deviceInfoPageDesc": "Viestiin lisätään nämä tiedot. Ne auttavat meitä antamaan parempaa tukea.",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
   },
@@ -300,7 +300,7 @@
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
-  "nextEpisode": "Next Episode",
+  "nextEpisode": "Seuraava jakso",
   "@nextEpisode": {
     "description": "Button indicating the next video will play soon."
   },
@@ -1064,11 +1064,11 @@
       }
     }
   },
-  "gamesTab": "Games",
+  "gamesTab": "Pelit",
   "@gamesTab": {
     "description": "Title of the games page"
   },
-  "playGame": "Play Game",
+  "playGame": "Pelaa",
   "@playGame": {
     "description": "Title on a game"
   }

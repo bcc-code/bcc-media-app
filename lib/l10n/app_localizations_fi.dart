@@ -89,7 +89,7 @@ class SFi extends S {
   String get loggedOutMessage => 'Et ole kirjautuneena. Kirjaudu sisään uudelleen.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Lahjoita rahaa';
 
   @override
   String get mostWatched => 'Eniten katsellut';
@@ -149,55 +149,55 @@ class SFi extends S {
   String get contactUs => 'Yhteydenotto';
 
   @override
-  String get deviceInfo => 'Device info';
+  String get deviceInfo => 'Tietoa laitteesta';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Liitä mukaan laitteen tiedot paremman tuen saamiseksi.';
 
   @override
-  String get contactSeeData => 'Click to see data.';
+  String get contactSeeData => 'Tästä näet tiedot.';
 
   @override
-  String get contactName => 'Name';
+  String get contactName => 'Nimi';
 
   @override
-  String get contactNameHint => 'Type in your name';
+  String get contactNameHint => 'Kirjoita nimesi';
 
   @override
-  String get contactEmail => 'Your contact email';
+  String get contactEmail => 'Sähköpostiosoitteesi';
 
   @override
-  String get contactEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'Kirjoita sähköpostiosoitteesi';
 
   @override
-  String get contactMessage => 'Message';
+  String get contactMessage => 'Viesti';
 
   @override
-  String get contactMessageHint => 'Enter your message here';
+  String get contactMessageHint => 'Kirjoita viestisi tähän';
 
   @override
-  String get deviceInfoDevice => 'Device';
+  String get deviceInfoDevice => 'Laite';
 
   @override
   String get deviceInfoEnvOverride => 'Environment override';
 
   @override
-  String get deviceInfoManufacturer => 'Manufacturer';
+  String get deviceInfoManufacturer => 'Valmistaja';
 
   @override
-  String get deviceInfoOs => 'Operating System';
+  String get deviceInfoOs => 'Käyttöjärjestelmä';
 
   @override
-  String get deviceInfoScreenSize => 'Screen Size';
+  String get deviceInfoScreenSize => 'Ruutukoko';
 
   @override
-  String get deviceInfoAppVer => 'App Version';
+  String get deviceInfoAppVer => 'Sovellusversio';
 
   @override
-  String get deviceInfoUserId => 'User ID';
+  String get deviceInfoUserId => 'Käyttäjätunniste';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc => 'Viestiin lisätään nämä tiedot. Ne auttavat meitä antamaan parempaa tukea.';
 
   @override
   String get userVoice => 'Ehdota ominaisuutta';
@@ -233,7 +233,7 @@ class SFi extends S {
   String get none => 'Ei mikään';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Seuraava jakso';
 
   @override
   String get auto => 'Automaattinen';
@@ -781,8 +781,8 @@ class SFi extends S {
   }
 
   @override
-  String get gamesTab => 'Games';
+  String get gamesTab => 'Pelit';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'Pelaa';
 }
