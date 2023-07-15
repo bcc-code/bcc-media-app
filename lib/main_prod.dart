@@ -10,7 +10,7 @@ Future<void> main() async {
       applicationCode: 'btv',
       flavor: Flavor.bccmedia,
       firebaseOptions: prod_firebase.DefaultFirebaseOptions.currentPlatform,
-      enableNotifications: false,
+      enableNotifications: true,
       defaultLanguage: 'no',
       strings: (context) => FlavorStrings(
         onboardingTitle: S.of(context).loginPageDisplay1,
