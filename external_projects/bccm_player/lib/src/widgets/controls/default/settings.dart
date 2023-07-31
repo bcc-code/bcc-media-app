@@ -17,12 +17,14 @@ class SettingsButton extends HookWidget {
     required this.controlsTheme,
     this.padding,
     this.playbackSpeeds,
+    this.showPlaybackSpeed,
   });
 
   final String playerId;
   final ControlsThemeData controlsTheme;
   final EdgeInsets? padding;
   final List<double>? playbackSpeeds;
+  final bool? showPlaybackSpeed;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,7 @@ class SettingsButton extends HookWidget {
             playerId: playerId,
             controlsTheme: controlsTheme,
             playbackSpeeds: playbackSpeeds ?? const [0.75, 1.0, 1.25, 1.5, 2.0],
+            showPlaybackSpeed: showPlaybackSpeed,
           ),
         );
       },
@@ -53,11 +56,13 @@ class _SettingsBottomSheet extends HookWidget {
     required this.playerId,
     required this.controlsTheme,
     required this.playbackSpeeds,
+    required this.showPlaybackSpeed,
   });
 
   final String playerId;
   final ControlsThemeData controlsTheme;
   final List<double> playbackSpeeds;
+  final bool? showPlaybackSpeed;
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +83,11 @@ class _SettingsBottomSheet extends HookWidget {
     final selectedTextTrack = tracksData?.textTracks.safe.firstWhereOrNull((element) => element.isSelected);
 
     final playbackSpeed = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state.playbackSpeed ?? 1.0);
+    final isLive = useState(false);
     useEffect(() {
       void listener(PlayerState state) {
         playbackSpeed.value = state.playbackSpeed;
+        isLive.value = state.currentMediaItem?.isLive == true;
       }
 
       return BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.addListener(listener);
@@ -139,27 +146,28 @@ class _SettingsBottomSheet extends HookWidget {
                 }
               },
             ),
-          ListTile(
-            dense: true,
-            title: Text('Playback speed: ${playbackSpeed.value?.toStringAsFixed(1)}x', style: controlsTheme.settingsListTextStyle),
-            onTap: () async {
-              final selected = await showModalOptionList<double>(
-                context: context,
-                options: playbackSpeeds
-                    .map(
-                      (speed) => SettingsOption(
-                        value: speed,
-                        label: "${speed}x",
-                        isSelected: speed == playbackSpeed.value,
-                      ),
-                    )
-                    .toList(),
-              );
-              if (selected != null && context.mounted) {
-                BccmPlayerInterface.instance.setPlaybackSpeed(playerId, selected.value);
-              }
-            },
-          ),
+          if (showPlaybackSpeed ?? !isLive.value)
+            ListTile(
+              dense: true,
+              title: Text('Playback speed: ${playbackSpeed.value.toStringAsFixed(1)}x', style: controlsTheme.settingsListTextStyle),
+              onTap: () async {
+                final selected = await showModalOptionList<double>(
+                  context: context,
+                  options: playbackSpeeds
+                      .map(
+                        (speed) => SettingsOption(
+                          value: speed,
+                          label: "${speed}x",
+                          isSelected: speed == playbackSpeed.value,
+                        ),
+                      )
+                      .toList(),
+                );
+                if (selected != null && context.mounted) {
+                  BccmPlayerInterface.instance.setPlaybackSpeed(playerId, selected.value);
+                }
+              },
+            ),
         ],
       ),
     );
