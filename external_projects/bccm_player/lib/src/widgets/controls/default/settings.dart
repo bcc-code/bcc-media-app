@@ -104,7 +104,7 @@ class _SettingsBottomSheet extends HookWidget {
                   ],
                 );
                 if (selected != null && context.mounted) {
-                  await BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.audio, selected.value.language);
+                  await BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.audio, selected.value.id);
                   Future.delayed(const Duration(milliseconds: 100), () {
                     if (!context.mounted) return;
                     tracksFuture.value = getTracks();
@@ -131,7 +131,7 @@ class _SettingsBottomSheet extends HookWidget {
                   ],
                 );
                 if (selected != null && context.mounted) {
-                  await BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.text, selected.value?.language);
+                  await BccmPlayerInterface.instance.setSelectedTrack(playerId, TrackType.text, selected.value?.id);
                   Future.delayed(const Duration(milliseconds: 100), () {
                     if (!context.mounted) return;
                     tracksFuture.value = getTracks();

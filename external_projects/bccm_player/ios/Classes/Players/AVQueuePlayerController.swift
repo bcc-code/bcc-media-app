@@ -48,6 +48,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             playbackState: isPlaying() ? PlaybackState.playing : PlaybackState.paused,
             isBuffering: NSNumber(booleanLiteral: isBuffering()),
             isFullscreen: (currentViewController != nil && currentViewController == fullscreenViewController) as NSNumber,
+            playbackSpeed: player.rate as NSNumber,
             currentMediaItem: MediaItemMapper.mapPlayerItem(player.currentItem),
             playbackPositionMs: NSNumber(value: player.currentTime().seconds * 1000)
         )
@@ -88,7 +89,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         return PlayerTracksSnapshot.make(withPlayerId: id, audioTracks: audioTracks, textTracks: textTracks)
     }
     
-    public func setSelectedTrack(type: TrackType, trackId: String) {
+    public func setSelectedTrack(type: TrackType, trackId: String?) {
         guard let currentItem = player.currentItem else {
             debugPrint("Tried to setSelectedTrack, but no item is currently loaded in the player")
             return
@@ -97,14 +98,18 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             debugPrint("Tried to setSelectedTrack, but type is unknown: " + type.rawValue.description)
             return
         }
-        guard let trackIdInt = Int(trackId) else {
-            debugPrint("Tried to setSelectedTrack, but invalid trackId: " + trackId)
-            return
-        }
         
         let selectionGroup = currentItem.asset.mediaSelectionGroup(forMediaCharacteristic: mediaCharacteristic)
         guard let selectionGroup = selectionGroup else {
             debugPrint("Tried to setSelectedTrack, but couldn't find a mediaSelectionGroup with characteristic: " + mediaCharacteristic.rawValue)
+            return
+        }
+        guard let trackId = trackId else {
+            currentItem.select(nil, in: selectionGroup)
+            return
+        }
+        guard let trackIdInt = Int(trackId) else {
+            debugPrint("Tried to setSelectedTrack, but invalid trackId: " + trackId)
             return
         }
         if trackIdInt < selectionGroup.options.count {
@@ -113,6 +118,11 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         } else {
             print("trackId is out of bounds: " + trackId + " of " + selectionGroup.options.count.description)
         }
+    }
+    
+    public func setPlaybackSpeed(_ speed: Float) {
+        player.rate = speed
+        onManualPlayerStateUpdate()
     }
     
     public func getCurrentItem() -> MediaItem? {

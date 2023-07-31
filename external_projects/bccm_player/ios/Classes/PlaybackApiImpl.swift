@@ -124,9 +124,15 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         completion(snapshot, nil)
     }
 
-    public func setSelectedTrack(_ playerId: String, type: TrackType, trackId: String, completion: @escaping (FlutterError?) -> Void) {
+    public func setSelectedTrack(_ playerId: String, type: TrackType, trackId: String?, completion: @escaping (FlutterError?) -> Void) {
         let player = getPlayer(playerId)
         player?.setSelectedTrack(type: type, trackId: trackId)
+        completion(nil)
+    }
+
+    public func setPlaybackSpeed(_ playerId: String, speed: NSNumber, completion: @escaping (FlutterError?) -> Void) {
+        let player = getPlayer(playerId)
+        player?.setPlaybackSpeed(speed.floatValue)
         completion(nil)
     }
 

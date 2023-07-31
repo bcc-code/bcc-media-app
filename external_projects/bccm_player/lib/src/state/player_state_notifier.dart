@@ -32,7 +32,6 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
     if (state.playbackPositionMs != null && state.playbackState == PlaybackState.playing) {
       // Increase by 1000 * playbackSpeed, because timer is called every 1000ms
       final newPosition = state.playbackPositionMs! + (1000 * state.playbackSpeed).round();
-      debugPrint("updatePosition: ${state.playbackPositionMs} -> $newPosition");
       state = state.copyWith(playbackPositionMs: newPosition);
     }
   }

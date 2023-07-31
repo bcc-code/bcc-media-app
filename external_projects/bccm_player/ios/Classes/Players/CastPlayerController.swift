@@ -34,6 +34,7 @@ class CastPlayerController: NSObject, PlayerController {
             playbackState: playbackStateFromMediaStatus(mediaStatus: mediaStatus),
             isBuffering: NSNumber(booleanLiteral: mediaStatus?.playerState == .buffering),
             isFullscreen: false,
+            playbackSpeed: mediaStatus?.playbackRate as NSNumber? ?? 1.0,
             currentMediaItem: currentItem,
             playbackPositionMs: mediaStatus == nil ? nil : NSNumber(value: mediaStatus!.streamPosition * 1000)
         )
@@ -71,16 +72,11 @@ class CastPlayerController: NSObject, PlayerController {
         return PlayerTracksSnapshot.make(withPlayerId: id, audioTracks: audioTracks, textTracks: textTracks)
     }
     
-    func setSelectedTrack(type: TrackType, trackId: String) {
+    func setSelectedTrack(type: TrackType, trackId: String?) {
         guard let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentSession?.remoteMediaClient,
               let tracks = remoteMediaClient.mediaStatus?.mediaInformation?.mediaTracks
         else {
             print("No active media session or no tracks")
-            return
-        }
-
-        guard let trackIdInt = Int(trackId) else {
-            print("Invalid trackId for chromecast, needs to be int but was: \(trackId)")
             return
         }
         guard let castTrackType = type.asCastType() else {
@@ -98,9 +94,25 @@ class CastPlayerController: NSObject, PlayerController {
             // keep by default if the track isnt found (unsure if this makes sense)
             return true
         }
-        activeTrackIds.append(NSNumber(value: trackIdInt))
+        
+        if let trackId = trackId {
+            guard let trackIdInt = Int(trackId) else {
+                print("Invalid trackId for chromecast, needs to be int but was: \(trackId)")
+                return
+            }
+            activeTrackIds.append(NSNumber(value: trackIdInt))
+        }
 
         remoteMediaClient.setActiveTrackIDs(activeTrackIds)
+    }
+    
+    public func setPlaybackSpeed(_ speed: Float) {
+        guard let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentSession?.remoteMediaClient else {
+            return
+        }
+        remoteMediaClient.setPlaybackRate(speed)
+        let event = PlayerStateUpdateEvent.make(withPlayerId: id, snapshot: getPlayerStateSnapshot())
+        playbackApi.playbackListener.onPlayerStateUpdate(event, completion: { _ in })
     }
     
     func getCurrentItem() -> MediaItem? {
