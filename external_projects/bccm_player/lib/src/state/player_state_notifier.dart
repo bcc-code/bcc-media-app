@@ -13,22 +13,8 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
   final bool keepAlive;
   late Timer positionUpdateTimer;
 
-  PlayerStateNotifier(
-      {PlayerState? player, this.onDispose, required this.keepAlive})
-      : super(player ?? const PlayerState(playerId: 'unknown')) {
-    positionUpdateTimer =
-        Timer.periodic(const Duration(seconds: 1), updatePosition);
-  }
-
-  void updatePosition(Timer t) {
-    if (!mounted) return t.cancel();
-    if (state.playbackPositionMs != null &&
-        state.playbackState == PlaybackState.playing) {
-      // Increase by 1000 * playbackSpeed, because timer is called every 1000ms
-      final newPosition =
-          state.playbackPositionMs! + (1000 * state.playbackSpeed).round();
-      state = state.copyWith(playbackPositionMs: newPosition);
-    }
+  PlayerStateNotifier({PlayerState? player, this.onDispose, required this.keepAlive}) : super(player ?? const PlayerState(playerId: 'unknown')) {
+    positionUpdateTimer = Timer.periodic(const Duration(seconds: 1), updatePosition);
   }
 
   @override
@@ -39,6 +25,22 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
       onDispose?.call();
       super.dispose();
     }
+  }
+
+  void updatePosition(Timer t) {
+    if (!mounted) return t.cancel();
+    if (state.playbackPositionMs != null && state.playbackState == PlaybackState.playing) {
+      // Increase by 1000 * playbackSpeed, because timer is called every 1000ms
+      final newPosition = state.playbackPositionMs! + (1000 * state.playbackSpeed).round();
+      debugPrint("updatePosition: ${state.playbackPositionMs} -> $newPosition");
+      state = state.copyWith(playbackPositionMs: newPosition);
+    }
+  }
+
+  void resyncPlaybackPositionTimer() {
+    debugPrint("resyncPlaybackPositionTimer: ${state.playbackPositionMs}");
+    positionUpdateTimer.cancel();
+    positionUpdateTimer = Timer.periodic(const Duration(seconds: 1), updatePosition);
   }
 
   void setMediaItem(MediaItem? mediaItem) {
@@ -54,11 +56,7 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
     state = state.copyWith(isFlutterFullscreen: value);
   }
 
-  void setPlaybackPositionAndSync(int? ms) {
-    debugPrint("setPlaybackPositionAndSync: $ms");
-    positionUpdateTimer.cancel();
-    positionUpdateTimer =
-        Timer.periodic(const Duration(seconds: 1), updatePosition);
+  void setPlaybackPosition(int? ms) {
     state = state.copyWith(playbackPositionMs: ms);
   }
 
