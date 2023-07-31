@@ -16,13 +16,13 @@ class SettingsButton extends HookWidget {
     required this.playerId,
     required this.controlsTheme,
     this.padding,
-    this.playbackSpeeds = const [0.75, 1.0, 1.25, 1.5, 2.0],
+    this.playbackSpeeds,
   });
 
   final String playerId;
   final ControlsThemeData controlsTheme;
   final EdgeInsets? padding;
-  final List<double> playbackSpeeds;
+  final List<double>? playbackSpeeds;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class SettingsButton extends HookWidget {
           builder: (context) => _SettingsBottomSheet(
             playerId: playerId,
             controlsTheme: controlsTheme,
-            playbackSpeeds: playbackSpeeds,
+            playbackSpeeds: playbackSpeeds ?? const [0.75, 1.0, 1.25, 1.5, 2.0],
           ),
         );
       },
@@ -77,7 +77,7 @@ class _SettingsBottomSheet extends HookWidget {
     final selectedAudioTrack = tracksData?.audioTracks.safe.firstWhereOrNull((element) => element.isSelected);
     final selectedTextTrack = tracksData?.textTracks.safe.firstWhereOrNull((element) => element.isSelected);
 
-    final playbackSpeed = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state.playbackSpeed);
+    final playbackSpeed = useState(BccmPlayerInterface.instance.stateNotifier.getPlayerNotifier(playerId)?.state.playbackSpeed ?? 1.0);
     useEffect(() {
       void listener(PlayerState state) {
         playbackSpeed.value = state.playbackSpeed;
@@ -141,7 +141,7 @@ class _SettingsBottomSheet extends HookWidget {
             ),
           ListTile(
             dense: true,
-            title: Text('Playback speed: ${playbackSpeed.value}x', style: controlsTheme.settingsListTextStyle),
+            title: Text('Playback speed: ${playbackSpeed.value?.toStringAsFixed(1)}x', style: controlsTheme.settingsListTextStyle),
             onTap: () async {
               final selected = await showModalOptionList<double>(
                 context: context,

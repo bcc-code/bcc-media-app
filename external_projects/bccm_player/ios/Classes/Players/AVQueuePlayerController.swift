@@ -48,7 +48,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             playbackState: isPlaying() ? PlaybackState.playing : PlaybackState.paused,
             isBuffering: NSNumber(booleanLiteral: isBuffering()),
             isFullscreen: (currentViewController != nil && currentViewController == fullscreenViewController) as NSNumber,
-            playbackSpeed: player.rate as NSNumber,
+            playbackSpeed: getPlaybackSpeed() as NSNumber,
             currentMediaItem: MediaItemMapper.mapPlayerItem(player.currentItem),
             playbackPositionMs: NSNumber(value: player.currentTime().seconds * 1000)
         )
@@ -121,8 +121,24 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
     
     public func setPlaybackSpeed(_ speed: Float) {
-        player.rate = speed
+        if #available(iOS 16, *) {
+            player.defaultRate = speed
+        }
+        if isPlaying() {
+            player.rate = speed
+        }
         onManualPlayerStateUpdate()
+    }
+    
+    public func getPlaybackSpeed() -> Float {
+        if #available(iOS 16, *) {
+            return player.defaultRate
+        }
+        if isPlaying() {
+            return player.rate
+        } else {
+            return 1.0
+        }
     }
     
     public func getCurrentItem() -> MediaItem? {

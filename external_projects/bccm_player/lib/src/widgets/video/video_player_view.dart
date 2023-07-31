@@ -22,6 +22,7 @@ class VideoPlayerView extends HookWidget {
   final bool isFullscreenPlayer;
   final VoidCallback? resetSystemOverlays;
   final WidgetBuilder? playNextButton;
+  final List<double>? playbackSpeeds;
 
   const VideoPlayerView({
     super.key,
@@ -30,6 +31,7 @@ class VideoPlayerView extends HookWidget {
     this.isFullscreenPlayer = false,
     this.resetSystemOverlays,
     this.playNextButton,
+    this.playbackSpeeds,
   });
 
   @override
@@ -114,6 +116,7 @@ class _VideoWithControls extends HookWidget {
               exitFullscreen: exitFullscreen,
               goFullscreen: goFullscreen,
               playNextButton: parent.playNextButton,
+              playbackSpeeds: parent.playbackSpeeds,
             );
           }),
         ),

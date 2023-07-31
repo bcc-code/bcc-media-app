@@ -24,12 +24,14 @@ class DefaultControls extends HookWidget {
     required this.goFullscreen,
     required this.exitFullscreen,
     this.playNextButton,
+    this.playbackSpeeds,
   });
 
   final String playerId;
   final Future Function() goFullscreen;
   final Future Function() exitFullscreen;
   final WidgetBuilder? playNextButton;
+  final List<double>? playbackSpeeds;
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +121,7 @@ class DefaultControls extends HookWidget {
                           playerId: playerId,
                           padding: const EdgeInsets.only(top: 12, bottom: 24, left: 24, right: 8),
                           controlsTheme: controlsTheme,
+                          playbackSpeeds: playbackSpeeds,
                         ),
                       ],
                     ),
