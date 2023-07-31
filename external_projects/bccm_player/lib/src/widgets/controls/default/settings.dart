@@ -141,7 +141,7 @@ class _SettingsBottomSheet extends HookWidget {
             ),
           ListTile(
             dense: true,
-            title: Text('Playback speed: ${playbackSpeed.value}', style: controlsTheme.settingsListTextStyle),
+            title: Text('Playback speed: ${playbackSpeed.value}x', style: controlsTheme.settingsListTextStyle),
             onTap: () async {
               final selected = await showModalOptionList<double>(
                 context: context,
