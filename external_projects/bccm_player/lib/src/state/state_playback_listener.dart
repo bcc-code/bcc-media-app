@@ -21,23 +21,31 @@ class StatePlaybackListener implements PlaybackListenerPigeon {
 
   @override
   void onMediaItemTransition(event) {
-    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setMediaItem(event.mediaItem);
+    pluginStateNotifier
+        .getOrAddPlayerNotifier(event.playerId)
+        .setMediaItem(event.mediaItem);
   }
 
   @override
   void onPictureInPictureModeChanged(event) {
-    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setIsInPipMode(event.isInPipMode);
+    pluginStateNotifier
+        .getOrAddPlayerNotifier(event.playerId)
+        .setIsInPipMode(event.isInPipMode);
   }
 
   @override
   void onPositionDiscontinuity(event) {
     final positionMs = event.playbackPositionMs?.finiteOrNull()?.round();
-    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setPlaybackPosition(positionMs);
+    pluginStateNotifier
+        .getOrAddPlayerNotifier(event.playerId)
+        .setPlaybackPositionAndSync(positionMs);
   }
 
   @override
   void onPlayerStateUpdate(event) {
-    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setStateFromSnapshot(event.snapshot);
+    pluginStateNotifier
+        .getOrAddPlayerNotifier(event.playerId)
+        .setStateFromSnapshot(event.snapshot);
   }
 
   @override
