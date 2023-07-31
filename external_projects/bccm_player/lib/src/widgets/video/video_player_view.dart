@@ -10,6 +10,12 @@ import 'package:flutter/material.dart';
 import '../controls/default_controls.dart';
 import 'video_platform_view.dart';
 
+/// Creates a [VideoPlayerView] widget.
+/// * [id] is the unique identifier for the player.
+/// * [useNativeControls] will use native UI for the player. NOTE: All other options will be ignored if this is true.
+/// * [resetSystemOverlays] is a callback that will be called when the player exits fullscreen.
+/// * [playNextButton] is a widget that will be shown in the bottom right corner of the player.
+/// * [isFullscreenPlayer] should only be used when this is used in a fullscreen context.
 class VideoPlayerView extends HookWidget {
   final String id;
   final bool useNativeControls;

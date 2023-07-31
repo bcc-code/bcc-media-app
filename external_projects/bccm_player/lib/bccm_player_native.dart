@@ -14,7 +14,8 @@ import 'bccm_player.dart';
 class BccmPlayerNative extends BccmPlayerInterface {
   final PlaybackPlatformPigeon _pigeon = PlaybackPlatformPigeon();
   late final RootPigeonPlaybackListener _rootPlaybackListener;
-  final ChromecastPigeonListener _chromecastListener = ChromecastPigeonListener();
+  final ChromecastPigeonListener _chromecastListener =
+      ChromecastPigeonListener();
 
   @override
   get chromecastEventStream => _chromecastListener.stream;
@@ -32,7 +33,9 @@ class BccmPlayerNative extends BccmPlayerInterface {
     // load primary player state
     final initialState = await getPlayerState();
     if (initialState != null) {
-      stateNotifier.getOrAddPlayerNotifier(initialState.playerId).setStateFromSnapshot(initialState);
+      stateNotifier
+          .getOrAddPlayerNotifier(initialState.playerId)
+          .setStateFromSnapshot(initialState);
       stateNotifier.setPrimaryPlayer(initialState.playerId);
     }
   }
@@ -51,8 +54,10 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
-  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem, {bool? playbackPositionFromPrimary, bool? autoplay = true}) async {
-    await _pigeon.replaceCurrentMediaItem(playerId, mediaItem, playbackPositionFromPrimary, autoplay);
+  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
+      {bool? playbackPositionFromPrimary, bool? autoplay = true}) async {
+    await _pigeon.replaceCurrentMediaItem(
+        playerId, mediaItem, playbackPositionFromPrimary, autoplay);
   }
 
   @override
@@ -111,8 +116,14 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
-  Future<void> setSelectedTrack(String playerId, TrackType type, String? trackId) {
+  Future<void> setSelectedTrack(
+      String playerId, TrackType type, String? trackId) {
     return _pigeon.setSelectedTrack(playerId, type, trackId);
+  }
+
+  @override
+  Future<void> setPlaybackSpeed(String playerId, double speed) {
+    return _pigeon.setPlaybackSpeed(playerId, speed);
   }
 
   @override
@@ -136,11 +147,13 @@ class BccmPlayerNative extends BccmPlayerInterface {
     if (useNativeControls == true) {
       _pigeon.enterFullscreen(playerId);
     } else if (context == null) {
-      throw ErrorDescription('enterFullscreen: context cant be null if useNativeControls is false.');
+      throw ErrorDescription(
+          'enterFullscreen: context cant be null if useNativeControls is false.');
     } else {
       Wakelock.enable();
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-      SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+      SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
       debugPrint('bccm: setPreferredOrientations landscape');
 
       stateNotifier.getPlayerNotifier(playerId)?.setIsFlutterFullscreen(true);

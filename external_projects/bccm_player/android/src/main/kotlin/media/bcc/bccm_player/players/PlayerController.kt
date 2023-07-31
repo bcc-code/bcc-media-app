@@ -155,7 +155,11 @@ abstract class PlayerController : Player.Listener {
     }
 
     fun getPlaybackState(): PlaybackPlatformApi.PlaybackState {
-        return if (player.isPlaying || player.playWhenReady) PlaybackPlatformApi.PlaybackState.PLAYING else PlaybackPlatformApi.PlaybackState.PAUSED;
+        return if (player.isPlaying || player.playWhenReady && !arrayOf(
+                Player.STATE_ENDED,
+                Player.STATE_IDLE
+            ).contains(player.playbackState)
+        ) PlaybackPlatformApi.PlaybackState.PLAYING else PlaybackPlatformApi.PlaybackState.PAUSED;
     }
 
     fun getPlayerStateSnapshot(): PlaybackPlatformApi.PlayerStateSnapshot {
@@ -164,6 +168,7 @@ abstract class PlayerController : Player.Listener {
             .setCurrentMediaItem(getCurrentMediaItem())
             .setPlaybackPositionMs(player.currentPosition.toDouble())
             .setPlaybackState(getPlaybackState())
+            .setPlaybackSpeed(player.playbackParameters.speed.toDouble())
             .setIsBuffering(player.playbackState == Player.STATE_BUFFERING)
             .setIsFullscreen(currentPlayerViewController?.isFullscreen == true)
             .build()
@@ -213,7 +218,7 @@ abstract class PlayerController : Player.Listener {
             .build()
     }
 
-    fun setTrackTypeDisabled(type: @C.TrackType Int, state: Boolean) {
+    private fun setTrackTypeDisabled(type: @C.TrackType Int, state: Boolean) {
         player.trackSelectionParameters = player.trackSelectionParameters
             .buildUpon()
             .setTrackTypeDisabled(type, state)
@@ -282,5 +287,10 @@ abstract class PlayerController : Player.Listener {
             val bccmMediaItem = mapMediaItem(mediaItem)
             isLive = bccmMediaItem.isLive ?: false
         }
+    }
+
+    fun setPlaybackSpeed(speed: Float) {
+        player.setPlaybackSpeed(speed)
+        pluginPlayerListener?.onManualPlayerStateUpdate()
     }
 }

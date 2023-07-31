@@ -12,11 +12,17 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
   final void Function()? onDispose;
   final bool keepAlive;
 
-  PlayerStateNotifier({PlayerState? player, this.onDispose, required this.keepAlive}) : super(player ?? const PlayerState(playerId: 'unknown')) {
+  PlayerStateNotifier(
+      {PlayerState? player, this.onDispose, required this.keepAlive})
+      : super(player ?? const PlayerState(playerId: 'unknown')) {
     Timer.periodic(const Duration(seconds: 1), (Timer t) {
       if (!mounted) return t.cancel();
-      if (state.playbackPositionMs != null && state.playbackState == PlaybackState.playing) {
-        state = state.copyWith(playbackPositionMs: state.playbackPositionMs! + 1000);
+      if (state.playbackPositionMs != null &&
+          state.playbackState == PlaybackState.playing) {
+        // Increase by 1000 * playbackSpeed, because timer is called every 1000ms
+        final newPosition =
+            state.playbackPositionMs! + (1000 * state.playbackSpeed).round();
+        state = state.copyWith(playbackPositionMs: newPosition);
       }
     });
   }
@@ -68,6 +74,7 @@ class PlayerState with _$PlayerState {
     required String playerId,
     MediaItem? currentMediaItem,
     int? playbackPositionMs,
+    @Default(1.0) double playbackSpeed,
     @Default(false) bool isNativeFullscreen,
     @Default(false) bool isFlutterFullscreen,
     @Default(PlaybackState.stopped) PlaybackState playbackState,
@@ -82,6 +89,7 @@ class PlayerState with _$PlayerState {
       playerId: state.playerId,
       currentMediaItem: state.currentMediaItem,
       playbackPositionMs: state.playbackPositionMs?.finiteOrNull()?.round(),
+      playbackSpeed: state.playbackSpeed,
       playbackState: state.playbackState,
       isBuffering: state.isBuffering,
       isNativeFullscreen: state.isFullscreen,

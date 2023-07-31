@@ -14,8 +14,10 @@ abstract class PlaybackPlatformPigeon {
   void queueMediaItem(String playerId, MediaItem mediaItem);
 
   @async
-  @ObjCSelector("replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:autoplay:")
-  void replaceCurrentMediaItem(String playerId, MediaItem mediaItem, bool? playbackPositionFromPrimary, bool? autoplay);
+  @ObjCSelector(
+      "replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:autoplay:")
+  void replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
+      bool? playbackPositionFromPrimary, bool? autoplay);
 
   @ObjCSelector("setPlayerViewVisibility:visible:")
   void setPlayerViewVisibility(int viewId, bool visible);
@@ -40,6 +42,10 @@ abstract class PlaybackPlatformPigeon {
   @async
   @ObjCSelector("setSelectedTrack:type:trackId:")
   void setSelectedTrack(String playerId, TrackType type, String? trackId);
+
+  @async
+  @ObjCSelector("setPlaybackSpeed:speed:")
+  void setPlaybackSpeed(String playerId, double speed);
 
   @ObjCSelector("exitFullscreen:")
   void exitFullscreen(String playerId);
@@ -120,6 +126,7 @@ class PlayerStateSnapshot {
   late PlaybackState playbackState;
   late bool isBuffering;
   late bool isFullscreen;
+  late double playbackSpeed;
   MediaItem? currentMediaItem;
   // This is double because pigeon uses NSNumber for int :(
   double? playbackPositionMs;
@@ -201,7 +208,10 @@ class PlaybackStateChangedEvent implements PlayerEvent {
   String playerId;
   PlaybackState playbackState;
   bool isBuffering;
-  PlaybackStateChangedEvent({required this.playerId, required this.playbackState, required this.isBuffering});
+  PlaybackStateChangedEvent(
+      {required this.playerId,
+      required this.playbackState,
+      required this.isBuffering});
 }
 
 class PlaybackEndedEvent implements PlayerEvent {
@@ -215,7 +225,8 @@ class PictureInPictureModeChangedEvent implements PlayerEvent {
   @override
   String playerId;
   bool isInPipMode;
-  PictureInPictureModeChangedEvent({required this.playerId, required this.isInPipMode});
+  PictureInPictureModeChangedEvent(
+      {required this.playerId, required this.isInPipMode});
 }
 
 class MediaItemTransitionEvent implements PlayerEvent {

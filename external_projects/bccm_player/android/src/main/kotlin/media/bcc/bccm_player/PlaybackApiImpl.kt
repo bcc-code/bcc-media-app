@@ -94,6 +94,25 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
         result.success(null)
     }
 
+    override fun setPlaybackSpeed(
+        playerId: String,
+        speed: Double,
+        result: PlaybackPlatformApi.Result<Void>
+    ) {
+        val playbackService = plugin.getPlaybackService()
+        if (playbackService == null) {
+            result.error(Error())
+            return
+        }
+        val playerController = playbackService.getController(playerId)
+        if (playerController == null) {
+            result.error(Error("Player with id $playerId does not exist."))
+            return
+        }
+        playerController.setPlaybackSpeed(speed.toFloat())
+        result.success(null)
+    }
+
     override fun newPlayer(url: String?, result: PlaybackPlatformApi.Result<String>) {
         Log.d("bccm", "PlaybackPigeon: newPlayer()")
         val playbackService = plugin.getPlaybackService()
@@ -191,7 +210,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
             result.success(null);
         } catch (e: Exception) {
             result.error(e)
-        } 
+        }
     }
 
     override fun pause(playerId: String) {
