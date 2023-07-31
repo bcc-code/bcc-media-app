@@ -40,18 +40,27 @@ class MyApp extends HookConsumerWidget {
                 id: player.playerId,
                 useNativeControls: false,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  BccmPlayerInterface.instance.replaceCurrentMediaItem(
-                    player.playerId,
-                    MediaItem(
-                      url:
-                          'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                      mimeType: 'video/mp4',
-                    ),
-                  );
-                },
-                child: const Text('Play video'),
+              ...[
+                MediaItem(
+                  url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                  mimeType: 'video/mp4',
+                  metadata: MediaMetadata(title: 'Bick Buck Bunny (MP4)'),
+                ),
+                MediaItem(
+                  url: 'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8',
+                  mimeType: 'application/x-mpegURL',
+                  metadata: MediaMetadata(title: 'Apple BipBop fMP4 (HLS)'),
+                ),
+              ].map(
+                (MediaItem mediaItem) => ElevatedButton(
+                  onPressed: () {
+                    BccmPlayerInterface.instance.replaceCurrentMediaItem(
+                      player.playerId,
+                      mediaItem,
+                    );
+                  },
+                  child: Text('${mediaItem.metadata?.title}'),
+                ),
               ),
               ...[0.5, 1.0, 2.0].map(
                 (speed) => ElevatedButton(
