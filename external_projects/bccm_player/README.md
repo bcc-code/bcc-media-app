@@ -1,49 +1,60 @@
 # BCC Media Player
 
-# Why we maintain our own package
-
-There are other options for video playback in flutter, e.g. [video_player](https://pub.dev/packages/video_player) and [betterplayer](https://github.com/jhomlala/betterplayer).
-These are the main reasons we are not using these plugins:
-
-1. They rely on rendering to textures and going via flutter's rendering engine, which we found caused stuttering for 1080@50fps on Android. We believe it's a better architectural decision to let the OS handle video playback natively through hybrid composition.
-2. We need audio track selection and picture-in-picture support, and `video_player` does not support that. It also can't do DRM because of its architecture, and we _might_ want that. `betterplayer` has some of these things, but it was maintained by someone on their free time and now there hasn't been a commit in 10 months.
-3. We need seamless chromecast support.
-4. We want to have the flexibility to plug in our own plugins and customize configurations. It's of course possible to make a fork of an existing package, but it's a bit more tedious as you don't want to stray too far from the upstream repo. Maintaining our own code lowers the bar for customizations, and allows us to easily plug in native SDKs (e.g. chromecast and npaw), etc.
-
-The main downside here is that hybrid composition has some performance impact on the flutter UI itself, which _might_ make it complicated to do stuff like a vertical scrolling feed of short-form videos. Another downside is that we cant make custom player controls with flutter. We could try, but we might quickly run into issues with fullscreening, picture-in-picture etc, and the codebase might become quite complex.
-
 # Usage
 
 ## Initialize
 
-In main.dart, add this:
+This is necessary to ensure some of the more advanced features work smoothly.
+Add this to your main.dart before runApp().
 
 ```dart
-await BccmPlayerInterface.instance.setup();
+await BccmPlayerInterface.instance.setup(); // don't worry, it completes in milliseconds.
 ```
 
-## (Optional) Riverpod setup
+## Basic usage
 
-The riverpod providers are there to simplify usage of the StateNotifiers and event streams. See [./lib/src/plugins/riverpod/providers](./lib/src/plugins/riverpod/providers) to find available providers.
-
-In your main.dart, when initializing your ProviderContainer:
+_Note: This is mostly to explain how things work. Even for simple use cases, I recommend skipping straight to the [Advanced Usage section](#advanced-usage)._
 
 ```dart
-// TODO: this shouldn't be necessary, we should make the listener use the statenotifiers directly.
-providerContainer.setupBccmPlayer(BccmPlayerInterface.instance)
+// Create a player
+final playerId = await BccmPlayerInterface.instance.newPlayer();
+
+// Play something
+await BccmPlayerInterface.instance.replaceCurrentMediaItem(
+    playerId,
+    MediaItem(
+        url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        mimeType: 'video/mp4',
+        metadata: MediaMetadata(title: 'Bick Buck Bunny (MP4)'),
+    ),
+);
+
+// Show it via a widget
+@override
+Widget build(BuildContext context, WidgetRef ref) {
+    return VideoPlayerView(playerId: playerId);
+}
 ```
 
-## For BCC Media apps
+Use the widgets:
 
-Add the BCC Media playback listener (sends episode progress to API and that kind of stuff)
+- VideoPlayerView(): The normal widget for displaying a video with controls.
+- VideoPlatformView(): A raw video widget
+- BccmCastButton(): A button to connect to cast-enabled devices
+- MiniPlayer(): A skeleton widget included for convenience.
 
-```dart
-BccmPlayerInterface.instance.addPlaybackListener(
-    BccmPlaybackListener(ref: ref, apiProvider: apiProvider),
-)
-```
+## Advanced usage
 
-## Configure languages, etc
+### Primary player
+
+The plugin has the concept of a "primary" player. The plugin guarantees a primary player during initialization. The riverpod provider `primaryPlayerProvider` makes it easy for flutter to know which player to use by default, for example in an app-wide mini-player.
+
+The primary player also has some extra superpowers:
+
+- it controls what's shown in the notification center
+- it automatically transfers to a chromecast when you start a session ([technical details here](#chromecast)).
+
+### Configure default languages
 
 ```dart
 BccmPlayerInterface.instance.setAppConfig(
@@ -57,7 +68,15 @@ BccmPlayerInterface.instance.setAppConfig(
 )
 ```
 
-## Configure NPAW
+# Plugins
+
+## Riverpod
+
+The riverpod providers are there to simplify usage of the StateNotifiers and event streams. See [./lib/src/plugins/riverpod/providers](./lib/src/plugins/riverpod/providers) to find available providers.
+
+## Npaw / Youbora
+
+NPAW can be enabled with "setNpawConfig()":
 
 ```dart
 BccmPlayerInterface.instance.setNpawConfig(
@@ -68,15 +87,31 @@ BccmPlayerInterface.instance.setNpawConfig(
 )
 ```
 
-## Widgets
-
-Use the widgets:
+It uses title etc from your MediaMetadata by default, but you can customize it via `extras`.
+Currently limited to the following properties:
 
 ```dart
-BccmPlayer(ref.watch(primaryPlayerProvider).id)
-BccmCastButton()
-BottomSheetMiniPlayer() // TODO: move this to bccm_player
-MiniPlayer() //  TODO: move this to bccm_player
+MediaMetadata(
+    extras: {
+        'npaw.content.id': '123',
+        'npaw.content.title': 'Live',
+        'npaw.content.tvShow': 'Show',
+        'npaw.content.season': 'Season',
+        'npaw.content.episodeTitle': 'Livestream',
+        'npaw.content.isLive': 'true',
+    },
+);
+```
+
+## For BCC Media apps
+
+Add the BCC Media playback listener (sends episode progress to API and that kind of stuff).
+Add it in main.dart.
+
+```dart
+BccmPlayerInterface.instance.addPlaybackListener(
+    BccmPlaybackListener(ref: ref, apiProvider: apiProvider),
+)
 ```
 
 # Architecture details (recommended to read for contributors)
@@ -92,16 +127,6 @@ The plugin manages a list of "PlayerControllers", which currently has the follow
 ## Player views
 
 The following views are accessible from flutter:
-
-## Primary player
-
-The plugin has the concept of a "primary" player. The plugin guarantees a primary player during initialization. The riverpod provider `primaryPlayerProvider` makes it easy for flutter to know which player to use by default, for example in an app-wide mini-player.
-
-The primary player also has some extra superpowers:
-
-- it controls what's shown in the notification center
-- it automatically transfers its state to chromecasts, see [Chromecast](#chromecast).
-- it's the only one which can go picture-in-picture (?)
 
 ## State management
 

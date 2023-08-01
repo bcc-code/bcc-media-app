@@ -8,6 +8,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await BccmPlayerInterface.instance.setup();
+  final playerId = await BccmPlayerInterface.instance.newPlayer();
+  await BccmPlayerInterface.instance.replaceCurrentMediaItem(
+    playerId,
+    MediaItem(
+      url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      mimeType: 'video/mp4',
+      metadata: MediaMetadata(title: 'Bick Buck Bunny (MP4)'),
+    ),
+  );
   final providerContainer = ProviderContainer();
   runApp(
     UncontrolledProviderScope(
