@@ -89,7 +89,7 @@ class SNl extends S {
   String get loggedOutMessage => 'Je bent nu uitgelogd. Log opnieuw in.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Doneer';
 
   @override
   String get mostWatched => 'Meest bekeken';
@@ -152,52 +152,52 @@ class SNl extends S {
   String get deviceInfo => 'Device info';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Voeg device informatie toe voor betere hulp.';
 
   @override
-  String get contactSeeData => 'Click to see data.';
+  String get contactSeeData => 'Klik om de info te zien.';
 
   @override
-  String get contactName => 'Name';
+  String get contactName => 'Naam';
 
   @override
-  String get contactNameHint => 'Type in your name';
+  String get contactNameHint => 'Typ je naam';
 
   @override
-  String get contactEmail => 'Your contact email';
+  String get contactEmail => 'Je e-mail adres';
 
   @override
-  String get contactEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'Typ je e-mail adres';
 
   @override
-  String get contactMessage => 'Message';
+  String get contactMessage => 'Bericht';
 
   @override
-  String get contactMessageHint => 'Enter your message here';
+  String get contactMessageHint => 'Voer hier je bericht in';
 
   @override
   String get deviceInfoDevice => 'Device';
 
   @override
-  String get deviceInfoEnvOverride => 'Environment override';
+  String get deviceInfoEnvOverride => 'Environment overschrijven';
 
   @override
-  String get deviceInfoManufacturer => 'Manufacturer';
+  String get deviceInfoManufacturer => 'Fabrikant';
 
   @override
   String get deviceInfoOs => 'Operating System';
 
   @override
-  String get deviceInfoScreenSize => 'Screen Size';
+  String get deviceInfoScreenSize => 'Scherm afmetingen';
 
   @override
-  String get deviceInfoAppVer => 'App Version';
+  String get deviceInfoAppVer => 'App versie';
 
   @override
   String get deviceInfoUserId => 'User ID';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc => 'Je bericht zal deze informatie invoegen, zodat we beter hulp kunnen bieden.';
 
   @override
   String get userVoice => 'Stel een feature voor';
@@ -233,7 +233,7 @@ class SNl extends S {
   String get none => 'Geen';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Volgende aflevering';
 
   @override
   String get auto => 'Auto';
@@ -784,5 +784,5 @@ class SNl extends S {
   String get gamesTab => 'Games';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'Speel game';
 }

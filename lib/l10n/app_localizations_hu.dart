@@ -149,55 +149,55 @@ class SHu extends S {
   String get contactUs => 'Kapcsolat';
 
   @override
-  String get deviceInfo => 'Device info';
+  String get deviceInfo => 'Eszköz információ';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Adj meg eszközinformációkat a jobb támogatás érdekében.';
 
   @override
-  String get contactSeeData => 'Click to see data.';
+  String get contactSeeData => 'Kattints az adatok megtekintéséhez.';
 
   @override
-  String get contactName => 'Name';
+  String get contactName => 'Név';
 
   @override
-  String get contactNameHint => 'Type in your name';
+  String get contactNameHint => 'Írd be a neved';
 
   @override
-  String get contactEmail => 'Your contact email';
+  String get contactEmail => 'A kapcsolattartási e-mail címed';
 
   @override
-  String get contactEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'Írd be az e-mail címed';
 
   @override
-  String get contactMessage => 'Message';
+  String get contactMessage => 'Üzenet';
 
   @override
-  String get contactMessageHint => 'Enter your message here';
+  String get contactMessageHint => 'Ide írd be az üzeneted';
 
   @override
-  String get deviceInfoDevice => 'Device';
+  String get deviceInfoDevice => 'Eszköz';
 
   @override
-  String get deviceInfoEnvOverride => 'Environment override';
+  String get deviceInfoEnvOverride => 'Környezet felülbírálása';
 
   @override
-  String get deviceInfoManufacturer => 'Manufacturer';
+  String get deviceInfoManufacturer => 'Szerkesztő';
 
   @override
-  String get deviceInfoOs => 'Operating System';
+  String get deviceInfoOs => 'Operációs rendszer';
 
   @override
-  String get deviceInfoScreenSize => 'Screen Size';
+  String get deviceInfoScreenSize => 'Képernyő mérete';
 
   @override
-  String get deviceInfoAppVer => 'App Version';
+  String get deviceInfoAppVer => 'Alkalmazás verziója';
 
   @override
-  String get deviceInfoUserId => 'User ID';
+  String get deviceInfoUserId => 'Felhasználó azonosítója';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc => 'Az üzeneted tartalmazza ezeket az információkat, hogy jobban megértsük a problémát.';
 
   @override
   String get userVoice => 'Javasolj egy funkciót';

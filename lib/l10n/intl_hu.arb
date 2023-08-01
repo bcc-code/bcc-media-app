@@ -191,68 +191,68 @@
   "@contactUs": {
     "description": "Title for contact us page"
   },
-  "deviceInfo": "Device info",
+  "deviceInfo": "Eszköz információ",
   "@deviceInfo": {
     "description": "Device info page title"
   },
-  "contactIncludeDeviceInfo": "Include device information for better support.",
-  "contactSeeData": "Click to see data.",
+  "contactIncludeDeviceInfo": "Adj meg eszközinformációkat a jobb támogatás érdekében.",
+  "contactSeeData": "Kattints az adatok megtekintéséhez.",
   "@contactSeeData": {
     "description": "Text for link to see device data"
   },
-  "contactName": "Name",
+  "contactName": "Név",
   "@contactName": {
     "description": "Label for name field in contact support page"
   },
-  "contactNameHint": "Type in your name",
+  "contactNameHint": "Írd be a neved",
   "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactEmail": "Your contact email",
+  "contactEmail": "A kapcsolattartási e-mail címed",
   "@contactEmail": {
     "description": "Label for email field in contact support page"
   },
-  "contactEmailHint": "Type in your email address",
+  "contactEmailHint": "Írd be az e-mail címed",
   "@contactEmailHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactMessage": "Message",
+  "contactMessage": "Üzenet",
   "@contactMessage": {
     "description": "Label for message field in contact support page"
   },
-  "contactMessageHint": "Enter your message here",
+  "contactMessageHint": "Ide írd be az üzeneted",
   "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
-  "deviceInfoDevice": "Device",
+  "deviceInfoDevice": "Eszköz",
   "@deviceInfoDevice": {
     "description": "Label for device"
   },
-  "deviceInfoEnvOverride": "Environment override",
+  "deviceInfoEnvOverride": "Környezet felülbírálása",
   "@deviceInfoEnvOverride": {
     "description": "Label for environment override"
   },
-  "deviceInfoManufacturer": "Manufacturer",
+  "deviceInfoManufacturer": "Szerkesztő",
   "@deviceInfoManufacturer": {
     "description": "Label for manufacturer"
   },
-  "deviceInfoOs": "Operating System",
+  "deviceInfoOs": "Operációs rendszer",
   "@deviceInfoOs": {
     "description": "Label for operating system"
   },
-  "deviceInfoScreenSize": "Screen Size",
+  "deviceInfoScreenSize": "Képernyő mérete",
   "@deviceInfoScreenSize": {
     "description": "Label for screen size"
   },
-  "deviceInfoAppVer": "App Version",
+  "deviceInfoAppVer": "Alkalmazás verziója",
   "@deviceInfoAppVer": {
     "description": "Label for app Version"
   },
-  "deviceInfoUserId": "User ID",
+  "deviceInfoUserId": "Felhasználó azonosítója",
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-  "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
+  "deviceInfoPageDesc": "Az üzeneted tartalmazza ezeket az információkat, hogy jobban megértsük a problémát.",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
   },

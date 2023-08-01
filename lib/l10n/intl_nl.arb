@@ -111,7 +111,7 @@
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
-  "makeDonation": "Make a donation",
+  "makeDonation": "Doneer",
   "@makeDonation": {
     "description": "Text for button which opens donation page."
   },
@@ -195,32 +195,32 @@
   "@deviceInfo": {
     "description": "Device info page title"
   },
-  "contactIncludeDeviceInfo": "Include device information for better support.",
-  "contactSeeData": "Click to see data.",
+  "contactIncludeDeviceInfo": "Voeg device informatie toe voor betere hulp.",
+  "contactSeeData": "Klik om de info te zien.",
   "@contactSeeData": {
     "description": "Text for link to see device data"
   },
-  "contactName": "Name",
+  "contactName": "Naam",
   "@contactName": {
     "description": "Label for name field in contact support page"
   },
-  "contactNameHint": "Type in your name",
+  "contactNameHint": "Typ je naam",
   "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactEmail": "Your contact email",
+  "contactEmail": "Je e-mail adres",
   "@contactEmail": {
     "description": "Label for email field in contact support page"
   },
-  "contactEmailHint": "Type in your email address",
+  "contactEmailHint": "Typ je e-mail adres",
   "@contactEmailHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactMessage": "Message",
+  "contactMessage": "Bericht",
   "@contactMessage": {
     "description": "Label for message field in contact support page"
   },
-  "contactMessageHint": "Enter your message here",
+  "contactMessageHint": "Voer hier je bericht in",
   "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
@@ -228,11 +228,11 @@
   "@deviceInfoDevice": {
     "description": "Label for device"
   },
-  "deviceInfoEnvOverride": "Environment override",
+  "deviceInfoEnvOverride": "Environment overschrijven",
   "@deviceInfoEnvOverride": {
     "description": "Label for environment override"
   },
-  "deviceInfoManufacturer": "Manufacturer",
+  "deviceInfoManufacturer": "Fabrikant",
   "@deviceInfoManufacturer": {
     "description": "Label for manufacturer"
   },
@@ -240,11 +240,11 @@
   "@deviceInfoOs": {
     "description": "Label for operating system"
   },
-  "deviceInfoScreenSize": "Screen Size",
+  "deviceInfoScreenSize": "Scherm afmetingen",
   "@deviceInfoScreenSize": {
     "description": "Label for screen size"
   },
-  "deviceInfoAppVer": "App Version",
+  "deviceInfoAppVer": "App versie",
   "@deviceInfoAppVer": {
     "description": "Label for app Version"
   },
@@ -252,7 +252,7 @@
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-  "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
+  "deviceInfoPageDesc": "Je bericht zal deze informatie invoegen, zodat we beter hulp kunnen bieden.",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
   },
@@ -300,7 +300,7 @@
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
-  "nextEpisode": "Next Episode",
+  "nextEpisode": "Volgende aflevering",
   "@nextEpisode": {
     "description": "Button indicating the next video will play soon."
   },
@@ -1068,7 +1068,7 @@
   "@gamesTab": {
     "description": "Title of the games page"
   },
-  "playGame": "Play Game",
+  "playGame": "Speel game",
   "@playGame": {
     "description": "Title on a game"
   }
