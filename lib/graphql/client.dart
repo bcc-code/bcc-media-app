@@ -8,6 +8,8 @@ import 'package:http/http.dart';
 import 'package:http/retry.dart';
 
 import '../flavors.dart';
+import '../helpers/version.dart';
+import '../providers/package_info.dart';
 
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
   final settings = ref.watch(settingsProvider);
@@ -23,6 +25,7 @@ final gqlClientProvider = Provider<GraphQLClient>((ref) {
     defaultHeaders: {
       'Accept-Language': settings.appLanguage.languageCode,
       'X-Application': FlavorConfig.current.applicationCode,
+      'X-Application-Version': formatAppVersion(ref.watch(packageInfoProvider)),
       if (extraUsergroups.isNotEmpty) 'x-explicit-roles': extraUsergroups.join(','),
     },
     httpClient: RetryClient(
