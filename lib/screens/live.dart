@@ -13,6 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
+import '../components/player/custom_cast_player.dart';
 import '../helpers/insets.dart';
 import '../providers/feature_flags.dart';
 import '../providers/settings.dart';
@@ -259,6 +260,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
           !ref.watch(
             featureFlagsProvider.select((value) => value.flutterPlayerControls),
           ),
+      castPlayerBuilder: (context) => const CustomCastPlayerView(),
       resetSystemOverlays: () {
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
       },
