@@ -43,6 +43,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
   }
 
   void load() async {
+    if (!mounted) return;
     final deepLinkUri = await AppLinks().getInitialAppLink();
     setState(() {
       authFuture = ref.read(authStateProvider.notifier).load();
