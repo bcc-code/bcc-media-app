@@ -31,6 +31,7 @@ import '../components/custom_back_button.dart';
 import '../components/custom_tab_bar/custom_tab_bar.dart';
 import '../components/episode/player_error.dart';
 import '../components/episode/episode_details.dart';
+import '../components/player/custom_cast_player.dart';
 import '../components/status_indicators/error_no_access.dart';
 import '../components/study/study_button.dart';
 import '../env/env.dart';
@@ -393,6 +394,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     resetSystemOverlays: () {
                       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
                     },
+                    castPlayerBuilder: (context) => const CustomCastPlayerView(),
                     playNextButton: playNextButtonBuilder,
                   ),
                 EpisodeInfo(
