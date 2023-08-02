@@ -1,4 +1,36 @@
-# BCC Media Player
+# BccmPlayer - a flutter video player package
+
+## Platforms
+
+- [x] iOS
+- [x] Android
+- [-] Web (partial/hacky)
+
+## Features
+
+- [x] Native video via hybrid composition
+- [x] HLS, DASH, MP4 (anything exoplayer and avplayer supports)
+- [x] Chromecast
+- [x] Background playback
+- [x] Picture in picture
+- [x] Notification center
+- [x] Audio track selection
+- [x] Subtitle track selection
+- [x] Fullscreen
+- [x] NPAW/Youbora analytics
+- [x] Metadata
+- [x] HDR content
+- [ ] Custom controls (almost, see [Custom controls](#custom-controls))
+- [ ] DRM
+- [ ] Sideloaded subtitles
+
+# Installation
+
+1. Add the dependency
+
+   ```bash
+   flutter pub add bccm_player
+   ```
 
 # Usage
 
@@ -47,12 +79,22 @@ Use the widgets:
 
 ### Primary player
 
-The plugin has the concept of a "primary" player. The plugin guarantees a primary player during initialization. The riverpod provider `primaryPlayerProvider` makes it easy for flutter to know which player to use by default, for example in an app-wide mini-player.
-
+As this plugin is designed for a VOD-type application, the plugin has the concept of a "primary" player. The plugin guarantees a primary player during initialization.
+This makes it easy for flutter to know which player to use by default across your app.
 The primary player also has some extra superpowers:
 
 - it controls what's shown in the notification center
-- it automatically transfers to a chromecast when you start a session ([technical details here](#chromecast)).
+- it automatically transfers the current video to chromecasts when you start a session ([technical details here](#chromecast-technical-details)).
+- cast sessions will automatically claim the primaryPlayer (so you don't need extra logic for handling the cast sessions)
+
+The primaryPlayerId is available via the StateNotifier at BccmPlayerInterface.instance.stateNotifier.
+Example usage with our builtin [riverpod integration](#riverpod):
+
+```dart
+final primaryPlayerState = ref.watch(primaryPlayerProvider);
+final widget = VideoPlayerView(playerId: primaryPlayerState.id);
+debugPrint('Currently playing: ${primaryPlayerState.currentMediaItem?.metadata?.title}');
+```
 
 ### Configure default languages
 
@@ -68,11 +110,43 @@ BccmPlayerInterface.instance.setAppConfig(
 )
 ```
 
+### Custom controls
+
+This is designed to be possible but it's not possible yet.
+If anyone needs this I can make it possible very quickly so just create an issue and tag @andreasgangso.
+
+### Chromecast
+
+Casting requires some extra steps to setup.
+
+1. Change your android FlutterActivity to be a FlutterFragmentActivity (required for the native chromecast views):
+
+   ```diff
+   // android/app/src/main/kotlin/your/bundle/name/MainActivity.kt
+   - class MainActivity : FlutterActivity() {
+   + class MainActivity : FlutterFragmentActivity() {
+   ```
+
+2. (iOS) Follow the cast sdk documentation on how to add the "NSBonjourServices" and "NSLocalNetworkUsageDescription" plist values: https://developers.google.com/cast/docs/ios_sender#ios_14
+3. (iOS) Add your receiver id to your Info.plist:
+   ```diff
+   +  <key>cast_app_id</key>
+   +  <string>ABCD1234</string>
+   ```
+4. (Android) Add a values.xml with your own receiver id: `<string name="cast_app_id">ABCD1234</string>`
+
 # Plugins
 
 ## Riverpod
 
 The riverpod providers are there to simplify usage of the StateNotifiers and event streams. See [./lib/src/plugins/riverpod/providers](./lib/src/plugins/riverpod/providers) to find available providers.
+
+```dart
+
+final player = ref.watch(primaryPlayerProvider); // should never be null when the plugin is initialized
+VideoPlayerView(id: player.playerId);
+
+```
 
 ## Npaw / Youbora
 
@@ -114,7 +188,7 @@ BccmPlayerInterface.instance.addPlaybackListener(
 )
 ```
 
-# Architecture details (recommended to read for contributors)
+# Architecture / codebase details
 
 ## Players and controllers
 
@@ -150,7 +224,7 @@ The plugin does the following during init:
 - Calls .attach() which hooks in the listeners etc for the plugin. This is necessary because all dart isolates enables all plugins, at least on Android, and this makes it easy to identify which is the 'real' dart isolate.
 - Gets state for the primary player
 
-## Chromecast
+## Chromecast technical details
 
 On session start/resume:
 

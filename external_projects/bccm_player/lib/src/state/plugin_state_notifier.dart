@@ -30,6 +30,10 @@ class PlayerPluginStateNotifier extends StateNotifier<PlayerPluginState> {
     state = state.copyWith(primaryPlayerId: playerId);
   }
 
+  String? getPrimaryPlayerId() {
+    return state.primaryPlayerId;
+  }
+
   PlayerStateNotifier? getPlayerNotifier(String playerId) {
     return state.players[playerId];
   }
