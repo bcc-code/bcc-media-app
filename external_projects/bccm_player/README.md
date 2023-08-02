@@ -1,5 +1,20 @@
 # BccmPlayer - a flutter video player package
 
+**Note: This was recently published so documentation may be lacking, but we want this to work for others, so create an issue on github if you need help.**
+
+This is a video player primarily designed for video-heavy applications that need features like background playback, PiP, casting, analytics, etc.
+
+Used on the open source apps [Bible Kids](https://play.google.com/store/apps/details?id=media.bcc.kids) and [BCC Media](https://apps.apple.com/no/app/brunstadtv/id913268220). ([source code here](https://github.com/bcc-code/bcc-media-app)).
+
+### Difference from video_player/chewie/betterplayer, etc.
+
+A major difference is that BccmPlayer uses hybrid composition platform views to display the video instead of textures.
+This means the video is rendered in the native view hierarchy without any intermediate steps, which has several benefits:
+
+- Native video performance
+- Subtitles are rendered by the native player (avplayer/exoplayer)
+- Can use native controls (`useNativeControls` on VideoPlayerView)
+
 ## Platforms
 
 - [x] iOS
