@@ -28,26 +28,14 @@ class MainActivity : FlutterFragmentActivity() {
         newConfig: Configuration
     ) {
         super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig)
-        val bccmPlayerPlugin = flutterEngine?.plugins?.get(BccmPlayerPlugin::class.javaObjectType)
-        (bccmPlayerPlugin as? BccmPlayerPlugin)?.onPictureInPictureModeChanged(
-            isInPictureInPictureMode
-        );
-    }
-
-    override fun onStop() {
-        val bccmPlayerPlugin = flutterEngine?.plugins?.get(BccmPlayerPlugin::class.javaObjectType)
-        (bccmPlayerPlugin as? BccmPlayerPlugin)?.onStop();
-        super.onStop()
+        val bccmPlayer =
+            flutterEngine?.plugins?.get(BccmPlayerPlugin::class.javaObjectType) as BccmPlayerPlugin?
+        bccmPlayer?.handleOnPictureInPictureModeChanged(isInPictureInPictureMode, newConfig)
     }
 
     override fun onBackPressed() {
-        val rootLayout: FrameLayout =
-            window.decorView.findViewById<View>(android.R.id.content) as FrameLayout;
-        val view: View? = rootLayout.getChildAt(rootLayout.childCount - 1);
-        if (view is FullscreenPlayerView) {
-            view.exit();
-        } else {
-            super.onBackPressed();
+        if (!BccmPlayerPlugin.handleOnBackPressed(this)) {
+            super.onBackPressed()
         }
     }
 }
