@@ -2300,10 +2300,11 @@ extension ClientExtension$Query$getPendingAchievements
       query$getPendingAchievements(
               [Options$Query$getPendingAchievements? options]) async =>
           await this.query(options ?? Options$Query$getPendingAchievements());
-  graphql.ObservableQuery<
-      Query$getPendingAchievements> watchQuery$getPendingAchievements(
-          [WatchOptions$Query$getPendingAchievements? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$getPendingAchievements());
+  graphql.ObservableQuery<Query$getPendingAchievements>
+      watchQuery$getPendingAchievements(
+              [WatchOptions$Query$getPendingAchievements? options]) =>
+          this.watchQuery(
+              options ?? WatchOptions$Query$getPendingAchievements());
   void writeQuery$getPendingAchievements({
     required Query$getPendingAchievements data,
     bool broadcast = true,
