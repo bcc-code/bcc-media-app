@@ -89,7 +89,7 @@ class SRu extends S {
   String get loggedOutMessage => 'Вы вышли из аккаунта. Пожалуйста, войдите снова.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Сделать пожертвование';
 
   @override
   String get mostWatched => 'Самое просматриваемое';
@@ -149,55 +149,55 @@ class SRu extends S {
   String get contactUs => 'Свяжитесь с нами';
 
   @override
-  String get deviceInfo => 'Device info';
+  String get deviceInfo => 'Информация об устройстве';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Включить информацию об устройстве для улучшения поддержки.';
 
   @override
-  String get contactSeeData => 'Click to see data.';
+  String get contactSeeData => 'Нажмите для просмотра данных.';
 
   @override
-  String get contactName => 'Name';
+  String get contactName => 'Имя';
 
   @override
-  String get contactNameHint => 'Type in your name';
+  String get contactNameHint => 'Введите свое имя';
 
   @override
-  String get contactEmail => 'Your contact email';
+  String get contactEmail => 'Ваш контактный адрес электронной почты';
 
   @override
-  String get contactEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'Введите адрес электронной почты';
 
   @override
-  String get contactMessage => 'Message';
+  String get contactMessage => 'Сообщение\n';
 
   @override
-  String get contactMessageHint => 'Enter your message here';
+  String get contactMessageHint => 'Введите ваше сообщение здесь';
 
   @override
-  String get deviceInfoDevice => 'Device';
+  String get deviceInfoDevice => 'Устройство';
 
   @override
-  String get deviceInfoEnvOverride => 'Environment override';
+  String get deviceInfoEnvOverride => 'Переопределение среды';
 
   @override
-  String get deviceInfoManufacturer => 'Manufacturer';
+  String get deviceInfoManufacturer => 'Производитель';
 
   @override
-  String get deviceInfoOs => 'Operating System';
+  String get deviceInfoOs => 'Операционная система';
 
   @override
-  String get deviceInfoScreenSize => 'Screen Size';
+  String get deviceInfoScreenSize => 'Размер экрана';
 
   @override
-  String get deviceInfoAppVer => 'App Version';
+  String get deviceInfoAppVer => 'Версия приложения';
 
   @override
-  String get deviceInfoUserId => 'User ID';
+  String get deviceInfoUserId => 'Идентификатор пользователя';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc => 'Ваше сообщение будет содержать эту информацию, чтобы помочь нам обеспечить лучшую поддержку.';
 
   @override
   String get userVoice => 'Предложить функцию';
@@ -233,7 +233,7 @@ class SRu extends S {
   String get none => 'Нет';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Следующая серия';
 
   @override
   String get auto => 'Авто';
@@ -708,68 +708,68 @@ class SRu extends S {
   String get areYouSure => 'Ты уверен(а)?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Вы можете связаться с нами по адресу';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'Bible Kids - инициатива BCC Media, медиа-фонда в составе Ассоциации BCC, который производит и распространяет контент с позитивными христианскими ценностями.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Спросите своих родителей';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'Что такое';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Ответ';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Проверить ответ';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Видео доступно только авторизованным пользователям.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Подтвердите свою учетную запись';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'Мы отправили письмо на адрес';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Нажмите на ссылку в письме, чтобы подтвердить свою учетную запись.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'Откройте приложение электронной почты';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'Повторная отправка письма';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Не установлены почтовые приложения';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'Отправлено письмо с подтверждением';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Если вы все еще не получили письмо, обратитесь в службу поддержки по адресу';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Учетная запись создана';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Теперь вы можете воспользоваться своей учетной записью и ознакомиться с различным познавательным контентом.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Теперь вы можете войти в свою учетную запись и ознакомиться с различными материалами назидательного характера.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'Вы собираетесь запросить удаление вашей учетной записи в BCC Media и всех ваших данных, связанных с этим приложением.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'Это действие нельзя отменить.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'Удаление учетной записи обычно производится в течение $x рабочих дней.';
   }
 
   @override
@@ -777,12 +777,12 @@ class SRu extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'Запрос на удаление учетной записи успешно выполнен. Вы получите письмо по адресу $email. Для подтверждения вашей личности нам необходимо, чтобы вы ответили на это письмо, чтобы приступить к удалению.';
   }
 
   @override
-  String get gamesTab => 'Games';
+  String get gamesTab => 'Игры';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'Играть';
 }

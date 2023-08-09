@@ -111,7 +111,7 @@
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
-  "makeDonation": "Make a donation",
+  "makeDonation": "Сделать пожертвование",
   "@makeDonation": {
     "description": "Text for button which opens donation page."
   },
@@ -191,68 +191,68 @@
   "@contactUs": {
     "description": "Title for contact us page"
   },
-  "deviceInfo": "Device info",
+  "deviceInfo": "Информация об устройстве",
   "@deviceInfo": {
     "description": "Device info page title"
   },
-  "contactIncludeDeviceInfo": "Include device information for better support.",
-  "contactSeeData": "Click to see data.",
+  "contactIncludeDeviceInfo": "Включить информацию об устройстве для улучшения поддержки.",
+  "contactSeeData": "Нажмите для просмотра данных.",
   "@contactSeeData": {
     "description": "Text for link to see device data"
   },
-  "contactName": "Name",
+  "contactName": "Имя",
   "@contactName": {
     "description": "Label for name field in contact support page"
   },
-  "contactNameHint": "Type in your name",
+  "contactNameHint": "Введите свое имя",
   "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactEmail": "Your contact email",
+  "contactEmail": "Ваш контактный адрес электронной почты",
   "@contactEmail": {
     "description": "Label for email field in contact support page"
   },
-  "contactEmailHint": "Type in your email address",
+  "contactEmailHint": "Введите адрес электронной почты",
   "@contactEmailHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactMessage": "Message",
+  "contactMessage": "Сообщение\n",
   "@contactMessage": {
     "description": "Label for message field in contact support page"
   },
-  "contactMessageHint": "Enter your message here",
+  "contactMessageHint": "Введите ваше сообщение здесь",
   "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
-  "deviceInfoDevice": "Device",
+  "deviceInfoDevice": "Устройство",
   "@deviceInfoDevice": {
     "description": "Label for device"
   },
-  "deviceInfoEnvOverride": "Environment override",
+  "deviceInfoEnvOverride": "Переопределение среды",
   "@deviceInfoEnvOverride": {
     "description": "Label for environment override"
   },
-  "deviceInfoManufacturer": "Manufacturer",
+  "deviceInfoManufacturer": "Производитель",
   "@deviceInfoManufacturer": {
     "description": "Label for manufacturer"
   },
-  "deviceInfoOs": "Operating System",
+  "deviceInfoOs": "Операционная система",
   "@deviceInfoOs": {
     "description": "Label for operating system"
   },
-  "deviceInfoScreenSize": "Screen Size",
+  "deviceInfoScreenSize": "Размер экрана",
   "@deviceInfoScreenSize": {
     "description": "Label for screen size"
   },
-  "deviceInfoAppVer": "App Version",
+  "deviceInfoAppVer": "Версия приложения",
   "@deviceInfoAppVer": {
     "description": "Label for app Version"
   },
-  "deviceInfoUserId": "User ID",
+  "deviceInfoUserId": "Идентификатор пользователя",
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-  "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
+  "deviceInfoPageDesc": "Ваше сообщение будет содержать эту информацию, чтобы помочь нам обеспечить лучшую поддержку.",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
   },
@@ -300,7 +300,7 @@
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
-  "nextEpisode": "Next Episode",
+  "nextEpisode": "Следующая серия",
   "@nextEpisode": {
     "description": "Button indicating the next video will play soon."
   },
@@ -962,87 +962,87 @@
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
   },
-  "youCanContactUsAt": "You can contact us at",
+  "youCanContactUsAt": "Вы можете связаться с нами по адресу",
   "@youCanContactUsAt": {
     "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
   },
-  "biblekidsAbout": "Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.",
+  "biblekidsAbout": "Bible Kids - инициатива BCC Media, медиа-фонда в составе Ассоциации BCC, который производит и распространяет контент с позитивными христианскими ценностями.",
   "@biblekidsAbout": {
     "description": "Shown on about page"
   },
-  "askYourParents": "Ask your parents",
+  "askYourParents": "Спросите своих родителей",
   "@askYourParents": {
     "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
   },
-  "whatIsMath": "What is",
+  "whatIsMath": "Что такое",
   "@whatIsMath": {
     "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
   },
-  "answerLabel": "Answer",
+  "answerLabel": "Ответ",
   "@answerLabel": {
     "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
   },
-  "checkAnswerButton": "Check answer",
+  "checkAnswerButton": "Проверить ответ",
   "@checkAnswerButton": {
     "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
   },
-  "videoOnlyAccessibleToLoggedIn": "This video is only accessible to users that are logged in to the app.",
+  "videoOnlyAccessibleToLoggedIn": "Видео доступно только авторизованным пользователям.",
   "@videoOnlyAccessibleToLoggedIn": {
     "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
   },
-  "verifyYourAccount": "Verify your account",
+  "verifyYourAccount": "Подтвердите свою учетную запись",
   "@verifyYourAccount": {
     "description": "Title of the page where you can verify your email/account."
   },
-  "weHaveSentAnEmailTo": "We have sent an email to",
+  "weHaveSentAnEmailTo": "Мы отправили письмо на адрес",
   "@weHaveSentAnEmailTo": {
     "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
   },
-  "clickTheLinkToVerify": "Click the link in the email to verify your account.",
+  "clickTheLinkToVerify": "Нажмите на ссылку в письме, чтобы подтвердить свою учетную запись.",
   "@clickTheLinkToVerify": {
     "description": "Shown on the verify account page."
   },
-  "openEmailApp": "Open email app",
+  "openEmailApp": "Откройте приложение электронной почты",
   "@openEmailApp": {
     "description": "Shown on the verify account page. Button to open your email app."
   },
-  "resendEmail": "Resend email",
+  "resendEmail": "Повторная отправка письма",
   "@resendEmail": {
     "description": "Shown on the verify account page. Button to resend the verification email."
   },
-  "noMailAppsDescription": "No mail apps installed",
+  "noMailAppsDescription": "Не установлены почтовые приложения",
   "@noMailAppsDescription": {
     "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
   },
-  "verificationEmailSent": "Verification email sent",
+  "verificationEmailSent": "Отправлено письмо с подтверждением",
   "@verificationEmailSent": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "ifYouDidntReceiveVerificationEmail": "If you still did not receive an email, please contact support at",
+  "ifYouDidntReceiveVerificationEmail": "Если вы все еще не получили письмо, обратитесь в службу поддержки по адресу",
   "@ifYouDidntReceiveVerificationEmail": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "accountCreated": "Account created",
+  "accountCreated": "Учетная запись создана",
   "@accountCreated": {
     "description": "Shown when the user has successfully created an account."
   },
-  "youCanNowUseYourAccount": "You can now use your account and explore a variety of edifying content.",
+  "youCanNowUseYourAccount": "Теперь вы можете воспользоваться своей учетной записью и ознакомиться с различным познавательным контентом.",
   "@youCanNowUseYourAccount": {
     "description": "Shown when the user has successfully completed account setup."
   },
-  "youCanNowLogInToYourAccount": "You can now log in to your account and explore a variety of edifying content.",
+  "youCanNowLogInToYourAccount": "Теперь вы можете войти в свою учетную запись и ознакомиться с различными материалами назидательного характера.",
   "@youCanNowLogInToYourAccount": {
     "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
   },
-  "accountDeletionExplanation": "You are about to request to delete your account with BCC Media and all your data related to this app.",
+  "accountDeletionExplanation": "Вы собираетесь запросить удаление вашей учетной записи в BCC Media и всех ваших данных, связанных с этим приложением.",
   "@accountDeletionExplanation": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionWarning": "This is an action that cannot be undone.",
+  "accountDeletionWarning": "Это действие нельзя отменить.",
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Account deletion will usually be done within {x} business days.",
+  "accountDeletionTimeframe": "Удаление учетной записи обычно производится в течение {x} рабочих дней.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1055,7 +1055,7 @@
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Account deletion successfully requested. You will receive an email at {email}. To confirm your identity, we need you reply to that email to proceed with the deletion.",
+  "accountDeletionSuccess": "Запрос на удаление учетной записи успешно выполнен. Вы получите письмо по адресу {email}. Для подтверждения вашей личности нам необходимо, чтобы вы ответили на это письмо, чтобы приступить к удалению.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1064,11 +1064,11 @@
       }
     }
   },
-  "gamesTab": "Games",
+  "gamesTab": "Игры",
   "@gamesTab": {
     "description": "Title of the games page"
   },
-  "playGame": "Play Game",
+  "playGame": "Играть",
   "@playGame": {
     "description": "Title on a game"
   }
