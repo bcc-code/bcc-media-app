@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.6.21'
+    ext.kotlin_version = '1.7.10'
     repositories {
         google()
         mavenCentral()
@@ -35,9 +35,9 @@ tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }
 
-configure([project(":rudder-sdk-android-core")]) {
+configure([project(':rudder-sdk-android-core')]) {
     ext {
-        VERSION_NAME = "1.8.1"
+        VERSION_NAME = '1.8.1'
     }
 }
 

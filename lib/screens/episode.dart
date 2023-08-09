@@ -304,15 +304,14 @@ class _EpisodeDisplay extends HookConsumerWidget {
       if (!isMounted()) return;
       if (!ref.read(featureFlagsProvider).autoFullscreenOnPlay) return;
       if (next == true && episodeIsCurrentItem && ref.read(primaryPlayerProvider)?.isFullscreen == false) {
-        ref.read(playbackServiceProvider).platformApi.enterFullscreen(
-          player.playerId,
-          context: context,
-          useNativeControls: ref.read(settingsProvider).useNativePlayer == true || !ref.read(featureFlagsProvider).flutterPlayerControls,
-          resetSystemOverlays: () {
-            SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-          },
-          playNextButton: playNextButtonBuilder,
-        );
+        ref.read(playbackServiceProvider).platformApi.primaryController.enterFullscreen(
+              context: context,
+              useNativeControls: ref.read(settingsProvider).useNativePlayer == true || !ref.read(featureFlagsProvider).flutterPlayerControls,
+              resetSystemOverlays: () {
+                SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+              },
+              playNextButton: playNextButtonBuilder,
+            );
       }
     });
 
@@ -388,7 +387,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                   )
                 else
                   VideoPlayerView(
-                    id: player.playerId,
+                    controller: ref.read(playbackServiceProvider).platformApi.primaryController,
                     useNativeControls: ref.read(settingsProvider).useNativePlayer == true ||
                         !ref.watch(featureFlagsProvider.select((value) => value.flutterPlayerControls)),
                     resetSystemOverlays: () {

@@ -16,6 +16,7 @@ import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import '../components/player/custom_cast_player.dart';
 import '../helpers/insets.dart';
 import '../providers/feature_flags.dart';
+import '../providers/playback_service.dart';
 import '../providers/settings.dart';
 import '../providers/todays_calendar_entries.dart';
 import '../theme/design_system/design_system.dart';
@@ -255,7 +256,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
 
   Widget _player(PlayerState player) {
     return VideoPlayerView(
-      id: player.playerId,
+      controller: ref.read(playbackServiceProvider).platformApi.primaryController,
       useNativeControls: ref.read(settingsProvider).useNativePlayer == true ||
           !ref.watch(
             featureFlagsProvider.select((value) => value.flutterPlayerControls),
