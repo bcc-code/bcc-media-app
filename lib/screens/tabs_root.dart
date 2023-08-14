@@ -94,8 +94,11 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       return true;
     }
 
-    final String? currentMediaItemEpisodeId =
-        ref.watch(primaryPlayerProvider.select((player) => player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>()));
+    final String? currentMediaItemEpisodeId = ref.watch(
+      primaryPlayerProvider.select(
+        (player) => player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>(),
+      ),
+    );
 
     if (currentMediaItemEpisodeId == null) {
       return true;

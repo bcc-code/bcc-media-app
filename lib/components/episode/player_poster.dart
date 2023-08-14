@@ -22,41 +22,46 @@ class PlayerPoster extends StatelessWidget {
       aspectRatio: 16 / 9,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTap: () {
-          setupPlayer();
-        },
-        child: Stack(
-          children: [
-            AspectRatio(
-              aspectRatio: 16 / 9,
-              child: imageUrl == null
-                  ? null
-                  : LayoutBuilder(
-                      builder: (context, constraints) {
-                        return Opacity(
-                          opacity: 0.5,
-                          child: FadeInImage.memoryNetwork(
-                            key: Key('player_poster_$imageUrl'),
-                            fit: BoxFit.cover,
-                            placeholder: kTransparentImage,
-                            image: imageUrl!,
-                            fadeInDuration: const Duration(milliseconds: 150),
-                            imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
-                          ),
-                        );
-                      },
-                    ),
-            ),
-            Center(
-              child: loading
-                  ? const LoadingIndicator()
-                  : SizedBox(
-                      width: 36,
-                      height: 36,
-                      child: SvgPicture.string(SvgIcons.play),
-                    ),
-            ),
-          ],
+        onTap: setupPlayer,
+        child: FocusableActionDetector(
+          autofocus: true,
+          mouseCursor: SystemMouseCursors.click,
+          actions: {
+            ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) => setupPlayer()),
+          },
+          child: Stack(
+            children: [
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: imageUrl == null
+                    ? null
+                    : LayoutBuilder(
+                        builder: (context, constraints) {
+                          return Opacity(
+                            opacity: 0.5,
+                            child: FadeInImage.memoryNetwork(
+                              key: Key('player_poster_$imageUrl'),
+                              fit: BoxFit.cover,
+                              placeholder: kTransparentImage,
+                              image: imageUrl!,
+                              fadeInDuration: const Duration(milliseconds: 150),
+                              imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                            ),
+                          );
+                        },
+                      ),
+              ),
+              Center(
+                child: loading
+                    ? const LoadingIndicator()
+                    : SizedBox(
+                        width: 36,
+                        height: 36,
+                        child: SvgPicture.string(SvgIcons.play),
+                      ),
+              ),
+            ],
+          ),
         ),
       ),
     );

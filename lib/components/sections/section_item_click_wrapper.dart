@@ -18,6 +18,7 @@ class SectionItemClickWrapper extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    void onPressed() => handleSectionItemClick(context, item, collectionId: collectionId);
     return InheritedData<SectionItemAnalytics>(
       inheritedData: analytics,
       child: (context) => GestureDetector(
@@ -29,9 +30,12 @@ class SectionItemClickWrapper extends ConsumerWidget {
           }
           showWatchProgressBottomSheet(context, ref, episode.id, episode.progress);
         },
-        onTap: () => handleSectionItemClick(context, item, collectionId: collectionId),
+        onTap: onPressed,
         child: FocusableActionDetector(
           mouseCursor: MaterialStateMouseCursor.clickable,
+          actions: {
+            ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) => onPressed()),
+          },
           child: child,
         ),
       ),

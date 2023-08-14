@@ -1,3 +1,5 @@
+.PHONY: notifications test debug
+
 ios-setup:
 	make ios-build
 	make ios-sim || true
@@ -24,9 +26,12 @@ current_time = $(shell date +%Y-%m-%d_%H-%M-%S)
 flow = $(if $(FLOW),$(FLOW),)
 platform = $(if $(PLATFORM),$(PLATFORM),ios)
 
+notifications:
+	./notifications/push_ios.sh
+
 test:
 	mkdir -p reports
-	./notifications/push_ios.sh
+	make notifications
 	maestro test --format junit --output reports/$(current_time).xml -e PLATFORM=${PLATFORM} flows/${flow}
 
 debug:

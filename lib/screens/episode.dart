@@ -15,7 +15,6 @@ import 'package:brunstadtv_app/components/status_indicators/loading_indicator.da
 import 'package:brunstadtv_app/components/episode/share_episode_sheet.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
-import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -292,26 +291,40 @@ class _EpisodeDisplay extends HookConsumerWidget {
       return null;
     }, [episode.id, screenParams.autoplay, screenParams.queryParamStartPosition]);
 
-    WidgetBuilder? playNextButtonBuilder = !enablePlayNextButton
-        ? null
-        : (context) => PlayNextButton(
-              playerId: player.playerId,
-              onTap: () => autoplayNext(playbackService, player.playerId, context.router),
-              text: S.of(context).nextEpisode,
-            );
+    final viewController = useMemoized(
+      () => BccmPlayerViewController(playerController: BccmPlayerController.primary),
+    );
+    useEffect(() {
+      viewController.setConfig(
+        BccmPlayerViewConfig(
+          resetSystemOverlays: () {
+            SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+          },
+          castPlayerBuilder: (context) => const CustomCastPlayerView(),
+          controlsConfig: BccmPlayerControlsConfig(
+            hideQualitySelector: true,
+            playNextButton: !enablePlayNextButton
+                ? null
+                : (context) => PlayNextButton(
+                      playerController: BccmPlayerController.primary,
+                      onTap: () => autoplayNext(playbackService, player.playerId, context.router),
+                      text: S.of(context).nextEpisode,
+                    ),
+          ),
+        ),
+      );
+      return null;
+    }, [enablePlayNextButton, player.playerId, playbackService]);
+
+    useEffect(() => () => viewController.dispose(), []);
 
     ref.listen<bool>(primaryPlayerProvider.select((p) => p?.playbackState == PlaybackState.playing), (prev, next) {
       if (!isMounted()) return;
       if (!ref.read(featureFlagsProvider).autoFullscreenOnPlay) return;
-      if (next == true && episodeIsCurrentItem && ref.read(primaryPlayerProvider)?.isFullscreen == false) {
-        ref.read(playbackServiceProvider).platformApi.primaryController.enterFullscreen(
-              context: context,
-              useNativeControls: ref.read(settingsProvider).useNativePlayer == true || !ref.read(featureFlagsProvider).flutterPlayerControls,
-              resetSystemOverlays: () {
-                SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-              },
-              playNextButton: playNextButtonBuilder,
-            );
+      if (next == true && episodeIsCurrentItem && viewController.isFullscreen == false) {
+        viewController.enterFullscreen(
+          context: context,
+        );
       }
     });
 
@@ -379,23 +392,14 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     imageUrl: episode.image,
                     onRetry: setupPlayer,
                   )
-                else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb || player.isFullscreen)
+                else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb || viewController.isFullscreen)
                   PlayerPoster(
                     imageUrl: episode.image,
                     setupPlayer: setupPlayer,
-                    loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || player.isFullscreen,
+                    loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || viewController.isFullscreen,
                   )
                 else
-                  VideoPlayerView(
-                    controller: ref.read(playbackServiceProvider).platformApi.primaryController,
-                    useNativeControls: ref.read(settingsProvider).useNativePlayer == true ||
-                        !ref.watch(featureFlagsProvider.select((value) => value.flutterPlayerControls)),
-                    resetSystemOverlays: () {
-                      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-                    },
-                    castPlayerBuilder: (context) => const CustomCastPlayerView(),
-                    playNextButton: playNextButtonBuilder,
-                  ),
+                  BccmPlayerView.withViewController(viewController),
                 EpisodeInfo(
                   episode,
                   onShareVideoTapped: () => shareVideo(context, ref, episode),

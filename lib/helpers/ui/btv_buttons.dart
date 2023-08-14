@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:focusable_control_builder/focusable_control_builder.dart';
 
 import '../../theme/design_system/design_system.dart';
 
@@ -73,32 +74,44 @@ class BtvButton extends StatelessWidget {
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: onPressed,
-        child: FocusableActionDetector(
-          mouseCursor: MaterialStateMouseCursor.clickable,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 100),
-            padding: padding,
-            decoration: BoxDecoration(
-              border: disabled ? disabledBorder : border,
-              borderRadius: BorderRadius.circular(borderRadius),
-              color: disabled ? disabledBackgroundColor : backgroundColor,
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                if (image != null)
-                  Container(
-                    margin: EdgeInsets.only(right: gap),
-                    child: SizedBox(width: imageDimension, height: imageDimension, child: image),
+        child: FocusableControlBuilder(
+          cursor: SystemMouseCursors.click,
+          actions: {
+            ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) {
+              return onPressed();
+            }),
+          },
+          builder: (_, state) => Container(
+            decoration: !state.isFocused
+                ? null
+                : BoxDecoration(
+                    border: Border.all(color: design.colors.onTint.withOpacity(0.1), width: 1),
                   ),
-                Text(
-                  labelText,
-                  textAlign: TextAlign.center,
-                  style: safeTextStyle.copyWith(color: disabled ? disabledTextColor : safeTextStyle.color),
-                )
-              ],
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 100),
+              padding: padding,
+              decoration: BoxDecoration(
+                border: disabled ? disabledBorder : border,
+                borderRadius: BorderRadius.circular(borderRadius),
+                color: disabled ? disabledBackgroundColor : backgroundColor,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  if (image != null)
+                    Container(
+                      margin: EdgeInsets.only(right: gap),
+                      child: SizedBox(width: imageDimension, height: imageDimension, child: image),
+                    ),
+                  Text(
+                    labelText,
+                    textAlign: TextAlign.center,
+                    style: safeTextStyle.copyWith(color: disabled ? disabledTextColor : safeTextStyle.color),
+                  )
+                ],
+              ),
             ),
           ),
         ),
