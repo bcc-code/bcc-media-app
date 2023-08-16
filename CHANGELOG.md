@@ -1,4 +1,97 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v4.5.5+2300075-kids...v) (2023-06-23)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v4.6.3+2300083-kids...v) (2023-08-16)
+
+
+
+## [4.6.3+2300083-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.6.3+2300083...v4.6.3+2300083-kids) (2023-08-16)
+
+
+### Bug Fixes
+
+* cast was disabled for kids since 4.6.x ([10eb1b6](https://github.com/bcc-code/bcc-media-app/commit/10eb1b6afd8d9978f1381efd0a13d9bdf259de5b))
+* section item click bug ([cb28b4a](https://github.com/bcc-code/bcc-media-app/commit/cb28b4ae991b75f31233f17aa15308f2af59c2e9))
+
+
+### Features
+
+* airplay button ([a2d32fb](https://github.com/bcc-code/bcc-media-app/commit/a2d32fb7747d894f624e751d667029233d8ac134))
+
+
+
+## [4.6.2+2300082-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.6.2+2300082...v4.6.2+2300082-kids) (2023-08-16)
+
+
+### Bug Fixes
+
+* change unleash dependency to fork ([8040f96](https://github.com/bcc-code/bcc-media-app/commit/8040f960155d14b17333b2ef71b9c47be5e65125))
+
+
+
+## [4.6.1+2300081-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.6.1+2300081...v4.6.1+2300081-kids) (2023-08-14)
+
+
+### Bug Fixes
+
+* keep controls visible while dragging ([f243b0d](https://github.com/bcc-code/bcc-media-app/commit/f243b0d1b50e686672b420a9c19cb3a29f6ab3d9))
+
+
+
+# [4.6.0+2300080-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.6.0+2300080...v4.6.0+2300080-kids) (2023-08-14)
+
+
+### Bug Fixes
+
+* weird no providerscope error ([5e67757](https://github.com/bcc-code/bcc-media-app/commit/5e677578a52b91e1d78ecd36b9144319a0cfa519))
+
+
+
+## [4.5.8+2300078-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.5.8+2300078...v4.5.8+2300078-kids) (2023-08-01)
+
+
+### Bug Fixes
+
+* **bccm_player:** better player time consistency ([c2e032e](https://github.com/bcc-code/bcc-media-app/commit/c2e032e30ed41a136780d801fb0f0bbf4be1645f))
+* **bccm_player:** better player time consistency ([023c5e5](https://github.com/bcc-code/bcc-media-app/commit/023c5e59fd84e5af5794d5f89a9d45544aacafc2))
+* **games:** fix audio issues with webviews on iOS ([9dcc4a9](https://github.com/bcc-code/bcc-media-app/commit/9dcc4a97f05ba85612c4ff83414dd5fcd08d9f0d))
+* **ios:** persistent playback speed for ios 16+ ([a0b8d60](https://github.com/bcc-code/bcc-media-app/commit/a0b8d6078f000ed0827f6da5560c31c552d81aa2))
+
+
+### Features
+
+* **bccm_player:** hide playback speed on live ([4783c37](https://github.com/bcc-code/bcc-media-app/commit/4783c37788f850235491ede50ef195c860035b13))
+* **bccm_player:** ios playback speed and nullable track selection ([e815d4f](https://github.com/bcc-code/bcc-media-app/commit/e815d4f813282fb24ccfdea390fd6432b2d2b954))
+* **bccm_player:** set playback speed via flutter ([2628c44](https://github.com/bcc-code/bcc-media-app/commit/2628c445787aadd10fef9efd5b55d30c80e79844))
+* **bccm_player:** ui for playback speed ([1e878d6](https://github.com/bcc-code/bcc-media-app/commit/1e878d6d0eb89eb0c2688894f5195251e0bed38a))
+* **technical:** send x-application-version to api ([fb9528e](https://github.com/bcc-code/bcc-media-app/commit/fb9528e537f34bae1bc076aefdef807764014252))
+
+
+
+## [4.5.7+2300077](https://github.com/bcc-code/bcc-media-app/compare/v4.5.6+2300076-kids...v4.5.7+2300077) (2023-07-15)
+
+
+### Bug Fixes
+
+* enable notifications ([9e937e6](https://github.com/bcc-code/bcc-media-app/commit/9e937e6ff616121a03576de18328ca224cecbd4c))
+
+
+
+## [4.5.6+2300076-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.5.6+2300076...v4.5.6+2300076-kids) (2023-07-03)
+
+
+### Bug Fixes
+
+* only show play next button when relevant ([7249a50](https://github.com/bcc-code/bcc-media-app/commit/7249a503890d3eeed0ad01df2eaafd25ce0e7ce5))
+* **player:** padding for time label ([3978392](https://github.com/bcc-code/bcc-media-app/commit/39783925b540975c1fc78b936186e03661867cf8))
+* unleash handlers not being disposed ([b30dd6a](https://github.com/bcc-code/bcc-media-app/commit/b30dd6a81f9c0d3bfca028d84ee9b24c1377a5b3))
+
+
+### Features
+
+* **bccm-player:** add forward and rewind options ([#224](https://github.com/bcc-code/bcc-media-app/issues/224)) ([6be1c9d](https://github.com/bcc-code/bcc-media-app/commit/6be1c9dee5b36ab571b89911d553a6ef1d221b0d))
+* **bccm-player:** Make player themable ([#221](https://github.com/bcc-code/bcc-media-app/issues/221)) ([da30a85](https://github.com/bcc-code/bcc-media-app/commit/da30a85719af4ab788a33c823cf7b55f302e91d5))
+* feature flag for play next button ([b809a46](https://github.com/bcc-code/bcc-media-app/commit/b809a46736f0ec234a0838ea80a23a986fdf7735))
+* format player time to [hh:]mm:ss ([#225](https://github.com/bcc-code/bcc-media-app/issues/225)) ([fc80f64](https://github.com/bcc-code/bcc-media-app/commit/fc80f64cd77b7e4ae230d8d0e2d0614c84aeb2fd))
+* hide play next button when not fullscreen ([00cba3e](https://github.com/bcc-code/bcc-media-app/commit/00cba3efc66ef11653085a83d9d046a39b5d9a35))
+* **player:** play next button ([#227](https://github.com/bcc-code/bcc-media-app/issues/227)) ([2eaa37f](https://github.com/bcc-code/bcc-media-app/commit/2eaa37f5baeb807e5847c200237fd08f4bfd8649))
 
 
 
