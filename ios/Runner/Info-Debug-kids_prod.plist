@@ -60,7 +60,8 @@
 			<string>_BC91FA3B._googlecast._tcp</string>
 		</array>
 		<key>NSLocalNetworkUsageDescription</key>
-		<string>${PRODUCT_NAME} uses the local network to discover Cast-enabled devices on your WiFi network.</string>
+		<string>${PRODUCT_NAME} uses the local network to discover Cast-enabled devices on your WiFi
+			network.</string>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true />
 		<key>UIBackgroundModes</key>
@@ -100,5 +101,7 @@
 		<false />
 		<key>FirebaseDataCollectionDefaultEnabled</key>
 		<false />
+		<key>cast_app_id</key>
+		<string>BC91FA3B</string>
 	</dict>
 </plist>
