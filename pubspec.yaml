@@ -101,7 +101,10 @@ dependencies:
   vibration: ^1.7.6
   email_validator: ^2.1.17
   open_mail_app: ^0.4.5
-  unleash_proxy_client_flutter: ^1.0.2
+  unleash_proxy_client_flutter:
+    git:
+      url: https://github.com/andreasgangso/unleash_proxy_client_flutter.git
+      ref: feat/send-appname
   html: ^0.15.2
   flutter_html: 3.0.0-alpha.6
   cloud_firestore: ^4.5.0
