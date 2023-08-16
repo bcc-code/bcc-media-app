@@ -22,8 +22,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
+import 'package:flutter_to_airplay/flutter_to_airplay.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:universal_io/io.dart';
 
 import '../api/brunstadtv.dart';
 import '../components/custom_back_button.dart';
@@ -143,7 +145,10 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
             actions: [
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16.0),
-                child: SizedBox(width: 24, child: CastButton(color: DesignSystem.of(context).colors.tint1)),
+                child: SizedBox(
+                  width: 24,
+                  child: CastButton(color: DesignSystem.of(context).colors.tint1),
+                ),
               ),
             ],
           ),
@@ -302,6 +307,23 @@ class _EpisodeDisplay extends HookConsumerWidget {
           },
           castPlayerBuilder: (context) => const CustomCastPlayerView(),
           controlsConfig: BccmPlayerControlsConfig(
+            additionalActionsBuilder: (context) => [
+              if (Platform.isIOS)
+                Padding(
+                  padding: const EdgeInsets.only(right: 4),
+                  child: Transform.scale(
+                    scale: 0.85,
+                    child: const AirPlayRoutePickerView(
+                      width: 20,
+                      height: 34,
+                      prioritizesVideoDevices: true,
+                      tintColor: Colors.white,
+                      activeTintColor: Colors.white,
+                      backgroundColor: Colors.transparent,
+                    ),
+                  ),
+                )
+            ],
             hideQualitySelector: true,
             playNextButton: !enablePlayNextButton
                 ? null

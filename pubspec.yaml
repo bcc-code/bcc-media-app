@@ -101,10 +101,7 @@ dependencies:
   vibration: ^1.7.6
   email_validator: ^2.1.17
   open_mail_app: ^0.4.5
-  unleash_proxy_client_flutter:
-    git:
-      url: https://github.com/andreasgangso/unleash_proxy_client_flutter.git
-      ref: feat/send-appname
+  unleash_proxy_client_flutter: ^1.4.0
   html: ^0.15.2
   flutter_html: 3.0.0-alpha.6
   cloud_firestore: ^4.5.0
@@ -114,6 +111,10 @@ dependencies:
   intl: ^0.18.0
   device_preview: ^1.1.0
   focusable_control_builder: ^1.0.2+1
+  flutter_to_airplay:
+    git:
+      url: https://github.com/andreasgangso/flutter_to_airplay.git
+      ref: fix/remove-unused-mux
   #smooth: any
 
 dev_dependencies:
