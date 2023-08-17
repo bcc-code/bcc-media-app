@@ -307,6 +307,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
           },
           castPlayerBuilder: (context) => const CustomCastPlayerView(),
           controlsConfig: BccmPlayerControlsConfig(
+            playbackSpeeds: [0.75, 1, 1.5, 1.75, 2],
             additionalActionsBuilder: (context) => [
               if (Platform.isIOS)
                 Padding(
