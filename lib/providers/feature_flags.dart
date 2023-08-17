@@ -49,7 +49,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       auth: FlavorConfig.current.flavor != Flavor.kids || client.isEnabled('kids-auth'),
       publicSignup: client.isEnabled('public-signup'),
       socialSignup: client.isEnabled('social-signup'),
-      autoplayNext: client.isEnabled('autoplay-next'),
+      autoplayNext: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('autoplay-next'),
       shareVideoButton: FlavorConfig.current.flavor != Flavor.kids,
       autoFullscreenOnPlay: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('auto-fullscreen-on-play'),
       gamesTab: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('games-tab'),
