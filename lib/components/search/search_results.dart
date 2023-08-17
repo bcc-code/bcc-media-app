@@ -47,8 +47,8 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
               throw Error();
             }).then(
               (value) {
-                if (value.hasException) {
-                  throw ErrorDescription(value.exception.toString());
+                if (value.exception != null) {
+                  throw value.exception!;
                 }
                 return value.parsedData?.search;
               },

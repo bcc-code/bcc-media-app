@@ -37,7 +37,7 @@ class AccountDeletionScreen extends HookConsumerWidget {
             ),
           );
       if (sendResult.exception != null) {
-        throw ErrorDescription(sendResult.exception.toString());
+        throw sendResult.exception!;
       }
 
       return sendResult.data?['sendSupportEmail'] ?? false;

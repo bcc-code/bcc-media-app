@@ -171,8 +171,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
       1;
       throw Error();
     }).then((value) {
-      if (value.hasException) {
-        throw ErrorDescription(value.exception.toString());
+      if (value.exception != null) {
+        throw value.exception!;
       }
       List<DateTime>? activeDaysList111 = value.parsedData?.calendar?.period.activeDays.map((e) => DateTime.parse(e).toLocal()).toList();
 
@@ -199,8 +199,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
       print('ERROR: $error');
       throw Error();
     }).then((value) {
-      if (value.hasException) {
-        throw ErrorDescription(value.exception.toString());
+      if (value.exception != null) {
+        throw value.exception!;
       }
       return value.parsedData?.calendar;
     });
