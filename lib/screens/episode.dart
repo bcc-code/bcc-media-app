@@ -312,10 +312,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 4),
                   child: Transform.scale(
-                    scale: 0.85,
+                    scale: 0.8,
                     child: const AirPlayRoutePickerView(
                       width: 20,
-                      height: 34,
+                      height: 32,
                       prioritizesVideoDevices: true,
                       tintColor: Colors.white,
                       activeTintColor: Colors.white,
