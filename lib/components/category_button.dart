@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/helpers/ui/image.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import 'package:flutter/material.dart';
 
@@ -52,11 +53,14 @@ class CategoryButton extends StatelessWidget {
                             fit: BoxFit.fitHeight,
                           )
                         : networkImage != null
-                            ? FadeInImage.memoryNetwork(
-                                placeholder: kTransparentImage,
+                            ? FadeInImage(
+                                placeholder: MemoryImage(kTransparentImage),
                                 fadeInDuration: const Duration(milliseconds: 200),
-                                image: networkImage!,
-                                imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                                image: networkImageWithRetryAndResize(
+                                  imageUrl: networkImage!,
+                                  cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                                ),
+                                imageErrorBuilder: imageErrorBuilder,
                                 fit: BoxFit.fitHeight,
                               )
                             : null,

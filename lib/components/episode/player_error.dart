@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/helpers/ui/image.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 
@@ -31,12 +32,16 @@ class PlayerError extends StatelessWidget {
                       builder: (context, constraints) {
                         return Opacity(
                           opacity: 0.2,
-                          child: FadeInImage.memoryNetwork(
-                              fit: BoxFit.cover,
-                              placeholder: kTransparentImage,
-                              image: imageUrl!,
-                              fadeInDuration: const Duration(milliseconds: 150),
-                              imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
+                          child: FadeInImage(
+                            fit: BoxFit.cover,
+                            placeholder: MemoryImage(kTransparentImage),
+                            image: networkImageWithRetryAndResize(
+                              imageUrl: imageUrl!,
+                              cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                            ),
+                            imageErrorBuilder: imageErrorBuilder,
+                            fadeInDuration: const Duration(milliseconds: 150),
+                          ),
                         );
                       },
                     ),

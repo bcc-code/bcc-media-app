@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
+import 'package:brunstadtv_app/helpers/ui/image.dart';
 import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import 'package:flutter/material.dart';
@@ -39,13 +40,16 @@ class PlayerPoster extends StatelessWidget {
                         builder: (context, constraints) {
                           return Opacity(
                             opacity: 0.5,
-                            child: FadeInImage.memoryNetwork(
+                            child: FadeInImage(
                               key: Key('player_poster_$imageUrl'),
                               fit: BoxFit.cover,
-                              placeholder: kTransparentImage,
-                              image: imageUrl!,
+                              placeholder: MemoryImage(kTransparentImage),
+                              image: networkImageWithRetryAndResize(
+                                imageUrl: imageUrl!,
+                                cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                              ),
+                              imageErrorBuilder: imageErrorBuilder,
                               fadeInDuration: const Duration(milliseconds: 150),
-                              imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
                             ),
                           );
                         },

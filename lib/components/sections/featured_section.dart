@@ -279,13 +279,13 @@ class _GradientImage extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 32),
               child: imageUri == null
                   ? null
-                  : FadeInImage.memoryNetwork(
+                  : FadeInImage(
                       fit: BoxFit.cover,
                       alignment: Alignment.topCenter,
-                      placeholder: kTransparentImage,
-                      image: imageUri.toString(),
+                      placeholder: MemoryImage(kTransparentImage),
+                      image: networkImageWithRetryAndResize(imageUrl: imageUri.toString(), cacheHeight: imageHeight),
+                      imageErrorBuilder: imageErrorBuilder,
                       fadeInDuration: const Duration(milliseconds: 200),
-                      imageCacheHeight: imageHeight,
                     ),
             ),
           );

@@ -5,6 +5,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/live_mini_player.dart';
+import 'package:brunstadtv_app/helpers/ui/image.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -281,12 +282,16 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                   child: LayoutBuilder(builder: (context, constraints) {
                     return Opacity(
                       opacity: 0.5,
-                      child: FadeInImage.memoryNetwork(
-                          fit: BoxFit.cover,
-                          placeholder: kTransparentImage,
-                          image: 'https://static.bcc.media/images/live-placeholder-without-play.jpg',
-                          fadeInDuration: const Duration(milliseconds: 150),
-                          imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
+                      child: FadeInImage(
+                        fit: BoxFit.cover,
+                        placeholder: MemoryImage(kTransparentImage),
+                        image: networkImageWithRetryAndResize(
+                          imageUrl: 'https://static.bcc.media/images/live-placeholder-without-play.jpg',
+                          cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                        ),
+                        imageErrorBuilder: imageErrorBuilder,
+                        fadeInDuration: const Duration(milliseconds: 150),
+                      ),
                     );
                   }))
             ],

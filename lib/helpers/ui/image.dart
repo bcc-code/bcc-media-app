@@ -1,5 +1,7 @@
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_image/network.dart';
 
 const Map<ImageCropMode, String> _imageCropModeQueryParam = {
   ImageCropMode.faces: 'faces',
@@ -52,11 +54,43 @@ Uri? getImageUri(String image, {int? width, int? height, ImageCropMode cropMode 
 
 Widget simpleFadeInImage({required String url, Duration? duration}) => LayoutBuilder(
       builder: (context, constraints) {
-        return FadeInImage.memoryNetwork(
-            fit: BoxFit.cover,
-            placeholder: kTransparentImage,
-            image: url,
-            fadeInDuration: const Duration(milliseconds: 400),
-            imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round());
+        return FadeInImage(
+          fit: BoxFit.cover,
+          placeholder: MemoryImage(kTransparentImage),
+          image: networkImageWithRetryAndResize(
+            imageUrl: url,
+            cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+          ),
+          imageErrorBuilder: imageErrorBuilder,
+          fadeInDuration: const Duration(milliseconds: 400),
+        );
       },
     );
+
+ImageProvider<Object> networkImageWithRetryAndResize({
+  required String imageUrl,
+  required int cacheHeight,
+}) =>
+    ResizeImage.resizeIfNeeded(
+      null,
+      cacheHeight,
+      NetworkImageWithRetry(
+        'http://10.0.2.2:8080?proxy=${Uri.encodeQueryComponent(imageUrl)}',
+        headers: const {'Keep-Alive': 'timeout=20, max=5'},
+      ),
+    );
+
+Widget imageErrorBuilder(context, error, stack) {
+  return HookBuilder(builder: (context) {
+    useEffect(() {
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          exception: Exception(['Image load failed', error]),
+          stack: stack != StackTrace.empty ? stack : StackTrace.current,
+        ),
+      );
+      return null;
+    }, []);
+    return const SizedBox.shrink();
+  });
+}

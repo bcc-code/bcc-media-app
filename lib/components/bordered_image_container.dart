@@ -50,12 +50,16 @@ class BorderedImageContainer extends StatelessWidget {
               height: constraints.maxHeight,
               child: imageUri == null
                   ? null
-                  : FadeInImage.memoryNetwork(
+                  : FadeInImage(
                       fit: BoxFit.cover,
-                      placeholder: kTransparentImage,
-                      image: imageUri.toString(),
+                      placeholder: MemoryImage(kTransparentImage),
+                      image: networkImageWithRetryAndResize(
+                        imageUrl: imageUri.toString(),
+                        cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                      ),
+                      imageErrorBuilder: imageErrorBuilder,
                       fadeInDuration: const Duration(milliseconds: 400),
-                      imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
+                    ),
             ),
           );
         },

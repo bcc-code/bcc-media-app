@@ -115,6 +115,7 @@ dependencies:
     git:
       url: https://github.com/andreasgangso/flutter_to_airplay.git
       ref: fix/remove-unused-mux
+  flutter_image: ^4.1.6
   #smooth: any
 
 dev_dependencies:
