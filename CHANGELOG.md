@@ -1,4 +1,23 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v4.6.3+2300083-kids...v) (2023-08-16)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v4.6.4+2300084-kids...v) (2023-08-18)
+
+
+
+## [4.6.4+2300084-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.6.4+2300084...v4.6.4+2300084-kids) (2023-08-18)
+
+
+### Bug Fixes
+
+* scrubbing and skipping was unreliable ([d4d88c5](https://github.com/bcc-code/bcc-media-app/commit/d4d88c5b86c7733a05dd57ac5e3a01f0b9474acb))
+
+
+### Features
+
+* add 0.75 playback speed ([f219dc1](https://github.com/bcc-code/bcc-media-app/commit/f219dc18399adeeb9c1f9a7f21367c1eac7f0025))
+* autoplay-next enabled by default for kids app ([69bc0c5](https://github.com/bcc-code/bcc-media-app/commit/69bc0c593bb8add25fbde5fa763bfbc4ae784d7e))
+* caption1 text style for player settings ([28363fe](https://github.com/bcc-code/bcc-media-app/commit/28363fe4ce0bdbfa80fd985a049483cc26c42e86))
+* games tab enabled by default for kids app ([f55ec9e](https://github.com/bcc-code/bcc-media-app/commit/f55ec9eec3dd310f04e7a8dd8c9d4aae373b6934))
+* improved exception logging ([2fff6e6](https://github.com/bcc-code/bcc-media-app/commit/2fff6e63ca19c6ea74a9a5fac7bc7ec61c98f461))
+* retry image fetching and improve reporting ([7991b8a](https://github.com/bcc-code/bcc-media-app/commit/7991b8ac3769bb530a71998297806a1a57f29c9a))
 
 
 
