@@ -75,7 +75,7 @@ ImageProvider<Object> networkImageWithRetryAndResize({
       null,
       cacheHeight,
       NetworkImageWithRetry(
-        'http://10.0.2.2:8080?proxy=${Uri.encodeQueryComponent(imageUrl)}',
+        imageUrl,
         headers: const {'Keep-Alive': 'timeout=20, max=5'},
       ),
     );
