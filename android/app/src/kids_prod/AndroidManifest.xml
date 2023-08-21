@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application android:name="${applicationName}">
         <activity android:name=".MainActivity">
@@ -18,6 +19,7 @@
         </activity>
 
         <meta-data
+            tools:replace="android:value"
             android:name="cast_app_id"
             android:value="5313A795" />
 
