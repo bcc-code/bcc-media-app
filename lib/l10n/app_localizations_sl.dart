@@ -176,28 +176,28 @@ class SSl extends S {
   String get contactMessageHint => 'Tukaj vpiši svoje sporočilo';
 
   @override
-  String get deviceInfoDevice => 'Device';
+  String get deviceInfoDevice => 'Naprava';
 
   @override
   String get deviceInfoEnvOverride => 'Environment override';
 
   @override
-  String get deviceInfoManufacturer => 'Manufacturer';
+  String get deviceInfoManufacturer => 'Proizvajalec';
 
   @override
-  String get deviceInfoOs => 'Operating System';
+  String get deviceInfoOs => 'Operacijski sistem';
 
   @override
-  String get deviceInfoScreenSize => 'Screen Size';
+  String get deviceInfoScreenSize => 'Velikost zaslona';
 
   @override
-  String get deviceInfoAppVer => 'App Version';
+  String get deviceInfoAppVer => 'Različica aplikacije';
 
   @override
   String get deviceInfoUserId => 'User ID';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc => 'Tvoje sporočilo bo vsebovalo to informacijo. To nam bo omogočilo lažjo pomoč.';
 
   @override
   String get userVoice => 'Predlagaj funkcijo';
@@ -711,7 +711,7 @@ class SSl extends S {
   String get youCanContactUsAt => 'Z nami lahko vzpostaviš kontakt na';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'BCC Media je iniciativa BCC zveze, medijske fundacije, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.';
 
   @override
   String get askYourParents => 'Vprašaj starše';
@@ -762,14 +762,14 @@ class SSl extends S {
   String get youCanNowLogInToYourAccount => 'Sedaj se lahko vpišeš v svoj račun in raziščeš različne izgrajujoče vsebine.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'Zaprosil boš za izbris tvojega računa v BCC Media in vseh povezanih podatkov.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'To dejanje ne more biti razveljavljeno.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'Izbris računa bo izveden v roku $x delovnih dni.';
   }
 
   @override
@@ -777,7 +777,7 @@ class SSl extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'Izbris računa je bil potrjen. Prejel boš sporočilo na $email. Za potrditev identitete, moraš odgovoriti na sporočilo, da se bo račun izbrisal.';
   }
 
   @override

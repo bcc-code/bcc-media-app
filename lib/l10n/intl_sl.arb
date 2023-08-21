@@ -224,7 +224,7 @@
   "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
-  "deviceInfoDevice": "Device",
+  "deviceInfoDevice": "Naprava",
   "@deviceInfoDevice": {
     "description": "Label for device"
   },
@@ -232,19 +232,19 @@
   "@deviceInfoEnvOverride": {
     "description": "Label for environment override"
   },
-  "deviceInfoManufacturer": "Manufacturer",
+  "deviceInfoManufacturer": "Proizvajalec",
   "@deviceInfoManufacturer": {
     "description": "Label for manufacturer"
   },
-  "deviceInfoOs": "Operating System",
+  "deviceInfoOs": "Operacijski sistem",
   "@deviceInfoOs": {
     "description": "Label for operating system"
   },
-  "deviceInfoScreenSize": "Screen Size",
+  "deviceInfoScreenSize": "Velikost zaslona",
   "@deviceInfoScreenSize": {
     "description": "Label for screen size"
   },
-  "deviceInfoAppVer": "App Version",
+  "deviceInfoAppVer": "Različica aplikacije",
   "@deviceInfoAppVer": {
     "description": "Label for app Version"
   },
@@ -252,7 +252,7 @@
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-  "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
+  "deviceInfoPageDesc": "Tvoje sporočilo bo vsebovalo to informacijo. To nam bo omogočilo lažjo pomoč.",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
   },
@@ -966,7 +966,7 @@
   "@youCanContactUsAt": {
     "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
   },
-  "biblekidsAbout": "Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.",
+  "biblekidsAbout": "BCC Media je iniciativa BCC zveze, medijske fundacije, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.",
   "@biblekidsAbout": {
     "description": "Shown on about page"
   },
@@ -1034,15 +1034,15 @@
   "@youCanNowLogInToYourAccount": {
     "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
   },
-  "accountDeletionExplanation": "You are about to request to delete your account with BCC Media and all your data related to this app.",
+  "accountDeletionExplanation": "Zaprosil boš za izbris tvojega računa v BCC Media in vseh povezanih podatkov.",
   "@accountDeletionExplanation": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionWarning": "This is an action that cannot be undone.",
+  "accountDeletionWarning": "To dejanje ne more biti razveljavljeno.",
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Account deletion will usually be done within {x} business days.",
+  "accountDeletionTimeframe": "Izbris računa bo izveden v roku {x} delovnih dni.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1055,7 +1055,7 @@
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Account deletion successfully requested. You will receive an email at {email}. To confirm your identity, we need you reply to that email to proceed with the deletion.",
+  "accountDeletionSuccess": "Izbris računa je bil potrjen. Prejel boš sporočilo na {email}. Za potrditev identitete, moraš odgovoriti na sporočilo, da se bo račun izbrisal.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
