@@ -35,6 +35,9 @@
                 android:value="false" />
         </activity>
 
+        <meta-data
+            android:name="cast_app_id"
+            android:value="BC91FA3B" />
 
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
