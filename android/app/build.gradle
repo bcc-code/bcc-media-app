@@ -85,6 +85,7 @@ android {
                     applicationLabel     : 'BCC Media',
                     appAuthRedirectScheme: 'tv.brunstad.app',
             ]
+            // flutter.target isnt working https://github.com/flutter/flutter/issues/55366
             flutter.target 'lib/main_prod.dart'
         }
         dev {
