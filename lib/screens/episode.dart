@@ -305,6 +305,8 @@ class _EpisodeDisplay extends HookConsumerWidget {
           resetSystemOverlays: () {
             SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
           },
+          deviceOrientationsFullscreen: (_) => [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
+          deviceOrientationsNormal: (_) => [DeviceOrientation.portraitUp],
           castPlayerBuilder: (context) => const CustomCastPlayerView(),
           controlsConfig: BccmPlayerControlsConfig(
             playbackSpeeds: [0.75, 1, 1.5, 1.75, 2],

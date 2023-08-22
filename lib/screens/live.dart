@@ -257,6 +257,8 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       BccmPlayerController.primary,
       config: BccmPlayerViewConfig(
         castPlayerBuilder: (context) => const CustomCastPlayerView(),
+        deviceOrientationsFullscreen: (_) => [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
+        deviceOrientationsNormal: (_) => [DeviceOrientation.portraitUp],
         resetSystemOverlays: () {
           SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
         },
