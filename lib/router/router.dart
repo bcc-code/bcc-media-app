@@ -22,6 +22,8 @@ import 'package:brunstadtv_app/screens/onboarding/onboarding.dart';
 import 'package:brunstadtv_app/screens/profile/profile.dart';
 import 'package:brunstadtv_app/screens/search.dart';
 import 'package:brunstadtv_app/screens/study.dart';
+import 'package:brunstadtv_app/screens/tv/tv_live.dart';
+import 'package:brunstadtv_app/screens/tv/tv_login.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -77,6 +79,8 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
   deferredLoading: false,
   routes: [
     AutoRoute<void>(page: AutoLoginScreen, path: '/auto-login'),
+    AutoRoute<void>(page: TvLiveScreen, path: '/tv/live'),
+    AutoRoute<void>(page: TvLoginScreen, path: '/tv/login'),
     CustomRoute<void>(
       page: OnboardingScreen,
       path: '/login',

@@ -3,12 +3,11 @@ import 'dart:async';
 import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/event_bus.dart';
+import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../components/status_indicators/loading_indicator.dart';
 import '../helpers/constants.dart';
@@ -71,6 +70,14 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
     final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
     final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingCompleted) == true;
     final alwaysShowOnboarding = ref.read(authEnabledProvider);
+    if (ref.read(isAndroidTvProvider)) {
+      if (hasCredentials) {
+        router.replaceAll([const TvLiveScreenRoute()]);
+      } else {
+        router.replaceAll([const TvLoginScreenRoute()]);
+      }
+      return;
+    }
     if (!hasCredentials && (!hasCompletedOnboarding || alwaysShowOnboarding)) {
       router.replaceAll([OnboardingScreenRoute()]);
     } else {

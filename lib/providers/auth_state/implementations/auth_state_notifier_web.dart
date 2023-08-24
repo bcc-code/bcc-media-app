@@ -1,4 +1,5 @@
 import 'package:auth0_flutter_web/auth0_flutter_web.dart';
+import 'package:brunstadtv_app/api/auth0_api.dart';
 import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -77,7 +78,11 @@ class AuthStateNotifierWeb extends StateNotifier<AuthState> implements AuthState
 
   @override
   Future<bool> forceRefresh() {
-    // TODO: implement forceRefresh
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> loginViaDeviceCode(DeviceTokenRequestResponse deviceToken) {
     throw UnimplementedError();
   }
 }

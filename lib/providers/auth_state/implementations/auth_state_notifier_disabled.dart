@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/api/auth0_api.dart';
 import 'package:brunstadtv_app/models/auth_state.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:riverpod/riverpod.dart';
@@ -28,5 +29,10 @@ class AuthStateNotifierDisabled extends StateNotifier<AuthState> implements Auth
   @override
   Future logout({bool manual = true}) {
     return Future.value();
+  }
+
+  @override
+  Future<void> loginViaDeviceCode(DeviceTokenRequestResponse deviceToken) {
+    throw UnimplementedError();
   }
 }

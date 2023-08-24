@@ -9,6 +9,7 @@
 
 import 'dart:convert';
 
+import 'package:brunstadtv_app/api/auth0_api.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/models/auth_state.dart';
 import 'package:brunstadtv_app/providers/auth_state/implementations/auth_state_notifier_mobile.dart';
@@ -25,6 +26,7 @@ import '../utils/tokens.dart';
   MockSpec<FlutterAppAuth>(),
   MockSpec<FlutterSecureStorage>(),
   MockSpec<SettingsService>(),
+  MockSpec<Auth0Api>(),
 ])
 import 'auth_test.mocks.dart';
 import '../utils/basic_init.dart';
@@ -56,7 +58,12 @@ void main() {
 
       final mockAppAuth = MockFlutterAppAuth();
 
-      final auth = AuthStateNotifierMobile(appAuth: MockFlutterAppAuth(), secureStorage: secureStorage, settingsService: MockSettingsService());
+      final auth = AuthStateNotifierMobile(
+        appAuth: MockFlutterAppAuth(),
+        secureStorage: secureStorage,
+        settingsService: MockSettingsService(),
+        auth0Api: MockAuth0Api(),
+      );
       auth.state = AuthState(
         auth0AccessToken: 'something',
         expiresAt: DateTime.now().add(const Duration(days: 1)),
@@ -74,7 +81,12 @@ void main() {
       final mockAppAuth = MockFlutterAppAuth();
       when(mockAppAuth.token(any)).thenAnswer((_) async => mockTokenResponse(expiresAt: DateTime.now().add(const Duration(days: 1))));
 
-      final auth = AuthStateNotifierMobile(appAuth: mockAppAuth, secureStorage: secureStorage, settingsService: MockSettingsService());
+      final auth = AuthStateNotifierMobile(
+        appAuth: mockAppAuth,
+        secureStorage: secureStorage,
+        settingsService: MockSettingsService(),
+        auth0Api: MockAuth0Api(),
+      );
       auth.state = AuthState(
         auth0AccessToken: 'something',
         expiresAt: DateTime.now(),

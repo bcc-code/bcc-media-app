@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:brunstadtv_app/api/auth0_api.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -38,22 +39,29 @@ AuthStateNotifier getPlatformSpecificAuthStateNotifier(Ref ref) {
       ),
     ),
     settingsService: ref.watch(settingsProvider.notifier),
+    auth0Api: ref.watch(auth0ApiProvider),
   );
 }
 
 const kMinimumCredentialsTTL = Duration(hours: 1);
 
 class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthStateNotifier {
-  AuthStateNotifierMobile({required FlutterAppAuth appAuth, required FlutterSecureStorage secureStorage, required SettingsService settingsService})
-      : _appAuth = appAuth,
+  AuthStateNotifierMobile({
+    required FlutterAppAuth appAuth,
+    required FlutterSecureStorage secureStorage,
+    required SettingsService settingsService,
+    required Auth0Api auth0Api,
+  })  : _appAuth = appAuth,
         _secureStorage = secureStorage,
         _settingsService = settingsService,
+        _auth0Api = auth0Api,
         super(const AuthState());
 
   final appAuthLock = Lock();
   final FlutterAppAuth _appAuth;
   final FlutterSecureStorage _secureStorage;
   final SettingsService _settingsService;
+  final Auth0Api _auth0Api;
 
   Future<T> _syncAppAuth<T>(Future<T> Function() call) {
     return appAuthLock.synchronized(
@@ -175,6 +183,25 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
     _settingsService.refreshSessionId();
 
     return;
+  }
+
+  @override
+  Future<void> loginViaDeviceCode(DeviceTokenRequestResponse deviceCode) async {
+    try {
+      final credentials = await _auth0Api.listenToResolve(deviceCode);
+      await _setStateBasedOnResponse(TokenResponse(
+        credentials.accessToken,
+        credentials.refreshToken,
+        DateTime.now().add(Duration(seconds: credentials.expiresIn)),
+        credentials.idToken,
+        credentials.tokenType,
+        credentials.scope.split(','),
+        null,
+      ));
+    } catch (e) {
+      logout(manual: false);
+      rethrow;
+    }
   }
 
   @override
