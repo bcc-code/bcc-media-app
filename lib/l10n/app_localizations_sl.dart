@@ -531,6 +531,9 @@ class SSl extends S {
   String get privacyPolicy => 'Pravilnik o zasebnosti';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Kategorije';
 
   @override

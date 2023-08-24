@@ -531,6 +531,9 @@ class SEs extends S {
   String get privacyPolicy => 'Políticas de privacidad';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Categorías';
 
   @override

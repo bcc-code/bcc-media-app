@@ -531,6 +531,9 @@ class SNb extends S {
   String get privacyPolicy => 'Personvernerklæring';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Kategorier';
 
   @override

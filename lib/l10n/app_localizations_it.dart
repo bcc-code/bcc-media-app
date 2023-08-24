@@ -531,6 +531,9 @@ class SIt extends S {
   String get privacyPolicy => 'Informativa sulla privacy';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Categorie';
 
   @override

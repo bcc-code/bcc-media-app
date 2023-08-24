@@ -531,6 +531,9 @@ class SPt extends S {
   String get privacyPolicy => 'Política de privacidade';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Categorias';
 
   @override

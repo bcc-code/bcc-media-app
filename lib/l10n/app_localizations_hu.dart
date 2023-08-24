@@ -531,6 +531,9 @@ class SHu extends S {
   String get privacyPolicy => 'Adatvédelmi szabályzat';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Kategóriák';
 
   @override

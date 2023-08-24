@@ -531,6 +531,9 @@ class SNl extends S {
   String get privacyPolicy => 'Privacybeleid';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Categorieën';
 
   @override

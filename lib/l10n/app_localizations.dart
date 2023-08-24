@@ -1155,6 +1155,12 @@ abstract class S {
   /// **'Privacy Policy'**
   String get privacyPolicy;
 
+  /// Title on the 'Terms of use' page.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of use'**
+  String get termsOfUse;
+
   /// Title of the Categories Tab
   ///
   /// In en, this message translates to:

@@ -531,6 +531,9 @@ class SDa extends S {
   String get privacyPolicy => 'Fortrolighedspolitik';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Kategorier';
 
   @override

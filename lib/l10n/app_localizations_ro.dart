@@ -531,6 +531,9 @@ class SRo extends S {
   String get privacyPolicy => 'Politica de Confidențialitate';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Categorii';
 
   @override

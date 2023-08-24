@@ -531,6 +531,9 @@ class SDe extends S {
   String get privacyPolicy => 'Datenschutz';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Kategorien';
 
   @override

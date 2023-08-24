@@ -531,6 +531,9 @@ class SFi extends S {
   String get privacyPolicy => 'Tietosuojakäytäntö';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Luokat';
 
   @override

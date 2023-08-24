@@ -531,6 +531,9 @@ class SFr extends S {
   String get privacyPolicy => 'Politique de confidentialité';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Catégories';
 
   @override

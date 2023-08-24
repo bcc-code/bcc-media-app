@@ -531,6 +531,9 @@ class SBg extends S {
   String get privacyPolicy => 'Privacy Policy';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Categories';
 
   @override

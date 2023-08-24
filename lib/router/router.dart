@@ -11,6 +11,7 @@ import 'package:brunstadtv_app/screens/profile/app_language.dart';
 import 'package:brunstadtv_app/screens/profile/audio_language.dart';
 import 'package:brunstadtv_app/screens/profile/privacy_policy.dart';
 import 'package:brunstadtv_app/screens/profile/subtitle_language.dart';
+import 'package:brunstadtv_app/screens/profile/terms_of_use.dart';
 import 'package:brunstadtv_app/screens/profile/video_quality.dart';
 import 'package:brunstadtv_app/screens/profile/contact.dart';
 import 'package:brunstadtv_app/screens/profile/faq.dart';
@@ -175,6 +176,14 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       reverseDurationInMilliseconds: 600,
       customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'privacy-policy'},
+    ),
+    CustomRoute<void>(
+      page: TermsOfUseScreen,
+      path: '/terms-of-use',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: profileRouteBuilder,
+      meta: {RouteMetaConstants.analyticsName: 'terms-of-use'},
     ),
     CustomRoute<void>(
       page: AccountDeletionScreen,

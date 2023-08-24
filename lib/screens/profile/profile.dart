@@ -178,6 +178,10 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                                   optionName: S.of(context).privacyPolicy,
                                   onPressed: () => context.router.push(const PrivacyPolicyScreenRoute()),
                                 ),
+                                OptionButton(
+                                  optionName: S.of(context).termsOfUse,
+                                  onPressed: () => context.router.push(const TermsOfUseScreenRoute()),
+                                ),
                               ],
                             );
                           },

@@ -531,6 +531,9 @@ class STr extends S {
   String get privacyPolicy => 'Gizlilik Politikası';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Kategoriler';
 
   @override

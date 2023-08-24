@@ -227,42 +227,34 @@
   "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
-
   "deviceInfoDevice": "Device",
   "@deviceInfoDevice": {
     "description": "Label for device"
   },
-
   "deviceInfoEnvOverride": "Environment override",
   "@deviceInfoEnvOverride": {
     "description": "Label for environment override"
   },
-
   "deviceInfoManufacturer": "Manufacturer",
   "@deviceInfoManufacturer": {
     "description": "Label for manufacturer"
   },
-
   "deviceInfoOs": "Operating System",
   "@deviceInfoOs": {
     "description": "Label for operating system"
   },
-
   "deviceInfoScreenSize": "Screen Size",
   "@deviceInfoScreenSize": {
     "description": "Label for screen size"
   },
-
   "deviceInfoAppVer": "App Version",
   "@deviceInfoAppVer": {
     "description": "Label for app Version"
   },
-
   "deviceInfoUserId": "User ID",
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-
   "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
@@ -722,6 +714,10 @@
   "privacyPolicy": "Privacy Policy",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
+  },
+  "termsOfUse": "Terms of use",
+  "@termsOfUse": {
+    "description": "Title on the 'Terms of use' page."
   },
   "categoriesTab": "Categories",
   "@categoriesTab": {

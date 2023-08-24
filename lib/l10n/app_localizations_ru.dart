@@ -531,6 +531,9 @@ class SRu extends S {
   String get privacyPolicy => 'Политика конфиденциальности';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Категории';
 
   @override

@@ -531,6 +531,9 @@ class SPl extends S {
   String get privacyPolicy => 'Polityka prywatności';
 
   @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
   String get categoriesTab => 'Kategorie';
 
   @override
