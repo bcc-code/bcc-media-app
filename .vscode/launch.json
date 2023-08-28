@@ -20,6 +20,21 @@
       "program": "lib/main_prod.dart"
     },
     {
+      "name": "prod (attach)",
+      "request": "attach",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--flavor",
+        "prod",
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit"
+      ], // Remember to change the "program" property too
+      "program": "lib/main_prod.dart"
+    },
+    {
       "name": "prod (profile)",
       "request": "launch",
       "type": "dart",

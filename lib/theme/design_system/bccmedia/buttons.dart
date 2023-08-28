@@ -16,6 +16,7 @@ class BccMediaButtons extends DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   }) {
     return BtvButton(
       key: key,
@@ -28,6 +29,7 @@ class BccMediaButtons extends DesignSystemButtons {
       imageDimension: 20,
       textStyle: textStyles.button1.copyWith(color: colors.label1),
       disabled: disabled,
+      autofocus: autofocus,
     );
   }
 
@@ -38,6 +40,7 @@ class BccMediaButtons extends DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   }) {
     return small(
       key: key,
@@ -45,6 +48,7 @@ class BccMediaButtons extends DesignSystemButtons {
       labelText: labelText,
       image: image,
       disabled: disabled,
+      autofocus: autofocus,
     ).copyWith(
       backgroundColor: colors.separatorOnLight,
       border: Border.all(color: colors.separatorOnLight, width: 1),
@@ -58,6 +62,7 @@ class BccMediaButtons extends DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   }) {
     return small(
       key: key,
@@ -65,6 +70,7 @@ class BccMediaButtons extends DesignSystemButtons {
       labelText: labelText,
       image: image,
       disabled: disabled,
+      autofocus: autofocus,
     ).copyWith(backgroundColor: colors.tint3);
   }
 
@@ -75,6 +81,7 @@ class BccMediaButtons extends DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   }) {
     return small(
       key: key,
@@ -82,6 +89,7 @@ class BccMediaButtons extends DesignSystemButtons {
       labelText: labelText,
       image: image,
       disabled: disabled,
+      autofocus: autofocus,
     ).copyWith(backgroundColor: colors.tint2);
   }
 
@@ -92,6 +100,7 @@ class BccMediaButtons extends DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   }) {
     return BtvButton(
       key: key,
@@ -104,6 +113,7 @@ class BccMediaButtons extends DesignSystemButtons {
       imageDimension: 20,
       textStyle: textStyles.button1.copyWith(color: colors.label1),
       disabled: disabled,
+      autofocus: autofocus,
     );
   }
 
@@ -114,6 +124,7 @@ class BccMediaButtons extends DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   }) {
     return medium(
       key: key,
@@ -121,6 +132,7 @@ class BccMediaButtons extends DesignSystemButtons {
       labelText: labelText,
       image: image,
       disabled: disabled,
+      autofocus: autofocus,
     ).copyWith(backgroundColor: colors.tint3);
   }
 
@@ -131,6 +143,7 @@ class BccMediaButtons extends DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   }) {
     return medium(
       key: key,
@@ -138,6 +151,7 @@ class BccMediaButtons extends DesignSystemButtons {
       labelText: labelText,
       image: image,
       disabled: disabled,
+      autofocus: autofocus,
     ).copyWith(backgroundColor: colors.tint2);
   }
 
@@ -148,6 +162,7 @@ class BccMediaButtons extends DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   }) {
     return medium(
       key: key,
@@ -155,6 +170,7 @@ class BccMediaButtons extends DesignSystemButtons {
       labelText: labelText,
       image: image,
       disabled: disabled,
+      autofocus: autofocus,
     ).copyWith(
       backgroundColor: colors.separatorOnLight,
       border: Border.all(color: colors.separatorOnLight.withOpacity(0.1), width: 1),
@@ -168,6 +184,7 @@ class BccMediaButtons extends DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   }) {
     return BtvButton(
       key: key,
@@ -181,6 +198,7 @@ class BccMediaButtons extends DesignSystemButtons {
       imageDimension: 20,
       textStyle: textStyles.button1.copyWith(color: colors.label1),
       disabled: disabled,
+      autofocus: autofocus,
     );
   }
 
@@ -191,6 +209,7 @@ class BccMediaButtons extends DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   }) {
     return large(
       key: key,
@@ -198,6 +217,7 @@ class BccMediaButtons extends DesignSystemButtons {
       labelText: labelText,
       image: image,
       disabled: disabled,
+      autofocus: autofocus,
     ).copyWith(backgroundColor: colors.tint3);
   }
 
@@ -208,6 +228,7 @@ class BccMediaButtons extends DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   }) {
     return large(
       key: key,
@@ -215,6 +236,7 @@ class BccMediaButtons extends DesignSystemButtons {
       labelText: labelText,
       image: image,
       disabled: disabled,
+      autofocus: autofocus,
     ).copyWith(backgroundColor: colors.tint2);
   }
 
@@ -225,6 +247,7 @@ class BccMediaButtons extends DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   }) {
     return large(
       key: key,
@@ -232,6 +255,7 @@ class BccMediaButtons extends DesignSystemButtons {
       labelText: labelText,
       image: image,
       disabled: disabled,
+      autofocus: autofocus,
     ).copyWith(
       backgroundColor: colors.separatorOnLight,
       border: Border.all(color: colors.separatorOnLight.withOpacity(0.1), width: 1),

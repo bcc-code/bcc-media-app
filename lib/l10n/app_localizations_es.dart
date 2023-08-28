@@ -788,4 +788,12 @@ class SEs extends S {
 
   @override
   String get playGame => 'Jugar';
+
+  @override
+  String get tvScanQr => 'Scan the code and sign in with your phone';
+
+  @override
+  String tvEnterCode(String url, String code) {
+    return 'Or go to $url and enter the code: $code';
+  }
 }

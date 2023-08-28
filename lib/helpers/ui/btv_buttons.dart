@@ -15,6 +15,7 @@ class BtvButton extends StatelessWidget {
   final BoxBorder? border;
   final TextStyle? textStyle;
   final bool disabled;
+  final bool? autofocus;
 
   const BtvButton({
     super.key,
@@ -29,6 +30,7 @@ class BtvButton extends StatelessWidget {
     this.borderRadius = 20,
     this.padding = const EdgeInsets.all(0),
     this.disabled = false,
+    this.autofocus,
   });
 
   BtvButton copyWith({
@@ -75,43 +77,47 @@ class BtvButton extends StatelessWidget {
         behavior: HitTestBehavior.opaque,
         onTap: onPressed,
         child: FocusableControlBuilder(
+          autoFocus: autofocus ?? false,
           cursor: SystemMouseCursors.click,
           actions: {
             ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) {
               return onPressed();
             }),
           },
-          builder: (_, state) => Container(
-            decoration: !state.isFocused
-                ? null
-                : BoxDecoration(
-                    border: Border.all(color: design.colors.onTint.withOpacity(0.1), width: 1),
+          builder: (_, state) => AnimatedContainer(
+            duration: const Duration(milliseconds: 100),
+            curve: Curves.easeOut,
+            padding: padding,
+            foregroundDecoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(borderRadius),
+              border: state.isFocused
+                  ? Border.all(
+                      width: 1,
+                      color: design.colors.onTint.withOpacity(1),
+                    )
+                  : null,
+            ),
+            decoration: BoxDecoration(
+              border: disabled ? disabledBorder : border,
+              borderRadius: BorderRadius.circular(borderRadius),
+              color: disabled ? disabledBackgroundColor : backgroundColor,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (image != null)
+                  Container(
+                    margin: EdgeInsets.only(right: gap),
+                    child: SizedBox(width: imageDimension, height: imageDimension, child: image),
                   ),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 100),
-              padding: padding,
-              decoration: BoxDecoration(
-                border: disabled ? disabledBorder : border,
-                borderRadius: BorderRadius.circular(borderRadius),
-                color: disabled ? disabledBackgroundColor : backgroundColor,
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  if (image != null)
-                    Container(
-                      margin: EdgeInsets.only(right: gap),
-                      child: SizedBox(width: imageDimension, height: imageDimension, child: image),
-                    ),
-                  Text(
-                    labelText,
-                    textAlign: TextAlign.center,
-                    style: safeTextStyle.copyWith(color: disabled ? disabledTextColor : safeTextStyle.color),
-                  )
-                ],
-              ),
+                Text(
+                  labelText,
+                  textAlign: TextAlign.center,
+                  style: safeTextStyle.copyWith(color: disabled ? disabledTextColor : safeTextStyle.color),
+                )
+              ],
             ),
           ),
         ),

@@ -108,6 +108,7 @@ abstract class DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   });
 
   BtvButton smallSecondary({
@@ -116,6 +117,7 @@ abstract class DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   });
 
   BtvButton smallGreen({
@@ -124,6 +126,7 @@ abstract class DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   });
 
   BtvButton smallRed({
@@ -132,6 +135,7 @@ abstract class DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   });
 
   BtvButton medium({
@@ -148,6 +152,7 @@ abstract class DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   });
 
   BtvButton mediumRed({
@@ -164,6 +169,7 @@ abstract class DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   });
 
   BtvButton large({
@@ -172,6 +178,7 @@ abstract class DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   });
 
   BtvButton largeGreen({
@@ -180,6 +187,7 @@ abstract class DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   });
 
   BtvButton largeRed({
@@ -188,6 +196,7 @@ abstract class DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   });
 
   BtvButton largeSecondary({
@@ -196,6 +205,7 @@ abstract class DesignSystemButtons {
     required String labelText,
     Widget? image,
     bool disabled = false,
+    bool? autofocus,
   });
 }
 

@@ -399,7 +399,7 @@ abstract class S {
   /// **'Contact support'**
   String get contactSupport;
 
-  /// No description provided for @contactIssueHint.
+  /// Hint for the message box for logged in users
   ///
   /// In en, this message translates to:
   /// **'Describe the issue'**
@@ -1640,6 +1640,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Play Game'**
   String get playGame;
+
+  /// Title on the login screen for TVs
+  ///
+  /// In en, this message translates to:
+  /// **'Scan the code and sign in with your phone'**
+  String get tvScanQr;
+
+  /// IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.
+  ///
+  /// In en, this message translates to:
+  /// **'Or go to {url} and enter the code: {code}'**
+  String tvEnterCode(String url, String code);
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

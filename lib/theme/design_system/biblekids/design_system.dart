@@ -28,6 +28,7 @@ class BibleKidsDesignSystem extends DesignSystemData {
       inputDecorations: BccMediaInputDecorations(colors: colors, textStyles: textStyles),
       appThemeData: AppThemeData(
         studyGradient: BccmGradients.greenYellow,
+        genericBackgroundGradient: BccmGradients.purpleTransparentTopBottom,
         achievementBackgroundGradient: BccmGradients.purpleTransparent,
         appBarTransparent: false,
         tabTheme: AppTabThemeData(

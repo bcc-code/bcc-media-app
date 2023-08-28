@@ -788,4 +788,12 @@ class SPt extends S {
 
   @override
   String get playGame => 'Jogar um jogo ';
+
+  @override
+  String get tvScanQr => 'Scan the code and sign in with your phone';
+
+  @override
+  String tvEnterCode(String url, String code) {
+    return 'Or go to $url and enter the code: $code';
+  }
 }

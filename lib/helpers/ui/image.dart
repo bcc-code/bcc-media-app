@@ -69,7 +69,7 @@ Widget simpleFadeInImage({required String url, Duration? duration}) => LayoutBui
 
 ImageProvider<Object> networkImageWithRetryAndResize({
   required String imageUrl,
-  required int cacheHeight,
+  int? cacheHeight,
 }) =>
     ResizeImage.resizeIfNeeded(
       null,

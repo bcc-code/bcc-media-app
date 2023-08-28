@@ -184,7 +184,7 @@
     "description": "Title for contact support page"
   },
   "contactIssueHint": "Describe the issue",
-  "@contactIncludeDeviceInfo": {
+  "@contactIssueHint": {
     "description": "Hint for the message box for logged in users"
   },
   "contactUs": "Contact us",
@@ -1078,5 +1078,21 @@
   "playGame": "Play Game",
   "@playGame": {
     "description": "Title on a game"
+  },
+  "tvScanQr": "Scan the code and sign in with your phone",
+  "@tvScanQr": {
+    "description": "Title on the login screen for TVs"
+  },
+  "tvEnterCode": "Or go to {url} and enter the code: {code}",
+  "@tvEnterCode": {
+    "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
   }
 }

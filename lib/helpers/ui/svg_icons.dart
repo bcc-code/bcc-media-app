@@ -205,4 +205,33 @@ class SvgIcons {
 <path fill-rule="evenodd" clip-rule="evenodd" d="M86.8043 25.75C97.5899 25.75 106.333 34.2593 106.333 44.756L106.331 45.0623C106.333 63.5164 80.1896 81.5417 72 81.5417C63.8923 81.5417 38.1878 63.8751 37.6745 45.616L37.6667 45.0625V44.756C37.6667 34.2593 46.4101 25.75 57.1957 25.75C63.1149 25.75 70.8714 30.0301 72 37.1478C73.3886 30.0204 80.8851 25.75 86.8043 25.75Z" fill="#E63C62" stroke="#E63C62" stroke-width="8.58333" stroke-linejoin="round"/>
 </svg>
 ''';
+
+  static const bccMediaCircles = '''
+<svg width="1697" height="1697" viewBox="0 0 1697 1697" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="525" y="525" width="646.72" height="646.723" rx="323.36" stroke="url(#paint0_linear_2002_6540)" stroke-width="10"/>
+<rect x="310" y="309" width="1077.87" height="1077.87" rx="538.935" stroke="url(#paint1_linear_2002_6540)" stroke-width="10"/>
+<rect x="5" y="5" width="1686.55" height="1686.55" rx="843.275" stroke="url(#paint2_linear_2002_6540)" stroke-width="10"/>
+<rect x="690.148" y="689.532" width="317.02" height="317.021" rx="158.51" stroke="url(#paint3_linear_2002_6540)" stroke-width="10"/>
+<defs>
+<linearGradient id="paint0_linear_2002_6540" x1="201.64" y1="848.362" x2="848.363" y2="1495.08" gradientUnits="userSpaceOnUse">
+<stop stop-color="#6EB0E6"/>
+<stop offset="1" stop-color="#E63C62"/>
+</linearGradient>
+<linearGradient id="paint1_linear_2002_6540" x1="-228.935" y1="847.936" x2="848.937" y2="1925.81" gradientUnits="userSpaceOnUse">
+<stop stop-color="#6EB0E6"/>
+<stop offset="1" stop-color="#E63C62"/>
+</linearGradient>
+<linearGradient id="paint2_linear_2002_6540" x1="-838.275" y1="848.277" x2="848.278" y2="2534.83" gradientUnits="userSpaceOnUse">
+<stop stop-color="#6EB0E6"/>
+<stop offset="1" stop-color="#E63C62"/>
+</linearGradient>
+<linearGradient id="paint3_linear_2002_6540" x1="531.638" y1="848.043" x2="848.66" y2="1165.06" gradientUnits="userSpaceOnUse">
+<stop stop-color="#6EB0E6"/>
+<stop offset="1" stop-color="#E63C62"/>
+</linearGradient>
+</defs>
+</svg>
+
+
+''';
 }

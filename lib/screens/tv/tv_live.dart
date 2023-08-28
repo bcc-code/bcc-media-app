@@ -1,11 +1,13 @@
 import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/api/auth0_api.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';
 import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/helpers/ui/image.dart';
+import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/screens/live.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -15,29 +17,139 @@ class TvLiveScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
     final api = ref.watch(apiProvider);
-    final liveUrl = useMemoized(() => api.fetchLiveUrl(), [api]);
-    final liveUrlSnapshot = useFuture(liveUrl);
+    final liveUrlFuture = useState<Future<LivestreamUrl>?>(null);
+    final liveUrlSnapshot = useFuture(liveUrlFuture.value);
+    final viewController = useMemoized(
+        () => BccmPlayerViewController(
+              playerController: BccmPlayerController.primary,
+              config: BccmPlayerViewConfig(
+                  controlsConfig: BccmPlayerControlsConfig(
+                customBuilder: TvControls.builder,
+              )),
+            ),
+        []);
+    useEffect(() => () => viewController.dispose(), []);
 
-    useEffect(() {
-      if (liveUrlSnapshot.data != null) {
-        BccmPlayerController.primary.replaceCurrentMediaItem(MediaItem(url: liveUrlSnapshot.data!.streamUrl, metadata: MediaMetadata(title: 'Live')));
-      }
-    }, [liveUrlSnapshot.data]);
+    void openLive() async {
+      liveUrlFuture.value = api.fetchLiveUrl();
+      final value = await liveUrlFuture.value!;
+      if (!context.mounted) return;
+      await BccmPlayerController.primary.replaceCurrentMediaItem(
+        MediaItem(
+          url: value.streamUrl,
+          isLive: true,
+          metadata: ref.read(liveMetadataProvider),
+        ),
+      );
+      if (!context.mounted) return;
+      await viewController.enterFullscreen(context: context);
+      BccmPlayerController.primary.stop(reset: true);
+    }
+
+    final focusHighlight = useState(true);
 
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (liveUrlSnapshot.hasData)
-              VideoPlatformView(
-                playerController: BccmPlayerController.primary,
-                showControls: true,
-              )
-            else ...[
-              const LoadingGeneric(),
-            ]
+            Padding(
+              padding: const EdgeInsets.only(bottom: 48),
+              child: Image(
+                image: FlavorConfig.current.images.logo,
+                height: FlavorConfig.current.images.logoHeight,
+                gaplessPlayback: true,
+              ),
+            ),
+            FractionallySizedBox(
+              widthFactor: 2 / 4,
+              child: GestureDetector(
+                onTap: openLive,
+                child: FocusableActionDetector(
+                  autofocus: true,
+                  actions: {
+                    ActivateIntent: CallbackAction<Intent>(
+                      onInvoke: (Intent intent) => openLive(),
+                    ),
+                  },
+                  onFocusChange: (value) => focusHighlight.value = value,
+                  child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeOutExpo,
+                    opacity: liveUrlSnapshot.connectionState == ConnectionState.waiting
+                        ? 0.5
+                        : focusHighlight.value
+                            ? 1
+                            : 0.7,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Stack(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.5),
+                                    blurRadius: 12,
+                                    offset: focusHighlight.value ? const Offset(0, 6) : const Offset(0, 4),
+                                  )
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Stack(
+                                  children: [
+                                    Positioned.fill(
+                                      child: Container(
+                                        color: design.colors.background2,
+                                      ),
+                                    ),
+                                    FadeInImage(
+                                      placeholder: MemoryImage(kTransparentImage),
+                                      fadeInDuration: const Duration(milliseconds: 500),
+                                      fadeInCurve: Curves.easeOut,
+                                      image: networkImageWithRetryAndResize(
+                                        imageUrl: 'https://static.bcc.media/images/live-placeholder-with-text.jpg',
+                                      ),
+                                      imageErrorBuilder: imageErrorBuilder,
+                                      fit: BoxFit.fitHeight,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            if (liveUrlSnapshot.connectionState == ConnectionState.waiting)
+                              const Positioned.fill(
+                                child: Center(child: LoadingIndicator()),
+                              ),
+                          ],
+                        ),
+                        /* Padding(
+                          padding: EdgeInsets.only(top: 8),
+                          child: Text(
+                            'Se BCC Media Direkte',
+                            style: design.textStyles.button2.copyWith(color: design.colors.label2),
+                          ),
+                        ), */
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.only(top: 32),
+              child: design.buttons.smallSecondary(
+                onPressed: () {
+                  ref.read(authStateProvider.notifier).logout();
+                },
+                labelText: S.of(context).logOutButton,
+              ),
+            ),
           ],
         ),
       ),

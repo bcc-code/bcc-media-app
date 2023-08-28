@@ -3,6 +3,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/main.dart';
+import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:brunstadtv_app/screens/onboarding/email_verification.dart';
@@ -58,6 +59,10 @@ class _AppRootState extends ConsumerState<AppRoot> {
     final analytics = ref.read(analyticsProvider);
     debugPrint('authSubscription');
     if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
+      if (ref.read(isAndroidTvProvider)) {
+        widget.navigatorKey.currentContext?.router.root.replaceAll([const TvLoginScreenRoute()]);
+        return;
+      }
       widget.navigatorKey.currentContext?.router.root.navigate(OnboardingScreenRoute());
     } else if (next.auth0AccessToken != null && next.user != null) {
       // ignore: unused_result

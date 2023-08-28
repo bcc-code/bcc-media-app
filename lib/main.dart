@@ -34,7 +34,7 @@ import 'l10n/app_localizations.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 const useDevicePreview = false;
-bool isAndroidTv = false;
+bool _isAndroidTv = false;
 
 /// This function is called from the flavor-specific entrypoints
 /// E.g. main_dev.dart, main_prod.dart
@@ -43,15 +43,15 @@ Future<void> $main({
 }) async {
   usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-
+  Paint.enableDithering = true;
   if (Platform.isAndroid) {
     AndroidDeviceInfo androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
-    isAndroidTv = androidDeviceInfo.systemFeatures.contains('android.software.leanback');
+    _isAndroidTv = androidDeviceInfo.systemFeatures.contains('android.software.leanback');
   }
 
-  debugPrint('isAndroidTv: $isAndroidTv');
-
   await setDefaults();
+
+  //FocusDebugger.instance.activate();
 
   if (FlavorConfig.current.firebaseOptions != null) {
     await initFirebase(FlavorConfig.current.firebaseOptions!);
@@ -67,7 +67,7 @@ Future<void> $main({
     rootRouterProvider.overrideWithValue(appRouter),
     sharedPreferencesProvider.overrideWith((ref) => sharedPrefs),
     packageInfoProvider.overrideWith((ref) => packageInfo),
-    isAndroidTvProvider.overrideWithValue(isAndroidTv),
+    isAndroidTvProvider.overrideWithValue(_isAndroidTv),
     if (providerOverrides != null) ...providerOverrides,
   ]);
 
@@ -100,7 +100,7 @@ Future setDefaults() async {
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
-  if (!isAndroidTv) {
+  if (!_isAndroidTv) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);

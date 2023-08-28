@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:brunstadtv_app/api/auth0_api.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:clock/clock.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -40,6 +41,7 @@ AuthStateNotifier getPlatformSpecificAuthStateNotifier(Ref ref) {
     ),
     settingsService: ref.watch(settingsProvider.notifier),
     auth0Api: ref.watch(auth0ApiProvider),
+    isTv: ref.watch(isAndroidTvProvider),
   );
 }
 
@@ -51,10 +53,12 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
     required FlutterSecureStorage secureStorage,
     required SettingsService settingsService,
     required Auth0Api auth0Api,
+    required bool isTv,
   })  : _appAuth = appAuth,
         _secureStorage = secureStorage,
         _settingsService = settingsService,
         _auth0Api = auth0Api,
+        _isTv = isTv,
         super(const AuthState());
 
   final appAuthLock = Lock();
@@ -62,6 +66,7 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
   final FlutterSecureStorage _secureStorage;
   final SettingsService _settingsService;
   final Auth0Api _auth0Api;
+  final bool _isTv;
 
   Future<T> _syncAppAuth<T>(Future<T> Function() call) {
     return appAuthLock.synchronized(
@@ -161,7 +166,7 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
   @override
   Future logout({bool manual = true}) async {
     await _clearCredentials();
-    if (Platform.isAndroid && manual) {
+    if (Platform.isAndroid && manual && !_isTv) {
       final PackageInfo info = await PackageInfo.fromPlatform();
       final url = Uri.https(
         Env.auth0Domain,

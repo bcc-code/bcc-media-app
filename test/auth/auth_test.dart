@@ -63,6 +63,7 @@ void main() {
         secureStorage: secureStorage,
         settingsService: MockSettingsService(),
         auth0Api: MockAuth0Api(),
+        isTv: false,
       );
       auth.state = AuthState(
         auth0AccessToken: 'something',
@@ -86,6 +87,7 @@ void main() {
         secureStorage: secureStorage,
         settingsService: MockSettingsService(),
         auth0Api: MockAuth0Api(),
+        isTv: false,
       );
       auth.state = AuthState(
         auth0AccessToken: 'something',

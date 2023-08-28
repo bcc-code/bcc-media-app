@@ -732,6 +732,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  focus_debugger:
+    dependency: "direct main"
+    description:
+      name: focus_debugger
+      sha256: "14c9e0030c9129c36eaa4a82bc3abede97b3f2893e63b65ea29d58e8d9053332"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   focusable_control_builder:
     dependency: "direct main"
     description:
