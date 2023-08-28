@@ -184,8 +184,8 @@
     "description": "Title for contact support page"
   },
   "contactIssueHint": "Descrivi il problema",
-  "@contactIncludeDeviceInfo": {
-    "description": "Text for checkbox to include device information"
+  "@contactIssueHint": {
+    "description": "Hint for the message box for logged in users"
   },
   "contactUs": "Contattaci",
   "@contactUs": {
@@ -196,6 +196,9 @@
     "description": "Device info page title"
   },
   "contactIncludeDeviceInfo": "Include device information for better support.",
+  "@contactIncludeDeviceInfo": {
+    "description": "Text for checkbox to include device information"
+  },
   "contactSeeData": "Click to see data.",
   "@contactSeeData": {
     "description": "Text for link to see device data"
@@ -712,6 +715,10 @@
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
+  "termsOfUse": "Terms of use",
+  "@termsOfUse": {
+    "description": "Title on the 'Terms of use' page."
+  },
   "categoriesTab": "Categorie",
   "@categoriesTab": {
     "description": "Title of the Categories Tab"
@@ -1071,5 +1078,21 @@
   "playGame": "Play Game",
   "@playGame": {
     "description": "Title on a game"
+  },
+  "tvScanQr": "Scan the code and sign in with your phone",
+  "@tvScanQr": {
+    "description": "Title on the login screen for TVs"
+  },
+  "tvEnterCode": "Or go to {url} and enter the code: {code}",
+  "@tvEnterCode": {
+    "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
   }
 }
