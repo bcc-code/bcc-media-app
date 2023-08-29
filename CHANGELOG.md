@@ -5,6 +5,11 @@
 ## [4.6.7+2300087](https://github.com/bcc-code/bcc-media-app/compare/v4.6.6+2300086...v4.6.7+2300087) (2023-08-29)
 
 
+### Bug Fixes
+
+* remove custom flavor for androidtv ([23b641c](https://github.com/bcc-code/bcc-media-app/commit/23b641c93829ef9f3c117143efd2743ce01edecb))
+
+
 ### Features
 
 * custom flavor for androidtv ([73549e2](https://github.com/bcc-code/bcc-media-app/commit/73549e2a241226843d3deddeb192652e0818c48e))
