@@ -1,4 +1,43 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v4.6.4+2300084-kids...v) (2023-08-18)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v4.6.7+2300087...v) (2023-08-29)
+
+
+
+## [4.6.7+2300087](https://github.com/bcc-code/bcc-media-app/compare/v4.6.6+2300086...v4.6.7+2300087) (2023-08-29)
+
+
+### Features
+
+* custom flavor for androidtv ([73549e2](https://github.com/bcc-code/bcc-media-app/commit/73549e2a241226843d3deddeb192652e0818c48e))
+
+
+
+## [4.6.6+2300086](https://github.com/bcc-code/bcc-media-app/compare/v4.6.5+2300085-kids...v4.6.6+2300086) (2023-08-28)
+
+
+### Bug Fixes
+
+* revert accidental autoplay everywhere ([8774eb2](https://github.com/bcc-code/bcc-media-app/commit/8774eb295eae4ed092929a5174fc91338a23f2c2))
+
+
+### Features
+
+* androidtv login and live ([a2f7b24](https://github.com/bcc-code/bcc-media-app/commit/a2f7b2473d06e1dbc694ab4554eac894e487aac6))
+* androidtv version ([5238944](https://github.com/bcc-code/bcc-media-app/commit/52389440d15e73fcea017df422a554d929514ab5))
+* terms of use page ([ff4d193](https://github.com/bcc-code/bcc-media-app/commit/ff4d1931e1f1ccdda9bad7d4a609b1fbf6a30461))
+
+
+
+## [4.6.5+2300085-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.6.5+2300085...v4.6.5+2300085-kids) (2023-08-21)
+
+
+### Bug Fixes
+
+* cast not working on android ([653027e](https://github.com/bcc-code/bcc-media-app/commit/653027e14c7cc58b0c91cc62e9602abe50bd62a1))
+
+
+### Features
+
+* add bible kids cast receiver ([378a591](https://github.com/bcc-code/bcc-media-app/commit/378a591fb53a72ab525d9d83a08787f18e2f7516))
 
 
 
