@@ -37,7 +37,7 @@ class BccMediaDesignSystem extends DesignSystemData {
         ),
       ),
       materialThemeData: ThemeData(
-        //useMaterial3: true,
+        useMaterial3: false,
         cupertinoOverrideTheme: CupertinoThemeData(
           barBackgroundColor: colors.background1,
           textTheme: CupertinoTextThemeData(
