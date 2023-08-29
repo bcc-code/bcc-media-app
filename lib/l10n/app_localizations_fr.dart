@@ -531,7 +531,7 @@ class SFr extends S {
   String get privacyPolicy => 'Politique de confidentialité';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Conditions d\'utilisation';
 
   @override
   String get categoriesTab => 'Catégories';
@@ -790,10 +790,10 @@ class SFr extends S {
   String get playGame => 'Jouer au jeu';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Scanne le code et connecte-toi avec ton téléphone';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Ou va sur $url et entre le code : $code';
   }
 }

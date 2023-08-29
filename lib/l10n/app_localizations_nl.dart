@@ -531,7 +531,7 @@ class SNl extends S {
   String get privacyPolicy => 'Privacybeleid';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Gebruiksvoorwaarden';
 
   @override
   String get categoriesTab => 'Categorieën';
@@ -790,10 +790,10 @@ class SNl extends S {
   String get playGame => 'Speel game';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Scan de code en login met je telefoon';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Of ga naar $url en vul de code in: $code';
   }
 }
