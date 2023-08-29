@@ -20,6 +20,21 @@
       "program": "lib/main_prod.dart"
     },
     {
+      "name": "prod_tv",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--flavor",
+        "prod_tv",
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit"
+      ], // Remember to change the "program" property too
+      "program": "lib/main_prod_tv.dart"
+    },
+    {
       "name": "prod (attach)",
       "request": "attach",
       "type": "dart",

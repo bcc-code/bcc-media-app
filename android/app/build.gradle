@@ -107,6 +107,16 @@ android {
             // flutter.target isnt working https://github.com/flutter/flutter/issues/55366
             flutter.target 'lib/main_prod.dart'
         }
+        prod_tv {
+            getIsDefault().set(true)
+            dimension 'env'
+            applicationIdSuffix ''
+            manifestPlaceholders += [
+                    applicationLabel     : 'BCC Media Live',
+                    appAuthRedirectScheme: 'tv.brunstad.app',
+            ]
+            flutter.target 'lib/main_prod.dart'
+        }
     }
 }
 
