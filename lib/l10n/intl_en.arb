@@ -1098,5 +1098,9 @@
   "chapters": "Chapters",
   "@chapters": {
     "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
+  },
+  "removeWatchProgress": "Remove watch progress",
+  "@removeWatchProgress": {
+    "description": "Shown when holding on an episode in the 'continue watching' section."
   }
 }

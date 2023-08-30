@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +23,7 @@ void showWatchProgressBottomSheet(BuildContext context, WidgetRef ref, String ep
       items: [
         Option(
           id: 'remove_progress',
-          title: 'Remove watch progress',
+          title: S.of(context).removeWatchProgress,
           icon: Image.asset(width: 24, height: 24, 'assets/icons/Close.png', gaplessPlayback: true),
         )
       ],

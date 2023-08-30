@@ -799,4 +799,7 @@ class SEn extends S {
 
   @override
   String get chapters => 'Chapters';
+
+  @override
+  String get removeWatchProgress => 'Remove watch progress';
 }

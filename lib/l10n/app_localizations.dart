@@ -1658,6 +1658,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Chapters'**
   String get chapters;
+
+  /// Shown when holding on an episode in the 'continue watching' section.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove watch progress'**
+  String get removeWatchProgress;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
