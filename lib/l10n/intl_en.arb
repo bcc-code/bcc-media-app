@@ -1094,5 +1094,9 @@
         "type": "String"
       }
     }
+  },
+  "chapters": "Chapters",
+  "@chapters": {
+    "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
   }
 }

@@ -60,15 +60,15 @@ class _VideoQualityScreenState extends State<VideoQualityScreen> {
             ),
           ),
         ),
-        body: SafeArea(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: OptionList(
-              optionData: qualityList,
-              currentSelection: selected,
-              onSelectionChange: _onSelectionChanged,
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: OptionList(
+                optionData: qualityList,
+                currentSelection: selected,
+                onSelectionChange: _onSelectionChanged,
+              ),
             ),
           ),
         ),

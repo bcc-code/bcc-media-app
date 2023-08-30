@@ -46,14 +46,16 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
           elevation: 0,
           title: Text(S.of(context).appLanguage),
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: OptionList(
-              optionData: appLanuageCodes.map((l) => Option(id: l, title: languages[l]!.nativeName, subTitle: languages[l]!.englishName)).toList(),
-              currentSelection: selected,
-              onSelectionChange: _onSelectionChanged,
-              backgroundColor: Colors.transparent,
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: OptionList(
+                optionData: appLanuageCodes.map((l) => Option(id: l, title: languages[l]!.nativeName, subTitle: languages[l]!.englishName)).toList(),
+                currentSelection: selected,
+                onSelectionChange: _onSelectionChanged,
+                backgroundColor: Colors.transparent,
+              ),
             ),
           ),
         ),

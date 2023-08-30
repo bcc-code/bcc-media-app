@@ -91,7 +91,6 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                       Navigator.pop(context, BottomSheetSelectResult(cancelled: false));
                     }
                   },
-                  margin: const EdgeInsets.all(0),
                 ),
               ),
               Container(

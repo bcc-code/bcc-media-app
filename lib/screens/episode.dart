@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
+import 'package:brunstadtv_app/components/episode/episode_chapters.dart';
 import 'package:brunstadtv_app/components/episode/episode_collection.dart';
 import 'package:brunstadtv_app/components/episode/episode_info.dart';
 import 'package:brunstadtv_app/components/episode/episode_related.dart';
@@ -16,6 +17,7 @@ import 'package:brunstadtv_app/components/episode/share_episode_sheet.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -123,7 +125,11 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
       if (noAccess == true) {
         child = const ErrorNoAccess();
       }
-      child = SliverFillRemaining(child: ErrorGeneric(onRetry: fetchCurrentEpisode));
+      child = SliverFillRemaining(
+          child: ErrorGeneric(
+        onRetry: fetchCurrentEpisode,
+        details: episodeSnapshot.error.toString(),
+      ));
     } else if (episodeSnapshot.data == null || routeAnimationStatus.value == AnimationStatus.forward) {
       child = const SliverFillRemaining(child: _LoadingWidget());
     } else {
@@ -135,34 +141,32 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
         ),
       );
     }
-    return SelectionArea(
-      child: Scaffold(
-        appBar: ScreenInsetAppBar(
-          appBar: AppBar(
-            leadingWidth: 92,
-            leading: const CustomBackButton(padding: kIsWeb ? EdgeInsets.zero : null),
-            title: Text(episodeSnapshot.data?.season?.$show.title ?? episodeSnapshot.data?.title ?? ''),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16.0),
-                child: SizedBox(
-                  width: 24,
-                  child: CastButton(color: DesignSystem.of(context).colors.tint1),
-                ),
+    return Scaffold(
+      appBar: ScreenInsetAppBar(
+        appBar: AppBar(
+          leadingWidth: 92,
+          leading: const CustomBackButton(padding: kIsWeb ? EdgeInsets.zero : null),
+          title: Text(episodeSnapshot.data?.season?.$show.title ?? episodeSnapshot.data?.title ?? ''),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16.0),
+              child: SizedBox(
+                width: 24,
+                child: CastButton(color: DesignSystem.of(context).colors.tint1),
               ),
-            ],
-          ),
-        ),
-        body: CustomScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          controller: scrollController,
-          slivers: [
-            SliverPadding(
-              padding: screenInsets(context),
-              sliver: child,
             ),
           ],
         ),
+      ),
+      body: CustomScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        controller: scrollController,
+        slivers: [
+          SliverPadding(
+            padding: screenInsets(context),
+            sliver: child,
+          ),
+        ],
       ),
     );
   }
@@ -404,6 +408,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     }, [ref, playerEvents, playbackService, enableAutoplayNext, player.playerId]);
 
     final showLoadingOverlay = (episodeSnapshot.connectionState == ConnectionState.waiting);
+    final showChapters = episode.chapters.isNotEmpty && ref.watch(featureFlagsProvider.select((value) => value.chapters));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -464,6 +469,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
           CustomTabBar(
             tabs: [
               episode.context is Fragment$EpisodeContext$$Season ? S.of(context).episodes.toUpperCase() : S.of(context).videos.toUpperCase(),
+              if (showChapters) S.of(context).chapters,
               S.of(context).details.toUpperCase()
             ],
             children: [
@@ -495,6 +501,17 @@ class _EpisodeDisplay extends HookConsumerWidget {
                 )
               else
                 EpisodeRelated(episode: episode),
+              if (showChapters)
+                EpisodeChapters(
+                  episode: episode,
+                  onChapterSelected: (id) {
+                    final chapter = episode.chapters.firstWhereOrNull((element) => element.id == id);
+                    if (episodeIsCurrentItem && chapter != null) {
+                      BccmPlayerController.primary.seekTo(Duration(seconds: chapter.start));
+                      scrollToTop();
+                    }
+                  },
+                ),
               EpisodeDetails(episode.id)
             ],
           ),

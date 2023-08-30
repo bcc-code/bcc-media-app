@@ -531,7 +531,7 @@ class SPt extends S {
   String get privacyPolicy => 'Política de privacidade';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Termos de uso';
 
   @override
   String get categoriesTab => 'Categorias';
@@ -790,10 +790,13 @@ class SPt extends S {
   String get playGame => 'Jogar um jogo ';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Digitalize o código e faça login com seu telefone';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Ou vá para $url e digite o código: $code';
   }
+
+  @override
+  String get chapters => 'Chapters';
 }

@@ -49,14 +49,16 @@ class _AppAudioLanguageState extends ConsumerState<AudioLanguageScreen> {
           leading: const CustomBackButton(),
           title: Text(S.of(context).audioLanguage),
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: OptionList(
-              optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
-              currentSelection: selected,
-              backgroundColor: Colors.transparent,
-              onSelectionChange: _onSelectionChanged,
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: OptionList(
+                optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
+                currentSelection: selected,
+                backgroundColor: Colors.transparent,
+                onSelectionChange: _onSelectionChanged,
+              ),
             ),
           ),
         ),

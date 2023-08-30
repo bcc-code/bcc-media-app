@@ -796,4 +796,7 @@ class SIt extends S {
   String tvEnterCode(String url, String code) {
     return 'Or go to $url and enter the code: $code';
   }
+
+  @override
+  String get chapters => 'Chapters';
 }

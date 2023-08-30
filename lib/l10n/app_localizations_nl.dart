@@ -796,4 +796,7 @@ class SNl extends S {
   String tvEnterCode(String url, String code) {
     return 'Of ga naar $url en vul de code in: $code';
   }
+
+  @override
+  String get chapters => 'Chapters';
 }

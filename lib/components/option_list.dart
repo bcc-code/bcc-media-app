@@ -1,6 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../helpers/ui/svg_icons.dart';
 import '../theme/design_system/design_system.dart';
 
 import '../l10n/app_localizations.dart';
@@ -9,7 +13,6 @@ class OptionList extends StatelessWidget {
   final List<Option> optionData;
   final String? currentSelection;
   final void Function(String?) onSelectionChange;
-  final EdgeInsetsGeometry margin;
   final bool enableDivider;
   final bool showSelection;
   final Color? backgroundColor;
@@ -23,7 +26,6 @@ class OptionList extends StatelessWidget {
     this.enableDivider = false,
     this.showSelection = true,
     this.showNoneOption = false,
-    this.margin = const EdgeInsets.only(top: 16, left: 16, right: 16),
     this.backgroundColor,
   });
 
@@ -36,21 +38,24 @@ class OptionList extends StatelessWidget {
           ]
         : this.optionData;
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: backgroundColor ?? DesignSystem.of(context).colors.background2,
-        borderRadius: BorderRadius.circular(12),
-      ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
       child: ScrollConfiguration(
         behavior: const ScrollBehavior().copyWith(overscroll: false), // Disable over-scroll glow effect
         child: ListView.separated(
           cacheExtent: 100000,
           shrinkWrap: true,
           itemCount: optionData.length,
+          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             final option = optionData[index];
             final isOptionSelected = showSelection && currentSelection == option.id;
-            return _OptionListOption(onSelectionChange: onSelectionChange, option: option, isSelected: isOptionSelected);
+            return _OptionListOption(
+              onSelectionChange: onSelectionChange,
+              option: option,
+              isSelected: isOptionSelected,
+              backgroundColor: backgroundColor ?? DesignSystem.of(context).colors.background2,
+            );
           },
           separatorBuilder: (context, index) {
             return Visibility(
@@ -72,37 +77,46 @@ class _OptionListOption extends HookWidget {
     required this.onSelectionChange,
     required this.option,
     required this.isSelected,
+    required this.backgroundColor,
   });
 
   final void Function(String? p1) onSelectionChange;
   final Option option;
   final bool isSelected;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
     final hovering = useState(false);
+    final animationController = useAnimationController(duration: const Duration(milliseconds: 300), initialValue: 1);
+    final opacityReduction = useAnimation(
+        CurvedAnimation(parent: animationController, curve: Curves.easeIn, reverseCurve: Curves.easeIn).drive(Tween(begin: 0.3, end: 0.0)));
     return IgnorePointer(
       ignoring: option.disabled,
       child: FocusableActionDetector(
         mouseCursor: MaterialStateMouseCursor.clickable,
         onShowHoverHighlight: (value) => hovering.value = value,
-        child: Container(
-          foregroundDecoration: BoxDecoration(
-            color: option.disabled
-                ? DesignSystem.of(context).colors.background1.withAlpha(100)
-                : hovering.value
-                    ? null // DesignSystem.of(context).colors.onTint.withOpacity(0.05)
-                    : null,
-          ),
-          child: GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTapDown: (e) {
-              onSelectionChange(option.id);
-            },
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTapDown: (e) {
+            animationController.value = 0;
+          },
+          onTapUp: (e) {
+            onSelectionChange(option.id);
+            animationController.forward();
+          },
+          onTapCancel: () {
+            animationController.value = 1;
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: option.disabled ? backgroundColor : backgroundColor.withOpacity(clampDouble(backgroundColor.opacity - opacityReduction, 0, 1)),
+            ),
             child: Container(
               padding: const EdgeInsets.all(16),
               constraints: const BoxConstraints(minHeight: 56),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   if (option.icon != null)
                     Container(
@@ -131,11 +145,7 @@ class _OptionListOption extends HookWidget {
                       ],
                     ),
                   ),
-                  if (isSelected)
-                    Image.asset(
-                      'assets/icons/Check_circle.png',
-                      gaplessPlayback: true,
-                    ),
+                  if (isSelected) SvgPicture.string(SvgIcons.checkIcon),
                 ],
               ),
             ),

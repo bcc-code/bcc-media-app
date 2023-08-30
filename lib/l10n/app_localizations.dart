@@ -1652,6 +1652,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Or go to {url} and enter the code: {code}'**
   String tvEnterCode(String url, String code);
+
+  /// A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc.
+  ///
+  /// In en, this message translates to:
+  /// **'Chapters'**
+  String get chapters;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

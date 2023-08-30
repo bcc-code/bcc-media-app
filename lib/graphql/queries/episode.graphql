@@ -18,6 +18,12 @@ query FetchEpisode(
     progress
     shareRestriction
     ageRating
+    chapters {
+      id
+      start
+      title
+      description
+    }
     season {
       id
       number

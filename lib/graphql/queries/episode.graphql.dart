@@ -6201,6 +6201,49 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'chapters'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'start'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'title'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'description'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: 'season'),
             alias: null,
             arguments: [],
@@ -6586,6 +6629,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     this.progress,
     required this.shareRestriction,
     required this.ageRating,
+    required this.chapters,
     this.relatedItems,
     required this.lessons,
     this.inMyList,
@@ -6609,6 +6653,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$progress = json['progress'];
     final l$shareRestriction = json['shareRestriction'];
     final l$ageRating = json['ageRating'];
+    final l$chapters = json['chapters'];
     final l$relatedItems = json['relatedItems'];
     final l$lessons = json['lessons'];
     final l$inMyList = json['inMyList'];
@@ -6640,6 +6685,10 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
       shareRestriction:
           fromJson$Enum$ShareRestriction((l$shareRestriction as String)),
       ageRating: (l$ageRating as String),
+      chapters: (l$chapters as List<dynamic>)
+          .map((e) => Query$FetchEpisode$episode$chapters.fromJson(
+              (e as Map<String, dynamic>)))
+          .toList(),
       relatedItems: l$relatedItems == null
           ? null
           : Query$FetchEpisode$episode$relatedItems.fromJson(
@@ -6684,6 +6733,8 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
 
   final String ageRating;
 
+  final List<Query$FetchEpisode$episode$chapters> chapters;
+
   final Query$FetchEpisode$episode$relatedItems? relatedItems;
 
   final Query$FetchEpisode$episode$lessons lessons;
@@ -6727,6 +6778,8 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
         toJson$Enum$ShareRestriction(l$shareRestriction);
     final l$ageRating = ageRating;
     _resultData['ageRating'] = l$ageRating;
+    final l$chapters = chapters;
+    _resultData['chapters'] = l$chapters.map((e) => e.toJson()).toList();
     final l$relatedItems = relatedItems;
     _resultData['relatedItems'] = l$relatedItems?.toJson();
     final l$lessons = lessons;
@@ -6755,6 +6808,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$progress = progress;
     final l$shareRestriction = shareRestriction;
     final l$ageRating = ageRating;
+    final l$chapters = chapters;
     final l$relatedItems = relatedItems;
     final l$lessons = lessons;
     final l$inMyList = inMyList;
@@ -6776,6 +6830,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
       l$progress,
       l$shareRestriction,
       l$ageRating,
+      Object.hashAll(l$chapters.map((v) => v)),
       l$relatedItems,
       l$lessons,
       l$inMyList,
@@ -6883,6 +6938,18 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     if (l$ageRating != lOther$ageRating) {
       return false;
     }
+    final l$chapters = chapters;
+    final lOther$chapters = other.chapters;
+    if (l$chapters.length != lOther$chapters.length) {
+      return false;
+    }
+    for (int i = 0; i < l$chapters.length; i++) {
+      final l$chapters$entry = l$chapters[i];
+      final lOther$chapters$entry = lOther$chapters[i];
+      if (l$chapters$entry != lOther$chapters$entry) {
+        return false;
+      }
+    }
     final l$relatedItems = relatedItems;
     final lOther$relatedItems = other.relatedItems;
     if (l$relatedItems != lOther$relatedItems) {
@@ -6938,6 +7005,7 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
     int? progress,
     Enum$ShareRestriction? shareRestriction,
     String? ageRating,
+    List<Query$FetchEpisode$episode$chapters>? chapters,
     Query$FetchEpisode$episode$relatedItems? relatedItems,
     Query$FetchEpisode$episode$lessons? lessons,
     bool? inMyList,
@@ -6948,6 +7016,12 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
           _fn);
   CopyWith$Query$FetchEpisode$episode$context<TRes> get context;
   CopyWith$Query$FetchEpisode$episode$season<TRes> get season;
+  TRes chapters(
+      Iterable<Query$FetchEpisode$episode$chapters> Function(
+              Iterable<
+                  CopyWith$Query$FetchEpisode$episode$chapters<
+                      Query$FetchEpisode$episode$chapters>>)
+          _fn);
   CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> get relatedItems;
   CopyWith$Query$FetchEpisode$episode$lessons<TRes> get lessons;
 }
@@ -6983,6 +7057,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
     Object? progress = _undefined,
     Object? shareRestriction = _undefined,
     Object? ageRating = _undefined,
+    Object? chapters = _undefined,
     Object? relatedItems = _undefined,
     Object? lessons = _undefined,
     Object? inMyList = _undefined,
@@ -7034,6 +7109,9 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
         ageRating: ageRating == _undefined || ageRating == null
             ? _instance.ageRating
             : (ageRating as String),
+        chapters: chapters == _undefined || chapters == null
+            ? _instance.chapters
+            : (chapters as List<Query$FetchEpisode$episode$chapters>),
         relatedItems: relatedItems == _undefined
             ? _instance.relatedItems
             : (relatedItems as Query$FetchEpisode$episode$relatedItems?),
@@ -7069,6 +7147,18 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
             local$season, (e) => call(season: e));
   }
 
+  TRes chapters(
+          Iterable<Query$FetchEpisode$episode$chapters> Function(
+                  Iterable<
+                      CopyWith$Query$FetchEpisode$episode$chapters<
+                          Query$FetchEpisode$episode$chapters>>)
+              _fn) =>
+      call(
+          chapters: _fn(_instance.chapters
+              .map((e) => CopyWith$Query$FetchEpisode$episode$chapters(
+                    e,
+                    (i) => i,
+                  ))).toList());
   CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> get relatedItems {
     final local$relatedItems = _instance.relatedItems;
     return local$relatedItems == null
@@ -7109,6 +7199,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
     int? progress,
     Enum$ShareRestriction? shareRestriction,
     String? ageRating,
+    List<Query$FetchEpisode$episode$chapters>? chapters,
     Query$FetchEpisode$episode$relatedItems? relatedItems,
     Query$FetchEpisode$episode$lessons? lessons,
     bool? inMyList,
@@ -7119,6 +7210,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
       CopyWith$Query$FetchEpisode$episode$context.stub(_res);
   CopyWith$Query$FetchEpisode$episode$season<TRes> get season =>
       CopyWith$Query$FetchEpisode$episode$season.stub(_res);
+  chapters(_fn) => _res;
   CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> get relatedItems =>
       CopyWith$Query$FetchEpisode$episode$relatedItems.stub(_res);
   CopyWith$Query$FetchEpisode$episode$lessons<TRes> get lessons =>
@@ -8018,6 +8110,191 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$season$show<TRes>
   call({
     String? id,
     String? title,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchEpisode$episode$chapters {
+  Query$FetchEpisode$episode$chapters({
+    required this.id,
+    required this.start,
+    required this.title,
+    this.description,
+    this.$__typename = 'Chapter',
+  });
+
+  factory Query$FetchEpisode$episode$chapters.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$start = json['start'];
+    final l$title = json['title'];
+    final l$description = json['description'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchEpisode$episode$chapters(
+      id: (l$id as String),
+      start: (l$start as int),
+      title: (l$title as String),
+      description: (l$description as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final int start;
+
+  final String title;
+
+  final String? description;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$start = start;
+    _resultData['start'] = l$start;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$start = start;
+    final l$title = title;
+    final l$description = description;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$start,
+      l$title,
+      l$description,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$FetchEpisode$episode$chapters) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$start = start;
+    final lOther$start = other.start;
+    if (l$start != lOther$start) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchEpisode$episode$chapters
+    on Query$FetchEpisode$episode$chapters {
+  CopyWith$Query$FetchEpisode$episode$chapters<
+          Query$FetchEpisode$episode$chapters>
+      get copyWith => CopyWith$Query$FetchEpisode$episode$chapters(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchEpisode$episode$chapters<TRes> {
+  factory CopyWith$Query$FetchEpisode$episode$chapters(
+    Query$FetchEpisode$episode$chapters instance,
+    TRes Function(Query$FetchEpisode$episode$chapters) then,
+  ) = _CopyWithImpl$Query$FetchEpisode$episode$chapters;
+
+  factory CopyWith$Query$FetchEpisode$episode$chapters.stub(TRes res) =
+      _CopyWithStubImpl$Query$FetchEpisode$episode$chapters;
+
+  TRes call({
+    String? id,
+    int? start,
+    String? title,
+    String? description,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchEpisode$episode$chapters<TRes>
+    implements CopyWith$Query$FetchEpisode$episode$chapters<TRes> {
+  _CopyWithImpl$Query$FetchEpisode$episode$chapters(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchEpisode$episode$chapters _instance;
+
+  final TRes Function(Query$FetchEpisode$episode$chapters) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? start = _undefined,
+    Object? title = _undefined,
+    Object? description = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FetchEpisode$episode$chapters(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        start: start == _undefined || start == null
+            ? _instance.start
+            : (start as int),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchEpisode$episode$chapters<TRes>
+    implements CopyWith$Query$FetchEpisode$episode$chapters<TRes> {
+  _CopyWithStubImpl$Query$FetchEpisode$episode$chapters(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    int? start,
+    String? title,
+    String? description,
     String? $__typename,
   }) =>
       _res;

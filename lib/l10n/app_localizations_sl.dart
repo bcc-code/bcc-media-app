@@ -531,7 +531,7 @@ class SSl extends S {
   String get privacyPolicy => 'Pravilnik o zasebnosti';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Pogoji uporabe';
 
   @override
   String get categoriesTab => 'Kategorije';
@@ -790,10 +790,13 @@ class SSl extends S {
   String get playGame => 'Igraj igre';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Skeniraj kodo in se vpiši s svojim telefonom';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Ali pojdi na $url in vpiši kodo: $code';
   }
+
+  @override
+  String get chapters => 'Chapters';
 }

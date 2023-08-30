@@ -796,4 +796,7 @@ class SFr extends S {
   String tvEnterCode(String url, String code) {
     return 'Ou va sur $url et entre le code : $code';
   }
+
+  @override
+  String get chapters => 'Chapters';
 }

@@ -23,7 +23,6 @@ void showWatchProgressBottomSheet(BuildContext context, WidgetRef ref, String ep
         Option(
           id: 'remove_progress',
           title: 'Remove watch progress',
-          disabled: episodeProgress == null || episodeProgress == 0,
           icon: Image.asset(width: 24, height: 24, 'assets/icons/Close.png', gaplessPlayback: true),
         )
       ],

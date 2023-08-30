@@ -55,6 +55,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       gamesTab: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('games-tab'),
       flutterPlayerControls: Env.forceFlutterControls || client.isEnabled('flutter-player-controls'),
       playNextButton: client.isEnabled('play-next-button'),
+      chapters: client.isEnabled('chapters'),
     );
   }
 }

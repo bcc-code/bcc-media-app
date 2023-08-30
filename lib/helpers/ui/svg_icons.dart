@@ -231,7 +231,12 @@ class SvgIcons {
 </linearGradient>
 </defs>
 </svg>
+''';
 
-
+  static const checkIcon = '''
+<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12.5" r="12" fill="#6EB0E6"/>
+<path d="M18.5385 8.5533L10.0532 17.0386L5.74995 12.7353" stroke="white" stroke-width="2"/>
+</svg>
 ''';
 }
