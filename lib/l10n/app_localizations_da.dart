@@ -531,7 +531,7 @@ class SDa extends S {
   String get privacyPolicy => 'Fortrolighedspolitik';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Betingelser for brug';
 
   @override
   String get categoriesTab => 'Kategorier';
@@ -790,11 +790,11 @@ class SDa extends S {
   String get playGame => 'Start spil';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Scan koden og log ind med din telefon';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Eller gå til $url og indtast koden: $code';
   }
 
   @override
