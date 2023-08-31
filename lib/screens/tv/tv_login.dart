@@ -21,24 +21,42 @@ class TvLoginScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final auth0Api = ref.watch(auth0ApiProvider);
     final authStateNotifier = ref.watch(authStateProvider.notifier);
-    final deviceCodeFuture = useMemoized(() => auth0Api.fetchDeviceCode(scope: 'openid profile offline_access church country'), [auth0Api]);
-    final deviceCode = useFuture(deviceCodeFuture);
 
-    final loginFuture = useMemoized(() {
-      if (deviceCode.data != null) {
-        final f = authStateNotifier.loginViaDeviceCode(deviceCode.data!);
-        f.then((_) {
-          if (context.mounted) {
-            context.router.replace(const TvLiveScreenRoute());
-          }
-        });
-        return f;
-      } else {
-        return null;
+    final deviceCodeFuture = useState<Future<DeviceTokenRequestResponse>?>(null);
+    final deviceCode = useFuture(deviceCodeFuture.value);
+    final loginFuture = useState<Future<void>?>(null);
+    final loginSnapshot = useFuture(loginFuture.value);
+
+    final fetchDeviceCode = useCallback(() => auth0Api.fetchDeviceCode(scope: 'openid profile offline_access church country'), [auth0Api]);
+
+    useEffect(() {
+      debugPrint('Get device code for QR');
+      deviceCodeFuture.value = fetchDeviceCode();
+      return null;
+    }, [fetchDeviceCode]);
+
+    final loginFn = useCallback((DeviceTokenRequestResponse code) async {
+      try {
+        await authStateNotifier.loginViaDeviceCode(code);
+        if (context.mounted) {
+          context.router.replace(const TvLiveScreenRoute());
+        }
+      } catch (e) {
+        if (e is FailedTokenRetrieval && e.error == 'expired_token') {
+          deviceCodeFuture.value = fetchDeviceCode();
+        } else {
+          rethrow;
+        }
       }
-    }, [deviceCode.data, authStateNotifier]);
+    }, [authStateNotifier, fetchDeviceCode]);
 
-    final loginSnapshot = useFuture(loginFuture);
+    useMemoized(() {
+      deviceCodeFuture.value?.then((code) async {
+        debugPrint('Starting login polling');
+        loginFuture.value = loginFn(code);
+      });
+    }, [deviceCodeFuture.value, loginFn]);
+
     final design = DesignSystem.of(context);
     return Scaffold(
       body: Stack(
@@ -75,22 +93,36 @@ class TvLoginScreen extends HookConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 64),
-                  child: Image(
-                    image: FlavorConfig.current.images.logo,
-                    height: FlavorConfig.current.images.logoHeight,
-                    gaplessPlayback: true,
+                if (loginSnapshot.hasError || deviceCode.hasError) ...[
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      padding: const EdgeInsets.symmetric(vertical: 32),
+                      child: Image(
+                        image: FlavorConfig.current.images.logo,
+                        height: FlavorConfig.current.images.logoHeight,
+                        gaplessPlayback: true,
+                      ),
+                    ),
                   ),
-                ),
-                if (loginSnapshot.hasError || deviceCode.hasError)
-                  ErrorGeneric(
-                    title: S.of(context).loginFailedCheckNetwork,
-                    description: '${loginSnapshot.error}',
-                    retryButtonText: 'Retry',
-                    onRetry: () {},
+                  Flexible(
+                    flex: 2,
+                    child: ErrorGeneric(
+                      details: loginSnapshot.error.toString(),
+                      onRetry: () {
+                        deviceCodeFuture.value = fetchDeviceCode();
+                      },
+                    ),
                   )
-                else if (deviceCode.data != null)
+                ] else if (deviceCode.data != null) ...[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 64),
+                    child: Image(
+                      image: FlavorConfig.current.images.logo,
+                      height: FlavorConfig.current.images.logoHeight,
+                      gaplessPlayback: true,
+                    ),
+                  ),
                   SizedBox(
                     width: 550,
                     child: Row(
@@ -140,8 +172,8 @@ class TvLoginScreen extends HookConsumerWidget {
                         ),
                       ],
                     ),
-                  )
-                else
+                  ),
+                ] else
                   const SizedBox(
                     width: 550,
                     child: Center(child: LoadingIndicator()),

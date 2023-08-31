@@ -43,7 +43,7 @@ class Auth0Api {
     }
   }
 
-  Future<DeviceTokenRequestResponse?> fetchDeviceCode({required String scope}) async {
+  Future<DeviceTokenRequestResponse> fetchDeviceCode({required String scope}) async {
     var tokenRequest = TokenRequestBody(clientId: clientId, scope: scope, audience: audience);
 
     var url = Uri.parse('https://$domain/oauth/device/code');
@@ -52,7 +52,10 @@ class Auth0Api {
     if (response.statusCode == 200) {
       return DeviceTokenRequestResponse.fromJson(jsonDecode(response.body));
     }
-    return null;
+    throw Exception([
+      'Unxpected status code from auth server (code: ${response.statusCode}, reason: ${response.reasonPhrase}).',
+      'Response body: ${response.body}',
+    ]);
   }
 
   Future<Credentials> listenToResolve(DeviceTokenRequestResponse deviceToken) async {
@@ -167,6 +170,11 @@ class FailedTokenRetrieval extends Error {
       error: json['error'],
       errorDescription: json['error_description'],
     );
+  }
+
+  @override
+  String toString() {
+    return "FailedTokenRetrieval(error: '$error', description: '$errorDescription)'";
   }
 }
 

@@ -21,13 +21,17 @@ class TvLiveScreen extends HookConsumerWidget {
     final api = ref.watch(apiProvider);
     final liveUrlFuture = useState<Future<LivestreamUrl>?>(null);
     final liveUrlSnapshot = useFuture(liveUrlFuture.value);
+    final auth = ref.watch(authStateProvider);
+
+    debugPrint(auth.toString());
     final viewController = useMemoized(
         () => BccmPlayerViewController(
               playerController: BccmPlayerController.primary,
               config: BccmPlayerViewConfig(
-                  controlsConfig: BccmPlayerControlsConfig(
-                customBuilder: TvControls.builder,
-              )),
+                controlsConfig: BccmPlayerControlsConfig(
+                  customBuilder: TvControls.builder,
+                ),
+              ),
             ),
         []);
     useEffect(() => () => viewController.dispose(), []);
