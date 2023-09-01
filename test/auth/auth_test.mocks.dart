@@ -110,8 +110,19 @@ class _FakeSettings_7 extends _i1.SmartFake implements _i4.Settings {
         );
 }
 
-class _FakeCredentials_8 extends _i1.SmartFake implements _i5.Credentials {
-  _FakeCredentials_8(
+class _FakeDeviceTokenRequestResponse_8 extends _i1.SmartFake
+    implements _i5.DeviceTokenRequestResponse {
+  _FakeDeviceTokenRequestResponse_8(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeCredentials_9 extends _i1.SmartFake implements _i5.Credentials {
+  _FakeCredentials_9(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -632,7 +643,7 @@ class MockAuth0Api extends _i1.Mock implements _i5.Auth0Api {
             _i7.Future<_i10.Auth0SignupResponse?>.value(),
       ) as _i7.Future<_i10.Auth0SignupResponse?>);
   @override
-  _i7.Future<_i5.DeviceTokenRequestResponse?> fetchDeviceCode(
+  _i7.Future<_i5.DeviceTokenRequestResponse> fetchDeviceCode(
           {required String? scope}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -640,10 +651,26 @@ class MockAuth0Api extends _i1.Mock implements _i5.Auth0Api {
           [],
           {#scope: scope},
         ),
-        returnValue: _i7.Future<_i5.DeviceTokenRequestResponse?>.value(),
+        returnValue: _i7.Future<_i5.DeviceTokenRequestResponse>.value(
+            _FakeDeviceTokenRequestResponse_8(
+          this,
+          Invocation.method(
+            #fetchDeviceCode,
+            [],
+            {#scope: scope},
+          ),
+        )),
         returnValueForMissingStub:
-            _i7.Future<_i5.DeviceTokenRequestResponse?>.value(),
-      ) as _i7.Future<_i5.DeviceTokenRequestResponse?>);
+            _i7.Future<_i5.DeviceTokenRequestResponse>.value(
+                _FakeDeviceTokenRequestResponse_8(
+          this,
+          Invocation.method(
+            #fetchDeviceCode,
+            [],
+            {#scope: scope},
+          ),
+        )),
+      ) as _i7.Future<_i5.DeviceTokenRequestResponse>);
   @override
   _i7.Future<_i5.Credentials> listenToResolve(
           _i5.DeviceTokenRequestResponse? deviceToken) =>
@@ -652,7 +679,7 @@ class MockAuth0Api extends _i1.Mock implements _i5.Auth0Api {
           #listenToResolve,
           [deviceToken],
         ),
-        returnValue: _i7.Future<_i5.Credentials>.value(_FakeCredentials_8(
+        returnValue: _i7.Future<_i5.Credentials>.value(_FakeCredentials_9(
           this,
           Invocation.method(
             #listenToResolve,
@@ -660,7 +687,7 @@ class MockAuth0Api extends _i1.Mock implements _i5.Auth0Api {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i5.Credentials>.value(_FakeCredentials_8(
+            _i7.Future<_i5.Credentials>.value(_FakeCredentials_9(
           this,
           Invocation.method(
             #listenToResolve,
