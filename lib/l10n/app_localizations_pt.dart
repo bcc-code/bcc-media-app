@@ -802,4 +802,19 @@ class SPt extends S {
 
   @override
   String get removeWatchProgress => 'Remove watch progress';
+
+  @override
+  String get showDescription => 'Sem descrição';
+
+  @override
+  String get releaseDate => 'Datas de lançamento';
+
+  @override
+  String get availableTo => 'Available to';
+
+  @override
+  String get ageRating => 'Age rating';
+
+  @override
+  String get ageRatingAll => 'All';
 }

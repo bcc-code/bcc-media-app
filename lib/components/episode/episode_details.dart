@@ -1,6 +1,7 @@
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -113,22 +114,22 @@ class _EpisodeDetailsState extends ConsumerState<EpisodeDetails> {
               children: [
                 if (episode.season != null)
                   _InfoItem(
-                    title: 'Show description',
+                    title: S.of(context).showDescription,
                     text: episode.season!.$show.description,
                   ),
                 if (publishDate != null)
                   _InfoItem(
-                    title: 'Episode release date',
+                    title: S.of(context).releaseDate,
                     text: DateFormat.yMMMMd(locale).add_jm().format(publishDate),
                   ),
                 if (availableTo != null && availableTo.isBefore(DateTime.now().add(const Duration(days: 365))))
                   _InfoItem(
-                    title: 'Available to',
+                    title: S.of(context).availableTo,
                     text: DateFormat.yMMMd(locale).add_jm().format(availableTo),
                   ),
-                _InfoItem(title: 'Age rating', text: episode.ageRating == 'A' ? 'All' : '${episode.ageRating}+'),
+                _InfoItem(title: S.of(context).ageRating, text: episode.ageRating == 'A' ? S.of(context).ageRatingAll : '${episode.ageRating}+'),
                 if (episode.audioLanguages.isNotEmpty)
-                  _InfoItem(title: 'Audio', text: episode.audioLanguages.fold('', (str, lang) => str += '${lang.toString()}\n')),
+                  _InfoItem(title: S.of(context).audio, text: episode.audioLanguages.fold('', (str, lang) => str += '${lang.toString()}\n')),
               ],
             ),
           );

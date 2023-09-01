@@ -802,4 +802,19 @@ class SSl extends S {
 
   @override
   String get removeWatchProgress => 'Remove watch progress';
+
+  @override
+  String get showDescription => 'Opis oddaje';
+
+  @override
+  String get releaseDate => 'Datum izida';
+
+  @override
+  String get availableTo => 'Available to';
+
+  @override
+  String get ageRating => 'Age rating';
+
+  @override
+  String get ageRatingAll => 'All';
 }

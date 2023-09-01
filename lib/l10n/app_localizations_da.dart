@@ -802,4 +802,19 @@ class SDa extends S {
 
   @override
   String get removeWatchProgress => 'Remove watch progress';
+
+  @override
+  String get showDescription => 'Beskrivelse af udsendelse';
+
+  @override
+  String get releaseDate => 'Publiceringsdato';
+
+  @override
+  String get availableTo => 'Available to';
+
+  @override
+  String get ageRating => 'Age rating';
+
+  @override
+  String get ageRatingAll => 'All';
 }

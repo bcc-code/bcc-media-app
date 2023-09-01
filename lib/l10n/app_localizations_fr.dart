@@ -802,4 +802,19 @@ class SFr extends S {
 
   @override
   String get removeWatchProgress => 'Remove watch progress';
+
+  @override
+  String get showDescription => 'Description de l\'émission';
+
+  @override
+  String get releaseDate => 'Date de parution';
+
+  @override
+  String get availableTo => 'Available to';
+
+  @override
+  String get ageRating => 'Age rating';
+
+  @override
+  String get ageRatingAll => 'All';
 }

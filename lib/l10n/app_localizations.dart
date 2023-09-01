@@ -1664,6 +1664,36 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Remove watch progress'**
   String get removeWatchProgress;
+
+  /// IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!
+  ///
+  /// In en, this message translates to:
+  /// **'Show description'**
+  String get showDescription;
+
+  /// Release date of the episode, shown in the 'details' tab under an episode.
+  ///
+  /// In en, this message translates to:
+  /// **'Release date'**
+  String get releaseDate;
+
+  /// The date which the episode will available to. Shown in the 'details' tab under an episode.
+  ///
+  /// In en, this message translates to:
+  /// **'Available to'**
+  String get availableTo;
+
+  /// Age rating for the episode, shown in the 'details' tab under an episode.
+  ///
+  /// In en, this message translates to:
+  /// **'Age rating'**
+  String get ageRating;
+
+  /// Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get ageRatingAll;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

@@ -1102,5 +1102,25 @@
   "removeWatchProgress": "Remove watch progress",
   "@removeWatchProgress": {
     "description": "Shown when holding on an episode in the 'continue watching' section."
+  },
+  "showDescription": "Show description",
+  "@showDescription": {
+    "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
+  },
+  "releaseDate": "Release date",
+  "@releaseDate": {
+    "description": "Release date of the episode, shown in the 'details' tab under an episode."
+  },
+  "availableTo": "Available to",
+  "@availableTo": {
+    "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
+  },
+  "ageRating": "Age rating",
+  "@ageRating": {
+    "description": "Age rating for the episode, shown in the 'details' tab under an episode."
+  },
+  "ageRatingAll": "All",
+  "@ageRatingAll": {
+    "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   }
 }

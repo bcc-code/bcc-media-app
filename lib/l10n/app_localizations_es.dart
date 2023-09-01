@@ -802,4 +802,19 @@ class SEs extends S {
 
   @override
   String get removeWatchProgress => 'Remove watch progress';
+
+  @override
+  String get showDescription => 'Descripción de shows';
+
+  @override
+  String get releaseDate => 'Fecha de estreno';
+
+  @override
+  String get availableTo => 'Available to';
+
+  @override
+  String get ageRating => 'Age rating';
+
+  @override
+  String get ageRatingAll => 'All';
 }
