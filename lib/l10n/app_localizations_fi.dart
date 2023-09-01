@@ -531,7 +531,7 @@ class SFi extends S {
   String get privacyPolicy => 'Tietosuojakäytäntö';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Käyttöehdot';
 
   @override
   String get categoriesTab => 'Luokat';
@@ -790,11 +790,11 @@ class SFi extends S {
   String get playGame => 'Pelaa';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Kuvaa qr-koodi ja kirjaudu puhelimella';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Taikka mene tänne: $url ja syötä sinne: $code';
   }
 
   @override

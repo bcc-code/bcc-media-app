@@ -715,7 +715,7 @@
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "termsOfUse": "Terms of use",
+  "termsOfUse": "Käyttöehdot",
   "@termsOfUse": {
     "description": "Title on the 'Terms of use' page."
   },
@@ -1079,11 +1079,11 @@
   "@playGame": {
     "description": "Title on a game"
   },
-  "tvScanQr": "Scan the code and sign in with your phone",
+  "tvScanQr": "Kuvaa qr-koodi ja kirjaudu puhelimella",
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Or go to {url} and enter the code: {code}",
+  "tvEnterCode": "Taikka mene tänne: {url} ja syötä sinne: {code}",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
