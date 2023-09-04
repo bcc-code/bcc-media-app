@@ -22,7 +22,7 @@ class EpisodeSeason extends HookConsumerWidget {
 
   final String episodeId;
   final Fragment$EpisodeContext$$Season season;
-  final void Function(String id) onEpisodeTap; // TODO: implement
+  final void Function(String id) onEpisodeTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,7 +41,6 @@ class EpisodeSeason extends HookConsumerWidget {
       cacheCopy[season.id] = season.episodes.items
           .map(
             (ep) => SeasonEpisodeListEpisodeData(
-              //TODO: fromEpisodeSeason
               episode: ep,
               seasonNumber: season.number,
             ),

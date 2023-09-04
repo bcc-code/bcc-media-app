@@ -47,11 +47,15 @@ class SectionUpdateHandler extends HookConsumerWidget {
       }
     }
 
-    useEffect(() {
-      if (!isMyList) return null;
-      final subscription = globalEventBus.on<MyListChangedEvent>().listen((event) => refreshSection());
-      return subscription.cancel;
-    }, [isMyList]);
+    useEffect(
+      () {
+        if (!isMyList) return null;
+        final subscription = globalEventBus.on<MyListChangedEvent>().listen((event) => refreshSection());
+        return subscription.cancel;
+      },
+      // ignore: exhaustive_keys
+      [isMyList],
+    );
 
     ref.listen(sectionUpdatesProvider(section.id), (prev, next) => refreshSection());
 

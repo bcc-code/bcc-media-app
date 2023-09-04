@@ -71,7 +71,6 @@ class SeasonEpisodeListEpisodeData with _$SeasonEpisodeListEpisodeData {
 class _Episode extends StatelessWidget {
   final SeasonEpisodeListEpisodeData data;
   const _Episode({
-    super.key,
     required this.data,
   });
 

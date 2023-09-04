@@ -75,7 +75,7 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
             ),
           ),
         ],
-        bottomArea: [],
+        bottomArea: const [],
       );
     } else {
       returnWidget = OnboardingPageWrapper(
