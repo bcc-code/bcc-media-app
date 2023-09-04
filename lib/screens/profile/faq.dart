@@ -6,12 +6,12 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import '../../components/custom_back_button.dart';
-import '../../components/custom_tab_bar/custom_tab_bar.dart';
-import '../../components/status_indicators/error_generic.dart';
-import '../../components/status_indicators/loading_generic.dart';
+import '../../components/nav/custom_back_button.dart';
+import '../../components/tabs/custom_tab_bar.dart';
+import '../../components/status/error_generic.dart';
+import '../../components/status/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
-import '../../helpers/utils.dart';
+import '../../helpers/misc.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../graphql/queries/faq.graphql.dart';
 import '../../l10n/app_localizations.dart';

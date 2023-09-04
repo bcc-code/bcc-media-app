@@ -1,5 +1,5 @@
-import 'package:brunstadtv_app/components/option_list.dart';
-import 'package:brunstadtv_app/helpers/date_time.dart';
+import 'package:brunstadtv_app/components/menus/option_list.dart';
+import 'package:brunstadtv_app/helpers/time.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

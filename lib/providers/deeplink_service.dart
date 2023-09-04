@@ -1,7 +1,7 @@
 import 'package:app_links/app_links.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../helpers/navigation/navigation_utils.dart';
+import '../helpers/router/router_utils.dart';
 import '../models/analytics/deep_link_opened.dart';
 import 'analytics.dart';
 import 'router_provider.dart';

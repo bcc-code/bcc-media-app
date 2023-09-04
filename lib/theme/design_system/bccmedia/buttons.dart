@@ -1,7 +1,7 @@
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-import '../../../helpers/ui/btv_buttons.dart';
+import '../../../components/buttons/btv_buttons.dart';
 
 class BccMediaButtons extends DesignSystemButtons {
   BccMediaButtons({required this.colors, required this.textStyles});

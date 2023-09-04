@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../api/brunstadtv.dart';
-import '../components/bottom_sheet_select.dart';
-import '../components/option_list.dart';
+import '../components/menus/bottom_sheet_select.dart';
+import '../components/menus/option_list.dart';
 import '../helpers/event_bus.dart';
 import '../models/events/watch_progress.dart';
 

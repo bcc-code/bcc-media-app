@@ -16,7 +16,7 @@ import 'package:auto_route/empty_router_widgets.dart' as _i28;
 import 'package:flutter/foundation.dart' as _i38;
 import 'package:flutter/material.dart' as _i35;
 
-import '../helpers/navigation/custom_transitions.dart' as _i37;
+import '../helpers/router/custom_transitions.dart' as _i37;
 import '../screens/study/achievement_group.dart' as _i25;
 import '../screens/study/achievements.dart' as _i24;
 import '../screens/auto_login.dart' as _i1;

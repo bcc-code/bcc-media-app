@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/foundation.dart';

@@ -1,7 +1,7 @@
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 
-import '../../helpers/ui/btv_buttons.dart';
+import '../../components/buttons/btv_buttons.dart';
 import 'app_theme.dart';
 
 /// Looks complicated, but its just to get a DesignSystemData instance based on where we are in the widget tree.

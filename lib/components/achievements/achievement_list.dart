@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../graphql/queries/achievements.graphql.dart';
 import 'achievement_dialog.dart';
 import 'achievement_list_item.dart';
-import '../custom_grid_view.dart';
+import '../misc/custom_grid_view.dart';
 
 class AchievementList extends ConsumerWidget {
   const AchievementList({super.key, required this.achievements});

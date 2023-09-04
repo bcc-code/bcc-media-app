@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/components/parents/parental_gate.dart';
+import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
@@ -10,8 +10,8 @@ import 'package:universal_io/io.dart';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/helpers/version.dart';
 import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +23,10 @@ import '../../api/brunstadtv.dart';
 import '../../flavors.dart';
 import '../../graphql/queries/application.graphql.dart';
 import '../../theme/design_system/design_system.dart';
-import '../../components/page.dart';
+import '../../components/pages/page_renderer.dart';
 import '../../graphql/queries/page.graphql.dart';
 
-import '../../helpers/page_mixin.dart';
+import '../../components/pages/page_mixin.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/app_config.dart';
 
@@ -212,7 +212,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                 ),
           body: SafeArea(
             top: false,
-            child: BccmPage(
+            child: PageRenderer(
               pageFuture: pageResult.future,
               onRefresh: ({bool? retry}) async {
                 setState(() {

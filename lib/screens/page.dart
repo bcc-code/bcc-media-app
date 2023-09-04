@@ -1,13 +1,13 @@
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/helpers/page_mixin.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/components/pages/page_mixin.dart';
+import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../components/custom_back_button.dart';
-import '../components/page.dart';
+import '../components/nav/custom_back_button.dart';
+import '../components/pages/page_renderer.dart';
 import '../graphql/queries/page.graphql.dart';
 
 class PageScreen extends ConsumerStatefulWidget {
@@ -50,7 +50,7 @@ class PageScreenState extends ConsumerState<PageScreen> with PageMixin {
         leading: const Padding(padding: EdgeInsets.only(left: kIsWeb ? 64 : 0), child: CustomBackButton()),
         title: Text(pageTitle),
       ),
-      body: BccmPage(
+      body: PageRenderer(
         pageFuture: pageResult.future,
         onRefresh: ({bool? retry}) async {
           var future = getPage();

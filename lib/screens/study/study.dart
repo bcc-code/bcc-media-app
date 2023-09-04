@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/components/achievements/achievement_dialog.dart';
-import 'package:brunstadtv_app/components/dialog_with_image.dart';
-import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';
+import 'package:brunstadtv_app/components/misc/dialog_with_image.dart';
+import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
@@ -12,10 +12,10 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../components/custom_back_button.dart';
+import '../../components/nav/custom_back_button.dart';
 import '../../graphql/queries/studies.graphql.dart';
-import '../../helpers/ui/svg_icons.dart';
-import '../../helpers/utils.dart';
+import '../../helpers/svg_icons.dart';
+import '../../helpers/misc.dart';
 import '../../helpers/webview/main_js_channel.dart';
 import '../../l10n/app_localizations.dart';
 

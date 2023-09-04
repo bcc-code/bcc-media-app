@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:universal_io/io.dart';
 
-import '../../helpers/ui/svg_icons.dart';
+import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/router.gr.dart';
 import '../../theme/design_system/design_system.dart';

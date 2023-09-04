@@ -1,6 +1,6 @@
-import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
-import 'package:brunstadtv_app/components/option_list.dart';
-import 'package:brunstadtv_app/components/episode/season_episode_list.dart';
+import 'package:brunstadtv_app/components/status/loading_indicator.dart';
+import 'package:brunstadtv_app/components/menus/option_list.dart';
+import 'package:brunstadtv_app/components/episode/list/season_episode_list.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../api/brunstadtv.dart';
 import '../../providers/lesson_progress_provider.dart';
-import '../dropdown_select.dart';
+import '../menus/dropdown_select.dart';
 
 class EpisodeSeason extends HookConsumerWidget {
   const EpisodeSeason({

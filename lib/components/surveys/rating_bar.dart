@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../helpers/ui/svg_icons.dart';
+import '../../helpers/svg_icons.dart';
 import '../../theme/design_system/design_system.dart';
 
 class RatingBar extends StatefulWidget {

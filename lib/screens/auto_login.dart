@@ -9,14 +9,14 @@ import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../components/status_indicators/loading_indicator.dart';
+import '../components/status/loading_indicator.dart';
 import '../helpers/constants.dart';
 import '../models/events/app_ready.dart';
 import '../providers/shared_preferences.dart';
 import '../theme/design_system/design_system.dart';
 
-import '../helpers/navigation/navigation_utils.dart';
-import '../helpers/utils.dart';
+import '../helpers/router/router_utils.dart';
+import '../helpers/misc.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
 

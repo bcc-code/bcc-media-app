@@ -12,10 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
-import '../../components/bottom_sheet_mini_player.dart';
-import '../../components/custom_nav_tab_bar.dart';
+import '../../components/player/bottom_sheet_mini_player.dart';
+import '../../components/nav/custom_nav_tab_bar.dart';
 import '../../components/prompts/prompts.dart';
-import '../../components/web/web_app_bar.dart';
+import '../../components/nav/web_app_bar.dart';
 import '../../models/scroll_screen.dart';
 import '../../providers/analytics.dart';
 import '../../providers/app_config.dart';

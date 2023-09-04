@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import '../../components/custom_back_button.dart';
+import '../../components/nav/custom_back_button.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../flavors.dart';
 import '../../helpers/languages.dart';

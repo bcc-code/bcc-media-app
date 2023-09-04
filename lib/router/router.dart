@@ -29,7 +29,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../screens/profile/device_info.dart';
-import '../helpers/navigation/custom_transitions.dart';
+import '../helpers/router/custom_transitions.dart';
 import '../screens/study/achievement_group.dart';
 import '../screens/study/achievements.dart';
 import '../screens/episode.dart';

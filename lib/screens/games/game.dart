@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/custom_back_button.dart';
-import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';
+import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
+import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/queries/games.graphql.dart';
 import 'package:brunstadtv_app/models/analytics/game_closed.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
@@ -12,7 +12,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../components/status_indicators/error_generic.dart';
+import '../../components/status/error_generic.dart';
 import '../../flavors.dart';
 import '../../helpers/webview/main_js_channel.dart';
 import '../../theme/design_system/design_system.dart';

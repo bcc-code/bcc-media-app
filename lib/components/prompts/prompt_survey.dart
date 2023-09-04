@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../graphql/queries/prompts.graphql.dart';
-import '../../helpers/ui/svg_icons.dart';
+import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/design_system/design_system.dart';
 

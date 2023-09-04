@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../components/custom_back_button.dart';
+import '../../components/nav/custom_back_button.dart';
 import '../../l10n/app_localizations.dart';
 
 class PrivacyPolicyScreen extends ConsumerWidget {

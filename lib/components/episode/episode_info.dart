@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/feature_badge.dart';
+import 'package:brunstadtv_app/components/badges/feature_badge.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
@@ -18,7 +18,7 @@ import '../../helpers/event_bus.dart';
 import '../../models/events/my_list_changed.dart';
 import '../../router/router.gr.dart';
 import '../../theme/design_system/design_system.dart';
-import '../text_collapsible.dart';
+import '../misc/text_collapsible.dart';
 
 class EpisodeInfo extends HookConsumerWidget {
   const EpisodeInfo(this.episode, {super.key, required this.onShareVideoTapped, this.extraChildren});

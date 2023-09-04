@@ -10,15 +10,15 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../graphql/queries/achievements.graphql.dart';
 import '../../theme/design_system/design_system.dart';
-import '../../helpers/ui/image.dart';
-import '../../helpers/ui/svg_icons.dart';
+import '../../helpers/images.dart';
+import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/analytics.dart';
 import '../../helpers/share_image.dart';
-import '../../helpers/utils.dart';
-import '../../helpers/ui/widget_to_image.dart';
-import '../dialog_with_image.dart';
-import '../status_indicators/loading_indicator.dart';
+import '../../helpers/misc.dart';
+import '../../helpers/widget_to_image.dart';
+import '../misc/dialog_with_image.dart';
+import '../status/loading_indicator.dart';
 
 class AchievementDialog extends ConsumerStatefulWidget {
   const AchievementDialog({super.key, required this.achievement, this.dismissButtonText});

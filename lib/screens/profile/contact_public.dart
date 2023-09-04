@@ -6,14 +6,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../components/contact/contact_public_input_page.dart';
 import '../../components/contact/contact_success.dart';
-import '../../components/status_indicators/error_generic.dart';
-import '../../components/status_indicators/loading_generic.dart';
+import '../../components/status/error_generic.dart';
+import '../../components/status/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
-import '../../components/general_app_bar.dart';
+import '../../components/nav/general_app_bar.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../graphql/schema/mutations.graphql.dart';
-import '../../helpers/ui/btv_buttons.dart';
+import '../../components/buttons/btv_buttons.dart';
 import '../../providers/device_info.dart';
 import '../../theme/design_system/design_system.dart';
 

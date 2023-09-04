@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'dart:math';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar.graphql.dart';
-import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,7 +13,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
-import '../../helpers/date_time.dart';
+import '../../helpers/time.dart';
 import '../../helpers/episode_state.dart';
 import '../../helpers/insets.dart';
 import '../../theme/design_system/design_system.dart';

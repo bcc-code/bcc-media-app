@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
+import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';

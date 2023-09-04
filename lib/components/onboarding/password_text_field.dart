@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../helpers/ui/svg_icons.dart';
+import '../../helpers/svg_icons.dart';
 import '../../theme/design_system/design_system.dart';
 
 class PasswordTextField extends HookWidget {

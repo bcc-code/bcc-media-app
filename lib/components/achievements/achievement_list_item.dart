@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/helpers/ui/image.dart';
+import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

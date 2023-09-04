@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';
+import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import '../../components/web/dialog_on_web.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/misc.dart';
 
 import '../../theme/design_system/design_system.dart';
 

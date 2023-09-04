@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/navigation/navigation_utils.dart';
+import 'package:brunstadtv_app/helpers/router/router_utils.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/share_image.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

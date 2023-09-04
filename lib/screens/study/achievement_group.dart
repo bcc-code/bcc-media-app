@@ -1,13 +1,13 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/status_indicators/error_generic.dart';
-import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';
+import 'package:brunstadtv_app/components/status/error_generic.dart';
+import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/components/achievements/achievement_list.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../components/custom_back_button.dart';
+import '../../components/nav/custom_back_button.dart';
 import '../../l10n/app_localizations.dart';
 
 class AchievementGroupScreen extends ConsumerStatefulWidget {

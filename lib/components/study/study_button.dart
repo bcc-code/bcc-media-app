@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
+import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +8,10 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../theme/design_system/design_system.dart';
 
-import '../../../helpers/ui/svg_icons.dart';
+import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
-import '../pulse_animation.dart';
-import '../shiny_clipper.dart';
+import 'pulse_animation.dart';
+import '../misc/shiny_clipper.dart';
 import 'study_progress.dart';
 
 class StudyMoreButton extends HookWidget {

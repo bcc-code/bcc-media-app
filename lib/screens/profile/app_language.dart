@@ -1,7 +1,7 @@
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../components/option_list.dart';
+import '../../components/menus/option_list.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';

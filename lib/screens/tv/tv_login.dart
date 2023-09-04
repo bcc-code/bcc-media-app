@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/auth0_api.dart';
-import 'package:brunstadtv_app/components/status_indicators/error_generic.dart';
-import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
+import 'package:brunstadtv_app/components/status/error_generic.dart';
+import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';

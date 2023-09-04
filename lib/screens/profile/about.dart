@@ -1,9 +1,9 @@
-import 'package:brunstadtv_app/components/app_version.dart';
-import 'package:brunstadtv_app/components/developer_options.dart';
+import 'package:brunstadtv_app/components/misc/app_version.dart';
+import 'package:brunstadtv_app/components/profile/developer_options.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../components/custom_back_button.dart';
+import '../../components/nav/custom_back_button.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../flavors.dart';
 import '../../l10n/app_localizations.dart';

@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/general_app_bar.dart';
+import 'package:brunstadtv_app/components/nav/general_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -7,12 +7,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../components/contact/contact_input_page.dart';
 import '../../components/contact/contact_success.dart';
-import '../../components/status_indicators/error_generic.dart';
-import '../../components/status_indicators/loading_generic.dart';
+import '../../components/status/error_generic.dart';
+import '../../components/status/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
-import '../../helpers/ui/btv_buttons.dart';
+import '../../components/buttons/btv_buttons.dart';
 import '../../providers/device_info.dart';
 import '../../theme/design_system/design_system.dart';
 

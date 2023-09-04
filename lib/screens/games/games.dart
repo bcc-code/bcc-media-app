@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/page.dart';
+import 'package:brunstadtv_app/components/pages/page_renderer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -27,7 +27,7 @@ class GamesScreen extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Games')),
       body: SafeArea(
-        child: BccmPage(
+        child: PageRenderer(
           pageFuture: pageFuture,
           onRefresh: ({retry}) => getGamesPage(),
         ),

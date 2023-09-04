@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,7 +9,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../theme/design_system/design_system.dart';
 
 import '../../providers/surveys.dart';
-import '../status_indicators/loading_indicator.dart';
+import '../status/loading_indicator.dart';
 import 'dialog_confirm_cancel.dart';
 import 'survey_form.dart';
 

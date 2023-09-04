@@ -1,9 +1,9 @@
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
+import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/helpers/ui/image.dart';
-import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/images.dart';
+import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/screens/tabs/live.dart';
