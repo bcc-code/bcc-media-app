@@ -7,12 +7,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../graphql/queries/page.graphql.dart';
-import '../theme/design_system/design_system.dart';
+import '../../graphql/queries/page.graphql.dart';
+import '../../theme/design_system/design_system.dart';
 
-import '../l10n/app_localizations.dart';
-import '../components/search/search_results.dart';
-import '../components/search/custom_search_bar.dart';
+import '../../l10n/app_localizations.dart';
+import '../../components/search/search_results.dart';
+import '../../components/search/custom_search_bar.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   final String? query;

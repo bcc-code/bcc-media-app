@@ -12,12 +12,12 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../components/custom_back_button.dart';
-import '../graphql/queries/studies.graphql.dart';
-import '../helpers/ui/svg_icons.dart';
-import '../helpers/utils.dart';
-import '../helpers/webview/main_js_channel.dart';
-import '../l10n/app_localizations.dart';
+import '../../components/custom_back_button.dart';
+import '../../graphql/queries/studies.graphql.dart';
+import '../../helpers/ui/svg_icons.dart';
+import '../../helpers/utils.dart';
+import '../../helpers/webview/main_js_channel.dart';
+import '../../l10n/app_localizations.dart';
 
 class StudyScreen extends ConsumerStatefulWidget {
   final String episodeId;

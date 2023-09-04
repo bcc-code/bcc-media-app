@@ -5,21 +5,21 @@ import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
-import 'package:brunstadtv_app/screens/search.dart';
+import 'package:brunstadtv_app/screens/tabs/search.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
-import '../components/bottom_sheet_mini_player.dart';
-import '../components/custom_nav_tab_bar.dart';
-import '../components/prompts/prompts.dart';
-import '../components/web/web_app_bar.dart';
-import '../models/scroll_screen.dart';
-import '../providers/analytics.dart';
-import '../providers/app_config.dart';
-import '../theme/design_system/design_system.dart';
+import '../../components/bottom_sheet_mini_player.dart';
+import '../../components/custom_nav_tab_bar.dart';
+import '../../components/prompts/prompts.dart';
+import '../../components/web/web_app_bar.dart';
+import '../../models/scroll_screen.dart';
+import '../../providers/analytics.dart';
+import '../../providers/app_config.dart';
+import '../../theme/design_system/design_system.dart';
 
 class TabsRootScreen extends ConsumerStatefulWidget {
   static const route = '/';

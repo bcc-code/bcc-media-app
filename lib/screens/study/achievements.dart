@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../components/custom_back_button.dart';
-import '../components/status_indicators/error_generic.dart';
-import '../components/sections/page_section.dart';
-import '../components/see_more.dart';
-import '../l10n/app_localizations.dart';
-import '../router/router.gr.dart';
+import '../../components/custom_back_button.dart';
+import '../../components/status_indicators/error_generic.dart';
+import '../../components/sections/page_section.dart';
+import '../../components/see_more.dart';
+import '../../l10n/app_localizations.dart';
+import '../../router/router.gr.dart';
 
 class AchievementsScreen extends ConsumerStatefulWidget {
   const AchievementsScreen({

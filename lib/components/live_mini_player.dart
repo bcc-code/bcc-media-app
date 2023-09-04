@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
 import '../helpers/widget_keys.dart';
-import '../screens/live.dart';
+import '../screens/tabs/live.dart';
 
 class LiveMiniPlayer extends ConsumerStatefulWidget {
   const LiveMiniPlayer({Key? key, required this.onStartRequest}) : super(key: key);

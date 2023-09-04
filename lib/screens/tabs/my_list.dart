@@ -9,22 +9,22 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../components/custom_grid_view.dart';
-import '../helpers/event_bus.dart';
-import '../helpers/watch_progress_bottom_sheet.dart';
-import '../components/status_indicators/error_generic.dart';
-import '../components/status_indicators/loading_generic.dart';
-import '../components/sections/thumbnail_grid/thumbnail_grid_episode.dart';
-import '../graphql/queries/my_list.graphql.dart';
-import '../helpers/ui/svg_icons.dart';
-import '../models/analytics/sections.dart';
-import '../models/episode_thumbnail_data.dart';
-import '../models/events/watch_progress.dart';
-import '../providers/analytics.dart';
-import '../providers/inherited_data.dart';
-import '../router/router.gr.dart';
-import '../helpers/extensions.dart';
-import '../theme/design_system/design_system.dart';
+import '../../components/custom_grid_view.dart';
+import '../../helpers/event_bus.dart';
+import '../../helpers/watch_progress_bottom_sheet.dart';
+import '../../components/status_indicators/error_generic.dart';
+import '../../components/status_indicators/loading_generic.dart';
+import '../../components/sections/thumbnail_grid/thumbnail_grid_episode.dart';
+import '../../graphql/queries/my_list.graphql.dart';
+import '../../helpers/ui/svg_icons.dart';
+import '../../models/analytics/sections.dart';
+import '../../models/episode_thumbnail_data.dart';
+import '../../models/events/watch_progress.dart';
+import '../../providers/analytics.dart';
+import '../../providers/inherited_data.dart';
+import '../../router/router.gr.dart';
+import '../../helpers/extensions.dart';
+import '../../theme/design_system/design_system.dart';
 
 class MyListScreen extends HookConsumerWidget {
   const MyListScreen({Key? key}) : super(key: key);

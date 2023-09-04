@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../providers/settings.dart';
-import '../theme/design_system/design_system.dart';
+import '../../providers/settings.dart';
+import '../../theme/design_system/design_system.dart';
 
 class ExtraUsergroupsScreen extends HookConsumerWidget {
   const ExtraUsergroupsScreen({super.key});

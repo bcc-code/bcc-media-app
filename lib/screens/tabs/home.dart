@@ -19,16 +19,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import '../api/brunstadtv.dart';
-import '../flavors.dart';
-import '../graphql/queries/application.graphql.dart';
-import '../theme/design_system/design_system.dart';
-import '../components/page.dart';
-import '../graphql/queries/page.graphql.dart';
+import '../../api/brunstadtv.dart';
+import '../../flavors.dart';
+import '../../graphql/queries/application.graphql.dart';
+import '../../theme/design_system/design_system.dart';
+import '../../components/page.dart';
+import '../../graphql/queries/page.graphql.dart';
 
-import '../helpers/page_mixin.dart';
-import '../l10n/app_localizations.dart';
-import '../providers/app_config.dart';
+import '../../helpers/page_mixin.dart';
+import '../../l10n/app_localizations.dart';
+import '../../providers/app_config.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   HomeScreen({Key? key}) : super(key: key ?? GlobalKey<HomeScreenState>());

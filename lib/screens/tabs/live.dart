@@ -14,15 +14,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
-import '../components/player/custom_cast_player.dart';
-import '../helpers/insets.dart';
-import '../providers/todays_calendar_entries.dart';
-import '../theme/design_system/design_system.dart';
+import '../../components/player/custom_cast_player.dart';
+import '../../helpers/insets.dart';
+import '../../providers/todays_calendar_entries.dart';
+import '../../theme/design_system/design_system.dart';
 
-import '../helpers/ui/svg_icons.dart';
-import '../l10n/app_localizations.dart';
-import '../models/analytics/audio_only_clicked.dart';
-import '../providers/analytics.dart';
+import '../../helpers/ui/svg_icons.dart';
+import '../../l10n/app_localizations.dart';
+import '../../models/analytics/audio_only_clicked.dart';
+import '../../providers/analytics.dart';
 import 'calendar.dart';
 
 final liveMetadataProvider = Provider<MediaMetadata>((ref) {

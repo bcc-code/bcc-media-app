@@ -1,3 +1,5 @@
+// ignore_for_file: unused_result
+
 import 'dart:async';
 
 import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';
