@@ -1694,6 +1694,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'All'**
   String get ageRatingAll;
+
+  /// Status indicator, indicating that you are offline; not connected to the internet.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline'**
+  String get offline;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

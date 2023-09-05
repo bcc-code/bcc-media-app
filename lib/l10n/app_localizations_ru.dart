@@ -817,4 +817,7 @@ class SRu extends S {
 
   @override
   String get ageRatingAll => 'All';
+
+  @override
+  String get offline => 'Offline';
 }

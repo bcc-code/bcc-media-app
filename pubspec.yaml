@@ -118,6 +118,7 @@ dependencies:
   flutter_image: ^4.1.6
   qr_flutter: ^4.1.0
   focus_debugger: ^0.0.2
+  connectivity_plus: ^4.0.2
   #smooth: any
 
 dev_dependencies:

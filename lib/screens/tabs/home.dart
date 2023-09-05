@@ -20,8 +20,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../api/brunstadtv.dart';
+import '../../components/offline/offline_home.dart';
 import '../../flavors.dart';
 import '../../graphql/queries/application.graphql.dart';
+import '../../providers/connectivity.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../components/pages/page_renderer.dart';
 import '../../graphql/queries/page.graphql.dart';
@@ -146,84 +148,85 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
-    return Stack(
-      children: [
-        Scaffold(
-          extendBodyBehindAppBar: true,
-          appBar: kIsWeb
-              ? null
-              : AppBar(
-                  toolbarHeight: 44,
-                  shadowColor: Colors.black,
-                  backgroundColor: design.appThemeData.appBarTransparent ? Colors.transparent : design.colors.background1,
-                  elevation: 0,
-                  centerTitle: true,
-                  title: Image(
-                    image: FlavorConfig.current.images.logo,
-                    height: FlavorConfig.current.images.logoHeight,
-                    gaplessPlayback: true,
-                  ),
-                  leadingWidth: kIsWeb ? 300 : 100,
-                  leading: Align(
-                    alignment: Alignment.centerLeft,
-                    child: GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onTap: () async {
-                          if ((FlavorConfig.current.flavor == Flavor.kids && !await checkParentalGate(context)) || !context.mounted) {
-                            return;
-                          }
-                          context.router.pushNamed('/profile');
-                        },
-                        child: Padding(
-                            padding: const EdgeInsets.only(left: kIsWeb ? 80 : 18, top: 12, bottom: 12, right: 32),
-                            child: SvgPicture.string(
-                              SvgIcons.profile,
-                              colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.tint1, BlendMode.srcIn),
-                              semanticsLabel: S.of(context).profileTab,
-                            ))),
-                  ),
-                  actions: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints.loose(const Size(24, 24)),
-                        child: CastButton(color: DesignSystem.of(context).colors.tint1),
-                      ),
+
+    final isOffline = ref.watch(isOfflineProvider);
+    return isOffline
+        ? const OfflineHome()
+        : Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: kIsWeb
+                ? null
+                : AppBar(
+                    toolbarHeight: 44,
+                    shadowColor: Colors.black,
+                    backgroundColor: design.appThemeData.appBarTransparent ? Colors.transparent : design.colors.background1,
+                    elevation: 0,
+                    centerTitle: true,
+                    title: Image(
+                      image: FlavorConfig.current.images.logo,
+                      height: FlavorConfig.current.images.logoHeight,
+                      gaplessPlayback: true,
                     ),
-                  ],
-                  flexibleSpace: !design.appThemeData.appBarTransparent
-                      ? null
-                      : ClipRect(
-                          clipBehavior: Clip.hardEdge,
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [DesignSystem.of(context).colors.background1, Colors.transparent],
+                    leadingWidth: kIsWeb ? 300 : 100,
+                    leading: Align(
+                      alignment: Alignment.centerLeft,
+                      child: GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTap: () async {
+                            if ((FlavorConfig.current.flavor == Flavor.kids && !await checkParentalGate(context))) {
+                              return;
+                            }
+                            if (!context.mounted) return;
+                            context.router.pushNamed('/profile');
+                          },
+                          child: Padding(
+                              padding: const EdgeInsets.only(left: kIsWeb ? 80 : 18, top: 12, bottom: 12, right: 32),
+                              child: SvgPicture.string(
+                                SvgIcons.profile,
+                                colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.tint1, BlendMode.srcIn),
+                                semanticsLabel: S.of(context).profileTab,
+                              ))),
+                    ),
+                    actions: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16.0),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints.loose(const Size(24, 24)),
+                          child: CastButton(color: DesignSystem.of(context).colors.tint1),
+                        ),
+                      ),
+                    ],
+                    flexibleSpace: !design.appThemeData.appBarTransparent
+                        ? null
+                        : ClipRect(
+                            clipBehavior: Clip.hardEdge,
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [DesignSystem.of(context).colors.background1, Colors.transparent],
+                                  ),
                                 ),
+                                height: 1000,
                               ),
-                              height: 1000,
                             ),
                           ),
-                        ),
-                ),
-          body: SafeArea(
-            top: false,
-            child: PageRenderer(
-              pageFuture: pageResult.future,
-              onRefresh: ({bool? retry}) async {
-                setState(() {
-                  pageResult = wrapInCompleter(retry == true ? getHomeAndAppConfig() : getHomePage());
-                });
-              },
-              scrollController: pageScrollController,
+                  ),
+            body: SafeArea(
+              top: false,
+              child: PageRenderer(
+                pageFuture: pageResult.future,
+                onRefresh: ({bool? retry}) async {
+                  setState(() {
+                    pageResult = wrapInCompleter(retry == true ? getHomeAndAppConfig() : getHomePage());
+                  });
+                },
+                scrollController: pageScrollController,
+              ),
             ),
-          ),
-        ),
-      ],
-    );
+          );
   }
 }

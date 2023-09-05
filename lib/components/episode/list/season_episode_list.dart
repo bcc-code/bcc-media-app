@@ -17,7 +17,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../thumbnails/misc/bordered_image_container.dart';
 import '../../thumbnails/misc/episode_duration.dart';
 
-part './season_episode_list.freezed.dart';
+part 'season_episode_list.freezed.dart';
 
 class SeasonEpisodeList extends StatelessWidget {
   final String? title;

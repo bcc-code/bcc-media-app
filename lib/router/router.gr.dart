@@ -17,17 +17,10 @@ import 'package:flutter/foundation.dart' as _i38;
 import 'package:flutter/material.dart' as _i35;
 
 import '../helpers/router/custom_transitions.dart' as _i37;
-import '../screens/study/achievement_group.dart' as _i25;
-import '../screens/study/achievements.dart' as _i24;
 import '../screens/auto_login.dart' as _i1;
-import '../screens/tabs/calendar.dart' as _i29;
 import '../screens/episode.dart' as _i20;
-import '../screens/profile/extra_usergroups.dart' as _i21;
 import '../screens/games/game.dart' as _i22;
 import '../screens/games/games.dart' as _i33;
-import '../screens/tabs/home.dart' as _i19;
-import '../screens/tabs/live.dart' as _i27;
-import '../screens/tabs/my_list.dart' as _i32;
 import '../screens/onboarding/onboarding.dart' as _i4;
 import '../screens/onboarding/signup.dart' as _i5;
 import '../screens/page.dart' as _i31;
@@ -38,21 +31,29 @@ import '../screens/profile/audio_language.dart' as _i8;
 import '../screens/profile/contact.dart' as _i11;
 import '../screens/profile/contact_public.dart' as _i12;
 import '../screens/profile/device_info.dart' as _i13;
+import '../screens/profile/extra_usergroups.dart' as _i21;
 import '../screens/profile/faq.dart' as _i15;
 import '../screens/profile/privacy_policy.dart' as _i16;
 import '../screens/profile/profile.dart' as _i6;
 import '../screens/profile/subtitle_language.dart' as _i9;
 import '../screens/profile/terms_of_use.dart' as _i17;
 import '../screens/profile/video_quality.dart' as _i10;
-import '../screens/tabs/search.dart' as _i30;
+import '../screens/study/achievement_group.dart' as _i25;
+import '../screens/study/achievements.dart' as _i24;
 import '../screens/study/study.dart' as _i23;
+import '../screens/tabs/calendar.dart' as _i29;
+import '../screens/tabs/home.dart' as _i19;
+import '../screens/tabs/live.dart' as _i27;
+import '../screens/tabs/my_list.dart' as _i32;
+import '../screens/tabs/search.dart' as _i30;
 import '../screens/tabs/tabs_root.dart' as _i26;
 import '../screens/tv/tv_live.dart' as _i2;
 import '../screens/tv/tv_login.dart' as _i3;
 import 'router.dart' as _i36;
 
 class AppRouter extends _i34.RootStackRouter {
-  AppRouter([_i35.GlobalKey<_i35.NavigatorState>? navigatorKey]) : super(navigatorKey);
+  AppRouter([_i35.GlobalKey<_i35.NavigatorState>? navigatorKey])
+      : super(navigatorKey);
 
   @override
   final Map<String, _i34.PageFactory> pagesMap = {
@@ -248,7 +249,8 @@ class AppRouter extends _i34.RootStackRouter {
       );
     },
     PublicHomeRoute.name: (routeData) {
-      final args = routeData.argsAs<PublicHomeRouteArgs>(orElse: () => const PublicHomeRouteArgs());
+      final args = routeData.argsAs<PublicHomeRouteArgs>(
+          orElse: () => const PublicHomeRouteArgs());
       return _i34.CupertinoPageX<void>(
         routeData: routeData,
         child: _i19.HomeScreen(key: args.key),
@@ -296,7 +298,9 @@ class AppRouter extends _i34.RootStackRouter {
     },
     GameScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<GameScreenRouteArgs>(orElse: () => GameScreenRouteArgs(gameId: pathParams.getString('gameId')));
+      final args = routeData.argsAs<GameScreenRouteArgs>(
+          orElse: () =>
+              GameScreenRouteArgs(gameId: pathParams.getString('gameId')));
       return _i34.CupertinoPageX<void>(
         routeData: routeData,
         child: _i22.GameScreen(
@@ -335,8 +339,9 @@ class AppRouter extends _i34.RootStackRouter {
     },
     AchievementGroupScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args =
-          routeData.argsAs<AchievementGroupScreenRouteArgs>(orElse: () => AchievementGroupScreenRouteArgs(groupId: pathParams.getString('groupId')));
+      final args = routeData.argsAs<AchievementGroupScreenRouteArgs>(
+          orElse: () => AchievementGroupScreenRouteArgs(
+              groupId: pathParams.getString('groupId')));
       return _i34.CustomPage<void>(
         routeData: routeData,
         child: _i25.AchievementGroupScreen(
@@ -403,7 +408,9 @@ class AppRouter extends _i34.RootStackRouter {
     },
     SearchScreenRoute.name: (routeData) {
       final queryParams = routeData.queryParams;
-      final args = routeData.argsAs<SearchScreenRouteArgs>(orElse: () => SearchScreenRouteArgs(query: queryParams.optString('q')));
+      final args = routeData.argsAs<SearchScreenRouteArgs>(
+          orElse: () =>
+              SearchScreenRouteArgs(query: queryParams.optString('q')));
       return _i34.MaterialPageX<void>(
         routeData: routeData,
         child: _i30.SearchScreen(
@@ -460,7 +467,9 @@ class AppRouter extends _i34.RootStackRouter {
     },
     PageScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<PageScreenRouteArgs>(orElse: () => PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
+      final args = routeData.argsAs<PageScreenRouteArgs>(
+          orElse: () =>
+              PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
       return _i34.CupertinoPageX<void>(
         routeData: routeData,
         child: _i31.PageScreen(
@@ -486,7 +495,9 @@ class AppRouter extends _i34.RootStackRouter {
     },
     GamesGameScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<GamesGameScreenRouteArgs>(orElse: () => GamesGameScreenRouteArgs(gameId: pathParams.getString('gameId')));
+      final args = routeData.argsAs<GamesGameScreenRouteArgs>(
+          orElse: () =>
+              GamesGameScreenRouteArgs(gameId: pathParams.getString('gameId')));
       return _i34.CupertinoPageX<void>(
         routeData: routeData,
         child: _i22.GameScreen(
@@ -810,7 +821,8 @@ class TvLoginScreenRoute extends _i34.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.OnboardingScreen]
-class OnboardingScreenRoute extends _i34.PageRouteInfo<OnboardingScreenRouteArgs> {
+class OnboardingScreenRoute
+    extends _i34.PageRouteInfo<OnboardingScreenRouteArgs> {
   OnboardingScreenRoute({
     _i38.Key? key,
     String? loginError,
@@ -1206,7 +1218,8 @@ class AchievementsScreenRoute extends _i34.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i25.AchievementGroupScreen]
-class AchievementGroupScreenRoute extends _i34.PageRouteInfo<AchievementGroupScreenRouteArgs> {
+class AchievementGroupScreenRoute
+    extends _i34.PageRouteInfo<AchievementGroupScreenRouteArgs> {
   AchievementGroupScreenRoute({
     _i38.Key? key,
     required String groupId,
@@ -1426,7 +1439,8 @@ class EpisodeScreenRouteArgs {
 
 /// generated route for
 /// [_i20.CollectionEpisodeScreen]
-class CollectionEpisodeScreenRoute extends _i34.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
+class CollectionEpisodeScreenRoute
+    extends _i34.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
   CollectionEpisodeScreenRoute({
     _i38.Key? key,
     required String episodeId,
@@ -1548,7 +1562,8 @@ class GamesScreenRoute extends _i34.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i22.GameScreen]
-class GamesGameScreenRoute extends _i34.PageRouteInfo<GamesGameScreenRouteArgs> {
+class GamesGameScreenRoute
+    extends _i34.PageRouteInfo<GamesGameScreenRouteArgs> {
   GamesGameScreenRoute({
     _i38.Key? key,
     required String gameId,
