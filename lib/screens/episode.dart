@@ -14,6 +14,8 @@ import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/components/episode/share_episode_sheet.dart';
+import 'package:brunstadtv_app/models/analytics/chapter_clicked.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -506,10 +508,19 @@ class _EpisodeDisplay extends HookConsumerWidget {
                   episode: episode,
                   onChapterSelected: (id) {
                     final chapter = episode.chapters.firstWhereOrNull((element) => element.id == id);
-                    if (episodeIsCurrentItem && chapter != null) {
+                    if (chapter == null) return;
+                    if (episodeIsCurrentItem) {
                       BccmPlayerController.primary.seekTo(Duration(seconds: chapter.start));
                       scrollToTop();
+                    } else {
+                      setupPlayer().then((value) => BccmPlayerController.primary.seekTo(Duration(seconds: chapter.start)));
                     }
+                    ref.read(analyticsProvider).chapterClicked(ChapterClickedEvent(
+                          elementType: 'episode',
+                          elementId: episode.id,
+                          chapterStart: chapter.start,
+                          chapterId: chapter.id,
+                        ));
                   },
                 ),
               EpisodeDetails(episode.id)

@@ -15,6 +15,7 @@ import '../helpers/version.dart';
 import '../models/analytics/achievement_shared.dart';
 import '../models/analytics/audio_only_clicked.dart';
 import '../models/analytics/calendar_day_clicked.dart';
+import '../models/analytics/chapter_clicked.dart';
 import '../models/analytics/deep_link_opened.dart';
 import '../models/analytics/game_closed.dart';
 import '../models/analytics/language_changed.dart';
@@ -52,6 +53,8 @@ class Analytics {
   void achievementClicked(AchievementClickedEvent event) {}
   @mustBeOverridden
   void achievementShared(AchievementSharedEvent event) {}
+  @mustBeOverridden
+  void chapterClicked(ChapterClickedEvent event) {}
   @mustBeOverridden
   void identify(Auth0IdToken profile, String analyticsId) {}
   @mustBeOverridden
@@ -210,6 +213,11 @@ class RudderAnalytics extends Analytics {
   @override
   void achievementShared(AchievementSharedEvent event) {
     RudderController.instance.track('achievement_shared', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  @override
+  void chapterClicked(ChapterClickedEvent event) {
+    RudderController.instance.track('chapter_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 
   @override
