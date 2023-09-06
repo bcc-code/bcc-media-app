@@ -798,7 +798,7 @@ class SSl extends S {
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Poglavja';
 
   @override
   String get removeWatchProgress => 'Remove watch progress';

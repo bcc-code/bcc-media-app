@@ -798,10 +798,10 @@ class SFr extends S {
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Chapitres';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'Supprimer la sélection';
 
   @override
   String get showDescription => 'Description de l\'émission';
@@ -810,13 +810,13 @@ class SFr extends S {
   String get releaseDate => 'Date de parution';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Disponible jusqu\'au';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Classement par âge';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Tous';
 
   @override
   String get offline => 'Offline';

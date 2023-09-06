@@ -798,10 +798,10 @@ class SFi extends S {
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Luvut';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'Unohda katselun edistyminen';
 
   @override
   String get showDescription => 'Näytä kuvaus';
@@ -810,13 +810,13 @@ class SFi extends S {
   String get releaseDate => 'Julkaisupäivämäärä';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Poistuu:';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Ikäsuositus';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Ei ikärajaa';
 
   @override
   String get offline => 'Offline';

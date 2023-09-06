@@ -798,10 +798,10 @@ class SPt extends S {
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Capítulo';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'Remover o progresso da exibição';
 
   @override
   String get showDescription => 'Sem descrição';
@@ -810,13 +810,13 @@ class SPt extends S {
   String get releaseDate => 'Datas de lançamento';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Disponível para';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Classificação etária';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Todos';
 
   @override
   String get offline => 'Offline';

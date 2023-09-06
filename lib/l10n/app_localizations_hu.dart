@@ -531,7 +531,7 @@ class SHu extends S {
   String get privacyPolicy => 'Adatvédelmi szabályzat';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Használati feltételek';
 
   @override
   String get categoriesTab => 'Kategóriák';
@@ -790,18 +790,18 @@ class SHu extends S {
   String get playGame => 'A játék lejátszása';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Szkenneld be a kódot, és jelentkezz be telefonoddal';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Vagy menj a $url oldalra, és add meg a kódot: $code';
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Fejezetek';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'Állítsd le az órát';
 
   @override
   String get showDescription => 'Leírás mutatása';
@@ -810,13 +810,13 @@ class SHu extends S {
   String get releaseDate => 'Megjelenési dátum';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Elérhető a';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Korhatár-besorolás';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Összes';
 
   @override
   String get offline => 'Offline';

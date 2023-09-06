@@ -798,10 +798,10 @@ class SNl extends S {
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Hoofdstukken';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'Verwijder vooruitgang bekijken';
 
   @override
   String get showDescription => 'Toon beschrijving';
@@ -810,13 +810,13 @@ class SNl extends S {
   String get releaseDate => 'Publicatiedatum';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Beschikbaar voor';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Leeftijd certificering';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Alle';
 
   @override
   String get offline => 'Offline';
