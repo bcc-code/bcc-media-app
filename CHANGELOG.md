@@ -1,4 +1,43 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v4.6.7+2300087...v) (2023-08-29)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v4.6.9+2300089...v) (2023-09-06)
+
+
+### Features
+
+* persistent anonymousId ([#192](https://github.com/bcc-code/bcc-media-app/issues/192)), rm rudder fork ([999a416](https://github.com/bcc-code/bcc-media-app/commit/999a416691ddc66e37e5d49895b2c7405cd8ea90))
+
+
+
+## [4.6.9+2300089](https://github.com/bcc-code/bcc-media-app/compare/v4.6.8+2300088...v4.6.9+2300089) (2023-09-06)
+
+
+### Bug Fixes
+
+* auth mock ([3fbaead](https://github.com/bcc-code/bcc-media-app/commit/3fbaead388cd0fde3bd9e67237e4b515ee9915aa))
+* useMaterial3 except for the live switch ([97bdedd](https://github.com/bcc-code/bcc-media-app/commit/97bdedd96ecc999aa36bbe0b64eb5a5a57012795))
+
+
+### Features
+
+* add episode details translations ([54e8b57](https://github.com/bcc-code/bcc-media-app/commit/54e8b5767c7bb3ae0479616fb3724abbd763c36b))
+* **analytics:** chapter_clicked with episodeid and chapterid ([9d01f25](https://github.com/bcc-code/bcc-media-app/commit/9d01f25bf5782eb4292735685268ea0a93cf7c74))
+* androidtv live banner update ([3a43190](https://github.com/bcc-code/bcc-media-app/commit/3a43190a9d2de011ac639647dda9b9fc177a7186))
+* offline home ([41e06c4](https://github.com/bcc-code/bcc-media-app/commit/41e06c4cf8ab4df8c28a16dd0e0c227de51a5065))
+
+
+
+## [4.6.8+2300088](https://github.com/bcc-code/bcc-media-app/compare/v4.6.7+2300087...v4.6.8+2300088) (2023-08-31)
+
+
+### Bug Fixes
+
+* weird audio only button ([71e7572](https://github.com/bcc-code/bcc-media-app/commit/71e7572accf20edd5eccd89f31e82291cd88047e))
+
+
+### Features
+
+* add missing translation about continue watching ([54201b0](https://github.com/bcc-code/bcc-media-app/commit/54201b0a331806e51cd709c89b17a69567f71199))
+* androidtv error handling and focus improvements ([8858b0d](https://github.com/bcc-code/bcc-media-app/commit/8858b0d41a138b0203430991fc76f2866d43eb05))
+* chapters ([#474](https://github.com/bcc-code/bcc-media-app/issues/474)) ([beb7670](https://github.com/bcc-code/bcc-media-app/commit/beb767066e63a2816de71ab3561a37f2be400000))
 
 
 
