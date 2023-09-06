@@ -180,20 +180,25 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             if (!kIsWeb)
               Padding(
                 padding: const EdgeInsets.only(right: 8),
-                child: Switch(
-                  inactiveTrackColor: DesignSystem.of(context).colors.tint2,
-                  inactiveThumbColor: DesignSystem.of(context).colors.label1,
-                  inactiveThumbImage: const Svg('assets/icons/headphones.svg', size: Size(12, 12)),
-                  activeColor: DesignSystem.of(context).colors.label1,
-                  activeTrackColor: DesignSystem.of(context).colors.tint1,
-                  activeThumbImage: const Svg('assets/icons/play_alt.svg', size: Size(9, 9)),
-                  value: !audioOnly,
-                  onChanged: (value) {
-                    setState(() {
-                      audioOnly = !value;
-                    });
-                    ref.read(analyticsProvider).audioOnlyClicked(AudioOnlyClickedEvent(audioOnly: !value));
-                  },
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    useMaterial3: false,
+                  ),
+                  child: Switch(
+                    inactiveTrackColor: DesignSystem.of(context).colors.tint2,
+                    inactiveThumbColor: DesignSystem.of(context).colors.label1,
+                    inactiveThumbImage: const Svg('assets/icons/headphones.svg', size: Size(12, 12)),
+                    activeColor: DesignSystem.of(context).colors.label1,
+                    activeTrackColor: DesignSystem.of(context).colors.tint1,
+                    activeThumbImage: const Svg('assets/icons/play_alt.svg', size: Size(9, 9)),
+                    value: !audioOnly,
+                    onChanged: (value) {
+                      setState(() {
+                        audioOnly = !value;
+                      });
+                      ref.read(analyticsProvider).audioOnlyClicked(AudioOnlyClickedEvent(audioOnly: !value));
+                    },
+                  ),
                 ),
               ),
           ],

@@ -80,17 +80,22 @@ ImageProvider<Object> networkImageWithRetryAndResize({
       ),
     );
 
-Widget imageErrorBuilder(context, error, stack) {
+Widget imageErrorBuilder(
+  BuildContext context,
+  Object error,
+  StackTrace? stackTrace, {
+  Widget? child,
+}) {
   return HookBuilder(builder: (context) {
     useEffect(() {
       FlutterError.reportError(
         FlutterErrorDetails(
           exception: Exception(['Image load failed', error]),
-          stack: stack != StackTrace.empty ? stack : StackTrace.current,
+          stack: stackTrace != StackTrace.empty ? stackTrace : StackTrace.current,
         ),
       );
       return null;
     }, []);
-    return const SizedBox.shrink();
+    return child ?? const SizedBox.shrink();
   });
 }

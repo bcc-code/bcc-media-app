@@ -1,11 +1,13 @@
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
+import 'package:brunstadtv_app/components/badges/offline_badge.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:brunstadtv_app/screens/tabs/live.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
@@ -90,47 +92,66 @@ class TvLiveScreen extends HookConsumerWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Stack(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
-                                    blurRadius: 12,
-                                    offset: focusHighlight.value ? const Offset(0, 6) : const Offset(0, 4),
-                                  )
-                                ],
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Stack(
-                                  children: [
-                                    Positioned.fill(
-                                      child: Container(
-                                        color: design.colors.background2,
-                                      ),
-                                    ),
-                                    FadeInImage(
-                                      placeholder: MemoryImage(kTransparentImage),
-                                      fadeInDuration: const Duration(milliseconds: 500),
-                                      fadeInCurve: Curves.easeOut,
-                                      image: networkImageWithRetryAndResize(
-                                        imageUrl: 'https://static.bcc.media/images/live-placeholder-with-text.jpg',
-                                      ),
-                                      imageErrorBuilder: imageErrorBuilder,
-                                      fit: BoxFit.fitHeight,
-                                    ),
+                        if (ref.watch(isOfflineProvider))
+                          const OfflineBadge()
+                        else
+                          Stack(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.5),
+                                      blurRadius: 12,
+                                      offset: focusHighlight.value ? const Offset(0, 6) : const Offset(0, 4),
+                                    )
                                   ],
                                 ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Stack(
+                                    children: [
+                                      Positioned.fill(
+                                        child: Container(
+                                          color: design.colors.background2,
+                                        ),
+                                      ),
+                                      FadeInImage(
+                                        placeholder: MemoryImage(kTransparentImage),
+                                        fadeInDuration: const Duration(milliseconds: 500),
+                                        fadeInCurve: Curves.easeOut,
+                                        image: networkImageWithRetryAndResize(
+                                          imageUrl: 'https://static.bcc.media/images/live-placeholder-with-text.jpg',
+                                        ),
+                                        imageErrorBuilder: (context, error, stackTrace) => imageErrorBuilder(
+                                          context,
+                                          error,
+                                          stackTrace,
+                                          child: AspectRatio(
+                                            aspectRatio: 16 / 9,
+                                            child: Container(
+                                              color: design.colors.background2,
+                                              child: Center(
+                                                child: Text(
+                                                  S.of(context).live,
+                                                  style: design.textStyles.title1.copyWith(color: design.colors.label2),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        fit: BoxFit.fitHeight,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
-                            if (liveUrlSnapshot.connectionState == ConnectionState.waiting)
-                              const Positioned.fill(
-                                child: Center(child: LoadingIndicator()),
-                              ),
-                          ],
-                        ),
+                              if (liveUrlSnapshot.connectionState == ConnectionState.waiting)
+                                const Positioned.fill(
+                                  child: Center(child: LoadingIndicator()),
+                                ),
+                            ],
+                          ),
                         /* Padding(
                           padding: EdgeInsets.only(top: 8),
                           child: Text(

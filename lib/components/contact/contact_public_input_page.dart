@@ -118,6 +118,7 @@ class ContactPublicInputPage extends HookWidget {
                 decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).contactMessageHint),
                 style: design.textStyles.body2.copyWith(color: design.colors.label1),
               ),
+              const SizedBox(height: 8),
               GestureDetector(
                 onTap: () => includeDeviceInfoChange(!includeDeviceInfo.value),
                 child: Row(
@@ -128,21 +129,23 @@ class ContactPublicInputPage extends HookWidget {
                       value: includeDeviceInfo.value,
                       onChanged: (value) => includeDeviceInfoChange(value),
                     ),
-                    SizedBox(width: Platform.isAndroid ? 0 : 6),
                     Expanded(
-                      child: RichText(
-                        text: TextSpan(children: [
-                          TextSpan(text: '${S.of(context).contactIncludeDeviceInfo} ', style: design.textStyles.caption1),
-                          TextSpan(
-                            recognizer: TapGestureRecognizer()..onTap = () => context.router.push(const DeviceInfoScreenRoute()),
-                            text: S.of(context).contactSeeData,
-                            style: design.textStyles.caption1.copyWith(
-                              fontWeight: FontWeight.w700,
-                              decoration: TextDecoration.underline,
-                              color: design.colors.tint1,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RichText(
+                          text: TextSpan(children: [
+                            TextSpan(text: '${S.of(context).contactIncludeDeviceInfo} ', style: design.textStyles.caption1),
+                            TextSpan(
+                              recognizer: TapGestureRecognizer()..onTap = () => context.router.push(const DeviceInfoScreenRoute()),
+                              text: S.of(context).contactSeeData,
+                              style: design.textStyles.caption1.copyWith(
+                                fontWeight: FontWeight.w700,
+                                decoration: TextDecoration.underline,
+                                color: design.colors.tint1,
+                              ),
                             ),
-                          ),
-                        ]),
+                          ]),
+                        ),
                       ),
                     )
                   ],
