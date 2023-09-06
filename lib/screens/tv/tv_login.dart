@@ -25,7 +25,7 @@ class TvLoginScreen extends HookConsumerWidget {
     final deviceCodeFuture = useState<Future<DeviceTokenRequestResponse>?>(null);
     final deviceCode = useFuture(deviceCodeFuture.value);
     final loginFuture = useState<Future<void>?>(null);
-    final loginSnapshot = useFuture(loginFuture.value);
+    final loginSnapshot = useFuture(loginFuture.value, preserveState: false);
 
     final fetchDeviceCode = useCallback(() => auth0Api.fetchDeviceCode(scope: 'openid profile offline_access church country'), [auth0Api]);
 
@@ -108,6 +108,7 @@ class TvLoginScreen extends HookConsumerWidget {
                   Flexible(
                     flex: 2,
                     child: ErrorGeneric(
+                      title: S.of(context).anErrorOccurred,
                       details: loginSnapshot.error.toString(),
                       onRetry: () {
                         deviceCodeFuture.value = fetchDeviceCode();

@@ -7,10 +7,10 @@ part of 'auth0_id_token.dart';
 // **************************************************************************
 
 Auth0IdToken _$Auth0IdTokenFromJson(Map<String, dynamic> json) => Auth0IdToken(
-      nickname: json['nickname'] as String,
+      nickname: json['nickname'] as String?,
       name: json['name'] as String,
-      picture: json['picture'] as String,
-      updatedAt: json['updated_at'] as String,
+      picture: json['picture'] as String?,
+      updatedAt: json['updated_at'] as String?,
       iss: json['iss'] as String,
       sub: json['sub'] as String,
       aud: json['aud'] as String,

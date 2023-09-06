@@ -4,10 +4,11 @@ import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/event_bus.dart';
 import 'package:brunstadtv_app/providers/androidtv_provider.dart';
-import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../components/status/loading_indicator.dart';
 import '../helpers/constants.dart';
@@ -89,15 +90,36 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
   Widget build(BuildContext context) {
     return simpleFutureBuilder<void>(
       future: authFuture,
-      error: (e) => error(context),
+      error: (e) => _Error(onRetry: load),
       noData: () => loading(context),
       ready: (_) => loading(context),
       loading: () => loading(context),
     );
   }
 
-  Widget error(BuildContext context) {
+  Widget loading(BuildContext context) => Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const LoadingIndicator(),
+              const SizedBox(height: 12),
+              Text(S.of(context).loading, style: DesignSystem.of(context).textStyles.body2),
+            ],
+          ),
+        ),
+      );
+}
+
+class _Error extends HookConsumerWidget {
+  final VoidCallback onRetry;
+
+  const _Error({Key? key, required this.onRetry}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
+    final focusingLogout = useState(false);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -109,17 +131,33 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
                   left: 0,
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: () {
-                        ref.read(authStateProvider.notifier).logout();
+                    child: FocusableActionDetector(
+                      actions: {
+                        ActivateIntent: CallbackAction<Intent>(
+                          onInvoke: (Intent intent) => ref.read(authStateProvider.notifier).logout(),
+                        ),
                       },
-                      child: SizedBox(
-                        height: 24,
-                        width: 56,
-                        child: Text(
-                          S.of(context).logOutButton,
-                          style: design.textStyles.button2,
+                      onFocusChange: (value) => focusingLogout.value = value,
+                      child: GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () {
+                          ref.read(authStateProvider.notifier).logout();
+                        },
+                        child: SizedBox(
+                          height: 24,
+                          width: 56,
+                          child: Text(
+                            S.of(context).logOutButton,
+                            style: !focusingLogout.value
+                                ? design.textStyles.button2
+                                : design.textStyles.button2.copyWith(shadows: [
+                                    Shadow(
+                                      color: Theme.of(context).brightness == Brightness.dark ? Colors.white30 : Colors.black26,
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 0),
+                                    )
+                                  ]),
+                          ),
                         ),
                       ),
                     ),
@@ -145,22 +183,14 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
                   const SizedBox(height: 16),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shadowColor: design.colors.tint1,
-                        shape: const RoundedRectangleBorder(
-                          side: BorderSide.none,
-                          borderRadius: BorderRadius.all(Radius.circular(24)),
-                        ),
-                        minimumSize: const Size.fromHeight(50),
-                      ),
-                      onPressed: (() {
-                        reloadAppConfig(ref);
-                        load();
-                      }),
-                      child: Text(
-                        S.of(context).tryAgainButton,
-                        style: design.textStyles.button1.copyWith(color: design.colors.onTint),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: design.buttons.large(
+                        autofocus: true,
+                        onPressed: (() {
+                          onRetry();
+                        }),
+                        labelText: S.of(context).tryAgainButton,
                       ),
                     ),
                   ),
@@ -172,17 +202,4 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
       ),
     );
   }
-
-  Widget loading(BuildContext context) => Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const LoadingIndicator(),
-              const SizedBox(height: 12),
-              Text(S.of(context).loading, style: DesignSystem.of(context).textStyles.body2),
-            ],
-          ),
-        ),
-      );
 }

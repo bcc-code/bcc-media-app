@@ -27,11 +27,11 @@ class Auth0IdToken {
     this.familyName,
   });
 
-  final String nickname;
+  final String? nickname;
   final String name;
-  final String picture;
+  final String? picture;
   @JsonKey(name: 'updated_at')
-  final String updatedAt;
+  final String? updatedAt;
   final String iss;
   final String sub;
   final String aud;
