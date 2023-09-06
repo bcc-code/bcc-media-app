@@ -1122,5 +1122,9 @@
   "ageRatingAll": "All",
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
+  },
+  "offline": "Offline",
+  "@offline": {
+    "description": "Status indicator, indicating that you are offline; not connected to the internet."
   }
 }
