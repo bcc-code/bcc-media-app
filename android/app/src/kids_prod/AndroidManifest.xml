@@ -35,8 +35,5 @@
         <meta-data
             android:name="firebase_data_collection_default_enabled"
             android:value="false" />
-        <meta-data
-            android:name="rudder_device_is_anonymous"
-            android:value="true" />
     </application>
 </manifest>

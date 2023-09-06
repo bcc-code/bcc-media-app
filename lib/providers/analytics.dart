@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/env/env.dart';
+import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
 import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
@@ -77,7 +78,10 @@ class RudderAnalytics extends Analytics {
     RudderLogger.init(RudderLogger.VERBOSE);
     RudderConfigBuilder builder = RudderConfigBuilder();
     builder.withDataPlaneUrl('https://rs.bcc.media/');
-    builder.withMobileConfig(MobileConfig(recordScreenViews: true));
+    builder.withMobileConfig(MobileConfig(
+      recordScreenViews: true,
+      collectDeviceId: FlavorConfig.current.strictAnonymousAnalytics != true,
+    ));
     controller.initialize(Env.rudderstackWriteKey, config: builder.build());
     PackageInfo.fromPlatform().then((value) => packageInfo = value);
   }

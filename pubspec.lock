@@ -509,14 +509,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.0"
-  flutter_dotenv:
-    dependency: transitive
-    description:
-      name: flutter_dotenv
-      sha256: "9357883bdd153ab78cbf9ffa07656e336b8bbb2b5a3ca596b0b27e119f7c7d77"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.1.0"
   flutter_driver:
     dependency: transitive
     description: flutter
@@ -1370,42 +1362,42 @@ packages:
     dependency: transitive
     description:
       name: rudder_plugin_android
-      sha256: f599915a9024d324da41372825d321e04dd452d37a8a61bb44ef5c7302f0bfa0
+      sha256: "3d377d70c33b1501e9059aca610ec8ad3f8394740e2e7ac7147d32abe6cdb2ee"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.2"
+    version: "2.4.0"
   rudder_plugin_ios:
     dependency: transitive
     description:
       name: rudder_plugin_ios
-      sha256: "29a6ddb561c1673169cd79bde18574163f7ab3b97955e8a9475afdf8129ff3c3"
+      sha256: b9a55e87d504199b5dcd3803db3bc7695e1db596d39940c10bc6c26acb2a79e9
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.2"
+    version: "2.4.0"
   rudder_plugin_web:
     dependency: transitive
     description:
       name: rudder_plugin_web
-      sha256: "650941ee413f26b25e690f6ab43d1cc6538e9d86240578db2939b5f618f40dcb"
+      sha256: "02230b8ee1181b4f43da3cb30b296163efe6fb82f56254cd582ce9aa1051e8cc"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.3"
+    version: "2.4.0"
   rudder_sdk_flutter:
     dependency: "direct main"
     description:
       name: rudder_sdk_flutter
-      sha256: "4eab622e0c5e183682769d416cda68752513a9f0c64a4c2215bff2f90b1fddc0"
+      sha256: "7cb8c97169a1dfddb10c53c4411df1bc8ab664f0877c4fde5e1790309580f017"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.3"
+    version: "2.5.0"
   rudder_sdk_flutter_platform_interface:
     dependency: "direct main"
     description:
       name: rudder_sdk_flutter_platform_interface
-      sha256: d4f6c849e4fb1e10b3b3cd46dd75c169ea48500739695b944978fc73eb603dc2
+      sha256: "4086380e6893b95fcedd7c76638d2d7aa5ea291488b9125c27b233a9531b8e8d"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.1"
+    version: "2.5.0"
   rxdart:
     dependency: transitive
     description:

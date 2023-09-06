@@ -40,20 +40,3 @@ configure([project(':rudder-sdk-android-core')]) {
         VERSION_NAME = '1.8.1'
     }
 }
-
-allprojects {
-    configurations.all {
-        resolutionStrategy.dependencySubstitution.all { DependencySubstitution dependency ->
-            if (dependency.requested instanceof ModuleComponentSelector && dependency.requested.group == 'com.rudderstack.android.sdk') {
-                def targetProject = findProject(':rudder-sdk-android-core')
-                if (targetProject != null) {
-                    logger.info('bccm: Substituting rudder-sdk-android-core with local :rudder-sdk-android-core.')
-                    dependency.useTarget targetProject
-                    logger.info('bccm: Successfully substituted rudder-sdk-android-core with local :rudder-sdk-android-core.')
-                } else {
-                    logger.error('bccm: Couldnt find local project(:rudder-sdk-android-core).')
-                }
-            }
-        }
-    }
-}
