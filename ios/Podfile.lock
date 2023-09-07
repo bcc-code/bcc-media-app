@@ -152,11 +152,11 @@ PODS:
     - PromisesObjC (= 2.3.1)
   - Protobuf (3.24.0)
   - ReachabilitySwift (5.0.0)
-  - Rudder (1.18.0):
+  - Rudder (1.19.2):
     - MetricsReporter (= 1.0.0)
   - rudder_plugin_ios (0.0.1):
     - Flutter
-    - Rudder (~> 1.8)
+    - Rudder (< 2.0.0, >= 1.19.2)
   - RudderKit (1.4.0)
   - share_plus (0.0.1):
     - Flutter
@@ -326,8 +326,8 @@ SPEC CHECKSUMS:
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
   Protobuf: 74a8b46ebe3001096a6f4b624e9efbae8adb2edd
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  Rudder: e5edeb1ce5d4b1f331e49013cd4075a110743885
-  rudder_plugin_ios: 39154ef0418ff5a552bca0b783e11a4312849319
+  Rudder: 26a9b6756628cb953f3151d835104ac9f5635861
+  rudder_plugin_ios: 6d73f06a3c4f2f5906746790af65e697976b04bd
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
   share_plus: 599aa54e4ea31d4b4c0e9c911bcc26c55e791028
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
