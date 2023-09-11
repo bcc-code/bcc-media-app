@@ -820,4 +820,7 @@ class SFr extends S {
 
   @override
   String get offline => 'Offline';
+
+  @override
+  String get downloadButton => 'Download';
 }

@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'l10n/app_localizations.dart';
 import 'models/auth_state.dart';
@@ -143,39 +144,42 @@ class _AppRootState extends ConsumerState<AppRoot> {
           ),
           child: GraphQLProvider(
             client: ValueNotifier(ref.watch(gqlClientProvider)),
-            child: MaterialApp.router(
-              localizationsDelegates: S.localizationsDelegates,
-              localeResolutionCallback: (locale, supportedLocales) {
-                if (locale?.languageCode == 'no') {
-                  return const Locale('nb');
-                }
-                if (supportedLocales.map((e) => e.languageCode).contains(locale?.languageCode)) {
-                  return locale;
-                }
-                return Locale(FlavorConfig.current.defaultLanguage);
-              },
-              supportedLocales: S.supportedLocales,
-              locale: ref.watch(settingsProvider).appLanguage,
-              theme: ThemeData(),
-              darkTheme: DesignSystem.of(context).materialThemeData,
-              themeMode: ThemeMode.dark,
-              debugShowCheckedModeBanner: false,
-              title: 'BCC Media',
-              routerDelegate: widget.appRouter.delegate(
-                initialRoutes: [const AutoLoginScreenRoute()],
-                navigatorObservers: () => [AnalyticsNavigatorObserver()],
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: MaterialApp.router(
+                localizationsDelegates: S.localizationsDelegates,
+                localeResolutionCallback: (locale, supportedLocales) {
+                  if (locale?.languageCode == 'no') {
+                    return const Locale('nb');
+                  }
+                  if (supportedLocales.map((e) => e.languageCode).contains(locale?.languageCode)) {
+                    return locale;
+                  }
+                  return Locale(FlavorConfig.current.defaultLanguage);
+                },
+                supportedLocales: S.supportedLocales,
+                locale: ref.watch(settingsProvider).appLanguage,
+                theme: ThemeData(),
+                darkTheme: DesignSystem.of(context).materialThemeData,
+                themeMode: ThemeMode.dark,
+                debugShowCheckedModeBanner: false,
+                title: 'BCC Media',
+                routerDelegate: widget.appRouter.delegate(
+                  initialRoutes: [const AutoLoginScreenRoute()],
+                  navigatorObservers: () => [AnalyticsNavigatorObserver()],
+                ),
+                routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
+                builder: (BuildContext context, Widget? child) {
+                  return ResponsiveBreakpoints.builder(
+                    child: MediaQuery(
+                      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                      child: child!,
+                    ),
+                    breakpoints: breakpoints,
+                    breakpointsLandscape: breakpoints,
+                  );
+                },
               ),
-              routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
-              builder: (BuildContext context, Widget? child) {
-                return ResponsiveBreakpoints.builder(
-                  child: MediaQuery(
-                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                    child: child!,
-                  ),
-                  breakpoints: breakpoints,
-                  breakpointsLandscape: breakpoints,
-                );
-              },
             ),
           ),
         ),

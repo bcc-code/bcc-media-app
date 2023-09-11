@@ -820,4 +820,7 @@ class SIt extends S {
 
   @override
   String get offline => 'Offline';
+
+  @override
+  String get downloadButton => 'Download';
 }

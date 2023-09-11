@@ -1700,6 +1700,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Offline'**
   String get offline;
+
+  /// Button text, a button to download the episode to make it available for offline playback.
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get downloadButton;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

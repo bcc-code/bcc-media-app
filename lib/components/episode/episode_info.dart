@@ -174,6 +174,7 @@ class _DownloadButton extends StatelessWidget {
           context: context,
           builder: (ctx) => EpisodeDownloadSheet(
             episode: episode,
+            parentContext: context,
           ),
         );
       },

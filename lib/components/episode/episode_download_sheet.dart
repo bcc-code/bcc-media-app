@@ -2,23 +2,31 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
 import 'package:brunstadtv_app/components/menus/option_list.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/helpers/bytes.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../helpers/insets.dart';
 import '../../helpers/languages.dart';
+import '../status/loading_indicator.dart';
 
 class EpisodeDownloadSheet extends HookWidget {
   const EpisodeDownloadSheet({
     Key? key,
     required this.episode,
+    required this.parentContext,
   }) : super(key: key);
 
   final Query$FetchEpisode$episode episode;
+  final BuildContext parentContext;
 
   @override
   Widget build(BuildContext context) {
@@ -28,58 +36,105 @@ class EpisodeDownloadSheet extends HookWidget {
     );
     final mediaInfoSnapshot = useFuture(mediaInfoFuture);
 
+    final selectedAudioTrack = useState<Track?>(null);
+    final selectedVideoTrack = useState<Track?>(null);
+
+    useEffect(() {
+      if (mediaInfoSnapshot.data?.audioTracks.safe.isNotEmpty == true) {
+        selectedAudioTrack.value = mediaInfoSnapshot.data?.audioTracks.safe.first;
+      }
+    }, [mediaInfoSnapshot.data]);
+
     int? estimatedFileSize = true ? 1300000 : null;
 
     const kLanguageOption = 'language';
     const kQualityOption = 'quality';
 
+    final design = DesignSystem.of(context);
+    final showSubtitlesList = useState(false);
+
     var options = [
       Option(
         id: kLanguageOption,
+        rightSlot: selectedAudioTrack.value != null
+            ? _currentlySelectedWidget(title: getLanguageName(selectedAudioTrack.value!.language) ?? selectedAudioTrack.value!.labelWithFallback)
+            : const Center(child: LoadingIndicator(width: 15, height: 15)),
         title: 'Language',
-        subTitle: 'Subtitles included',
+        subTitleSlot: _SubtitlesInfo(
+          showList: showSubtitlesList.value,
+          subtitleTracks: mediaInfoSnapshot.data?.textTracks.safe.toList(),
+        ),
+        overlay: Positioned.fill(
+          child: FractionallySizedBox(
+            widthFactor: 0.5,
+            alignment: Alignment.centerLeft,
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                showSubtitlesList.value = !showSubtitlesList.value;
+              },
+            ),
+          ),
+        ),
       ),
       Option(
         id: kQualityOption,
         title: S.of(context).videoQuality,
-        subTitle: 'Estimated file size: ${estimatedFileSize != null ? '${(estimatedFileSize / 1000).round()} MB' : 'Unknown'}',
+        subTitleSlot: Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: Text(
+            'Estimated file size: ${estimatedFileSize != null ? '${(estimatedFileSize / 1000).round()} MB' : 'Unknown'}',
+            style: design.textStyles.caption1.copyWith(color: design.colors.label4),
+          ),
+        ),
+        rightSlot: selectedVideoTrack.value != null ? _currentlySelectedWidget(title: selectedVideoTrack.value!.labelWithFallback) : null,
       ),
     ];
-    final design = DesignSystem.of(context);
 
-    void showLanguageSelector() {
+    void showLanguageSelector() async {
       final audioTracks = mediaInfoSnapshot.data?.audioTracks.safe;
       if (audioTracks == null) return;
-      showModalBottomSheet(
-          context: context,
-          useRootNavigator: true,
-          builder: (ctx) {
-            return BottomSheetSelect(
-              title: 'title',
-              items: [...audioTracks]
-                  .map((e) => Option(
-                        id: e.id,
-                        title: getLanguageName(e.language) ?? e.labelWithFallback,
-                      ))
-                  .toList(),
-              selectedId: '',
-              onSelectionChanged: (v) {},
-            );
-          });
+      if (!parentContext.mounted) return;
+      final option = await _showSelfClosingPopupOptionList(
+        context: parentContext,
+        appBarTitle: S.of(context).audioLanguage,
+        startingSelection: selectedAudioTrack.value?.id,
+        options: audioTracks
+            .map((e) => Option(
+                  id: e.id,
+                  title: getLanguageName(e.language) ?? e.labelWithFallback,
+                ))
+            .toList(),
+      );
+      if (!context.mounted || option == null) return;
+      selectedAudioTrack.value = audioTracks.firstWhere((element) => element.id == option.id);
     }
 
-    void showQualitySelector() {
-      showModalBottomSheet(
-          context: context,
-          useRootNavigator: true,
-          builder: (ctx) {
-            return BottomSheetSelect(
-              title: 'title',
-              items: options,
-              selectedId: '',
-              onSelectionChanged: (v) {},
-            );
-          });
+    void showQualitySelector() async {
+      final videoTracks = mediaInfoSnapshot.data?.videoTracks.safe;
+      if (videoTracks == null) return;
+      if (!parentContext.mounted) return;
+      final option = await _showSelfClosingPopupOptionList(
+        context: parentContext,
+        appBarTitle: S.of(context).videoQuality,
+        startingSelection: selectedVideoTrack.value?.id,
+        options: videoTracks
+            .map((e) => Option(
+                  id: e.id,
+                  title: e.labelWithFallback,
+                  subTitle: e.bitrate == null
+                      ? null
+                      : kiloBytesToString(
+                          kiloBytesForBitrateAndDuration(
+                            e.bitrate!,
+                            Duration(seconds: episode.duration),
+                          ),
+                        ),
+                ))
+            .toList(),
+      );
+      if (!context.mounted || option == null) return;
+      selectedVideoTrack.value = videoTracks.firstWhere((element) => element.id == option.id);
     }
 
     return Container(
@@ -114,6 +169,7 @@ class EpisodeDownloadSheet extends HookWidget {
                 optionData: options,
                 currentSelection: null,
                 showSelection: false,
+                enableDivider: true,
                 onSelectionChange: (val) async {
                   switch (val) {
                     case kLanguageOption:
@@ -123,8 +179,6 @@ class EpisodeDownloadSheet extends HookWidget {
                       showQualitySelector();
                       break;
                   }
-
-                  Navigator.of(context).maybePop();
 
                   /* ref.read(analyticsProvider).downloadStart(
                       ContentSharedEvent(
@@ -140,23 +194,184 @@ class EpisodeDownloadSheet extends HookWidget {
                 margin: const EdgeInsets.only(top: 16),
                 width: double.infinity,
                 height: 52.1,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: design.colors.separatorOnLight,
-                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(100))),
-                    side: BorderSide(width: 1, color: design.colors.separatorOnLight),
-                  ),
+                child: design.buttons.large(
                   onPressed: () {
                     Navigator.pop(context, BottomSheetSelectResult(cancelled: true));
                   },
-                  child: Text(
-                    S.of(context).cancel,
-                    style: design.textStyles.button1.copyWith(color: design.colors.label1),
-                  ),
+                  labelText: S.of(context).downloadButton,
                 ),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _currentlySelectedWidget extends StatelessWidget {
+  const _currentlySelectedWidget({
+    required this.title,
+  });
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+    return Container(
+      alignment: Alignment.topRight,
+      padding: const EdgeInsets.only(right: 8),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            title,
+            style: design.textStyles.body2.copyWith(color: design.colors.label3),
+          ),
+          const SizedBox(width: 14),
+          SvgPicture.string(
+            SvgIcons.chevronRight,
+            height: 12,
+            fit: BoxFit.scaleDown,
+            colorFilter: ColorFilter.mode(design.colors.label3, BlendMode.srcIn),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SubtitlesInfo extends HookWidget {
+  const _SubtitlesInfo({required this.showList, required this.subtitleTracks});
+
+  final bool showList;
+  final List<Track>? subtitleTracks;
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                'Subtitles included',
+                style: design.textStyles.caption1.copyWith(color: design.colors.label4),
+              ),
+              Container(
+                alignment: Alignment.bottomLeft,
+                padding: const EdgeInsets.only(
+                  left: 6,
+                  bottom: 1,
+                ),
+                child: SvgPicture.string(
+                  showList ? SvgIcons.chevronDown : SvgIcons.chevronRight,
+                  height: 10,
+                  fit: BoxFit.scaleDown,
+                  colorFilter: ColorFilter.mode(design.colors.label4, BlendMode.srcIn),
+                ),
+              ),
+            ],
+          ),
+        ),
+        if (showList && subtitleTracks?.isNotEmpty == true) ...[
+          const SizedBox(height: 12),
+          Text(
+            'All subtitles will be available offline',
+            style: design.textStyles.body2.copyWith(color: design.colors.label1),
+          ),
+          const SizedBox(height: 4),
+          ...subtitleTracks!.map((e) => Text(
+                e.labelWithFallback,
+                style: design.textStyles.caption1.copyWith(color: design.colors.label3),
+              )),
+        ]
+      ],
+    );
+  }
+}
+
+Future<Option?> _showSelfClosingPopupOptionList({
+  required BuildContext context,
+  required String appBarTitle,
+  String? startingSelection,
+  required List<Option> options,
+}) {
+  return showModalBottomSheet<Option>(
+    useRootNavigator: true,
+    context: context,
+    enableDrag: false,
+    elevation: 0,
+    isScrollControlled: true,
+    useSafeArea: true,
+    builder: (context) {
+      return _CupertinoPopup(
+        appBarTitle: appBarTitle,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 18),
+          child: HookBuilder(builder: (context) {
+            final selectedOption = useState<Option?>(options.firstWhereOrNull((element) => element.id == startingSelection));
+            return OptionList(
+              currentSelection: selectedOption.value?.id,
+              backgroundColor: Colors.transparent,
+              onSelectionChange: (v) {
+                selectedOption.value = options.firstWhereOrNull((element) => element.id == v);
+                Navigator.of(context).maybePop(selectedOption.value);
+              },
+              optionData: options,
+            );
+          }),
+        ),
+      );
+    },
+  );
+}
+
+class _CupertinoPopup extends StatelessWidget {
+  const _CupertinoPopup({
+    required this.appBarTitle,
+    required this.body,
+  });
+
+  final String appBarTitle;
+  final Widget body;
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 51,
+        leadingWidth: 92,
+        scrolledUnderElevation: 0,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).maybePop();
+          },
+          child: Container(
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(left: 14),
+            child: SvgPicture.string(
+              SvgIcons.close,
+              width: 24,
+              height: 24,
+              fit: BoxFit.scaleDown,
+              colorFilter: ColorFilter.mode(design.colors.tint1, BlendMode.srcIn),
+            ),
+          ),
+        ),
+        title: Text(appBarTitle),
+      ),
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: SafeArea(
+          child: body,
         ),
       ),
     );

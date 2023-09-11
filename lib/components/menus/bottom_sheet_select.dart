@@ -118,7 +118,7 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                       side: BorderSide(width: 1, color: design.colors.separatorOnLight),
                     ),
                     onPressed: () {
-                      PrimaryScrollController.of(context).animateTo(1000, duration: Duration(seconds: 1), curve: Curves.ease);
+                      Navigator.pop(context, BottomSheetSelectResult(cancelled: true));
                     },
                     child: Text(
                       S.of(context).cancel,
