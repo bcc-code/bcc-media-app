@@ -40,33 +40,17 @@ class OptionList extends StatelessWidget {
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
-      child: ScrollConfiguration(
-        behavior: const ScrollBehavior().copyWith(overscroll: false), // Disable over-scroll glow effect
-        child: ListView.separated(
-          cacheExtent: 100000,
-          shrinkWrap: true,
-          itemCount: optionData.length,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            final option = optionData[index];
-            final isOptionSelected = showSelection && currentSelection == option.id;
-            return _OptionListOption(
+      child: Column(
+        children: [
+          ...optionData.map(
+            (option) => _OptionListOption(
               onSelectionChange: onSelectionChange,
               option: option,
-              isSelected: isOptionSelected,
+              isSelected: showSelection && currentSelection == option.id,
               backgroundColor: backgroundColor ?? DesignSystem.of(context).colors.background2,
-            );
-          },
-          separatorBuilder: (context, index) {
-            return Visibility(
-              visible: enableDivider,
-              child: const Divider(
-                height: 1,
-                thickness: 1,
-              ),
-            );
-          },
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }

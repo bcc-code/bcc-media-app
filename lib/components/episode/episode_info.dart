@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/badges/feature_badge.dart';
+import 'package:brunstadtv_app/components/episode/episode_download_sheet.dart';
+import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
@@ -92,6 +94,7 @@ class EpisodeInfo extends HookConsumerWidget {
                             ),
                           ),
                         ),
+                      if (ref.read(featureFlagsProvider).download) _DownloadButton(episode: episode),
                       if (ref.read(featureFlagsProvider).shareVideoButton)
                         GestureDetector(
                           onTap: onShareVideoTapped,
@@ -145,6 +148,41 @@ class EpisodeInfo extends HookConsumerWidget {
               ),
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DownloadButton extends StatelessWidget {
+  const _DownloadButton({
+    required this.episode,
+  });
+
+  final Query$FetchEpisode$episode episode;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () async {
+        if (!await checkParentalGate(context)) {
+          return;
+        }
+        if (!context.mounted) return;
+        showModalBottomSheet(
+          useRootNavigator: true,
+          context: context,
+          builder: (ctx) => EpisodeDownloadSheet(
+            episode: episode,
+          ),
+        );
+      },
+      behavior: HitTestBehavior.opaque,
+      child: FocusableActionDetector(
+        mouseCursor: MaterialStateMouseCursor.clickable,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
+          child: SvgPicture.string(SvgIcons.download),
         ),
       ),
     );

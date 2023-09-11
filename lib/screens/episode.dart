@@ -13,7 +13,7 @@ import 'package:brunstadtv_app/components/player/player_poster.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:brunstadtv_app/components/episode/share_episode_sheet.dart';
+import 'package:brunstadtv_app/components/episode/episode_share_sheet.dart';
 import 'package:brunstadtv_app/models/analytics/chapter_clicked.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
@@ -261,9 +261,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
     if (player != null && player.playerId != 'chromecast') {
       ref.read(playbackServiceProvider).platformApi.pause(player.playerId);
     }
-    if (!await checkParentalGate(context) || !context.mounted) {
+    if (!await checkParentalGate(context)) {
       return;
     }
+    if (!context.mounted) return;
     showModalBottomSheet(
       useRootNavigator: true,
       context: context,
