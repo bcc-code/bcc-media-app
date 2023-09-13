@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/badges/feature_badge.dart';
-import 'package:brunstadtv_app/components/episode/episode_download_sheet.dart';
-import 'package:brunstadtv_app/components/misc/parental_gate.dart';
+import 'package:brunstadtv_app/components/episode/episode_download_button.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
@@ -75,40 +74,7 @@ class EpisodeInfo extends HookConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: design.textStyles.title1)),
-                      if (ref.read(authStateProvider.select((value) => value.auth0AccessToken != null)) && inMyListValue != null)
-                        GestureDetector(
-                          onTap: toggleInMyList,
-                          behavior: HitTestBehavior.opaque,
-                          child: FocusableActionDetector(
-                            mouseCursor: MaterialStateMouseCursor.clickable,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
-                              child: AnimatedSwitcher(
-                                duration: const Duration(milliseconds: 150),
-                                child: SvgPicture.string(key: ValueKey(inMyListValue), inMyListValue ? SvgIcons.heartFilled : SvgIcons.heart),
-                              ),
-                            ),
-                          ),
-                        ),
-                      if (ref.read(featureFlagsProvider).download) _DownloadButton(episode: episode),
-                      if (ref.read(featureFlagsProvider).shareVideoButton)
-                        GestureDetector(
-                          onTap: onShareVideoTapped,
-                          behavior: HitTestBehavior.opaque,
-                          child: FocusableActionDetector(
-                            mouseCursor: MaterialStateMouseCursor.clickable,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
-                              child: SvgPicture.string(SvgIcons.share),
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
+                  Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: design.textStyles.title1),
                   const SizedBox(height: 4),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -136,54 +102,69 @@ class EpisodeInfo extends HookConsumerWidget {
                             child: Text(episodeNumberFormatted, style: design.textStyles.caption1.copyWith(color: design.colors.label4)))
                     ],
                   ),
-                  const SizedBox(height: 14.5),
+                  const SizedBox(height: 16),
                   if (episode.description.isNotEmpty)
                     TextCollapsible(
                       text: episode.description,
                       style: design.textStyles.body2.copyWith(color: design.colors.label3),
                       maxLines: 2,
                     ),
+                  const SizedBox(height: 16),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (ref.read(authStateProvider.select((value) => value.auth0AccessToken != null)) && inMyListValue != null)
+                        GestureDetector(
+                          onTap: toggleInMyList,
+                          behavior: HitTestBehavior.opaque,
+                          child: FocusableActionDetector(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 4, right: 12),
+                              child: AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 300),
+                                switchInCurve: Curves.easeOutCirc,
+                                switchOutCurve: Curves.easeInCirc,
+                                child: inMyListValue
+                                    ? SvgPicture.string(
+                                        SvgIcons.heartFilled,
+                                        key: ValueKey(inMyListValue),
+                                        height: 24,
+                                      )
+                                    : SvgPicture.string(
+                                        SvgIcons.heart,
+                                        key: ValueKey(inMyListValue),
+                                        height: 24,
+                                        colorFilter: ColorFilter.mode(design.colors.tint1, BlendMode.srcIn),
+                                      ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      if (ref.read(featureFlagsProvider).shareVideoButton)
+                        GestureDetector(
+                          onTap: onShareVideoTapped,
+                          behavior: HitTestBehavior.opaque,
+                          child: FocusableActionDetector(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 4, left: 12, right: 6),
+                              child: SvgPicture.string(
+                                SvgIcons.share,
+                                colorFilter: ColorFilter.mode(design.colors.tint1, BlendMode.srcIn),
+                              ),
+                            ),
+                          ),
+                        ),
+                      const Spacer(),
+                      if (ref.read(featureFlagsProvider).download) EpisodeDownloadButton(episode: episode),
+                    ],
+                  ),
                   ...?extraChildren
                 ],
               ),
             )
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _DownloadButton extends StatelessWidget {
-  const _DownloadButton({
-    required this.episode,
-  });
-
-  final Query$FetchEpisode$episode episode;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        if (!await checkParentalGate(context)) {
-          return;
-        }
-        if (!context.mounted) return;
-        showModalBottomSheet(
-          useRootNavigator: true,
-          context: context,
-          builder: (ctx) => EpisodeDownloadSheet(
-            episode: episode,
-            parentContext: context,
-          ),
-        );
-      },
-      behavior: HitTestBehavior.opaque,
-      child: FocusableActionDetector(
-        mouseCursor: MaterialStateMouseCursor.clickable,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
-          child: SvgPicture.string(SvgIcons.download),
         ),
       ),
     );

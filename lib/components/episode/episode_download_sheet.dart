@@ -12,13 +12,14 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../helpers/insets.dart';
 import '../../helpers/languages.dart';
 import '../status/loading_indicator.dart';
 
-class EpisodeDownloadSheet extends HookWidget {
+class EpisodeDownloadSheet extends HookConsumerWidget {
   const EpisodeDownloadSheet({
     Key? key,
     required this.episode,
@@ -29,12 +30,15 @@ class EpisodeDownloadSheet extends HookWidget {
   final BuildContext parentContext;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final mediaInfoFuture = useMemoized(
       () => BccmPlayerInterface.instance.fetchMediaInfo(url: episode.streams.getBestStreamUrl()),
       [episode],
     );
     final mediaInfoSnapshot = useFuture(mediaInfoFuture);
+
+    final downloadFuture = useState<Future<Download>?>(null);
+    final downloadSnapshot = useFuture(downloadFuture.value);
 
     final selectedAudioTrack = useState<Track?>(null);
     final selectedVideoTrack = useState<Track?>(null);
@@ -42,6 +46,9 @@ class EpisodeDownloadSheet extends HookWidget {
     useEffect(() {
       if (mediaInfoSnapshot.data?.audioTracks.safe.isNotEmpty == true) {
         selectedAudioTrack.value = mediaInfoSnapshot.data?.audioTracks.safe.first;
+      }
+      if (mediaInfoSnapshot.data?.videoTracks.safe.isNotEmpty == true) {
+        selectedVideoTrack.value = mediaInfoSnapshot.data?.videoTracks.safe.first;
       }
     }, [mediaInfoSnapshot.data]);
 
@@ -60,9 +67,11 @@ class EpisodeDownloadSheet extends HookWidget {
             ? _currentlySelectedWidget(title: getLanguageName(selectedAudioTrack.value!.language) ?? selectedAudioTrack.value!.labelWithFallback)
             : const Center(child: LoadingIndicator(width: 15, height: 15)),
         title: 'Language',
-        subTitleSlot: _SubtitlesInfo(
-          showList: showSubtitlesList.value,
-          subtitleTracks: mediaInfoSnapshot.data?.textTracks.safe.toList(),
+        subTitleSlot: ClipRect(
+          child: _SubtitlesInfo(
+            showList: showSubtitlesList.value,
+            subtitleTracks: mediaInfoSnapshot.data?.textTracks.safe.toList(),
+          ),
         ),
         overlay: Positioned.fill(
           child: FractionallySizedBox(
@@ -190,17 +199,38 @@ class EpisodeDownloadSheet extends HookWidget {
                     ); */
                 },
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 16),
-                width: double.infinity,
-                height: 52.1,
-                child: design.buttons.large(
-                  onPressed: () {
-                    Navigator.pop(context, BottomSheetSelectResult(cancelled: true));
-                  },
-                  labelText: S.of(context).downloadButton,
+              if (downloadSnapshot.connectionState == ConnectionState.waiting)
+                Container(
+                  margin: const EdgeInsets.only(top: 16),
+                  child: const LoadingIndicator(),
+                )
+              else
+                Container(
+                  margin: const EdgeInsets.only(top: 16),
+                  width: double.infinity,
+                  height: 52.1,
+                  child: design.buttons.large(
+                    disabled: selectedAudioTrack.value?.id == null || selectedVideoTrack.value?.id == null,
+                    onPressed: () async {
+                      final mediaItem = ref.read(playbackServiceProvider).mapEpisode(episode);
+
+                      downloadFuture.value = DownloaderInterface.instance.startDownload(
+                        DownloadConfig(
+                            url: episode.streams.getBestStreamUrl(),
+                            mimeType: 'application/x-mpegURL',
+                            title: episode.title,
+                            audioTrackIds: [selectedAudioTrack.value?.id],
+                            videoTrackIds: [selectedVideoTrack.value?.id],
+                            additionalData: mediaItem.metadata?.extras ?? {'id': episode.id}),
+                      );
+                      await downloadFuture.value;
+                      if (context.mounted) {
+                        Navigator.of(context).maybePop(true);
+                      }
+                    },
+                    labelText: S.of(context).downloadButton,
+                  ),
                 ),
-              ),
             ],
           ),
         ),
@@ -254,42 +284,68 @@ class _SubtitlesInfo extends HookWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 4),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                'Subtitles included',
-                style: design.textStyles.caption1.copyWith(color: design.colors.label4),
-              ),
-              Container(
-                alignment: Alignment.bottomLeft,
-                padding: const EdgeInsets.only(
-                  left: 6,
-                  bottom: 1,
+        if (subtitleTracks?.isNotEmpty != true) ...[
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'No subtitles',
+                  style: design.textStyles.caption1.copyWith(color: design.colors.label4),
                 ),
-                child: SvgPicture.string(
-                  showList ? SvgIcons.chevronDown : SvgIcons.chevronRight,
-                  height: 10,
-                  fit: BoxFit.scaleDown,
-                  colorFilter: ColorFilter.mode(design.colors.label4, BlendMode.srcIn),
+              ],
+            ),
+          ),
+        ] else ...[
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'Subtitles included',
+                  style: design.textStyles.caption1.copyWith(color: design.colors.label4),
                 ),
+                Container(
+                  alignment: Alignment.bottomLeft,
+                  padding: const EdgeInsets.only(
+                    left: 6,
+                    bottom: 1,
+                  ),
+                  child: SvgPicture.string(
+                    showList ? SvgIcons.chevronDown : SvgIcons.chevronRight,
+                    height: 10,
+                    fit: BoxFit.scaleDown,
+                    colorFilter: ColorFilter.mode(design.colors.label4, BlendMode.srcIn),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          AnimatedSize(
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeOutCirc,
+            alignment: Alignment.topCenter,
+            child: ClipRect(
+              child: Align(
+                alignment: Alignment.topLeft,
+                heightFactor: showList && subtitleTracks?.isNotEmpty == true ? 1 : 0,
+                child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  const SizedBox(height: 12),
+                  Text(
+                    'All subtitles will be available offline',
+                    style: design.textStyles.body2.copyWith(color: design.colors.label1),
+                  ),
+                  const SizedBox(height: 4),
+                  ...subtitleTracks!.map((e) => Text(
+                        e.labelWithFallback,
+                        style: design.textStyles.caption1.copyWith(color: design.colors.label3),
+                      )),
+                ]),
               ),
-            ],
-          ),
-        ),
-        if (showList && subtitleTracks?.isNotEmpty == true) ...[
-          const SizedBox(height: 12),
-          Text(
-            'All subtitles will be available offline',
-            style: design.textStyles.body2.copyWith(color: design.colors.label1),
-          ),
-          const SizedBox(height: 4),
-          ...subtitleTracks!.map((e) => Text(
-                e.labelWithFallback,
-                style: design.textStyles.caption1.copyWith(color: design.colors.label3),
-              )),
+            ),
+          )
         ]
       ],
     );

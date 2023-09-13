@@ -62,7 +62,7 @@ class PlaybackService {
     }
   }
 
-  MediaItem _mapEpisode(Fragment$PlayableEpisode episode) {
+  MediaItem mapEpisode(Fragment$PlayableEpisode episode) {
     final collectionId = episode.context.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id;
     return MediaItem(
       url: episode.streams.getBestStreamUrl(),
@@ -110,13 +110,13 @@ class PlaybackService {
   }
 
   Future playEpisode({required String playerId, required Fragment$PlayableEpisode episode, bool? autoplay, int? playbackPositionMs}) async {
-    var mediaItem = _mapEpisode(episode);
+    var mediaItem = mapEpisode(episode);
     mediaItem.playbackStartPositionMs = playbackPositionMs?.toDouble();
     await platformApi.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
   }
 
   Future queueEpisode({required String playerId, required Query$FetchEpisode$episode episode}) async {
-    var mediaItem = _mapEpisode(episode);
+    var mediaItem = mapEpisode(episode);
     platformApi.queueMediaItem(playerId, mediaItem);
   }
 }

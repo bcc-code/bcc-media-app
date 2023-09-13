@@ -115,42 +115,40 @@ class _OptionListOption extends HookWidget {
                 child: Container(
                   padding: const EdgeInsets.all(16),
                   constraints: const BoxConstraints(minHeight: 56),
-                  child: IntrinsicHeight(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        if (option.icon != null)
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 3.2),
-                            margin: const EdgeInsets.only(right: 16),
-                            child: option.icon,
-                          ),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                option.title,
-                                style: DesignSystem.of(context).textStyles.title3,
-                              ),
-                              if (option.subTitle != null)
-                                Container(
-                                  margin: const EdgeInsets.only(top: 2),
-                                  child: Text(
-                                    option.subTitle!,
-                                    style: DesignSystem.of(context).textStyles.caption1.copyWith(color: const Color.fromRGBO(235, 235, 245, 0.6)),
-                                  ),
-                                ),
-                              if (option.subTitleSlot != null) option.subTitleSlot!
-                            ],
-                          ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (option.icon != null)
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 3.2),
+                          margin: const EdgeInsets.only(right: 16),
+                          child: option.icon,
                         ),
-                        if (option.rightSlot != null) option.rightSlot!,
-                        if (isSelected) SvgPicture.string(SvgIcons.checkIcon),
-                      ],
-                    ),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              option.title,
+                              style: DesignSystem.of(context).textStyles.title3,
+                            ),
+                            if (option.subTitle != null)
+                              Container(
+                                margin: const EdgeInsets.only(top: 2),
+                                child: Text(
+                                  option.subTitle!,
+                                  style: DesignSystem.of(context).textStyles.caption1.copyWith(color: const Color.fromRGBO(235, 235, 245, 0.6)),
+                                ),
+                              ),
+                            if (option.subTitleSlot != null) option.subTitleSlot!
+                          ],
+                        ),
+                      ),
+                      if (option.rightSlot != null) option.rightSlot!,
+                      if (isSelected) SvgPicture.string(SvgIcons.checkIcon),
+                    ],
                   ),
                 ),
               ),
