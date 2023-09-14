@@ -19,14 +19,14 @@ import '../../components/profile/setting_list.dart';
 
 import '../../theme/design_system/design_system.dart';
 
-class ProfileScreen extends ConsumerStatefulWidget {
-  const ProfileScreen({super.key});
+class SettingsScreen extends ConsumerStatefulWidget {
+  const SettingsScreen({super.key});
 
   @override
-  ConsumerState<ProfileScreen> createState() => _ProfileState();
+  ConsumerState<SettingsScreen> createState() => _SettingsState();
 }
 
-class _ProfileState extends ConsumerState<ProfileScreen> {
+class _SettingsState extends ConsumerState<SettingsScreen> {
   Future<void> loginAction(BuildContext context) async {
     final success = await ref.read(authStateProvider.notifier).login();
     if (success && context.mounted) {

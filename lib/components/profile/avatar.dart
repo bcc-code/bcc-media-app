@@ -13,55 +13,42 @@ class Avatar extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final imageUrl = ref.read(authStateProvider).user?.picture.toString();
-    final name = ref.read(authStateProvider).user?.name;
+    final imageUrl = ref.watch(authStateProvider.select((value) => value.user?.picture));
     const avatarWidth = 100.0;
-
-    return Container(
-      margin: const EdgeInsets.only(top: 24, bottom: 16),
-      child: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 16),
-            child: kIsWeb
-                ? Container(
-                    alignment: Alignment.center,
-                    width: avatarWidth,
-                    height: avatarWidth,
-                    child: SvgPicture.string(SvgIcons.avatar),
-                  )
-                : Container(
-                    width: avatarWidth,
-                    height: avatarWidth,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: DesignSystem.of(context).colors.background2,
-                        width: 2,
-                      ),
+    final design = DesignSystem.of(context);
+    return kIsWeb
+        ? Container(
+            alignment: Alignment.center,
+            width: avatarWidth,
+            height: avatarWidth,
+            child: SvgPicture.string(SvgIcons.avatar),
+          )
+        : Container(
+            width: avatarWidth,
+            height: avatarWidth,
+            decoration: BoxDecoration(
+              color: design.colors.background2,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: design.colors.background2,
+                width: 2,
+              ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(1000),
+              child: Image(
+                image: NetworkImage(imageUrl ?? ''),
+                errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                  return Center(
+                    child: SvgPicture.string(
+                      SvgIcons.avatar,
+                      color: DesignSystem.of(context).colors.tint1,
+                      height: 35,
                     ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(1000),
-                      child: Image(
-                        image: NetworkImage(imageUrl ?? ''),
-                        errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                          return Center(
-                            child: SvgPicture.string(
-                              SvgIcons.avatar,
-                              color: DesignSystem.of(context).colors.tint1,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-          ),
-          Text(
-            name ?? '',
-            style: DesignSystem.of(context).textStyles.title1,
-          ),
-        ],
-      ),
-    );
+                  );
+                },
+              ),
+            ),
+          );
   }
 }

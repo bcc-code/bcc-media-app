@@ -104,12 +104,14 @@ class EpisodeInfo extends HookConsumerWidget {
                   ),
                   const SizedBox(height: 16),
                   if (episode.description.isNotEmpty)
-                    TextCollapsible(
-                      text: episode.description,
-                      style: design.textStyles.body2.copyWith(color: design.colors.label3),
-                      maxLines: 2,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: TextCollapsible(
+                        text: episode.description,
+                        style: design.textStyles.body2.copyWith(color: design.colors.label3),
+                        maxLines: 2,
+                      ),
                     ),
-                  const SizedBox(height: 16),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

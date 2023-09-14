@@ -83,7 +83,12 @@ class CustomNavTabBar extends HookConsumerWidget {
           icon: icon(icons.calendar.image, false),
           activeIcon: icon(icons.calendar.activeImage, true),
         ),
-      ]
+      ],
+      BottomNavigationBarItem(
+        label: S.of(context).profileTab,
+        icon: icon(icons.profile.image, false),
+        activeIcon: icon(icons.profile.activeImage, true),
+      ),
     ];
     debugPrint('custom_tab_bar rebuild. guestMode: $guestMode');
 

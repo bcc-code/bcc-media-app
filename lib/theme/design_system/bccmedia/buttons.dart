@@ -24,7 +24,7 @@ class BccMediaButtons extends DesignSystemButtons {
       labelText: labelText,
       image: image,
       backgroundColor: colors.tint1,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 3),
       border: Border.all(color: colors.onTint.withOpacity(0.2), width: 1),
       imageDimension: 20,
       textStyle: textStyles.button1.copyWith(color: colors.label1),
