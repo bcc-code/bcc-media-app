@@ -9,28 +9,34 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../theme/design_system/design_system.dart';
 
 class Avatar extends HookConsumerWidget {
-  const Avatar({Key? key}) : super(key: key);
+  const Avatar({
+    Key? key,
+    this.width = 100.0,
+    this.backgroundColor,
+  }) : super(key: key);
+
+  final double? width;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final imageUrl = ref.watch(authStateProvider.select((value) => value.user?.picture));
-    const avatarWidth = 100.0;
     final design = DesignSystem.of(context);
     return kIsWeb
         ? Container(
             alignment: Alignment.center,
-            width: avatarWidth,
-            height: avatarWidth,
+            width: width,
+            height: width,
             child: SvgPicture.string(SvgIcons.avatar),
           )
         : Container(
-            width: avatarWidth,
-            height: avatarWidth,
+            width: width,
+            height: width,
             decoration: BoxDecoration(
-              color: design.colors.background2,
+              color: backgroundColor ?? design.colors.background2,
               shape: BoxShape.circle,
               border: Border.all(
-                color: design.colors.background2,
+                color: backgroundColor ?? design.colors.background2,
                 width: 2,
               ),
             ),
@@ -39,11 +45,14 @@ class Avatar extends HookConsumerWidget {
               child: Image(
                 image: NetworkImage(imageUrl ?? ''),
                 errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                  return Center(
-                    child: SvgPicture.string(
-                      SvgIcons.avatar,
-                      color: DesignSystem.of(context).colors.tint1,
-                      height: 35,
+                  return FractionallySizedBox(
+                    widthFactor: 0.4,
+                    child: Center(
+                      child: SvgPicture.string(
+                        SvgIcons.avatar,
+                        colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.tint1, BlendMode.srcIn),
+                        height: 35,
+                      ),
                     ),
                   );
                 },

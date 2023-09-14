@@ -64,7 +64,9 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
       Option(
         id: kLanguageOption,
         rightSlot: selectedAudioTrack.value != null
-            ? _currentlySelectedWidget(title: getLanguageName(selectedAudioTrack.value!.language) ?? selectedAudioTrack.value!.labelWithFallback)
+            ? _currentlySelectedWidget(
+                title: getLanguageName(selectedAudioTrack.value!.language) ?? selectedAudioTrack.value!.labelWithFallback,
+              )
             : const Center(child: LoadingIndicator(width: 15, height: 15)),
         title: 'Language',
         subTitleSlot: ClipRect(
@@ -96,7 +98,11 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
             style: design.textStyles.caption1.copyWith(color: design.colors.label4),
           ),
         ),
-        rightSlot: selectedVideoTrack.value != null ? _currentlySelectedWidget(title: selectedVideoTrack.value!.labelWithFallback) : null,
+        rightSlot: selectedVideoTrack.value != null
+            ? _currentlySelectedWidget(
+                title: selectedVideoTrack.value!.labelWithFallback,
+              )
+            : null,
       ),
     ];
 
@@ -108,12 +114,14 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
         context: parentContext,
         appBarTitle: S.of(context).audioLanguage,
         startingSelection: selectedAudioTrack.value?.id,
-        options: audioTracks
-            .map((e) => Option(
-                  id: e.id,
-                  title: getLanguageName(e.language) ?? e.labelWithFallback,
-                ))
-            .toList(),
+        options: audioTracks.map((e) {
+          final lang = languages[e.language];
+          return Option(
+            id: e.id,
+            title: lang?.nativeName ?? e.labelWithFallback,
+            subTitle: lang?.englishName,
+          );
+        }).toList(),
       );
       if (!context.mounted || option == null) return;
       selectedAudioTrack.value = audioTracks.firstWhere((element) => element.id == option.id);

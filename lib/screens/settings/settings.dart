@@ -6,6 +6,7 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../components/nav/custom_back_button.dart';
@@ -42,6 +43,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
     final authEnabled = ref.watch(featureFlagsProvider).auth;
     final user = ref.read(authStateProvider.select((value) => value.user));
     final settings = ref.watch(settingsProvider);
+    final design = DesignSystem.of(context);
     return DialogOnWeb(
       child: CupertinoScaffold(
         body: Scaffold(
@@ -49,8 +51,29 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
             elevation: 0,
             toolbarHeight: 44,
             leadingWidth: 92,
-            leading: const CustomBackButton(),
-            title: authEnabled ? Text(S.of(context).profileTab) : Text(S.of(context).settings),
+            leading: FocusableControlBuilder(
+              onPressed: () {
+                context.router.pop();
+              },
+              builder: (context, control) => Container(
+                padding: const EdgeInsets.only(left: 16),
+                width: double.infinity,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  S.of(context).back,
+                  style: !control.isFocused
+                      ? design.textStyles.button2
+                      : design.textStyles.button2.copyWith(shadows: [
+                          Shadow(
+                            color: Theme.of(context).brightness == Brightness.dark ? Colors.white30 : Colors.black26,
+                            blurRadius: 8,
+                            offset: const Offset(0, 0),
+                          )
+                        ]),
+                ),
+              ),
+            ),
+            title: Text(S.of(context).settings),
           ),
           body: SafeArea(
             child: SingleChildScrollView(
@@ -60,42 +83,38 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    if (authEnabled) ...[
-                      if (user != null)
-                        const Avatar()
-                      else
-                        Padding(
-                          padding: const EdgeInsets.only(top: 24, bottom: 16),
-                          child: Padding(
-                            padding: const EdgeInsets.all(6),
-                            child: SvgPicture.string(
-                              SvgIcons.avatar,
-                              color: DesignSystem.of(context).colors.tint1,
+                    if (authEnabled)
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                        decoration: BoxDecoration(
+                          color: design.colors.background2,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        foregroundDecoration: BoxDecoration(
+                          border: Border.all(color: design.colors.separatorOnLight, width: 1),
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Row(children: [
+                          Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Avatar(
+                              width: 52,
+                              backgroundColor: design.colors.background1,
                             ),
                           ),
-                        ),
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 24),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            if (user != null)
-                              GestureDetector(
-                                onLongPress: () => ref.read(authStateProvider.notifier).logout(manual: false),
-                                child: DesignSystem.of(context).buttons.smallSecondary(
-                                      onPressed: () => {ref.read(authStateProvider.notifier).logout()},
-                                      labelText: S.of(context).logOutButton,
-                                    ),
-                              )
-                            else
-                              DesignSystem.of(context).buttons.small(
+                          if (user == null)
+                            Container(
+                              margin: const EdgeInsets.only(bottom: 24),
+                              child: DesignSystem.of(context).buttons.small(
                                     onPressed: () => context.router.navigate(OnboardingScreenRoute()),
                                     labelText: S.of(context).signInOrSignUp,
-                                  )
-                          ],
-                        ),
-                      ),
-                    ] else ...[
+                                  ),
+                            )
+                          else
+                            Text(user.name, style: design.textStyles.title3.copyWith(color: design.colors.label1))
+                        ]),
+                      )
+                    else
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 48),
                         child: Image(
@@ -104,7 +123,6 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                           gaplessPlayback: true,
                         ),
                       ),
-                    ],
                     Column(
                       children: [
                         SettingList(
@@ -194,8 +212,15 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                                 optionName: S.of(context).deleteMyAccount,
                                 onPressed: () => context.router.navigate(const AccountDeletionScreenRoute()),
                               ),
+                              OptionButton(
+                                optionName: S.of(context).logOutButton,
+                                onPressed: () {
+                                  ref.read(authStateProvider.notifier).logout();
+                                },
+                              ),
                             ],
-                          )
+                          ),
+                        const SizedBox(height: 48),
                       ],
                     ),
                   ],
