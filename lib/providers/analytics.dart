@@ -164,6 +164,28 @@ class RudderAnalytics extends Analytics {
     );
     RudderController.instance.track('section_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
+/* 
+  @override
+  void downloadEntryClicked(BuildContext context,) {
+    var sectionAnalytics = InheritedData.read<SectionAnalytics>(context);
+    if (sectionAnalytics == null) {
+      FirebaseCrashlytics.instance.recordError(Exception('Missing sectionItemAnalytics.'), StackTrace.current);
+      return;
+    }
+
+    var event = SectionClickedEvent(
+      sectionId: sectionAnalytics.id,
+      sectionName: sectionAnalytics.name,
+      sectionPosition: sectionAnalytics.position,
+      sectionType: sectionAnalytics.type,
+      pageCode: sectionAnalytics.pageCode,
+      elementName: sectionAnalytics.name,
+      elementPosition: sectionAnalytics.position,
+      elementType: sectionAnalytics.type,
+      elementId: sectionAnalytics.id,
+    );
+    RudderController.instance.track('section_clicked', properties: getCommonData().putValue(map: event.toJson()));
+  } */
 
   @override
   void searchPerformed(SearchPerformedEvent event) {

@@ -1,15 +1,19 @@
+import 'package:brunstadtv_app/components/offline/downloaded_videos.dart';
 import 'package:brunstadtv_app/flavors.dart';
+import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../theme/design_system/design_system.dart';
 import '../badges/offline_badge.dart';
 
-class OfflineHome extends StatelessWidget {
+class OfflineHome extends ConsumerWidget {
   const OfflineHome({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
+    final downloadedVideosCount = ref.watch(downloadedVideosProvider.select((value) => value.asData?.valueOrNull?.length ?? 0));
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 44,
@@ -23,15 +27,15 @@ class OfflineHome extends StatelessWidget {
         ),
       ),
       extendBodyBehindAppBar: false,
-      body: const SizedBox(
+      body: SizedBox(
         height: double.infinity,
         width: double.infinity,
         child: CustomScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           slivers: [
             SliverFillRemaining(
               hasScrollBody: true,
-              child: _OfflineNoVideos(),
+              child: downloadedVideosCount > 0 ? const _OfflineWithVideos() : const _OfflineNoVideos(),
             ),
           ],
         ),
@@ -78,25 +82,43 @@ class _OfflineWithVideos extends StatelessWidget {
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const OfflineBadge(),
-        const SizedBox(height: 12),
-        Text(
-          'No internet connection',
-          style: design.textStyles.title1,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 8),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            'Connect to the internet to access all videos.',
-            style: design.textStyles.body1.copyWith(color: design.colors.label2),
-            textAlign: TextAlign.center,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const OfflineBadge(),
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Text(
+                  "No internet connection,\nbut don't worry.",
+                  style: design.textStyles.title1,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(
+                  'Here are all the videos you have downloaded to your device.',
+                  style: design.textStyles.body1.copyWith(color: design.colors.label2),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(
+                  'Connect to the internet to explore all videos.',
+                  style: design.textStyles.caption1.copyWith(color: design.colors.label4),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
           ),
         ),
+        const DownloadedVideosSection(),
       ],
     );
   }

@@ -308,34 +308,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
       () => BccmPlayerViewController(playerController: BccmPlayerController.primary),
     );
     useEffect(() {
+      final defaultViewConfig = playbackService.getDefaultViewConfig();
       viewController.setConfig(
-        BccmPlayerViewConfig(
-          resetSystemOverlays: () {
-            SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-          },
-          deviceOrientationsFullscreen: (_) => [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
-          deviceOrientationsNormal: (_) => [DeviceOrientation.portraitUp],
-          castPlayerBuilder: (context) => const CustomCastPlayerView(),
-          controlsConfig: BccmPlayerControlsConfig(
-            playbackSpeeds: [0.75, 1, 1.5, 1.75, 2],
-            additionalActionsBuilder: (context) => [
-              if (Platform.isIOS)
-                Padding(
-                  padding: const EdgeInsets.only(right: 4),
-                  child: Transform.scale(
-                    scale: 0.8,
-                    child: const AirPlayRoutePickerView(
-                      width: 20,
-                      height: 32,
-                      prioritizesVideoDevices: true,
-                      tintColor: Colors.white,
-                      activeTintColor: Colors.white,
-                      backgroundColor: Colors.transparent,
-                    ),
-                  ),
-                )
-            ],
-            hideQualitySelector: true,
+        defaultViewConfig.copyWith(
+          controlsConfig: defaultViewConfig.controlsConfig.copyWith(
             playNextButton: !enablePlayNextButton
                 ? null
                 : (context) => PlayNextButton(

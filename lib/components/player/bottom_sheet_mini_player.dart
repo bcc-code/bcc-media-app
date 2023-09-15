@@ -2,7 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
+import 'package:brunstadtv_app/providers/connectivity.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -47,10 +50,10 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
   }
 
   Widget _buildMiniPlayer(PlayerState player) {
-    var artist = player.currentMediaItem?.metadata?.artist;
-    var title = player.currentMediaItem?.metadata?.title;
-    var artworkUri = player.currentMediaItem?.metadata?.artworkUri;
-    var playbackState = player.playbackState;
+    final artist = player.currentMediaItem?.metadata?.artist;
+    final title = player.currentMediaItem?.metadata?.title;
+    final artworkUri = player.currentMediaItem?.metadata?.artworkUri;
+    final playbackState = player.playbackState;
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -75,6 +78,8 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         titleKey: WidgetKeys.miniPlayerTitle,
         secondaryTitle: artist,
         title: title ?? '',
+        artwork:
+            ref.watch(isOfflineProvider) && artworkUri != null ? CachedNetworkImageProvider(artworkUri, cacheManager: PermanentCacheManager()) : null,
         artworkUri: artworkUri ?? '',
         playSemanticLabel: S.of(context).play,
         pauseSemanticLabel: S.of(context).pause,

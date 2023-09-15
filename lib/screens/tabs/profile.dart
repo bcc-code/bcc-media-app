@@ -2,20 +2,27 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
+import 'package:brunstadtv_app/components/menus/option_list.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_with_header.dart';
 import 'package:brunstadtv_app/components/profile/avatar.dart';
+import 'package:brunstadtv_app/components/profile/empty_info.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/downloads.dart';
+import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../components/misc/custom_grid_view.dart';
+import '../../components/offline/downloaded_videos.dart';
 import '../../helpers/event_bus.dart';
 import '../../helpers/watch_progress_bottom_sheet.dart';
 import '../../components/status/error_generic.dart';
@@ -137,15 +144,15 @@ class ProfileScreen extends HookConsumerWidget {
                 builder: (context, AsyncSnapshot<Query$MyList$myList> snapshot) {
                   Widget child = const SizedBox.shrink();
                   if (snapshot.connectionState != ConnectionState.done) {
-                    child = const Center(child: LoadingGeneric());
+                    child = const SizedBox(height: 200, child: LoadingGeneric());
                   } else if (snapshot.hasError || snapshot.data == null) {
                     print(snapshot.error);
-                    child = ErrorGeneric(onRetry: onRefresh);
+                    child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onRefresh));
                   } else if (snapshot.data!.entries.items.isEmpty) {
                     child = Container(
                       padding: const EdgeInsets.all(16),
                       width: double.infinity,
-                      child: _EmptyInfo(
+                      child: EmptyInfo(
                         icon: SvgPicture.string(
                           SvgIcons.heartFilled,
                           height: 36,
@@ -165,23 +172,8 @@ class ProfileScreen extends HookConsumerWidget {
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: SectionWithHeader(
-              title: 'Downloaded',
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                width: double.infinity,
-                child: _EmptyInfo(
-                  icon: SvgPicture.string(
-                    SvgIcons.download,
-                    height: 36,
-                    colorFilter: ColorFilter.mode(design.colors.onTint, BlendMode.srcIn),
-                  ),
-                  title: 'Save videos for offline viewing',
-                  details: 'Tap on the download icon on a video, to download and play while offline.',
-                ),
-              ),
-            ),
+          const SliverToBoxAdapter(
+            child: DownloadedVideosSection(),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 32)),
         ],
@@ -234,11 +226,16 @@ class _MyListContent extends HookConsumerWidget {
     final episodeItems = myListEntries.value.map((item) => item.item).whereType<Fragment$MyListEntry$item$$Episode>();
     return CustomGridView(
       shrinkWrap: true,
-      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      physics: const NeverScrollableScrollPhysics(),
       children: episodeItems.mapIndexed((index, item) {
         return _MyListItemClickWrapper(
           item: item,
-          analytics: SectionItemAnalytics(id: item.id, name: item.title, type: item.$__typename, position: index),
+          analytics: SectionItemAnalytics(
+            id: item.id,
+            name: item.title,
+            type: item.$__typename,
+            position: index,
+          ),
           child: ThumbnailGridEpisode(
             episode: getEpisodeThumbnailData(item),
             showSecondaryTitle: false,
@@ -247,50 +244,6 @@ class _MyListContent extends HookConsumerWidget {
         );
       }).toList(),
     );
-  }
-}
-
-class _EmptyInfo extends StatelessWidget {
-  const _EmptyInfo({
-    Key? key,
-    required this.icon,
-    required this.title,
-    required this.details,
-  }) : super(key: key);
-
-  final Widget icon;
-  final String title;
-  final String details;
-
-  @override
-  Widget build(BuildContext context) {
-    final design = DesignSystem.of(context);
-    return Container(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-        decoration: BoxDecoration(
-          color: design.colors.background2,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Column(
-          children: [
-            icon,
-            Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: Text(
-                title, // <--- This is the bug. The title variable is used here instead of the constant string.
-                style: design.textStyles.title2.copyWith(color: design.colors.label1),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                details, // <--- This is the bug. The details variable is used here instead of the constant string.
-                style: design.textStyles.body2.copyWith(color: design.colors.label3),
-                textAlign: TextAlign.center,
-              ),
-            )
-          ],
-        ));
   }
 }
 

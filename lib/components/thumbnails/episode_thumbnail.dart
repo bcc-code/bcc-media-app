@@ -14,6 +14,7 @@ class EpisodeThumbnail extends StatelessWidget {
   final double? imageHeight;
   final double aspectRatio;
   final bool isLive;
+  final bool? useCache;
 
   const EpisodeThumbnail({
     super.key,
@@ -22,18 +23,21 @@ class EpisodeThumbnail extends StatelessWidget {
     this.imageHeight,
     this.aspectRatio = 16 / 9,
     this.isLive = false,
+    this.useCache,
   });
 
   factory EpisodeThumbnail.withSize({
     required EpisodeThumbnailData episode,
     required Size imageSize,
     bool isLive = false,
+    bool? useCache,
   }) {
     return EpisodeThumbnail(
       episode: episode,
       imageWidth: imageSize.width,
       imageHeight: imageSize.height,
       isLive: isLive,
+      useCache: useCache,
     );
   }
 
@@ -42,12 +46,14 @@ class EpisodeThumbnail extends StatelessWidget {
     required double imageWidth,
     required double aspectRatio,
     bool isLive = false,
+    bool? useCache,
   }) {
     return EpisodeThumbnail(
       imageWidth: imageWidth,
       aspectRatio: aspectRatio,
       isLive: isLive,
       episode: episode,
+      useCache: useCache,
     );
   }
 
@@ -60,18 +66,23 @@ class EpisodeThumbnail extends StatelessWidget {
       child: imageHeight == null
           ? AspectRatio(
               aspectRatio: aspectRatio,
-              child: EpisodeThumbnailStack(episode: episode, isLive: isLive),
+              child: _EpisodeThumbnailStack(episode: episode, isLive: isLive, useCache: useCache),
             )
-          : EpisodeThumbnailStack(episode: episode, isLive: isLive),
+          : _EpisodeThumbnailStack(episode: episode, isLive: isLive, useCache: useCache),
     );
   }
 }
 
-class EpisodeThumbnailStack extends StatelessWidget {
+class _EpisodeThumbnailStack extends StatelessWidget {
   final EpisodeThumbnailData episode;
   final bool isLive;
+  final bool? useCache;
 
-  const EpisodeThumbnailStack({required this.episode, required this.isLive, super.key});
+  const _EpisodeThumbnailStack({
+    required this.episode,
+    required this.isLive,
+    required this.useCache,
+  });
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
 
@@ -90,9 +101,9 @@ class EpisodeThumbnailStack extends StatelessWidget {
         episode.locked && !isLive
             ? Opacity(
                 opacity: 0.5,
-                child: BorderedImageContainer(imageUrl: episode.image),
+                child: BorderedImageContainer(imageUrl: episode.image, useCache: useCache),
               )
-            : BorderedImageContainer(imageUrl: episode.image),
+            : BorderedImageContainer(imageUrl: episode.image, useCache: useCache),
         if (episode.locked && !isLive)
           Container(
             width: double.infinity,

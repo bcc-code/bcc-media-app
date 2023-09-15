@@ -48,6 +48,10 @@ void main() async {
           image: const AssetImage('assets/icons/Games_Default.png'),
           activeImage: const AssetImage('assets/icons/Games_Selected.png'),
         ),
+        profile: StateImageProvider(
+          image: const AssetImage('assets/icons/Profile_Default.png'),
+          activeImage: const AssetImage('assets/icons/Profile_Selected.png'),
+        ),
       ),
     ),
   );
