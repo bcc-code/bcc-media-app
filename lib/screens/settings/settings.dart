@@ -103,13 +103,10 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                             ),
                           ),
                           if (user == null)
-                            Container(
-                              margin: const EdgeInsets.only(bottom: 24),
-                              child: DesignSystem.of(context).buttons.small(
-                                    onPressed: () => context.router.navigate(OnboardingScreenRoute()),
-                                    labelText: S.of(context).signInOrSignUp,
-                                  ),
-                            )
+                            DesignSystem.of(context).buttons.small(
+                                  onPressed: () => context.router.navigate(OnboardingScreenRoute()),
+                                  labelText: S.of(context).signInOrSignUp,
+                                )
                           else
                             Text(user.name, style: design.textStyles.title3.copyWith(color: design.colors.label1))
                         ]),

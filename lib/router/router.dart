@@ -84,7 +84,6 @@ Route<T> settingsRouteBuilder<T>(BuildContext context, Widget child, CustomPage<
     CustomRoute<void>(
       page: OnboardingScreen,
       path: '/login',
-      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'login'},
     ),
     CustomRoute<void>(

@@ -35,6 +35,7 @@ class EpisodeInfo extends HookConsumerWidget {
     final design = DesignSystem.of(context);
 
     final inMyList = useState(episode.inMyList);
+    final showMyListButton = ref.read(authStateProvider.select((value) => !value.guestMode)) && inMyList.value != null;
 
     useEffect(() {
       inMyList.value = episode.inMyList;
@@ -59,7 +60,6 @@ class EpisodeInfo extends HookConsumerWidget {
       globalEventBus.fire(MyListChangedEvent());
     }
 
-    final inMyListValue = inMyList.value;
     return Container(
       color: design.colors.background2,
       child: AnimatedSize(
@@ -113,9 +113,9 @@ class EpisodeInfo extends HookConsumerWidget {
                       ),
                     ),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      if (ref.read(authStateProvider.select((value) => value.auth0AccessToken != null)) && inMyListValue != null)
+                      if (showMyListButton)
                         GestureDetector(
                           onTap: toggleInMyList,
                           behavior: HitTestBehavior.opaque,
@@ -127,15 +127,15 @@ class EpisodeInfo extends HookConsumerWidget {
                                 duration: const Duration(milliseconds: 300),
                                 switchInCurve: Curves.easeOutCirc,
                                 switchOutCurve: Curves.easeInCirc,
-                                child: inMyListValue
+                                child: inMyList.value == true
                                     ? SvgPicture.string(
                                         SvgIcons.heartFilled,
-                                        key: ValueKey(inMyListValue),
+                                        key: ValueKey(inMyList.value),
                                         height: 24,
                                       )
                                     : SvgPicture.string(
                                         SvgIcons.heart,
-                                        key: ValueKey(inMyListValue),
+                                        key: ValueKey(inMyList.value),
                                         height: 24,
                                         colorFilter: ColorFilter.mode(design.colors.tint1, BlendMode.srcIn),
                                       ),
@@ -150,7 +150,7 @@ class EpisodeInfo extends HookConsumerWidget {
                           child: FocusableActionDetector(
                             mouseCursor: MaterialStateMouseCursor.clickable,
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 4, left: 12, right: 6),
+                              padding: EdgeInsets.only(top: 4, left: showMyListButton ? 12 : 0, right: 12),
                               child: SvgPicture.string(
                                 SvgIcons.share,
                                 colorFilter: ColorFilter.mode(design.colors.tint1, BlendMode.srcIn),

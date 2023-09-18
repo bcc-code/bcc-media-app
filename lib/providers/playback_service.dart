@@ -75,7 +75,7 @@ class PlaybackService {
       metadata: MediaMetadata(
         title: download.config.title,
         artist: download.config.additionalData['artist'],
-        artworkUri: download.config.additionalData['artworkUri'],
+        artworkUri: download.config.additionalData['artwork_uri'],
         durationMs: double.tryParse(download.config.additionalData['durationMs'] ?? ''),
         extras: download.config.additionalData,
       ),
@@ -172,11 +172,7 @@ class PlaybackService {
     platformApi.queueMediaItem(playerId, mediaItem);
   }
 
-  Future playDownload({
-    required BuildContext context,
-    required Download download,
-  }) async {
-    final mediaItem = mapDownload(download);
+  Future<void> openFullscreen(BuildContext context) async {
     final config = getDefaultViewConfig();
     final viewController = BccmPlayerViewController(
       playerController: platformApi.primaryController,
@@ -184,7 +180,13 @@ class PlaybackService {
         controlsConfig: config.controlsConfig.copyWith(hideQualitySelector: false),
       ),
     );
-    viewController.enterFullscreen(context: context).then((_) => viewController.dispose());
+    return viewController.enterFullscreen(context: context).then((_) {
+      viewController.dispose();
+    });
+  }
+
+  Future<void> playDownload(Download download) async {
+    final mediaItem = mapDownload(download);
     platformApi.primaryController.replaceCurrentMediaItem(mediaItem);
   }
 }

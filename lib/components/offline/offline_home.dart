@@ -13,7 +13,7 @@ class OfflineHome extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
-    final downloadedVideosCount = ref.watch(downloadedVideosProvider.select((value) => value.asData?.valueOrNull?.length ?? 0));
+    final downloadedVideosCount = ref.watch(downloadsProvider.select((value) => value.valueOrNull?.length ?? 0));
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 44,

@@ -89,89 +89,82 @@ class ProfileScreen extends HookConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (user != null) ...[
-                    const Avatar(),
+                  Avatar(),
+                  if (user != null)
                     Padding(
                       padding: const EdgeInsets.only(top: 12),
                       child: Text(
                         user.name,
                         style: DesignSystem.of(context).textStyles.headline2,
                       ),
-                    ),
-                  ] else
+                    )
+                  else
                     Padding(
-                      padding: const EdgeInsets.only(top: 24, bottom: 16),
-                      child: Padding(
-                        padding: const EdgeInsets.all(6),
-                        child: SvgPicture.string(
-                          SvgIcons.avatar,
-                          color: DesignSystem.of(context).colors.tint1,
-                        ),
-                      ),
+                      padding: const EdgeInsets.only(top: 12),
+                      child: DesignSystem.of(context).buttons.small(
+                            onPressed: () => context.router.navigate(OnboardingScreenRoute()),
+                            labelText: S.of(context).signInOrSignUp,
+                          ),
                     ),
                   Container(
                     margin: const EdgeInsets.only(top: 12),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        DesignSystem.of(context).buttons.smallSecondary(
-                              onPressed: () async {
-                                if ((FlavorConfig.current.flavor == Flavor.kids && !await checkParentalGate(context))) {
-                                  return;
-                                }
-                                if (!context.mounted) return;
-                                context.router.pushNamed('/settings');
-                              },
-                              labelText: S.of(context).settings,
-                              image: SvgPicture.string(
-                                SvgIcons.settings,
-                                height: 20,
-                                color: DesignSystem.of(context).colors.label1,
-                              ),
-                            )
-                      ],
-                    ),
+                    child: DesignSystem.of(context).buttons.smallSecondary(
+                          onPressed: () async {
+                            if ((FlavorConfig.current.flavor == Flavor.kids && !await checkParentalGate(context))) {
+                              return;
+                            }
+                            if (!context.mounted) return;
+                            context.router.pushNamed('/settings');
+                          },
+                          labelText: S.of(context).settings,
+                          image: SvgPicture.string(
+                            SvgIcons.settings,
+                            height: 20,
+                            colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.label1, BlendMode.srcIn),
+                          ),
+                        ),
                   ),
                 ],
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: SectionWithHeader(
-              title: 'Your favorites',
-              child: FutureBuilder(
-                future: myListFuture.value,
-                builder: (context, AsyncSnapshot<Query$MyList$myList> snapshot) {
-                  Widget child = const SizedBox.shrink();
-                  if (snapshot.connectionState != ConnectionState.done) {
-                    child = const SizedBox(height: 200, child: LoadingGeneric());
-                  } else if (snapshot.hasError || snapshot.data == null) {
-                    print(snapshot.error);
-                    child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onRefresh));
-                  } else if (snapshot.data!.entries.items.isEmpty) {
-                    child = Container(
-                      padding: const EdgeInsets.all(16),
-                      width: double.infinity,
-                      child: EmptyInfo(
-                        icon: SvgPicture.string(
-                          SvgIcons.heartFilled,
-                          height: 36,
+          if (user != null)
+            SliverToBoxAdapter(
+              child: SectionWithHeader(
+                title: 'Your favorites',
+                child: FutureBuilder(
+                  future: myListFuture.value,
+                  builder: (context, AsyncSnapshot<Query$MyList$myList> snapshot) {
+                    Widget child = const SizedBox.shrink();
+                    if (snapshot.connectionState != ConnectionState.done) {
+                      child = const SizedBox(height: 200, child: LoadingGeneric());
+                    } else if (snapshot.hasError || snapshot.data == null) {
+                      print(snapshot.error);
+                      child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onRefresh));
+                    } else if (snapshot.data!.entries.items.isEmpty) {
+                      child = Container(
+                        padding: const EdgeInsets.all(16),
+                        width: double.infinity,
+                        child: EmptyInfo(
+                          icon: SvgPicture.string(
+                            SvgIcons.heartFilled,
+                            height: 36,
+                          ),
+                          title: 'Save your favorite videos',
+                          details: 'Tap on the heart icon on a video to save it in your profile.',
                         ),
-                        title: 'Save your favorite videos',
-                        details: 'Tap on the heart icon on a video to save it in your profile.',
-                      ),
+                      );
+                    } else {
+                      child = _MyListContent(snapshot.data!.entries.items);
+                    }
+                    return AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 250),
+                      child: child,
                     );
-                  } else {
-                    child = _MyListContent(snapshot.data!.entries.items);
-                  }
-                  return AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 250),
-                    child: child,
-                  );
-                },
+                  },
+                ),
               ),
             ),
-          ),
           const SliverToBoxAdapter(
             child: DownloadedVideosSection(),
           ),

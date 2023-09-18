@@ -3,6 +3,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/screens/tabs/search.dart';
@@ -88,6 +89,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
 
   bool _shouldHideMiniPlayer(BuildContext context) {
     if (kIsWeb) return true;
+    if (ref.watch(isOfflineProvider)) return true;
     final router = context.watchRouter;
     final currentRouteMatch = router.currentSegments.lastOrNull;
     if (currentRouteMatch == null) {

@@ -91,7 +91,6 @@ class AppRouter extends _i34.RootStackRouter {
           onResult: args.onResult,
           auto: args.auto,
         ),
-        customRouteBuilder: _i36.settingsRouteBuilder,
         opaque: true,
         barrierDismissible: false,
       );

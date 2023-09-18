@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
@@ -12,10 +13,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../theme/design_system/design_system.dart';
 
-class EpisodeDownloadButton extends HookWidget {
+class EpisodeDownloadButton extends HookConsumerWidget {
   const EpisodeDownloadButton({
     super.key,
     required this.episode,
@@ -24,34 +26,25 @@ class EpisodeDownloadButton extends HookWidget {
   final Query$FetchEpisode$episode episode;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final bottomSheetFuture = useState<Future?>(null);
-    final bottomSheetSnapshot = useFuture(bottomSheetFuture.value, preserveState: false);
 
-    final downloadFuture = useMemoized(() {
-      if (bottomSheetFuture.value == null || bottomSheetSnapshot.connectionState == ConnectionState.done && bottomSheetSnapshot.data == true) {
-        return DownloaderInterface.instance.getDownloads().then(
-              (value) => value.firstWhereOrNull((element) => element.config.additionalData['id'] == episode.id),
-            );
-      }
-    }, [bottomSheetFuture.value, bottomSheetSnapshot, episode.id]);
+    final downloadSnapshot = ref.watch(
+      downloadsProvider.select(
+        (value) => value.when<AsyncValue<Download?>>(
+          data: (data) => AsyncValue.data(data.firstWhereOrNull((element) => element.config.additionalData['id'] == episode.id)),
+          error: (err, st) => AsyncValue.error(err, st),
+          loading: () => const AsyncValue.loading(),
+        ),
+      ),
+    );
 
-    final downloadSnapshot = useFuture(downloadFuture, preserveState: false);
-
-    final downloadProgressFuture = useMemoized(() {
-      if (downloadSnapshot.data == null) {
-        return null;
-      }
-      return DownloaderInterface.instance.getDownloadStatus(downloadSnapshot.data!.key);
-    }, [downloadSnapshot.data]);
-
-    final downloadProgressSnapshot = useFuture(downloadProgressFuture, preserveState: false);
+    final download = downloadSnapshot.valueOrNull;
 
     final design = DesignSystem.of(context);
-
-    if (downloadSnapshot.connectionState == ConnectionState.waiting || downloadProgressSnapshot.connectionState == ConnectionState.waiting) {
+    if (downloadSnapshot.isLoading) {
       return const LoadingIndicator(width: 20, height: 20);
-    } else if (downloadSnapshot.data?.isFinished != true && downloadProgressSnapshot.data != null && downloadProgressSnapshot.data! < 1.0) {
+    } else if (download != null && download.status != DownloadStatus.finished && download.fractionDownloaded < 1.0) {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
@@ -67,14 +60,14 @@ class EpisodeDownloadButton extends HookWidget {
             height: 20,
             width: 20,
             child: CircularProgressIndicator(
-              value: clampDouble(downloadProgressSnapshot.data!, 0, 1),
+              value: clampDouble(download.fractionDownloaded, 0, 1),
               strokeWidth: 2,
               color: DesignSystem.of(context).colors.tint1,
             ),
           ),
         ],
       );
-    } else if (downloadSnapshot.data?.isFinished == true || downloadProgressSnapshot.data != null && downloadProgressSnapshot.data! == 1.0) {
+    } else if (download?.status == DownloadStatus.finished) {
       return FocusableControlBuilder(onPressed: () {
         context.navigateTo(const ProfileScreenWrapperRoute());
       }, builder: (context, control) {

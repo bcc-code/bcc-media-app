@@ -1,5 +1,4 @@
 import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
 import 'package:brunstadtv_app/components/menus/option_list.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/bytes.dart';
@@ -12,11 +11,9 @@ import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../helpers/insets.dart';
 import '../../helpers/languages.dart';
@@ -226,18 +223,18 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
                       final mediaItem = ref.read(playbackServiceProvider).mapEpisode(episode);
 
                       downloadFuture.value = () async {
-                        final download = await DownloaderInterface.instance.startDownload(DownloadConfig(
-                          url: episode.streams.getBestStreamUrl(),
-                          mimeType: 'application/x-mpegURL',
-                          title: episode.title,
-                          audioTrackIds: [selectedAudioTrack.value?.id],
-                          videoTrackIds: [selectedVideoTrack.value?.id],
-                          additionalData: {
-                            ...?mediaItem.metadata?.extras,
-                            'id': episode.id,
-                            'artwork_uri': mediaItem.metadata?.artworkUri,
-                          },
-                        ));
+                        final download = await ref.read(downloadsProvider.notifier).startDownload(DownloadConfig(
+                              url: episode.streams.getBestStreamUrl(),
+                              mimeType: 'application/x-mpegURL',
+                              title: episode.title,
+                              audioTrackIds: [selectedAudioTrack.value?.id],
+                              videoTrackIds: [selectedVideoTrack.value?.id],
+                              additionalData: {
+                                ...?mediaItem.metadata?.extras,
+                                'id': episode.id,
+                                'artwork_uri': mediaItem.metadata?.artworkUri,
+                              },
+                            ));
 
                         final image = mediaItem.metadata?.artworkUri;
                         if (image != null) {
@@ -250,7 +247,6 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
 
                       if (context.mounted) {
                         Navigator.of(context).maybePop(true);
-                        ref.invalidate(downloadedVideosProvider);
                       }
                     },
                     labelText: S.of(context).downloadButton,
