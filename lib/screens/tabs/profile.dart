@@ -44,7 +44,11 @@ class ProfileScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.read(authStateProvider.select((value) => value.user));
     getMyList() {
+      if (user == null) {
+        return Future.value(null);
+      }
       return ref.read(gqlClientProvider).query$MyList().then(
         (result) {
           if (result.hasException) {
@@ -63,7 +67,6 @@ class ProfileScreen extends HookConsumerWidget {
     onRefresh() => myListFuture.value = getMyList();
 
     final design = DesignSystem.of(context);
-    final user = ref.read(authStateProvider.select((value) => value.user));
 
     return Scaffold(
       appBar: AppBar(
@@ -134,12 +137,11 @@ class ProfileScreen extends HookConsumerWidget {
                 title: 'Your favorites',
                 child: FutureBuilder(
                   future: myListFuture.value,
-                  builder: (context, AsyncSnapshot<Query$MyList$myList> snapshot) {
+                  builder: (context, AsyncSnapshot<Query$MyList$myList?> snapshot) {
                     Widget child = const SizedBox.shrink();
                     if (snapshot.connectionState != ConnectionState.done) {
                       child = const SizedBox(height: 200, child: LoadingGeneric());
                     } else if (snapshot.hasError || snapshot.data == null) {
-                      print(snapshot.error);
                       child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onRefresh));
                     } else if (snapshot.data!.entries.items.isEmpty) {
                       child = Container(
