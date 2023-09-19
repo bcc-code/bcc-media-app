@@ -108,6 +108,9 @@ PODS:
     - Flutter
   - flutter_to_airplay (0.0.1):
     - Flutter
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - google-cast-sdk-dynamic-xcframework-no-bluetooth (4.7.1)
   - GoogleDataTransport (9.2.5):
     - GoogleUtilities/Environment (~> 7.7)
@@ -163,6 +166,9 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - sqflite (0.0.3):
+    - Flutter
+    - FMDB (>= 2.7.5)
   - url_launcher_ios (0.0.1):
     - Flutter
   - vibration (1.7.5):
@@ -199,6 +205,7 @@ DEPENDENCIES:
   - rudder_plugin_ios (from `.symlinks/plugins/rudder_plugin_ios/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - vibration (from `.symlinks/plugins/vibration/ios`)
   - wakelock_plus (from `.symlinks/plugins/wakelock_plus/ios`)
@@ -214,6 +221,7 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseMessaging
     - FirebaseSessions
+    - FMDB
     - google-cast-sdk-dynamic-xcframework-no-bluetooth
     - GoogleDataTransport
     - GoogleUtilities
@@ -275,6 +283,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/share_plus/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
   vibration:
@@ -312,6 +322,7 @@ SPEC CHECKSUMS:
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
   flutter_to_airplay: 519d8d83d7d8fd1c97a557b98195c4e6396eeb8f
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   google-cast-sdk-dynamic-xcframework-no-bluetooth: 1fa9e267df3fd6f8a1c6e3345142ca5286297968
   GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
@@ -331,6 +342,7 @@ SPEC CHECKSUMS:
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
   share_plus: 599aa54e4ea31d4b4c0e9c911bcc26c55e791028
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
+  sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
   vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
   wakelock_plus: 8b09852c8876491e4b6d179e17dfe2a0b5f60d47
