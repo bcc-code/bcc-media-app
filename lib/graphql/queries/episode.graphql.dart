@@ -5769,6 +5769,225 @@ class _CopyWithStubImpl$Fragment$EpisodeDetails$season$show<TRes>
       _res;
 }
 
+class Fragment$EpisodeAvailability {
+  Fragment$EpisodeAvailability({
+    required this.availableFrom,
+    required this.availableTo,
+    this.$__typename = 'Episode',
+  });
+
+  factory Fragment$EpisodeAvailability.fromJson(Map<String, dynamic> json) {
+    final l$availableFrom = json['availableFrom'];
+    final l$availableTo = json['availableTo'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeAvailability(
+      availableFrom: (l$availableFrom as String),
+      availableTo: (l$availableTo as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String availableFrom;
+
+  final String availableTo;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$availableFrom = availableFrom;
+    _resultData['availableFrom'] = l$availableFrom;
+    final l$availableTo = availableTo;
+    _resultData['availableTo'] = l$availableTo;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$availableFrom = availableFrom;
+    final l$availableTo = availableTo;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$availableFrom,
+      l$availableTo,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeAvailability) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$availableFrom = availableFrom;
+    final lOther$availableFrom = other.availableFrom;
+    if (l$availableFrom != lOther$availableFrom) {
+      return false;
+    }
+    final l$availableTo = availableTo;
+    final lOther$availableTo = other.availableTo;
+    if (l$availableTo != lOther$availableTo) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeAvailability
+    on Fragment$EpisodeAvailability {
+  CopyWith$Fragment$EpisodeAvailability<Fragment$EpisodeAvailability>
+      get copyWith => CopyWith$Fragment$EpisodeAvailability(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeAvailability<TRes> {
+  factory CopyWith$Fragment$EpisodeAvailability(
+    Fragment$EpisodeAvailability instance,
+    TRes Function(Fragment$EpisodeAvailability) then,
+  ) = _CopyWithImpl$Fragment$EpisodeAvailability;
+
+  factory CopyWith$Fragment$EpisodeAvailability.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeAvailability;
+
+  TRes call({
+    String? availableFrom,
+    String? availableTo,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$EpisodeAvailability<TRes>
+    implements CopyWith$Fragment$EpisodeAvailability<TRes> {
+  _CopyWithImpl$Fragment$EpisodeAvailability(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeAvailability _instance;
+
+  final TRes Function(Fragment$EpisodeAvailability) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? availableFrom = _undefined,
+    Object? availableTo = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$EpisodeAvailability(
+        availableFrom: availableFrom == _undefined || availableFrom == null
+            ? _instance.availableFrom
+            : (availableFrom as String),
+        availableTo: availableTo == _undefined || availableTo == null
+            ? _instance.availableTo
+            : (availableTo as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeAvailability<TRes>
+    implements CopyWith$Fragment$EpisodeAvailability<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeAvailability(this._res);
+
+  TRes _res;
+
+  call({
+    String? availableFrom,
+    String? availableTo,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+const fragmentDefinitionEpisodeAvailability = FragmentDefinitionNode(
+  name: NameNode(value: 'EpisodeAvailability'),
+  typeCondition: TypeConditionNode(
+      on: NamedTypeNode(
+    name: NameNode(value: 'Episode'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: SelectionSetNode(selections: [
+    FieldNode(
+      name: NameNode(value: 'availableFrom'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'availableTo'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: '__typename'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
+const documentNodeFragmentEpisodeAvailability = DocumentNode(definitions: [
+  fragmentDefinitionEpisodeAvailability,
+]);
+
+extension ClientExtension$Fragment$EpisodeAvailability
+    on graphql.GraphQLClient {
+  void writeFragment$EpisodeAvailability({
+    required Fragment$EpisodeAvailability data,
+    required Map<String, dynamic> idFields,
+    bool broadcast = true,
+  }) =>
+      this.writeFragment(
+        graphql.FragmentRequest(
+          idFields: idFields,
+          fragment: const graphql.Fragment(
+            fragmentName: 'EpisodeAvailability',
+            document: documentNodeFragmentEpisodeAvailability,
+          ),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Fragment$EpisodeAvailability? readFragment$EpisodeAvailability({
+    required Map<String, dynamic> idFields,
+    bool optimistic = true,
+  }) {
+    final result = this.readFragment(
+      graphql.FragmentRequest(
+        idFields: idFields,
+        fragment: const graphql.Fragment(
+          fragmentName: 'EpisodeAvailability',
+          document: documentNodeFragmentEpisodeAvailability,
+        ),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null
+        ? null
+        : Fragment$EpisodeAvailability.fromJson(result);
+  }
+}
+
 class Variables$Query$FetchEpisode {
   factory Variables$Query$FetchEpisode({
     required String id,
@@ -6195,6 +6414,13 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
           ),
           FieldNode(
             name: NameNode(value: 'ageRating'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'availableTo'),
             alias: null,
             arguments: [],
             directives: [],
@@ -6629,6 +6855,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     this.progress,
     required this.shareRestriction,
     required this.ageRating,
+    required this.availableTo,
     required this.chapters,
     this.relatedItems,
     required this.lessons,
@@ -6653,6 +6880,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$progress = json['progress'];
     final l$shareRestriction = json['shareRestriction'];
     final l$ageRating = json['ageRating'];
+    final l$availableTo = json['availableTo'];
     final l$chapters = json['chapters'];
     final l$relatedItems = json['relatedItems'];
     final l$lessons = json['lessons'];
@@ -6685,6 +6913,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
       shareRestriction:
           fromJson$Enum$ShareRestriction((l$shareRestriction as String)),
       ageRating: (l$ageRating as String),
+      availableTo: (l$availableTo as String),
       chapters: (l$chapters as List<dynamic>)
           .map((e) => Query$FetchEpisode$episode$chapters.fromJson(
               (e as Map<String, dynamic>)))
@@ -6733,6 +6962,8 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
 
   final String ageRating;
 
+  final String availableTo;
+
   final List<Query$FetchEpisode$episode$chapters> chapters;
 
   final Query$FetchEpisode$episode$relatedItems? relatedItems;
@@ -6778,6 +7009,8 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
         toJson$Enum$ShareRestriction(l$shareRestriction);
     final l$ageRating = ageRating;
     _resultData['ageRating'] = l$ageRating;
+    final l$availableTo = availableTo;
+    _resultData['availableTo'] = l$availableTo;
     final l$chapters = chapters;
     _resultData['chapters'] = l$chapters.map((e) => e.toJson()).toList();
     final l$relatedItems = relatedItems;
@@ -6808,6 +7041,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$progress = progress;
     final l$shareRestriction = shareRestriction;
     final l$ageRating = ageRating;
+    final l$availableTo = availableTo;
     final l$chapters = chapters;
     final l$relatedItems = relatedItems;
     final l$lessons = lessons;
@@ -6830,6 +7064,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
       l$progress,
       l$shareRestriction,
       l$ageRating,
+      l$availableTo,
       Object.hashAll(l$chapters.map((v) => v)),
       l$relatedItems,
       l$lessons,
@@ -6938,6 +7173,11 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     if (l$ageRating != lOther$ageRating) {
       return false;
     }
+    final l$availableTo = availableTo;
+    final lOther$availableTo = other.availableTo;
+    if (l$availableTo != lOther$availableTo) {
+      return false;
+    }
     final l$chapters = chapters;
     final lOther$chapters = other.chapters;
     if (l$chapters.length != lOther$chapters.length) {
@@ -7005,6 +7245,7 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
     int? progress,
     Enum$ShareRestriction? shareRestriction,
     String? ageRating,
+    String? availableTo,
     List<Query$FetchEpisode$episode$chapters>? chapters,
     Query$FetchEpisode$episode$relatedItems? relatedItems,
     Query$FetchEpisode$episode$lessons? lessons,
@@ -7057,6 +7298,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
     Object? progress = _undefined,
     Object? shareRestriction = _undefined,
     Object? ageRating = _undefined,
+    Object? availableTo = _undefined,
     Object? chapters = _undefined,
     Object? relatedItems = _undefined,
     Object? lessons = _undefined,
@@ -7109,6 +7351,9 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
         ageRating: ageRating == _undefined || ageRating == null
             ? _instance.ageRating
             : (ageRating as String),
+        availableTo: availableTo == _undefined || availableTo == null
+            ? _instance.availableTo
+            : (availableTo as String),
         chapters: chapters == _undefined || chapters == null
             ? _instance.chapters
             : (chapters as List<Query$FetchEpisode$episode$chapters>),
@@ -7199,6 +7444,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
     int? progress,
     Enum$ShareRestriction? shareRestriction,
     String? ageRating,
+    String? availableTo,
     List<Query$FetchEpisode$episode$chapters>? chapters,
     Query$FetchEpisode$episode$relatedItems? relatedItems,
     Query$FetchEpisode$episode$lessons? lessons,
@@ -13503,4 +13749,452 @@ class _CopyWithStubImpl$Query$getNextEpisodes$episode<TRes>
   }) =>
       _res;
   next(_fn) => _res;
+}
+
+class Variables$Query$getEpisodeAvailability {
+  factory Variables$Query$getEpisodeAvailability({required String episodeId}) =>
+      Variables$Query$getEpisodeAvailability._({
+        r'episodeId': episodeId,
+      });
+
+  Variables$Query$getEpisodeAvailability._(this._$data);
+
+  factory Variables$Query$getEpisodeAvailability.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$episodeId = data['episodeId'];
+    result$data['episodeId'] = (l$episodeId as String);
+    return Variables$Query$getEpisodeAvailability._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get episodeId => (_$data['episodeId'] as String);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$episodeId = episodeId;
+    result$data['episodeId'] = l$episodeId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$getEpisodeAvailability<
+          Variables$Query$getEpisodeAvailability>
+      get copyWith => CopyWith$Variables$Query$getEpisodeAvailability(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Query$getEpisodeAvailability) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$episodeId = episodeId;
+    final lOther$episodeId = other.episodeId;
+    if (l$episodeId != lOther$episodeId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$episodeId = episodeId;
+    return Object.hashAll([l$episodeId]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$getEpisodeAvailability<TRes> {
+  factory CopyWith$Variables$Query$getEpisodeAvailability(
+    Variables$Query$getEpisodeAvailability instance,
+    TRes Function(Variables$Query$getEpisodeAvailability) then,
+  ) = _CopyWithImpl$Variables$Query$getEpisodeAvailability;
+
+  factory CopyWith$Variables$Query$getEpisodeAvailability.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$getEpisodeAvailability;
+
+  TRes call({String? episodeId});
+}
+
+class _CopyWithImpl$Variables$Query$getEpisodeAvailability<TRes>
+    implements CopyWith$Variables$Query$getEpisodeAvailability<TRes> {
+  _CopyWithImpl$Variables$Query$getEpisodeAvailability(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$getEpisodeAvailability _instance;
+
+  final TRes Function(Variables$Query$getEpisodeAvailability) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? episodeId = _undefined}) =>
+      _then(Variables$Query$getEpisodeAvailability._({
+        ..._instance._$data,
+        if (episodeId != _undefined && episodeId != null)
+          'episodeId': (episodeId as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$getEpisodeAvailability<TRes>
+    implements CopyWith$Variables$Query$getEpisodeAvailability<TRes> {
+  _CopyWithStubImpl$Variables$Query$getEpisodeAvailability(this._res);
+
+  TRes _res;
+
+  call({String? episodeId}) => _res;
+}
+
+class Query$getEpisodeAvailability {
+  Query$getEpisodeAvailability({
+    required this.episode,
+    this.$__typename = 'QueryRoot',
+  });
+
+  factory Query$getEpisodeAvailability.fromJson(Map<String, dynamic> json) {
+    final l$episode = json['episode'];
+    final l$$__typename = json['__typename'];
+    return Query$getEpisodeAvailability(
+      episode: Fragment$EpisodeAvailability.fromJson(
+          (l$episode as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Fragment$EpisodeAvailability episode;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$episode = episode;
+    _resultData['episode'] = l$episode.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$episode = episode;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$episode,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$getEpisodeAvailability) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$episode = episode;
+    final lOther$episode = other.episode;
+    if (l$episode != lOther$episode) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$getEpisodeAvailability
+    on Query$getEpisodeAvailability {
+  CopyWith$Query$getEpisodeAvailability<Query$getEpisodeAvailability>
+      get copyWith => CopyWith$Query$getEpisodeAvailability(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$getEpisodeAvailability<TRes> {
+  factory CopyWith$Query$getEpisodeAvailability(
+    Query$getEpisodeAvailability instance,
+    TRes Function(Query$getEpisodeAvailability) then,
+  ) = _CopyWithImpl$Query$getEpisodeAvailability;
+
+  factory CopyWith$Query$getEpisodeAvailability.stub(TRes res) =
+      _CopyWithStubImpl$Query$getEpisodeAvailability;
+
+  TRes call({
+    Fragment$EpisodeAvailability? episode,
+    String? $__typename,
+  });
+  CopyWith$Fragment$EpisodeAvailability<TRes> get episode;
+}
+
+class _CopyWithImpl$Query$getEpisodeAvailability<TRes>
+    implements CopyWith$Query$getEpisodeAvailability<TRes> {
+  _CopyWithImpl$Query$getEpisodeAvailability(
+    this._instance,
+    this._then,
+  );
+
+  final Query$getEpisodeAvailability _instance;
+
+  final TRes Function(Query$getEpisodeAvailability) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? episode = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$getEpisodeAvailability(
+        episode: episode == _undefined || episode == null
+            ? _instance.episode
+            : (episode as Fragment$EpisodeAvailability),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$EpisodeAvailability<TRes> get episode {
+    final local$episode = _instance.episode;
+    return CopyWith$Fragment$EpisodeAvailability(
+        local$episode, (e) => call(episode: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$getEpisodeAvailability<TRes>
+    implements CopyWith$Query$getEpisodeAvailability<TRes> {
+  _CopyWithStubImpl$Query$getEpisodeAvailability(this._res);
+
+  TRes _res;
+
+  call({
+    Fragment$EpisodeAvailability? episode,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$EpisodeAvailability<TRes> get episode =>
+      CopyWith$Fragment$EpisodeAvailability.stub(_res);
+}
+
+const documentNodeQuerygetEpisodeAvailability = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'getEpisodeAvailability'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'episodeId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'episode'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'id'),
+            value: VariableNode(name: NameNode(value: 'episodeId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FragmentSpreadNode(
+            name: NameNode(value: 'EpisodeAvailability'),
+            directives: [],
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+  fragmentDefinitionEpisodeAvailability,
+]);
+Query$getEpisodeAvailability _parserFn$Query$getEpisodeAvailability(
+        Map<String, dynamic> data) =>
+    Query$getEpisodeAvailability.fromJson(data);
+typedef OnQueryComplete$Query$getEpisodeAvailability = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$getEpisodeAvailability?,
+);
+
+class Options$Query$getEpisodeAvailability
+    extends graphql.QueryOptions<Query$getEpisodeAvailability> {
+  Options$Query$getEpisodeAvailability({
+    String? operationName,
+    required Variables$Query$getEpisodeAvailability variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$getEpisodeAvailability? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$getEpisodeAvailability? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$getEpisodeAvailability(data),
+                  ),
+          onError: onError,
+          document: documentNodeQuerygetEpisodeAvailability,
+          parserFn: _parserFn$Query$getEpisodeAvailability,
+        );
+
+  final OnQueryComplete$Query$getEpisodeAvailability? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$getEpisodeAvailability
+    extends graphql.WatchQueryOptions<Query$getEpisodeAvailability> {
+  WatchOptions$Query$getEpisodeAvailability({
+    String? operationName,
+    required Variables$Query$getEpisodeAvailability variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$getEpisodeAvailability? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQuerygetEpisodeAvailability,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$getEpisodeAvailability,
+        );
+}
+
+class FetchMoreOptions$Query$getEpisodeAvailability
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$getEpisodeAvailability({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$getEpisodeAvailability variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables.toJson(),
+          document: documentNodeQuerygetEpisodeAvailability,
+        );
+}
+
+extension ClientExtension$Query$getEpisodeAvailability
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$getEpisodeAvailability>>
+      query$getEpisodeAvailability(
+              Options$Query$getEpisodeAvailability options) async =>
+          await this.query(options);
+  graphql.ObservableQuery<Query$getEpisodeAvailability>
+      watchQuery$getEpisodeAvailability(
+              WatchOptions$Query$getEpisodeAvailability options) =>
+          this.watchQuery(options);
+  void writeQuery$getEpisodeAvailability({
+    required Query$getEpisodeAvailability data,
+    required Variables$Query$getEpisodeAvailability variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(
+              document: documentNodeQuerygetEpisodeAvailability),
+          variables: variables.toJson(),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$getEpisodeAvailability? readQuery$getEpisodeAvailability({
+    required Variables$Query$getEpisodeAvailability variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(
+            document: documentNodeQuerygetEpisodeAvailability),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null
+        ? null
+        : Query$getEpisodeAvailability.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$getEpisodeAvailability>
+    useQuery$getEpisodeAvailability(
+            Options$Query$getEpisodeAvailability options) =>
+        graphql_flutter.useQuery(options);
+graphql.ObservableQuery<Query$getEpisodeAvailability>
+    useWatchQuery$getEpisodeAvailability(
+            WatchOptions$Query$getEpisodeAvailability options) =>
+        graphql_flutter.useWatchQuery(options);
+
+class Query$getEpisodeAvailability$Widget
+    extends graphql_flutter.Query<Query$getEpisodeAvailability> {
+  Query$getEpisodeAvailability$Widget({
+    widgets.Key? key,
+    required Options$Query$getEpisodeAvailability options,
+    required graphql_flutter.QueryBuilder<Query$getEpisodeAvailability> builder,
+  }) : super(
+          key: key,
+          options: options,
+          builder: builder,
+        );
 }

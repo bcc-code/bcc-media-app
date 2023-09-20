@@ -106,7 +106,19 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       return false;
     }
     if (expiry.difference(clock.now()) < kMinimumCredentialsTTL) {
-      return await _refresh();
+      final refreshSucceeded = await _refresh();
+      if (refreshSucceeded) {
+        return true;
+      } else {
+        state = state.copyWith(
+          auth0AccessToken: accessToken,
+          idToken: idToken,
+          user: _parseIdToken(idToken),
+          expiresAt: expiry,
+          signedOutManually: null,
+        );
+        return false;
+      }
     }
     state = state.copyWith(
       auth0AccessToken: accessToken,

@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../helpers/time.dart';
 import '../../helpers/episode_state.dart';
 import '../../models/episode_thumbnail_data.dart';
+import '../badges/download_expires_badge.dart';
 import 'misc/bordered_image_container.dart';
 import 'misc/episode_duration.dart';
 import 'misc/watch_progress_indicator.dart';
@@ -15,6 +18,7 @@ class EpisodeThumbnail extends StatelessWidget {
   final double aspectRatio;
   final bool isLive;
   final bool? useCache;
+  final DateTime? expiresAt;
 
   const EpisodeThumbnail({
     super.key,
@@ -24,6 +28,7 @@ class EpisodeThumbnail extends StatelessWidget {
     this.aspectRatio = 16 / 9,
     this.isLive = false,
     this.useCache,
+    this.expiresAt,
   });
 
   factory EpisodeThumbnail.withSize({
@@ -31,6 +36,7 @@ class EpisodeThumbnail extends StatelessWidget {
     required Size imageSize,
     bool isLive = false,
     bool? useCache,
+    DateTime? expiresAt,
   }) {
     return EpisodeThumbnail(
       episode: episode,
@@ -38,6 +44,7 @@ class EpisodeThumbnail extends StatelessWidget {
       imageHeight: imageSize.height,
       isLive: isLive,
       useCache: useCache,
+      expiresAt: expiresAt,
     );
   }
 
@@ -47,6 +54,7 @@ class EpisodeThumbnail extends StatelessWidget {
     required double aspectRatio,
     bool isLive = false,
     bool? useCache,
+    DateTime? expiresAt,
   }) {
     return EpisodeThumbnail(
       imageWidth: imageWidth,
@@ -54,6 +62,7 @@ class EpisodeThumbnail extends StatelessWidget {
       isLive: isLive,
       episode: episode,
       useCache: useCache,
+      expiresAt: expiresAt,
     );
   }
 
@@ -66,9 +75,19 @@ class EpisodeThumbnail extends StatelessWidget {
       child: imageHeight == null
           ? AspectRatio(
               aspectRatio: aspectRatio,
-              child: _EpisodeThumbnailStack(episode: episode, isLive: isLive, useCache: useCache),
+              child: _EpisodeThumbnailStack(
+                episode: episode,
+                isLive: isLive,
+                useCache: useCache,
+                expiresAt: expiresAt,
+              ),
             )
-          : _EpisodeThumbnailStack(episode: episode, isLive: isLive, useCache: useCache),
+          : _EpisodeThumbnailStack(
+              episode: episode,
+              isLive: isLive,
+              useCache: useCache,
+              expiresAt: expiresAt,
+            ),
     );
   }
 }
@@ -77,11 +96,13 @@ class _EpisodeThumbnailStack extends StatelessWidget {
   final EpisodeThumbnailData episode;
   final bool isLive;
   final bool? useCache;
+  final DateTime? expiresAt;
 
   const _EpisodeThumbnailStack({
     required this.episode,
     required this.isLive,
     required this.useCache,
+    required this.expiresAt,
   });
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
@@ -131,6 +152,7 @@ class _EpisodeThumbnailStack extends StatelessWidget {
               child: Row(
                 children: [
                   if (watched) const WatchedBadge(),
+                  if (expiresAt != null) DownloadExpiresBadge(expiresAt: expiresAt!),
                   const Spacer(),
                   EpisodeDuration(duration: getFormattedDuration(episode.duration)),
                 ],

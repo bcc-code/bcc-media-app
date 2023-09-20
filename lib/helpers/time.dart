@@ -54,3 +54,15 @@ String getFormattedDateTime(DateTime date) {
   final localDateTime = DateFormat('yyyy-MM-ddTHH:mm:ss').format(date);
   return '$localDateTime${getUtcOffset()}';
 }
+
+DateTime? getEarliestNullableDateTime(List<DateTime?> dates) {
+  return dates.reduce((value, element) {
+    if (value == null) {
+      return element;
+    }
+    if (element == null) {
+      return value;
+    }
+    return element.isBefore(value) ? element : value;
+  });
+}

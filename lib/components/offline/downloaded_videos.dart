@@ -9,6 +9,8 @@ import 'package:brunstadtv_app/components/misc/generic_dialog.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_with_header.dart';
 import 'package:brunstadtv_app/components/profile/empty_info.dart';
 import 'package:brunstadtv_app/components/web/dialog_on_web.dart';
+import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
+import 'package:brunstadtv_app/providers/availability.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -25,6 +27,7 @@ import '../../components/status/error_generic.dart';
 import '../../components/status/loading_generic.dart';
 import '../../components/thumbnails/grid/thumbnail_grid_episode.dart';
 import '../../helpers/svg_icons.dart';
+import '../../helpers/time.dart';
 import '../../models/analytics/sections.dart';
 import '../../models/episode_thumbnail_data.dart';
 import '../../providers/analytics.dart';
@@ -40,44 +43,6 @@ class DownloadedVideosSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
-
-    /*
-
-       (context, snapshot) {
-            Widget child = const SizedBox.shrink();
-            if (snapshot.connectionState != ConnectionState.done) {
-              print('snapshot.data!.loading');
-              child = const Center(child: LoadingGeneric());
-            } else if (snapshot.hasError || snapshot.data == null) {
-              print(snapshot.error);
-              child = ErrorGeneric(onRetry: () {
-                ref.invalidate(downloadsProvider);
-              });
-            } else if (snapshot.data!.isEmpty) {
-              print('snapshot.data!.isEmpty');
-              child = Container(
-                padding: const EdgeInsets.all(16),
-                width: double.infinity,
-                child: EmptyInfo(
-                  icon: SvgPicture.string(
-                    SvgIcons.download,
-                    height: 36,
-                    colorFilter: ColorFilter.mode(design.colors.onTint, BlendMode.srcIn),
-                  ),
-                  title: 'Save videos for offline viewing',
-                  details: 'Tap on the download icon on a video, to download and play while offline.',
-                ),
-              );
-            } else {
-              print('rebuild downloaded videos');
-              child = _DownloadedContent(snapshot.data!);
-            }
-            return AnimatedSwitcher(
-              duration: const Duration(milliseconds: 250),
-              child: child,
-            );
-          }),
-    */
     return SectionWithHeader(
       title: 'Downloaded',
       child: AnimatedSwitcher(
@@ -141,10 +106,16 @@ class _DownloadedContent extends HookConsumerWidget {
             if (item.status != DownloadStatus.finished) {
               return _DownloadingGridItem(item: item);
             } else {
+              final episodeId = item.config.typedAdditionalData.episodeId;
+              final availableTo = episodeId == null ? null : ref.watch(episodeAvailabilityProvider(episodeId)).valueOrNull?.availableTo;
+              final expiresAt = getEarliestNullableDateTime([
+                item.config.typedAdditionalData.expiresAt,
+                availableTo,
+              ]);
               return _DownloadSectionItemClickWrapper(
                 download: item,
                 analytics: SectionItemAnalytics(
-                  id: item.config.additionalData['id'] ?? index.toString(),
+                  id: item.config.typedAdditionalData.episodeId ?? index.toString(),
                   name: item.config.title,
                   type: 'download',
                   position: index,
@@ -153,14 +124,15 @@ class _DownloadedContent extends HookConsumerWidget {
                   useCache: true,
                   episode: EpisodeThumbnailData(
                     title: item.config.title,
-                    duration: int.tryParse(item.config.additionalData['duration'] ?? '') ?? 0,
-                    image: item.config.additionalData['artwork_uri'],
+                    duration: ((item.config.typedAdditionalData.durationMs ?? 0) / Duration.millisecondsPerSecond).round(),
+                    image: item.config.typedAdditionalData.artworkUri,
                     locked: false,
                     progress: null,
                     publishDate: null,
                   ),
                   showSecondaryTitle: false,
                   aspectRatio: 16 / 9,
+                  expiresAt: expiresAt,
                 ),
               );
             }
@@ -194,7 +166,7 @@ class _DownloadingGridItem extends ConsumerWidget {
           );
           return;
         }
-        final episodeId = item.config.additionalData['id'];
+        final episodeId = item.config.typedAdditionalData.episodeId;
         if (episodeId == null) return;
         context.navigateTo(EpisodeScreenRoute(episodeId: episodeId));
       },
@@ -216,7 +188,7 @@ class _DownloadingGridItem extends ConsumerWidget {
                 child: AspectRatio(
                   aspectRatio: 16 / 9,
                   child: BorderedImageContainer(
-                    imageUrl: item.config.additionalData['artwork_uri'],
+                    imageUrl: item.config.typedAdditionalData.artworkUri,
                     useCache: true,
                   ),
                 ),

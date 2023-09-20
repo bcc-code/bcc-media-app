@@ -67,6 +67,7 @@ class ProfileScreen extends HookConsumerWidget {
     onRefresh() => myListFuture.value = getMyList();
 
     final design = DesignSystem.of(context);
+    final downloadedVideosCount = ref.watch(downloadsProvider.select((value) => value.valueOrNull?.length ?? 0));
 
     return Scaffold(
       appBar: AppBar(
@@ -167,9 +168,10 @@ class ProfileScreen extends HookConsumerWidget {
                 ),
               ),
             ),
-          const SliverToBoxAdapter(
-            child: DownloadedVideosSection(),
-          ),
+          if (downloadedVideosCount > 0 || ref.read(authStateProvider.select((value) => !value.guestMode)))
+            const SliverToBoxAdapter(
+              child: DownloadedVideosSection(),
+            ),
           const SliverToBoxAdapter(child: SizedBox(height: 32)),
         ],
       ),

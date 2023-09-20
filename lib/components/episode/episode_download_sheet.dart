@@ -4,6 +4,8 @@ import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/bytes.dart';
 import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
@@ -17,6 +19,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../helpers/insets.dart';
 import '../../helpers/languages.dart';
+import '../../providers/me_provider.dart';
 import '../status/loading_indicator.dart';
 
 class EpisodeDownloadSheet extends HookConsumerWidget {
@@ -32,7 +35,7 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mediaInfoFuture = useMemoized(
-      () => BccmPlayerInterface.instance.fetchMediaInfo(url: episode.streams.getBestStreamUrl()),
+      () => BccmPlayerInterface.instance.fetchMediaInfo(url: episode.streams.getBestStreamUrl(), mimeType: 'application/x-mpegURL'),
       [episode],
     );
     final mediaInfoSnapshot = useFuture(mediaInfoFuture);
@@ -136,6 +139,7 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
         appBarTitle: S.of(context).videoQuality,
         startingSelection: selectedVideoTrack.value?.id,
         options: videoTracks
+            .where((element) => element.bitrate != null && element.bitrate! > 0)
             .map((e) => Option(
                   id: e.id,
                   title: e.labelWithFallback,
@@ -231,8 +235,14 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
                               videoTrackIds: [selectedVideoTrack.value?.id],
                               additionalData: {
                                 ...?mediaItem.metadata?.extras,
-                                'id': episode.id,
-                                'artwork_uri': mediaItem.metadata?.artworkUri,
+                                ...TypedAdditionalData(
+                                  episodeId: episode.id,
+                                  artworkUri: mediaItem.metadata?.artworkUri,
+                                  durationMs: mediaItem.metadata?.durationMs,
+                                  downloadedAt: DateTime.now(),
+                                  expiresAt: DateTime.now().add(const Duration(days: 30)),
+                                  downloadedBy: ref.read(meProvider).valueOrNull?.me.id,
+                                ).toStringMap()
                               },
                             ));
 

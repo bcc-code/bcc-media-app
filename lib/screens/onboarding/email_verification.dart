@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/components/onboarding/email_verification/email_verification_success_page.dart';
 import 'package:brunstadtv_app/components/onboarding/email_verification/email_verification_prompt_page.dart';
+import 'package:brunstadtv_app/helpers/hooks/use_interval.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -17,16 +18,6 @@ import '../../providers/me_provider.dart';
 
 class EmailVerificationScreen extends HookConsumerWidget {
   const EmailVerificationScreen({super.key});
-
-  void useInterval(VoidCallback callback, Duration delay) {
-    final savedCallback = useRef(callback);
-    savedCallback.value = callback;
-
-    useEffect(() {
-      final timer = Timer.periodic(delay, (_) => savedCallback.value());
-      return timer.cancel;
-    }, [delay]);
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
