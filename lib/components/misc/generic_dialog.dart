@@ -12,6 +12,8 @@ class GenericDialog extends StatelessWidget {
     this.description,
     this.dismissButtonText,
     this.slotBeforeDismissButton,
+    this.titleStyle,
+    this.descriptionStyle,
   });
 
   final Widget? image;
@@ -19,6 +21,8 @@ class GenericDialog extends StatelessWidget {
   final String title;
   final String? description;
   final String? dismissButtonText;
+  final TextStyle? titleStyle;
+  final TextStyle? descriptionStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,7 @@ class GenericDialog extends StatelessWidget {
               ),
             Text(
               title,
-              style: DesignSystem.of(context).textStyles.headline2,
+              style: titleStyle ?? DesignSystem.of(context).textStyles.headline2,
               textAlign: TextAlign.center,
             ),
             if (description?.isNotEmpty == true)
@@ -45,7 +49,7 @@ class GenericDialog extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 4),
                 child: Text(
                   description!,
-                  style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label3),
+                  style: descriptionStyle ?? DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label3),
                   textAlign: TextAlign.center,
                 ),
               ),

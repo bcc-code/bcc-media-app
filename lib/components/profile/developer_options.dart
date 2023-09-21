@@ -123,7 +123,7 @@ class DeveloperOptions extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return BottomSheetSelect(
+    return BottomSheetSelect<String>(
       title: 'Developer options',
       selectedId: 'fromStart',
       items: [

@@ -13,6 +13,8 @@ class PrefKeys {
   static const appLanguage = 'app_language';
   static const audioLanguage = 'audio_language';
   static const subtitleLanguage = 'subtitle_language';
+  static const downloadAudioLanguage = 'download_audio_language';
+  static const downloadQuality = 'download_quality';
   static const analyticsId = 'analytics_id';
   static const completedSurveys = 'completed_surveys';
   static const isBetaTester = 'is_beta_tester';

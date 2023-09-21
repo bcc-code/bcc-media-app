@@ -823,4 +823,23 @@ class SSl extends S {
 
   @override
   String get downloadButton => 'Download';
+
+  @override
+  String audioNotAvailableInLanguage(String lang) {
+    return 'Audio not available in $lang';
+  }
+
+  @override
+  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+
+  @override
+  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+
+  @override
+  String theVideoFileSizeIs(String size) {
+    return 'The video file size is $size.';
+  }
+
+  @override
+  String get gotIt => 'Got it';
 }

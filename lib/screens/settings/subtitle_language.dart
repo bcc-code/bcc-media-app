@@ -47,7 +47,7 @@ class _AppSubtitleLanguageState extends ConsumerState<SubtitleLanguageScreen> {
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16),
-              child: OptionList(
+              child: OptionList<String>(
                 optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
                 currentSelection: selected,
                 onSelectionChange: _onSelectionChanged,

@@ -12,13 +12,13 @@ class BottomSheetSelectResult {
   BottomSheetSelectResult({required this.cancelled});
 }
 
-class BottomSheetSelect extends StatefulWidget {
-  final String selectedId;
+class BottomSheetSelect<T> extends StatefulWidget {
+  final T selectedId;
   final String title;
   final Widget? description;
-  final List<Option> items;
+  final List<Option<T>> items;
   final bool showSelection;
-  final void Function(String id) onSelectionChanged;
+  final void Function(T id) onSelectionChanged;
   final bool popOnChange;
 
   const BottomSheetSelect({
@@ -33,11 +33,11 @@ class BottomSheetSelect extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<BottomSheetSelect> createState() => _BottomSheetSelectState();
+  State<BottomSheetSelect<T>> createState() => _BottomSheetSelectState<T>();
 }
 
-class _BottomSheetSelectState extends State<BottomSheetSelect> {
-  late String localSelectedId;
+class _BottomSheetSelectState<T> extends State<BottomSheetSelect<T>> {
+  late T localSelectedId;
   @override
   void initState() {
     super.initState();
@@ -86,8 +86,8 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                     ),
                     if (widget.description != null) widget.description!,
                     SliverToBoxAdapter(
-                      child: OptionList(
-                        optionData: widget.items,
+                      child: OptionList<T>(
+                        optionData: widget.items as List<Option<T>>,
                         currentSelection: localSelectedId,
                         showSelection: widget.showSelection,
                         onSelectionChange: (val) {

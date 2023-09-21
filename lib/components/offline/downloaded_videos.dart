@@ -8,7 +8,6 @@ import 'package:brunstadtv_app/components/menus/option_list.dart';
 import 'package:brunstadtv_app/components/misc/generic_dialog.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_with_header.dart';
 import 'package:brunstadtv_app/components/profile/empty_info.dart';
-import 'package:brunstadtv_app/components/web/dialog_on_web.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
 import 'package:brunstadtv_app/providers/availability.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
@@ -152,7 +151,6 @@ class _DownloadingGridItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final design = DesignSystem.of(context);
     return FocusableControlBuilder(
       onPressed: () {
         if (item.status == DownloadStatus.failed) {

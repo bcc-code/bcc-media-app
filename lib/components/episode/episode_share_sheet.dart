@@ -53,7 +53,7 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
     if (loading) {
       return const Center(child: LoadingGeneric());
     } else {
-      return BottomSheetSelect(
+      return BottomSheetSelect<String>(
         title: S.of(context).share,
         description: widget.episode.shareRestriction == Enum$ShareRestriction.public
             ? null

@@ -1706,6 +1706,36 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Download'**
   String get downloadButton;
+
+  /// IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio not available in {lang}'**
+  String audioNotAvailableInLanguage(String lang);
+
+  /// Shown when you try to download an episode, but there is not enough space on your device.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough available space on your device'**
+  String get notEnoughAvailableSpace;
+
+  /// Shown when you try to download an episode, but there is not enough space on your device.
+  ///
+  /// In en, this message translates to:
+  /// **'Consider deleting other videos you downloaded in the app.'**
+  String get considerDeletingOtherVideos;
+
+  /// IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.
+  ///
+  /// In en, this message translates to:
+  /// **'The video file size is {size}.'**
+  String theVideoFileSizeIs(String size);
+
+  /// A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get gotIt;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

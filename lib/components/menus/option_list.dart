@@ -10,10 +10,10 @@ import '../../theme/design_system/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
 
-class OptionList extends StatelessWidget {
-  final List<Option> optionData;
-  final String? currentSelection;
-  final void Function(String?) onSelectionChange;
+class OptionList<T> extends StatelessWidget {
+  final List<Option<T>> optionData;
+  final T? currentSelection;
+  final void Function(T?) onSelectionChange;
   final bool enableDivider;
   final bool showSelection;
   final Color? backgroundColor;
@@ -50,7 +50,7 @@ class OptionList extends StatelessWidget {
               children: [
                 if (index > 0 && enableDivider)
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     color: design.colors.background2,
                     child: Container(width: double.infinity, height: 1, color: design.colors.separatorOnLight),
                   ),
@@ -69,7 +69,7 @@ class OptionList extends StatelessWidget {
   }
 }
 
-class _OptionListOption extends HookWidget {
+class _OptionListOption<T> extends HookWidget {
   const _OptionListOption({
     required this.onSelectionChange,
     required this.option,
@@ -77,7 +77,7 @@ class _OptionListOption extends HookWidget {
     required this.backgroundColor,
   });
 
-  final void Function(String? p1) onSelectionChange;
+  final void Function(T? p1) onSelectionChange;
   final Option option;
   final bool isSelected;
   final Color backgroundColor;
@@ -161,8 +161,8 @@ class _OptionListOption extends HookWidget {
   }
 }
 
-class Option {
-  final String? id;
+class Option<T> {
+  final T? id;
   final String title;
   final Widget? icon;
   final Widget? rightSlot;

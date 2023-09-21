@@ -50,7 +50,7 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16),
-              child: OptionList(
+              child: OptionList<String>(
                 optionData: appLanuageCodes.map((l) => Option(id: l, title: languages[l]!.nativeName, subTitle: languages[l]!.englishName)).toList(),
                 currentSelection: selected,
                 onSelectionChange: _onSelectionChanged,
