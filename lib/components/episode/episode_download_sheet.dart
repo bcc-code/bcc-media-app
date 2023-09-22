@@ -107,7 +107,7 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
                 title: getLanguageName(selectedAudioTrack.value!.language) ?? selectedAudioTrack.value!.labelWithFallback,
               )
             : const Center(child: LoadingIndicator(width: 15, height: 15)),
-        title: 'Language',
+        title: S.of(context).language,
         subTitleSlot: ClipRect(
           child: _SubtitlesInfo(
             showList: showSubtitlesList.value,
@@ -135,7 +135,7 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
             : Padding(
                 padding: const EdgeInsets.only(top: 4),
                 child: Text(
-                  'Estimated file size: ${kiloBytesToString(estimatedFileSizeKb)}',
+                  S.of(context).estimatedFileSize(kiloBytesToString(estimatedFileSizeKb)),
                   style: design.textStyles.caption1.copyWith(color: design.colors.label4),
                 ),
               ),
@@ -195,7 +195,7 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
                 );
           return Option(
             id: key,
-            title: translateDownloadQuality(S.of(context), key),
+            title: key.translate(context),
             subTitle: [heightString, sizeString].join(' - '),
           );
         }).toList(),
@@ -294,7 +294,7 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
                 ),
               ),
               Text(
-                'Download video',
+                S.of(context).downloadVideo,
                 textAlign: TextAlign.center,
                 style: design.textStyles.title3,
               ),
@@ -421,7 +421,7 @@ class _SubtitlesInfo extends HookWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  'No subtitles',
+                  S.of(context).noSubtitles,
                   style: design.textStyles.caption1.copyWith(color: design.colors.label4),
                 ),
               ],
@@ -434,7 +434,7 @@ class _SubtitlesInfo extends HookWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  'Subtitles included',
+                  S.of(context).subtitlesIncluded,
                   style: design.textStyles.caption1.copyWith(color: design.colors.label4),
                 ),
                 Container(
@@ -464,7 +464,7 @@ class _SubtitlesInfo extends HookWidget {
                 child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
                   const SizedBox(height: 12),
                   Text(
-                    'All subtitles will be available offline',
+                    S.of(context).allSubtitlesWillBeAvailableOffline,
                     style: design.textStyles.body2.copyWith(color: design.colors.label1),
                   ),
                   const SizedBox(height: 4),

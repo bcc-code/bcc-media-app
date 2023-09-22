@@ -45,7 +45,7 @@ class DownloadedVideosSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
     return SectionWithHeader(
-      title: 'Downloaded',
+      title: S.of(context).downloaded,
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 250),
         child: ref.watch(downloadsProvider).when(
@@ -69,8 +69,8 @@ class DownloadedVideosSection extends ConsumerWidget {
                         height: 36,
                         colorFilter: ColorFilter.mode(design.colors.onTint, BlendMode.srcIn),
                       ),
-                      title: 'Save videos for offline viewing',
-                      details: 'Tap on the download icon on a video, to download and play while offline.',
+                      title: S.of(context).saveVideosForOfflineViewing,
+                      details: S.of(context).tapOnTheDownloadIcon,
                     ),
                   );
                 } else {

@@ -42,26 +42,16 @@ class ProfileScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.read(authStateProvider.select((value) => value.user));
+
     getMyList() {
       if (user == null) {
         return Future.value(null);
       }
-      return ref.read(gqlClientProvider).query$MyList().then(
-        (result) {
-          if (result.hasException) {
-            throw result.exception!;
-          }
-          if (result.parsedData == null) {
-            throw ErrorDescription('MyList result is null.');
-          }
-          return result.parsedData!.myList;
-        },
-      );
+      return ref.read(gqlClientProvider).query$MyList();
     }
 
     final myListFuture = useState(useMemoized(getMyList));
-
-    onRefresh() => myListFuture.value = getMyList();
+    onFavoritesRefresh() => myListFuture.value = getMyList();
 
     final design = DesignSystem.of(context);
     final enableDownloads = ref.read(featureFlagsProvider).download;
@@ -133,16 +123,17 @@ class ProfileScreen extends HookConsumerWidget {
           if (user != null)
             SliverToBoxAdapter(
               child: SectionWithHeader(
-                title: 'Your favorites',
+                title: S.of(context).yourFavorites,
                 child: FutureBuilder(
                   future: myListFuture.value,
-                  builder: (context, AsyncSnapshot<Query$MyList$myList?> snapshot) {
+                  builder: (context, snapshot) {
                     Widget child = const SizedBox.shrink();
+                    final myList = snapshot.data?.parsedData?.myList;
                     if (snapshot.connectionState != ConnectionState.done) {
                       child = const SizedBox(height: 200, child: LoadingGeneric());
-                    } else if (snapshot.hasError || snapshot.data == null) {
-                      child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onRefresh));
-                    } else if (snapshot.data!.entries.items.isEmpty) {
+                    } else if (snapshot.hasError || myList == null) {
+                      child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onFavoritesRefresh));
+                    } else if (myList.entries.items.isEmpty) {
                       child = Container(
                         padding: const EdgeInsets.all(16),
                         width: double.infinity,
@@ -151,12 +142,12 @@ class ProfileScreen extends HookConsumerWidget {
                             SvgIcons.heartFilled,
                             height: 36,
                           ),
-                          title: 'Save your favorite videos',
-                          details: 'Tap on the heart icon on a video to save it in your profile.',
+                          title: S.of(context).saveYourFavorites,
+                          details: S.of(context).saveYourFavoritesDescription,
                         ),
                       );
                     } else {
-                      child = _MyListContent(snapshot.data!.entries.items);
+                      child = _MyListContent(myList.entries.items);
                     }
                     return AnimatedSwitcher(
                       duration: const Duration(milliseconds: 250),

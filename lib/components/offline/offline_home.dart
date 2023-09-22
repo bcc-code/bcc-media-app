@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../theme/design_system/design_system.dart';
 import '../badges/offline_badge.dart';
 
@@ -57,7 +58,7 @@ class _OfflineNoVideos extends StatelessWidget {
         const OfflineBadge(),
         const SizedBox(height: 12),
         Text(
-          'No internet connection',
+          S.of(context).noInternetConnection,
           style: design.textStyles.title1,
           textAlign: TextAlign.center,
         ),
@@ -65,7 +66,7 @@ class _OfflineNoVideos extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            'Connect to the internet to access all videos.',
+            S.of(context).noInternetConnectionDescription,
             style: design.textStyles.body1.copyWith(color: design.colors.label2),
             textAlign: TextAlign.center,
           ),
@@ -94,7 +95,7 @@ class _OfflineWithVideos extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 12),
                 child: Text(
-                  "No internet connection,\nbut don't worry.",
+                  S.of(context).noInternetButDontWorry,
                   style: design.textStyles.title1,
                   textAlign: TextAlign.center,
                 ),
@@ -102,7 +103,7 @@ class _OfflineWithVideos extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
-                  'Here are all the videos you have downloaded to your device.',
+                  S.of(context).hereAreAllTheVideosYouDownloaded,
                   style: design.textStyles.body1.copyWith(color: design.colors.label2),
                   textAlign: TextAlign.center,
                 ),
@@ -110,7 +111,7 @@ class _OfflineWithVideos extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
-                  'Connect to the internet to explore all videos.',
+                  S.of(context).connectToExplore,
                   style: design.textStyles.caption1.copyWith(color: design.colors.label4),
                   textAlign: TextAlign.center,
                 ),

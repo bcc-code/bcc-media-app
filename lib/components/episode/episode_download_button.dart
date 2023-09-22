@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/translations.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
@@ -13,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import '../../l10n/app_localizations.dart';
 import '../../theme/design_system/design_system.dart';
 
 class EpisodeDownloadButton extends HookConsumerWidget {
@@ -49,7 +50,7 @@ class EpisodeDownloadButton extends HookConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 3, right: 8),
             child: Text(
-              'Downloading',
+              download.status.translate(context),
               style: design.textStyles.caption1.copyWith(color: design.colors.tint1),
             ),
           ),
@@ -59,7 +60,7 @@ class EpisodeDownloadButton extends HookConsumerWidget {
             child: CircularProgressIndicator(
               value: clampDouble(download.fractionDownloaded, 0, 1),
               strokeWidth: 2,
-              color: DesignSystem.of(context).colors.tint1,
+              color: design.colors.tint1,
             ),
           ),
         ],
@@ -85,7 +86,7 @@ class EpisodeDownloadButton extends HookConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 8, bottom: 3),
                   child: Text(
-                    'Available offline',
+                    S.of(context).availableOffline,
                     style: design.textStyles.caption1.copyWith(color: design.colors.tint1),
                   ),
                 ),

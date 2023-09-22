@@ -88,7 +88,7 @@ class _DownloadGenericBadge extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 4, bottom: 6, left: 8, right: 8),
             child: Text(
-              translateDownloadStatus(S.of(context), download.status),
+              download.status.translate(context),
               style: design.textStyles.caption1.copyWith(
                 color: download.status == DownloadStatus.failed ? design.colors.tint2 : design.colors.tint1,
               ),
