@@ -112,10 +112,13 @@ class BtvButton extends StatelessWidget {
                     margin: EdgeInsets.only(right: gap),
                     child: SizedBox(width: imageDimension, height: imageDimension, child: image),
                   ),
-                Text(
-                  labelText,
-                  textAlign: TextAlign.center,
-                  style: safeTextStyle.copyWith(color: disabled ? disabledTextColor : safeTextStyle.color),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: Text(
+                    labelText,
+                    textAlign: TextAlign.center,
+                    style: safeTextStyle.copyWith(color: disabled ? disabledTextColor : safeTextStyle.color),
+                  ),
                 )
               ],
             ),

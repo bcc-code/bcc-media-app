@@ -22,7 +22,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 4.9.0+2300090
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -119,6 +119,9 @@ dependencies:
   qr_flutter: ^4.1.0
   focus_debugger: ^0.0.2
   connectivity_plus: ^4.0.2
+  flutter_cache_manager: ^3.3.1
+  cached_network_image: ^3.2.3
+  async: ^2.11.0
   #smooth: any
 
 dev_dependencies:

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
@@ -50,7 +49,7 @@ void tryCatchRecordError(dynamic Function() fn) {
   try {
     fn();
   } catch (e) {
-    FirebaseCrashlytics.instance.recordError(e, StackTrace.current);
+    FlutterError.reportError(FlutterErrorDetails(exception: e, stack: StackTrace.current));
   }
 }
 

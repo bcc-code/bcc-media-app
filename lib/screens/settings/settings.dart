@@ -1,14 +1,12 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import '../../components/nav/custom_back_button.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../flavors.dart';
 import '../../helpers/languages.dart';
@@ -19,14 +17,14 @@ import '../../components/profile/setting_list.dart';
 
 import '../../theme/design_system/design_system.dart';
 
-class ProfileScreen extends ConsumerStatefulWidget {
-  const ProfileScreen({super.key});
+class SettingsScreen extends ConsumerStatefulWidget {
+  const SettingsScreen({super.key});
 
   @override
-  ConsumerState<ProfileScreen> createState() => _ProfileState();
+  ConsumerState<SettingsScreen> createState() => _SettingsState();
 }
 
-class _ProfileState extends ConsumerState<ProfileScreen> {
+class _SettingsState extends ConsumerState<SettingsScreen> {
   Future<void> loginAction(BuildContext context) async {
     final success = await ref.read(authStateProvider.notifier).login();
     if (success && context.mounted) {
@@ -42,15 +40,37 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
     final authEnabled = ref.watch(featureFlagsProvider).auth;
     final user = ref.read(authStateProvider.select((value) => value.user));
     final settings = ref.watch(settingsProvider);
+    final design = DesignSystem.of(context);
     return DialogOnWeb(
       child: CupertinoScaffold(
         body: Scaffold(
           appBar: AppBar(
             elevation: 0,
-            toolbarHeight: 44,
+            toolbarHeight: 56,
             leadingWidth: 92,
-            leading: const CustomBackButton(),
-            title: authEnabled ? Text(S.of(context).profileTab) : Text(S.of(context).settings),
+            leading: FocusableControlBuilder(
+              onPressed: () {
+                context.router.pop();
+              },
+              builder: (context, control) => Container(
+                padding: const EdgeInsets.only(left: 16),
+                width: double.infinity,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  S.of(context).back,
+                  style: !control.isFocused
+                      ? design.textStyles.button2
+                      : design.textStyles.button2.copyWith(shadows: [
+                          Shadow(
+                            color: Theme.of(context).brightness == Brightness.dark ? Colors.white30 : Colors.black26,
+                            blurRadius: 8,
+                            offset: const Offset(0, 0),
+                          )
+                        ]),
+                ),
+              ),
+            ),
+            title: Text(S.of(context).settings),
           ),
           body: SafeArea(
             child: SingleChildScrollView(
@@ -60,42 +80,29 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    if (authEnabled) ...[
-                      if (user != null)
-                        const Avatar()
-                      else
-                        Padding(
-                          padding: const EdgeInsets.only(top: 24, bottom: 16),
-                          child: Padding(
-                            padding: const EdgeInsets.all(6),
-                            child: SvgPicture.string(
-                              SvgIcons.avatar,
-                              color: DesignSystem.of(context).colors.tint1,
+                    if (authEnabled && user != null)
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                        decoration: BoxDecoration(
+                          color: design.colors.background2,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        foregroundDecoration: BoxDecoration(
+                          border: Border.all(color: design.colors.separatorOnLight, width: 1),
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Row(children: [
+                          Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Avatar(
+                              width: 52,
+                              backgroundColor: design.colors.background1,
                             ),
                           ),
-                        ),
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 24),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            if (user != null)
-                              GestureDetector(
-                                onLongPress: () => ref.read(authStateProvider.notifier).logout(manual: false),
-                                child: DesignSystem.of(context).buttons.smallSecondary(
-                                      onPressed: () => {ref.read(authStateProvider.notifier).logout()},
-                                      labelText: S.of(context).logOutButton,
-                                    ),
-                              )
-                            else
-                              DesignSystem.of(context).buttons.small(
-                                    onPressed: () => context.router.navigate(OnboardingScreenRoute()),
-                                    labelText: S.of(context).signInOrSignUp,
-                                  )
-                          ],
-                        ),
-                      ),
-                    ] else ...[
+                          Text(user.name, style: design.textStyles.title3.copyWith(color: design.colors.label1))
+                        ]),
+                      )
+                    else if (!authEnabled)
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 48),
                         child: Image(
@@ -103,8 +110,21 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                           height: 25,
                           gaplessPlayback: true,
                         ),
+                      )
+                    else
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: SettingList(
+                          buttons: [
+                            OptionButton(
+                              optionName: S.of(context).signInButton,
+                              onPressed: () {
+                                context.router.navigate(OnboardingScreenRoute());
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
                     Column(
                       children: [
                         SettingList(
@@ -194,8 +214,15 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                                 optionName: S.of(context).deleteMyAccount,
                                 onPressed: () => context.router.navigate(const AccountDeletionScreenRoute()),
                               ),
+                              OptionButton(
+                                optionName: S.of(context).logOutButton,
+                                onPressed: () {
+                                  ref.read(authStateProvider.notifier).logout();
+                                },
+                              ),
                             ],
-                          )
+                          ),
+                        const SizedBox(height: 48),
                       ],
                     ),
                   ],

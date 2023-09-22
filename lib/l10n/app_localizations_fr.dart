@@ -819,5 +819,116 @@ class SFr extends S {
   String get ageRatingAll => 'Tous';
 
   @override
-  String get offline => 'Offline';
+  String get offline => 'Hors connexion';
+
+  @override
+  String get downloadButton => 'Télécharger';
+
+  @override
+  String audioNotAvailableInLanguage(String lang) {
+    return 'Audio not available in $lang';
+  }
+
+  @override
+  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+
+  @override
+  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+
+  @override
+  String theVideoFileSizeIs(String size) {
+    return 'The video file size is $size.';
+  }
+
+  @override
+  String get gotIt => 'Got it';
+
+  @override
+  String get saveYourFavorites => 'Save your favorite videos';
+
+  @override
+  String get saveYourFavoritesDescription => 'Tap on the heart icon on a video to save it in your profile.';
+
+  @override
+  String get yourFavorites => 'Your favorites';
+
+  @override
+  String get downloaded => 'Downloaded';
+
+  @override
+  String get saveVideosForOfflineViewing => 'Save videos for offline viewing';
+
+  @override
+  String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
+
+  @override
+  String get removeOfflineVideo => 'Remove offline video?';
+
+  @override
+  String get removeOfflineVideoDescription => 'By removing this video it will no longer be available without a network connection.';
+
+  @override
+  String get removeFromDeviceButton => 'Remove from device';
+
+  @override
+  String get keepVideoButton => 'Keep video';
+
+  @override
+  String get noInternetConnection => 'No internet connection';
+
+  @override
+  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+
+  @override
+  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+
+  @override
+  String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
+
+  @override
+  String get connectToExplore => 'Connect to the internet to explore all videos.';
+
+  @override
+  String get language => 'Langue';
+
+  @override
+  String estimatedFileSize(String size) {
+    return 'Estimated file size: $size';
+  }
+
+  @override
+  String get downloadVideo => 'Download video';
+
+  @override
+  String get noSubtitles => 'No subtitles';
+
+  @override
+  String get subtitlesIncluded => 'Subtitles included';
+
+  @override
+  String get allSubtitlesWillBeAvailableOffline => 'All subtitles will be available offline';
+
+  @override
+  String get downloading => 'Downloading';
+
+  @override
+  String get failed => 'Failed';
+
+  @override
+  String get finished => 'Finished';
+
+  @override
+  String get paused => 'Paused';
+
+  @override
+  String get queued => 'Queued';
+
+  @override
+  String get removing => 'Removing';
+
+  @override
+  String get availableOffline => 'Available offline';
+
+  @override
+  String get technicalDetails => 'Technical details';
 }

@@ -6,7 +6,8 @@
 import 'dart:async' as _i7;
 
 import 'package:brunstadtv_app/api/auth0_api.dart' as _i5;
-import 'package:brunstadtv_app/models/auth0/auth0_api.dart' as _i10;
+import 'package:brunstadtv_app/models/auth0/auth0_api.dart' as _i11;
+import 'package:brunstadtv_app/models/offline/download_quality.dart' as _i9;
 import 'package:brunstadtv_app/providers/settings.dart' as _i4;
 import 'package:flutter_appauth/src/flutter_appauth.dart' as _i6;
 import 'package:flutter_appauth_platform_interface/flutter_appauth_platform_interface.dart'
@@ -14,7 +15,7 @@ import 'package:flutter_appauth_platform_interface/flutter_appauth_platform_inte
 import 'package:flutter_riverpod/flutter_riverpod.dart' as _i3;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:state_notifier/state_notifier.dart' as _i9;
+import 'package:state_notifier/state_notifier.dart' as _i10;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -569,6 +570,26 @@ class MockSettingsService extends _i1.Mock implements _i4.SettingsService {
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
   @override
+  _i7.Future<void> setDownloadAudioLanguage(String? code) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setDownloadAudioLanguage,
+          [code],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+  @override
+  _i7.Future<void> setDownloadQuality(_i9.DownloadQuality? quality) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setDownloadQuality,
+          [quality],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+  @override
   bool updateShouldNotify(
     _i4.Settings? old,
     _i4.Settings? current,
@@ -586,7 +607,7 @@ class MockSettingsService extends _i1.Mock implements _i4.SettingsService {
       ) as bool);
   @override
   _i3.RemoveListener addListener(
-    _i9.Listener<_i4.Settings>? listener, {
+    _i10.Listener<_i4.Settings>? listener, {
     bool? fireImmediately = true,
   }) =>
       (super.noSuchMethod(
@@ -631,17 +652,17 @@ class MockAuth0Api extends _i1.Mock implements _i5.Auth0Api {
         returnValueForMissingStub: '',
       ) as String);
   @override
-  _i7.Future<_i10.Auth0SignupResponse?> signup(
-          _i10.Auth0SignupRequestBody? requestBody) =>
+  _i7.Future<_i11.Auth0SignupResponse?> signup(
+          _i11.Auth0SignupRequestBody? requestBody) =>
       (super.noSuchMethod(
         Invocation.method(
           #signup,
           [requestBody],
         ),
-        returnValue: _i7.Future<_i10.Auth0SignupResponse?>.value(),
+        returnValue: _i7.Future<_i11.Auth0SignupResponse?>.value(),
         returnValueForMissingStub:
-            _i7.Future<_i10.Auth0SignupResponse?>.value(),
-      ) as _i7.Future<_i10.Auth0SignupResponse?>);
+            _i7.Future<_i11.Auth0SignupResponse?>.value(),
+      ) as _i7.Future<_i11.Auth0SignupResponse?>);
   @override
   _i7.Future<_i5.DeviceTokenRequestResponse> fetchDeviceCode(
           {required String? scope}) =>

@@ -120,12 +120,12 @@ class _EpisodeDetailsState extends ConsumerState<EpisodeDetails> {
                 if (publishDate != null)
                   _InfoItem(
                     title: S.of(context).releaseDate,
-                    text: DateFormat.yMMMMd(locale).add_jm().format(publishDate),
+                    text: DateFormat.yMMMMd(locale).add_jm().format(publishDate.toLocal()),
                   ),
                 if (availableTo != null && availableTo.isBefore(DateTime.now().add(const Duration(days: 365))))
                   _InfoItem(
                     title: S.of(context).availableTo,
-                    text: DateFormat.yMMMd(locale).add_jm().format(availableTo),
+                    text: DateFormat.yMMMd(locale).add_jm().format(availableTo.toLocal()),
                   ),
                 _InfoItem(title: S.of(context).ageRating, text: episode.ageRating == 'A' ? S.of(context).ageRatingAll : '${episode.ageRating}+'),
                 if (episode.audioLanguages.isNotEmpty)

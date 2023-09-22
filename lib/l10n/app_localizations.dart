@@ -1700,6 +1700,216 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Offline'**
   String get offline;
+
+  /// Button text, a button to download the episode to make it available for offline playback.
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get downloadButton;
+
+  /// IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio not available in {lang}'**
+  String audioNotAvailableInLanguage(String lang);
+
+  /// Shown when you try to download an episode, but there is not enough space on your device.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough available space on your device'**
+  String get notEnoughAvailableSpace;
+
+  /// Shown when you try to download an episode, but there is not enough space on your device.
+  ///
+  /// In en, this message translates to:
+  /// **'Consider deleting other videos you downloaded in the app.'**
+  String get considerDeletingOtherVideos;
+
+  /// IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.
+  ///
+  /// In en, this message translates to:
+  /// **'The video file size is {size}.'**
+  String theVideoFileSizeIs(String size);
+
+  /// A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get gotIt;
+
+  /// Shown in the 'favorites' box when you dont have any favorites saved yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Save your favorite videos'**
+  String get saveYourFavorites;
+
+  /// Shown in the 'favorites' box when you dont have any favorites saved yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap on the heart icon on a video to save it in your profile.'**
+  String get saveYourFavoritesDescription;
+
+  /// Shown as a title for the 'favorites' section in the profile tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Your favorites'**
+  String get yourFavorites;
+
+  /// Shown as a title for the 'downloaded' section in the profile tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded'**
+  String get downloaded;
+
+  /// Shown when the 'downloaded' section is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Save videos for offline viewing'**
+  String get saveVideosForOfflineViewing;
+
+  /// Shown when the 'downloaded' section is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap on the download icon on a video, to download and play while offline.'**
+  String get tapOnTheDownloadIcon;
+
+  /// Shown when holding on a downloaded video in the 'downloaded' section.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove offline video?'**
+  String get removeOfflineVideo;
+
+  /// Shown when holding on a downloaded video in the 'downloaded' section.
+  ///
+  /// In en, this message translates to:
+  /// **'By removing this video it will no longer be available without a network connection.'**
+  String get removeOfflineVideoDescription;
+
+  /// Button text, to remove a downloaded video from the device.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from device'**
+  String get removeFromDeviceButton;
+
+  /// Button when asking to remove a downloaded video. This button cancels.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep video'**
+  String get keepVideoButton;
+
+  /// Shown when you are offline, and the app cannot connect to the internet.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection'**
+  String get noInternetConnection;
+
+  /// Shown when you are offline, and the app cannot connect to the internet.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to the internet to access all videos.'**
+  String get noInternetConnectionDescription;
+
+  /// Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection,\nbut don\'t worry.'**
+  String get noInternetButDontWorry;
+
+  /// Shown when you are offline, but you have downloaded some videos.
+  ///
+  /// In en, this message translates to:
+  /// **'Here are all the videos you have downloaded to your device.'**
+  String get hereAreAllTheVideosYouDownloaded;
+
+  /// Shown when you are offline, and the app cannot connect to the internet.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to the internet to explore all videos.'**
+  String get connectToExplore;
+
+  /// A label when selecting a language to download.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated file size: {size}'**
+  String estimatedFileSize(String size);
+
+  /// Title on the download video form.
+  ///
+  /// In en, this message translates to:
+  /// **'Download video'**
+  String get downloadVideo;
+
+  /// Shown in the download form, indicating that there are no subtitles available for the video.
+  ///
+  /// In en, this message translates to:
+  /// **'No subtitles'**
+  String get noSubtitles;
+
+  /// Shown in the download form, indicating that all subtitles are included in the video.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtitles included'**
+  String get subtitlesIncluded;
+
+  /// Shown in the download form, indicating that all subtitles will be available offline.
+  ///
+  /// In en, this message translates to:
+  /// **'All subtitles will be available offline'**
+  String get allSubtitlesWillBeAvailableOffline;
+
+  /// Download status, indicating that the video is currently downloading.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading'**
+  String get downloading;
+
+  /// Generic status label. Used e.g. for downloads that failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get failed;
+
+  /// Generic status label. Used e.g. for downloads that finished.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished'**
+  String get finished;
+
+  /// Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get paused;
+
+  /// Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued.
+  ///
+  /// In en, this message translates to:
+  /// **'Queued'**
+  String get queued;
+
+  /// Generic status label. Used e.g. for downloads that are being deleted right now.
+  ///
+  /// In en, this message translates to:
+  /// **'Removing'**
+  String get removing;
+
+  /// Label indicating that the video is available offline.
+  ///
+  /// In en, this message translates to:
+  /// **'Available offline'**
+  String get availableOffline;
+
+  /// Shown when errors occur, and you want to see more technical details about the error.
+  ///
+  /// In en, this message translates to:
+  /// **'Technical details'**
+  String get technicalDetails;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

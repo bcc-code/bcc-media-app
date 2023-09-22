@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../api/brunstadtv.dart';
 import '../../graphql/queries/page.graphql.dart';
+import '../../l10n/app_localizations.dart';
 import '../../providers/app_config.dart';
 
 class GamesScreen extends HookConsumerWidget {
@@ -25,7 +26,7 @@ class GamesScreen extends HookConsumerWidget {
     final pageFuture = useMemoized(getGamesPage);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Games')),
+      appBar: AppBar(title: Text(S.of(context).gamesTab)),
       body: SafeArea(
         child: PageRenderer(
           pageFuture: pageFuture,

@@ -39,11 +39,11 @@
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "kidsOnboardingTitle": "We bring the message of the Bible to life!",
+  "kidsOnboardingTitle": "Sprawiamy, że przesłanie Biblii staje się żywe!",
   "@kidsOnboardingTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "kidsOnboardingSecondaryTitle": "Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.",
+  "kidsOnboardingSecondaryTitle": "Naszą wizją jest, aby dzieci doświadczyły Jezusa jako swojego najlepszego przyjaciela - do końca życia.",
   "@kidsOnboardingSecondaryTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
@@ -75,27 +75,27 @@
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
-  "signInOrSignUp": "Sign up / Sign in",
+  "signInOrSignUp": "Zarejestruj się / Zaloguj się",
   "@signInOrSignUp": {
     "description": "Button to go to the onboarding page (short)"
   },
-  "signUpButton": "Sign up now",
+  "signUpButton": "Zarejestruj się teraz",
   "@signUpButton": {
     "description": "Button to start the sign up process"
   },
-  "signUpTitle": "Sign up",
+  "signUpTitle": "Zarejestruj się",
   "@signUpTitle": {
     "description": "Title on the sign up page"
   },
-  "signUpDescription": "Get access to more content and better features by creating an account.",
+  "signUpDescription": "Uzyskaj dostęp do większej ilości treści i lepszych funkcji, tworząc konto.",
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.",
+  "signUpAgreePrivacyPolicy": "Oświadczam, że mam ukończone 13 lat i zgadzam się z <a>Polityką prywatności</a> i <a>Warunkami użytkowania</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
-  "setPassword": "Set password",
+  "setPassword": "Ustaw hasło",
   "@setPassword": {
     "description": "Title for the 'Set password' page of the signup process."
   },
@@ -111,7 +111,7 @@
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
-  "makeDonation": "Make a donation",
+  "makeDonation": "Przekaż darowiznę",
   "@makeDonation": {
     "description": "Text for button which opens donation page."
   },
@@ -135,7 +135,7 @@
   "@ok": {
     "description": "Popup confirmation button"
   },
-  "open": "Open",
+  "open": "Otwórz",
   "@open": {
     "description": "Open button"
   },
@@ -191,75 +191,75 @@
   "@contactUs": {
     "description": "Title for contact us page"
   },
-  "deviceInfo": "Device info",
+  "deviceInfo": "Informacje o urządzeniu",
   "@deviceInfo": {
     "description": "Device info page title"
   },
-  "contactIncludeDeviceInfo": "Include device information for better support.",
+  "contactIncludeDeviceInfo": "Dołącz informacje o urządzeniu, aby uzyskać lepsze wsparcie.",
   "@contactIncludeDeviceInfo": {
     "description": "Text for checkbox to include device information"
   },
-  "contactSeeData": "Click to see data.",
+  "contactSeeData": "Kliknij, aby zobaczyć dane.",
   "@contactSeeData": {
     "description": "Text for link to see device data"
   },
-  "contactName": "Name",
+  "contactName": "Imię",
   "@contactName": {
     "description": "Label for name field in contact support page"
   },
-  "contactNameHint": "Type in your name",
+  "contactNameHint": "Wpisz swoje imię",
   "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactEmail": "Your contact email",
+  "contactEmail": "Twój adres e-mail",
   "@contactEmail": {
     "description": "Label for email field in contact support page"
   },
-  "contactEmailHint": "Type in your email address",
+  "contactEmailHint": "Wpisz swój adres e-mail",
   "@contactEmailHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactMessage": "Message",
+  "contactMessage": "Wiadomość",
   "@contactMessage": {
     "description": "Label for message field in contact support page"
   },
-  "contactMessageHint": "Enter your message here",
+  "contactMessageHint": "Wpisz swoją wiadomość",
   "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
-  "deviceInfoDevice": "Device",
+  "deviceInfoDevice": "Urządzenie",
   "@deviceInfoDevice": {
     "description": "Label for device"
   },
-  "deviceInfoEnvOverride": "Environment override",
+  "deviceInfoEnvOverride": "Nadpisanie środowiska",
   "@deviceInfoEnvOverride": {
     "description": "Label for environment override"
   },
-  "deviceInfoManufacturer": "Manufacturer",
+  "deviceInfoManufacturer": "Producent",
   "@deviceInfoManufacturer": {
     "description": "Label for manufacturer"
   },
-  "deviceInfoOs": "Operating System",
+  "deviceInfoOs": "System operacyjny",
   "@deviceInfoOs": {
     "description": "Label for operating system"
   },
-  "deviceInfoScreenSize": "Screen Size",
+  "deviceInfoScreenSize": "Rozmiar ekranu",
   "@deviceInfoScreenSize": {
     "description": "Label for screen size"
   },
-  "deviceInfoAppVer": "App Version",
+  "deviceInfoAppVer": "Wersja aplikacji",
   "@deviceInfoAppVer": {
     "description": "Label for app Version"
   },
-  "deviceInfoUserId": "User ID",
+  "deviceInfoUserId": "Identyfikator użytkownika",
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-  "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
+  "deviceInfoPageDesc": "Twoja wiadomość będzie zawierać te informacje, aby pomóc nam zapewnić lepsze wsparcie.",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
   },
-  "userVoice": "Suggest a feature",
+  "userVoice": "Zaproponuj funkcję",
   "@userVoice": {
     "description": "Settings item on profile page to navigate to uservoice"
   },
@@ -267,19 +267,19 @@
   "@cancel": {
     "description": "General cancel action button"
   },
-  "cancelConfirmation": "Are you sure you want to cancel?",
+  "cancelConfirmation": "Czy na pewno chcesz anulować?",
   "@cancelConfirmation": {
     "description": "Title text for cancel confirmation dialog."
   },
-  "cancelConfirmationDescription": "Any unsaved changes will be lost.",
+  "cancelConfirmationDescription": "Wszelkie niezapisane zmiany zostaną utracone.",
   "@cancelConfirmationDescription": {
     "description": "Description for cancel confirmation dialog."
   },
-  "goBack": "Go back",
+  "goBack": "Wróć",
   "@goBack": {
     "description": "Text for back button."
   },
-  "yesCancel": "Yes, Cancel",
+  "yesCancel": "Tak, anuluj",
   "@yesCancel": {
     "description": "Confirm cancel."
   },
@@ -303,7 +303,7 @@
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
-  "nextEpisode": "Next Episode",
+  "nextEpisode": "Kolejny Odcinek",
   "@nextEpisode": {
     "description": "Button indicating the next video will play soon."
   },
@@ -339,7 +339,7 @@
   "@search": {
     "description": "Button to clear cache"
   },
-  "sendFeedback": "Send Feedback",
+  "sendFeedback": "Wyślij opinię",
   "@sendFeedback": {
     "description": "Button to submit feedback(Survey)"
   },
@@ -355,7 +355,7 @@
   "@play": {
     "description": "Option in prompt dialog."
   },
-  "pause": "Pause",
+  "pause": "Pauza",
   "@pause": {
     "description": "A button to pause the video."
   },
@@ -630,11 +630,11 @@
   "@share": {
     "description": "Generic."
   },
-  "showMore": "Show more",
+  "showMore": "Pokaż więcej",
   "@showMore": {
     "description": "Text used on link to expand collapsed text."
   },
-  "showLess": "Show less",
+  "showLess": "Pokaż mniej",
   "@showLess": {
     "description": "Text used on link to collapse expanded text."
   },
@@ -715,7 +715,7 @@
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "termsOfUse": "Terms of use",
+  "termsOfUse": "Warunki użytkowania",
   "@termsOfUse": {
     "description": "Title on the 'Terms of use' page."
   },
@@ -779,11 +779,11 @@
   "@exploreContent": {
     "description": "A button"
   },
-  "explorePublicContent": "Explore public content",
+  "explorePublicContent": "Przeglądaj opublikowane treści",
   "@explorePublicContent": {
     "description": "A button on the welcome page"
   },
-  "startExploring": "Start exploring",
+  "startExploring": "Rozpocznij odkrywanie",
   "@startExploring": {
     "description": "A button on the welcome page"
   },
@@ -896,7 +896,7 @@
   "@continueButton": {
     "description": "Generic button text."
   },
-  "registerButton": "Register",
+  "registerButton": "Zarejestruj się",
   "@registerButton": {
     "description": "Generic button text."
   },
@@ -904,7 +904,7 @@
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "passwordConditionLength": "Minimum {n} characters",
+  "passwordConditionLength": "Minimum {n} znaków",
   "@passwordConditionLength": {
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
@@ -913,7 +913,7 @@
       }
     }
   },
-  "passwordConditionComplexity": "Must contain lower case, uppercase and numbers.",
+  "passwordConditionComplexity": "Musi zawierać małe i wielkie litery oraz cyfry.",
   "@passwordConditionComplexity": {
     "description": "Password condition, shown when signing up."
   },
@@ -941,27 +941,27 @@
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   },
-  "myList": "My list",
+  "myList": "Moja lista",
   "@myList": {
     "description": "My list tab name"
   },
-  "didYouKnowTitle": "Did you know?",
+  "didYouKnowTitle": "Czy wiedziałeś?",
   "@didYouKnowTitle": {
     "description": "Title for info displayed on 'My list' page."
   },
-  "didYouKnowContent": "You can add your favorite shows to \"My List\" by tapping the heart.",
+  "didYouKnowContent": "Możesz dodać swoje ulubione programy do \"Mojej listy\", klikając w serduszko.",
   "@didYouKnowContent": {
     "description": "Content for info displayed on 'My list' page."
   },
-  "selectSeason": "Select season",
+  "selectSeason": "Wybierz sezon",
   "@selectSeason": {
     "description": "A title prompting to select a season from the list."
   },
-  "deleteMyAccount": "Delete my account",
+  "deleteMyAccount": "Usuń konto",
   "@deleteMyAccount": {
     "description": "Button to request to delete your account"
   },
-  "iAmSureIWantToDelete": "I am sure I want to delete my account and my data related to the BCC Media app.",
+  "iAmSureIWantToDelete": "Jestem pewien, że chcę usunąć moje konto i dane związane z aplikacją BCC Media.",
   "@iAmSureIWantToDelete": {
     "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
   },
@@ -969,87 +969,87 @@
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
   },
-  "youCanContactUsAt": "You can contact us at",
+  "youCanContactUsAt": "Możesz się z nami skontaktować pod adresem",
   "@youCanContactUsAt": {
     "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
   },
-  "biblekidsAbout": "Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.",
+  "biblekidsAbout": "Bible Kids to inicjatywa BCC Media, fundacji medialnej w ramach Federacji BCC, która produkuje i rozpowszechnia treści o pozytywnych i chrześcijańskich wartościach.",
   "@biblekidsAbout": {
     "description": "Shown on about page"
   },
-  "askYourParents": "Ask your parents",
+  "askYourParents": "Zapytaj rodziców",
   "@askYourParents": {
     "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
   },
-  "whatIsMath": "What is",
+  "whatIsMath": "Ile to",
   "@whatIsMath": {
     "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
   },
-  "answerLabel": "Answer",
+  "answerLabel": "Odpowiedź",
   "@answerLabel": {
     "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
   },
-  "checkAnswerButton": "Check answer",
+  "checkAnswerButton": "Sprawdź odpowiedź",
   "@checkAnswerButton": {
     "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
   },
-  "videoOnlyAccessibleToLoggedIn": "This video is only accessible to users that are logged in to the app.",
+  "videoOnlyAccessibleToLoggedIn": "To wideo jest dostępne wyłącznie dla zalogowanych użytkowników.",
   "@videoOnlyAccessibleToLoggedIn": {
     "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
   },
-  "verifyYourAccount": "Verify your account",
+  "verifyYourAccount": "Zweryfikuj swoje konto",
   "@verifyYourAccount": {
     "description": "Title of the page where you can verify your email/account."
   },
-  "weHaveSentAnEmailTo": "We have sent an email to",
+  "weHaveSentAnEmailTo": "Wysłaliśmy wiadomość e-mail na",
   "@weHaveSentAnEmailTo": {
     "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
   },
-  "clickTheLinkToVerify": "Click the link in the email to verify your account.",
+  "clickTheLinkToVerify": "Kliknij w link w wiadomości e-mail, aby zweryfikować swoje konto.",
   "@clickTheLinkToVerify": {
     "description": "Shown on the verify account page."
   },
-  "openEmailApp": "Open email app",
+  "openEmailApp": "Otwórz aplikację poczty e-mail",
   "@openEmailApp": {
     "description": "Shown on the verify account page. Button to open your email app."
   },
-  "resendEmail": "Resend email",
+  "resendEmail": "Wyślij e-mail ponownie",
   "@resendEmail": {
     "description": "Shown on the verify account page. Button to resend the verification email."
   },
-  "noMailAppsDescription": "No mail apps installed",
+  "noMailAppsDescription": "Brak zainstalowanych aplikacji poczty e-mail",
   "@noMailAppsDescription": {
     "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
   },
-  "verificationEmailSent": "Verification email sent",
+  "verificationEmailSent": "Wysłano wiadomość e-mail z weryfikacją",
   "@verificationEmailSent": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "ifYouDidntReceiveVerificationEmail": "If you still did not receive an email, please contact support at",
+  "ifYouDidntReceiveVerificationEmail": "Jeśli nadal nie otrzymałeś wiadomości e-mail, skontaktuj się z pomocą techniczną pod adresem",
   "@ifYouDidntReceiveVerificationEmail": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "accountCreated": "Account created",
+  "accountCreated": "Utworzono konto",
   "@accountCreated": {
     "description": "Shown when the user has successfully created an account."
   },
-  "youCanNowUseYourAccount": "You can now use your account and explore a variety of edifying content.",
+  "youCanNowUseYourAccount": "Możesz teraz korzystać ze swojego konta i odkrywać różne budujące treści.",
   "@youCanNowUseYourAccount": {
     "description": "Shown when the user has successfully completed account setup."
   },
-  "youCanNowLogInToYourAccount": "You can now log in to your account and explore a variety of edifying content.",
+  "youCanNowLogInToYourAccount": "Możesz teraz zalogować się na swoje konto i odkrywać różne budujące treści.",
   "@youCanNowLogInToYourAccount": {
     "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
   },
-  "accountDeletionExplanation": "You are about to request to delete your account with BCC Media and all your data related to this app.",
+  "accountDeletionExplanation": "Zamierzasz poprosić o usunięcie swojego konta w BCC Media i wszystkich danych związanych z tą aplikacją.",
   "@accountDeletionExplanation": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionWarning": "This is an action that cannot be undone.",
+  "accountDeletionWarning": "Jest to działanie, którego nie można cofnąć.",
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Account deletion will usually be done within {x} business days.",
+  "accountDeletionTimeframe": "Usunięcie konta następuje zazwyczaj w ciągu {x} dni roboczych.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1058,11 +1058,11 @@
       }
     }
   },
-  "accountDeletionTitle": "Delete my account",
+  "accountDeletionTitle": "Usuń konto",
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Account deletion successfully requested. You will receive an email at {email}. To confirm your identity, we need you reply to that email to proceed with the deletion.",
+  "accountDeletionSuccess": "Prośba o usunięcie konta została wysłana. Otrzymasz wiadomość e-mail na adres {email}. Aby kontynuować usunięcie konta, musisz potwierdzić swoją tożsamość, odpowiadając na tę wiadomość e-mail.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1071,19 +1071,19 @@
       }
     }
   },
-  "gamesTab": "Games",
+  "gamesTab": "Gry",
   "@gamesTab": {
     "description": "Title of the games page"
   },
-  "playGame": "Play Game",
+  "playGame": "Zagraj w grę",
   "@playGame": {
     "description": "Title on a game"
   },
-  "tvScanQr": "Scan the code and sign in with your phone",
+  "tvScanQr": "Zeskanuj kod i zaloguj się za pomocą telefonu",
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Or go to {url} and enter the code: {code}",
+  "tvEnterCode": "Lub przejdź do: {url} i wprowadź ten kod: {code}",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1095,36 +1095,187 @@
       }
     }
   },
-  "chapters": "Chapters",
+  "chapters": "Rozdziały",
   "@chapters": {
     "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
   },
-  "removeWatchProgress": "Remove watch progress",
+  "removeWatchProgress": "Zacznij od początku",
   "@removeWatchProgress": {
     "description": "Shown when holding on an episode in the 'continue watching' section."
   },
-  "showDescription": "Show description",
+  "showDescription": "Pokaż opis",
   "@showDescription": {
     "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
   },
-  "releaseDate": "Release date",
+  "releaseDate": "Data premiery",
   "@releaseDate": {
     "description": "Release date of the episode, shown in the 'details' tab under an episode."
   },
-  "availableTo": "Available to",
+  "availableTo": "Dostępne do",
   "@availableTo": {
     "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
   },
-  "ageRating": "Age rating",
+  "ageRating": "Ograniczenie wiekowe",
   "@ageRating": {
     "description": "Age rating for the episode, shown in the 'details' tab under an episode."
   },
-  "ageRatingAll": "All",
+  "ageRatingAll": "Wszyscy",
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
   "offline": "Offline",
   "@offline": {
     "description": "Status indicator, indicating that you are offline; not connected to the internet."
+  },
+  "downloadButton": "Pobierz",
+  "@downloadButton": {
+    "description": "Button text, a button to download the episode to make it available for offline playback."
+  },
+  "audioNotAvailableInLanguage": "Audio not available in {lang}",
+  "@audioNotAvailableInLanguage": {
+    "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
+  },
+  "notEnoughAvailableSpace": "Not enough available space on your device",
+  "@notEnoughAvailableSpace": {
+    "description": "Shown when you try to download an episode, but there is not enough space on your device."
+  },
+  "considerDeletingOtherVideos": "Consider deleting other videos you downloaded in the app.",
+  "@considerDeletingOtherVideos": {
+    "description": "Shown when you try to download an episode, but there is not enough space on your device."
+  },
+  "theVideoFileSizeIs": "The video file size is {size}.",
+  "@theVideoFileSizeIs": {
+    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "gotIt": "Got it",
+  "@gotIt": {
+    "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
+  },
+  "saveYourFavorites": "Save your favorite videos",
+  "@saveYourFavorites": {
+    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
+  },
+  "saveYourFavoritesDescription": "Tap on the heart icon on a video to save it in your profile.",
+  "@saveYourFavoritesDescription": {
+    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
+  },
+  "yourFavorites": "Your favorites",
+  "@yourFavorites": {
+    "description": "Shown as a title for the 'favorites' section in the profile tab."
+  },
+  "downloaded": "Downloaded",
+  "@downloaded": {
+    "description": "Shown as a title for the 'downloaded' section in the profile tab."
+  },
+  "saveVideosForOfflineViewing": "Save videos for offline viewing",
+  "@saveVideosForOfflineViewing": {
+    "description": "Shown when the 'downloaded' section is empty."
+  },
+  "tapOnTheDownloadIcon": "Tap on the download icon on a video, to download and play while offline.",
+  "@tapOnTheDownloadIcon": {
+    "description": "Shown when the 'downloaded' section is empty."
+  },
+  "removeOfflineVideo": "Remove offline video?",
+  "@removeOfflineVideo": {
+    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
+  },
+  "removeOfflineVideoDescription": "By removing this video it will no longer be available without a network connection.",
+  "@removeOfflineVideoDescription": {
+    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
+  },
+  "removeFromDeviceButton": "Remove from device",
+  "@removeFromDeviceButton": {
+    "description": "Button text, to remove a downloaded video from the device."
+  },
+  "keepVideoButton": "Keep video",
+  "@keepVideoButton": {
+    "description": "Button when asking to remove a downloaded video. This button cancels."
+  },
+  "noInternetConnection": "No internet connection",
+  "@noInternetConnection": {
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "noInternetConnectionDescription": "Connect to the internet to access all videos.",
+  "@noInternetConnectionDescription": {
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "noInternetButDontWorry": "No internet connection,\nbut don't worry.",
+  "@noInternetButDontWorry": {
+    "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
+  },
+  "hereAreAllTheVideosYouDownloaded": "Here are all the videos you have downloaded to your device.",
+  "@hereAreAllTheVideosYouDownloaded": {
+    "description": "Shown when you are offline, but you have downloaded some videos."
+  },
+  "connectToExplore": "Connect to the internet to explore all videos.",
+  "@connectToExplore": {
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "language": "Język",
+  "@language": {
+    "description": "A label when selecting a language to download."
+  },
+  "estimatedFileSize": "Estimated file size: {size}",
+  "@estimatedFileSize": {
+    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "downloadVideo": "Download video",
+  "@downloadVideo": {
+    "description": "Title on the download video form."
+  },
+  "noSubtitles": "No subtitles",
+  "@noSubtitles": {
+    "description": "Shown in the download form, indicating that there are no subtitles available for the video."
+  },
+  "subtitlesIncluded": "Subtitles included",
+  "@subtitlesIncluded": {
+    "description": "Shown in the download form, indicating that all subtitles are included in the video."
+  },
+  "allSubtitlesWillBeAvailableOffline": "All subtitles will be available offline",
+  "@allSubtitlesWillBeAvailableOffline": {
+    "description": "Shown in the download form, indicating that all subtitles will be available offline."
+  },
+  "downloading": "Downloading",
+  "@downloading": {
+    "description": "Download status, indicating that the video is currently downloading."
+  },
+  "failed": "Failed",
+  "@failed": {
+    "description": "Generic status label. Used e.g. for downloads that failed."
+  },
+  "finished": "Finished",
+  "@finished": {
+    "description": "Generic status label. Used e.g. for downloads that finished."
+  },
+  "paused": "Paused",
+  "@paused": {
+    "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
+  },
+  "queued": "Queued",
+  "@queued": {
+    "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
+  },
+  "removing": "Removing",
+  "@removing": {
+    "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
+  },
+  "availableOffline": "Available offline",
+  "@availableOffline": {
+    "description": "Label indicating that the video is available offline."
   }
 }

@@ -51,7 +51,7 @@ class ErrorGeneric extends StatelessWidget {
                   child: ExpansionTile(
                     tilePadding: EdgeInsets.zero,
                     title: Text(
-                      'Technical details',
+                      S.of(context).technicalDetails,
                       style: DesignSystem.of(context).textStyles.title3,
                     ),
                     children: [

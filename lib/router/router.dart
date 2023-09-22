@@ -3,23 +3,23 @@ import 'package:auto_route/empty_router_widgets.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/screens/auto_login.dart';
 import 'package:brunstadtv_app/screens/tabs/calendar.dart';
-import 'package:brunstadtv_app/screens/profile/extra_usergroups.dart';
+import 'package:brunstadtv_app/screens/settings/extra_usergroups.dart';
 import 'package:brunstadtv_app/screens/games/game.dart';
-import 'package:brunstadtv_app/screens/tabs/my_list.dart';
-import 'package:brunstadtv_app/screens/profile/about.dart';
-import 'package:brunstadtv_app/screens/profile/app_language.dart';
-import 'package:brunstadtv_app/screens/profile/audio_language.dart';
-import 'package:brunstadtv_app/screens/profile/privacy_policy.dart';
-import 'package:brunstadtv_app/screens/profile/subtitle_language.dart';
-import 'package:brunstadtv_app/screens/profile/terms_of_use.dart';
-import 'package:brunstadtv_app/screens/profile/video_quality.dart';
-import 'package:brunstadtv_app/screens/profile/contact.dart';
-import 'package:brunstadtv_app/screens/profile/faq.dart';
+import 'package:brunstadtv_app/screens/settings/about.dart';
+import 'package:brunstadtv_app/screens/settings/app_language.dart';
+import 'package:brunstadtv_app/screens/settings/audio_language.dart';
+import 'package:brunstadtv_app/screens/settings/privacy_policy.dart';
+import 'package:brunstadtv_app/screens/settings/subtitle_language.dart';
+import 'package:brunstadtv_app/screens/settings/terms_of_use.dart';
+import 'package:brunstadtv_app/screens/settings/video_quality.dart';
+import 'package:brunstadtv_app/screens/settings/contact.dart';
+import 'package:brunstadtv_app/screens/settings/faq.dart';
 import 'package:brunstadtv_app/screens/tabs/home.dart';
 import 'package:brunstadtv_app/screens/tabs/live.dart';
-import 'package:brunstadtv_app/screens/profile/account_deletion.dart';
+import 'package:brunstadtv_app/screens/settings/account_deletion.dart';
 import 'package:brunstadtv_app/screens/onboarding/onboarding.dart';
-import 'package:brunstadtv_app/screens/profile/profile.dart';
+import 'package:brunstadtv_app/screens/settings/settings.dart';
+import 'package:brunstadtv_app/screens/tabs/profile.dart';
 import 'package:brunstadtv_app/screens/tabs/search.dart';
 import 'package:brunstadtv_app/screens/study/study.dart';
 import 'package:brunstadtv_app/screens/tv/tv_live.dart';
@@ -28,7 +28,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import '../screens/profile/device_info.dart';
+import '../screens/settings/device_info.dart';
 import '../helpers/router/custom_transitions.dart';
 import '../screens/study/achievement_group.dart';
 import '../screens/study/achievements.dart';
@@ -36,7 +36,7 @@ import '../screens/episode.dart';
 import '../screens/games/games.dart';
 import '../screens/page.dart';
 import '../screens/onboarding/signup.dart';
-import '../screens/profile/contact_public.dart';
+import '../screens/settings/contact_public.dart';
 import '../screens/tabs/tabs_root.dart';
 
 const _collectionEpisodeScreenRoute = CupertinoRoute<void>(
@@ -66,7 +66,7 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
   );
 }
 
-Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T> page) {
+Route<T> settingsRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T> page) {
   if (!kIsWeb) return PageRouteBuilder(settings: page, pageBuilder: (context, a, b) => CustomTransitionsBuilders.slideUp(context, a, b, child));
   return DialogRoute(
     context: context,
@@ -84,7 +84,6 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
     CustomRoute<void>(
       page: OnboardingScreen,
       path: '/login',
-      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'login'},
     ),
     CustomRoute<void>(
@@ -94,19 +93,20 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       meta: {RouteMetaConstants.analyticsName: 'signup'},
     ),
     CustomRoute<void>(
-        opaque: false,
-        durationInMilliseconds: 400,
-        reverseDurationInMilliseconds: 600,
-        customRouteBuilder: profileRouteBuilder,
-        page: ProfileScreen,
-        path: '/profile',
-        meta: {RouteMetaConstants.analyticsName: 'profile'}),
+      opaque: false,
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      page: SettingsScreen,
+      path: '/settings',
+      meta: {RouteMetaConstants.analyticsName: 'settings'},
+    ),
     CustomRoute<void>(
       page: AppLanguageScreen,
       path: '/app-language',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'appLanguage'},
     ),
     CustomRoute<void>(
@@ -114,7 +114,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       path: '/audio-language',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'audioLanguage'},
     ),
     CustomRoute<void>(
@@ -122,7 +122,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       path: '/subtitle-language',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'subtitlesLanguage'},
     ),
     CustomRoute<void>(
@@ -130,7 +130,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       path: '/video-quality',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'videoQuality'},
     ),
     CustomRoute<void>(
@@ -138,7 +138,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       path: '/contact-support',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'support'},
     ),
     CustomRoute<void>(
@@ -146,7 +146,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       path: '/contact-support-public',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'support'},
     ),
     CustomRoute<void>(
@@ -154,7 +154,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       path: '/device-info',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'support'},
     ),
     CustomRoute<void>(
@@ -162,7 +162,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       path: '/about',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'about'},
     ),
     CustomRoute<void>(
@@ -170,7 +170,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       path: '/faq',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'faq'},
     ),
     CustomRoute<void>(
@@ -178,7 +178,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       path: '/privacy-policy',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'privacy-policy'},
     ),
     CustomRoute<void>(
@@ -186,7 +186,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       path: '/terms-of-use',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'terms-of-use'},
     ),
     CustomRoute<void>(
@@ -194,7 +194,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       path: '/account-deletion',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'account-deletion'},
     ),
     CupertinoRoute<void>(
@@ -218,7 +218,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
       path: '/extra-usergroups',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      customRouteBuilder: profileRouteBuilder,
+      customRouteBuilder: settingsRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'extra-usergroups'},
     ),
     CupertinoRoute<void>(
@@ -283,13 +283,13 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
           meta: {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'calendar'},
         ),
         CustomRoute<void>(
-          name: 'MyListScreenWrapperRoute',
+          name: 'ProfileScreenWrapperRoute',
           page: EmptyRouterPage,
-          path: 'my-list',
+          path: 'profile',
           maintainState: false,
           children: [
             CustomRoute<void>(
-              page: MyListScreen,
+              page: ProfileScreen,
               path: '',
               maintainState: false,
               meta: {RouteMetaConstants.navTabRoute: true},
@@ -315,6 +315,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
               name: 'GamesGameScreenRoute',
               path: ':gameId',
               maintainState: false,
+              meta: {RouteMetaConstants.analyticsName: 'game'},
             )
           ],
         ),

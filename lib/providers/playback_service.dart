@@ -1,17 +1,22 @@
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
+import 'package:brunstadtv_app/components/player/custom_cast_player.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_to_airplay/flutter_to_airplay.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:universal_io/io.dart';
 
 import '../api/brunstadtv.dart';
 import '../graphql/schema/episodes.graphql.dart';
@@ -62,7 +67,23 @@ class PlaybackService {
     }
   }
 
-  MediaItem _mapEpisode(Fragment$PlayableEpisode episode) {
+  MediaItem mapDownload(Download download) {
+    return MediaItem(
+      url: download.offlineUrl,
+      isLive: false,
+      isOffline: true,
+      mimeType: download.config.mimeType,
+      metadata: MediaMetadata(
+        title: download.config.title,
+        artist: download.config.typedAdditionalData.secondaryTitle,
+        artworkUri: download.config.typedAdditionalData.artworkUri,
+        durationMs: download.config.typedAdditionalData.durationMs,
+        extras: download.config.additionalData,
+      ),
+    );
+  }
+
+  MediaItem mapEpisode(Fragment$PlayableEpisode episode) {
     final collectionId = episode.context.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id;
     return MediaItem(
       url: episode.streams.getBestStreamUrl(),
@@ -80,6 +101,38 @@ class PlaybackService {
           if (episode.season != null) 'npaw.content.season': '${episode.season!.id} - ${episode.season!.title}',
           'npaw.content.episodeTitle': episode.title,
         },
+      ),
+    );
+  }
+
+  BccmPlayerViewConfig getDefaultViewConfig() {
+    return BccmPlayerViewConfig(
+      resetSystemOverlays: () {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+      },
+      deviceOrientationsFullscreen: (_) => [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
+      deviceOrientationsNormal: (_) => [DeviceOrientation.portraitUp],
+      castPlayerBuilder: (context) => const CustomCastPlayerView(),
+      controlsConfig: BccmPlayerControlsConfig(
+        playbackSpeeds: [0.75, 1, 1.5, 1.75, 2],
+        additionalActionsBuilder: (context) => [
+          if (Platform.isIOS)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 3, right: 4),
+              child: Transform.scale(
+                scale: 0.8,
+                child: const AirPlayRoutePickerView(
+                  width: 20,
+                  height: 32,
+                  prioritizesVideoDevices: true,
+                  tintColor: Colors.white,
+                  activeTintColor: Colors.white,
+                  backgroundColor: Colors.transparent,
+                ),
+              ),
+            )
+        ],
+        hideQualitySelector: true,
       ),
     );
   }
@@ -110,18 +163,43 @@ class PlaybackService {
   }
 
   Future playEpisode({required String playerId, required Fragment$PlayableEpisode episode, bool? autoplay, int? playbackPositionMs}) async {
-    var mediaItem = _mapEpisode(episode);
+    var mediaItem = mapEpisode(episode);
     mediaItem.playbackStartPositionMs = playbackPositionMs?.toDouble();
     await platformApi.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
   }
 
   Future queueEpisode({required String playerId, required Query$FetchEpisode$episode episode}) async {
-    var mediaItem = _mapEpisode(episode);
+    var mediaItem = mapEpisode(episode);
     platformApi.queueMediaItem(playerId, mediaItem);
+  }
+
+  Future<void> openFullscreen(BuildContext context) async {
+    final config = getDefaultViewConfig();
+    final viewController = BccmPlayerViewController(
+      playerController: platformApi.primaryController,
+      config: config.copyWith(
+        controlsConfig: config.controlsConfig.copyWith(hideQualitySelector: false),
+      ),
+    );
+    return viewController.enterFullscreen(context: context).then((_) {
+      viewController.dispose();
+    });
+  }
+
+  Future<void> playDownload(Download download) async {
+    final mediaItem = mapDownload(download);
+    platformApi.primaryController.replaceCurrentMediaItem(mediaItem);
   }
 }
 
 extension StreamUrlExtension on List<Fragment$BasicStream> {
+  Fragment$BasicStream? getDownloadableStream() {
+    var stream = firstWhereOrNull(
+      (s) => s.downloadable && (s.type == Enum$StreamType.hls_cmaf || s.type == Enum$StreamType.hls_ts),
+    );
+    return stream;
+  }
+
   String getBestStreamUrl() {
     var streamUrl = firstWhereOrNull((element) => element.type == Enum$StreamType.hls_cmaf || element.type == Enum$StreamType.hls_ts)?.url;
     streamUrl ??= first.url;

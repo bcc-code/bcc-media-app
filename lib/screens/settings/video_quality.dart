@@ -64,7 +64,7 @@ class _VideoQualityScreenState extends State<VideoQualityScreen> {
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16),
-              child: OptionList(
+              child: OptionList<String>(
                 optionData: qualityList,
                 currentSelection: selected,
                 onSelectionChange: _onSelectionChanged,

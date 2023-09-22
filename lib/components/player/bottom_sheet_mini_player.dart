@@ -2,7 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
+import 'package:brunstadtv_app/providers/connectivity.dart';
+import 'package:brunstadtv_app/providers/playback_service.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -47,18 +51,22 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
   }
 
   Widget _buildMiniPlayer(PlayerState player) {
-    var artist = player.currentMediaItem?.metadata?.artist;
-    var title = player.currentMediaItem?.metadata?.title;
-    var artworkUri = player.currentMediaItem?.metadata?.artworkUri;
-    var playbackState = player.playbackState;
+    final artist = player.currentMediaItem?.metadata?.artist;
+    final title = player.currentMediaItem?.metadata?.title;
+    final artworkUri = player.currentMediaItem?.metadata?.artworkUri;
+    final playbackState = player.playbackState;
+    final offlineVideo = player.currentMediaItem?.isOffline;
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () async {
-        var id = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
-        var collectionId = player.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
+        final id = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
+        final collectionId = player.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
+        final offlineMediaItem = player.currentMediaItem?.isOffline == true;
         if (id == 'livestream') {
           context.router.navigate(const LiveScreenRoute());
+        } else if (offlineMediaItem) {
+          ref.read(playbackServiceProvider).openFullscreen(context);
         } else if (id != null) {
           ref.read(tempTitleProvider.notifier).state = title;
           try {
@@ -75,6 +83,9 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         titleKey: WidgetKeys.miniPlayerTitle,
         secondaryTitle: artist,
         title: title ?? '',
+        artwork: artworkUri != null && (ref.watch(isOfflineProvider) || offlineVideo == true)
+            ? CachedNetworkImageProvider(artworkUri, cacheManager: PermanentCacheManager())
+            : null,
         artworkUri: artworkUri ?? '',
         playSemanticLabel: S.of(context).play,
         pauseSemanticLabel: S.of(context).pause,

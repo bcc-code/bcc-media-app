@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/badges/feature_badge.dart';
+import 'package:brunstadtv_app/components/episode/episode_download_button.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
@@ -8,6 +9,7 @@ import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -34,6 +36,7 @@ class EpisodeInfo extends HookConsumerWidget {
     final design = DesignSystem.of(context);
 
     final inMyList = useState(episode.inMyList);
+    final showMyListButton = ref.read(authStateProvider.select((value) => !value.guestMode)) && inMyList.value != null;
 
     useEffect(() {
       inMyList.value = episode.inMyList;
@@ -58,7 +61,6 @@ class EpisodeInfo extends HookConsumerWidget {
       globalEventBus.fire(MyListChangedEvent());
     }
 
-    final inMyListValue = inMyList.value;
     return Container(
       color: design.colors.background2,
       child: AnimatedSize(
@@ -73,39 +75,7 @@ class EpisodeInfo extends HookConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: design.textStyles.title1)),
-                      if (ref.read(authStateProvider.select((value) => value.auth0AccessToken != null)) && inMyListValue != null)
-                        GestureDetector(
-                          onTap: toggleInMyList,
-                          behavior: HitTestBehavior.opaque,
-                          child: FocusableActionDetector(
-                            mouseCursor: MaterialStateMouseCursor.clickable,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
-                              child: AnimatedSwitcher(
-                                duration: const Duration(milliseconds: 150),
-                                child: SvgPicture.string(key: ValueKey(inMyListValue), inMyListValue ? SvgIcons.heartFilled : SvgIcons.heart),
-                              ),
-                            ),
-                          ),
-                        ),
-                      if (ref.read(featureFlagsProvider).shareVideoButton)
-                        GestureDetector(
-                          onTap: onShareVideoTapped,
-                          behavior: HitTestBehavior.opaque,
-                          child: FocusableActionDetector(
-                            mouseCursor: MaterialStateMouseCursor.clickable,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
-                              child: SvgPicture.string(SvgIcons.share),
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
+                  Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: design.textStyles.title1),
                   const SizedBox(height: 4),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -133,13 +103,67 @@ class EpisodeInfo extends HookConsumerWidget {
                             child: Text(episodeNumberFormatted, style: design.textStyles.caption1.copyWith(color: design.colors.label4)))
                     ],
                   ),
-                  const SizedBox(height: 14.5),
+                  const SizedBox(height: 16),
                   if (episode.description.isNotEmpty)
-                    TextCollapsible(
-                      text: episode.description,
-                      style: design.textStyles.body2.copyWith(color: design.colors.label3),
-                      maxLines: 2,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: TextCollapsible(
+                        text: episode.description,
+                        style: design.textStyles.body2.copyWith(color: design.colors.label3),
+                        maxLines: 2,
+                      ),
                     ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      if (showMyListButton)
+                        GestureDetector(
+                          onTap: toggleInMyList,
+                          behavior: HitTestBehavior.opaque,
+                          child: FocusableActionDetector(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 4, right: 12),
+                              child: AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 300),
+                                switchInCurve: Curves.easeOutCirc,
+                                switchOutCurve: Curves.easeInCirc,
+                                child: inMyList.value == true
+                                    ? SvgPicture.string(
+                                        SvgIcons.heartFilled,
+                                        key: ValueKey(inMyList.value),
+                                        height: 24,
+                                      )
+                                    : SvgPicture.string(
+                                        SvgIcons.heart,
+                                        key: ValueKey(inMyList.value),
+                                        height: 24,
+                                        colorFilter: ColorFilter.mode(design.colors.tint1, BlendMode.srcIn),
+                                      ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      if (ref.read(featureFlagsProvider).shareVideoButton)
+                        GestureDetector(
+                          onTap: onShareVideoTapped,
+                          behavior: HitTestBehavior.opaque,
+                          child: FocusableActionDetector(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 4, left: showMyListButton ? 12 : 0, right: 12),
+                              child: SvgPicture.string(
+                                SvgIcons.share,
+                                colorFilter: ColorFilter.mode(design.colors.tint1, BlendMode.srcIn),
+                              ),
+                            ),
+                          ),
+                        ),
+                      const Spacer(),
+                      if (ref.read(featureFlagsProvider).download && episode.streams.any((element) => element.downloadable))
+                        EpisodeDownloadButton(episode: episode),
+                    ],
+                  ),
                   ...?extraChildren
                 ],
               ),

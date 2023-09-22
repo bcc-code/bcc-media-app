@@ -1,3 +1,5 @@
+import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
 
@@ -12,6 +14,7 @@ class BorderedImageContainer extends StatelessWidget {
   final EdgeInsetsGeometry margin;
   final EdgeInsetsGeometry padding;
   final Widget? child;
+  final bool? useCache;
 
   const BorderedImageContainer({
     super.key,
@@ -22,6 +25,7 @@ class BorderedImageContainer extends StatelessWidget {
     this.padding = EdgeInsets.zero,
     this.child,
     this.borderRadius,
+    this.useCache,
   });
 
   @override
@@ -53,10 +57,12 @@ class BorderedImageContainer extends StatelessWidget {
                   : FadeInImage(
                       fit: BoxFit.cover,
                       placeholder: MemoryImage(kTransparentImage),
-                      image: networkImageWithRetryAndResize(
-                        imageUrl: imageUri.toString(),
-                        cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
-                      ),
+                      image: useCache == true
+                          ? CachedNetworkImageProvider(imageUri.toString(), cacheManager: PermanentCacheManager())
+                          : networkImageWithRetryAndResize(
+                              imageUrl: imageUri.toString(),
+                              cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                            ),
                       imageErrorBuilder: imageErrorBuilder,
                       fadeInDuration: const Duration(milliseconds: 400),
                     ),

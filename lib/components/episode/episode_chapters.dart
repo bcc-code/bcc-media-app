@@ -21,7 +21,7 @@ class EpisodeChapters extends HookWidget {
     final design = DesignSystem.of(context);
     return Container(
       padding: const EdgeInsets.all(16),
-      child: OptionList(
+      child: OptionList<String>(
         optionData: episode.chapters
             .where((element) => element.start < episode.duration)
             .map((c) => Option(

@@ -5,11 +5,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/event_bus.dart';
 import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../components/offline/offline_home.dart';
 import '../components/status/loading_indicator.dart';
 import '../helpers/constants.dart';
 import '../models/events/app_ready.dart';
@@ -120,86 +122,89 @@ class _Error extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
     final focusingLogout = useState(false);
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Stack(
-            children: [
-              Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: FocusableActionDetector(
-                      actions: {
-                        ActivateIntent: CallbackAction<Intent>(
-                          onInvoke: (Intent intent) => ref.read(authStateProvider.notifier).logout(),
+    final isOffline = ref.watch(isOfflineProvider);
+    return isOffline
+        ? const OfflineHome()
+        : Scaffold(
+            body: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Stack(
+                  children: [
+                    Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: FocusableActionDetector(
+                            actions: {
+                              ActivateIntent: CallbackAction<Intent>(
+                                onInvoke: (Intent intent) => ref.read(authStateProvider.notifier).logout(),
+                              ),
+                            },
+                            onFocusChange: (value) => focusingLogout.value = value,
+                            child: GestureDetector(
+                              behavior: HitTestBehavior.opaque,
+                              onTap: () {
+                                ref.read(authStateProvider.notifier).logout();
+                              },
+                              child: SizedBox(
+                                height: 24,
+                                width: 56,
+                                child: Text(
+                                  S.of(context).logOutButton,
+                                  style: !focusingLogout.value
+                                      ? design.textStyles.button2
+                                      : design.textStyles.button2.copyWith(shadows: [
+                                          Shadow(
+                                            color: Theme.of(context).brightness == Brightness.dark ? Colors.white30 : Colors.black26,
+                                            blurRadius: 8,
+                                            offset: const Offset(0, 0),
+                                          )
+                                        ]),
+                                ),
+                              ),
+                            ),
+                          ),
+                        )),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                            Text(
+                              S.of(context).anErrorOccurred,
+                              style: design.textStyles.headline1,
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              S.of(context).loginFailedCheckNetwork,
+                              style: design.textStyles.body1.copyWith(color: design.colors.label3),
+                              textAlign: TextAlign.center,
+                            ),
+                          ]),
                         ),
-                      },
-                      onFocusChange: (value) => focusingLogout.value = value,
-                      child: GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onTap: () {
-                          ref.read(authStateProvider.notifier).logout();
-                        },
-                        child: SizedBox(
-                          height: 24,
-                          width: 56,
-                          child: Text(
-                            S.of(context).logOutButton,
-                            style: !focusingLogout.value
-                                ? design.textStyles.button2
-                                : design.textStyles.button2.copyWith(shadows: [
-                                    Shadow(
-                                      color: Theme.of(context).brightness == Brightness.dark ? Colors.white30 : Colors.black26,
-                                      blurRadius: 8,
-                                      offset: const Offset(0, 0),
-                                    )
-                                  ]),
+                        const SizedBox(height: 16),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: design.buttons.large(
+                              autofocus: true,
+                              onPressed: (() {
+                                onRetry();
+                              }),
+                              labelText: S.of(context).tryAgainButton,
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  )),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text(
-                        S.of(context).anErrorOccurred,
-                        style: design.textStyles.headline1,
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        S.of(context).loginFailedCheckNetwork,
-                        style: design.textStyles.body1.copyWith(color: design.colors.label3),
-                        textAlign: TextAlign.center,
-                      ),
-                    ]),
-                  ),
-                  const SizedBox(height: 16),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: design.buttons.large(
-                        autofocus: true,
-                        onPressed: (() {
-                          onRetry();
-                        }),
-                        labelText: S.of(context).tryAgainButton,
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
   }
 }

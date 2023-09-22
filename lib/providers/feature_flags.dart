@@ -56,6 +56,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       flutterPlayerControls: Env.forceFlutterControls || client.isEnabled('flutter-player-controls'),
       playNextButton: client.isEnabled('play-next-button'),
       chapters: client.isEnabled('chapters'),
+      download: client.isEnabled('download'),
     );
   }
 }

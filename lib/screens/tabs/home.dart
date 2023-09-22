@@ -168,25 +168,6 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                       gaplessPlayback: true,
                     ),
                     leadingWidth: kIsWeb ? 300 : 100,
-                    leading: Align(
-                      alignment: Alignment.centerLeft,
-                      child: GestureDetector(
-                          behavior: HitTestBehavior.opaque,
-                          onTap: () async {
-                            if ((FlavorConfig.current.flavor == Flavor.kids && !await checkParentalGate(context))) {
-                              return;
-                            }
-                            if (!context.mounted) return;
-                            context.router.pushNamed('/profile');
-                          },
-                          child: Padding(
-                              padding: const EdgeInsets.only(left: kIsWeb ? 80 : 18, top: 12, bottom: 12, right: 32),
-                              child: SvgPicture.string(
-                                SvgIcons.profile,
-                                colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.tint1, BlendMode.srcIn),
-                                semanticsLabel: S.of(context).profileTab,
-                              ))),
-                    ),
                     actions: [
                       Padding(
                         padding: const EdgeInsets.only(right: 16.0),

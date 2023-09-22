@@ -142,6 +142,13 @@ const documentNodeQueryme = DocumentNode(definitions: [
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'analytics'),
             alias: null,
             arguments: [],
@@ -345,6 +352,7 @@ class Query$me$Widget extends graphql_flutter.Query<Query$me> {
 
 class Query$me$me {
   Query$me$me({
+    this.id,
     required this.analytics,
     required this.roles,
     this.email,
@@ -354,6 +362,7 @@ class Query$me$me {
   });
 
   factory Query$me$me.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$analytics = json['analytics'];
     final l$roles = json['roles'];
     final l$email = json['email'];
@@ -361,6 +370,7 @@ class Query$me$me {
     final l$completedRegistration = json['completedRegistration'];
     final l$$__typename = json['__typename'];
     return Query$me$me(
+      id: (l$id as String?),
       analytics:
           Query$me$me$analytics.fromJson((l$analytics as Map<String, dynamic>)),
       roles: (l$roles as List<dynamic>).map((e) => (e as String)).toList(),
@@ -370,6 +380,8 @@ class Query$me$me {
       $__typename: (l$$__typename as String),
     );
   }
+
+  final String? id;
 
   final Query$me$me$analytics analytics;
 
@@ -385,6 +397,8 @@ class Query$me$me {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$analytics = analytics;
     _resultData['analytics'] = l$analytics.toJson();
     final l$roles = roles;
@@ -402,6 +416,7 @@ class Query$me$me {
 
   @override
   int get hashCode {
+    final l$id = id;
     final l$analytics = analytics;
     final l$roles = roles;
     final l$email = email;
@@ -409,6 +424,7 @@ class Query$me$me {
     final l$completedRegistration = completedRegistration;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$id,
       l$analytics,
       Object.hashAll(l$roles.map((v) => v)),
       l$email,
@@ -424,6 +440,11 @@ class Query$me$me {
       return true;
     }
     if (!(other is Query$me$me) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$analytics = analytics;
@@ -483,6 +504,7 @@ abstract class CopyWith$Query$me$me<TRes> {
   factory CopyWith$Query$me$me.stub(TRes res) = _CopyWithStubImpl$Query$me$me;
 
   TRes call({
+    String? id,
     Query$me$me$analytics? analytics,
     List<String>? roles,
     String? email,
@@ -506,6 +528,7 @@ class _CopyWithImpl$Query$me$me<TRes> implements CopyWith$Query$me$me<TRes> {
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
+    Object? id = _undefined,
     Object? analytics = _undefined,
     Object? roles = _undefined,
     Object? email = _undefined,
@@ -514,6 +537,7 @@ class _CopyWithImpl$Query$me$me<TRes> implements CopyWith$Query$me$me<TRes> {
     Object? $__typename = _undefined,
   }) =>
       _then(Query$me$me(
+        id: id == _undefined ? _instance.id : (id as String?),
         analytics: analytics == _undefined || analytics == null
             ? _instance.analytics
             : (analytics as Query$me$me$analytics),
@@ -546,6 +570,7 @@ class _CopyWithStubImpl$Query$me$me<TRes>
   TRes _res;
 
   call({
+    String? id,
     Query$me$me$analytics? analytics,
     List<String>? roles,
     String? email,

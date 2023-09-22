@@ -7,11 +7,11 @@ import 'bottom_sheet_select.dart';
 import 'option_list.dart';
 import '../../theme/design_system/design_system.dart';
 
-class DropDownSelect extends StatelessWidget {
-  final String selectedId;
+class DropDownSelect<T> extends StatelessWidget {
+  final T selectedId;
   final String title;
-  final List<Option> items;
-  final void Function(String id) onSelectionChanged;
+  final List<Option<T>> items;
+  final dynamic Function(T id) onSelectionChanged;
 
   const DropDownSelect({
     Key? key,
@@ -34,7 +34,7 @@ class DropDownSelect extends StatelessWidget {
             context: context,
             useRootNavigator: true,
             builder: (ctx) {
-              return BottomSheetSelect(
+              return BottomSheetSelect<T>(
                 title: title,
                 items: items,
                 selectedId: selectedId,

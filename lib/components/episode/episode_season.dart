@@ -73,7 +73,7 @@ class EpisodeSeason extends HookConsumerWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 28, top: 16, bottom: 20),
-          child: DropDownSelect(
+          child: DropDownSelect<String>(
             title: S.of(context).selectSeason,
             onSelectionChanged: onSeasonSelected,
             items: season.$show.seasons.items.map((e) => Option(id: e.id, title: e.title)).toList(),

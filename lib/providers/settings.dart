@@ -1,6 +1,7 @@
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/providers/shared_preferences.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -8,6 +9,7 @@ import 'package:intl/intl.dart';
 
 import '../flavors.dart';
 import '../helpers/languages.dart';
+import '../models/offline/download_quality.dart';
 
 part 'settings.freezed.dart';
 
@@ -17,6 +19,8 @@ class Settings with _$Settings {
     required Locale appLanguage,
     String? audioLanguage,
     String? subtitleLanguage,
+    String? downloadAudioLanguage,
+    DownloadQuality? downloadQuality,
     String? analyticsId,
     int? sessionId,
     String? envOverride,
@@ -49,6 +53,8 @@ class SettingsService extends StateNotifier<Settings> {
       appLanguage: Locale(prefs.getString(PrefKeys.appLanguage) ?? _defaultLanguage),
       audioLanguage: prefs.getString(PrefKeys.audioLanguage) ?? _defaultLanguage,
       subtitleLanguage: prefs.getString(PrefKeys.subtitleLanguage),
+      downloadAudioLanguage: prefs.getString(PrefKeys.downloadAudioLanguage),
+      downloadQuality: DownloadQuality.values.firstWhereOrNull((element) => element.index == prefs.getInt(PrefKeys.downloadQuality)),
       analyticsId: prefs.getString(PrefKeys.analyticsId),
       envOverride: prefs.getString(PrefKeys.envOverride),
       isBetaTester: prefs.getBool(PrefKeys.isBetaTester),
@@ -123,6 +129,26 @@ class SettingsService extends StateNotifier<Settings> {
       prefs.setStringList(PrefKeys.extraUsergroups, value);
     }
     state = state.copyWith(extraUsergroups: value);
+  }
+
+  Future<void> setDownloadAudioLanguage(String? code) async {
+    var prefs = ref.read(sharedPreferencesProvider);
+    if (code == null) {
+      prefs.remove(PrefKeys.downloadAudioLanguage);
+    } else {
+      prefs.setString(PrefKeys.downloadAudioLanguage, code);
+    }
+    state = state.copyWith(downloadAudioLanguage: code);
+  }
+
+  Future<void> setDownloadQuality(DownloadQuality? quality) async {
+    var prefs = ref.read(sharedPreferencesProvider);
+    if (quality == null) {
+      prefs.remove(PrefKeys.downloadQuality);
+    } else {
+      prefs.setInt(PrefKeys.downloadQuality, quality.index);
+    }
+    state = state.copyWith(downloadQuality: quality);
   }
 }
 

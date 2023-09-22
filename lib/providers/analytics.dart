@@ -1,6 +1,7 @@
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
+import 'package:brunstadtv_app/models/analytics/downloads.dart';
 import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -66,6 +67,12 @@ class Analytics {
   void calendarDayClicked(CalendarDayClickedEvent event) {}
   @mustBeOverridden
   void gameClosed(GameClosedEvent event) {}
+  @mustBeOverridden
+  void videoDownloadStarted(VideoDownloadStartedEvent event) {}
+  @mustBeOverridden
+  void videoDownloadRemoved(VideoDownloadRemovedEvent event) {}
+  @mustBeOverridden
+  void videoDownloadPlayed(VideoDownloadPlayedEvent event) {}
 }
 
 class RudderAnalytics extends Analytics {
@@ -263,6 +270,21 @@ class RudderAnalytics extends Analytics {
   @override
   void gameClosed(GameClosedEvent event) {
     RudderController.instance.track('game_closed', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  @override
+  void videoDownloadStarted(VideoDownloadStartedEvent event) {
+    RudderController.instance.track('video_download_started', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  @override
+  void videoDownloadRemoved(VideoDownloadRemovedEvent event) {
+    RudderController.instance.track('video_download_removed', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  @override
+  void videoDownloadPlayed(VideoDownloadPlayedEvent event) {
+    RudderController.instance.track('video_download_played', properties: getCommonData().putValue(map: event.toJson()));
   }
 
   String _getAgeGroup(int? age) {

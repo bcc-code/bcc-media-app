@@ -11,6 +11,8 @@ class ThumbnailGridEpisode extends StatelessWidget {
   final double aspectRatio;
   final bool showSecondaryTitle;
   final bool isLive;
+  final bool? useCache;
+  final DateTime? expiresAt;
 
   const ThumbnailGridEpisode({
     super.key,
@@ -18,6 +20,8 @@ class ThumbnailGridEpisode extends StatelessWidget {
     required this.showSecondaryTitle,
     this.isLive = false,
     required this.aspectRatio,
+    this.useCache,
+    this.expiresAt,
   });
 
   @override
@@ -31,6 +35,8 @@ class ThumbnailGridEpisode extends StatelessWidget {
             episode: episode,
             imageWidth: double.infinity,
             aspectRatio: aspectRatio,
+            useCache: useCache,
+            expiresAt: expiresAt,
           ),
         ),
         if (showSecondaryTitle)

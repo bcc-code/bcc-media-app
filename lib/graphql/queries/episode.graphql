@@ -18,6 +18,7 @@ query FetchEpisode(
     progress
     shareRestriction
     ageRating
+    availableTo
     chapters {
       id
       start
@@ -93,6 +94,7 @@ fragment BasicStream on Stream {
   type
   audioLanguages
   subtitleLanguages
+  downloadable
 }
 
 fragment SeasonListEpisode on Episode {
@@ -172,5 +174,16 @@ query getNextEpisodes($episodeId: ID!, $context: EpisodeContext) {
     next {
       ...PlayableEpisode
     }
+  }
+}
+
+fragment EpisodeAvailability on Episode {
+  availableFrom
+  availableTo
+}
+
+query getEpisodeAvailability($episodeId: ID!) {
+  episode(id: $episodeId) {
+    ...EpisodeAvailability
   }
 }

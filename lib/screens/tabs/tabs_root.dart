@@ -3,6 +3,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/screens/tabs/search.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../components/player/bottom_sheet_mini_player.dart';
 import '../../components/nav/custom_nav_tab_bar.dart';
@@ -87,6 +89,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
 
   bool _shouldHideMiniPlayer(BuildContext context) {
     if (kIsWeb) return true;
+    if (ref.watch(isOfflineProvider)) return true;
     final router = context.watchRouter;
     final currentRouteMatch = router.currentSegments.lastOrNull;
     if (currentRouteMatch == null) {
@@ -143,40 +146,43 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       if (!ref.watch(authStateProvider).guestMode) ...[
         const LiveScreenRoute(),
         const CalendarPageRoute(),
-      ]
+      ],
+      const ProfileScreenWrapperRoute()
     ];
     if (!ref.watch(authStateProvider).guestMode) {
       routes.addAll([]);
     }
-    return AutoTabsRouter(
-      navigatorObservers: () => [HeroController()],
-      routes: routes,
-      builder: (context, child, animation) {
-        final tabsRouter = AutoTabsRouter.of(context);
-        return Theme(
-          data: Theme.of(context).copyWith(bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent)),
-          child: Scaffold(
-            appBar: kIsWeb ? WebAppBar(tabsRouter: tabsRouter, onTabTap: (i) => onTabTap(context, i)) : null,
-            body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
-            bottomSheet: Container(
-              color: DesignSystem.of(context).colors.background1, // Fix gap between prompts and miniPlayer due to antialiasing issue
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Prompts(),
-                  BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
-                ],
+    return CupertinoScaffold(
+      body: AutoTabsRouter(
+        navigatorObservers: () => [HeroController()],
+        routes: routes,
+        builder: (context, child, animation) {
+          final tabsRouter = AutoTabsRouter.of(context);
+          return Theme(
+            data: Theme.of(context).copyWith(bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent)),
+            child: Scaffold(
+              appBar: kIsWeb ? WebAppBar(tabsRouter: tabsRouter, onTabTap: (i) => onTabTap(context, i)) : null,
+              body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
+              bottomSheet: Container(
+                color: DesignSystem.of(context).colors.background1, // Fix gap between prompts and miniPlayer due to antialiasing issue
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Prompts(),
+                    BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
+                  ],
+                ),
               ),
+              bottomNavigationBar: kIsWeb
+                  ? null
+                  : CustomNavTabBar(
+                      tabsRouter: tabsRouter,
+                      onTabTap: (i) => onTabTap(context, i),
+                    ),
             ),
-            bottomNavigationBar: kIsWeb
-                ? null
-                : CustomNavTabBar(
-                    tabsRouter: tabsRouter,
-                    onTabTap: (i) => onTabTap(context, i),
-                  ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

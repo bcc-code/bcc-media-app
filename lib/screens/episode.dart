@@ -13,7 +13,7 @@ import 'package:brunstadtv_app/components/player/player_poster.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:brunstadtv_app/components/episode/share_episode_sheet.dart';
+import 'package:brunstadtv_app/components/episode/episode_share_sheet.dart';
 import 'package:brunstadtv_app/models/analytics/chapter_clicked.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
@@ -22,21 +22,17 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
-import 'package:flutter_to_airplay/flutter_to_airplay.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:universal_io/io.dart';
 
 import '../api/brunstadtv.dart';
 import '../components/nav/custom_back_button.dart';
 import '../components/tabs/custom_tab_bar.dart';
 import '../components/player/player_error.dart';
 import '../components/episode/episode_details.dart';
-import '../components/player/custom_cast_player.dart';
 import '../components/status/error_no_access.dart';
 import '../components/study/study_button.dart';
 import '../env/env.dart';
@@ -92,10 +88,12 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
     // Listen to route animation status
     final scrollController = useScrollController();
     final modalRoute = ModalRoute.of(context);
-    final routeAnimationStatus = useState<AnimationStatus?>(null);
+    final initialRouteAnimationDone = useState<bool>(false);
     useEffect(() {
       void routeAnimationStatusListener(AnimationStatus status) {
-        routeAnimationStatus.value = status;
+        if (status != AnimationStatus.forward) {
+          initialRouteAnimationDone.value = true;
+        }
       }
 
       modalRoute?.animation?.addStatusListener(routeAnimationStatusListener);
@@ -132,7 +130,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
         onRetry: fetchCurrentEpisode,
         details: episodeSnapshot.error.toString(),
       ));
-    } else if (episodeSnapshot.data == null || routeAnimationStatus.value == AnimationStatus.forward) {
+    } else if (episodeSnapshot.data == null || !initialRouteAnimationDone.value) {
       child = const SliverFillRemaining(child: _LoadingWidget());
     } else {
       child = SliverToBoxAdapter(
@@ -261,13 +259,14 @@ class _EpisodeDisplay extends HookConsumerWidget {
     if (player != null && player.playerId != 'chromecast') {
       ref.read(playbackServiceProvider).platformApi.pause(player.playerId);
     }
-    if (!await checkParentalGate(context) || !context.mounted) {
+    if (!await checkParentalGate(context)) {
       return;
     }
+    if (!context.mounted) return;
     showModalBottomSheet(
       useRootNavigator: true,
       context: context,
-      builder: (ctx) => ShareEpisodeSheet(
+      builder: (ctx) => EpisodeShareSheet(
         episode: episode,
         currentPosSeconds: currentPosSeconds,
       ),
@@ -306,34 +305,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
       () => BccmPlayerViewController(playerController: BccmPlayerController.primary),
     );
     useEffect(() {
+      final defaultViewConfig = playbackService.getDefaultViewConfig();
       viewController.setConfig(
-        BccmPlayerViewConfig(
-          resetSystemOverlays: () {
-            SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-          },
-          deviceOrientationsFullscreen: (_) => [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
-          deviceOrientationsNormal: (_) => [DeviceOrientation.portraitUp],
-          castPlayerBuilder: (context) => const CustomCastPlayerView(),
-          controlsConfig: BccmPlayerControlsConfig(
-            playbackSpeeds: [0.75, 1, 1.5, 1.75, 2],
-            additionalActionsBuilder: (context) => [
-              if (Platform.isIOS)
-                Padding(
-                  padding: const EdgeInsets.only(right: 4),
-                  child: Transform.scale(
-                    scale: 0.8,
-                    child: const AirPlayRoutePickerView(
-                      width: 20,
-                      height: 32,
-                      prioritizesVideoDevices: true,
-                      tintColor: Colors.white,
-                      activeTintColor: Colors.white,
-                      backgroundColor: Colors.transparent,
-                    ),
-                  ),
-                )
-            ],
-            hideQualitySelector: true,
+        defaultViewConfig.copyWith(
+          controlsConfig: defaultViewConfig.controlsConfig.copyWith(
             playNextButton: !enablePlayNextButton
                 ? null
                 : (context) => PlayNextButton(

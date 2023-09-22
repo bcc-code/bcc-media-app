@@ -19,6 +19,8 @@ mixin _$Settings {
   Locale get appLanguage => throw _privateConstructorUsedError;
   String? get audioLanguage => throw _privateConstructorUsedError;
   String? get subtitleLanguage => throw _privateConstructorUsedError;
+  String? get downloadAudioLanguage => throw _privateConstructorUsedError;
+  DownloadQuality? get downloadQuality => throw _privateConstructorUsedError;
   String? get analyticsId => throw _privateConstructorUsedError;
   int? get sessionId => throw _privateConstructorUsedError;
   String? get envOverride => throw _privateConstructorUsedError;
@@ -40,6 +42,8 @@ abstract class $SettingsCopyWith<$Res> {
       {Locale appLanguage,
       String? audioLanguage,
       String? subtitleLanguage,
+      String? downloadAudioLanguage,
+      DownloadQuality? downloadQuality,
       String? analyticsId,
       int? sessionId,
       String? envOverride,
@@ -64,6 +68,8 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
     Object? appLanguage = null,
     Object? audioLanguage = freezed,
     Object? subtitleLanguage = freezed,
+    Object? downloadAudioLanguage = freezed,
+    Object? downloadQuality = freezed,
     Object? analyticsId = freezed,
     Object? sessionId = freezed,
     Object? envOverride = freezed,
@@ -84,6 +90,14 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
           ? _value.subtitleLanguage
           : subtitleLanguage // ignore: cast_nullable_to_non_nullable
               as String?,
+      downloadAudioLanguage: freezed == downloadAudioLanguage
+          ? _value.downloadAudioLanguage
+          : downloadAudioLanguage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      downloadQuality: freezed == downloadQuality
+          ? _value.downloadQuality
+          : downloadQuality // ignore: cast_nullable_to_non_nullable
+              as DownloadQuality?,
       analyticsId: freezed == analyticsId
           ? _value.analyticsId
           : analyticsId // ignore: cast_nullable_to_non_nullable
@@ -123,6 +137,8 @@ abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
       {Locale appLanguage,
       String? audioLanguage,
       String? subtitleLanguage,
+      String? downloadAudioLanguage,
+      DownloadQuality? downloadQuality,
       String? analyticsId,
       int? sessionId,
       String? envOverride,
@@ -145,6 +161,8 @@ class __$$_SettingsCopyWithImpl<$Res>
     Object? appLanguage = null,
     Object? audioLanguage = freezed,
     Object? subtitleLanguage = freezed,
+    Object? downloadAudioLanguage = freezed,
+    Object? downloadQuality = freezed,
     Object? analyticsId = freezed,
     Object? sessionId = freezed,
     Object? envOverride = freezed,
@@ -165,6 +183,14 @@ class __$$_SettingsCopyWithImpl<$Res>
           ? _value.subtitleLanguage
           : subtitleLanguage // ignore: cast_nullable_to_non_nullable
               as String?,
+      downloadAudioLanguage: freezed == downloadAudioLanguage
+          ? _value.downloadAudioLanguage
+          : downloadAudioLanguage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      downloadQuality: freezed == downloadQuality
+          ? _value.downloadQuality
+          : downloadQuality // ignore: cast_nullable_to_non_nullable
+              as DownloadQuality?,
       analyticsId: freezed == analyticsId
           ? _value.analyticsId
           : analyticsId // ignore: cast_nullable_to_non_nullable
@@ -200,6 +226,8 @@ class _$_Settings implements _Settings {
       {required this.appLanguage,
       this.audioLanguage,
       this.subtitleLanguage,
+      this.downloadAudioLanguage,
+      this.downloadQuality,
       this.analyticsId,
       this.sessionId,
       this.envOverride,
@@ -214,6 +242,10 @@ class _$_Settings implements _Settings {
   final String? audioLanguage;
   @override
   final String? subtitleLanguage;
+  @override
+  final String? downloadAudioLanguage;
+  @override
+  final DownloadQuality? downloadQuality;
   @override
   final String? analyticsId;
   @override
@@ -235,7 +267,7 @@ class _$_Settings implements _Settings {
 
   @override
   String toString() {
-    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride, isBetaTester: $isBetaTester, useNativePlayer: $useNativePlayer, extraUsergroups: $extraUsergroups)';
+    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage, downloadAudioLanguage: $downloadAudioLanguage, downloadQuality: $downloadQuality, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride, isBetaTester: $isBetaTester, useNativePlayer: $useNativePlayer, extraUsergroups: $extraUsergroups)';
   }
 
   @override
@@ -249,6 +281,10 @@ class _$_Settings implements _Settings {
                 other.audioLanguage == audioLanguage) &&
             (identical(other.subtitleLanguage, subtitleLanguage) ||
                 other.subtitleLanguage == subtitleLanguage) &&
+            (identical(other.downloadAudioLanguage, downloadAudioLanguage) ||
+                other.downloadAudioLanguage == downloadAudioLanguage) &&
+            (identical(other.downloadQuality, downloadQuality) ||
+                other.downloadQuality == downloadQuality) &&
             (identical(other.analyticsId, analyticsId) ||
                 other.analyticsId == analyticsId) &&
             (identical(other.sessionId, sessionId) ||
@@ -269,6 +305,8 @@ class _$_Settings implements _Settings {
       appLanguage,
       audioLanguage,
       subtitleLanguage,
+      downloadAudioLanguage,
+      downloadQuality,
       analyticsId,
       sessionId,
       envOverride,
@@ -288,6 +326,8 @@ abstract class _Settings implements Settings {
       {required final Locale appLanguage,
       final String? audioLanguage,
       final String? subtitleLanguage,
+      final String? downloadAudioLanguage,
+      final DownloadQuality? downloadQuality,
       final String? analyticsId,
       final int? sessionId,
       final String? envOverride,
@@ -301,6 +341,10 @@ abstract class _Settings implements Settings {
   String? get audioLanguage;
   @override
   String? get subtitleLanguage;
+  @override
+  String? get downloadAudioLanguage;
+  @override
+  DownloadQuality? get downloadQuality;
   @override
   String? get analyticsId;
   @override
