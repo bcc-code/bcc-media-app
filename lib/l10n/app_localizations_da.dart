@@ -798,10 +798,10 @@ class SDa extends S {
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Kapitler';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'Fjern afspilningsvisning';
 
   @override
   String get showDescription => 'Beskrivelse af udsendelse';
@@ -810,13 +810,13 @@ class SDa extends S {
   String get releaseDate => 'Publiceringsdato';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Tilgængelig';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Alder';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Alle';
 
   @override
   String get offline => 'Offline';
@@ -889,7 +889,7 @@ class SDa extends S {
   String get connectToExplore => 'Connect to the internet to explore all videos.';
 
   @override
-  String get language => 'Language';
+  String get language => 'Sprog';
 
   @override
   String estimatedFileSize(String size) {

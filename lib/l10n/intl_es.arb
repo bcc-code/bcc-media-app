@@ -1083,7 +1083,7 @@
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "O vaya a {url} e introduzca el código: {códe}",
+  "tvEnterCode": "O vaya a {url} e introduzca el código: {code}",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {

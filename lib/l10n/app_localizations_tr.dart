@@ -822,7 +822,7 @@ class STr extends S {
   String get offline => 'Offline';
 
   @override
-  String get downloadButton => 'Download';
+  String get downloadButton => 'İndir';
 
   @override
   String audioNotAvailableInLanguage(String lang) {

@@ -819,10 +819,10 @@ class SPt extends S {
   String get ageRatingAll => 'Todos';
 
   @override
-  String get offline => 'Offline';
+  String get offline => 'Off-line';
 
   @override
-  String get downloadButton => 'Download';
+  String get downloadButton => 'Baixar';
 
   @override
   String audioNotAvailableInLanguage(String lang) {
@@ -889,7 +889,7 @@ class SPt extends S {
   String get connectToExplore => 'Connect to the internet to explore all videos.';
 
   @override
-  String get language => 'Language';
+  String get language => 'Idiomas';
 
   @override
   String estimatedFileSize(String size) {

@@ -822,7 +822,7 @@ class SDe extends S {
   String get offline => 'Offline';
 
   @override
-  String get downloadButton => 'Download';
+  String get downloadButton => 'Herunterladen';
 
   @override
   String audioNotAvailableInLanguage(String lang) {

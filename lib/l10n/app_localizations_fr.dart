@@ -819,10 +819,10 @@ class SFr extends S {
   String get ageRatingAll => 'Tous';
 
   @override
-  String get offline => 'Offline';
+  String get offline => 'Hors connexion';
 
   @override
-  String get downloadButton => 'Download';
+  String get downloadButton => 'Télécharger';
 
   @override
   String audioNotAvailableInLanguage(String lang) {
@@ -889,7 +889,7 @@ class SFr extends S {
   String get connectToExplore => 'Connect to the internet to explore all videos.';
 
   @override
-  String get language => 'Language';
+  String get language => 'Langue';
 
   @override
   String estimatedFileSize(String size) {

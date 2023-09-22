@@ -531,7 +531,7 @@ class SEs extends S {
   String get privacyPolicy => 'Políticas de privacidad';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Condiciones de uso';
 
   @override
   String get categoriesTab => 'Categorías';
@@ -790,18 +790,18 @@ class SEs extends S {
   String get playGame => 'Jugar';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Escanea el código para iniciar sesión con tu teléfono';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'O vaya a $url e introduzca el código: $code';
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Capitulos';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'Eliminar el progreso';
 
   @override
   String get showDescription => 'Descripción de shows';
@@ -810,19 +810,19 @@ class SEs extends S {
   String get releaseDate => 'Fecha de estreno';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Disponible ´para';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Clasificación por edades';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Todo';
 
   @override
   String get offline => 'Offline';
 
   @override
-  String get downloadButton => 'Download';
+  String get downloadButton => 'Descargar';
 
   @override
   String audioNotAvailableInLanguage(String lang) {
@@ -889,7 +889,7 @@ class SEs extends S {
   String get connectToExplore => 'Connect to the internet to explore all videos.';
 
   @override
-  String get language => 'Language';
+  String get language => 'Idiomas';
 
   @override
   String estimatedFileSize(String size) {

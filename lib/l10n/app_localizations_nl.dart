@@ -822,7 +822,7 @@ class SNl extends S {
   String get offline => 'Offline';
 
   @override
-  String get downloadButton => 'Download';
+  String get downloadButton => 'Downloaden';
 
   @override
   String audioNotAvailableInLanguage(String lang) {
@@ -889,7 +889,7 @@ class SNl extends S {
   String get connectToExplore => 'Connect to the internet to explore all videos.';
 
   @override
-  String get language => 'Language';
+  String get language => 'Taal';
 
   @override
   String estimatedFileSize(String size) {

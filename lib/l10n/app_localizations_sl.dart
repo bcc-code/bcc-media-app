@@ -819,10 +819,10 @@ class SSl extends S {
   String get ageRatingAll => 'All';
 
   @override
-  String get offline => 'Offline';
+  String get offline => 'Brez povezave';
 
   @override
-  String get downloadButton => 'Download';
+  String get downloadButton => 'Prenesi';
 
   @override
   String audioNotAvailableInLanguage(String lang) {
@@ -889,7 +889,7 @@ class SSl extends S {
   String get connectToExplore => 'Connect to the internet to explore all videos.';
 
   @override
-  String get language => 'Language';
+  String get language => 'Jezik';
 
   @override
   String estimatedFileSize(String size) {
