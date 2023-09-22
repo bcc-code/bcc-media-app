@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
-import 'package:brunstadtv_app/components/menus/option_list.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_with_header.dart';
 import 'package:brunstadtv_app/components/profile/avatar.dart';
@@ -12,10 +10,8 @@ import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
-import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
@@ -34,6 +30,7 @@ import '../../models/analytics/sections.dart';
 import '../../models/episode_thumbnail_data.dart';
 import '../../models/events/watch_progress.dart';
 import '../../providers/analytics.dart';
+import '../../providers/feature_flags.dart';
 import '../../providers/inherited_data.dart';
 import '../../router/router.gr.dart';
 import '../../helpers/extensions.dart';
@@ -67,6 +64,7 @@ class ProfileScreen extends HookConsumerWidget {
     onRefresh() => myListFuture.value = getMyList();
 
     final design = DesignSystem.of(context);
+    final enableDownloads = ref.read(featureFlagsProvider).download;
     final downloadedVideosCount = ref.watch(downloadsProvider.select((value) => value.valueOrNull?.length ?? 0));
 
     return Scaffold(
@@ -80,7 +78,7 @@ class ProfileScreen extends HookConsumerWidget {
             padding: const EdgeInsets.only(right: 16.0),
             child: ConstrainedBox(
               constraints: BoxConstraints.loose(const Size(24, 24)),
-              child: CastButton(color: DesignSystem.of(context).colors.tint1),
+              child: CastButton(color: design.colors.tint1),
             ),
           ),
         ],
@@ -93,40 +91,40 @@ class ProfileScreen extends HookConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Avatar(),
+                  const Avatar(),
                   if (user != null)
                     Padding(
                       padding: const EdgeInsets.only(top: 12),
                       child: Text(
                         user.name,
-                        style: DesignSystem.of(context).textStyles.headline2,
+                        style: design.textStyles.headline2,
                       ),
                     )
                   else
                     Padding(
                       padding: const EdgeInsets.only(top: 12),
-                      child: DesignSystem.of(context).buttons.small(
-                            onPressed: () => context.router.navigate(OnboardingScreenRoute()),
-                            labelText: S.of(context).signInOrSignUp,
-                          ),
+                      child: design.buttons.small(
+                        onPressed: () => context.router.navigate(OnboardingScreenRoute()),
+                        labelText: S.of(context).signInOrSignUp,
+                      ),
                     ),
                   Container(
                     margin: const EdgeInsets.only(top: 12),
-                    child: DesignSystem.of(context).buttons.smallSecondary(
-                          onPressed: () async {
-                            if ((FlavorConfig.current.flavor == Flavor.kids && !await checkParentalGate(context))) {
-                              return;
-                            }
-                            if (!context.mounted) return;
-                            context.router.pushNamed('/settings');
-                          },
-                          labelText: S.of(context).settings,
-                          image: SvgPicture.string(
-                            SvgIcons.settings,
-                            height: 20,
-                            colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.label1, BlendMode.srcIn),
-                          ),
-                        ),
+                    child: design.buttons.smallSecondary(
+                      onPressed: () async {
+                        if ((FlavorConfig.current.flavor == Flavor.kids && !await checkParentalGate(context))) {
+                          return;
+                        }
+                        if (!context.mounted) return;
+                        context.router.pushNamed('/settings');
+                      },
+                      labelText: S.of(context).settings,
+                      image: SvgPicture.string(
+                        SvgIcons.settings,
+                        height: 20,
+                        colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -168,7 +166,7 @@ class ProfileScreen extends HookConsumerWidget {
                 ),
               ),
             ),
-          if (downloadedVideosCount > 0 || ref.read(authStateProvider.select((value) => !value.guestMode)))
+          if (downloadedVideosCount > 0 || enableDownloads && ref.read(authStateProvider.select((value) => !value.guestMode)))
             const SliverToBoxAdapter(
               child: DownloadedVideosSection(),
             ),

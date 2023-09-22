@@ -25,8 +25,10 @@ import '../../components/misc/custom_grid_view.dart';
 import '../../components/status/error_generic.dart';
 import '../../components/status/loading_generic.dart';
 import '../../components/thumbnails/grid/thumbnail_grid_episode.dart';
+import '../../helpers/misc.dart';
 import '../../helpers/svg_icons.dart';
 import '../../helpers/time.dart';
+import '../../models/analytics/downloads.dart';
 import '../../models/analytics/sections.dart';
 import '../../models/episode_thumbnail_data.dart';
 import '../../providers/analytics.dart';
@@ -88,7 +90,6 @@ class _DownloadedContent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final design = DesignSystem.of(context);
     return InheritedData<SectionAnalytics>(
       inheritedData: const SectionAnalytics(
         id: 'downloaded',
@@ -227,7 +228,14 @@ class _DownloadSectionItemClickWrapper extends ConsumerWidget {
       }
     });
     ref.read(playbackServiceProvider).playDownload(download);
-    ref.read(analyticsProvider).sectionItemClicked(context);
+    tryCatchRecordError(() {
+      ref.read(analyticsProvider).videoDownloadPlayed(
+            VideoDownloadPlayedEvent(
+              downloadId: download.key,
+              episodeId: download.config.typedAdditionalData.episodeId,
+            ),
+          );
+    });
   }
 
   @override
@@ -273,7 +281,17 @@ void _showDownloadItemBottomSheet(
       onSelectionChanged: (id) async {
         if (id == 'remove_download') {
           await notifier.removeDownload(download.key);
-          if (context.mounted) Navigator.maybePop(context);
+          if (context.mounted) {
+            tryCatchRecordError(() {
+              ProviderScope.containerOf(context).read(analyticsProvider).videoDownloadRemoved(
+                    VideoDownloadRemovedEvent(
+                      downloadId: download.key,
+                      episodeId: download.config.typedAdditionalData.episodeId,
+                    ),
+                  );
+            });
+            Navigator.maybePop(context);
+          }
         }
       },
     ),

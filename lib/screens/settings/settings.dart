@@ -1,15 +1,12 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import '../../components/nav/custom_back_button.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../flavors.dart';
 import '../../helpers/languages.dart';
@@ -49,7 +46,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
         body: Scaffold(
           appBar: AppBar(
             elevation: 0,
-            toolbarHeight: 44,
+            toolbarHeight: 56,
             leadingWidth: 92,
             leading: FocusableControlBuilder(
               onPressed: () {
@@ -83,7 +80,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    if (authEnabled)
+                    if (authEnabled && user != null)
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                         decoration: BoxDecoration(
@@ -102,22 +99,30 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                               backgroundColor: design.colors.background1,
                             ),
                           ),
-                          if (user == null)
-                            DesignSystem.of(context).buttons.small(
-                                  onPressed: () => context.router.navigate(OnboardingScreenRoute()),
-                                  labelText: S.of(context).signInOrSignUp,
-                                )
-                          else
-                            Text(user.name, style: design.textStyles.title3.copyWith(color: design.colors.label1))
+                          Text(user.name, style: design.textStyles.title3.copyWith(color: design.colors.label1))
                         ]),
                       )
-                    else
+                    else if (!authEnabled)
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 48),
                         child: Image(
                           image: FlavorConfig.current.images.logo,
                           height: 25,
                           gaplessPlayback: true,
+                        ),
+                      )
+                    else
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: SettingList(
+                          buttons: [
+                            OptionButton(
+                              optionName: S.of(context).signInButton,
+                              onPressed: () {
+                                context.router.navigate(OnboardingScreenRoute());
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     Column(

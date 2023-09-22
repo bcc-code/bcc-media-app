@@ -5,7 +5,9 @@ import 'package:brunstadtv_app/helpers/bytes.dart';
 import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/translations.dart';
+import 'package:brunstadtv_app/models/analytics/downloads.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -20,6 +22,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../helpers/insets.dart';
 import '../../helpers/languages.dart';
+import '../../helpers/misc.dart';
 import '../../models/offline/download_quality.dart';
 import '../../providers/me_provider.dart';
 import '../misc/generic_dialog.dart';
@@ -49,8 +52,9 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
 
     final selectedAudioTrack = useState<Track?>(null);
     final selectedVideoQuality = useState<({DownloadQuality quality, Track track})?>(null);
-    final savedAudioSetting =
-        ref.watch(settingsProvider.select((value) => value.downloadAudioLanguage ?? value.audioLanguage ?? value.appLanguage.languageCode));
+    final savedAudioSetting = ref.watch(settingsProvider.select(
+      (settings) => settings.downloadAudioLanguage ?? settings.audioLanguage ?? settings.appLanguage.languageCode,
+    ));
     final savedQualitySetting = ref.watch(settingsProvider.select((value) => value.downloadQuality));
 
     final warnAboutAudioLanguage = useState<String?>(null);
@@ -62,13 +66,11 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
         return;
       }
       selectedAudioTrack.value = mediaInfo.audioTracks.safe.firstOrNull;
-      if (savedAudioSetting != null) {
-        final languageTrack = mediaInfo.audioTracks.safe.firstWhereOrNull((element) => element.language == savedAudioSetting);
-        if (languageTrack != null) {
-          selectedAudioTrack.value = languageTrack;
-        } else {
-          warnAboutAudioLanguage.value = getLanguageName(savedAudioSetting);
-        }
+      final languageTrack = mediaInfo.audioTracks.safe.firstWhereOrNull((element) => element.language == savedAudioSetting);
+      if (languageTrack != null) {
+        selectedAudioTrack.value = languageTrack;
+      } else {
+        warnAboutAudioLanguage.value = getLanguageName(savedAudioSetting);
       }
       final qualityTracks = downloadQualitiesForTracks(mediaInfo.videoTracks.safe.toList());
       if (savedQualitySetting != null) {
@@ -101,7 +103,7 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
       Option(
         id: kLanguageOption,
         rightSlot: selectedAudioTrack.value != null
-            ? _currentlySelectedWidget(
+            ? _CurrentlySelectedWidget(
                 title: getLanguageName(selectedAudioTrack.value!.language) ?? selectedAudioTrack.value!.labelWithFallback,
               )
             : const Center(child: LoadingIndicator(width: 15, height: 15)),
@@ -138,8 +140,10 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
                 ),
               ),
         rightSlot: selectedVideoQuality.value != null
-            ? _currentlySelectedWidget(
-                title: selectedVideoQuality.value!.track.labelWithFallback,
+            ? _CurrentlySelectedWidget(
+                title: selectedVideoQuality.value!.track.height != null
+                    ? '${selectedVideoQuality.value!.track.height}p'
+                    : selectedVideoQuality.value!.track.labelWithFallback,
               )
             : null,
       ),
@@ -199,6 +203,74 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
       if (!context.mounted || option == null || option.id == null) return;
       selectedVideoQuality.value = (quality: option.id!, track: qualities[option.id]!);
       ref.read(settingsProvider.notifier).setDownloadQuality(option.id!);
+    }
+
+    Future<void> onDownloadPressed() async {
+      final mediaItem = ref.read(playbackServiceProvider).mapEpisode(episode);
+
+      try {
+        final diskSpace = await DownloaderInterface.instance.getFreeDiskSpace();
+        if (!context.mounted) return;
+        if (diskSpace > 0 && estimatedFileSizeKb != null && diskSpace < estimatedFileSizeKb * 1024) {
+          showDialog(
+            context: context,
+            builder: (context) => GenericDialog(
+              title: S.of(context).notEnoughAvailableSpace,
+              description: '${S.of(context).considerDeletingOtherVideos} ${S.of(context).theVideoFileSizeIs(kiloBytesToString(estimatedFileSizeKb))}',
+              dismissButtonText: S.of(context).gotIt,
+              titleStyle: design.textStyles.title2.copyWith(color: design.colors.onTint),
+              descriptionStyle: design.textStyles.body2.copyWith(color: design.colors.label3),
+            ),
+          );
+          return;
+        }
+      } catch (e) {
+        print(e);
+      }
+
+      downloadFuture.value = () async {
+        final download = await ref.read(downloadsProvider.notifier).startDownload(DownloadConfig(
+              url: episode.streams.getBestStreamUrl(),
+              mimeType: 'application/x-mpegURL',
+              title: episode.title,
+              audioTrackIds: [selectedAudioTrack.value?.id],
+              videoTrackIds: [selectedVideoQuality.value?.track.id],
+              additionalData: {
+                ...?mediaItem.metadata?.extras,
+                ...TypedAdditionalData(
+                  episodeId: episode.id,
+                  artworkUri: mediaItem.metadata?.artworkUri,
+                  durationMs: mediaItem.metadata?.durationMs,
+                  downloadedAt: DateTime.now(),
+                  expiresAt: DateTime.now().add(const Duration(days: 30)),
+                  downloadedBy: ref.read(meProvider).valueOrNull?.me.id,
+                ).toStringMap()
+              },
+            ));
+
+        tryCatchRecordError(() {
+          ref.read(analyticsProvider).videoDownloadStarted(
+                VideoDownloadStartedEvent(
+                  downloadId: download.key,
+                  episodeId: episode.id,
+                  audioLanguage: selectedAudioTrack.value?.language,
+                  quality: selectedVideoQuality.value?.quality.name,
+                ),
+              );
+        });
+
+        final image = mediaItem.metadata?.artworkUri;
+        if (image != null) {
+          await PermanentCacheManager().downloadFile(image);
+        }
+        return download;
+      }();
+
+      await downloadFuture.value;
+
+      if (context.mounted) {
+        Navigator.of(context).maybePop(true);
+      }
     }
 
     return Container(
@@ -262,90 +334,33 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
                         showQualitySelector();
                         break;
                     }
-
-                    /* ref.read(analyticsProvider).downloadStart(
-                        ContentSharedEvent(
-                          pageCode: 'episode',
-                          elementType: 'episode',
-                          elementId: widget.episode.id,
-                          position: id == 'fromStart' ? null : widget.currentPosSeconds,
-                        ),
-                      ); */
                   },
                 ),
               ),
-              if (downloadSnapshot.connectionState == ConnectionState.waiting)
-                Container(
-                  margin: const EdgeInsets.only(top: 16),
-                  child: const LoadingIndicator(),
-                )
-              else
-                Container(
-                  margin: const EdgeInsets.only(top: 16),
-                  width: double.infinity,
-                  height: 52.1,
-                  child: design.buttons.large(
-                    disabled: selectedAudioTrack.value?.id == null || selectedVideoQuality.value == null,
-                    onPressed: () async {
-                      final mediaItem = ref.read(playbackServiceProvider).mapEpisode(episode);
-
-                      try {
-                        final diskSpace = await DownloaderInterface.instance.getFreeDiskSpace();
-                        if (!context.mounted) return;
-                        if (diskSpace > 0 && estimatedFileSizeKb != null && diskSpace < estimatedFileSizeKb * 1024) {
-                          showDialog(
-                            context: context,
-                            builder: (context) => GenericDialog(
-                              title: S.of(context).notEnoughAvailableSpace,
-                              description:
-                                  '${S.of(context).considerDeletingOtherVideos} ${S.of(context).theVideoFileSizeIs(kiloBytesToString(estimatedFileSizeKb!))}',
-                              dismissButtonText: S.of(context).gotIt,
-                              titleStyle: design.textStyles.title2.copyWith(color: design.colors.onTint),
-                              descriptionStyle: design.textStyles.body2.copyWith(color: design.colors.label3),
-                            ),
-                          );
-                          return;
-                        }
-                      } catch (e) {
-                        print(e);
-                      }
-
-                      downloadFuture.value = () async {
-                        final download = await ref.read(downloadsProvider.notifier).startDownload(DownloadConfig(
-                              url: episode.streams.getBestStreamUrl(),
-                              mimeType: 'application/x-mpegURL',
-                              title: episode.title,
-                              audioTrackIds: [selectedAudioTrack.value?.id],
-                              videoTrackIds: [selectedVideoQuality.value?.track.id],
-                              additionalData: {
-                                ...?mediaItem.metadata?.extras,
-                                ...TypedAdditionalData(
-                                  episodeId: episode.id,
-                                  artworkUri: mediaItem.metadata?.artworkUri,
-                                  durationMs: mediaItem.metadata?.durationMs,
-                                  downloadedAt: DateTime.now(),
-                                  expiresAt: DateTime.now().add(const Duration(days: 30)),
-                                  downloadedBy: ref.read(meProvider).valueOrNull?.me.id,
-                                ).toStringMap()
-                              },
-                            ));
-
-                        final image = mediaItem.metadata?.artworkUri;
-                        if (image != null) {
-                          await PermanentCacheManager().downloadFile(image);
-                        }
-                        return download;
-                      }();
-
-                      await downloadFuture.value;
-
-                      if (context.mounted) {
-                        Navigator.of(context).maybePop(true);
-                      }
-                    },
-                    labelText: S.of(context).downloadButton,
+              Stack(
+                children: [
+                  Opacity(
+                    opacity: downloadSnapshot.connectionState == ConnectionState.waiting ? 0 : 1,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 16),
+                      width: double.infinity,
+                      child: design.buttons.large(
+                        disabled: selectedAudioTrack.value?.id == null || selectedVideoQuality.value == null,
+                        onPressed: onDownloadPressed,
+                        labelText: S.of(context).downloadButton,
+                      ),
+                    ),
                   ),
-                ),
+                  if (downloadSnapshot.connectionState == ConnectionState.waiting)
+                    Positioned.fill(
+                      child: Container(
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.only(top: 12),
+                        child: const LoadingIndicator(),
+                      ),
+                    ),
+                ],
+              ),
             ],
           ),
         ),
@@ -354,8 +369,8 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
   }
 }
 
-class _currentlySelectedWidget extends StatelessWidget {
-  const _currentlySelectedWidget({
+class _CurrentlySelectedWidget extends StatelessWidget {
+  const _CurrentlySelectedWidget({
     required this.title,
   });
 

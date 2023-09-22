@@ -1,18 +1,13 @@
 // downloaded videos provider
 
 import 'dart:async';
-import 'package:async/async.dart';
 
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/availability.dart';
 import 'package:brunstadtv_app/providers/connectivity.dart';
-import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../helpers/time.dart';
@@ -70,7 +65,7 @@ class DownloadsNotifier extends AsyncNotifier<List<Download>> {
       ]);
       if (availability?.errorCode == ApiErrorCodes.noAccess ||
           availability?.errorCode == ApiErrorCodes.notPublished ||
-          expiresAt != null && expiresAt!.isBefore(DateTime.now())) {
+          expiresAt != null && expiresAt.isBefore(DateTime.now())) {
         removeDownload(download.key);
       }
     }

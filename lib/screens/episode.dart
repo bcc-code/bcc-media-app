@@ -264,7 +264,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     showModalBottomSheet(
       useRootNavigator: true,
       context: context,
-      builder: (ctx) => ShareEpisodeSheet(
+      builder: (ctx) => EpisodeShareSheet(
         episode: episode,
         currentPosSeconds: currentPosSeconds,
       ),

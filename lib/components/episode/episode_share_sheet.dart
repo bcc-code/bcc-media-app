@@ -19,8 +19,8 @@ import '../../helpers/share_extension/share_extension.dart';
 
 import '../../helpers/time.dart';
 
-class ShareEpisodeSheet extends ConsumerStatefulWidget {
-  const ShareEpisodeSheet({
+class EpisodeShareSheet extends ConsumerStatefulWidget {
+  const EpisodeShareSheet({
     Key? key,
     required this.episode,
     required this.currentPosSeconds,
@@ -30,10 +30,10 @@ class ShareEpisodeSheet extends ConsumerStatefulWidget {
   final int currentPosSeconds;
 
   @override
-  ConsumerState<ShareEpisodeSheet> createState() => _ShareEpisodeSheetState();
+  ConsumerState<EpisodeShareSheet> createState() => _ShareEpisodeSheetState();
 }
 
-class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
+class _ShareEpisodeSheetState extends ConsumerState<EpisodeShareSheet> {
   bool loading = false;
 
   @override

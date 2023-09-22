@@ -10,7 +10,6 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -27,8 +26,6 @@ class EpisodeDownloadButton extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bottomSheetFuture = useState<Future?>(null);
-
     final downloadSnapshot = ref.watch(
       downloadsProvider.select(
         (value) => value.when<AsyncValue<Download?>>(
@@ -116,7 +113,7 @@ class EpisodeDownloadButton extends HookConsumerWidget {
             return;
           }
           if (!context.mounted) return;
-          bottomSheetFuture.value = showModalBottomSheet(
+          showModalBottomSheet(
             useRootNavigator: true,
             context: context,
             isScrollControlled: true,

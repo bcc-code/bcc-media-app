@@ -84,7 +84,7 @@ class _BottomSheetSelectState<T> extends State<BottomSheetSelect<T>> {
                         ),
                       ),
                     ),
-                    if (widget.description != null) widget.description!,
+                    if (widget.description != null) SliverToBoxAdapter(child: widget.description!),
                     SliverToBoxAdapter(
                       child: OptionList<T>(
                         optionData: widget.items as List<Option<T>>,
