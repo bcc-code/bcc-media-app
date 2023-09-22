@@ -9,6 +9,7 @@ import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -159,7 +160,8 @@ class EpisodeInfo extends HookConsumerWidget {
                           ),
                         ),
                       const Spacer(),
-                      if (ref.read(featureFlagsProvider).download) EpisodeDownloadButton(episode: episode),
+                      if (ref.read(featureFlagsProvider).download && episode.streams.any((element) => element.downloadable))
+                        EpisodeDownloadButton(episode: episode),
                     ],
                   ),
                   ...?extraChildren

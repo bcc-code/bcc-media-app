@@ -159,7 +159,7 @@ class _DownloadingGridItem extends ConsumerWidget {
             context: context,
             builder: (context) => GenericDialog(
               title: S.of(context).anErrorOccurred,
-              description: S.of(context).checkNetwork,
+              description: S.of(context).checkNetwork + (item.error != null ? '\n\n${S.of(context).technicalDetails}: ${item.error}' : ''),
               dismissButtonText: S.of(context).ok,
             ),
           );

@@ -3059,6 +3059,7 @@ class Fragment$BasicStream {
     required this.type,
     required this.audioLanguages,
     required this.subtitleLanguages,
+    required this.downloadable,
     this.$__typename = 'Stream',
   });
 
@@ -3068,6 +3069,7 @@ class Fragment$BasicStream {
     final l$type = json['type'];
     final l$audioLanguages = json['audioLanguages'];
     final l$subtitleLanguages = json['subtitleLanguages'];
+    final l$downloadable = json['downloadable'];
     final l$$__typename = json['__typename'];
     return Fragment$BasicStream(
       id: (l$id as String),
@@ -3079,6 +3081,7 @@ class Fragment$BasicStream {
       subtitleLanguages: (l$subtitleLanguages as List<dynamic>)
           .map((e) => (e as String))
           .toList(),
+      downloadable: (l$downloadable as bool),
       $__typename: (l$$__typename as String),
     );
   }
@@ -3092,6 +3095,8 @@ class Fragment$BasicStream {
   final List<String> audioLanguages;
 
   final List<String> subtitleLanguages;
+
+  final bool downloadable;
 
   final String $__typename;
 
@@ -3108,6 +3113,8 @@ class Fragment$BasicStream {
     final l$subtitleLanguages = subtitleLanguages;
     _resultData['subtitleLanguages'] =
         l$subtitleLanguages.map((e) => e).toList();
+    final l$downloadable = downloadable;
+    _resultData['downloadable'] = l$downloadable;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -3120,6 +3127,7 @@ class Fragment$BasicStream {
     final l$type = type;
     final l$audioLanguages = audioLanguages;
     final l$subtitleLanguages = subtitleLanguages;
+    final l$downloadable = downloadable;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -3127,6 +3135,7 @@ class Fragment$BasicStream {
       l$type,
       Object.hashAll(l$audioLanguages.map((v) => v)),
       Object.hashAll(l$subtitleLanguages.map((v) => v)),
+      l$downloadable,
       l$$__typename,
     ]);
   }
@@ -3178,6 +3187,11 @@ class Fragment$BasicStream {
         return false;
       }
     }
+    final l$downloadable = downloadable;
+    final lOther$downloadable = other.downloadable;
+    if (l$downloadable != lOther$downloadable) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -3210,6 +3224,7 @@ abstract class CopyWith$Fragment$BasicStream<TRes> {
     Enum$StreamType? type,
     List<String>? audioLanguages,
     List<String>? subtitleLanguages,
+    bool? downloadable,
     String? $__typename,
   });
 }
@@ -3233,6 +3248,7 @@ class _CopyWithImpl$Fragment$BasicStream<TRes>
     Object? type = _undefined,
     Object? audioLanguages = _undefined,
     Object? subtitleLanguages = _undefined,
+    Object? downloadable = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$BasicStream(
@@ -3248,6 +3264,9 @@ class _CopyWithImpl$Fragment$BasicStream<TRes>
             subtitleLanguages == _undefined || subtitleLanguages == null
                 ? _instance.subtitleLanguages
                 : (subtitleLanguages as List<String>),
+        downloadable: downloadable == _undefined || downloadable == null
+            ? _instance.downloadable
+            : (downloadable as bool),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -3266,6 +3285,7 @@ class _CopyWithStubImpl$Fragment$BasicStream<TRes>
     Enum$StreamType? type,
     List<String>? audioLanguages,
     List<String>? subtitleLanguages,
+    bool? downloadable,
     String? $__typename,
   }) =>
       _res;
@@ -3310,6 +3330,13 @@ const fragmentDefinitionBasicStream = FragmentDefinitionNode(
     ),
     FieldNode(
       name: NameNode(value: 'subtitleLanguages'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'downloadable'),
       alias: null,
       arguments: [],
       directives: [],

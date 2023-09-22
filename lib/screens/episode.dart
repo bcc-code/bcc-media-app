@@ -88,10 +88,12 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
     // Listen to route animation status
     final scrollController = useScrollController();
     final modalRoute = ModalRoute.of(context);
-    final routeAnimationStatus = useState<AnimationStatus?>(null);
+    final initialRouteAnimationDone = useState<bool>(false);
     useEffect(() {
       void routeAnimationStatusListener(AnimationStatus status) {
-        routeAnimationStatus.value = status;
+        if (status != AnimationStatus.forward) {
+          initialRouteAnimationDone.value = true;
+        }
       }
 
       modalRoute?.animation?.addStatusListener(routeAnimationStatusListener);
@@ -128,7 +130,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
         onRetry: fetchCurrentEpisode,
         details: episodeSnapshot.error.toString(),
       ));
-    } else if (episodeSnapshot.data == null || routeAnimationStatus.value == AnimationStatus.forward) {
+    } else if (episodeSnapshot.data == null || !initialRouteAnimationDone.value) {
       child = const SliverFillRemaining(child: _LoadingWidget());
     } else {
       child = SliverToBoxAdapter(

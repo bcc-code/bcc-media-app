@@ -928,4 +928,7 @@ class SIt extends S {
 
   @override
   String get availableOffline => 'Available offline';
+
+  @override
+  String get technicalDetails => 'Technical details';
 }

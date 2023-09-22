@@ -1,12 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/episode/episode_download_sheet.dart';
+import 'package:brunstadtv_app/components/misc/generic_dialog.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/translations.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
+import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
@@ -114,6 +116,20 @@ class EpisodeDownloadButton extends HookConsumerWidget {
             return;
           }
           if (!context.mounted) return;
+          final downloadUrl = episode.streams.getDownloadableStream()?.url;
+          if (downloadUrl == null) {
+            showDialog(
+              context: context,
+              builder: (context) => GenericDialog(
+                title: S.of(context).anErrorOccurred,
+                description: "This video can't be downloaded.",
+                dismissButtonText: S.of(context).ok,
+                titleStyle: design.textStyles.title2.copyWith(color: design.colors.onTint),
+                descriptionStyle: design.textStyles.body2.copyWith(color: design.colors.label3),
+              ),
+            );
+            return;
+          }
           showModalBottomSheet(
             useRootNavigator: true,
             context: context,
@@ -121,6 +137,7 @@ class EpisodeDownloadButton extends HookConsumerWidget {
             builder: (ctx) => EpisodeDownloadSheet(
               episode: episode,
               parentContext: context,
+              downloadUrl: downloadUrl,
             ),
           );
         },

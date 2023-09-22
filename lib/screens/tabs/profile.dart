@@ -130,7 +130,7 @@ class ProfileScreen extends HookConsumerWidget {
                     Widget child = const SizedBox.shrink();
                     final myList = snapshot.data?.parsedData?.myList;
                     if (snapshot.connectionState != ConnectionState.done) {
-                      child = const SizedBox(height: 200, child: LoadingGeneric());
+                      child = const SizedBox(height: 250, child: LoadingGeneric());
                     } else if (snapshot.hasError || myList == null) {
                       child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onFavoritesRefresh));
                     } else if (myList.entries.items.isEmpty) {

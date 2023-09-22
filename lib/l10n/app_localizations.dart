@@ -1904,6 +1904,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Available offline'**
   String get availableOffline;
+
+  /// Shown when errors occur, and you want to see more technical details about the error.
+  ///
+  /// In en, this message translates to:
+  /// **'Technical details'**
+  String get technicalDetails;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

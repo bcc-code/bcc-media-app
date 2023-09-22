@@ -32,17 +32,19 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
   const EpisodeDownloadSheet({
     Key? key,
     required this.episode,
+    required this.downloadUrl,
     required this.parentContext,
   }) : super(key: key);
 
   final Query$FetchEpisode$episode episode;
+  final String downloadUrl;
   final BuildContext parentContext;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mediaInfoFuture = useMemoized(
-      () => BccmPlayerInterface.instance.fetchMediaInfo(url: episode.streams.getBestStreamUrl(), mimeType: 'application/x-mpegURL'),
-      [episode],
+      () => BccmPlayerInterface.instance.fetchMediaInfo(url: downloadUrl, mimeType: 'application/x-mpegURL'),
+      [downloadUrl],
     );
     final mediaInfoSnapshot = useFuture(mediaInfoFuture);
     final mediaInfo = mediaInfoSnapshot.data;
@@ -230,7 +232,7 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
 
       downloadFuture.value = () async {
         final download = await ref.read(downloadsProvider.notifier).startDownload(DownloadConfig(
-              url: episode.streams.getBestStreamUrl(),
+              url: downloadUrl,
               mimeType: 'application/x-mpegURL',
               title: episode.title,
               audioTrackIds: [selectedAudioTrack.value?.id],

@@ -118,7 +118,7 @@ class PlaybackService {
         additionalActionsBuilder: (context) => [
           if (Platform.isIOS)
             Padding(
-              padding: const EdgeInsets.only(right: 4),
+              padding: const EdgeInsets.only(bottom: 3, right: 4),
               child: Transform.scale(
                 scale: 0.8,
                 child: const AirPlayRoutePickerView(
@@ -193,6 +193,13 @@ class PlaybackService {
 }
 
 extension StreamUrlExtension on List<Fragment$BasicStream> {
+  Fragment$BasicStream? getDownloadableStream() {
+    var stream = firstWhereOrNull(
+      (s) => s.downloadable && (s.type == Enum$StreamType.hls_cmaf || s.type == Enum$StreamType.hls_ts),
+    );
+    return stream;
+  }
+
   String getBestStreamUrl() {
     var streamUrl = firstWhereOrNull((element) => element.type == Enum$StreamType.hls_cmaf || element.type == Enum$StreamType.hls_ts)?.url;
     streamUrl ??= first.url;
