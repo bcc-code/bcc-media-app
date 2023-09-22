@@ -11,6 +11,11 @@ import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../helpers/time.dart';
+import 'feature_flags.dart';
+
+final downloadsEnabledProvider = Provider<bool>((ref) {
+  return ref.watch(featureFlagsProvider.select((value) => value.download)) && ref.watch(authStateProvider.select((value) => !value.guestMode));
+});
 
 final downloadsProvider = AsyncNotifierProvider<DownloadsNotifier, List<Download>>(() {
   return DownloadsNotifier();

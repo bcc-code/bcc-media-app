@@ -9,7 +9,6 @@ import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
-import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,6 +17,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../graphql/queries/my_list.graphql.dart';
 import '../../helpers/event_bus.dart';
 import '../../models/events/my_list_changed.dart';
+import '../../providers/downloads.dart';
 import '../../router/router.gr.dart';
 import '../../theme/design_system/design_system.dart';
 import '../misc/text_collapsible.dart';
@@ -160,7 +160,7 @@ class EpisodeInfo extends HookConsumerWidget {
                           ),
                         ),
                       const Spacer(),
-                      if (ref.read(featureFlagsProvider).download && episode.streams.any((element) => element.downloadable))
+                      if (ref.watch(downloadsEnabledProvider) && episode.streams.any((element) => element.downloadable))
                         EpisodeDownloadButton(episode: episode),
                     ],
                   ),

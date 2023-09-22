@@ -30,7 +30,6 @@ import '../../models/analytics/sections.dart';
 import '../../models/episode_thumbnail_data.dart';
 import '../../models/events/watch_progress.dart';
 import '../../providers/analytics.dart';
-import '../../providers/feature_flags.dart';
 import '../../providers/inherited_data.dart';
 import '../../router/router.gr.dart';
 import '../../helpers/extensions.dart';
@@ -54,7 +53,6 @@ class ProfileScreen extends HookConsumerWidget {
     onFavoritesRefresh() => myListFuture.value = getMyList();
 
     final design = DesignSystem.of(context);
-    final enableDownloads = ref.read(featureFlagsProvider).download;
     final downloadedVideosCount = ref.watch(downloadsProvider.select((value) => value.valueOrNull?.length ?? 0));
 
     return Scaffold(
@@ -157,7 +155,7 @@ class ProfileScreen extends HookConsumerWidget {
                 ),
               ),
             ),
-          if (downloadedVideosCount > 0 || enableDownloads && ref.read(authStateProvider.select((value) => !value.guestMode)))
+          if (downloadedVideosCount > 0 || ref.watch(downloadsEnabledProvider))
             const SliverToBoxAdapter(
               child: DownloadedVideosSection(),
             ),

@@ -826,108 +826,108 @@ class SNb extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Audio not available in $lang';
+    return 'Språk er ikke tilgjengelig på $lang';
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+  String get notEnoughAvailableSpace => 'Det er ikke nok ledig plass på enheten din';
 
   @override
-  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+  String get considerDeletingOtherVideos => 'Vurder å slette andre videoer du har lastet ned i appen.';
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'The video file size is $size.';
+    return 'Videofilens størrelse er $size.';
   }
 
   @override
-  String get gotIt => 'Got it';
+  String get gotIt => 'Skjønner';
 
   @override
-  String get saveYourFavorites => 'Save your favorite videos';
+  String get saveYourFavorites => 'Lagre favorittvideoene dine';
 
   @override
-  String get saveYourFavoritesDescription => 'Tap on the heart icon on a video to save it in your profile.';
+  String get saveYourFavoritesDescription => 'Trykk på hjerteikonet på en video for å lagre den i profilen din.';
 
   @override
-  String get yourFavorites => 'Your favorites';
+  String get yourFavorites => 'Dine favoritter';
 
   @override
-  String get downloaded => 'Downloaded';
+  String get downloaded => 'Nedlastet';
 
   @override
-  String get saveVideosForOfflineViewing => 'Save videos for offline viewing';
+  String get saveVideosForOfflineViewing => 'Lagre videoer for offline visning';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
+  String get tapOnTheDownloadIcon => 'Trykk på nedlastingsikonet på en video for å laste ned og spille av uten internett.';
 
   @override
-  String get removeOfflineVideo => 'Remove offline video?';
+  String get removeOfflineVideo => 'Vil du fjerne offline video?';
 
   @override
-  String get removeOfflineVideoDescription => 'By removing this video it will no longer be available without a network connection.';
+  String get removeOfflineVideoDescription => 'Ved å fjerne denne videoen vil den ikke lenger være tilgjengelig uten en nettverkstilkobling.';
 
   @override
-  String get removeFromDeviceButton => 'Remove from device';
+  String get removeFromDeviceButton => 'Fjern fra enhet';
 
   @override
-  String get keepVideoButton => 'Keep video';
+  String get keepVideoButton => 'Behold video';
 
   @override
-  String get noInternetConnection => 'No internet connection';
+  String get noInternetConnection => 'Ingen internettforbindelse';
 
   @override
-  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+  String get noInternetConnectionDescription => 'Koble til internett for å få tilgang til alle videoer.';
 
   @override
-  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+  String get noInternetButDontWorry => 'Ingen internettforbindelse, men ingen grunn til bekymring.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
+  String get hereAreAllTheVideosYouDownloaded => 'Her er alle videoene du har lastet ned til enheten din.';
 
   @override
-  String get connectToExplore => 'Connect to the internet to explore all videos.';
+  String get connectToExplore => 'Koble til internett for å få tilgang til alle videoer.';
 
   @override
   String get language => 'Språk';
 
   @override
   String estimatedFileSize(String size) {
-    return 'Estimated file size: $size';
+    return 'Estimert filstørrelse: $size';
   }
 
   @override
-  String get downloadVideo => 'Download video';
+  String get downloadVideo => 'Last ned video';
 
   @override
-  String get noSubtitles => 'No subtitles';
+  String get noSubtitles => 'Ingen undertekster';
 
   @override
-  String get subtitlesIncluded => 'Subtitles included';
+  String get subtitlesIncluded => 'Inkludert undertekster';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'All subtitles will be available offline';
+  String get allSubtitlesWillBeAvailableOffline => 'Alle undertekster vil være tilgjengelig offline';
 
   @override
-  String get downloading => 'Downloading';
+  String get downloading => 'Laster ned';
 
   @override
-  String get failed => 'Failed';
+  String get failed => 'Mislyktes';
 
   @override
-  String get finished => 'Finished';
+  String get finished => 'Ferdig';
 
   @override
-  String get paused => 'Paused';
+  String get paused => 'Satt på pause';
 
   @override
-  String get queued => 'Queued';
+  String get queued => 'I kø';
 
   @override
-  String get removing => 'Removing';
+  String get removing => 'Sletter';
 
   @override
-  String get availableOffline => 'Available offline';
+  String get availableOffline => 'Tilgjengelig offline';
 
   @override
   String get technicalDetails => 'Technical details';
