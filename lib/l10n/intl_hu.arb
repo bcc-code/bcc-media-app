@@ -1277,5 +1277,9 @@
   "availableOffline": "Available offline",
   "@availableOffline": {
     "description": "Label indicating that the video is available offline."
+  },
+  "technicalDetails": "Technical details",
+  "@technicalDetails": {
+    "description": "Shown when errors occur, and you want to see more technical details about the error."
   }
 }
