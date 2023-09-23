@@ -88,9 +88,16 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
     // Listen to route animation status
     final scrollController = useScrollController();
     final modalRoute = ModalRoute.of(context);
+    final hasInitialRouteAnimation = useState<bool>(false);
     final initialRouteAnimationDone = useState<bool>(false);
     useEffect(() {
       void routeAnimationStatusListener(AnimationStatus status) {
+        // This is used for showing a loading spinner to prevent lag when navigating to this screen.
+        // We need hasInitialRouteAnimation to prevent a loading spinner when navigating to this screen without a route animation (e.g. deep linking)
+        // We only care about the initial because we don't want to show a loading spinner when navigating back (e.g. by slowly swiping the edge of the screen.)
+        if (status == AnimationStatus.forward) {
+          hasInitialRouteAnimation.value = true;
+        }
         if (status != AnimationStatus.forward) {
           initialRouteAnimationDone.value = true;
         }
@@ -130,7 +137,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
         onRetry: fetchCurrentEpisode,
         details: episodeSnapshot.error.toString(),
       ));
-    } else if (episodeSnapshot.data == null || !initialRouteAnimationDone.value) {
+    } else if (episodeSnapshot.data == null || (hasInitialRouteAnimation.value && !initialRouteAnimationDone.value)) {
       child = const SliverFillRemaining(child: _LoadingWidget());
     } else {
       child = SliverToBoxAdapter(
