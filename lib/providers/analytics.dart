@@ -60,7 +60,7 @@ class Analytics {
   @mustBeOverridden
   void identify(Auth0IdToken profile, String analyticsId) {}
   @mustBeOverridden
-  void screen(screenName, {Map<String, Object?>? properties}) {}
+  void screen(String screenName, {Map<String, Object?>? properties}) {}
   @mustBeOverridden
   void audioOnlyClicked(AudioOnlyClickedEvent event) {}
   @mustBeOverridden
@@ -253,7 +253,7 @@ class RudderAnalytics extends Analytics {
   }
 
   @override
-  void screen(screenName, {Map<String, Object?>? properties}) {
+  void screen(String screenName, {Map<String, Object?>? properties}) {
     RudderController.instance.screen(screenName, properties: getCommonData().putValue(map: properties));
   }
 

@@ -29,13 +29,13 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
     final routeData = route.settings.asOrNull<AutoRoutePage>()?.routeData;
     if (routeData == null) return;
 
-    var screenName = routeData.meta[RouteMetaConstants.analyticsName];
-    var pageRouteArgs = routeData.args.asOrNull<PageScreenRouteArgs>();
+    String? screenName = routeData.meta[RouteMetaConstants.analyticsName];
+    final pageRouteArgs = routeData.args.asOrNull<PageScreenRouteArgs>();
     if (pageRouteArgs != null) {
       screenName = pageRouteArgs.pageCode;
       extraProperties['pageCode'] = pageRouteArgs.pageCode;
     }
-    var episodeRouteArgs = routeData.args.asOrNull<EpisodeScreenRouteArgs>();
+    final episodeRouteArgs = routeData.args.asOrNull<EpisodeScreenRouteArgs>();
     if (episodeRouteArgs != null) {
       extraProperties['meta']['episodeId'] = episodeRouteArgs.episodeId;
     }
@@ -44,8 +44,10 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
       extraProperties['meta']['settings'] = routeData.meta[RouteMetaConstants.settingsName];
     }
 
-    if (screenName != null) {
-      SchedulerBinding.instance.scheduleFrameCallback((_) => ref.read(analyticsProvider).screen(screenName, properties: extraProperties));
+    screenName ??= routeData.path;
+
+    if (screenName.isNotEmpty) {
+      SchedulerBinding.instance.scheduleFrameCallback((_) => ref.read(analyticsProvider).screen(screenName!, properties: extraProperties));
     }
   }
 

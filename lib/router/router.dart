@@ -79,8 +79,16 @@ Route<T> settingsRouteBuilder<T>(BuildContext context, Widget child, CustomPage<
   deferredLoading: false,
   routes: [
     AutoRoute<void>(page: AutoLoginScreen, path: '/auto-login'),
-    AutoRoute<void>(page: TvLiveScreen, path: '/tv/live'),
-    AutoRoute<void>(page: TvLoginScreen, path: '/tv/login'),
+    AutoRoute<void>(
+      page: TvLiveScreen,
+      path: '/tv/live',
+      meta: {RouteMetaConstants.analyticsName: 'tv-live'},
+    ),
+    AutoRoute<void>(
+      page: TvLoginScreen,
+      path: '/tv/login',
+      meta: {RouteMetaConstants.analyticsName: 'tv-login'},
+    ),
     CustomRoute<void>(
       page: OnboardingScreen,
       path: '/login',
