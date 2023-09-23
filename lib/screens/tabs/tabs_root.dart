@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
@@ -21,6 +22,7 @@ import '../../components/nav/web_app_bar.dart';
 import '../../models/scroll_screen.dart';
 import '../../providers/analytics.dart';
 import '../../providers/app_config.dart';
+import '../../providers/tabs.dart';
 import '../../theme/design_system/design_system.dart';
 
 class TabsRootScreen extends ConsumerStatefulWidget {
@@ -62,28 +64,33 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
         stackRouterOfIndex?.popUntilRoot();
       }
     } else {
-      sendAnalytics(index);
+      tryCatchRecordError(() {
+        sendTabChangeAnalytics(index);
+      });
     }
     tabsRouter.setActiveIndex(index);
   }
 
-  void sendAnalytics(int index) {
-    const indexToNameMap = ['home', 'search', 'livestream', 'calendar'];
-    if (index < 0 || index > indexToNameMap.length - 1) return;
-    final tabName = indexToNameMap[index];
+  void sendTabChangeAnalytics(int newIndex) {
+    final tabInfos = ref.read(tabInfosProvider);
+    final currentTabs = ref.read(currentTabIdsProvider);
+    final tabId = currentTabs.elementAtOrNull(newIndex);
+    if (newIndex < 0 || newIndex > currentTabs.length - 1 || tabId == null) {
+      throw Exception(['Tab index out of bounds:', newIndex]);
+    }
+    final tabInfo = tabInfos.getFor(tabId);
+
     final appConfig = ref.read(appConfigFutureProvider);
     appConfig.then((value) {
       String? pageCode;
-      if (tabName == 'home') {
+      if (tabId == TabId.home) {
         pageCode = value?.application.page?.code;
-      } else if (tabName == 'search') {
+      } else if (tabId == TabId.search) {
         pageCode = value?.application.searchPage?.code;
       }
-      Map<String, dynamic> extraProperties = {};
-      if (pageCode != null) {
-        extraProperties['pageCode'] = pageCode;
-      }
-      ref.read(analyticsProvider).screen(tabName, properties: extraProperties);
+      ref.read(analyticsProvider).screen(tabInfo.analyticsName, properties: {
+        if (pageCode != null) 'pageCode': pageCode,
+      });
     });
   }
 
@@ -133,29 +140,13 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
 
   @override
   Widget build(BuildContext context) {
-    var routes = [
-      const HomeScreenWrapperRoute(),
-      if (ref.watch(featureFlagsProvider.select((value) => value.gamesTab))) ...[
-        const GamesWrapperRoute(),
-      ],
-      SearchScreenWrapperRoute(
-        children: [
-          SearchScreenRoute(key: GlobalKey<SearchScreenState>()),
-        ],
-      ),
-      if (!ref.watch(authStateProvider).guestMode) ...[
-        const LiveScreenRoute(),
-        const CalendarPageRoute(),
-      ],
-      const ProfileScreenWrapperRoute()
-    ];
-    if (!ref.watch(authStateProvider).guestMode) {
-      routes.addAll([]);
-    }
+    final tabInfos = ref.watch(tabInfosProvider);
+    final currentTabIds = ref.watch(currentTabIdsProvider);
+
     return CupertinoScaffold(
       body: AutoTabsRouter(
         navigatorObservers: () => [HeroController()],
-        routes: routes,
+        routes: currentTabIds.map((tabId) => tabInfos.getFor(tabId).route).toList(),
         builder: (context, child, animation) {
           final tabsRouter = AutoTabsRouter.of(context);
           return Theme(
