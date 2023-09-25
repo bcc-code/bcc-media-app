@@ -88,7 +88,7 @@ class ProfileScreen extends HookConsumerWidget {
                         style: design.textStyles.headline2,
                       ),
                     )
-                  else
+                  else if (ref.watch(authEnabledProvider))
                     Padding(
                       padding: const EdgeInsets.only(top: 12),
                       child: design.buttons.small(
