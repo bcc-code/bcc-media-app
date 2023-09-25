@@ -524,10 +524,12 @@ class AppRouter extends _i34.RootStackRouter {
         _i34.RouteConfig(
           TvLiveScreenRoute.name,
           path: '/tv/live',
+          meta: <String, dynamic>{'analytics_name': 'tv-live'},
         ),
         _i34.RouteConfig(
           TvLoginScreenRoute.name,
           path: '/tv/login',
+          meta: <String, dynamic>{'analytics_name': 'tv-login'},
         ),
         _i34.RouteConfig(
           OnboardingScreenRoute.name,
