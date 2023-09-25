@@ -20,7 +20,7 @@ import '../../models/events/my_list_changed.dart';
 import '../../providers/downloads.dart';
 import '../../router/router.gr.dart';
 import '../../theme/design_system/design_system.dart';
-import '../misc/text_collapsible.dart';
+import '../misc/collapsable_markdown.dart';
 
 class EpisodeInfo extends HookConsumerWidget {
   const EpisodeInfo(this.episode, {super.key, required this.onShareVideoTapped, this.extraChildren});
@@ -107,7 +107,7 @@ class EpisodeInfo extends HookConsumerWidget {
                   if (episode.description.isNotEmpty)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16),
-                      child: TextCollapsible(
+                      child: CollapsableMarkdown(
                         text: episode.description,
                         style: design.textStyles.body2.copyWith(color: design.colors.label3),
                         maxLines: 2,

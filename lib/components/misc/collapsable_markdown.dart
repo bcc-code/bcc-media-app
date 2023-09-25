@@ -8,14 +8,14 @@ import 'package:markdown/markdown.dart' as md;
 
 const ellipsis = '…';
 
-class TextCollapsible extends StatefulWidget {
+class CollapsableMarkdown extends StatefulWidget {
   final String text;
   final int? maxLines;
   final String? expandLinkText;
   final String? collapseLinkText;
   final TextStyle? style;
 
-  const TextCollapsible({
+  const CollapsableMarkdown({
     super.key,
     required this.text,
     this.maxLines,
@@ -25,10 +25,10 @@ class TextCollapsible extends StatefulWidget {
   });
 
   @override
-  State<TextCollapsible> createState() => _TextCollapsibleState();
+  State<CollapsableMarkdown> createState() => _CollapsableMarkdownState();
 }
 
-class _TextCollapsibleState extends State<TextCollapsible> {
+class _CollapsableMarkdownState extends State<CollapsableMarkdown> {
   bool collapsed = true;
 
   @override

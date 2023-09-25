@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/misc/text_collapsible.dart';
+import 'package:brunstadtv_app/components/misc/collapsable_markdown.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
@@ -25,7 +25,7 @@ Some very long description that should be collapsed''',
 ];
 
 void main() {
-  testWidgets('Collapsible text test', (t) async {
+  testWidgets('Collapsible markdown test', (t) async {
     basicInit();
     for (final test in tests) {
       await testHeight(test, t);
@@ -45,7 +45,7 @@ Future<void> testHeight(String content, WidgetTester t) async {
         body: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextCollapsible(key: key, text: content, maxLines: 2),
+            CollapsableMarkdown(key: key, text: content, maxLines: 2),
           ],
         ),
       ),
