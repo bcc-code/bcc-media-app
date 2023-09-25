@@ -91,7 +91,7 @@ class _TextCollapsibleState extends State<TextCollapsible> {
           return markdownBuilder(widget.text);
         }
 
-        final textTruncatePosition = textPainter.getPositionForOffset(Offset(textSize.width - showMoreSize.width, textSize.height));
+        final textTruncatePosition = textPainter.getPositionForOffset(Offset(constraints.maxWidth - showMoreSize.width, textSize.height));
         final textTruncateIndex = textPainter.getOffsetBefore(textTruncatePosition.offset);
 
         textPainter.dispose();
