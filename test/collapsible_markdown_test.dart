@@ -22,6 +22,17 @@ Some other text
 Text 2
 
 Some very long description that should be collapsed''',
+  '''Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text''',
+  '''Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text
+  
+  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text
+  
+  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text''',
+  '''With *markdown*, Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text
+  
+  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text
+  
+  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text'''
 ];
 
 void main() {
