@@ -17,9 +17,9 @@ Check out [this awesome website!](https://bcc.media)''',
 
 Some other text
 ''',
-  '''# Header 1
+  '''Text 1
 
-## Header 2
+Text 2
 
 Some very long description that should be collapsed''',
 ];
