@@ -531,7 +531,7 @@ class SNb extends S {
   String get privacyPolicy => 'Personvernerklæring';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Vilkår for bruk';
 
   @override
   String get categoriesTab => 'Kategorier';
@@ -790,15 +790,15 @@ class SNb extends S {
   String get playGame => 'Spille spill';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Skann koden og logg inn med telefonen';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Eller gå til $url og skriv inn koden: $code';
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Kapitler';
 
   @override
   String get removeWatchProgress => 'Remove watch progress';
@@ -810,13 +810,13 @@ class SNb extends S {
   String get releaseDate => 'Utgivelsesdato';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Tilgjengelig til';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Aldersgrense';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Alle';
 
   @override
   String get offline => 'Offline';
@@ -930,5 +930,5 @@ class SNb extends S {
   String get availableOffline => 'Tilgjengelig offline';
 
   @override
-  String get technicalDetails => 'Technical details';
+  String get technicalDetails => 'Tekniske detaljer';
 }

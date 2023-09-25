@@ -155,7 +155,7 @@ class SSl extends S {
   String get contactIncludeDeviceInfo => 'Za boljšo podporo vključi informacije o napravi.';
 
   @override
-  String get contactSeeData => 'Klikni za podatke.';
+  String get contactSeeData => 'Klikni za ogled podatkov.';
 
   @override
   String get contactName => 'Ime';
@@ -233,7 +233,7 @@ class SSl extends S {
   String get none => 'Brez';
 
   @override
-  String get nextEpisode => 'Naslednja epizoda';
+  String get nextEpisode => 'Naslednji del';
 
   @override
   String get auto => 'Samodejno';
@@ -711,7 +711,7 @@ class SSl extends S {
   String get areYouSure => 'Si prepričan?';
 
   @override
-  String get youCanContactUsAt => 'Z nami lahko vzpostaviš kontakt na';
+  String get youCanContactUsAt => 'Z nami lahko vzpostaviš stik na';
 
   @override
   String get biblekidsAbout => 'BCC Media je iniciativa BCC zveze, medijske fundacije, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.';
@@ -830,33 +830,33 @@ class SSl extends S {
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+  String get notEnoughAvailableSpace => 'Ni dovolj prostora na tvoji napravi';
 
   @override
   String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'The video file size is $size.';
+    return 'Velikost videa je $size.';
   }
 
   @override
-  String get gotIt => 'Got it';
+  String get gotIt => 'Razumem';
 
   @override
-  String get saveYourFavorites => 'Save your favorite videos';
+  String get saveYourFavorites => 'Shrani svoje priljubljene videe';
 
   @override
-  String get saveYourFavoritesDescription => 'Tap on the heart icon on a video to save it in your profile.';
+  String get saveYourFavoritesDescription => 'Pritisni ikono srca, da shraniš video v svoj profil.';
 
   @override
-  String get yourFavorites => 'Your favorites';
+  String get yourFavorites => 'Tvoje priljubljene';
 
   @override
-  String get downloaded => 'Downloaded';
+  String get downloaded => 'Preneseno';
 
   @override
-  String get saveVideosForOfflineViewing => 'Save videos for offline viewing';
+  String get saveVideosForOfflineViewing => 'Shrani videe za ogled brez povezave';
 
   @override
   String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
@@ -880,55 +880,55 @@ class SSl extends S {
   String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
 
   @override
-  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+  String get noInternetButDontWorry => 'Ni povezave,\nampak ne skrbi.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
+  String get hereAreAllTheVideosYouDownloaded => 'Tukaj so vsi videi, ki si jih prenesel na svojo napravo.';
 
   @override
-  String get connectToExplore => 'Connect to the internet to explore all videos.';
+  String get connectToExplore => 'Poveži se z internetom, da raziščeš vse videe.';
 
   @override
   String get language => 'Jezik';
 
   @override
   String estimatedFileSize(String size) {
-    return 'Estimated file size: $size';
+    return 'Ocenjena velikost datoteke: $size';
   }
 
   @override
-  String get downloadVideo => 'Download video';
+  String get downloadVideo => 'Prenesi video';
 
   @override
-  String get noSubtitles => 'No subtitles';
+  String get noSubtitles => 'Ni podnapisov';
 
   @override
-  String get subtitlesIncluded => 'Subtitles included';
+  String get subtitlesIncluded => 'Podnapisi so vključeni';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'All subtitles will be available offline';
+  String get allSubtitlesWillBeAvailableOffline => 'Vsi podnapisi bodo na voljo brez povezave';
 
   @override
-  String get downloading => 'Downloading';
+  String get downloading => 'Prenašam';
 
   @override
-  String get failed => 'Failed';
+  String get failed => 'Neuspešno';
 
   @override
-  String get finished => 'Finished';
+  String get finished => 'Dokončano';
 
   @override
-  String get paused => 'Paused';
+  String get paused => 'Ustavljeno';
 
   @override
-  String get queued => 'Queued';
+  String get queued => 'V vrsti';
 
   @override
-  String get removing => 'Removing';
+  String get removing => 'Odstranjujem';
 
   @override
-  String get availableOffline => 'Available offline';
+  String get availableOffline => 'Na voljo brez povezave';
 
   @override
-  String get technicalDetails => 'Technical details';
+  String get technicalDetails => 'Tehnične podrobnosti';
 }

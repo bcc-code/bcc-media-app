@@ -826,109 +826,109 @@ class SFr extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Audio not available in $lang';
+    return 'L\'audio n\'est pas disponible en $lang';
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+  String get notEnoughAvailableSpace => 'L\'espace disponible sur ton appareil est insuffisant';
 
   @override
-  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+  String get considerDeletingOtherVideos => 'Pense à supprimer les autres vidéos téléchargées dans l\'application.';
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'The video file size is $size.';
+    return 'La taille du fichier vidéo est de $size.';
   }
 
   @override
-  String get gotIt => 'Got it';
+  String get gotIt => 'J\'ai compris';
 
   @override
-  String get saveYourFavorites => 'Save your favorite videos';
+  String get saveYourFavorites => 'Sauvegarder tes vidéos préférées';
 
   @override
-  String get saveYourFavoritesDescription => 'Tap on the heart icon on a video to save it in your profile.';
+  String get saveYourFavoritesDescription => 'Clique sur l\'icône en forme de cœur d\'une vidéo pour l\'enregistrer dans ton profil.';
 
   @override
-  String get yourFavorites => 'Your favorites';
+  String get yourFavorites => 'Tes favoris';
 
   @override
-  String get downloaded => 'Downloaded';
+  String get downloaded => 'Téléchargé';
 
   @override
-  String get saveVideosForOfflineViewing => 'Save videos for offline viewing';
+  String get saveVideosForOfflineViewing => 'Enregistrer les vidéos pour les visionner hors ligne';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
+  String get tapOnTheDownloadIcon => 'Clique sur l\'icône de téléchargement d\'une vidéo pour la télécharger et la lire hors ligne.';
 
   @override
-  String get removeOfflineVideo => 'Remove offline video?';
+  String get removeOfflineVideo => 'Supprimer la vidéo hors ligne ?';
 
   @override
-  String get removeOfflineVideoDescription => 'By removing this video it will no longer be available without a network connection.';
+  String get removeOfflineVideoDescription => 'En supprimant cette vidéo, elle ne sera plus disponible sans connexion réseau.';
 
   @override
-  String get removeFromDeviceButton => 'Remove from device';
+  String get removeFromDeviceButton => 'Supprimer de l\'appareil';
 
   @override
-  String get keepVideoButton => 'Keep video';
+  String get keepVideoButton => 'Garder la vidéo';
 
   @override
-  String get noInternetConnection => 'No internet connection';
+  String get noInternetConnection => 'Pas de connexion internet';
 
   @override
-  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+  String get noInternetConnectionDescription => 'Connecte-toi à l\'internet pour accéder à toutes les vidéos.';
 
   @override
-  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+  String get noInternetButDontWorry => 'Pas de connexion internet,\nmais pas d\'inquiétude.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
+  String get hereAreAllTheVideosYouDownloaded => 'Voici toutes les vidéos téléchargées sur ton appareil.';
 
   @override
-  String get connectToExplore => 'Connect to the internet to explore all videos.';
+  String get connectToExplore => 'Se connecter à l\'internet pour découvrir toutes les vidéos.';
 
   @override
   String get language => 'Langue';
 
   @override
   String estimatedFileSize(String size) {
-    return 'Estimated file size: $size';
+    return 'Taille estimée du fichier : $size';
   }
 
   @override
-  String get downloadVideo => 'Download video';
+  String get downloadVideo => 'Télécharger la vidéo';
 
   @override
-  String get noSubtitles => 'No subtitles';
+  String get noSubtitles => 'Aucun sous-titre';
 
   @override
-  String get subtitlesIncluded => 'Subtitles included';
+  String get subtitlesIncluded => 'Sous-titres inclus';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'All subtitles will be available offline';
+  String get allSubtitlesWillBeAvailableOffline => 'Tous les sous-titres seront disponibles hors ligne';
 
   @override
-  String get downloading => 'Downloading';
+  String get downloading => 'Téléchargement';
 
   @override
-  String get failed => 'Failed';
+  String get failed => 'Échec';
 
   @override
-  String get finished => 'Finished';
+  String get finished => 'Terminé';
 
   @override
-  String get paused => 'Paused';
+  String get paused => 'Mise en pause';
 
   @override
-  String get queued => 'Queued';
+  String get queued => 'En file d\'attente';
 
   @override
-  String get removing => 'Removing';
+  String get removing => 'Suppression';
 
   @override
-  String get availableOffline => 'Available offline';
+  String get availableOffline => 'Disponible hors ligne';
 
   @override
-  String get technicalDetails => 'Technical details';
+  String get technicalDetails => 'Détails techniques';
 }
