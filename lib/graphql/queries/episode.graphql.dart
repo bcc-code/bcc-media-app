@@ -6398,13 +6398,6 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'extraDescription'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
             name: NameNode(value: 'type'),
             alias: null,
             arguments: [],
@@ -6877,7 +6870,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     required this.status,
     this.number,
     required this.description,
-    required this.extraDescription,
     required this.type,
     this.progress,
     required this.shareRestriction,
@@ -6902,7 +6894,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$status = json['status'];
     final l$number = json['number'];
     final l$description = json['description'];
-    final l$extraDescription = json['extraDescription'];
     final l$type = json['type'];
     final l$progress = json['progress'];
     final l$shareRestriction = json['shareRestriction'];
@@ -6934,7 +6925,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
       status: fromJson$Enum$Status((l$status as String)),
       number: (l$number as int?),
       description: (l$description as String),
-      extraDescription: (l$extraDescription as String),
       type: fromJson$Enum$EpisodeType((l$type as String)),
       progress: (l$progress as int?),
       shareRestriction:
@@ -6978,8 +6968,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
   final int? number;
 
   final String description;
-
-  final String extraDescription;
 
   final Enum$EpisodeType type;
 
@@ -7025,8 +7013,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     _resultData['number'] = l$number;
     final l$description = description;
     _resultData['description'] = l$description;
-    final l$extraDescription = extraDescription;
-    _resultData['extraDescription'] = l$extraDescription;
     final l$type = type;
     _resultData['type'] = toJson$Enum$EpisodeType(l$type);
     final l$progress = progress;
@@ -7063,7 +7049,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$status = status;
     final l$number = number;
     final l$description = description;
-    final l$extraDescription = extraDescription;
     final l$type = type;
     final l$progress = progress;
     final l$shareRestriction = shareRestriction;
@@ -7086,7 +7071,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
       l$status,
       l$number,
       l$description,
-      l$extraDescription,
       l$type,
       l$progress,
       l$shareRestriction,
@@ -7173,11 +7157,6 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$description = description;
     final lOther$description = other.description;
     if (l$description != lOther$description) {
-      return false;
-    }
-    final l$extraDescription = extraDescription;
-    final lOther$extraDescription = other.extraDescription;
-    if (l$extraDescription != lOther$extraDescription) {
       return false;
     }
     final l$type = type;
@@ -7267,7 +7246,6 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
     Enum$Status? status,
     int? number,
     String? description,
-    String? extraDescription,
     Enum$EpisodeType? type,
     int? progress,
     Enum$ShareRestriction? shareRestriction,
@@ -7320,7 +7298,6 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
     Object? status = _undefined,
     Object? number = _undefined,
     Object? description = _undefined,
-    Object? extraDescription = _undefined,
     Object? type = _undefined,
     Object? progress = _undefined,
     Object? shareRestriction = _undefined,
@@ -7362,10 +7339,6 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
         description: description == _undefined || description == null
             ? _instance.description
             : (description as String),
-        extraDescription:
-            extraDescription == _undefined || extraDescription == null
-                ? _instance.extraDescription
-                : (extraDescription as String),
         type: type == _undefined || type == null
             ? _instance.type
             : (type as Enum$EpisodeType),
@@ -7466,7 +7439,6 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
     Enum$Status? status,
     int? number,
     String? description,
-    String? extraDescription,
     Enum$EpisodeType? type,
     int? progress,
     Enum$ShareRestriction? shareRestriction,
