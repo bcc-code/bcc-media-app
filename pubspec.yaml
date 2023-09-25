@@ -122,6 +122,7 @@ dependencies:
   flutter_cache_manager: ^3.3.1
   cached_network_image: ^3.2.3
   async: ^2.11.0
+  markdown: ^7.1.1
   #smooth: any
 
 dev_dependencies:
