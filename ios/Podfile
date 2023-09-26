@@ -52,6 +52,14 @@ post_install do |installer|
       File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
     end
   end
+  # Temporary fix xcode 15 connectivity plugin https://github.com/fluttercommunity/plus_plugins/issues/1955#issuecomment-1725339762
+  installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+         if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 12.0
+           config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+         end
+      end
+  end
 end
 
 # Temporary fix https://github.com/pichillilorenzo/flutter_inappwebview/issues/1735#issuecomment-1729112429
