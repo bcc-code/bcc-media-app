@@ -294,12 +294,12 @@ Route<T> settingsRouteBuilder<T>(BuildContext context, Widget child, CustomPage<
           name: 'ProfileScreenWrapperRoute',
           page: EmptyRouterPage,
           path: 'profile',
-          maintainState: false,
+          maintainState: true,
           children: [
             CustomRoute<void>(
               page: ProfileScreen,
               path: '',
-              maintainState: false,
+              maintainState: true,
               meta: {RouteMetaConstants.navTabRoute: true},
             ),
             _episodeScreenRoute,

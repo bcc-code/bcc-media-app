@@ -384,7 +384,6 @@ class AppRouter extends _i34.RootStackRouter {
       return _i34.CustomPage<void>(
         routeData: routeData,
         child: const _i28.EmptyRouterPage(),
-        maintainState: false,
         opaque: true,
         barrierDismissible: false,
       );
@@ -481,7 +480,6 @@ class AppRouter extends _i34.RootStackRouter {
       return _i34.CustomPage<void>(
         routeData: routeData,
         child: const _i32.ProfileScreen(),
-        maintainState: false,
         opaque: true,
         barrierDismissible: false,
       );
