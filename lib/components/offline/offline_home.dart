@@ -82,45 +82,47 @@ class _OfflineWithVideos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const OfflineBadge(),
-              Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: Text(
-                  S.of(context).noInternetButDontWorry,
-                  style: design.textStyles.title1,
-                  textAlign: TextAlign.center,
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const OfflineBadge(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: Text(
+                    S.of(context).noInternetButDontWorry,
+                    style: design.textStyles.title1,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: Text(
-                  S.of(context).hereAreAllTheVideosYouDownloaded,
-                  style: design.textStyles.body1.copyWith(color: design.colors.label2),
-                  textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text(
+                    S.of(context).hereAreAllTheVideosYouDownloaded,
+                    style: design.textStyles.body1.copyWith(color: design.colors.label2),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: Text(
-                  S.of(context).connectToExplore,
-                  style: design.textStyles.caption1.copyWith(color: design.colors.label4),
-                  textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text(
+                    S.of(context).connectToExplore,
+                    style: design.textStyles.caption1.copyWith(color: design.colors.label4),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        const DownloadedVideosSection(),
-      ],
+          const DownloadedVideosSection(),
+        ],
+      ),
     );
   }
 }
