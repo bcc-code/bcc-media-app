@@ -164,8 +164,8 @@ class _DownloadingGridItem extends ConsumerWidget {
               firstButtonText: S.of(context).ok,
               secondButtonText: S.of(context).tryAgainButton,
               onSecondButtonPressed: (context) {
-                ref.read(downloadsProvider.notifier).retryDownload(item.key);
                 Navigator.maybePop(context);
+                ref.read(downloadsProvider.notifier).retryDownload(item.key);
               },
             ),
           );
