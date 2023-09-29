@@ -113,4 +113,13 @@ class DownloadsNotifier extends AsyncNotifier<List<Download>> {
   Future<Download> startDownload(DownloadConfig downloadConfig) {
     return DownloaderInterface.instance.startDownload(downloadConfig);
   }
+
+  Future<Download> retryDownload(String key) async {
+    if (state.value == null) return Future.error('State is null');
+    final oldDownload = state.value!.firstWhere((element) => element.key == key);
+    final newDownload = await DownloaderInterface.instance.startDownload(oldDownload.config);
+    removeDownload(oldDownload.key);
+
+    return newDownload;
+  }
 }

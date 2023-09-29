@@ -7,6 +7,7 @@ import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/translations.dart';
+import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -34,7 +35,7 @@ class EpisodeDownloadButton extends HookConsumerWidget {
         (value) => value.when<AsyncValue<Download?>>(
           data: (data) => AsyncValue.data(
             data.firstWhereOrNull(
-              (element) => element.status != DownloadStatus.failed && element.config.additionalData['id'] == episode.id,
+              (element) => element.status != DownloadStatus.failed && element.config.typedAdditionalData.episodeId == episode.id,
             ),
           ),
           error: (err, st) => AsyncValue.error(err, st),

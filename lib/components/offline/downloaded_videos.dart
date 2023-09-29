@@ -34,6 +34,7 @@ import '../../models/episode_thumbnail_data.dart';
 import '../../providers/analytics.dart';
 import '../../providers/inherited_data.dart';
 import '../../theme/design_system/design_system.dart';
+import '../misc/two_action_generic_dialog.dart';
 import '../thumbnails/misc/bordered_image_container.dart';
 
 class DownloadedVideosSection extends ConsumerWidget {
@@ -157,10 +158,15 @@ class _DownloadingGridItem extends ConsumerWidget {
         if (item.status == DownloadStatus.failed) {
           showDialog(
             context: context,
-            builder: (context) => GenericDialog(
+            builder: (context) => TwoActionGenericDialog(
               title: S.of(context).anErrorOccurred,
               description: S.of(context).checkNetwork + (item.error != null ? '\n\n${S.of(context).technicalDetails}: ${item.error}' : ''),
-              dismissButtonText: S.of(context).ok,
+              firstButtonText: S.of(context).ok,
+              secondButtonText: S.of(context).tryAgainButton,
+              onSecondButtonPressed: (context) {
+                ref.read(downloadsProvider.notifier).retryDownload(item.key);
+                Navigator.maybePop(context);
+              },
             ),
           );
           return;
