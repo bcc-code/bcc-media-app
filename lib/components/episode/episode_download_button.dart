@@ -32,7 +32,11 @@ class EpisodeDownloadButton extends HookConsumerWidget {
     final downloadSnapshot = ref.watch(
       downloadsProvider.select(
         (value) => value.when<AsyncValue<Download?>>(
-          data: (data) => AsyncValue.data(data.firstWhereOrNull((element) => element.config.additionalData['id'] == episode.id)),
+          data: (data) => AsyncValue.data(
+            data.firstWhereOrNull(
+              (element) => element.status != DownloadStatus.failed && element.config.additionalData['id'] == episode.id,
+            ),
+          ),
           error: (err, st) => AsyncValue.error(err, st),
           loading: () => const AsyncValue.loading(),
         ),

@@ -210,6 +210,11 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
     Future<void> onDownloadPressed() async {
       final mediaItem = ref.read(playbackServiceProvider).mapEpisode(episode);
 
+      // Prevent multiple downloads if tapping fast
+      if (downloadSnapshot.connectionState == ConnectionState.waiting) {
+        return;
+      }
+
       try {
         final diskSpace = await DownloaderInterface.instance.getFreeDiskSpace();
         if (!context.mounted) return;
