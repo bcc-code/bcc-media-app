@@ -1209,7 +1209,7 @@
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "Ingen internettforbindelse, men ingen grunn til bekymring.",
+  "noInternetButDontWorry": "Ingen internettforbindelse, men ta det rolig ...",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },

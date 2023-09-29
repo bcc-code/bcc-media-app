@@ -880,7 +880,7 @@ class SNb extends S {
   String get noInternetConnectionDescription => 'Koble til internett for å få tilgang til alle videoer.';
 
   @override
-  String get noInternetButDontWorry => 'Ingen internettforbindelse, men ingen grunn til bekymring.';
+  String get noInternetButDontWorry => 'Ingen internettforbindelse, men ta det rolig ...';
 
   @override
   String get hereAreAllTheVideosYouDownloaded => 'Her er alle videoene du har lastet ned til enheten din.';
