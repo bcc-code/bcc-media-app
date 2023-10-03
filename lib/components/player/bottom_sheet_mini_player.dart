@@ -73,7 +73,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
             await context.navigateTo(EpisodeScreenRoute(episodeId: id, collectionId: collectionId));
           } catch (_) {
             if (mounted) {
-              await context.navigateTo(HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: id)]));
+              await context.navigateTo(HomeWrapperScreenRoute(children: [EpisodeScreenRoute(episodeId: id)]));
             }
           }
         }

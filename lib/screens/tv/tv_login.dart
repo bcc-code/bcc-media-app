@@ -14,6 +14,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+@RoutePage<void>()
 class TvLoginScreen extends HookConsumerWidget {
   const TvLoginScreen({super.key});
 

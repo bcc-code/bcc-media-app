@@ -10,6 +10,7 @@ import '../components/nav/custom_back_button.dart';
 import '../components/pages/page_renderer.dart';
 import '../graphql/queries/page.graphql.dart';
 
+@RoutePage<void>()
 class PageScreen extends ConsumerStatefulWidget {
   final String pageCode;
 
@@ -47,7 +48,9 @@ class PageScreenState extends ConsumerState<PageScreen> with PageMixin {
     return Scaffold(
       appBar: AppBar(
         leadingWidth: kIsWeb ? 300 : 92,
-        leading: const Padding(padding: EdgeInsets.only(left: kIsWeb ? 64 : 0), child: CustomBackButton()),
+        leading: const Padding(
+            padding: EdgeInsets.only(left: kIsWeb ? 64 : 0),
+            child: CustomBackButton()),
         title: Text(pageTitle),
       ),
       body: PageRenderer(

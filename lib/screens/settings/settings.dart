@@ -17,6 +17,7 @@ import '../../components/profile/setting_list.dart';
 
 import '../../theme/design_system/design_system.dart';
 
+@RoutePage<void>()
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
 

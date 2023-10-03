@@ -3,9 +3,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/connectivity.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/screens/tabs/search.dart';
 import 'package:collection/collection.dart';
@@ -25,6 +23,7 @@ import '../../providers/app_config.dart';
 import '../../providers/tabs.dart';
 import '../../theme/design_system/design_system.dart';
 
+@RoutePage<void>()
 class TabsRootScreen extends ConsumerStatefulWidget {
   static const route = '/';
 
@@ -34,7 +33,7 @@ class TabsRootScreen extends ConsumerStatefulWidget {
   ConsumerState<TabsRootScreen> createState() => _TabsRootScreenState();
 }
 
-class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteAware {
+class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteAwareStateMixin {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -147,7 +146,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       body: AutoTabsRouter(
         navigatorObservers: () => [HeroController()],
         routes: currentTabIds.map((tabId) => tabInfos.getFor(tabId).route).toList(),
-        builder: (context, child, animation) {
+        builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
           return Theme(
             data: Theme.of(context).copyWith(bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent)),

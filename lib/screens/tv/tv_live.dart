@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/badges/offline_badge.dart';
@@ -17,6 +18,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../helpers/misc.dart';
 
+@RoutePage<void>()
 class TvLiveScreen extends HookConsumerWidget {
   const TvLiveScreen({super.key});
 

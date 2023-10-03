@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -5,13 +6,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../providers/settings.dart';
 import '../../theme/design_system/design_system.dart';
 
+@RoutePage<void>()
 class ExtraUsergroupsScreen extends HookConsumerWidget {
   const ExtraUsergroupsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final betaTesters = useState(ref.read(settingsProvider).isBetaTester ?? false);
-    final extraUsergroups = useState([...ref.read(settingsProvider).extraUsergroups]);
+    final betaTesters =
+        useState(ref.read(settingsProvider).isBetaTester ?? false);
+    final extraUsergroups =
+        useState([...ref.read(settingsProvider).extraUsergroups]);
     final textEditingController = useTextEditingController();
 
     void addFromTextField() {
@@ -44,15 +48,23 @@ class ExtraUsergroupsScreen extends HookConsumerWidget {
                 (e) => ListTile(
                   title: Text(e),
                   trailing: Switch.adaptive(
-                    value: ref.read(settingsProvider).extraUsergroups.contains(e) == true,
+                    value: ref
+                            .read(settingsProvider)
+                            .extraUsergroups
+                            .contains(e) ==
+                        true,
                     onChanged: (val) {
-                      final list = [...ref.read(settingsProvider).extraUsergroups];
+                      final list = [
+                        ...ref.read(settingsProvider).extraUsergroups
+                      ];
                       if (val) {
                         list.add(e);
                       } else {
                         list.remove(e);
                       }
-                      ref.read(settingsProvider.notifier).updateExtraUsergroups(list);
+                      ref
+                          .read(settingsProvider.notifier)
+                          .updateExtraUsergroups(list);
                     },
                   ),
                 ),
@@ -65,7 +77,10 @@ class ExtraUsergroupsScreen extends HookConsumerWidget {
                     child: TextFormField(
                       controller: textEditingController,
                       onFieldSubmitted: (_) => addFromTextField(),
-                      decoration: DesignSystem.of(context).inputDecorations.textFormField.copyWith(hintText: 'Enter code...'),
+                      decoration: DesignSystem.of(context)
+                          .inputDecorations
+                          .textFormField
+                          .copyWith(hintText: 'Enter code...'),
                     ),
                   ),
                   IconButton(

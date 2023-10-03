@@ -32,6 +32,7 @@ import '../../components/pages/page_mixin.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/app_config.dart';
 
+@RoutePage<void>()
 class HomeScreen extends ConsumerStatefulWidget {
   HomeScreen({Key? key}) : super(key: key ?? GlobalKey<HomeScreenState>());
 
@@ -39,7 +40,9 @@ class HomeScreen extends ConsumerStatefulWidget {
   ConsumerState<HomeScreen> createState() => HomeScreenState();
 }
 
-class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implements ScrollScreen {
+class HomeScreenState extends ConsumerState<HomeScreen>
+    with PageMixin
+    implements ScrollScreen {
   late ProviderSubscription<Future<Query$Application?>> _appConfigListener;
   bool tooltipDismissed = false;
   String loginError = '';
@@ -50,14 +53,16 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
     super.initState();
     pageResult = wrapInCompleter(getHomePage());
     showDialogIfOldAppVersion();
-    _appConfigListener = ref.listenManual<Future<Query$Application?>>(appConfigFutureProvider, (prev, next) async {
+    _appConfigListener = ref.listenManual<Future<Query$Application?>>(
+        appConfigFutureProvider, (prev, next) async {
       showDialogIfOldAppVersion();
     });
   }
 
   @override
   void scrollToTop() {
-    pageScrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
+    pageScrollController.animateTo(0,
+        duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
   }
 
   @override
@@ -72,7 +77,9 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
     final packageInfo = await PackageInfo.fromPlatform();
     final minVersionNumber = appConfig.application.clientVersion;
     final currentVersionNumber = packageInfo.version;
-    if (getExtendedVersionNumber(minVersionNumber) > getExtendedVersionNumber(currentVersionNumber) && context.mounted) {
+    if (getExtendedVersionNumber(minVersionNumber) >
+            getExtendedVersionNumber(currentVersionNumber) &&
+        context.mounted) {
       showDialog(
           context: context,
           builder: (context) {
@@ -83,13 +90,17 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
               ),
               contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
               children: [
-                Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(S.of(context).appUpdateRequest)),
+                Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: Text(S.of(context).appUpdateRequest)),
                 DesignSystem.of(context).buttons.medium(
                     onPressed: () {
                       if (Platform.isIOS) {
-                        launchUrlString('itms-apps://itunes.apple.com', mode: LaunchMode.externalApplication);
+                        launchUrlString('itms-apps://itunes.apple.com',
+                            mode: LaunchMode.externalApplication);
                       } else if (Platform.isAndroid) {
-                        launchUrlString('market://details?id=tv.brunstad.app', mode: LaunchMode.externalApplication);
+                        launchUrlString('market://details?id=tv.brunstad.app',
+                            mode: LaunchMode.externalApplication);
                       }
                     },
                     labelText: S.of(context).appUpdateAccepted)
@@ -101,7 +112,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
     if (ref.read(authStateProvider).auth0AccessToken != null) {
       final me = await ref.read(gqlClientProvider).query$me();
       if (!ref.read(featureFlagsProvider).publicSignup &&
-          (me.parsedData?.me.completedRegistration != true || me.parsedData?.me.emailVerified != true)) {
+          (me.parsedData?.me.completedRegistration != true ||
+              me.parsedData?.me.emailVerified != true)) {
         // ignore: use_build_context_synchronously
         await showDialog(
           context: context,
@@ -115,7 +127,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
               children: [
                 const Padding(
                     padding: EdgeInsets.only(bottom: 16),
-                    child: Text("Unfortunately, we don't support signing up yet. Are you sure you signed in with the correct email?")),
+                    child: Text(
+                        "Unfortunately, we don't support signing up yet. Are you sure you signed in with the correct email?")),
                 DesignSystem.of(context).buttons.medium(
                       onPressed: () => Navigator.pop(context),
                       labelText: S.of(context).ok,
@@ -159,7 +172,9 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                 : AppBar(
                     toolbarHeight: 44,
                     shadowColor: Colors.black,
-                    backgroundColor: design.appThemeData.appBarTransparent ? Colors.transparent : design.colors.background1,
+                    backgroundColor: design.appThemeData.appBarTransparent
+                        ? Colors.transparent
+                        : design.colors.background1,
                     elevation: 0,
                     centerTitle: true,
                     title: Image(
@@ -173,7 +188,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                         padding: const EdgeInsets.only(right: 16.0),
                         child: ConstrainedBox(
                           constraints: BoxConstraints.loose(const Size(24, 24)),
-                          child: CastButton(color: DesignSystem.of(context).colors.tint1),
+                          child: CastButton(
+                              color: DesignSystem.of(context).colors.tint1),
                         ),
                       ),
                     ],
@@ -188,7 +204,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                                   gradient: LinearGradient(
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
-                                    colors: [DesignSystem.of(context).colors.background1, Colors.transparent],
+                                    colors: [
+                                      DesignSystem.of(context)
+                                          .colors
+                                          .background1,
+                                      Colors.transparent
+                                    ],
                                   ),
                                 ),
                                 height: 1000,
@@ -202,7 +223,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                 pageFuture: pageResult.future,
                 onRefresh: ({bool? retry}) async {
                   setState(() {
-                    pageResult = wrapInCompleter(retry == true ? getHomeAndAppConfig() : getHomePage());
+                    pageResult = wrapInCompleter(
+                        retry == true ? getHomeAndAppConfig() : getHomePage());
                   });
                 },
                 scrollController: pageScrollController,

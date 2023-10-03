@@ -1,63 +1,307 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/empty_router_widgets.dart';
-import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/screens/auto_login.dart';
-import 'package:brunstadtv_app/screens/tabs/calendar.dart';
-import 'package:brunstadtv_app/screens/settings/extra_usergroups.dart';
-import 'package:brunstadtv_app/screens/games/game.dart';
-import 'package:brunstadtv_app/screens/settings/about.dart';
-import 'package:brunstadtv_app/screens/settings/app_language.dart';
-import 'package:brunstadtv_app/screens/settings/audio_language.dart';
-import 'package:brunstadtv_app/screens/settings/privacy_policy.dart';
-import 'package:brunstadtv_app/screens/settings/subtitle_language.dart';
-import 'package:brunstadtv_app/screens/settings/terms_of_use.dart';
-import 'package:brunstadtv_app/screens/settings/video_quality.dart';
-import 'package:brunstadtv_app/screens/settings/contact.dart';
-import 'package:brunstadtv_app/screens/settings/faq.dart';
-import 'package:brunstadtv_app/screens/tabs/home.dart';
-import 'package:brunstadtv_app/screens/tabs/live.dart';
-import 'package:brunstadtv_app/screens/settings/account_deletion.dart';
-import 'package:brunstadtv_app/screens/onboarding/onboarding.dart';
-import 'package:brunstadtv_app/screens/settings/settings.dart';
-import 'package:brunstadtv_app/screens/tabs/profile.dart';
-import 'package:brunstadtv_app/screens/tabs/search.dart';
-import 'package:brunstadtv_app/screens/study/study.dart';
-import 'package:brunstadtv_app/screens/tv/tv_live.dart';
-import 'package:brunstadtv_app/screens/tv/tv_login.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import '../screens/settings/device_info.dart';
+import '../helpers/constants.dart';
 import '../helpers/router/custom_transitions.dart';
-import '../screens/study/achievement_group.dart';
-import '../screens/study/achievements.dart';
-import '../screens/episode.dart';
-import '../screens/games/games.dart';
-import '../screens/page.dart';
-import '../screens/onboarding/signup.dart';
-import '../screens/settings/contact_public.dart';
-import '../screens/tabs/tabs_root.dart';
+import 'router.gr.dart';
 
-const _collectionEpisodeScreenRoute = CupertinoRoute<void>(
-  page: CollectionEpisodeScreen,
+@AutoRouterConfig(deferredLoading: false, replaceInRouteName: 'Screen,ScreenRoute')
+class AppRouter extends $AppRouter {
+  AppRouter({super.navigatorKey});
+
+  @override
+  RouteType get defaultRouteType => const RouteType.material();
+
+  @override
+  final List<AutoRoute> routes = [
+    AutoRoute(
+      page: AutoLoginScreenRoute.page,
+      path: '/auto-login',
+    ),
+    AutoRoute(
+      page: TvLiveScreenRoute.page,
+      path: '/tv/live',
+      meta: const {RouteMetaConstants.analyticsName: 'tv-live'},
+    ),
+    AutoRoute(
+      page: TvLoginScreenRoute.page,
+      path: '/tv/login',
+      meta: const {RouteMetaConstants.analyticsName: 'tv-login'},
+    ),
+    CustomRoute(
+      page: OnboardingScreenRoute.page,
+      path: '/login',
+      meta: const {RouteMetaConstants.analyticsName: 'login'},
+    ),
+    CustomRoute(
+      customRouteBuilder: modalSheetBuilder,
+      page: SignupScreenRoute.page,
+      path: '/signup',
+      meta: const {RouteMetaConstants.analyticsName: 'signup'},
+    ),
+    CustomRoute(
+      opaque: false,
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      page: SettingsScreenRoute.page,
+      path: '/settings',
+      meta: const {RouteMetaConstants.analyticsName: 'settings'},
+    ),
+    CustomRoute(
+      page: AppLanguageScreenRoute.page,
+      path: '/app-language',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'appLanguage'},
+    ),
+    CustomRoute(
+      page: AudioLanguageScreenRoute.page,
+      path: '/audio-language',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'audioLanguage'},
+    ),
+    CustomRoute(
+      page: SubtitleLanguageScreenRoute.page,
+      path: '/subtitle-language',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'subtitlesLanguage'},
+    ),
+    CustomRoute(
+      page: VideoQualityScreenRoute.page,
+      path: '/video-quality',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'videoQuality'},
+    ),
+    CustomRoute(
+      page: ContactScreenRoute.page,
+      path: '/contact-support',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'support'},
+    ),
+    CustomRoute(
+      page: ContactPublicScreenRoute.page,
+      path: '/contact-support-public',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'support'},
+    ),
+    CustomRoute(
+      page: DeviceInfoScreenRoute.page,
+      path: '/device-info',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'support'},
+    ),
+    CustomRoute(
+      page: AboutScreenRoute.page,
+      path: '/about',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'about'},
+    ),
+    CustomRoute(
+      page: FAQScreenRoute.page,
+      path: '/faq',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'faq'},
+    ),
+    CustomRoute(
+      page: PrivacyPolicyScreenRoute.page,
+      path: '/privacy-policy',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'privacy-policy'},
+    ),
+    CustomRoute(
+      page: TermsOfUseScreenRoute.page,
+      path: '/terms-of-use',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'terms-of-use'},
+    ),
+    CustomRoute(
+      page: AccountDeletionScreenRoute.page,
+      path: '/account-deletion',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'account-deletion'},
+    ),
+    CustomRoute(
+      page: EpisodeScreenRoute.page,
+      path: '/embed/:episodeId',
+      durationInMilliseconds: 300,
+      reverseDurationInMilliseconds: 300,
+      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+      meta: const {RouteMetaConstants.analyticsName: 'episode'},
+    ),
+    CustomRoute(
+      page: ExtraUsergroupsScreenRoute.page,
+      path: '/extra-usergroups',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: settingsRouteBuilder,
+      meta: const {RouteMetaConstants.analyticsName: 'extra-usergroups'},
+    ),
+    CupertinoRoute(
+      page: GameScreenRoute.page,
+      path: '/game/:gameId',
+      maintainState: false,
+    ),
+    CustomRoute(
+      page: StudyScreenRoute.page,
+      path: '/study-lesson',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      meta: const {RouteMetaConstants.analyticsName: 'study-lesson'},
+    ),
+    CustomRoute(
+      page: AchievementsScreenRoute.page,
+      path: '/achievements',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      meta: const {RouteMetaConstants.analyticsName: 'achievements'},
+    ),
+    CustomRoute(
+      page: AchievementGroupScreenRoute.page,
+      path: '/achievement-group/:groupId',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      meta: const {
+        RouteMetaConstants.analyticsName: 'achievement-group',
+      },
+    ),
+    CustomRoute(page: TabsRootScreenRoute.page, path: '/', children: [
+      MaterialRoute(
+          page: LiveScreenRoute.page,
+          path: 'live',
+          meta: const {
+            RouteMetaConstants.hideMiniPlayer: true,
+            RouteMetaConstants.navTabRoute: true,
+            RouteMetaConstants.analyticsName: 'livestream',
+          },
+          maintainState: true),
+      MaterialRoute(page: SearchWrapperScreenRoute.page, path: 'search', children: [
+        MaterialRoute(
+          page: SearchScreenRoute.page,
+          path: '',
+          meta: const {RouteMetaConstants.navTabRoute: true},
+        ),
+        _episodeScreenRoute,
+        _collectionEpisodeScreenRoute,
+        _pageScreenRoute,
+      ]),
+      MaterialRoute(
+        page: CalendarScreenRoute.page,
+        path: 'calendar',
+        meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'calendar'},
+      ),
+      CustomRoute(page: ProfileWrapperScreenRoute.page, path: 'profile', maintainState: true, children: [
+        CustomRoute(
+          page: ProfileScreenRoute.page,
+          path: '',
+          maintainState: true,
+          meta: const {RouteMetaConstants.navTabRoute: true},
+        ),
+        _episodeScreenRoute,
+        _collectionEpisodeScreenRoute,
+      ]),
+      CustomRoute(page: GamesWrapperScreenRoute.page, path: 'games', maintainState: true, children: [
+        CupertinoRoute(
+          page: GamesScreenRoute.page,
+          path: '',
+          maintainState: true,
+          meta: const {RouteMetaConstants.navTabRoute: true},
+        ),
+        CupertinoRoute(
+          page: GameScreenRoute.page,
+          path: ':gameId',
+          maintainState: false,
+          meta: const {RouteMetaConstants.analyticsName: 'game'},
+        ),
+      ]),
+      CustomRoute(page: HomeWrapperScreenRoute.page, path: '', children: [
+        CupertinoRoute(
+          page: HomeScreenRoute.page,
+          path: '',
+          maintainState: true,
+          meta: const {RouteMetaConstants.navTabRoute: true},
+        ),
+        _episodeScreenRoute,
+        _collectionEpisodeScreenRoute,
+        _pageScreenRoute,
+      ]),
+    ]),
+  ];
+}
+
+final _collectionEpisodeScreenRoute = CupertinoRoute(
+  page: CollectionEpisodeScreenRoute.page,
   path: 'episode/:collectionId/:episodeId',
-  meta: {RouteMetaConstants.analyticsName: 'episode'},
+  meta: const {RouteMetaConstants.analyticsName: 'episode'},
 );
 
-const _episodeScreenRoute = CupertinoRoute<void>(
-  page: EpisodeScreen,
+final _episodeScreenRoute = CupertinoRoute(
+  page: EpisodeScreenRoute.page,
   path: 'episode/:episodeId',
-  meta: {RouteMetaConstants.analyticsName: 'episode'},
+  meta: const {RouteMetaConstants.analyticsName: 'episode'},
 );
 
-const _pageScreenRoute = CupertinoRoute<void>(
-  page: PageScreen,
+final _pageScreenRoute = CupertinoRoute(
+  page: PageScreenRoute.page,
   path: ':pageCode',
   usesPathAsKey: true,
 );
 
-Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> page) {
+// Empty routes
+@RoutePage<void>()
+class SearchWrapperScreen extends AutoRouter {
+  const SearchWrapperScreen({super.key});
+}
+
+@RoutePage<void>()
+class TabsWrapperScreen extends AutoRouter {
+  const TabsWrapperScreen({super.key});
+}
+
+@RoutePage<void>()
+class GamesWrapperScreen extends AutoRouter {
+  const GamesWrapperScreen({super.key});
+}
+
+@RoutePage<void>()
+class HomeWrapperScreen extends AutoRouter {
+  const HomeWrapperScreen({super.key});
+}
+
+@RoutePage<void>()
+class ProfileWrapperScreen extends AutoRouter {
+  const ProfileWrapperScreen({super.key});
+}
+
+Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
   return ModalSheetRoute(
     settings: page,
     builder: (context) => child,
@@ -66,282 +310,13 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
   );
 }
 
-Route<T> settingsRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T> page) {
-  if (!kIsWeb) return PageRouteBuilder(settings: page, pageBuilder: (context, a, b) => CustomTransitionsBuilders.slideUp(context, a, b, child));
+Route<T> settingsRouteBuilder<T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
+  if (!kIsWeb) {
+    return PageRouteBuilder(settings: page, pageBuilder: (context, a, b) => CustomTransitionsBuilders.slideUp(context, a, b, child));
+  }
   return DialogRoute(
     context: context,
     settings: page,
     builder: (context) => child,
   );
 }
-
-@MaterialAutoRouter(
-  deferredLoading: false,
-  routes: [
-    AutoRoute<void>(page: AutoLoginScreen, path: '/auto-login'),
-    AutoRoute<void>(
-      page: TvLiveScreen,
-      path: '/tv/live',
-      meta: {RouteMetaConstants.analyticsName: 'tv-live'},
-    ),
-    AutoRoute<void>(
-      page: TvLoginScreen,
-      path: '/tv/login',
-      meta: {RouteMetaConstants.analyticsName: 'tv-login'},
-    ),
-    CustomRoute<void>(
-      page: OnboardingScreen,
-      path: '/login',
-      meta: {RouteMetaConstants.analyticsName: 'login'},
-    ),
-    CustomRoute<void>(
-      customRouteBuilder: modalSheetBuilder,
-      page: SignupScreen,
-      path: 'signup',
-      meta: {RouteMetaConstants.analyticsName: 'signup'},
-    ),
-    CustomRoute<void>(
-      opaque: false,
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      page: SettingsScreen,
-      path: '/settings',
-      meta: {RouteMetaConstants.analyticsName: 'settings'},
-    ),
-    CustomRoute<void>(
-      page: AppLanguageScreen,
-      path: '/app-language',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'appLanguage'},
-    ),
-    CustomRoute<void>(
-      page: AudioLanguageScreen,
-      path: '/audio-language',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'audioLanguage'},
-    ),
-    CustomRoute<void>(
-      page: SubtitleLanguageScreen,
-      path: '/subtitle-language',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'subtitlesLanguage'},
-    ),
-    CustomRoute<void>(
-      page: VideoQualityScreen,
-      path: '/video-quality',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'videoQuality'},
-    ),
-    CustomRoute<void>(
-      page: ContactScreen,
-      path: '/contact-support',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'support'},
-    ),
-    CustomRoute<void>(
-      page: ContactPublicScreen,
-      path: '/contact-support-public',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'support'},
-    ),
-    CustomRoute<void>(
-      page: DeviceInfoScreen,
-      path: '/device-info',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'support'},
-    ),
-    CustomRoute<void>(
-      page: AboutScreen,
-      path: '/about',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'about'},
-    ),
-    CustomRoute<void>(
-      page: FAQScreen,
-      path: '/faq',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'faq'},
-    ),
-    CustomRoute<void>(
-      page: PrivacyPolicyScreen,
-      path: '/privacy-policy',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'privacy-policy'},
-    ),
-    CustomRoute<void>(
-      page: TermsOfUseScreen,
-      path: '/terms-of-use',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'terms-of-use'},
-    ),
-    CustomRoute<void>(
-      page: AccountDeletionScreen,
-      path: '/account-deletion',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'account-deletion'},
-    ),
-    CupertinoRoute<void>(
-      page: HomeScreen,
-      name: 'PublicHomeRoute',
-      path: '/public-home',
-      maintainState: false,
-    ),
-    CustomRoute<void>(
-      page: EpisodeScreen,
-      name: 'EmbedScreen',
-      path: '/embed/:episodeId',
-      durationInMilliseconds: 300,
-      reverseDurationInMilliseconds: 300,
-      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
-      meta: {RouteMetaConstants.analyticsName: 'episode'},
-    ),
-    CustomRoute<void>(
-      page: ExtraUsergroupsScreen,
-      name: 'ExtraUsergroupsScreen',
-      path: '/extra-usergroups',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 600,
-      customRouteBuilder: settingsRouteBuilder,
-      meta: {RouteMetaConstants.analyticsName: 'extra-usergroups'},
-    ),
-    CupertinoRoute<void>(
-      page: GameScreen,
-      path: '/game/:gameId',
-      maintainState: false,
-    ),
-    CustomRoute<void>(
-        page: StudyScreen,
-        path: 'study-lesson',
-        durationInMilliseconds: 400,
-        reverseDurationInMilliseconds: 600,
-        transitionsBuilder: CustomTransitionsBuilders.slideUp,
-        meta: {RouteMetaConstants.analyticsName: 'study-lesson'}),
-    CustomRoute<void>(
-        page: AchievementsScreen,
-        path: '/achievements',
-        durationInMilliseconds: 400,
-        reverseDurationInMilliseconds: 600,
-        transitionsBuilder: CustomTransitionsBuilders.slideUp,
-        meta: {RouteMetaConstants.analyticsName: 'achievements'}),
-    CustomRoute<void>(
-        page: AchievementGroupScreen,
-        path: '/achievement-group/:groupId',
-        durationInMilliseconds: 400,
-        reverseDurationInMilliseconds: 600,
-        transitionsBuilder: CustomTransitionsBuilders.slideUp,
-        meta: {
-          RouteMetaConstants.analyticsName: 'achievement-group',
-        }),
-    CustomRoute<void>(
-      page: TabsRootScreen,
-      path: '/',
-      children: [
-        MaterialRoute<void>(
-            page: LiveScreen,
-            path: 'live',
-            meta: {
-              RouteMetaConstants.hideMiniPlayer: true,
-              RouteMetaConstants.navTabRoute: true,
-              RouteMetaConstants.analyticsName: 'livestream',
-            },
-            maintainState: true),
-        MaterialRoute<void>(
-          name: 'SearchScreenWrapperRoute',
-          page: EmptyRouterPage,
-          path: 'search',
-          children: [
-            MaterialRoute<void>(
-              page: SearchScreen,
-              path: '',
-              meta: {RouteMetaConstants.navTabRoute: true},
-            ),
-            _episodeScreenRoute,
-            _collectionEpisodeScreenRoute,
-            _pageScreenRoute,
-          ],
-        ),
-        MaterialRoute<void>(
-          page: CalendarPage,
-          path: 'calendar',
-          meta: {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'calendar'},
-        ),
-        CustomRoute<void>(
-          name: 'ProfileScreenWrapperRoute',
-          page: EmptyRouterPage,
-          path: 'profile',
-          maintainState: true,
-          children: [
-            CustomRoute<void>(
-              page: ProfileScreen,
-              path: '',
-              maintainState: true,
-              meta: {RouteMetaConstants.navTabRoute: true},
-            ),
-            _episodeScreenRoute,
-            _collectionEpisodeScreenRoute
-          ],
-        ),
-        CustomRoute<void>(
-          name: 'GamesWrapperRoute',
-          page: EmptyRouterPage,
-          path: 'games',
-          maintainState: true,
-          children: [
-            CupertinoRoute<void>(
-              page: GamesScreen,
-              path: '',
-              maintainState: true,
-              meta: {RouteMetaConstants.navTabRoute: true},
-            ),
-            CupertinoRoute<void>(
-              page: GameScreen,
-              name: 'GamesGameScreenRoute',
-              path: ':gameId',
-              maintainState: false,
-              meta: {RouteMetaConstants.analyticsName: 'game'},
-            )
-          ],
-        ),
-        CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [
-          CupertinoRoute<void>(
-            page: HomeScreen,
-            path: '',
-            name: 'home',
-            initial: true,
-            maintainState: true,
-            meta: {RouteMetaConstants.navTabRoute: true},
-          ),
-          _episodeScreenRoute,
-          _collectionEpisodeScreenRoute,
-          _pageScreenRoute,
-        ]),
-      ],
-    ),
-  ],
-)
-class $AppRouter {}

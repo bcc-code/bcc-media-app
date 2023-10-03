@@ -61,7 +61,7 @@ class CustomTransitionsBuilders {
   static Route<T> slideLeftRouteBuilder<T>(
     BuildContext context,
     Widget child,
-    CustomPage<T> page,
+    AutoRoutePage<T> page,
   ) {
     return PageRouteBuilder(
       settings: page,

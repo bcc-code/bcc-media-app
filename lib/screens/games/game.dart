@@ -17,6 +17,7 @@ import '../../flavors.dart';
 import '../../helpers/webview/main_js_channel.dart';
 import '../../theme/design_system/design_system.dart';
 
+@RoutePage<void>()
 class GameScreen extends HookConsumerWidget {
   const GameScreen({
     Key? key,

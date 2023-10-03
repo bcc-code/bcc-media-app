@@ -6,6 +6,7 @@ import 'package:brunstadtv_app/main.dart';
 import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
+import 'package:brunstadtv_app/router/router.dart';
 import 'package:brunstadtv_app/screens/onboarding/email_verification.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';

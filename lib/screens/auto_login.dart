@@ -23,6 +23,7 @@ import '../helpers/misc.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
 
+@RoutePage<void>()
 class AutoLoginScreen extends ConsumerStatefulWidget {
   const AutoLoginScreen({super.key});
 

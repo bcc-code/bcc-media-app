@@ -74,7 +74,7 @@ class EpisodeDownloadButton extends HookConsumerWidget {
       );
     } else if (download?.status == DownloadStatus.finished) {
       return FocusableControlBuilder(onPressed: () {
-        context.navigateTo(const ProfileScreenWrapperRoute());
+        context.navigateTo(const ProfileWrapperScreenRoute());
       }, builder: (context, control) {
         return Container(
           decoration: ShapeDecoration(

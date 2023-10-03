@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 
@@ -13,6 +14,7 @@ import 'package:brunstadtv_app/helpers/misc.dart';
 
 import '../../theme/design_system/design_system.dart';
 
+@RoutePage<void>()
 class AccountDeletionScreen extends HookConsumerWidget {
   const AccountDeletionScreen({super.key});
 

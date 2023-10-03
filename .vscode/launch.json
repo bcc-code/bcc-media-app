@@ -98,6 +98,21 @@
         "canvaskit"
       ], // Remember to change the "program" property too
       "program": "lib/main_kids_prod.dart"
+    },
+    {
+      "name": "kids v2 (prod)",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}/kids",
+      "args": [
+        "--flavor",
+        "prod",
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit"
+      ], // Remember to change the "program" property too
+      "program": "lib/main_prod.dart"
     }
   ]
 }

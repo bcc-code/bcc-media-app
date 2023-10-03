@@ -18,6 +18,7 @@ import '../../flavors.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
+@RoutePage<void>()
 class OnboardingScreen extends ConsumerStatefulWidget {
   final String? loginError;
   final void Function(bool)? onResult;

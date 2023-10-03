@@ -35,6 +35,7 @@ import '../../router/router.gr.dart';
 import '../../helpers/extensions.dart';
 import '../../theme/design_system/design_system.dart';
 
+@RoutePage<void>()
 class ProfileScreen extends HookConsumerWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
