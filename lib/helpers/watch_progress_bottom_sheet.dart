@@ -24,7 +24,7 @@ void showWatchProgressBottomSheet(BuildContext context, WidgetRef ref, String ep
         Option(
           id: 'remove_progress',
           title: S.of(context).removeWatchProgress,
-          icon: Image.asset(width: 24, height: 24, 'assets/icons/Close.png', gaplessPlayback: true),
+          icon: Image.asset(width: 24, height: 24, 'assets/icons/Close.png', gaplessPlayback: true, package: 'brunstadtv_app'),
         )
       ],
       showSelection: false,

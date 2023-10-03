@@ -1239,7 +1239,7 @@ packages:
     source: hosted
     version: "1.1.2"
   riverpod:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: riverpod
       sha256: ff676bd8a715c7085692fe4919564f78fb90d33b10a1c5c14e740581857cc914

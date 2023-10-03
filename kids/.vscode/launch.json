@@ -5,9 +5,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "kids",
+      "name": "prod",
       "request": "launch",
-      "type": "dart"
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--flavor",
+        "prod",
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit"
+      ], // Remember to change the "program" property too
+      "program": "lib/main_prod.dart"
     },
     {
       "name": "kids (profile mode)",

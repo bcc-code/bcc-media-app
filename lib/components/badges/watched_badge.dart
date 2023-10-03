@@ -13,7 +13,7 @@ class WatchedBadge extends StatelessWidget {
         color: DesignSystem.of(context).colors.background1.withOpacity(0.7),
         borderRadius: BorderRadius.circular(2),
       ),
-      child: Image.asset('assets/icons/Seen.png'),
+      child: Image.asset('assets/icons/Seen.png', package: 'brunstadtv_app'),
     );
   }
 }

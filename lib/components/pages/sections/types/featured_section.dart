@@ -217,14 +217,14 @@ class _FeaturedItem extends StatelessWidget {
                 ),
                 isLive
                     ? design.buttons.smallRed(
-                        image: Image.asset('assets/icons/Play.png'),
+                        image: Image.asset('assets/icons/Play.png', package: 'brunstadtv_app'),
                         labelText: S.of(context).liveNow,
                         onPressed: () {
                           handleSectionItemClick(context, sectionItem.item);
                         },
                       )
                     : design.buttons.smallSecondary(
-                        image: Image.asset('assets/icons/Play.png'),
+                        image: Image.asset('assets/icons/Play.png', package: 'brunstadtv_app'),
                         labelText: S.of(context).watchNow,
                         onPressed: () {
                           handleSectionItemClick(context, sectionItem.item);

@@ -131,7 +131,7 @@ class _EpisodeThumbnailStack extends StatelessWidget {
             height: double.infinity,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/icons/Wait.png'),
+                image: AssetImage('assets/icons/Wait.png', package: 'brunstadtv_app'),
               ),
             ),
           ),

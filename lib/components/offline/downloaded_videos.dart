@@ -280,7 +280,7 @@ void _showDownloadItemBottomSheet(
         Option(
           id: 'remove_download',
           title: S.of(context).remove,
-          icon: Image.asset(width: 24, height: 24, 'assets/icons/Close.png', gaplessPlayback: true),
+          icon: Image.asset(width: 24, height: 24, 'assets/icons/Close.png', gaplessPlayback: true, package: 'brunstadtv_app'),
         )
       ],
       showSelection: false,
