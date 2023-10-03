@@ -92,7 +92,7 @@ packages:
   bccm_player:
     dependency: "direct main"
     description:
-      path: "external_projects/bccm_player"
+      path: "submodules/bccm_player"
       relative: true
     source: path
     version: "1.1.2"

@@ -51,7 +51,7 @@ dependencies:
   auto_route: ^7.8.3
   build_runner: ^2.2.0
   bccm_player:
-    path: external_projects/bccm_player
+    path: submodules/bccm_player
   riverpod: ^2.3.4
   flutter_riverpod: ^2.1.1
   freezed_annotation: ^2.1.0
@@ -159,15 +159,15 @@ flutter:
   fonts:
     - family: Barlow
       fonts:
-        - asset: assets/fonts/Barlow/Barlow-ExtraBold.ttf
+        - asset: packages/bccm_core/fonts/Barlow/Barlow-ExtraBold.ttf
           weight: 800
-        - asset: assets/fonts/Barlow/Barlow-Bold.ttf
+        - asset: packages/bccm_core/fonts/Barlow/Barlow-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Barlow/Barlow-SemiBold.ttf
+        - asset: packages/bccm_core/fonts/Barlow/Barlow-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/Barlow/Barlow-Medium.ttf
+        - asset: packages/bccm_core/fonts/Barlow/Barlow-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Barlow/Barlow-Regular.ttf
+        - asset: packages/bccm_core/fonts/Barlow/Barlow-Regular.ttf
           weight: 400
 
   # To add assets to your application, add an assets section, like this:
