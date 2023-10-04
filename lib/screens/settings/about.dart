@@ -37,8 +37,8 @@ class AboutScreen extends StatelessWidget {
                       DeveloperOptionsTrigger(
                         child: SizedBox(
                           child: Image(
-                            image: FlavorConfig.current.images.logo,
-                            height: FlavorConfig.current.images.logoHeight,
+                            image: FlavorConfig.current.bccmImages!.logo,
+                            height: FlavorConfig.current.bccmImages!.logoHeight,
                             gaplessPlayback: true,
                           ),
                         ),

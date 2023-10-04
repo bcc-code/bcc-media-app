@@ -159,15 +159,15 @@ flutter:
   fonts:
     - family: Barlow
       fonts:
-        - asset: packages/bccm_core/fonts/Barlow/Barlow-ExtraBold.ttf
+        - asset: assets/fonts/Barlow/Barlow-ExtraBold.ttf
           weight: 800
-        - asset: packages/bccm_core/fonts/Barlow/Barlow-Bold.ttf
+        - asset: assets/fonts/Barlow/Barlow-Bold.ttf
           weight: 700
-        - asset: packages/bccm_core/fonts/Barlow/Barlow-SemiBold.ttf
+        - asset: assets/fonts/Barlow/Barlow-SemiBold.ttf
           weight: 600
-        - asset: packages/bccm_core/fonts/Barlow/Barlow-Medium.ttf
+        - asset: assets/fonts/Barlow/Barlow-Medium.ttf
           weight: 500
-        - asset: packages/bccm_core/fonts/Barlow/Barlow-Regular.ttf
+        - asset: assets/fonts/Barlow/Barlow-Regular.ttf
           weight: 400
 
   # To add assets to your application, add an assets section, like this:

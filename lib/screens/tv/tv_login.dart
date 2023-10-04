@@ -100,8 +100,8 @@ class TvLoginScreen extends HookConsumerWidget {
                       alignment: Alignment.bottomCenter,
                       padding: const EdgeInsets.symmetric(vertical: 32),
                       child: Image(
-                        image: FlavorConfig.current.images.logo,
-                        height: FlavorConfig.current.images.logoHeight,
+                        image: FlavorConfig.current.bccmImages!.logo,
+                        height: FlavorConfig.current.bccmImages!.logoHeight,
                         gaplessPlayback: true,
                       ),
                     ),
@@ -120,8 +120,8 @@ class TvLoginScreen extends HookConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 64),
                     child: Image(
-                      image: FlavorConfig.current.images.logo,
-                      height: FlavorConfig.current.images.logoHeight,
+                      image: FlavorConfig.current.bccmImages!.logo,
+                      height: FlavorConfig.current.bccmImages!.logoHeight,
                       gaplessPlayback: true,
                     ),
                   ),

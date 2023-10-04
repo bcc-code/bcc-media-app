@@ -12,19 +12,19 @@ import '../../l10n/app_localizations.dart';
 import '../../providers/auth_state/auth_state.dart';
 import '../../theme/design_system/design_system.dart';
 
-final logo = Image.asset('assets/flavors/prod/logo.png', package: 'brunstadtv_app');
+final logo = Image.asset('assets/flavors/prod/logo.png');
 final icons = {
   'home_default': Image.asset(
     'assets/icons/Home_Default.png',
     gaplessPlayback: true,
   ),
-  'home_selected': Image.asset('assets/icons/Home_Selected.png', gaplessPlayback: true, package: 'brunstadtv_app'),
-  'search_default': Image.asset('assets/icons/Search_Default.png', gaplessPlayback: true, package: 'brunstadtv_app'),
-  'search_selected': Image.asset('assets/icons/Search_Selected.png', gaplessPlayback: true, package: 'brunstadtv_app'),
-  'live_default': Image.asset('assets/icons/Live_Default.png', gaplessPlayback: true, package: 'brunstadtv_app'),
-  'live_selected': Image.asset('assets/icons/Live_Selected.png', gaplessPlayback: true, package: 'brunstadtv_app'),
-  'calendar_default': Image.asset('assets/icons/Calendar_Default.png', gaplessPlayback: true, package: 'brunstadtv_app'),
-  'calendar_selected': Image.asset('assets/icons/Calendar_Selected.png', gaplessPlayback: true, package: 'brunstadtv_app'),
+  'home_selected': Image.asset('assets/icons/Home_Selected.png', gaplessPlayback: true),
+  'search_default': Image.asset('assets/icons/Search_Default.png', gaplessPlayback: true),
+  'search_selected': Image.asset('assets/icons/Search_Selected.png', gaplessPlayback: true),
+  'live_default': Image.asset('assets/icons/Live_Default.png', gaplessPlayback: true),
+  'live_selected': Image.asset('assets/icons/Live_Selected.png', gaplessPlayback: true),
+  'calendar_default': Image.asset('assets/icons/Calendar_Default.png', gaplessPlayback: true),
+  'calendar_selected': Image.asset('assets/icons/Calendar_Selected.png', gaplessPlayback: true),
 };
 
 class WebAppBar extends ConsumerWidget implements PreferredSizeWidget {

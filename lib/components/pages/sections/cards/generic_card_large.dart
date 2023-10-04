@@ -73,7 +73,7 @@ class _GenericCardLargeState extends State<GenericCardLarge> {
                             game: (_) => S.of(context).playGame,
                             orElse: () => S.of(context).open,
                           ),
-                          image: Image.asset('assets/icons/Play.png', package: 'brunstadtv_app'),
+                          image: Image.asset('assets/icons/Play.png'),
                         ),
                       )
                     ],

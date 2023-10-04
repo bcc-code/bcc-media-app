@@ -1,0 +1,45 @@
+enum Gender {
+    male
+    female
+    unknown
+}
+
+type User {
+    id: ID
+    anonymous: Boolean!
+    bccMember: Boolean!
+    audience: String
+    email: String
+    emailVerified: Boolean! @goField(forceResolver: true)
+    roles: [String!]!
+    analytics: Analytics!
+    gender: Gender!
+    firstName: String!
+    displayName: String!
+    completedRegistration: Boolean! @goField(forceResolver: true)
+}
+
+type UserCollection {
+    id: UUID!
+    title: String!
+    #    updatedAt: Date!
+    #    createdAt: Date!
+    entries(first: Int, offset: Int): UserCollectionEntryPagination! @goField(forceResolver: true)
+}
+
+union UserCollectionEntryItem = Show | Episode
+
+type UserCollectionEntry {
+    id: UUID!
+    #    sort: Int!
+    #    updatedAt: Date!
+    #    createdAt: Date!
+    item: UserCollectionEntryItem! @goField(forceResolver: true)
+}
+
+type UserCollectionEntryPagination implements Pagination {
+    total: Int!
+    offset: Int!
+    first: Int!
+    items: [UserCollectionEntry!]!
+}

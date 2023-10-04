@@ -1,0 +1,76 @@
+type CalendarPeriod {
+    activeDays: [Date!]!
+    events: [Event!]!
+}
+
+type CalendarDay {
+    events: [Event!]!
+    entries: [CalendarEntry!]!
+}
+
+type Event {
+    id: ID!
+    title: String!
+    start: String!
+    end: String!
+    image: String!
+}
+
+interface CalendarEntry {
+    id: ID!
+    event: Event @goField(forceResolver: true)
+    title: String!
+    description: String!
+    start: Date!
+    end: Date!
+}
+
+type SimpleCalendarEntry implements CalendarEntry {
+    id: ID!
+    event: Event @goField(forceResolver: true)
+    title: String!
+    description: String!
+    start: Date!
+    end: Date!
+}
+
+type EpisodeCalendarEntry implements CalendarEntry {
+    id: ID!
+    event: Event @goField(forceResolver: true)
+    title: String! @goField(forceResolver: true)
+    description: String! @goField(forceResolver: true)
+    start: Date!
+    end: Date!
+    isReplay: Boolean!
+    episode: Episode @goField(forceResolver: true)
+}
+
+type SeasonCalendarEntry implements CalendarEntry {
+    id: ID!
+    event: Event @goField(forceResolver: true)
+    title: String! @goField(forceResolver: true)
+    description: String! @goField(forceResolver: true)
+    start: Date!
+    end: Date!
+    season: Season @goField(forceResolver: true)
+}
+
+type ShowCalendarEntry implements CalendarEntry {
+    id: ID!
+    event: Event @goField(forceResolver: true)
+    title: String! @goField(forceResolver: true)
+    description: String! @goField(forceResolver: true)
+    start: Date!
+    end: Date!
+    show: Show @goField(forceResolver: true)
+}
+
+type Calendar {
+    period(
+        from: Date!,
+        to: Date!
+    ): CalendarPeriod! @goField(forceResolver: true)
+    day(
+        day: Date!
+    ): CalendarDay! @goField(forceResolver: true)
+}

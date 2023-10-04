@@ -2,6 +2,7 @@ import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -25,12 +26,7 @@ class _InfoItem extends StatelessWidget {
             width: double.infinity,
             child: Text(
               title,
-              style: const TextStyle(
-                color: Color(0xfffefefe),
-                fontSize: 17,
-                fontFamily: 'Barlow',
-                fontWeight: FontWeight.w700,
-              ),
+              style: DesignSystem.of(context).textStyles.title3,
             ),
           ),
           const SizedBox(height: 4),

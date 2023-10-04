@@ -7,7 +7,6 @@ import '../design_system.dart';
 import '../bccmedia/buttons.dart';
 import '../bccmedia/decorations.dart';
 import '../bccmedia/text_styles.dart';
-import 'colors.dart';
 
 class BibleKidsDesignSystem extends DesignSystemData {
   BibleKidsDesignSystem._raw({
@@ -19,7 +18,7 @@ class BibleKidsDesignSystem extends DesignSystemData {
     required super.inputDecorations,
   });
   factory BibleKidsDesignSystem() {
-    final colors = BibleKidsColors();
+    final colors = _Colors();
     final textStyles = BccMediaTextStyles(colors: colors);
     return BibleKidsDesignSystem._raw(
       colors: colors,
@@ -88,12 +87,6 @@ class BibleKidsDesignSystem extends DesignSystemData {
           ),
         ),
         scaffoldBackgroundColor: colors.background1,
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          selectedItemColor: colors.tint1,
-          elevation: 0,
-          selectedLabelStyle: textStyles.caption3.copyWith(color: colors.tint1),
-          unselectedLabelStyle: textStyles.caption3,
-        ),
         typography: Typography.material2021().copyWith(
           white: Typography.material2021().white.copyWith(
                 headlineMedium: textStyles.headline2,
@@ -104,4 +97,21 @@ class BibleKidsDesignSystem extends DesignSystemData {
       ),
     );
   }
+}
+
+class _Colors extends DesignSystemColors {
+  _Colors()
+      : super(
+          tint1: const Color(0xffA1D1DD),
+          tint2: const Color(0xffE26E86),
+          tint3: const Color(0xffF4CC5C),
+          onTint: const Color(0xffFFFFFF),
+          label1: const Color(0xffFEFEFE),
+          label2: const Color(0xffE4EEF1),
+          label3: const Color(0xffD3DCDE),
+          label4: const Color(0xffA9B7BC),
+          background1: const Color(0xFFFFFFFF),
+          background2: const Color(0xff255F74),
+          separatorOnLight: const Color.fromRGBO(204, 221, 255, 0.1),
+        );
 }

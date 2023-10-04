@@ -1,0 +1,8 @@
+type Application {
+    id: ID!
+    code: String!
+    clientVersion: String!
+    page: Page @goField(forceResolver: true)
+    searchPage: Page @goField(forceResolver: true)
+    gamesPage: Page @goField(forceResolver: true)
+}

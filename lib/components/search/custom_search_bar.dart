@@ -93,7 +93,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                         padding: const EdgeInsets.only(left: 8, top: 1, bottom: 1, right: 10),
                         child: ImageIcon(
                           color: DesignSystem.of(context).colors.tint1,
-                          const AssetImage('assets/icons/Search_Default.png', package: 'brunstadtv_app'),
+                          const AssetImage('assets/icons/Search_Default.png'),
                           size: 24,
                         ),
                       ),
@@ -105,7 +105,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                                 onTap: () {
                                   _onCleared();
                                 },
-                                child: const ImageIcon(AssetImage('assets/icons/Cancel_Default.png', package: 'brunstadtv_app'), size: 16),
+                                child: const ImageIcon(AssetImage('assets/icons/Cancel_Default.png'), size: 16),
                               ),
                             )
                           : null,

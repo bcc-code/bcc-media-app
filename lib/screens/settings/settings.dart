@@ -107,7 +107,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 48),
                         child: Image(
-                          image: FlavorConfig.current.images.logo,
+                          image: FlavorConfig.current.bccmImages!.logo,
                           height: 25,
                           gaplessPlayback: true,
                         ),

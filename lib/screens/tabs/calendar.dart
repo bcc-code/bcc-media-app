@@ -250,7 +250,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                 shape: BoxShape.circle,
               ),
               weekendTextStyle: design.textStyles.title3,
-              outsideTextStyle: const TextStyle(fontFamily: 'Barlow', color: Colors.grey, fontSize: 17, fontWeight: FontWeight.w700),
+              outsideTextStyle: design.textStyles.title3.copyWith(height: null),
               markerMargin: const EdgeInsets.only(top: 3),
               markerDecoration: BoxDecoration(
                 color: design.colors.label4,

@@ -17,6 +17,10 @@ class StateImageProvider extends Iterable<ImageProvider> {
     required this.activeImage,
   });
 
+  StateImageProvider.empty()
+      : image = const AssetImage(''),
+        activeImage = const AssetImage('');
+
   @override
   Iterator<ImageProvider<Object>> get iterator => [image, activeImage].iterator;
 }
@@ -36,7 +40,7 @@ class FlavorStrings {
   });
 }
 
-class FlavorImages extends Iterable<ImageProvider> {
+class BccmFlavorImages extends Iterable<ImageProvider> {
   final double logoHeight;
   final ImageProvider logo;
   final ImageProvider onboarding;
@@ -48,7 +52,7 @@ class FlavorImages extends Iterable<ImageProvider> {
   final StateImageProvider games;
   final StateImageProvider profile;
 
-  FlavorImages({
+  BccmFlavorImages({
     required this.logoHeight,
     required this.logo,
     required this.onboarding,
@@ -80,19 +84,19 @@ class FlavorConfig {
     required this.applicationCode,
     required this.flavor,
     required this.firebaseOptions,
-    required this.images,
     required this.strings,
     required this.enableNotifications,
+    required this.designSystem,
+    this.bccmImages,
     this.strictAnonymousAnalytics,
-    this.designSystem,
     this.defaultLanguage = 'en',
   });
 
   // Config
   final Flavor flavor;
   final FirebaseOptions? firebaseOptions;
-  final FlavorImages images;
-  final DesignSystemData Function()? designSystem;
+  final BccmFlavorImages? bccmImages;
+  final DesignSystemData Function() designSystem;
   final String applicationCode;
   final FlavorStrings Function(BuildContext context) strings;
   final bool enableNotifications;

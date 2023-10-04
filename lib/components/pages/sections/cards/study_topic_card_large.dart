@@ -77,7 +77,7 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
                         child: design.buttons.smallSecondary(
                           onPressed: onCardTapped,
                           labelText: widget.studyTopic.lessonsProgress.completed > 0 ? S.of(context).continueStudy : S.of(context).startStudy,
-                          image: Image.asset('assets/icons/Play.png', package: 'brunstadtv_app'),
+                          image: Image.asset('assets/icons/Play.png'),
                         ),
                       )
                     ],

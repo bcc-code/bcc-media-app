@@ -72,8 +72,8 @@ class TvLiveScreen extends HookConsumerWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 48),
               child: Image(
-                image: FlavorConfig.current.images.logo,
-                height: FlavorConfig.current.images.logoHeight,
+                image: FlavorConfig.current.bccmImages!.logo,
+                height: FlavorConfig.current.bccmImages!.logoHeight,
                 gaplessPlayback: true,
               ),
             ),

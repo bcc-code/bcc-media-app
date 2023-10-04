@@ -177,7 +177,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset('assets/icons/Search_Default.png', width: 80, height: 80, fit: BoxFit.fill, package: 'brunstadtv_app'),
+            Image.asset('assets/icons/Search_Default.png', width: 80, height: 80, fit: BoxFit.fill),
             Text(
               S.of(context).noResults,
               textAlign: TextAlign.center,

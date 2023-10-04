@@ -100,7 +100,15 @@
       "program": "lib/main_kids_prod.dart"
     },
     {
-      "name": "kids v2 (prod)",
+      "name": "Debug build_runner",
+      "cwd": "${workspaceFolder}/kids",
+      "request": "launch",
+      "program": ".dart_tool/build/entrypoint/build.dart",
+      "type": "dart",
+      "args": ["build", "--delete-conflicting-outputs", "--verbose"]
+    },
+    {
+      "name": "KIDS:prod",
       "request": "launch",
       "type": "dart",
       "cwd": "${workspaceFolder}/kids",
@@ -113,6 +121,14 @@
         "canvaskit"
       ], // Remember to change the "program" property too
       "program": "lib/main_prod.dart"
+    },
+    {
+      "name": "KIDS: Debug build_runner",
+      "cwd": "${workspaceFolder}/kids",
+      "request": "launch",
+      "program": ".dart_tool/build/entrypoint/build.dart",
+      "type": "dart",
+      "args": ["build", "--delete-conflicting-outputs", "--verbose"]
     }
   ]
 }

@@ -1,0 +1,204 @@
+fragment GridSectionItem on SectionItem {
+  ...ItemSectionItem
+  item {
+    ... on Show {
+      episodeCount
+      seasonCount
+    }
+    ... on Episode {
+      number
+      season {
+        number
+        show {
+          title
+        }
+      }
+    }
+    __typename
+  }
+}
+
+fragment ItemSectionItem on SectionItem {
+  id
+  title
+  image
+  item {
+    ... on Game {
+      uuid: id
+    }
+    ... on Link {
+      url
+    }
+    ... on Page {
+      code
+    }
+    ... on Episode {
+      id
+      duration
+      locked
+      progress
+      publishDate
+      season {
+        show {
+          title
+        }
+      }
+    }
+    ... on Show {
+      id
+      defaultEpisode {
+        id
+      }
+      episodeCount
+      seasonCount
+    }
+    __typename
+  }
+}
+
+fragment ItemSection on ItemSection {
+  metadata {
+    continueWatching
+    myList
+    secondaryTitles
+    collectionId
+    useContext
+    prependLiveElement
+  }
+  items(first: $first, offset: $offset) {
+    offset
+    first
+    items {
+      ...ItemSectionItem
+    }
+  }
+}
+
+fragment GridSection on GridSection {
+  gridSize: size
+  items(first: $first, offset: $offset) {
+    items {
+      ...GridSectionItem
+    }
+  }
+}
+
+fragment Section on Section {
+  id
+  title
+  description
+  ... on ItemSection {
+    ...ItemSection
+    ... on PosterSection {
+      size
+      items(first: $first, offset: $offset) {
+        items {
+          item {
+            ... on Episode {
+              productionDate
+            }
+            __typename
+          }
+        }
+      }
+    }
+    ... on FeaturedSection {
+      size
+      items(first: $first, offset: $offset) {
+        items {
+          description
+        }
+      }
+    }
+    ... on DefaultSection {
+      size
+      items(first: $first, offset: $offset) {
+        items {
+          item {
+            ... on Episode {
+              productionDate
+            }
+            __typename
+          }
+        }
+      }
+    }
+    ... on GridSection {
+      ...GridSection
+    }
+    ... on ListSection {
+      items(first: $first, offset: $offset) {
+        items {
+          item {
+            ... on Episode {
+              title
+              ageRating
+              image
+            }
+          }
+        }
+      }
+    }
+  }
+  ... on WebSection {
+    authentication
+    widthRatio
+    height
+    url
+  }
+  ... on MessageSection {
+    id
+    messages {
+      content
+      style {
+        text
+        background
+        border
+      }
+    }
+  }
+  ... on CardSection {
+    cardSize: size
+    items(first: $first, offset: $offset) {
+      items {
+        title
+        description
+        image
+        item {
+          ... on StudyTopic {
+            id
+            title
+            description
+            images {
+              style
+              url
+            }
+            lessonsProgress: progress {
+              completed
+              total
+            }
+          }
+        }
+      }
+    }
+  }
+  ... on PageDetailsSection {
+    title
+    description
+  }
+  ... on AchievementSection {
+    __typename
+  }
+  __typename
+}
+
+query Page($code: String!, $first: Int, $offset: Int) {
+  page(code: $code) {
+    title
+    sections(first: 30) {
+      items {
+        ...Section
+      }
+    }
+  }
+}

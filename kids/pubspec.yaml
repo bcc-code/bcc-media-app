@@ -1,89 +1,119 @@
 name: kids
 description: A new Flutter project.
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
-
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-# In Windows, build-name is used as the major, minor, and patch parts
-# of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 5.0.0+2500000
 
 environment:
   sdk: ">=3.1.3 <4.0.0"
 
-# Dependencies specify other packages that your package needs in order to work.
-# To automatically upgrade your package dependencies to the latest versions
-# consider running `flutter pub upgrade --major-versions`. Alternatively,
-# dependencies can be manually updated by changing the version numbers below to
-# the latest version available on pub.dev. To see which dependencies have newer
-# versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  flutter_localizations:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
   brunstadtv_app:
     path: ../
+  provider: ^6.0.3
+  js: ^0.6.4
+  http: ^0.13.4
+  json_annotation: ^4.5.0
+  json_serializable: ^6.2.0
+  mockito: ^5.2.0
+  flutter_svg: ^2.0.2
+  auto_route: ^7.8.3
+  build_runner: ^2.2.0
+  bccm_player:
+    path: ../submodules/bccm_player
   riverpod: ^2.4.1
+  flutter_riverpod: ^2.1.1
+  freezed_annotation: ^2.1.0
+  collection: ^1.16.0
+  package_info_plus: ^4.0.1
+  table_calendar: ^3.0.7
+  graphql: ^5.2.0-beta.4
+  graphql_flutter: ^5.2.0-beta.5
+  shared_preferences: ^2.0.15
+  hive: ^2.2.3
+  firebase_messaging: ^14.0.3
+  firebase_core: ^2.1.1
+  flutter_secure_storage: ^8.0.0
+  visibility_detector: ^0.4.0+2
+  pull_to_refresh: ^2.0.0
+  device_info_plus: ^9.0.3
+  firebase_crashlytics: ^3.0.4
+  flutter_svg_provider:
+    git:
+      url: https://github.com/andreasgangso/flutter_svg_provider.git
+      ref: fix/deps
+  on_screen_ruler: ^0.0.1
+  url_launcher: ^6.1.6
+  modal_bottom_sheet: ^3.0.0-pre
+  #webview_flutter: ^4.0.5
+  shimmer: ^3.0.0
+  flutter_markdown: ^0.6.13
+  rudder_sdk_flutter: ^2.5.0
+  rudder_sdk_flutter_platform_interface: ^2.2.0
+  share_plus: ^7.1.0
+  restart_app: 1.1.2
+  flutter_inappwebview: ^6.0.0-beta.20
+  app_links: ^3.3.0
+  auth0_flutter_web: 0.0.1-alpha.6
+  universal_io: ^2.0.4
+  web_socket_channel: ^2.3.0
+  jwt_decoder: ^2.0.1
+  flutter_appauth: ^6.0.1
+  synchronized: ^3.0.1
+  clock: ^1.1.1
+  flutter_hooks: ^0.18.5+1
+  hooks_riverpod: ^2.2.0
+  flutter_hooks_lint_plugin: ^0.6.1
+  vibration: ^1.7.6
+  email_validator: ^2.1.17
+  open_mail_app: ^0.4.5
+  unleash_proxy_client_flutter: ^1.4.0
+  html: ^0.15.2
+  flutter_html: 3.0.0-alpha.6
+  cloud_firestore: ^4.5.0
+  riverpod_annotation: ^2.0.4
+  image: ^4.0.15
+  responsive_framework: 1.0.0
+  intl: ^0.18.0
+  device_preview: ^1.1.0
+  focusable_control_builder: ^1.0.2+1
+  flutter_to_airplay:
+    git:
+      url: https://github.com/andreasgangso/flutter_to_airplay.git
+      ref: fix/remove-unused-mux
+  flutter_image: ^4.1.6
+  qr_flutter: ^4.1.0
+  focus_debugger: ^0.0.2
+  connectivity_plus: ^4.0.2
+  flutter_cache_manager: ^3.3.1
+  cached_network_image: ^3.2.3
+  async: ^2.11.0
+  markdown: ^7.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  auto_route_generator: ^7.3.1
+  freezed: ^2.3.4
+  graphql_codegen: ^0.13.7
+  custom_lint: ^0.4.0
+  riverpod_generator: ^2.1.6
+  riverpod_lint: ^1.2.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.2.19
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
 flutter:
   uses-material-design: true
 
   assets:
     - assets/flavors/prod/
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
 
 dependency_overrides:
   flutter_inappwebview:
