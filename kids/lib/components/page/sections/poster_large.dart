@@ -36,6 +36,21 @@ class PosterLarge extends HookWidget {
               ),
             ),
           ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: design.buttons.smallSecondary(
+                onPressed: () {},
+                labelText: '',
+                image: Icon(
+                  Icons.play_arrow,
+                  color: design.colors.label1,
+                ),
+              ),
+            ),
+          ),
           if (navigationFuture.value != null)
             simpleFutureBuilder(
                 future: navigationFuture.value!,

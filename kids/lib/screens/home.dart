@@ -2,18 +2,17 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/pages/page_mixin.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
-import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/application.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:kids/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/version.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kids/components/buttons/button.dart';
 import 'package:kids/components/page/section_renderer.dart';
 
 @RoutePage<void>()
@@ -69,7 +68,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
 </svg>
 ''');
     return Scaffold(
-      body: Center(
+      body: SafeArea(
+        top: false,
+        bottom: false,
+        right: false,
+        left: false,
         child: Column(
           children: [
             const SizedBox(height: 20),
@@ -126,38 +129,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
               child: Center(
                 child: Row(
                   children: [
-                    design.buttons.large(
-                      onPressed: () {},
-                      image: icon,
-                      labelText: '',
-                    ),
-                    const SizedBox(width: 10),
-                    design.buttons.large(
-                      onPressed: () {},
-                      image: icon,
-                      labelText: 'Button',
-                    ),
-                    const SizedBox(width: 10),
-                    design.buttons.large(
-                      onPressed: () {},
-                      labelText: 'Button',
-                    ),
-                    const SizedBox(width: 30),
+                    const SizedBox(width: 64),
                     design.buttons.small(
-                      onPressed: () {},
-                      image: icon,
+                      onPressed: () {
+                        context.router.pushNamed('/settings');
+                      },
                       labelText: '',
-                    ),
-                    const SizedBox(width: 10),
-                    design.buttons.smallSecondary(
-                      onPressed: () {},
-                      image: icon,
-                      labelText: 'Button',
-                    ),
-                    const SizedBox(width: 10),
-                    design.buttons.small(
-                      onPressed: () {},
-                      labelText: 'Button',
+                      image: SizedBox(
+                        height: 32,
+                        width: 32,
+                        child: Center(
+                          child: SvgPicture.string(
+                            SvgIcons.profile,
+                            height: 18,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

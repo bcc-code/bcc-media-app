@@ -137,10 +137,10 @@ class Button extends HookWidget {
       onTap: () {
         pressed.value = true;
         Future.delayed(const Duration(milliseconds: 100), () {
-          onPressed?.call();
           if (!context.mounted) return;
           pressed.value = false;
         });
+        onPressed?.call();
       },
       onTapCancel: () {
         pressed.value = false;
