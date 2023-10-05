@@ -110,7 +110,7 @@ class DesignSystemColors {
 }
 
 abstract class DesignSystemButtons {
-  BtvButton small({
+  Widget small({
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
@@ -119,7 +119,7 @@ abstract class DesignSystemButtons {
     bool? autofocus,
   });
 
-  BtvButton smallSecondary({
+  Widget smallSecondary({
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
@@ -128,7 +128,7 @@ abstract class DesignSystemButtons {
     bool? autofocus,
   });
 
-  BtvButton smallGreen({
+  Widget smallGreen({
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
@@ -137,7 +137,7 @@ abstract class DesignSystemButtons {
     bool? autofocus,
   });
 
-  BtvButton smallRed({
+  Widget smallRed({
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
@@ -146,32 +146,17 @@ abstract class DesignSystemButtons {
     bool? autofocus,
   });
 
-  BtvButton medium({
+  Widget medium({
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
     bool disabled = false,
+    Color? backgroundColor,
+    Border? border,
   });
 
-  BtvButton mediumGreen({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  });
-
-  BtvButton mediumRed({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-  });
-
-  BtvButton mediumSecondary({
+  Widget mediumGreen({
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
@@ -180,7 +165,15 @@ abstract class DesignSystemButtons {
     bool? autofocus,
   });
 
-  BtvButton large({
+  Widget mediumRed({
+    Key? key,
+    required VoidCallback onPressed,
+    required String labelText,
+    Widget? image,
+    bool disabled = false,
+  });
+
+  Widget mediumSecondary({
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
@@ -189,7 +182,7 @@ abstract class DesignSystemButtons {
     bool? autofocus,
   });
 
-  BtvButton largeGreen({
+  Widget large({
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
@@ -198,7 +191,7 @@ abstract class DesignSystemButtons {
     bool? autofocus,
   });
 
-  BtvButton largeRed({
+  Widget largeGreen({
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
@@ -207,7 +200,16 @@ abstract class DesignSystemButtons {
     bool? autofocus,
   });
 
-  BtvButton largeSecondary({
+  Widget largeRed({
+    Key? key,
+    required VoidCallback onPressed,
+    required String labelText,
+    Widget? image,
+    bool disabled = false,
+    bool? autofocus,
+  });
+
+  Widget largeSecondary({
     Key? key,
     required VoidCallback onPressed,
     required String labelText,

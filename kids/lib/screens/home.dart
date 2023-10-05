@@ -12,6 +12,8 @@ import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kids/components/buttons/button.dart';
 import 'package:kids/components/page/section_renderer.dart';
 
 @RoutePage<void>()
@@ -61,6 +63,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+    final icon = SvgPicture.string('''<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16 5.5C10.201 5.5 5.5 10.201 5.5 16C5.5 21.799 10.201 26.5 16 26.5C21.799 26.5 26.5 21.799 26.5 16C26.5 10.201 21.799 5.5 16 5.5ZM2.5 16C2.5 8.54416 8.54416 2.5 16 2.5C23.4558 2.5 29.5 8.54416 29.5 16C29.5 23.4558 23.4558 29.5 16 29.5C8.54416 29.5 2.5 23.4558 2.5 16Z" fill="#041234"/>
+</svg>
+''');
     return Scaffold(
       body: Center(
         child: Column(
@@ -119,6 +126,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
               child: Center(
                 child: Row(
                   children: [
+                    Button(
+                      onPressed: () {},
+                      icon: icon,
+                      labelText: '',
+                    ),
+                    const SizedBox(width: 30),
+                    Button(
+                      onPressed: () {},
+                      icon: icon,
+                      labelText: 'Button',
+                    ),
+                    const SizedBox(width: 30),
+                    Button(
+                      onPressed: () {},
+                      labelText: 'Button',
+                    ),
                     Text('Footer', style: DesignSystem.of(context).textStyles.headline1),
                     Text('Footer', style: DesignSystem.of(context).textStyles.title1),
                     Text('Footer', style: DesignSystem.of(context).textStyles.body1),

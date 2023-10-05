@@ -1,7 +1,7 @@
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:kids/design_system.dart';
 import 'main.dart';
-import 'package:brunstadtv_app/theme/design_system/biblekids/design_system.dart';
 import 'package:brunstadtv_app/env/kids_prod/firebase_options.dart' as kids_prod_firebase;
 
 Future<void> main() async {

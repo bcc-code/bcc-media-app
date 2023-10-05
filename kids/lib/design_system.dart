@@ -2,10 +2,11 @@ import 'package:brunstadtv_app/theme/design_system/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../bccm_gradients.dart';
-import '../design_system.dart';
-import '../bccmedia/buttons.dart';
-import '../bccmedia/decorations.dart';
+import 'package:brunstadtv_app/theme/bccm_gradients.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:brunstadtv_app/theme/design_system/bccmedia/buttons.dart';
+import 'package:brunstadtv_app/theme/design_system/bccmedia/decorations.dart';
+import 'package:kids/components/buttons/button.dart';
 
 class BibleKidsDesignSystem extends DesignSystemData {
   BibleKidsDesignSystem._raw({
@@ -22,7 +23,7 @@ class BibleKidsDesignSystem extends DesignSystemData {
     return BibleKidsDesignSystem._raw(
       colors: colors,
       textStyles: textStyles,
-      buttons: BccMediaButtons(colors: colors, textStyles: textStyles),
+      buttons: BibleKidsButtons(colors: colors, textStyles: textStyles),
       inputDecorations: BccMediaInputDecorations(colors: colors, textStyles: textStyles),
       appThemeData: AppThemeData(
         studyGradient: BccmGradients.greenYellow,
@@ -239,4 +240,91 @@ class BibleKidsTextStyles extends DesignSystemTextStyles {
             letterSpacing: 1,
           ),
         );
+}
+
+class BibleKidsButtons extends DesignSystemButtons {
+  BibleKidsButtons({
+    required this.colors,
+    required this.textStyles,
+  });
+
+  final DesignSystemColors colors;
+  final DesignSystemTextStyles textStyles;
+
+  @override
+  Widget large({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
+    return Button(
+      icon: image,
+      labelText: labelText,
+    );
+  }
+
+  @override
+  Widget largeGreen({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
+    // TODO: implement largeGreen
+    return Text('Not implemented');
+  }
+
+  @override
+  Widget largeRed({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
+    // TODO: implement largeRed
+    return Text('Not implemented');
+  }
+
+  @override
+  Widget largeSecondary(
+      {Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
+    // TODO: implement largeSecondary
+    return Text('Not implemented');
+  }
+
+  @override
+  Widget medium(
+      {Key? key,
+      required VoidCallback onPressed,
+      required String labelText,
+      Widget? image,
+      bool disabled = false,
+      Color? backgroundColor,
+      Border? border}) {
+    // TODO: implement medium
+    return Text('Not implemented');
+  }
+
+  @override
+  Widget mediumGreen({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
+    return Text('Not implemented');
+  }
+
+  @override
+  Widget mediumRed({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false}) {
+    return Text('Not implemented');
+  }
+
+  @override
+  Widget mediumSecondary(
+      {Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
+    return Text('Not implemented');
+  }
+
+  @override
+  Widget small({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
+    return Text('Not implemented');
+  }
+
+  @override
+  Widget smallGreen({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
+    return Text('Not implemented');
+  }
+
+  @override
+  Widget smallRed({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
+    return Text('Not implemented');
+  }
+
+  @override
+  Widget smallSecondary(
+      {Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
+    return Text('Not implemented');
+  }
 }

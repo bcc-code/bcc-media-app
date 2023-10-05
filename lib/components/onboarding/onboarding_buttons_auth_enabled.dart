@@ -60,17 +60,13 @@ class OnboardingButtons extends ConsumerWidget {
                   );
                 }),
         ),
-        DesignSystem.of(context)
-            .buttons
-            .mediumSecondary(
+        DesignSystem.of(context).buttons.medium(
               key: WidgetKeys.exploreButton,
               labelText: S.of(context).explorePublicContent,
               onPressed: exploreAction,
-            )
-            .copyWith(
               backgroundColor: Colors.transparent,
               border: Border.all(color: Colors.transparent),
-            ),
+            )
       ],
     );
   }
