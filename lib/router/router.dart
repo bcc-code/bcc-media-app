@@ -172,7 +172,7 @@ class AppRouter extends $AppRouter {
       path: '/study-lesson',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      transitionsBuilder: CustomTransitionsBuilders.slideUp(),
       meta: const {RouteMetaConstants.analyticsName: 'study-lesson'},
     ),
     CustomRoute(
@@ -180,7 +180,7 @@ class AppRouter extends $AppRouter {
       path: '/achievements',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      transitionsBuilder: CustomTransitionsBuilders.slideUp(),
       meta: const {RouteMetaConstants.analyticsName: 'achievements'},
     ),
     CustomRoute(
@@ -188,7 +188,7 @@ class AppRouter extends $AppRouter {
       path: '/achievement-group/:groupId',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      transitionsBuilder: CustomTransitionsBuilders.slideUp(),
       meta: const {
         RouteMetaConstants.analyticsName: 'achievement-group',
       },
@@ -312,7 +312,7 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, AutoRoutePage<
 
 Route<T> settingsRouteBuilder<T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
   if (!kIsWeb) {
-    return PageRouteBuilder(settings: page, pageBuilder: (context, a, b) => CustomTransitionsBuilders.slideUp(context, a, b, child));
+    return PageRouteBuilder(settings: page, pageBuilder: (context, a, b) => CustomTransitionsBuilders.slideUp()(context, a, b, child));
   }
   return DialogRoute(
     context: context,

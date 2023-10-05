@@ -182,7 +182,7 @@ class BibleKidsTextStyles extends DesignSystemTextStyles {
             height: 1.263157894736842,
           ),
           body2: TextStyle(
-            color: colors.label4,
+            color: colors.label2,
             fontFamily: 'Noto Sans',
             fontWeight: FontWeight.w500,
             fontSize: 15,

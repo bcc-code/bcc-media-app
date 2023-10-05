@@ -1,0 +1,18 @@
+query GetEpisodesForShow($id: ID!) {
+  show(id: $id) {
+    title
+    episodeCount
+    seasons {
+      items {
+        episodes {
+          items {
+            title
+            description
+            duration
+            image
+          }
+        }
+      }
+    }
+  }
+}

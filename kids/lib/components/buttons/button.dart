@@ -1,11 +1,16 @@
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 
 import 'package:flutter/rendering.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kids/providers/sound_effects.dart';
 
 class ButtonPaddings {
   final double fromLabelToSide;
@@ -25,7 +30,7 @@ class ButtonPaddings {
 
 enum ButtonSize { small, large }
 
-class Button extends HookWidget {
+class Button extends HookConsumerWidget {
   final Widget? icon;
   final String? labelText;
   final VoidCallback? onPressed;
@@ -125,28 +130,41 @@ class Button extends HookWidget {
         );
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final hasLabel = labelText?.isNotEmpty == true;
     final design = DesignSystem.of(context);
     final pressed = useState(false);
     final limitedShadowHeight = max(2.0, elevationHeight / 2);
+
+    void push() {
+      pressed.value = true;
+      ref.read(soundEffectsProvider).play(AssetSource(SoundEffects.buttonPush));
+    }
+
+    void release() {
+      pressed.value = false;
+      ref.read(soundEffectsProvider).play(AssetSource(SoundEffects.buttonRelease));
+    }
+
     return GestureDetector(
       onTapDown: (e) {
-        pressed.value = true;
+        push();
       },
       onTap: () {
+        Future.delayed(const Duration(milliseconds: 10), () {
+          onPressed?.call();
+        });
         pressed.value = true;
         Future.delayed(const Duration(milliseconds: 100), () {
           if (!context.mounted) return;
           pressed.value = false;
         });
-        onPressed?.call();
       },
       onTapCancel: () {
-        pressed.value = false;
+        release();
       },
       onTapUp: (e) {
-        pressed.value = false;
+        release();
       },
       child: FocusableControlBuilder(
         builder: (context, control) => Container(

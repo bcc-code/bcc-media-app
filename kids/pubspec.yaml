@@ -94,6 +94,9 @@ dependencies:
   cached_network_image: ^3.2.3
   async: ^2.11.0
   markdown: ^7.1.1
+  flutter_animate: ^4.2.0+1
+  skeletonizer: ^0.8.0
+  audioplayers: ^5.2.0
 
 dev_dependencies:
   flutter_test:
@@ -147,6 +150,7 @@ flutter:
 
   assets:
     - assets/flavors/prod/
+    - assets/sounds/
 
 dependency_overrides:
   flutter_inappwebview:

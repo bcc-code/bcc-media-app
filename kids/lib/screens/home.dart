@@ -6,6 +6,7 @@ import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/application.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:flutter/services.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/version.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
@@ -70,19 +71,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
     return Scaffold(
       body: SafeArea(
         top: false,
-        bottom: false,
         right: false,
-        left: false,
         child: Column(
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
             Expanded(
               child: FutureBuilder(
                 future: pageResult.future,
                 builder: (context, result) => CustomScrollView(
                   scrollDirection: Axis.horizontal,
                   slivers: [
-                    const SliverPadding(padding: EdgeInsets.only(left: 64)),
+                    const SliverPadding(padding: EdgeInsets.only(left: 36)),
                     SliverToBoxAdapter(
                       child: Container(
                         alignment: Alignment.bottomLeft,
@@ -97,7 +96,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                         ),
                       ),
                     ),
-                    const SliverPadding(padding: EdgeInsets.only(left: 20)),
+                    const SliverPadding(padding: EdgeInsets.only(left: 32)),
                     if (result.connectionState == ConnectionState.waiting)
                       const SliverFillRemaining(hasScrollBody: true, child: Center(child: LoadingIndicator()))
                     else if (result.data == null || result.hasError)
@@ -125,11 +124,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
               ),
             ),
             SizedBox(
-              height: 88,
+              height: 104,
               child: Center(
                 child: Row(
                   children: [
-                    const SizedBox(width: 64),
+                    const SizedBox(width: 24),
                     design.buttons.small(
                       onPressed: () {
                         context.router.pushNamed('/settings');
@@ -141,7 +140,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                         child: Center(
                           child: SvgPicture.string(
                             SvgIcons.profile,
-                            height: 18,
+                            width: 20,
+                            height: 20,
                           ),
                         ),
                       ),
