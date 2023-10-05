@@ -1,0 +1,26 @@
+query KidsPage($code: String!) {
+  page(code: $code) {
+    code
+    title
+    description
+    sections {
+      items {
+        ... on CardSection {
+          items {
+            items {
+              title
+              description
+              image
+              item {
+                __typename
+                ... on Episode {
+                  duration
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -109,6 +109,7 @@ class _Colors extends DesignSystemColors {
   _Colors()
       : super(
           tint1: const Color(0xffA1D1DD),
+          tint1Dark: const Color(0xffA1D1DD),
           tint2: const Color(0xffE26E86),
           tint3: const Color(0xffF4CC5C),
           onTint: const Color(0xffFFFFFF),
@@ -119,5 +120,6 @@ class _Colors extends DesignSystemColors {
           background1: const Color(0xff1F5062),
           background2: const Color(0xff255F74),
           separatorOnLight: const Color.fromRGBO(204, 221, 255, 0.1),
+          separator2: const Color.fromRGBO(204, 221, 255, 0.1),
         );
 }

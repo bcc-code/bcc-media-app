@@ -50,10 +50,13 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
   void initState() {
     super.initState();
     pageResult = wrapInCompleter(getHomePage());
-    showDialogIfOldAppVersion();
     _appConfigListener = ref.listenManual<Future<Query$Application?>>(appConfigFutureProvider, (prev, next) async {
-      showDialogIfOldAppVersion();
-    });
+      final value = await next;
+      if (value == null) return;
+      if (!context.mounted) return;
+      showDialogIfOldAppVersion(context, value);
+      signupFeatureFlagCheck();
+    }, fireImmediately: true);
   }
 
   @override
@@ -67,43 +70,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
     super.dispose();
   }
 
-  void showDialogIfOldAppVersion() async {
-    final appConfig = await ref.read(appConfigFutureProvider);
-    if (appConfig == null) return;
-    final packageInfo = await PackageInfo.fromPlatform();
-    final minVersionNumber = appConfig.application.clientVersion;
-    final currentVersionNumber = packageInfo.version;
-    if (getExtendedVersionNumber(minVersionNumber) > getExtendedVersionNumber(currentVersionNumber) && context.mounted) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return SimpleDialog(
-              title: Text(
-                S.of(context).appUpdateTitle,
-                style: DesignSystem.of(context).textStyles.title3,
-              ),
-              contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
-              children: [
-                Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(S.of(context).appUpdateRequest)),
-                DesignSystem.of(context).buttons.medium(
-                    onPressed: () {
-                      if (Platform.isIOS) {
-                        launchUrlString('itms-apps://itunes.apple.com', mode: LaunchMode.externalApplication);
-                      } else if (Platform.isAndroid) {
-                        launchUrlString('market://details?id=tv.brunstad.app', mode: LaunchMode.externalApplication);
-                      }
-                    },
-                    labelText: S.of(context).appUpdateAccepted)
-              ],
-            );
-          });
-    }
-
+  void signupFeatureFlagCheck() async {
     if (ref.read(authStateProvider).auth0AccessToken != null) {
       final me = await ref.read(gqlClientProvider).query$me();
       if (!ref.read(featureFlagsProvider).publicSignup &&
           (me.parsedData?.me.completedRegistration != true || me.parsedData?.me.emailVerified != true)) {
-        // ignore: use_build_context_synchronously
+        if (!context.mounted) return;
         await showDialog(
           context: context,
           builder: (context) {

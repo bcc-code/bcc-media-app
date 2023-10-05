@@ -6,6 +6,7 @@ class BccMediaColors extends DesignSystemColors {
   BccMediaColors()
       : super(
           tint1: const Color(0xff6EB0E6),
+          tint1Dark: const Color(0xff6EB0E6),
           tint2: const Color(0xffE63C62),
           tint3: const Color(0xff71D2A4),
           onTint: const Color(0xffFFFFFF),
@@ -16,5 +17,6 @@ class BccMediaColors extends DesignSystemColors {
           background1: const Color(0xff0D1623),
           background2: const Color(0xff1D2838),
           separatorOnLight: const Color.fromRGBO(204, 221, 255, 0.1),
+          separator2: const Color.fromRGBO(204, 221, 255, 0.1),
         );
 }

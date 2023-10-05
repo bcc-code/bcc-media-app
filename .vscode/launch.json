@@ -68,7 +68,7 @@
     },
     /// Biblekids
     {
-      "name": "kids_prod",
+      "name": "old kids_prod (debug)",
       "request": "launch",
       "type": "dart",
       "cwd": "${workspaceFolder}",
@@ -84,7 +84,7 @@
     },
     /// Biblekids release
     {
-      "name": "kids_prod (release)",
+      "name": "old kids_prod (release)",
       "request": "launch",
       "type": "dart",
       "cwd": "${workspaceFolder}",
@@ -108,7 +108,7 @@
       "args": ["build", "--delete-conflicting-outputs", "--verbose"]
     },
     {
-      "name": "KIDS:prod",
+      "name": "Kids: prod",
       "request": "launch",
       "type": "dart",
       "cwd": "${workspaceFolder}/kids",
@@ -123,7 +123,7 @@
       "program": "lib/main_prod.dart"
     },
     {
-      "name": "KIDS: Debug build_runner",
+      "name": "Kids: Debug build_runner",
       "cwd": "${workspaceFolder}/kids",
       "request": "launch",
       "program": ".dart_tool/build/entrypoint/build.dart",

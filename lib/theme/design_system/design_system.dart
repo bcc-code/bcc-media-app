@@ -44,11 +44,13 @@ class DesignSystemData {
 class DesignSystemTextStyles {
   final TextStyle headline1;
   final TextStyle headline2;
+  final TextStyle headline3;
   final TextStyle title1;
   final TextStyle title2;
   final TextStyle title3;
   final TextStyle body1;
   final TextStyle body2;
+  final TextStyle body3;
   final TextStyle caption1;
   final TextStyle caption2;
   final TextStyle caption3;
@@ -59,11 +61,13 @@ class DesignSystemTextStyles {
   DesignSystemTextStyles({
     required this.headline1,
     required this.headline2,
+    required this.headline3,
     required this.title1,
     required this.title2,
     required this.title3,
     required this.body1,
     required this.body2,
+    required this.body3,
     required this.caption1,
     required this.caption2,
     required this.caption3,
@@ -75,6 +79,7 @@ class DesignSystemTextStyles {
 
 class DesignSystemColors {
   final Color tint1;
+  final Color tint1Dark;
   final Color tint2;
   final Color tint3;
   final Color onTint;
@@ -85,9 +90,11 @@ class DesignSystemColors {
   final Color background1;
   final Color background2;
   final Color separatorOnLight;
+  final Color separator2;
 
   DesignSystemColors({
     required this.tint1,
+    required this.tint1Dark,
     required this.tint2,
     required this.tint3,
     required this.onTint,
@@ -98,6 +105,7 @@ class DesignSystemColors {
     required this.background1,
     required this.background2,
     required this.separatorOnLight,
+    required this.separator2,
   });
 }
 
