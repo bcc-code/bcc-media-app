@@ -122,29 +122,43 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
               ),
             ),
             SizedBox(
-              height: 100,
+              height: 88,
               child: Center(
                 child: Row(
                   children: [
-                    Button(
+                    design.buttons.large(
                       onPressed: () {},
-                      icon: icon,
+                      image: icon,
                       labelText: '',
                     ),
-                    const SizedBox(width: 30),
-                    Button(
+                    const SizedBox(width: 10),
+                    design.buttons.large(
                       onPressed: () {},
-                      icon: icon,
+                      image: icon,
+                      labelText: 'Button',
+                    ),
+                    const SizedBox(width: 10),
+                    design.buttons.large(
+                      onPressed: () {},
                       labelText: 'Button',
                     ),
                     const SizedBox(width: 30),
-                    Button(
+                    design.buttons.small(
+                      onPressed: () {},
+                      image: icon,
+                      labelText: '',
+                    ),
+                    const SizedBox(width: 10),
+                    design.buttons.smallSecondary(
+                      onPressed: () {},
+                      image: icon,
+                      labelText: 'Button',
+                    ),
+                    const SizedBox(width: 10),
+                    design.buttons.small(
                       onPressed: () {},
                       labelText: 'Button',
                     ),
-                    Text('Footer', style: DesignSystem.of(context).textStyles.headline1),
-                    Text('Footer', style: DesignSystem.of(context).textStyles.title1),
-                    Text('Footer', style: DesignSystem.of(context).textStyles.body1),
                   ],
                 ),
               ),

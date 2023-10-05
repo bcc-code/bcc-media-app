@@ -253,9 +253,15 @@ class BibleKidsButtons extends DesignSystemButtons {
 
   @override
   Widget large({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return Button(
+    return Button.rawLarge(
+      key: key,
+      color: colors.tint1,
+      activeColor: colors.tint1,
       icon: image,
       labelText: labelText,
+      onPressed: onPressed,
+      shadowColor: colors.label1.withOpacity(0.1),
+      sideColor: const Color(0xFFF1B826),
     );
   }
 
@@ -274,8 +280,16 @@ class BibleKidsButtons extends DesignSystemButtons {
   @override
   Widget largeSecondary(
       {Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    // TODO: implement largeSecondary
-    return Text('Not implemented');
+    return Button.rawLarge(
+      key: key,
+      color: colors.background1,
+      activeColor: colors.background2,
+      icon: image,
+      labelText: labelText,
+      onPressed: onPressed,
+      shadowColor: colors.label1.withOpacity(0.2),
+      sideColor: const Color(0xFFE9ECF4),
+    );
   }
 
   @override
@@ -309,7 +323,16 @@ class BibleKidsButtons extends DesignSystemButtons {
 
   @override
   Widget small({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return Text('Not implemented');
+    return Button.rawSmall(
+      key: key,
+      color: colors.tint1,
+      activeColor: colors.tint1,
+      icon: image,
+      labelText: labelText,
+      onPressed: onPressed,
+      shadowColor: colors.label1.withOpacity(0.1),
+      sideColor: const Color(0xFFF1B826),
+    );
   }
 
   @override
@@ -325,6 +348,15 @@ class BibleKidsButtons extends DesignSystemButtons {
   @override
   Widget smallSecondary(
       {Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return Text('Not implemented');
+    return Button.rawSmall(
+      key: key,
+      color: colors.background1,
+      activeColor: colors.background1,
+      icon: image,
+      labelText: labelText,
+      onPressed: onPressed,
+      shadowColor: colors.label1.withOpacity(0.2),
+      sideColor: const Color(0xFFE9ECF4),
+    );
   }
 }

@@ -1,36 +1,142 @@
+import 'dart:math';
+
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 
-import 'dart:ui';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+class ButtonPaddings {
+  final double fromLabelToSide;
+  final double fromLabelToSideWhenAlone;
+  final double fromIconToLabel;
+  final double fromIconToSide;
+  final double fromIconToSideWhenAlone;
+
+  const ButtonPaddings({
+    required this.fromLabelToSide,
+    required this.fromLabelToSideWhenAlone,
+    required this.fromIconToLabel,
+    required this.fromIconToSide,
+    required this.fromIconToSideWhenAlone,
+  });
+}
+
+enum ButtonSize { small, large }
+
 class Button extends HookWidget {
-  const Button({
+  final Widget? icon;
+  final String? labelText;
+  final VoidCallback? onPressed;
+  final double height;
+  final double elevationHeight;
+  final ButtonPaddings paddings;
+  final ButtonSize? size;
+  final double iconSize;
+  final Color color;
+  final Color activeColor;
+  final Color? sideColor;
+  final Color? shadowColor;
+
+  const Button.raw({
     super.key,
     this.icon,
     this.labelText,
     this.onPressed,
+    required this.iconSize,
+    required this.size,
+    required this.paddings,
+    required this.height,
+    required this.elevationHeight,
+    required this.color,
+    required this.activeColor,
+    required this.shadowColor,
+    required this.sideColor,
   });
 
-  final Widget? icon;
-  final String? labelText;
-  final VoidCallback? onPressed;
+  Button copyWith({
+    Widget? icon,
+    String? labelText,
+    VoidCallback? onPressed,
+    double? height,
+    double? elevationHeight,
+    ButtonPaddings? paddings,
+    ButtonSize? size,
+    double? iconSize,
+    Color? color,
+  }) {
+    return Button.raw(
+      icon: icon ?? this.icon,
+      labelText: labelText ?? this.labelText,
+      onPressed: onPressed ?? this.onPressed,
+      height: height ?? this.height,
+      elevationHeight: elevationHeight ?? this.elevationHeight,
+      paddings: paddings ?? this.paddings,
+      size: size ?? this.size,
+      iconSize: iconSize ?? this.iconSize,
+      color: color ?? this.color,
+      activeColor: activeColor,
+      shadowColor: shadowColor,
+      sideColor: sideColor,
+    );
+  }
+
+  const Button.rawSmall({
+    super.key,
+    this.icon,
+    this.labelText,
+    this.onPressed,
+    required this.color,
+    required this.activeColor,
+    required this.sideColor,
+    required this.shadowColor,
+  })  : height = 48,
+        elevationHeight = 2,
+        iconSize = 24,
+        size = ButtonSize.small,
+        paddings = const ButtonPaddings(
+          fromLabelToSide: 20,
+          fromLabelToSideWhenAlone: 24,
+          fromIconToLabel: 6,
+          fromIconToSide: 16,
+          fromIconToSideWhenAlone: 12,
+        );
+
+  const Button.rawLarge({
+    super.key,
+    this.icon,
+    this.labelText,
+    this.onPressed,
+    required this.color,
+    required this.activeColor,
+    required this.sideColor,
+    required this.shadowColor,
+  })  : height = 72,
+        iconSize = 32,
+        elevationHeight = 4,
+        size = ButtonSize.large,
+        paddings = const ButtonPaddings(
+          fromLabelToSide: 32,
+          fromLabelToSideWhenAlone: 32,
+          fromIconToLabel: 12,
+          fromIconToSide: 24,
+          fromIconToSideWhenAlone: 20,
+        );
 
   @override
   Widget build(BuildContext context) {
     final hasLabel = labelText?.isNotEmpty == true;
     final design = DesignSystem.of(context);
     final pressed = useState(false);
+    final limitedShadowHeight = max(2.0, elevationHeight / 2);
     return GestureDetector(
       onTapDown: (e) {
         pressed.value = true;
       },
       onTap: () {
         pressed.value = true;
-        Future.delayed(Duration(milliseconds: 100), () {
+        Future.delayed(const Duration(milliseconds: 100), () {
           onPressed?.call();
           if (!context.mounted) return;
           pressed.value = false;
@@ -50,41 +156,49 @@ class Button extends HookWidget {
               if (!pressed.value)
                 BoxShadow(
                   color: design.colors.label1.withOpacity(0.1),
-                  offset: const Offset(0, 4),
+                  offset: Offset(0, limitedShadowHeight * 2),
                   spreadRadius: 0,
                   blurRadius: 12,
                 ),
               if (!pressed.value)
                 BoxShadow(
-                  color: design.colors.label1.withOpacity(0.1),
-                  offset: const Offset(0, 2),
+                  color: shadowColor != null ? shadowColor! : design.colors.label1.withOpacity(0.1),
+                  offset: Offset(0, limitedShadowHeight),
                   blurRadius: 0,
                 ),
             ],
           ),
-          child: InnerShadow(
-            offset: pressed.value ? const Offset(0, 0) : const Offset(0, -4),
-            color: const Color(0xFFF1B826),
+          child: _InnerShadow(
+            offset: pressed.value ? const Offset(0, 0) : Offset(0, -elevationHeight),
+            color: sideColor != null ? sideColor! : Colors.black.withOpacity(0.1),
             child: Container(
               decoration: BoxDecoration(
-                color: !pressed.value ? design.colors.tint1 : design.colors.tint1Dark,
+                color: !pressed.value ? color : activeColor,
                 borderRadius: BorderRadius.circular(60),
               ),
-              height: !pressed.value ? 72 : 68,
-              padding: !pressed.value ? const EdgeInsets.only(bottom: 2) : null,
-              margin: !pressed.value ? null : const EdgeInsets.only(top: 4),
+              height: !pressed.value ? height : height - elevationHeight,
+              padding: !pressed.value ? EdgeInsets.only(bottom: elevationHeight / 2) : null,
+              margin: !pressed.value ? null : EdgeInsets.only(top: elevationHeight),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   if (hasLabel)
                     Padding(
-                      padding: icon != null ? const EdgeInsets.only(left: 32.0) : const EdgeInsets.symmetric(horizontal: 32.0),
-                      child: Text(labelText ?? '', style: design.textStyles.headline3),
+                      padding: icon != null
+                          ? EdgeInsets.only(
+                              left: paddings.fromLabelToSide,
+                            )
+                          : EdgeInsets.symmetric(
+                              horizontal: paddings.fromLabelToSideWhenAlone,
+                            ),
+                      child: Text(labelText ?? '', style: size == ButtonSize.large ? design.textStyles.headline3 : design.textStyles.title2),
                     ),
                   if (icon != null)
                     Padding(
-                      padding: !hasLabel ? const EdgeInsets.symmetric(horizontal: 20) : const EdgeInsets.only(left: 12, right: 24),
-                      child: icon,
+                      padding: !hasLabel
+                          ? EdgeInsets.symmetric(horizontal: paddings.fromIconToSideWhenAlone)
+                          : EdgeInsets.only(left: paddings.fromIconToLabel, right: paddings.fromIconToSide),
+                      child: SizedBox(height: iconSize, width: iconSize, child: icon),
                     ),
                 ],
               ),
@@ -97,8 +211,8 @@ class Button extends HookWidget {
 }
 
 // Modified version of https://stackoverflow.com/a/62026779
-class InnerShadow extends SingleChildRenderObjectWidget {
-  const InnerShadow({
+class _InnerShadow extends SingleChildRenderObjectWidget {
+  const _InnerShadow({
     Key? key,
     required this.color,
     required this.offset,
