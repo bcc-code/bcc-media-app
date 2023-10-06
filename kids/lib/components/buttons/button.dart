@@ -198,6 +198,7 @@ class Button extends HookConsumerWidget {
               padding: !pressed.value ? EdgeInsets.only(bottom: elevationHeight / 2) : null,
               margin: !pressed.value ? null : EdgeInsets.only(top: elevationHeight),
               child: Row(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   if (hasLabel)

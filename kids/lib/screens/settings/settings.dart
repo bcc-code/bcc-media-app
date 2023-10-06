@@ -5,8 +5,11 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kids/helpers/orientation_utils.dart';
+import 'package:kids/helpers/svg_icons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -27,22 +30,7 @@ class SettingsScreen extends HookConsumerWidget {
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
 
-    useEffect(() {
-      // set portrait for mobile
-      if (bp.isTablet) {
-        return null;
-      }
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
-      return () {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.landscapeLeft,
-          DeviceOrientation.landscapeRight,
-        ]);
-      };
-    }, []);
+    usePortrait(!bp.isTablet);
 
     return DialogOnWeb(
       child: CupertinoScaffold(
@@ -50,30 +38,38 @@ class SettingsScreen extends HookConsumerWidget {
           appBar: AppBar(
             elevation: 0,
             toolbarHeight: 56,
-            leadingWidth: 92,
+            leadingWidth: 84,
             leading: FocusableControlBuilder(
               onPressed: () {
                 context.router.pop();
               },
               builder: (context, control) => Container(
-                padding: const EdgeInsets.only(left: 16),
+                padding: const EdgeInsets.only(left: 20),
                 width: double.infinity,
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  S.of(context).back,
-                  style: !control.isFocused
-                      ? design.textStyles.button2
-                      : design.textStyles.button2.copyWith(shadows: [
-                          Shadow(
-                            color: Theme.of(context).brightness == Brightness.dark ? Colors.white30 : Colors.black26,
-                            blurRadius: 8,
-                            offset: const Offset(0, 0),
-                          )
-                        ]),
+                child: design.buttons.small(
+                  labelText: '',
+                  image: SizedBox(
+                    height: 24,
+                    width: 24,
+                    child: Center(
+                      child: SvgPicture.string(SvgIcons.close),
+                    ),
+                  ),
+                  onPressed: () {
+                    context.router.pop();
+                  },
                 ),
               ),
             ),
-            title: Text(S.of(context).settings),
+            title: Container(
+              alignment: Alignment.centerLeft,
+              height: 25,
+              child: Image.asset(
+                'assets/flavors/prod/logo_neg.png',
+              ),
+            ),
+            centerTitle: false,
           ),
           body: SafeArea(
             child: SingleChildScrollView(
@@ -83,88 +79,90 @@ class SettingsScreen extends HookConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 48),
-                      child: SizedBox(height: 48, child: Placeholder()),
-                    ),
-                    Column(
-                      children: [
-                        OptionButton(
-                          optionName: S.of(context).makeDonation,
-                          onPressed: () => launchUrlString(
-                            'https://www.paypal.com/donate/?hosted_button_id=M5HU747LQCRQC',
-                            mode: LaunchMode.externalApplication,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+                      child: design.buttons.large(
+                        labelText: S.of(context).makeDonation,
+                        image: SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: Center(
+                            child: SvgPicture.string(SvgIcons.magic),
                           ),
                         ),
-                        SettingList(
-                          buttons: [
-                            OptionButton(
-                              optionName: S.of(context).appLanguage,
-                              currentSelection: getLanguageName(settings.appLanguage.languageCode),
-                              onPressed: () {
-                                //context.router.push(const AppLanguageScreenRoute());
-                              },
-                            ),
-                            OptionButton(
-                              optionName: S.of(context).audioLanguage,
-                              currentSelection: getLanguageName(settings.audioLanguage),
-                              onPressed: () {
-                                //context.router.push(const AudioLanguageScreenRoute());
-                              },
-                            ),
-                          ],
+                        onPressed: () => launchUrlString(
+                          'https://www.paypal.com/donate/?hosted_button_id=M5HU747LQCRQC',
+                          mode: LaunchMode.externalApplication,
                         ),
-                        const SizedBox(height: 24),
-                        SettingList(
-                          buttons: [
-                            OptionButton(
-                              optionName: S.of(context).faq,
-                              onPressed: () {
-                                // context.router.push(const FAQScreenRoute());
-                              },
-                            ),
-                            OptionButton(
-                              optionName: S.of(context).contactSupport,
-                              onPressed: () {
-                                // context.router.push(const ContactPublicScreenRoute());
-                              },
-                            ),
-                            if (!ref.read(authStateProvider).guestMode) ...[
-                              OptionButton(
-                                optionName: S.of(context).userVoice,
-                                onPressed: () {
-                                  launchUrlString('https://uservoice.bcc.no/?tags=bcc-media', mode: LaunchMode.externalApplication);
-                                },
-                              )
-                            ],
-                            OptionButton(
-                              optionName: S.of(context).about,
-                              onPressed: () {
-                                // context.router.push(const AboutScreenRoute());
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 24),
-                        /* Builder(
-                          builder: (context) {
-                            return SettingList(
-                              buttons: [
-                                OptionButton(
-                                  optionName: S.of(context).privacyPolicy,
-                                  onPressed: () => context.router.push(const PrivacyPolicyScreenRoute()),
-                                ),
-                                OptionButton(
-                                  optionName: S.of(context).termsOfUse,
-                                  onPressed: () => context.router.push(const TermsOfUseScreenRoute()),
-                                ),
-                              ],
-                            );
+                      ),
+                    ),
+                    SettingList(
+                      buttons: [
+                        OptionButton(
+                          optionName: S.of(context).appLanguage,
+                          currentSelection: getLanguageName(settings.appLanguage.languageCode),
+                          onPressed: () {
+                            //context.router.push(const AppLanguageScreenRoute());
                           },
-                        ), */
-                        const SizedBox(height: 48),
+                        ),
+                        OptionButton(
+                          optionName: S.of(context).audioLanguage,
+                          currentSelection: getLanguageName(settings.audioLanguage),
+                          onPressed: () {
+                            //context.router.push(const AudioLanguageScreenRoute());
+                          },
+                        ),
                       ],
                     ),
+                    const SizedBox(height: 24),
+                    SettingList(
+                      buttons: [
+                        OptionButton(
+                          optionName: S.of(context).faq,
+                          onPressed: () {
+                            // context.router.push(const FAQScreenRoute());
+                          },
+                        ),
+                        OptionButton(
+                          optionName: S.of(context).contactSupport,
+                          onPressed: () {
+                            // context.router.push(const ContactPublicScreenRoute());
+                          },
+                        ),
+                        if (!ref.read(authStateProvider).guestMode) ...[
+                          OptionButton(
+                            optionName: S.of(context).userVoice,
+                            onPressed: () {
+                              launchUrlString('https://uservoice.bcc.no/?tags=bcc-media', mode: LaunchMode.externalApplication);
+                            },
+                          )
+                        ],
+                        OptionButton(
+                          optionName: S.of(context).about,
+                          onPressed: () {
+                            // context.router.push(const AboutScreenRoute());
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+                    /* Builder(
+                      builder: (context) {
+                        return SettingList(
+                          buttons: [
+                            OptionButton(
+                              optionName: S.of(context).privacyPolicy,
+                              onPressed: () => context.router.push(const PrivacyPolicyScreenRoute()),
+                            ),
+                            OptionButton(
+                              optionName: S.of(context).termsOfUse,
+                              onPressed: () => context.router.push(const TermsOfUseScreenRoute()),
+                            ),
+                          ],
+                        );
+                      },
+                    ), */
+                    const SizedBox(height: 48),
                   ],
                 ),
               ),
