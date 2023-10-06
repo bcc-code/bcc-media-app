@@ -715,7 +715,7 @@
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "termsOfUse": "Terms of use",
+  "termsOfUse": "Условия использования",
   "@termsOfUse": {
     "description": "Title on the 'Terms of use' page."
   },
@@ -1079,11 +1079,11 @@
   "@playGame": {
     "description": "Title on a game"
   },
-  "tvScanQr": "Scan the code and sign in with your phone",
+  "tvScanQr": "Сканируйте код и войдите в систему с помощью телефона",
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Or go to {url} and enter the code: {code}",
+  "tvEnterCode": "Или перейдите по ссылке {url} и введите код: {code}",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1095,11 +1095,11 @@
       }
     }
   },
-  "chapters": "Chapters",
+  "chapters": "Главы",
   "@chapters": {
     "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
   },
-  "removeWatchProgress": "Remove watch progress",
+  "removeWatchProgress": "Очистить прогресс просмотра",
   "@removeWatchProgress": {
     "description": "Shown when holding on an episode in the 'continue watching' section."
   },
@@ -1111,19 +1111,19 @@
   "@releaseDate": {
     "description": "Release date of the episode, shown in the 'details' tab under an episode."
   },
-  "availableTo": "Available to",
+  "availableTo": "Доступно до",
   "@availableTo": {
     "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
   },
-  "ageRating": "Age rating",
+  "ageRating": "Возрастная категория",
   "@ageRating": {
     "description": "Age rating for the episode, shown in the 'details' tab under an episode."
   },
-  "ageRatingAll": "All",
+  "ageRatingAll": "Все",
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
-  "offline": "Offline",
+  "offline": "Офлайн",
   "@offline": {
     "description": "Status indicator, indicating that you are offline; not connected to the internet."
   },
@@ -1131,7 +1131,7 @@
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Audio not available in {lang}",
+  "audioNotAvailableInLanguage": "Аудио недоступно на {lang}",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1140,15 +1140,15 @@
       }
     }
   },
-  "notEnoughAvailableSpace": "Not enough available space on your device",
+  "notEnoughAvailableSpace": "Недостаточно свободного места на устройстве",
   "@notEnoughAvailableSpace": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "considerDeletingOtherVideos": "Consider deleting other videos you downloaded in the app.",
+  "considerDeletingOtherVideos": "Рассмотрите возможность удаления других видеозаписей, загруженных в приложении.",
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "The video file size is {size}.",
+  "theVideoFileSizeIs": "Размер видеофайла {size}.",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1157,67 +1157,67 @@
       }
     }
   },
-  "gotIt": "Got it",
+  "gotIt": "Понятно",
   "@gotIt": {
     "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
   },
-  "saveYourFavorites": "Save your favorite videos",
+  "saveYourFavorites": "Сохраните любимые видеозаписи",
   "@saveYourFavorites": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "saveYourFavoritesDescription": "Tap on the heart icon on a video to save it in your profile.",
+  "saveYourFavoritesDescription": "Нажмите на значок сердечка на видео, чтобы сохранить его в своем профиле.",
   "@saveYourFavoritesDescription": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "yourFavorites": "Your favorites",
+  "yourFavorites": "Ваше избранное",
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
-  "downloaded": "Downloaded",
+  "downloaded": "Загружено",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."
   },
-  "saveVideosForOfflineViewing": "Save videos for offline viewing",
+  "saveVideosForOfflineViewing": "Сохраните видео для просмотра в офлайн режиме",
   "@saveVideosForOfflineViewing": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "tapOnTheDownloadIcon": "Tap on the download icon on a video, to download and play while offline.",
+  "tapOnTheDownloadIcon": "Нажмите на значок загрузки на видео, чтобы загрузить его и проигрывать в офлайн-режиме.",
   "@tapOnTheDownloadIcon": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "removeOfflineVideo": "Remove offline video?",
+  "removeOfflineVideo": "Удалить офлайн видео?",
   "@removeOfflineVideo": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeOfflineVideoDescription": "By removing this video it will no longer be available without a network connection.",
+  "removeOfflineVideoDescription": "Если удалить это видео, оно перестанет быть доступным без подключения к интернету.",
   "@removeOfflineVideoDescription": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeFromDeviceButton": "Remove from device",
+  "removeFromDeviceButton": "Удалить из устройства",
   "@removeFromDeviceButton": {
     "description": "Button text, to remove a downloaded video from the device."
   },
-  "keepVideoButton": "Keep video",
+  "keepVideoButton": "Оставить видео",
   "@keepVideoButton": {
     "description": "Button when asking to remove a downloaded video. This button cancels."
   },
-  "noInternetConnection": "No internet connection",
+  "noInternetConnection": "Отсутствие подключения к интернету",
   "@noInternetConnection": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetConnectionDescription": "Connect to the internet to access all videos.",
+  "noInternetConnectionDescription": "Для доступа ко всем видеоматериалам подключитесь к интернету.",
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "No internet connection,\nbut don't worry.",
+  "noInternetButDontWorry": "Нет подключения к интернету,\nно не волнуйтесь.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
-  "hereAreAllTheVideosYouDownloaded": "Here are all the videos you have downloaded to your device.",
+  "hereAreAllTheVideosYouDownloaded": "Здесь отображаются все видеоролики, загруженные на устройство.",
   "@hereAreAllTheVideosYouDownloaded": {
     "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "connectToExplore": "Connect to the internet to explore all videos.",
+  "connectToExplore": "Для просмотра всех видеозаписей подключитесь к интернету.",
   "@connectToExplore": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
@@ -1225,7 +1225,7 @@
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Estimated file size: {size}",
+  "estimatedFileSize": "Предполагаемый размер файла: {size}",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1234,51 +1234,51 @@
       }
     }
   },
-  "downloadVideo": "Download video",
+  "downloadVideo": "Скачать видео",
   "@downloadVideo": {
     "description": "Title on the download video form."
   },
-  "noSubtitles": "No subtitles",
+  "noSubtitles": "Без субтитров",
   "@noSubtitles": {
     "description": "Shown in the download form, indicating that there are no subtitles available for the video."
   },
-  "subtitlesIncluded": "Subtitles included",
+  "subtitlesIncluded": "Добавлены субтитры",
   "@subtitlesIncluded": {
     "description": "Shown in the download form, indicating that all subtitles are included in the video."
   },
-  "allSubtitlesWillBeAvailableOffline": "All subtitles will be available offline",
+  "allSubtitlesWillBeAvailableOffline": "Все субтитры будут доступны в офлайн режиме",
   "@allSubtitlesWillBeAvailableOffline": {
     "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "downloading": "Downloading",
+  "downloading": "Загрузка",
   "@downloading": {
     "description": "Download status, indicating that the video is currently downloading."
   },
-  "failed": "Failed",
+  "failed": "Ошибка",
   "@failed": {
     "description": "Generic status label. Used e.g. for downloads that failed."
   },
-  "finished": "Finished",
+  "finished": "Готово",
   "@finished": {
     "description": "Generic status label. Used e.g. for downloads that finished."
   },
-  "paused": "Paused",
+  "paused": "Остановлено",
   "@paused": {
     "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
   },
-  "queued": "Queued",
+  "queued": "В очереди",
   "@queued": {
     "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
   },
-  "removing": "Removing",
+  "removing": "Удаляется",
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "availableOffline": "Available offline",
+  "availableOffline": "Доступно в офлайн-режиме",
   "@availableOffline": {
     "description": "Label indicating that the video is available offline."
   },
-  "technicalDetails": "Technical details",
+  "technicalDetails": "Технические детали",
   "@technicalDetails": {
     "description": "Shown when errors occur, and you want to see more technical details about the error."
   }

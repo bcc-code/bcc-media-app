@@ -531,7 +531,7 @@ class SRo extends S {
   String get privacyPolicy => 'Politica de Confidențialitate';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Termeni de utilizare';
 
   @override
   String get categoriesTab => 'Categorii';
@@ -790,18 +790,18 @@ class SRo extends S {
   String get playGame => 'Joacă jocul';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Scanează codul și conectează-te cu telefonul tău';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Sau accesează $url și introdu codul: $code';
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Capitole';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'Șterge progresul vizionării';
 
   @override
   String get showDescription => 'Arată descrierea';
@@ -810,125 +810,125 @@ class SRo extends S {
   String get releaseDate => 'Data de lansare';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Disponibil pentru';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Ratingul de vârstă';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Tot';
 
   @override
-  String get offline => 'Offline';
+  String get offline => 'Fără internet';
 
   @override
   String get downloadButton => 'Descarcă';
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Audio not available in $lang';
+    return 'Audio nu este disponibil în $lang';
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+  String get notEnoughAvailableSpace => 'Nu este suficient spațiu disponibil pe dispozitivul tău';
 
   @override
-  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+  String get considerDeletingOtherVideos => 'Consideră posibilitatea ștergerii altor videouri pe care le-ai descărcat în aplicație.';
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'The video file size is $size.';
+    return 'Dimensiunea fișierului video este $size.';
   }
 
   @override
-  String get gotIt => 'Got it';
+  String get gotIt => 'Am înțeles';
 
   @override
-  String get saveYourFavorites => 'Save your favorite videos';
+  String get saveYourFavorites => 'Salvează videourile preferate';
 
   @override
-  String get saveYourFavoritesDescription => 'Tap on the heart icon on a video to save it in your profile.';
+  String get saveYourFavoritesDescription => 'Apasă pe pictograma cu inima de pe un videoclip pentru a-l salva în profilul tău.';
 
   @override
-  String get yourFavorites => 'Your favorites';
+  String get yourFavorites => 'Favoritele mele';
 
   @override
-  String get downloaded => 'Downloaded';
+  String get downloaded => 'Descărcate';
 
   @override
-  String get saveVideosForOfflineViewing => 'Save videos for offline viewing';
+  String get saveVideosForOfflineViewing => 'Salvează videouri pentru vizualizare fără conexiune la internet';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
+  String get tapOnTheDownloadIcon => 'Apasă pe pictograma de descărcare de pe un videoclip pentru a-l descărca și a-l reda fără a fi conectat la internet.';
 
   @override
-  String get removeOfflineVideo => 'Remove offline video?';
+  String get removeOfflineVideo => 'Eliminare video offline?';
 
   @override
-  String get removeOfflineVideoDescription => 'By removing this video it will no longer be available without a network connection.';
+  String get removeOfflineVideoDescription => 'Prin eliminarea acestui video, acesta nu va mai fi disponibil fără o conexiune la internet.';
 
   @override
-  String get removeFromDeviceButton => 'Remove from device';
+  String get removeFromDeviceButton => 'Îndepărtare din dispozitiv';
 
   @override
-  String get keepVideoButton => 'Keep video';
+  String get keepVideoButton => 'Păstrează video';
 
   @override
-  String get noInternetConnection => 'No internet connection';
+  String get noInternetConnection => 'Fără conexiune la internet';
 
   @override
-  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+  String get noInternetConnectionDescription => 'Conectează-te la internet pentru a accesa toate videourile.';
 
   @override
-  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+  String get noInternetButDontWorry => 'Nu există conexiune la internet, dar nu-ți face griji.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
+  String get hereAreAllTheVideosYouDownloaded => 'Aici sunt toate videourile pe care le-ai descărcat pe dispozitiv.';
 
   @override
-  String get connectToExplore => 'Connect to the internet to explore all videos.';
+  String get connectToExplore => 'Conectează-te la internet pentru a accesa toate videourile.';
 
   @override
   String get language => 'Limbă';
 
   @override
   String estimatedFileSize(String size) {
-    return 'Estimated file size: $size';
+    return 'Dimensiunea estimată a fișierului: $size';
   }
 
   @override
-  String get downloadVideo => 'Download video';
+  String get downloadVideo => 'Descarcă video';
 
   @override
-  String get noSubtitles => 'No subtitles';
+  String get noSubtitles => 'Fără subtitrare';
 
   @override
-  String get subtitlesIncluded => 'Subtitles included';
+  String get subtitlesIncluded => 'Subtitrare inclusă';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'All subtitles will be available offline';
+  String get allSubtitlesWillBeAvailableOffline => 'Toate subtitrările vor fi disponibile și fără internet';
 
   @override
-  String get downloading => 'Downloading';
+  String get downloading => 'Se descarcă';
 
   @override
-  String get failed => 'Failed';
+  String get failed => 'Eroare';
 
   @override
-  String get finished => 'Finished';
+  String get finished => 'Finalizat';
 
   @override
-  String get paused => 'Paused';
+  String get paused => 'Pus pe pauză';
 
   @override
-  String get queued => 'Queued';
+  String get queued => 'În coadă de așteptare';
 
   @override
-  String get removing => 'Removing';
+  String get removing => 'Se șterge';
 
   @override
-  String get availableOffline => 'Available offline';
+  String get availableOffline => 'Disponibile fără internet';
 
   @override
-  String get technicalDetails => 'Technical details';
+  String get technicalDetails => 'Detalii tehnice';
 }

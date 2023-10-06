@@ -531,7 +531,7 @@ class SRu extends S {
   String get privacyPolicy => 'Политика конфиденциальности';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Условия использования';
 
   @override
   String get categoriesTab => 'Категории';
@@ -790,18 +790,18 @@ class SRu extends S {
   String get playGame => 'Играть';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Сканируйте код и войдите в систему с помощью телефона';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Или перейдите по ссылке $url и введите код: $code';
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Главы';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'Очистить прогресс просмотра';
 
   @override
   String get showDescription => 'Описание передач';
@@ -810,125 +810,125 @@ class SRu extends S {
   String get releaseDate => 'Дата релиза';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Доступно до';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Возрастная категория';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Все';
 
   @override
-  String get offline => 'Offline';
+  String get offline => 'Офлайн';
 
   @override
   String get downloadButton => 'Скачать';
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Audio not available in $lang';
+    return 'Аудио недоступно на $lang';
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+  String get notEnoughAvailableSpace => 'Недостаточно свободного места на устройстве';
 
   @override
-  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+  String get considerDeletingOtherVideos => 'Рассмотрите возможность удаления других видеозаписей, загруженных в приложении.';
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'The video file size is $size.';
+    return 'Размер видеофайла $size.';
   }
 
   @override
-  String get gotIt => 'Got it';
+  String get gotIt => 'Понятно';
 
   @override
-  String get saveYourFavorites => 'Save your favorite videos';
+  String get saveYourFavorites => 'Сохраните любимые видеозаписи';
 
   @override
-  String get saveYourFavoritesDescription => 'Tap on the heart icon on a video to save it in your profile.';
+  String get saveYourFavoritesDescription => 'Нажмите на значок сердечка на видео, чтобы сохранить его в своем профиле.';
 
   @override
-  String get yourFavorites => 'Your favorites';
+  String get yourFavorites => 'Ваше избранное';
 
   @override
-  String get downloaded => 'Downloaded';
+  String get downloaded => 'Загружено';
 
   @override
-  String get saveVideosForOfflineViewing => 'Save videos for offline viewing';
+  String get saveVideosForOfflineViewing => 'Сохраните видео для просмотра в офлайн режиме';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
+  String get tapOnTheDownloadIcon => 'Нажмите на значок загрузки на видео, чтобы загрузить его и проигрывать в офлайн-режиме.';
 
   @override
-  String get removeOfflineVideo => 'Remove offline video?';
+  String get removeOfflineVideo => 'Удалить офлайн видео?';
 
   @override
-  String get removeOfflineVideoDescription => 'By removing this video it will no longer be available without a network connection.';
+  String get removeOfflineVideoDescription => 'Если удалить это видео, оно перестанет быть доступным без подключения к интернету.';
 
   @override
-  String get removeFromDeviceButton => 'Remove from device';
+  String get removeFromDeviceButton => 'Удалить из устройства';
 
   @override
-  String get keepVideoButton => 'Keep video';
+  String get keepVideoButton => 'Оставить видео';
 
   @override
-  String get noInternetConnection => 'No internet connection';
+  String get noInternetConnection => 'Отсутствие подключения к интернету';
 
   @override
-  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+  String get noInternetConnectionDescription => 'Для доступа ко всем видеоматериалам подключитесь к интернету.';
 
   @override
-  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+  String get noInternetButDontWorry => 'Нет подключения к интернету,\nно не волнуйтесь.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
+  String get hereAreAllTheVideosYouDownloaded => 'Здесь отображаются все видеоролики, загруженные на устройство.';
 
   @override
-  String get connectToExplore => 'Connect to the internet to explore all videos.';
+  String get connectToExplore => 'Для просмотра всех видеозаписей подключитесь к интернету.';
 
   @override
   String get language => 'Язык';
 
   @override
   String estimatedFileSize(String size) {
-    return 'Estimated file size: $size';
+    return 'Предполагаемый размер файла: $size';
   }
 
   @override
-  String get downloadVideo => 'Download video';
+  String get downloadVideo => 'Скачать видео';
 
   @override
-  String get noSubtitles => 'No subtitles';
+  String get noSubtitles => 'Без субтитров';
 
   @override
-  String get subtitlesIncluded => 'Subtitles included';
+  String get subtitlesIncluded => 'Добавлены субтитры';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'All subtitles will be available offline';
+  String get allSubtitlesWillBeAvailableOffline => 'Все субтитры будут доступны в офлайн режиме';
 
   @override
-  String get downloading => 'Downloading';
+  String get downloading => 'Загрузка';
 
   @override
-  String get failed => 'Failed';
+  String get failed => 'Ошибка';
 
   @override
-  String get finished => 'Finished';
+  String get finished => 'Готово';
 
   @override
-  String get paused => 'Paused';
+  String get paused => 'Остановлено';
 
   @override
-  String get queued => 'Queued';
+  String get queued => 'В очереди';
 
   @override
-  String get removing => 'Removing';
+  String get removing => 'Удаляется';
 
   @override
-  String get availableOffline => 'Available offline';
+  String get availableOffline => 'Доступно в офлайн-режиме';
 
   @override
-  String get technicalDetails => 'Technical details';
+  String get technicalDetails => 'Технические детали';
 }

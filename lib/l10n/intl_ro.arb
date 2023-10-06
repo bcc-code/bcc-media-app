@@ -715,7 +715,7 @@
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "termsOfUse": "Terms of use",
+  "termsOfUse": "Termeni de utilizare",
   "@termsOfUse": {
     "description": "Title on the 'Terms of use' page."
   },
@@ -1079,11 +1079,11 @@
   "@playGame": {
     "description": "Title on a game"
   },
-  "tvScanQr": "Scan the code and sign in with your phone",
+  "tvScanQr": "Scanează codul și conectează-te cu telefonul tău",
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Or go to {url} and enter the code: {code}",
+  "tvEnterCode": "Sau accesează {url} și introdu codul: {code}",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1095,11 +1095,11 @@
       }
     }
   },
-  "chapters": "Chapters",
+  "chapters": "Capitole",
   "@chapters": {
     "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
   },
-  "removeWatchProgress": "Remove watch progress",
+  "removeWatchProgress": "Șterge progresul vizionării",
   "@removeWatchProgress": {
     "description": "Shown when holding on an episode in the 'continue watching' section."
   },
@@ -1111,19 +1111,19 @@
   "@releaseDate": {
     "description": "Release date of the episode, shown in the 'details' tab under an episode."
   },
-  "availableTo": "Available to",
+  "availableTo": "Disponibil pentru",
   "@availableTo": {
     "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
   },
-  "ageRating": "Age rating",
+  "ageRating": "Ratingul de vârstă",
   "@ageRating": {
     "description": "Age rating for the episode, shown in the 'details' tab under an episode."
   },
-  "ageRatingAll": "All",
+  "ageRatingAll": "Tot",
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
-  "offline": "Offline",
+  "offline": "Fără internet",
   "@offline": {
     "description": "Status indicator, indicating that you are offline; not connected to the internet."
   },
@@ -1131,7 +1131,7 @@
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Audio not available in {lang}",
+  "audioNotAvailableInLanguage": "Audio nu este disponibil în {lang}",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1140,15 +1140,15 @@
       }
     }
   },
-  "notEnoughAvailableSpace": "Not enough available space on your device",
+  "notEnoughAvailableSpace": "Nu este suficient spațiu disponibil pe dispozitivul tău",
   "@notEnoughAvailableSpace": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "considerDeletingOtherVideos": "Consider deleting other videos you downloaded in the app.",
+  "considerDeletingOtherVideos": "Consideră posibilitatea ștergerii altor videouri pe care le-ai descărcat în aplicație.",
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "The video file size is {size}.",
+  "theVideoFileSizeIs": "Dimensiunea fișierului video este {size}.",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1157,67 +1157,67 @@
       }
     }
   },
-  "gotIt": "Got it",
+  "gotIt": "Am înțeles",
   "@gotIt": {
     "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
   },
-  "saveYourFavorites": "Save your favorite videos",
+  "saveYourFavorites": "Salvează videourile preferate",
   "@saveYourFavorites": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "saveYourFavoritesDescription": "Tap on the heart icon on a video to save it in your profile.",
+  "saveYourFavoritesDescription": "Apasă pe pictograma cu inima de pe un videoclip pentru a-l salva în profilul tău.",
   "@saveYourFavoritesDescription": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "yourFavorites": "Your favorites",
+  "yourFavorites": "Favoritele mele",
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
-  "downloaded": "Downloaded",
+  "downloaded": "Descărcate",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."
   },
-  "saveVideosForOfflineViewing": "Save videos for offline viewing",
+  "saveVideosForOfflineViewing": "Salvează videouri pentru vizualizare fără conexiune la internet",
   "@saveVideosForOfflineViewing": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "tapOnTheDownloadIcon": "Tap on the download icon on a video, to download and play while offline.",
+  "tapOnTheDownloadIcon": "Apasă pe pictograma de descărcare de pe un videoclip pentru a-l descărca și a-l reda fără a fi conectat la internet.",
   "@tapOnTheDownloadIcon": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "removeOfflineVideo": "Remove offline video?",
+  "removeOfflineVideo": "Eliminare video offline?",
   "@removeOfflineVideo": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeOfflineVideoDescription": "By removing this video it will no longer be available without a network connection.",
+  "removeOfflineVideoDescription": "Prin eliminarea acestui video, acesta nu va mai fi disponibil fără o conexiune la internet.",
   "@removeOfflineVideoDescription": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeFromDeviceButton": "Remove from device",
+  "removeFromDeviceButton": "Îndepărtare din dispozitiv",
   "@removeFromDeviceButton": {
     "description": "Button text, to remove a downloaded video from the device."
   },
-  "keepVideoButton": "Keep video",
+  "keepVideoButton": "Păstrează video",
   "@keepVideoButton": {
     "description": "Button when asking to remove a downloaded video. This button cancels."
   },
-  "noInternetConnection": "No internet connection",
+  "noInternetConnection": "Fără conexiune la internet",
   "@noInternetConnection": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetConnectionDescription": "Connect to the internet to access all videos.",
+  "noInternetConnectionDescription": "Conectează-te la internet pentru a accesa toate videourile.",
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "No internet connection,\nbut don't worry.",
+  "noInternetButDontWorry": "Nu există conexiune la internet, dar nu-ți face griji.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
-  "hereAreAllTheVideosYouDownloaded": "Here are all the videos you have downloaded to your device.",
+  "hereAreAllTheVideosYouDownloaded": "Aici sunt toate videourile pe care le-ai descărcat pe dispozitiv.",
   "@hereAreAllTheVideosYouDownloaded": {
     "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "connectToExplore": "Connect to the internet to explore all videos.",
+  "connectToExplore": "Conectează-te la internet pentru a accesa toate videourile.",
   "@connectToExplore": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
@@ -1225,7 +1225,7 @@
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Estimated file size: {size}",
+  "estimatedFileSize": "Dimensiunea estimată a fișierului: {size}",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1234,51 +1234,51 @@
       }
     }
   },
-  "downloadVideo": "Download video",
+  "downloadVideo": "Descarcă video",
   "@downloadVideo": {
     "description": "Title on the download video form."
   },
-  "noSubtitles": "No subtitles",
+  "noSubtitles": "Fără subtitrare",
   "@noSubtitles": {
     "description": "Shown in the download form, indicating that there are no subtitles available for the video."
   },
-  "subtitlesIncluded": "Subtitles included",
+  "subtitlesIncluded": "Subtitrare inclusă",
   "@subtitlesIncluded": {
     "description": "Shown in the download form, indicating that all subtitles are included in the video."
   },
-  "allSubtitlesWillBeAvailableOffline": "All subtitles will be available offline",
+  "allSubtitlesWillBeAvailableOffline": "Toate subtitrările vor fi disponibile și fără internet",
   "@allSubtitlesWillBeAvailableOffline": {
     "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "downloading": "Downloading",
+  "downloading": "Se descarcă",
   "@downloading": {
     "description": "Download status, indicating that the video is currently downloading."
   },
-  "failed": "Failed",
+  "failed": "Eroare",
   "@failed": {
     "description": "Generic status label. Used e.g. for downloads that failed."
   },
-  "finished": "Finished",
+  "finished": "Finalizat",
   "@finished": {
     "description": "Generic status label. Used e.g. for downloads that finished."
   },
-  "paused": "Paused",
+  "paused": "Pus pe pauză",
   "@paused": {
     "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
   },
-  "queued": "Queued",
+  "queued": "În coadă de așteptare",
   "@queued": {
     "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
   },
-  "removing": "Removing",
+  "removing": "Se șterge",
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "availableOffline": "Available offline",
+  "availableOffline": "Disponibile fără internet",
   "@availableOffline": {
     "description": "Label indicating that the video is available offline."
   },
-  "technicalDetails": "Technical details",
+  "technicalDetails": "Detalii tehnice",
   "@technicalDetails": {
     "description": "Shown when errors occur, and you want to see more technical details about the error."
   }
