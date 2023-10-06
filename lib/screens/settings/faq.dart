@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ import '../../theme/design_system/design_system.dart';
 import '../../graphql/queries/faq.graphql.dart';
 import '../../l10n/app_localizations.dart';
 
+@RoutePage<void>()
 class FAQScreen extends HookConsumerWidget {
   const FAQScreen({super.key});
 

@@ -14,6 +14,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+@RoutePage<void>()
 class TvLoginScreen extends HookConsumerWidget {
   const TvLoginScreen({super.key});
 
@@ -99,8 +100,8 @@ class TvLoginScreen extends HookConsumerWidget {
                       alignment: Alignment.bottomCenter,
                       padding: const EdgeInsets.symmetric(vertical: 32),
                       child: Image(
-                        image: FlavorConfig.current.images.logo,
-                        height: FlavorConfig.current.images.logoHeight,
+                        image: FlavorConfig.current.bccmImages!.logo,
+                        height: FlavorConfig.current.bccmImages!.logoHeight,
                         gaplessPlayback: true,
                       ),
                     ),
@@ -119,8 +120,8 @@ class TvLoginScreen extends HookConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 64),
                     child: Image(
-                      image: FlavorConfig.current.images.logo,
-                      height: FlavorConfig.current.images.logoHeight,
+                      image: FlavorConfig.current.bccmImages!.logo,
+                      height: FlavorConfig.current.bccmImages!.logoHeight,
                       gaplessPlayback: true,
                     ),
                   ),

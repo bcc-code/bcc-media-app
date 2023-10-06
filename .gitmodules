@@ -1,3 +1,3 @@
 [submodule "external_projects/bccm_player"]
-	path = external_projects/bccm_player
+	path = submodules/bccm_player
 	url = https://github.com/bcc-code/bccm-player.git

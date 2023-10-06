@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/misc/app_version.dart';
 import 'package:brunstadtv_app/components/profile/developer_options.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import '../../flavors.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/design_system/design_system.dart';
 
+@RoutePage<void>()
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
@@ -35,8 +37,8 @@ class AboutScreen extends StatelessWidget {
                       DeveloperOptionsTrigger(
                         child: SizedBox(
                           child: Image(
-                            image: FlavorConfig.current.images.logo,
-                            height: FlavorConfig.current.images.logoHeight,
+                            image: FlavorConfig.current.bccmImages!.logo,
+                            height: FlavorConfig.current.bccmImages!.logoHeight,
                             gaplessPlayback: true,
                           ),
                         ),

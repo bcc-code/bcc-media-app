@@ -1,6 +1,7 @@
 import 'package:brunstadtv_app/env/dev/firebase_options.dart' as dev_firebase;
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/main.dart';
+import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import 'package:flutter/material.dart';
 
 import 'l10n/app_localizations.dart';
@@ -13,6 +14,7 @@ void main() async {
       firebaseOptions: dev_firebase.DefaultFirebaseOptions.currentPlatform,
       enableNotifications: true,
       defaultLanguage: 'no',
+      designSystem: () => BccMediaDesignSystem(),
       strings: (context) => FlavorStrings(
         onboardingTitle: S.of(context).loginPageDisplay1,
         onboardingSecondaryTitle: S.of(context).loginPageDisplay2,
@@ -20,7 +22,7 @@ void main() async {
         contactEmail: 'support@bcc.media',
         contactWebsite: Uri.parse('https://bcc.media'),
       ),
-      images: FlavorImages(
+      bccmImages: BccmFlavorImages(
         logoHeight: 20,
         logo: const AssetImage('assets/flavors/prod/logo.png'),
         onboarding: const AssetImage('assets/flavors/prod/onboarding.png'),

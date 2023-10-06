@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +9,7 @@ import '../../l10n/app_localizations.dart';
 import '../../models/analytics/language_changed.dart';
 import '../../providers/analytics.dart';
 
+@RoutePage<void>()
 class AppLanguageScreen extends ConsumerStatefulWidget {
   const AppLanguageScreen({super.key});
 

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/menus/option_list.dart';
@@ -8,6 +9,7 @@ import '../../models/analytics/language_changed.dart';
 import '../../providers/analytics.dart';
 import '../../providers/settings.dart';
 
+@RoutePage<void>()
 class SubtitleLanguageScreen extends ConsumerStatefulWidget {
   const SubtitleLanguageScreen({super.key});
 

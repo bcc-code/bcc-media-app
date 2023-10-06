@@ -8,6 +8,7 @@ import '../../l10n/app_localizations.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../components/nav/general_app_bar.dart';
 
+@RoutePage<void>()
 class DeviceInfoScreen extends StatelessWidget {
   const DeviceInfoScreen({super.key});
 

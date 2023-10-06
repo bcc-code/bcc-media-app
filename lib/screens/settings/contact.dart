@@ -18,6 +18,7 @@ import '../../theme/design_system/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
 
+@RoutePage<void>()
 class ContactScreen extends HookConsumerWidget {
   const ContactScreen({super.key});
 

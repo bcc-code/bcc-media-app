@@ -91,7 +91,11 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                       isDense: true,
                       prefixIcon: Padding(
                         padding: const EdgeInsets.only(left: 8, top: 1, bottom: 1, right: 10),
-                        child: ImageIcon(color: DesignSystem.of(context).colors.tint1, const AssetImage('assets/icons/Search_Default.png'), size: 24),
+                        child: ImageIcon(
+                          color: DesignSystem.of(context).colors.tint1,
+                          const AssetImage('assets/icons/Search_Default.png'),
+                          size: 24,
+                        ),
                       ),
                       prefixIconConstraints: const BoxConstraints(minWidth: 0, maxHeight: 24),
                       suffixIcon: _fieldController.text != ''

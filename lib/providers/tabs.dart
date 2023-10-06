@@ -67,48 +67,48 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
   return TabInfos(
     home: TabInfo(
       id: TabId.home,
-      route: const HomeScreenWrapperRoute(),
+      route: const HomeWrapperScreenRoute(),
       title: (BuildContext context) => S.of(context).homeTab,
-      icon: FlavorConfig.current.images.home,
+      icon: FlavorConfig.current.bccmImages!.home,
       analyticsName: 'home',
     ),
     games: TabInfo(
       id: TabId.games,
-      route: const GamesWrapperRoute(),
+      route: const GamesWrapperScreenRoute(),
       title: (BuildContext context) => S.of(context).gamesTab,
-      icon: FlavorConfig.current.images.games,
+      icon: FlavorConfig.current.bccmImages!.games,
       analyticsName: 'games',
     ),
     search: TabInfo(
       id: TabId.search,
-      route: SearchScreenWrapperRoute(
+      route: SearchWrapperScreenRoute(
         children: [
           SearchScreenRoute(key: GlobalKey<SearchScreenState>()),
         ],
       ),
       title: (BuildContext context) => S.of(context).search,
-      icon: FlavorConfig.current.images.search,
+      icon: FlavorConfig.current.bccmImages!.search,
       analyticsName: 'search',
     ),
     live: TabInfo(
       id: TabId.live,
       route: const LiveScreenRoute(),
       title: (BuildContext context) => S.of(context).liveTab,
-      icon: FlavorConfig.current.images.live,
+      icon: FlavorConfig.current.bccmImages!.live,
       analyticsName: 'live',
     ),
     calendar: TabInfo(
       id: TabId.calendar,
-      route: const CalendarPageRoute(),
+      route: const CalendarScreenRoute(),
       title: (BuildContext context) => S.of(context).calendar,
-      icon: FlavorConfig.current.images.calendar,
+      icon: FlavorConfig.current.bccmImages!.calendar,
       analyticsName: 'calendar',
     ),
     profile: TabInfo(
       id: TabId.profile,
-      route: const ProfileScreenWrapperRoute(),
+      route: const ProfileWrapperScreenRoute(),
       title: (BuildContext context) => S.of(context).profileTab,
-      icon: FlavorConfig.current.images.profile,
+      icon: FlavorConfig.current.bccmImages!.profile,
       analyticsName: 'profile',
     ),
   );

@@ -18,6 +18,7 @@ import '../../flavors.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
+@RoutePage<void>()
 class OnboardingScreen extends ConsumerStatefulWidget {
   final String? loginError;
   final void Function(bool)? onResult;
@@ -105,7 +106,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               elevation: 0,
               centerTitle: true,
               title: Image(
-                image: FlavorConfig.current.images.logo,
+                image: FlavorConfig.current.bccmImages!.logo,
                 height: 25,
                 gaplessPlayback: true,
               ),
@@ -121,14 +122,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         if (kIsWeb)
-                          Padding(padding: const EdgeInsets.all(16), child: Image(image: FlavorConfig.current.images.onboarding))
+                          Padding(padding: const EdgeInsets.all(16), child: Image(image: FlavorConfig.current.bccmImages!.onboarding))
                         else
                           Container(
                             height: 220 * (MediaQuery.of(context).size.height / 600),
                             margin: const EdgeInsets.only(top: 40, bottom: 30),
                             child: Transform.scale(
                               scale: 1.3 * (MediaQuery.of(context).size.height / 800),
-                              child: Image(image: FlavorConfig.current.images.onboarding),
+                              child: Image(image: FlavorConfig.current.bccmImages!.onboarding),
                             ),
                           ),
                         Expanded(

@@ -23,14 +23,15 @@ import '../../l10n/app_localizations.dart';
 import '../../models/analytics/calendar_day_clicked.dart';
 import '../../providers/analytics.dart';
 
-class CalendarPage extends ConsumerStatefulWidget {
-  const CalendarPage({super.key});
+@RoutePage<void>()
+class CalendarScreen extends ConsumerStatefulWidget {
+  const CalendarScreen({super.key});
 
   @override
-  ConsumerState<CalendarPage> createState() => _CalendarPageState();
+  ConsumerState<CalendarScreen> createState() => _CalendarPageState();
 }
 
-class _CalendarPageState extends ConsumerState<CalendarPage> {
+class _CalendarPageState extends ConsumerState<CalendarScreen> {
   bool collapsed = false;
 
   @override
@@ -249,7 +250,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                 shape: BoxShape.circle,
               ),
               weekendTextStyle: design.textStyles.title3,
-              outsideTextStyle: const TextStyle(fontFamily: 'Barlow', color: Colors.grey, fontSize: 17, fontWeight: FontWeight.w700),
+              outsideTextStyle: design.textStyles.title3.copyWith(height: null),
               markerMargin: const EdgeInsets.only(top: 3),
               markerDecoration: BoxDecoration(
                 color: design.colors.label4,
@@ -518,7 +519,7 @@ class _EntriesSlot extends StatelessWidget {
               onTapUp: (details) {
                 if (episode?.episode?.locked == false) {
                   context.router.navigate(
-                    HomeScreenWrapperRoute(children: [
+                    HomeWrapperScreenRoute(children: [
                       EpisodeScreenRoute(episodeId: episode!.episode!.id),
                     ]),
                   );

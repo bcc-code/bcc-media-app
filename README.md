@@ -47,7 +47,7 @@ You can find constants for colors, typography, etc. based on our design system u
 ## Playback library
 
 We are maintaining a standalone playback library to manage the player and chromecast code.
-It's located at /external_projects/bccm_player which will be converted to a git submodule or pub.dev package at a later date.
+It's located at /submodules/bccm_player which will be converted to a git submodule or pub.dev package at a later date.
 
 ## Navigation architecture
 

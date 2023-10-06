@@ -28,6 +28,13 @@ class BccMediaTextStyles extends DesignSystemTextStyles {
             fontSize: 28,
             height: 1.1428571428571428,
           ),
+          headline3: TextStyle(
+            color: colors.label1,
+            fontFamily: 'Barlow',
+            fontWeight: FontWeight.w800,
+            fontSize: 28,
+            height: 1.1428571428571428,
+          ),
           title1: TextStyle(
             color: colors.label1,
             fontFamily: 'Barlow',
@@ -58,6 +65,13 @@ class BccMediaTextStyles extends DesignSystemTextStyles {
             height: 1.263157894736842,
           ),
           body2: TextStyle(
+            color: colors.label4,
+            fontFamily: 'Barlow',
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+            height: 1.25,
+          ),
+          body3: TextStyle(
             color: colors.label4,
             fontFamily: 'Barlow',
             fontWeight: FontWeight.w500,

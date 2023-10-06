@@ -35,6 +35,7 @@ import '../../router/router.gr.dart';
 import '../../helpers/extensions.dart';
 import '../../theme/design_system/design_system.dart';
 
+@RoutePage<void>()
 class ProfileScreen extends HookConsumerWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -58,8 +59,8 @@ class ProfileScreen extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Image(
-          image: FlavorConfig.current.images.logo,
-          height: FlavorConfig.current.images.logoHeight,
+          image: FlavorConfig.current.bccmImages!.logo,
+          height: FlavorConfig.current.bccmImages!.logoHeight,
         ),
         actions: [
           Padding(

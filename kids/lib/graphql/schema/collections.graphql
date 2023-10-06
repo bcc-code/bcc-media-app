@@ -1,0 +1,50 @@
+interface CollectionItem {
+    id: ID!
+    sort: Int!
+    title: String!
+    imageUrl: String
+    images: [Image!]!
+}
+
+type CollectionItemPagination implements Pagination {
+    total: Int!
+    first: Int!
+    offset: Int!
+    items: [CollectionItem!]!
+}
+
+type ShowItem implements CollectionItem {
+    id: ID!
+    sort: Int!
+    title: String!
+    imageUrl: String
+    images: [Image!]!
+    show: Show!
+}
+
+type SeasonItem implements CollectionItem {
+    id: ID!
+    sort: Int!
+    title: String!
+    imageUrl: String
+    images: [Image!]!
+    season: Season!
+}
+
+type EpisodeItem implements CollectionItem {
+    id: ID!
+    sort: Int!
+    title: String!
+    imageUrl: String
+    images: [Image!]!
+    episode: Episode!
+}
+
+type PageItem implements CollectionItem {
+    id: ID!
+    sort: Int!
+    title: String!
+    imageUrl: String
+    images: [Image!]!
+    page: Page!
+}

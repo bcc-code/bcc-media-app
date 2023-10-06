@@ -43,6 +43,7 @@ final liveMetadataProvider = Provider<MediaMetadata>((ref) {
   );
 });
 
+@RoutePage<void>()
 class LiveScreen extends ConsumerStatefulWidget {
   const LiveScreen({Key? key}) : super(key: key);
 
@@ -50,7 +51,7 @@ class LiveScreen extends ConsumerStatefulWidget {
   ConsumerState<LiveScreen> createState() => _LiveScreenState();
 }
 
-class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
+class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAwareStateMixin {
   Future? playerFuture;
   LivestreamUrl? liveUrl;
   bool audioOnly = false;

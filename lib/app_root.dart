@@ -6,6 +6,7 @@ import 'package:brunstadtv_app/main.dart';
 import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
+import 'package:brunstadtv_app/router/router.dart';
 import 'package:brunstadtv_app/screens/onboarding/email_verification.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
@@ -48,7 +49,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
     debugPrint('app_root didChangeDependencies');
     authSubscription?.close();
     authSubscription = ref.listenManual<AuthState>(authStateProvider, onAuthChanged);
-    for (var image in FlavorConfig.current.images) {
+    for (var image in FlavorConfig.current.bccmImages!) {
       precacheImage(image, context)
           .then((value) => print('precache succeeded for $image.'))
           .catchError((e) => print('precache failed for $image. Error: $e'));

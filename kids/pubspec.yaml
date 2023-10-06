@@ -1,0 +1,159 @@
+name: kids
+description: A new Flutter project.
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+version: 5.0.0+2500000
+
+environment:
+  sdk: ">=3.1.3 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  brunstadtv_app:
+    path: ../
+  provider: ^6.0.3
+  js: ^0.6.4
+  http: ^0.13.4
+  json_annotation: ^4.5.0
+  json_serializable: ^6.2.0
+  mockito: ^5.2.0
+  flutter_svg: ^2.0.2
+  auto_route: ^7.8.3
+  build_runner: ^2.2.0
+  bccm_player:
+    path: ../submodules/bccm_player
+  riverpod: ^2.4.1
+  flutter_riverpod: ^2.1.1
+  freezed_annotation: ^2.1.0
+  collection: ^1.16.0
+  package_info_plus: ^4.0.1
+  table_calendar: ^3.0.7
+  graphql: ^5.2.0-beta.4
+  graphql_flutter: ^5.2.0-beta.5
+  shared_preferences: ^2.0.15
+  hive: ^2.2.3
+  firebase_messaging: ^14.0.3
+  firebase_core: ^2.1.1
+  flutter_secure_storage: ^8.0.0
+  visibility_detector: ^0.4.0+2
+  pull_to_refresh: ^2.0.0
+  device_info_plus: ^9.0.3
+  firebase_crashlytics: ^3.0.4
+  flutter_svg_provider:
+    git:
+      url: https://github.com/andreasgangso/flutter_svg_provider.git
+      ref: fix/deps
+  on_screen_ruler: ^0.0.1
+  url_launcher: ^6.1.6
+  modal_bottom_sheet: ^3.0.0-pre
+  #webview_flutter: ^4.0.5
+  shimmer: ^3.0.0
+  flutter_markdown: ^0.6.13
+  rudder_sdk_flutter: ^2.5.0
+  rudder_sdk_flutter_platform_interface: ^2.2.0
+  share_plus: ^7.1.0
+  restart_app: 1.1.2
+  flutter_inappwebview: ^6.0.0-beta.20
+  app_links: ^3.3.0
+  auth0_flutter_web: 0.0.1-alpha.6
+  universal_io: ^2.0.4
+  web_socket_channel: ^2.3.0
+  jwt_decoder: ^2.0.1
+  flutter_appauth: ^6.0.1
+  synchronized: ^3.0.1
+  clock: ^1.1.1
+  flutter_hooks: ^0.18.5+1
+  hooks_riverpod: ^2.2.0
+  flutter_hooks_lint_plugin: ^0.6.1
+  vibration: ^1.7.6
+  email_validator: ^2.1.17
+  open_mail_app: ^0.4.5
+  unleash_proxy_client_flutter: ^1.4.0
+  html: ^0.15.2
+  flutter_html: 3.0.0-alpha.6
+  cloud_firestore: ^4.5.0
+  riverpod_annotation: ^2.0.4
+  image: ^4.0.15
+  responsive_framework: 1.0.0
+  intl: ^0.18.0
+  device_preview: ^1.1.0
+  focusable_control_builder: ^1.0.2+1
+  flutter_to_airplay:
+    git:
+      url: https://github.com/andreasgangso/flutter_to_airplay.git
+      ref: fix/remove-unused-mux
+  flutter_image: ^4.1.6
+  qr_flutter: ^4.1.0
+  focus_debugger: ^0.0.2
+  connectivity_plus: ^4.0.2
+  flutter_cache_manager: ^3.3.1
+  cached_network_image: ^3.2.3
+  async: ^2.11.0
+  markdown: ^7.1.1
+  flutter_animate: ^4.2.0+1
+  skeletonizer: ^0.8.0
+  audioplayers: ^5.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  auto_route_generator: ^7.3.1
+  freezed: ^2.3.4
+  graphql_codegen: ^0.13.7
+  custom_lint: ^0.4.0
+  riverpod_generator: ^2.1.6
+  riverpod_lint: ^1.2.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.2.19
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: ClashDisplay
+      fonts:
+        - asset: assets/fonts/ClashDisplay/ClashDisplay-Bold.otf
+          weight: 700
+        - asset: assets/fonts/ClashDisplay/ClashDisplay-Semibold.otf
+          weight: 600
+        - asset: assets/fonts/ClashDisplay/ClashDisplay-Medium.otf
+          weight: 500
+        - asset: assets/fonts/ClashDisplay/ClashDisplay-Regular.otf
+          weight: 400
+        - asset: assets/fonts/ClashDisplay/ClashDisplay-Light.otf
+          weight: 300
+        - asset: assets/fonts/ClashDisplay/ClashDisplay-Extralight.otf
+          weight: 200
+    - family: Noto Sans
+      fonts:
+        - asset: assets/fonts/NotoSans/NotoSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/NotoSans/NotoSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/NotoSans/NotoSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSans/NotoSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/NotoSans/NotoSans-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/NotoSans/NotoSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/NotoSans/NotoSans-ExtraLight.ttf
+          weight: 200
+
+  assets:
+    - assets/flavors/prod/
+    - assets/sounds/
+
+dependency_overrides:
+  flutter_inappwebview:
+    git:
+      url: https://github.com/andreasgangso/flutter_inappwebview.git
+      ref: feat/disable-ios-delay

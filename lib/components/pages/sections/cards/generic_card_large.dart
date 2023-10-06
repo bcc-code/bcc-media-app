@@ -39,9 +39,11 @@ class _GenericCardLargeState extends State<GenericCardLarge> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: widget.item.image == null ? const SizedBox.shrink() : simpleFadeInImage(url: widget.item.image!),
+                SizedBox(
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: widget.item.image == null ? const SizedBox.shrink() : simpleFadeInImage(url: widget.item.image!),
+                  ),
                 ),
                 Container(
                   color: design.colors.separatorOnLight,

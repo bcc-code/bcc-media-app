@@ -120,14 +120,10 @@ class EmailVerificationPromptPage extends HookConsumerWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 12),
-          child: DesignSystem.of(context)
-              .buttons
-              .mediumSecondary(
+          child: DesignSystem.of(context).buttons.medium(
                 labelText: S.of(context).resendEmail,
                 image: sendVerificationEmail.result.isLoading ? const Padding(padding: EdgeInsets.all(2), child: LoadingIndicator()) : null,
                 onPressed: resendEmail,
-              )
-              .copyWith(
                 backgroundColor: Colors.transparent,
                 border: Border.all(color: Colors.transparent),
               ),

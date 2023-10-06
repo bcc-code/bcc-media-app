@@ -17,6 +17,7 @@ import '../../components/profile/setting_list.dart';
 
 import '../../theme/design_system/design_system.dart';
 
+@RoutePage<void>()
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
 
@@ -106,7 +107,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 48),
                         child: Image(
-                          image: FlavorConfig.current.images.logo,
+                          image: FlavorConfig.current.bccmImages!.logo,
                           height: 25,
                           gaplessPlayback: true,
                         ),

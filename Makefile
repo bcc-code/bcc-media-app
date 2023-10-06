@@ -2,11 +2,13 @@
 
 BACKEND_SCHEMA_DIR=../brunstadtv/backend/graph/api/schema
 APP_SCHEMA_DIR=./lib/graphql/schema
+KIDS_SCHEMA_DIR=./kids/lib/graphql/schema
 BUILD_NUMBER=$(shell grep -i -e "version: " pubspec.yaml | cut -d " " -f 2)
 copy-schema: SHELL:=/bin/bash
 copy-schema:
 	for f in $(shell ls ${BACKEND_SCHEMA_DIR}) ;\
 		do cp ${BACKEND_SCHEMA_DIR}/$$f "${APP_SCHEMA_DIR}/$${f%.graphqls}.graphql" ;\
+		cp ${BACKEND_SCHEMA_DIR}/$$f "${KIDS_SCHEMA_DIR}/$${f%.graphqls}.graphql" ;\
 	done
 
 rm-locales:

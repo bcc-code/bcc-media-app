@@ -14,6 +14,7 @@ import '../../l10n/app_localizations.dart';
 import '../../components/search/search_results.dart';
 import '../../components/search/custom_search_bar.dart';
 
+@RoutePage<void>()
 class SearchScreen extends ConsumerStatefulWidget {
   final String? query;
 

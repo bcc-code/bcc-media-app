@@ -12,6 +12,7 @@ import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/firebase.dart';
+import 'package:brunstadtv_app/router/router.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -20,7 +21,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -60,7 +60,7 @@ Future<void> $main({
   // Initialize bccm_player
   await BccmPlayerInterface.instance.setup();
 
-  final appRouter = AppRouter(navigatorKey);
+  final appRouter = AppRouter(navigatorKey: navigatorKey);
   final sharedPrefs = await SharedPreferences.getInstance();
   final packageInfo = await PackageInfo.fromPlatform();
   final providerContainer = await initProviderContainer([

@@ -19,6 +19,7 @@ import '../../theme/design_system/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
 
+@RoutePage<void>()
 class ContactPublicScreen extends HookConsumerWidget {
   const ContactPublicScreen({super.key});
 

@@ -1,0 +1,33 @@
+type Achievement {
+    id: ID!
+    title: String!
+    description: String
+    image: String
+    achieved: Boolean! @goField(forceResolver: true)
+    achievedAt: Date @goField(forceResolver: true)
+    group: AchievementGroup @goField(forceResolver: true)
+}
+
+type AchievementPagination implements Pagination {
+    offset: Int!
+    first: Int!
+    total: Int!
+    items: [Achievement!]!
+}
+
+type AchievementGroup {
+    id: ID!
+    title: String!
+    achievements(first: Int, offset: Int): AchievementPagination! @goField(forceResolver: true)
+}
+
+type AchievementGroupPagination implements Pagination {
+    offset: Int!
+    first: Int!
+    total: Int!
+    items: [AchievementGroup!]!
+}
+
+type ConfirmAchievementResult {
+    success: Boolean!
+}

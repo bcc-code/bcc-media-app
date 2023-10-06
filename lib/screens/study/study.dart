@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/achievements/achievement_dialog.dart';
 import 'package:brunstadtv_app/components/misc/dialog_with_image.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
@@ -19,6 +20,7 @@ import '../../helpers/misc.dart';
 import '../../helpers/webview/main_js_channel.dart';
 import '../../l10n/app_localizations.dart';
 
+@RoutePage<void>()
 class StudyScreen extends ConsumerStatefulWidget {
   final String episodeId;
   final String lessonId;

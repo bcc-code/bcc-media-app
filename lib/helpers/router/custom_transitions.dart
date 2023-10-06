@@ -7,19 +7,20 @@ class CustomTransitionsBuilders {
   static double? dragDistance;
 
   const CustomTransitionsBuilders._();
-  static Widget slideUp(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-    var curvedAnimation = CurvedAnimation(parent: animation, curve: Curves.easeOutExpo);
-    if (animation.status == AnimationStatus.reverse) {
-      curvedAnimation = CurvedAnimation(parent: animation, curve: Curves.easeInExpo);
-    }
-    return SlideTransition(
-      position: Tween<Offset>(
-        begin: const Offset(0.0, 1.0),
-        end: Offset.zero,
-      ).animate(curvedAnimation),
-      child: child,
-    );
-  }
+  static RouteTransitionsBuilder slideUp({Curve curveIn = Curves.easeOutExpo, Curve curveOut = Curves.easeInExpo}) =>
+      (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+        var curvedAnimation = CurvedAnimation(parent: animation, curve: curveIn);
+        if (animation.status == AnimationStatus.reverse) {
+          curvedAnimation = CurvedAnimation(parent: animation, curve: curveOut);
+        }
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0.0, 1.0),
+            end: Offset.zero,
+          ).animate(curvedAnimation),
+          child: child,
+        );
+      };
 
   static Widget slideLeft(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
     var curvedAnimation = CurvedAnimation(parent: animation, curve: Curves.easeOutExpo);
@@ -61,7 +62,7 @@ class CustomTransitionsBuilders {
   static Route<T> slideLeftRouteBuilder<T>(
     BuildContext context,
     Widget child,
-    CustomPage<T> page,
+    AutoRoutePage<T> page,
   ) {
     return PageRouteBuilder(
       settings: page,
