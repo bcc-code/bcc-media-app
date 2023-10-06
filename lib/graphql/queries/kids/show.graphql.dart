@@ -302,6 +302,13 @@ const documentNodeQueryGetEpisodesForShow = DocumentNode(definitions: [
                         directives: [],
                         selectionSet: SelectionSetNode(selections: [
                           FieldNode(
+                            name: NameNode(value: 'id'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                          FieldNode(
                             name: NameNode(value: 'title'),
                             alias: null,
                             arguments: [],
@@ -1182,6 +1189,7 @@ class _CopyWithStubImpl$Query$GetEpisodesForShow$show$seasons$items$episodes<
 
 class Query$GetEpisodesForShow$show$seasons$items$episodes$items {
   Query$GetEpisodesForShow$show$seasons$items$episodes$items({
+    required this.id,
     required this.title,
     required this.description,
     required this.duration,
@@ -1191,12 +1199,14 @@ class Query$GetEpisodesForShow$show$seasons$items$episodes$items {
 
   factory Query$GetEpisodesForShow$show$seasons$items$episodes$items.fromJson(
       Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$title = json['title'];
     final l$description = json['description'];
     final l$duration = json['duration'];
     final l$image = json['image'];
     final l$$__typename = json['__typename'];
     return Query$GetEpisodesForShow$show$seasons$items$episodes$items(
+      id: (l$id as String),
       title: (l$title as String),
       description: (l$description as String),
       duration: (l$duration as int),
@@ -1204,6 +1214,8 @@ class Query$GetEpisodesForShow$show$seasons$items$episodes$items {
       $__typename: (l$$__typename as String),
     );
   }
+
+  final String id;
 
   final String title;
 
@@ -1217,6 +1229,8 @@ class Query$GetEpisodesForShow$show$seasons$items$episodes$items {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
     final l$description = description;
@@ -1232,12 +1246,14 @@ class Query$GetEpisodesForShow$show$seasons$items$episodes$items {
 
   @override
   int get hashCode {
+    final l$id = id;
     final l$title = title;
     final l$description = description;
     final l$duration = duration;
     final l$image = image;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$id,
       l$title,
       l$description,
       l$duration,
@@ -1254,6 +1270,11 @@ class Query$GetEpisodesForShow$show$seasons$items$episodes$items {
     if (!(other
             is Query$GetEpisodesForShow$show$seasons$items$episodes$items) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$title = title;
@@ -1309,6 +1330,7 @@ abstract class CopyWith$Query$GetEpisodesForShow$show$seasons$items$episodes$ite
       _CopyWithStubImpl$Query$GetEpisodesForShow$show$seasons$items$episodes$items;
 
   TRes call({
+    String? id,
     String? title,
     String? description,
     int? duration,
@@ -1335,6 +1357,7 @@ class _CopyWithImpl$Query$GetEpisodesForShow$show$seasons$items$episodes$items<
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
+    Object? id = _undefined,
     Object? title = _undefined,
     Object? description = _undefined,
     Object? duration = _undefined,
@@ -1342,6 +1365,7 @@ class _CopyWithImpl$Query$GetEpisodesForShow$show$seasons$items$episodes$items<
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetEpisodesForShow$show$seasons$items$episodes$items(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
@@ -1369,6 +1393,7 @@ class _CopyWithStubImpl$Query$GetEpisodesForShow$show$seasons$items$episodes$ite
   TRes _res;
 
   call({
+    String? id,
     String? title,
     String? description,
     int? duration,

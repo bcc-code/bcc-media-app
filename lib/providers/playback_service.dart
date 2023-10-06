@@ -173,8 +173,8 @@ class PlaybackService {
     platformApi.queueMediaItem(playerId, mediaItem);
   }
 
-  Future<void> openFullscreen(BuildContext context) async {
-    final config = getDefaultViewConfig();
+  Future<void> openFullscreen(BuildContext context, {BccmPlayerViewConfig? config}) async {
+    config ??= getDefaultViewConfig();
     final viewController = BccmPlayerViewController(
       playerController: platformApi.primaryController,
       config: config.copyWith(

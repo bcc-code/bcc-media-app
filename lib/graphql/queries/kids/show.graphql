@@ -6,6 +6,7 @@ query GetEpisodesForShow($id: ID!) {
       items {
         episodes {
           items {
+            id
             title
             description
             duration

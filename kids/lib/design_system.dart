@@ -267,14 +267,26 @@ class BibleKidsButtons extends DesignSystemButtons {
 
   @override
   Widget largeGreen({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    // TODO: implement largeGreen
-    return Text('Not implemented');
+    return large(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      disabled: disabled,
+      image: image,
+      autofocus: autofocus,
+    );
   }
 
   @override
   Widget largeRed({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    // TODO: implement largeRed
-    return Text('Not implemented');
+    return large(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      disabled: disabled,
+      image: image,
+      autofocus: autofocus,
+    );
   }
 
   @override
@@ -301,24 +313,49 @@ class BibleKidsButtons extends DesignSystemButtons {
       bool disabled = false,
       Color? backgroundColor,
       Border? border}) {
-    // TODO: implement medium
-    return Text('Not implemented');
+    return small(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      disabled: disabled,
+      image: image,
+    );
   }
 
   @override
   Widget mediumGreen({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return Text('Not implemented');
+    return small(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      disabled: disabled,
+      image: image,
+      autofocus: autofocus,
+    );
   }
 
   @override
   Widget mediumRed({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false}) {
-    return Text('Not implemented');
+    return small(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      disabled: disabled,
+      image: image,
+    );
   }
 
   @override
   Widget mediumSecondary(
       {Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return Text('Not implemented');
+    return smallSecondary(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      autofocus: autofocus,
+      disabled: disabled,
+      image: image,
+    );
   }
 
   @override
@@ -337,12 +374,26 @@ class BibleKidsButtons extends DesignSystemButtons {
 
   @override
   Widget smallGreen({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return Text('Not implemented');
+    return small(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      autofocus: autofocus,
+      disabled: disabled,
+      image: image,
+    );
   }
 
   @override
   Widget smallRed({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return Text('Not implemented');
+    return small(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      autofocus: autofocus,
+      disabled: disabled,
+      image: image,
+    );
   }
 
   @override
