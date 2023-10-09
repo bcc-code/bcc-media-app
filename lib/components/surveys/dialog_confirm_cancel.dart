@@ -46,12 +46,14 @@ class DialogConfirmCancel extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                design.buttons.largeSecondary(
+                design.buttons.large(
+                  variant: ButtonVariant.secondary,
                   onPressed: () => onGoBack(context),
                   labelText: S.of(context).goBack,
                 ),
                 const SizedBox(width: 16),
-                design.buttons.largeRed(
+                design.buttons.large(
+                  variant: ButtonVariant.red,
                   onPressed: () => onCancelConfirmed(context),
                   labelText: S.of(context).yesCancel,
                 ),

@@ -6,7 +6,10 @@ import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kids/components/buttons/button.dart';
 import 'package:kids/helpers/router_utils.dart';
+import 'package:kids/helpers/svg_icons.dart';
 
 class PosterLarge extends HookWidget {
   final Fragment$Section$$PosterSection$items$items item;
@@ -41,13 +44,11 @@ class PosterLarge extends HookWidget {
             right: 0,
             child: Padding(
               padding: const EdgeInsets.all(16),
-              child: design.buttons.smallSecondary(
+              child: design.buttons.responsive(
+                variant: ButtonVariant.secondary,
                 onPressed: () {},
                 labelText: '',
-                image: Icon(
-                  Icons.play_arrow,
-                  color: design.colors.label1,
-                ),
+                image: SvgPicture.string(SvgIcons.play, colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn)),
               ),
             ),
           ),

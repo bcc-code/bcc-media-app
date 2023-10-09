@@ -99,7 +99,8 @@ class ProfileScreen extends HookConsumerWidget {
                     ),
                   Container(
                     margin: const EdgeInsets.only(top: 12),
-                    child: design.buttons.smallSecondary(
+                    child: design.buttons.small(
+                      variant: ButtonVariant.secondary,
                       onPressed: () async {
                         if ((FlavorConfig.current.flavor == Flavor.kids && !await checkParentalGate(context))) {
                           return;

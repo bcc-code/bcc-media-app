@@ -74,7 +74,8 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
                       Container(
                         padding: const EdgeInsets.only(top: 10),
                         alignment: Alignment.centerRight,
-                        child: design.buttons.smallSecondary(
+                        child: design.buttons.small(
+                          variant: ButtonVariant.secondary,
                           onPressed: onCardTapped,
                           labelText: widget.studyTopic.lessonsProgress.completed > 0 ? S.of(context).continueStudy : S.of(context).startStudy,
                           image: Image.asset('assets/icons/Play.png'),

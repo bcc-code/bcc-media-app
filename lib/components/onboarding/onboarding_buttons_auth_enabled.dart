@@ -52,7 +52,8 @@ class OnboardingButtons extends ConsumerWidget {
                   return Container(
                     margin: const EdgeInsets.only(bottom: 12),
                     width: double.infinity,
-                    child: DesignSystem.of(context).buttons.largeSecondary(
+                    child: DesignSystem.of(context).buttons.large(
+                          variant: ButtonVariant.secondary,
                           key: WidgetKeys.signUpButton,
                           onPressed: signupAction,
                           labelText: S.of(context).signUpButton,

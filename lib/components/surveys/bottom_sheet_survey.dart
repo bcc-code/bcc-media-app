@@ -208,7 +208,8 @@ class _Success extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(top: 16),
           width: double.infinity,
-          child: design.buttons.largeSecondary(
+          child: design.buttons.large(
+            variant: ButtonVariant.secondary,
             labelText: S.of(context).close,
             onPressed: onClose,
           ),
@@ -254,7 +255,8 @@ class _Failure extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(right: 16),
-                child: design.buttons.largeSecondary(
+                child: design.buttons.large(
+                  variant: ButtonVariant.secondary,
                   labelText: S.of(context).cancel,
                   onPressed: onCancel,
                 ),

@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
-import 'package:kids/helpers/router_utils.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class EpisodeGrid extends StatelessWidget {
   const EpisodeGrid({super.key, required this.items});
@@ -21,11 +21,12 @@ class EpisodeGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bp = ResponsiveBreakpoints.of(context);
     return CustomGridView(
       shrinkWrap: true,
       columnCount: 3,
       verticalSpacing: 24,
-      horizontalSpacing: 16,
+      horizontalSpacing: bp.smallerThan(TABLET) ? 16 : 24,
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       children: items.mapIndexed((index, item) {

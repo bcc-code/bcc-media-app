@@ -176,7 +176,8 @@ class TvLiveScreen extends HookConsumerWidget {
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.only(top: 32),
-              child: design.buttons.smallSecondary(
+              child: design.buttons.small(
+                variant: ButtonVariant.secondary,
                 onPressed: () {
                   ref.read(authStateProvider.notifier).logout();
                 },

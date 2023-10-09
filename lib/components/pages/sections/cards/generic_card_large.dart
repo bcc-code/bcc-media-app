@@ -69,7 +69,8 @@ class _GenericCardLargeState extends State<GenericCardLarge> {
                       Container(
                         padding: const EdgeInsets.only(top: 10),
                         alignment: Alignment.centerRight,
-                        child: design.buttons.smallSecondary(
+                        child: design.buttons.small(
+                          variant: ButtonVariant.secondary,
                           onPressed: onCardTapped,
                           labelText: widget.item.item.maybeWhen(
                             game: (_) => S.of(context).playGame,

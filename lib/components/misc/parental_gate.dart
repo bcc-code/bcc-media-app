@@ -83,7 +83,11 @@ class ParentalGate extends HookWidget {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 16),
               width: double.infinity,
-              child: DesignSystem.of(context).buttons.largeSecondary(onPressed: checkAnswer, labelText: S.of(context).checkAnswerButton),
+              child: DesignSystem.of(context).buttons.large(
+                    variant: ButtonVariant.secondary,
+                    onPressed: checkAnswer,
+                    labelText: S.of(context).checkAnswerButton,
+                  ),
             ),
           ],
         ),

@@ -256,8 +256,16 @@ class BibleKidsButtons extends DesignSystemButtons {
   final DesignSystemTextStyles textStyles;
 
   @override
-  Widget large({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return Button.rawLarge(
+  Widget large({
+    Key? key,
+    required VoidCallback onPressed,
+    required String labelText,
+    ButtonVariant variant = ButtonVariant.primary,
+    Widget? image,
+    bool disabled = false,
+    bool? autofocus,
+  }) {
+    final button = Button.rawLarge(
       key: key,
       color: colors.tint1,
       activeColor: colors.tint1,
@@ -267,45 +275,16 @@ class BibleKidsButtons extends DesignSystemButtons {
       shadowColor: colors.label1.withOpacity(0.1),
       sideColor: const Color(0xFFF1B826),
     );
-  }
 
-  @override
-  Widget largeGreen({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return large(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      disabled: disabled,
-      image: image,
-      autofocus: autofocus,
-    );
-  }
-
-  @override
-  Widget largeRed({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return large(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      disabled: disabled,
-      image: image,
-      autofocus: autofocus,
-    );
-  }
-
-  @override
-  Widget largeSecondary(
-      {Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return Button.rawLarge(
-      key: key,
-      color: colors.background1,
-      activeColor: colors.background2,
-      icon: image,
-      labelText: labelText,
-      onPressed: onPressed,
-      shadowColor: colors.label1.withOpacity(0.2),
-      sideColor: const Color(0xFFE9ECF4),
-    );
+    return switch (variant) {
+      ButtonVariant.secondary => button.copyWith(
+          color: colors.background1,
+          activeColor: colors.background1,
+          shadowColor: colors.label1.withOpacity(0.2),
+          sideColor: const Color(0xFFE9ECF4),
+        ),
+      _ => button
+    };
   }
 
   @override
@@ -313,6 +292,7 @@ class BibleKidsButtons extends DesignSystemButtons {
       {Key? key,
       required VoidCallback onPressed,
       required String labelText,
+      ButtonVariant variant = ButtonVariant.primary,
       Widget? image,
       bool disabled = false,
       Color? backgroundColor,
@@ -327,44 +307,16 @@ class BibleKidsButtons extends DesignSystemButtons {
   }
 
   @override
-  Widget mediumGreen({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return small(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      disabled: disabled,
-      image: image,
-      autofocus: autofocus,
-    );
-  }
-
-  @override
-  Widget mediumRed({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false}) {
-    return small(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      disabled: disabled,
-      image: image,
-    );
-  }
-
-  @override
-  Widget mediumSecondary(
-      {Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return smallSecondary(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      autofocus: autofocus,
-      disabled: disabled,
-      image: image,
-    );
-  }
-
-  @override
-  Widget small({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return Button.rawSmall(
+  Widget small({
+    Key? key,
+    required VoidCallback onPressed,
+    required String labelText,
+    ButtonVariant variant = ButtonVariant.primary,
+    Widget? image,
+    bool disabled = false,
+    bool? autofocus,
+  }) {
+    final button = Button.rawSmall(
       key: key,
       color: colors.tint1,
       activeColor: colors.tint1,
@@ -374,44 +326,15 @@ class BibleKidsButtons extends DesignSystemButtons {
       shadowColor: colors.label1.withOpacity(0.1),
       sideColor: const Color(0xFFF1B826),
     );
-  }
 
-  @override
-  Widget smallGreen({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return small(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      autofocus: autofocus,
-      disabled: disabled,
-      image: image,
-    );
-  }
-
-  @override
-  Widget smallRed({Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return small(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      autofocus: autofocus,
-      disabled: disabled,
-      image: image,
-    );
-  }
-
-  @override
-  Widget smallSecondary(
-      {Key? key, required VoidCallback onPressed, required String labelText, Widget? image, bool disabled = false, bool? autofocus}) {
-    return Button.rawSmall(
-      key: key,
-      color: colors.background1,
-      activeColor: colors.background1,
-      icon: image,
-      labelText: labelText,
-      onPressed: onPressed,
-      shadowColor: colors.label1.withOpacity(0.2),
-      sideColor: const Color(0xFFE9ECF4),
-    );
+    return switch (variant) {
+      ButtonVariant.secondary => button.copyWith(
+          color: colors.background1,
+          activeColor: colors.background1,
+          shadowColor: colors.label1.withOpacity(0.2),
+          sideColor: const Color(0xFFE9ECF4),
+        ),
+      _ => button
+    };
   }
 }

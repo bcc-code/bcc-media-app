@@ -14,11 +14,12 @@ class BccMediaButtons extends DesignSystemButtons {
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
+    ButtonVariant variant = ButtonVariant.primary,
     Widget? image,
     bool disabled = false,
     bool? autofocus,
   }) {
-    return BtvButton(
+    final button = BtvButton(
       key: key,
       onPressed: onPressed,
       labelText: labelText,
@@ -31,66 +32,20 @@ class BccMediaButtons extends DesignSystemButtons {
       disabled: disabled,
       autofocus: autofocus,
     );
-  }
 
-  @override
-  BtvButton smallSecondary({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  }) {
-    return small(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      image: image,
-      disabled: disabled,
-      autofocus: autofocus,
-    ).copyWith(
-      backgroundColor: colors.separatorOnLight,
-      border: Border.all(color: colors.separatorOnLight, width: 1),
-    );
-  }
-
-  @override
-  BtvButton smallGreen({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  }) {
-    return small(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      image: image,
-      disabled: disabled,
-      autofocus: autofocus,
-    ).copyWith(backgroundColor: colors.tint3);
-  }
-
-  @override
-  BtvButton smallRed({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  }) {
-    return small(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      image: image,
-      disabled: disabled,
-      autofocus: autofocus,
-    ).copyWith(backgroundColor: colors.tint2);
+    switch (variant) {
+      case ButtonVariant.secondary:
+        return button.copyWith(
+          backgroundColor: colors.separatorOnLight,
+          border: Border.all(color: colors.separatorOnLight, width: 1),
+        );
+      case ButtonVariant.green:
+        return button.copyWith(backgroundColor: colors.tint3);
+      case ButtonVariant.red:
+        return button.copyWith(backgroundColor: colors.tint2);
+      default:
+        return button;
+    }
   }
 
   @override
@@ -98,13 +53,14 @@ class BccMediaButtons extends DesignSystemButtons {
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
+    ButtonVariant variant = ButtonVariant.primary,
     Widget? image,
     bool disabled = false,
     bool? autofocus,
     Color? backgroundColor,
     Border? border,
   }) {
-    return BtvButton(
+    final button = BtvButton(
       key: key,
       onPressed: onPressed,
       labelText: labelText,
@@ -117,66 +73,20 @@ class BccMediaButtons extends DesignSystemButtons {
       disabled: disabled,
       autofocus: autofocus,
     );
-  }
 
-  @override
-  BtvButton mediumGreen({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  }) {
-    return medium(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      image: image,
-      disabled: disabled,
-      autofocus: autofocus,
-    ).copyWith(backgroundColor: colors.tint3);
-  }
-
-  @override
-  BtvButton mediumRed({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  }) {
-    return medium(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      image: image,
-      disabled: disabled,
-      autofocus: autofocus,
-    ).copyWith(backgroundColor: colors.tint2);
-  }
-
-  @override
-  BtvButton mediumSecondary({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  }) {
-    return medium(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      image: image,
-      disabled: disabled,
-      autofocus: autofocus,
-    ).copyWith(
-      backgroundColor: colors.separatorOnLight,
-      border: Border.all(color: colors.separatorOnLight.withOpacity(0.1), width: 1),
-    );
+    switch (variant) {
+      case ButtonVariant.secondary:
+        return button.copyWith(
+          backgroundColor: colors.separatorOnLight,
+          border: Border.all(color: colors.separatorOnLight.withOpacity(0.1), width: 1),
+        );
+      case ButtonVariant.green:
+        return button.copyWith(backgroundColor: colors.tint3);
+      case ButtonVariant.red:
+        return button.copyWith(backgroundColor: colors.tint2);
+      default:
+        return button;
+    }
   }
 
   @override
@@ -184,11 +94,12 @@ class BccMediaButtons extends DesignSystemButtons {
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
+    ButtonVariant variant = ButtonVariant.primary,
     Widget? image,
     bool disabled = false,
     bool? autofocus,
   }) {
-    return BtvButton(
+    final button = BtvButton(
       key: key,
       onPressed: onPressed,
       labelText: labelText,
@@ -202,65 +113,19 @@ class BccMediaButtons extends DesignSystemButtons {
       disabled: disabled,
       autofocus: autofocus,
     );
-  }
 
-  @override
-  BtvButton largeGreen({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  }) {
-    return large(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      image: image,
-      disabled: disabled,
-      autofocus: autofocus,
-    ).copyWith(backgroundColor: colors.tint3);
-  }
-
-  @override
-  BtvButton largeRed({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  }) {
-    return large(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      image: image,
-      disabled: disabled,
-      autofocus: autofocus,
-    ).copyWith(backgroundColor: colors.tint2);
-  }
-
-  @override
-  BtvButton largeSecondary({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  }) {
-    return large(
-      key: key,
-      onPressed: onPressed,
-      labelText: labelText,
-      image: image,
-      disabled: disabled,
-      autofocus: autofocus,
-    ).copyWith(
-      backgroundColor: colors.separatorOnLight,
-      border: Border.all(color: colors.separatorOnLight.withOpacity(0.1), width: 1),
-    );
+    switch (variant) {
+      case ButtonVariant.secondary:
+        return button.copyWith(
+          backgroundColor: colors.separatorOnLight,
+          border: Border.all(color: colors.separatorOnLight.withOpacity(0.1), width: 1),
+        );
+      case ButtonVariant.green:
+        return button.copyWith(backgroundColor: colors.tint3);
+      case ButtonVariant.red:
+        return button.copyWith(backgroundColor: colors.tint2);
+      default:
+        return button;
+    }
   }
 }

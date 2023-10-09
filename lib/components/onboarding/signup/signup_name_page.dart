@@ -103,7 +103,8 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
                 Row(
                   children: [
                     Expanded(
-                      child: design.buttons.largeSecondary(
+                      child: design.buttons.large(
+                        variant: ButtonVariant.secondary,
                         onPressed: () {
                           pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
                           FocusManager.instance.primaryFocus?.unfocus();

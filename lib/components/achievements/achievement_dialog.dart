@@ -51,7 +51,8 @@ class _AchievementDialogState extends ConsumerState<AchievementDialog> {
             )
           : Padding(
               padding: const EdgeInsets.only(bottom: 24),
-              child: DesignSystem.of(context).buttons.smallSecondary(
+              child: DesignSystem.of(context).buttons.small(
+                    variant: ButtonVariant.secondary,
                     onPressed: () async {
                       try {
                         ref.read(analyticsProvider).achievementShared(AchievementSharedEvent(elementTitle: widget.achievement.title));

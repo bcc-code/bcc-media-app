@@ -109,38 +109,19 @@ class DesignSystemColors {
   });
 }
 
+enum ButtonVariant {
+  primary,
+  secondary,
+  green,
+  red,
+}
+
 abstract class DesignSystemButtons {
   Widget small({
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  });
-
-  Widget smallSecondary({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  });
-
-  Widget smallGreen({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  });
-
-  Widget smallRed({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
+    ButtonVariant variant,
     Widget? image,
     bool disabled = false,
     bool? autofocus,
@@ -150,69 +131,18 @@ abstract class DesignSystemButtons {
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
+    ButtonVariant variant,
     Widget? image,
     bool disabled = false,
     Color? backgroundColor,
     Border? border,
   });
 
-  Widget mediumGreen({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  });
-
-  Widget mediumRed({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-  });
-
-  Widget mediumSecondary({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  });
-
   Widget large({
     Key? key,
     required VoidCallback onPressed,
     required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  });
-
-  Widget largeGreen({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  });
-
-  Widget largeRed({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-    bool disabled = false,
-    bool? autofocus,
-  });
-
-  Widget largeSecondary({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
+    ButtonVariant variant,
     Widget? image,
     bool disabled = false,
     bool? autofocus,

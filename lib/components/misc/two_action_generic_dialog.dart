@@ -66,7 +66,8 @@ class TwoActionGenericDialog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(
-                  child: DesignSystem.of(context).buttons.largeSecondary(
+                  child: DesignSystem.of(context).buttons.large(
+                        variant: ButtonVariant.secondary,
                         onPressed: () {
                           if (onFirstButtonPressed != null) {
                             onFirstButtonPressed!(context);

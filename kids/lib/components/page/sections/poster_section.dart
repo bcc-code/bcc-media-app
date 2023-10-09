@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kids/components/page/sections/poster_large.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class PosterSection extends StatelessWidget {
   final Fragment$Section$$PosterSection data;
@@ -13,6 +14,8 @@ class PosterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bp = ResponsiveBreakpoints.of(context);
+    final double sectionSpacing = bp.smallerThan(TABLET) ? 20 : 28;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: data.items.items.asMap().entries.map(
@@ -20,7 +23,7 @@ class PosterSection extends StatelessWidget {
           final cardSectionItem = kv.value;
           return SizedBox(
             child: Padding(
-              padding: kv.key == data.items.items.length - 1 ? EdgeInsets.zero : const EdgeInsets.only(right: 12),
+              padding: kv.key == data.items.items.length - 1 ? EdgeInsets.zero : EdgeInsets.only(right: sectionSpacing),
               child: InheritedData<SectionItemAnalytics>(
                 inheritedData: SectionItemAnalytics(
                     position: kv.key, id: cardSectionItem.id, type: cardSectionItem.item.$__typename, name: cardSectionItem.title),

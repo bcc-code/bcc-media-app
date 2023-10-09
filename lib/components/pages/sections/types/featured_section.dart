@@ -216,14 +216,16 @@ class _FeaturedItem extends StatelessWidget {
                   ),
                 ),
                 isLive
-                    ? design.buttons.smallRed(
+                    ? design.buttons.small(
+                        variant: ButtonVariant.red,
                         image: Image.asset('assets/icons/Play.png'),
                         labelText: S.of(context).liveNow,
                         onPressed: () {
                           handleSectionItemClick(context, sectionItem.item);
                         },
                       )
-                    : design.buttons.smallSecondary(
+                    : design.buttons.small(
+                        variant: ButtonVariant.secondary,
                         image: Image.asset('assets/icons/Play.png'),
                         labelText: S.of(context).watchNow,
                         onPressed: () {

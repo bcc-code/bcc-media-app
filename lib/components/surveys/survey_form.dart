@@ -105,7 +105,8 @@ class _SurveyFormState extends State<SurveyForm> {
             children: [
               Container(
                 margin: const EdgeInsets.only(right: 16),
-                child: design.buttons.largeSecondary(
+                child: design.buttons.large(
+                  variant: ButtonVariant.secondary,
                   labelText: S.of(context).cancel,
                   onPressed: widget.onCancel,
                 ),

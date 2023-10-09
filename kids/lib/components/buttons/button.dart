@@ -12,6 +12,7 @@ import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/providers/sound_effects.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class ButtonPaddings {
   final double fromLabelToSide;
@@ -71,6 +72,9 @@ class Button extends HookConsumerWidget {
     ButtonSize? size,
     double? iconSize,
     Color? color,
+    Color? activeColor,
+    Color? shadowColor,
+    Color? sideColor,
   }) {
     return Button.raw(
       icon: icon ?? this.icon,
@@ -82,9 +86,9 @@ class Button extends HookConsumerWidget {
       size: size ?? this.size,
       iconSize: iconSize ?? this.iconSize,
       color: color ?? this.color,
-      activeColor: activeColor,
-      shadowColor: shadowColor,
-      sideColor: sideColor,
+      activeColor: activeColor ?? this.activeColor,
+      shadowColor: shadowColor ?? this.shadowColor,
+      sideColor: sideColor ?? this.sideColor,
     );
   }
 
@@ -292,5 +296,42 @@ class _RenderInnerShadow extends RenderProxyBox {
       ..restore()
       ..restore()
       ..restore();
+  }
+}
+
+extension ResponsiveButton on DesignSystemButtons {
+  Widget responsive({
+    Key? key,
+    required VoidCallback onPressed,
+    required String labelText,
+    ButtonVariant variant = ButtonVariant.primary,
+    Widget? image,
+    bool disabled = false,
+    bool? autofocus,
+  }) {
+    return Builder(builder: (context) {
+      final bp = ResponsiveBreakpoints.of(context);
+      if (bp.smallerThan(TABLET)) {
+        return small(
+          key: key,
+          variant: variant,
+          labelText: labelText,
+          onPressed: onPressed,
+          image: image,
+          disabled: disabled,
+          autofocus: autofocus,
+        );
+      } else {
+        return large(
+          key: key,
+          variant: variant,
+          labelText: labelText,
+          onPressed: onPressed,
+          image: image,
+          disabled: disabled,
+          autofocus: autofocus,
+        );
+      }
+    });
   }
 }

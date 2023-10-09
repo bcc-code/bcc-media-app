@@ -91,7 +91,8 @@ class AccountDeletionScreen extends HookConsumerWidget {
                             ],
                           ),
                           const SizedBox(height: 24),
-                          DesignSystem.of(context).buttons.largeRed(
+                          DesignSystem.of(context).buttons.large(
+                                variant: ButtonVariant.red,
                                 disabled: !iAmSure.value,
                                 onPressed: () {
                                   deleteEmailFuture.value = sendDeleteEmail();
