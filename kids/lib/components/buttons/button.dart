@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
@@ -262,18 +263,34 @@ class _RenderInnerShadow extends RenderProxyBox {
   @override
   void paint(PaintingContext context, Offset offset) {
     if (child == null) return;
-    final bounds = offset & size;
 
-    context.canvas.saveLayer(bounds, Paint());
+    final Rect rectOuter = offset & size;
+    final Rect rectInner = Rect.fromLTWH(
+      offset.dx,
+      offset.dy,
+      size.width - shadowOffset.dx,
+      size.height,
+    );
+    final Canvas canvas = context.canvas..saveLayer(rectOuter, Paint());
     context.paintChild(child!, offset);
+    final Paint shadowPaint = Paint()..colorFilter = ColorFilter.mode(color, BlendMode.srcOut);
 
-    final shadowPaint = Paint()
-      ..blendMode = BlendMode.srcATop
-      ..colorFilter = ColorFilter.mode(color, BlendMode.srcOut);
-    context.canvas.saveLayer(bounds, shadowPaint);
-    context.paintChild(child!, offset + shadowOffset);
-
-    context.canvas.restore();
-    context.canvas.restore();
+    canvas
+      ..saveLayer(rectOuter, Paint()..blendMode = BlendMode.srcATop)
+      ..saveLayer(rectInner, shadowPaint);
+    context.canvas.drawPoints(
+      PointMode.points,
+      [
+        rectInner.bottomRight,
+      ],
+      Paint()
+        ..strokeWidth = 1
+        ..color = Colors.white,
+    );
+    context.paintChild(child!, offset + Offset(0, shadowOffset.dy));
+    context.canvas
+      ..restore()
+      ..restore()
+      ..restore();
   }
 }
