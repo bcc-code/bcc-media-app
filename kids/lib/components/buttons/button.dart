@@ -141,12 +141,12 @@ class Button extends HookConsumerWidget {
 
     void push() {
       pressed.value = true;
-      ref.read(soundEffectsProvider).play(AssetSource(SoundEffects.buttonPush));
+      ref.read(soundEffectsProvider).queue(AssetSource(SoundEffects.buttonPush));
     }
 
     void release() {
       pressed.value = false;
-      ref.read(soundEffectsProvider).play(AssetSource(SoundEffects.buttonRelease));
+      ref.read(soundEffectsProvider).queue(AssetSource(SoundEffects.buttonRelease));
     }
 
     return GestureDetector(
