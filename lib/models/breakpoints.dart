@@ -1,9 +1,9 @@
 import 'package:responsive_framework/responsive_framework.dart';
 
 class BP {
-  static const String sm = 'small';
-  static const String md = 'medium';
-  static const String lg = 'large';
+  static const String sm = MOBILE;
+  static const String md = TABLET;
+  static const String lg = DESKTOP;
   static const String xl = 'extraLarge';
   static const String xxl = 'extraExtraLarge';
 }

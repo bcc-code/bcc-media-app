@@ -8,6 +8,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kids/components/buttons/button.dart';
 import 'package:kids/helpers/orientation_utils.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -81,7 +82,7 @@ class SettingsScreen extends HookConsumerWidget {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0, bottom: 20),
-                      child: design.buttons.large(
+                      child: design.buttons.responsive(
                         labelText: S.of(context).makeDonation,
                         image: SizedBox(
                           height: 24,

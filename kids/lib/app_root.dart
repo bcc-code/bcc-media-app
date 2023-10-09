@@ -1,21 +1,11 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/main.dart';
-import 'package:brunstadtv_app/providers/androidtv_provider.dart';
-import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
-import 'package:brunstadtv_app/screens/onboarding/email_verification.dart';
-import 'package:brunstadtv_app/screens/onboarding/signup.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/models/auth_state.dart';
 import 'package:brunstadtv_app/models/breakpoints.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -94,6 +84,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
                     ),
                     breakpoints: breakpoints,
                     breakpointsLandscape: breakpoints,
+                    useShortestSide: true,
                   );
                 },
               ),

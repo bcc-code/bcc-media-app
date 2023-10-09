@@ -1,9 +1,7 @@
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/misc/custom_grid_view.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
-import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
@@ -60,11 +58,13 @@ class EpisodeGridItem extends ConsumerWidget {
             ),
           )
           .then((_) {
-        if (BccmPlayerController.primary.value.currentMediaItem?.isOffline == true) {
-          BccmPlayerController.primary.stop(reset: false);
-        }
+        BccmPlayerController.primary.stop(reset: true);
       });
-      return ref.read(playbackServiceProvider).playEpisode(playerId: BccmPlayerController.primary.value.playerId, episode: ep);
+      return ref.read(playbackServiceProvider).playEpisode(
+            playerId: BccmPlayerController.primary.value.playerId,
+            autoplay: true,
+            episode: ep,
+          );
     }
 
     final bp = ResponsiveBreakpoints.of(context);
@@ -93,6 +93,7 @@ class EpisodeGridItem extends ConsumerWidget {
                 bottom: bp.smallerThan(TABLET) ? 8 : 16,
                 left: bp.smallerThan(TABLET) ? 8 : 16,
                 child: Button.raw(
+                  onPressed: onTap,
                   color: design.colors.background1,
                   activeColor: design.colors.background1,
                   shadowColor: design.colors.label1.withOpacity(0.2),
@@ -109,7 +110,17 @@ class EpisodeGridItem extends ConsumerWidget {
                     fromIconToSide: 20,
                     fromIconToSideWhenAlone: 20,
                   ),
-                ).copyWith(height: bp.smallerThan(TABLET) ? 28 : 40),
+                ).copyWith(
+                  height: bp.smallerThan(TABLET) ? 28 : 40,
+                  labelTextStyle: design.textStyles.title3,
+                  paddings: const ButtonPaddings(
+                    fromLabelToSide: 12,
+                    fromLabelToSideWhenAlone: 12,
+                    fromIconToLabel: 12,
+                    fromIconToSide: 12,
+                    fromIconToSideWhenAlone: 12,
+                  ),
+                ),
               ),
             ],
           ),
