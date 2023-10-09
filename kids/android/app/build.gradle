@@ -49,6 +49,10 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders += [
+                applicationLabel     : 'Bible Kids',
+                appAuthRedirectScheme: 'media.bcc.kids',
+        ]
     }
 
     buildTypes {
@@ -56,20 +60,6 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
-        }
-    }
-    flavorDimensions 'env'
-    productFlavors {
-        prod {
-            getIsDefault().set(true)
-            dimension 'env'
-            applicationIdSuffix ''
-            manifestPlaceholders += [
-                    applicationLabel     : 'Bible Kids',
-                    appAuthRedirectScheme: 'media.bcc.kids',
-            ]
-            // flutter.target isnt working https://github.com/flutter/flutter/issues/55366
-            flutter.target 'lib/main_prod.dart'
         }
     }
 }

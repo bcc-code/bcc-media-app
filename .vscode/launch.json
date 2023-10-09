@@ -108,19 +108,20 @@
       "args": ["build", "--delete-conflicting-outputs", "--verbose"]
     },
     {
-      "name": "Kids: prod",
+      "name": "Kids: debug",
       "request": "launch",
       "type": "dart",
       "cwd": "${workspaceFolder}/kids",
-      "args": [
-        "--flavor",
-        "prod",
-        "--web-port",
-        "3001",
-        "--web-renderer",
-        "canvaskit"
-      ], // Remember to change the "program" property too
-      "program": "lib/main_prod.dart"
+      "args": ["--web-port", "3001", "--web-renderer", "canvaskit"],
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "Kids: attach",
+      "request": "attach",
+      "type": "dart",
+      "cwd": "${workspaceFolder}/kids",
+      "args": ["--web-port", "3001", "--web-renderer", "canvaskit"],
+      "program": "lib/main.dart"
     },
     {
       "name": "Kids: Debug build_runner",
