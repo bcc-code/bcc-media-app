@@ -10,6 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids/components/buttons/button.dart';
 import 'package:kids/helpers/router_utils.dart';
 import 'package:kids/helpers/svg_icons.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class PosterLarge extends HookWidget {
   final Fragment$Section$$PosterSection$items$items item;
@@ -24,6 +25,8 @@ class PosterLarge extends HookWidget {
     void onCardTapped() {
       handleSectionItemClick(context, item.item);
     }
+
+    final bp = ResponsiveBreakpoints.of(context);
 
     return AspectRatio(
       aspectRatio: 392 / 582,
@@ -40,16 +43,13 @@ class PosterLarge extends HookWidget {
             ),
           ),
           Positioned(
-            bottom: 0,
-            right: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: design.buttons.responsive(
-                variant: ButtonVariant.secondary,
-                onPressed: () {},
-                labelText: '',
-                image: SvgPicture.string(SvgIcons.play, colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn)),
-              ),
+            bottom: bp.smallerThan(TABLET) ? 16 : 40,
+            right: bp.smallerThan(TABLET) ? 16 : 40,
+            child: design.buttons.responsive(
+              variant: ButtonVariant.secondary,
+              onPressed: () {},
+              labelText: '',
+              image: SvgPicture.string(SvgIcons.play, colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn)),
             ),
           ),
           if (navigationFuture.value != null)

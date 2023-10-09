@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:collection/collection.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
+import 'package:kids/components/buttons/button.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class EpisodeGrid extends StatelessWidget {
@@ -65,6 +67,8 @@ class EpisodeGridItem extends ConsumerWidget {
       return ref.read(playbackServiceProvider).playEpisode(playerId: BccmPlayerController.primary.value.playerId, episode: ep);
     }
 
+    final bp = ResponsiveBreakpoints.of(context);
+
     return FocusableControlBuilder(
       cursor: SystemMouseCursors.click,
       actions: {
@@ -76,12 +80,38 @@ class EpisodeGridItem extends ConsumerWidget {
       builder: (context, control) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Container(child: item.image != null ? simpleFadeInImage(url: item.image!) : null),
-            ),
+          Stack(
+            children: [
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Container(child: item.image != null ? simpleFadeInImage(url: item.image!) : null),
+                ),
+              ),
+              Positioned(
+                bottom: bp.smallerThan(TABLET) ? 8 : 16,
+                left: bp.smallerThan(TABLET) ? 8 : 16,
+                child: Button.raw(
+                  color: design.colors.background1,
+                  activeColor: design.colors.background1,
+                  shadowColor: design.colors.label1.withOpacity(0.2),
+                  sideColor: const Color(0xFFE9ECF4),
+                  labelText: '${Duration(seconds: item.duration).inMinutes} ${S.of(context).minutesShort}',
+                  labelTextStyle: design.textStyles.title2,
+                  elevationHeight: 2,
+                  iconSize: 0,
+                  height: 2,
+                  paddings: const ButtonPaddings(
+                    fromLabelToSide: 20,
+                    fromLabelToSideWhenAlone: 20,
+                    fromIconToLabel: 20,
+                    fromIconToSide: 20,
+                    fromIconToSideWhenAlone: 20,
+                  ),
+                ).copyWith(height: bp.smallerThan(TABLET) ? 28 : 40),
+              ),
+            ],
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12),

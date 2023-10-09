@@ -274,6 +274,7 @@ class BibleKidsButtons extends DesignSystemButtons {
       onPressed: onPressed,
       shadowColor: colors.label1.withOpacity(0.1),
       sideColor: const Color(0xFFF1B826),
+      labelTextStyle: textStyles.headline3,
     );
 
     return switch (variant) {
@@ -325,6 +326,7 @@ class BibleKidsButtons extends DesignSystemButtons {
       onPressed: onPressed,
       shadowColor: colors.label1.withOpacity(0.1),
       sideColor: const Color(0xFFF1B826),
+      labelTextStyle: textStyles.title2,
     );
 
     return switch (variant) {

@@ -30,8 +30,6 @@ class ButtonPaddings {
   });
 }
 
-enum ButtonSize { small, large }
-
 class Button extends HookConsumerWidget {
   final Widget? icon;
   final String? labelText;
@@ -39,12 +37,12 @@ class Button extends HookConsumerWidget {
   final double height;
   final double elevationHeight;
   final ButtonPaddings paddings;
-  final ButtonSize? size;
   final double iconSize;
   final Color color;
   final Color activeColor;
   final Color? sideColor;
   final Color? shadowColor;
+  final TextStyle labelTextStyle;
 
   const Button.raw({
     super.key,
@@ -52,7 +50,6 @@ class Button extends HookConsumerWidget {
     this.labelText,
     this.onPressed,
     required this.iconSize,
-    required this.size,
     required this.paddings,
     required this.height,
     required this.elevationHeight,
@@ -60,6 +57,7 @@ class Button extends HookConsumerWidget {
     required this.activeColor,
     required this.shadowColor,
     required this.sideColor,
+    required this.labelTextStyle,
   });
 
   Button copyWith({
@@ -69,12 +67,12 @@ class Button extends HookConsumerWidget {
     double? height,
     double? elevationHeight,
     ButtonPaddings? paddings,
-    ButtonSize? size,
     double? iconSize,
     Color? color,
     Color? activeColor,
     Color? shadowColor,
     Color? sideColor,
+    TextStyle? labelTextStyle,
   }) {
     return Button.raw(
       icon: icon ?? this.icon,
@@ -83,12 +81,12 @@ class Button extends HookConsumerWidget {
       height: height ?? this.height,
       elevationHeight: elevationHeight ?? this.elevationHeight,
       paddings: paddings ?? this.paddings,
-      size: size ?? this.size,
       iconSize: iconSize ?? this.iconSize,
       color: color ?? this.color,
       activeColor: activeColor ?? this.activeColor,
       shadowColor: shadowColor ?? this.shadowColor,
       sideColor: sideColor ?? this.sideColor,
+      labelTextStyle: labelTextStyle ?? this.labelTextStyle,
     );
   }
 
@@ -101,10 +99,10 @@ class Button extends HookConsumerWidget {
     required this.activeColor,
     required this.sideColor,
     required this.shadowColor,
+    required this.labelTextStyle,
   })  : height = 48,
         elevationHeight = 2,
         iconSize = 24,
-        size = ButtonSize.small,
         paddings = const ButtonPaddings(
           fromLabelToSide: 20,
           fromLabelToSideWhenAlone: 24,
@@ -122,10 +120,10 @@ class Button extends HookConsumerWidget {
     required this.activeColor,
     required this.sideColor,
     required this.shadowColor,
+    required this.labelTextStyle,
   })  : height = 72,
         iconSize = 32,
         elevationHeight = 4,
-        size = ButtonSize.large,
         paddings = const ButtonPaddings(
           fromLabelToSide: 32,
           fromLabelToSideWhenAlone: 32,
@@ -215,7 +213,7 @@ class Button extends HookConsumerWidget {
                           : EdgeInsets.symmetric(
                               horizontal: paddings.fromLabelToSideWhenAlone,
                             ),
-                      child: Text(labelText ?? '', style: size == ButtonSize.large ? design.textStyles.headline3 : design.textStyles.title2),
+                      child: Text(labelText ?? '', style: labelTextStyle),
                     ),
                   if (icon != null)
                     Padding(
