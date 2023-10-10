@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
+import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/pages/page_mixin.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
@@ -68,6 +69,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
     final bp = ResponsiveBreakpoints.of(context);
     final double basePadding = bp.smallerThan(TABLET) ? 24 : 48;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           SizedBox(height: basePadding),
@@ -125,6 +127,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
           ),
           SafeArea(
             top: false,
+            maintainBottomViewPadding: true,
             child: SizedBox(
               height: bp.smallerThan(TABLET) ? 104 : 176,
               child: Center(
@@ -132,7 +135,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                   children: [
                     SizedBox(width: basePadding),
                     design.buttons.responsive(
-                      onPressed: () {
+                      onPressed: () async {
+                        if (!await checkParentalGate(context)) return;
+                        if (!context.mounted) return;
                         context.router.pushNamed('/settings');
                       },
                       labelText: '',

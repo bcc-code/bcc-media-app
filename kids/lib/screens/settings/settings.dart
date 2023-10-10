@@ -37,6 +37,12 @@ class SettingsScreen extends HookConsumerWidget {
           appBar: AppBar(
             leadingWidth: 84,
             leading: FocusableControlBuilder(
+              cursor: SystemMouseCursors.click,
+              actions: {
+                ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) {
+                  return context.router.pop();
+                }),
+              },
               onPressed: () {
                 context.router.pop();
               },

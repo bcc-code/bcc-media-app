@@ -149,19 +149,23 @@ class Button extends HookConsumerWidget {
       ref.read(soundEffectsProvider).queue(AssetSource(SoundEffects.buttonRelease));
     }
 
+    void tapWithAnimation() {
+      Future.delayed(const Duration(milliseconds: 10), () {
+        onPressed?.call();
+      });
+      pressed.value = true;
+      Future.delayed(const Duration(milliseconds: 100), () {
+        if (!context.mounted) return;
+        pressed.value = false;
+      });
+    }
+
     return GestureDetector(
       onTapDown: (e) {
         push();
       },
       onTap: () {
-        Future.delayed(const Duration(milliseconds: 10), () {
-          onPressed?.call();
-        });
-        pressed.value = true;
-        Future.delayed(const Duration(milliseconds: 100), () {
-          if (!context.mounted) return;
-          pressed.value = false;
-        });
+        tapWithAnimation();
       },
       onTapCancel: () {
         release();
@@ -170,6 +174,12 @@ class Button extends HookConsumerWidget {
         release();
       },
       child: FocusableControlBuilder(
+        cursor: SystemMouseCursors.click,
+        actions: {
+          ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) {
+            return tapWithAnimation();
+          }),
+        },
         builder: (context, control) => Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(55),

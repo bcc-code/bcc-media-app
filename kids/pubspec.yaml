@@ -97,6 +97,7 @@ dependencies:
   flutter_animate: ^4.2.0+1
   skeletonizer: ^0.8.0
   audioplayers: ^5.2.0
+  flutter_layout_grid: ^2.0.5
 
 dev_dependencies:
   flutter_test:
