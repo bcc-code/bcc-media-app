@@ -1,7 +1,0 @@
-type Game {
-    id: ID!
-    title: String!
-    description: String
-    url: String!
-    image(style: ImageStyle): String @goField(forceResolver: true)
-}
