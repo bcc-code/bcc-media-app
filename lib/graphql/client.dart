@@ -37,7 +37,7 @@ final gqlClientProvider = Provider<GraphQLClient>((ref) {
 
   final authLink = AuthLink(
     getToken: () async {
-      final authState = await authStateNotifier.getExistingAndEnsureNotExpired();
+      final authState = await ref.read(authStateProvider.notifier).getExistingAndEnsureNotExpired();
       if (authState == null) {
         return null;
       }

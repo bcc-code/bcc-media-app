@@ -57,7 +57,7 @@
 		<array>
 			<string>_dartobservatory._tcp</string>
 			<string>_googlecast._tcp</string>
-			<string>_BC91FA3B._googlecast._tcp</string>
+			<string>_5313A795._googlecast._tcp</string>
 		</array>
 		<key>NSLocalNetworkUsageDescription</key>
 		<string>${PRODUCT_NAME} uses the local network to discover Cast-enabled devices on your WiFi

@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:enableOnBackInvokedCallback="true"
     package="tv.brunstad.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -30,17 +31,41 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
-            <!-- Deep linking -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="app.biblekids.io"
+                    android:scheme="http" />
+                <data
+                    android:host="app.biblekids.io"
+                    android:scheme="https" />
+            </intent-filter>
+            <!-- Deep linking is handled via https://pub.dev/packages/app_links -->
             <meta-data
                 android:name="flutter_deeplinking_enabled"
                 android:value="false" />
         </activity>
 
+
         <meta-data
             android:name="cast_app_id"
             android:value="5313A795" />
+
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_data_collection_default_enabled"
+            android:value="false" />
 
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
