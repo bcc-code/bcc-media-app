@@ -77,5 +77,21 @@ class AppRouter extends $AppRouter {
           customRouteBuilder: settingsRouteBuilder,
           meta: const {RouteMetaConstants.analyticsName: 'about'},
         ),
+        CustomRoute(
+          page: PrivacyPolicyScreenRoute.page,
+          path: '/privacy-policy',
+          durationInMilliseconds: 400,
+          reverseDurationInMilliseconds: 600,
+          customRouteBuilder: settingsRouteBuilder,
+          meta: const {RouteMetaConstants.analyticsName: 'privacy-policy'},
+        ),
+        CustomRoute(
+          page: TermsOfUseScreenRoute.page,
+          path: '/terms-of-use',
+          durationInMilliseconds: 400,
+          reverseDurationInMilliseconds: 600,
+          customRouteBuilder: settingsRouteBuilder,
+          meta: const {RouteMetaConstants.analyticsName: 'terms-of-use'},
+        ),
       ];
 }

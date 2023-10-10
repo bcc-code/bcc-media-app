@@ -143,7 +143,7 @@ class SettingsScreen extends HookConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: 24),
-                    /* Builder(
+                    Builder(
                       builder: (context) {
                         return SettingList(
                           buttons: [
@@ -158,7 +158,7 @@ class SettingsScreen extends HookConsumerWidget {
                           ],
                         );
                       },
-                    ), */
+                    ),
                     const SizedBox(height: 48),
                   ],
                 ),
