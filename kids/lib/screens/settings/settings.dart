@@ -1,16 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button.dart';
 import 'package:kids/helpers/orientation_utils.dart';
 import 'package:kids/helpers/svg_icons.dart';
+import 'package:kids/router/router.gr.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -37,8 +35,6 @@ class SettingsScreen extends HookConsumerWidget {
       child: CupertinoScaffold(
         body: Scaffold(
           appBar: AppBar(
-            elevation: 0,
-            toolbarHeight: 56,
             leadingWidth: 84,
             leading: FocusableControlBuilder(
               onPressed: () {
@@ -121,13 +117,13 @@ class SettingsScreen extends HookConsumerWidget {
                         OptionButton(
                           optionName: S.of(context).faq,
                           onPressed: () {
-                            // context.router.push(const FAQScreenRoute());
+                            context.router.push(const FAQScreenRoute());
                           },
                         ),
                         OptionButton(
                           optionName: S.of(context).contactSupport,
                           onPressed: () {
-                            // context.router.push(const ContactPublicScreenRoute());
+                            context.router.push(const ContactScreenRoute());
                           },
                         ),
                         if (!ref.read(authStateProvider).guestMode) ...[
@@ -141,7 +137,7 @@ class SettingsScreen extends HookConsumerWidget {
                         OptionButton(
                           optionName: S.of(context).about,
                           onPressed: () {
-                            // context.router.push(const AboutScreenRoute());
+                            context.router.push(const AboutScreenRoute());
                           },
                         ),
                       ],

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/providers/package_info.dart';
 import 'package:brunstadtv_app/providers/shared_preferences.dart';
@@ -32,7 +33,6 @@ import 'app_root.dart';
 import 'flavors.dart';
 import 'l10n/app_localizations.dart';
 
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 const useDevicePreview = false;
 bool _isAndroidTv = false;
 

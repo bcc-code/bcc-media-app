@@ -33,9 +33,12 @@ class ContactSuccess extends StatelessWidget {
               ],
             ),
           ),
-          design.buttons.large(
-            labelText: S.of(context).done,
-            onPressed: context.router.pop,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: design.buttons.large(
+              labelText: S.of(context).done,
+              onPressed: context.router.pop,
+            ),
           ),
         ],
       ),

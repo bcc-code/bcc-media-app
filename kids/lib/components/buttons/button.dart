@@ -203,6 +203,7 @@ class Button extends HookConsumerWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (hasLabel)
                     Padding(

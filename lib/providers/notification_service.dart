@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/router/router_utils.dart';
-import 'package:brunstadtv_app/main.dart';
+import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';

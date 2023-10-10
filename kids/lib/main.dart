@@ -28,13 +28,13 @@ import 'package:kids/router/router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_io/io.dart';
+import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:kids/design_system.dart';
 import 'package:brunstadtv_app/env/kids_prod/firebase_options.dart' as kids_prod_firebase;
 
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 const useDevicePreview = false;
 bool _isAndroidTv = false;
 

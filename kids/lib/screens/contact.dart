@@ -1,28 +1,26 @@
-import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:brunstadtv_app/components/web/dialog_on_web.dart';
+import 'package:brunstadtv_app/graphql/schema/mutations.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../components/contact/contact_public_input_page.dart';
-import '../../components/contact/contact_success.dart';
-import '../../components/status/error_generic.dart';
-import '../../components/status/loading_generic.dart';
-import '../../components/web/dialog_on_web.dart';
-import '../../components/nav/general_app_bar.dart';
-import '../../graphql/client.dart';
-import '../../graphql/queries/send_support_email.graphql.dart';
-import '../../graphql/schema/mutations.graphql.dart';
-import '../../components/buttons/btv_buttons.dart';
-import '../../providers/device_info.dart';
-import '../../theme/design_system/design_system.dart';
-
-import '../../l10n/app_localizations.dart';
+import 'package:brunstadtv_app/components/contact/contact_public_input_page.dart';
+import 'package:brunstadtv_app/components/contact/contact_success.dart';
+import 'package:brunstadtv_app/components/status/error_generic.dart';
+import 'package:brunstadtv_app/components/status/loading_generic.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/send_support_email.graphql.dart';
+import 'package:brunstadtv_app/providers/device_info.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:kids/components/buttons/appbar_close_button.dart';
+import 'package:kids/router/router.gr.dart';
 
 @RoutePage<void>()
-class ContactPublicScreen extends HookConsumerWidget {
-  const ContactPublicScreen({super.key});
+class ContactScreen extends HookConsumerWidget {
+  const ContactScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -99,14 +97,10 @@ class ContactPublicScreen extends HookConsumerWidget {
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
-          appBar: GeneralAppBar(
-            leftActions: [
-              BtvButton(
-                labelText: S.of(context).cancel,
-                onPressed: context.router.pop,
-              )
-            ],
-            rightActions: [
+          appBar: AppBar(
+            leadingWidth: 84,
+            leading: const AppBarCloseButton(),
+            actions: [
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 150),
                 child: isOnInputPage.value && messageController.text.isNotEmpty && nameController.text.isNotEmpty && emailController.text.isNotEmpty

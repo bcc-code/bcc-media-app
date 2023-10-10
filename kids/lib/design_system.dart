@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
-import 'package:brunstadtv_app/theme/design_system/bccmedia/buttons.dart';
 import 'package:brunstadtv_app/theme/design_system/bccmedia/decorations.dart';
 import 'package:kids/components/buttons/button.dart';
 
@@ -70,11 +69,11 @@ class BibleKidsDesignSystem extends DesignSystemData {
           thumbColor: MaterialStateProperty.resolveWith((state) => colors.onTint),
         ),
         appBarTheme: AppBarTheme(
-          titleTextStyle: textStyles.title3.copyWith(height: 1),
+          titleTextStyle: textStyles.title1.copyWith(height: 1),
           toolbarTextStyle: textStyles.button2,
-          centerTitle: true,
+          centerTitle: false,
           elevation: 0,
-          toolbarHeight: 44,
+          toolbarHeight: 88,
           iconTheme: IconThemeData(color: colors.tint1),
           backgroundColor: colors.background1,
         ),

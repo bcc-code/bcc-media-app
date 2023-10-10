@@ -46,5 +46,36 @@ class AppRouter extends $AppRouter {
           page: SettingsScreenRoute.page,
           meta: const {RouteMetaConstants.analyticsName: 'settings'},
         ),
+        CustomRoute(
+          page: FAQScreenRoute.page,
+          path: '/faq',
+          durationInMilliseconds: 800,
+          reverseDurationInMilliseconds: 800,
+          customRouteBuilder: settingsRouteBuilder,
+          meta: const {RouteMetaConstants.analyticsName: 'faq'},
+        ),
+        CustomRoute(
+          page: ContactScreenRoute.page,
+          path: '/contact-support',
+          durationInMilliseconds: 800,
+          reverseDurationInMilliseconds: 800,
+          customRouteBuilder: settingsRouteBuilder,
+          meta: const {RouteMetaConstants.analyticsName: 'support'},
+        ),
+        CustomRoute(
+          page: DeviceInfoScreenRoute.page,
+          path: '/device-info',
+          durationInMilliseconds: 800,
+          reverseDurationInMilliseconds: 800,
+          customRouteBuilder: settingsRouteBuilder,
+        ),
+        CustomRoute(
+          page: AboutScreenRoute.page,
+          path: '/about',
+          durationInMilliseconds: 800,
+          reverseDurationInMilliseconds: 800,
+          customRouteBuilder: settingsRouteBuilder,
+          meta: const {RouteMetaConstants.analyticsName: 'about'},
+        ),
       ];
 }

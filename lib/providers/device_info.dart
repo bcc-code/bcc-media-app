@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:universal_io/io.dart';
-
+import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/constants.dart';
 import '../helpers/version.dart';
 import '../helpers/extensions.dart';
-import '../main.dart';
 import '../models/contact_device_info.dart';
 import 'auth_state/auth_state.dart';
 import 'shared_preferences.dart';
