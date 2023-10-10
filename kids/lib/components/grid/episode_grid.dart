@@ -68,6 +68,25 @@ class EpisodeGridItem extends ConsumerWidget {
     }
 
     final bp = ResponsiveBreakpoints.of(context);
+    final durationButton = Button.raw(
+      onPressed: onTap,
+      color: design.colors.background1,
+      activeColor: design.colors.background1,
+      shadowColor: design.colors.label1.withOpacity(0.2),
+      sideColor: const Color(0xFFE9ECF4),
+      labelText: '${Duration(seconds: item.duration).inMinutes} ${S.of(context).minutesShort}',
+      labelTextStyle: design.textStyles.title2,
+      elevationHeight: 2,
+      iconSize: 0,
+      height: 40,
+      paddings: const ButtonPaddings(
+        fromLabelToSide: 20,
+        fromLabelToSideWhenAlone: 20,
+        fromIconToLabel: 20,
+        fromIconToSide: 20,
+        fromIconToSideWhenAlone: 20,
+      ),
+    );
 
     return FocusableControlBuilder(
       cursor: SystemMouseCursors.click,
@@ -92,35 +111,19 @@ class EpisodeGridItem extends ConsumerWidget {
               Positioned(
                 bottom: bp.smallerThan(TABLET) ? 8 : 16,
                 left: bp.smallerThan(TABLET) ? 8 : 16,
-                child: Button.raw(
-                  onPressed: onTap,
-                  color: design.colors.background1,
-                  activeColor: design.colors.background1,
-                  shadowColor: design.colors.label1.withOpacity(0.2),
-                  sideColor: const Color(0xFFE9ECF4),
-                  labelText: '${Duration(seconds: item.duration).inMinutes} ${S.of(context).minutesShort}',
-                  labelTextStyle: design.textStyles.title2,
-                  elevationHeight: 2,
-                  iconSize: 0,
-                  height: 2,
-                  paddings: const ButtonPaddings(
-                    fromLabelToSide: 20,
-                    fromLabelToSideWhenAlone: 20,
-                    fromIconToLabel: 20,
-                    fromIconToSide: 20,
-                    fromIconToSideWhenAlone: 20,
-                  ),
-                ).copyWith(
-                  height: bp.smallerThan(TABLET) ? 28 : 40,
-                  labelTextStyle: design.textStyles.title3,
-                  paddings: const ButtonPaddings(
-                    fromLabelToSide: 12,
-                    fromLabelToSideWhenAlone: 12,
-                    fromIconToLabel: 12,
-                    fromIconToSide: 12,
-                    fromIconToSideWhenAlone: 12,
-                  ),
-                ),
+                child: bp.smallerThan(TABLET)
+                    ? durationButton.copyWith(
+                        height: 28,
+                        labelTextStyle: design.textStyles.title3,
+                        paddings: const ButtonPaddings(
+                          fromLabelToSide: 12,
+                          fromLabelToSideWhenAlone: 12,
+                          fromIconToLabel: 12,
+                          fromIconToSide: 12,
+                          fromIconToSideWhenAlone: 12,
+                        ),
+                      )
+                    : durationButton,
               ),
             ],
           ),

@@ -35,7 +35,7 @@ class PosterLarge extends HookWidget {
           GestureDetector(
             onTap: onCardTapped,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(bp.smallerThan(TABLET) ? 20 : 40),
               child: SizedBox(
                 height: double.infinity,
                 child: simpleFadeInImage(url: item.image!),

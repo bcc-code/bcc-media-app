@@ -173,21 +173,21 @@ class Button extends HookConsumerWidget {
         builder: (context, control) => Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(55),
-            boxShadow: [
-              if (!pressed.value)
-                BoxShadow(
-                  color: design.colors.label1.withOpacity(0.1),
-                  offset: Offset(0, limitedShadowHeight * 2),
-                  spreadRadius: 0,
-                  blurRadius: 12,
-                ),
-              if (!pressed.value)
-                BoxShadow(
-                  color: shadowColor != null ? shadowColor! : design.colors.label1.withOpacity(0.1),
-                  offset: Offset(0, limitedShadowHeight),
-                  blurRadius: 0,
-                ),
-            ],
+            boxShadow: pressed.value
+                ? null
+                : [
+                    BoxShadow(
+                      color: design.colors.label1.withOpacity(0.1),
+                      offset: Offset(0, limitedShadowHeight * 2),
+                      spreadRadius: 0,
+                      blurRadius: 12,
+                    ),
+                    BoxShadow(
+                      color: shadowColor != null ? shadowColor! : design.colors.label1.withOpacity(0.1),
+                      offset: Offset(0, limitedShadowHeight),
+                      blurRadius: 0,
+                    ),
+                  ],
           ),
           child: _InnerShadow(
             offset: pressed.value ? const Offset(0, 0) : Offset(0, -elevationHeight),
