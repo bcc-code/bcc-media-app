@@ -3,6 +3,8 @@
 BACKEND_SCHEMA_DIR=../brunstadtv/backend/graph/api/schema
 APP_SCHEMA_DIR=./lib/graphql/schema
 BUILD_NUMBER=$(shell grep -i -e "version: " pubspec.yaml | cut -d " " -f 2)
+BUILD_NUMBER_KIDS=$(shell grep -i -e "version: " kids/pubspec.yaml | cut -d " " -f 2)
+
 copy-schema: SHELL:=/bin/bash
 copy-schema:
 	for f in $(shell ls ${BACKEND_SCHEMA_DIR}) ;\
@@ -28,8 +30,13 @@ release:
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
 
+release-kids-old:
+	git tag v${BUILD_NUMBER}-kids
+	git push --tags
+
 release-kids:
-	TAG_SUFFIX=-kids make release
+	git tag v${BUILD_NUMBER_KIDS}-kids
+	git push --tags
 
 # Rerelease (recreate the release tag with a different commit)
 # This can happen often, e.g. because you forgot to sync translations or a ci script needed to be fixed
@@ -40,5 +47,12 @@ rerelease:
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
 
-rerelease-kids:
+rerelease-kids-old:
 	TAG_SUFFIX=-kids make rerelease
+
+rerelease-kids:
+	read -p "delete tag v${BUILD_NUMBER_KIDS}${TAG_SUFFIX} (local and origin), and recreate it with current commit? (CTRL+C to abort)"
+	git push --delete origin v${BUILD_NUMBER_KIDS}${TAG_SUFFIX}
+	git tag --delete v${BUILD_NUMBER_KIDS}${TAG_SUFFIX}
+	git tag v${BUILD_NUMBER_KIDS}${TAG_SUFFIX}
+	git push --tags

@@ -1,9 +1,155 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v4.6.9+2300089...v) (2023-09-06)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.0.0+2500000-kids...v) (2023-10-11)
+
+
+
+# [5.0.0+2500000-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.9.7+2300097-kids...v5.0.0+2500000-kids) (2023-10-11)
+
+
+### Bug Fixes
+
+* **kids:** button inner shadow bug on iOS ([ab20a88](https://github.com/bcc-code/bcc-media-app/commit/ab20a88ed2c8d051563fcc8c5572c498756b115f))
+
+
+### Features
+
+* **androidtv:** differentiate in analytics, [#268](https://github.com/bcc-code/bcc-media-app/issues/268) ([53dfd90](https://github.com/bcc-code/bcc-media-app/commit/53dfd90f1038263628d625baf72b43728327a3a4))
+* correct text styles ([ade7104](https://github.com/bcc-code/bcc-media-app/commit/ade7104ce8e961efd2791b37d84025189b3d8dd6))
+* **kids:** faq, about, contact us ([db22472](https://github.com/bcc-code/bcc-media-app/commit/db22472f30df910d61981d3227dd8cc10b86570d))
+* **kids:** make runnable on iOS ([e0aca18](https://github.com/bcc-code/bcc-media-app/commit/e0aca188e1b0cae93d33a32cbda9bb15b962dc95))
+* **kids:** privacy and tos screen ([874ada0](https://github.com/bcc-code/bcc-media-app/commit/874ada06b29373f48917e8263d1767d81f1ec418))
+* **kids:** special routes handler ([1668de4](https://github.com/bcc-code/bcc-media-app/commit/1668de48a8dd41af4550ba1ba6f541a9269cb6d5))
+* play episode on tap on episode grid ([0894c41](https://github.com/bcc-code/bcc-media-app/commit/0894c4166f5284f71a76ec985d96d5fc212e8eb6))
+
+
+
+## [4.9.7+2300097](https://github.com/bcc-code/bcc-media-app/compare/v4.9.6+2300096...v4.9.7+2300097) (2023-10-06)
+
+
+### Features
+
+* add fonts, poster etc ([9d0e4da](https://github.com/bcc-code/bcc-media-app/commit/9d0e4dad8a6243293d6888a43442f9bf69d73173))
+* add kids as child project ([0d0f64f](https://github.com/bcc-code/bcc-media-app/commit/0d0f64f4155e14259d144ae2f330aa8109ad8476))
+* button ([b138bf4](https://github.com/bcc-code/bcc-media-app/commit/b138bf401f5dbbfa54bdbffc382438772f4a9b5f))
+* show page, sfx ([de8200b](https://github.com/bcc-code/bcc-media-app/commit/de8200b10ae66a8041c30f38e80396ce22f6fa5a))
+* small buttons ([53a7b9f](https://github.com/bcc-code/bcc-media-app/commit/53a7b9f69592d93473efc411c7bd4c59df2fe116))
+
+
+
+## [4.9.6+2300096](https://github.com/bcc-code/bcc-media-app/compare/v4.9.5+2300095...v4.9.6+2300096) (2023-09-29)
+
+
+### Bug Fixes
+
+* ui lag at start of download ([aaabd97](https://github.com/bcc-code/bcc-media-app/commit/aaabd979e754a0358dd44f35b7256a40b1964f3e))
+
+
+### Features
+
+* retry download via error dialog ([350b218](https://github.com/bcc-code/bcc-media-app/commit/350b2185569c4323d9c02e71fe7feeed7b0ec14a))
+
+
+
+## [4.9.5+2300095](https://github.com/bcc-code/bcc-media-app/compare/v4.9.4+2300094...v4.9.5+2300095) (2023-09-29)
+
+
+### Bug Fixes
+
+* offline bugs ([658ba5d](https://github.com/bcc-code/bcc-media-app/commit/658ba5d6c2f774ae40d6290a7046caec3ddd78ac))
+
+
+
+## [4.9.4+2300094](https://github.com/bcc-code/bcc-media-app/compare/v4.9.3+2300093...v4.9.4+2300094) (2023-09-26)
+
+
+### Bug Fixes
+
+* scrollable offline home ([73746f8](https://github.com/bcc-code/bcc-media-app/commit/73746f8efcfdf1870eef398f5bb7773b7e609e4a))
+
+
+### Features
+
+* maintain state on profile page ([ee6df3c](https://github.com/bcc-code/bcc-media-app/commit/ee6df3cb78c02207e66109481db7b60e0b4d84d5))
+
+
+
+## [4.9.3+2300093](https://github.com/bcc-code/bcc-media-app/compare/v4.9.2+2300092...v4.9.3+2300093) (2023-09-25)
+
+
+### Bug Fixes
+
+* **kids:** remove sign in button ([aae262f](https://github.com/bcc-code/bcc-media-app/commit/aae262faa4b384511bc5451f8f15fcdd53bc55e3))
+* minor episode description fix ([c59a7cf](https://github.com/bcc-code/bcc-media-app/commit/c59a7cf739b8aa0c38158e109bac063cc8378d8a))
+
+
+### Features
+
+* markdown in description ([3d5da37](https://github.com/bcc-code/bcc-media-app/commit/3d5da372bef6616f5ac5129b967cc21f4a53bdce))
+
+
+
+## [4.9.2+2300092](https://github.com/bcc-code/bcc-media-app/compare/v4.9.1+2300091...v4.9.2+2300092) (2023-09-25)
+
+
+### Bug Fixes
+
+* consistent tab analytics via better tab logic ([83d797b](https://github.com/bcc-code/bcc-media-app/commit/83d797bc091dcfdecec9824a1f44ed7a785fef09))
+
+
+### Features
+
+* better screen analytics, including tv ([6cc0903](https://github.com/bcc-code/bcc-media-app/commit/6cc0903b625344c923908d8b17b4968a74733c40)), closes [#253](https://github.com/bcc-code/bcc-media-app/issues/253)
+
+
+
+## [4.9.1+2300091](https://github.com/bcc-code/bcc-media-app/compare/v4.9.0+2300090-kids...v4.9.1+2300091) (2023-09-23)
+
+
+### Bug Fixes
+
+* deep link loading state ([a26e4e1](https://github.com/bcc-code/bcc-media-app/commit/a26e4e12baee1d78e0427139ecf5581c67a89f4a))
+
+
+### Features
+
+* **analytics:** downloads ([6d3a87c](https://github.com/bcc-code/bcc-media-app/commit/6d3a87cb65618976f5563142b2b2379cead1c806))
+* dont fetch my list for public users ([b514df1](https://github.com/bcc-code/bcc-media-app/commit/b514df1b0f52319fbcac124800e48ea59e50286e))
+* download expiry policies ([701e7f3](https://github.com/bcc-code/bcc-media-app/commit/701e7f31030cd91ff705a9998fd2578e4f42ddf9))
+* download ui wip, fix ios build issues ([8d6b66a](https://github.com/bcc-code/bcc-media-app/commit/8d6b66a0bbcc041d2c333d5e7e06c1964abf338a))
+* **downloads:** implemented design for episode page ([7c95edc](https://github.com/bcc-code/bcc-media-app/commit/7c95edc5d81943607f4e9e947a5cbd84071fb6c6))
+* hide download button if unsupported ([8b9856f](https://github.com/bcc-code/bcc-media-app/commit/8b9856f0a64e779f1a915c06bd857ffe683585bf))
+* profile as tab ([db80c79](https://github.com/bcc-code/bcc-media-app/commit/db80c793e576b857baae4f701dcf3fdd0634bd1d))
+* tranlations for offline ([f695988](https://github.com/bcc-code/bcc-media-app/commit/f69598857ccdda80b189da3bb6f9740c802c2ab2))
+* warn about disk space ([bafc0c6](https://github.com/bcc-code/bcc-media-app/commit/bafc0c6bb27ec11ba8d1d65de2020ce5ec4d2943))
+
+
+
+# [4.9.0+2300090-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.9.0+2300090...v4.9.0+2300090-kids) (2023-09-11)
+
+
+### Bug Fixes
+
+* move androidtv banner to bccm prod flavor ([71d9fab](https://github.com/bcc-code/bcc-media-app/commit/71d9fab104c129b3779e54b86447c6fbecb75e29))
+* resolution on androidtv banner wasnt 16:9 ([4c9231d](https://github.com/bcc-code/bcc-media-app/commit/4c9231d0140338f75ca5a1733e72f2e14dd622c2))
+
+
+### Features
+
+* new androidtv banner ([a7ea5de](https://github.com/bcc-code/bcc-media-app/commit/a7ea5decd02aa400ad3bab01a19d3f2a6ffd5204))
+
+
+
+# [4.9.0+2300090](https://github.com/bcc-code/bcc-media-app/compare/v4.6.9+2300089...v4.9.0+2300090) (2023-09-07)
+
+
+### Bug Fixes
+
+* idtoken parsing via device code auth ([6bbde1e](https://github.com/bcc-code/bcc-media-app/commit/6bbde1e56d0ec1f929618008d392cd88392c934c))
 
 
 ### Features
 
 * persistent anonymousId ([#192](https://github.com/bcc-code/bcc-media-app/issues/192)), rm rudder fork ([999a416](https://github.com/bcc-code/bcc-media-app/commit/999a416691ddc66e37e5d49895b2c7405cd8ea90))
+* update banner to not crop 12% ([f5346e4](https://github.com/bcc-code/bcc-media-app/commit/f5346e4fde4bf8fc53edde606f15826d12ce8370))
 
 
 
