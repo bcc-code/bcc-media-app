@@ -115,12 +115,12 @@ dependencies:
     git:
       url: https://github.com/andreasgangso/flutter_to_airplay.git
       ref: fix/remove-unused-mux
-  flutter_image: ^4.1.6
+  flutter_image: ^4.1.8
   qr_flutter: ^4.1.0
   focus_debugger: ^0.0.2
   connectivity_plus: ^4.0.2
   flutter_cache_manager: ^3.3.1
-  cached_network_image: ^3.2.3
+  cached_network_image: ^3.3.0
   async: ^2.11.0
   markdown: ^7.1.1
   flutter_layout_grid: ^2.0.5

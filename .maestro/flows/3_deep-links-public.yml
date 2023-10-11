@@ -7,6 +7,9 @@ appId: tv.brunstad.app
 - runFlow: subflows/init.yml
 # Stopped 1
 - stopApp: tv.brunstad.app
+- openLink: "https://app.bcc.media/series/10"
+- assertVisible: .*Mette.*
+- stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/episode/769"
 - assertVisible: .*Joseph.*
 # Stopped 2
