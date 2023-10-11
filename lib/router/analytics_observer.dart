@@ -23,7 +23,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
     if (context == null) {
       return;
     }
-    final ref = ProviderScope.containerOf(context);
+    final ref = ProviderScope.containerOf(context, listen: false);
     Map<String, dynamic> extraProperties = {};
     extraProperties['meta'] = <String, dynamic>{};
     final routeData = route.settings.asOrNull<AutoRoutePage>()?.routeData;

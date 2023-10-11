@@ -68,6 +68,7 @@ class AppRouter extends $AppRouter {
           durationInMilliseconds: 800,
           reverseDurationInMilliseconds: 800,
           customRouteBuilder: settingsRouteBuilder,
+          meta: const {RouteMetaConstants.analyticsName: 'device-info'},
         ),
         CustomRoute(
           page: AboutScreenRoute.page,
@@ -80,18 +81,26 @@ class AppRouter extends $AppRouter {
         CustomRoute(
           page: PrivacyPolicyScreenRoute.page,
           path: '/privacy-policy',
-          durationInMilliseconds: 400,
-          reverseDurationInMilliseconds: 600,
+          durationInMilliseconds: 800,
+          reverseDurationInMilliseconds: 800,
           customRouteBuilder: settingsRouteBuilder,
           meta: const {RouteMetaConstants.analyticsName: 'privacy-policy'},
         ),
         CustomRoute(
           page: TermsOfUseScreenRoute.page,
           path: '/terms-of-use',
-          durationInMilliseconds: 400,
-          reverseDurationInMilliseconds: 600,
+          durationInMilliseconds: 800,
+          reverseDurationInMilliseconds: 800,
           customRouteBuilder: settingsRouteBuilder,
           meta: const {RouteMetaConstants.analyticsName: 'terms-of-use'},
+        ),
+        CustomRoute(
+          page: ExtraUsergroupsScreenRoute.page,
+          path: '/extra-usergroups',
+          durationInMilliseconds: 800,
+          reverseDurationInMilliseconds: 800,
+          customRouteBuilder: settingsRouteBuilder,
+          meta: const {RouteMetaConstants.analyticsName: 'extra-usergroups'},
         ),
       ];
 }

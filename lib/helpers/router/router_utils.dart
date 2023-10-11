@@ -21,9 +21,12 @@ extension StackRouterCustomNavigation on StackRouter {
     final context = navigatorKey.currentState?.context;
     debugPrint('navigateNamedFromRoot, navigatorKey: ${navigatorKey.currentState?.context}, using context: $context');
     // ignore: use_build_context_synchronously
-    if (context != null && await SpecialRoutesHandler.handle(context, path)) {
-      debugPrint('Route handled by SpecialRoutesHandler');
-      return;
+    if (context != null) {
+      final ref = ProviderScope.containerOf(context, listen: false);
+      if (await ref.read(specialRoutesHandlerProvider).handle(context, path)) {
+        debugPrint('Route handled by SpecialRoutesHandler');
+        return;
+      }
     }
     var result = root.matcher.match(path, includePrefixMatches: true);
     if (result != null) {

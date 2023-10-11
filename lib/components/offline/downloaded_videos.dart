@@ -289,7 +289,7 @@ void _showDownloadItemBottomSheet(
           await notifier.removeDownload(download.key);
           if (context.mounted) {
             tryCatchRecordError(() {
-              ProviderScope.containerOf(context).read(analyticsProvider).videoDownloadRemoved(
+              ProviderScope.containerOf(context, listen: false).read(analyticsProvider).videoDownloadRemoved(
                     VideoDownloadRemovedEvent(
                       downloadId: download.key,
                       episodeId: download.config.typedAdditionalData.episodeId,

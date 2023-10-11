@@ -116,6 +116,15 @@
       "program": "lib/main.dart"
     },
     {
+      "name": "Kids: release",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "cwd": "${workspaceFolder}/kids",
+      "args": ["--web-port", "3001", "--web-renderer", "canvaskit"],
+      "program": "lib/main.dart"
+    },
+    {
       "name": "Kids: attach",
       "request": "attach",
       "type": "dart",

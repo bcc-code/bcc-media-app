@@ -104,7 +104,7 @@ class AppRouter extends $AppRouter {
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
       customRouteBuilder: settingsRouteBuilder,
-      meta: const {RouteMetaConstants.analyticsName: 'support'},
+      meta: const {RouteMetaConstants.analyticsName: 'device-info'},
     ),
     CustomRoute(
       page: AboutScreenRoute.page,

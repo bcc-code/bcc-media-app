@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/helpers/router/special_routes.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/providers/package_info.dart';
@@ -24,6 +25,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:kids/app_root.dart';
+import 'package:kids/providers/special_routes.dart';
 import 'package:kids/router/router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -91,6 +93,7 @@ Future<void> $main({
     sharedPreferencesProvider.overrideWith((ref) => sharedPrefs),
     packageInfoProvider.overrideWith((ref) => packageInfo),
     isAndroidTvProvider.overrideWithValue(_isAndroidTv),
+    specialRoutesHandlerProvider.overrideWith((ref) => KidsSpecialRoutesHandler(ref)),
     if (providerOverrides != null) ...providerOverrides,
   ]);
 

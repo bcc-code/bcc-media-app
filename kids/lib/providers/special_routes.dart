@@ -1,38 +1,22 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/helpers/router/router_utils.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/helpers/router/redirect.dart';
-import 'package:collection/collection.dart';
+import 'package:brunstadtv_app/helpers/router/router_utils.dart';
+import 'package:brunstadtv_app/helpers/router/special_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../graphql/client.dart';
-
-final specialRoutesHandlerProvider = Provider<SpecialRoutesHandler>((ref) {
-  return BccmSpecialRoutesHandler(ref);
-});
-
-abstract class SpecialRoutesHandler {
-  /// Handles special routes, e.g. /r/ redirects, legacy routes, etc.
-  /// Returns true if the route was handled (and in that case the caller should prevent any default navigation if relevant)
-  Future<bool> handle(BuildContext context, String path);
-}
-
-class BccmSpecialRoutesHandler implements SpecialRoutesHandler {
+class KidsSpecialRoutesHandler implements SpecialRoutesHandler {
   Ref ref;
-  BccmSpecialRoutesHandler(this.ref);
+  KidsSpecialRoutesHandler(this.ref);
 
   @override
   Future<bool> handle(BuildContext context, String path) async {
     if (!path.startsWith('/')) return false;
     var uri = Uri.tryParse('https://web.brunstad.tv$path');
     if (uri == null || uri.pathSegments.isEmpty) return false;
-
-    bool handleTvLogin() {
-      launchUrl(uri, mode: LaunchMode.externalApplication);
-      return true;
-    }
 
     bool handleRedirect() {
       final code = uri.pathSegments.elementAtOrNull(1);
@@ -55,7 +39,7 @@ class BccmSpecialRoutesHandler implements SpecialRoutesHandler {
             legacyProgramId: isSeriesId ? null : legacyId,
           );
       newIdFuture.then((newId) {
-        if (newId != null) {
+        if (newId != null && context.mounted) {
           context.router.navigateNamedFromRoot('/episode/$newId?${uri.query}');
         }
       });
@@ -63,8 +47,6 @@ class BccmSpecialRoutesHandler implements SpecialRoutesHandler {
     }
 
     switch (uri.pathSegments[0]) {
-      case 'tvlogin':
-        return handleTvLogin();
       case 'r':
         return handleRedirect();
       case 'series':
