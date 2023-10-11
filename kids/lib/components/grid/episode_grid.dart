@@ -9,6 +9,7 @@ import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:kids/components/buttons/button.dart';
@@ -105,7 +106,19 @@ class EpisodeGridItem extends ConsumerWidget {
                 aspectRatio: 16 / 9,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Container(child: item.image != null ? simpleFadeInImage(url: item.image!) : null),
+                  child: item.image != null
+                      ? Stack(
+                          children: [
+                            Positioned.fill(
+                              child: Container(color: design.colors.separator2)
+                                  .animate(onComplete: (c) => c.forward(from: 0))
+                                  .shimmer(duration: 1000.ms)
+                                  .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
+                            ),
+                            simpleFadeInImage(url: item.image!),
+                          ],
+                        )
+                      : Container(color: design.colors.separator2),
                 ),
               ),
               Positioned(

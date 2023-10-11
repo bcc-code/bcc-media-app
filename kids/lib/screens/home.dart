@@ -7,6 +7,7 @@ import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/application.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:kids/components/buttons/button.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/version.dart';
@@ -94,7 +95,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                           child: Image.asset(
                             'assets/flavors/prod/logo_neg.png',
                           ),
-                        ),
+                        )
+                            .animate()
+                            .slideX(begin: 4, curve: Curves.easeOutExpo, duration: 2000.ms)
+                            .scale(begin: Offset(0.5, 0.5))
+                            .rotate(begin: 0.05)
+                            .fadeIn(),
                       ),
                     ),
                   ),
@@ -117,7 +123,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                       itemCount: result.data!.sections.items.length,
                       itemBuilder: (context, index) {
                         final section = result.data!.sections.items[index];
-                        return SectionRenderer(section: section);
+                        return SectionRenderer(section: section, index: index);
                       },
                     ),
                   const SliverPadding(padding: EdgeInsets.only(right: 60)),
@@ -134,15 +140,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                 child: Row(
                   children: [
                     SizedBox(width: basePadding),
-                    design.buttons.responsive(
-                      onPressed: () async {
-                        if (!await checkParentalGate(context)) return;
-                        if (!context.mounted) return;
-                        context.router.pushNamed('/settings');
-                      },
-                      labelText: '',
-                      image: SvgPicture.string(SvgIcons.profile),
-                    ),
+                    design.buttons
+                        .responsive(
+                          onPressed: () async {
+                            if (!await checkParentalGate(context)) return;
+                            if (!context.mounted) return;
+                            context.router.pushNamed('/settings');
+                          },
+                          labelText: '',
+                          image: SvgPicture.string(SvgIcons.profile),
+                        )
+                        .animate()
+                        .scale(curve: Curves.easeOutBack, duration: 600.ms)
+                        .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
                   ],
                 ),
               ),

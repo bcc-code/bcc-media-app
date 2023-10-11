@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:kids/components/page/sections/poster_large.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -18,27 +19,36 @@ class PosterSection extends StatelessWidget {
     final double sectionSpacing = bp.smallerThan(TABLET) ? 20 : 28;
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: data.items.items.asMap().entries.map(
-        (kv) {
-          final cardSectionItem = kv.value;
-          return SizedBox(
-            child: Padding(
-              padding: kv.key == data.items.items.length - 1 ? EdgeInsets.zero : EdgeInsets.only(right: sectionSpacing),
-              child: InheritedData<SectionItemAnalytics>(
-                inheritedData: SectionItemAnalytics(
-                    position: kv.key, id: cardSectionItem.id, type: cardSectionItem.item.$__typename, name: cardSectionItem.title),
-                child: (context) {
-                  if (data.size == Enum$SectionSize.medium) {
-                    return PosterLarge(item: cardSectionItem);
-                  } else {
-                    return const SizedBox.shrink();
-                  }
-                },
-              ),
-            ),
-          );
-        },
-      ).toList(),
+      children: data.items.items
+          .asMap()
+          .entries
+          .map(
+            (kv) {
+              final cardSectionItem = kv.value;
+              return SizedBox(
+                child: Padding(
+                  padding: kv.key == data.items.items.length - 1 ? EdgeInsets.zero : EdgeInsets.only(right: sectionSpacing),
+                  child: InheritedData<SectionItemAnalytics>(
+                    inheritedData: SectionItemAnalytics(
+                        position: kv.key, id: cardSectionItem.id, type: cardSectionItem.item.$__typename, name: cardSectionItem.title),
+                    child: (context) {
+                      if (data.size == Enum$SectionSize.medium) {
+                        return PosterLarge(item: cardSectionItem);
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    },
+                  ),
+                ),
+              );
+            },
+          )
+          .toList()
+          .animate(interval: 50.ms)
+          .slideX(begin: 1, curve: Curves.easeOutExpo, duration: 2000.ms)
+          .scale(begin: Offset(0.8, 0.8))
+          .rotate(begin: 0.03)
+          .fadeIn(),
     );
   }
 }

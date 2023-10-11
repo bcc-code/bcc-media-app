@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids/components/buttons/button.dart';
@@ -36,9 +37,19 @@ class PosterLarge extends HookWidget {
             onTap: onCardTapped,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(bp.smallerThan(TABLET) ? 20 : 40),
-              child: SizedBox(
-                height: double.infinity,
-                child: simpleFadeInImage(url: item.image!),
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: Container(color: design.colors.separator2)
+                        .animate(onComplete: (c) => c.forward(from: 0))
+                        .shimmer(duration: 1000.ms)
+                        .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
+                  ),
+                  SizedBox(
+                    height: double.infinity,
+                    child: simpleFadeInImage(url: item.image!),
+                  ),
+                ],
               ),
             ),
           ),

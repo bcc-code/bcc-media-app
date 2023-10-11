@@ -33,9 +33,9 @@ class AppRouter extends $AppRouter {
         CustomRoute(
           path: '/show/:showId',
           page: ShowScreenRoute.page,
-          transitionsBuilder: CustomTransitionsBuilders.slideUp(),
+          transitionsBuilder: CustomTransitionsBuilders.scaleUpSlideDown(),
           durationInMilliseconds: 600,
-          reverseDurationInMilliseconds: 600,
+          reverseDurationInMilliseconds: 1000,
         ),
         CustomRoute(
           path: '/settings',

@@ -21,6 +21,27 @@ class CustomTransitionsBuilders {
           child: child,
         );
       };
+  static RouteTransitionsBuilder scaleUpSlideDown({Curve curveIn = Curves.easeOutExpo, Curve curveOut = Curves.easeInExpo}) =>
+      (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+        if (animation.status != AnimationStatus.reverse) {
+          final curvedAnimation = CurvedAnimation(parent: animation, curve: curveIn);
+          return ScaleTransition(
+            scale: Tween<double>(
+              begin: 0.7,
+              end: 1.0,
+            ).animate(curvedAnimation),
+            child: child,
+          );
+        }
+        final curvedAnimation = CurvedAnimation(parent: animation, curve: curveOut);
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, 1),
+            end: Offset.zero,
+          ).animate(curvedAnimation),
+          child: child,
+        );
+      };
 
   static Widget slideLeft(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
     var curvedAnimation = CurvedAnimation(parent: animation, curve: Curves.easeOutExpo);
