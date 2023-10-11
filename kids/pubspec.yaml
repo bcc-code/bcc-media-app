@@ -1,6 +1,10 @@
 name: kids
-description: A new Flutter project.
+description: The app for browsing content from Bible Kids
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+# major.minor.patch+xxxxxxx
+# Note: On play store, any dots in the build
+# number (i.e. the number after +) gets removed
 version: 5.0.0+2500000
 
 environment:
