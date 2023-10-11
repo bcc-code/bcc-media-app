@@ -10,6 +10,7 @@ import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
+import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,7 +43,10 @@ class PlaybackService {
   });
 
   Future init() async {
-    final npawAppName = FlavorConfig.current.flavor == Flavor.bccmedia ? 'mobile' : FlavorConfig.current.applicationCode;
+    var npawAppName = FlavorConfig.current.applicationCode;
+    if (FlavorConfig.current.flavor == Flavor.bccmedia) {
+      npawAppName = ref.read(isAndroidTvProvider) ? 'androidtv' : 'mobile';
+    }
     BccmPlaybackListener(ref: ref, apiProvider: apiProvider);
 
     // Keep the analytics session alive while playing stuff.

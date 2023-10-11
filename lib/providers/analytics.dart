@@ -3,6 +3,7 @@ import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
 import 'package:brunstadtv_app/models/analytics/downloads.dart';
 import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
+import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -114,8 +115,9 @@ class RudderAnalytics extends Analytics {
   RudderProperty getCommonData() {
     checkSession();
     final settings = ref.read(settingsProvider);
+    final androidTv = ref.read(isAndroidTvProvider);
     var commonData = RudderProperty.fromMap({
-      'channel': 'mobile',
+      'channel': androidTv ? 'androidtv' : 'mobile',
       'appLanguage': settings.appLanguage.languageCode,
       'releaseVersion': packageInfo == null ? null : formatAppVersion(packageInfo!),
       'sessionId': settings.sessionId
