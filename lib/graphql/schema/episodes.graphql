@@ -11,7 +11,7 @@ enum ShareRestriction {
     public
 }
 
-type Episode {
+type Episode implements CollectionItem & PlaylistItem {
     id: ID!
     uuid: String!
     status: Status!
@@ -52,7 +52,8 @@ type Episode {
     """
     Should probably be used asynchronously, and retrieved separately from the episode, as it can be slow in some cases (a few db requests can occur)
     """
-    next: [Episode!]! @goField(forceResolver: true)
+    next(limit: Int): [Episode!]! @goField(forceResolver: true)
+    cursor: String! @goField(forceResolver: true)
 }
 
 type EpisodePagination implements Pagination {

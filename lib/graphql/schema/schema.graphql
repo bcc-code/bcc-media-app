@@ -12,6 +12,13 @@ interface Pagination {
     offset: Int!
 }
 
+interface CollectionItem {
+    id: ID!
+    title: String!
+    description: String
+    #image(style: ImageStyle): String
+}
+
 scalar Language
 scalar Date
 scalar UUID
@@ -43,6 +50,8 @@ type LegacyIDLookup {
 
 input EpisodeContext {
     collectionId: String
+    shuffle: Boolean
+    cursor: String
 }
 
 type RedirectLink {
@@ -89,10 +98,7 @@ type QueryRoot{
         context: EpisodeContext
     ): Episode!
 
-    collection(
-        id: ID
-        slug: String
-    ): Collection!
+    playlist(id: ID!): Playlist!
 
     search(
         queryString: String!

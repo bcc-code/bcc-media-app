@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kids/router/router.gr.dart';
+import 'package:kids/screens/playlist.dart';
 
 Route<T> settingsRouteBuilder<T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
   if (!kIsWeb) {
@@ -33,6 +34,13 @@ class AppRouter extends $AppRouter {
         CustomRoute(
           path: '/show/:showId',
           page: ShowScreenRoute.page,
+          transitionsBuilder: CustomTransitionsBuilders.scaleUpSlideDown(),
+          durationInMilliseconds: 600,
+          reverseDurationInMilliseconds: 1000,
+        ),
+        CustomRoute(
+          path: '/playlist/:id',
+          page: PlaylistScreenRoute.page,
           transitionsBuilder: CustomTransitionsBuilders.scaleUpSlideDown(),
           durationInMilliseconds: 600,
           reverseDurationInMilliseconds: 1000,

@@ -7,7 +7,7 @@ type ItemSectionMetadata {
     prependLiveElement: Boolean!
 }
 
-interface Section{
+interface Section {
     id: ID!
     title: String
     description: String
@@ -180,7 +180,7 @@ type PageDetailsSection implements Section {
     description: String
 }
 
-union SectionItemType = Show | Season | Episode | Page | Link | StudyTopic | Game
+union SectionItemType = Show | Season | Episode | Page | Link | StudyTopic | Game | Playlist
 
 type SectionItem {
     id: ID!

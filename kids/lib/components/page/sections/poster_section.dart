@@ -1,11 +1,12 @@
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
-import 'package:brunstadtv_app/graphql/schema/sections.graphql.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:kids/components/page/sections/poster_large.dart';
+import 'package:kids/components/thumbnails/posters/playlist_poster_large.dart';
+import 'package:kids/components/thumbnails/posters/poster_large.dart';
+import 'package:kids/helpers/router_utils.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class PosterSection extends StatelessWidget {
@@ -24,19 +25,24 @@ class PosterSection extends StatelessWidget {
           .entries
           .map(
             (kv) {
-              final cardSectionItem = kv.value;
+              final item = kv.value;
               return SizedBox(
                 child: Padding(
                   padding: kv.key == data.items.items.length - 1 ? EdgeInsets.zero : EdgeInsets.only(right: sectionSpacing),
                   child: InheritedData<SectionItemAnalytics>(
-                    inheritedData: SectionItemAnalytics(
-                        position: kv.key, id: cardSectionItem.id, type: cardSectionItem.item.$__typename, name: cardSectionItem.title),
+                    inheritedData: SectionItemAnalytics(position: kv.key, id: item.id, type: item.item.$__typename, name: item.title),
                     child: (context) {
-                      if (data.size == Enum$SectionSize.medium) {
-                        return PosterLarge(item: cardSectionItem);
-                      } else {
-                        return const SizedBox.shrink();
+                      final playlistItem = item.item.asOrNull<Fragment$Section$$PosterSection$items$items$item$$Playlist>();
+                      if (playlistItem != null) {
+                        return PlaylistPosterLarge.fromItem(
+                          item: playlistItem,
+                          onPressed: () => handleSectionItemClick(context, item.item),
+                        );
                       }
+                      return PosterLarge(
+                        image: item.image,
+                        onPressed: () => handleSectionItemClick(context, item.item),
+                      );
                     },
                   ),
                 ),

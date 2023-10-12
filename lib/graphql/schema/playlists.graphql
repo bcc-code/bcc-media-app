@@ -1,0 +1,21 @@
+type Playlist implements CollectionItem {
+    id: ID!
+    title: String!
+    description: String
+    image(style: ImageStyle): String @goField(forceResolver: true)
+    items(first: Int, offset: Int): PlaylistItemPagination! @goField(forceResolver: true)
+}
+
+type PlaylistItemPagination implements Pagination {
+    total: Int!
+    first: Int!
+    offset: Int!
+    items: [PlaylistItem!]!
+}
+
+interface PlaylistItem implements CollectionItem {
+    id: ID!
+    title: String!
+    description: String
+    image(style: ImageStyle): String
+}

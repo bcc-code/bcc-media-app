@@ -943,6 +943,10 @@ class Fragment$EpisodeContext$$ContextCollection$items$items$item {
         return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Game
             .fromJson(json);
 
+      case "Playlist":
+        return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist
+            .fromJson(json);
+
       default:
         final l$$__typename = json['__typename'];
         return Fragment$EpisodeContext$$ContextCollection$items$items$item(
@@ -1015,6 +1019,9 @@ extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$item
     required _T Function(
             Fragment$EpisodeContext$$ContextCollection$items$items$item$$Game)
         game,
+    required _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist)
+        playlist,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
@@ -1046,6 +1053,10 @@ extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$item
         return game(this
             as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Game);
 
+      case "Playlist":
+        return playlist(this
+            as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist);
+
       default:
         return orElse();
     }
@@ -1073,6 +1084,9 @@ extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$item
     _T Function(
             Fragment$EpisodeContext$$ContextCollection$items$items$item$$Game)?
         game,
+    _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist)?
+        playlist,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
@@ -1128,6 +1142,14 @@ extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$item
         if (game != null) {
           return game(this
               as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Game);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -2164,6 +2186,119 @@ class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$i
         CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Game<
             TRes> {
   _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Game(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist
+    implements Fragment$EpisodeContext$$ContextCollection$items$items$item {
+  Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist(
+      {this.$__typename = 'Playlist'});
+
+  factory Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist(
+        $__typename: (l$$__typename as String));
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist
+    on Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist {
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist<
+          Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist(
+    Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist;
+
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) => _then(
+      Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist(
       this._res);
 
   TRes _res;
@@ -8918,6 +9053,10 @@ class Query$FetchEpisode$episode$context$$ContextCollection$items$items$item
         return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Game
             .fromJson(json);
 
+      case "Playlist":
+        return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist
+            .fromJson(json);
+
       default:
         final l$$__typename = json['__typename'];
         return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item(
@@ -8990,6 +9129,9 @@ extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection
     required _T Function(
             Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Game)
         game,
+    required _T Function(
+            Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist)
+        playlist,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
@@ -9021,6 +9163,10 @@ extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection
         return game(this
             as Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Game);
 
+      case "Playlist":
+        return playlist(this
+            as Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist);
+
       default:
         return orElse();
     }
@@ -9048,6 +9194,9 @@ extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection
     _T Function(
             Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Game)?
         game,
+    _T Function(
+            Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist)?
+        playlist,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
@@ -9103,6 +9252,14 @@ extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection
         if (game != null) {
           return game(this
               as Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Game);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -10163,6 +10320,121 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$it
         CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Game<
             TRes> {
   _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Game(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist
+    implements
+        Fragment$EpisodeContext$$ContextCollection$items$items$item$$Playlist,
+        Query$FetchEpisode$episode$context$$ContextCollection$items$items$item {
+  Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist(
+      {this.$__typename = 'Playlist'});
+
+  factory Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist(
+        $__typename: (l$$__typename as String));
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist
+    on Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist {
+  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist<
+          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist(
+    Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) => _then(
+      Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Playlist(
       this._res);
 
   TRes _res;

@@ -139,9 +139,15 @@ class _CopyWithStubImpl$Input$LegacyIDLookupOptions<TRes>
 }
 
 class Input$EpisodeContext {
-  factory Input$EpisodeContext({String? collectionId}) =>
+  factory Input$EpisodeContext({
+    String? collectionId,
+    bool? shuffle,
+    String? cursor,
+  }) =>
       Input$EpisodeContext._({
         if (collectionId != null) r'collectionId': collectionId,
+        if (shuffle != null) r'shuffle': shuffle,
+        if (cursor != null) r'cursor': cursor,
       });
 
   Input$EpisodeContext._(this._$data);
@@ -152,17 +158,35 @@ class Input$EpisodeContext {
       final l$collectionId = data['collectionId'];
       result$data['collectionId'] = (l$collectionId as String?);
     }
+    if (data.containsKey('shuffle')) {
+      final l$shuffle = data['shuffle'];
+      result$data['shuffle'] = (l$shuffle as bool?);
+    }
+    if (data.containsKey('cursor')) {
+      final l$cursor = data['cursor'];
+      result$data['cursor'] = (l$cursor as String?);
+    }
     return Input$EpisodeContext._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
   String? get collectionId => (_$data['collectionId'] as String?);
+  bool? get shuffle => (_$data['shuffle'] as bool?);
+  String? get cursor => (_$data['cursor'] as String?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('collectionId')) {
       final l$collectionId = collectionId;
       result$data['collectionId'] = l$collectionId;
+    }
+    if (_$data.containsKey('shuffle')) {
+      final l$shuffle = shuffle;
+      result$data['shuffle'] = l$shuffle;
+    }
+    if (_$data.containsKey('cursor')) {
+      final l$cursor = cursor;
+      result$data['cursor'] = l$cursor;
     }
     return result$data;
   }
@@ -189,14 +213,35 @@ class Input$EpisodeContext {
     if (l$collectionId != lOther$collectionId) {
       return false;
     }
+    final l$shuffle = shuffle;
+    final lOther$shuffle = other.shuffle;
+    if (_$data.containsKey('shuffle') != other._$data.containsKey('shuffle')) {
+      return false;
+    }
+    if (l$shuffle != lOther$shuffle) {
+      return false;
+    }
+    final l$cursor = cursor;
+    final lOther$cursor = other.cursor;
+    if (_$data.containsKey('cursor') != other._$data.containsKey('cursor')) {
+      return false;
+    }
+    if (l$cursor != lOther$cursor) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
     final l$collectionId = collectionId;
-    return Object.hashAll(
-        [_$data.containsKey('collectionId') ? l$collectionId : const {}]);
+    final l$shuffle = shuffle;
+    final l$cursor = cursor;
+    return Object.hashAll([
+      _$data.containsKey('collectionId') ? l$collectionId : const {},
+      _$data.containsKey('shuffle') ? l$shuffle : const {},
+      _$data.containsKey('cursor') ? l$cursor : const {},
+    ]);
   }
 }
 
@@ -209,7 +254,11 @@ abstract class CopyWith$Input$EpisodeContext<TRes> {
   factory CopyWith$Input$EpisodeContext.stub(TRes res) =
       _CopyWithStubImpl$Input$EpisodeContext;
 
-  TRes call({String? collectionId});
+  TRes call({
+    String? collectionId,
+    bool? shuffle,
+    String? cursor,
+  });
 }
 
 class _CopyWithImpl$Input$EpisodeContext<TRes>
@@ -225,11 +274,17 @@ class _CopyWithImpl$Input$EpisodeContext<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? collectionId = _undefined}) =>
+  TRes call({
+    Object? collectionId = _undefined,
+    Object? shuffle = _undefined,
+    Object? cursor = _undefined,
+  }) =>
       _then(Input$EpisodeContext._({
         ..._instance._$data,
         if (collectionId != _undefined)
           'collectionId': (collectionId as String?),
+        if (shuffle != _undefined) 'shuffle': (shuffle as bool?),
+        if (cursor != _undefined) 'cursor': (cursor as String?),
       }));
 }
 
@@ -239,7 +294,12 @@ class _CopyWithStubImpl$Input$EpisodeContext<TRes>
 
   TRes _res;
 
-  call({String? collectionId}) => _res;
+  call({
+    String? collectionId,
+    bool? shuffle,
+    String? cursor,
+  }) =>
+      _res;
 }
 
 enum Enum$ImageStyle { poster, featured, $default, $unknown }
@@ -473,6 +533,7 @@ const possibleTypesMap = <String, Set<String>>{
     'CollectionItemPagination',
     'SectionPagination',
     'SectionItemPagination',
+    'PlaylistItemPagination',
     'SeasonPagination',
     'QuestionPagination',
     'FAQCategoryPagination',
@@ -495,6 +556,12 @@ const possibleTypesMap = <String, Set<String>>{
     'SeasonItem',
     'EpisodeItem',
     'PageItem',
+    'Playlist',
+    'Game',
+    'Season',
+    'StudyTopic',
+    'Episode',
+    'Show',
   },
   'Section': {
     'PosterSection',
@@ -539,6 +606,7 @@ const possibleTypesMap = <String, Set<String>>{
     'Link',
     'StudyTopic',
     'Game',
+    'Playlist',
   },
   'CalendarEntry': {
     'SimpleCalendarEntry',
@@ -564,4 +632,5 @@ const possibleTypesMap = <String, Set<String>>{
     'Season',
     'ContextCollection',
   },
+  'PlaylistItem': {'Episode'},
 };

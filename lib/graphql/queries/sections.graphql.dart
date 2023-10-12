@@ -2092,6 +2092,10 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
         return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Page
             .fromJson(json);
@@ -2170,6 +2174,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSec
             Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -2194,6 +2201,10 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSec
       case "Link":
         return link(this
             as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -2228,6 +2239,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSec
             Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -2257,6 +2271,14 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSec
         if (link != null) {
           return link(this
               as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -2657,6 +2679,230 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? $__typename,
   }) =>
       _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item {
+  Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+    required this.title,
+    this.image,
+    required this.items,
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    final l$title = json['title'];
+    final l$image = json['image'];
+    final l$items = json['items'];
+    return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+      title: (l$title as String),
+      image: (l$image as String?),
+      items:
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items
+              .fromJson((l$items as Map<String, dynamic>)),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  final String title;
+
+  final String? image;
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items
+      items;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    final l$title = title;
+    final l$image = image;
+    final l$items = items;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+      l$title,
+      l$image,
+      l$items,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != lOther$items) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist
+    on Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist(
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+    String? title,
+    String? image,
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items?
+        items,
+  });
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items<
+      TRes> get items;
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+    Object? title = _undefined,
+    Object? image = _undefined,
+    Object? items = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        image: image == _undefined ? _instance.image : (image as String?),
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items
+                as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items),
+      ));
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items<
+      TRes> get items {
+    final local$items = _instance.items;
+    return CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items(
+        local$items, (e) => call(items: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+    String? title,
+    String? image,
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items?
+        items,
+  }) =>
+      _res;
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items<
+          TRes>
+      get items =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items
+              .stub(_res);
 }
 
 class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Page
@@ -4016,6 +4262,521 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
   call({String? $__typename}) => _res;
 }
 
+class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist$items {
+  Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items({
+    required this.items,
+    this.$__typename = 'PlaylistItemPagination',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items>
+      items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items
+    on Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items(
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items;
+
+  TRes call({
+    List<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items>?
+        items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items> Function(
+              Iterable<
+                  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+                      Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<
+                Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items> Function(
+                  Iterable<
+                      CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+                          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+                e,
+                (i) => i,
+              ))).toList());
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items>?
+        items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items {
+  Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items({
+    this.image,
+    required this.$__typename,
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items.fromJson(
+      Map<String, dynamic> json) {
+    switch (json["__typename"] as String) {
+      case "Episode":
+        return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+            .fromJson(json);
+
+      default:
+        final l$image = json['image'];
+        final l$$__typename = json['__typename'];
+        return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+          image: (l$image as String?),
+          $__typename: (l$$__typename as String),
+        );
+    }
+  }
+
+  final String? image;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$image = image;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$image,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items
+    on Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+            this,
+            (i) => i,
+          );
+  _T when<_T>({
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+        episode,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Episode":
+        return episode(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)?
+        episode,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items;
+
+  TRes call({
+    String? image,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? image = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+        image: image == _undefined ? _instance.image : (image as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode,
+        Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items {
+  Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode({
+    this.image,
+    this.$__typename = 'Episode',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.fromJson(
+      Map<String, dynamic> json) {
+    final l$image = json['image'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+      image: (l$image as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? image;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$image = image;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$image,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+    on Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
+
+  TRes call({
+    String? image,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? image = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+        image: image == _undefined ? _instance.image : (image as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Query$FetchMoreItemsForItemSection$section$$FeaturedSection
     implements
         Fragment$Section$$FeaturedSection,
@@ -5027,6 +5788,10 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
         return Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Page
             .fromJson(json);
@@ -5105,6 +5870,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$FeaturedS
             Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -5129,6 +5897,10 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$FeaturedS
       case "Link":
         return link(this
             as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -5163,6 +5935,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$FeaturedS
             Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -5192,6 +5967,14 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$FeaturedS
         if (link != null) {
           return link(this
               as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -5589,6 +6372,153 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$FeaturedSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item {
+  Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist
+    on Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist<
+          Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist(
+    Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -7921,6 +8851,10 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
         return Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Page
             .fromJson(json);
@@ -7999,6 +8933,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$DefaultSe
             Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -8023,6 +8960,10 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$DefaultSe
       case "Link":
         return link(this
             as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -8057,6 +8998,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$DefaultSe
             Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -8086,6 +9030,14 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$DefaultSe
         if (link != null) {
           return link(this
               as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -8483,6 +9435,153 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$DefaultSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item {
+  Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist
+    on Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist<
+          Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist(
+    Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -10843,6 +11942,10 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item
         return Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Page
             .fromJson(json);
@@ -10921,6 +12024,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$CardSecti
             Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -10945,6 +12051,10 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$CardSecti
       case "Link":
         return link(this
             as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -10979,6 +12089,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$CardSecti
             Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -11008,6 +12121,14 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$CardSecti
         if (link != null) {
           return link(this
               as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -11405,6 +12526,153 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$CardSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item {
+  Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist
+    on Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist<
+          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist(
+    Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -13871,6 +15139,10 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item
         return Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Page
             .fromJson(json);
@@ -13949,6 +15221,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$ListSecti
             Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -13973,6 +15248,10 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$ListSecti
       case "Link":
         return link(this
             as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -14007,6 +15286,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$ListSecti
             Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -14036,6 +15318,14 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$ListSecti
         if (link != null) {
           return link(this
               as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -14433,6 +15723,153 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$ListSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item {
+  Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist
+    on Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist<
+          Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist(
+    Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -17558,6 +18995,10 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items
         return Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Page
             .fromJson(json);
@@ -17636,6 +19077,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$DefaultGr
             Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -17660,6 +19104,10 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$DefaultGr
       case "Link":
         return link(this
             as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -17694,6 +19142,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$DefaultGr
             Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -17723,6 +19174,14 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$DefaultGr
         if (link != null) {
           return link(this
               as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -18122,6 +19581,154 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$DefaultGridSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Fragment$GridSectionItem$item$$Playlist,
+        Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item {
+  Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist
+    on Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist<
+          Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist(
+    Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -20508,6 +22115,10 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$
         return Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Page
             .fromJson(json);
@@ -20586,6 +22197,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterGri
             Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -20610,6 +22224,10 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterGri
       case "Link":
         return link(this
             as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -20644,6 +22262,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterGri
             Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -20673,6 +22294,14 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterGri
         if (link != null) {
           return link(this
               as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -21072,6 +22701,154 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$PosterGridSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Fragment$GridSectionItem$item$$Playlist,
+        Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item {
+  Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist
+    on Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist<
+          Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist(
+    Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -23455,6 +25232,10 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$it
         return Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Page
             .fromJson(json);
@@ -23533,6 +25314,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$IconGridS
             Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -23557,6 +25341,10 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$IconGridS
       case "Link":
         return link(this
             as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -23591,6 +25379,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$IconGridS
             Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -23620,6 +25411,14 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$IconGridS
         if (link != null) {
           return link(this
               as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -24019,6 +25818,154 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSect
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$IconGridSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Fragment$GridSectionItem$item$$Playlist,
+        Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item {
+  Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist
+    on Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist<
+          Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist(
+    Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -30284,6 +32231,10 @@ class Query$GetSection$section$$PosterSection$items$items$item
         return Query$GetSection$section$$PosterSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$GetSection$section$$PosterSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$GetSection$section$$PosterSection$items$items$item$$Page
             .fromJson(json);
@@ -30361,6 +32312,9 @@ extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$i
             Query$GetSection$section$$PosterSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$GetSection$section$$PosterSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -30385,6 +32339,10 @@ extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$i
       case "Link":
         return link(this
             as Query$GetSection$section$$PosterSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$GetSection$section$$PosterSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -30416,6 +32374,9 @@ extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$i
         game,
     _T Function(Query$GetSection$section$$PosterSection$items$items$item$$Link)?
         link,
+    _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist)?
+        playlist,
     _T Function(Query$GetSection$section$$PosterSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -30444,6 +32405,14 @@ extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$i
         if (link != null) {
           return link(this
               as Query$GetSection$section$$PosterSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$GetSection$section$$PosterSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -30834,6 +32803,227 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
     String? $__typename,
   }) =>
       _res;
+}
+
+class Query$GetSection$section$$PosterSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Query$GetSection$section$$PosterSection$items$items$item {
+  Query$GetSection$section$$PosterSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+    required this.title,
+    this.image,
+    required this.items,
+  });
+
+  factory Query$GetSection$section$$PosterSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    final l$title = json['title'];
+    final l$image = json['image'];
+    final l$items = json['items'];
+    return Query$GetSection$section$$PosterSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+      title: (l$title as String),
+      image: (l$image as String?),
+      items:
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items
+              .fromJson((l$items as Map<String, dynamic>)),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  final String title;
+
+  final String? image;
+
+  final Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items
+      items;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    final l$title = title;
+    final l$image = image;
+    final l$items = items;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+      l$title,
+      l$image,
+      l$items,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$PosterSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != lOther$items) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$item$$Playlist
+    on Query$GetSection$section$$PosterSection$items$items$item$$Playlist {
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist<
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist(
+    Query$GetSection$section$$PosterSection$items$items$item$$Playlist instance,
+    TRes Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+    String? title,
+    String? image,
+    Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items?
+        items,
+  });
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items<
+      TRes> get items;
+}
+
+class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$PosterSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+      Query$GetSection$section$$PosterSection$items$items$item$$Playlist) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+    Object? title = _undefined,
+    Object? image = _undefined,
+    Object? items = _undefined,
+  }) =>
+      _then(Query$GetSection$section$$PosterSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        image: image == _undefined ? _instance.image : (image as String?),
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items
+                as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items),
+      ));
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items<
+      TRes> get items {
+    final local$items = _instance.items;
+    return CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items(
+        local$items, (e) => call(items: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+    String? title,
+    String? image,
+    Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items?
+        items,
+  }) =>
+      _res;
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items<
+          TRes>
+      get items =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items
+              .stub(_res);
 }
 
 class Query$GetSection$section$$PosterSection$items$items$item$$Page
@@ -32182,6 +34372,521 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
   call({String? $__typename}) => _res;
 }
 
+class Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist$items {
+  Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items({
+    required this.items,
+    this.$__typename = 'PlaylistItemPagination',
+  });
+
+  factory Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items>
+      items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items
+    on Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items {
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items<
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items(
+    Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items
+        instance,
+    TRes Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items;
+
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items;
+
+  TRes call({
+    List<Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items>?
+        items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items> Function(
+              Iterable<
+                  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+                      Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<
+                Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items> Function(
+                  Iterable<
+                      CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+                          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+                e,
+                (i) => i,
+              ))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items>?
+        items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items {
+  Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items({
+    this.image,
+    required this.$__typename,
+  });
+
+  factory Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items.fromJson(
+      Map<String, dynamic> json) {
+    switch (json["__typename"] as String) {
+      case "Episode":
+        return Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+            .fromJson(json);
+
+      default:
+        final l$image = json['image'];
+        final l$$__typename = json['__typename'];
+        return Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+          image: (l$image as String?),
+          $__typename: (l$$__typename as String),
+        );
+    }
+  }
+
+  final String? image;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$image = image;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$image,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items
+    on Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items {
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+            this,
+            (i) => i,
+          );
+  _T when<_T>({
+    required _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+        episode,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Episode":
+        return episode(this
+            as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)?
+        episode,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
+}
+
+abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+    Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items
+        instance,
+    TRes Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items;
+
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items;
+
+  TRes call({
+    String? image,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? image = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+        image: image == _undefined ? _instance.image : (image as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode,
+        Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items {
+  Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode({
+    this.image,
+    this.$__typename = 'Episode',
+  });
+
+  factory Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.fromJson(
+      Map<String, dynamic> json) {
+    final l$image = json['image'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+      image: (l$image as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? image;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$image = image;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$image,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+    on Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode {
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+    Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+        instance,
+    TRes Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
+
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
+
+  TRes call({
+    String? image,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? image = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+        image: image == _undefined ? _instance.image : (image as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Query$GetSection$section$$FeaturedSection
     implements
         Fragment$Section$$FeaturedSection,
@@ -33124,6 +35829,10 @@ class Query$GetSection$section$$FeaturedSection$items$items$item
         return Query$GetSection$section$$FeaturedSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$GetSection$section$$FeaturedSection$items$items$item$$Page
             .fromJson(json);
@@ -33202,6 +35911,9 @@ extension UtilityExtension$Query$GetSection$section$$FeaturedSection$items$items
             Query$GetSection$section$$FeaturedSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$GetSection$section$$FeaturedSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -33226,6 +35938,10 @@ extension UtilityExtension$Query$GetSection$section$$FeaturedSection$items$items
       case "Link":
         return link(this
             as Query$GetSection$section$$FeaturedSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -33260,6 +35976,9 @@ extension UtilityExtension$Query$GetSection$section$$FeaturedSection$items$items
             Query$GetSection$section$$FeaturedSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$GetSection$section$$FeaturedSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -33289,6 +36008,14 @@ extension UtilityExtension$Query$GetSection$section$$FeaturedSection$items$items
         if (link != null) {
           return link(this
               as Query$GetSection$section$$FeaturedSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -33676,6 +36403,153 @@ class _CopyWithStubImpl$Query$GetSection$section$$FeaturedSection$items$items$it
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$FeaturedSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Query$GetSection$section$$FeaturedSection$items$items$item {
+  Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist
+    on Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist {
+  CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist<
+          Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist(
+    Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$FeaturedSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -35929,6 +38803,10 @@ class Query$GetSection$section$$DefaultSection$items$items$item
         return Query$GetSection$section$$DefaultSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$GetSection$section$$DefaultSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$GetSection$section$$DefaultSection$items$items$item$$Page
             .fromJson(json);
@@ -36006,6 +38884,9 @@ extension UtilityExtension$Query$GetSection$section$$DefaultSection$items$items$
             Query$GetSection$section$$DefaultSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$GetSection$section$$DefaultSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -36030,6 +38911,10 @@ extension UtilityExtension$Query$GetSection$section$$DefaultSection$items$items$
       case "Link":
         return link(this
             as Query$GetSection$section$$DefaultSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$GetSection$section$$DefaultSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -36064,6 +38949,9 @@ extension UtilityExtension$Query$GetSection$section$$DefaultSection$items$items$
             Query$GetSection$section$$DefaultSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$GetSection$section$$DefaultSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -36093,6 +38981,14 @@ extension UtilityExtension$Query$GetSection$section$$DefaultSection$items$items$
         if (link != null) {
           return link(this
               as Query$GetSection$section$$DefaultSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$GetSection$section$$DefaultSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -36480,6 +39376,152 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultSection$items$items$ite
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetSection$section$$DefaultSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$DefaultSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Query$GetSection$section$$DefaultSection$items$items$item {
+  Query$GetSection$section$$DefaultSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$GetSection$section$$DefaultSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$DefaultSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$DefaultSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist
+    on Query$GetSection$section$$DefaultSection$items$items$item$$Playlist {
+  CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist<
+          Query$GetSection$section$$DefaultSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist(
+    Query$GetSection$section$$DefaultSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$DefaultSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$DefaultSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetSection$section$$DefaultSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$DefaultSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -38760,6 +41802,10 @@ class Query$GetSection$section$$CardSection$items$items$item
         return Query$GetSection$section$$CardSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$GetSection$section$$CardSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$GetSection$section$$CardSection$items$items$item$$Page
             .fromJson(json);
@@ -38837,6 +41883,9 @@ extension UtilityExtension$Query$GetSection$section$$CardSection$items$items$ite
             Query$GetSection$section$$CardSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$GetSection$section$$CardSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$GetSection$section$$CardSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -38861,6 +41910,10 @@ extension UtilityExtension$Query$GetSection$section$$CardSection$items$items$ite
       case "Link":
         return link(this
             as Query$GetSection$section$$CardSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$GetSection$section$$CardSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -38892,6 +41945,9 @@ extension UtilityExtension$Query$GetSection$section$$CardSection$items$items$ite
         game,
     _T Function(Query$GetSection$section$$CardSection$items$items$item$$Link)?
         link,
+    _T Function(
+            Query$GetSection$section$$CardSection$items$items$item$$Playlist)?
+        playlist,
     _T Function(Query$GetSection$section$$CardSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -38919,6 +41975,14 @@ extension UtilityExtension$Query$GetSection$section$$CardSection$items$items$ite
         if (link != null) {
           return link(this
               as Query$GetSection$section$$CardSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$GetSection$section$$CardSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -39298,6 +42362,150 @@ class _CopyWithStubImpl$Query$GetSection$section$$CardSection$items$items$item$$
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetSection$section$$CardSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$CardSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Query$GetSection$section$$CardSection$items$items$item {
+  Query$GetSection$section$$CardSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$GetSection$section$$CardSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$CardSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$CardSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$CardSection$items$items$item$$Playlist
+    on Query$GetSection$section$$CardSection$items$items$item$$Playlist {
+  CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Playlist<
+          Query$GetSection$section$$CardSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Playlist(
+    Query$GetSection$section$$CardSection$items$items$item$$Playlist instance,
+    TRes Function(
+            Query$GetSection$section$$CardSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$CardSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$CardSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetSection$section$$CardSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$CardSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$CardSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+      Query$GetSection$section$$CardSection$items$items$item$$Playlist) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetSection$section$$CardSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$CardSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$CardSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -41677,6 +44885,10 @@ class Query$GetSection$section$$ListSection$items$items$item
         return Query$GetSection$section$$ListSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$GetSection$section$$ListSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$GetSection$section$$ListSection$items$items$item$$Page
             .fromJson(json);
@@ -41754,6 +44966,9 @@ extension UtilityExtension$Query$GetSection$section$$ListSection$items$items$ite
             Query$GetSection$section$$ListSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$GetSection$section$$ListSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$GetSection$section$$ListSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -41778,6 +44993,10 @@ extension UtilityExtension$Query$GetSection$section$$ListSection$items$items$ite
       case "Link":
         return link(this
             as Query$GetSection$section$$ListSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$GetSection$section$$ListSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -41809,6 +45028,9 @@ extension UtilityExtension$Query$GetSection$section$$ListSection$items$items$ite
         game,
     _T Function(Query$GetSection$section$$ListSection$items$items$item$$Link)?
         link,
+    _T Function(
+            Query$GetSection$section$$ListSection$items$items$item$$Playlist)?
+        playlist,
     _T Function(Query$GetSection$section$$ListSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -41836,6 +45058,14 @@ extension UtilityExtension$Query$GetSection$section$$ListSection$items$items$ite
         if (link != null) {
           return link(this
               as Query$GetSection$section$$ListSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$GetSection$section$$ListSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -42215,6 +45445,150 @@ class _CopyWithStubImpl$Query$GetSection$section$$ListSection$items$items$item$$
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetSection$section$$ListSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$ListSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Query$GetSection$section$$ListSection$items$items$item {
+  Query$GetSection$section$$ListSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$GetSection$section$$ListSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$ListSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$ListSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$ListSection$items$items$item$$Playlist
+    on Query$GetSection$section$$ListSection$items$items$item$$Playlist {
+  CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Playlist<
+          Query$GetSection$section$$ListSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Playlist(
+    Query$GetSection$section$$ListSection$items$items$item$$Playlist instance,
+    TRes Function(
+            Query$GetSection$section$$ListSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$ListSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$ListSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetSection$section$$ListSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$ListSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$ListSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+      Query$GetSection$section$$ListSection$items$items$item$$Playlist) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetSection$section$$ListSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$ListSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$ListSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -45209,6 +48583,10 @@ class Query$GetSection$section$$DefaultGridSection$items$items$item
         return Query$GetSection$section$$DefaultGridSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$GetSection$section$$DefaultGridSection$items$items$item$$Page
             .fromJson(json);
@@ -45287,6 +48665,9 @@ extension UtilityExtension$Query$GetSection$section$$DefaultGridSection$items$it
             Query$GetSection$section$$DefaultGridSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$GetSection$section$$DefaultGridSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -45311,6 +48692,10 @@ extension UtilityExtension$Query$GetSection$section$$DefaultGridSection$items$it
       case "Link":
         return link(this
             as Query$GetSection$section$$DefaultGridSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -45345,6 +48730,9 @@ extension UtilityExtension$Query$GetSection$section$$DefaultGridSection$items$it
             Query$GetSection$section$$DefaultGridSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$GetSection$section$$DefaultGridSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -45374,6 +48762,14 @@ extension UtilityExtension$Query$GetSection$section$$DefaultGridSection$items$it
         if (link != null) {
           return link(this
               as Query$GetSection$section$$DefaultGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -45767,6 +49163,154 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultGridSection$items$items
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$DefaultGridSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Fragment$GridSectionItem$item$$Playlist,
+        Query$GetSection$section$$DefaultGridSection$items$items$item {
+  Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist
+    on Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist {
+  CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist<
+          Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist(
+    Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$DefaultGridSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -48089,6 +51633,10 @@ class Query$GetSection$section$$PosterGridSection$items$items$item
         return Query$GetSection$section$$PosterGridSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$GetSection$section$$PosterGridSection$items$items$item$$Page
             .fromJson(json);
@@ -48167,6 +51715,9 @@ extension UtilityExtension$Query$GetSection$section$$PosterGridSection$items$ite
             Query$GetSection$section$$PosterGridSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$GetSection$section$$PosterGridSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -48191,6 +51742,10 @@ extension UtilityExtension$Query$GetSection$section$$PosterGridSection$items$ite
       case "Link":
         return link(this
             as Query$GetSection$section$$PosterGridSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -48225,6 +51780,9 @@ extension UtilityExtension$Query$GetSection$section$$PosterGridSection$items$ite
             Query$GetSection$section$$PosterGridSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$GetSection$section$$PosterGridSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -48254,6 +51812,14 @@ extension UtilityExtension$Query$GetSection$section$$PosterGridSection$items$ite
         if (link != null) {
           return link(this
               as Query$GetSection$section$$PosterGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -48643,6 +52209,154 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterGridSection$items$items$
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$PosterGridSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Fragment$GridSectionItem$item$$Playlist,
+        Query$GetSection$section$$PosterGridSection$items$items$item {
+  Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist
+    on Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist {
+  CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist<
+          Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist(
+    Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$PosterGridSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -50951,6 +54665,10 @@ class Query$GetSection$section$$IconGridSection$items$items$item
         return Query$GetSection$section$$IconGridSection$items$items$item$$Link
             .fromJson(json);
 
+      case "Playlist":
+        return Query$GetSection$section$$IconGridSection$items$items$item$$Playlist
+            .fromJson(json);
+
       case "Page":
         return Query$GetSection$section$$IconGridSection$items$items$item$$Page
             .fromJson(json);
@@ -51029,6 +54747,9 @@ extension UtilityExtension$Query$GetSection$section$$IconGridSection$items$items
             Query$GetSection$section$$IconGridSection$items$items$item$$Link)
         link,
     required _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Playlist)
+        playlist,
+    required _T Function(
             Query$GetSection$section$$IconGridSection$items$items$item$$Page)
         page,
     required _T Function(
@@ -51053,6 +54774,10 @@ extension UtilityExtension$Query$GetSection$section$$IconGridSection$items$items
       case "Link":
         return link(this
             as Query$GetSection$section$$IconGridSection$items$items$item$$Link);
+
+      case "Playlist":
+        return playlist(this
+            as Query$GetSection$section$$IconGridSection$items$items$item$$Playlist);
 
       case "Page":
         return page(this
@@ -51087,6 +54812,9 @@ extension UtilityExtension$Query$GetSection$section$$IconGridSection$items$items
             Query$GetSection$section$$IconGridSection$items$items$item$$Link)?
         link,
     _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Playlist)?
+        playlist,
+    _T Function(
             Query$GetSection$section$$IconGridSection$items$items$item$$Page)?
         page,
     _T Function(
@@ -51116,6 +54844,14 @@ extension UtilityExtension$Query$GetSection$section$$IconGridSection$items$items
         if (link != null) {
           return link(this
               as Query$GetSection$section$$IconGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Playlist":
+        if (playlist != null) {
+          return playlist(this
+              as Query$GetSection$section$$IconGridSection$items$items$item$$Playlist);
         } else {
           return orElse();
         }
@@ -51505,6 +55241,154 @@ class _CopyWithStubImpl$Query$GetSection$section$$IconGridSection$items$items$it
 
   call({
     String? url,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetSection$section$$IconGridSection$items$items$item$$Playlist
+    implements
+        Fragment$Section$$IconGridSection$items$items$item$$Playlist,
+        Fragment$ItemSectionItem$item$$Playlist,
+        Fragment$GridSectionItem$item$$Playlist,
+        Query$GetSection$section$$IconGridSection$items$items$item {
+  Query$GetSection$section$$IconGridSection$items$items$item$$Playlist({
+    required this.id,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$GetSection$section$$IconGridSection$items$items$item$$Playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$IconGridSection$items$items$item$$Playlist(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$IconGridSection$items$items$item$$Playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist
+    on Query$GetSection$section$$IconGridSection$items$items$item$$Playlist {
+  CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist<
+          Query$GetSection$section$$IconGridSection$items$items$item$$Playlist>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist(
+    Query$GetSection$section$$IconGridSection$items$items$item$$Playlist
+        instance,
+    TRes Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Playlist)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist;
+
+  factory CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$IconGridSection$items$items$item$$Playlist
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$IconGridSection$items$items$item$$Playlist)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$IconGridSection$items$items$item$$Playlist(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$IconGridSection$items$items$item$$Playlist(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;

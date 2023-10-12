@@ -297,7 +297,7 @@ class _RenderInnerShadow extends RenderProxyBox {
         rectInner.bottomRight,
       ],
       Paint()
-        ..strokeWidth = 1
+        ..strokeWidth = 4
         ..color = Colors.white,
     );
     context.paintChild(child!, offset + Offset(0, shadowOffset.dy));

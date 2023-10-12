@@ -3,7 +3,7 @@ enum ShowType {
     series
 }
 
-type Show {
+type Show implements CollectionItem {
     id: ID!
     legacyID: ID
     status: Status!

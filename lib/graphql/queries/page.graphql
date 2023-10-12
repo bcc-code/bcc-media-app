@@ -29,6 +29,10 @@ fragment ItemSectionItem on SectionItem {
     ... on Link {
       url
     }
+    ... on Playlist {
+      id
+      __typename
+    }
     ... on Page {
       code
     }
@@ -96,6 +100,15 @@ fragment Section on Section {
           item {
             ... on Episode {
               productionDate
+            }
+            ... on Playlist {
+              title
+              image
+              items(first: 8) {
+                items {
+                  image(style: default)
+                }
+              }
             }
             __typename
           }

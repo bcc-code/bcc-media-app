@@ -1,4 +1,4 @@
-type Game {
+type Game implements CollectionItem {
     id: ID!
     title: String!
     description: String

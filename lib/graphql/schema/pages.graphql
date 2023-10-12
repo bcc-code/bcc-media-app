@@ -12,15 +12,6 @@ type Page{
     ): SectionPagination! @goField(forceResolver: true)
 }
 
-type Collection {
-    id: ID!
-    slug: String
-    items(
-        first: Int,
-        offset: Int,
-    ): CollectionItemPagination @goField(forceResolver: true)
-}
-
 type ContextCollection {
     id: ID!
     slug: String
