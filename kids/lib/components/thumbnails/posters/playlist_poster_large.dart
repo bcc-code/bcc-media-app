@@ -129,71 +129,61 @@ class _PlaylistInnerGrid extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+
     var urlsToUse = imageUrls.take(8).toList();
     if (urlsToUse.length < 8) {
       urlsToUse = urlsToUse + List.generate(8 - urlsToUse.length, (index) => urlsToUse[index % urlsToUse.length]);
     }
     const scale = 1.4;
     final spacing = (small ? 8 : 16) * (1 / scale);
-    final design = DesignSystem.of(context);
-    final controller = InheritedData.listen<ScrollController>(context);
-    final refresh = useState(0.0);
-    useMemoized(() {
-      SchedulerBinding.instance.scheduleFrameCallback((timeStamp) {
-        refresh.value += 1;
-      });
-    });
-    return ListenableBuilder(
-      listenable: controller ?? ValueNotifier(null),
-      builder: (c, value) {
-        return IgnorePointer(
-          child: Transform(
-            alignment: Alignment.center,
-            transform: Matrix4.identity()
-              ..rotateZ(-0.2)
-              ..scale(scale),
-            child: GridView.count(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 2,
-              padding: EdgeInsets.zero,
-              crossAxisSpacing: spacing,
-              mainAxisSpacing: spacing,
-              childAspectRatio: 16 / 9,
-              children: imageUrls
-                  .map(
-                    (url) => ClipRRect(
-                      borderRadius: BorderRadius.circular(small ? 6 : 12),
-                      child: LayoutBuilder(
-                        builder: (context, constraints) => Image(
-                          fit: BoxFit.cover,
-                          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-                            return Stack(
-                              children: [
-                                Positioned.fill(child: Container(color: design.colors.label1)),
-                                AnimatedOpacity(
-                                  opacity: frame == null ? 0 : 1,
-                                  duration: const Duration(seconds: 1),
-                                  curve: Curves.easeOut,
-                                  child: child,
-                                ),
-                              ],
-                            );
-                          },
-                          image: networkImageWithRetryAndResize(
-                            imageUrl: getImageUri(url, height: constraints.maxHeight.round()).toString(),
-                            cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
-                          ),
-                          errorBuilder: imageErrorBuilder,
-                        ),
+
+    return IgnorePointer(
+      child: Transform(
+        alignment: Alignment.center,
+        transform: Matrix4.identity()
+          ..rotateZ(-0.2)
+          ..scale(scale),
+        child: GridView.count(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          crossAxisCount: 2,
+          padding: EdgeInsets.zero,
+          crossAxisSpacing: spacing,
+          mainAxisSpacing: spacing,
+          childAspectRatio: 16 / 9,
+          children: imageUrls
+              .map(
+                (url) => ClipRRect(
+                  borderRadius: BorderRadius.circular(small ? 6 : 12),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) => Image(
+                      fit: BoxFit.cover,
+                      frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                        return Stack(
+                          children: [
+                            Positioned.fill(child: Container(color: design.colors.label1)),
+                            AnimatedOpacity(
+                              opacity: frame == null ? 0 : 1,
+                              duration: const Duration(seconds: 1),
+                              curve: Curves.easeOut,
+                              child: child,
+                            ),
+                          ],
+                        );
+                      },
+                      image: networkImageWithRetryAndResize(
+                        imageUrl: getImageUri(url, height: constraints.maxHeight.round()).toString(),
+                        cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
                       ),
+                      errorBuilder: imageErrorBuilder,
                     ),
-                  )
-                  .toList(),
-            ),
-          ),
-        );
-      },
+                  ),
+                ),
+              )
+              .toList(),
+        ),
+      ),
     );
   }
 }

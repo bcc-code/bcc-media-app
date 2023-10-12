@@ -28,9 +28,9 @@ class ShowScreen extends HookWidget {
     final double basePadding = bp.smallerThan(TABLET) ? 24.0 : 48.0;
     final titleStyle = bp.smallerThan(TABLET) ? design.textStyles.headline3 : design.textStyles.headline2;
 
-    final showQuery = useQuery$GetEpisodesForShow(
-      Options$Query$GetEpisodesForShow(
-        variables: Variables$Query$GetEpisodesForShow(id: showId),
+    final showQuery = useQuery$GetShowOverview(
+      Options$Query$GetShowOverview(
+        variables: Variables$Query$GetShowOverview(id: showId),
         cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
         fetchPolicy: FetchPolicy.networkOnly,
       ),
@@ -95,7 +95,11 @@ class ShowScreen extends HookWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: basePadding).copyWith(bottom: basePadding),
                       child: EpisodeGrid(
-                        items: showQuery.result.parsedData!.$show.seasons.items.expand((element) => element.episodes.items).toList(),
+                        items: showQuery.result.parsedData!.$show.seasons.items
+                            .expand((element) => element.episodes.items)
+                            .whereType<Fragment$KidsEpisodeGridItem>()
+                            .map((e) => EpisodeGridItem.fromFragment(e))
+                            .toList(),
                       ),
                     ),
                   ),

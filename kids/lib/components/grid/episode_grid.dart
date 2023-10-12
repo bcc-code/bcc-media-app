@@ -15,10 +15,33 @@ import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:kids/components/buttons/button.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
+class EpisodeGridItem {
+  final String id;
+  final String title;
+  final String? image;
+  final int? duration;
+
+  EpisodeGridItem({
+    required this.id,
+    required this.title,
+    required this.image,
+    required this.duration,
+  });
+
+  factory EpisodeGridItem.fromFragment(Fragment$KidsEpisodeGridItem e) {
+    return EpisodeGridItem(
+      id: e.id,
+      title: e.title,
+      image: e.image,
+      duration: e.duration,
+    );
+  }
+}
+
 class EpisodeGrid extends StatelessWidget {
   const EpisodeGrid({super.key, required this.items});
 
-  final List<Query$GetEpisodesForShow$show$seasons$items$episodes$items> items;
+  final List<EpisodeGridItem> items;
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +54,18 @@ class EpisodeGrid extends StatelessWidget {
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       children: items.mapIndexed((index, item) {
-        return EpisodeGridItem(item);
+        return _EpisodeGridItemRenderer(item);
       }).toList(),
     );
   }
 }
 
-class EpisodeGridItem extends ConsumerWidget {
-  const EpisodeGridItem(this.item, {super.key});
+class _EpisodeGridItemRenderer extends ConsumerWidget {
+  const _EpisodeGridItemRenderer(
+    this.item,
+  );
 
-  final Query$GetEpisodesForShow$show$seasons$items$episodes$items item;
+  final EpisodeGridItem item;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -69,25 +94,6 @@ class EpisodeGridItem extends ConsumerWidget {
     }
 
     final bp = ResponsiveBreakpoints.of(context);
-    final durationButton = Button.raw(
-      onPressed: onTap,
-      color: design.colors.background1,
-      activeColor: design.colors.background1,
-      shadowColor: design.colors.label1.withOpacity(0.2),
-      sideColor: const Color(0xFFE9ECF4),
-      labelText: '${Duration(seconds: item.duration).inMinutes} ${S.of(context).minutesShort}',
-      labelTextStyle: design.textStyles.title2,
-      elevationHeight: 2,
-      iconSize: 0,
-      height: 40,
-      paddings: const ButtonPaddings(
-        fromLabelToSide: 20,
-        fromLabelToSideWhenAlone: 20,
-        fromIconToLabel: 20,
-        fromIconToSide: 20,
-        fromIconToSideWhenAlone: 20,
-      ),
-    );
 
     return FocusableControlBuilder(
       cursor: SystemMouseCursors.click,
@@ -121,23 +127,12 @@ class EpisodeGridItem extends ConsumerWidget {
                       : Container(color: design.colors.separator2),
                 ),
               ),
-              Positioned(
-                bottom: bp.smallerThan(TABLET) ? 8 : 16,
-                left: bp.smallerThan(TABLET) ? 8 : 16,
-                child: bp.smallerThan(TABLET)
-                    ? durationButton.copyWith(
-                        height: 28,
-                        labelTextStyle: design.textStyles.title3,
-                        paddings: const ButtonPaddings(
-                          fromLabelToSide: 12,
-                          fromLabelToSideWhenAlone: 12,
-                          fromIconToLabel: 12,
-                          fromIconToSide: 12,
-                          fromIconToSideWhenAlone: 12,
-                        ),
-                      )
-                    : durationButton,
-              ),
+              if (item.duration != null)
+                Positioned(
+                  bottom: bp.smallerThan(TABLET) ? 8 : 16,
+                  left: bp.smallerThan(TABLET) ? 8 : 16,
+                  child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
+                ),
             ],
           ),
           Padding(
@@ -149,6 +144,54 @@ class EpisodeGridItem extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _DurationButton extends StatelessWidget {
+  const _DurationButton(
+    this.duration, {
+    required this.small,
+  });
+
+  final int duration;
+  final bool small;
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+    final durationButton = Button.raw(
+      color: design.colors.background1,
+      activeColor: design.colors.background1,
+      shadowColor: design.colors.label1.withOpacity(0.2),
+      sideColor: const Color(0xFFE9ECF4),
+      labelText: '${Duration(seconds: duration).inMinutes} ${S.of(context).minutesShort}',
+      labelTextStyle: design.textStyles.title2,
+      elevationHeight: 2,
+      iconSize: 0,
+      height: 40,
+      paddings: const ButtonPaddings(
+        fromLabelToSide: 20,
+        fromLabelToSideWhenAlone: 20,
+        fromIconToLabel: 20,
+        fromIconToSide: 20,
+        fromIconToSideWhenAlone: 20,
+      ),
+    );
+    return IgnorePointer(
+      child: small
+          ? durationButton.copyWith(
+              height: 28,
+              labelTextStyle: design.textStyles.title3,
+              paddings: const ButtonPaddings(
+                fromLabelToSide: 12,
+                fromLabelToSideWhenAlone: 12,
+                fromIconToLabel: 12,
+                fromIconToSide: 12,
+                fromIconToSideWhenAlone: 12,
+              ),
+            )
+          : durationButton,
     );
   }
 }
