@@ -46,12 +46,14 @@ class SettingsScreen extends HookConsumerWidget {
       }
     }
 
-    final orientationController = OrientationController.read(context);
     final readyToDisplay = useState(false);
     useEffect(() {
       // set portrait for mobile
       if (!bp.isTablet) {
-        orientationController!.requestOrientation(Orientation.portrait);
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+          DeviceOrientation.portraitDown,
+        ]);
         Future.delayed(const Duration(milliseconds: 300), () {
           if (!context.mounted) return;
           readyToDisplay.value = true;
@@ -62,7 +64,10 @@ class SettingsScreen extends HookConsumerWidget {
         checkParentalGateOrPop();
       }
       return () {
-        orientationController!.requestOrientation(Orientation.landscape);
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.landscapeLeft,
+          DeviceOrientation.landscapeRight,
+        ]);
       };
     }, [bp.isTablet]);
 
@@ -122,89 +127,27 @@ class SettingsScreen extends HookConsumerWidget {
                       alignment: Alignment.center,
                       width: double.infinity,
                       child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         constraints: const BoxConstraints(maxWidth: 500),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            Container(
-                              width: double.infinity,
+                            const Padding(
                               padding: const EdgeInsets.only(top: 20.0, bottom: 20),
-                              child: ButtonBase(
-                                height: 100,
-                                elevationHeight: 2,
-                                borderRadius: BorderRadius.circular(16),
-                                color: design.colors.tint1,
-                                activeColor: design.colors.tint1,
-                                shadowColor: design.colors.label1.withOpacity(0.1),
-                                sideColor: const Color(0xFFF1B826),
-                                onPressed: () => launchUrlString(
-                                  'https://www.paypal.com/donate/?hosted_button_id=M5HU747LQCRQC',
-                                  mode: LaunchMode.externalApplication,
-                                ),
-                                builder: (context, pressed) => Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: 24),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text('Support Bible Kids', style: design.textStyles.headline3.copyWith(color: design.colors.onTint)),
-                                            Text('Donate via PayPal', style: design.textStyles.body1.copyWith(color: design.colors.onTint)),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 24),
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        child: Stack(
-                                          children: [
-                                            if (!pressed)
-                                              Transform.translate(
-                                                offset: Offset(0, 3),
-                                                child: SvgPicture.string(
-                                                  SvgIcons.logoFlame,
-                                                  height: 48,
-                                                  colorFilter: ColorFilter.mode(const Color(0xFFCA9100), BlendMode.srcIn),
-                                                  width: 48,
-                                                ),
-                                              ),
-                                            SvgPicture.string(
-                                              SvgIcons.logoFlame,
-                                              height: 48,
-                                              width: 48,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              child: DonationButton(),
                             ),
                             SettingList(
                               items: [
                                 SettingListItem(
                                   title: S.of(context).appLanguage,
-                                  rightSlot: Text(
-                                    getLanguageName(settings.appLanguage.languageCode) ?? '',
-                                    style: design.textStyles.body1.copyWith(color: design.colors.label1),
-                                  ),
+                                  rightText: getLanguageName(settings.appLanguage.languageCode) ?? '',
                                   onPressed: () {
                                     //context.router.push(const AppLanguageScreenRoute());
                                   },
                                 ),
                                 SettingListItem(
                                   title: S.of(context).audioLanguage,
-                                  rightSlot: Text(
-                                    getLanguageName(settings.audioLanguage) ?? '',
-                                    style: design.textStyles.body1.copyWith(color: design.colors.label1),
-                                  ),
+                                  rightText: getLanguageName(settings.audioLanguage) ?? '',
                                   onPressed: () {
                                     //context.router.push(const AudioLanguageScreenRoute());
                                   },
@@ -267,6 +210,82 @@ class SettingsScreen extends HookConsumerWidget {
                   ),
                 ),
               ),
+      ),
+    );
+  }
+}
+
+class DonationButton extends StatelessWidget {
+  const DonationButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+    final bp = ResponsiveBreakpoints.of(context);
+    final small = bp.smallerThan(TABLET);
+    return ButtonBase(
+      height: small ? 80 : 100,
+      elevationHeight: 2,
+      borderRadius: BorderRadius.circular(16),
+      color: design.colors.tint1,
+      activeColor: design.colors.tint1,
+      shadowColor: design.colors.label1.withOpacity(0.1),
+      sideColor: const Color(0xFFF1B826),
+      onPressed: () => launchUrlString(
+        'https://www.paypal.com/donate/?hosted_button_id=M5HU747LQCRQC',
+        mode: LaunchMode.externalApplication,
+      ),
+      builder: (context, pressed) => Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Padding(
+              padding: small ? const EdgeInsets.only(left: 20, right: 8) : const EdgeInsets.only(left: 24, right: 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Support Bible Kids',
+                    style: (small ? design.textStyles.title1 : design.textStyles.headline3).copyWith(color: design.colors.onTint),
+                  ),
+                  Text(
+                    'Donate via PayPal',
+                    style: (small ? design.textStyles.body2 : design.textStyles.body1).copyWith(color: design.colors.onTint),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: 24),
+            child: Container(
+              alignment: Alignment.center,
+              child: Stack(
+                children: [
+                  if (!pressed)
+                    Transform.translate(
+                      offset: Offset(0, 3),
+                      child: SvgPicture.string(
+                        SvgIcons.logoFlame,
+                        height: 48,
+                        colorFilter: ColorFilter.mode(const Color(0xFFCA9100), BlendMode.srcIn),
+                        width: 48,
+                      ),
+                    ),
+                  SvgPicture.string(
+                    SvgIcons.logoFlame,
+                    height: 48,
+                    width: 48,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

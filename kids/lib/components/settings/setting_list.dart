@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class SettingList extends StatelessWidget {
   final List<SettingListItem> items;
@@ -18,6 +19,7 @@ class SettingList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
+    final bp = ResponsiveBreakpoints.of(context);
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(24),
@@ -28,7 +30,7 @@ class SettingList extends StatelessWidget {
               children: [
                 if (index > 0)
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: bp.smallerThan(TABLET) ? const EdgeInsets.symmetric(horizontal: 20) : const EdgeInsets.symmetric(horizontal: 24),
                     color: design.colors.background2,
                     child: Container(width: double.infinity, height: 1, color: design.colors.separatorOnLight),
                   ),
@@ -59,7 +61,11 @@ class _ItemRenderer extends HookWidget {
     final hovering = useState(false);
     final animationController = useAnimationController(duration: const Duration(milliseconds: 300), initialValue: 1);
     final opacityReduction = useAnimation(
-        CurvedAnimation(parent: animationController, curve: Curves.easeIn, reverseCurve: Curves.easeIn).drive(Tween(begin: 0.3, end: 0.0)));
+      CurvedAnimation(parent: animationController, curve: Curves.easeIn, reverseCurve: Curves.easeIn).drive(Tween(begin: 0.3, end: 0.0)),
+    );
+    final design = DesignSystem.of(context);
+    final bp = ResponsiveBreakpoints.of(context);
+    final small = bp.smallerThan(TABLET);
     return Stack(
       children: [
         IgnorePointer(
@@ -86,10 +92,10 @@ class _ItemRenderer extends HookWidget {
                       : defaultBackgroundColor.withOpacity(clampDouble(defaultBackgroundColor.opacity - opacityReduction, 0, 1)),
                 ),
                 child: Container(
-                  padding: const EdgeInsets.all(24),
+                  padding: small ? const EdgeInsets.symmetric(horizontal: 20, vertical: 16) : const EdgeInsets.all(24),
                   constraints: const BoxConstraints(minHeight: 56),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
                         child: Column(
@@ -99,12 +105,16 @@ class _ItemRenderer extends HookWidget {
                           children: [
                             Text(
                               item.title,
-                              style: DesignSystem.of(context).textStyles.title1,
+                              style: small ? design.textStyles.title2 : design.textStyles.title1,
                             ),
                           ],
                         ),
                       ),
-                      if (item.rightSlot != null) item.rightSlot!,
+                      if (item.rightText != null)
+                        Text(
+                          item.rightText!,
+                          style: (small ? design.textStyles.body2 : design.textStyles.body1).copyWith(color: design.colors.label1),
+                        ),
                     ],
                   ),
                 ),
@@ -120,13 +130,13 @@ class _ItemRenderer extends HookWidget {
 class SettingListItem {
   final String title;
   final VoidCallback onPressed;
-  final Widget? rightSlot;
+  final String? rightText;
   bool disabled;
 
   SettingListItem({
     required this.title,
     required this.onPressed,
     this.disabled = false,
-    this.rightSlot,
+    this.rightText,
   });
 }

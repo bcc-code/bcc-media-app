@@ -81,20 +81,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
                   return ResponsiveBreakpoints.builder(
                     child: MediaQuery(
                       data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                      child: OrientationStateWatcher(
-                        child: Builder(
-                          builder: (context) => Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              child!,
-                              if (OrientationController.of(context)!.transitioning)
-                                IgnorePointer(child: Container(color: Colors.red.withOpacity(0.1)))
-                              else
-                                IgnorePointer(child: Container(color: Colors.blue.withOpacity(0.1))),
-                            ],
-                          ),
-                        ),
-                      ),
+                      child: child!,
                     ),
                     breakpoints: breakpoints,
                     breakpointsLandscape: breakpoints,
