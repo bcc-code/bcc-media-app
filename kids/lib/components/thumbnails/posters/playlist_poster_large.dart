@@ -103,11 +103,14 @@ class PlaylistPosterLarge extends HookWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 32),
+              padding: bp.smallerThan(TABLET) ? const EdgeInsets.all(20) : const EdgeInsets.symmetric(horizontal: 40, vertical: 32),
               child: Text(
                 title,
                 softWrap: true,
-                style: design.textStyles.headline1.copyWith(color: design.colors.background1),
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                style:
+                    (bp.smallerThan(TABLET) ? design.textStyles.headline3 : design.textStyles.headline1).copyWith(color: design.colors.background1),
               ),
             ),
             Positioned(

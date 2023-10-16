@@ -75,104 +75,106 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
     final bp = ResponsiveBreakpoints.of(context);
     final double basePadding = bp.smallerThan(TABLET) ? 24 : 48;
     final scrollController = useScrollController();
-    return Scaffold(
-      key: homeKey,
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          SizedBox(height: basePadding),
-          Expanded(
-            child: FutureBuilder(
-              future: pageResult.future,
-              builder: (context, result) => InheritedData<ScrollController>(
-                inheritedData: scrollController,
-                child: (context) => PrimaryScrollController(
-                  controller: scrollController,
-                  child: CustomScrollView(
-                    primary: true,
-                    scrollDirection: Axis.horizontal,
-                    slivers: [
-                      SliverSafeArea(
-                        right: false,
-                        sliver: SliverPadding(padding: EdgeInsets.only(left: basePadding)),
-                      ),
-                      SliverToBoxAdapter(
-                        child: Container(
-                          alignment: Alignment.bottomLeft,
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: SizedBox(
-                            width: basePadding,
-                            child: RotatedBox(
-                              quarterTurns: -1,
-                              child: Image.asset(
-                                'assets/flavors/prod/logo_neg.png',
+    return OrientationBuilder(
+      builder: (context, orientation) => Scaffold(
+        key: homeKey,
+        resizeToAvoidBottomInset: false,
+        body: orientation == Orientation.portrait
+            ? Container(color: Colors.white)
+            : Column(
+                children: [
+                  SizedBox(height: basePadding),
+                  Expanded(
+                    child: FutureBuilder(
+                      future: pageResult.future,
+                      builder: (context, result) => InheritedData<ScrollController>(
+                        inheritedData: scrollController,
+                        child: (context) => PrimaryScrollController(
+                          controller: scrollController,
+                          child: CustomScrollView(
+                            primary: true,
+                            scrollDirection: Axis.horizontal,
+                            slivers: [
+                              SliverSafeArea(
+                                right: false,
+                                sliver: SliverPadding(padding: EdgeInsets.only(left: basePadding)),
                               ),
-                            )
-                                .animate()
-                                .slideX(begin: 4, curve: Curves.easeOutExpo, duration: 2000.ms)
-                                .scale(begin: Offset(0.5, 0.5))
-                                .rotate(begin: 0.05)
-                                .fadeIn(),
+                              SliverToBoxAdapter(
+                                child: Container(
+                                  alignment: Alignment.bottomLeft,
+                                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                                  child: SizedBox(
+                                    width: basePadding,
+                                    child: RotatedBox(
+                                      quarterTurns: -1,
+                                      child: Image.asset(
+                                        'assets/flavors/prod/logo_neg.png',
+                                      ),
+                                    )
+                                        .animate()
+                                        .slideX(begin: 4, curve: Curves.easeOutExpo, duration: 2000.ms)
+                                        .scale(begin: Offset(0.5, 0.5))
+                                        .rotate(begin: 0.05)
+                                        .fadeIn(),
+                                  ),
+                                ),
+                              ),
+                              const SliverPadding(padding: EdgeInsets.only(left: 32)),
+                              if (result.connectionState == ConnectionState.waiting)
+                                const SliverFillRemaining(hasScrollBody: true, child: Center(child: LoadingIndicator()))
+                              else if (result.data == null || result.hasError)
+                                SliverFillRemaining(
+                                  hasScrollBody: true,
+                                  child: ErrorGeneric(
+                                    onRetry: () {
+                                      setState(() {
+                                        pageResult = wrapInCompleter(getHomeAndAppConfig());
+                                      });
+                                    },
+                                  ),
+                                )
+                              else
+                                SliverList.builder(
+                                  itemCount: result.data!.sections.items.length,
+                                  itemBuilder: (context, index) {
+                                    final section = result.data!.sections.items[index];
+                                    return SectionRenderer(section: section, index: index);
+                                  },
+                                ),
+                              const SliverPadding(padding: EdgeInsets.only(right: 60)),
+                            ],
                           ),
                         ),
                       ),
-                      const SliverPadding(padding: EdgeInsets.only(left: 32)),
-                      if (result.connectionState == ConnectionState.waiting)
-                        const SliverFillRemaining(hasScrollBody: true, child: Center(child: LoadingIndicator()))
-                      else if (result.data == null || result.hasError)
-                        SliverFillRemaining(
-                          hasScrollBody: true,
-                          child: ErrorGeneric(
-                            onRetry: () {
-                              setState(() {
-                                pageResult = wrapInCompleter(getHomeAndAppConfig());
-                              });
-                            },
-                          ),
-                        )
-                      else
-                        SliverList.builder(
-                          itemCount: result.data!.sections.items.length,
-                          itemBuilder: (context, index) {
-                            final section = result.data!.sections.items[index];
-                            return SectionRenderer(section: section, index: index);
-                          },
-                        ),
-                      const SliverPadding(padding: EdgeInsets.only(right: 60)),
-                    ],
+                    ),
                   ),
-                ),
+                  SafeArea(
+                    top: false,
+                    maintainBottomViewPadding: true,
+                    child: SizedBox(
+                      height: bp.smallerThan(TABLET) ? 104 : 176,
+                      child: Center(
+                        child: Row(
+                          children: [
+                            SizedBox(width: basePadding),
+                            design.buttons
+                                .responsive(
+                                  onPressed: () {
+                                    context.router.pushNamed('/settings');
+                                  },
+                                  labelText: '',
+                                  image: SvgPicture.string(SvgIcons.profile),
+                                )
+                                .animate()
+                                .scale(curve: Curves.easeOutBack, duration: 600.ms)
+                                .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-          SafeArea(
-            top: false,
-            maintainBottomViewPadding: true,
-            child: SizedBox(
-              height: bp.smallerThan(TABLET) ? 104 : 176,
-              child: Center(
-                child: Row(
-                  children: [
-                    SizedBox(width: basePadding),
-                    design.buttons
-                        .responsive(
-                          onPressed: () async {
-                            if (!await checkParentalGate(context)) return;
-                            if (!context.mounted) return;
-                            context.router.pushNamed('/settings');
-                          },
-                          labelText: '',
-                          image: SvgPicture.string(SvgIcons.profile),
-                        )
-                        .animate()
-                        .scale(curve: Curves.easeOutBack, duration: 600.ms)
-                        .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

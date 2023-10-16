@@ -1,7 +1,7 @@
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
-import '../../components/buttons/btv_buttons.dart';
 import 'app_theme.dart';
 
 /// Looks complicated, but its just to get a DesignSystemData instance based on where we are in the widget tree.
@@ -147,6 +147,43 @@ abstract class DesignSystemButtons {
     bool disabled = false,
     bool? autofocus,
   });
+}
+
+extension ResponsiveButton on DesignSystemButtons {
+  Widget responsive({
+    Key? key,
+    required VoidCallback onPressed,
+    required String labelText,
+    ButtonVariant variant = ButtonVariant.primary,
+    Widget? image,
+    bool disabled = false,
+    bool? autofocus,
+  }) {
+    return Builder(builder: (context) {
+      final bp = ResponsiveBreakpoints.of(context);
+      if (bp.smallerThan(TABLET)) {
+        return small(
+          key: key,
+          variant: variant,
+          labelText: labelText,
+          onPressed: onPressed,
+          image: image,
+          disabled: disabled,
+          autofocus: autofocus,
+        );
+      } else {
+        return large(
+          key: key,
+          variant: variant,
+          labelText: labelText,
+          onPressed: onPressed,
+          image: image,
+          disabled: disabled,
+          autofocus: autofocus,
+        );
+      }
+    });
+  }
 }
 
 class DesignSystemInputDecorations {
