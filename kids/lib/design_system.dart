@@ -105,7 +105,7 @@ class _Colors extends DesignSystemColors {
           tint1Dark: const Color(0xFFF2AE00),
           tint2: const Color(0xFFFDCA4E),
           tint3: const Color(0xFFFDCA4E),
-          onTint: const Color(0xffFFFFFF),
+          onTint: const Color(0xFF041234),
           label1: const Color(0xFF041234),
           label2: const Color(0x99041234),
           label3: const Color(0x66041234),
