@@ -157,12 +157,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                     design.buttons
                         .responsive(
                           onPressed: () async {
-                            if (!await checkParentalGate(context)) return;
-                            if (!context.mounted) return;
+                            // if (!await checkParentalGate(context)) return;
+                            // if (!context.mounted) return;
                             context.router.pushNamed('/settings');
                           },
                           labelText: '',
                           image: SvgPicture.string(SvgIcons.profile),
+                        )
+                        .animate()
+                        .scale(curve: Curves.easeOutBack, duration: 600.ms)
+                        .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
+                    SizedBox(width: basePadding),
+                    design.buttons
+                        .responsive(
+                          onPressed: () async {
+                            // if (!await checkParentalGate(context)) return;
+                            // if (!context.mounted) return;
+                            context.router.pushNamed('/search');
+                          },
+                          labelText: '',
+                          image: SvgPicture.string(SvgIcons.search),
                         )
                         .animate()
                         .scale(curve: Curves.easeOutBack, duration: 600.ms)
