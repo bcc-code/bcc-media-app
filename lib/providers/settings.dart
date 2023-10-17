@@ -18,7 +18,7 @@ class Settings with _$Settings {
   const factory Settings({
     required Locale appLanguage,
     @Default([]) List<String> audioLanguages,
-    String? subtitleLanguage,
+    @Default([]) List<String> subtitleLanguages,
     String? downloadAudioLanguage,
     DownloadQuality? downloadQuality,
     String? analyticsId,
@@ -34,8 +34,8 @@ extension on Settings {
   AppConfig toAppConfig() {
     return AppConfig(
       appLanguage: appLanguage.languageCode,
-      audioLanguage: audioLanguages.firstOrNull,
-      subtitleLanguage: subtitleLanguage,
+      audioLanguages: audioLanguages,
+      subtitleLanguages: subtitleLanguages,
       analyticsId: analyticsId,
       sessionId: sessionId,
     );
@@ -52,7 +52,7 @@ class SettingsService extends StateNotifier<Settings> {
     state = state.copyWith(
       appLanguage: Locale(prefs.getString(PrefKeys.appLanguage) ?? _defaultLanguage),
       audioLanguages: (prefs.getString(PrefKeys.audioLanguage) ?? _defaultLanguage).split(','),
-      subtitleLanguage: prefs.getString(PrefKeys.subtitleLanguage),
+      subtitleLanguages: prefs.getString(PrefKeys.subtitleLanguage)?.split(',') ?? [],
       downloadAudioLanguage: prefs.getString(PrefKeys.downloadAudioLanguage),
       downloadQuality: DownloadQuality.values.firstWhereOrNull((element) => element.index == prefs.getInt(PrefKeys.downloadQuality)),
       analyticsId: prefs.getString(PrefKeys.analyticsId),
@@ -80,14 +80,14 @@ class SettingsService extends StateNotifier<Settings> {
     state = state.copyWith(sessionId: newSessionId);
   }
 
-  Future<void> setSubtitleLanguage(String? code) async {
+  Future<void> setSubtitleLanguages(List<String> languageCodes) async {
     var prefs = ref.read(sharedPreferencesProvider);
-    if (code == null) {
+    if (languageCodes.isEmpty) {
       prefs.remove(PrefKeys.subtitleLanguage);
     } else {
-      prefs.setString(PrefKeys.subtitleLanguage, code);
+      prefs.setString(PrefKeys.subtitleLanguage, languageCodes.join(','));
     }
-    state = state.copyWith(subtitleLanguage: code);
+    state = state.copyWith(subtitleLanguages: languageCodes);
   }
 
   Future<void> setAnalyticsId(String? analyticsId) async {
