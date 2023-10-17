@@ -14,7 +14,6 @@ import 'package:kids/components/buttons/button_base.dart';
 import 'package:kids/components/settings/setting_list.dart';
 import 'package:kids/helpers/orientation_utils.dart';
 import 'package:kids/helpers/svg_icons.dart';
-import 'package:kids/providers/orientation.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
@@ -147,7 +146,7 @@ class SettingsScreen extends HookConsumerWidget {
                                 ),
                                 SettingListItem(
                                   title: S.of(context).audioLanguage,
-                                  rightText: getLanguageName(settings.audioLanguage) ?? '',
+                                  rightText: settings.audioLanguages.map(getLanguageName).join(', '),
                                   onPressed: () {
                                     //context.router.push(const AudioLanguageScreenRoute());
                                   },

@@ -55,7 +55,7 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
     final selectedAudioTrack = useState<Track?>(null);
     final selectedVideoQuality = useState<({DownloadQuality quality, Track track})?>(null);
     final savedAudioSetting = ref.watch(settingsProvider.select(
-      (settings) => settings.downloadAudioLanguage ?? settings.audioLanguage ?? settings.appLanguage.languageCode,
+      (settings) => settings.downloadAudioLanguage ?? settings.audioLanguages.firstOrNull ?? settings.appLanguage.languageCode,
     ));
     final savedQualitySetting = ref.watch(settingsProvider.select((value) => value.downloadQuality));
 
