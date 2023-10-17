@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
@@ -39,10 +41,18 @@ class PosterSection extends StatelessWidget {
                           onPressed: () => handleSectionItemClick(context, item.item),
                         );
                       }
-                      return PosterLarge(
-                        image: item.image,
-                        onPressed: () => handleSectionItemClick(context, item.item),
-                      );
+                      final showItem = item.item.asOrNull<Fragment$Section$$PosterSection$items$items$item$$Show>();
+                      if (showItem != null) {
+                        final publishDate = DateTime.tryParse(showItem.seasons.items.firstOrNull?.episodes.items.firstOrNull?.publishDate ?? '');
+
+                        return PosterLarge(
+                          hasNewEpisodes: publishDate != null ? DateTime.now().difference(publishDate).inDays <= 7 : false,
+                          // hasNewEpisodes: true,
+                          image: item.image,
+                          onPressed: () => handleSectionItemClick(context, item.item),
+                        );
+                      }
+                      return const SizedBox.shrink();
                     },
                   ),
                 ),
@@ -52,7 +62,7 @@ class PosterSection extends StatelessWidget {
           .toList()
           .animate(interval: 50.ms)
           .slideX(begin: 1, curve: Curves.easeOutExpo, duration: 2000.ms)
-          .scale(begin: Offset(0.8, 0.8))
+          .scale(begin: const Offset(0.8, 0.8))
           .rotate(begin: 0.03)
           .fadeIn(),
     );

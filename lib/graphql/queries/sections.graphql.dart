@@ -3669,6 +3669,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     required this.episodeCount,
     required this.seasonCount,
     this.$__typename = 'Show',
+    required this.seasons,
   });
 
   factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show.fromJson(
@@ -3678,6 +3679,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     final l$episodeCount = json['episodeCount'];
     final l$seasonCount = json['seasonCount'];
     final l$$__typename = json['__typename'];
+    final l$seasons = json['seasons'];
     return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show(
       id: (l$id as String),
       defaultEpisode:
@@ -3686,6 +3688,9 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
       episodeCount: (l$episodeCount as int),
       seasonCount: (l$seasonCount as int),
       $__typename: (l$$__typename as String),
+      seasons:
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons
+              .fromJson((l$seasons as Map<String, dynamic>)),
     );
   }
 
@@ -3700,6 +3705,9 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
 
   final String $__typename;
 
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons
+      seasons;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$id = id;
@@ -3712,6 +3720,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     _resultData['seasonCount'] = l$seasonCount;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$seasons = seasons;
+    _resultData['seasons'] = l$seasons.toJson();
     return _resultData;
   }
 
@@ -3722,12 +3732,14 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     final l$episodeCount = episodeCount;
     final l$seasonCount = seasonCount;
     final l$$__typename = $__typename;
+    final l$seasons = seasons;
     return Object.hashAll([
       l$id,
       l$defaultEpisode,
       l$episodeCount,
       l$seasonCount,
       l$$__typename,
+      l$seasons,
     ]);
   }
 
@@ -3766,6 +3778,11 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     if (l$$__typename != lOther$$__typename) {
       return false;
     }
+    final l$seasons = seasons;
+    final lOther$seasons = other.seasons;
+    if (l$seasons != lOther$seasons) {
+      return false;
+    }
     return true;
   }
 }
@@ -3802,9 +3819,13 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     int? episodeCount,
     int? seasonCount,
     String? $__typename,
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons?
+        seasons,
   });
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode;
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons<
+      TRes> get seasons;
 }
 
 class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show<
@@ -3832,6 +3853,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
     Object? episodeCount = _undefined,
     Object? seasonCount = _undefined,
     Object? $__typename = _undefined,
+    Object? seasons = _undefined,
   }) =>
       _then(
           Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show(
@@ -3849,12 +3871,23 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        seasons: seasons == _undefined || seasons == null
+            ? _instance.seasons
+            : (seasons
+                as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons),
       ));
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
     return CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$defaultEpisode(
         local$defaultEpisode, (e) => call(defaultEpisode: e));
+  }
+
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons<
+      TRes> get seasons {
+    final local$seasons = _instance.seasons;
+    return CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons(
+        local$seasons, (e) => call(seasons: e));
   }
 }
 
@@ -3875,12 +3908,19 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     int? episodeCount,
     int? seasonCount,
     String? $__typename,
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons?
+        seasons,
   }) =>
       _res;
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$defaultEpisode
+              .stub(_res);
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons<
+          TRes>
+      get seasons =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons
               .stub(_res);
 }
 
@@ -4772,6 +4812,682 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
 
   call({
     String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons
+    implements Fragment$Section$$PosterSection$items$items$item$$Show$seasons {
+  Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons({
+    required this.items,
+    this.$__typename = 'SeasonPagination',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items>
+      items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons
+    on Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons(
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons;
+
+  TRes call({
+    List<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items>?
+        items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items> Function(
+              Iterable<
+                  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+                      Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<
+                Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items> Function(
+                  Iterable<
+                      CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+                          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+                e,
+                (i) => i,
+              ))).toList());
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items>?
+        items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Show$seasons$items {
+  Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items({
+    required this.episodes,
+    this.$__typename = 'Season',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$episodes = json['episodes'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+      episodes:
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+              .fromJson((l$episodes as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+      episodes;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$episodes = episodes;
+    _resultData['episodes'] = l$episodes.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$episodes = episodes;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$episodes,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$episodes = episodes;
+    final lOther$episodes = other.episodes;
+    if (l$episodes != lOther$episodes) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items
+    on Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items;
+
+  TRes call({
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes?
+        episodes,
+    String? $__typename,
+  });
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+      TRes> get episodes;
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? episodes = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+        episodes: episodes == _undefined || episodes == null
+            ? _instance.episodes
+            : (episodes
+                as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+      TRes> get episodes {
+    final local$episodes = _instance.episodes;
+    return CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+        local$episodes, (e) => call(episodes: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes?
+        episodes,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+          TRes>
+      get episodes =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+              .stub(_res);
+}
+
+class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Show$seasons$items$episodes {
+  Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes({
+    required this.items,
+    this.$__typename = 'EpisodePagination',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>
+      items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+    on Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes;
+
+  TRes call({
+    List<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>?
+        items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items> Function(
+              Iterable<
+                  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+                      Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<
+                Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items> Function(
+                  Iterable<
+                      CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+                          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+                e,
+                (i) => i,
+              ))).toList());
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>?
+        items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items {
+  Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items({
+    required this.publishDate,
+    this.$__typename = 'Episode',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$publishDate = json['publishDate'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+      publishDate: (l$publishDate as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String publishDate;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$publishDate = publishDate;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$publishDate,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items
+    on Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items;
+
+  TRes call({
+    String? publishDate,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? publishDate = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? publishDate,
     String? $__typename,
   }) =>
       _res;
@@ -33784,6 +34500,7 @@ class Query$GetSection$section$$PosterSection$items$items$item$$Show
     required this.episodeCount,
     required this.seasonCount,
     this.$__typename = 'Show',
+    required this.seasons,
   });
 
   factory Query$GetSection$section$$PosterSection$items$items$item$$Show.fromJson(
@@ -33793,6 +34510,7 @@ class Query$GetSection$section$$PosterSection$items$items$item$$Show
     final l$episodeCount = json['episodeCount'];
     final l$seasonCount = json['seasonCount'];
     final l$$__typename = json['__typename'];
+    final l$seasons = json['seasons'];
     return Query$GetSection$section$$PosterSection$items$items$item$$Show(
       id: (l$id as String),
       defaultEpisode:
@@ -33801,6 +34519,9 @@ class Query$GetSection$section$$PosterSection$items$items$item$$Show
       episodeCount: (l$episodeCount as int),
       seasonCount: (l$seasonCount as int),
       $__typename: (l$$__typename as String),
+      seasons:
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons
+              .fromJson((l$seasons as Map<String, dynamic>)),
     );
   }
 
@@ -33815,6 +34536,9 @@ class Query$GetSection$section$$PosterSection$items$items$item$$Show
 
   final String $__typename;
 
+  final Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons
+      seasons;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$id = id;
@@ -33827,6 +34551,8 @@ class Query$GetSection$section$$PosterSection$items$items$item$$Show
     _resultData['seasonCount'] = l$seasonCount;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$seasons = seasons;
+    _resultData['seasons'] = l$seasons.toJson();
     return _resultData;
   }
 
@@ -33837,12 +34563,14 @@ class Query$GetSection$section$$PosterSection$items$items$item$$Show
     final l$episodeCount = episodeCount;
     final l$seasonCount = seasonCount;
     final l$$__typename = $__typename;
+    final l$seasons = seasons;
     return Object.hashAll([
       l$id,
       l$defaultEpisode,
       l$episodeCount,
       l$seasonCount,
       l$$__typename,
+      l$seasons,
     ]);
   }
 
@@ -33881,6 +34609,11 @@ class Query$GetSection$section$$PosterSection$items$items$item$$Show
     if (l$$__typename != lOther$$__typename) {
       return false;
     }
+    final l$seasons = seasons;
+    final lOther$seasons = other.seasons;
+    if (l$seasons != lOther$seasons) {
+      return false;
+    }
     return true;
   }
 }
@@ -33916,9 +34649,13 @@ abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item
     int? episodeCount,
     int? seasonCount,
     String? $__typename,
+    Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons?
+        seasons,
   });
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode;
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons<
+      TRes> get seasons;
 }
 
 class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show<
@@ -33945,6 +34682,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Sh
     Object? episodeCount = _undefined,
     Object? seasonCount = _undefined,
     Object? $__typename = _undefined,
+    Object? seasons = _undefined,
   }) =>
       _then(Query$GetSection$section$$PosterSection$items$items$item$$Show(
         id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -33961,12 +34699,23 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Sh
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        seasons: seasons == _undefined || seasons == null
+            ? _instance.seasons
+            : (seasons
+                as Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons),
       ));
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
     return CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$defaultEpisode(
         local$defaultEpisode, (e) => call(defaultEpisode: e));
+  }
+
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons<
+      TRes> get seasons {
+    final local$seasons = _instance.seasons;
+    return CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons(
+        local$seasons, (e) => call(seasons: e));
   }
 }
 
@@ -33987,12 +34736,19 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
     int? episodeCount,
     int? seasonCount,
     String? $__typename,
+    Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons?
+        seasons,
   }) =>
       _res;
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
           CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$defaultEpisode
+              .stub(_res);
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons<
+          TRes>
+      get seasons =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons
               .stub(_res);
 }
 
@@ -34882,6 +35638,682 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
 
   call({
     String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons
+    implements Fragment$Section$$PosterSection$items$items$item$$Show$seasons {
+  Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons({
+    required this.items,
+    this.$__typename = 'SeasonPagination',
+  });
+
+  factory Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items>
+      items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons
+    on Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons {
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons<
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons(
+    Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons
+        instance,
+    TRes Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons;
+
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons;
+
+  TRes call({
+    List<Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items>?
+        items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items> Function(
+              Iterable<
+                  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+                      Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<
+                Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items> Function(
+                  Iterable<
+                      CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+                          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+                e,
+                (i) => i,
+              ))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items>?
+        items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Show$seasons$items {
+  Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items({
+    required this.episodes,
+    this.$__typename = 'Season',
+  });
+
+  factory Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$episodes = json['episodes'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+      episodes:
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+              .fromJson((l$episodes as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+      episodes;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$episodes = episodes;
+    _resultData['episodes'] = l$episodes.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$episodes = episodes;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$episodes,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$episodes = episodes;
+    final lOther$episodes = other.episodes;
+    if (l$episodes != lOther$episodes) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items
+    on Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items {
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+    Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items
+        instance,
+    TRes Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items;
+
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items;
+
+  TRes call({
+    Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes?
+        episodes,
+    String? $__typename,
+  });
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+      TRes> get episodes;
+}
+
+class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? episodes = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+        episodes: episodes == _undefined || episodes == null
+            ? _instance.episodes
+            : (episodes
+                as Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+      TRes> get episodes {
+    final local$episodes = _instance.episodes;
+    return CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+        local$episodes, (e) => call(episodes: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes?
+        episodes,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+          TRes>
+      get episodes =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+              .stub(_res);
+}
+
+class Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Show$seasons$items$episodes {
+  Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes({
+    required this.items,
+    this.$__typename = 'EpisodePagination',
+  });
+
+  factory Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>
+      items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+    on Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes {
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+    Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+        instance,
+    TRes Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes;
+
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes;
+
+  TRes call({
+    List<Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>?
+        items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items> Function(
+              Iterable<
+                  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+                      Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<
+                Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items> Function(
+                  Iterable<
+                      CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+                          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+                e,
+                (i) => i,
+              ))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>?
+        items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items {
+  Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items({
+    required this.publishDate,
+    this.$__typename = 'Episode',
+  });
+
+  factory Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$publishDate = json['publishDate'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+      publishDate: (l$publishDate as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String publishDate;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$publishDate = publishDate;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$publishDate,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items
+    on Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items {
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+    Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items
+        instance,
+    TRes Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items;
+
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items;
+
+  TRes call({
+    String? publishDate,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? publishDate = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? publishDate,
     String? $__typename,
   }) =>
       _res;

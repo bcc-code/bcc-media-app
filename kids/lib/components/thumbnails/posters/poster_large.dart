@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
@@ -6,19 +8,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+// ignore: unused_import
 import 'package:kids/components/buttons/button.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:simple_shadow/simple_shadow.dart';
 
 class PosterLarge extends HookWidget {
   const PosterLarge({
     super.key,
     required this.onPressed,
     required this.image,
+    required this.hasNewEpisodes,
   });
 
   final VoidCallback? onPressed;
   final String? image;
+  final bool hasNewEpisodes;
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +51,41 @@ class PosterLarge extends HookWidget {
                               .shimmer(duration: 1000.ms)
                               .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
                         ),
-                        SizedBox(
-                          height: double.infinity,
-                          child: simpleFadeInImage(url: image!),
-                        ),
+                        hasNewEpisodes
+                            ? Container(
+                                color: design.colors.background2,
+                                child: Transform.translate(
+                                  offset: const Offset(0, -20),
+                                  child: SimpleShadow(
+                                    opacity: 0.15,
+                                    color: Colors.black, // Default: Black
+                                    offset: const Offset(0, 8), // Default: Offset(2, 2)
+                                    sigma: 40,
+                                    child: SimpleShadow(
+                                      opacity: 0.15,
+                                      color: Colors.black,
+                                      offset: const Offset(0, 2), // Default: Offset(2, 2)
+                                      sigma: 3,
+                                      child: Transform.scale(
+                                        scale: 0.7,
+                                        child: Transform.rotate(
+                                          angle: -pi / 180 * 10,
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(30),
+                                            child: SizedBox(
+                                              height: double.infinity,
+                                              child: simpleFadeInImage(url: image!),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                            : SizedBox(
+                                height: double.infinity,
+                                child: simpleFadeInImage(url: image!),
+                              ),
                       ],
                     ),
             ),
@@ -57,9 +94,9 @@ class PosterLarge extends HookWidget {
             bottom: isSmall ? 16 : 40,
             right: isSmall ? 16 : 40,
             child: design.buttons.responsive(
-              variant: ButtonVariant.secondary,
+              variant: hasNewEpisodes ? ButtonVariant.primary : ButtonVariant.secondary,
               onPressed: () {},
-              labelText: '',
+              labelText: hasNewEpisodes ? 'New' : '',
               image: SvgPicture.string(SvgIcons.play, colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn)),
             ),
           ),
