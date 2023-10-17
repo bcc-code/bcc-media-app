@@ -124,31 +124,42 @@ class TvLiveScreen extends HookConsumerWidget {
                                           color: design.colors.background2,
                                         ),
                                       ),
-                                      FadeInImage(
-                                        placeholder: MemoryImage(kTransparentImage),
-                                        fadeInDuration: const Duration(milliseconds: 500),
-                                        fadeInCurve: Curves.easeOut,
-                                        image: networkImageWithRetryAndResize(
-                                          imageUrl: 'https://static.bcc.media/images/live-placeholder-with-text.jpg',
-                                        ),
-                                        imageErrorBuilder: (context, error, stackTrace) => imageErrorBuilder(
-                                          context,
-                                          error,
-                                          stackTrace,
-                                          child: AspectRatio(
-                                            aspectRatio: 16 / 9,
-                                            child: Container(
-                                              color: design.colors.background2,
-                                              child: Center(
-                                                child: Text(
-                                                  S.of(context).live,
-                                                  style: design.textStyles.title1.copyWith(color: design.colors.label2),
+                                      Container(
+                                        foregroundDecoration: !focusHighlight.value
+                                            ? null
+                                            : BoxDecoration(
+                                                border: Border.all(
+                                                  width: 2,
+                                                  color: design.colors.onTint.withOpacity(1),
+                                                ),
+                                                borderRadius: BorderRadius.circular(12),
+                                              ),
+                                        child: FadeInImage(
+                                          placeholder: MemoryImage(kTransparentImage),
+                                          fadeInDuration: const Duration(milliseconds: 500),
+                                          fadeInCurve: Curves.easeOut,
+                                          image: networkImageWithRetryAndResize(
+                                            imageUrl: 'https://static.bcc.media/images/live-placeholder-with-text.jpg',
+                                          ),
+                                          imageErrorBuilder: (context, error, stackTrace) => imageErrorBuilder(
+                                            context,
+                                            error,
+                                            stackTrace,
+                                            child: AspectRatio(
+                                              aspectRatio: 16 / 9,
+                                              child: Container(
+                                                color: design.colors.background2,
+                                                child: Center(
+                                                  child: Text(
+                                                    S.of(context).live,
+                                                    style: design.textStyles.title1.copyWith(color: design.colors.label2),
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
+                                          fit: BoxFit.fitHeight,
                                         ),
-                                        fit: BoxFit.fitHeight,
                                       ),
                                     ],
                                   ),

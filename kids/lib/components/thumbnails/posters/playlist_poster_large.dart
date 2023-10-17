@@ -1,32 +1,33 @@
 import 'dart:async';
 
+import 'package:animations/animations.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
-import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids/components/buttons/button.dart';
 import 'package:kids/helpers/svg_icons.dart';
-import 'package:kids/screens/home.dart';
+import 'package:kids/router/router.gr.dart';
+import 'package:kids/screens/playlist.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class PlaylistPosterLarge extends HookWidget {
   const PlaylistPosterLarge({
     super.key,
+    required this.id,
     required this.onPressed,
     required this.title,
     required this.image,
     required this.imageUrls,
   });
 
+  final String id;
   final VoidCallback? onPressed;
   final String title;
   final String? image;
@@ -37,6 +38,7 @@ class PlaylistPosterLarge extends HookWidget {
     required Fragment$Section$$PosterSection$items$items$item$$Playlist item,
   }) {
     return PlaylistPosterLarge(
+      id: item.id,
       onPressed: onPressed,
       title: item.title,
       image: item.image,
@@ -51,23 +53,42 @@ class PlaylistPosterLarge extends HookWidget {
     final bp = ResponsiveBreakpoints.of(context);
     final small = bp.smallerThan(TABLET);
 
-    return AspectRatio(
-      aspectRatio: 392 / 582,
-      child: Stack(
-        children: [
-          ShaderMask(
-            shaderCallback: (bounds) {
-              return LinearGradient(
-                begin: Alignment(0.00, -1.00),
-                end: Alignment(0, 1),
-                colors: [Color(0xFF051335).withOpacity(0.6), Colors.transparent],
-              ).createShader(bounds);
-            },
-            blendMode: BlendMode.srcATop,
-            child: GestureDetector(
-              onTap: onPressed,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(small ? 20 : 40),
+    return OpenContainer(
+      openBuilder: (context, close) {
+        final playlistArgs = ModalRoute.of(context)!.settings.arguments.asOrNull<PlaylistScreenRouteArgs>();
+        if (playlistArgs != null) {
+          return PlaylistScreen(id: playlistArgs.id);
+        }
+        return const SizedBox.shrink();
+      },
+      closedColor: const Color(0xFF051335),
+      openElevation: 0,
+      closedElevation: 0,
+      transitionType: ContainerTransitionType.fadeThrough,
+      openColor: design.colors.background1,
+      openShape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(small ? 20 : 40)),
+      transitionDuration: const Duration(milliseconds: 500),
+      routeSettings: RouteSettings(name: PlaylistScreenRoute.page.name, arguments: PlaylistScreenRouteArgs(id: id)),
+      closedBuilder: (
+        context,
+        open,
+      ) =>
+          AspectRatio(
+        aspectRatio: 392 / 582,
+        child: Stack(
+          children: [
+            ShaderMask(
+              shaderCallback: (bounds) {
+                return LinearGradient(
+                  begin: const Alignment(0.00, -1.00),
+                  end: const Alignment(0, 1),
+                  colors: [const Color(0xFF051335).withOpacity(0.6), Colors.transparent],
+                ).createShader(bounds);
+              },
+              blendMode: BlendMode.srcATop,
+              child: GestureDetector(
+                onTap: open,
                 child: Container(
                   color: const Color(0xFF051335),
                   child: Stack(
@@ -81,38 +102,41 @@ class PlaylistPosterLarge extends HookWidget {
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 32),
-            child: Text(
-              title,
-              softWrap: true,
-              style: design.textStyles.headline1.copyWith(color: design.colors.onTint),
+            Padding(
+              padding: bp.smallerThan(TABLET) ? const EdgeInsets.all(20) : const EdgeInsets.symmetric(horizontal: 40, vertical: 32),
+              child: Text(
+                title,
+                softWrap: true,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                style:
+                    (bp.smallerThan(TABLET) ? design.textStyles.headline3 : design.textStyles.headline1).copyWith(color: design.colors.background1),
+              ),
             ),
-          ),
-          Positioned(
-            bottom: small ? 16 : 40,
-            right: small ? 16 : 40,
-            child: design.buttons.responsive(
-              variant: ButtonVariant.secondary,
-              onPressed: () {},
-              labelText: '',
-              image: SvgPicture.string(SvgIcons.play, colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn)),
+            Positioned(
+              bottom: small ? 16 : 40,
+              right: small ? 16 : 40,
+              child: design.buttons.responsive(
+                variant: ButtonVariant.secondary,
+                onPressed: () {},
+                labelText: '',
+                image: SvgPicture.string(SvgIcons.play, colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn)),
+              ),
             ),
-          ),
-          if (navigationFuture.value != null)
-            simpleFutureBuilder(
-                future: navigationFuture.value!,
-                loading: () => Positioned.fill(
-                      child: Container(
-                        color: design.colors.background1.withOpacity(0.5),
-                        child: const Center(child: LoadingIndicator()),
+            if (navigationFuture.value != null)
+              simpleFutureBuilder(
+                  future: navigationFuture.value!,
+                  loading: () => Positioned.fill(
+                        child: Container(
+                          color: design.colors.background1.withOpacity(0.5),
+                          child: const Center(child: LoadingIndicator()),
+                        ),
                       ),
-                    ),
-                error: (e) => const SizedBox.shrink(),
-                noData: () => const SizedBox.shrink(),
-                ready: (d) => const SizedBox.shrink()),
-        ],
+                  error: (e) => const SizedBox.shrink(),
+                  noData: () => const SizedBox.shrink(),
+                  ready: (d) => const SizedBox.shrink()),
+          ],
+        ),
       ),
     );
   }

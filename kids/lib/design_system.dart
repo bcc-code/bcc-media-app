@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
-import 'package:brunstadtv_app/theme/design_system/bccmedia/decorations.dart';
 import 'package:kids/components/buttons/button.dart';
 
 class BibleKidsDesignSystem extends DesignSystemData {
@@ -23,7 +22,7 @@ class BibleKidsDesignSystem extends DesignSystemData {
       colors: colors,
       textStyles: textStyles,
       buttons: BibleKidsButtons(colors: colors, textStyles: textStyles),
-      inputDecorations: BccMediaInputDecorations(colors: colors, textStyles: textStyles),
+      inputDecorations: _InputDecorations(colors: colors, textStyles: textStyles),
       appThemeData: AppThemeData(
         studyGradient: BccmGradients.greenYellow,
         genericBackgroundGradient: BccmGradients.purpleTransparentTopBottom,
@@ -105,7 +104,7 @@ class _Colors extends DesignSystemColors {
           tint1Dark: const Color(0xFFF2AE00),
           tint2: const Color(0xFFFDCA4E),
           tint3: const Color(0xFFFDCA4E),
-          onTint: const Color(0xffFFFFFF),
+          onTint: const Color(0xFF041234),
           label1: const Color(0xFF041234),
           label2: const Color(0x99041234),
           label3: const Color(0x66041234),
@@ -338,4 +337,31 @@ class BibleKidsButtons extends DesignSystemButtons {
       _ => button
     };
   }
+}
+
+class _InputDecorations extends DesignSystemInputDecorations {
+  _InputDecorations({
+    required DesignSystemColors colors,
+    required DesignSystemTextStyles textStyles,
+  }) : super(
+          textFormField: InputDecoration(
+            filled: true,
+            isDense: true,
+            fillColor: colors.background2,
+            border: const OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(55)),
+            ),
+            contentPadding: const EdgeInsets.all(20),
+            suffixIconConstraints: const BoxConstraints(minHeight: 24, minWidth: 24),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: colors.tint1, width: 1),
+              borderRadius: const BorderRadius.all(Radius.circular(55)),
+            ),
+            hintStyle: textStyles.body1.copyWith(
+              color: colors.label4,
+              height: 1.45,
+            ),
+          ),
+        );
 }
