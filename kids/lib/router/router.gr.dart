@@ -9,7 +9,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i12;
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart' as _i13;
+import 'package:flutter/material.dart';
 import 'package:kids/screens/home.dart' as _i6;
 import 'package:kids/screens/playlist.dart' as _i7;
 import 'package:kids/screens/settings/about.dart' as _i1;
@@ -21,6 +23,7 @@ import 'package:kids/screens/settings/privacy_policy.dart' as _i8;
 import 'package:kids/screens/settings/settings.dart' as _i9;
 import 'package:kids/screens/settings/terms_of_use.dart' as _i11;
 import 'package:kids/screens/show.dart' as _i10;
+import 'package:kids/screens/search.dart';
 
 abstract class $AppRouter extends _i12.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -65,9 +68,7 @@ abstract class $AppRouter extends _i12.RootStackRouter {
     },
     PlaylistScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<PlaylistScreenRouteArgs>(
-          orElse: () =>
-              PlaylistScreenRouteArgs(id: pathParams.getString('id')));
+      final args = routeData.argsAs<PlaylistScreenRouteArgs>(orElse: () => PlaylistScreenRouteArgs(id: pathParams.getString('id')));
       return _i12.AutoRoutePage<void>(
         routeData: routeData,
         child: _i7.PlaylistScreen(
@@ -90,9 +91,7 @@ abstract class $AppRouter extends _i12.RootStackRouter {
     },
     ShowScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<ShowScreenRouteArgs>(
-          orElse: () =>
-              ShowScreenRouteArgs(showId: pathParams.getString('showId')));
+      final args = routeData.argsAs<ShowScreenRouteArgs>(orElse: () => ShowScreenRouteArgs(showId: pathParams.getString('showId')));
       return _i12.AutoRoutePage<void>(
         routeData: routeData,
         child: _i10.ShowScreen(
@@ -105,6 +104,12 @@ abstract class $AppRouter extends _i12.RootStackRouter {
       return _i12.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i11.TermsOfUseScreen(),
+      );
+    },
+    SearchScreenRoute.name: (routeData) {
+      return AutoRoutePage<void>(
+        routeData: routeData,
+        child: SearchScreen(),
       );
     },
   };
@@ -213,8 +218,7 @@ class PlaylistScreenRoute extends _i12.PageRouteInfo<PlaylistScreenRouteArgs> {
 
   static const String name = 'PlaylistScreenRoute';
 
-  static const _i12.PageInfo<PlaylistScreenRouteArgs> page =
-      _i12.PageInfo<PlaylistScreenRouteArgs>(name);
+  static const _i12.PageInfo<PlaylistScreenRouteArgs> page = _i12.PageInfo<PlaylistScreenRouteArgs>(name);
 }
 
 class PlaylistScreenRouteArgs {
@@ -280,8 +284,7 @@ class ShowScreenRoute extends _i12.PageRouteInfo<ShowScreenRouteArgs> {
 
   static const String name = 'ShowScreenRoute';
 
-  static const _i12.PageInfo<ShowScreenRouteArgs> page =
-      _i12.PageInfo<ShowScreenRouteArgs>(name);
+  static const _i12.PageInfo<ShowScreenRouteArgs> page = _i12.PageInfo<ShowScreenRouteArgs>(name);
 }
 
 class ShowScreenRouteArgs {
@@ -310,6 +313,20 @@ class TermsOfUseScreenRoute extends _i12.PageRouteInfo<void> {
         );
 
   static const String name = 'TermsOfUseScreenRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i12.PlaylistScreen]
+class SearchScreenRoute extends _i12.PageRouteInfo<void> {
+  const SearchScreenRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          SearchScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SearchScreenRoute';
 
   static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }

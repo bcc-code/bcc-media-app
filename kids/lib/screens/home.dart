@@ -168,6 +168,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                                 .animate()
                                 .scale(curve: Curves.easeOutBack, duration: 600.ms)
                                 .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
+                            SizedBox(width: basePadding),
+                            design.buttons
+                                .responsive(
+                                  onPressed: () {
+                                    context.router.pushNamed('/search');
+                                  },
+                                  labelText: '',
+                                  image: SvgPicture.string(SvgIcons.search),
+                                )
+                                .animate()
+                                .scale(curve: Curves.easeOutBack, duration: 600.ms)
+                                .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
                           ],
                         ),
                       ),
