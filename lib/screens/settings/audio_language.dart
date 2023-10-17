@@ -31,13 +31,13 @@ class _AppAudioLanguageState extends ConsumerState<AudioLanguageScreen> {
     setState(() {
       selected = id;
     });
-    ref.read(settingsProvider.notifier).setAudioLanguage(id);
+    ref.read(settingsProvider.notifier).setAudioLanguages([id]);
   }
 
   @override
   void initState() {
     super.initState();
-    selected = ref.read(settingsProvider).audioLanguage;
+    selected = ref.read(settingsProvider).audioLanguages.firstOrNull;
   }
 
   @override

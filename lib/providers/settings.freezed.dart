@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Settings {
   Locale get appLanguage => throw _privateConstructorUsedError;
-  String? get audioLanguage => throw _privateConstructorUsedError;
+  List<String> get audioLanguages => throw _privateConstructorUsedError;
   String? get subtitleLanguage => throw _privateConstructorUsedError;
   String? get downloadAudioLanguage => throw _privateConstructorUsedError;
   DownloadQuality? get downloadQuality => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $SettingsCopyWith<$Res> {
   @useResult
   $Res call(
       {Locale appLanguage,
-      String? audioLanguage,
+      List<String> audioLanguages,
       String? subtitleLanguage,
       String? downloadAudioLanguage,
       DownloadQuality? downloadQuality,
@@ -66,7 +66,7 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
   @override
   $Res call({
     Object? appLanguage = null,
-    Object? audioLanguage = freezed,
+    Object? audioLanguages = null,
     Object? subtitleLanguage = freezed,
     Object? downloadAudioLanguage = freezed,
     Object? downloadQuality = freezed,
@@ -82,10 +82,10 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
           ? _value.appLanguage
           : appLanguage // ignore: cast_nullable_to_non_nullable
               as Locale,
-      audioLanguage: freezed == audioLanguage
-          ? _value.audioLanguage
-          : audioLanguage // ignore: cast_nullable_to_non_nullable
-              as String?,
+      audioLanguages: null == audioLanguages
+          ? _value.audioLanguages
+          : audioLanguages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       subtitleLanguage: freezed == subtitleLanguage
           ? _value.subtitleLanguage
           : subtitleLanguage // ignore: cast_nullable_to_non_nullable
@@ -135,7 +135,7 @@ abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
   @useResult
   $Res call(
       {Locale appLanguage,
-      String? audioLanguage,
+      List<String> audioLanguages,
       String? subtitleLanguage,
       String? downloadAudioLanguage,
       DownloadQuality? downloadQuality,
@@ -159,7 +159,7 @@ class __$$_SettingsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? appLanguage = null,
-    Object? audioLanguage = freezed,
+    Object? audioLanguages = null,
     Object? subtitleLanguage = freezed,
     Object? downloadAudioLanguage = freezed,
     Object? downloadQuality = freezed,
@@ -175,10 +175,10 @@ class __$$_SettingsCopyWithImpl<$Res>
           ? _value.appLanguage
           : appLanguage // ignore: cast_nullable_to_non_nullable
               as Locale,
-      audioLanguage: freezed == audioLanguage
-          ? _value.audioLanguage
-          : audioLanguage // ignore: cast_nullable_to_non_nullable
-              as String?,
+      audioLanguages: null == audioLanguages
+          ? _value._audioLanguages
+          : audioLanguages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       subtitleLanguage: freezed == subtitleLanguage
           ? _value.subtitleLanguage
           : subtitleLanguage // ignore: cast_nullable_to_non_nullable
@@ -224,7 +224,7 @@ class __$$_SettingsCopyWithImpl<$Res>
 class _$_Settings implements _Settings {
   const _$_Settings(
       {required this.appLanguage,
-      this.audioLanguage,
+      final List<String> audioLanguages = const [],
       this.subtitleLanguage,
       this.downloadAudioLanguage,
       this.downloadQuality,
@@ -234,12 +234,20 @@ class _$_Settings implements _Settings {
       this.isBetaTester,
       this.useNativePlayer,
       final List<String> extraUsergroups = const []})
-      : _extraUsergroups = extraUsergroups;
+      : _audioLanguages = audioLanguages,
+        _extraUsergroups = extraUsergroups;
 
   @override
   final Locale appLanguage;
+  final List<String> _audioLanguages;
   @override
-  final String? audioLanguage;
+  @JsonKey()
+  List<String> get audioLanguages {
+    if (_audioLanguages is EqualUnmodifiableListView) return _audioLanguages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_audioLanguages);
+  }
+
   @override
   final String? subtitleLanguage;
   @override
@@ -267,7 +275,7 @@ class _$_Settings implements _Settings {
 
   @override
   String toString() {
-    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage, downloadAudioLanguage: $downloadAudioLanguage, downloadQuality: $downloadQuality, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride, isBetaTester: $isBetaTester, useNativePlayer: $useNativePlayer, extraUsergroups: $extraUsergroups)';
+    return 'Settings(appLanguage: $appLanguage, audioLanguages: $audioLanguages, subtitleLanguage: $subtitleLanguage, downloadAudioLanguage: $downloadAudioLanguage, downloadQuality: $downloadQuality, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride, isBetaTester: $isBetaTester, useNativePlayer: $useNativePlayer, extraUsergroups: $extraUsergroups)';
   }
 
   @override
@@ -277,8 +285,8 @@ class _$_Settings implements _Settings {
             other is _$_Settings &&
             (identical(other.appLanguage, appLanguage) ||
                 other.appLanguage == appLanguage) &&
-            (identical(other.audioLanguage, audioLanguage) ||
-                other.audioLanguage == audioLanguage) &&
+            const DeepCollectionEquality()
+                .equals(other._audioLanguages, _audioLanguages) &&
             (identical(other.subtitleLanguage, subtitleLanguage) ||
                 other.subtitleLanguage == subtitleLanguage) &&
             (identical(other.downloadAudioLanguage, downloadAudioLanguage) ||
@@ -303,7 +311,7 @@ class _$_Settings implements _Settings {
   int get hashCode => Object.hash(
       runtimeType,
       appLanguage,
-      audioLanguage,
+      const DeepCollectionEquality().hash(_audioLanguages),
       subtitleLanguage,
       downloadAudioLanguage,
       downloadQuality,
@@ -324,7 +332,7 @@ class _$_Settings implements _Settings {
 abstract class _Settings implements Settings {
   const factory _Settings(
       {required final Locale appLanguage,
-      final String? audioLanguage,
+      final List<String> audioLanguages,
       final String? subtitleLanguage,
       final String? downloadAudioLanguage,
       final DownloadQuality? downloadQuality,
@@ -338,7 +346,7 @@ abstract class _Settings implements Settings {
   @override
   Locale get appLanguage;
   @override
-  String? get audioLanguage;
+  List<String> get audioLanguages;
   @override
   String? get subtitleLanguage;
   @override

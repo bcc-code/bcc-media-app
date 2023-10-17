@@ -139,7 +139,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                             ),
                             OptionButton(
                               optionName: S.of(context).audioLanguage,
-                              currentSelection: getLanguageName(settings.audioLanguage),
+                              currentSelection: getLanguageName(settings.audioLanguages.firstOrNull),
                               onPressed: () {
                                 context.router.push(const AudioLanguageScreenRoute());
                               },

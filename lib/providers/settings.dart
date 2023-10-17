@@ -17,7 +17,7 @@ part 'settings.freezed.dart';
 class Settings with _$Settings {
   const factory Settings({
     required Locale appLanguage,
-    String? audioLanguage,
+    @Default([]) List<String> audioLanguages,
     String? subtitleLanguage,
     String? downloadAudioLanguage,
     DownloadQuality? downloadQuality,
@@ -34,7 +34,7 @@ extension on Settings {
   AppConfig toAppConfig() {
     return AppConfig(
       appLanguage: appLanguage.languageCode,
-      audioLanguage: audioLanguage,
+      audioLanguage: audioLanguages.firstOrNull,
       subtitleLanguage: subtitleLanguage,
       analyticsId: analyticsId,
       sessionId: sessionId,
@@ -51,7 +51,7 @@ class SettingsService extends StateNotifier<Settings> {
     var prefs = ref.read(sharedPreferencesProvider);
     state = state.copyWith(
       appLanguage: Locale(prefs.getString(PrefKeys.appLanguage) ?? _defaultLanguage),
-      audioLanguage: prefs.getString(PrefKeys.audioLanguage) ?? _defaultLanguage,
+      audioLanguages: (prefs.getString(PrefKeys.audioLanguage) ?? _defaultLanguage).split(','),
       subtitleLanguage: prefs.getString(PrefKeys.subtitleLanguage),
       downloadAudioLanguage: prefs.getString(PrefKeys.downloadAudioLanguage),
       downloadQuality: DownloadQuality.values.firstWhereOrNull((element) => element.index == prefs.getInt(PrefKeys.downloadQuality)),
@@ -67,12 +67,11 @@ class SettingsService extends StateNotifier<Settings> {
   Future<void> setAppLanguage(String code) async {
     ref.read(sharedPreferencesProvider).setString(PrefKeys.appLanguage, code);
     state = state.copyWith(appLanguage: getLocale(code) ?? Locale(_defaultLanguage));
-    // update the rest of the app
   }
 
-  Future<void> setAudioLanguage(String code) async {
-    ref.read(sharedPreferencesProvider).setString(PrefKeys.audioLanguage, code);
-    state = state.copyWith(audioLanguage: code);
+  Future<void> setAudioLanguages(List<String> languageCodes) async {
+    ref.read(sharedPreferencesProvider).setString(PrefKeys.audioLanguage, languageCodes.join(','));
+    state = state.copyWith(audioLanguages: languageCodes);
   }
 
   void refreshSessionId() {
