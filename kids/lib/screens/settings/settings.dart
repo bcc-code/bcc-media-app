@@ -12,7 +12,6 @@ import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button_base.dart';
 import 'package:kids/components/settings/setting_list.dart';
-import 'package:kids/helpers/orientation_utils.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -34,21 +33,21 @@ class SettingsScreen extends HookConsumerWidget {
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
 
-    usePortrait(!bp.isTablet);
-
     Future<void> checkParentalGateOrPop() async {
-      if (!await checkParentalGate(context)) {
-        SchedulerBinding.instance.scheduleFrameCallback((timeStamp) {
-          if (!context.mounted) return;
-          Navigator.of(context).pop();
-        });
-      }
+      SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
+        if (!await checkParentalGate(context)) {
+          SchedulerBinding.instance.scheduleFrameCallback((timeStamp) {
+            if (!context.mounted) return;
+            Navigator.of(context).pop();
+          });
+        }
+      });
     }
 
     final readyToDisplay = useState(false);
     useEffect(() {
       // set portrait for mobile
-      if (!bp.isTablet) {
+      if (bp.smallerThan(TABLET)) {
         SystemChrome.setPreferredOrientations([
           DeviceOrientation.portraitUp,
           DeviceOrientation.portraitDown,
@@ -68,7 +67,7 @@ class SettingsScreen extends HookConsumerWidget {
           DeviceOrientation.landscapeRight,
         ]);
       };
-    }, [bp.isTablet]);
+    }, [bp.smallerThan(TABLET)]);
 
     return DialogOnWeb(
       child: CupertinoScaffold(
