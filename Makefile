@@ -51,8 +51,8 @@ rerelease-kids-old:
 	TAG_SUFFIX=-kids make rerelease
 
 rerelease-kids:
-	read -p "delete tag v${BUILD_NUMBER_KIDS}${TAG_SUFFIX} (local and origin), and recreate it with current commit? (CTRL+C to abort)"
-	git push --delete origin v${BUILD_NUMBER_KIDS}${TAG_SUFFIX}
-	git tag --delete v${BUILD_NUMBER_KIDS}${TAG_SUFFIX}
-	git tag v${BUILD_NUMBER_KIDS}${TAG_SUFFIX}
+	read -p "delete tag v${BUILD_NUMBER_KIDS}-kids (local and origin), and recreate it with current commit? (CTRL+C to abort)"
+	git push --delete origin v${BUILD_NUMBER_KIDS}-kids
+	git tag --delete v${BUILD_NUMBER_KIDS}-kids
+	git tag v${BUILD_NUMBER_KIDS}-kids
 	git push --tags

@@ -507,10 +507,11 @@ class MockSettingsService extends _i1.Mock implements _i4.SettingsService {
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
   @override
-  _i7.Future<void> setAudioLanguage(String? code) => (super.noSuchMethod(
+  _i7.Future<void> setAudioLanguages(List<String>? languageCodes) =>
+      (super.noSuchMethod(
         Invocation.method(
-          #setAudioLanguage,
-          [code],
+          #setAudioLanguages,
+          [languageCodes],
         ),
         returnValue: _i7.Future<void>.value(),
         returnValueForMissingStub: _i7.Future<void>.value(),
