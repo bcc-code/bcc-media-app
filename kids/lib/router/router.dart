@@ -4,8 +4,6 @@ import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kids/router/router.gr.dart';
-import 'package:kids/screens/playlist.dart';
-import 'package:kids/screens/search.dart';
 
 Route<T> settingsRouteBuilder<T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
   if (!kIsWeb) {
@@ -122,6 +120,14 @@ class AppRouter extends $AppRouter {
           page: EpisodeScreenRoute.page,
           path: '/episode/:episodeId',
           meta: const {RouteMetaConstants.analyticsName: 'episode'},
+        ),
+        CustomRoute(
+          page: AppLanguageScreenRoute.page,
+          path: '/app-language',
+          durationInMilliseconds: 800,
+          reverseDurationInMilliseconds: 800,
+          customRouteBuilder: settingsRouteBuilder,
+          meta: const {RouteMetaConstants.analyticsName: 'app-language'},
         ),
       ];
 }

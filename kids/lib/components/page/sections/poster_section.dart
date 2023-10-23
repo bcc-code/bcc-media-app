@@ -52,7 +52,7 @@ class PosterSection extends StatelessWidget {
           .toList()
           .animate(interval: 50.ms)
           .slideX(begin: 1, curve: Curves.easeOutExpo, duration: 2000.ms)
-          .scale(begin: Offset(0.8, 0.8))
+          .scale(begin: const Offset(0.8, 0.8))
           .rotate(begin: 0.03)
           .fadeIn(),
     );
