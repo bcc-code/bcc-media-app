@@ -69,6 +69,7 @@ class EpisodeGrid extends StatelessWidget {
       children: items.mapIndexed((index, item) {
         return EpisodeGridItemRenderer(
           item,
+          enableMorph: true,
           onTap: () => onTap(item),
         );
       }).toList(),
@@ -81,10 +82,12 @@ class EpisodeGridItemRenderer extends ConsumerWidget {
     this.item, {
     super.key,
     required this.onTap,
+    required this.enableMorph,
   });
 
   final EpisodeGridItem item;
   final VoidCallback onTap;
+  final bool enableMorph;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -102,43 +105,35 @@ class EpisodeGridItemRenderer extends ConsumerWidget {
       onPressed: onTap,
       builder: (context, control) => Column(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AspectRatio(
             aspectRatio: 16 / 9,
             child: _MorphToEpisodeScreen(
-              enabled: true,
+              enabled: enableMorph,
               episodeId: item.id,
-              child: Center(
-                child: Container(
-                  height: double.infinity,
-                  color: Colors.red,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      item.image != null
-                          ? Stack(
-                              children: [
-                                Positioned.fill(
-                                  child: Container(color: design.colors.separator2)
-                                      .animate(onComplete: (c) => c.forward(from: 0))
-                                      .shimmer(duration: 1000.ms)
-                                      .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
-                                ),
-                                simpleFadeInImage(url: item.image!)
-                              ],
-                            )
-                          : Container(color: design.colors.separator2),
-                      if (item.duration != null)
-                        Positioned(
-                          bottom: bp.smallerThan(TABLET) ? 8 : 16,
-                          left: bp.smallerThan(TABLET) ? 8 : 16,
-                          child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
-                        ),
-                    ],
-                  ),
-                ),
+              child: Stack(
+                children: [
+                  item.image != null
+                      ? Stack(
+                          children: [
+                            Positioned.fill(
+                              child: Container(color: design.colors.separator2)
+                                  .animate(onComplete: (c) => c.forward(from: 0))
+                                  .shimmer(duration: 1000.ms)
+                                  .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
+                            ),
+                            simpleFadeInImage(url: item.image!)
+                          ],
+                        )
+                      : Container(color: design.colors.separator2),
+                  if (item.duration != null)
+                    Positioned(
+                      bottom: bp.smallerThan(TABLET) ? 8 : 16,
+                      left: bp.smallerThan(TABLET) ? 8 : 16,
+                      child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
+                    ),
+                ],
               ),
             ),
           ),

@@ -94,11 +94,11 @@ class PlayerView extends HookWidget {
             final middleHeight = constraints.maxWidth * (9 / 16);
             final remainingHeight = max(0.0, constraints.maxHeight - middleHeight);
 
-            const topOpenMinimumHeight = 40.0;
+            final topOpenMinimumHeight = 40.0;
             final topOpenHeight = max(remainingHeight / 2, topOpenMinimumHeight);
             final topHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeight / 2, end: topOpenHeight));
 
-            const bottomOpenMinimumHeight = 300.0;
+            final bottomOpenMinimumHeight = bp.smallerThan(TABLET) ? constraints.maxHeight / 3 : 300.0;
             final bottomOpenHeight = max(remainingHeight / 2, bottomOpenMinimumHeight);
             final bottomHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeight / 2, end: bottomOpenHeight));
 
@@ -267,9 +267,10 @@ class PlayerEpisodes extends HookConsumerWidget {
                   EpisodeGridItem(
                     id: 'id',
                     title: 'A very long title',
-                    image: 'https://picsum.photos/854/480',
+                    image: null,
                     duration: null,
                   ),
+                  enableMorph: false,
                   onTap: () => (),
                 ),
               ),
@@ -299,6 +300,7 @@ class PlayerEpisodes extends HookConsumerWidget {
                 image: ep.image,
                 duration: ep.duration,
               ),
+              enableMorph: false,
               onTap: () {
                 ref.read(playbackServiceProvider).playEpisode(
                       playerId: BccmPlayerViewController.of(context).playerController.value.playerId,
