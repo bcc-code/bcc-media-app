@@ -28,7 +28,7 @@ class PlayerView extends HookWidget {
   Widget build(BuildContext context) {
     final viewController = BccmPlayerViewController.of(context);
     final animationController = useAnimationController(
-      duration: 400.ms,
+      duration: 500.ms,
       reverseDuration: 700.ms,
       initialValue: 0.0,
     );
@@ -92,102 +92,107 @@ class PlayerView extends HookWidget {
           LayoutBuilder(builder: (context, constraints) {
             // Calculate the height of the middle box based on the aspect ratio
             final sideOpenTargetWidth = 152.0;
+            const bottomOpenMinimumHeight = 200.0;
+            final topOpenTargetHeight = bp.smallerThan(TABLET) ? 12.0 : 40.0;
+
             final sideWidthTweened = sideOpenTargetWidth * curvedAnimation.value;
 
-            final middleClosedHeight = (constraints.maxWidth) * (9 / 16);
-            final middleOpenTargetHeight = (constraints.maxWidth - sideOpenTargetWidth * 2) * (9 / 16);
-            final middleHeightTweened = (constraints.maxWidth - sideWidthTweened * 2) * (9 / 16);
+            final middleClosedHeight = min(constraints.maxHeight, (constraints.maxWidth) * (9 / 16));
+            final middleOpenTargetHeight =
+                min(constraints.maxHeight - bottomOpenMinimumHeight, (constraints.maxWidth - sideOpenTargetWidth * 2) * (9 / 16));
+            final middleHeightTweened = curvedAnimation.drive(Tween(begin: middleClosedHeight, end: middleOpenTargetHeight)).value;
 
             final remainingHeightWhenOpen = max(0.0, constraints.maxHeight - middleOpenTargetHeight);
             final remainingHeightWhenClosed = max(0.0, constraints.maxHeight - middleClosedHeight);
             final remainingHeight = max(0.0, constraints.maxHeight - middleHeightTweened);
 
-            final topOpenTargetHeight = 40.0;
             final topHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeightWhenClosed / 2, end: topOpenTargetHeight));
 
-            final bottomOpenMinimumHeight = remainingHeightWhenOpen - topOpenTargetHeight;
-            final bottomOpenHeight = max(remainingHeight / 2, bottomOpenMinimumHeight);
+            final bottomOpenTargetHeight = max(bottomOpenMinimumHeight, remainingHeightWhenOpen - topOpenTargetHeight);
+            final bottomOpenHeight = max(remainingHeight / 2, bottomOpenTargetHeight);
             final bottomHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeight / 2, end: bottomOpenHeight));
-            debugPrint(bottomOpenMinimumHeight.toString());
+
             return Column(
               children: [
                 Container(
                   height: topHeightTweened.value,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: sideWidthTweened),
+                Container(
+                  height: middleHeightTweened,
+                  margin: EdgeInsets.symmetric(horizontal: sideWidthTweened),
                   child: Align(
                     alignment: Alignment.center,
                     child: Center(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(curvedAnimation.value * 40),
-                        child: Stack(
-                          children: [
-                            Positioned.fill(
-                              child: Container(
-                                margin: const EdgeInsets.all(1),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(40),
-                                  color: Colors.black,
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            toggleOpen();
+                          },
+                          child: Stack(
+                            children: [
+                              Positioned.fill(
+                                child: Container(
+                                  margin: const EdgeInsets.all(1),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(40),
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
-                            ),
-                            IgnorePointer(
-                              ignoring: true,
-                              child: VideoPlatformView(
-                                playerController: viewController.playerController,
-                                showControls: false,
-                                useSurfaceView: viewController.config.useSurfaceView,
-                                allowSystemGestures: viewController.config.allowSystemGestures,
+                              IgnorePointer(
+                                ignoring: true,
+                                child: VideoPlatformView(
+                                  playerController: viewController.playerController,
+                                  showControls: false,
+                                  useSurfaceView: viewController.config.useSurfaceView,
+                                  allowSystemGestures: viewController.config.allowSystemGestures,
+                                ),
                               ),
-                            ),
-                            Positioned.fill(
-                              child: GestureDetector(
-                                behavior: HitTestBehavior.opaque,
-                                onTap: () {
-                                  toggleOpen();
-                                },
-                                child: Container(),
+                              Positioned.fill(
+                                child: Opacity(
+                                  opacity: curvedAnimation.value,
+                                  child: PlayerControls(show: controlsVisible.value),
+                                ),
                               ),
-                            ),
-                            Positioned.fill(
-                              child: Opacity(
-                                opacity: curvedAnimation.value,
-                                child: PlayerControls(show: controlsVisible.value),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Transform.translate(
-                      offset: Offset(0, (bottomOpenMinimumHeight - remainingHeight + 40)),
-                      child: lastEpisodeId.value == null
-                          ? null
-                          : OverflowBox(
-                              alignment: Alignment.topLeft,
-                              maxHeight: bottomOpenMinimumHeight - 20,
-                              minHeight: bottomOpenMinimumHeight - 20,
-                              child: Container(
-                                height: bottomOpenMinimumHeight - 20,
-                                padding: EdgeInsets.symmetric(vertical: 32),
-                                child: SingleChildScrollView(
-                                  padding: EdgeInsets.symmetric(horizontal: basePadding),
-                                  scrollDirection: Axis.horizontal,
-                                  child: PlayerEpisodes(
-                                    height: bottomOpenMinimumHeight,
-                                    episodeId: lastEpisodeId.value!,
-                                    cursor: null,
-                                    onChange: () {},
+                  child: SizedBox(
+                    height: bottomHeightTweened.value,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Transform.translate(
+                        offset:
+                            Offset(0, (bottomOpenTargetHeight - bottomOpenHeight + (remainingHeightWhenClosed / 2) * (1 - curvedAnimation.value))),
+                        child: lastEpisodeId.value == null
+                            ? null
+                            : OverflowBox(
+                                alignment: Alignment.topLeft,
+                                maxHeight: bottomOpenTargetHeight,
+                                minHeight: bottomOpenTargetHeight,
+                                child: Container(
+                                  height: bottomOpenTargetHeight,
+                                  padding: EdgeInsets.only(top: bp.smallerThan(TABLET) ? 12 : 32),
+                                  child: SingleChildScrollView(
+                                    padding: EdgeInsets.symmetric(horizontal: basePadding),
+                                    scrollDirection: Axis.horizontal,
+                                    child: PlayerEpisodes(
+                                      height: bottomOpenTargetHeight,
+                                      episodeId: lastEpisodeId.value!,
+                                      cursor: null,
+                                      onChange: () {},
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
+                      ),
                     ),
                   ),
                 ),
@@ -282,6 +287,7 @@ class PlayerEpisodes extends HookConsumerWidget {
                     duration: null,
                   ),
                   enableMorph: false,
+                  hideTitle: ResponsiveBreakpoints.of(context).smallerThan(TABLET),
                   onTap: () => (),
                 ),
               ),
@@ -312,6 +318,7 @@ class PlayerEpisodes extends HookConsumerWidget {
                 duration: ep.duration,
               ),
               enableMorph: false,
+              hideTitle: ResponsiveBreakpoints.of(context).smallerThan(TABLET),
               onTap: () {
                 ref.read(playbackServiceProvider).playEpisode(
                       playerId: BccmPlayerViewController.of(context).playerController.value.playerId,

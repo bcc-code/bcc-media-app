@@ -83,11 +83,13 @@ class EpisodeGridItemRenderer extends ConsumerWidget {
     super.key,
     required this.onTap,
     required this.enableMorph,
+    this.hideTitle = false,
   });
 
   final EpisodeGridItem item;
   final VoidCallback onTap;
   final bool enableMorph;
+  final bool hideTitle;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -109,43 +111,47 @@ class EpisodeGridItemRenderer extends ConsumerWidget {
         children: [
           AspectRatio(
             aspectRatio: 16 / 9,
-            child: _MorphToEpisodeScreen(
-              enabled: enableMorph,
-              episodeId: item.id,
-              child: Stack(
-                children: [
-                  item.image != null
-                      ? Stack(
-                          children: [
-                            Positioned.fill(
-                              child: Container(color: design.colors.separator2)
-                                  .animate(onComplete: (c) => c.forward(from: 0))
-                                  .shimmer(duration: 1000.ms)
-                                  .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
-                            ),
-                            simpleFadeInImage(url: item.image!)
-                          ],
-                        )
-                      : Container(color: design.colors.separator2),
-                  if (item.duration != null)
-                    Positioned(
-                      bottom: bp.smallerThan(TABLET) ? 8 : 16,
-                      left: bp.smallerThan(TABLET) ? 8 : 16,
-                      child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
-                    ),
-                ],
+            child: ClipRRect(
+              borderRadius: !enableMorph ? BorderRadius.circular(bp.smallerThan(TABLET) ? 16 : 24) : BorderRadius.zero,
+              child: _MorphToEpisodeScreen(
+                enabled: enableMorph,
+                episodeId: item.id,
+                child: Stack(
+                  children: [
+                    item.image != null
+                        ? Stack(
+                            children: [
+                              Positioned.fill(
+                                child: Container(color: design.colors.separator2)
+                                    .animate(onComplete: (c) => c.forward(from: 0))
+                                    .shimmer(duration: 1000.ms)
+                                    .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
+                              ),
+                              simpleFadeInImage(url: item.image!)
+                            ],
+                          )
+                        : Container(color: design.colors.separator2),
+                    if (item.duration != null)
+                      Positioned(
+                        bottom: bp.smallerThan(TABLET) ? 8 : 16,
+                        left: bp.smallerThan(TABLET) ? 8 : 16,
+                        child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: Text(
-              item.title,
-              style: design.textStyles.body2.copyWith(color: design.colors.label1),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+          if (!hideTitle)
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: Text(
+                item.title,
+                style: design.textStyles.body2.copyWith(color: design.colors.label1),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
         ],
       ),
     );

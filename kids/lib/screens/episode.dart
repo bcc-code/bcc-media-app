@@ -7,12 +7,14 @@ import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/player/player_view.dart';
 import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 @RoutePage<void>()
 class EpisodeScreen extends HookConsumerWidget {
@@ -32,6 +34,15 @@ class EpisodeScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final gqlClient = ref.watch(gqlClientProvider);
+
+    useEffect(() {
+      WakelockPlus.enable();
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+      return () {
+        WakelockPlus.disable();
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+      };
+    });
 
     final episodeFuture = useMemoized<Future<QueryResult<Query$FetchEpisode?>>>(
       () => gqlClient.query$FetchEpisode(
