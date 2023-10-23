@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
@@ -47,7 +45,6 @@ class PosterSection extends StatelessWidget {
 
                         return PosterLarge(
                           hasNewEpisodes: publishDate != null ? DateTime.now().difference(publishDate).inDays <= 7 : false,
-                          // hasNewEpisodes: true,
                           image: item.image,
                           onPressed: () => handleSectionItemClick(context, item.item),
                         );

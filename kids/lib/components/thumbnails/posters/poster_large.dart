@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-// ignore: unused_import
-import 'package:kids/components/buttons/button.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:simple_shadow/simple_shadow.dart';
@@ -58,13 +56,13 @@ class PosterLarge extends HookWidget {
                                   offset: const Offset(0, -20),
                                   child: SimpleShadow(
                                     opacity: 0.15,
-                                    color: Colors.black, // Default: Black
-                                    offset: const Offset(0, 8), // Default: Offset(2, 2)
+                                    color: Colors.black, 
+                                    offset: const Offset(0, 8), 
                                     sigma: 40,
                                     child: SimpleShadow(
                                       opacity: 0.15,
                                       color: Colors.black,
-                                      offset: const Offset(0, 2), // Default: Offset(2, 2)
+                                      offset: const Offset(0, 2),
                                       sigma: 3,
                                       child: Transform.scale(
                                         scale: 0.7,
