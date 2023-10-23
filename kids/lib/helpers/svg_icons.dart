@@ -51,4 +51,12 @@ class SvgIcons {
 </svg>
 
 ''';
+
+  static const checked = '''
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 14.7522L12.8182 22.1875L26 7.8125" stroke="#041234" stroke-width="3"/>
+</svg>
+
+
+''';
 }

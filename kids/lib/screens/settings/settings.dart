@@ -126,7 +126,7 @@ class SettingsScreen extends HookConsumerWidget {
                       width: double.infinity,
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        constraints: const BoxConstraints(maxWidth: 500),
+                        constraints: const BoxConstraints(maxWidth: 544),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
@@ -140,7 +140,7 @@ class SettingsScreen extends HookConsumerWidget {
                                   title: S.of(context).appLanguage,
                                   rightText: getLanguageName(settings.appLanguage.languageCode) ?? '',
                                   onPressed: () {
-                                    //context.router.push(const AppLanguageScreenRoute());
+                                    context.router.push(const AppLanguageScreenRoute());
                                   },
                                 ),
                                 SettingListItem(
