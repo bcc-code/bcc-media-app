@@ -116,13 +116,5 @@ class AppRouter extends $AppRouter {
           durationInMilliseconds: 600,
           reverseDurationInMilliseconds: 1000,
         ),
-        CustomRoute(
-          page: AppLanguageScreenRoute.page,
-          path: '/app-language',
-          durationInMilliseconds: 800,
-          reverseDurationInMilliseconds: 800,
-          customRouteBuilder: settingsRouteBuilder,
-          meta: const {RouteMetaConstants.analyticsName: 'app-language'},
-        ),
       ];
 }

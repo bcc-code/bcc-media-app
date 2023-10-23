@@ -128,6 +128,7 @@ fragment PlayableEpisode on Episode {
   streams {
     ...BasicStream
   }
+  cursor
   context {
     ... on ContextCollection {
       id

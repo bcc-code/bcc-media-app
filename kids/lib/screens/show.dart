@@ -1,19 +1,24 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
+import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button.dart';
 import 'package:kids/components/grid/episode_grid.dart';
+import 'package:kids/helpers/playback.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kids/router/router.gr.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage<void>()
-class ShowScreen extends HookWidget {
+class ShowScreen extends HookConsumerWidget {
   const ShowScreen({
     super.key,
     @PathParam('showId') required this.showId,
@@ -22,7 +27,7 @@ class ShowScreen extends HookWidget {
   final String showId;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
     final double basePadding = bp.smallerThan(TABLET) ? 24.0 : 48.0;
@@ -95,9 +100,12 @@ class ShowScreen extends HookWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: basePadding).copyWith(bottom: basePadding),
                       child: EpisodeGrid(
+                        onTap: (item) {
+                          context.router.push(EpisodeScreenRoute(id: item.id));
+                        },
                         items: showQuery.result.parsedData!.$show.seasons.items
                             .expand((element) => element.episodes.items)
-                            .whereType<Fragment$KidsEpisodeGridItem>()
+                            .whereType<Fragment$KidsEpisodeThumbnail>()
                             .map((e) => EpisodeGridItem.fromFragment(e))
                             .toList(),
                       ),

@@ -7,7 +7,7 @@ query GetShowOverview($id: ID!) {
         episodes {
           items {
             ... on Episode {
-              ...KidsEpisodeGridItem
+              ...KidsEpisodeThumbnail
             }
           }
         }
@@ -23,17 +23,16 @@ query GetPlaylistOverview($id: ID!) {
       total
       items {
         ... on Episode {
-          ...KidsEpisodeGridItem
+          ...KidsEpisodeThumbnail
         }
       }
     }
   }
 }
 
-fragment KidsEpisodeGridItem on Episode {
+fragment KidsEpisodeThumbnail on Episode {
   id
   title
-  description
   duration
   image
 }

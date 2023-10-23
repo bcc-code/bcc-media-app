@@ -1,9 +1,12 @@
+import 'package:animations/animations.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/misc/custom_grid_view.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:collection/collection.dart';
@@ -14,6 +17,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:kids/components/buttons/button.dart';
 import 'package:kids/components/player/controls.dart';
+import 'package:kids/components/player/player_view.dart';
+import 'package:kids/helpers/transitions.dart';
+import 'package:kids/router/router.gr.dart';
+import 'package:kids/screens/episode.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class EpisodeGridItem {
@@ -29,7 +36,7 @@ class EpisodeGridItem {
     required this.duration,
   });
 
-  factory EpisodeGridItem.fromFragment(Fragment$KidsEpisodeGridItem e) {
+  factory EpisodeGridItem.fromFragment(Fragment$KidsEpisodeThumbnail e) {
     return EpisodeGridItem(
       id: e.id,
       title: e.title,
@@ -40,9 +47,14 @@ class EpisodeGridItem {
 }
 
 class EpisodeGrid extends StatelessWidget {
-  const EpisodeGrid({super.key, required this.items});
+  const EpisodeGrid({
+    super.key,
+    required this.items,
+    required this.onTap,
+  });
 
   final List<EpisodeGridItem> items;
+  final void Function(EpisodeGridItem item) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -55,47 +67,33 @@ class EpisodeGrid extends StatelessWidget {
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       children: items.mapIndexed((index, item) {
-        return _EpisodeGridItemRenderer(item);
+        return EpisodeGridItemRenderer(
+          item,
+          enableMorph: true,
+          onTap: () => onTap(item),
+        );
       }).toList(),
     );
   }
 }
 
-class _EpisodeGridItemRenderer extends ConsumerWidget {
-  const _EpisodeGridItemRenderer(
-    this.item,
-  );
+class EpisodeGridItemRenderer extends ConsumerWidget {
+  const EpisodeGridItemRenderer(
+    this.item, {
+    super.key,
+    required this.onTap,
+    required this.enableMorph,
+    this.hideTitle = false,
+  });
 
   final EpisodeGridItem item;
+  final VoidCallback onTap;
+  final bool enableMorph;
+  final bool hideTitle;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
-    void onTap() async {
-      final ep = await ref.read(apiProvider).fetchEpisode(item.id);
-      if (ep == null) return;
-      if (!context.mounted) return;
-      ref
-          .read(playbackServiceProvider)
-          .openFullscreen(
-            context,
-            config: BccmPlayerViewConfig(
-              deviceOrientationsFullscreen: (vc) => [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
-              deviceOrientationsNormal: (vc) => [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
-              controlsConfig: BccmPlayerControlsConfig(
-                customBuilder: (context) => const PlayerControls(),
-              ),
-            ),
-          )
-          .then((_) {
-        BccmPlayerController.primary.stop(reset: true);
-      });
-      return ref.read(playbackServiceProvider).playEpisode(
-            playerId: BccmPlayerController.primary.value.playerId,
-            autoplay: true,
-            episode: ep,
-          );
-    }
 
     final bp = ResponsiveBreakpoints.of(context);
 
@@ -108,46 +106,104 @@ class _EpisodeGridItemRenderer extends ConsumerWidget {
       },
       onPressed: onTap,
       builder: (context, control) => Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              AspectRatio(
-                aspectRatio: 16 / 9,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: item.image != null
-                      ? Stack(
-                          children: [
-                            Positioned.fill(
-                              child: Container(color: design.colors.separator2)
-                                  .animate(onComplete: (c) => c.forward(from: 0))
-                                  .shimmer(duration: 1000.ms)
-                                  .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
-                            ),
-                            simpleFadeInImage(url: item.image!),
-                          ],
-                        )
-                      : Container(color: design.colors.separator2),
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: ClipRRect(
+              borderRadius: !enableMorph ? BorderRadius.circular(bp.smallerThan(TABLET) ? 16 : 24) : BorderRadius.zero,
+              child: _MorphToEpisodeScreen(
+                enabled: enableMorph,
+                episodeId: item.id,
+                child: Stack(
+                  children: [
+                    item.image != null
+                        ? Stack(
+                            children: [
+                              Positioned.fill(
+                                child: Container(color: design.colors.separator2)
+                                    .animate(onComplete: (c) => c.forward(from: 0))
+                                    .shimmer(duration: 1000.ms)
+                                    .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
+                              ),
+                              simpleFadeInImage(url: item.image!)
+                            ],
+                          )
+                        : Container(color: design.colors.separator2),
+                    if (item.duration != null)
+                      Positioned(
+                        bottom: bp.smallerThan(TABLET) ? 8 : 16,
+                        left: bp.smallerThan(TABLET) ? 8 : 16,
+                        child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
+                      ),
+                  ],
                 ),
               ),
-              if (item.duration != null)
-                Positioned(
-                  bottom: bp.smallerThan(TABLET) ? 8 : 16,
-                  left: bp.smallerThan(TABLET) ? 8 : 16,
-                  child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
-                ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: Text(
-              item.title,
-              style: design.textStyles.body2.copyWith(color: design.colors.label1),
             ),
           ),
+          if (!hideTitle)
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: Text(
+                item.title,
+                style: design.textStyles.body2.copyWith(color: design.colors.label1),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
         ],
       ),
+    );
+  }
+}
+
+class _MorphToEpisodeScreen extends StatelessWidget {
+  const _MorphToEpisodeScreen({
+    super.key,
+    required this.child,
+    required this.enabled,
+    required this.episodeId,
+  });
+
+  final Widget child;
+  final bool enabled;
+  final String episodeId;
+
+  @override
+  Widget build(BuildContext context) {
+    if (!enabled) return child;
+    final small = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
+    final duration = 500.ms;
+    return OpenContainer(
+      openBuilder: (context, close) {
+        final args = ModalRoute.of(context)!.settings.arguments.asOrNull<EpisodeScreenRouteArgs>();
+        if (args != null) {
+          return InheritedData(
+            inheritedData: ContainerTransitionInfo(duration: duration),
+            child: (c) => EpisodeScreen(
+              id: args.id,
+              cursor: args.cursor,
+              shuffle: args.shuffle,
+            ),
+          );
+        }
+        return const SizedBox.shrink();
+      },
+      openElevation: 0,
+      closedElevation: 0,
+      transitionType: ContainerTransitionType.fade,
+      openColor: Colors.transparent,
+      openShape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      closedColor: Colors.transparent,
+      closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(small ? 16 : 16)),
+      transitionDuration: duration,
+      routeSettings: RouteSettings(name: EpisodeScreenRoute.page.name, arguments: EpisodeScreenRouteArgs(id: episodeId)),
+      closedBuilder: (
+        context,
+        open,
+      ) =>
+          child,
     );
   }
 }
