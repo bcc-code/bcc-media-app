@@ -91,23 +91,31 @@ class PlayerView extends HookWidget {
           ),
           LayoutBuilder(builder: (context, constraints) {
             // Calculate the height of the middle box based on the aspect ratio
-            final middleHeight = constraints.maxWidth * (9 / 16);
-            final remainingHeight = max(0.0, constraints.maxHeight - middleHeight);
+            final sideOpenTargetWidth = 152.0;
+            final sideWidthTweened = sideOpenTargetWidth * curvedAnimation.value;
 
-            final topOpenMinimumHeight = 40.0;
-            final topOpenHeight = max(remainingHeight / 2, topOpenMinimumHeight);
-            final topHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeight / 2, end: topOpenHeight));
+            final middleClosedHeight = (constraints.maxWidth) * (9 / 16);
+            final middleOpenTargetHeight = (constraints.maxWidth - sideOpenTargetWidth * 2) * (9 / 16);
+            final middleHeightTweened = (constraints.maxWidth - sideWidthTweened * 2) * (9 / 16);
 
-            final bottomOpenMinimumHeight = bp.smallerThan(TABLET) ? constraints.maxHeight / 3 : 300.0;
+            final remainingHeightWhenOpen = max(0.0, constraints.maxHeight - middleOpenTargetHeight);
+            final remainingHeightWhenClosed = max(0.0, constraints.maxHeight - middleClosedHeight);
+            final remainingHeight = max(0.0, constraints.maxHeight - middleHeightTweened);
+
+            final topOpenTargetHeight = 40.0;
+            final topHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeightWhenClosed / 2, end: topOpenTargetHeight));
+
+            final bottomOpenMinimumHeight = remainingHeightWhenOpen - topOpenTargetHeight;
             final bottomOpenHeight = max(remainingHeight / 2, bottomOpenMinimumHeight);
             final bottomHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeight / 2, end: bottomOpenHeight));
-
+            debugPrint(bottomOpenMinimumHeight.toString());
             return Column(
               children: [
                 Container(
                   height: topHeightTweened.value,
                 ),
-                Expanded(
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: sideWidthTweened),
                   child: Align(
                     alignment: Alignment.center,
                     child: Center(
@@ -154,12 +162,11 @@ class PlayerView extends HookWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: bottomHeightTweened.value,
+                Expanded(
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Transform.translate(
-                      offset: Offset(0, (1 - curvedAnimation.value) * (remainingHeight / 2 + 20 + bottomOpenMinimumHeight / 2)),
+                      offset: Offset(0, (bottomOpenMinimumHeight - remainingHeight + 40)),
                       child: lastEpisodeId.value == null
                           ? null
                           : OverflowBox(
@@ -167,13 +174,17 @@ class PlayerView extends HookWidget {
                               maxHeight: bottomOpenMinimumHeight - 20,
                               minHeight: bottomOpenMinimumHeight - 20,
                               child: Container(
-                                height: bottomOpenMinimumHeight,
+                                height: bottomOpenMinimumHeight - 20,
                                 padding: EdgeInsets.symmetric(vertical: 32),
                                 child: SingleChildScrollView(
                                   padding: EdgeInsets.symmetric(horizontal: basePadding),
                                   scrollDirection: Axis.horizontal,
-                                  child:
-                                      PlayerEpisodes(height: bottomOpenMinimumHeight, episodeId: lastEpisodeId.value!, cursor: null, onChange: () {}),
+                                  child: PlayerEpisodes(
+                                    height: bottomOpenMinimumHeight,
+                                    episodeId: lastEpisodeId.value!,
+                                    cursor: null,
+                                    onChange: () {},
+                                  ),
                                 ),
                               ),
                             ),
@@ -199,7 +210,7 @@ class PlayerView extends HookWidget {
           ),
           Positioned(
             top: 0,
-            right: 0 - (1 - curvedAnimation.value) * 300,
+            right: 0 - (1 - curvedAnimation.value) * 200,
             child: SafeArea(
               child: Padding(
                 padding: EdgeInsets.all(basePadding),
