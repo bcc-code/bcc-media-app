@@ -8,7 +8,7 @@ import 'package:kids/helpers/svg_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:kids/components/settings/applanguage_list.dart';
-import 'package:kids/helpers/languages.dart';
+import 'package:brunstadtv_app/helpers/languages.dart';
 
 @RoutePage<void>()
 class AppLanguageScreen extends HookConsumerWidget {

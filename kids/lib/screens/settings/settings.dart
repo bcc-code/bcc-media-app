@@ -131,7 +131,7 @@ class SettingsScreen extends HookConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             const Padding(
-                              padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+                              padding: EdgeInsets.only(top: 20.0, bottom: 20),
                               child: DonationButton(),
                             ),
                             SettingList(
@@ -259,18 +259,18 @@ class DonationButton extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(right: 24),
+            padding: const EdgeInsets.only(right: 24),
             child: Container(
               alignment: Alignment.center,
               child: Stack(
                 children: [
                   if (!pressed)
                     Transform.translate(
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                       child: SvgPicture.string(
                         SvgIcons.logoFlame,
                         height: 48,
-                        colorFilter: ColorFilter.mode(const Color(0xFFCA9100), BlendMode.srcIn),
+                        colorFilter: const ColorFilter.mode(Color(0xFFCA9100), BlendMode.srcIn),
                         width: 48,
                       ),
                     ),
