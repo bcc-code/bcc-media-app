@@ -530,7 +530,6 @@ const possibleTypesMap = <String, Set<String>>{
     'SurveyQuestionPagination',
     'LinkPagination',
     'UserCollectionEntryPagination',
-    'CollectionItemPagination',
     'SectionPagination',
     'SectionItemPagination',
     'PlaylistItemPagination',
@@ -550,18 +549,6 @@ const possibleTypesMap = <String, Set<String>>{
   'UserCollectionEntryItem': {
     'Show',
     'Episode',
-  },
-  'CollectionItem': {
-    'ShowItem',
-    'SeasonItem',
-    'EpisodeItem',
-    'PageItem',
-    'Playlist',
-    'Game',
-    'Season',
-    'StudyTopic',
-    'Episode',
-    'Show',
   },
   'Section': {
     'PosterSection',
@@ -607,6 +594,14 @@ const possibleTypesMap = <String, Set<String>>{
     'StudyTopic',
     'Game',
     'Playlist',
+  },
+  'CollectionItem': {
+    'Playlist',
+    'Game',
+    'Season',
+    'StudyTopic',
+    'Episode',
+    'Show',
   },
   'CalendarEntry': {
     'SimpleCalendarEntry',

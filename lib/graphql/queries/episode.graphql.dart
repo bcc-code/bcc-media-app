@@ -4086,6 +4086,7 @@ class Fragment$PlayableEpisode {
   Fragment$PlayableEpisode({
     required this.id,
     required this.streams,
+    required this.cursor,
     this.context,
     required this.title,
     this.image,
@@ -4097,6 +4098,7 @@ class Fragment$PlayableEpisode {
   factory Fragment$PlayableEpisode.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$streams = json['streams'];
+    final l$cursor = json['cursor'];
     final l$context = json['context'];
     final l$title = json['title'];
     final l$image = json['image'];
@@ -4109,6 +4111,7 @@ class Fragment$PlayableEpisode {
           .map(
               (e) => Fragment$BasicStream.fromJson((e as Map<String, dynamic>)))
           .toList(),
+      cursor: (l$cursor as String),
       context: l$context == null
           ? null
           : Fragment$PlayableEpisode$context.fromJson(
@@ -4128,6 +4131,8 @@ class Fragment$PlayableEpisode {
 
   final List<Fragment$BasicStream> streams;
 
+  final String cursor;
+
   final Fragment$PlayableEpisode$context? context;
 
   final String title;
@@ -4146,6 +4151,8 @@ class Fragment$PlayableEpisode {
     _resultData['id'] = l$id;
     final l$streams = streams;
     _resultData['streams'] = l$streams.map((e) => e.toJson()).toList();
+    final l$cursor = cursor;
+    _resultData['cursor'] = l$cursor;
     final l$context = context;
     _resultData['context'] = l$context?.toJson();
     final l$title = title;
@@ -4165,6 +4172,7 @@ class Fragment$PlayableEpisode {
   int get hashCode {
     final l$id = id;
     final l$streams = streams;
+    final l$cursor = cursor;
     final l$context = context;
     final l$title = title;
     final l$image = image;
@@ -4174,6 +4182,7 @@ class Fragment$PlayableEpisode {
     return Object.hashAll([
       l$id,
       Object.hashAll(l$streams.map((v) => v)),
+      l$cursor,
       l$context,
       l$title,
       l$image,
@@ -4208,6 +4217,11 @@ class Fragment$PlayableEpisode {
       if (l$streams$entry != lOther$streams$entry) {
         return false;
       }
+    }
+    final l$cursor = cursor;
+    final lOther$cursor = other.cursor;
+    if (l$cursor != lOther$cursor) {
+      return false;
     }
     final l$context = context;
     final lOther$context = other.context;
@@ -4264,6 +4278,7 @@ abstract class CopyWith$Fragment$PlayableEpisode<TRes> {
   TRes call({
     String? id,
     List<Fragment$BasicStream>? streams,
+    String? cursor,
     Fragment$PlayableEpisode$context? context,
     String? title,
     String? image,
@@ -4295,6 +4310,7 @@ class _CopyWithImpl$Fragment$PlayableEpisode<TRes>
   TRes call({
     Object? id = _undefined,
     Object? streams = _undefined,
+    Object? cursor = _undefined,
     Object? context = _undefined,
     Object? title = _undefined,
     Object? image = _undefined,
@@ -4307,6 +4323,9 @@ class _CopyWithImpl$Fragment$PlayableEpisode<TRes>
         streams: streams == _undefined || streams == null
             ? _instance.streams
             : (streams as List<Fragment$BasicStream>),
+        cursor: cursor == _undefined || cursor == null
+            ? _instance.cursor
+            : (cursor as String),
         context: context == _undefined
             ? _instance.context
             : (context as Fragment$PlayableEpisode$context?),
@@ -4360,6 +4379,7 @@ class _CopyWithStubImpl$Fragment$PlayableEpisode<TRes>
   call({
     String? id,
     List<Fragment$BasicStream>? streams,
+    String? cursor,
     Fragment$PlayableEpisode$context? context,
     String? title,
     String? image,
@@ -4409,6 +4429,13 @@ const fragmentDefinitionPlayableEpisode = FragmentDefinitionNode(
           selectionSet: null,
         ),
       ]),
+    ),
+    FieldNode(
+      name: NameNode(value: 'cursor'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
     ),
     FieldNode(
       name: NameNode(value: 'context'),
@@ -6995,6 +7022,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
   Query$FetchEpisode$episode({
     required this.id,
     required this.streams,
+    required this.cursor,
     this.context,
     required this.title,
     this.image,
@@ -7019,6 +7047,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
   factory Query$FetchEpisode$episode.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$streams = json['streams'];
+    final l$cursor = json['cursor'];
     final l$context = json['context'];
     final l$title = json['title'];
     final l$image = json['image'];
@@ -7044,6 +7073,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
           .map(
               (e) => Fragment$BasicStream.fromJson((e as Map<String, dynamic>)))
           .toList(),
+      cursor: (l$cursor as String),
       context: l$context == null
           ? null
           : Query$FetchEpisode$episode$context.fromJson(
@@ -7083,6 +7113,8 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
   final String id;
 
   final List<Fragment$BasicStream> streams;
+
+  final String cursor;
 
   final Query$FetchEpisode$episode$context? context;
 
@@ -7128,6 +7160,8 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     _resultData['id'] = l$id;
     final l$streams = streams;
     _resultData['streams'] = l$streams.map((e) => e.toJson()).toList();
+    final l$cursor = cursor;
+    _resultData['cursor'] = l$cursor;
     final l$context = context;
     _resultData['context'] = l$context?.toJson();
     final l$title = title;
@@ -7174,6 +7208,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
   int get hashCode {
     final l$id = id;
     final l$streams = streams;
+    final l$cursor = cursor;
     final l$context = context;
     final l$title = title;
     final l$image = image;
@@ -7196,6 +7231,7 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
     return Object.hashAll([
       l$id,
       Object.hashAll(l$streams.map((v) => v)),
+      l$cursor,
       l$context,
       l$title,
       l$image,
@@ -7243,6 +7279,11 @@ class Query$FetchEpisode$episode implements Fragment$PlayableEpisode {
       if (l$streams$entry != lOther$streams$entry) {
         return false;
       }
+    }
+    final l$cursor = cursor;
+    final lOther$cursor = other.cursor;
+    if (l$cursor != lOther$cursor) {
+      return false;
     }
     final l$context = context;
     final lOther$context = other.context;
@@ -7371,6 +7412,7 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
   TRes call({
     String? id,
     List<Fragment$BasicStream>? streams,
+    String? cursor,
     Query$FetchEpisode$episode$context? context,
     String? title,
     String? image,
@@ -7423,6 +7465,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
   TRes call({
     Object? id = _undefined,
     Object? streams = _undefined,
+    Object? cursor = _undefined,
     Object? context = _undefined,
     Object? title = _undefined,
     Object? image = _undefined,
@@ -7448,6 +7491,9 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
         streams: streams == _undefined || streams == null
             ? _instance.streams
             : (streams as List<Fragment$BasicStream>),
+        cursor: cursor == _undefined || cursor == null
+            ? _instance.cursor
+            : (cursor as String),
         context: context == _undefined
             ? _instance.context
             : (context as Query$FetchEpisode$episode$context?),
@@ -7564,6 +7610,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
   call({
     String? id,
     List<Fragment$BasicStream>? streams,
+    String? cursor,
     Query$FetchEpisode$episode$context? context,
     String? title,
     String? image,

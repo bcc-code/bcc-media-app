@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
+@RoutePage<void>()
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
 

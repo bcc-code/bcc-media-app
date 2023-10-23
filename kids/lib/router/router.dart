@@ -118,5 +118,10 @@ class AppRouter extends $AppRouter {
           durationInMilliseconds: 600,
           reverseDurationInMilliseconds: 1000,
         ),
+        CustomRoute(
+          page: EpisodeScreenRoute.page,
+          path: '/episode/:episodeId',
+          meta: const {RouteMetaConstants.analyticsName: 'episode'},
+        ),
       ];
 }
