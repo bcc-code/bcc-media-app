@@ -18,7 +18,6 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // SearchBar(),
           CustomScrollView(
             slivers: [
               SliverSafeArea(
@@ -30,7 +29,7 @@ class SearchScreen extends StatelessWidget {
                     child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SearchBar(), // Replaced the original logic with SearchBar
+                        SearchBar(),
                       ],
                     ),
                   ),
@@ -80,8 +79,6 @@ class SearchBar extends StatelessWidget {
               style: design.textStyles.title1.copyWith(color: design.colors.label1),
               decoration: const InputDecoration(
                 border: InputBorder.none,
-                // hintText: 'Search...', // hintText
-                // hintStyle: TextStyle(color: Colors.blueGrey), //hintStyle
               ),
             ),
           ),

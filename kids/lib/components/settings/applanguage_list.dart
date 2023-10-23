@@ -8,15 +8,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
-class ApplanguageList extends StatelessWidget {
-  final List<ApplanguageListItem> items;
+class AppLanguageList extends StatelessWidget {
+  final List<AppLanguageListItem> items;
   final Color? backgroundColor;
 
-  const ApplanguageList({
-    Key? key,
-    required this.items,
-    this.backgroundColor,
-  });
+  const AppLanguageList({super.key, required this.items, this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +53,7 @@ class _ItemRenderer extends HookWidget {
     required this.defaultBackgroundColor,
   });
 
-  final ApplanguageListItem item;
+  final AppLanguageListItem item;
   final Color defaultBackgroundColor;
 
   @override
@@ -119,7 +115,7 @@ class _ItemRenderer extends HookWidget {
                           item.rightText!,
                           style: (small ? design.textStyles.body2 : design.textStyles.body1).copyWith(color: design.colors.label1),
                         ),
-                      if (item.selected) // 根据选中状态显示√
+                      if (item.selected)
                         SvgPicture.string(SvgIcons.checked,width:24,height: 24,)
 
                     ],
@@ -134,18 +130,18 @@ class _ItemRenderer extends HookWidget {
   }
 }
 
-class ApplanguageListItem {
+class AppLanguageListItem {
   final String title;
   final VoidCallback onPressed;
   final String? rightText;
   bool disabled;
-  bool selected; // 新增的属性，表示是否选中
+  bool selected;
 
-  ApplanguageListItem({
+  AppLanguageListItem({
     required this.title,
     required this.onPressed,
     this.disabled = false,
     this.rightText,
-    this.selected = false, // 默认为未选中状态
+    this.selected = false,
   });
 }

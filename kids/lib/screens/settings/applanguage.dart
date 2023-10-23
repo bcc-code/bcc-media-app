@@ -16,24 +16,22 @@ class AppLanguageScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
     final double basePadding = bp.smallerThan(TABLET) ? 24.0 : 48.0;
-    final selectedLanguageIndex = useState(0); 
+    final selectedLanguageIndex = useState(0);
 
-    List<ApplanguageListItem> buildItem() {
-      List<ApplanguageListItem> itemList = [];
-      for (int i = 0; i < appLanuageCodes.length; i++) {
-        itemList.add(ApplanguageListItem(
-          title: languages[appLanuageCodes[i]]!.nativeName,
+    List<AppLanguageListItem> buildItem() {
+      return appLanuageCodes.map((code) {
+        int index = appLanuageCodes.indexOf(code);
+        return AppLanguageListItem(
+          title: languages[code]!.nativeName,
           onPressed: () {
-            selectedLanguageIndex.value = i; 
+            selectedLanguageIndex.value = index;
           },
-          selected: (i == selectedLanguageIndex.value),
-        ));
-      }
-      return itemList;
+          selected: (index == selectedLanguageIndex.value),
+        );
+      }).toList();
     }
 
     return Scaffold(
@@ -69,7 +67,7 @@ class AppLanguageScreen extends HookConsumerWidget {
                               padding: const EdgeInsets.only(bottom: 12),
                               child: Text('Select', style: design.textStyles.body2),
                             ),
-                            ApplanguageList(
+                            AppLanguageList(
                               items: buildItem(),
                             ),
                           ],
