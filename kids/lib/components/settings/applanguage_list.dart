@@ -22,15 +22,14 @@ class AppLanguageList extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(24),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           ...items.mapIndexed(
             (index, option) => Column(
               children: [
                 if (index > 0)
                   Container(
-                    padding: bp.smallerThan(TABLET)
-                        ? const EdgeInsets.symmetric(horizontal: 20)
-                        : const EdgeInsets.symmetric(horizontal: 24),
+                    padding: bp.smallerThan(TABLET) ? const EdgeInsets.symmetric(horizontal: 20) : const EdgeInsets.symmetric(horizontal: 24),
                     color: design.colors.background2,
                     child: Container(width: double.infinity, height: 1, color: design.colors.separatorOnLight),
                   ),
@@ -92,7 +91,9 @@ class _ItemRenderer extends HookWidget {
                       : defaultBackgroundColor.withOpacity(clampDouble(defaultBackgroundColor.opacity - opacityReduction, 0, 1)),
                 ),
                 child: Container(
-                  padding: small ? const EdgeInsets.symmetric(horizontal: 20, vertical: 16) : const EdgeInsets.only(left:24,top: 8,right: 24,bottom: 8),
+                  padding: small
+                      ? const EdgeInsets.symmetric(horizontal: 20, vertical: 16)
+                      : const EdgeInsets.only(left: 24, top: 8, right: 24, bottom: 8),
                   constraints: const BoxConstraints(minHeight: 56),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -105,7 +106,9 @@ class _ItemRenderer extends HookWidget {
                           children: [
                             Text(
                               item.title,
-                              style: small ? design.textStyles.body2.copyWith(color: design.colors.label1) : design.textStyles.body1.copyWith(color: design.colors.label1),
+                              style: small
+                                  ? design.textStyles.body2.copyWith(color: design.colors.label1)
+                                  : design.textStyles.body1.copyWith(color: design.colors.label1),
                             ),
                           ],
                         ),
@@ -116,8 +119,11 @@ class _ItemRenderer extends HookWidget {
                           style: (small ? design.textStyles.body2 : design.textStyles.body1).copyWith(color: design.colors.label1),
                         ),
                       if (item.selected)
-                        SvgPicture.string(SvgIcons.checked,width:24,height: 24,)
-
+                        SvgPicture.string(
+                          SvgIcons.checked,
+                          width: 24,
+                          height: 24,
+                        )
                     ],
                   ),
                 ),
