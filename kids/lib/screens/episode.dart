@@ -86,7 +86,7 @@ class EpisodeScreen extends HookConsumerWidget {
           ),
         );
       }
-    }, [firstLoadDone.value, currentId.value]);
+    }, [firstLoadDone.value, currentId.value, morphTransition, id]);
 
     final transitionDone = useState(false);
 

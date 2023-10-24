@@ -25,7 +25,6 @@ import 'package:kids/components/settings/applanguage_list.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:skeletonizer/skeletonizer.dart' as skeletonizer;
-import 'package:wakelock_plus/wakelock_plus.dart';
 
 class PlayerView extends HookWidget {
   const PlayerView({
@@ -47,7 +46,6 @@ class PlayerView extends HookWidget {
       reverseCurve: Curves.easeInExpo,
     );
 
-    final timeOpened = useMemoized(() => DateTime.now());
     final controlsVisible = useState(false);
 
     final setControlsVisible = useCallback((bool value) {
@@ -111,14 +109,14 @@ class PlayerView extends HookWidget {
           LayoutBuilder(builder: (context, constraints) {
             // Calculate the height of the middle box based on the aspect ratio
             final sideOpenTargetWidth = 152.0;
-            const bottomOpenMinimumHeight = 200.0;
+            final bottomOpenMinimumHeight = bp.smallerThan(TABLET) ? 170.0 : 300.0;
             final topOpenTargetHeight = bp.smallerThan(TABLET) ? 12.0 : 40.0;
 
             final sideWidthTweened = sideOpenTargetWidth * curvedAnimation.value;
 
             final middleClosedHeight = min(constraints.maxHeight, (constraints.maxWidth) * (9 / 16));
-            final middleOpenTargetHeight =
-                min(constraints.maxHeight - bottomOpenMinimumHeight, (constraints.maxWidth - sideOpenTargetWidth * 2) * (9 / 16));
+            final middleOpenTargetHeight = min(
+                constraints.maxHeight - bottomOpenMinimumHeight - topOpenTargetHeight, (constraints.maxWidth - sideOpenTargetWidth * 2) * (9 / 16));
             final middleHeightTweened = curvedAnimation.drive(Tween(begin: middleClosedHeight, end: middleOpenTargetHeight)).value;
 
             final remainingHeightWhenOpen = max(0.0, constraints.maxHeight - middleOpenTargetHeight);
@@ -127,10 +125,10 @@ class PlayerView extends HookWidget {
 
             final topHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeightWhenClosed / 2, end: topOpenTargetHeight));
 
-            final bottomOpenTargetHeight = max(bottomOpenMinimumHeight, remainingHeightWhenOpen - topOpenTargetHeight);
+            final bottomOpenTargetHeight = remainingHeightWhenOpen - topOpenTargetHeight;
             final bottomOpenHeight = max(remainingHeight / 2, bottomOpenTargetHeight);
             final bottomHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeight / 2, end: bottomOpenHeight));
-
+            debugPrint(bottomOpenTargetHeight.toString());
             return Column(
               children: [
                 Container(
@@ -188,25 +186,27 @@ class PlayerView extends HookWidget {
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Transform.translate(
-                        offset:
-                            Offset(0, (bottomOpenTargetHeight - bottomOpenHeight + (remainingHeightWhenClosed / 2) * (1 - curvedAnimation.value))),
+                        offset: Offset(0, (bottomOpenTargetHeight - bottomOpenHeight + (100) * (1 - curvedAnimation.value))),
                         child: lastEpisodeId.value == null
                             ? null
-                            : OverflowBox(
-                                alignment: Alignment.topLeft,
-                                maxHeight: bottomOpenTargetHeight,
-                                minHeight: bottomOpenTargetHeight,
-                                child: Container(
-                                  height: bottomOpenTargetHeight,
-                                  padding: EdgeInsets.only(top: bp.smallerThan(TABLET) ? 12 : 32),
-                                  child: SingleChildScrollView(
-                                    padding: EdgeInsets.symmetric(horizontal: basePadding),
-                                    scrollDirection: Axis.horizontal,
-                                    child: PlayerEpisodes(
-                                      height: bottomOpenTargetHeight,
-                                      episodeId: lastEpisodeId.value!,
-                                      cursor: null,
-                                      onChange: () {},
+                            : LayoutBuilder(
+                                builder: (context, constraints) => OverflowBox(
+                                  alignment: Alignment.topLeft,
+                                  maxHeight: bottomOpenTargetHeight,
+                                  minHeight: bottomOpenTargetHeight,
+                                  child: Container(
+                                    height: bottomOpenTargetHeight,
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: bp.smallerThan(TABLET) ? 12 : 32,
+                                    ),
+                                    child: SingleChildScrollView(
+                                      padding: EdgeInsets.symmetric(horizontal: basePadding).copyWith(bottom: MediaQuery.paddingOf(context).bottom),
+                                      scrollDirection: Axis.horizontal,
+                                      child: PlayerEpisodes(
+                                        episodeId: lastEpisodeId.value!,
+                                        cursor: null,
+                                        onChange: () {},
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -449,13 +449,11 @@ class _TrackSelectionList extends HookWidget {
 class PlayerEpisodes extends HookConsumerWidget {
   const PlayerEpisodes({
     super.key,
-    required this.height,
     required this.episodeId,
     required this.onChange,
     this.cursor,
   });
 
-  final double height;
   final String episodeId;
   final String? cursor;
   final VoidCallback onChange;
@@ -488,7 +486,6 @@ class PlayerEpisodes extends HookConsumerWidget {
           children: List.generate(
             15,
             (i) => Container(
-              height: height,
               margin: const EdgeInsets.only(right: 20),
               child: AspectRatio(
                 aspectRatio: 16 / 12,
@@ -512,6 +509,8 @@ class PlayerEpisodes extends HookConsumerWidget {
     if (query.result.parsedData == null) {
       return Container();
     }
+
+    final hideTitle = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
     return ListView.builder(
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
@@ -519,10 +518,9 @@ class PlayerEpisodes extends HookConsumerWidget {
       itemBuilder: (context, i) {
         final ep = query.result.parsedData!.episode.next[i];
         return Container(
-          height: height,
           margin: const EdgeInsets.only(right: 20),
           child: AspectRatio(
-            aspectRatio: 16 / 12,
+            aspectRatio: hideTitle ? 16 / 9 : 16 / 12.1,
             child: EpisodeGridItemRenderer(
               EpisodeGridItem(
                 id: ep.id,
