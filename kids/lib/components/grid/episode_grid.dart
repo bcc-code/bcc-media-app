@@ -198,6 +198,7 @@ class _MorphToEpisodeScreen extends StatelessWidget {
       closedColor: Colors.transparent,
       closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(small ? 16 : 16)),
       transitionDuration: duration,
+      middleColor: Colors.black,
       routeSettings: RouteSettings(name: EpisodeScreenRoute.page.name, arguments: EpisodeScreenRouteArgs(id: episodeId)),
       closedBuilder: (
         context,

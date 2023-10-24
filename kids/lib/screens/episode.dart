@@ -8,6 +8,7 @@ import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -34,15 +35,6 @@ class EpisodeScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final gqlClient = ref.watch(gqlClientProvider);
-
-    useEffect(() {
-      WakelockPlus.enable();
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-      return () {
-        WakelockPlus.disable();
-        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-      };
-    });
 
     final episodeFuture = useMemoized<Future<QueryResult<Query$FetchEpisode?>>>(
       () => gqlClient.query$FetchEpisode(
@@ -83,7 +75,10 @@ class EpisodeScreen extends HookConsumerWidget {
     useEffect(() {
       if (!firstLoadDone.value) return;
       if (currentId.value != null && currentId.value != id) {
-        context.navigateTo(
+        if (morphTransition != null) {
+          return;
+        }
+        context.replaceRoute(
           EpisodeScreenRoute(
             id: currentId.value!,
             cursor: BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['cursor'],
@@ -93,10 +88,13 @@ class EpisodeScreen extends HookConsumerWidget {
       }
     }, [firstLoadDone.value, currentId.value]);
 
+    final transitionDone = useState(false);
+
     useEffect(() {
       if (episodeData != null) {
-        final duration = morphTransition?.duration ?? const Duration(milliseconds: 0);
-        Future.delayed(duration, () {
+        final duration = morphTransition?.duration ?? 0.ms;
+        Future.delayed(duration - 100.ms, () {
+          transitionDone.value = true;
           playbackService.playEpisode(
             playerId: BccmPlayerController.primary.value.playerId,
             episode: episodeData,
@@ -115,9 +113,12 @@ class EpisodeScreen extends HookConsumerWidget {
 
     final viewController = useMemoized(() => BccmPlayerViewController(playerController: BccmPlayerController.primary), []);
 
-    return InheritedBccmPlayerViewController(
-      controller: viewController,
-      child: const PlayerView(),
+    return Transform.scale(
+      scale: transitionDone.value ? 1 : 1.1,
+      child: InheritedBccmPlayerViewController(
+        controller: viewController,
+        child: const PlayerView(),
+      ),
     );
   }
 }

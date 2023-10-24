@@ -192,6 +192,7 @@ class _RenderInnerShadow extends RenderProxyBox {
     context.canvas.drawPoints(
       PointMode.points,
       [
+        rectInner.bottomLeft,
         rectInner.bottomRight,
       ],
       Paint()

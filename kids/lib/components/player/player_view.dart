@@ -4,20 +4,28 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
+import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/appbar_close_button.dart';
+import 'package:kids/components/buttons/tab_switcher.dart';
+import 'package:kids/components/dialog/dialog.dart';
 import 'package:kids/components/grid/episode_grid.dart';
 import 'package:kids/components/player/controls.dart';
+import 'package:kids/components/settings/applanguage_list.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:skeletonizer/skeletonizer.dart' as skeletonizer;
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 class PlayerView extends HookWidget {
   const PlayerView({
@@ -50,17 +58,28 @@ class PlayerView extends HookWidget {
       controlsVisible.value = value;
       if (value) {
         animationController.forward(from: 0.0);
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
       } else {
         animationController.reverse(from: 1.0);
         if (viewController.playerController.value.playbackState != PlaybackState.playing) {
           viewController.playerController.play();
         }
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       }
     }, []);
 
     void toggleOpen() {
       setControlsVisible(!controlsVisible.value);
     }
+
+    useEffect(() {
+      Future.delayed(const Duration(milliseconds: 500)).then((_) {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+      });
+      return () {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+      };
+    }, []);
 
     final lastEpisodeId = useState(viewController.playerController.value.currentMediaItem?.metadata?.extras?['id']);
 
@@ -221,13 +240,207 @@ class PlayerView extends HookWidget {
                 padding: EdgeInsets.all(basePadding),
                 child: design.buttons.responsive(
                   labelText: '',
-                  onPressed: () => (),
+                  onPressed: () {
+                    if (bp.smallerThan(TABLET)) {
+                      showGeneralDialog(
+                        transitionBuilder: CustomTransitionsBuilders.slideUp(),
+                        transitionDuration: 500.ms,
+                        context: context,
+                        barrierColor: Colors.transparent,
+                        pageBuilder: (context, a, b) => PlayerSettingsView(
+                          playerController: viewController.playerController,
+                        ),
+                      );
+                      return;
+                    }
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) => PlayfulDialog(
+                          child: PlayerSettingsView(
+                        playerController: viewController.playerController,
+                      )),
+                    );
+                  },
                   image: SvgPicture.string(SvgIcons.settings),
                 ),
               ),
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class PlayerSettingsView extends HookConsumerWidget {
+  const PlayerSettingsView({
+    super.key,
+    required this.playerController,
+  });
+
+  final BccmPlayerController playerController;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
+    final bp = ResponsiveBreakpoints.of(context);
+    final isSmall = bp.smallerThan(TABLET);
+    final tabController = useTabController(initialLength: 2);
+    useListenable(tabController);
+
+    final tracksFuture = useState(useMemoized(playerController.getTracks));
+    final tracksSnapshot = useFuture(tracksFuture.value);
+
+    if (tracksSnapshot.data == null) {
+      return const Center(child: CircularProgressIndicator());
+    } else if (tracksSnapshot.hasError) {
+      return Center(child: Text(tracksSnapshot.error.toString()));
+    }
+
+    final preferredLanguages = ref.watch(settingsProvider.select((value) => value.audioLanguages));
+
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: isSmall ? 80 : 112,
+        leadingWidth: isSmall ? 100 : 0,
+        leading: isSmall ? const AppBarCloseButton() : null,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        titleSpacing: 28,
+        centerTitle: true,
+        title: SizedBox(
+          width: bp.smallerThan(TABLET) ? null : double.infinity,
+          child: TabSwitcher.small(
+            options: [S.of(context).audio, S.of(context).subtitles],
+            selectedIndex: tabController.index,
+            onSelectionChanged: (index) {
+              tabController.index = index;
+            },
+          ),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: design.colors.separatorOnLight, width: 1),
+            ),
+          ),
+        ),
+      ),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          TabBarView(
+            controller: tabController,
+            children: [
+              _TrackSelectionList(
+                preferredTracks: tracksSnapshot.data!.audioTracks.safe.where((t) => preferredLanguages.contains(t.language)).toList(),
+                otherTracks: tracksSnapshot.data!.audioTracks.safe.where((t) => !preferredLanguages.contains(t.language)).toList(),
+                onSelectionChanged: (track) {
+                  playerController.setSelectedTrack(TrackType.audio, track.id);
+                  tracksFuture.value = playerController.getTracks();
+                },
+              ),
+              _TrackSelectionList(
+                preferredTracks: tracksSnapshot.data!.textTracks.safe.where((t) => preferredLanguages.contains(t.language)).toList(),
+                otherTracks: tracksSnapshot.data!.textTracks.safe.where((t) => !preferredLanguages.contains(t.language)).toList(),
+                onSelectionChanged: (track) {
+                  playerController.setSelectedTrack(TrackType.text, track.id);
+                  tracksFuture.value = playerController.getTracks();
+                },
+              ),
+            ],
+          ),
+          if (!isSmall)
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: design.buttons.responsive(
+                      variant: ButtonVariant.secondary,
+                      labelText: 'Back to video',
+                      onPressed: () => context.router.pop(),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _TrackSelectionList extends HookWidget {
+  const _TrackSelectionList({
+    required this.preferredTracks,
+    required this.otherTracks,
+    required this.onSelectionChanged,
+  });
+
+  final List<Track> preferredTracks;
+  final List<Track> otherTracks;
+  final void Function(Track) onSelectionChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+
+    return SingleChildScrollView(
+      child: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppLanguageList(
+                items: preferredTracks
+                    .map(
+                      (track) => AppLanguageListItem(
+                        title: track.labelWithFallback,
+                        selected: track.isSelected,
+                        onPressed: () {
+                          onSelectionChanged(track);
+                        },
+                      ),
+                    )
+                    .toList(),
+              ),
+              if (otherTracks.isNotEmpty && preferredTracks.isNotEmpty) ...[
+                const SizedBox(height: 36),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Text(
+                    'Other languages',
+                    style: design.textStyles.body1.copyWith(color: design.colors.label2),
+                  ),
+                ),
+              ],
+              if (otherTracks.isNotEmpty == true) ...[
+                AppLanguageList(
+                  items: otherTracks
+                      .map(
+                        (track) => AppLanguageListItem(
+                          title: track.labelWithFallback,
+                          selected: track.isSelected,
+                          onPressed: () {
+                            onSelectionChanged(track);
+                          },
+                        ),
+                      )
+                      .toList(),
+                ),
+              ],
+              const SizedBox(height: 100)
+            ],
+          ),
+        ),
       ),
     );
   }
