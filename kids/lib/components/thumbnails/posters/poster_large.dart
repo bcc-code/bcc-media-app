@@ -53,7 +53,7 @@ class PosterLarge extends HookWidget {
                             ? Container(
                                 color: design.colors.background2,
                                 child: Transform.translate(
-                                  offset: const Offset(0, -20),
+                                  offset: bp.smallerThan(TABLET)?const Offset(0, -20):const Offset(0,0),
                                   child: SimpleShadow(
                                     opacity: 0.15,
                                     color: Colors.black, 
@@ -65,7 +65,7 @@ class PosterLarge extends HookWidget {
                                       offset: const Offset(0, 2),
                                       sigma: 3,
                                       child: Transform.scale(
-                                        scale: 0.7,
+                                        scale: bp.smallerThan(TABLET)?0.7:0.65,
                                         child: Transform.rotate(
                                           angle: -pi / 180 * 10,
                                           child: ClipRRect(
