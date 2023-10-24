@@ -22,14 +22,16 @@ class _AppSubtitleLanguageState extends ConsumerState<SubtitleLanguageScreen> {
   @override
   void initState() {
     super.initState();
-    selected = ref.read(settingsProvider).subtitleLanguage;
+    selected = ref.read(settingsProvider).subtitleLanguages.firstOrNull;
   }
 
   void _onSelectionChanged(String? id) {
     setState(() {
       selected = id;
     });
-    ref.read(settingsProvider.notifier).setSubtitleLanguage(id);
+    ref.read(settingsProvider.notifier).setSubtitleLanguages([
+      if (id != null) id,
+    ]);
     ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
           languageFrom: selected,
           languageTo: id ?? '',

@@ -13,6 +13,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:kids/components/buttons/button.dart';
+import 'package:kids/components/player/controls.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class EpisodeGridItem {
@@ -81,6 +82,9 @@ class _EpisodeGridItemRenderer extends ConsumerWidget {
             config: BccmPlayerViewConfig(
               deviceOrientationsFullscreen: (vc) => [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
               deviceOrientationsNormal: (vc) => [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
+              controlsConfig: BccmPlayerControlsConfig(
+                customBuilder: (context) => const PlayerControls(),
+              ),
             ),
           )
           .then((_) {

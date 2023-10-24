@@ -525,10 +525,11 @@ class MockSettingsService extends _i1.Mock implements _i4.SettingsService {
         returnValueForMissingStub: null,
       );
   @override
-  _i7.Future<void> setSubtitleLanguage(String? code) => (super.noSuchMethod(
+  _i7.Future<void> setSubtitleLanguages(List<String>? languageCodes) =>
+      (super.noSuchMethod(
         Invocation.method(
-          #setSubtitleLanguage,
-          [code],
+          #setSubtitleLanguages,
+          [languageCodes],
         ),
         returnValue: _i7.Future<void>.value(),
         returnValueForMissingStub: _i7.Future<void>.value(),

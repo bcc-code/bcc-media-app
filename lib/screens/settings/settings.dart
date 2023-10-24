@@ -146,7 +146,8 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                             ),
                             OptionButton(
                               optionName: S.of(context).subtitleLanguage,
-                              currentSelection: settings.subtitleLanguage == null ? S.of(context).none : getLanguageName(settings.subtitleLanguage),
+                              currentSelection:
+                                  settings.subtitleLanguages.isEmpty ? S.of(context).none : getLanguageName(settings.subtitleLanguages.firstOrNull),
                               onPressed: () {
                                 context.router.push(const SubtitleLanguageScreenRoute());
                               },
