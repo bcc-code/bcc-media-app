@@ -113,7 +113,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                                     )
                                         .animate()
                                         .slideX(begin: 4, curve: Curves.easeOutExpo, duration: 2000.ms)
-                                        .scale(begin: Offset(0.5, 0.5))
+                                        .scale(begin: const Offset(0.5, 0.5))
                                         .rotate(begin: 0.05)
                                         .fadeIn(),
                                   ),

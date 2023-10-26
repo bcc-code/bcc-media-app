@@ -326,7 +326,7 @@ const documentNodeQueryKidsGetNextEpisodes = DocumentNode(definitions: [
             arguments: [
               ArgumentNode(
                 name: NameNode(value: 'limit'),
-                value: IntValueNode(value: '30'),
+                value: IntValueNode(value: '20'),
               )
             ],
             directives: [],

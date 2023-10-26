@@ -110,6 +110,17 @@ fragment Section on Section {
                 }
               }
             }
+            ... on Show {
+              seasons(first: 1, dir: "desc") {
+                  items {
+                      episodes(first: 1, dir: "desc") {
+                          items {
+                              publishDate
+                          }
+                      }
+                  }
+              }
+            }
             __typename
           }
         }
