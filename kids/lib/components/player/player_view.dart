@@ -30,6 +30,151 @@ import 'package:kids/router/router.gr.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:skeletonizer/skeletonizer.dart' as skeletonizer;
 
+class _TrackSelectionList extends HookWidget {
+  const _TrackSelectionList({
+    required this.preferredTracks,
+    required this.otherTracks,
+    required this.onSelectionChanged,
+  });
+
+  final List<Track> preferredTracks;
+  final List<Track> otherTracks;
+  final void Function(Track) onSelectionChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+
+    return SingleChildScrollView(
+      child: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppLanguageList(
+                items: preferredTracks
+                    .map(
+                      (track) => AppLanguageListItem(
+                        title: track.labelWithFallback,
+                        selected: track.isSelected,
+                        onPressed: () {
+                          onSelectionChanged(track);
+                        },
+                      ),
+                    )
+                    .toList(),
+              ),
+              if (otherTracks.isNotEmpty && preferredTracks.isNotEmpty) ...[
+                const SizedBox(height: 36),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Text(
+                    'Other languages',
+                    style: design.textStyles.body1.copyWith(color: design.colors.label2),
+                  ),
+                ),
+              ],
+              if (otherTracks.isNotEmpty == true) ...[
+                AppLanguageList(
+                  items: otherTracks
+                      .map(
+                        (track) => AppLanguageListItem(
+                          title: track.labelWithFallback,
+                          selected: track.isSelected,
+                          onPressed: () {
+                            onSelectionChanged(track);
+                          },
+                        ),
+                      )
+                      .toList(),
+                ),
+              ],
+              const SizedBox(height: 100)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PlayerEpisodes extends HookConsumerWidget {
+  const PlayerEpisodes({
+    super.key,
+    required this.episodeId,
+    required this.onChange,
+    this.cursor,
+  });
+
+  final String episodeId;
+  final String? cursor;
+  final VoidCallback onChange;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final viewController = BccmPlayerViewController.of(context);
+    final query = useQuery$KidsGetNextEpisodes(
+      Options$Query$KidsGetNextEpisodes(
+        variables: Variables$Query$KidsGetNextEpisodes(
+          episodeId: episodeId,
+          context: Input$EpisodeContext(
+            shuffle: false,
+            cursor: viewController.playerController.value.currentMediaItem?.metadata?.extras?['cursor'],
+          ),
+        ),
+        cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
+    );
+
+    final design = DesignSystem.of(context);
+
+    if (query.result.isLoading) {
+      return const Center(
+        child: LoadingIndicator(height: 24, width: 24),
+      );
+    }
+    if (query.result.parsedData == null) {
+      return const Center(
+        child: LoadingIndicator(height: 24, width: 24),
+      );
+    }
+
+    final hideTitle = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
+    return ListView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.horizontal,
+      itemCount: query.result.parsedData!.episode.next.length,
+      itemBuilder: (context, i) {
+        final ep = query.result.parsedData!.episode.next[i];
+        return Container(
+          margin: const EdgeInsets.only(right: 20),
+          child: AspectRatio(
+            aspectRatio: hideTitle ? 16 / 9 : 16 / 12.1,
+            child: EpisodeGridItemRenderer(
+              EpisodeGridItem(
+                id: ep.id,
+                title: ep.title,
+                image: ep.image,
+                duration: ep.duration,
+              ),
+              hideTitle: ResponsiveBreakpoints.of(context).smallerThan(TABLET),
+              onTap: (_) {
+                ref.read(playbackServiceProvider).playEpisode(
+                      playerId: BccmPlayerViewController.of(context).playerController.value.playerId,
+                      episode: ep,
+                    );
+                onChange();
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
 class PlayerView extends HookWidget {
   const PlayerView({
     super.key,
@@ -381,151 +526,6 @@ class PlayerSettingsView extends HookConsumerWidget {
             ),
         ],
       ),
-    );
-  }
-}
-
-class _TrackSelectionList extends HookWidget {
-  const _TrackSelectionList({
-    required this.preferredTracks,
-    required this.otherTracks,
-    required this.onSelectionChanged,
-  });
-
-  final List<Track> preferredTracks;
-  final List<Track> otherTracks;
-  final void Function(Track) onSelectionChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final design = DesignSystem.of(context);
-
-    return SingleChildScrollView(
-      child: SafeArea(
-        child: Container(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppLanguageList(
-                items: preferredTracks
-                    .map(
-                      (track) => AppLanguageListItem(
-                        title: track.labelWithFallback,
-                        selected: track.isSelected,
-                        onPressed: () {
-                          onSelectionChanged(track);
-                        },
-                      ),
-                    )
-                    .toList(),
-              ),
-              if (otherTracks.isNotEmpty && preferredTracks.isNotEmpty) ...[
-                const SizedBox(height: 36),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: Text(
-                    'Other languages',
-                    style: design.textStyles.body1.copyWith(color: design.colors.label2),
-                  ),
-                ),
-              ],
-              if (otherTracks.isNotEmpty == true) ...[
-                AppLanguageList(
-                  items: otherTracks
-                      .map(
-                        (track) => AppLanguageListItem(
-                          title: track.labelWithFallback,
-                          selected: track.isSelected,
-                          onPressed: () {
-                            onSelectionChanged(track);
-                          },
-                        ),
-                      )
-                      .toList(),
-                ),
-              ],
-              const SizedBox(height: 100)
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class PlayerEpisodes extends HookConsumerWidget {
-  const PlayerEpisodes({
-    super.key,
-    required this.episodeId,
-    required this.onChange,
-    this.cursor,
-  });
-
-  final String episodeId;
-  final String? cursor;
-  final VoidCallback onChange;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final viewController = BccmPlayerViewController.of(context);
-    final query = useQuery$KidsGetNextEpisodes(
-      Options$Query$KidsGetNextEpisodes(
-        variables: Variables$Query$KidsGetNextEpisodes(
-          episodeId: episodeId,
-          context: Input$EpisodeContext(
-            shuffle: false,
-            cursor: viewController.playerController.value.currentMediaItem?.metadata?.extras?['cursor'],
-          ),
-        ),
-        cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
-        fetchPolicy: FetchPolicy.networkOnly,
-      ),
-    );
-
-    final design = DesignSystem.of(context);
-
-    if (query.result.isLoading) {
-      return const Center(
-        child: LoadingIndicator(height: 24, width: 24),
-      );
-    }
-    if (query.result.parsedData == null) {
-      return const Center(
-        child: LoadingIndicator(height: 24, width: 24),
-      );
-    }
-
-    final hideTitle = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
-    return ListView.builder(
-      shrinkWrap: true,
-      scrollDirection: Axis.horizontal,
-      itemCount: query.result.parsedData!.episode.next.length,
-      itemBuilder: (context, i) {
-        final ep = query.result.parsedData!.episode.next[i];
-        return Container(
-          margin: const EdgeInsets.only(right: 20),
-          child: AspectRatio(
-            aspectRatio: hideTitle ? 16 / 9 : 16 / 12.1,
-            child: EpisodeGridItemRenderer(
-              EpisodeGridItem(
-                id: ep.id,
-                title: ep.title,
-                image: ep.image,
-                duration: ep.duration,
-              ),
-              hideTitle: ResponsiveBreakpoints.of(context).smallerThan(TABLET),
-              onTap: (_) {
-                ref.read(playbackServiceProvider).playEpisode(
-                      playerId: BccmPlayerViewController.of(context).playerController.value.playerId,
-                      episode: ep,
-                    );
-                onChange();
-              },
-            ),
-          ),
-        );
-      },
     );
   }
 }
