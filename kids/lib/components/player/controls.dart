@@ -1,71 +1,122 @@
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/controls.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kids/helpers/svg_icons.dart';
 
-class PlayerControls extends StatelessWidget {
-  const PlayerControls({super.key});
+class PlayerControls extends HookWidget {
+  const PlayerControls({
+    super.key,
+    required this.show,
+  });
+
+  final bool show;
 
   @override
   Widget build(BuildContext context) {
+    final animationController = useAnimationController(
+      duration: 1.ms,
+    );
+    useEffect(() {
+      if (show) {
+        animationController.forward(from: 0);
+      } else {
+        animationController.reverse(from: 1);
+        debugPrint('running reverse');
+      }
+    }, [show]);
     final viewController = BccmPlayerViewController.of(context);
-    return Theme(
-      data: Theme.of(context).copyWith(
-        iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.white),
-      ),
-      child: ValueListenableBuilder<PlayerState>(
-        valueListenable: viewController.playerController,
-        builder: (context, state, widget) => Container(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            height: 50,
-            color: Colors.black,
-            alignment: Alignment.bottomCenter,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                if (state.playbackState == PlaybackState.playing)
-                  IconButton(
-                    onPressed: () {
-                      viewController.playerController.pause();
-                    },
-                    icon: const Icon(Icons.pause),
-                  ),
-                if (state.playbackState == PlaybackState.paused)
-                  IconButton(
-                    onPressed: () {
-                      viewController.playerController.play();
-                    },
-                    icon: const Icon(Icons.play_arrow),
-                  ),
-                IconButton(
-                  onPressed: () {
-                    viewController.playerController.seekTo(Duration(milliseconds: state.playbackPositionMs! - 20000));
-                  },
-                  icon: const Icon(Icons.skip_previous),
-                ),
-                IconButton(
-                  onPressed: () {
-                    viewController.playerController.seekTo(Duration(milliseconds: state.playbackPositionMs! + 20000));
-                  },
-                  icon: const Icon(Icons.skip_next),
-                ),
-                if (!viewController.isFullscreen)
-                  IconButton(
-                    onPressed: () {
-                      viewController.enterFullscreen();
-                    },
-                    icon: const Icon(Icons.fullscreen),
-                  ),
-                if (viewController.isFullscreen)
-                  IconButton(
-                    onPressed: () {
-                      viewController.exitFullscreen();
-                    },
-                    icon: const Icon(Icons.fullscreen_exit),
-                  ),
-              ],
-            ),
+    final design = DesignSystem.of(context);
+    final state = useValueListenable(viewController.playerController);
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              design.colors.label1.withOpacity(0.0),
+              Colors.black.withOpacity(0.6),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
         ),
+        padding: const EdgeInsets.only(top: 40),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 24, bottom: 24, right: 40),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              state.playbackState == PlaybackState.playing
+                  ? design.buttons.small(
+                      variant: ButtonVariant.secondary,
+                      onPressed: () {
+                        viewController.playerController.pause();
+                      },
+                      image: SvgPicture.string(
+                        SvgIcons.pause,
+                        colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
+                      ),
+                      labelText: '',
+                    )
+                  : design.buttons.small(
+                      variant: ButtonVariant.secondary,
+                      onPressed: () {
+                        viewController.playerController.play();
+                      },
+                      image: SvgPicture.string(
+                        SvgIcons.play,
+                        colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
+                      ),
+                      labelText: '',
+                    ),
+              Expanded(
+                child: SizedBox(
+                  height: 16,
+                  child: Timeline(playerController: viewController.playerController),
+                ),
+              )
+            ],
+          ).animate(controller: animationController).slideY(
+                duration: 400.ms,
+                begin: 2,
+                curve: animationController.status == AnimationStatus.forward ? Curves.easeOutExpo : Curves.easeInExpo,
+              ),
+        ),
+      ),
+    );
+  }
+}
+
+class Timeline extends HookWidget {
+  const Timeline({
+    super.key,
+    required this.playerController,
+  });
+
+  final BccmPlayerController playerController;
+
+  @override
+  Widget build(BuildContext context) {
+    final timeline = useTimeline(playerController);
+    return SliderTheme(
+      data: SliderThemeData(
+        thumbShape: SliderComponentShape.noThumb,
+        overlayShape: const RoundSliderOverlayShape(overlayRadius: 10),
+        trackShape: const RoundedRectSliderTrackShape(),
+        trackHeight: 16,
+        inactiveTrackColor: Colors.white.withOpacity(0.5),
+      ),
+      child: Slider(
+        min: 0,
+        max: 1,
+        value: timeline.timeFraction,
+        onChanged: (double value) {
+          timeline.scrubTo(value * timeline.duration);
+        },
       ),
     );
   }

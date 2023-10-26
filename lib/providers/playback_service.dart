@@ -104,6 +104,7 @@ class PlaybackService {
           'npaw.content.tvShow': episode.season?.$show.id,
           if (episode.season != null) 'npaw.content.season': '${episode.season!.id} - ${episode.season!.title}',
           'npaw.content.episodeTitle': episode.title,
+          'cursor': episode.cursor,
         },
       ),
     );

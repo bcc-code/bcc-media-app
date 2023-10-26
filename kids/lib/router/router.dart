@@ -1,11 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
+import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:kids/components/grid/episode_grid.dart';
+import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
-import 'package:kids/screens/playlist.dart';
-import 'package:kids/screens/search.dart';
 
 Route<T> settingsRouteBuilder<T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
   if (!kIsWeb) {
@@ -35,9 +39,9 @@ class AppRouter extends $AppRouter {
         CustomRoute(
           path: '/show/:showId',
           page: ShowScreenRoute.page,
-          transitionsBuilder: CustomTransitionsBuilders.scaleUpSlideDown(),
           durationInMilliseconds: 600,
           reverseDurationInMilliseconds: 1000,
+          transitionsBuilder: CustomTransitionsBuilders.slideUp(),
         ),
         CustomRoute(
           path: '/playlist/:id',
@@ -117,6 +121,30 @@ class AppRouter extends $AppRouter {
           transitionsBuilder: CustomTransitionsBuilders.scaleUpSlideDown(),
           durationInMilliseconds: 600,
           reverseDurationInMilliseconds: 1000,
+        ),
+        CustomRoute(
+          page: EpisodeScreenRoute.page,
+          path: '/episode/:episodeId',
+          meta: const {RouteMetaConstants.analyticsName: 'episode'},
+          reverseDurationInMilliseconds: 400,
+          durationInMilliseconds: 400,
+          transitionsBuilder: (context, prim, second, child) {
+            return MorphTransition(
+              primary: prim,
+              secondary: second,
+              fallbackTransitionBuilder: CustomTransitionsBuilders.slideUp(),
+              duration: 400.ms,
+              child: child,
+            );
+          },
+        ),
+        CustomRoute(
+          page: AppLanguageScreenRoute.page,
+          path: '/app-language',
+          durationInMilliseconds: 800,
+          reverseDurationInMilliseconds: 800,
+          customRouteBuilder: settingsRouteBuilder,
+          meta: const {RouteMetaConstants.analyticsName: 'app-language'},
         ),
       ];
 }

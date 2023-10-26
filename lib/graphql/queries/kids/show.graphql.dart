@@ -4,27 +4,24 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 
-class Fragment$KidsEpisodeGridItem {
-  Fragment$KidsEpisodeGridItem({
+class Fragment$KidsEpisodeThumbnail {
+  Fragment$KidsEpisodeThumbnail({
     required this.id,
     required this.title,
-    required this.description,
     required this.duration,
     this.image,
     this.$__typename = 'Episode',
   });
 
-  factory Fragment$KidsEpisodeGridItem.fromJson(Map<String, dynamic> json) {
+  factory Fragment$KidsEpisodeThumbnail.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
-    final l$description = json['description'];
     final l$duration = json['duration'];
     final l$image = json['image'];
     final l$$__typename = json['__typename'];
-    return Fragment$KidsEpisodeGridItem(
+    return Fragment$KidsEpisodeThumbnail(
       id: (l$id as String),
       title: (l$title as String),
-      description: (l$description as String),
       duration: (l$duration as int),
       image: (l$image as String?),
       $__typename: (l$$__typename as String),
@@ -34,8 +31,6 @@ class Fragment$KidsEpisodeGridItem {
   final String id;
 
   final String title;
-
-  final String description;
 
   final int duration;
 
@@ -49,8 +44,6 @@ class Fragment$KidsEpisodeGridItem {
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
-    final l$description = description;
-    _resultData['description'] = l$description;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
     final l$image = image;
@@ -64,14 +57,12 @@ class Fragment$KidsEpisodeGridItem {
   int get hashCode {
     final l$id = id;
     final l$title = title;
-    final l$description = description;
     final l$duration = duration;
     final l$image = image;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$title,
-      l$description,
       l$duration,
       l$image,
       l$$__typename,
@@ -83,7 +74,7 @@ class Fragment$KidsEpisodeGridItem {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Fragment$KidsEpisodeGridItem) ||
+    if (!(other is Fragment$KidsEpisodeThumbnail) ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -95,11 +86,6 @@ class Fragment$KidsEpisodeGridItem {
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
-      return false;
-    }
-    final l$description = description;
-    final lOther$description = other.description;
-    if (l$description != lOther$description) {
       return false;
     }
     final l$duration = duration;
@@ -121,63 +107,58 @@ class Fragment$KidsEpisodeGridItem {
   }
 }
 
-extension UtilityExtension$Fragment$KidsEpisodeGridItem
-    on Fragment$KidsEpisodeGridItem {
-  CopyWith$Fragment$KidsEpisodeGridItem<Fragment$KidsEpisodeGridItem>
-      get copyWith => CopyWith$Fragment$KidsEpisodeGridItem(
+extension UtilityExtension$Fragment$KidsEpisodeThumbnail
+    on Fragment$KidsEpisodeThumbnail {
+  CopyWith$Fragment$KidsEpisodeThumbnail<Fragment$KidsEpisodeThumbnail>
+      get copyWith => CopyWith$Fragment$KidsEpisodeThumbnail(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Fragment$KidsEpisodeGridItem<TRes> {
-  factory CopyWith$Fragment$KidsEpisodeGridItem(
-    Fragment$KidsEpisodeGridItem instance,
-    TRes Function(Fragment$KidsEpisodeGridItem) then,
-  ) = _CopyWithImpl$Fragment$KidsEpisodeGridItem;
+abstract class CopyWith$Fragment$KidsEpisodeThumbnail<TRes> {
+  factory CopyWith$Fragment$KidsEpisodeThumbnail(
+    Fragment$KidsEpisodeThumbnail instance,
+    TRes Function(Fragment$KidsEpisodeThumbnail) then,
+  ) = _CopyWithImpl$Fragment$KidsEpisodeThumbnail;
 
-  factory CopyWith$Fragment$KidsEpisodeGridItem.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$KidsEpisodeGridItem;
+  factory CopyWith$Fragment$KidsEpisodeThumbnail.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$KidsEpisodeThumbnail;
 
   TRes call({
     String? id,
     String? title,
-    String? description,
     int? duration,
     String? image,
     String? $__typename,
   });
 }
 
-class _CopyWithImpl$Fragment$KidsEpisodeGridItem<TRes>
-    implements CopyWith$Fragment$KidsEpisodeGridItem<TRes> {
-  _CopyWithImpl$Fragment$KidsEpisodeGridItem(
+class _CopyWithImpl$Fragment$KidsEpisodeThumbnail<TRes>
+    implements CopyWith$Fragment$KidsEpisodeThumbnail<TRes> {
+  _CopyWithImpl$Fragment$KidsEpisodeThumbnail(
     this._instance,
     this._then,
   );
 
-  final Fragment$KidsEpisodeGridItem _instance;
+  final Fragment$KidsEpisodeThumbnail _instance;
 
-  final TRes Function(Fragment$KidsEpisodeGridItem) _then;
+  final TRes Function(Fragment$KidsEpisodeThumbnail) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
-    Object? description = _undefined,
     Object? duration = _undefined,
     Object? image = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Fragment$KidsEpisodeGridItem(
+      _then(Fragment$KidsEpisodeThumbnail(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
-        description: description == _undefined || description == null
-            ? _instance.description
-            : (description as String),
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
@@ -188,16 +169,15 @@ class _CopyWithImpl$Fragment$KidsEpisodeGridItem<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Fragment$KidsEpisodeGridItem<TRes>
-    implements CopyWith$Fragment$KidsEpisodeGridItem<TRes> {
-  _CopyWithStubImpl$Fragment$KidsEpisodeGridItem(this._res);
+class _CopyWithStubImpl$Fragment$KidsEpisodeThumbnail<TRes>
+    implements CopyWith$Fragment$KidsEpisodeThumbnail<TRes> {
+  _CopyWithStubImpl$Fragment$KidsEpisodeThumbnail(this._res);
 
   TRes _res;
 
   call({
     String? id,
     String? title,
-    String? description,
     int? duration,
     String? image,
     String? $__typename,
@@ -205,8 +185,8 @@ class _CopyWithStubImpl$Fragment$KidsEpisodeGridItem<TRes>
       _res;
 }
 
-const fragmentDefinitionKidsEpisodeGridItem = FragmentDefinitionNode(
-  name: NameNode(value: 'KidsEpisodeGridItem'),
+const fragmentDefinitionKidsEpisodeThumbnail = FragmentDefinitionNode(
+  name: NameNode(value: 'KidsEpisodeThumbnail'),
   typeCondition: TypeConditionNode(
       on: NamedTypeNode(
     name: NameNode(value: 'Episode'),
@@ -223,13 +203,6 @@ const fragmentDefinitionKidsEpisodeGridItem = FragmentDefinitionNode(
     ),
     FieldNode(
       name: NameNode(value: 'title'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: 'description'),
       alias: null,
       arguments: [],
       directives: [],
@@ -258,14 +231,14 @@ const fragmentDefinitionKidsEpisodeGridItem = FragmentDefinitionNode(
     ),
   ]),
 );
-const documentNodeFragmentKidsEpisodeGridItem = DocumentNode(definitions: [
-  fragmentDefinitionKidsEpisodeGridItem,
+const documentNodeFragmentKidsEpisodeThumbnail = DocumentNode(definitions: [
+  fragmentDefinitionKidsEpisodeThumbnail,
 ]);
 
-extension ClientExtension$Fragment$KidsEpisodeGridItem
+extension ClientExtension$Fragment$KidsEpisodeThumbnail
     on graphql.GraphQLClient {
-  void writeFragment$KidsEpisodeGridItem({
-    required Fragment$KidsEpisodeGridItem data,
+  void writeFragment$KidsEpisodeThumbnail({
+    required Fragment$KidsEpisodeThumbnail data,
     required Map<String, dynamic> idFields,
     bool broadcast = true,
   }) =>
@@ -273,14 +246,14 @@ extension ClientExtension$Fragment$KidsEpisodeGridItem
         graphql.FragmentRequest(
           idFields: idFields,
           fragment: const graphql.Fragment(
-            fragmentName: 'KidsEpisodeGridItem',
-            document: documentNodeFragmentKidsEpisodeGridItem,
+            fragmentName: 'KidsEpisodeThumbnail',
+            document: documentNodeFragmentKidsEpisodeThumbnail,
           ),
         ),
         data: data.toJson(),
         broadcast: broadcast,
       );
-  Fragment$KidsEpisodeGridItem? readFragment$KidsEpisodeGridItem({
+  Fragment$KidsEpisodeThumbnail? readFragment$KidsEpisodeThumbnail({
     required Map<String, dynamic> idFields,
     bool optimistic = true,
   }) {
@@ -288,15 +261,15 @@ extension ClientExtension$Fragment$KidsEpisodeGridItem
       graphql.FragmentRequest(
         idFields: idFields,
         fragment: const graphql.Fragment(
-          fragmentName: 'KidsEpisodeGridItem',
-          document: documentNodeFragmentKidsEpisodeGridItem,
+          fragmentName: 'KidsEpisodeThumbnail',
+          document: documentNodeFragmentKidsEpisodeThumbnail,
         ),
       ),
       optimistic: optimistic,
     );
     return result == null
         ? null
-        : Fragment$KidsEpisodeGridItem.fromJson(result);
+        : Fragment$KidsEpisodeThumbnail.fromJson(result);
   }
 }
 
@@ -602,7 +575,7 @@ const documentNodeQueryGetShowOverview = DocumentNode(definitions: [
                             directives: [],
                             selectionSet: SelectionSetNode(selections: [
                               FragmentSpreadNode(
-                                name: NameNode(value: 'KidsEpisodeGridItem'),
+                                name: NameNode(value: 'KidsEpisodeThumbnail'),
                                 directives: [],
                               ),
                               FieldNode(
@@ -668,7 +641,7 @@ const documentNodeQueryGetShowOverview = DocumentNode(definitions: [
       ),
     ]),
   ),
-  fragmentDefinitionKidsEpisodeGridItem,
+  fragmentDefinitionKidsEpisodeThumbnail,
 ]);
 Query$GetShowOverview _parserFn$Query$GetShowOverview(
         Map<String, dynamic> data) =>
@@ -1457,11 +1430,10 @@ class _CopyWithStubImpl$Query$GetShowOverview$show$seasons$items$episodes<TRes>
 }
 
 class Query$GetShowOverview$show$seasons$items$episodes$items
-    implements Fragment$KidsEpisodeGridItem {
+    implements Fragment$KidsEpisodeThumbnail {
   Query$GetShowOverview$show$seasons$items$episodes$items({
     required this.id,
     required this.title,
-    required this.description,
     required this.duration,
     this.image,
     this.$__typename = 'Episode',
@@ -1471,14 +1443,12 @@ class Query$GetShowOverview$show$seasons$items$episodes$items
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
-    final l$description = json['description'];
     final l$duration = json['duration'];
     final l$image = json['image'];
     final l$$__typename = json['__typename'];
     return Query$GetShowOverview$show$seasons$items$episodes$items(
       id: (l$id as String),
       title: (l$title as String),
-      description: (l$description as String),
       duration: (l$duration as int),
       image: (l$image as String?),
       $__typename: (l$$__typename as String),
@@ -1488,8 +1458,6 @@ class Query$GetShowOverview$show$seasons$items$episodes$items
   final String id;
 
   final String title;
-
-  final String description;
 
   final int duration;
 
@@ -1503,8 +1471,6 @@ class Query$GetShowOverview$show$seasons$items$episodes$items
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
-    final l$description = description;
-    _resultData['description'] = l$description;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
     final l$image = image;
@@ -1518,14 +1484,12 @@ class Query$GetShowOverview$show$seasons$items$episodes$items
   int get hashCode {
     final l$id = id;
     final l$title = title;
-    final l$description = description;
     final l$duration = duration;
     final l$image = image;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$title,
-      l$description,
       l$duration,
       l$image,
       l$$__typename,
@@ -1549,11 +1513,6 @@ class Query$GetShowOverview$show$seasons$items$episodes$items
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
-      return false;
-    }
-    final l$description = description;
-    final lOther$description = other.description;
-    if (l$description != lOther$description) {
       return false;
     }
     final l$duration = duration;
@@ -1600,7 +1559,6 @@ abstract class CopyWith$Query$GetShowOverview$show$seasons$items$episodes$items<
   TRes call({
     String? id,
     String? title,
-    String? description,
     int? duration,
     String? image,
     String? $__typename,
@@ -1626,7 +1584,6 @@ class _CopyWithImpl$Query$GetShowOverview$show$seasons$items$episodes$items<
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
-    Object? description = _undefined,
     Object? duration = _undefined,
     Object? image = _undefined,
     Object? $__typename = _undefined,
@@ -1636,9 +1593,6 @@ class _CopyWithImpl$Query$GetShowOverview$show$seasons$items$episodes$items<
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
-        description: description == _undefined || description == null
-            ? _instance.description
-            : (description as String),
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
@@ -1661,7 +1615,6 @@ class _CopyWithStubImpl$Query$GetShowOverview$show$seasons$items$episodes$items<
   call({
     String? id,
     String? title,
-    String? description,
     int? duration,
     String? image,
     String? $__typename,
@@ -1963,7 +1916,7 @@ const documentNodeQueryGetPlaylistOverview = DocumentNode(definitions: [
                     directives: [],
                     selectionSet: SelectionSetNode(selections: [
                       FragmentSpreadNode(
-                        name: NameNode(value: 'KidsEpisodeGridItem'),
+                        name: NameNode(value: 'KidsEpisodeThumbnail'),
                         directives: [],
                       ),
                       FieldNode(
@@ -2011,7 +1964,7 @@ const documentNodeQueryGetPlaylistOverview = DocumentNode(definitions: [
       ),
     ]),
   ),
-  fragmentDefinitionKidsEpisodeGridItem,
+  fragmentDefinitionKidsEpisodeThumbnail,
 ]);
 Query$GetPlaylistOverview _parserFn$Query$GetPlaylistOverview(
         Map<String, dynamic> data) =>
@@ -2643,12 +2596,11 @@ class _CopyWithStubImpl$Query$GetPlaylistOverview$playlist$items$items<TRes>
 
 class Query$GetPlaylistOverview$playlist$items$items$$Episode
     implements
-        Fragment$KidsEpisodeGridItem,
+        Fragment$KidsEpisodeThumbnail,
         Query$GetPlaylistOverview$playlist$items$items {
   Query$GetPlaylistOverview$playlist$items$items$$Episode({
     required this.id,
     required this.title,
-    required this.description,
     required this.duration,
     this.image,
     this.$__typename = 'Episode',
@@ -2658,14 +2610,12 @@ class Query$GetPlaylistOverview$playlist$items$items$$Episode
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
-    final l$description = json['description'];
     final l$duration = json['duration'];
     final l$image = json['image'];
     final l$$__typename = json['__typename'];
     return Query$GetPlaylistOverview$playlist$items$items$$Episode(
       id: (l$id as String),
       title: (l$title as String),
-      description: (l$description as String),
       duration: (l$duration as int),
       image: (l$image as String?),
       $__typename: (l$$__typename as String),
@@ -2675,8 +2625,6 @@ class Query$GetPlaylistOverview$playlist$items$items$$Episode
   final String id;
 
   final String title;
-
-  final String description;
 
   final int duration;
 
@@ -2690,8 +2638,6 @@ class Query$GetPlaylistOverview$playlist$items$items$$Episode
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
-    final l$description = description;
-    _resultData['description'] = l$description;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
     final l$image = image;
@@ -2705,14 +2651,12 @@ class Query$GetPlaylistOverview$playlist$items$items$$Episode
   int get hashCode {
     final l$id = id;
     final l$title = title;
-    final l$description = description;
     final l$duration = duration;
     final l$image = image;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$title,
-      l$description,
       l$duration,
       l$image,
       l$$__typename,
@@ -2736,11 +2680,6 @@ class Query$GetPlaylistOverview$playlist$items$items$$Episode
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
-      return false;
-    }
-    final l$description = description;
-    final lOther$description = other.description;
-    if (l$description != lOther$description) {
       return false;
     }
     final l$duration = duration;
@@ -2787,7 +2726,6 @@ abstract class CopyWith$Query$GetPlaylistOverview$playlist$items$items$$Episode<
   TRes call({
     String? id,
     String? title,
-    String? description,
     int? duration,
     String? image,
     String? $__typename,
@@ -2813,7 +2751,6 @@ class _CopyWithImpl$Query$GetPlaylistOverview$playlist$items$items$$Episode<
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
-    Object? description = _undefined,
     Object? duration = _undefined,
     Object? image = _undefined,
     Object? $__typename = _undefined,
@@ -2823,9 +2760,6 @@ class _CopyWithImpl$Query$GetPlaylistOverview$playlist$items$items$$Episode<
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
-        description: description == _undefined || description == null
-            ? _instance.description
-            : (description as String),
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
@@ -2848,7 +2782,6 @@ class _CopyWithStubImpl$Query$GetPlaylistOverview$playlist$items$items$$Episode<
   call({
     String? id,
     String? title,
-    String? description,
     int? duration,
     String? image,
     String? $__typename,

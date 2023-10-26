@@ -80,7 +80,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
                   return ResponsiveBreakpoints.builder(
                     child: MediaQuery(
                       data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                      child: child!,
+                      child: child ?? SizedBox(),
                     ),
                     breakpoints: breakpoints,
                     breakpointsLandscape: breakpoints,

@@ -1,19 +1,30 @@
+import 'package:animations/animations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/misc/custom_grid_view.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button.dart';
 import 'package:kids/components/player/controls.dart';
+import 'package:kids/components/player/player_view.dart';
+import 'package:kids/helpers/transitions.dart';
+import 'package:kids/router/router.gr.dart';
+import 'package:kids/screens/episode.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class EpisodeGridItem {
@@ -29,7 +40,7 @@ class EpisodeGridItem {
     required this.duration,
   });
 
-  factory EpisodeGridItem.fromFragment(Fragment$KidsEpisodeGridItem e) {
+  factory EpisodeGridItem.fromFragment(Fragment$KidsEpisodeThumbnail e) {
     return EpisodeGridItem(
       id: e.id,
       title: e.title,
@@ -40,9 +51,14 @@ class EpisodeGridItem {
 }
 
 class EpisodeGrid extends StatelessWidget {
-  const EpisodeGrid({super.key, required this.items});
+  const EpisodeGrid({
+    super.key,
+    required this.items,
+    required this.onTap,
+  });
 
   final List<EpisodeGridItem> items;
+  final void Function(EpisodeGridItem item, GlobalKey morphKey) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -55,69 +71,66 @@ class EpisodeGrid extends StatelessWidget {
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       children: items.mapIndexed((index, item) {
-        return _EpisodeGridItemRenderer(item);
+        return EpisodeGridItemRenderer(
+          item,
+          onTap: (morphKey) => onTap(item, morphKey),
+        );
       }).toList(),
     );
   }
 }
 
-class _EpisodeGridItemRenderer extends ConsumerWidget {
-  const _EpisodeGridItemRenderer(
-    this.item,
-  );
+var currentMorphKey = GlobalKey();
+
+class EpisodeGridItemRenderer extends HookConsumerWidget {
+  const EpisodeGridItemRenderer(
+    this.item, {
+    super.key,
+    required this.onTap,
+    this.hideTitle = false,
+  });
 
   final EpisodeGridItem item;
+  final void Function(GlobalKey) onTap;
+  final bool hideTitle;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
-    void onTap() async {
-      final ep = await ref.read(apiProvider).fetchEpisode(item.id);
-      if (ep == null) return;
-      if (!context.mounted) return;
-      ref
-          .read(playbackServiceProvider)
-          .openFullscreen(
-            context,
-            config: BccmPlayerViewConfig(
-              deviceOrientationsFullscreen: (vc) => [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
-              deviceOrientationsNormal: (vc) => [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
-              controlsConfig: BccmPlayerControlsConfig(
-                customBuilder: (context) => const PlayerControls(),
-              ),
-            ),
-          )
-          .then((_) {
-        BccmPlayerController.primary.stop(reset: true);
-      });
-      return ref.read(playbackServiceProvider).playEpisode(
-            playerId: BccmPlayerController.primary.value.playerId,
-            autoplay: true,
-            episode: ep,
-          );
+    final bp = ResponsiveBreakpoints.of(context);
+    final morphKey = useMemoized(() => GlobalKey(), []);
+
+    void onTapLocal() {
+      onTap(morphKey);
     }
 
-    final bp = ResponsiveBreakpoints.of(context);
+    final borderRadius = BorderRadius.circular(bp.smallerThan(TABLET) ? 16 : 24);
 
     return FocusableControlBuilder(
       cursor: SystemMouseCursors.click,
       actions: {
         ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) {
-          return onTap();
+          return onTapLocal();
         }),
       },
-      onPressed: onTap,
+      onPressed: onTapLocal,
       builder: (context, control) => Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              AspectRatio(
-                aspectRatio: 16 / 9,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: item.image != null
-                      ? Stack(
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: ClipRRect(
+              borderRadius: borderRadius,
+              child: MorphTransitionHost(
+                key: morphKey,
+                borderRadius: borderRadius,
+                builder: (context) => Container(
+                  color: Colors.white,
+                  child: Stack(
+                    children: [
+                      if (item.image != null)
+                        Stack(
                           children: [
                             Positioned.fill(
                               child: Container(color: design.colors.separator2)
@@ -125,27 +138,33 @@ class _EpisodeGridItemRenderer extends ConsumerWidget {
                                   .shimmer(duration: 1000.ms)
                                   .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
                             ),
-                            simpleFadeInImage(url: item.image!),
+                            simpleFadeInImage(url: item.image!).animate().fadeIn(),
                           ],
                         )
-                      : Container(color: design.colors.separator2),
+                      else
+                        Container(color: design.colors.separator2),
+                      if (item.duration != null)
+                        Positioned(
+                          bottom: bp.smallerThan(TABLET) ? 8 : 16,
+                          left: bp.smallerThan(TABLET) ? 8 : 16,
+                          child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
+                        ),
+                    ],
+                  ),
                 ),
               ),
-              if (item.duration != null)
-                Positioned(
-                  bottom: bp.smallerThan(TABLET) ? 8 : 16,
-                  left: bp.smallerThan(TABLET) ? 8 : 16,
-                  child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
-                ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: Text(
-              item.title,
-              style: design.textStyles.body2.copyWith(color: design.colors.label1),
             ),
           ),
+          if (!hideTitle)
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: Text(
+                item.title,
+                style: design.textStyles.body2.copyWith(color: design.colors.label1),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
         ],
       ),
     );

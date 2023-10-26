@@ -527,50 +527,28 @@ Enum$__DirectiveLocation fromJson$Enum$__DirectiveLocation(String value) {
 
 const possibleTypesMap = <String, Set<String>>{
   'Pagination': {
-    'AchievementPagination',
-    'AchievementGroupPagination',
-    'CollectionItemPagination',
-    'EpisodePagination',
-    'QuestionPagination',
-    'FAQCategoryPagination',
+    'SurveyQuestionPagination',
     'LinkPagination',
-    'PlaylistItemPagination',
-    'SeasonPagination',
+    'UserCollectionEntryPagination',
     'SectionPagination',
     'SectionItemPagination',
+    'PlaylistItemPagination',
+    'SeasonPagination',
+    'QuestionPagination',
+    'FAQCategoryPagination',
     'LessonPagination',
     'TaskPagination',
-    'SurveyQuestionPagination',
-    'UserCollectionEntryPagination',
+    'AchievementPagination',
+    'AchievementGroupPagination',
+    'EpisodePagination',
   },
-  'CalendarEntry': {
-    'SimpleCalendarEntry',
-    'EpisodeCalendarEntry',
-    'SeasonCalendarEntry',
-    'ShowCalendarEntry',
+  'SurveyQuestion': {
+    'SurveyTextQuestion',
+    'SurveyRatingQuestion',
   },
-  'CollectionItem': {
-    'ShowItem',
-    'SeasonItem',
-    'EpisodeItem',
-    'PageItem',
-    'Episode',
-    'Game',
-    'Playlist',
-    'Season',
+  'UserCollectionEntryItem': {
     'Show',
-    'StudyTopic',
-  },
-  'EpisodeContextUnion': {
-    'Season',
-    'ContextCollection',
-  },
-  'PlaylistItem': {'Episode'},
-  'Prompt': {'SurveyPrompt'},
-  'SearchResultItem': {
-    'EpisodeSearchItem',
-    'SeasonSearchItem',
-    'ShowSearchItem',
+    'Episode',
   },
   'Section': {
     'PosterSection',
@@ -617,6 +595,26 @@ const possibleTypesMap = <String, Set<String>>{
     'Game',
     'Playlist',
   },
+  'CollectionItem': {
+    'Playlist',
+    'Game',
+    'Season',
+    'StudyTopic',
+    'Episode',
+    'Show',
+  },
+  'CalendarEntry': {
+    'SimpleCalendarEntry',
+    'EpisodeCalendarEntry',
+    'SeasonCalendarEntry',
+    'ShowCalendarEntry',
+  },
+  'SearchResultItem': {
+    'EpisodeSearchItem',
+    'SeasonSearchItem',
+    'ShowSearchItem',
+  },
+  'Prompt': {'SurveyPrompt'},
   'Task': {
     'AlternativesTask',
     'TextTask',
@@ -625,12 +623,9 @@ const possibleTypesMap = <String, Set<String>>{
     'VideoTask',
     'LinkTask',
   },
-  'SurveyQuestion': {
-    'SurveyTextQuestion',
-    'SurveyRatingQuestion',
+  'EpisodeContextUnion': {
+    'Season',
+    'ContextCollection',
   },
-  'UserCollectionEntryItem': {
-    'Show',
-    'Episode',
-  },
+  'PlaylistItem': {'Episode'},
 };
