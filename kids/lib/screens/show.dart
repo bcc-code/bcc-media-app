@@ -100,7 +100,8 @@ class ShowScreen extends HookConsumerWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: basePadding).copyWith(bottom: basePadding),
                       child: EpisodeGrid(
-                        onTap: (item) {
+                        onTap: (item, morphKey) {
+                          currentMorphKey = morphKey;
                           context.router.push(EpisodeScreenRoute(id: item.id));
                         },
                         items: showQuery.result.parsedData!.$show.seasons.items

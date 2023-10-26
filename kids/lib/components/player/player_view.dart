@@ -2,10 +2,12 @@ import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
@@ -23,6 +25,8 @@ import 'package:kids/components/grid/episode_grid.dart';
 import 'package:kids/components/player/controls.dart';
 import 'package:kids/components/settings/applanguage_list.dart';
 import 'package:kids/helpers/svg_icons.dart';
+import 'package:kids/helpers/transitions.dart';
+import 'package:kids/router/router.gr.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:skeletonizer/skeletonizer.dart' as skeletonizer;
 
@@ -46,10 +50,11 @@ class PlayerView extends HookWidget {
       reverseCurve: Curves.easeInExpo,
     );
 
+    final morphTransition = InheritedData.listen<MorphTransitionInfo>(context);
+
     final controlsVisible = useState(false);
 
     final setControlsVisible = useCallback((bool value) {
-      debugPrint(value.toString());
       if (controlsVisible.value == value) {
         return;
       }
@@ -128,7 +133,6 @@ class PlayerView extends HookWidget {
             final bottomOpenTargetHeight = remainingHeightWhenOpen - topOpenTargetHeight;
             final bottomOpenHeight = max(remainingHeight / 2, bottomOpenTargetHeight);
             final bottomHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeight / 2, end: bottomOpenHeight));
-            debugPrint(bottomOpenTargetHeight.toString());
             return Column(
               children: [
                 Container(
@@ -160,12 +164,14 @@ class PlayerView extends HookWidget {
                               ),
                               IgnorePointer(
                                 ignoring: true,
-                                child: VideoPlatformView(
-                                  playerController: viewController.playerController,
-                                  showControls: false,
-                                  useSurfaceView: viewController.config.useSurfaceView,
-                                  allowSystemGestures: viewController.config.allowSystemGestures,
-                                ),
+                                child: morphTransition?.active == true
+                                    ? const AspectRatio(aspectRatio: 16 / 9)
+                                    : VideoPlatformView(
+                                        playerController: viewController.playerController,
+                                        showControls: false,
+                                        useSurfaceView: viewController.config.useSurfaceView,
+                                        allowSystemGestures: viewController.config.allowSystemGestures,
+                                      ),
                               ),
                               Positioned.fill(
                                 child: Opacity(
@@ -187,30 +193,32 @@ class PlayerView extends HookWidget {
                       alignment: Alignment.topLeft,
                       child: Transform.translate(
                         offset: Offset(0, (bottomOpenTargetHeight - bottomOpenHeight + (100) * (1 - curvedAnimation.value))),
-                        child: lastEpisodeId.value == null
-                            ? null
-                            : LayoutBuilder(
-                                builder: (context, constraints) => OverflowBox(
-                                  alignment: Alignment.topLeft,
-                                  maxHeight: bottomOpenTargetHeight,
-                                  minHeight: bottomOpenTargetHeight,
-                                  child: Container(
-                                    height: bottomOpenTargetHeight,
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: bp.smallerThan(TABLET) ? 12 : 32,
-                                    ),
-                                    child: SingleChildScrollView(
-                                      padding: EdgeInsets.symmetric(horizontal: basePadding).copyWith(bottom: MediaQuery.paddingOf(context).bottom),
-                                      scrollDirection: Axis.horizontal,
-                                      child: PlayerEpisodes(
-                                        episodeId: lastEpisodeId.value!,
-                                        cursor: null,
-                                        onChange: () {},
-                                      ),
+                        child: OverflowBox(
+                          alignment: Alignment.topLeft,
+                          maxHeight: bottomOpenTargetHeight,
+                          minHeight: bottomOpenTargetHeight,
+                          child: Container(
+                            height: bottomOpenTargetHeight,
+                            padding: EdgeInsets.symmetric(
+                              vertical: bp.smallerThan(TABLET) ? 12 : 32,
+                            ),
+                            child: lastEpisodeId.value == null
+                                ? const Center(
+                                    child: LoadingIndicator(height: 24, width: 24),
+                                  )
+                                : SingleChildScrollView(
+                                    padding: EdgeInsets.symmetric(horizontal: basePadding).copyWith(bottom: MediaQuery.paddingOf(context).bottom),
+                                    scrollDirection: Axis.horizontal,
+                                    child: PlayerEpisodes(
+                                      episodeId: lastEpisodeId.value!,
+                                      cursor: null,
+                                      onChange: () {
+                                        setControlsVisible(false);
+                                      },
                                     ),
                                   ),
-                                ),
-                              ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -478,36 +486,14 @@ class PlayerEpisodes extends HookConsumerWidget {
     final design = DesignSystem.of(context);
 
     if (query.result.isLoading) {
-      return skeletonizer.Skeletonizer(
-        containersColor: design.colors.background2,
-        effect: const skeletonizer.ShimmerEffect(),
-        textBoneBorderRadius: skeletonizer.TextBoneBorderRadius(BorderRadius.circular(55)),
-        child: Row(
-          children: List.generate(
-            15,
-            (i) => Container(
-              margin: const EdgeInsets.only(right: 20),
-              child: AspectRatio(
-                aspectRatio: 16 / 12,
-                child: EpisodeGridItemRenderer(
-                  EpisodeGridItem(
-                    id: 'id',
-                    title: 'A very long title',
-                    image: null,
-                    duration: null,
-                  ),
-                  enableMorph: false,
-                  hideTitle: ResponsiveBreakpoints.of(context).smallerThan(TABLET),
-                  onTap: () => (),
-                ),
-              ),
-            ),
-          ),
-        ),
+      return const Center(
+        child: LoadingIndicator(height: 24, width: 24),
       );
     }
     if (query.result.parsedData == null) {
-      return Container();
+      return const Center(
+        child: LoadingIndicator(height: 24, width: 24),
+      );
     }
 
     final hideTitle = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
@@ -528,13 +514,13 @@ class PlayerEpisodes extends HookConsumerWidget {
                 image: ep.image,
                 duration: ep.duration,
               ),
-              enableMorph: false,
               hideTitle: ResponsiveBreakpoints.of(context).smallerThan(TABLET),
-              onTap: () {
+              onTap: (_) {
                 ref.read(playbackServiceProvider).playEpisode(
                       playerId: BccmPlayerViewController.of(context).playerController.value.playerId,
                       episode: ep,
                     );
+                onChange();
               },
             ),
           ),

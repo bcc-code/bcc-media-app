@@ -1,13 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
@@ -15,7 +13,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/player/player_view.dart';
 import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
-import 'package:wakelock_plus/wakelock_plus.dart';
 
 @RoutePage<void>()
 class EpisodeScreen extends HookConsumerWidget {
@@ -57,7 +54,7 @@ class EpisodeScreen extends HookConsumerWidget {
     final playbackService = ref.watch(playbackServiceProvider);
     final firstLoadDone = useState(false);
     final currentId = useState(BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['id']);
-    final morphTransition = InheritedData.listen<ContainerTransitionInfo>(context);
+    final morphTransition = InheritedData.listen<MorphTransitionInfo>(context);
 
     debugPrint('Rendering EpisodeScreen: $id');
 
@@ -94,6 +91,7 @@ class EpisodeScreen extends HookConsumerWidget {
       if (episodeData != null) {
         final duration = morphTransition?.duration ?? 0.ms;
         Future.delayed(duration - 100.ms, () {
+          if (!context.mounted) return;
           transitionDone.value = true;
           playbackService.playEpisode(
             playerId: BccmPlayerController.primary.value.playerId,
@@ -113,12 +111,9 @@ class EpisodeScreen extends HookConsumerWidget {
 
     final viewController = useMemoized(() => BccmPlayerViewController(playerController: BccmPlayerController.primary), []);
 
-    return Transform.scale(
-      scale: transitionDone.value ? 1 : 1.1,
-      child: InheritedBccmPlayerViewController(
-        controller: viewController,
-        child: const PlayerView(),
-      ),
+    return InheritedBccmPlayerViewController(
+      controller: viewController,
+      child: const PlayerView(),
     );
   }
 }

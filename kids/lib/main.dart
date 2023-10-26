@@ -103,7 +103,7 @@ Future<void> $main({
     child: AppRoot(appRouter: appRouter, navigatorKey: navigatorKey),
   );
   Widget maybeWrappedApp;
-  if (kDebugMode && !kIsWeb) {
+  if (false && kDebugMode && !kIsWeb) {
     final interactiveViewer = InteractiveViewer(maxScale: 10, child: app);
     maybeWrappedApp = useDevicePreview ? DevicePreview(builder: (context) => interactiveViewer) : interactiveViewer;
   } else {

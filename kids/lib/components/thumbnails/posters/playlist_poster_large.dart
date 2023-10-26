@@ -88,7 +88,10 @@ class PlaylistPosterLarge extends HookWidget {
               },
               blendMode: BlendMode.srcATop,
               child: GestureDetector(
-                onTap: open,
+                onTap: () {
+                  onPressed?.call();
+                  open();
+                },
                 child: Container(
                   color: const Color(0xFF051335),
                   child: Stack(

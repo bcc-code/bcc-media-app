@@ -1,6 +1,6 @@
 query KidsGetNextEpisodes($episodeId: ID!, $context: EpisodeContext) {
   episode(id: $episodeId, context: $context) {
-    next(limit: 30) {
+    next(limit: 20) {
       ...KidsEpisodeThumbnail
       ...PlayableEpisode
     }
