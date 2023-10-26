@@ -45,8 +45,10 @@ class PosterSection extends ConsumerWidget {
                       }
                       final showItem = item.item.asOrNull<Fragment$Section$$PosterSection$items$items$item$$Show>();
                       if (showItem != null) {
+                        final publishDate = DateTime.tryParse(showItem.seasons.items.firstOrNull?.episodes.items.firstOrNull?.publishDate ?? '');
                         return PosterLarge(
                           image: item.image,
+                          hasNewEpisodes: publishDate != null ? DateTime.now().difference(publishDate).inDays <= 7 : false,
                           onPressed: () => ref.read(analyticsProvider).sectionItemClicked(context),
                           routeSettings: RouteSettings(
                             name: ShowScreenRoute.name,
@@ -59,16 +61,6 @@ class PosterSection extends ConsumerWidget {
                             }
                             return const SizedBox.shrink();
                           },
-                        );
-                      }
-                      final showItem = item.item.asOrNull<Fragment$Section$$PosterSection$items$items$item$$Show>();
-                      if (showItem != null) {
-                        final publishDate = DateTime.tryParse(showItem.seasons.items.firstOrNull?.episodes.items.firstOrNull?.publishDate ?? '');
-
-                        return PosterLarge(
-                          hasNewEpisodes: publishDate != null ? DateTime.now().difference(publishDate).inDays <= 7 : false,
-                          image: item.image,
-                          onPressed: () => handleSectionItemClick(context, item.item),
                         );
                       }
                       return const SizedBox.shrink();
