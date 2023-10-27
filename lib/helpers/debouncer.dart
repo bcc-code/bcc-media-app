@@ -23,8 +23,12 @@ class AsyncDebouncer<T> {
     var completer = Completer<T>();
     _timer?.cancel();
     _timer = Timer(Duration(milliseconds: milliseconds), () async {
-      final value = await action();
-      completer.complete(value);
+      try {
+        final value = await action();
+        completer.complete(value);
+      } catch (e) {
+        completer.completeError(e);
+      }
     });
     return completer.future;
   }

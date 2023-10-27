@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
@@ -10,9 +12,11 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/grid/episode_grid.dart';
+import 'package:kids/router/router.gr.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
-class SearchResults extends HookConsumerWidget {
-  const SearchResults({
+class SliverSearchResults extends HookConsumerWidget {
+  const SliverSearchResults({
     super.key,
     required this.searchQuery,
   });
@@ -32,9 +36,7 @@ class SearchResults extends HookConsumerWidget {
           variables: Variables$Query$Search(queryString: searchQuery),
         ),
       )
-          .onError((error, stackTrace) {
-        throw Error();
-      }).then(
+          .then(
         (value) {
           if (value.exception != null) {
             throw value.exception!;
@@ -45,76 +47,125 @@ class SearchResults extends HookConsumerWidget {
       return future;
     }, [gqlClient, searchQuery]);
 
-    final searchFuture = useMemoized(() => debouncer.run(doSearch), [searchQuery]);
+    final retries = useState(0);
+    final searchFuture = useMemoized(() => debouncer.run(doSearch), [searchQuery, retries.value]);
     final searchSnapshot = useFuture(searchFuture);
 
-    if (searchSnapshot.connectionState == ConnectionState.waiting || searchSnapshot.connectionState == ConnectionState.none) {
-      return const LoadingGeneric();
+    if (searchSnapshot.hasError) {
+      return SliverFillRemaining(
+        child: Center(
+          child: ErrorGeneric(
+            onRetry: () {
+              retries.value++;
+            },
+            details: searchSnapshot.error.toString(),
+          ),
+        ),
+      );
     }
-
     final searchResult = searchSnapshot.data;
-
-    if (searchSnapshot.hasError || searchResult == null) {
-      return const Center(child: Text('Error'));
+    if (searchSnapshot.connectionState == ConnectionState.waiting || searchResult == null) {
+      return const SliverFillRemaining(child: Center(child: LoadingGeneric()));
     }
 
     final shows = searchResult.result.whereType<Fragment$SearchResultItem$$ShowSearchItem>();
     final episodes = searchResult.result.whereType<Fragment$SearchResultItem$$EpisodeSearchItem>();
     final design = DesignSystem.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (shows.isNotEmpty) ...[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: SafeArea(
-                bottom: false,
+
+    final small = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
+    final double basePadding = small ? 24 : 48;
+    final headerTextStyle = small ? DesignSystem.of(context).textStyles.title1 : DesignSystem.of(context).textStyles.headline2;
+
+    return SliverToBoxAdapter(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (shows.isNotEmpty) ...[
+            if (!small)
+              SafeArea(
                 top: false,
-                child: Row(
-                  children: shows
+                bottom: false,
+                minimum: EdgeInsets.symmetric(horizontal: basePadding),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Text(
+                    S.of(context).programsSection,
+                    style: headerTextStyle.copyWith(color: design.colors.label1),
+                  ),
+                ),
+              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: SingleChildScrollView(
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                scrollDirection: Axis.horizontal,
+                child: SafeArea(
+                  bottom: false,
+                  top: false,
+                  minimum: EdgeInsets.symmetric(horizontal: basePadding),
+                  child: Row(
+                    children: shows
+                        .map(
+                          (item) => Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: GestureDetector(
+                              onTap: () {
+                                context.router.push(ShowScreenRoute(showId: item.id));
+                              },
+                              child: ShowSearchResult(item),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+              ),
+            )
+          ],
+          if (episodes.isNotEmpty) ...[
+            if (shows.isNotEmpty)
+              SafeArea(
+                top: false,
+                bottom: false,
+                minimum: EdgeInsets.symmetric(horizontal: basePadding),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: small ? 0 : 8),
+                    child: Text(
+                      S.of(context).episodes,
+                      style: headerTextStyle.copyWith(color: design.colors.label1),
+                    ),
+                  ),
+                ),
+              ),
+            SafeArea(
+              top: false,
+              bottom: false,
+              minimum: EdgeInsets.symmetric(horizontal: basePadding),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: EpisodeGrid(
+                  onTap: (item, morphKey) {
+                    currentMorphKey = morphKey;
+                    context.router.push(EpisodeScreenRoute(id: item.id));
+                  },
+                  items: episodes
                       .map(
-                        (item) => Padding(padding: const EdgeInsets.only(right: 12), child: ShowSearchResult(item)),
+                        (e) => EpisodeGridItem(
+                          id: e.id,
+                          title: e.title,
+                          image: e.image,
+                          duration: e.duration,
+                        ),
                       )
                       .toList(),
                 ),
               ),
             ),
-          )
+          ],
         ],
-        if (episodes.isNotEmpty) ...[
-          if (shows.isNotEmpty)
-            SafeArea(
-              top: false,
-              bottom: false,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: Text(S.of(context).episodes, style: design.textStyles.title1.copyWith(color: design.colors.label1)),
-              ),
-            ),
-          SafeArea(
-            top: false,
-            bottom: false,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: EpisodeGrid(
-                onTap: (item, morphKey) {},
-                items: episodes
-                    .map(
-                      (e) => EpisodeGridItem(
-                        id: e.id,
-                        title: e.title,
-                        image: e.image,
-                        duration: e.duration,
-                      ),
-                    )
-                    .toList(),
-              ),
-            ),
-          ),
-        ],
-      ],
+      ),
     );
   }
 }
@@ -130,8 +181,9 @@ class ShowSearchResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
+    final small = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
     return ConstrainedBox(
-      constraints: const BoxConstraints.tightFor(width: 110),
+      constraints: BoxConstraints.tightFor(width: small ? 110 : 200),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,8 +191,8 @@ class ShowSearchResult extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Container(
-              width: 110,
-              height: 164,
+              width: small ? 110 : 200,
+              height: small ? 164 : 300,
               color: Colors.white,
               child: Stack(
                 alignment: Alignment.center,
@@ -168,7 +220,7 @@ class ShowSearchResult extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             item.title,
-            style: design.textStyles.body3.copyWith(color: design.colors.label1),
+            style: (small ? design.textStyles.body3 : design.textStyles.body1).copyWith(color: design.colors.label1),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),

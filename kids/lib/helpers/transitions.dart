@@ -72,6 +72,7 @@ class MorphTransition extends HookWidget {
         animation: primary,
         child: child,
         builder: (context, child) {
+          final active = primary.status == AnimationStatus.forward || primary.status == AnimationStatus.reverse;
           final curvedAnimation = CurvedAnimation(
             parent: primary,
             curve: primary.status == AnimationStatus.forward ? Curves.ease : Curves.easeInExpo,
@@ -85,48 +86,51 @@ class MorphTransition extends HookWidget {
             end: BorderRadius.zero,
           ).evaluate(curvedAnimation);
 
-          return Align(
-            alignment: Alignment.topLeft,
-            child: Transform.translate(
-              offset: offset,
-              child: ClipRRect(
-                borderRadius: borderRadius,
-                child: SizedBox(
-                  width: size.width,
-                  height: size.height,
-                  child: Stack(
-                    children: [
-                      Positioned.fill(child: Container(color: Colors.white)),
-                      if (morphHost?.builder != null)
-                        Positioned.fill(
-                          child: FittedBox(
-                            fit: BoxFit.cover,
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints.tight(sizeA),
-                              child: morphHost!.builder(context),
-                            ),
-                          ),
-                        ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: OverflowBox(
-                          maxHeight: constraints.biggest.height,
-                          minHeight: constraints.biggest.height,
-                          maxWidth: constraints.biggest.width,
-                          minWidth: constraints.biggest.width,
-                          child: Opacity(
-                            opacity: curvedAnimation.value,
-                            child: InheritedData(
-                              inheritedData: MorphTransitionInfo(
-                                duration: duration,
-                                active: primary.status == AnimationStatus.forward || primary.status == AnimationStatus.reverse,
+          return AbsorbPointer(
+            absorbing: active,
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Transform.translate(
+                offset: offset,
+                child: ClipRRect(
+                  borderRadius: borderRadius,
+                  child: SizedBox(
+                    width: size.width,
+                    height: size.height,
+                    child: Stack(
+                      children: [
+                        Positioned.fill(child: Container(color: Colors.white)),
+                        if (morphHost?.builder != null)
+                          Positioned.fill(
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints.tight(sizeA),
+                                child: morphHost!.builder(context),
                               ),
-                              child: (context) => child!,
+                            ),
+                          ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: OverflowBox(
+                            maxHeight: constraints.biggest.height,
+                            minHeight: constraints.biggest.height,
+                            maxWidth: constraints.biggest.width,
+                            minWidth: constraints.biggest.width,
+                            child: Opacity(
+                              opacity: curvedAnimation.value,
+                              child: InheritedData(
+                                inheritedData: MorphTransitionInfo(
+                                  duration: duration,
+                                  active: active,
+                                ),
+                                child: (context) => child!,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

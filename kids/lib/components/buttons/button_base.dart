@@ -11,22 +11,6 @@ import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/providers/sound_effects.dart';
 
-class ButtonPaddings {
-  final double fromLabelToSide;
-  final double fromLabelToSideWhenAlone;
-  final double fromIconToLabel;
-  final double fromIconToSide;
-  final double fromIconToSideWhenAlone;
-
-  const ButtonPaddings({
-    required this.fromLabelToSide,
-    required this.fromLabelToSideWhenAlone,
-    required this.fromIconToLabel,
-    required this.fromIconToSide,
-    required this.fromIconToSideWhenAlone,
-  });
-}
-
 class ButtonBase extends HookConsumerWidget {
   final Widget Function(BuildContext context, bool isPressed) builder;
   final VoidCallback? onPressed;
@@ -37,6 +21,7 @@ class ButtonBase extends HookConsumerWidget {
   final Color? sideColor;
   final Color? shadowColor;
   final BorderRadius borderRadius;
+  final double transition;
 
   const ButtonBase({
     super.key,
@@ -49,6 +34,7 @@ class ButtonBase extends HookConsumerWidget {
     required this.shadowColor,
     required this.sideColor,
     required this.borderRadius,
+    this.transition = 1.0,
   });
 
   @override
@@ -79,6 +65,7 @@ class ButtonBase extends HookConsumerWidget {
     }
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTapDown: (e) {
         push();
       },
@@ -105,20 +92,20 @@ class ButtonBase extends HookConsumerWidget {
                 ? null
                 : [
                     BoxShadow(
-                      color: design.colors.label1.withOpacity(0.1),
+                      color: design.colors.label1.withOpacity(0.1 * transition),
                       offset: Offset(0, limitedShadowHeight * 2),
                       spreadRadius: 0,
                       blurRadius: 12,
                     ),
                     BoxShadow(
                       color: shadowColor != null ? shadowColor! : design.colors.label1.withOpacity(0.1),
-                      offset: Offset(0, limitedShadowHeight),
+                      offset: Offset(0, limitedShadowHeight * transition),
                       blurRadius: 0,
                     ),
                   ],
           ),
           child: _InnerShadow(
-            offset: pressed.value ? const Offset(0, 0) : Offset(0, -elevationHeight),
+            offset: pressed.value ? const Offset(0, 0) : Offset(0, -elevationHeight * transition),
             color: sideColor != null ? sideColor! : Colors.black.withOpacity(0.1),
             child: Container(
               decoration: BoxDecoration(
