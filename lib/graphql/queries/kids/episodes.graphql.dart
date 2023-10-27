@@ -1736,3 +1736,1124 @@ class _CopyWithStubImpl$Query$KidsGetNextEpisodes$episode$next$season$show<TRes>
   }) =>
       _res;
 }
+
+class Variables$Query$GetManyEpisodeIdsForPlaylist {
+  factory Variables$Query$GetManyEpisodeIdsForPlaylist({required String id}) =>
+      Variables$Query$GetManyEpisodeIdsForPlaylist._({
+        r'id': id,
+      });
+
+  Variables$Query$GetManyEpisodeIdsForPlaylist._(this._$data);
+
+  factory Variables$Query$GetManyEpisodeIdsForPlaylist.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    return Variables$Query$GetManyEpisodeIdsForPlaylist._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get id => (_$data['id'] as String);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$GetManyEpisodeIdsForPlaylist<
+          Variables$Query$GetManyEpisodeIdsForPlaylist>
+      get copyWith => CopyWith$Variables$Query$GetManyEpisodeIdsForPlaylist(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Query$GetManyEpisodeIdsForPlaylist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    return Object.hashAll([l$id]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$GetManyEpisodeIdsForPlaylist<TRes> {
+  factory CopyWith$Variables$Query$GetManyEpisodeIdsForPlaylist(
+    Variables$Query$GetManyEpisodeIdsForPlaylist instance,
+    TRes Function(Variables$Query$GetManyEpisodeIdsForPlaylist) then,
+  ) = _CopyWithImpl$Variables$Query$GetManyEpisodeIdsForPlaylist;
+
+  factory CopyWith$Variables$Query$GetManyEpisodeIdsForPlaylist.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$GetManyEpisodeIdsForPlaylist;
+
+  TRes call({String? id});
+}
+
+class _CopyWithImpl$Variables$Query$GetManyEpisodeIdsForPlaylist<TRes>
+    implements CopyWith$Variables$Query$GetManyEpisodeIdsForPlaylist<TRes> {
+  _CopyWithImpl$Variables$Query$GetManyEpisodeIdsForPlaylist(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$GetManyEpisodeIdsForPlaylist _instance;
+
+  final TRes Function(Variables$Query$GetManyEpisodeIdsForPlaylist) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? id = _undefined}) =>
+      _then(Variables$Query$GetManyEpisodeIdsForPlaylist._({
+        ..._instance._$data,
+        if (id != _undefined && id != null) 'id': (id as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$GetManyEpisodeIdsForPlaylist<TRes>
+    implements CopyWith$Variables$Query$GetManyEpisodeIdsForPlaylist<TRes> {
+  _CopyWithStubImpl$Variables$Query$GetManyEpisodeIdsForPlaylist(this._res);
+
+  TRes _res;
+
+  call({String? id}) => _res;
+}
+
+class Query$GetManyEpisodeIdsForPlaylist {
+  Query$GetManyEpisodeIdsForPlaylist({
+    required this.playlist,
+    this.$__typename = 'QueryRoot',
+  });
+
+  factory Query$GetManyEpisodeIdsForPlaylist.fromJson(
+      Map<String, dynamic> json) {
+    final l$playlist = json['playlist'];
+    final l$$__typename = json['__typename'];
+    return Query$GetManyEpisodeIdsForPlaylist(
+      playlist: Query$GetManyEpisodeIdsForPlaylist$playlist.fromJson(
+          (l$playlist as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$GetManyEpisodeIdsForPlaylist$playlist playlist;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$playlist = playlist;
+    _resultData['playlist'] = l$playlist.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$playlist = playlist;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$playlist,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$GetManyEpisodeIdsForPlaylist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$playlist = playlist;
+    final lOther$playlist = other.playlist;
+    if (l$playlist != lOther$playlist) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetManyEpisodeIdsForPlaylist
+    on Query$GetManyEpisodeIdsForPlaylist {
+  CopyWith$Query$GetManyEpisodeIdsForPlaylist<
+          Query$GetManyEpisodeIdsForPlaylist>
+      get copyWith => CopyWith$Query$GetManyEpisodeIdsForPlaylist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetManyEpisodeIdsForPlaylist<TRes> {
+  factory CopyWith$Query$GetManyEpisodeIdsForPlaylist(
+    Query$GetManyEpisodeIdsForPlaylist instance,
+    TRes Function(Query$GetManyEpisodeIdsForPlaylist) then,
+  ) = _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist;
+
+  factory CopyWith$Query$GetManyEpisodeIdsForPlaylist.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist;
+
+  TRes call({
+    Query$GetManyEpisodeIdsForPlaylist$playlist? playlist,
+    String? $__typename,
+  });
+  CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist<TRes> get playlist;
+}
+
+class _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist<TRes>
+    implements CopyWith$Query$GetManyEpisodeIdsForPlaylist<TRes> {
+  _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetManyEpisodeIdsForPlaylist _instance;
+
+  final TRes Function(Query$GetManyEpisodeIdsForPlaylist) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? playlist = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetManyEpisodeIdsForPlaylist(
+        playlist: playlist == _undefined || playlist == null
+            ? _instance.playlist
+            : (playlist as Query$GetManyEpisodeIdsForPlaylist$playlist),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist<TRes> get playlist {
+    final local$playlist = _instance.playlist;
+    return CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist(
+        local$playlist, (e) => call(playlist: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist<TRes>
+    implements CopyWith$Query$GetManyEpisodeIdsForPlaylist<TRes> {
+  _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist(this._res);
+
+  TRes _res;
+
+  call({
+    Query$GetManyEpisodeIdsForPlaylist$playlist? playlist,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist<TRes> get playlist =>
+      CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist.stub(_res);
+}
+
+const documentNodeQueryGetManyEpisodeIdsForPlaylist =
+    DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'GetManyEpisodeIdsForPlaylist'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'playlist'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'id'),
+            value: VariableNode(name: NameNode(value: 'id')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'items'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'first'),
+                value: IntValueNode(value: '100'),
+              )
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'items'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  InlineFragmentNode(
+                    typeCondition: TypeConditionNode(
+                        on: NamedTypeNode(
+                      name: NameNode(value: 'Episode'),
+                      isNonNull: false,
+                    )),
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'cursor'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ]),
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$GetManyEpisodeIdsForPlaylist _parserFn$Query$GetManyEpisodeIdsForPlaylist(
+        Map<String, dynamic> data) =>
+    Query$GetManyEpisodeIdsForPlaylist.fromJson(data);
+typedef OnQueryComplete$Query$GetManyEpisodeIdsForPlaylist = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Query$GetManyEpisodeIdsForPlaylist?,
+);
+
+class Options$Query$GetManyEpisodeIdsForPlaylist
+    extends graphql.QueryOptions<Query$GetManyEpisodeIdsForPlaylist> {
+  Options$Query$GetManyEpisodeIdsForPlaylist({
+    String? operationName,
+    required Variables$Query$GetManyEpisodeIdsForPlaylist variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$GetManyEpisodeIdsForPlaylist? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$GetManyEpisodeIdsForPlaylist? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$GetManyEpisodeIdsForPlaylist(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryGetManyEpisodeIdsForPlaylist,
+          parserFn: _parserFn$Query$GetManyEpisodeIdsForPlaylist,
+        );
+
+  final OnQueryComplete$Query$GetManyEpisodeIdsForPlaylist?
+      onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$GetManyEpisodeIdsForPlaylist
+    extends graphql.WatchQueryOptions<Query$GetManyEpisodeIdsForPlaylist> {
+  WatchOptions$Query$GetManyEpisodeIdsForPlaylist({
+    String? operationName,
+    required Variables$Query$GetManyEpisodeIdsForPlaylist variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$GetManyEpisodeIdsForPlaylist? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryGetManyEpisodeIdsForPlaylist,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$GetManyEpisodeIdsForPlaylist,
+        );
+}
+
+class FetchMoreOptions$Query$GetManyEpisodeIdsForPlaylist
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$GetManyEpisodeIdsForPlaylist({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$GetManyEpisodeIdsForPlaylist variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables.toJson(),
+          document: documentNodeQueryGetManyEpisodeIdsForPlaylist,
+        );
+}
+
+extension ClientExtension$Query$GetManyEpisodeIdsForPlaylist
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$GetManyEpisodeIdsForPlaylist>>
+      query$GetManyEpisodeIdsForPlaylist(
+              Options$Query$GetManyEpisodeIdsForPlaylist options) async =>
+          await this.query(options);
+  graphql.ObservableQuery<Query$GetManyEpisodeIdsForPlaylist>
+      watchQuery$GetManyEpisodeIdsForPlaylist(
+              WatchOptions$Query$GetManyEpisodeIdsForPlaylist options) =>
+          this.watchQuery(options);
+  void writeQuery$GetManyEpisodeIdsForPlaylist({
+    required Query$GetManyEpisodeIdsForPlaylist data,
+    required Variables$Query$GetManyEpisodeIdsForPlaylist variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(
+              document: documentNodeQueryGetManyEpisodeIdsForPlaylist),
+          variables: variables.toJson(),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$GetManyEpisodeIdsForPlaylist? readQuery$GetManyEpisodeIdsForPlaylist({
+    required Variables$Query$GetManyEpisodeIdsForPlaylist variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(
+            document: documentNodeQueryGetManyEpisodeIdsForPlaylist),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null
+        ? null
+        : Query$GetManyEpisodeIdsForPlaylist.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$GetManyEpisodeIdsForPlaylist>
+    useQuery$GetManyEpisodeIdsForPlaylist(
+            Options$Query$GetManyEpisodeIdsForPlaylist options) =>
+        graphql_flutter.useQuery(options);
+graphql.ObservableQuery<Query$GetManyEpisodeIdsForPlaylist>
+    useWatchQuery$GetManyEpisodeIdsForPlaylist(
+            WatchOptions$Query$GetManyEpisodeIdsForPlaylist options) =>
+        graphql_flutter.useWatchQuery(options);
+
+class Query$GetManyEpisodeIdsForPlaylist$Widget
+    extends graphql_flutter.Query<Query$GetManyEpisodeIdsForPlaylist> {
+  Query$GetManyEpisodeIdsForPlaylist$Widget({
+    widgets.Key? key,
+    required Options$Query$GetManyEpisodeIdsForPlaylist options,
+    required graphql_flutter.QueryBuilder<Query$GetManyEpisodeIdsForPlaylist>
+        builder,
+  }) : super(
+          key: key,
+          options: options,
+          builder: builder,
+        );
+}
+
+class Query$GetManyEpisodeIdsForPlaylist$playlist {
+  Query$GetManyEpisodeIdsForPlaylist$playlist({
+    required this.items,
+    this.$__typename = 'Playlist',
+  });
+
+  factory Query$GetManyEpisodeIdsForPlaylist$playlist.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$GetManyEpisodeIdsForPlaylist$playlist(
+      items: Query$GetManyEpisodeIdsForPlaylist$playlist$items.fromJson(
+          (l$items as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$GetManyEpisodeIdsForPlaylist$playlist$items items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$items,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$GetManyEpisodeIdsForPlaylist$playlist) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != lOther$items) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetManyEpisodeIdsForPlaylist$playlist
+    on Query$GetManyEpisodeIdsForPlaylist$playlist {
+  CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist<
+          Query$GetManyEpisodeIdsForPlaylist$playlist>
+      get copyWith => CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist<TRes> {
+  factory CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist(
+    Query$GetManyEpisodeIdsForPlaylist$playlist instance,
+    TRes Function(Query$GetManyEpisodeIdsForPlaylist$playlist) then,
+  ) = _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist;
+
+  factory CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist;
+
+  TRes call({
+    Query$GetManyEpisodeIdsForPlaylist$playlist$items? items,
+    String? $__typename,
+  });
+  CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items<TRes> get items;
+}
+
+class _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist<TRes>
+    implements CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist<TRes> {
+  _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetManyEpisodeIdsForPlaylist$playlist _instance;
+
+  final TRes Function(Query$GetManyEpisodeIdsForPlaylist$playlist) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetManyEpisodeIdsForPlaylist$playlist(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as Query$GetManyEpisodeIdsForPlaylist$playlist$items),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items<TRes> get items {
+    final local$items = _instance.items;
+    return CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items(
+        local$items, (e) => call(items: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist<TRes>
+    implements CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist<TRes> {
+  _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist(this._res);
+
+  TRes _res;
+
+  call({
+    Query$GetManyEpisodeIdsForPlaylist$playlist$items? items,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items<TRes> get items =>
+      CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items.stub(_res);
+}
+
+class Query$GetManyEpisodeIdsForPlaylist$playlist$items {
+  Query$GetManyEpisodeIdsForPlaylist$playlist$items({
+    required this.items,
+    this.$__typename = 'PlaylistItemPagination',
+  });
+
+  factory Query$GetManyEpisodeIdsForPlaylist$playlist$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$GetManyEpisodeIdsForPlaylist$playlist$items(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Query$GetManyEpisodeIdsForPlaylist$playlist$items$items.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$GetManyEpisodeIdsForPlaylist$playlist$items$items> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$GetManyEpisodeIdsForPlaylist$playlist$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetManyEpisodeIdsForPlaylist$playlist$items
+    on Query$GetManyEpisodeIdsForPlaylist$playlist$items {
+  CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items<
+          Query$GetManyEpisodeIdsForPlaylist$playlist$items>
+      get copyWith =>
+          CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items<
+    TRes> {
+  factory CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items(
+    Query$GetManyEpisodeIdsForPlaylist$playlist$items instance,
+    TRes Function(Query$GetManyEpisodeIdsForPlaylist$playlist$items) then,
+  ) = _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items;
+
+  factory CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items;
+
+  TRes call({
+    List<Query$GetManyEpisodeIdsForPlaylist$playlist$items$items>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Query$GetManyEpisodeIdsForPlaylist$playlist$items$items> Function(
+              Iterable<
+                  CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items<
+                      Query$GetManyEpisodeIdsForPlaylist$playlist$items$items>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items<TRes>
+    implements
+        CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items<TRes> {
+  _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetManyEpisodeIdsForPlaylist$playlist$items _instance;
+
+  final TRes Function(Query$GetManyEpisodeIdsForPlaylist$playlist$items) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetManyEpisodeIdsForPlaylist$playlist$items(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<
+                Query$GetManyEpisodeIdsForPlaylist$playlist$items$items>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Query$GetManyEpisodeIdsForPlaylist$playlist$items$items> Function(
+                  Iterable<
+                      CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items<
+                          Query$GetManyEpisodeIdsForPlaylist$playlist$items$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items(
+                e,
+                (i) => i,
+              ))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items<TRes>
+    implements
+        CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items<TRes> {
+  _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$GetManyEpisodeIdsForPlaylist$playlist$items$items>? items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Query$GetManyEpisodeIdsForPlaylist$playlist$items$items {
+  Query$GetManyEpisodeIdsForPlaylist$playlist$items$items(
+      {required this.$__typename});
+
+  factory Query$GetManyEpisodeIdsForPlaylist$playlist$items$items.fromJson(
+      Map<String, dynamic> json) {
+    switch (json["__typename"] as String) {
+      case "Episode":
+        return Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode
+            .fromJson(json);
+
+      default:
+        final l$$__typename = json['__typename'];
+        return Query$GetManyEpisodeIdsForPlaylist$playlist$items$items(
+            $__typename: (l$$__typename as String));
+    }
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$GetManyEpisodeIdsForPlaylist$playlist$items$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items
+    on Query$GetManyEpisodeIdsForPlaylist$playlist$items$items {
+  CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items<
+          Query$GetManyEpisodeIdsForPlaylist$playlist$items$items>
+      get copyWith =>
+          CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items(
+            this,
+            (i) => i,
+          );
+  _T when<_T>({
+    required _T Function(
+            Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode)
+        episode,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Episode":
+        return episode(this
+            as Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode)?
+        episode,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
+}
+
+abstract class CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items<
+    TRes> {
+  factory CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items(
+    Query$GetManyEpisodeIdsForPlaylist$playlist$items$items instance,
+    TRes Function(Query$GetManyEpisodeIdsForPlaylist$playlist$items$items) then,
+  ) = _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items;
+
+  factory CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items<
+        TRes>
+    implements
+        CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items<TRes> {
+  _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetManyEpisodeIdsForPlaylist$playlist$items$items _instance;
+
+  final TRes Function(Query$GetManyEpisodeIdsForPlaylist$playlist$items$items)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Query$GetManyEpisodeIdsForPlaylist$playlist$items$items(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items<
+        TRes>
+    implements
+        CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items<TRes> {
+  _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode
+    implements Query$GetManyEpisodeIdsForPlaylist$playlist$items$items {
+  Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode({
+    required this.id,
+    required this.cursor,
+    this.$__typename = 'Episode',
+  });
+
+  factory Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$cursor = json['cursor'];
+    final l$$__typename = json['__typename'];
+    return Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode(
+      id: (l$id as String),
+      cursor: (l$cursor as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String cursor;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$cursor = cursor;
+    _resultData['cursor'] = l$cursor;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$cursor = cursor;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$cursor,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$cursor = cursor;
+    final lOther$cursor = other.cursor;
+    if (l$cursor != lOther$cursor) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode
+    on Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode {
+  CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode<
+          Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode>
+      get copyWith =>
+          CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode<
+    TRes> {
+  factory CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode(
+    Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode instance,
+    TRes Function(
+            Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode)
+        then,
+  ) = _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode;
+
+  factory CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode;
+
+  TRes call({
+    String? id,
+    String? cursor,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode
+      _instance;
+
+  final TRes Function(
+      Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? cursor = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        cursor: cursor == _undefined || cursor == null
+            ? _instance.cursor
+            : (cursor as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? cursor,
+    String? $__typename,
+  }) =>
+      _res;
+}

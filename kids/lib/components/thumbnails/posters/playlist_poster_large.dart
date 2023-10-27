@@ -1,7 +1,11 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:animations/animations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
@@ -11,17 +15,19 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:kids/screens/playlist.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
-class PlaylistPosterLarge extends HookWidget {
+class PlaylistPosterLarge extends HookConsumerWidget {
   const PlaylistPosterLarge({
     super.key,
     required this.id,
     required this.onPressed,
+    required this.onPlayPressed,
     required this.title,
     required this.image,
     required this.imageUrls,
@@ -29,17 +35,20 @@ class PlaylistPosterLarge extends HookWidget {
 
   final String id;
   final VoidCallback? onPressed;
+  final Future Function()? onPlayPressed;
   final String title;
   final String? image;
   final List<String> imageUrls;
 
   factory PlaylistPosterLarge.fromItem({
     required VoidCallback onPressed,
+    required Future Function()? onPlayPressed,
     required Fragment$Section$$PosterSection$items$items$item$$Playlist item,
   }) {
     return PlaylistPosterLarge(
       id: item.id,
       onPressed: onPressed,
+      onPlayPressed: onPlayPressed,
       title: item.title,
       image: item.image,
       imageUrls: item.items.items.map((e) => e.image).whereNotNull().toList(),
@@ -47,7 +56,7 @@ class PlaylistPosterLarge extends HookWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
     final navigationFuture = useState<Future<void>?>(null);
     final bp = ResponsiveBreakpoints.of(context);
@@ -121,7 +130,9 @@ class PlaylistPosterLarge extends HookWidget {
               right: small ? 16 : 40,
               child: design.buttons.responsive(
                 variant: ButtonVariant.secondary,
-                onPressed: () {},
+                onPressed: () {
+                  navigationFuture.value = onPlayPressed?.call();
+                },
                 labelText: '',
                 image: SvgPicture.string(SvgIcons.play, colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn)),
               ),

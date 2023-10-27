@@ -83,7 +83,7 @@ class ShowScreen extends HookConsumerWidget {
                           onPressed: () {
                             if (episodes == null) return;
                             final randomEpisode = episodes[Random().nextInt(episodes.length)];
-                            context.router.push(EpisodeScreenRoute(id: randomEpisode.id));
+                            context.router.push(EpisodeScreenRoute(id: randomEpisode.id, shuffle: true));
                           },
                           labelText: 'Play random',
                           image: SizedBox(

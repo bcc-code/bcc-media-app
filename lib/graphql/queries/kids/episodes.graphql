@@ -6,3 +6,17 @@ query KidsGetNextEpisodes($episodeId: ID!, $context: EpisodeContext) {
     }
   }
 }
+
+query GetManyEpisodeIdsForPlaylist($id: ID!) {
+  playlist(id: $id) {
+    items(first: 100) {
+      items {
+        __typename
+        ... on Episode {
+          id
+          cursor
+        }
+      }
+    }
+  }
+}

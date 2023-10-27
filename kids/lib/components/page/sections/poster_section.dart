@@ -1,3 +1,8 @@
+import 'dart:math';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
@@ -41,6 +46,23 @@ class PosterSection extends ConsumerWidget {
                         return PlaylistPosterLarge.fromItem(
                           item: playlistItem,
                           onPressed: () => ref.read(analyticsProvider).sectionItemClicked(context),
+                          onPlayPressed: () async {
+                            final episodeIds = await ref.read(gqlClientProvider).query$GetManyEpisodeIdsForPlaylist(
+                                  Options$Query$GetManyEpisodeIdsForPlaylist(
+                                    variables: Variables$Query$GetManyEpisodeIdsForPlaylist(id: item.id),
+                                  ),
+                                );
+                            if (!context.mounted) return;
+                            final items = episodeIds.parsedData?.playlist.items.items
+                                .whereType<Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode>()
+                                .toList();
+                            if (items != null) {
+                              final randomEpisode = items[Random().nextInt(items.length)];
+                              context.router.push(
+                                EpisodeScreenRoute(id: randomEpisode.id, cursor: randomEpisode.cursor),
+                              );
+                            }
+                          },
                         );
                       }
                       final showItem = item.item.asOrNull<Fragment$Section$$PosterSection$items$items$item$$Show>();
