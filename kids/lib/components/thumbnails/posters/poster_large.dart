@@ -39,7 +39,7 @@ class PosterLarge extends HookWidget {
     return OpenContainer(
       openBuilder: openBuilder ?? (context, close) => const SizedBox.shrink(),
       routeSettings: routeSettings,
-      closedColor: const Color(0xFF051335),
+      closedColor: Colors.transparent,
       openElevation: 0,
       closedElevation: 0,
       tappable: false,

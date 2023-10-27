@@ -76,6 +76,17 @@ class SliverSearchResults extends HookConsumerWidget {
     final double basePadding = small ? 24 : 48;
     final headerTextStyle = small ? DesignSystem.of(context).textStyles.title1 : DesignSystem.of(context).textStyles.headline2;
 
+    if (episodes.isEmpty && shows.isEmpty) {
+      return SliverFillRemaining(
+        child: Center(
+          child: Text(
+            S.of(context).noResults,
+            style: headerTextStyle.copyWith(color: design.colors.label1),
+          ),
+        ),
+      );
+    }
+
     return SliverToBoxAdapter(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,7 +152,7 @@ class SliverSearchResults extends HookConsumerWidget {
               ),
             SafeArea(
               top: false,
-              bottom: false,
+              bottom: true,
               minimum: EdgeInsets.symmetric(horizontal: basePadding),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
@@ -163,6 +174,7 @@ class SliverSearchResults extends HookConsumerWidget {
                 ),
               ),
             ),
+            SizedBox(height: basePadding),
           ],
         ],
       ),
@@ -182,6 +194,7 @@ class ShowSearchResult extends StatelessWidget {
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
     final small = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
+    final image = item.$show.posterImage ?? item.image;
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(width: small ? 110 : 200),
       child: Column(
@@ -197,7 +210,7 @@ class ShowSearchResult extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  if (item.image != null)
+                  if (image != null)
                     Stack(
                       fit: StackFit.expand,
                       alignment: Alignment.center,
@@ -208,7 +221,7 @@ class ShowSearchResult extends StatelessWidget {
                               .shimmer(duration: 1000.ms)
                               .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
                         ),
-                        simpleFadeInImage(url: item.image!).animate().fadeIn(),
+                        simpleFadeInImage(url: image).animate().fadeIn(),
                       ],
                     )
                   else

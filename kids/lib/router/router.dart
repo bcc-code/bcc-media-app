@@ -40,15 +40,15 @@ class AppRouter extends $AppRouter {
           path: '/show/:showId',
           page: ShowScreenRoute.page,
           durationInMilliseconds: 600,
-          reverseDurationInMilliseconds: 1000,
+          reverseDurationInMilliseconds: 600,
           transitionsBuilder: CustomTransitionsBuilders.slideUp(),
         ),
         CustomRoute(
           path: '/playlist/:id',
           page: PlaylistScreenRoute.page,
-          transitionsBuilder: CustomTransitionsBuilders.scaleUpSlideDown(),
+          transitionsBuilder: CustomTransitionsBuilders.scaleUp(),
           durationInMilliseconds: 600,
-          reverseDurationInMilliseconds: 1000,
+          reverseDurationInMilliseconds: 600,
         ),
         CustomRoute(
           path: '/settings',
@@ -118,9 +118,9 @@ class AppRouter extends $AppRouter {
         CustomRoute(
           path: '/search',
           page: SearchScreenRoute.page,
-          transitionsBuilder: CustomTransitionsBuilders.scaleUpSlideDown(),
+          transitionsBuilder: CustomTransitionsBuilders.scaleUp(),
           durationInMilliseconds: 600,
-          reverseDurationInMilliseconds: 1000,
+          reverseDurationInMilliseconds: 600,
         ),
         CustomRoute(
           page: EpisodeScreenRoute.page,
@@ -132,7 +132,7 @@ class AppRouter extends $AppRouter {
             return MorphTransition(
               primary: prim,
               secondary: second,
-              fallbackTransitionBuilder: CustomTransitionsBuilders.slideUp(),
+              fallbackTransitionBuilder: CustomTransitionsBuilders.scaleUp(),
               duration: 400.ms,
               child: child,
             );

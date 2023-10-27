@@ -1,14 +1,11 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
-import 'package:brunstadtv_app/providers/playback_service.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:kids/components/buttons/button.dart';
 import 'package:kids/components/grid/episode_grid.dart';
-import 'package:kids/helpers/playback.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +37,12 @@ class ShowScreen extends HookConsumerWidget {
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
+
+    final episodes = showQuery.result.parsedData?.$show.seasons.items
+        .expand((element) => element.episodes.items)
+        .whereType<Fragment$KidsEpisodeThumbnail>()
+        .map((e) => EpisodeGridItem.fromFragment(e))
+        .toList();
 
     return Scaffold(
       body: Stack(
@@ -77,7 +80,11 @@ class ShowScreen extends HookConsumerWidget {
                         const Spacer(),
                         const SizedBox(width: 24),
                         design.buttons.responsive(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (episodes == null) return;
+                            final randomEpisode = episodes[Random().nextInt(episodes.length)];
+                            context.router.push(EpisodeScreenRoute(id: randomEpisode.id));
+                          },
                           labelText: 'Play random',
                           image: SizedBox(
                             height: 24,
@@ -93,7 +100,7 @@ class ShowScreen extends HookConsumerWidget {
               ),
               if (showQuery.result.isLoading)
                 const SliverFillRemaining(hasScrollBody: true, child: LoadingGeneric())
-              else if (showQuery.result.parsedData != null)
+              else if (episodes != null)
                 SliverSafeArea(
                   top: false,
                   sliver: SliverToBoxAdapter(
@@ -104,11 +111,7 @@ class ShowScreen extends HookConsumerWidget {
                           currentMorphKey = morphKey;
                           context.router.push(EpisodeScreenRoute(id: item.id));
                         },
-                        items: showQuery.result.parsedData!.$show.seasons.items
-                            .expand((element) => element.episodes.items)
-                            .whereType<Fragment$KidsEpisodeThumbnail>()
-                            .map((e) => EpisodeGridItem.fromFragment(e))
-                            .toList(),
+                        items: episodes,
                       ),
                     ),
                   ),

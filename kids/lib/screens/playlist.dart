@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
@@ -42,6 +44,8 @@ class PlaylistScreen extends HookConsumerWidget {
       ),
     );
 
+    final items = query.result.parsedData?.playlist.items.items.whereType<Fragment$KidsEpisodeThumbnail>().toList();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -78,7 +82,11 @@ class PlaylistScreen extends HookConsumerWidget {
                         const Spacer(),
                         const SizedBox(width: 24),
                         design.buttons.responsive(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (items == null) return;
+                            final randomEpisode = items[Random().nextInt(items.length)];
+                            context.router.push(EpisodeScreenRoute(id: randomEpisode.id));
+                          },
                           labelText: 'Play random',
                           image: SizedBox(
                             height: 24,
@@ -94,7 +102,7 @@ class PlaylistScreen extends HookConsumerWidget {
               ),
               if (query.result.isLoading)
                 const SliverFillRemaining(hasScrollBody: true, child: LoadingGeneric())
-              else if (query.result.parsedData != null)
+              else if (items != null)
                 SliverSafeArea(
                   top: false,
                   sliver: SliverToBoxAdapter(
@@ -105,10 +113,7 @@ class PlaylistScreen extends HookConsumerWidget {
                           currentMorphKey = morphKey;
                           context.router.push(EpisodeScreenRoute(id: item.id));
                         },
-                        items: query.result.parsedData!.playlist.items.items
-                            .whereType<Fragment$KidsEpisodeThumbnail>()
-                            .map((e) => EpisodeGridItem.fromFragment(e))
-                            .toList(),
+                        items: items.map((e) => EpisodeGridItem.fromFragment(e)).toList(),
                       ),
                     ),
                   ),

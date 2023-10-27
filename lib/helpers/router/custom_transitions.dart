@@ -21,7 +21,7 @@ class CustomTransitionsBuilders {
           child: child,
         );
       };
-  static RouteTransitionsBuilder scaleUpSlideDown({Curve curveIn = Curves.easeOutExpo, Curve curveOut = Curves.easeInExpo}) =>
+  static RouteTransitionsBuilder scaleUp({Curve curveIn = Curves.easeOutExpo, Curve curveOut = Curves.easeInExpo}) =>
       (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
         if (animation.status != AnimationStatus.reverse) {
           final curvedAnimation = CurvedAnimation(parent: animation, curve: curveIn);
@@ -34,12 +34,15 @@ class CustomTransitionsBuilders {
           );
         }
         final curvedAnimation = CurvedAnimation(parent: animation, curve: curveOut);
-        return SlideTransition(
-          position: Tween<Offset>(
-            begin: const Offset(0, 1),
-            end: Offset.zero,
-          ).animate(curvedAnimation),
-          child: child,
+        return FadeTransition(
+          opacity: curvedAnimation,
+          child: ScaleTransition(
+            scale: Tween<double>(
+              begin: 0.7,
+              end: 1.0,
+            ).animate(curvedAnimation),
+            child: child,
+          ),
         );
       };
 

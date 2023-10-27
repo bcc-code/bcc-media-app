@@ -109,7 +109,7 @@ class ParentalGate extends HookWidget {
                           variant: ButtonVariant.secondary,
                           onPressed: () {
                             Future.delayed(100.ms, () {
-                              Navigator.of(context).pop();
+                              Navigator.of(context).maybePop();
                             });
                           },
                           labelText: S.of(context).cancel,

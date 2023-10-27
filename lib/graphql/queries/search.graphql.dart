@@ -402,7 +402,34 @@ const fragmentDefinitionSearchResultItem = FragmentDefinitionNode(
           arguments: [],
           directives: [],
           selectionSet: null,
-        )
+        ),
+        FieldNode(
+          name: NameNode(value: 'show'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'image'),
+              alias: NameNode(value: 'posterImage'),
+              arguments: [
+                ArgumentNode(
+                  name: NameNode(value: 'style'),
+                  value: EnumValueNode(name: NameNode(value: 'poster')),
+                )
+              ],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        ),
       ]),
     ),
     FieldNode(
@@ -740,6 +767,7 @@ class Fragment$SearchResultItem$$ShowSearchItem
     implements Fragment$SearchResultItem {
   Fragment$SearchResultItem$$ShowSearchItem({
     this.$__typename = 'ShowSearchItem',
+    required this.$show,
     required this.collection,
     required this.id,
     this.legacyID,
@@ -751,6 +779,7 @@ class Fragment$SearchResultItem$$ShowSearchItem
   factory Fragment$SearchResultItem$$ShowSearchItem.fromJson(
       Map<String, dynamic> json) {
     final l$$__typename = json['__typename'];
+    final l$$show = json['show'];
     final l$collection = json['collection'];
     final l$id = json['id'];
     final l$legacyID = json['legacyID'];
@@ -759,6 +788,8 @@ class Fragment$SearchResultItem$$ShowSearchItem
     final l$image = json['image'];
     return Fragment$SearchResultItem$$ShowSearchItem(
       $__typename: (l$$__typename as String),
+      $show: Fragment$SearchResultItem$$ShowSearchItem$show.fromJson(
+          (l$$show as Map<String, dynamic>)),
       collection: (l$collection as String),
       id: (l$id as String),
       legacyID: (l$legacyID as String?),
@@ -769,6 +800,8 @@ class Fragment$SearchResultItem$$ShowSearchItem
   }
 
   final String $__typename;
+
+  final Fragment$SearchResultItem$$ShowSearchItem$show $show;
 
   final String collection;
 
@@ -786,6 +819,8 @@ class Fragment$SearchResultItem$$ShowSearchItem
     final _resultData = <String, dynamic>{};
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$$show = $show;
+    _resultData['show'] = l$$show.toJson();
     final l$collection = collection;
     _resultData['collection'] = l$collection;
     final l$id = id;
@@ -804,6 +839,7 @@ class Fragment$SearchResultItem$$ShowSearchItem
   @override
   int get hashCode {
     final l$$__typename = $__typename;
+    final l$$show = $show;
     final l$collection = collection;
     final l$id = id;
     final l$legacyID = legacyID;
@@ -812,6 +848,7 @@ class Fragment$SearchResultItem$$ShowSearchItem
     final l$image = image;
     return Object.hashAll([
       l$$__typename,
+      l$$show,
       l$collection,
       l$id,
       l$legacyID,
@@ -833,6 +870,11 @@ class Fragment$SearchResultItem$$ShowSearchItem
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$$show = $show;
+    final lOther$$show = other.$show;
+    if (l$$show != lOther$$show) {
       return false;
     }
     final l$collection = collection;
@@ -890,6 +932,7 @@ abstract class CopyWith$Fragment$SearchResultItem$$ShowSearchItem<TRes> {
 
   TRes call({
     String? $__typename,
+    Fragment$SearchResultItem$$ShowSearchItem$show? $show,
     String? collection,
     String? id,
     String? legacyID,
@@ -897,6 +940,7 @@ abstract class CopyWith$Fragment$SearchResultItem$$ShowSearchItem<TRes> {
     String? description,
     String? image,
   });
+  CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show<TRes> get $show;
 }
 
 class _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
@@ -914,6 +958,7 @@ class _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
 
   TRes call({
     Object? $__typename = _undefined,
+    Object? $show = _undefined,
     Object? collection = _undefined,
     Object? id = _undefined,
     Object? legacyID = _undefined,
@@ -925,6 +970,9 @@ class _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        $show: $show == _undefined || $show == null
+            ? _instance.$show
+            : ($show as Fragment$SearchResultItem$$ShowSearchItem$show),
         collection: collection == _undefined || collection == null
             ? _instance.collection
             : (collection as String),
@@ -939,6 +987,11 @@ class _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
             : (description as String?),
         image: image == _undefined ? _instance.image : (image as String?),
       ));
+  CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show<TRes> get $show {
+    final local$$show = _instance.$show;
+    return CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show(
+        local$$show, (e) => call($show: e));
+  }
 }
 
 class _CopyWithStubImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
@@ -949,12 +1002,143 @@ class _CopyWithStubImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
 
   call({
     String? $__typename,
+    Fragment$SearchResultItem$$ShowSearchItem$show? $show,
     String? collection,
     String? id,
     String? legacyID,
     String? title,
     String? description,
     String? image,
+  }) =>
+      _res;
+  CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show<TRes> get $show =>
+      CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show.stub(_res);
+}
+
+class Fragment$SearchResultItem$$ShowSearchItem$show {
+  Fragment$SearchResultItem$$ShowSearchItem$show({
+    this.posterImage,
+    this.$__typename = 'Show',
+  });
+
+  factory Fragment$SearchResultItem$$ShowSearchItem$show.fromJson(
+      Map<String, dynamic> json) {
+    final l$posterImage = json['posterImage'];
+    final l$$__typename = json['__typename'];
+    return Fragment$SearchResultItem$$ShowSearchItem$show(
+      posterImage: (l$posterImage as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? posterImage;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$posterImage = posterImage;
+    _resultData['posterImage'] = l$posterImage;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$posterImage = posterImage;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$posterImage,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$SearchResultItem$$ShowSearchItem$show) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$posterImage = posterImage;
+    final lOther$posterImage = other.posterImage;
+    if (l$posterImage != lOther$posterImage) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$SearchResultItem$$ShowSearchItem$show
+    on Fragment$SearchResultItem$$ShowSearchItem$show {
+  CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show<
+          Fragment$SearchResultItem$$ShowSearchItem$show>
+      get copyWith => CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show<TRes> {
+  factory CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show(
+    Fragment$SearchResultItem$$ShowSearchItem$show instance,
+    TRes Function(Fragment$SearchResultItem$$ShowSearchItem$show) then,
+  ) = _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem$show;
+
+  factory CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$SearchResultItem$$ShowSearchItem$show;
+
+  TRes call({
+    String? posterImage,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem$show<TRes>
+    implements CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show<TRes> {
+  _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem$show(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$SearchResultItem$$ShowSearchItem$show _instance;
+
+  final TRes Function(Fragment$SearchResultItem$$ShowSearchItem$show) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? posterImage = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$SearchResultItem$$ShowSearchItem$show(
+        posterImage: posterImage == _undefined
+            ? _instance.posterImage
+            : (posterImage as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$SearchResultItem$$ShowSearchItem$show<TRes>
+    implements CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show<TRes> {
+  _CopyWithStubImpl$Fragment$SearchResultItem$$ShowSearchItem$show(this._res);
+
+  TRes _res;
+
+  call({
+    String? posterImage,
+    String? $__typename,
   }) =>
       _res;
 }
