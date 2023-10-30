@@ -14,6 +14,8 @@ Future<bool> checkParentalGate(BuildContext context) async {
   }
   final result = await showGeneralDialog<bool>(
     context: context,
+    barrierDismissible: true,
+    barrierLabel: S.of(context).close,
     pageBuilder: (context, prim, sec) => const ParentalGate(),
   );
   if (result == true) {
@@ -37,7 +39,7 @@ class ParentalGate extends HookWidget {
     final animationController = useAnimationController();
 
     void checkAnswer() {
-      if (answerText.value.text.isNotEmpty && int.tryParse(answerText.value.text) == correct) {
+      if (answerText.value.text.trim().isNotEmpty && int.tryParse(answerText.value.text) == correct) {
         Navigator.pop(context, true);
       } else {
         animationController.forward(from: 0);

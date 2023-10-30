@@ -103,7 +103,7 @@ Future<void> $main({
     child: AppRoot(appRouter: appRouter, navigatorKey: navigatorKey),
   );
   Widget maybeWrappedApp;
-  if (false && kDebugMode && !kIsWeb) {
+  if (kDebugMode && !kIsWeb) {
     final interactiveViewer = InteractiveViewer(maxScale: 10, child: app);
     maybeWrappedApp = useDevicePreview ? DevicePreview(builder: (context) => interactiveViewer) : interactiveViewer;
   } else {
@@ -123,6 +123,10 @@ Future setDefaults() async {
       statusBarColor: Colors.transparent,
       systemNavigationBarColor: Colors.transparent,
       systemNavigationBarContrastEnforced: false,
+      statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+      statusBarBrightness: Brightness.light, // For iOS (dark icons)
+      systemStatusBarContrastEnforced: true,
+      systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
 

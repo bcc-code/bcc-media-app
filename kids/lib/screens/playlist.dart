@@ -1,17 +1,12 @@
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:brunstadtv_app/providers/playback_service.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:kids/components/buttons/button.dart';
+import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:kids/components/grid/episode_grid.dart';
-import 'package:kids/helpers/playback.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
@@ -120,19 +115,7 @@ class PlaylistScreen extends HookConsumerWidget {
                 )
             ],
           ),
-          Positioned(
-              top: 0,
-              left: 0,
-              child: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.all(basePadding),
-                  child: design.buttons.responsive(
-                    labelText: '',
-                    onPressed: () => context.router.pop(),
-                    image: SvgPicture.string(SvgIcons.close),
-                  ),
-                ),
-              ))
+          const StackCloseButton(),
         ],
       ),
     );

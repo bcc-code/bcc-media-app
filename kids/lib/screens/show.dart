@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:kids/components/grid/episode_grid.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
@@ -118,19 +119,7 @@ class ShowScreen extends HookConsumerWidget {
                 )
             ],
           ),
-          Positioned(
-              top: 0,
-              left: 0,
-              child: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.all(basePadding),
-                  child: design.buttons.responsive(
-                    labelText: '',
-                    onPressed: () => context.router.pop(),
-                    image: SvgPicture.string(SvgIcons.close),
-                  ),
-                ),
-              ))
+          const StackCloseButton(),
         ],
       ),
     );

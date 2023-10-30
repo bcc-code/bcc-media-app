@@ -17,10 +17,6 @@ class SearchScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final design = DesignSystem.of(context);
-    final bp = ResponsiveBreakpoints.of(context);
-    final double basePadding = bp.smallerThan(TABLET) ? 24.0 : 48.0;
-
     final textController = useTextEditingController();
     final scrollController = useScrollController();
 
@@ -34,8 +30,9 @@ class SearchScreen extends HookWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          if (textController.text.isNotEmpty)
+          if (textController.text.trim().isNotEmpty)
             CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               controller: scrollController,
               slivers: [

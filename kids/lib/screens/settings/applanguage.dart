@@ -5,10 +5,8 @@ import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:kids/helpers/svg_icons.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:kids/components/settings/applanguage_list.dart';
 import 'package:brunstadtv_app/helpers/languages.dart';
@@ -86,19 +84,7 @@ class AppLanguageScreen extends HookConsumerWidget {
               ),
             ],
           ),
-          Positioned(
-              top: 0,
-              left: 0,
-              child: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.all(basePadding),
-                  child: design.buttons.responsive(
-                    labelText: '',
-                    onPressed: () => context.router.pop(),
-                    image: SvgPicture.string(SvgIcons.close),
-                  ),
-                ),
-              )),
+          const StackCloseButton(),
         ],
       ),
     );

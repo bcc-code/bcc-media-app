@@ -19,11 +19,13 @@ class PosterLarge extends HookWidget {
     required this.image,
     required this.hasNewEpisodes,
     this.onPressed,
+    this.onPlayPressed,
     this.openBuilder,
     this.routeSettings,
   });
 
   final VoidCallback? onPressed;
+  final Future Function()? onPlayPressed;
   final String? image;
   final bool hasNewEpisodes;
   final OpenContainerBuilder<Object?>? openBuilder;
@@ -117,9 +119,14 @@ class PosterLarge extends HookWidget {
               right: isSmall ? 16 : 40,
               child: design.buttons.responsive(
                 variant: hasNewEpisodes ? ButtonVariant.primary : ButtonVariant.secondary,
-                onPressed: () {},
+                onPressed: () {
+                  navigationFuture.value = onPlayPressed?.call();
+                },
                 labelText: hasNewEpisodes ? 'New' : '',
-                image: SvgPicture.string(SvgIcons.play, colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn)),
+                image: SvgPicture.string(
+                  SvgIcons.play,
+                  colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
+                ),
               ),
             ),
             if (navigationFuture.value != null)

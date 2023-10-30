@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kids/components/thumbnails/posters/playlist_poster_large.dart';
 import 'package:kids/components/thumbnails/posters/poster_large.dart';
-import 'package:kids/helpers/router_utils.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:kids/screens/show.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -72,6 +72,20 @@ class PosterSection extends ConsumerWidget {
                           image: item.image,
                           hasNewEpisodes: publishDate != null ? DateTime.now().difference(publishDate).inDays <= 7 : false,
                           onPressed: () => ref.read(analyticsProvider).sectionItemClicked(context),
+                          onPlayPressed: () async {
+                            final result = await ref.read(gqlClientProvider).query$getDefaultEpisodeForShow(
+                                  Options$Query$getDefaultEpisodeForShow(
+                                    variables: Variables$Query$getDefaultEpisodeForShow(showId: item.id),
+                                  ),
+                                );
+                            if (!context.mounted) return;
+                            final episodeId = result.parsedData?.$show.defaultEpisode.id;
+                            if (episodeId != null) {
+                              context.router.push(
+                                EpisodeScreenRoute(id: episodeId),
+                              );
+                            }
+                          },
                           routeSettings: RouteSettings(
                             name: ShowScreenRoute.name,
                             arguments: ShowScreenRouteArgs(showId: showItem.id),
