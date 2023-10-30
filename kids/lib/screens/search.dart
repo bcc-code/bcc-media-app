@@ -92,7 +92,7 @@ class SearchAppBar extends HookWidget {
                 onTapAsButton: () => scrollController.animateTo(0, duration: 500.ms, curve: Curves.easeOutExpo),
                 autofocus: true,
                 morphState: animationValue,
-              ),
+              ).animate().slideY(begin: 0.5, curve: Curves.easeOutExpo, duration: 1000.ms).fadeIn().blurY(begin: 3.0, end: 0.0),
             ),
             Container(
               margin: EdgeInsets.only(bottom: small ? 8 : 16),
