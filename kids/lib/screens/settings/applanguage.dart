@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,17 +24,21 @@ class AppLanguageScreen extends HookConsumerWidget {
     final double basePadding = bp.smallerThan(TABLET) ? 24.0 : 48.0;
     final selectedLanguageIndex = useState(0);
 
-    List<AppLanguageListItem> buildItem() {
-      return appLanuageCodes.map((code) {
-        int index = appLanuageCodes.indexOf(code);
-        return AppLanguageListItem(
-          title: languages[code]!.nativeName,
-          onPressed: () {
-            selectedLanguageIndex.value = index;
-          },
-          selected: (index == selectedLanguageIndex.value),
-        );
-      }).toList();
+    List<AppLanguageListItem> buildItems() {
+      return appLanuageCodes
+          .map((code) {
+            int index = appLanuageCodes.indexOf(code);
+            return AppLanguageListItem(
+              title: languages[code]!.nativeName,
+              onPressed: () {
+                selectedLanguageIndex.value = index;
+                ref.read(settingsProvider.notifier).setAppLanguage(code);
+              },
+              selected: (index == selectedLanguageIndex.value),
+            );
+          })
+          .sortedBy((item) => item.title)
+          .toList();
     }
 
     return Scaffold(
@@ -58,7 +65,7 @@ class AppLanguageScreen extends HookConsumerWidget {
                                   bottom: (bp.smallerThan(TABLET) ? 12 : 16) + 24),
                               child: Center(
                                 child: Text(
-                                  'App Language',
+                                  S.of(context).appLanguage,
                                   style: design.textStyles.title1,
                                 ),
                               ),
@@ -68,7 +75,7 @@ class AppLanguageScreen extends HookConsumerWidget {
                               child: Text('Select', style: design.textStyles.body2),
                             ),
                             AppLanguageList(
-                              items: buildItem(),
+                              items: buildItems(),
                             ),
                           ],
                         ),

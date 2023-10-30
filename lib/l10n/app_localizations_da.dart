@@ -931,4 +931,7 @@ class SDa extends S {
 
   @override
   String get technicalDetails => 'Tekniske detaljer';
+
+  @override
+  String get contentLanguage => 'Content language';
 }

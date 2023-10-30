@@ -12,9 +12,9 @@ Future<bool> checkParentalGate(BuildContext context) async {
   if (FlavorConfig.current.flavor != Flavor.kids) {
     return true;
   }
-  final result = await showDialog<bool>(
+  final result = await showGeneralDialog<bool>(
     context: context,
-    builder: (context) => const ParentalGate(),
+    pageBuilder: (context, prim, sec) => const ParentalGate(),
   );
   if (result == true) {
     return true;
@@ -57,6 +57,7 @@ class ParentalGate extends HookWidget {
       child: Dialog(
         insetPadding: const EdgeInsets.all(16),
         backgroundColor: Colors.transparent,
+        elevation: 0,
         child: Animate(
           effects: const [ShakeEffect(hz: 5, duration: Duration(milliseconds: 400), curve: Curves.easeOut)],
           controller: animationController,
@@ -92,6 +93,14 @@ class ParentalGate extends HookWidget {
                   textAlign: TextAlign.center,
                   decoration: design.inputDecorations.textFormField.copyWith(
                     hintText: S.of(context).answerLabel,
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.all(Radius.circular(55)),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.all(Radius.circular(55)),
+                    ),
                     hintStyle: bp.smallerThan(TABLET) ? design.textStyles.body2 : null,
                     contentPadding: bp.smallerThan(TABLET) ? const EdgeInsets.all(12.0) : null,
                   ),

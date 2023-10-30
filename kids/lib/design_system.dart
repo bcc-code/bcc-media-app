@@ -350,13 +350,13 @@ class _InputDecorations extends DesignSystemInputDecorations {
             fillColor: colors.background2,
             border: const OutlineInputBorder(
               borderSide: BorderSide.none,
-              borderRadius: BorderRadius.all(Radius.circular(55)),
+              borderRadius: BorderRadius.all(Radius.circular(24)),
             ),
             contentPadding: const EdgeInsets.all(20),
             suffixIconConstraints: const BoxConstraints(minHeight: 24, minWidth: 24),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: colors.tint1, width: 1),
-              borderRadius: const BorderRadius.all(Radius.circular(55)),
+              borderRadius: BorderRadius.all(Radius.circular(24)),
             ),
             hintStyle: textStyles.body1.copyWith(
               color: colors.label4,

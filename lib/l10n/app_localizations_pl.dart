@@ -931,4 +931,7 @@ class SPl extends S {
 
   @override
   String get technicalDetails => 'Technical details';
+
+  @override
+  String get contentLanguage => 'Content language';
 }

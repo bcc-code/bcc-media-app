@@ -931,4 +931,7 @@ class SSl extends S {
 
   @override
   String get technicalDetails => 'Tehnične podrobnosti';
+
+  @override
+  String get contentLanguage => 'Content language';
 }

@@ -40,7 +40,7 @@ class EmailTextField extends HookWidget {
       cursorColor: design.colors.tint1,
       cursorWidth: 1,
       onEditingComplete: onEditingComplete,
-      decoration: InputDecoration(
+      decoration: design.inputDecorations.textFormField.copyWith(
         filled: true,
         isDense: true,
         hintText: hintText,

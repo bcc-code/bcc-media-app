@@ -931,4 +931,7 @@ class SPt extends S {
 
   @override
   String get technicalDetails => 'Detalhes técnicos';
+
+  @override
+  String get contentLanguage => 'Content language';
 }
