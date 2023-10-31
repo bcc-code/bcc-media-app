@@ -1,5 +1,6 @@
 import AVKit
 import FirebaseCore
+import FirebaseMessaging
 import Flutter
 import UIKit
 
@@ -32,5 +33,10 @@ import UIKit
         }
 
         return viewController
+    }
+
+    // For background notifications, call the API inside the UIApplicationDelegate or NSApplicationDelegate method:
+    override func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        Messaging.serviceExtension().exportDeliveryMetricsToBigQuery(withMessageInfo: userInfo)
     }
 }

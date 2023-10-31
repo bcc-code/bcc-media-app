@@ -91,6 +91,8 @@ class FcmNotificationService implements NotificationService {
       _handleMessage(initialMessage, openedFromBackground: true);
     }
 
+    FirebaseMessaging.instance.setDeliveryMetricsExportToBigQuery(true);
+
     _onMessageSubscription ??= FirebaseMessaging.onMessage.listen(_handleMessage);
     _onMessageOpenedApp ??= FirebaseMessaging.onMessageOpenedApp.listen((message) {
       debugPrint('_onMessageOpenedApp');
