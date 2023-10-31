@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:kids/components/splash_video.dart';
 import 'package:kids/router/router.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -80,7 +81,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
                   return ResponsiveBreakpoints.builder(
                     child: MediaQuery(
                       data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                      child: child ?? SizedBox(),
+                      child: SplashVideo(child: child ?? SizedBox()),
                     ),
                     breakpoints: breakpoints,
                     breakpointsLandscape: breakpoints,

@@ -85,6 +85,7 @@ class PlayerView extends HookWidget {
     }, []);
 
     final lastEpisodeId = useState(viewController.playerController.value.currentMediaItem?.metadata?.extras?['id']);
+    final buffering = useState(false);
 
     useEffect(() {
       void listener() {
@@ -92,6 +93,7 @@ class PlayerView extends HookWidget {
         if (episodeId != null) {
           lastEpisodeId.value = episodeId;
         }
+        buffering.value = viewController.playerController.value.isBuffering;
       }
 
       viewController.playerController.addListener(listener);
@@ -172,6 +174,17 @@ class PlayerView extends HookWidget {
                                         useSurfaceView: viewController.config.useSurfaceView,
                                         allowSystemGestures: viewController.config.allowSystemGestures,
                                       ),
+                              ),
+                              Positioned.fill(
+                                child: Opacity(
+                                  opacity: buffering.value ? 1 : 0,
+                                  child: const Center(
+                                    child: LoadingIndicator(
+                                      width: 42,
+                                      height: 42,
+                                    ),
+                                  ),
+                                ),
                               ),
                               Positioned.fill(
                                 child: Opacity(
