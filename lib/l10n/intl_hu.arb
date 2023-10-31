@@ -1131,7 +1131,7 @@
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Audio not available in {lang}",
+  "audioNotAvailableInLanguage": "A hang nem érhető el {lang}-ban",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1140,15 +1140,15 @@
       }
     }
   },
-  "notEnoughAvailableSpace": "Not enough available space on your device",
+  "notEnoughAvailableSpace": "Nincs elég szabad hely az eszközön",
   "@notEnoughAvailableSpace": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "considerDeletingOtherVideos": "Consider deleting other videos you downloaded in the app.",
+  "considerDeletingOtherVideos": "Fontolj meg az alkalmazásból letöltött egyéb videók törlését.",
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "The video file size is {size}.",
+  "theVideoFileSizeIs": "A videó fájl mérete {size}.",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1157,67 +1157,67 @@
       }
     }
   },
-  "gotIt": "Got it",
+  "gotIt": "Megvan",
   "@gotIt": {
     "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
   },
-  "saveYourFavorites": "Save your favorite videos",
+  "saveYourFavorites": "Kedvenc videóidnak mentése",
   "@saveYourFavorites": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "saveYourFavoritesDescription": "Tap on the heart icon on a video to save it in your profile.",
+  "saveYourFavoritesDescription": "Koppints a szív ikonra egy videón, ha el szeretnéd menteni a profilodba.",
   "@saveYourFavoritesDescription": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "yourFavorites": "Your favorites",
+  "yourFavorites": "Kedvenceid",
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
-  "downloaded": "Downloaded",
+  "downloaded": "Letöltve",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."
   },
-  "saveVideosForOfflineViewing": "Save videos for offline viewing",
+  "saveVideosForOfflineViewing": "Videók mentése offline megtekintéshez",
   "@saveVideosForOfflineViewing": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "tapOnTheDownloadIcon": "Tap on the download icon on a video, to download and play while offline.",
+  "tapOnTheDownloadIcon": "Koppints a letöltés ikonra egy videón, hogy letöltsd és lejátszd offline állapotban.",
   "@tapOnTheDownloadIcon": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "removeOfflineVideo": "Remove offline video?",
+  "removeOfflineVideo": "Offline videó eltávolítása?",
   "@removeOfflineVideo": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeOfflineVideoDescription": "By removing this video it will no longer be available without a network connection.",
+  "removeOfflineVideoDescription": "A videó eltávolításával a továbbiakban nem lesz elérhető hálózati kapcsolat nélkül.",
   "@removeOfflineVideoDescription": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeFromDeviceButton": "Remove from device",
+  "removeFromDeviceButton": "Eltávolítás a készülékről",
   "@removeFromDeviceButton": {
     "description": "Button text, to remove a downloaded video from the device."
   },
-  "keepVideoButton": "Keep video",
+  "keepVideoButton": "Videó megtartása",
   "@keepVideoButton": {
     "description": "Button when asking to remove a downloaded video. This button cancels."
   },
-  "noInternetConnection": "No internet connection",
+  "noInternetConnection": "Nincs internetkapcsolat",
   "@noInternetConnection": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetConnectionDescription": "Connect to the internet to access all videos.",
+  "noInternetConnectionDescription": "Az összes videó eléréséhez csatlakozz az internethez.",
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "No internet connection,\nbut don't worry.",
+  "noInternetButDontWorry": "Nincs internetkapcsolat,\nde ne aggódj.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
-  "hereAreAllTheVideosYouDownloaded": "Here are all the videos you have downloaded to your device.",
+  "hereAreAllTheVideosYouDownloaded": "Itt találod az összes videót, amelyet letöltöttél a készülékedre.",
   "@hereAreAllTheVideosYouDownloaded": {
     "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "connectToExplore": "Connect to the internet to explore all videos.",
+  "connectToExplore": "Az összes videó eléréséhez csatlakozz az internethez.",
   "@connectToExplore": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
@@ -1225,7 +1225,7 @@
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Estimated file size: {size}",
+  "estimatedFileSize": "Becsült fájlméret: {size}",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1234,51 +1234,51 @@
       }
     }
   },
-  "downloadVideo": "Download video",
+  "downloadVideo": "Videó letöltése",
   "@downloadVideo": {
     "description": "Title on the download video form."
   },
-  "noSubtitles": "No subtitles",
+  "noSubtitles": "Nincs feliratozás",
   "@noSubtitles": {
     "description": "Shown in the download form, indicating that there are no subtitles available for the video."
   },
-  "subtitlesIncluded": "Subtitles included",
+  "subtitlesIncluded": "Feliratozva",
   "@subtitlesIncluded": {
     "description": "Shown in the download form, indicating that all subtitles are included in the video."
   },
-  "allSubtitlesWillBeAvailableOffline": "All subtitles will be available offline",
+  "allSubtitlesWillBeAvailableOffline": "Minden felirat elérhető lesz offline",
   "@allSubtitlesWillBeAvailableOffline": {
     "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "downloading": "Downloading",
+  "downloading": "Letöltés",
   "@downloading": {
     "description": "Download status, indicating that the video is currently downloading."
   },
-  "failed": "Failed",
+  "failed": "Sikertelen",
   "@failed": {
     "description": "Generic status label. Used e.g. for downloads that failed."
   },
-  "finished": "Finished",
+  "finished": "Befejezett",
   "@finished": {
     "description": "Generic status label. Used e.g. for downloads that finished."
   },
-  "paused": "Paused",
+  "paused": "Szünet",
   "@paused": {
     "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
   },
-  "queued": "Queued",
+  "queued": "Sorba állítva",
   "@queued": {
     "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
   },
-  "removing": "Removing",
+  "removing": "Eltávolítás",
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "availableOffline": "Available offline",
+  "availableOffline": "Offline elérhető",
   "@availableOffline": {
     "description": "Label indicating that the video is available offline."
   },
-  "technicalDetails": "Technical details",
+  "technicalDetails": "Műszaki részletek",
   "@technicalDetails": {
     "description": "Shown when errors occur, and you want to see more technical details about the error."
   }

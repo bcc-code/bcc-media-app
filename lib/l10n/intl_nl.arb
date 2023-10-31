@@ -1131,7 +1131,7 @@
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Audio not available in {lang}",
+  "audioNotAvailableInLanguage": "Audio niet beschikbaar in {lang}",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1140,15 +1140,15 @@
       }
     }
   },
-  "notEnoughAvailableSpace": "Not enough available space on your device",
+  "notEnoughAvailableSpace": "Onvoldoende beschikbare ruimte op uw apparaat",
   "@notEnoughAvailableSpace": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "considerDeletingOtherVideos": "Consider deleting other videos you downloaded in the app.",
+  "considerDeletingOtherVideos": "Overweeg om andere video's die je in de app hebt gedownload te verwijderen.",
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "The video file size is {size}.",
+  "theVideoFileSizeIs": "De bestandsgrootte van de video is {size}.",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1157,67 +1157,67 @@
       }
     }
   },
-  "gotIt": "Got it",
+  "gotIt": "Begrepen",
   "@gotIt": {
     "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
   },
-  "saveYourFavorites": "Save your favorite videos",
+  "saveYourFavorites": "Je favoriete video's bewaren",
   "@saveYourFavorites": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "saveYourFavoritesDescription": "Tap on the heart icon on a video to save it in your profile.",
+  "saveYourFavoritesDescription": "Tik op het hartpictogram op een video om deze op te slaan in je profiel.",
   "@saveYourFavoritesDescription": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "yourFavorites": "Your favorites",
+  "yourFavorites": "Jouw favorieten",
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
-  "downloaded": "Downloaded",
+  "downloaded": "Gedownload",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."
   },
-  "saveVideosForOfflineViewing": "Save videos for offline viewing",
+  "saveVideosForOfflineViewing": "Video's opslaan om offline te bekijken",
   "@saveVideosForOfflineViewing": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "tapOnTheDownloadIcon": "Tap on the download icon on a video, to download and play while offline.",
+  "tapOnTheDownloadIcon": "Tik op het downloadpictogram op een video om deze te downloaden en offline af te spelen.",
   "@tapOnTheDownloadIcon": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "removeOfflineVideo": "Remove offline video?",
+  "removeOfflineVideo": "Offline video verwijderen?",
   "@removeOfflineVideo": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeOfflineVideoDescription": "By removing this video it will no longer be available without a network connection.",
+  "removeOfflineVideoDescription": "Door deze video te verwijderen zal hij niet langer beschikbaar zijn zonder netwerkverbinding.",
   "@removeOfflineVideoDescription": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeFromDeviceButton": "Remove from device",
+  "removeFromDeviceButton": "Verwijderen van apparaat",
   "@removeFromDeviceButton": {
     "description": "Button text, to remove a downloaded video from the device."
   },
-  "keepVideoButton": "Keep video",
+  "keepVideoButton": "Video bewaren",
   "@keepVideoButton": {
     "description": "Button when asking to remove a downloaded video. This button cancels."
   },
-  "noInternetConnection": "No internet connection",
+  "noInternetConnection": "Geen internetverbinding",
   "@noInternetConnection": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetConnectionDescription": "Connect to the internet to access all videos.",
+  "noInternetConnectionDescription": "Maak verbinding met internet om alle video's te bekijken.",
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "No internet connection,\nbut don't worry.",
+  "noInternetButDontWorry": "Geen internetverbinding,\nmaar maak je geen zorgen.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
-  "hereAreAllTheVideosYouDownloaded": "Here are all the videos you have downloaded to your device.",
+  "hereAreAllTheVideosYouDownloaded": "Hier zijn alle video's die je naar je apparaat hebt gedownload.",
   "@hereAreAllTheVideosYouDownloaded": {
     "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "connectToExplore": "Connect to the internet to explore all videos.",
+  "connectToExplore": "Maak verbinding met internet om alle video's te bekijken.",
   "@connectToExplore": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
@@ -1225,7 +1225,7 @@
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Estimated file size: {size}",
+  "estimatedFileSize": "Geschatte bestandsgrootte: {size}",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1238,47 +1238,47 @@
   "@downloadVideo": {
     "description": "Title on the download video form."
   },
-  "noSubtitles": "No subtitles",
+  "noSubtitles": "Geen ondertiteling",
   "@noSubtitles": {
     "description": "Shown in the download form, indicating that there are no subtitles available for the video."
   },
-  "subtitlesIncluded": "Subtitles included",
+  "subtitlesIncluded": "Inclusief ondertiteling",
   "@subtitlesIncluded": {
     "description": "Shown in the download form, indicating that all subtitles are included in the video."
   },
-  "allSubtitlesWillBeAvailableOffline": "All subtitles will be available offline",
+  "allSubtitlesWillBeAvailableOffline": "De ondertiteling zal offline beschikbaar zijn",
   "@allSubtitlesWillBeAvailableOffline": {
     "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "downloading": "Downloading",
+  "downloading": "Aan het downloaden",
   "@downloading": {
     "description": "Download status, indicating that the video is currently downloading."
   },
-  "failed": "Failed",
+  "failed": "Mislukt",
   "@failed": {
     "description": "Generic status label. Used e.g. for downloads that failed."
   },
-  "finished": "Finished",
+  "finished": "Afgerond",
   "@finished": {
     "description": "Generic status label. Used e.g. for downloads that finished."
   },
-  "paused": "Paused",
+  "paused": "Gepauzeerd",
   "@paused": {
     "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
   },
-  "queued": "Queued",
+  "queued": "In de wachtrij",
   "@queued": {
     "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
   },
-  "removing": "Removing",
+  "removing": "Aan het verwijderen",
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "availableOffline": "Available offline",
+  "availableOffline": "Offline beschikbaar",
   "@availableOffline": {
     "description": "Label indicating that the video is available offline."
   },
-  "technicalDetails": "Technical details",
+  "technicalDetails": "Technische details",
   "@technicalDetails": {
     "description": "Shown when errors occur, and you want to see more technical details about the error."
   }

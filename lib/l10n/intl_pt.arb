@@ -1266,7 +1266,7 @@
   "@paused": {
     "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
   },
-  "queued": "Queued",
+  "queued": "Em andamento",
   "@queued": {
     "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
   },

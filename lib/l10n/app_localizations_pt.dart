@@ -921,7 +921,7 @@ class SPt extends S {
   String get paused => 'Pausado';
 
   @override
-  String get queued => 'Queued';
+  String get queued => 'Em andamento';
 
   @override
   String get removing => 'Removendo';
