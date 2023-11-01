@@ -116,6 +116,21 @@
       "program": "lib/main.dart"
     },
     {
+      "name": "Kids: profile",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "cwd": "${workspaceFolder}/kids",
+      "args": [
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit",
+        "--trace-skia"
+      ],
+      "program": "lib/main.dart"
+    },
+    {
       "name": "Kids: release",
       "request": "launch",
       "type": "dart",

@@ -72,9 +72,6 @@ class EpisodeScreen extends HookConsumerWidget {
     useEffect(() {
       if (!firstLoadDone.value) return;
       if (currentId.value != null && currentId.value != id) {
-        if (morphTransition != null) {
-          return;
-        }
         context.replaceRoute(
           EpisodeScreenRoute(
             id: currentId.value!,
@@ -113,7 +110,7 @@ class EpisodeScreen extends HookConsumerWidget {
 
     return InheritedBccmPlayerViewController(
       controller: viewController,
-      child: const PlayerView(),
+      child: PlayerView(episode: episodeData),
     );
   }
 }

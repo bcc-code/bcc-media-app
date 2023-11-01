@@ -3,8 +3,10 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
+import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
+import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
@@ -27,16 +29,20 @@ import 'package:kids/components/settings/applanguage_list.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
+import 'package:mockito/mockito.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:skeletonizer/skeletonizer.dart' as skeletonizer;
 
-class PlayerView extends HookWidget {
+class PlayerView extends HookConsumerWidget {
   const PlayerView({
     super.key,
+    this.episode,
   });
 
+  final Query$FetchEpisode$episode? episode;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final viewController = BccmPlayerViewController.of(context);
     final animationController = useAnimationController(
       duration: 500.ms,
@@ -51,10 +57,11 @@ class PlayerView extends HookWidget {
     );
 
     final morphTransition = InheritedData.listen<MorphTransitionInfo>(context);
+    final currentMediaItem = useState(viewController.playerController.value.currentMediaItem);
 
     final controlsVisible = useState(false);
 
-    final setControlsVisible = useCallback((bool value) {
+    setControlsVisible(bool value) {
       if (controlsVisible.value == value) {
         return;
       }
@@ -64,12 +71,17 @@ class PlayerView extends HookWidget {
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
       } else {
         animationController.reverse(from: 1.0);
-        if (viewController.playerController.value.playbackState != PlaybackState.playing) {
+        if (viewController.playerController.value.playbackState != PlaybackState.playing && currentMediaItem.value != null) {
           viewController.playerController.play();
+        } else if (currentMediaItem.value == null && episode != null) {
+          ref.read(playbackServiceProvider).playEpisode(
+                playerId: viewController.playerController.value.playerId,
+                episode: episode!,
+              );
         }
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       }
-    }, []);
+    }
 
     void toggleOpen() {
       setControlsVisible(!controlsVisible.value);
@@ -84,16 +96,30 @@ class PlayerView extends HookWidget {
       };
     }, []);
 
-    final lastEpisodeId = useState(viewController.playerController.value.currentMediaItem?.metadata?.extras?['id']);
+    final lastEpisodeId = useState(currentMediaItem.value?.metadata?.extras?['id']);
     final buffering = useState(false);
+    final last5SecondsHandled = useState(false);
 
     useEffect(() {
       void listener() {
+        currentMediaItem.value = viewController.playerController.value.currentMediaItem;
         final episodeId = viewController.playerController.value.currentMediaItem?.metadata?.extras?['id'];
         if (episodeId != null) {
           lastEpisodeId.value = episodeId;
         }
         buffering.value = viewController.playerController.value.isBuffering;
+        final duration = viewController.playerController.value.currentMediaItem?.metadata?.durationMs;
+        final position = viewController.playerController.value.playbackPositionMs;
+        if (duration != null && position != null) {
+          if (duration > 0 && duration - position < 10000) {
+            if (!last5SecondsHandled.value) {
+              setControlsVisible(true);
+              last5SecondsHandled.value = true;
+            }
+          } else {
+            last5SecondsHandled.value = false;
+          }
+        }
       }
 
       viewController.playerController.addListener(listener);
@@ -176,14 +202,17 @@ class PlayerView extends HookWidget {
                                       ),
                               ),
                               Positioned.fill(
-                                child: Opacity(
-                                  opacity: buffering.value ? 1 : 0,
-                                  child: const Center(
-                                    child: LoadingIndicator(
-                                      width: 42,
-                                      height: 42,
-                                    ),
-                                  ),
+                                  child: currentMediaItem.value == null && episode?.image != null && lastEpisodeId.value != null
+                                      ? simpleFadeInImage(url: episode!.image!)
+                                      : Container()),
+                              Positioned.fill(
+                                child: Center(
+                                  child: !buffering.value
+                                      ? const SizedBox(width: 42, height: 429)
+                                      : const LoadingIndicator(
+                                          width: 42,
+                                          height: 42,
+                                        ),
                                 ),
                               ),
                               Positioned.fill(
@@ -217,7 +246,9 @@ class PlayerView extends HookWidget {
                             ),
                             child: lastEpisodeId.value == null
                                 ? const Center(
-                                    child: LoadingIndicator(height: 24, width: 24),
+                                    child: RepaintBoundary(
+                                      child: LoadingIndicator(height: 24, width: 24),
+                                    ),
                                   )
                                 : SingleChildScrollView(
                                     padding: EdgeInsets.symmetric(horizontal: basePadding).copyWith(bottom: MediaQuery.paddingOf(context).bottom),

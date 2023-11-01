@@ -26,6 +26,7 @@ import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:kids/screens/episode.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:universal_io/io.dart';
 
 class EpisodeGridItem {
   final String id;
@@ -133,10 +134,13 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
                         Stack(
                           children: [
                             Positioned.fill(
-                              child: Container(color: design.colors.separator2)
-                                  .animate(onComplete: (c) => c.forward(from: 0))
-                                  .shimmer(duration: 1000.ms)
-                                  .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
+                              child: Animate(
+                                effects: [
+                                  if (!Platform.isAndroid) ShimmerEffect(duration: 1000.ms),
+                                  CallbackEffect(delay: 1000.ms, duration: 250.ms, callback: (_) => true),
+                                ],
+                                child: Container(color: design.colors.separator2),
+                              ),
                             ),
                             simpleFadeInImage(url: item.image!).animate().fadeIn(),
                           ],

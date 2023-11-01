@@ -18,6 +18,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -112,6 +113,7 @@ Future<void> $main({
 
   if (kDebugMode) {
     Animate.restartOnHotReload = true;
+    //debugRepaintRainbowEnabled = true;
   }
 
   runApp(maybeWrappedApp);

@@ -10,6 +10,7 @@ import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/providers/sound_effects.dart';
+import 'package:universal_io/io.dart';
 
 class ButtonBase extends HookConsumerWidget {
   final Widget Function(BuildContext context, bool isPressed) builder;
@@ -64,60 +65,62 @@ class ButtonBase extends HookConsumerWidget {
       });
     }
 
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTapDown: (e) {
-        push();
-      },
-      onTap: () {
-        tapWithAnimation();
-      },
-      onTapCancel: () {
-        release();
-      },
-      onTapUp: (e) {
-        release();
-      },
-      child: FocusableControlBuilder(
-        cursor: SystemMouseCursors.click,
-        actions: {
-          ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) {
-            return tapWithAnimation();
-          }),
+    return RepaintBoundary(
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTapDown: (e) {
+          push();
         },
-        builder: (context, control) => Container(
-          decoration: BoxDecoration(
-            borderRadius: borderRadius,
-            boxShadow: pressed.value
-                ? null
-                : [
-                    BoxShadow(
-                      color: design.colors.label1.withOpacity(0.1 * transition),
-                      offset: Offset(0, limitedShadowHeight * 2),
-                      spreadRadius: 0,
-                      blurRadius: 12,
-                    ),
-                    BoxShadow(
-                      color: shadowColor != null
-                          ? shadowColor!.withOpacity(shadowColor!.opacity * transition)
-                          : design.colors.label1.withOpacity(0.1 * transition),
-                      offset: Offset(0, limitedShadowHeight * transition),
-                      blurRadius: 0,
-                    ),
-                  ],
-          ),
-          child: _InnerShadow(
-            offset: pressed.value ? const Offset(0, 0) : Offset(0, -elevationHeight * transition),
-            color: sideColor != null ? sideColor! : Colors.black.withOpacity(0.1),
-            child: Container(
-              decoration: BoxDecoration(
-                color: !pressed.value ? color : activeColor,
-                borderRadius: borderRadius,
+        onTap: () {
+          tapWithAnimation();
+        },
+        onTapCancel: () {
+          release();
+        },
+        onTapUp: (e) {
+          release();
+        },
+        child: FocusableControlBuilder(
+          cursor: SystemMouseCursors.click,
+          actions: {
+            ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) {
+              return tapWithAnimation();
+            }),
+          },
+          builder: (context, control) => Container(
+            decoration: BoxDecoration(
+              borderRadius: borderRadius,
+              boxShadow: pressed.value
+                  ? null
+                  : [
+                      BoxShadow(
+                        color: design.colors.label1.withOpacity(0.1 * transition),
+                        offset: Offset(0, limitedShadowHeight * 2),
+                        spreadRadius: 0,
+                        blurRadius: 12,
+                      ),
+                      BoxShadow(
+                        color: shadowColor != null
+                            ? shadowColor!.withOpacity(shadowColor!.opacity * transition)
+                            : design.colors.label1.withOpacity(0.1 * transition),
+                        offset: Offset(0, limitedShadowHeight * transition),
+                        blurRadius: 0,
+                      ),
+                    ],
+            ),
+            child: _InnerShadow(
+              offset: pressed.value ? const Offset(0, 0) : Offset(0, -elevationHeight * transition),
+              color: sideColor != null ? sideColor! : Colors.black.withOpacity(0.1),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: !pressed.value ? color : activeColor,
+                  borderRadius: borderRadius,
+                ),
+                height: !pressed.value ? height : height - elevationHeight,
+                padding: !pressed.value ? EdgeInsets.only(bottom: elevationHeight / 2) : null,
+                margin: !pressed.value ? null : EdgeInsets.only(top: elevationHeight),
+                child: builder(context, pressed.value),
               ),
-              height: !pressed.value ? height : height - elevationHeight,
-              padding: !pressed.value ? EdgeInsets.only(bottom: elevationHeight / 2) : null,
-              margin: !pressed.value ? null : EdgeInsets.only(top: elevationHeight),
-              child: builder(context, pressed.value),
             ),
           ),
         ),
@@ -139,15 +142,60 @@ class _InnerShadow extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
+    if (Platform.isAndroid) {
+      final renderObject = _RenderInnerShadow();
+      updateRenderObject(context, renderObject);
+      return renderObject;
+    }
     final renderObject = _RenderInnerShadow();
     updateRenderObject(context, renderObject);
     return renderObject;
   }
 
   @override
-  void updateRenderObject(BuildContext context, _RenderInnerShadow renderObject) {
-    renderObject.color = color;
-    renderObject.shadowOffset = offset;
+  void updateRenderObject(BuildContext context, RenderObject renderObject) {
+    if (renderObject is _RenderInnerShadow) {
+      renderObject.color = color;
+      renderObject.shadowOffset = offset;
+    } else if (renderObject is _RenderInnerShadowSkia) {
+      renderObject.color = color;
+      renderObject.shadowOffset = offset;
+    }
+  }
+}
+
+/// Note, this is intentionally complicated, because of
+/// multiple blending mode bugs on impeller.
+class _RenderInnerShadowSkia extends RenderProxyBox {
+  late Color color;
+  late Offset shadowOffset;
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    if (child == null) return;
+
+    final Rect rectOuter = offset & size;
+    final Rect rectInner = Rect.fromLTWH(
+      offset.dx,
+      offset.dy,
+      size.width - offset.dx,
+      size.height - offset.dy,
+    );
+    final Canvas canvas = context.canvas..saveLayer(rectOuter, Paint());
+    context.paintChild(child!, offset);
+    final Paint shadowPaint = Paint()
+      ..blendMode = BlendMode.srcATop
+      ..colorFilter = ColorFilter.mode(color, BlendMode.srcOut);
+
+    canvas
+      ..saveLayer(rectOuter, shadowPaint)
+      ..saveLayer(rectInner, Paint())
+      ..translate(offset.dx, offset.dy);
+    context.paintChild(child!, offset);
+    context.canvas
+      ..restore()
+      ..restore()
+      ..restore();
   }
 }
 

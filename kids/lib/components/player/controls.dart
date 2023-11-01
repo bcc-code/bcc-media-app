@@ -30,7 +30,7 @@ class PlayerControls extends HookWidget {
     }, [show]);
     final viewController = BccmPlayerViewController.of(context);
     final design = DesignSystem.of(context);
-    final state = useValueListenable(viewController.playerController);
+    final playbackState = useListenableSelector(viewController.playerController, () => viewController.playerController.value.playbackState);
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -50,7 +50,7 @@ class PlayerControls extends HookWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              state.playbackState == PlaybackState.playing
+              playbackState == PlaybackState.playing
                   ? design.buttons.small(
                       variant: ButtonVariant.secondary,
                       onPressed: () {

@@ -9,9 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kids/helpers/animation.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:simple_shadow/simple_shadow.dart';
+import 'package:universal_io/io.dart';
 
 class PosterLarge extends HookWidget {
   const PosterLarge({
@@ -70,10 +72,13 @@ class PosterLarge extends HookWidget {
                     : Stack(
                         children: [
                           Positioned.fill(
-                            child: Container(color: design.colors.separator2)
-                                .animate(onComplete: (c) => c.forward(from: 0))
-                                .shimmer(duration: 1000.ms)
-                                .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
+                            child: Animate(
+                              effects: [
+                                if (!Platform.isAndroid) ShimmerEffect(duration: 1000.ms),
+                                CallbackEffect(delay: 1000.ms, duration: 250.ms, callback: (_) => true),
+                              ],
+                              child: Container(color: design.colors.separator2),
+                            ),
                           ),
                           hasNewEpisodes
                               ? Container(
