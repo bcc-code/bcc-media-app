@@ -58,12 +58,17 @@ class ShowScreen extends HookConsumerWidget {
                     child: Row(
                       children: [
                         if (showQuery.result.isLoading || showQuery.result.parsedData == null)
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Title of the show', style: titleStyle),
-                              Text('23 episodes', style: design.textStyles.body2),
-                            ],
+                          Skeletonizer(
+                            containersColor: design.colors.background2,
+                            effect: const ShimmerEffect(),
+                            textBoneBorderRadius: TextBoneBorderRadius(BorderRadius.circular(55)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Title of the show', style: titleStyle),
+                                Text('23 episodes', style: design.textStyles.body2),
+                              ],
+                            ),
                           )
                         else
                           Column(
