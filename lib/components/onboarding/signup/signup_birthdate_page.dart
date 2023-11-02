@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import '../../../helpers/analytics_constants.dart';
+import '../../../helpers/analytics.dart';
 import '../../../helpers/widget_keys.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../l10n/app_localizations_en.dart';

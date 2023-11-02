@@ -16,6 +16,7 @@ Future<bool> checkParentalGate(BuildContext context) async {
     context: context,
     barrierDismissible: true,
     barrierLabel: S.of(context).close,
+    routeSettings: const RouteSettings(name: 'parental-gate'),
     pageBuilder: (context, prim, sec) => const ParentalGate(),
   );
   if (result == true) {

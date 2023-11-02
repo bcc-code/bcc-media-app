@@ -17,17 +17,17 @@ final analyticsMetaEnricherProvider = Provider<AnalyticsMetaEnricher>((ref) => B
 abstract class AnalyticsMetaEnricher {
   /// Used for the `screen` event, to override the screen name.
   /// If null is returned, we use a default value e.g. the route path.
-  String? getScreenName(RouteData routeData);
+  String? getScreenName(Route<dynamic> route);
 
   /// Use to add extra properties to the analytics event
   /// Stuff like: `extraProperties['meta']['episodeId'] = episodeRouteArgs.episodeId;`
-  Map<String, dynamic>? getExtraPropertiesForRoute(RouteData routeData);
+  Map<String, dynamic>? getExtraPropertiesForRoute(Route<dynamic> route);
 }
 
 class BccmAnalyticsMetaEnricher extends AnalyticsMetaEnricher {
   @override
-  String? getScreenName(RouteData routeData) {
-    final pageRouteArgs = routeData.args.asOrNull<PageScreenRouteArgs>();
+  String? getScreenName(Route<dynamic> route) {
+    final pageRouteArgs = route.settings.arguments.asOrNull<PageScreenRouteArgs>();
     if (pageRouteArgs != null) {
       return pageRouteArgs.pageCode;
     }
@@ -35,20 +35,21 @@ class BccmAnalyticsMetaEnricher extends AnalyticsMetaEnricher {
   }
 
   @override
-  Map<String, dynamic>? getExtraPropertiesForRoute(RouteData routeData) {
+  Map<String, dynamic>? getExtraPropertiesForRoute(Route<dynamic> route) {
     final extraProperties = <String, dynamic>{};
     extraProperties['meta'] = <String, dynamic>{};
 
-    final pageRouteArgs = routeData.args.asOrNull<PageScreenRouteArgs>();
+    final pageRouteArgs = route.settings.arguments.asOrNull<PageScreenRouteArgs>();
     if (pageRouteArgs != null) {
       extraProperties['pageCode'] = pageRouteArgs.pageCode;
     }
-    final episodeRouteArgs = routeData.args.asOrNull<EpisodeScreenRouteArgs>();
+    final episodeRouteArgs = route.settings.arguments.asOrNull<EpisodeScreenRouteArgs>();
     if (episodeRouteArgs != null) {
       extraProperties['meta']['episodeId'] = episodeRouteArgs.episodeId;
     }
 
-    if (routeData.meta.containsKey(RouteMetaConstants.settingsName)) {
+    final routeData = route.data;
+    if (routeData != null && routeData.meta.containsKey(RouteMetaConstants.settingsName)) {
       extraProperties['meta']['settings'] = routeData.meta[RouteMetaConstants.settingsName];
     }
 
@@ -73,16 +74,16 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
     }
     final ref = ProviderScope.containerOf(context, listen: false);
 
-    final routeData = route.settings.asOrNull<AutoRoutePage>()?.routeData;
-    if (routeData == null) return;
-
     Map<String, dynamic> extraProperties = {
-      ...?ref.read(analyticsMetaEnricherProvider).getExtraPropertiesForRoute(routeData),
+      ...?ref.read(analyticsMetaEnricherProvider).getExtraPropertiesForRoute(route),
     };
 
-    final screenName = ref.read(analyticsMetaEnricherProvider).getScreenName(routeData) ?? routeData.path;
+    final screenName = ref.read(analyticsMetaEnricherProvider).getScreenName(route) ??
+        route.data?.meta[RouteMetaConstants.analyticsName] ??
+        route.data?.path ??
+        route.settings.name;
 
-    if (screenName.isNotEmpty) {
+    if (screenName?.isNotEmpty == true) {
       SchedulerBinding.instance.scheduleFrameCallback((_) => ref.read(analyticsProvider).screen(screenName!, properties: extraProperties));
     }
   }

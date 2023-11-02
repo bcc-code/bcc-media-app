@@ -7,6 +7,7 @@ import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
+import 'package:brunstadtv_app/helpers/analytics.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
@@ -78,7 +79,10 @@ class PlaylistPosterLarge extends HookConsumerWidget {
       openShape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(small ? 20 : 40)),
       transitionDuration: const Duration(milliseconds: 500),
-      routeSettings: RouteSettings(name: PlaylistScreenRoute.page.name, arguments: PlaylistScreenRouteArgs(id: id)),
+      routeSettings: RouteSettings(
+        name: analyticsNameForRouteName(context, PlaylistScreenRoute.name) ?? PlaylistScreenRoute.page.name,
+        arguments: PlaylistScreenRouteArgs(id: id),
+      ),
       closedBuilder: (
         context,
         open,

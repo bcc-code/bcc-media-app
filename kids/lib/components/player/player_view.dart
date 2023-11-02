@@ -301,6 +301,7 @@ class PlayerView extends HookConsumerWidget {
                         transitionDuration: 500.ms,
                         context: context,
                         barrierColor: Colors.transparent,
+                        routeSettings: const RouteSettings(name: 'player-settings'),
                         pageBuilder: (context, a, b) => PlayerSettingsView(
                           playerController: viewController.playerController,
                         ),
@@ -309,6 +310,7 @@ class PlayerView extends HookConsumerWidget {
                     }
                     showDialog(
                       context: context,
+                      routeSettings: const RouteSettings(name: 'player-settings'),
                       builder: (context) => PlayfulDialog(
                           child: PlayerSettingsView(
                         playerController: viewController.playerController,

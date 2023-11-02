@@ -95,7 +95,7 @@ class RudderAnalytics extends Analytics {
     RudderConfigBuilder builder = RudderConfigBuilder();
     builder.withDataPlaneUrl('https://rs.bcc.media/');
     builder.withMobileConfig(MobileConfig(
-      recordScreenViews: true,
+      recordScreenViews: false,
       collectDeviceId: FlavorConfig.current.strictAnonymousAnalytics != true,
     ));
     controller.initialize(Env.rudderstackWriteKey, config: builder.build());
