@@ -1,13 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
-import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:kids/components/grid/episode_grid.dart';
 import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
 
@@ -43,6 +39,7 @@ class AppRouter extends $AppRouter {
           durationInMilliseconds: 600,
           reverseDurationInMilliseconds: 600,
           transitionsBuilder: CustomTransitionsBuilders.slideUp(),
+          meta: const {RouteMetaConstants.analyticsName: 'show'},
         ),
         CustomRoute(
           path: '/playlist/:id',
@@ -50,6 +47,7 @@ class AppRouter extends $AppRouter {
           transitionsBuilder: CustomTransitionsBuilders.scaleUp(),
           durationInMilliseconds: 600,
           reverseDurationInMilliseconds: 600,
+          meta: const {RouteMetaConstants.analyticsName: 'playlist'},
         ),
         CustomRoute(
           path: '/settings',
@@ -122,6 +120,7 @@ class AppRouter extends $AppRouter {
           transitionsBuilder: CustomTransitionsBuilders.scaleUp(),
           durationInMilliseconds: 600,
           reverseDurationInMilliseconds: 600,
+          meta: const {RouteMetaConstants.analyticsName: 'search'},
         ),
         CustomRoute(
           page: EpisodeScreenRoute.page,

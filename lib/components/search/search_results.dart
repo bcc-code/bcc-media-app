@@ -63,17 +63,14 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
     }
   }
 
-  void sendSearchPerformedAnalytics(Future searchResultFuture) {
+  void sendSearchPerformedAnalytics(Future<Query$Search$search?> searchResultFuture) {
     final searchStopwatch = Stopwatch()..start();
     searchResultFuture.then((searchResult) {
-      if (searchResult == null) {
-        return;
-      }
       searchStopwatch.stop();
       ref.read(analyticsProvider).searchPerformed(SearchPerformedEvent(
             searchText: widget.searchInput,
             searchLatency: searchStopwatch.elapsedMilliseconds,
-            searchResultCount: searchResult.hits,
+            searchResultCount: searchResult?.hits ?? 0,
           ));
     });
   }

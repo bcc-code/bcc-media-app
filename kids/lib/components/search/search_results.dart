@@ -6,6 +6,7 @@ import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/models/analytics/search_performed.dart';
 import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
@@ -36,24 +37,29 @@ class SliverSearchResults extends HookConsumerWidget {
     final debouncer = useMemoized(() => AsyncDebouncer<Query$Search$search?>(milliseconds: 150));
 
     final doSearch = useCallback(() {
-      final future = gqlClient
-          .query$Search(
-        Options$Query$Search(
-          variables: Variables$Query$Search(queryString: searchQuery),
-        ),
-      )
-          .then(
-        (value) {
-          if (value.exception != null) {
-            throw value.exception!;
-          }
-          return value.parsedData?.search;
-        },
-      );
+      final future = gqlClient.query$Search(Options$Query$Search(variables: Variables$Query$Search(queryString: searchQuery))).then((value) {
+        if (value.exception != null) {
+          throw value.exception!;
+        }
+        return value.parsedData?.search;
+      });
+
+      // analytics
+      final searchStopwatch = Stopwatch()..start();
+      future.then((searchResult) {
+        searchStopwatch.stop();
+        ref.read(analyticsProvider).searchPerformed(SearchPerformedEvent(
+              searchText: searchQuery,
+              searchLatency: searchStopwatch.elapsedMilliseconds,
+              searchResultCount: searchResult?.hits ?? 0,
+            ));
+      });
+
       return future;
     }, [gqlClient, searchQuery]);
 
     final retries = useState(0);
+    // ignore: exhaustive_keys
     final searchFuture = useMemoized(() => debouncer.run(doSearch), [searchQuery, retries.value]);
     final searchSnapshot = useFuture(searchFuture);
 

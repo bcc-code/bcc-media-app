@@ -8,6 +8,54 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/constants.dart';
 
+/// Enriches the analytics metadata with extra properties.
+///
+/// Different apps have different routers, so this needs to be
+/// implemented per app. E.g. kids app has a different router than bccm app.
+final analyticsMetaEnricherProvider = Provider<AnalyticsMetaEnricher>((ref) => BccmAnalyticsMetaEnricher());
+
+abstract class AnalyticsMetaEnricher {
+  /// Used for the `screen` event, to override the screen name.
+  /// If null is returned, we use a default value e.g. the route path.
+  String? getScreenName(RouteData routeData);
+
+  /// Use to add extra properties to the analytics event
+  /// Stuff like: `extraProperties['meta']['episodeId'] = episodeRouteArgs.episodeId;`
+  Map<String, dynamic>? getExtraPropertiesForRoute(RouteData routeData);
+}
+
+class BccmAnalyticsMetaEnricher extends AnalyticsMetaEnricher {
+  @override
+  String? getScreenName(RouteData routeData) {
+    final pageRouteArgs = routeData.args.asOrNull<PageScreenRouteArgs>();
+    if (pageRouteArgs != null) {
+      return pageRouteArgs.pageCode;
+    }
+    return null;
+  }
+
+  @override
+  Map<String, dynamic>? getExtraPropertiesForRoute(RouteData routeData) {
+    final extraProperties = <String, dynamic>{};
+    extraProperties['meta'] = <String, dynamic>{};
+
+    final pageRouteArgs = routeData.args.asOrNull<PageScreenRouteArgs>();
+    if (pageRouteArgs != null) {
+      extraProperties['pageCode'] = pageRouteArgs.pageCode;
+    }
+    final episodeRouteArgs = routeData.args.asOrNull<EpisodeScreenRouteArgs>();
+    if (episodeRouteArgs != null) {
+      extraProperties['meta']['episodeId'] = episodeRouteArgs.episodeId;
+    }
+
+    if (routeData.meta.containsKey(RouteMetaConstants.settingsName)) {
+      extraProperties['meta']['settings'] = routeData.meta[RouteMetaConstants.settingsName];
+    }
+
+    return extraProperties;
+  }
+}
+
 class AnalyticsNavigatorObserver extends NavigatorObserver {
   bool _routeFilter(Route<dynamic> route) {
     final routeData = route.settings.asOrNull<AutoRoutePage>()?.routeData;
@@ -24,27 +72,15 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
       return;
     }
     final ref = ProviderScope.containerOf(context, listen: false);
-    Map<String, dynamic> extraProperties = {};
-    extraProperties['meta'] = <String, dynamic>{};
+
     final routeData = route.settings.asOrNull<AutoRoutePage>()?.routeData;
     if (routeData == null) return;
 
-    String? screenName = routeData.meta[RouteMetaConstants.analyticsName];
-    final pageRouteArgs = routeData.args.asOrNull<PageScreenRouteArgs>();
-    if (pageRouteArgs != null) {
-      screenName = pageRouteArgs.pageCode;
-      extraProperties['pageCode'] = pageRouteArgs.pageCode;
-    }
-    final episodeRouteArgs = routeData.args.asOrNull<EpisodeScreenRouteArgs>();
-    if (episodeRouteArgs != null) {
-      extraProperties['meta']['episodeId'] = episodeRouteArgs.episodeId;
-    }
+    Map<String, dynamic> extraProperties = {
+      ...?ref.read(analyticsMetaEnricherProvider).getExtraPropertiesForRoute(routeData),
+    };
 
-    if (routeData.meta.containsKey(RouteMetaConstants.settingsName)) {
-      extraProperties['meta']['settings'] = routeData.meta[RouteMetaConstants.settingsName];
-    }
-
-    screenName ??= routeData.path;
+    final screenName = ref.read(analyticsMetaEnricherProvider).getScreenName(routeData) ?? routeData.path;
 
     if (screenName.isNotEmpty) {
       SchedulerBinding.instance.scheduleFrameCallback((_) => ref.read(analyticsProvider).screen(screenName!, properties: extraProperties));
