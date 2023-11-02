@@ -35,6 +35,7 @@ class AppRouter extends $AppRouter {
           path: '/',
           page: HomeScreenRoute.page,
           initial: true,
+          meta: const {RouteMetaConstants.analyticsName: 'home'},
         ),
         CustomRoute(
           path: '/show/:showId',

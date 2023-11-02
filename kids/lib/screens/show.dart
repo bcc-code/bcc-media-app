@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
+import 'package:brunstadtv_app/models/analytics/sections.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/stack_close_button.dart';
@@ -11,6 +13,7 @@ import 'package:kids/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -108,9 +111,20 @@ class ShowScreen extends HookConsumerWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: basePadding).copyWith(bottom: basePadding),
                       child: EpisodeGrid(
-                        onTap: (item, morphKey) {
+                        onTap: (item, index, morphKey) {
                           currentMorphKey = morphKey;
                           context.router.push(EpisodeScreenRoute(id: item.id));
+                          ref.read(analyticsProvider).sectionItemClicked(context,
+                              sectionAnalyticsOverride: SectionAnalytics(
+                                id: 'ShowEpisodes-$showId',
+                                position: 0,
+                                type: 'ShowEpisodes',
+                              ),
+                              itemAnalyticsOverride: SectionItemAnalytics(
+                                position: index,
+                                type: 'Episode',
+                                id: item.id,
+                              ));
                         },
                         items: episodes,
                       ),

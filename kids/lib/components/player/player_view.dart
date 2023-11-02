@@ -9,6 +9,8 @@ import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/models/analytics/sections.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -307,7 +309,6 @@ class PlayerView extends HookConsumerWidget {
                     }
                     showDialog(
                       context: context,
-                      barrierDismissible: false,
                       builder: (context) => PlayfulDialog(
                           child: PlayerSettingsView(
                         playerController: viewController.playerController,
@@ -527,8 +528,6 @@ class PlayerEpisodes extends HookConsumerWidget {
       ),
     );
 
-    final design = DesignSystem.of(context);
-
     if (query.result.isLoading) {
       return const Center(
         child: LoadingIndicator(height: 24, width: 24),
@@ -559,12 +558,25 @@ class PlayerEpisodes extends HookConsumerWidget {
                 duration: ep.duration,
               ),
               hideTitle: ResponsiveBreakpoints.of(context).smallerThan(TABLET),
-              onTap: (_) {
+              onPressed: (_) {
                 ref.read(playbackServiceProvider).playEpisode(
                       playerId: BccmPlayerViewController.of(context).playerController.value.playerId,
                       episode: ep,
                     );
                 onChange();
+
+                ref.read(analyticsProvider).sectionItemClicked(context,
+                    sectionAnalyticsOverride: SectionAnalytics(
+                      id: 'NextEpisodes-$episodeId',
+                      position: 0,
+                      type: 'NextEpisodesGrid',
+                    ),
+                    itemAnalyticsOverride: SectionItemAnalytics(
+                      id: ep.id,
+                      position: i,
+                      type: ep.$__typename,
+                      name: ep.title,
+                    ));
               },
             ),
           ),

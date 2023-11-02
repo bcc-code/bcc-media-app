@@ -39,13 +39,21 @@ class Analytics {
   @mustBeOverridden
   void heyJustHereToTellYouIBelieveTheSessionIsStillAlive() {}
   @mustBeOverridden
-  void sectionItemClicked(BuildContext context) {}
+  void sectionItemClicked(
+    BuildContext context, {
+    SectionAnalytics? sectionAnalyticsOverride,
+    SectionItemAnalytics? itemAnalyticsOverride,
+  }) {}
   @mustBeOverridden
   void myListTabEntryClicked(BuildContext context) {}
   @mustBeOverridden
   void searchPerformed(SearchPerformedEvent event) {}
   @mustBeOverridden
-  void searchResultClicked(BuildContext context) {}
+  void searchResultClicked(
+    BuildContext context, {
+    SearchAnalytics? searchAnalyticsOverride,
+    SearchItemAnalytics? itemAnalyticsOverride,
+  }) {}
   @mustBeOverridden
   void deepLinkOpened(DeepLinkOpenedEvent event) {}
   @mustBeOverridden
@@ -127,13 +135,17 @@ class RudderAnalytics extends Analytics {
   }
 
   @override
-  void sectionItemClicked(BuildContext context) {
-    var sectionAnalytics = InheritedData.read<SectionAnalytics>(context);
+  void sectionItemClicked(
+    BuildContext context, {
+    SectionAnalytics? sectionAnalyticsOverride,
+    SectionItemAnalytics? itemAnalyticsOverride,
+  }) {
+    var sectionAnalytics = sectionAnalyticsOverride ?? InheritedData.read<SectionAnalytics>(context);
     if (sectionAnalytics == null) {
       FirebaseCrashlytics.instance.recordError(Exception('Missing SectionAnalytics.'), StackTrace.current);
       return;
     }
-    var sectionItemAnalytics = InheritedData.read<SectionItemAnalytics>(context);
+    var sectionItemAnalytics = itemAnalyticsOverride ?? InheritedData.read<SectionItemAnalytics>(context);
     if (sectionItemAnalytics == null) {
       FirebaseCrashlytics.instance.recordError(Exception('Missing sectionItemAnalytics.'), StackTrace.current);
       return;
@@ -180,13 +192,17 @@ class RudderAnalytics extends Analytics {
   }
 
   @override
-  void searchResultClicked(BuildContext context) {
-    final searchAnalytics = InheritedData.read<SearchAnalytics>(context);
+  void searchResultClicked(
+    BuildContext context, {
+    SearchAnalytics? searchAnalyticsOverride,
+    SearchItemAnalytics? itemAnalyticsOverride,
+  }) {
+    final searchAnalytics = searchAnalyticsOverride ?? InheritedData.read<SearchAnalytics>(context);
     if (searchAnalytics == null) {
       FirebaseCrashlytics.instance.recordError(Exception('Missing SearchAnalytics.'), StackTrace.current);
       return;
     }
-    final searchItemAnalytics = InheritedData.read<SearchItemAnalytics>(context);
+    final searchItemAnalytics = itemAnalyticsOverride ?? InheritedData.read<SearchItemAnalytics>(context);
     if (searchItemAnalytics == null) {
       FirebaseCrashlytics.instance.recordError(Exception('Missing SearchItemAnalytics.'), StackTrace.current);
       return;
