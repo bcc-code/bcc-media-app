@@ -147,7 +147,7 @@ class SettingsScreen extends HookConsumerWidget {
                                   title: S.of(context).audioLanguage,
                                   rightText: settings.audioLanguages.map(getLanguageName).join(', '),
                                   onPressed: () {
-                                    //context.router.push(const AudioLanguageScreenRoute());
+                                    context.router.push(const ContentLanguageScreenRoute());
                                   },
                                 ),
                               ],
