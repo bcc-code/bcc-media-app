@@ -30,10 +30,7 @@ import 'package:kids/components/player/controls.dart';
 import 'package:kids/components/settings/applanguage_list.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/helpers/transitions.dart';
-import 'package:kids/router/router.gr.dart';
-import 'package:mockito/mockito.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-import 'package:skeletonizer/skeletonizer.dart' as skeletonizer;
 
 class PlayerView extends HookConsumerWidget {
   const PlayerView({
