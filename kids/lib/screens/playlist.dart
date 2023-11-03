@@ -83,7 +83,7 @@ class PlaylistScreen extends HookConsumerWidget {
                           onPressed: () {
                             if (items == null) return;
                             final randomEpisode = items[Random().nextInt(items.length)];
-                            context.router.push(EpisodeScreenRoute(id: randomEpisode.id));
+                            context.router.push(EpisodeScreenRoute(id: randomEpisode.id, playlistId: id, shuffle: true));
                           },
                           labelText: 'Play random',
                           image: SizedBox(
@@ -109,7 +109,7 @@ class PlaylistScreen extends HookConsumerWidget {
                       child: EpisodeGrid(
                         onTap: (item, index, morphKey) {
                           currentMorphKey = morphKey;
-                          context.router.push(EpisodeScreenRoute(id: item.id));
+                          context.router.push(EpisodeScreenRoute(id: item.id, playlistId: id));
 
                           ref.read(analyticsProvider).sectionItemClicked(context,
                               sectionAnalyticsOverride: SectionAnalytics(

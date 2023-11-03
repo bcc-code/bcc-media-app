@@ -50,6 +50,7 @@ type LegacyIDLookup {
 
 input EpisodeContext {
     collectionId: String
+    playlistId: String
     shuffle: Boolean
     cursor: String
 }

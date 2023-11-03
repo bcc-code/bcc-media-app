@@ -36,9 +36,11 @@ class PlayerView extends HookConsumerWidget {
   const PlayerView({
     super.key,
     this.episode,
+    this.playlistId,
   });
 
   final Query$FetchEpisode$episode? episode;
+  final String? playlistId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -60,6 +62,16 @@ class PlayerView extends HookConsumerWidget {
 
     final controlsVisible = useState(false);
 
+    void replayVideo() {
+      if (episode == null) return;
+      ref.read(playbackServiceProvider).playEpisode(
+            playerId: viewController.playerController.value.playerId,
+            episode: episode!,
+            autoplay: true,
+            playlistId: playlistId,
+          );
+    }
+
     setControlsVisible(bool value) {
       if (controlsVisible.value == value) {
         return;
@@ -73,10 +85,7 @@ class PlayerView extends HookConsumerWidget {
         if (viewController.playerController.value.playbackState != PlaybackState.playing && currentMediaItem.value != null) {
           viewController.playerController.play();
         } else if (currentMediaItem.value == null && episode != null) {
-          ref.read(playbackServiceProvider).playEpisode(
-                playerId: viewController.playerController.value.playerId,
-                episode: episode!,
-              );
+          replayVideo();
         }
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       }
@@ -216,7 +225,10 @@ class PlayerView extends HookConsumerWidget {
                               Positioned.fill(
                                 child: Opacity(
                                   opacity: curvedAnimation.value,
-                                  child: PlayerControls(show: controlsVisible.value),
+                                  child: PlayerControls(
+                                    show: controlsVisible.value,
+                                    onPlayRequestedWithoutVideo: replayVideo,
+                                  ),
                                 ),
                               ),
                             ],
@@ -248,15 +260,12 @@ class PlayerView extends HookConsumerWidget {
                                       child: LoadingIndicator(height: 24, width: 24),
                                     ),
                                   )
-                                : SingleChildScrollView(
+                                : PlayerEpisodes(
                                     padding: EdgeInsets.symmetric(horizontal: basePadding).copyWith(bottom: MediaQuery.paddingOf(context).bottom),
-                                    scrollDirection: Axis.horizontal,
-                                    child: PlayerEpisodes(
-                                      episodeId: lastEpisodeId.value!,
-                                      onChange: () {
-                                        setControlsVisible(false);
-                                      },
-                                    ),
+                                    episodeId: lastEpisodeId.value!,
+                                    onChange: () {
+                                      setControlsVisible(false);
+                                    },
                                   ),
                           ),
                         ),
@@ -501,31 +510,30 @@ class PlayerEpisodes extends HookConsumerWidget {
     super.key,
     required this.episodeId,
     required this.onChange,
+    this.padding,
   });
 
   final String episodeId;
   final VoidCallback onChange;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewController = BccmPlayerViewController.of(context);
-    final cursor = useState<String?>(null);
-    useEffect(() {
-      final cursorNow = viewController.playerController.value.currentMediaItem?.metadata?.extras?['cursor'];
-      if (cursorNow != null) {
-        cursor.value = cursorNow;
-      }
-    }, [viewController.playerController.value.currentMediaItem?.metadata?.extras?['cursor']]);
+    final queryVariables = useMemoized<Variables$Query$KidsGetNextEpisodes>(() {
+      return Variables$Query$KidsGetNextEpisodes(
+        episodeId: episodeId,
+        context: Input$EpisodeContext(
+          shuffle: false,
+          cursor: viewController.playerController.value.currentMediaItem?.metadata?.extras?['context.cursor'],
+          playlistId: viewController.playerController.value.currentMediaItem?.metadata?.extras?['context.playlistId'],
+        ),
+      );
+    }, [episodeId, viewController]);
 
     final query = useQuery$KidsGetNextEpisodes(
       Options$Query$KidsGetNextEpisodes(
-        variables: Variables$Query$KidsGetNextEpisodes(
-          episodeId: episodeId,
-          context: Input$EpisodeContext(
-            shuffle: false,
-            cursor: cursor.value,
-          ),
-        ),
+        variables: queryVariables,
         cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
         fetchPolicy: FetchPolicy.networkOnly,
       ),
@@ -536,55 +544,70 @@ class PlayerEpisodes extends HookConsumerWidget {
         child: LoadingIndicator(height: 24, width: 24),
       );
     }
-    if (query.result.parsedData == null) {
-      return const Center(
-        child: LoadingIndicator(height: 24, width: 24),
+    final design = DesignSystem.of(context);
+    final parsedData = query.result.parsedData;
+    if (parsedData == null) {
+      return Padding(
+        padding: padding ?? const EdgeInsets.all(20),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: design.buttons.small(onPressed: () => context.router.back(), labelText: S.of(context).exploreContent),
+          ),
+        ),
       );
     }
 
     final hideTitle = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
-    return ListView.builder(
-      shrinkWrap: true,
+    return SingleChildScrollView(
+      padding: padding,
       scrollDirection: Axis.horizontal,
-      itemCount: query.result.parsedData!.episode.next.length,
-      itemBuilder: (context, i) {
-        final ep = query.result.parsedData!.episode.next[i];
-        return Container(
-          margin: const EdgeInsets.only(right: 20),
-          child: AspectRatio(
-            aspectRatio: hideTitle ? 16 / 9 : 16 / 12.1,
-            child: EpisodeGridItemRenderer(
-              EpisodeGridItem(
-                id: ep.id,
-                title: ep.title,
-                image: ep.image,
-                duration: ep.duration,
-              ),
-              hideTitle: ResponsiveBreakpoints.of(context).smallerThan(TABLET),
-              onPressed: (_) {
-                ref.read(playbackServiceProvider).playEpisode(
-                      playerId: BccmPlayerViewController.of(context).playerController.value.playerId,
-                      episode: ep,
-                    );
-                onChange();
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: parsedData.episode.next.length,
+        itemBuilder: (context, i) {
+          final ep = parsedData.episode.next[i];
+          return Container(
+            margin: const EdgeInsets.only(right: 20),
+            child: AspectRatio(
+              aspectRatio: hideTitle ? 16 / 9 : 16 / 12.1,
+              child: EpisodeGridItemRenderer(
+                EpisodeGridItem(
+                  id: ep.id,
+                  title: ep.title,
+                  image: ep.image,
+                  duration: ep.duration,
+                ),
+                hideTitle: ResponsiveBreakpoints.of(context).smallerThan(TABLET),
+                onPressed: (_) {
+                  ref.read(playbackServiceProvider).playEpisode(
+                        playerId: BccmPlayerViewController.of(context).playerController.value.playerId,
+                        episode: ep,
+                        autoplay: true,
+                      );
+                  onChange();
 
-                ref.read(analyticsProvider).sectionItemClicked(context,
-                    sectionAnalyticsOverride: SectionAnalytics(
-                      id: 'NextEpisodes-$episodeId',
-                      position: 0,
-                      type: 'NextEpisodesGrid',
-                    ),
-                    itemAnalyticsOverride: SectionItemAnalytics(
-                      id: ep.id,
-                      position: i,
-                      type: ep.$__typename,
-                      name: ep.title,
-                    ));
-              },
+                  ref.read(analyticsProvider).sectionItemClicked(
+                        context,
+                        sectionAnalyticsOverride: SectionAnalytics(
+                          id: 'NextEpisodes-$episodeId',
+                          position: 0,
+                          type: 'NextEpisodesGrid',
+                        ),
+                        itemAnalyticsOverride: SectionItemAnalytics(
+                          id: ep.id,
+                          position: i,
+                          type: ep.$__typename,
+                          name: ep.title,
+                        ),
+                      );
+                },
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

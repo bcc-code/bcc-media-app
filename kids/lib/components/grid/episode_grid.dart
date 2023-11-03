@@ -126,7 +126,7 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
                                 child: Container(color: design.colors.separator2),
                               ),
                             ),
-                            simpleFadeInImage(url: item.image!).animate().fadeIn(),
+                            simpleFadeInImage(url: item.image!),
                           ],
                         )
                       else
@@ -155,7 +155,7 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
             ),
         ],
       ),
-    );
+    ).animate().fadeIn(duration: 500.ms);
   }
 }
 

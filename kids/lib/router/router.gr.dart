@@ -62,6 +62,7 @@ abstract class $AppRouter extends _i15.RootStackRouter {
           key: args.key,
           id: args.id,
           shuffle: args.shuffle,
+          playlistId: args.playlistId,
           cursor: args.cursor,
         ),
       );
@@ -200,6 +201,7 @@ class EpisodeScreenRoute extends _i15.PageRouteInfo<EpisodeScreenRouteArgs> {
     _i16.Key? key,
     required String id,
     bool? shuffle,
+    String? playlistId,
     String? cursor,
     List<_i15.PageRouteInfo>? children,
   }) : super(
@@ -208,9 +210,14 @@ class EpisodeScreenRoute extends _i15.PageRouteInfo<EpisodeScreenRouteArgs> {
             key: key,
             id: id,
             shuffle: shuffle,
+            playlistId: playlistId,
             cursor: cursor,
           ),
-          rawQueryParams: {'shuffle': shuffle},
+          rawQueryParams: {
+            'shuffle': shuffle,
+            'playlistId': playlistId,
+            'cursor': cursor,
+          },
           initialChildren: children,
         );
 
@@ -225,6 +232,7 @@ class EpisodeScreenRouteArgs {
     this.key,
     required this.id,
     this.shuffle,
+    this.playlistId,
     this.cursor,
   });
 
@@ -234,11 +242,13 @@ class EpisodeScreenRouteArgs {
 
   final bool? shuffle;
 
+  final String? playlistId;
+
   final String? cursor;
 
   @override
   String toString() {
-    return 'EpisodeScreenRouteArgs{key: $key, id: $id, shuffle: $shuffle, cursor: $cursor}';
+    return 'EpisodeScreenRouteArgs{key: $key, id: $id, shuffle: $shuffle, playlistId: $playlistId, cursor: $cursor}';
   }
 }
 

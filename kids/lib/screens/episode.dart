@@ -20,14 +20,16 @@ class EpisodeScreen extends HookConsumerWidget {
     super.key,
     required this.id,
     @QueryParam() this.shuffle,
-    this.cursor,
+    @QueryParam() this.playlistId,
+    @QueryParam() this.cursor,
   });
 
   final String id;
   final bool? shuffle;
   final String? cursor;
+  final String? playlistId;
 
-  bool episodeIsCurrentItem() => BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['id'] == id;
+  bool get episodeIsCurrentItem => BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['id'] == id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,6 +44,7 @@ class EpisodeScreen extends HookConsumerWidget {
             context: Input$EpisodeContext(
               shuffle: shuffle ?? false,
               cursor: cursor,
+              playlistId: playlistId,
             ),
           ),
         ),
@@ -75,8 +78,9 @@ class EpisodeScreen extends HookConsumerWidget {
         context.replaceRoute(
           EpisodeScreenRoute(
             id: currentId.value!,
-            cursor: BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['cursor'],
+            cursor: BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['context.cursor'],
             shuffle: null,
+            playlistId: BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['context.playlistId'],
           ),
         );
       }
@@ -85,7 +89,7 @@ class EpisodeScreen extends HookConsumerWidget {
     final transitionDone = useState(false);
 
     useEffect(() {
-      if (episodeData != null) {
+      if (episodeData != null && !episodeIsCurrentItem) {
         final duration = morphTransition?.duration ?? 0.ms;
         Future.delayed(duration - 100.ms, () {
           if (!context.mounted) return;
@@ -94,13 +98,14 @@ class EpisodeScreen extends HookConsumerWidget {
             playerId: BccmPlayerController.primary.value.playerId,
             episode: episodeData,
             autoplay: true,
+            playlistId: playlistId,
           );
         });
         firstLoadDone.value = true;
       }
       return () {
         // on dispose
-        if (BccmPlayerController.primary.value.currentMediaItem != null) {
+        if (BccmPlayerController.primary.value.currentMediaItem != null && episodeIsCurrentItem) {
           BccmPlayerController.primary.stop(reset: true);
         }
       };

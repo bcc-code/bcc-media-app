@@ -11,9 +11,11 @@ class PlayerControls extends HookWidget {
   const PlayerControls({
     super.key,
     required this.show,
+    required this.onPlayRequestedWithoutVideo,
   });
 
   final bool show;
+  final void Function() onPlayRequestedWithoutVideo;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,11 @@ class PlayerControls extends HookWidget {
                   : design.buttons.small(
                       variant: ButtonVariant.secondary,
                       onPressed: () {
-                        viewController.playerController.play();
+                        if (viewController.playerController.value.currentMediaItem != null) {
+                          viewController.playerController.play();
+                        } else {
+                          onPlayRequestedWithoutVideo();
+                        }
                       },
                       image: SvgPicture.string(
                         SvgIcons.play,
