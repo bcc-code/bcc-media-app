@@ -28,7 +28,7 @@ class ApiErrorCodes {
   static const String notPublished = 'item/not-published';
 }
 
-class Api implements BccmApi {
+class Api {
   final String? accessToken;
   final GraphQLClient gqlClient;
 
@@ -128,13 +128,18 @@ class Api implements BccmApi {
     return LivestreamUrl.fromJson(body);
   }
 
-  @override
-  Future updateProgress({required String episodeId, required double? progress}) async {
+  Future updateProgress({required String episodeId, required int? progress}) async {
     if (episodeId == 'livestream') return;
+    if (accessToken == null) return;
     return gqlClient
-        .mutate$setEpisodeProgress(Options$Mutation$setEpisodeProgress(
-            variables: Variables$Mutation$setEpisodeProgress(id: episodeId, progress: progress?.finiteOrNull()?.round())))
-        .then((value) => debugPrint('set progress to: ${value.parsedData?.setEpisodeProgress.progress.toString()}'));
+        .mutate$setEpisodeProgress(
+          Options$Mutation$setEpisodeProgress(
+            variables: Variables$Mutation$setEpisodeProgress(id: episodeId, progress: progress?.round()),
+          ),
+        )
+        .then(
+          (value) => debugPrint('set progress to: ${value.parsedData?.setEpisodeProgress.progress.toString()}'),
+        );
   }
 
   Future<Query$CalendarDayEpisodeEntries$calendar?> getCalendarDayEpisodes(DateTime date) {
