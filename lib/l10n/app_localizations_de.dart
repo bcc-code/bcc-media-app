@@ -35,10 +35,10 @@ class SDe extends S {
   String get loginPageDisplay2 => 'Schaue Serien, Shows und Filme basierend auf christlichen Werten';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Wir bringen die Botschaft der Bibel zum Leben!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Unsere Vision ist es, dass die Kinder Jesus als ihren allerbesten Freund erleben – für den Rest ihres Lebens.';
 
   @override
   String get loginPageDisplay3 => 'Produziert von BCC Media';
@@ -62,22 +62,22 @@ class SDe extends S {
   String get signInButton => 'Einloggen';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'Registrieren / anmelden';
 
   @override
-  String get signUpButton => 'Sign up now';
+  String get signUpButton => 'Jetzt registrieren';
 
   @override
-  String get signUpTitle => 'Sign up';
+  String get signUpTitle => 'Registrieren';
 
   @override
-  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+  String get signUpDescription => 'Erhalten Sie Zugriff auf mehr Inhalte und bessere Funktionen, indem Sie ein Konto erstellen.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Ich bestätige, dass ich mindestens 13 Jahre alt bin und stimme den <a>Datenschutzbestimmungen</a> und <a>Nutzungsbedingungen</a>zu.';
 
   @override
-  String get setPassword => 'Set password';
+  String get setPassword => 'Neues Passwort';
 
   @override
   String get tryAgainButton => 'Erneut versuchen';
@@ -89,7 +89,7 @@ class SDe extends S {
   String get loggedOutMessage => 'Du wurdest ausgeloggt. Bitte logge dich wieder ein.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Spenden';
 
   @override
   String get mostWatched => 'Meistgesehen';
@@ -107,7 +107,7 @@ class SDe extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Open';
+  String get open => 'Offen';
 
   @override
   String get loginFailedCheckNetwork => 'Anmeldung fehlgeschlagen. Überprüfe deine Netzwerkverbindung und versuche es erneut.';
@@ -149,73 +149,73 @@ class SDe extends S {
   String get contactUs => 'Kontaktiere uns';
 
   @override
-  String get deviceInfo => 'Device info';
+  String get deviceInfo => 'Geräteinformationen';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Fügen Sie Geräteinformationen hinzu, um den Support zu verbessern.';
 
   @override
-  String get contactSeeData => 'Click to see data.';
+  String get contactSeeData => 'Klicken Sie hier, um die Daten anzuzeigen.';
 
   @override
   String get contactName => 'Name';
 
   @override
-  String get contactNameHint => 'Type in your name';
+  String get contactNameHint => 'Geb deinen Namen ein';
 
   @override
-  String get contactEmail => 'Your contact email';
+  String get contactEmail => 'Deine E-Mail-Adresse';
 
   @override
-  String get contactEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'Gebe deine E-Mail-Adresse ein';
 
   @override
-  String get contactMessage => 'Message';
+  String get contactMessage => 'Nachricht';
 
   @override
-  String get contactMessageHint => 'Enter your message here';
+  String get contactMessageHint => 'Gebe hier deine Nachricht ein';
 
   @override
-  String get deviceInfoDevice => 'Device';
+  String get deviceInfoDevice => 'Gerät';
 
   @override
-  String get deviceInfoEnvOverride => 'Environment override';
+  String get deviceInfoEnvOverride => 'Umgebungsüberschreibung';
 
   @override
-  String get deviceInfoManufacturer => 'Manufacturer';
+  String get deviceInfoManufacturer => 'Hersteller';
 
   @override
-  String get deviceInfoOs => 'Operating System';
+  String get deviceInfoOs => 'Betriebssystem';
 
   @override
-  String get deviceInfoScreenSize => 'Screen Size';
+  String get deviceInfoScreenSize => 'Bildschirmgröße';
 
   @override
-  String get deviceInfoAppVer => 'App Version';
+  String get deviceInfoAppVer => 'App-Version';
 
   @override
-  String get deviceInfoUserId => 'User ID';
+  String get deviceInfoUserId => 'Benutzer-ID';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc => 'Deine Nachricht wird diese Information enthalten, damit wir die Sache besser verstehen können.';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Eine Funktion vorschlagen';
 
   @override
   String get cancel => 'Abbrechen';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Bist du sicher, dass du abbrechen möchtest?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Alle nicht gespeicherten Änderungen gehen verloren.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Gehe zurück';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Ja, Abbrechen';
 
   @override
   String get upNext => 'Nächste';
@@ -233,7 +233,7 @@ class SDe extends S {
   String get none => 'Keine';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Nächste Folge';
 
   @override
   String get auto => 'Auto';
@@ -260,7 +260,7 @@ class SDe extends S {
   String get search => 'Suchen';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Feedback senden';
 
   @override
   String get noResults => 'Keine Ergebnisse';
@@ -469,10 +469,10 @@ class SDe extends S {
   String get share => 'Teilen';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Zeige mehr';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Zeige weniger';
 
   @override
   String get liveNow => 'Jetzt live';
@@ -531,7 +531,7 @@ class SDe extends S {
   String get privacyPolicy => 'Datenschutz';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Nutzungsbedingungen';
 
   @override
   String get categoriesTab => 'Kategorien';
@@ -579,10 +579,10 @@ class SDe extends S {
   String get exploreContent => 'Entdecke den Inhalt';
 
   @override
-  String get explorePublicContent => 'Explore public content';
+  String get explorePublicContent => 'Entdecken Sie öffentliche Inhalte';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Erkunden';
 
   @override
   String get taskCompleted => 'Aufgabe abgeschlossen';
@@ -658,18 +658,18 @@ class SDe extends S {
   String get continueButton => 'Weiter';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Registrieren';
 
   @override
   String get achievements => 'Erfolge';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Mindestens $n Zeichen';
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Muss Kleinbuchstaben, Großbuchstaben und Zahlen enthalten.';
 
   @override
   String get oops => 'Ups!';
@@ -690,93 +690,93 @@ class SDe extends S {
   String get details => 'Details';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Meine Liste';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Wusstest du das?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Du kannst deine Lieblingssendungen zu „Meine Liste“ hinzufügen, indem du auf das Herz tippst.';
 
   @override
-  String get selectSeason => 'Select season';
+  String get selectSeason => 'Saison auswählen';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'Mein Konto löschen';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Ich bin sicher, dass ich mein Konto und meine Daten im Zusammenhang mit der BCC Media-App löschen möchte.';
 
   @override
   String get areYouSure => 'Bist du sicher?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Du kannst uns kontaktieren unter';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'BCC Media ist eine Medienstiftung im BCC-Verbund, welche Inhalte mit positiven und christlichen Werten produziert und verbreitet.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Frage deine Eltern';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'Was ist';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Antwort';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Antwort überprüfen';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Dieses Video ist nur zugänglich für Nutzer, die eingeloggt sind.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Bestätige dein Konto';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'Wir haben eine E-Mail gesendet an';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Klicke auf den Link in der E-Mail, um dein Konto zu bestätigen.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'E-Mail-App öffnen';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'E-Mail erneut senden';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Keine Mail-Apps installiert';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'Bestätigungs-E-Mail gesendet';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Wenn du immer noch keine E-Mail erhalten hast, wende dich bitte an den Support unter';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Account erstellt';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Du kannst jetzt dein Konto verwenden und eine Vielzahl erbaulicher Inhalte erkunden.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Du kannst jetzt dein Konto verwenden und eine Vielzahl erbaulicher Inhalte erkunden.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'Du bist dabei, die Löschung deines Kontos bei BCC Media und aller deiner Daten im Zusammenhang mit dieser App zu beantragen.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'Dies ist eine Aktion, die nicht rückgängig gemacht werden kann.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'Die Kontolöschung erfolgt in der Regel innerhalb von $x Werktagen.';
   }
 
   @override
-  String get accountDeletionTitle => 'Delete my account';
+  String get accountDeletionTitle => 'Mein Konto löschen';
 
   @override
   String accountDeletionSuccess(String email) {
@@ -804,10 +804,10 @@ class SDe extends S {
   String get removeWatchProgress => 'Remove watch progress';
 
   @override
-  String get showDescription => 'Show description';
+  String get showDescription => 'Sendungsbeschreibung';
 
   @override
-  String get releaseDate => 'Release date';
+  String get releaseDate => 'Veröffentlichungsdatum';
 
   @override
   String get availableTo => 'Available to';
@@ -889,7 +889,7 @@ class SDe extends S {
   String get connectToExplore => 'Connect to the internet to explore all videos.';
 
   @override
-  String get language => 'Language';
+  String get language => 'Sprache';
 
   @override
   String estimatedFileSize(String size) {
@@ -931,4 +931,7 @@ class SDe extends S {
 
   @override
   String get technicalDetails => 'Technical details';
+
+  @override
+  String get contentLanguage => 'Content language';
 }

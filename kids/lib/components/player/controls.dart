@@ -11,9 +11,11 @@ class PlayerControls extends HookWidget {
   const PlayerControls({
     super.key,
     required this.show,
+    required this.onPlayRequestedWithoutVideo,
   });
 
   final bool show;
+  final void Function() onPlayRequestedWithoutVideo;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class PlayerControls extends HookWidget {
     }, [show]);
     final viewController = BccmPlayerViewController.of(context);
     final design = DesignSystem.of(context);
-    final state = useValueListenable(viewController.playerController);
+    final playbackState = useListenableSelector(viewController.playerController, () => viewController.playerController.value.playbackState);
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -50,7 +52,7 @@ class PlayerControls extends HookWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              state.playbackState == PlaybackState.playing
+              playbackState == PlaybackState.playing
                   ? design.buttons.small(
                       variant: ButtonVariant.secondary,
                       onPressed: () {
@@ -65,7 +67,11 @@ class PlayerControls extends HookWidget {
                   : design.buttons.small(
                       variant: ButtonVariant.secondary,
                       onPressed: () {
-                        viewController.playerController.play();
+                        if (viewController.playerController.value.currentMediaItem != null) {
+                          viewController.playerController.play();
+                        } else {
+                          onPlayRequestedWithoutVideo();
+                        }
                       },
                       image: SvgPicture.string(
                         SvgIcons.play,

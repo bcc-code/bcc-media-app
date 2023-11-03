@@ -931,4 +931,7 @@ class SRu extends S {
 
   @override
   String get technicalDetails => 'Технические детали';
+
+  @override
+  String get contentLanguage => 'Content language';
 }

@@ -141,11 +141,13 @@ class _CopyWithStubImpl$Input$LegacyIDLookupOptions<TRes>
 class Input$EpisodeContext {
   factory Input$EpisodeContext({
     String? collectionId,
+    String? playlistId,
     bool? shuffle,
     String? cursor,
   }) =>
       Input$EpisodeContext._({
         if (collectionId != null) r'collectionId': collectionId,
+        if (playlistId != null) r'playlistId': playlistId,
         if (shuffle != null) r'shuffle': shuffle,
         if (cursor != null) r'cursor': cursor,
       });
@@ -157,6 +159,10 @@ class Input$EpisodeContext {
     if (data.containsKey('collectionId')) {
       final l$collectionId = data['collectionId'];
       result$data['collectionId'] = (l$collectionId as String?);
+    }
+    if (data.containsKey('playlistId')) {
+      final l$playlistId = data['playlistId'];
+      result$data['playlistId'] = (l$playlistId as String?);
     }
     if (data.containsKey('shuffle')) {
       final l$shuffle = data['shuffle'];
@@ -172,6 +178,7 @@ class Input$EpisodeContext {
   Map<String, dynamic> _$data;
 
   String? get collectionId => (_$data['collectionId'] as String?);
+  String? get playlistId => (_$data['playlistId'] as String?);
   bool? get shuffle => (_$data['shuffle'] as bool?);
   String? get cursor => (_$data['cursor'] as String?);
   Map<String, dynamic> toJson() {
@@ -179,6 +186,10 @@ class Input$EpisodeContext {
     if (_$data.containsKey('collectionId')) {
       final l$collectionId = collectionId;
       result$data['collectionId'] = l$collectionId;
+    }
+    if (_$data.containsKey('playlistId')) {
+      final l$playlistId = playlistId;
+      result$data['playlistId'] = l$playlistId;
     }
     if (_$data.containsKey('shuffle')) {
       final l$shuffle = shuffle;
@@ -213,6 +224,15 @@ class Input$EpisodeContext {
     if (l$collectionId != lOther$collectionId) {
       return false;
     }
+    final l$playlistId = playlistId;
+    final lOther$playlistId = other.playlistId;
+    if (_$data.containsKey('playlistId') !=
+        other._$data.containsKey('playlistId')) {
+      return false;
+    }
+    if (l$playlistId != lOther$playlistId) {
+      return false;
+    }
     final l$shuffle = shuffle;
     final lOther$shuffle = other.shuffle;
     if (_$data.containsKey('shuffle') != other._$data.containsKey('shuffle')) {
@@ -235,10 +255,12 @@ class Input$EpisodeContext {
   @override
   int get hashCode {
     final l$collectionId = collectionId;
+    final l$playlistId = playlistId;
     final l$shuffle = shuffle;
     final l$cursor = cursor;
     return Object.hashAll([
       _$data.containsKey('collectionId') ? l$collectionId : const {},
+      _$data.containsKey('playlistId') ? l$playlistId : const {},
       _$data.containsKey('shuffle') ? l$shuffle : const {},
       _$data.containsKey('cursor') ? l$cursor : const {},
     ]);
@@ -256,6 +278,7 @@ abstract class CopyWith$Input$EpisodeContext<TRes> {
 
   TRes call({
     String? collectionId,
+    String? playlistId,
     bool? shuffle,
     String? cursor,
   });
@@ -276,6 +299,7 @@ class _CopyWithImpl$Input$EpisodeContext<TRes>
 
   TRes call({
     Object? collectionId = _undefined,
+    Object? playlistId = _undefined,
     Object? shuffle = _undefined,
     Object? cursor = _undefined,
   }) =>
@@ -283,6 +307,7 @@ class _CopyWithImpl$Input$EpisodeContext<TRes>
         ..._instance._$data,
         if (collectionId != _undefined)
           'collectionId': (collectionId as String?),
+        if (playlistId != _undefined) 'playlistId': (playlistId as String?),
         if (shuffle != _undefined) 'shuffle': (shuffle as bool?),
         if (cursor != _undefined) 'cursor': (cursor as String?),
       }));
@@ -296,6 +321,7 @@ class _CopyWithStubImpl$Input$EpisodeContext<TRes>
 
   call({
     String? collectionId,
+    String? playlistId,
     bool? shuffle,
     String? cursor,
   }) =>

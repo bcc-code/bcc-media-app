@@ -19,7 +19,7 @@ final soundEffectsProvider = Provider((ref) {
   player.setReleaseMode(ReleaseMode.release);
   player.setPlayerMode(PlayerMode.lowLatency);
   player.audioCache.loadAll(SoundEffects.allToPreload);
-  player.setVolume(0.5);
+  player.setVolume(0.3);
   return player;
 });
 

@@ -13,11 +13,13 @@ import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/firebase.dart';
+import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,6 +28,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:kids/app_root.dart';
+import 'package:kids/helpers/analytics_meta.dart';
 import 'package:kids/providers/special_routes.dart';
 import 'package:kids/router/router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -90,6 +93,7 @@ Future<void> $main({
   final sharedPrefs = await SharedPreferences.getInstance();
   final packageInfo = await PackageInfo.fromPlatform();
   final providerContainer = await initProviderContainer([
+    analyticsMetaEnricherProvider.overrideWith((ref) => KidsAnalyticsMetaEnricher()),
     rootRouterProvider.overrideWithValue(appRouter),
     sharedPreferencesProvider.overrideWith((ref) => sharedPrefs),
     packageInfoProvider.overrideWith((ref) => packageInfo),
@@ -112,6 +116,7 @@ Future<void> $main({
 
   if (kDebugMode) {
     Animate.restartOnHotReload = true;
+    //debugRepaintRainbowEnabled = true;
   }
 
   runApp(maybeWrappedApp);
@@ -123,6 +128,10 @@ Future setDefaults() async {
       statusBarColor: Colors.transparent,
       systemNavigationBarColor: Colors.transparent,
       systemNavigationBarContrastEnforced: false,
+      statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+      statusBarBrightness: Brightness.light, // For iOS (dark icons)
+      systemStatusBarContrastEnforced: true,
+      systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
 

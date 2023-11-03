@@ -1,17 +1,17 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:kids/helpers/svg_icons.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:kids/components/settings/applanguage_list.dart';
 import 'package:brunstadtv_app/helpers/languages.dart';
 
 @RoutePage<void>()
-class AppLanguageScreen extends HookConsumerWidget {
+class AppLanguageScreen extends ConsumerWidget {
   const AppLanguageScreen({super.key});
 
   @override
@@ -19,19 +19,21 @@ class AppLanguageScreen extends HookConsumerWidget {
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
     final double basePadding = bp.smallerThan(TABLET) ? 24.0 : 48.0;
-    final selectedLanguageIndex = useState(0);
+    final selected = ref.watch(settingsProvider).appLanguage.languageCode;
 
-    List<AppLanguageListItem> buildItem() {
-      return appLanuageCodes.map((code) {
-        int index = appLanuageCodes.indexOf(code);
-        return AppLanguageListItem(
-          title: languages[code]!.nativeName,
-          onPressed: () {
-            selectedLanguageIndex.value = index;
-          },
-          selected: (index == selectedLanguageIndex.value),
-        );
-      }).toList();
+    List<AppLanguageListItem> buildItems() {
+      return appLanuageCodes
+          .map((code) {
+            return AppLanguageListItem(
+              title: languages[code]!.nativeName,
+              onPressed: () {
+                ref.read(settingsProvider.notifier).setAppLanguage(code);
+              },
+              selected: (code == selected),
+            );
+          })
+          .sortedBy((item) => item.title)
+          .toList();
     }
 
     return Scaffold(
@@ -58,7 +60,7 @@ class AppLanguageScreen extends HookConsumerWidget {
                                   bottom: (bp.smallerThan(TABLET) ? 12 : 16) + 24),
                               child: Center(
                                 child: Text(
-                                  'App Language',
+                                  S.of(context).appLanguage,
                                   style: design.textStyles.title1,
                                 ),
                               ),
@@ -68,7 +70,7 @@ class AppLanguageScreen extends HookConsumerWidget {
                               child: Text('Select', style: design.textStyles.body2),
                             ),
                             AppLanguageList(
-                              items: buildItem(),
+                              items: buildItems(),
                             ),
                           ],
                         ),
@@ -79,19 +81,7 @@ class AppLanguageScreen extends HookConsumerWidget {
               ),
             ],
           ),
-          Positioned(
-              top: 0,
-              left: 0,
-              child: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.all(basePadding),
-                  child: design.buttons.responsive(
-                    labelText: '',
-                    onPressed: () => context.router.pop(),
-                    image: SvgPicture.string(SvgIcons.close),
-                  ),
-                ),
-              )),
+          const StackCloseButton(),
         ],
       ),
     );

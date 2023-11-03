@@ -1,9 +1,7 @@
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button_base.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class ButtonPaddings {
   final double fromLabelToSide;
@@ -19,6 +17,36 @@ class ButtonPaddings {
     required this.fromIconToSide,
     required this.fromIconToSideWhenAlone,
   });
+
+  ButtonPaddings copyWith({
+    double? fromLabelToSide,
+    double? fromLabelToSideWhenAlone,
+    double? fromIconToLabel,
+    double? fromIconToSide,
+    double? fromIconToSideWhenAlone,
+  }) {
+    return ButtonPaddings(
+      fromLabelToSide: fromLabelToSide ?? this.fromLabelToSide,
+      fromLabelToSideWhenAlone: fromLabelToSideWhenAlone ?? this.fromLabelToSideWhenAlone,
+      fromIconToLabel: fromIconToLabel ?? this.fromIconToLabel,
+      fromIconToSide: fromIconToSide ?? this.fromIconToSide,
+      fromIconToSideWhenAlone: fromIconToSideWhenAlone ?? this.fromIconToSideWhenAlone,
+    );
+  }
+
+  const ButtonPaddings.small()
+      : fromLabelToSide = 20,
+        fromLabelToSideWhenAlone = 24,
+        fromIconToLabel = 6,
+        fromIconToSide = 16,
+        fromIconToSideWhenAlone = 12;
+
+  const ButtonPaddings.large()
+      : fromLabelToSide = 32,
+        fromLabelToSideWhenAlone = 32,
+        fromIconToLabel = 12,
+        fromIconToSide = 24,
+        fromIconToSideWhenAlone = 20;
 }
 
 class Button extends HookConsumerWidget {
@@ -94,13 +122,7 @@ class Button extends HookConsumerWidget {
   })  : height = 48,
         elevationHeight = 2,
         iconSize = 24,
-        paddings = const ButtonPaddings(
-          fromLabelToSide: 20,
-          fromLabelToSideWhenAlone: 24,
-          fromIconToLabel: 6,
-          fromIconToSide: 16,
-          fromIconToSideWhenAlone: 12,
-        );
+        paddings = const ButtonPaddings.small();
 
   const Button.rawLarge({
     super.key,
@@ -115,13 +137,7 @@ class Button extends HookConsumerWidget {
   })  : height = 72,
         iconSize = 32,
         elevationHeight = 4,
-        paddings = const ButtonPaddings(
-          fromLabelToSide: 32,
-          fromLabelToSideWhenAlone: 32,
-          fromIconToLabel: 12,
-          fromIconToSide: 24,
-          fromIconToSideWhenAlone: 20,
-        );
+        paddings = const ButtonPaddings.large();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

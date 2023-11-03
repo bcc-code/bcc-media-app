@@ -8,9 +8,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button_base.dart';
+import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:kids/components/settings/setting_list.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/router/router.gr.dart';
@@ -35,6 +35,7 @@ class SettingsScreen extends HookConsumerWidget {
 
     Future<void> checkParentalGateOrPop() async {
       SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
+        if (!context.mounted) return;
         if (!await checkParentalGate(context)) {
           SchedulerBinding.instance.scheduleFrameCallback((timeStamp) {
             if (!context.mounted) return;
@@ -69,6 +70,8 @@ class SettingsScreen extends HookConsumerWidget {
       };
     }, [bp.smallerThan(TABLET)]);
 
+    final double spacingBetweenSections = bp.smallerThan(TABLET) ? 24 : 20;
+
     return DialogOnWeb(
       child: CupertinoScaffold(
         body: !readyToDisplay.value
@@ -79,133 +82,110 @@ class SettingsScreen extends HookConsumerWidget {
                 ),
               )
             : Scaffold(
-                appBar: AppBar(
-                  leadingWidth: 84,
-                  leading: FocusableControlBuilder(
-                    cursor: SystemMouseCursors.click,
-                    actions: {
-                      ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) {
-                        return context.router.pop();
-                      }),
-                    },
-                    onPressed: () {
-                      context.router.pop();
-                    },
-                    builder: (context, control) => Container(
-                      padding: const EdgeInsets.only(left: 20),
-                      width: double.infinity,
-                      alignment: Alignment.centerLeft,
-                      child: design.buttons.small(
-                        labelText: '',
-                        image: SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: Center(
-                            child: SvgPicture.string(SvgIcons.close),
-                          ),
-                        ),
-                        onPressed: () {
-                          context.router.pop();
-                        },
-                      ),
-                    ),
-                  ),
-                  title: Container(
-                    alignment: Alignment.centerLeft,
-                    height: 25,
-                    child: Image.asset(
-                      'assets/flavors/prod/logo_neg.png',
-                    ),
-                  ),
-                  centerTitle: false,
-                ),
-                body: SafeArea(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: double.infinity,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        constraints: const BoxConstraints(maxWidth: 544),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            const Padding(
-                              padding: EdgeInsets.only(top: 20.0, bottom: 20),
-                              child: DonationButton(),
-                            ),
-                            SettingList(
-                              items: [
-                                SettingListItem(
-                                  title: S.of(context).appLanguage,
-                                  rightText: getLanguageName(settings.appLanguage.languageCode) ?? '',
-                                  onPressed: () {
-                                    context.router.push(const AppLanguageScreenRoute());
-                                  },
+                resizeToAvoidBottomInset: false,
+                body: Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: SafeArea(
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: double.infinity,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            constraints: const BoxConstraints(maxWidth: 544),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(top: bp.smallerThan(TABLET) ? 20 : 20),
+                                  child: Container(
+                                    margin: EdgeInsets.symmetric(vertical: bp.smallerThan(TABLET) ? 11 : 30),
+                                    alignment: Alignment.center,
+                                    height: bp.smallerThan(TABLET) ? 25.5 : 51,
+                                    child: Image.asset(
+                                      'assets/flavors/prod/logo_neg.png',
+                                    ),
+                                  ),
                                 ),
-                                SettingListItem(
-                                  title: S.of(context).audioLanguage,
-                                  rightText: settings.audioLanguages.map(getLanguageName).join(', '),
-                                  onPressed: () {
-                                    context.router.push(const ContentLanguageScreenRoute());
-                                  },
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: spacingBetweenSections),
+                                  child: const DonationButton(),
                                 ),
-                              ],
-                            ),
-                            const SizedBox(height: 24),
-                            SettingList(
-                              items: [
-                                SettingListItem(
-                                  title: S.of(context).faq,
-                                  onPressed: () {
-                                    context.router.push(const FAQScreenRoute());
-                                  },
-                                ),
-                                SettingListItem(
-                                  title: S.of(context).contactSupport,
-                                  onPressed: () {
-                                    context.router.push(const ContactScreenRoute());
-                                  },
-                                ),
-                                if (!ref.read(authStateProvider).guestMode) ...[
-                                  SettingListItem(
-                                    title: S.of(context).userVoice,
-                                    onPressed: () {
-                                      launchUrlString('https://uservoice.bcc.no/?tags=bcc-media', mode: LaunchMode.externalApplication);
-                                    },
-                                  )
-                                ],
-                                SettingListItem(
-                                  title: S.of(context).about,
-                                  onPressed: () {
-                                    context.router.push(const AboutScreenRoute());
-                                  },
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 24),
-                            Builder(
-                              builder: (context) {
-                                return SettingList(
+                                SettingList(
                                   items: [
                                     SettingListItem(
-                                      title: S.of(context).privacyPolicy,
-                                      onPressed: () => context.router.push(const PrivacyPolicyScreenRoute()),
+                                      title: S.of(context).appLanguage,
+                                      rightText: getLanguageName(settings.appLanguage.languageCode) ?? '',
+                                      onPressed: () {
+                                        context.router.push(const AppLanguageScreenRoute());
+                                      },
                                     ),
                                     SettingListItem(
-                                      title: S.of(context).termsOfUse,
-                                      onPressed: () => context.router.push(const TermsOfUseScreenRoute()),
+                                      title: S.of(context).audioLanguage,
+                                      rightText: settings.audioLanguages.map(getLanguageName).join(', '),
+                                      onPressed: () {
+                                        context.router.push(const ContentLanguageScreenRoute());
+                                      },
                                     ),
                                   ],
-                                );
-                              },
+                                ),
+                                SizedBox(height: spacingBetweenSections),
+                                SettingList(
+                                  items: [
+                                    SettingListItem(
+                                      title: S.of(context).faq,
+                                      onPressed: () {
+                                        context.router.push(const FAQScreenRoute());
+                                      },
+                                    ),
+                                    SettingListItem(
+                                      title: S.of(context).contactSupport,
+                                      onPressed: () {
+                                        context.router.push(const ContactScreenRoute());
+                                      },
+                                    ),
+                                    if (!ref.read(authStateProvider).guestMode) ...[
+                                      SettingListItem(
+                                        title: S.of(context).userVoice,
+                                        onPressed: () {
+                                          launchUrlString('https://uservoice.bcc.no/?tags=bcc-media', mode: LaunchMode.externalApplication);
+                                        },
+                                      )
+                                    ],
+                                    SettingListItem(
+                                      title: S.of(context).about,
+                                      onPressed: () {
+                                        context.router.push(const AboutScreenRoute());
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: spacingBetweenSections),
+                                Builder(
+                                  builder: (context) {
+                                    return SettingList(
+                                      items: [
+                                        SettingListItem(
+                                          title: S.of(context).privacyPolicy,
+                                          onPressed: () => context.router.push(const PrivacyPolicyScreenRoute()),
+                                        ),
+                                        SettingListItem(
+                                          title: S.of(context).termsOfUse,
+                                          onPressed: () => context.router.push(const TermsOfUseScreenRoute()),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                                SizedBox(height: spacingBetweenSections * 2),
+                              ],
                             ),
-                            const SizedBox(height: 48),
-                          ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                    const StackCloseButton(),
+                  ],
                 ),
               ),
       ),

@@ -3,6 +3,8 @@ import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
 
 Route<T> settingsRouteBuilder<T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
@@ -29,20 +31,23 @@ class AppRouter extends $AppRouter {
           path: '/',
           page: HomeScreenRoute.page,
           initial: true,
+          meta: const {RouteMetaConstants.analyticsName: 'home'},
         ),
         CustomRoute(
           path: '/show/:showId',
           page: ShowScreenRoute.page,
-          transitionsBuilder: CustomTransitionsBuilders.scaleUpSlideDown(),
           durationInMilliseconds: 600,
-          reverseDurationInMilliseconds: 1000,
+          reverseDurationInMilliseconds: 600,
+          transitionsBuilder: CustomTransitionsBuilders.slideUp(),
+          meta: const {RouteMetaConstants.analyticsName: 'show'},
         ),
         CustomRoute(
           path: '/playlist/:id',
           page: PlaylistScreenRoute.page,
-          transitionsBuilder: CustomTransitionsBuilders.scaleUpSlideDown(),
+          transitionsBuilder: CustomTransitionsBuilders.scaleUp(),
           durationInMilliseconds: 600,
-          reverseDurationInMilliseconds: 1000,
+          reverseDurationInMilliseconds: 600,
+          meta: const {RouteMetaConstants.analyticsName: 'playlist'},
         ),
         CustomRoute(
           path: '/settings',
@@ -112,14 +117,26 @@ class AppRouter extends $AppRouter {
         CustomRoute(
           path: '/search',
           page: SearchScreenRoute.page,
-          transitionsBuilder: CustomTransitionsBuilders.scaleUpSlideDown(),
+          transitionsBuilder: CustomTransitionsBuilders.scaleUp(),
           durationInMilliseconds: 600,
-          reverseDurationInMilliseconds: 1000,
+          reverseDurationInMilliseconds: 600,
+          meta: const {RouteMetaConstants.analyticsName: 'search'},
         ),
         CustomRoute(
           page: EpisodeScreenRoute.page,
           path: '/episode/:episodeId',
           meta: const {RouteMetaConstants.analyticsName: 'episode'},
+          reverseDurationInMilliseconds: 400,
+          durationInMilliseconds: 400,
+          transitionsBuilder: (context, prim, second, child) {
+            return MorphTransition(
+              primary: prim,
+              secondary: second,
+              fallbackTransitionBuilder: CustomTransitionsBuilders.scaleUp(),
+              duration: 400.ms,
+              child: child,
+            );
+          },
         ),
         CustomRoute(
           page: AppLanguageScreenRoute.page,
@@ -127,7 +144,7 @@ class AppRouter extends $AppRouter {
           durationInMilliseconds: 800,
           reverseDurationInMilliseconds: 800,
           customRouteBuilder: settingsRouteBuilder,
-          meta: const {RouteMetaConstants.analyticsName: 'app-language'},
+          meta: const {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'appLanguage'},
         ),
         CustomRoute(
           page: ContentLanguageScreenRoute.page,

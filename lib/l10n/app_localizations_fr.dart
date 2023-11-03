@@ -931,4 +931,7 @@ class SFr extends S {
 
   @override
   String get technicalDetails => 'Détails techniques';
+
+  @override
+  String get contentLanguage => 'Content language';
 }

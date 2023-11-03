@@ -1,27 +1,19 @@
-import 'package:animations/animations.dart';
-import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/misc/custom_grid_view.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
-import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button.dart';
-import 'package:kids/components/player/controls.dart';
-import 'package:kids/components/player/player_view.dart';
 import 'package:kids/helpers/transitions.dart';
-import 'package:kids/router/router.gr.dart';
-import 'package:kids/screens/episode.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:universal_io/io.dart';
 
 class EpisodeGridItem {
   final String id;
@@ -54,7 +46,7 @@ class EpisodeGrid extends StatelessWidget {
   });
 
   final List<EpisodeGridItem> items;
-  final void Function(EpisodeGridItem item) onTap;
+  final void Function(EpisodeGridItem item, int index, GlobalKey morphKey) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -69,42 +61,44 @@ class EpisodeGrid extends StatelessWidget {
       children: items.mapIndexed((index, item) {
         return EpisodeGridItemRenderer(
           item,
-          enableMorph: true,
-          onTap: () => onTap(item),
+          onPressed: (morphKey) => onTap(item, index, morphKey),
         );
       }).toList(),
     );
   }
 }
 
-class EpisodeGridItemRenderer extends ConsumerWidget {
+class EpisodeGridItemRenderer extends HookConsumerWidget {
   const EpisodeGridItemRenderer(
     this.item, {
     super.key,
-    required this.onTap,
-    required this.enableMorph,
+    required this.onPressed,
     this.hideTitle = false,
   });
 
   final EpisodeGridItem item;
-  final VoidCallback onTap;
-  final bool enableMorph;
+  final void Function(GlobalKey) onPressed;
   final bool hideTitle;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
-
     final bp = ResponsiveBreakpoints.of(context);
+    final morphKey = useMemoized(() => GlobalKey(), []);
+    final borderRadius = BorderRadius.circular(bp.smallerThan(TABLET) ? 16 : 24);
+
+    onPressedLocal() {
+      onPressed(morphKey);
+    }
 
     return FocusableControlBuilder(
       cursor: SystemMouseCursors.click,
       actions: {
         ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) {
-          return onTap();
+          return onPressedLocal();
         }),
       },
-      onPressed: onTap,
+      onPressed: onPressedLocal,
       builder: (context, control) => Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,32 +106,39 @@ class EpisodeGridItemRenderer extends ConsumerWidget {
           AspectRatio(
             aspectRatio: 16 / 9,
             child: ClipRRect(
-              borderRadius: !enableMorph ? BorderRadius.circular(bp.smallerThan(TABLET) ? 16 : 24) : BorderRadius.zero,
-              child: _MorphToEpisodeScreen(
-                enabled: enableMorph,
-                episodeId: item.id,
-                child: Stack(
-                  children: [
-                    item.image != null
-                        ? Stack(
-                            children: [
-                              Positioned.fill(
-                                child: Container(color: design.colors.separator2)
-                                    .animate(onComplete: (c) => c.forward(from: 0))
-                                    .shimmer(duration: 1000.ms)
-                                    .callback(delay: 1000.ms, duration: 250.ms, callback: (c) => true),
+              borderRadius: borderRadius,
+              child: MorphTransitionHost(
+                key: morphKey,
+                borderRadius: borderRadius,
+                builder: (context) => Container(
+                  color: Colors.white,
+                  child: Stack(
+                    children: [
+                      if (item.image != null)
+                        Stack(
+                          children: [
+                            Positioned.fill(
+                              child: Animate(
+                                effects: [
+                                  if (!Platform.isAndroid) ShimmerEffect(duration: 1000.ms),
+                                  CallbackEffect(delay: 1000.ms, duration: 250.ms, callback: (_) => true),
+                                ],
+                                child: Container(color: design.colors.separator2),
                               ),
-                              simpleFadeInImage(url: item.image!)
-                            ],
-                          )
-                        : Container(color: design.colors.separator2),
-                    if (item.duration != null)
-                      Positioned(
-                        bottom: bp.smallerThan(TABLET) ? 8 : 16,
-                        left: bp.smallerThan(TABLET) ? 8 : 16,
-                        child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
-                      ),
-                  ],
+                            ),
+                            simpleFadeInImage(url: item.image!),
+                          ],
+                        )
+                      else
+                        Container(color: design.colors.separator2),
+                      if (item.duration != null)
+                        Positioned(
+                          bottom: bp.smallerThan(TABLET) ? 8 : 16,
+                          left: bp.smallerThan(TABLET) ? 8 : 16,
+                          child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -154,57 +155,7 @@ class EpisodeGridItemRenderer extends ConsumerWidget {
             ),
         ],
       ),
-    );
-  }
-}
-
-class _MorphToEpisodeScreen extends StatelessWidget {
-  const _MorphToEpisodeScreen({
-    super.key,
-    required this.child,
-    required this.enabled,
-    required this.episodeId,
-  });
-
-  final Widget child;
-  final bool enabled;
-  final String episodeId;
-
-  @override
-  Widget build(BuildContext context) {
-    if (!enabled) return child;
-    final small = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
-    final duration = 500.ms;
-    return OpenContainer(
-      openBuilder: (context, close) {
-        final args = ModalRoute.of(context)!.settings.arguments.asOrNull<EpisodeScreenRouteArgs>();
-        if (args != null) {
-          return InheritedData(
-            inheritedData: ContainerTransitionInfo(duration: duration),
-            child: (c) => EpisodeScreen(
-              id: args.id,
-              cursor: args.cursor,
-              shuffle: args.shuffle,
-            ),
-          );
-        }
-        return const SizedBox.shrink();
-      },
-      openElevation: 0,
-      closedElevation: 0,
-      transitionType: ContainerTransitionType.fade,
-      openColor: Colors.transparent,
-      openShape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-      closedColor: Colors.transparent,
-      closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(small ? 16 : 16)),
-      transitionDuration: duration,
-      routeSettings: RouteSettings(name: EpisodeScreenRoute.page.name, arguments: EpisodeScreenRouteArgs(id: episodeId)),
-      closedBuilder: (
-        context,
-        open,
-      ) =>
-          child,
-    );
+    ).animate().fadeIn(duration: 500.ms);
   }
 }
 

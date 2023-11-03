@@ -6,42 +6,14 @@ import '../../components/menus/option_list.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
-import '../../models/analytics/language_changed.dart';
-import '../../providers/analytics.dart';
 import '../../providers/settings.dart';
 
 @RoutePage<void>()
-class AudioLanguageScreen extends ConsumerStatefulWidget {
+class AudioLanguageScreen extends ConsumerWidget {
   const AudioLanguageScreen({super.key});
 
   @override
-  ConsumerState<AudioLanguageScreen> createState() => _AppAudioLanguageState();
-}
-
-class _AppAudioLanguageState extends ConsumerState<AudioLanguageScreen> {
-  late String? selected;
-
-  void _onSelectionChanged(String? id) {
-    if (id == null) return;
-    ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
-          languageFrom: selected,
-          languageTo: id,
-          languageChangeType: 'audio',
-        ));
-    setState(() {
-      selected = id;
-    });
-    ref.read(settingsProvider.notifier).setAudioLanguages([id]);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    selected = ref.read(settingsProvider).audioLanguages.firstOrNull;
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DialogOnWeb(
       child: Scaffold(
         appBar: AppBar(
@@ -57,9 +29,12 @@ class _AppAudioLanguageState extends ConsumerState<AudioLanguageScreen> {
               padding: const EdgeInsets.all(16),
               child: OptionList<String>(
                 optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
-                currentSelection: selected,
+                currentSelection: ref.watch(settingsProvider).audioLanguages.firstOrNull,
                 backgroundColor: Colors.transparent,
-                onSelectionChange: _onSelectionChanged,
+                onSelectionChange: (code) {
+                  if (code == null) return;
+                  ref.read(settingsProvider.notifier).setAudioLanguages([code]);
+                },
               ),
             ),
           ),

@@ -12,6 +12,9 @@ fragment SearchResultItem on SearchResultItem {
   }
   ... on ShowSearchItem {
     __typename
+    show {
+      posterImage: image(style: poster)
+    }
   }
   __typename
 }

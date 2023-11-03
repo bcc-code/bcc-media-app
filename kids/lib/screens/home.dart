@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/pages/page_mixin.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
@@ -11,13 +10,11 @@ import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:kids/components/buttons/button.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/version.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids/components/page/section_renderer.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
@@ -113,7 +110,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                                     )
                                         .animate()
                                         .slideX(begin: 4, curve: Curves.easeOutExpo, duration: 2000.ms)
-                                        .scale(begin: Offset(0.5, 0.5))
+                                        .scale(begin: const Offset(0.5, 0.5))
                                         .rotate(begin: 0.05)
                                         .fadeIn(),
                                   ),

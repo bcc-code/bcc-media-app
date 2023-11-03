@@ -1910,6 +1910,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Technical details'**
   String get technicalDetails;
+
+  /// Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles.
+  ///
+  /// In en, this message translates to:
+  /// **'Content language'**
+  String get contentLanguage;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

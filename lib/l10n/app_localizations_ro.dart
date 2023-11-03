@@ -931,4 +931,7 @@ class SRo extends S {
 
   @override
   String get technicalDetails => 'Detalii tehnice';
+
+  @override
+  String get contentLanguage => 'Content language';
 }

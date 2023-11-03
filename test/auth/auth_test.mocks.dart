@@ -498,10 +498,15 @@ class MockSettingsService extends _i1.Mock implements _i4.SettingsService {
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  _i7.Future<void> setAppLanguage(String? code) => (super.noSuchMethod(
+  _i7.Future<void> setAppLanguage(
+    String? code, {
+    bool? sendAnalytics = true,
+  }) =>
+      (super.noSuchMethod(
         Invocation.method(
           #setAppLanguage,
           [code],
+          {#sendAnalytics: sendAnalytics},
         ),
         returnValue: _i7.Future<void>.value(),
         returnValueForMissingStub: _i7.Future<void>.value(),

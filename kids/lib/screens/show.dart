@@ -1,18 +1,19 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
-import 'package:brunstadtv_app/providers/playback_service.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:brunstadtv_app/models/analytics/sections.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:kids/components/buttons/button.dart';
+import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:kids/components/grid/episode_grid.dart';
-import 'package:kids/helpers/playback.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -40,6 +41,12 @@ class ShowScreen extends HookConsumerWidget {
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
+
+    final episodes = showQuery.result.parsedData?.$show.seasons.items
+        .expand((element) => element.episodes.items)
+        .whereType<Fragment$KidsEpisodeThumbnail>()
+        .map((e) => EpisodeGridItem.fromFragment(e))
+        .toList();
 
     return Scaffold(
       body: Stack(
@@ -77,7 +84,11 @@ class ShowScreen extends HookConsumerWidget {
                         const Spacer(),
                         const SizedBox(width: 24),
                         design.buttons.responsive(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (episodes == null) return;
+                            final randomEpisode = episodes[Random().nextInt(episodes.length)];
+                            context.router.push(EpisodeScreenRoute(id: randomEpisode.id, shuffle: true));
+                          },
                           labelText: 'Play random',
                           image: SizedBox(
                             height: 24,
@@ -93,40 +104,36 @@ class ShowScreen extends HookConsumerWidget {
               ),
               if (showQuery.result.isLoading)
                 const SliverFillRemaining(hasScrollBody: true, child: LoadingGeneric())
-              else if (showQuery.result.parsedData != null)
+              else if (episodes != null)
                 SliverSafeArea(
                   top: false,
                   sliver: SliverToBoxAdapter(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: basePadding).copyWith(bottom: basePadding),
                       child: EpisodeGrid(
-                        onTap: (item) {
+                        onTap: (item, index, morphKey) {
+                          currentMorphKey = morphKey;
                           context.router.push(EpisodeScreenRoute(id: item.id));
+                          ref.read(analyticsProvider).sectionItemClicked(context,
+                              sectionAnalyticsOverride: SectionAnalytics(
+                                id: 'ShowEpisodes-$showId',
+                                position: 0,
+                                type: 'ShowEpisodes',
+                              ),
+                              itemAnalyticsOverride: SectionItemAnalytics(
+                                position: index,
+                                type: 'Episode',
+                                id: item.id,
+                              ));
                         },
-                        items: showQuery.result.parsedData!.$show.seasons.items
-                            .expand((element) => element.episodes.items)
-                            .whereType<Fragment$KidsEpisodeThumbnail>()
-                            .map((e) => EpisodeGridItem.fromFragment(e))
-                            .toList(),
+                        items: episodes,
                       ),
                     ),
                   ),
                 )
             ],
           ),
-          Positioned(
-              top: 0,
-              left: 0,
-              child: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.all(basePadding),
-                  child: design.buttons.responsive(
-                    labelText: '',
-                    onPressed: () => context.router.pop(),
-                    image: SvgPicture.string(SvgIcons.close),
-                  ),
-                ),
-              ))
+          const StackCloseButton(),
         ],
       ),
     );

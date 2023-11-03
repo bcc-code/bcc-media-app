@@ -47,7 +47,13 @@ class PlaybackService {
     if (FlavorConfig.current.flavor == Flavor.bccmedia) {
       npawAppName = ref.read(isAndroidTvProvider) ? 'androidtv' : 'mobile';
     }
-    BccmPlaybackListener(ref: ref, apiProvider: apiProvider);
+    BccmPlaybackListener(
+      ref: ref,
+      updateProgress: (episodeId, progressSeconds) => ref.read(apiProvider).updateProgress(
+            episodeId: episodeId,
+            progress: progressSeconds,
+          ),
+    );
 
     // Keep the analytics session alive while playing stuff.
     ref.listen<PlayerState?>(primaryPlayerProvider, (_, next) {
@@ -87,7 +93,7 @@ class PlaybackService {
     );
   }
 
-  MediaItem mapEpisode(Fragment$PlayableEpisode episode) {
+  MediaItem mapEpisode(Fragment$PlayableEpisode episode, {String? playlistId}) {
     final collectionId = episode.context.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id;
     return MediaItem(
       url: episode.streams.getBestStreamUrl(),
@@ -100,11 +106,12 @@ class PlaybackService {
         extras: {
           'id': episode.id.toString(),
           if (collectionId != null) 'context.collectionId': collectionId,
+          if (playlistId != null) 'context.playlistId': playlistId,
+          'context.cursor': episode.cursor,
           'npaw.content.id': episode.id,
           'npaw.content.tvShow': episode.season?.$show.id,
           if (episode.season != null) 'npaw.content.season': '${episode.season!.id} - ${episode.season!.title}',
           'npaw.content.episodeTitle': episode.title,
-          'cursor': episode.cursor,
         },
       ),
     );
@@ -167,8 +174,14 @@ class PlaybackService {
     return nextEpisode;
   }
 
-  Future playEpisode({required String playerId, required Fragment$PlayableEpisode episode, bool? autoplay, int? playbackPositionMs}) async {
-    var mediaItem = mapEpisode(episode);
+  Future playEpisode({
+    required String playerId,
+    required Fragment$PlayableEpisode episode,
+    bool? autoplay,
+    int? playbackPositionMs,
+    String? playlistId,
+  }) async {
+    var mediaItem = mapEpisode(episode, playlistId: playlistId);
     mediaItem.playbackStartPositionMs = playbackPositionMs?.toDouble();
     await platformApi.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
   }

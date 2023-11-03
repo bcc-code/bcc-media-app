@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # major.minor.patch+xxxxxxx
 # Note: On play store, any dots in the build
 # number (i.e. the number after +) gets removed
-version: 4.9.8+2300098
+version: 4.9.9+2300099
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -125,6 +125,7 @@ dependencies:
   markdown: ^7.1.1
   flutter_layout_grid: ^2.0.5
   flutter_animate: ^4.2.0+1
+  simple_shadow: ^0.3.1
   #smooth: any
 
 dev_dependencies:

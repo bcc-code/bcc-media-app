@@ -59,6 +59,7 @@ type ShowSearchItem implements SearchResultItem {
     highlight: String
     image: String
     url: String!
+    show: Show! @goField(forceResolver: true)
 }
 
 type SearchResult {

@@ -826,109 +826,112 @@ class SHu extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Audio not available in $lang';
+    return 'A hang nem érhető el $lang-ban';
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+  String get notEnoughAvailableSpace => 'Nincs elég szabad hely az eszközön';
 
   @override
-  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+  String get considerDeletingOtherVideos => 'Fontolj meg az alkalmazásból letöltött egyéb videók törlését.';
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'The video file size is $size.';
+    return 'A videó fájl mérete $size.';
   }
 
   @override
-  String get gotIt => 'Got it';
+  String get gotIt => 'Megvan';
 
   @override
-  String get saveYourFavorites => 'Save your favorite videos';
+  String get saveYourFavorites => 'Kedvenc videóidnak mentése';
 
   @override
-  String get saveYourFavoritesDescription => 'Tap on the heart icon on a video to save it in your profile.';
+  String get saveYourFavoritesDescription => 'Koppints a szív ikonra egy videón, ha el szeretnéd menteni a profilodba.';
 
   @override
-  String get yourFavorites => 'Your favorites';
+  String get yourFavorites => 'Kedvenceid';
 
   @override
-  String get downloaded => 'Downloaded';
+  String get downloaded => 'Letöltve';
 
   @override
-  String get saveVideosForOfflineViewing => 'Save videos for offline viewing';
+  String get saveVideosForOfflineViewing => 'Videók mentése offline megtekintéshez';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
+  String get tapOnTheDownloadIcon => 'Koppints a letöltés ikonra egy videón, hogy letöltsd és lejátszd offline állapotban.';
 
   @override
-  String get removeOfflineVideo => 'Remove offline video?';
+  String get removeOfflineVideo => 'Offline videó eltávolítása?';
 
   @override
-  String get removeOfflineVideoDescription => 'By removing this video it will no longer be available without a network connection.';
+  String get removeOfflineVideoDescription => 'A videó eltávolításával a továbbiakban nem lesz elérhető hálózati kapcsolat nélkül.';
 
   @override
-  String get removeFromDeviceButton => 'Remove from device';
+  String get removeFromDeviceButton => 'Eltávolítás a készülékről';
 
   @override
-  String get keepVideoButton => 'Keep video';
+  String get keepVideoButton => 'Videó megtartása';
 
   @override
-  String get noInternetConnection => 'No internet connection';
+  String get noInternetConnection => 'Nincs internetkapcsolat';
 
   @override
-  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+  String get noInternetConnectionDescription => 'Az összes videó eléréséhez csatlakozz az internethez.';
 
   @override
-  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+  String get noInternetButDontWorry => 'Nincs internetkapcsolat,\nde ne aggódj.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
+  String get hereAreAllTheVideosYouDownloaded => 'Itt találod az összes videót, amelyet letöltöttél a készülékedre.';
 
   @override
-  String get connectToExplore => 'Connect to the internet to explore all videos.';
+  String get connectToExplore => 'Az összes videó eléréséhez csatlakozz az internethez.';
 
   @override
   String get language => 'Nyelv';
 
   @override
   String estimatedFileSize(String size) {
-    return 'Estimated file size: $size';
+    return 'Becsült fájlméret: $size';
   }
 
   @override
-  String get downloadVideo => 'Download video';
+  String get downloadVideo => 'Videó letöltése';
 
   @override
-  String get noSubtitles => 'No subtitles';
+  String get noSubtitles => 'Nincs feliratozás';
 
   @override
-  String get subtitlesIncluded => 'Subtitles included';
+  String get subtitlesIncluded => 'Feliratozva';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'All subtitles will be available offline';
+  String get allSubtitlesWillBeAvailableOffline => 'Minden felirat elérhető lesz offline';
 
   @override
-  String get downloading => 'Downloading';
+  String get downloading => 'Letöltés';
 
   @override
-  String get failed => 'Failed';
+  String get failed => 'Sikertelen';
 
   @override
-  String get finished => 'Finished';
+  String get finished => 'Befejezett';
 
   @override
-  String get paused => 'Paused';
+  String get paused => 'Szünet';
 
   @override
-  String get queued => 'Queued';
+  String get queued => 'Sorba állítva';
 
   @override
-  String get removing => 'Removing';
+  String get removing => 'Eltávolítás';
 
   @override
-  String get availableOffline => 'Available offline';
+  String get availableOffline => 'Offline elérhető';
 
   @override
-  String get technicalDetails => 'Technical details';
+  String get technicalDetails => 'Műszaki részletek';
+
+  @override
+  String get contentLanguage => 'Content language';
 }
