@@ -933,5 +933,8 @@ class SSl extends S {
   String get technicalDetails => 'Tehnične podrobnosti';
 
   @override
-  String get contentLanguage => 'Content language';
+  String get contentLanguage => 'Jezik vsebine';
+
+  @override
+  String get playRandom => 'Play random';
 }

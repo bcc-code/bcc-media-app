@@ -934,4 +934,7 @@ class STr extends S {
 
   @override
   String get contentLanguage => 'Content language';
+
+  @override
+  String get playRandom => 'Play random';
 }
