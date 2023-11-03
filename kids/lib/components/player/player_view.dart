@@ -101,7 +101,6 @@ class PlayerView extends HookConsumerWidget {
     final lastEpisodeId = useState(currentMediaItem.value?.metadata?.extras?['id']);
     final buffering = useState(false);
     final last5SecondsHandled = useState(false);
-
     useEffect(() {
       void listener() {
         currentMediaItem.value = viewController.playerController.value.currentMediaItem;
@@ -257,7 +256,6 @@ class PlayerView extends HookConsumerWidget {
                                     scrollDirection: Axis.horizontal,
                                     child: PlayerEpisodes(
                                       episodeId: lastEpisodeId.value!,
-                                      cursor: null,
                                       onChange: () {
                                         setControlsVisible(false);
                                       },
@@ -506,23 +504,29 @@ class PlayerEpisodes extends HookConsumerWidget {
     super.key,
     required this.episodeId,
     required this.onChange,
-    this.cursor,
   });
 
   final String episodeId;
-  final String? cursor;
   final VoidCallback onChange;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewController = BccmPlayerViewController.of(context);
+    final cursor = useState<String?>(null);
+    useEffect(() {
+      final cursorNow = viewController.playerController.value.currentMediaItem?.metadata?.extras?['cursor'];
+      if (cursorNow != null) {
+        cursor.value = cursorNow;
+      }
+    }, [viewController.playerController.value.currentMediaItem?.metadata?.extras?['cursor']]);
+
     final query = useQuery$KidsGetNextEpisodes(
       Options$Query$KidsGetNextEpisodes(
         variables: Variables$Query$KidsGetNextEpisodes(
           episodeId: episodeId,
           context: Input$EpisodeContext(
             shuffle: false,
-            cursor: viewController.playerController.value.currentMediaItem?.metadata?.extras?['cursor'],
+            cursor: cursor.value,
           ),
         ),
         cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
