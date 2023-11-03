@@ -144,7 +144,7 @@ class AppRouter extends $AppRouter {
           durationInMilliseconds: 800,
           reverseDurationInMilliseconds: 800,
           customRouteBuilder: settingsRouteBuilder,
-          meta: const {RouteMetaConstants.analyticsName: 'app-language'},
+          meta: const {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'appLanguage'},
         ),
       ];
 }

@@ -6,42 +6,13 @@ import '../../components/menus/option_list.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
-import '../../models/analytics/language_changed.dart';
-import '../../providers/analytics.dart';
 
 @RoutePage<void>()
-class AppLanguageScreen extends ConsumerStatefulWidget {
+class AppLanguageScreen extends ConsumerWidget {
   const AppLanguageScreen({super.key});
 
   @override
-  ConsumerState<AppLanguageScreen> createState() => _AppLanguageScreenState();
-}
-
-class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
-  late String selected;
-
-  Future<void> _onSelectionChanged(String? id) async {
-    if (id == null) return;
-    ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
-          languageFrom: selected,
-          languageTo: id,
-          languageChangeType: 'app',
-        ));
-    setState(() {
-      selected = id;
-      // obtain shared preferences
-    });
-    ref.read(settingsProvider.notifier).setAppLanguage(id);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    selected = ref.read(settingsProvider).appLanguage.languageCode;
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DialogOnWeb(
       child: Scaffold(
         appBar: AppBar(
@@ -54,8 +25,11 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
               padding: const EdgeInsets.all(16),
               child: OptionList<String>(
                 optionData: appLanuageCodes.map((l) => Option(id: l, title: languages[l]!.nativeName, subTitle: languages[l]!.englishName)).toList(),
-                currentSelection: selected,
-                onSelectionChange: _onSelectionChanged,
+                currentSelection: ref.watch(settingsProvider).appLanguage.languageCode,
+                onSelectionChange: (code) {
+                  if (code == null) return;
+                  ref.read(settingsProvider.notifier).setAppLanguage(code);
+                },
                 backgroundColor: Colors.transparent,
               ),
             ),

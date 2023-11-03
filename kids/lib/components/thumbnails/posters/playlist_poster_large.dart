@@ -1,11 +1,7 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:animations/animations.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/analytics.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
@@ -17,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:kids/components/buttons/button.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:kids/screens/playlist.dart';
@@ -174,7 +169,7 @@ class _PlaylistInnerGrid extends HookWidget {
     final design = DesignSystem.of(context);
 
     var urlsToUse = imageUrls.take(8).toList();
-    if (urlsToUse.length < 8) {
+    if (urlsToUse.isNotEmpty && urlsToUse.length < 8) {
       urlsToUse = urlsToUse + List.generate(8 - urlsToUse.length, (index) => urlsToUse[index % urlsToUse.length]);
     }
     const scale = 1.4;

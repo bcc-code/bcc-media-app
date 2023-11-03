@@ -1,5 +1,7 @@
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
+import 'package:brunstadtv_app/models/analytics/language_changed.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/shared_preferences.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -64,14 +66,32 @@ class SettingsService extends StateNotifier<Settings> {
     );
   }
 
-  Future<void> setAppLanguage(String code) async {
+  Future<void> setAppLanguage(String code, {bool sendAnalytics = true}) async {
+    if (code == state.appLanguage.languageCode) return;
+    final previous = state.appLanguage.languageCode;
     ref.read(sharedPreferencesProvider).setString(PrefKeys.appLanguage, code);
     state = state.copyWith(appLanguage: getLocale(code) ?? Locale(_defaultLanguage));
+    if (sendAnalytics) {
+      ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
+            languageFrom: previous,
+            languageTo: code,
+            languageChangeType: 'app',
+          ));
+    }
   }
 
   Future<void> setAudioLanguages(List<String> languageCodes) async {
+    //if (const DeepCollectionEquality().equals(state.audioLanguages, languageCodes)) return;
+    final previous = state.audioLanguages;
+
     ref.read(sharedPreferencesProvider).setString(PrefKeys.audioLanguage, languageCodes.join(','));
     state = state.copyWith(audioLanguages: languageCodes);
+
+    ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
+          languageFrom: previous.join(','),
+          languageTo: languageCodes.join(','),
+          languageChangeType: 'audio',
+        ));
   }
 
   void refreshSessionId() {
