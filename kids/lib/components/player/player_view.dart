@@ -3,9 +3,8 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
-import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
+import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
@@ -20,7 +19,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/appbar_close_button.dart';
 import 'package:kids/components/buttons/tab_switcher.dart';
@@ -30,16 +28,19 @@ import 'package:kids/components/player/controls.dart';
 import 'package:kids/components/settings/applanguage_list.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/helpers/transitions.dart';
+import 'package:kids/router/router.gr.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class PlayerView extends HookConsumerWidget {
   const PlayerView({
     super.key,
-    this.episode,
-    this.playlistId,
+    required this.episode,
+    required this.playlistId,
+    required this.onReplayRequested,
   });
 
-  final Query$FetchEpisode$episode? episode;
+  final Query$KidsFetchEpisode$episode? episode;
+  final void Function() onReplayRequested;
   final String? playlistId;
 
   @override
@@ -57,20 +58,19 @@ class PlayerView extends HookConsumerWidget {
       reverseCurve: Curves.easeInExpo,
     );
 
+    void navigateToEpisode(Fragment$KidsEpisodeThumbnail episode) {
+      context.replaceRoute(EpisodeScreenRoute(
+        id: episode.id,
+        shuffle: false,
+        playlistId: playlistId,
+        cursor: episode.cursor,
+      ));
+    }
+
     final morphTransition = InheritedData.listen<MorphTransitionInfo>(context);
     final currentMediaItem = useState(viewController.playerController.value.currentMediaItem);
 
     final controlsVisible = useState(false);
-
-    void replayVideo() {
-      if (episode == null) return;
-      ref.read(playbackServiceProvider).playEpisode(
-            playerId: viewController.playerController.value.playerId,
-            episode: episode!,
-            autoplay: true,
-            playlistId: playlistId,
-          );
-    }
 
     setControlsVisible(bool value) {
       if (controlsVisible.value == value) {
@@ -85,7 +85,7 @@ class PlayerView extends HookConsumerWidget {
         if (viewController.playerController.value.playbackState != PlaybackState.playing && currentMediaItem.value != null) {
           viewController.playerController.play();
         } else if (currentMediaItem.value == null && episode != null) {
-          replayVideo();
+          onReplayRequested?.call();
         }
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       }
@@ -140,35 +140,35 @@ class PlayerView extends HookConsumerWidget {
     final basePadding = bp.smallerThan(TABLET) ? 20.0 : 40.0;
 
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            color: curvedAnimation.drive(ColorTween(begin: Colors.black, end: Colors.white)).value,
-          ),
-          LayoutBuilder(builder: (context, constraints) {
-            // Calculate the height of the middle box based on the aspect ratio
-            final sideOpenTargetWidth = 152.0;
-            final bottomOpenMinimumHeight = bp.smallerThan(TABLET) ? 170.0 : 300.0;
-            final topOpenTargetHeight = bp.smallerThan(TABLET) ? 12.0 : 40.0;
+      body: LayoutBuilder(builder: (context, constraints) {
+        // Calculate the height of the middle box based on the aspect ratio
+        final sideOpenTargetWidth = 152.0;
+        final bottomOpenMinimumHeight = bp.smallerThan(TABLET) ? 170.0 : 300.0;
+        final topOpenTargetHeight = bp.smallerThan(TABLET) ? 12.0 : 40.0;
 
-            final sideWidthTweened = sideOpenTargetWidth * curvedAnimation.value;
+        final sideWidthTweened = sideOpenTargetWidth * curvedAnimation.value;
 
-            final middleClosedHeight = min(constraints.maxHeight, (constraints.maxWidth) * (9 / 16));
-            final middleOpenTargetHeight = min(
-                constraints.maxHeight - bottomOpenMinimumHeight - topOpenTargetHeight, (constraints.maxWidth - sideOpenTargetWidth * 2) * (9 / 16));
-            final middleHeightTweened = curvedAnimation.drive(Tween(begin: middleClosedHeight, end: middleOpenTargetHeight)).value;
+        final middleClosedHeight = min(constraints.maxHeight, (constraints.maxWidth) * (9 / 16));
+        final middleOpenTargetHeight =
+            min(constraints.maxHeight - bottomOpenMinimumHeight - topOpenTargetHeight, (constraints.maxWidth - sideOpenTargetWidth * 2) * (9 / 16));
+        final middleHeightTweened = curvedAnimation.drive(Tween(begin: middleClosedHeight, end: middleOpenTargetHeight)).value;
 
-            final remainingHeightWhenOpen = max(0.0, constraints.maxHeight - middleOpenTargetHeight);
-            final remainingHeightWhenClosed = max(0.0, constraints.maxHeight - middleClosedHeight);
-            final remainingHeight = max(0.0, constraints.maxHeight - middleHeightTweened);
+        final remainingHeightWhenOpen = max(0.0, constraints.maxHeight - middleOpenTargetHeight);
+        final remainingHeightWhenClosed = max(0.0, constraints.maxHeight - middleClosedHeight);
+        final remainingHeight = max(0.0, constraints.maxHeight - middleHeightTweened);
 
-            final topHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeightWhenClosed / 2, end: topOpenTargetHeight));
+        final topHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeightWhenClosed / 2, end: topOpenTargetHeight));
 
-            final bottomOpenTargetHeight = remainingHeightWhenOpen - topOpenTargetHeight;
-            final bottomOpenHeight = max(remainingHeight / 2, bottomOpenTargetHeight);
-            final bottomHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeight / 2, end: bottomOpenHeight));
-            return Column(
+        final bottomOpenTargetHeight = remainingHeightWhenOpen - topOpenTargetHeight;
+        final bottomOpenHeight = max(remainingHeight / 2, bottomOpenTargetHeight);
+        final bottomHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeight / 2, end: bottomOpenHeight));
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              color: curvedAnimation.drive(ColorTween(begin: Colors.black, end: Colors.white)).value,
+            ),
+            Column(
               children: [
                 Container(
                   height: topHeightTweened.value,
@@ -227,7 +227,7 @@ class PlayerView extends HookConsumerWidget {
                                   opacity: curvedAnimation.value,
                                   child: PlayerControls(
                                     show: controlsVisible.value,
-                                    onPlayRequestedWithoutVideo: replayVideo,
+                                    onPlayRequestedWithoutVideo: onReplayRequested,
                                   ),
                                 ),
                               ),
@@ -262,8 +262,9 @@ class PlayerView extends HookConsumerWidget {
                                   )
                                 : PlayerEpisodes(
                                     padding: EdgeInsets.symmetric(horizontal: basePadding).copyWith(bottom: MediaQuery.paddingOf(context).bottom),
-                                    episodeId: lastEpisodeId.value!,
-                                    onChange: () {
+                                    episode: episode,
+                                    onEpisodeTap: (ep) {
+                                      navigateToEpisode(ep);
                                       setControlsVisible(false);
                                     },
                                   ),
@@ -274,60 +275,82 @@ class PlayerView extends HookConsumerWidget {
                   ),
                 ),
               ],
-            );
-          }),
-          Positioned(
-            top: 0,
-            left: 0 - (1 - curvedAnimation.value) * 200,
-            child: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.all(basePadding),
-                child: design.buttons.responsive(
-                  labelText: '',
-                  onPressed: () => context.router.pop(),
-                  image: SvgPicture.string(SvgIcons.close),
+            ),
+            Positioned(
+              top: 0,
+              left: 0 - (1 - curvedAnimation.value) * 200,
+              child: SafeArea(
+                top: false,
+                bottom: false,
+                child: Padding(
+                  padding: EdgeInsets.all(basePadding),
+                  child: design.buttons.responsive(
+                    labelText: '',
+                    onPressed: () => context.router.pop(),
+                    image: SvgPicture.string(SvgIcons.close),
+                  ),
                 ),
               ),
             ),
-          ),
-          Positioned(
-            top: 0,
-            right: 0 - (1 - curvedAnimation.value) * 200,
-            child: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.all(basePadding),
-                child: design.buttons.responsive(
-                  labelText: '',
-                  onPressed: () {
-                    if (bp.smallerThan(TABLET)) {
-                      showGeneralDialog(
-                        transitionBuilder: CustomTransitionsBuilders.slideUp(),
-                        transitionDuration: 500.ms,
-                        context: context,
-                        barrierColor: Colors.transparent,
-                        routeSettings: const RouteSettings(name: 'player-settings'),
-                        pageBuilder: (context, a, b) => PlayerSettingsView(
-                          playerController: viewController.playerController,
+            Positioned(
+              top: 0,
+              right: 0 - (1 - curvedAnimation.value) * 200,
+              child: SafeArea(
+                top: false,
+                bottom: false,
+                child: SizedBox(
+                  height: middleOpenTargetHeight + topOpenTargetHeight,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(basePadding),
+                        child: design.buttons.responsive(
+                          labelText: '',
+                          onPressed: () {
+                            if (bp.smallerThan(TABLET)) {
+                              showGeneralDialog(
+                                transitionBuilder: CustomTransitionsBuilders.slideUp(),
+                                transitionDuration: 500.ms,
+                                context: context,
+                                barrierColor: Colors.transparent,
+                                routeSettings: const RouteSettings(name: 'player-settings'),
+                                pageBuilder: (context, a, b) => PlayerSettingsView(
+                                  playerController: viewController.playerController,
+                                ),
+                              );
+                              return;
+                            }
+                            showDialog(
+                              context: context,
+                              routeSettings: const RouteSettings(name: 'player-settings'),
+                              builder: (context) => PlayfulDialog(
+                                  child: PlayerSettingsView(
+                                playerController: viewController.playerController,
+                              )),
+                            );
+                          },
+                          image: SvgPicture.string(SvgIcons.settings),
                         ),
-                      );
-                      return;
-                    }
-                    showDialog(
-                      context: context,
-                      routeSettings: const RouteSettings(name: 'player-settings'),
-                      builder: (context) => PlayfulDialog(
-                          child: PlayerSettingsView(
-                        playerController: viewController.playerController,
-                      )),
-                    );
-                  },
-                  image: SvgPicture.string(SvgIcons.settings),
+                      ),
+                      const Spacer(),
+                      if (episode != null)
+                        design.buttons.responsive(
+                          labelText: '',
+                          onPressed: () {
+                            if (episode?.next.isNotEmpty != true) return;
+                            navigateToEpisode(episode!.next.first);
+                            setControlsVisible(false);
+                          },
+                          image: SvgPicture.string(SvgIcons.next),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          )
-        ],
-      ),
+          ],
+        );
+      }),
     );
   }
 }
@@ -508,45 +531,20 @@ class _TrackSelectionList extends HookWidget {
 class PlayerEpisodes extends HookConsumerWidget {
   const PlayerEpisodes({
     super.key,
-    required this.episodeId,
-    required this.onChange,
+    required this.episode,
+    required this.onEpisodeTap,
     this.padding,
   });
 
-  final String episodeId;
-  final VoidCallback onChange;
+  final Query$KidsFetchEpisode$episode? episode;
+  final void Function(Fragment$KidsEpisodeThumbnail) onEpisodeTap;
   final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final viewController = BccmPlayerViewController.of(context);
-    final queryVariables = useMemoized<Variables$Query$KidsGetNextEpisodes>(() {
-      return Variables$Query$KidsGetNextEpisodes(
-        episodeId: episodeId,
-        context: Input$EpisodeContext(
-          shuffle: false,
-          cursor: viewController.playerController.value.currentMediaItem?.metadata?.extras?['context.cursor'],
-          playlistId: viewController.playerController.value.currentMediaItem?.metadata?.extras?['context.playlistId'],
-        ),
-      );
-    }, [episodeId, viewController]);
-
-    final query = useQuery$KidsGetNextEpisodes(
-      Options$Query$KidsGetNextEpisodes(
-        variables: queryVariables,
-        cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
-        fetchPolicy: FetchPolicy.networkOnly,
-      ),
-    );
-
-    if (query.result.isLoading) {
-      return const Center(
-        child: LoadingIndicator(height: 24, width: 24),
-      );
-    }
     final design = DesignSystem.of(context);
-    final parsedData = query.result.parsedData;
-    if (parsedData == null) {
+    final episodes = episode?.next;
+    if (episodes == null || episodes.isEmpty) {
       return Padding(
         padding: padding ?? const EdgeInsets.all(20),
         child: Center(
@@ -565,9 +563,9 @@ class PlayerEpisodes extends HookConsumerWidget {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: parsedData.episode.next.length,
+        itemCount: episodes.length,
         itemBuilder: (context, i) {
-          final ep = parsedData.episode.next[i];
+          final ep = episodes[i];
           return Container(
             margin: const EdgeInsets.only(right: 20),
             child: AspectRatio(
@@ -579,19 +577,15 @@ class PlayerEpisodes extends HookConsumerWidget {
                   image: ep.image,
                   duration: ep.duration,
                 ),
+                key: ValueKey(ep.id),
                 hideTitle: ResponsiveBreakpoints.of(context).smallerThan(TABLET),
                 onPressed: (_) {
-                  ref.read(playbackServiceProvider).playEpisode(
-                        playerId: BccmPlayerViewController.of(context).playerController.value.playerId,
-                        episode: ep,
-                        autoplay: true,
-                      );
-                  onChange();
+                  onEpisodeTap(ep);
 
                   ref.read(analyticsProvider).sectionItemClicked(
                         context,
                         sectionAnalyticsOverride: SectionAnalytics(
-                          id: 'NextEpisodes-$episodeId',
+                          id: 'NextEpisodes-${episode?.id}',
                           position: 0,
                           type: 'NextEpisodesGrid',
                         ),

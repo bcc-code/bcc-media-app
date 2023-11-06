@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:animations/animations.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/analytics.dart';
@@ -115,11 +116,11 @@ class PlaylistPosterLarge extends HookConsumerWidget {
             ),
             Padding(
               padding: bp.smallerThan(TABLET) ? const EdgeInsets.all(20) : const EdgeInsets.symmetric(horizontal: 40, vertical: 32),
-              child: Text(
+              child: AutoSizeText(
                 title,
-                softWrap: true,
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
+                wrapWords: false,
                 style:
                     (bp.smallerThan(TABLET) ? design.textStyles.headline3 : design.textStyles.headline1).copyWith(color: design.colors.background1),
               ),

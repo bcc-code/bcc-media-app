@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
@@ -35,11 +36,10 @@ class EpisodeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final gqlClient = ref.watch(gqlClientProvider);
 
-    final episodeFuture = useMemoized<Future<QueryResult<Query$FetchEpisode?>>>(
-      () => gqlClient.query$FetchEpisode(
-        Options$Query$FetchEpisode(
-          variables: Variables$Query$FetchEpisode(
-            authenticated: false,
+    final episodeFuture = useMemoized<Future<QueryResult<Query$KidsFetchEpisode?>>>(
+      () => gqlClient.query$KidsFetchEpisode(
+        Options$Query$KidsFetchEpisode(
+          variables: Variables$Query$KidsFetchEpisode(
             id: id,
             context: Input$EpisodeContext(
               shuffle: shuffle ?? false,
@@ -72,21 +72,19 @@ class EpisodeScreen extends HookConsumerWidget {
       };
     });
 
-    useEffect(() {
-      if (!firstLoadDone.value) return;
-      if (currentId.value != null && currentId.value != id) {
-        context.replaceRoute(
-          EpisodeScreenRoute(
-            id: currentId.value!,
-            cursor: BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['context.cursor'],
-            shuffle: null,
-            playlistId: BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['context.playlistId'],
-          ),
-        );
-      }
-    }, [firstLoadDone.value, currentId.value, morphTransition, id]);
-
     final transitionDone = useState(false);
+
+    final play = useCallback(() {
+      if (episodeData == null) {
+        return;
+      }
+      playbackService.playEpisode(
+        playerId: BccmPlayerController.primary.value.playerId,
+        episode: episodeData,
+        autoplay: true,
+        playlistId: playlistId,
+      );
+    }, [episodeData, playlistId, playbackService]);
 
     useEffect(() {
       if (episodeData != null && !episodeIsCurrentItem) {
@@ -94,12 +92,7 @@ class EpisodeScreen extends HookConsumerWidget {
         Future.delayed(duration - 100.ms, () {
           if (!context.mounted) return;
           transitionDone.value = true;
-          playbackService.playEpisode(
-            playerId: BccmPlayerController.primary.value.playerId,
-            episode: episodeData,
-            autoplay: true,
-            playlistId: playlistId,
-          );
+          play();
         });
         firstLoadDone.value = true;
       }
@@ -115,7 +108,11 @@ class EpisodeScreen extends HookConsumerWidget {
 
     return InheritedBccmPlayerViewController(
       controller: viewController,
-      child: PlayerView(episode: episodeData),
+      child: PlayerView(
+        episode: episodeData,
+        playlistId: playlistId,
+        onReplayRequested: play,
+      ),
     );
   }
 }
