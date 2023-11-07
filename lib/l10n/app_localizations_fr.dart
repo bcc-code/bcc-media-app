@@ -934,4 +934,10 @@ class SFr extends S {
 
   @override
   String get contentLanguage => 'Content language';
+
+  @override
+  String get contentLanguageShort => 'Content';
+
+  @override
+  String get appLanguageShort => 'App';
 }

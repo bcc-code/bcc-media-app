@@ -4,17 +4,15 @@ import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:kids/helpers/svg_icons.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
-class SettingList extends StatelessWidget {
-  final List<SettingListItem> items;
+class AddLanguageList extends StatelessWidget {
+  final List<AddLanguageListItem> items;
   final Color? backgroundColor;
 
-  const SettingList({
-    super.key,
-    required this.items,
-    this.backgroundColor,
-  });
+  const AddLanguageList({super.key, required this.items, this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +22,7 @@ class SettingList extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(24),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           ...items.mapIndexed(
             (index, option) => Column(
@@ -53,7 +52,7 @@ class _ItemRenderer extends HookWidget {
     required this.defaultBackgroundColor,
   });
 
-  final SettingListItem item;
+  final AddLanguageListItem item;
   final Color defaultBackgroundColor;
 
   @override
@@ -92,7 +91,9 @@ class _ItemRenderer extends HookWidget {
                       : defaultBackgroundColor.withOpacity(clampDouble(defaultBackgroundColor.opacity - opacityReduction, 0, 1)),
                 ),
                 child: Container(
-                  padding: small ? const EdgeInsets.symmetric(horizontal: 20, vertical: 16) : const EdgeInsets.all(24),
+                  padding: small
+                      ? const EdgeInsets.symmetric(horizontal: 20, vertical: 16)
+                      : const EdgeInsets.only(left: 24, top: 8, right: 24, bottom: 8),
                   constraints: const BoxConstraints(minHeight: 56),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -105,8 +106,9 @@ class _ItemRenderer extends HookWidget {
                           children: [
                             Text(
                               item.title,
-                              maxLines: 1,
-                              style: small ? design.textStyles.title2 : design.textStyles.title1,
+                              style: small
+                                  ? design.textStyles.body2.copyWith(color: design.colors.label1)
+                                  : design.textStyles.body1.copyWith(color: design.colors.label1),
                             ),
                           ],
                         ),
@@ -114,9 +116,14 @@ class _ItemRenderer extends HookWidget {
                       if (item.rightText != null)
                         Text(
                           item.rightText!,
-                          overflow: TextOverflow.ellipsis,
                           style: (small ? design.textStyles.body2 : design.textStyles.body1).copyWith(color: design.colors.label1),
                         ),
+                      // if (item.selected)
+                      //   SvgPicture.string(
+                      //     SvgIcons.checked,
+                      //     width: 24,
+                      //     height: 24,
+                      //   )
                     ],
                   ),
                 ),
@@ -129,16 +136,18 @@ class _ItemRenderer extends HookWidget {
   }
 }
 
-class SettingListItem {
+class AddLanguageListItem {
   final String title;
   final VoidCallback onPressed;
   final String? rightText;
   bool disabled;
+  // bool selected;
 
-  SettingListItem({
+  AddLanguageListItem({
     required this.title,
     required this.onPressed,
     this.disabled = false,
     this.rightText,
+    // this.selected = false,
   });
 }

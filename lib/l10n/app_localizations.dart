@@ -1916,6 +1916,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Content language'**
   String get contentLanguage;
+
+  /// IMPORTANT: This is a short version of 'Content language'. Used on small screens.
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get contentLanguageShort;
+
+  /// IMPORTANT: This is a short version of 'App language'. Used on small screens.
+  ///
+  /// In en, this message translates to:
+  /// **'App'**
+  String get appLanguageShort;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

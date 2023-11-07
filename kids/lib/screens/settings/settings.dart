@@ -114,14 +114,14 @@ class SettingsScreen extends HookConsumerWidget {
                                 SettingList(
                                   items: [
                                     SettingListItem(
-                                      title: S.of(context).appLanguage,
+                                      title: bp.smallerThan(TABLET) ? S.of(context).appLanguageShort : S.of(context).appLanguage,
                                       rightText: getLanguageName(settings.appLanguage.languageCode) ?? '',
                                       onPressed: () {
                                         context.router.push(const AppLanguageScreenRoute());
                                       },
                                     ),
                                     SettingListItem(
-                                      title: S.of(context).audioLanguage,
+                                      title: bp.smallerThan(TABLET) ? S.of(context).contentLanguageShort : S.of(context).contentLanguage,
                                       rightText: settings.audioLanguages.map(getLanguageName).join(', '),
                                       onPressed: () {
                                         context.router.push(const ContentLanguageScreenRoute());

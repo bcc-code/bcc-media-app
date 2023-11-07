@@ -1285,5 +1285,13 @@
   "contentLanguage": "Content language",
   "@contentLanguage": {
     "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
+  },
+  "contentLanguageShort": "Content",
+  "@contentLanguageShort": {
+    "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
+  },
+  "appLanguageShort": "App",
+  "@appLanguageShort": {
+    "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
   }
 }

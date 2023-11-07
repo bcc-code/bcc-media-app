@@ -1,18 +1,17 @@
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-import 'package:kids/components/settings/applanguage_list.dart';
-import 'package:kids/components/settings/contentlanguage_list.dart';
 import 'package:brunstadtv_app/helpers/languages.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:kids/router/router.gr.dart';
 
 @RoutePage<void>()
 class ContentLanguageScreen extends HookConsumerWidget {
@@ -23,11 +22,6 @@ class ContentLanguageScreen extends HookConsumerWidget {
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
     final double basePadding = bp.smallerThan(TABLET) ? 24.0 : 48.0;
-    final selectedLanguageIndex = useState(0);
-
-    void doNothing(BuildContext context) {
-      // Intentionally left blank.
-    }
 
     return Scaffold(
       body: Stack(
@@ -38,7 +32,7 @@ class ContentLanguageScreen extends HookConsumerWidget {
                 bottom: true,
                 sliver: SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.only(left: basePadding, top: basePadding, right: basePadding, bottom: basePadding),
+                    padding: EdgeInsets.only(left: 20, top: basePadding, right: 20, bottom: basePadding),
                     child: Center(
                       child: ConstrainedBox(
                         constraints: const BoxConstraints.tightFor(width: 544),
@@ -53,16 +47,39 @@ class ContentLanguageScreen extends HookConsumerWidget {
                                   bottom: (bp.smallerThan(TABLET) ? 12 : 16) + 24),
                               child: Center(
                                 child: Text(
-                                  'App Language',
+                                  'Content Language',
                                   style: design.textStyles.title1,
                                 ),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 12),
-                              child: Text('Select', style: design.textStyles.body2),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Preferred languages', style: design.textStyles.title2),
+                                  Text('Reorder the languages to match your preference for audio & subtitle language',
+                                      style: design.textStyles.body2),
+                                ],
+                              ),
                             ),
-                            const ReorderableExample(),
+                            const ContentLanguageList(),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 12),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: design.buttons.responsive(
+                                        variant: ButtonVariant.secondary,
+                                        onPressed: () {
+                                          context.router.push(const AddLanguageScreenRoute());
+                                        },
+                                        labelText: 'Add language',
+                                        image: SvgPicture.string(SvgIcons.add)),
+                                  ),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -91,72 +108,72 @@ class ContentLanguageScreen extends HookConsumerWidget {
   }
 }
 
-class ReorderableExample extends StatefulWidget {
-  const ReorderableExample({super.key});
+class ContentLanguageList extends ConsumerStatefulWidget {
+  const ContentLanguageList({super.key});
 
   @override
-  State<ReorderableExample> createState() => _ReorderableListViewExampleState();
+  ConsumerState<ContentLanguageList> createState() => _ContentLanguageListState();
 }
 
-class _ReorderableListViewExampleState extends State<ReorderableExample> {
-  final List<int> _items = List<int>.generate(50, (int index) => index);
-  final List<String> _languageCodes = appLanuageCodes;
+class _ContentLanguageListState extends ConsumerState<ContentLanguageList> {
+  // final List<String> _languageCodes = appLanuageCodes;
 
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
-    final bp = ResponsiveBreakpoints.of(context);
-
-    void doNothing(BuildContext context) {
-      // Intentionally left blank.
-    }
+    final List<String> selected = List.from(ref.watch(settingsProvider).audioLanguages);
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(24),
       child: Container(
-          color: design.colors.background2,
-          child: Stack(
-            children: [
-              ReorderableListView(
+        color: design.colors.background2,
+        child: Stack(
+          children: [
+            SlidableAutoCloseBehavior(
+              child: ReorderableListView(
                 shrinkWrap: true,
+                buildDefaultDragHandles: selected.length != 1,
                 physics: const NeverScrollableScrollPhysics(),
                 children: <Widget>[
-                  for (int index = 0; index < _languageCodes.length; index++)
+                  for (int index = 0; index < selected.length; index++)
                     _CustomReorderableItem(
-                      key: Key(_languageCodes[index]),
+                      key: Key(selected[index]),
                       index: index,
-                      title: languages[_languageCodes[index]]!.nativeName,
+                      title: languages[selected[index]]!.nativeName,
                       onDelete: () {
                         setState(() {
-                          _languageCodes.removeAt(index);
+                          selected.removeAt(index);
+                          ref.read(settingsProvider.notifier).setAudioLanguages(selected);
                         });
                       },
                     ),
-                  // )
                 ],
                 onReorder: (int oldIndex, int newIndex) {
                   setState(() {
                     if (oldIndex < newIndex) {
                       newIndex -= 1;
                     }
-                    final String item = _languageCodes.removeAt(oldIndex);
-                    _languageCodes.insert(newIndex, item);
+                    final String item = selected.removeAt(oldIndex);
+                    selected.insert(newIndex, item);
+                    ref.read(settingsProvider.notifier).setAudioLanguages(selected);
                   });
                 },
               ),
-              for (int index = 0; index < _languageCodes.length; index++)
-                if (index > 0)
-                  Positioned(
-                    top: 57 * index.toDouble() - 1,
-                    left: 20,
-                    right: 20,
-                    child: SizedBox(
-                      height: 1,
-                      child: Container(color: design.colors.separatorOnLight),
-                    ),
+            ),
+            for (int index = 0; index < selected.length; index++)
+              if (index > 0)
+                Positioned(
+                  top: 53 * index.toDouble() - 1,
+                  left: 20,
+                  right: 20,
+                  child: SizedBox(
+                    height: 1,
+                    child: Container(color: design.colors.separatorOnLight),
                   ),
-            ],
-          )),
+                ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -166,16 +183,14 @@ class _CustomReorderableItem extends StatelessWidget {
   final String title;
   final Function onDelete;
 
-  _CustomReorderableItem({
+  const _CustomReorderableItem({
     required Key key,
     required this.index,
     required this.title,
     required this.onDelete,
   }) : super(key: key);
 
-  void doNothing(BuildContext context) {
-    // Intentionally left blank.
-  }
+  void doNothing(BuildContext context) {}
 
   @override
   Widget build(BuildContext context) {
@@ -187,57 +202,71 @@ class _CustomReorderableItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: design.colors.background2,
       ),
-      constraints: index == 0 ? const BoxConstraints(minHeight: 56) : const BoxConstraints(minHeight: 57),
+      constraints: index == 0 ? const BoxConstraints(minHeight: 52) : const BoxConstraints(minHeight: 53),
       child: Column(
         children: [
           index == 0
-              ? SizedBox(
+              ? const SizedBox(
                   height: 0,
                 )
-              : SizedBox(
+              : const SizedBox(
                   height: 1,
                 ),
           Slidable(
+            key: ValueKey(title),
             endActionPane: ActionPane(
+              dismissible: DismissiblePane(
+                onDismissed: () {
+                  onDelete();
+                },
+                resizeDuration: Duration.zero,
+              ),
+              extentRatio: bp.smallerThan(TABLET) ? 99 / (MediaQuery.of(context).size.width - 40) : 99 / 544,
               motion: const ScrollMotion(),
               children: [
-                SlidableAction(
+                CustomSlidableAction(
+                  padding: const EdgeInsets.all(0),
                   onPressed: (context) {
                     onDelete();
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$title removed')));
                   },
-                  backgroundColor: Colors.yellow,
-                  foregroundColor: Colors.white,
-                  label: 'Remove',
+                  backgroundColor: design.colors.tint1,
+                  foregroundColor: design.colors.label1,
+                  child: Text(
+                    'Remove',
+                    style: design.textStyles.title2,
+                    maxLines: 1,
+                    overflow: TextOverflow.visible,
+                  ),
                 ),
               ],
             ),
             child: Container(
-              height: 56,
+              height: 52,
               padding:
                   small ? const EdgeInsets.symmetric(horizontal: 20, vertical: 16) : const EdgeInsets.only(left: 24, top: 8, right: 24, bottom: 8),
-              child: Column(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          title,
-                          style: small
-                              ? design.textStyles.body2.copyWith(color: design.colors.label1)
-                              : design.textStyles.body1.copyWith(color: design.colors.label1),
-                        ),
-                      ),
-                      ReorderableDragStartListener(
-                        index: index,
-                        child: SvgPicture.string(
-                          SvgIcons.holding,
-                          width: 18,
-                          height: 10,
-                        ),
-                      )
-                    ],
+                  SizedBox(
+                      width: 28,
+                      child: Text(
+                        (index + 1).toString(),
+                        style: design.textStyles.body2.copyWith(color: design.colors.label1),
+                      )),
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: design.textStyles.body2.copyWith(color: design.colors.label1),
+                    ),
+                  ),
+                  ReorderableDragStartListener(
+                    index: index,
+                    child: SvgPicture.string(
+                      SvgIcons.holding,
+                      width: 18,
+                      height: 10,
+                    ),
                   )
                 ],
               ),
@@ -245,6 +274,6 @@ class _CustomReorderableItem extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ).animate().slideX(begin: -1, curve: Curves.easeOutExpo, duration: 500.ms);
   }
 }
