@@ -154,3 +154,5 @@ class _BottomNavigationScaffoldState extends State<BottomNavigationScaffold> {
     );
   }
 }
+
+Curve flippedCurveIfReverse(Animation animation, Curve curve) => animation.status == AnimationStatus.forward ? curve : curve.flipped;

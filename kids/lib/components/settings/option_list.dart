@@ -8,11 +8,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
-class AppLanguageList extends StatelessWidget {
-  final List<AppLanguageListItem> items;
+class KidsOptionList extends StatelessWidget {
+  final List<KidsOptionListItem> items;
   final Color? backgroundColor;
 
-  const AppLanguageList({super.key, required this.items, this.backgroundColor});
+  const KidsOptionList({super.key, required this.items, this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class _ItemRenderer extends HookWidget {
     required this.defaultBackgroundColor,
   });
 
-  final AppLanguageListItem item;
+  final KidsOptionListItem item;
   final Color defaultBackgroundColor;
 
   @override
@@ -136,14 +136,14 @@ class _ItemRenderer extends HookWidget {
   }
 }
 
-class AppLanguageListItem {
+class KidsOptionListItem {
   final String title;
   final VoidCallback onPressed;
   final String? rightText;
   bool disabled;
   bool selected;
 
-  AppLanguageListItem({
+  KidsOptionListItem({
     required this.title,
     required this.onPressed,
     this.disabled = false,

@@ -183,3 +183,15 @@ Locale? getLocale(String? languageCode) {
   }
   return languages[languageCode]?.locale;
 }
+
+String normalizeLanguage(String code) {
+  switch (code) {
+    case 'tk':
+      return 'tr';
+    case 'nb':
+    case 'nn':
+      return 'no';
+    default:
+      return code;
+  }
+}

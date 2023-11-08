@@ -146,5 +146,13 @@ class AppRouter extends $AppRouter {
           customRouteBuilder: settingsRouteBuilder,
           meta: const {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'appLanguage'},
         ),
+        CustomRoute(
+          page: ContentLanguageScreenRoute.page,
+          path: '/content-language',
+          durationInMilliseconds: 800,
+          reverseDurationInMilliseconds: 800,
+          customRouteBuilder: settingsRouteBuilder,
+          meta: const {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'contentLanguage'},
+        ),
       ];
 }

@@ -1917,11 +1917,41 @@ abstract class S {
   /// **'Content language'**
   String get contentLanguage;
 
+  /// IMPORTANT: This is a short version of 'Content language'. Used on small screens.
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get contentLanguageShort;
+
+  /// IMPORTANT: This is a short version of 'App language'. Used on small screens.
+  ///
+  /// In en, this message translates to:
+  /// **'App'**
+  String get appLanguageShort;
+
   /// Keep it short. Button text in the top right of a show overview. Clicking it plays a random video.
   ///
   /// In en, this message translates to:
   /// **'Play random'**
   String get playRandom;
+
+  /// Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add language'**
+  String get addLanguage;
+
+  /// Shown when you are selecting preferred content languages. Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred languages'**
+  String get preferredLanguages;
+
+  /// Shown when you are selecting preferred content languages.
+  ///
+  /// In en, this message translates to:
+  /// **'Reorder the languages to match your preference for audio & subtitle language.'**
+  String get contentLanguageExplanation;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

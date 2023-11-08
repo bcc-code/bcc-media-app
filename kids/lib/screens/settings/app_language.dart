@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-import 'package:kids/components/settings/applanguage_list.dart';
+import 'package:kids/components/settings/option_list.dart';
 import 'package:brunstadtv_app/helpers/languages.dart';
 
 @RoutePage<void>()
@@ -21,10 +21,10 @@ class AppLanguageScreen extends ConsumerWidget {
     final double basePadding = bp.smallerThan(TABLET) ? 24.0 : 48.0;
     final selected = ref.watch(settingsProvider).appLanguage.languageCode;
 
-    List<AppLanguageListItem> buildItems() {
+    List<KidsOptionListItem> buildItems() {
       return appLanuageCodes
           .map((code) {
-            return AppLanguageListItem(
+            return KidsOptionListItem(
               title: languages[code]!.nativeName,
               onPressed: () {
                 ref.read(settingsProvider.notifier).setAppLanguage(code);
@@ -45,7 +45,7 @@ class AppLanguageScreen extends ConsumerWidget {
                 bottom: true,
                 sliver: SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.only(left: basePadding, top: basePadding, right: basePadding, bottom: basePadding),
+                    padding: EdgeInsets.only(left: 20, top: basePadding, right: 20, bottom: basePadding),
                     child: Center(
                       child: ConstrainedBox(
                         constraints: const BoxConstraints.tightFor(width: 544),
@@ -69,7 +69,7 @@ class AppLanguageScreen extends ConsumerWidget {
                               padding: const EdgeInsets.only(bottom: 12),
                               child: Text('Select', style: design.textStyles.body2),
                             ),
-                            AppLanguageList(
+                            KidsOptionList(
                               items: buildItems(),
                             ),
                           ],

@@ -36,7 +36,7 @@ extension on Settings {
   AppConfig toAppConfig() {
     return AppConfig(
       appLanguage: appLanguage.languageCode,
-      audioLanguages: audioLanguages,
+      audioLanguages: audioLanguages.isNotEmpty ? audioLanguages : [appLanguage.languageCode],
       subtitleLanguages: FlavorConfig.current.flavor == Flavor.kids ? audioLanguages : subtitleLanguages,
       analyticsId: analyticsId,
       sessionId: sessionId,

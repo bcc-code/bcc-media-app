@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/helpers/languages.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
@@ -126,15 +127,8 @@ Future<String> getDefaultLocale() async {
   if (!S.supportedLocales.map((l) => l.languageCode).contains(shortLocale)) {
     return FlavorConfig.current.defaultLanguage;
   }
-  switch (shortLocale) {
-    case 'tk':
-      return 'tr';
-    case 'nb':
-    case 'nn':
-      return 'no';
-    default:
-      return shortLocale;
-  }
+
+  return normalizeLanguage(shortLocale);
 }
 
 Future<ProviderContainer> initProviderContainer(List<Override> overrides) async {

@@ -77,4 +77,20 @@ class SvgIcons {
 <path fill-rule="evenodd" clip-rule="evenodd" d="M9.75 4.5H4.5V19.5H9.75V4.5ZM19.5 4.5H14.25V19.5H19.5V4.5Z" fill="#041234"/>
 </svg>
 ''';
+
+  static const holding = '''
+<svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.2">
+<path d="M0 1H18" stroke="#041234" stroke-width="2"/>
+<path d="M0 6H18" stroke="#041234" stroke-width="2"/>
+<path d="M0 11H18" stroke="#041234" stroke-width="2"/>
+</g>
+</svg>
+''';
+
+  static const add = '''
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.5 17.5H27.7279V14.5H17.5L17.5 4.27207L14.5 4.27207L14.5 14.5L4.27209 14.5V17.5L14.5 17.5L14.5 27.7279H17.5L17.5 17.5Z" fill="#041234"/>
+</svg>
+''';
 }

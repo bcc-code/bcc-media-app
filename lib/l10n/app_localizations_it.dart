@@ -936,5 +936,20 @@ class SIt extends S {
   String get contentLanguage => 'Content language';
 
   @override
+  String get contentLanguageShort => 'Content';
+
+  @override
+  String get appLanguageShort => 'App';
+
+  @override
   String get playRandom => 'Play random';
+
+  @override
+  String get addLanguage => 'Add language';
+
+  @override
+  String get preferredLanguages => 'Preferred languages';
+
+  @override
+  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
 }

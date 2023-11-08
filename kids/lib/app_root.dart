@@ -81,7 +81,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
                   return ResponsiveBreakpoints.builder(
                     child: MediaQuery(
                       data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                      child: SplashVideo(child: child ?? SizedBox()),
+                      child: SplashVideo(child: child ?? const SizedBox()),
                     ),
                     breakpoints: breakpoints,
                     breakpointsLandscape: breakpoints,
