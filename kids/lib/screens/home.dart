@@ -70,7 +70,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
-    final double basePadding = bp.smallerThan(TABLET) ? 24 : 48;
+    final double basePadding = bp.smallerThan(TABLET) ? 20 : 48;
     final scrollController = useScrollController();
     return OrientationBuilder(
       builder: (context, orientation) => Scaffold(
@@ -149,7 +149,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                     top: false,
                     maintainBottomViewPadding: true,
                     child: SizedBox(
-                      height: bp.smallerThan(TABLET) ? 104 : 176,
+                      height: bp.smallerThan(TABLET) ? 88 : 168,
                       child: Center(
                         child: Row(
                           children: [
