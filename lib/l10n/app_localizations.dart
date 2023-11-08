@@ -1928,6 +1928,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'App'**
   String get appLanguageShort;
+
+  /// Keep it short. Button text in the top right of a show overview. Clicking it plays a random video.
+  ///
+  /// In en, this message translates to:
+  /// **'Play random'**
+  String get playRandom;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

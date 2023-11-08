@@ -940,4 +940,7 @@ class SHu extends S {
 
   @override
   String get appLanguageShort => 'App';
+
+  @override
+  String get playRandom => 'Play random';
 }

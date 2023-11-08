@@ -933,11 +933,14 @@ class SNl extends S {
   String get technicalDetails => 'Technische details';
 
   @override
-  String get contentLanguage => 'Content language';
+  String get contentLanguage => 'Taal content';
 
   @override
   String get contentLanguageShort => 'Content';
 
   @override
   String get appLanguageShort => 'App';
+
+  @override
+  String get playRandom => 'Play random';
 }

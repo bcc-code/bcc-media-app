@@ -1293,5 +1293,9 @@
   "appLanguageShort": "App",
   "@appLanguageShort": {
     "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
+  },
+  "playRandom": "Play random",
+  "@playRandom": {
+    "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
   }
 }

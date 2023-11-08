@@ -20,3 +20,24 @@ query GetManyEpisodeIdsForPlaylist($id: ID!) {
     }
   }
 }
+
+query KidsFetchEpisode($id: ID!, $context: EpisodeContext) {
+  episode(id: $id, context: $context) {
+    id
+    ...PlayableEpisode
+    uuid
+    title
+    image
+    duration
+    context {
+      ...EpisodeContext
+    }
+    next(limit: 20) {
+      ...KidsEpisodeThumbnail
+      cursor
+    }
+    streams {
+      ...BasicStream
+    }
+  }
+}

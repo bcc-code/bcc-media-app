@@ -933,11 +933,14 @@ class SNb extends S {
   String get technicalDetails => 'Tekniske detaljer';
 
   @override
-  String get contentLanguage => 'Content language';
+  String get contentLanguage => 'Innholdsspråk';
 
   @override
   String get contentLanguageShort => 'Content';
 
   @override
   String get appLanguageShort => 'App';
+
+  @override
+  String get playRandom => 'Play random';
 }

@@ -35,4 +35,5 @@ fragment KidsEpisodeThumbnail on Episode {
   title
   duration
   image
+  cursor
 }

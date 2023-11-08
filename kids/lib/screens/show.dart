@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:graphql/client.dart';
@@ -78,7 +79,8 @@ class ShowScreen extends HookConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(showQuery.result.parsedData!.$show.title, style: titleStyle),
-                              Text('${showQuery.result.parsedData!.$show.episodeCount} episodes', style: design.textStyles.body2),
+                              Text('${showQuery.result.parsedData!.$show.episodeCount} ${S.of(context).episodes.toLowerCase()}',
+                                  style: design.textStyles.body2),
                             ],
                           ),
                         const Spacer(),

@@ -10,6 +10,7 @@ class Fragment$KidsEpisodeThumbnail {
     required this.title,
     required this.duration,
     this.image,
+    required this.cursor,
     this.$__typename = 'Episode',
   });
 
@@ -18,12 +19,14 @@ class Fragment$KidsEpisodeThumbnail {
     final l$title = json['title'];
     final l$duration = json['duration'];
     final l$image = json['image'];
+    final l$cursor = json['cursor'];
     final l$$__typename = json['__typename'];
     return Fragment$KidsEpisodeThumbnail(
       id: (l$id as String),
       title: (l$title as String),
       duration: (l$duration as int),
       image: (l$image as String?),
+      cursor: (l$cursor as String),
       $__typename: (l$$__typename as String),
     );
   }
@@ -35,6 +38,8 @@ class Fragment$KidsEpisodeThumbnail {
   final int duration;
 
   final String? image;
+
+  final String cursor;
 
   final String $__typename;
 
@@ -48,6 +53,8 @@ class Fragment$KidsEpisodeThumbnail {
     _resultData['duration'] = l$duration;
     final l$image = image;
     _resultData['image'] = l$image;
+    final l$cursor = cursor;
+    _resultData['cursor'] = l$cursor;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -59,12 +66,14 @@ class Fragment$KidsEpisodeThumbnail {
     final l$title = title;
     final l$duration = duration;
     final l$image = image;
+    final l$cursor = cursor;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$title,
       l$duration,
       l$image,
+      l$cursor,
       l$$__typename,
     ]);
   }
@@ -96,6 +105,11 @@ class Fragment$KidsEpisodeThumbnail {
     final l$image = image;
     final lOther$image = other.image;
     if (l$image != lOther$image) {
+      return false;
+    }
+    final l$cursor = cursor;
+    final lOther$cursor = other.cursor;
+    if (l$cursor != lOther$cursor) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -130,6 +144,7 @@ abstract class CopyWith$Fragment$KidsEpisodeThumbnail<TRes> {
     String? title,
     int? duration,
     String? image,
+    String? cursor,
     String? $__typename,
   });
 }
@@ -152,6 +167,7 @@ class _CopyWithImpl$Fragment$KidsEpisodeThumbnail<TRes>
     Object? title = _undefined,
     Object? duration = _undefined,
     Object? image = _undefined,
+    Object? cursor = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$KidsEpisodeThumbnail(
@@ -163,6 +179,9 @@ class _CopyWithImpl$Fragment$KidsEpisodeThumbnail<TRes>
             ? _instance.duration
             : (duration as int),
         image: image == _undefined ? _instance.image : (image as String?),
+        cursor: cursor == _undefined || cursor == null
+            ? _instance.cursor
+            : (cursor as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -180,6 +199,7 @@ class _CopyWithStubImpl$Fragment$KidsEpisodeThumbnail<TRes>
     String? title,
     int? duration,
     String? image,
+    String? cursor,
     String? $__typename,
   }) =>
       _res;
@@ -217,6 +237,13 @@ const fragmentDefinitionKidsEpisodeThumbnail = FragmentDefinitionNode(
     ),
     FieldNode(
       name: NameNode(value: 'image'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'cursor'),
       alias: null,
       arguments: [],
       directives: [],
@@ -1436,6 +1463,7 @@ class Query$GetShowOverview$show$seasons$items$episodes$items
     required this.title,
     required this.duration,
     this.image,
+    required this.cursor,
     this.$__typename = 'Episode',
   });
 
@@ -1445,12 +1473,14 @@ class Query$GetShowOverview$show$seasons$items$episodes$items
     final l$title = json['title'];
     final l$duration = json['duration'];
     final l$image = json['image'];
+    final l$cursor = json['cursor'];
     final l$$__typename = json['__typename'];
     return Query$GetShowOverview$show$seasons$items$episodes$items(
       id: (l$id as String),
       title: (l$title as String),
       duration: (l$duration as int),
       image: (l$image as String?),
+      cursor: (l$cursor as String),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1462,6 +1492,8 @@ class Query$GetShowOverview$show$seasons$items$episodes$items
   final int duration;
 
   final String? image;
+
+  final String cursor;
 
   final String $__typename;
 
@@ -1475,6 +1507,8 @@ class Query$GetShowOverview$show$seasons$items$episodes$items
     _resultData['duration'] = l$duration;
     final l$image = image;
     _resultData['image'] = l$image;
+    final l$cursor = cursor;
+    _resultData['cursor'] = l$cursor;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1486,12 +1520,14 @@ class Query$GetShowOverview$show$seasons$items$episodes$items
     final l$title = title;
     final l$duration = duration;
     final l$image = image;
+    final l$cursor = cursor;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$title,
       l$duration,
       l$image,
+      l$cursor,
       l$$__typename,
     ]);
   }
@@ -1523,6 +1559,11 @@ class Query$GetShowOverview$show$seasons$items$episodes$items
     final l$image = image;
     final lOther$image = other.image;
     if (l$image != lOther$image) {
+      return false;
+    }
+    final l$cursor = cursor;
+    final lOther$cursor = other.cursor;
+    if (l$cursor != lOther$cursor) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -1561,6 +1602,7 @@ abstract class CopyWith$Query$GetShowOverview$show$seasons$items$episodes$items<
     String? title,
     int? duration,
     String? image,
+    String? cursor,
     String? $__typename,
   });
 }
@@ -1586,6 +1628,7 @@ class _CopyWithImpl$Query$GetShowOverview$show$seasons$items$episodes$items<
     Object? title = _undefined,
     Object? duration = _undefined,
     Object? image = _undefined,
+    Object? cursor = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetShowOverview$show$seasons$items$episodes$items(
@@ -1597,6 +1640,9 @@ class _CopyWithImpl$Query$GetShowOverview$show$seasons$items$episodes$items<
             ? _instance.duration
             : (duration as int),
         image: image == _undefined ? _instance.image : (image as String?),
+        cursor: cursor == _undefined || cursor == null
+            ? _instance.cursor
+            : (cursor as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -1617,6 +1663,7 @@ class _CopyWithStubImpl$Query$GetShowOverview$show$seasons$items$episodes$items<
     String? title,
     int? duration,
     String? image,
+    String? cursor,
     String? $__typename,
   }) =>
       _res;
@@ -2603,6 +2650,7 @@ class Query$GetPlaylistOverview$playlist$items$items$$Episode
     required this.title,
     required this.duration,
     this.image,
+    required this.cursor,
     this.$__typename = 'Episode',
   });
 
@@ -2612,12 +2660,14 @@ class Query$GetPlaylistOverview$playlist$items$items$$Episode
     final l$title = json['title'];
     final l$duration = json['duration'];
     final l$image = json['image'];
+    final l$cursor = json['cursor'];
     final l$$__typename = json['__typename'];
     return Query$GetPlaylistOverview$playlist$items$items$$Episode(
       id: (l$id as String),
       title: (l$title as String),
       duration: (l$duration as int),
       image: (l$image as String?),
+      cursor: (l$cursor as String),
       $__typename: (l$$__typename as String),
     );
   }
@@ -2629,6 +2679,8 @@ class Query$GetPlaylistOverview$playlist$items$items$$Episode
   final int duration;
 
   final String? image;
+
+  final String cursor;
 
   final String $__typename;
 
@@ -2642,6 +2694,8 @@ class Query$GetPlaylistOverview$playlist$items$items$$Episode
     _resultData['duration'] = l$duration;
     final l$image = image;
     _resultData['image'] = l$image;
+    final l$cursor = cursor;
+    _resultData['cursor'] = l$cursor;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2653,12 +2707,14 @@ class Query$GetPlaylistOverview$playlist$items$items$$Episode
     final l$title = title;
     final l$duration = duration;
     final l$image = image;
+    final l$cursor = cursor;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$title,
       l$duration,
       l$image,
+      l$cursor,
       l$$__typename,
     ]);
   }
@@ -2690,6 +2746,11 @@ class Query$GetPlaylistOverview$playlist$items$items$$Episode
     final l$image = image;
     final lOther$image = other.image;
     if (l$image != lOther$image) {
+      return false;
+    }
+    final l$cursor = cursor;
+    final lOther$cursor = other.cursor;
+    if (l$cursor != lOther$cursor) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -2728,6 +2789,7 @@ abstract class CopyWith$Query$GetPlaylistOverview$playlist$items$items$$Episode<
     String? title,
     int? duration,
     String? image,
+    String? cursor,
     String? $__typename,
   });
 }
@@ -2753,6 +2815,7 @@ class _CopyWithImpl$Query$GetPlaylistOverview$playlist$items$items$$Episode<
     Object? title = _undefined,
     Object? duration = _undefined,
     Object? image = _undefined,
+    Object? cursor = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetPlaylistOverview$playlist$items$items$$Episode(
@@ -2764,6 +2827,9 @@ class _CopyWithImpl$Query$GetPlaylistOverview$playlist$items$items$$Episode<
             ? _instance.duration
             : (duration as int),
         image: image == _undefined ? _instance.image : (image as String?),
+        cursor: cursor == _undefined || cursor == null
+            ? _instance.cursor
+            : (cursor as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -2784,6 +2850,7 @@ class _CopyWithStubImpl$Query$GetPlaylistOverview$playlist$items$items$$Episode<
     String? title,
     int? duration,
     String? image,
+    String? cursor,
     String? $__typename,
   }) =>
       _res;
