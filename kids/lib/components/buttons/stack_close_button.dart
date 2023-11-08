@@ -8,7 +8,10 @@ import 'package:responsive_framework/responsive_breakpoints.dart';
 class StackCloseButton extends StatelessWidget {
   const StackCloseButton({
     super.key,
+    this.padding,
   });
+
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class StackCloseButton extends StatelessWidget {
       left: 0,
       child: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(bp.smallerThan(TABLET) ? 20 : 40),
+          padding: padding ?? EdgeInsets.all(bp.smallerThan(TABLET) ? 20 : 40),
           child: design.buttons.responsive(
             labelText: '',
             onPressed: () => context.router.pop(),

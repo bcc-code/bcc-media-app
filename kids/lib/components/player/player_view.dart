@@ -7,6 +7,7 @@ import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
+import 'package:brunstadtv_app/helpers/languages.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
@@ -25,7 +26,7 @@ import 'package:kids/components/buttons/tab_switcher.dart';
 import 'package:kids/components/dialog/dialog.dart';
 import 'package:kids/components/grid/episode_grid.dart';
 import 'package:kids/components/player/controls.dart';
-import 'package:kids/components/settings/applanguage_list.dart';
+import 'package:kids/components/settings/option_list.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
@@ -387,6 +388,7 @@ class PlayerSettingsView extends HookConsumerWidget {
     final tracksSnapshot = useFuture(tracksFuture.value);
     final preferredLanguages = ref.watch(settingsProvider.select((value) => value.audioLanguages));
     final loading = (buffering && !initialBufferingDone.value);
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: isSmall ? 80 : 112,
@@ -432,8 +434,10 @@ class PlayerSettingsView extends HookConsumerWidget {
               controller: tabController,
               children: [
                 _TrackSelectionList(
-                  preferredTracks: tracksSnapshot.data!.audioTracks.safe.where((t) => preferredLanguages.contains(t.language)).toList(),
-                  otherTracks: tracksSnapshot.data!.audioTracks.safe.where((t) => !preferredLanguages.contains(t.language)).toList(),
+                  preferredTracks: filterAndOrderTracksBasedOnLanguageList(preferredLanguages, tracksSnapshot.data!.audioTracks),
+                  otherTracks: tracksSnapshot.data!.audioTracks.safe
+                      .where((t) => t.language == null || !preferredLanguages.contains(normalizeLanguage(t.language!)))
+                      .toList(),
                   onSelectionChanged: (track) {
                     if (track == null) return;
                     playerController.setSelectedTrack(TrackType.audio, track.id);
@@ -441,8 +445,10 @@ class PlayerSettingsView extends HookConsumerWidget {
                   },
                 ),
                 _TrackSelectionList(
-                  preferredTracks: tracksSnapshot.data!.textTracks.safe.where((t) => preferredLanguages.contains(t.language)).toList(),
-                  otherTracks: tracksSnapshot.data!.textTracks.safe.where((t) => !preferredLanguages.contains(t.language)).toList(),
+                  preferredTracks: filterAndOrderTracksBasedOnLanguageList(preferredLanguages, tracksSnapshot.data!.textTracks),
+                  otherTracks: tracksSnapshot.data!.textTracks.safe
+                      .where((t) => t.language == null || !preferredLanguages.contains(normalizeLanguage(t.language!)))
+                      .toList(),
                   onSelectionChanged: (track) {
                     playerController.setSelectedTrack(TrackType.text, track?.id);
                     tracksFuture.value = playerController.getTracks();
@@ -500,10 +506,10 @@ class _TrackSelectionList extends HookWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppLanguageList(
+              KidsOptionList(
                 items: [
                   if (includeNone)
-                    AppLanguageListItem(
+                    KidsOptionListItem(
                       title: S.of(context).none,
                       selected: !preferredTracks.any((element) => element.isSelected),
                       onPressed: () {
@@ -511,7 +517,7 @@ class _TrackSelectionList extends HookWidget {
                       },
                     ),
                   ...preferredTracks.map(
-                    (track) => AppLanguageListItem(
+                    (track) => KidsOptionListItem(
                       title: track.labelWithFallback,
                       selected: track.isSelected,
                       onPressed: () {
@@ -532,10 +538,10 @@ class _TrackSelectionList extends HookWidget {
                 ),
               ],
               if (otherTracks.isNotEmpty == true) ...[
-                AppLanguageList(
+                KidsOptionList(
                   items: otherTracks
                       .map(
-                        (track) => AppLanguageListItem(
+                        (track) => KidsOptionListItem(
                           title: track.labelWithFallback,
                           selected: track.isSelected,
                           onPressed: () {
@@ -631,4 +637,14 @@ class PlayerEpisodes extends HookConsumerWidget {
       ),
     );
   }
+}
+
+filterAndOrderTracksBasedOnLanguageList(List<String> languages, List<Track?> tracks) {
+  return languages.fold<List<Track>>(
+    [],
+    (previousValue, language) => previousValue
+      ..addAll(
+        tracks.safe.where((t) => t.language != null && normalizeLanguage(t.language!) == language),
+      ),
+  );
 }

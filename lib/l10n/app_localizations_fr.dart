@@ -943,4 +943,13 @@ class SFr extends S {
 
   @override
   String get playRandom => 'Play random';
+
+  @override
+  String get addLanguage => 'Add language';
+
+  @override
+  String get preferredLanguages => 'Preferred languages';
+
+  @override
+  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
 }

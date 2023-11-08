@@ -1934,6 +1934,24 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Play random'**
   String get playRandom;
+
+  /// Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add language'**
+  String get addLanguage;
+
+  /// Shown when you are selecting preferred content languages. Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred languages'**
+  String get preferredLanguages;
+
+  /// Shown when you are selecting preferred content languages.
+  ///
+  /// In en, this message translates to:
+  /// **'Reorder the languages to match your preference for audio & subtitle language.'**
+  String get contentLanguageExplanation;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

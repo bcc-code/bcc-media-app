@@ -94,30 +94,38 @@ class _ItemRenderer extends HookWidget {
                 child: Container(
                   padding: small ? const EdgeInsets.symmetric(horizontal: 20, vertical: 16) : const EdgeInsets.all(24),
                   constraints: const BoxConstraints(minHeight: 56),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              item.title,
-                              maxLines: 1,
-                              style: small ? design.textStyles.title2 : design.textStyles.title1,
-                            ),
-                          ],
-                        ),
-                      ),
-                      if (item.rightText != null)
+                  child: LayoutBuilder(
+                    builder: (context, constraints) => Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // We want this to always be fully visible, so this is not "flexible".
                         Text(
-                          item.rightText!,
-                          overflow: TextOverflow.ellipsis,
-                          style: (small ? design.textStyles.body2 : design.textStyles.body1).copyWith(color: design.colors.label1),
+                          item.title,
+                          maxLines: 1,
+                          style: small ? design.textStyles.title2 : design.textStyles.title1,
                         ),
-                    ],
+                        // Flex: 1, meaning 1/3 of the remaining space
+                        const Expanded(
+                          flex: 1,
+                          child: SizedBox(width: 12),
+                        ),
+                        // Flex 2, for the right text. Which means 2/3 of the remaining space.
+                        // This is to make the text stop in the middle-ish when the text is short.
+                        if (item.rightText != null)
+                          Expanded(
+                            flex: 2,
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Text(
+                                item.rightText!,
+                                textAlign: TextAlign.right,
+                                overflow: TextOverflow.ellipsis,
+                                style: (small ? design.textStyles.body2 : design.textStyles.body1).copyWith(color: design.colors.label1),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -135,7 +135,7 @@ class ShowScreen extends HookConsumerWidget {
                 )
             ],
           ),
-          const StackCloseButton(),
+          StackCloseButton(padding: EdgeInsets.all(bp.smallerThan(TABLET) ? 24 : 48)),
         ],
       ),
     );
