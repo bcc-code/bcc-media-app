@@ -91,11 +91,11 @@ class ShowScreen extends HookConsumerWidget {
                             final randomEpisode = episodes[Random().nextInt(episodes.length)];
                             context.router.push(EpisodeScreenRoute(id: randomEpisode.id, shuffle: true));
                           },
-                          labelText: 'Play random',
+                          labelText: S.of(context).playRandom,
                           image: SizedBox(
                             height: 24,
                             child: Center(
-                              child: SvgPicture.string(SvgIcons.magic),
+                              child: SvgPicture.string(SvgIcons.play),
                             ),
                           ),
                         )
