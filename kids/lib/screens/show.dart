@@ -32,7 +32,7 @@ class ShowScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
-    final double basePadding = bp.smallerThan(TABLET) ? 24.0 : 48.0;
+    final double basePadding = bp.smallerThan(TABLET) ? 20.0 : 40.0;
     final titleStyle = bp.smallerThan(TABLET) ? design.textStyles.headline3 : design.textStyles.headline2;
 
     final showQuery = useQuery$GetShowOverview(
@@ -135,7 +135,7 @@ class ShowScreen extends HookConsumerWidget {
                 )
             ],
           ),
-          StackCloseButton(padding: EdgeInsets.all(bp.smallerThan(TABLET) ? 24 : 48)),
+          const StackCloseButton(),
         ],
       ),
     );
