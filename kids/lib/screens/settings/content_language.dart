@@ -12,7 +12,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button_base.dart';
 import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:kids/components/settings/language_list_dialog.dart';
-import 'package:kids/components/settings/option_list_dialog.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
@@ -54,23 +53,31 @@ class ContentLanguageScreen extends HookConsumerWidget {
                               child: Center(
                                 child: Text(
                                   S.of(context).contentLanguage,
-                                  style: design.textStyles.title1,
+                                  style: bp.smallerThan(TABLET) ? design.textStyles.title1 : design.textStyles.headline2,
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 12),
+                              padding: EdgeInsets.only(bottom: bp.smallerThan(TABLET) ? 12 : 20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(S.of(context).preferredLanguages, style: design.textStyles.title2),
-                                  Text(S.of(context).contentLanguageExplanation, style: design.textStyles.body2),
+                                  Text(
+                                    S.of(context).preferredLanguages,
+                                    style: (bp.smallerThan(TABLET) ? design.textStyles.title2 : design.textStyles.title1),
+                                  ),
+                                  Text(
+                                    S.of(context).contentLanguageExplanation,
+                                    style: (bp.smallerThan(TABLET) ? design.textStyles.body2 : design.textStyles.body1).copyWith(
+                                      color: design.colors.label2,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
                             const ContentLanguageList(),
                             Padding(
-                              padding: const EdgeInsets.only(top: 12),
+                              padding: EdgeInsets.only(top: bp.smallerThan(TABLET) ? 12 : 20),
                               child: Row(
                                 children: [
                                   Expanded(
@@ -126,7 +133,7 @@ class ContentLanguageList extends HookConsumerWidget {
             SlidableAutoCloseBehavior(
               child: ReorderableListView(
                 shrinkWrap: true,
-                buildDefaultDragHandles: selected.length != 1,
+                buildDefaultDragHandles: false,
                 physics: const NeverScrollableScrollPhysics(),
                 proxyDecorator: (child, index, animation) {
                   final curvedAnimation = CurvedAnimation(parent: animation, curve: flippedCurveIfReverse(animation, Curves.easeOutExpo));
@@ -165,6 +172,7 @@ class ContentLanguageList extends HookConsumerWidget {
                       index: index,
                       animate: !dontAnimate.value.contains(selected[index]),
                       title: languages[selected[index]]!.nativeName,
+                      enableDrag: selected.length > 1,
                       onDelete: () {
                         selected.removeAt(index);
                         ref.read(settingsProvider.notifier).setAudioLanguages(selected);
@@ -207,6 +215,7 @@ class _CustomReorderableItem extends StatelessWidget {
   final String title;
   final Function onDelete;
   final bool animate;
+  final bool enableDrag;
 
   const _CustomReorderableItem({
     required Key key,
@@ -214,6 +223,7 @@ class _CustomReorderableItem extends StatelessWidget {
     required this.title,
     required this.onDelete,
     required this.animate,
+    this.enableDrag = true,
   }) : super(key: key);
 
   void doNothing(BuildContext context) {}
@@ -225,60 +235,62 @@ class _CustomReorderableItem extends StatelessWidget {
     final small = bp.smallerThan(TABLET);
 
     return Animate(
-        autoPlay: animate,
-        effects: [
-          SlideEffect(
-            duration: 500.ms,
-            curve: Curves.easeOutExpo,
-            begin: SlideEffect.neutralValue.copyWith(dx: -1),
-            end: SlideEffect.neutralValue.copyWith(dx: 0),
-          )
-        ],
-        onInit: (c) {
-          if (!animate) {
-            c.value = 1.0;
-          }
-        },
-        child: Container(
-          decoration: BoxDecoration(),
-          constraints: index == 0 ? const BoxConstraints(minHeight: 52) : const BoxConstraints(minHeight: 53),
-          child: Column(
-            children: [
-              index == 0
-                  ? const SizedBox(
-                      height: 0,
-                    )
-                  : const SizedBox(
-                      height: 1,
-                    ),
-              Slidable(
-                key: ValueKey(title),
-                endActionPane: ActionPane(
-                  dismissible: DismissiblePane(
-                    onDismissed: () {
+      autoPlay: animate,
+      effects: [
+        SlideEffect(
+          duration: 500.ms,
+          curve: Curves.easeOutExpo,
+          begin: SlideEffect.neutralValue.copyWith(dx: -1),
+          end: SlideEffect.neutralValue.copyWith(dx: 0),
+        )
+      ],
+      onInit: (c) {
+        if (!animate) {
+          c.value = 1.0;
+        }
+      },
+      child: ConstrainedBox(
+        constraints: index == 0 ? const BoxConstraints(minHeight: 52) : const BoxConstraints(minHeight: 53),
+        child: Column(
+          children: [
+            index == 0
+                ? const SizedBox(
+                    height: 0,
+                  )
+                : const SizedBox(
+                    height: 1,
+                  ),
+            Slidable(
+              key: ValueKey(title),
+              endActionPane: ActionPane(
+                dismissible: DismissiblePane(
+                  onDismissed: () {
+                    onDelete();
+                  },
+                  resizeDuration: Duration.zero,
+                ),
+                extentRatio: bp.smallerThan(TABLET) ? 99 / (MediaQuery.of(context).size.width - 40) : 99 / 544,
+                motion: const ScrollMotion(),
+                children: [
+                  CustomSlidableAction(
+                    padding: const EdgeInsets.all(0),
+                    onPressed: (context) {
                       onDelete();
                     },
-                    resizeDuration: Duration.zero,
-                  ),
-                  extentRatio: bp.smallerThan(TABLET) ? 99 / (MediaQuery.of(context).size.width - 40) : 99 / 544,
-                  motion: const ScrollMotion(),
-                  children: [
-                    CustomSlidableAction(
-                      padding: const EdgeInsets.all(0),
-                      onPressed: (context) {
-                        onDelete();
-                      },
-                      backgroundColor: design.colors.tint1,
-                      foregroundColor: design.colors.label1,
-                      child: Text(
-                        'Remove',
-                        style: design.textStyles.title2,
-                        maxLines: 1,
-                        overflow: TextOverflow.visible,
-                      ),
+                    backgroundColor: design.colors.tint1,
+                    foregroundColor: design.colors.label1,
+                    child: Text(
+                      S.of(context).remove,
+                      style: design.textStyles.title2,
+                      maxLines: 1,
+                      overflow: TextOverflow.visible,
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
+              child: ReorderableDelayedDragStartListener(
+                enabled: enableDrag,
+                index: index,
                 child: Container(
                   height: 52,
                   padding: small
@@ -301,6 +313,7 @@ class _CustomReorderableItem extends StatelessWidget {
                       ),
                       ReorderableDragStartListener(
                         index: index,
+                        enabled: enableDrag,
                         child: SvgPicture.string(
                           SvgIcons.holding,
                           width: 18,
@@ -311,8 +324,10 @@ class _CustomReorderableItem extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

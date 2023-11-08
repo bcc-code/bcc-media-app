@@ -94,6 +94,9 @@ class ParentalGate extends HookWidget {
                   controller: answerText,
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
+                  style: (bp.smallerThan(TABLET) ? design.textStyles.body2 : design.textStyles.body1).copyWith(
+                    color: design.colors.label1,
+                  ),
                   decoration: design.inputDecorations.textFormField.copyWith(
                     hintText: S.of(context).answerLabel,
                     border: const OutlineInputBorder(
@@ -104,7 +107,7 @@ class ParentalGate extends HookWidget {
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.all(Radius.circular(55)),
                     ),
-                    hintStyle: bp.smallerThan(TABLET) ? design.textStyles.body2 : null,
+                    hintStyle: bp.smallerThan(TABLET) ? design.textStyles.body2 : design.textStyles.body1,
                     contentPadding: bp.smallerThan(TABLET) ? const EdgeInsets.all(12.0) : null,
                   ),
                   onSubmitted: (value) {
