@@ -13,20 +13,20 @@ class LanguageListDialog extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<String> selected = List.from(ref.watch(settingsProvider).audioLanguages);
-    final items = appLanuageCodes
-        .where((code) => !selected.contains(code)) // 过滤掉已选中的语言代码
-        .map((code) => KidsOptionListItem(
-              title: languages[code]!.nativeName,
-              onPressed: () {
-                selected.add(code);
-                ref.read(settingsProvider.notifier).setAudioLanguages(selected);
-                context.router.pop();
-                // ref.read(settingsProvider.notifier).setAppLanguage(code);
-              },
-            ))
-        .sortedBy((item) => item.title)
-        .toList();
-    return OptionListDialog(title: S.of(context).language, items: items);
+    final List<String> selected = ref.watch(settingsProvider).audioLanguages;
+    return OptionListDialog(
+      title: S.of(context).language,
+      items: appLanuageCodes
+          .where((code) => !selected.contains(code))
+          .map((code) => KidsOptionListItem(
+                title: languages[code]!.nativeName,
+                onPressed: () {
+                  ref.read(settingsProvider.notifier).setAudioLanguages([...selected, code]);
+                  context.router.pop();
+                },
+              ))
+          .sortedBy((item) => item.title)
+          .toList(),
+    );
   }
 }
