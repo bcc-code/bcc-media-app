@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/pages/page_mixin.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
@@ -72,6 +73,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
     final bp = ResponsiveBreakpoints.of(context);
     final double basePadding = bp.smallerThan(TABLET) ? 20 : 48;
     final scrollController = useScrollController();
+    final isCasting = useListenableSelector(BccmPlayerController.primary, () => BccmPlayerController.primary.isChromecast);
     return OrientationBuilder(
       builder: (context, orientation) => Scaffold(
         key: homeKey,
@@ -166,6 +168,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                                 .scale(curve: Curves.easeOutBack, duration: 600.ms)
                                 .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
                             const Spacer(),
+                            if (isCasting) ...[
+                              design.buttons
+                                  .responsive(
+                                    variant: ButtonVariant.secondary,
+                                    onPressed: () {
+                                      BccmPlayerInterface.instance.openExpandedCastController();
+                                    },
+                                    labelText: '',
+                                    image: SvgPicture.string(SvgIcons.cast),
+                                  )
+                                  .animate()
+                                  .scale(curve: Curves.easeOutBack, duration: 600.ms)
+                                  .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
+                              SizedBox(width: basePadding),
+                            ],
                             design.buttons
                                 .responsive(
                                   onPressed: () {

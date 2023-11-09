@@ -12,7 +12,9 @@
          running.
 
          This Theme is only used starting with V2 of Flutter's Android embedding. -->
-    <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
-        <item name="android:windowBackground">?android:colorBackground</item>
+    <style name="NormalTheme" parent="@style/Theme.AppCompat.Light.NoActionBar"> <!-- Change to use "AppCompat" -->
+        <item name="android:windowBackground">?android:colorBackground
+        </item> <!-- This was already there -->
+        <item name="colorPrimary">#FFFDCA4E</item> <!-- Added -->
     </style>
 </resources>

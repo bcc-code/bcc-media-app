@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/controls.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
@@ -9,9 +10,11 @@ import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/player/player_view.dart';
+import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
 
@@ -99,12 +102,27 @@ class EpisodeScreen extends HookConsumerWidget {
       return () {
         // on dispose
         if (BccmPlayerController.primary.value.currentMediaItem != null && episodeIsCurrentItem) {
+          if (BccmPlayerController.primary.isChromecast) return;
           BccmPlayerController.primary.stop(reset: true);
         }
       };
     }, [episodeData]);
 
-    final viewController = useMemoized(() => BccmPlayerViewController(playerController: BccmPlayerController.primary), []);
+    final viewController = useMemoized(
+        () => BccmPlayerViewController(
+              playerController: BccmPlayerController.primary,
+              config: BccmPlayerViewConfig(
+                castPlayerBuilder: (context) => DefaultCastPlayer(
+                  castButton: SvgPicture.string(
+                    SvgIcons.cast,
+                    height: 100,
+                    colorFilter: ColorFilter.mode(BccmPlayerTheme.safeOf(context).controls?.primaryColor ?? Colors.white, BlendMode.srcIn),
+                  ),
+                  aspectRatio: 16 / 9,
+                ),
+              ),
+            ),
+        []);
 
     return InheritedBccmPlayerViewController(
       controller: viewController,

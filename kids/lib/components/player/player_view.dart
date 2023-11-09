@@ -202,11 +202,16 @@ class PlayerView extends HookConsumerWidget {
                                 ignoring: true,
                                 child: morphTransition?.active == true
                                     ? const AspectRatio(aspectRatio: 16 / 9)
-                                    : VideoPlatformView(
-                                        playerController: viewController.playerController,
-                                        showControls: false,
-                                        useSurfaceView: viewController.config.useSurfaceView,
-                                        allowSystemGestures: viewController.config.allowSystemGestures,
+                                    : BccmPlayerTheme(
+                                        playerTheme: BccmPlayerThemeData(
+                                            controls:
+                                                BccmControlsThemeData.defaultTheme(context).copyWith(settingsListBackgroundColor: Colors.black)),
+                                        child: VideoPlatformView(
+                                          playerController: viewController.playerController,
+                                          showControls: false,
+                                          useSurfaceView: viewController.config.useSurfaceView,
+                                          allowSystemGestures: viewController.config.allowSystemGestures,
+                                        ),
                                       ),
                               ),
                               Positioned.fill(
