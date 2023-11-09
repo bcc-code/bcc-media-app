@@ -936,20 +936,20 @@ class SNl extends S {
   String get contentLanguage => 'Taal content';
 
   @override
-  String get contentLanguageShort => 'Content';
+  String get contentLanguageShort => 'Inhoud';
 
   @override
   String get appLanguageShort => 'App';
 
   @override
-  String get playRandom => 'Play random';
+  String get playRandom => 'Willekeurig afspelen';
 
   @override
-  String get addLanguage => 'Add language';
+  String get addLanguage => 'Taal toevoegen';
 
   @override
-  String get preferredLanguages => 'Preferred languages';
+  String get preferredLanguages => 'Voorkeurstalen';
 
   @override
-  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
+  String get contentLanguageExplanation => 'Wijzig de volgorde van de talen naar je voorkeur voor geluid en ondertiteling.';
 }

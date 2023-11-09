@@ -936,7 +936,7 @@ class SPl extends S {
   String get contentLanguage => 'Content language';
 
   @override
-  String get contentLanguageShort => 'Content';
+  String get contentLanguageShort => 'Treść';
 
   @override
   String get appLanguageShort => 'App';

@@ -936,7 +936,7 @@ class SNb extends S {
   String get contentLanguage => 'Innholdsspråk';
 
   @override
-  String get contentLanguageShort => 'Content';
+  String get contentLanguageShort => 'Innhold';
 
   @override
   String get appLanguageShort => 'App';

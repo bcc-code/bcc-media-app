@@ -933,16 +933,16 @@ class SRo extends S {
   String get technicalDetails => 'Detalii tehnice';
 
   @override
-  String get contentLanguage => 'Content language';
+  String get contentLanguage => 'Limba conținutului';
 
   @override
-  String get contentLanguageShort => 'Content';
+  String get contentLanguageShort => 'Conţinut';
 
   @override
   String get appLanguageShort => 'App';
 
   @override
-  String get playRandom => 'Play random';
+  String get playRandom => 'Redare aleatorie';
 
   @override
   String get addLanguage => 'Add language';

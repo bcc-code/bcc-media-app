@@ -826,123 +826,123 @@ class SFi extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Audio not available in $lang';
+    return 'Ääntä ei ole saatavilla ${lang}ksi';
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+  String get notEnoughAvailableSpace => 'Laitteessa ei riitä enää tila';
 
   @override
-  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+  String get considerDeletingOtherVideos => 'Harkitse muiden sovelluksesta lataamiesi videoiden poistamista.';
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'The video file size is $size.';
+    return 'Videotiedoston koko on $size.';
   }
 
   @override
-  String get gotIt => 'Got it';
+  String get gotIt => 'Selvä';
 
   @override
-  String get saveYourFavorites => 'Save your favorite videos';
+  String get saveYourFavorites => 'Tallenna suosikkivideosi';
 
   @override
-  String get saveYourFavoritesDescription => 'Tap on the heart icon on a video to save it in your profile.';
+  String get saveYourFavoritesDescription => 'Napauta videon sydänkuvaketta tallentaaksesi sen profiiliisi.';
 
   @override
-  String get yourFavorites => 'Your favorites';
+  String get yourFavorites => 'Suosikkini';
 
   @override
-  String get downloaded => 'Downloaded';
+  String get downloaded => 'Ladatut';
 
   @override
-  String get saveVideosForOfflineViewing => 'Save videos for offline viewing';
+  String get saveVideosForOfflineViewing => 'Tallenna videoita offline-katselua varten';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
+  String get tapOnTheDownloadIcon => 'Napauta videon latauskuvaketta ladataksesi ja toistaaksesi offline-tilassa.';
 
   @override
-  String get removeOfflineVideo => 'Remove offline video?';
+  String get removeOfflineVideo => 'Poistetaanko offline-video?';
 
   @override
-  String get removeOfflineVideoDescription => 'By removing this video it will no longer be available without a network connection.';
+  String get removeOfflineVideoDescription => 'Kun poistat tämän videon, se ei ole enää saatavilla ilman verkkoyhteyttä.';
 
   @override
-  String get removeFromDeviceButton => 'Remove from device';
+  String get removeFromDeviceButton => 'Poista laitteesta';
 
   @override
-  String get keepVideoButton => 'Keep video';
+  String get keepVideoButton => 'Säilytä video';
 
   @override
-  String get noInternetConnection => 'No internet connection';
+  String get noInternetConnection => 'Ei Internet-yhteyttä';
 
   @override
-  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+  String get noInternetConnectionDescription => 'Muodosta yhteys Internetiin nähdäksesi kaikki videot.';
 
   @override
-  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+  String get noInternetButDontWorry => 'Ei Internet-yhteyttä, mutta älä huoli.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
+  String get hereAreAllTheVideosYouDownloaded => 'Tässä ovat kaikki lataamasi videot.';
 
   @override
-  String get connectToExplore => 'Connect to the internet to explore all videos.';
+  String get connectToExplore => 'Muodosta yhteys Internetiin nähdäksesi kaikki videot.';
 
   @override
   String get language => 'Kieli';
 
   @override
   String estimatedFileSize(String size) {
-    return 'Estimated file size: $size';
+    return 'Arvioitu tiedostokoko: $size';
   }
 
   @override
-  String get downloadVideo => 'Download video';
+  String get downloadVideo => 'Lataa video';
 
   @override
-  String get noSubtitles => 'No subtitles';
+  String get noSubtitles => 'Ei tekstityksiä';
 
   @override
-  String get subtitlesIncluded => 'Subtitles included';
+  String get subtitlesIncluded => 'Tekstitykset on';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'All subtitles will be available offline';
+  String get allSubtitlesWillBeAvailableOffline => 'Kaikki tekstitykset toimivat myös offline-tilassa';
 
   @override
-  String get downloading => 'Downloading';
+  String get downloading => 'Ladataan';
 
   @override
-  String get failed => 'Failed';
+  String get failed => 'Epäonnistui';
 
   @override
-  String get finished => 'Finished';
+  String get finished => 'Valmis';
 
   @override
-  String get paused => 'Paused';
+  String get paused => 'Tauko';
 
   @override
-  String get queued => 'Queued';
+  String get queued => 'Jonossa';
 
   @override
-  String get removing => 'Removing';
+  String get removing => 'Poistetaan';
 
   @override
-  String get availableOffline => 'Available offline';
+  String get availableOffline => 'Käytettävissä offline-tilassa';
 
   @override
-  String get technicalDetails => 'Technical details';
+  String get technicalDetails => 'Tekniset tiedot';
 
   @override
-  String get contentLanguage => 'Content language';
+  String get contentLanguage => 'Sisällön kieli';
 
   @override
-  String get contentLanguageShort => 'Content';
+  String get contentLanguageShort => 'Sisältö';
 
   @override
   String get appLanguageShort => 'App';
 
   @override
-  String get playRandom => 'Play random';
+  String get playRandom => 'Satunnaistoisto';
 
   @override
   String get addLanguage => 'Add language';

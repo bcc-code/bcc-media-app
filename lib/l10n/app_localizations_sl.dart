@@ -936,13 +936,13 @@ class SSl extends S {
   String get contentLanguage => 'Jezik vsebine';
 
   @override
-  String get contentLanguageShort => 'Content';
+  String get contentLanguageShort => 'Vsebina';
 
   @override
   String get appLanguageShort => 'App';
 
   @override
-  String get playRandom => 'Play random';
+  String get playRandom => 'Naključno predvajanje';
 
   @override
   String get addLanguage => 'Add language';

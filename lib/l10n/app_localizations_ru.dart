@@ -307,7 +307,7 @@ class SRu extends S {
   String get seeAll => 'Посмотреть все';
 
   @override
-  String get series => 'Серии';
+  String get series => 'Передачи';
 
   @override
   String get homeTab => 'Главная';
@@ -537,7 +537,7 @@ class SRu extends S {
   String get categoriesTab => 'Категории';
 
   @override
-  String get seriesTab => 'Серии';
+  String get seriesTab => 'Передачи';
 
   @override
   String get filmsTab => 'Фильмы';
@@ -933,23 +933,23 @@ class SRu extends S {
   String get technicalDetails => 'Технические детали';
 
   @override
-  String get contentLanguage => 'Content language';
+  String get contentLanguage => 'Язык содержания';
 
   @override
-  String get contentLanguageShort => 'Content';
+  String get contentLanguageShort => 'Содержание';
 
   @override
-  String get appLanguageShort => 'App';
+  String get appLanguageShort => 'Приложение';
 
   @override
-  String get playRandom => 'Play random';
+  String get playRandom => 'Играть в случайном порядке';
 
   @override
-  String get addLanguage => 'Add language';
+  String get addLanguage => 'Добавить язык';
 
   @override
-  String get preferredLanguages => 'Preferred languages';
+  String get preferredLanguages => 'Предпочитаемые языки';
 
   @override
-  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
+  String get contentLanguageExplanation => 'Измените порядок языков согласно предпочтениями языка аудио и субтитров.';
 }

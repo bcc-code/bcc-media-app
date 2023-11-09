@@ -404,7 +404,7 @@
   "@seeAll": {
     "description": "Button to see all of some collection."
   },
-  "series": "Серии",
+  "series": "Передачи",
   "@series": {
     "description": "Title of the tab on info page"
   },
@@ -723,7 +723,7 @@
   "@categoriesTab": {
     "description": "Title of the Categories Tab"
   },
-  "seriesTab": "Серии",
+  "seriesTab": "Передачи",
   "@seriesTab": {
     "description": "Series Tab title"
   },
@@ -1282,12 +1282,32 @@
   "@technicalDetails": {
     "description": "Shown when errors occur, and you want to see more technical details about the error."
   },
-  "contentLanguage": "Content language",
+  "contentLanguage": "Язык содержания",
   "@contentLanguage": {
     "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
   },
-  "playRandom": "Play random",
+  "contentLanguageShort": "Содержание",
+  "@contentLanguageShort": {
+    "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
+  },
+  "appLanguageShort": "Приложение",
+  "@appLanguageShort": {
+    "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
+  },
+  "playRandom": "Играть в случайном порядке",
   "@playRandom": {
     "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
+  },
+  "addLanguage": "Добавить язык",
+  "@addLanguage": {
+    "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
+  },
+  "preferredLanguages": "Предпочитаемые языки",
+  "@preferredLanguages": {
+    "description": "Shown when you are selecting preferred content languages. Title."
+  },
+  "contentLanguageExplanation": "Измените порядок языков согласно предпочтениями языка аудио и субтитров.",
+  "@contentLanguageExplanation": {
+    "description": "Shown when you are selecting preferred content languages."
   }
 }

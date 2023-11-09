@@ -933,16 +933,16 @@ class SFr extends S {
   String get technicalDetails => 'Détails techniques';
 
   @override
-  String get contentLanguage => 'Content language';
+  String get contentLanguage => 'Langue du contenu';
 
   @override
-  String get contentLanguageShort => 'Content';
+  String get contentLanguageShort => 'Contenu';
 
   @override
   String get appLanguageShort => 'App';
 
   @override
-  String get playRandom => 'Play random';
+  String get playRandom => 'Lecture aléatoire';
 
   @override
   String get addLanguage => 'Add language';

@@ -933,23 +933,23 @@ class SHu extends S {
   String get technicalDetails => 'Műszaki részletek';
 
   @override
-  String get contentLanguage => 'Content language';
+  String get contentLanguage => 'Tartalom nyelve';
 
   @override
-  String get contentLanguageShort => 'Content';
+  String get contentLanguageShort => 'Tartalom';
 
   @override
   String get appLanguageShort => 'App';
 
   @override
-  String get playRandom => 'Play random';
+  String get playRandom => 'Véletlenszerű lejátszás';
 
   @override
-  String get addLanguage => 'Add language';
+  String get addLanguage => 'Nyelv hozzáadása';
 
   @override
-  String get preferredLanguages => 'Preferred languages';
+  String get preferredLanguages => 'Elsőleges nyelvek';
 
   @override
-  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
+  String get contentLanguageExplanation => 'Rendezz át a nyelveket a kívánt hang- és feliratnyelvnek megfelelően.';
 }

@@ -936,7 +936,7 @@ class SIt extends S {
   String get contentLanguage => 'Content language';
 
   @override
-  String get contentLanguageShort => 'Content';
+  String get contentLanguageShort => 'Contenuto';
 
   @override
   String get appLanguageShort => 'App';
