@@ -939,17 +939,17 @@ class SSl extends S {
   String get contentLanguageShort => 'Vsebina';
 
   @override
-  String get appLanguageShort => 'App';
+  String get appLanguageShort => 'Aplikacija';
 
   @override
   String get playRandom => 'Naključno predvajanje';
 
   @override
-  String get addLanguage => 'Add language';
+  String get addLanguage => 'Dodaj jezik';
 
   @override
   String get preferredLanguages => 'Preferred languages';
 
   @override
-  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
+  String get contentLanguageExplanation => 'Spremeni vrstni red jezikov tako, da bo ustrezal tvojim željam glede jezika zvoka in podnapisov.';
 }

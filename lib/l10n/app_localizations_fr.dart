@@ -939,17 +939,17 @@ class SFr extends S {
   String get contentLanguageShort => 'Contenu';
 
   @override
-  String get appLanguageShort => 'App';
+  String get appLanguageShort => 'Application';
 
   @override
   String get playRandom => 'Lecture aléatoire';
 
   @override
-  String get addLanguage => 'Add language';
+  String get addLanguage => 'Ajouter une langue';
 
   @override
-  String get preferredLanguages => 'Preferred languages';
+  String get preferredLanguages => 'Langues préférées';
 
   @override
-  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
+  String get contentLanguageExplanation => 'Réorganiser les langues en fonction de ses préférences en matière de langues audio et de sous-titres.';
 }
