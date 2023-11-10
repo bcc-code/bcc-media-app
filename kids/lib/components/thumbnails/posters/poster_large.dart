@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:animations/animations.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
+import 'package:brunstadtv_app/helpers/haptic_feedback.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
@@ -64,6 +65,7 @@ class PosterLarge extends HookWidget {
               onTap: () {
                 onPressed?.call();
                 if (openBuilder != null) open();
+                CustomHapticFeedback.selectionClick();
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(isSmall ? 20 : 40),

@@ -2,8 +2,11 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:brunstadtv_app/helpers/haptic_feedback.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 
@@ -11,6 +14,7 @@ import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/providers/sound_effects.dart';
 import 'package:universal_io/io.dart';
+import 'package:vibration/vibration.dart';
 
 class ButtonBase extends HookConsumerWidget {
   final Widget Function(BuildContext context, bool isPressed) builder;
@@ -47,22 +51,28 @@ class ButtonBase extends HookConsumerWidget {
     void push() {
       pressed.value = true;
       ref.read(soundEffectsProvider).queue(AssetSource(SoundEffects.buttonPush));
+      CustomHapticFeedback.selectionClick();
     }
 
     void release() {
       pressed.value = false;
       ref.read(soundEffectsProvider).queue(AssetSource(SoundEffects.buttonRelease));
+      CustomHapticFeedback.selectionClick();
     }
 
-    void tapWithAnimation() {
-      Future.delayed(const Duration(milliseconds: 10), () {
-        onPressed?.call();
-      });
+    void tapWithAnimation() async {
+      CustomHapticFeedback.selectionClick();
       pressed.value = true;
-      Future.delayed(const Duration(milliseconds: 100), () {
-        if (!context.mounted) return;
-        pressed.value = false;
-      });
+      await Future.delayed(100.ms);
+
+      if (!context.mounted) return;
+      CustomHapticFeedback.selectionClick();
+      pressed.value = false;
+      await Future.delayed(100.ms);
+
+      if (!context.mounted) return;
+      pressed.value = false;
+      onPressed?.call();
     }
 
     return RepaintBoundary(

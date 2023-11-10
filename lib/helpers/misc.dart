@@ -45,12 +45,13 @@ Completer<T> wrapInCompleter<T>(Future<T> future) {
   return completer;
 }
 
-void tryCatchRecordError(dynamic Function() fn) {
+T? tryCatchRecordError<T>(T Function() fn) {
   try {
-    fn();
+    return fn();
   } catch (e) {
     FlutterError.reportError(FlutterErrorDetails(exception: e, stack: StackTrace.current));
   }
+  return null;
 }
 
 Rect iPadSharePositionOrigin(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/haptic_feedback.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -181,7 +182,10 @@ class ContentLanguageList extends HookConsumerWidget {
                     ),
                 ],
                 onReorderStart: (index) {
-                  HapticFeedback.mediumImpact();
+                  CustomHapticFeedback.heavyImpact();
+                },
+                onReorderEnd: (index) {
+                  CustomHapticFeedback.heavyImpact();
                 },
                 onReorder: (oldIndex, newIndex) {
                   if (oldIndex < newIndex) {

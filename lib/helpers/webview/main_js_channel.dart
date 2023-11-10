@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/haptic_feedback.dart';
 import 'package:brunstadtv_app/helpers/router/router_utils.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/share_image.dart';
@@ -80,15 +81,15 @@ class MainJsChannel {
     final type = arguments[1] as String;
     switch (type) {
       case 'vibrate':
-        return HapticFeedback.vibrate();
+        return CustomHapticFeedback.vibrate();
       case 'lightImpact':
-        return (Platform.isAndroid) ? Vibration.vibrate(duration: 30, amplitude: 10) : HapticFeedback.lightImpact();
+        return CustomHapticFeedback.lightImpact();
       case 'mediumImpact':
-        return (Platform.isAndroid) ? Vibration.vibrate(duration: 30, amplitude: 30) : HapticFeedback.mediumImpact();
+        return CustomHapticFeedback.mediumImpact();
       case 'heavyImpact':
-        return (Platform.isAndroid) ? Vibration.vibrate(duration: 30, amplitude: 60) : HapticFeedback.heavyImpact();
+        return CustomHapticFeedback.heavyImpact();
       case 'selectionClick':
-        return HapticFeedback.selectionClick();
+        return CustomHapticFeedback.selectionClick();
     }
 
     throw Exception('hapticFeedback: invalid argument ${arguments[1]}');
