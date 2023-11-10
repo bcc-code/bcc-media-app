@@ -105,16 +105,11 @@ class PlayerView extends HookConsumerWidget {
       };
     }, []);
 
-    final lastEpisodeId = useState(currentMediaItem.value?.metadata?.extras?['id']);
     final buffering = useState(false);
     final last5SecondsHandled = useState(false);
     useEffect(() {
       void listener() {
         currentMediaItem.value = viewController.playerController.value.currentMediaItem;
-        final episodeId = viewController.playerController.value.currentMediaItem?.metadata?.extras?['id'];
-        if (episodeId != null) {
-          lastEpisodeId.value = episodeId;
-        }
         buffering.value = viewController.playerController.value.isBuffering;
         final duration = viewController.playerController.value.currentMediaItem?.metadata?.durationMs;
         final position = viewController.playerController.value.playbackPositionMs;
@@ -215,7 +210,7 @@ class PlayerView extends HookConsumerWidget {
                                       ),
                               ),
                               Positioned.fill(
-                                  child: currentMediaItem.value == null && episode?.image != null && lastEpisodeId.value != null
+                                  child: currentMediaItem.value == null && episode?.image != null
                                       ? simpleFadeInImage(url: episode!.image!)
                                       : Container()),
                               Positioned.fill(
@@ -260,7 +255,7 @@ class PlayerView extends HookConsumerWidget {
                             padding: EdgeInsets.symmetric(
                               vertical: bp.smallerThan(TABLET) ? 12 : 32,
                             ),
-                            child: lastEpisodeId.value == null
+                            child: episode == null
                                 ? const Center(
                                     child: RepaintBoundary(
                                       child: LoadingIndicator(height: 24, width: 24),
