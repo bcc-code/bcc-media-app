@@ -1,8 +1,149 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.0.0+2500000-kids...v) (2023-10-11)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.0.8+2500008-kids...v) (2023-11-10)
 
 
 
-# [5.0.0+2500000-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.9.7+2300097-kids...v5.0.0+2500000-kids) (2023-10-11)
+## [5.0.8+2500008-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.0.7+2500007-kids...v5.0.8+2500008-kids) (2023-11-10)
+
+
+### Bug Fixes
+
+* subtitles said none when other track selected ([910abc1](https://github.com/bcc-code/bcc-media-app/commit/910abc12b938221ed266b24ff8dea3ed5590f760))
+
+
+### Features
+
+* **kids:** android casting ([0210778](https://github.com/bcc-code/bcc-media-app/commit/0210778d622a6eecd73b390f7af89df6b850a458))
+* **kids:** android casting track selection ([f34a6d7](https://github.com/bcc-code/bcc-media-app/commit/f34a6d785ead978ecad16e38d63fb3223c8d967d))
+
+
+
+## [5.0.7+2500007-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.0.6+2500006-kids...v5.0.7+2500007-kids) (2023-11-09)
+
+
+### Bug Fixes
+
+* padding on show page ([682c6f9](https://github.com/bcc-code/bcc-media-app/commit/682c6f9fbfbdf0910a631a6f96b1065911a7462b))
+
+
+### Features
+
+* content language ([592e8df](https://github.com/bcc-code/bcc-media-app/commit/592e8df70faf36df5ae1877c77fd1035fb80ceb0))
+* home page adjustments ([e73ec02](https://github.com/bcc-code/bcc-media-app/commit/e73ec02262e53de6cc0fbfeac69be57cb5d72b57))
+* none subtitle option ([424c5f8](https://github.com/bcc-code/bcc-media-app/commit/424c5f86ea1cb010b579fd905ed8e05aeae46900))
+* play next button and poster wrapping ([e28c90f](https://github.com/bcc-code/bcc-media-app/commit/e28c90f3ee098218ffbb5c0bddc8ce5f51602395))
+* update play random icon ([afd1bbb](https://github.com/bcc-code/bcc-media-app/commit/afd1bbb516dd5a98f4d62b5bf928eea6dca57109))
+
+
+
+## [5.0.6+2500006-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.0.5+2500005-kids...v5.0.6+2500006-kids) (2023-11-03)
+
+
+### Bug Fixes
+
+* app language shows wrong selected ([32fa503](https://github.com/bcc-code/bcc-media-app/commit/32fa50339fabe8f0b8387e6d9b66a0a6985ac798))
+* dont reload episodes when a video finishes ([3bb5f9c](https://github.com/bcc-code/bcc-media-app/commit/3bb5f9c9e08fa734c2078295ad67d2ccfea9c4b0))
+* dont send updateProgress if anonymous ([9f3be56](https://github.com/bcc-code/bcc-media-app/commit/9f3be56ae97c61ceea980f315936c9c9572fd317))
+
+
+### Features
+
+* **kids:** analytics language_changed event ([39f6c19](https://github.com/bcc-code/bcc-media-app/commit/39f6c19a06946defe3ae1e321071604cd0d919bf))
+* use playlistids as episode context ([b0d620b](https://github.com/bcc-code/bcc-media-app/commit/b0d620b45a16317765536675f5cf16bc646891c3))
+
+
+
+## [5.0.5+2500005-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.0.4+2500004-kids...v5.0.5+2500005-kids) (2023-11-02)
+
+
+### Features
+
+* **kids:** screen analytics ([5971b12](https://github.com/bcc-code/bcc-media-app/commit/5971b12e021e679f937601a3a3f3889e115716e6))
+* search analytics + include 0 hits ([9a31622](https://github.com/bcc-code/bcc-media-app/commit/9a31622c0cd4ee52adee84ed902fd372f83d9fd1))
+* section analytics ([81f075e](https://github.com/bcc-code/bcc-media-app/commit/81f075e62cf6cd3b5dad29d4887594fd269f1bd3))
+
+
+
+## [5.0.4+2500004-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.9.9+2300099...v5.0.4+2500004-kids) (2023-11-01)
+
+
+### Bug Fixes
+
+* performance improvements for android + last5seconds ([c26bbc4](https://github.com/bcc-code/bcc-media-app/commit/c26bbc40b53445cbafe37c05c6786d6273ef187d))
+
+
+### Features
+
+* splash screen ([325daf7](https://github.com/bcc-code/bcc-media-app/commit/325daf75a3b2eb5584b561410d6844899db8c5ce))
+
+
+
+## [4.9.9+2300099](https://github.com/bcc-code/bcc-media-app/compare/v5.0.3+2500003-kids...v4.9.9+2300099) (2023-10-31)
+
+
+### Features
+
+* **bccm:** send message delivery analytics ([f837cf5](https://github.com/bcc-code/bcc-media-app/commit/f837cf5fcda2d382ea1e66834425522299f935a2))
+
+
+
+## [5.0.3+2500003-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.0.2+2500002-kids...v5.0.3+2500003-kids) (2023-10-30)
+
+
+
+## [5.0.2+2500002-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.0.1+2500001-kids...v5.0.2+2500002-kids) (2023-10-27)
+
+
+### Features
+
+* play on playlist ([beed499](https://github.com/bcc-code/bcc-media-app/commit/beed499e6b2ef8528e86814b484f4dd7471eac53))
+* play random ([4500b60](https://github.com/bcc-code/bcc-media-app/commit/4500b60735db401d6a6cfa43e16521c247ea2957))
+* search mobile ([62967fa](https://github.com/bcc-code/bcc-media-app/commit/62967fa891efa4e205b8439174d9fe84c2dc5199))
+* search page ([40ce868](https://github.com/bcc-code/bcc-media-app/commit/40ce86833888ea3c0b69ec26d120e2147fbdda16))
+
+
+
+## [5.0.1+2500001-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.0.0+2500000-kids...v5.0.1+2500001-kids) (2023-10-26)
+
+
+### Bug Fixes
+
+* parental gate on ipad ([8f5d534](https://github.com/bcc-code/bcc-media-app/commit/8f5d5341bd9f941d4d6512ffe471702e96bcccf9))
+
+
+### Features
+
+* more stable transitions ([6168cd4](https://github.com/bcc-code/bcc-media-app/commit/6168cd4bd07023aaf3a37b71525eceb3b8dd59b6))
+* player view ([b7c37d2](https://github.com/bcc-code/bcc-media-app/commit/b7c37d2d294df4301b1034c08deca102f5c5fcf2))
+* player view for mobile ([0e958fa](https://github.com/bcc-code/bcc-media-app/commit/0e958fa93561e5c5054de1b224b9bcc3a11dd5ff))
+
+
+
+# [5.0.0+2500000-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.9.8+2300098...v5.0.0+2500000-kids) (2023-10-18)
+
+
+### Features
+
+* use audio language as subtitle language for kids ([7245b27](https://github.com/bcc-code/bcc-media-app/commit/7245b277e4dc95c69e9160e25ee590f34e7b49b7))
+
+
+
+## [4.9.8+2300098](https://github.com/bcc-code/bcc-media-app/compare/v4.9.7+2300097-kids...v4.9.8+2300098) (2023-10-17)
+
+
+### Features
+
+* **androidtv:** live button outline [#251](https://github.com/bcc-code/bcc-media-app/issues/251) ([df075e8](https://github.com/bcc-code/bcc-media-app/commit/df075e802128769b7283e78ced2190f2443fe129))
+* **kids:** animations draft ([df46db5](https://github.com/bcc-code/bcc-media-app/commit/df46db58bcf9d1e6d0274d0542bc4813ad960daa))
+* **kids:** mobile settings ([4b5ddb2](https://github.com/bcc-code/bcc-media-app/commit/4b5ddb23a774159dc3a1b4124594610f76033fcf))
+* **kids:** playlist page ([7d57a5c](https://github.com/bcc-code/bcc-media-app/commit/7d57a5c9366040d00053813d8e1d944146b98388))
+* parental gate redesign ([c5e2779](https://github.com/bcc-code/bcc-media-app/commit/c5e27791bcadc477e85d0ac10f149db8273e7070))
+* playlist poster ([7065bbc](https://github.com/bcc-code/bcc-media-app/commit/7065bbc16bd648eb267977764a8bd7779b4bb86b))
+* search bar ([b68fade](https://github.com/bcc-code/bcc-media-app/commit/b68fade63b1ec7813c61aab365cb56a05628f928))
+* settings core + playlist route transition ([c9cbc77](https://github.com/bcc-code/bcc-media-app/commit/c9cbc776715ab37387d583fb414756b8b63d1461))
+
+
+
+## [4.9.7+2300097-kids](https://github.com/bcc-code/bcc-media-app/compare/v4.9.7+2300097...v4.9.7+2300097-kids) (2023-10-11)
 
 
 ### Bug Fixes
