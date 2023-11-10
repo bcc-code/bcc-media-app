@@ -134,7 +134,7 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
                       if (item.duration != null)
                         Positioned(
                           bottom: bp.smallerThan(TABLET) ? 8 : 16,
-                          left: bp.smallerThan(TABLET) ? 8 : 16,
+                          right: bp.smallerThan(TABLET) ? 8 : 16,
                           child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
                         ),
                     ],
