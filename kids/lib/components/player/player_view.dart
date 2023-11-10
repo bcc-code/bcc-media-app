@@ -516,7 +516,7 @@ class _TrackSelectionList extends HookWidget {
                   if (includeNone)
                     KidsOptionListItem(
                       title: S.of(context).none,
-                      selected: !preferredTracks.any((element) => element.isSelected),
+                      selected: !preferredTracks.any((element) => element.isSelected) && !otherTracks.any((element) => element.isSelected),
                       onPressed: () {
                         onSelectionChanged(null);
                       },
