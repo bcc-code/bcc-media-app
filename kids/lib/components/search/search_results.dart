@@ -8,7 +8,6 @@ import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/search_performed.dart';
 import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';
-import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';

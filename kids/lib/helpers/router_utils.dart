@@ -32,5 +32,4 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
   if (playlistItem != null) {
     return context.router.push(PlaylistScreenRoute(id: playlistItem.id));
   }
-  return showDialog(context: context, builder: (context) => SimpleDialog(title: Text('Clicked ${item.$__typename} ')));
 }

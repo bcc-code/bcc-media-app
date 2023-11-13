@@ -5,7 +5,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:kids/components/buttons/button.dart';
-import 'package:kids/components/buttons/button_base.dart';
 
 class TabSwitcher extends HookWidget {
   const TabSwitcher.large({
@@ -51,9 +50,6 @@ class TabSwitcher extends HookWidget {
             sideColor: const Color(0xFFF1B826),
             labelTextStyle: design.textStyles.headline3,
           );
-    void selectNext() {
-      onSelectionChanged((selectedIndex + 1) % options.length);
-    }
 
     return Container(
       padding: const EdgeInsets.only(top: 4, bottom: 4, right: 4, left: 4),

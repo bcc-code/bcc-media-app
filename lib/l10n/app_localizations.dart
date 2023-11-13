@@ -1899,6 +1899,12 @@ abstract class S {
   /// **'Removing'**
   String get removing;
 
+  /// IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day).
+  ///
+  /// In en, this message translates to:
+  /// **'Expires in {time}'**
+  String expiresIn(String time);
+
   /// Label indicating that the video is available offline.
   ///
   /// In en, this message translates to:
@@ -1952,6 +1958,30 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Reorder the languages to match your preference for audio & subtitle language.'**
   String get contentLanguageExplanation;
+
+  /// Languages that are available but in your list of preferred languages.
+  ///
+  /// In en, this message translates to:
+  /// **'Other languages'**
+  String get otherLanguages;
+
+  /// Prompt. Shown at the top of a list of options.
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get select;
+
+  /// Shown on the settings page.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Bible Kids'**
+  String get supportBibleKids;
+
+  /// Shown on the settings page.
+  ///
+  /// In en, this message translates to:
+  /// **'Donate via PayPal'**
+  String get donateViaPaypal;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

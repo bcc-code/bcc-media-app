@@ -523,7 +523,7 @@ class _TrackSelectionList extends HookWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
                   child: Text(
-                    'Other languages',
+                    S.of(context).otherLanguages,
                     style: design.textStyles.body1.copyWith(color: design.colors.label2),
                   ),
                 ),

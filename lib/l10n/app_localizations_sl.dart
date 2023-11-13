@@ -927,6 +927,11 @@ class SSl extends S {
   String get removing => 'Odstranjujem';
 
   @override
+  String expiresIn(String time) {
+    return 'Expires in $time';
+  }
+
+  @override
   String get availableOffline => 'Na voljo brez povezave';
 
   @override
@@ -952,4 +957,16 @@ class SSl extends S {
 
   @override
   String get contentLanguageExplanation => 'Spremeni vrstni red jezikov tako, da bo ustrezal tvojim željam glede jezika zvoka in podnapisov.';
+
+  @override
+  String get otherLanguages => 'Other languages';
+
+  @override
+  String get select => 'Select';
+
+  @override
+  String get supportBibleKids => 'Support Bible Kids';
+
+  @override
+  String get donateViaPaypal => 'Donate via PayPal';
 }

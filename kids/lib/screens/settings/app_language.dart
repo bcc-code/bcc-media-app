@@ -67,7 +67,7 @@ class AppLanguageScreen extends ConsumerWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 12),
-                              child: Text('Select', style: design.textStyles.body2),
+                              child: Text(S.of(context).select, style: design.textStyles.body2),
                             ),
                             KidsOptionList(
                               items: buildItems(),

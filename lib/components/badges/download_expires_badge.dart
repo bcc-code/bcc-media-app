@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:brunstadtv_app/helpers/hooks/use_interval.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import '../../theme/design_system/design_system.dart';
@@ -10,11 +11,11 @@ class DownloadExpiresBadge extends HookWidget {
 
   const DownloadExpiresBadge({super.key, required this.expiresAt});
 
-  String getFormattedDuration(int seconds) {
+  String getFormattedDuration(BuildContext context, int seconds) {
     if (seconds < 60) {
       return '$seconds sec';
     } else if (seconds < 3600) {
-      return '${(seconds / 60).floor()}min';
+      return '${(seconds / 60).floor()}${S.of(context).minutesShort}}';
     } else if (seconds < 86400) {
       return '${(seconds / 3600).floor()}h';
     } else {
@@ -34,7 +35,7 @@ class DownloadExpiresBadge extends HookWidget {
         borderRadius: BorderRadius.circular(2),
       ),
       child: Text(
-        'Expires in ${getFormattedDuration(expiresAt.difference(DateTime.now()).inSeconds)}',
+        S.of(context).expiresIn(getFormattedDuration(context, expiresAt.difference(DateTime.now()).inSeconds)),
         style: design.textStyles.caption3.copyWith(color: design.colors.onTint),
       ),
     );

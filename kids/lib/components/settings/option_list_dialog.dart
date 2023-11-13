@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -52,7 +53,7 @@ class OptionListDialog extends ConsumerWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 12),
-                              child: Text('Select', style: design.textStyles.body2),
+                              child: Text(S.of(context).select, style: design.textStyles.body2),
                             ),
                             KidsOptionList(
                               items: items,

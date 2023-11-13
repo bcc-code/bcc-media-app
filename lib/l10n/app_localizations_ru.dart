@@ -927,6 +927,11 @@ class SRu extends S {
   String get removing => 'Удаляется';
 
   @override
+  String expiresIn(String time) {
+    return 'Expires in $time';
+  }
+
+  @override
   String get availableOffline => 'Доступно в офлайн-режиме';
 
   @override
@@ -952,4 +957,16 @@ class SRu extends S {
 
   @override
   String get contentLanguageExplanation => 'Измените порядок языков согласно предпочтениями языка аудио и субтитров.';
+
+  @override
+  String get otherLanguages => 'Other languages';
+
+  @override
+  String get select => 'Select';
+
+  @override
+  String get supportBibleKids => 'Support Bible Kids';
+
+  @override
+  String get donateViaPaypal => 'Donate via PayPal';
 }

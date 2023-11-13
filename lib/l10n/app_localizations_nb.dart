@@ -927,6 +927,11 @@ class SNb extends S {
   String get removing => 'Sletter';
 
   @override
+  String expiresIn(String time) {
+    return 'Expires in $time';
+  }
+
+  @override
   String get availableOffline => 'Tilgjengelig offline';
 
   @override
@@ -952,4 +957,16 @@ class SNb extends S {
 
   @override
   String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
+
+  @override
+  String get otherLanguages => 'Other languages';
+
+  @override
+  String get select => 'Select';
+
+  @override
+  String get supportBibleKids => 'Support Bible Kids';
+
+  @override
+  String get donateViaPaypal => 'Donate via PayPal';
 }

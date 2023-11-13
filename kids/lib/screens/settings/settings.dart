@@ -227,11 +227,11 @@ class DonationButton extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Support Bible Kids',
+                    S.of(context).supportBibleKids,
                     style: (small ? design.textStyles.title1 : design.textStyles.headline3).copyWith(color: design.colors.onTint),
                   ),
                   Text(
-                    'Donate via PayPal',
+                    S.of(context).donateViaPaypal,
                     style: (small ? design.textStyles.body2 : design.textStyles.body1).copyWith(color: design.colors.onTint),
                   ),
                 ],

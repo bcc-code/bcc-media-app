@@ -927,6 +927,11 @@ class SFr extends S {
   String get removing => 'Suppression';
 
   @override
+  String expiresIn(String time) {
+    return 'Expires in $time';
+  }
+
+  @override
   String get availableOffline => 'Disponible hors ligne';
 
   @override
@@ -952,4 +957,16 @@ class SFr extends S {
 
   @override
   String get contentLanguageExplanation => 'Réorganiser les langues en fonction de ses préférences en matière de langues audio et de sous-titres.';
+
+  @override
+  String get otherLanguages => 'Other languages';
+
+  @override
+  String get select => 'Select';
+
+  @override
+  String get supportBibleKids => 'Support Bible Kids';
+
+  @override
+  String get donateViaPaypal => 'Donate via PayPal';
 }
