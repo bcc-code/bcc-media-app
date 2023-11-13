@@ -928,7 +928,7 @@ class SNl extends S {
 
   @override
   String expiresIn(String time) {
-    return 'Expires in $time';
+    return 'Verloopt op $time';
   }
 
   @override
@@ -959,14 +959,14 @@ class SNl extends S {
   String get contentLanguageExplanation => 'Wijzig de volgorde van de talen naar je voorkeur voor geluid en ondertiteling.';
 
   @override
-  String get otherLanguages => 'Other languages';
+  String get otherLanguages => 'Andere talen';
 
   @override
-  String get select => 'Select';
+  String get select => 'Maak een keuze';
 
   @override
   String get supportBibleKids => 'Support Bible Kids';
 
   @override
-  String get donateViaPaypal => 'Donate via PayPal';
+  String get donateViaPaypal => 'Doneer via PayPal';
 }
