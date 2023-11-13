@@ -80,7 +80,7 @@ class PlayerView extends HookConsumerWidget {
       controlsVisible.value = value;
       if (value) {
         animationController.forward(from: 0.0);
-        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       } else {
         animationController.reverse(from: 1.0);
         if (viewController.playerController.value.playbackState != PlaybackState.playing && currentMediaItem.value != null) {
@@ -95,15 +95,6 @@ class PlayerView extends HookConsumerWidget {
     void toggleOpen() {
       setControlsVisible(!controlsVisible.value);
     }
-
-    useEffect(() {
-      Future.delayed(const Duration(milliseconds: 500)).then((_) {
-        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-      });
-      return () {
-        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-      };
-    }, []);
 
     final buffering = useState(false);
     final last5SecondsHandled = useState(false);

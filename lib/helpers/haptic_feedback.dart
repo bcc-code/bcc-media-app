@@ -41,7 +41,7 @@ class CustomHapticFeedback {
   static Future<void> mediumImpact() async {
     await tryCatchRecordError<Future<void>>(() async {
       if (await _shouldOverrideWithVibration()) {
-        return Vibration.vibrate(duration: 40, amplitude: 60);
+        return Vibration.vibrate(duration: 40, amplitude: 40);
       }
       return HapticFeedback.mediumImpact();
     });
@@ -50,7 +50,7 @@ class CustomHapticFeedback {
   static Future<void> heavyImpact() async {
     await tryCatchRecordError<Future<void>>(() async {
       if (await _shouldOverrideWithVibration()) {
-        return Vibration.vibrate(duration: 50, amplitude: 80);
+        return Vibration.vibrate(duration: 50, amplitude: 60);
       }
       return HapticFeedback.heavyImpact();
     });

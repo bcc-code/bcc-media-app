@@ -135,7 +135,7 @@ Future setDefaults() async {
     ),
   );
 
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
   if (!_isAndroidTv) {
     SystemChrome.setPreferredOrientations([
