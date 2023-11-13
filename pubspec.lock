@@ -731,12 +731,11 @@ packages:
   flutter_svg_provider:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "fix/deps"
-      resolved-ref: "8539dfcb4871d6343e0cb2c7456c360d1115816f"
-      url: "https://github.com/andreasgangso/flutter_svg_provider.git"
-    source: git
-    version: "1.0.3"
+      name: flutter_svg_provider
+      sha256: "13d85033c6ae63c8073268f9c5c3c74e5de178224183eaff1d47f08f70c59fcc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.6"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -877,10 +876,10 @@ packages:
     dependency: "direct main"
     description:
       name: graphql
-      sha256: ad11e6d12de4d73971ae1dd80885b09f3cbc0bf143b1cbc5622a6dc6d85735e7
+      sha256: "4ac531068107dffef188c74e7ff662777b729e9d5e0686f71623d4af1e3751c8"
       url: "https://pub.dev"
     source: hosted
-    version: "5.2.0-beta.4"
+    version: "5.2.0-beta.6"
   graphql_codegen:
     dependency: "direct dev"
     description:
@@ -941,10 +940,10 @@ packages:
     dependency: "direct main"
     description:
       name: http
-      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
+      sha256: "759d1a329847dd0f39226c688d3e06a6b8679668e350e2891a6474f8b4bb8525"
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.6"
+    version: "1.1.0"
   http_multi_server:
     dependency: transitive
     description:

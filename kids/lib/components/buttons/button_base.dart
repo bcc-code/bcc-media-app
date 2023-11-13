@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:audioplayers/audioplayers.dart';
 import 'package:brunstadtv_app/helpers/haptic_feedback.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +52,7 @@ class ButtonBase extends HookConsumerWidget {
       if (tapTimer.isRunning) return;
       tapTimer.start();
       pressed.value = true;
-      ref.read(soundEffectsProvider).queue(AssetSource(SoundEffects.buttonPush));
+      ref.read(soundEffectsProvider).queue(SoundEffects.buttonPush);
       CustomHapticFeedback.selectionClick();
     }
 
@@ -66,8 +65,8 @@ class ButtonBase extends HookConsumerWidget {
       if (!context.mounted) return;
 
       pressed.value = false;
-      ref.read(soundEffectsProvider).queue(AssetSource(SoundEffects.buttonRelease));
-      CustomHapticFeedback.mediumImpact();
+      ref.read(soundEffectsProvider).queue(SoundEffects.buttonRelease);
+      CustomHapticFeedback.heavyImpact();
       onPressed?.call();
 
       debugPrint("handling release DONE");
@@ -86,7 +85,7 @@ class ButtonBase extends HookConsumerWidget {
         },
         onTapCancel: () {
           pressed.value = false;
-          ref.read(soundEffectsProvider).queue(AssetSource(SoundEffects.buttonRelease));
+          ref.read(soundEffectsProvider).queue(SoundEffects.buttonRelease);
           CustomHapticFeedback.selectionClick();
           tapTimer.stop();
           tapTimer.reset();

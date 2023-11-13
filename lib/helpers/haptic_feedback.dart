@@ -19,7 +19,8 @@ class CustomHapticFeedback {
       return Future.value(_overrideCache);
     }
     if (Platform.isAndroid) {
-      return _overrideCache = await Vibration.hasAmplitudeControl() ?? false;
+      final hasVibrator = await Vibration.hasVibrator();
+      return _overrideCache = hasVibrator ?? false;
     }
     return _overrideCache = false;
   }
@@ -58,7 +59,7 @@ class CustomHapticFeedback {
   static Future<void> selectionClick() async {
     await tryCatchRecordError<Future<void>>(() async {
       if (await _shouldOverrideWithVibration()) {
-        return Vibration.vibrate(duration: 25, amplitude: 30);
+        return Vibration.vibrate(duration: 30, amplitude: 30);
       }
       return HapticFeedback.selectionClick();
     });

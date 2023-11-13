@@ -65,7 +65,7 @@ class PosterLarge extends HookWidget {
               onTap: () {
                 onPressed?.call();
                 if (openBuilder != null) open();
-                CustomHapticFeedback.selectionClick();
+                CustomHapticFeedback.mediumImpact();
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(isSmall ? 20 : 40),

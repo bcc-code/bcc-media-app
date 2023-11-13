@@ -43,7 +43,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.0.3
   js: ^0.6.4
-  http: ^0.13.4
+  http: ^1.1.0
   json_annotation: ^4.5.0
   json_serializable: ^6.2.0
   mockito: ^5.2.0
@@ -72,10 +72,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   device_info_plus: ^9.0.3
   firebase_crashlytics: ^3.0.4
-  flutter_svg_provider:
-    git:
-      url: https://github.com/andreasgangso/flutter_svg_provider.git
-      ref: fix/deps
+  flutter_svg_provider: ^1.0.5
   on_screen_ruler: ^0.0.1
   url_launcher: ^6.1.6
   modal_bottom_sheet: ^3.0.0-pre
