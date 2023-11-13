@@ -1274,6 +1274,15 @@
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
+  "expiresIn": "Expires in {time}",
+  "@expiresIn": {
+    "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "availableOffline": "Disponible hors ligne",
   "@availableOffline": {
     "description": "Label indicating that the video is available offline."
@@ -1309,5 +1318,21 @@
   "contentLanguageExplanation": "Réorganiser les langues en fonction de ses préférences en matière de langues audio et de sous-titres.",
   "@contentLanguageExplanation": {
     "description": "Shown when you are selecting preferred content languages."
+  },
+  "otherLanguages": "Other languages",
+  "@otherLanguages": {
+    "description": "Languages that are available but in your list of preferred languages."
+  },
+  "select": "Select",
+  "@select": {
+    "description": "Prompt. Shown at the top of a list of options."
+  },
+  "supportBibleKids": "Support Bible Kids",
+  "@supportBibleKids": {
+    "description": "Shown on the settings page."
+  },
+  "donateViaPaypal": "Donate via PayPal",
+  "@donateViaPaypal": {
+    "description": "Shown on the settings page."
   }
 }
