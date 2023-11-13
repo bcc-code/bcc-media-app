@@ -1,7 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:soundpool/soundpool.dart';
 
 class SoundEffects {
@@ -45,16 +43,5 @@ final soundEffectsProvider = Provider((ref) {
 extension SoundEffectsExtension on Soundpool {
   Future<int> loadAssetSound(String sound) async {
     return await rootBundle.load('assets/$sound').then((bytes) => load(bytes));
-  }
-}
-
-extension AudioPlayerQueueExtension on AudioPlayer {
-  // Queue new sound effect after currently playing if any
-  Future<void> queue(Source source) async {
-    final isPlaying = state == PlayerState.playing || this.source != null;
-    if (isPlaying) {
-      await eventStream.where((event) => event.eventType == AudioEventType.complete).first;
-    }
-    await play(source);
   }
 }
