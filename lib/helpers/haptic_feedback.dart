@@ -21,7 +21,7 @@ class CustomHapticFeedback {
     if (Platform.isAndroid) {
       _overrideCache = await Vibration.hasAmplitudeControl();
     }
-    return _overrideCache = true;
+    return _overrideCache = false;
   }
 
   static Future<void> vibrate() async => await tryCatchRecordError<Future<void>>(() async {

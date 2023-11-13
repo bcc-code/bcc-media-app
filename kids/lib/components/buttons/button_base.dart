@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
@@ -5,7 +6,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:brunstadtv_app/helpers/haptic_feedback.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
@@ -14,7 +14,6 @@ import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/providers/sound_effects.dart';
 import 'package:universal_io/io.dart';
-import 'package:vibration/vibration.dart';
 
 class ButtonBase extends HookConsumerWidget {
   final Widget Function(BuildContext context, bool isPressed) builder;
@@ -47,32 +46,36 @@ class ButtonBase extends HookConsumerWidget {
     final design = DesignSystem.of(context);
     final pressed = useState(false);
     final limitedShadowHeight = max(2.0, elevationHeight / 2);
+    final tapTimer = useMemoized(() => Stopwatch());
+    final handlingRelease = useState(false);
 
-    void push() {
+    Future<void> push() async {
+      if (tapTimer.isRunning) return;
+      tapTimer.start();
       pressed.value = true;
       ref.read(soundEffectsProvider).queue(AssetSource(SoundEffects.buttonPush));
       CustomHapticFeedback.selectionClick();
     }
 
-    void release() {
+    Future<void> release() async {
+      if (handlingRelease.value) return;
+      handlingRelease.value = true;
+      debugPrint("handling release");
+
+      if (tapTimer.elapsedMilliseconds < 200) await Future.delayed(100.ms);
+      if (!context.mounted) return;
+
       pressed.value = false;
       ref.read(soundEffectsProvider).queue(AssetSource(SoundEffects.buttonRelease));
-      CustomHapticFeedback.selectionClick();
-    }
-
-    void tapWithAnimation() async {
-      CustomHapticFeedback.selectionClick();
-      pressed.value = true;
-      await Future.delayed(100.ms);
-
-      if (!context.mounted) return;
-      CustomHapticFeedback.selectionClick();
-      pressed.value = false;
-      await Future.delayed(100.ms);
-
-      if (!context.mounted) return;
-      pressed.value = false;
+      CustomHapticFeedback.mediumImpact();
       onPressed?.call();
+
+      debugPrint("handling release DONE");
+      await Future.delayed(100.ms);
+      if (!context.mounted) return;
+      tapTimer.stop();
+      tapTimer.reset();
+      handlingRelease.value = false;
     }
 
     return RepaintBoundary(
@@ -81,11 +84,12 @@ class ButtonBase extends HookConsumerWidget {
         onTapDown: (e) {
           push();
         },
-        onTap: () {
-          tapWithAnimation();
-        },
         onTapCancel: () {
-          release();
+          pressed.value = false;
+          ref.read(soundEffectsProvider).queue(AssetSource(SoundEffects.buttonRelease));
+          CustomHapticFeedback.selectionClick();
+          tapTimer.stop();
+          tapTimer.reset();
         },
         onTapUp: (e) {
           release();
@@ -93,8 +97,10 @@ class ButtonBase extends HookConsumerWidget {
         child: FocusableControlBuilder(
           cursor: SystemMouseCursors.click,
           actions: {
-            ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) {
-              return tapWithAnimation();
+            ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) async {
+              await push();
+              release();
+              return null;
             }),
           },
           builder: (context, control) => Container(
