@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:graphql/client.dart';
@@ -74,7 +75,8 @@ class PlaylistScreen extends HookConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(query.result.parsedData!.playlist.title, style: titleStyle),
-                              Text('${query.result.parsedData!.playlist.items.total} episodes', style: design.textStyles.body2),
+                              Text('${query.result.parsedData!.playlist.items.total} ${S.of(context).episodes.toLowerCase()}',
+                                  style: design.textStyles.body2),
                             ],
                           ),
                         const Spacer(),
@@ -85,11 +87,11 @@ class PlaylistScreen extends HookConsumerWidget {
                             final randomEpisode = items[Random().nextInt(items.length)];
                             context.router.push(EpisodeScreenRoute(id: randomEpisode.id, playlistId: id, shuffle: true));
                           },
-                          labelText: 'Play random',
+                          labelText: S.of(context).playRandom,
                           image: SizedBox(
                             height: 24,
                             child: Center(
-                              child: SvgPicture.string(SvgIcons.magic),
+                              child: SvgPicture.string(SvgIcons.play),
                             ),
                           ),
                         )
