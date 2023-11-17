@@ -1982,6 +1982,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Donate via PayPal'**
   String get donateViaPaypal;
+
+  /// Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels.
+  ///
+  /// In en, this message translates to:
+  /// **'Shorts'**
+  String get shortsTab;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

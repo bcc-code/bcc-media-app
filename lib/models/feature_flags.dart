@@ -20,5 +20,6 @@ class FeatureFlags with _$FeatureFlags {
     @Default(false) bool playNextButton,
     @Default(false) bool chapters,
     @Default(false) bool download,
+    @Default(false) bool shorts,
   }) = _FeatureFlags;
 }

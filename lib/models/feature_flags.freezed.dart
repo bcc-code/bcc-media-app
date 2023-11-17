@@ -28,6 +28,7 @@ mixin _$FeatureFlags {
   bool get playNextButton => throw _privateConstructorUsedError;
   bool get chapters => throw _privateConstructorUsedError;
   bool get download => throw _privateConstructorUsedError;
+  bool get shorts => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FeatureFlagsCopyWith<FeatureFlags> get copyWith =>
@@ -52,7 +53,8 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       bool flutterPlayerControls,
       bool playNextButton,
       bool chapters,
-      bool download});
+      bool download,
+      bool shorts});
 }
 
 /// @nodoc
@@ -80,6 +82,7 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? playNextButton = null,
     Object? chapters = null,
     Object? download = null,
+    Object? shorts = null,
   }) {
     return _then(_value.copyWith(
       toggles: null == toggles
@@ -130,6 +133,10 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
           ? _value.download
           : download // ignore: cast_nullable_to_non_nullable
               as bool,
+      shorts: null == shorts
+          ? _value.shorts
+          : shorts // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -154,7 +161,8 @@ abstract class _$$_FeatureFlagsCopyWith<$Res>
       bool flutterPlayerControls,
       bool playNextButton,
       bool chapters,
-      bool download});
+      bool download,
+      bool shorts});
 }
 
 /// @nodoc
@@ -180,6 +188,7 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
     Object? playNextButton = null,
     Object? chapters = null,
     Object? download = null,
+    Object? shorts = null,
   }) {
     return _then(_$_FeatureFlags(
       toggles: null == toggles
@@ -230,6 +239,10 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
           ? _value.download
           : download // ignore: cast_nullable_to_non_nullable
               as bool,
+      shorts: null == shorts
+          ? _value.shorts
+          : shorts // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -249,7 +262,8 @@ class _$_FeatureFlags extends _FeatureFlags {
       this.flutterPlayerControls = false,
       this.playNextButton = false,
       this.chapters = false,
-      this.download = false})
+      this.download = false,
+      this.shorts = false})
       : _toggles = toggles,
         super._();
 
@@ -295,10 +309,13 @@ class _$_FeatureFlags extends _FeatureFlags {
   @override
   @JsonKey()
   final bool download;
+  @override
+  @JsonKey()
+  final bool shorts;
 
   @override
   String toString() {
-    return 'FeatureFlags(toggles: $toggles, auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, autoFullscreenOnPlay: $autoFullscreenOnPlay, shareVideoButton: $shareVideoButton, gamesTab: $gamesTab, flutterPlayerControls: $flutterPlayerControls, playNextButton: $playNextButton, chapters: $chapters, download: $download)';
+    return 'FeatureFlags(toggles: $toggles, auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, autoFullscreenOnPlay: $autoFullscreenOnPlay, shareVideoButton: $shareVideoButton, gamesTab: $gamesTab, flutterPlayerControls: $flutterPlayerControls, playNextButton: $playNextButton, chapters: $chapters, download: $download, shorts: $shorts)';
   }
 
   @override
@@ -327,7 +344,8 @@ class _$_FeatureFlags extends _FeatureFlags {
             (identical(other.chapters, chapters) ||
                 other.chapters == chapters) &&
             (identical(other.download, download) ||
-                other.download == download));
+                other.download == download) &&
+            (identical(other.shorts, shorts) || other.shorts == shorts));
   }
 
   @override
@@ -344,7 +362,8 @@ class _$_FeatureFlags extends _FeatureFlags {
       flutterPlayerControls,
       playNextButton,
       chapters,
-      download);
+      download,
+      shorts);
 
   @JsonKey(ignore: true)
   @override
@@ -366,7 +385,8 @@ abstract class _FeatureFlags extends FeatureFlags {
       final bool flutterPlayerControls,
       final bool playNextButton,
       final bool chapters,
-      final bool download}) = _$_FeatureFlags;
+      final bool download,
+      final bool shorts}) = _$_FeatureFlags;
   const _FeatureFlags._() : super._();
 
   @override
@@ -393,6 +413,8 @@ abstract class _FeatureFlags extends FeatureFlags {
   bool get chapters;
   @override
   bool get download;
+  @override
+  bool get shorts;
   @override
   @JsonKey(ignore: true)
   _$$_FeatureFlagsCopyWith<_$_FeatureFlags> get copyWith =>

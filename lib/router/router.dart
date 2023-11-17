@@ -155,14 +155,6 @@ class AppRouter extends $AppRouter {
       meta: const {RouteMetaConstants.analyticsName: 'episode'},
     ),
     CustomRoute(
-      page: ShortsScreenRoute.page,
-      path: '/shorts',
-      durationInMilliseconds: 300,
-      reverseDurationInMilliseconds: 300,
-      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
-      meta: const {RouteMetaConstants.analyticsName: 'shorts'},
-    ),
-    CustomRoute(
       page: ExtraUsergroupsScreenRoute.page,
       path: '/extra-usergroups',
       durationInMilliseconds: 400,
@@ -201,67 +193,104 @@ class AppRouter extends $AppRouter {
         RouteMetaConstants.analyticsName: 'achievement-group',
       },
     ),
-    CustomRoute(page: TabsRootScreenRoute.page, path: '/', children: [
-      MaterialRoute(
-          page: LiveScreenRoute.page,
-          path: 'live',
-          meta: const {
-            RouteMetaConstants.hideMiniPlayer: true,
-            RouteMetaConstants.navTabRoute: true,
-            RouteMetaConstants.analyticsName: 'livestream',
-          },
-          maintainState: true),
-      MaterialRoute(page: SearchWrapperScreenRoute.page, path: 'search', children: [
+    CustomRoute(
+      page: TabsRootScreenRoute.page,
+      path: '/',
+      children: [
         MaterialRoute(
-          page: SearchScreenRoute.page,
-          path: '',
-          meta: const {RouteMetaConstants.navTabRoute: true},
+            page: LiveScreenRoute.page,
+            path: 'live',
+            meta: const {
+              RouteMetaConstants.hideMiniPlayer: true,
+              RouteMetaConstants.navTabRoute: true,
+              RouteMetaConstants.analyticsName: 'livestream',
+            },
+            maintainState: true),
+        MaterialRoute(
+          page: SearchWrapperScreenRoute.page,
+          path: 'search',
+          children: [
+            MaterialRoute(
+              page: SearchScreenRoute.page,
+              path: '',
+              meta: const {RouteMetaConstants.navTabRoute: true},
+            ),
+            _episodeScreenRoute,
+            _collectionEpisodeScreenRoute,
+            _pageScreenRoute,
+          ],
         ),
-        _episodeScreenRoute,
-        _collectionEpisodeScreenRoute,
-        _pageScreenRoute,
-      ]),
-      MaterialRoute(
-        page: CalendarScreenRoute.page,
-        path: 'calendar',
-        meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'calendar'},
-      ),
-      CustomRoute(page: ProfileWrapperScreenRoute.page, path: 'profile', maintainState: true, children: [
+        MaterialRoute(
+          page: CalendarScreenRoute.page,
+          path: 'calendar',
+          meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'calendar'},
+        ),
         CustomRoute(
-          page: ProfileScreenRoute.page,
-          path: '',
+          page: ShortsWrapperScreenRoute.page,
+          path: 'shorts',
           maintainState: true,
-          meta: const {RouteMetaConstants.navTabRoute: true},
+          children: [
+            CustomRoute(
+              page: ShortsScreenRoute.page,
+              path: '',
+              maintainState: false,
+              meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
+            ),
+            _episodeScreenRoute,
+            _collectionEpisodeScreenRoute,
+          ],
         ),
-        _episodeScreenRoute,
-        _collectionEpisodeScreenRoute,
-      ]),
-      CustomRoute(page: GamesWrapperScreenRoute.page, path: 'games', maintainState: true, children: [
-        CupertinoRoute(
-          page: GamesScreenRoute.page,
-          path: '',
+        CustomRoute(
+          page: ProfileWrapperScreenRoute.page,
+          path: 'profile',
           maintainState: true,
-          meta: const {RouteMetaConstants.navTabRoute: true},
+          children: [
+            CustomRoute(
+              page: ProfileScreenRoute.page,
+              path: '',
+              maintainState: true,
+              meta: const {RouteMetaConstants.navTabRoute: true},
+            ),
+            _episodeScreenRoute,
+            _collectionEpisodeScreenRoute,
+          ],
         ),
-        CupertinoRoute(
-          page: GameScreenRoute.page,
-          path: ':gameId',
-          maintainState: false,
-          meta: const {RouteMetaConstants.analyticsName: 'game'},
-        ),
-      ]),
-      CustomRoute(page: HomeWrapperScreenRoute.page, path: '', children: [
-        CupertinoRoute(
-          page: HomeScreenRoute.page,
-          path: '',
+        CustomRoute(
+          page: GamesWrapperScreenRoute.page,
+          path: 'games',
           maintainState: true,
-          meta: const {RouteMetaConstants.navTabRoute: true},
+          children: [
+            CupertinoRoute(
+              page: GamesScreenRoute.page,
+              path: '',
+              maintainState: true,
+              meta: const {RouteMetaConstants.navTabRoute: true},
+            ),
+            CupertinoRoute(
+              page: GameScreenRoute.page,
+              path: ':gameId',
+              maintainState: false,
+              meta: const {RouteMetaConstants.analyticsName: 'game'},
+            ),
+          ],
         ),
-        _episodeScreenRoute,
-        _collectionEpisodeScreenRoute,
-        _pageScreenRoute,
-      ]),
-    ]),
+        CustomRoute(
+          page: HomeWrapperScreenRoute.page,
+          path: '',
+          children: [
+            CupertinoRoute(
+              page: HomeScreenRoute.page,
+              path: '',
+              maintainState: true,
+              meta: const {RouteMetaConstants.navTabRoute: true},
+            ),
+            _episodeScreenRoute,
+            _collectionEpisodeScreenRoute,
+            _pageScreenRoute,
+          ],
+        ),
+      ],
+    ),
   ];
 }
 
@@ -307,6 +336,11 @@ class HomeWrapperScreen extends AutoRouter {
 @RoutePage<void>()
 class ProfileWrapperScreen extends AutoRouter {
   const ProfileWrapperScreen({super.key});
+}
+
+@RoutePage<void>()
+class ShortsWrapperScreen extends AutoRouter {
+  const ShortsWrapperScreen({super.key});
 }
 
 Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, AutoRoutePage<T> page) {

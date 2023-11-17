@@ -307,6 +307,12 @@ abstract class $AppRouter extends _i35.RootStackRouter {
         child: const _i26.ShortsScreen(),
       );
     },
+    ShortsWrapperScreenRoute.name: (routeData) {
+      return _i35.AutoRoutePage<void>(
+        routeData: routeData,
+        child: const _i17.ShortsWrapperScreen(),
+      );
+    },
     SignupScreenRoute.name: (routeData) {
       return _i35.AutoRoutePage<void>(
         routeData: routeData,
@@ -1042,6 +1048,20 @@ class ShortsScreenRoute extends _i35.PageRouteInfo<void> {
         );
 
   static const String name = 'ShortsScreenRoute';
+
+  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i17.ShortsWrapperScreen]
+class ShortsWrapperScreenRoute extends _i35.PageRouteInfo<void> {
+  const ShortsWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
+      : super(
+          ShortsWrapperScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ShortsWrapperScreenRoute';
 
   static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
 }

@@ -969,4 +969,7 @@ class SPt extends S {
 
   @override
   String get donateViaPaypal => 'Donate via PayPal';
+
+  @override
+  String get shortsTab => 'Shorts';
 }

@@ -123,19 +123,6 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
         ? const OfflineHome()
         : Scaffold(
             extendBodyBehindAppBar: true,
-            floatingActionButton: GestureDetector(
-              onTap: () {
-                context.router.pushNamed('/shorts');
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: design.colors.tint1,
-                ),
-                padding: const EdgeInsets.all(20),
-                child: SvgPicture.string(SvgIcons.play, width: 24, height: 24),
-              ),
-            ),
             appBar: kIsWeb
                 ? null
                 : AppBar(

@@ -59,6 +59,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       playNextButton: client.isEnabled('play-next-button'),
       chapters: client.isEnabled('chapters'),
       download: client.isEnabled('download'),
+      shorts: Env.forceShorts || client.isEnabled('shorts') && client.getVariant('shorts').name != 'disabled',
     );
   }
 }

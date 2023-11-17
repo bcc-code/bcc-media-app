@@ -116,13 +116,19 @@ enum ButtonVariant {
   red,
 }
 
+enum ButtonImagePosition {
+  left,
+  right,
+}
+
 abstract class DesignSystemButtons {
   Widget small({
     Key? key,
     required VoidCallback onPressed,
-    required String labelText,
+    String? labelText,
     ButtonVariant variant,
     Widget? image,
+    ButtonImagePosition? imagePosition,
     bool disabled = false,
     bool? autofocus,
   });
@@ -130,9 +136,10 @@ abstract class DesignSystemButtons {
   Widget medium({
     Key? key,
     required VoidCallback onPressed,
-    required String labelText,
+    String? labelText,
     ButtonVariant variant,
     Widget? image,
+    ButtonImagePosition? imagePosition,
     bool disabled = false,
     Color? backgroundColor,
     Border? border,
@@ -141,9 +148,10 @@ abstract class DesignSystemButtons {
   Widget large({
     Key? key,
     required VoidCallback onPressed,
-    required String labelText,
+    String? labelText,
     ButtonVariant variant,
     Widget? image,
+    ButtonImagePosition? imagePosition,
     bool disabled = false,
     bool? autofocus,
   });
@@ -153,9 +161,10 @@ extension ResponsiveButton on DesignSystemButtons {
   Widget responsive({
     Key? key,
     required VoidCallback onPressed,
-    required String labelText,
+    String? labelText,
     ButtonVariant variant = ButtonVariant.primary,
     Widget? image,
+    ButtonImagePosition? imagePosition,
     bool disabled = false,
     bool? autofocus,
   }) {

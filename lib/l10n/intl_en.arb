@@ -1334,5 +1334,9 @@
   "donateViaPaypal": "Donate via PayPal",
   "@donateViaPaypal": {
     "description": "Shown on the settings page."
+  },
+  "shortsTab": "Shorts",
+  "@shortsTab": {
+    "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   }
 }

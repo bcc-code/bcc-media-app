@@ -15,6 +15,7 @@ enum TabId {
   search,
   live,
   calendar,
+  shorts,
   profile,
 }
 
@@ -40,6 +41,7 @@ class TabInfos {
   final TabInfo search;
   final TabInfo live;
   final TabInfo calendar;
+  final TabInfo shorts;
   final TabInfo profile;
 
   const TabInfos({
@@ -48,6 +50,7 @@ class TabInfos {
     required this.search,
     required this.live,
     required this.calendar,
+    required this.shorts,
     required this.profile,
   });
 
@@ -58,6 +61,7 @@ class TabInfos {
       TabId.search => search,
       TabId.live => live,
       TabId.calendar => calendar,
+      TabId.shorts => shorts,
       TabId.profile => profile
     };
   }
@@ -104,6 +108,13 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
       icon: FlavorConfig.current.bccmImages!.calendar,
       analyticsName: 'calendar',
     ),
+    shorts: TabInfo(
+      id: TabId.shorts,
+      route: const ShortsScreenRoute(),
+      title: (BuildContext context) => S.of(context).shortsTab,
+      icon: FlavorConfig.current.bccmImages!.shorts,
+      analyticsName: 'shorts',
+    ),
     profile: TabInfo(
       id: TabId.profile,
       route: const ProfileWrapperScreenRoute(),
@@ -117,12 +128,14 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
 final currentTabIdsProvider = Provider<List<TabId>>((ref) {
   final enableGames = ref.watch(featureFlagsProvider.select((value) => value.gamesTab));
   final guest = ref.watch(authStateProvider).guestMode;
+  final shorts = ref.watch(featureFlagsProvider.select((value) => value.shorts));
   return [
     TabId.home,
     if (enableGames) TabId.games,
     TabId.search,
     if (!guest) TabId.live,
-    if (!guest) TabId.calendar,
+    if (!guest && shorts) TabId.shorts,
+    if (!guest && !shorts) TabId.calendar,
     TabId.profile,
   ];
 });

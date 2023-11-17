@@ -19,4 +19,5 @@ class Env {
   static const unleashProxyUrl = _Secrets.unleashProxyUrl;
   static const unleashAppName = _Secrets.unleashAppName;
   static const forceFlutterControls = _Secrets.forceFlutterControls;
+  static const forceShorts = _Secrets.forceShorts;
 }

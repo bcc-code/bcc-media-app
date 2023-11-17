@@ -49,6 +49,7 @@ class BccmFlavorImages extends Iterable<ImageProvider> {
   final StateImageProvider search;
   final StateImageProvider live;
   final StateImageProvider calendar;
+  final StateImageProvider shorts;
   final StateImageProvider myList;
   final StateImageProvider games;
   final StateImageProvider profile;
@@ -61,6 +62,7 @@ class BccmFlavorImages extends Iterable<ImageProvider> {
     required this.search,
     required this.live,
     required this.calendar,
+    required this.shorts,
     required this.myList,
     required this.games,
     required this.profile,
@@ -74,6 +76,7 @@ class BccmFlavorImages extends Iterable<ImageProvider> {
         ...search,
         ...live,
         ...calendar,
+        ...shorts,
         ...myList,
         ...games,
         ...profile,

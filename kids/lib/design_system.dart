@@ -257,9 +257,10 @@ class BibleKidsButtons extends DesignSystemButtons {
   Widget large({
     Key? key,
     required VoidCallback onPressed,
-    required String labelText,
+    String? labelText,
     ButtonVariant variant = ButtonVariant.primary,
     Widget? image,
+    ButtonImagePosition? imagePosition,
     bool disabled = false,
     bool? autofocus,
   }) {
@@ -290,9 +291,10 @@ class BibleKidsButtons extends DesignSystemButtons {
   Widget medium(
       {Key? key,
       required VoidCallback onPressed,
-      required String labelText,
+      String? labelText,
       ButtonVariant variant = ButtonVariant.primary,
       Widget? image,
+      ButtonImagePosition? imagePosition,
       bool disabled = false,
       Color? backgroundColor,
       Border? border}) {
@@ -309,9 +311,10 @@ class BibleKidsButtons extends DesignSystemButtons {
   Widget small({
     Key? key,
     required VoidCallback onPressed,
-    required String labelText,
+    String? labelText,
     ButtonVariant variant = ButtonVariant.primary,
     Widget? image,
+    ButtonImagePosition? imagePosition,
     bool disabled = false,
     bool? autofocus,
   }) {
@@ -356,7 +359,7 @@ class _InputDecorations extends DesignSystemInputDecorations {
             suffixIconConstraints: const BoxConstraints(minHeight: 24, minWidth: 24),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: colors.tint1, width: 1),
-              borderRadius: BorderRadius.all(Radius.circular(24)),
+              borderRadius: const BorderRadius.all(Radius.circular(24)),
             ),
             hintStyle: textStyles.body1.copyWith(
               color: colors.label4,

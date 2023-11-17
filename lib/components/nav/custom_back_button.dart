@@ -34,16 +34,17 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stack = context.router.stack;
-    var pageTitle = '';
-    if (stack.length >= 2) {
-      final previousInStack = stack[stack.length - 2];
-      final previousPage = previousInStack.child.asOrNull<PageScreen>();
-      final previousPageTitle = previousPage?.key.asOrNull<GlobalKey<PageScreenState>>()?.currentState?.pageTitle;
-
-      final localizedTitle = getLocalizedRouteName(S.of(context), previousInStack.child.runtimeType);
-
-      pageTitle = previousPageTitle ?? localizedTitle ?? '';
+    if (stack.length < 2) {
+      return const SizedBox.shrink();
     }
+    final previousInStack = stack[stack.length - 2];
+    final previousPage = previousInStack.child.asOrNull<PageScreen>();
+    final previousPageTitle = previousPage?.key.asOrNull<GlobalKey<PageScreenState>>()?.currentState?.pageTitle;
+
+    final localizedTitle = getLocalizedRouteName(S.of(context), previousInStack.child.runtimeType);
+
+    final pageTitle = previousPageTitle ?? localizedTitle ?? '';
+
     return FocusableActionDetector(
       mouseCursor: MaterialStateMouseCursor.clickable,
       child: Padding(

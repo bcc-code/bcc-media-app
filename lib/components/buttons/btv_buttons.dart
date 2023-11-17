@@ -5,7 +5,7 @@ import '../../theme/design_system/design_system.dart';
 
 class BtvButton extends StatelessWidget {
   final Widget? image;
-  final String labelText;
+  final String? labelText;
   final VoidCallback onPressed;
   final EdgeInsetsGeometry padding;
   final double borderRadius;
@@ -16,22 +16,25 @@ class BtvButton extends StatelessWidget {
   final TextStyle? textStyle;
   final bool disabled;
   final bool? autofocus;
+  final ButtonImagePosition imagePosition;
 
   const BtvButton({
     super.key,
     required this.onPressed,
-    required this.labelText,
+    this.labelText,
     this.backgroundColor = Colors.transparent,
     this.image,
     this.imageDimension = 24,
     this.border,
-    this.gap = 6,
+    double? gap,
     this.textStyle,
     this.borderRadius = 20,
     this.padding = const EdgeInsets.all(0),
     this.disabled = false,
     this.autofocus,
-  });
+    ButtonImagePosition? imagePosition,
+  })  : imagePosition = imagePosition ?? ButtonImagePosition.left,
+        gap = gap ?? (labelText == null ? 0 : 6);
 
   BtvButton copyWith({
     Key? key,
@@ -46,6 +49,7 @@ class BtvButton extends StatelessWidget {
     double? borderRadius,
     EdgeInsetsGeometry? padding,
     bool? disabled,
+    ButtonImagePosition? imagePosition,
   }) {
     return BtvButton(
       key: key ?? this.key,
@@ -60,6 +64,7 @@ class BtvButton extends StatelessWidget {
       borderRadius: borderRadius ?? this.borderRadius,
       padding: padding ?? this.padding,
       disabled: disabled ?? this.disabled,
+      imagePosition: imagePosition ?? this.imagePosition,
     );
   }
 
@@ -87,7 +92,7 @@ class BtvButton extends StatelessWidget {
           builder: (_, state) => AnimatedContainer(
             duration: const Duration(milliseconds: 100),
             curve: Curves.easeOut,
-            padding: padding,
+            padding: labelText != null ? padding : const EdgeInsets.all(12),
             foregroundDecoration: BoxDecoration(
               borderRadius: BorderRadius.circular(borderRadius),
               border: state.isFocused
@@ -107,19 +112,25 @@ class BtvButton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                if (image != null)
+                if (image != null && imagePosition == ButtonImagePosition.left)
                   Container(
                     margin: EdgeInsets.only(right: gap),
                     child: SizedBox(width: imageDimension, height: imageDimension, child: image),
                   ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: Text(
-                    labelText,
-                    textAlign: TextAlign.center,
-                    style: safeTextStyle.copyWith(color: disabled ? disabledTextColor : safeTextStyle.color),
+                if (labelText?.isNotEmpty == true)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 2),
+                    child: Text(
+                      labelText!,
+                      textAlign: TextAlign.center,
+                      style: safeTextStyle.copyWith(color: disabled ? disabledTextColor : safeTextStyle.color),
+                    ),
                   ),
-                )
+                if (image != null && imagePosition == ButtonImagePosition.right)
+                  Container(
+                    margin: EdgeInsets.only(left: gap),
+                    child: SizedBox(width: imageDimension, height: imageDimension, child: image),
+                  ),
               ],
             ),
           ),
