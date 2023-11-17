@@ -11,10 +11,7 @@ query getShortsStartingEpisode {
 query getShortsFromStartingEpisode($id: ID!) {
   episode(
     id: $id
-    context: {
-      playlistId: "e7efbde0-b134-46c8-950d-814b9570e903"
-      shuffle: true
-    }
+    context: { playlistId: "e7efbde0-b134-46c8-950d-814b9570e903" }
   ) {
     cursor
     next(limit: 20) {

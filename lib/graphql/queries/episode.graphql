@@ -187,3 +187,16 @@ query getEpisodeAvailability($episodeId: ID!) {
     ...EpisodeAvailability
   }
 }
+
+query getShorts {
+  playlist(id: "e7efbde0-b134-46c8-950d-814b9570e903") {
+    items {
+      items {
+        id
+        title
+        image
+        ...PlayableEpisode
+      }
+    }
+  }
+}

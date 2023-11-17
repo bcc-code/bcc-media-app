@@ -2352,11 +2352,7 @@ const documentNodeQuerygetShortsFromStartingEpisode =
                   value: 'e7efbde0-b134-46c8-950d-814b9570e903',
                   isBlock: false,
                 ),
-              ),
-              ObjectFieldNode(
-                name: NameNode(value: 'shuffle'),
-                value: BooleanValueNode(value: true),
-              ),
+              )
             ]),
           ),
         ],
