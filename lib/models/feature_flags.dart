@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:unleash_proxy_client_flutter/toggle_config.dart';
 
 part 'feature_flags.freezed.dart';
 
@@ -7,6 +8,7 @@ class FeatureFlags with _$FeatureFlags {
   const FeatureFlags._();
 
   const factory FeatureFlags({
+    @Default({}) Map<String, ToggleConfig> toggles,
     @Default(true) bool auth,
     @Default(false) bool publicSignup,
     @Default(false) bool socialSignup,

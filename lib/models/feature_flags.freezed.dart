@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FeatureFlags {
+  Map<String, ToggleConfig> get toggles => throw _privateConstructorUsedError;
   bool get auth => throw _privateConstructorUsedError;
   bool get publicSignup => throw _privateConstructorUsedError;
   bool get socialSignup => throw _privateConstructorUsedError;
@@ -40,7 +41,8 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       _$FeatureFlagsCopyWithImpl<$Res, FeatureFlags>;
   @useResult
   $Res call(
-      {bool auth,
+      {Map<String, ToggleConfig> toggles,
+      bool auth,
       bool publicSignup,
       bool socialSignup,
       bool autoplayNext,
@@ -66,6 +68,7 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? toggles = null,
     Object? auth = null,
     Object? publicSignup = null,
     Object? socialSignup = null,
@@ -79,6 +82,10 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? download = null,
   }) {
     return _then(_value.copyWith(
+      toggles: null == toggles
+          ? _value.toggles
+          : toggles // ignore: cast_nullable_to_non_nullable
+              as Map<String, ToggleConfig>,
       auth: null == auth
           ? _value.auth
           : auth // ignore: cast_nullable_to_non_nullable
@@ -136,7 +143,8 @@ abstract class _$$_FeatureFlagsCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool auth,
+      {Map<String, ToggleConfig> toggles,
+      bool auth,
       bool publicSignup,
       bool socialSignup,
       bool autoplayNext,
@@ -160,6 +168,7 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? toggles = null,
     Object? auth = null,
     Object? publicSignup = null,
     Object? socialSignup = null,
@@ -173,6 +182,10 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
     Object? download = null,
   }) {
     return _then(_$_FeatureFlags(
+      toggles: null == toggles
+          ? _value._toggles
+          : toggles // ignore: cast_nullable_to_non_nullable
+              as Map<String, ToggleConfig>,
       auth: null == auth
           ? _value.auth
           : auth // ignore: cast_nullable_to_non_nullable
@@ -225,7 +238,8 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
 
 class _$_FeatureFlags extends _FeatureFlags {
   const _$_FeatureFlags(
-      {this.auth = true,
+      {final Map<String, ToggleConfig> toggles = const {},
+      this.auth = true,
       this.publicSignup = false,
       this.socialSignup = false,
       this.autoplayNext = false,
@@ -236,7 +250,17 @@ class _$_FeatureFlags extends _FeatureFlags {
       this.playNextButton = false,
       this.chapters = false,
       this.download = false})
-      : super._();
+      : _toggles = toggles,
+        super._();
+
+  final Map<String, ToggleConfig> _toggles;
+  @override
+  @JsonKey()
+  Map<String, ToggleConfig> get toggles {
+    if (_toggles is EqualUnmodifiableMapView) return _toggles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_toggles);
+  }
 
   @override
   @JsonKey()
@@ -274,7 +298,7 @@ class _$_FeatureFlags extends _FeatureFlags {
 
   @override
   String toString() {
-    return 'FeatureFlags(auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, autoFullscreenOnPlay: $autoFullscreenOnPlay, shareVideoButton: $shareVideoButton, gamesTab: $gamesTab, flutterPlayerControls: $flutterPlayerControls, playNextButton: $playNextButton, chapters: $chapters, download: $download)';
+    return 'FeatureFlags(toggles: $toggles, auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, autoFullscreenOnPlay: $autoFullscreenOnPlay, shareVideoButton: $shareVideoButton, gamesTab: $gamesTab, flutterPlayerControls: $flutterPlayerControls, playNextButton: $playNextButton, chapters: $chapters, download: $download)';
   }
 
   @override
@@ -282,6 +306,7 @@ class _$_FeatureFlags extends _FeatureFlags {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_FeatureFlags &&
+            const DeepCollectionEquality().equals(other._toggles, _toggles) &&
             (identical(other.auth, auth) || other.auth == auth) &&
             (identical(other.publicSignup, publicSignup) ||
                 other.publicSignup == publicSignup) &&
@@ -308,6 +333,7 @@ class _$_FeatureFlags extends _FeatureFlags {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(_toggles),
       auth,
       publicSignup,
       socialSignup,
@@ -329,7 +355,8 @@ class _$_FeatureFlags extends _FeatureFlags {
 
 abstract class _FeatureFlags extends FeatureFlags {
   const factory _FeatureFlags(
-      {final bool auth,
+      {final Map<String, ToggleConfig> toggles,
+      final bool auth,
       final bool publicSignup,
       final bool socialSignup,
       final bool autoplayNext,
@@ -342,6 +369,8 @@ abstract class _FeatureFlags extends FeatureFlags {
       final bool download}) = _$_FeatureFlags;
   const _FeatureFlags._() : super._();
 
+  @override
+  Map<String, ToggleConfig> get toggles;
   @override
   bool get auth;
   @override
