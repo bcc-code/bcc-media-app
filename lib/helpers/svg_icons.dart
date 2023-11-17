@@ -75,6 +75,12 @@ class SvgIcons {
 </svg>
 ''';
 
+  static const pause = '''<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="14.6313" y="1" width="7.3685" height="22.1581" rx="3" fill="white"/>
+<rect x="2" y="1" width="7.3685" height="22.1581" rx="3" fill="white"/>
+</svg>
+''';
+
   static const taskTreeLarge = '''<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
 <linearGradient id="paint0_linear_8058_53815" x1="-3.5001" y1="11.1511" x2="14.4458" y2="25.8593" gradientUnits="userSpaceOnUse">

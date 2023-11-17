@@ -1,24 +1,20 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/foundation.dart';
-import 'package:universal_io/io.dart';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/helpers/version.dart';
 import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 import '../../api/brunstadtv.dart';
 import '../../components/offline/offline_home.dart';
 import '../../flavors.dart';
@@ -127,6 +123,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
         ? const OfflineHome()
         : Scaffold(
             extendBodyBehindAppBar: true,
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                context.router.pushNamed('/shorts');
+              },
+              child: SvgPicture.string(SvgIcons.play),
+            ),
             appBar: kIsWeb
                 ? null
                 : AppBar(

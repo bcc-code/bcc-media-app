@@ -66,7 +66,7 @@ class CustomBackButton extends StatelessWidget {
                 SvgPicture.string(
                   SvgIcons.chevronLeft,
                   height: 16,
-                  colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.tint1, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(color ?? DesignSystem.of(context).colors.tint1, BlendMode.srcIn),
                 ),
                 const SizedBox(width: 8),
                 Expanded(

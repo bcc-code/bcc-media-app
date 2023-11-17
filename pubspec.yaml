@@ -123,6 +123,7 @@ dependencies:
   flutter_layout_grid: ^2.0.5
   flutter_animate: ^4.2.0+1
   simple_shadow: ^0.3.1
+  video_player: ^2.8.1
   #smooth: any
 
 dev_dependencies:

@@ -155,6 +155,14 @@ class AppRouter extends $AppRouter {
       meta: const {RouteMetaConstants.analyticsName: 'episode'},
     ),
     CustomRoute(
+      page: ShortsScreenRoute.page,
+      path: '/shorts',
+      durationInMilliseconds: 300,
+      reverseDurationInMilliseconds: 300,
+      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+      meta: const {RouteMetaConstants.analyticsName: 'shorts'},
+    ),
+    CustomRoute(
       page: ExtraUsergroupsScreenRoute.page,
       path: '/extra-usergroups',
       durationInMilliseconds: 400,
