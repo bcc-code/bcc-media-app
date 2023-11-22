@@ -106,6 +106,7 @@ dependencies:
   flutter_slidable: ^3.0.1
   video_player: ^2.7.2
   auto_size_text: ^3.0.0
+  blur: ^3.1.0
 
 dev_dependencies:
   flutter_test:
