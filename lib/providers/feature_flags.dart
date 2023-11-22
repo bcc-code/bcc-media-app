@@ -45,7 +45,9 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
 
   static FeatureFlags _getFlags(UnleashClient? client) {
     if (client == null) return const FeatureFlags();
+
     return FeatureFlags(
+      toggles: client.toggles,
       auth: FlavorConfig.current.flavor != Flavor.kids || client.isEnabled('kids-auth'),
       publicSignup: client.isEnabled('public-signup'),
       socialSignup: client.isEnabled('social-signup'),
@@ -57,6 +59,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       playNextButton: client.isEnabled('play-next-button'),
       chapters: client.isEnabled('chapters'),
       download: client.isEnabled('download'),
+      shorts: Env.forceShorts || client.isEnabled('shorts') && client.getVariant('shorts').name != 'disabled',
     );
   }
 }

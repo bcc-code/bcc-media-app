@@ -7,8 +7,6 @@ PODS:
   - AppAuth/Core (1.6.2)
   - AppAuth/ExternalUserAgent (1.6.2):
     - AppAuth/Core
-  - audioplayers_darwin (0.0.1):
-    - Flutter
   - bccm_player (0.0.1):
     - Flutter
     - google-cast-sdk-dynamic-xcframework-no-bluetooth (= 4.7.1)
@@ -191,7 +189,6 @@ PODS:
 
 DEPENDENCIES:
   - app_links (from `.symlinks/plugins/app_links/ios`)
-  - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/ios`)
   - bccm_player (from `.symlinks/plugins/bccm_player/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
@@ -250,8 +247,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   app_links:
     :path: ".symlinks/plugins/app_links/ios"
-  audioplayers_darwin:
-    :path: ".symlinks/plugins/audioplayers_darwin/ios"
   bccm_player:
     :path: ".symlinks/plugins/bccm_player/ios"
   cloud_firestore:
@@ -314,7 +309,6 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   app_links: 5ef33d0d295a89d9d16bb81b0e3b0d5f70d6c875
   AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
-  audioplayers_darwin: 877d9a4d06331c5c374595e46e16453ac7eafa40
   bccm_player: 604487689efbc99aeb2093d900785b7e36fd43a7
   cloud_firestore: ac000d8c5a79d57dc69238ea06bb422880fb825e
   connectivity_plus: 07c49e96d7fc92bc9920617b83238c4d178b446a

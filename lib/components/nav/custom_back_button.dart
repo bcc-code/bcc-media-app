@@ -34,16 +34,17 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stack = context.router.stack;
-    var pageTitle = '';
-    if (stack.length >= 2) {
-      final previousInStack = stack[stack.length - 2];
-      final previousPage = previousInStack.child.asOrNull<PageScreen>();
-      final previousPageTitle = previousPage?.key.asOrNull<GlobalKey<PageScreenState>>()?.currentState?.pageTitle;
-
-      final localizedTitle = getLocalizedRouteName(S.of(context), previousInStack.child.runtimeType);
-
-      pageTitle = previousPageTitle ?? localizedTitle ?? '';
+    if (stack.length < 2) {
+      return const SizedBox.shrink();
     }
+    final previousInStack = stack[stack.length - 2];
+    final previousPage = previousInStack.child.asOrNull<PageScreen>();
+    final previousPageTitle = previousPage?.key.asOrNull<GlobalKey<PageScreenState>>()?.currentState?.pageTitle;
+
+    final localizedTitle = getLocalizedRouteName(S.of(context), previousInStack.child.runtimeType);
+
+    final pageTitle = previousPageTitle ?? localizedTitle ?? '';
+
     return FocusableActionDetector(
       mouseCursor: MaterialStateMouseCursor.clickable,
       child: Padding(
@@ -66,7 +67,7 @@ class CustomBackButton extends StatelessWidget {
                 SvgPicture.string(
                   SvgIcons.chevronLeft,
                   height: 16,
-                  colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.tint1, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(color ?? DesignSystem.of(context).colors.tint1, BlendMode.srcIn),
                 ),
                 const SizedBox(width: 8),
                 Expanded(

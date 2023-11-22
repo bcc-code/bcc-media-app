@@ -969,4 +969,7 @@ class SNl extends S {
 
   @override
   String get donateViaPaypal => 'Doneer via PayPal';
+
+  @override
+  String get shortsTab => 'Shorts';
 }

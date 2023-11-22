@@ -1,5 +1,6 @@
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,12 +14,21 @@ import '../providers/package_info.dart';
 
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
   final settings = ref.watch(settingsProvider);
-  final authStateNotifier = ref.watch(authStateProvider.notifier);
   final extraUsergroups = [
     if (settings.isBetaTester == true) '${FlavorConfig.current.applicationCode}-betatesters',
     ...settings.extraUsergroups,
   ];
-  debugPrint('envOverride: ${settings.envOverride}');
+  debugPrint('gqlClient rebuilding. envOverride: ${settings.envOverride}');
+
+  final featureFlagsHeader = ref.watch(featureFlagsProvider.select((value) => value.toggles)).entries.fold<List<String>>([], (list, entry) {
+    final variantName = entry.value.variant.name;
+    if (!entry.value.enabled) return list;
+    if (variantName.isEmpty || entry.value.variant.enabled == false) {
+      return [...list, entry.key];
+    }
+    // "toggle-name:variant;"
+    return [...list, '${entry.key}:$variantName'];
+  }).join(';');
 
   final httpLink = HttpLink(
     apiEnvUrls[settings.envOverride] ?? apiEnvUrls[EnvironmentOverride.none]!,
@@ -26,6 +36,7 @@ final gqlClientProvider = Provider<GraphQLClient>((ref) {
       'Accept-Language': settings.appLanguage.languageCode,
       'X-Application': FlavorConfig.current.applicationCode,
       'X-Application-Version': formatAppVersion(ref.watch(packageInfoProvider)),
+      'X-Feature-Flags': featureFlagsHeader,
       if (extraUsergroups.isNotEmpty) 'x-explicit-roles': extraUsergroups.join(','),
     },
     httpClient: RetryClient(
