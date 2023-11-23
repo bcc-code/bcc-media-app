@@ -1,0 +1,24 @@
+type Short implements CollectionItem & PlaylistItem & MediaItem {
+    id: ID!
+    title: String!
+    description: String
+    image(style: ImageStyle): String @goField(forceResolver: true)
+    streams: [Stream!]! @goField(forceResolver: true)
+    files: [File!]! @goField(forceResolver: true)
+    source: SubclipSource @goField(forceResolver: true)
+    inMyList: Boolean! @goField(forceResolver: true)
+}
+
+union SubclipSourceItem = Episode
+
+type SubclipSource {
+    item: SubclipSourceItem!
+    start: Float
+    end: Float
+}
+
+type ShortsPagination {
+    cursor: String!
+    nextCursor: String!
+    shorts: [Short!]!
+}

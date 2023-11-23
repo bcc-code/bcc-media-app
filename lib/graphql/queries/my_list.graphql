@@ -1,4 +1,3 @@
-
 fragment MyListEntry on UserCollectionEntry {
   item {
     ... on Episode {
@@ -17,7 +16,7 @@ query MyList {
   myList {
     entries {
       items {
-        ... MyListEntry
+        ...MyListEntry
       }
     }
   }
@@ -25,6 +24,12 @@ query MyList {
 
 mutation addEpisodeToMyList($episodeId: ID!) {
   addEpisodeToMyList(episodeId: $episodeId) {
+    entryId
+  }
+}
+
+mutation addShortToMyList($shortId: ID!) {
+  addShortToMyList(shortId: $shortId) {
     entryId
   }
 }

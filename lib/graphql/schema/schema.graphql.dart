@@ -575,6 +575,7 @@ const possibleTypesMap = <String, Set<String>>{
   'UserCollectionEntryItem': {
     'Show',
     'Episode',
+    'Short',
   },
   'Section': {
     'PosterSection',
@@ -628,6 +629,7 @@ const possibleTypesMap = <String, Set<String>>{
     'StudyTopic',
     'Episode',
     'Show',
+    'Short',
   },
   'CalendarEntry': {
     'SimpleCalendarEntry',
@@ -653,5 +655,13 @@ const possibleTypesMap = <String, Set<String>>{
     'Season',
     'ContextCollection',
   },
-  'PlaylistItem': {'Episode'},
+  'PlaylistItem': {
+    'Episode',
+    'Short',
+  },
+  'MediaItem': {
+    'Episode',
+    'Short',
+  },
+  'SubclipSourceItem': {'Episode'},
 };

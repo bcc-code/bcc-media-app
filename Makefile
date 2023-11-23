@@ -1,6 +1,6 @@
 .PHONY: update-schema git-tag-recreate
 
-BACKEND_SCHEMA_DIR=../brunstadtv/backend/graph/api/schema
+BACKEND_SCHEMA_DIR=../bcc-media-platform/backend/graph/api/schema
 APP_SCHEMA_DIR=./lib/graphql/schema
 BUILD_NUMBER=$(shell grep -i -e "version: " pubspec.yaml | cut -d " " -f 2)
 BUILD_NUMBER_KIDS=$(shell grep -i -e "version: " kids/pubspec.yaml | cut -d " " -f 2)

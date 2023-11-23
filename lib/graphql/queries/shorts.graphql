@@ -25,5 +25,49 @@ fragment ShortsEpisode on Episode {
   id
   cursor
   image
-  ...PlayableEpisode
+  ...PlayableMediaItem
+}
+
+fragment PlayableMediaItemShort on Short {
+  id
+  streams {
+    ...BasicStream
+  }
+  title
+  image
+}
+
+fragment Short on Short {
+  id
+  title
+  description
+  inMyList
+  image
+  source {
+    item {
+      ... on Episode {
+        id
+        title
+      }
+    }
+    start
+    end
+  }
+  ...PlayableMediaItemShort
+}
+
+query getShorts($cursor: String, $limit: Int) {
+  shorts(cursor: $cursor, limit: $limit) {
+    cursor
+    nextCursor
+    shorts {
+      ...Short
+    }
+  }
+}
+
+query getShort($id: UUID!) {
+  short(id: $id) {
+    ...Short
+  }
 }

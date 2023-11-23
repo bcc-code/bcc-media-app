@@ -93,7 +93,7 @@ class PlaybackService {
     );
   }
 
-  MediaItem mapEpisode(Fragment$PlayableEpisode episode, {String? playlistId}) {
+  MediaItem mapEpisode(Fragment$PlayableMediaItem episode, {String? playlistId}) {
     final collectionId = episode.context.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id;
     return MediaItem(
       url: episode.streams.getBestStreamUrl(),
@@ -149,7 +149,7 @@ class PlaybackService {
     );
   }
 
-  Future<Fragment$PlayableEpisode?> getNextEpisodeForPlayer({
+  Future<Fragment$PlayableMediaItem?> getNextEpisodeForPlayer({
     required String playerId,
   }) async {
     final episodeId = ref.read(playerProviderFor(playerId))?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
@@ -176,7 +176,7 @@ class PlaybackService {
 
   Future playEpisode({
     required String playerId,
-    required Fragment$PlayableEpisode episode,
+    required Fragment$PlayableMediaItem episode,
     bool? autoplay,
     int? playbackPositionMs,
     String? playlistId,

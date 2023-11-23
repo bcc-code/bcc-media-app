@@ -27,7 +27,7 @@ type UserCollection {
     entries(first: Int, offset: Int): UserCollectionEntryPagination! @goField(forceResolver: true)
 }
 
-union UserCollectionEntryItem = Show | Episode
+union UserCollectionEntryItem = Show | Episode | Short
 
 type UserCollectionEntry {
     id: UUID!

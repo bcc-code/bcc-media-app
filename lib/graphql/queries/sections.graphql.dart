@@ -4499,6 +4499,10 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
         return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
             .fromJson(json);
 
+      case "Short":
+        return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+            .fromJson(json);
+
       default:
         final l$image = json['image'];
         final l$$__typename = json['__typename'];
@@ -4569,12 +4573,19 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSec
     required _T Function(
             Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
         episode,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short)
+        short,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
       case "Episode":
         return episode(this
             as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
+
+      case "Short":
+        return short(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short);
 
       default:
         return orElse();
@@ -4585,6 +4596,9 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSec
     _T Function(
             Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)?
         episode,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short)?
+        short,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
@@ -4592,6 +4606,14 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSec
         if (episode != null) {
           return episode(this
               as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Short":
+        if (short != null) {
+          return short(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short);
         } else {
           return orElse();
         }
@@ -4806,6 +4828,152 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
         CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
             TRes> {
   _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Short,
+        Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items {
+  Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short({
+    this.image,
+    this.$__typename = 'Short',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short.fromJson(
+      Map<String, dynamic> json) {
+    final l$image = json['image'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
+      image: (l$image as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? image;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$image = image;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$image,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+    on Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short;
+
+  TRes call({
+    String? image,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? image = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
+        image: image == _undefined ? _instance.image : (image as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
       this._res);
 
   TRes _res;
@@ -35325,6 +35493,10 @@ class Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$i
         return Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
             .fromJson(json);
 
+      case "Short":
+        return Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+            .fromJson(json);
+
       default:
         final l$image = json['image'];
         final l$$__typename = json['__typename'];
@@ -35395,12 +35567,19 @@ extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$i
     required _T Function(
             Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
         episode,
+    required _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short)
+        short,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
       case "Episode":
         return episode(this
             as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
+
+      case "Short":
+        return short(this
+            as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short);
 
       default:
         return orElse();
@@ -35411,6 +35590,9 @@ extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$i
     _T Function(
             Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)?
         episode,
+    _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short)?
+        short,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
@@ -35418,6 +35600,14 @@ extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$i
         if (episode != null) {
           return episode(this
               as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Short":
+        if (short != null) {
+          return short(this
+              as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short);
         } else {
           return orElse();
         }
@@ -35632,6 +35822,152 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
         CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
             TRes> {
   _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Short,
+        Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items {
+  Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short({
+    this.image,
+    this.$__typename = 'Short',
+  });
+
+  factory Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short.fromJson(
+      Map<String, dynamic> json) {
+    final l$image = json['image'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
+      image: (l$image as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? image;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$image = image;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$image,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+    on Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short {
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
+    Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+        instance,
+    TRes Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short;
+
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short;
+
+  TRes call({
+    String? image,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? image = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
+        image: image == _undefined ? _instance.image : (image as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
       this._res);
 
   TRes _res;

@@ -1,8 +1,11 @@
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/components/misc/collapsable_markdown.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/components/shorts/shorts.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -11,284 +14,182 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:video_player/video_player.dart';
 
+class ShortsVideoController {
+  ShortsVideoController({
+    required this.controller,
+    required this.short,
+  });
+
+  final VideoPlayerController controller;
+  final Fragment$Short short;
+}
+
 @RoutePage<void>()
-class ShortsScreen extends HookWidget {
+class ShortsScreen extends HookConsumerWidget {
   const ShortsScreen({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
+    final gqlClient = ref.watch(gqlClientProvider);
+    final shorts = useState<List<Fragment$Short>>([]);
+    final nextCursor = useState<String?>(null);
+    final muted = useState(false);
 
-    final shortsQuery = useQuery$getShorts();
-    final streams = shortsQuery.result.parsedData?.playlist.items.items.whereType<Fragment$PlayableEpisode>();
+    fetchMore() async {
+      final result = await gqlClient.query$getShorts(
+        Options$Query$getShorts(
+          variables: Variables$Query$getShorts(cursor: nextCursor.value, limit: 10),
+        ),
+      );
 
-    final controllers = useMemoized<List<VideoPlayerController>>(() => []);
+      nextCursor.value = result.parsedData?.shorts.nextCursor;
+      shorts.value = [
+        ...shorts.value,
+        ...result.parsedData?.shorts.shorts ?? [],
+      ];
 
-    useEffect(() {
-      if (streams == null) return;
-      for (var stream in streams) {
-        final url = stream.streams.getBestStreamUrl();
-        final uri = Uri.tryParse(url);
-        if (uri == null) continue;
-        controllers.add(VideoPlayerController.networkUrl(uri));
-      }
-    }, [streams]);
+      return result;
+    }
+
+    final fetchMoreFuture = useState(
+      useMemoized(fetchMore),
+    );
+    final fetchMoreSnapshot = useFuture(fetchMoreFuture.value);
+
+    final shortControllerPairs = useMemoized<List<ValueNotifier<ShortsVideoController?>>>(
+      () => List.unmodifiable(
+        List.generate(3, (_) => ValueNotifier<ShortsVideoController?>(null)),
+      ),
+    );
+    for (final l in shortControllerPairs) {
+      //ignore: nested_hooks
+      useListenable(l);
+    }
 
     useEffect(
       () => () {
-        for (var element in controllers) {
-          element.dispose();
+        for (var c in shortControllerPairs) {
+          c.value?.controller.dispose();
         }
-        controllers.clear();
+        shortControllerPairs.clear();
       },
       [],
     );
 
     final currentIndex = useState(0);
-    final currentController = controllers.elementAtOrNull(currentIndex.value);
+    final currentControllerIndex = currentIndex.value % 3;
 
-    useEffect(() {
+    initializeController(int index, Fragment$Short short) async {
+      final existing = shortControllerPairs[index].value;
+      if (existing != null && existing.short.id == short.id) {
+        debugPrint('controller for index $index already initialized, pausing');
+        existing.controller.pause();
+        return;
+      } else if (existing != null) {
+        debugPrint('disposing controller for index $index');
+        existing.controller.pause();
+        existing.controller.dispose();
+        shortControllerPairs[index].value = null;
+      }
+
+      debugPrint('initializing controller for index $index');
+      final url = short.streams.getBestStreamUrl();
+      final uri = Uri.tryParse(url);
+      if (uri == null) {
+        debugPrint('invalid url: $url');
+        // shorts.value.removeWhere((element) => element.id == short.id);
+        return;
+      }
+      final controller = VideoPlayerController.networkUrl(uri, videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true));
+      await controller.initialize();
+      controller.setLooping(true);
+      shortControllerPairs[index].value = ShortsVideoController(controller: controller, short: short);
+    }
+
+    setupNextAndPreviousControllers() async {
+      final previous = currentIndex.value == 0 ? null : shorts.value.elementAtOrNull(currentIndex.value - 1);
+      if (previous != null) {
+        final previousControllerIndex = (currentIndex.value - 1) % 3;
+        initializeController(previousControllerIndex, previous);
+      }
+
+      final next = currentIndex.value == shorts.value.length - 1 ? null : shorts.value.elementAtOrNull(currentIndex.value + 1);
+      if (next != null) {
+        final nextControllerIndex = (currentIndex.value + 1) % 3;
+        initializeController(nextControllerIndex, next);
+      }
+    }
+
+    useValueChanged<int, void>(currentIndex.value, (oldValue, _) {
+      final newValue = currentIndex.value;
       () async {
-        if (currentController == null) return;
-        await currentController.initialize();
-        debugPrint('value $currentController?.value');
-        final duration = currentController.value.duration.inSeconds > 0
-            ? currentController.value.duration.inSeconds
-            : streams?.elementAt(currentIndex.value).duration ?? 0;
-        final sec = (duration / 4).round();
-        debugPrint('sec $sec of $duration');
-        await currentController.seekTo(Duration(seconds: sec));
-        debugPrint('done');
+        debugPrint('${currentIndex.value}');
+        debugPrint('$newValue');
+        var currentShort = shorts.value.elementAtOrNull(newValue);
+        if (currentShort == null) {
+          await fetchMoreFuture.value;
+        }
+        currentShort = shorts.value.elementAtOrNull(newValue);
+        if (currentShort == null) {
+          debugPrint('no short for index $newValue');
+          return;
+        }
+        await initializeController(currentControllerIndex, currentShort);
+        final controller = shortControllerPairs[currentControllerIndex].value;
+        if (controller == null) {
+          debugPrint('no controller for index $newValue');
+          return;
+        }
+        setupNextAndPreviousControllers();
 
-        currentController.play();
+        await controller.controller.seekTo(Duration.zero);
+        await controller.controller.play();
+        debugPrint('short started playing');
       }();
 
-      return () {
-        currentController?.pause();
-      };
-    }, [currentController]);
+      if (newValue + 4 == shorts.value.length) {
+        fetchMore();
+      }
+    });
 
-    debugPrint('currentController ${currentController}');
-
-    debugPrint('$streams');
-    debugPrint('$controllers');
-
-    final isPlaying = useListenableSelector(Listenable.merge([currentController]), () => currentController?.value.isPlaying);
-    final playIconAnimation = useAnimationController(duration: 1000.ms);
-
-    final muted = useListenableSelector(Listenable.merge([currentController]), () => currentController?.value.volume == 0);
+    final currentShort = shorts.value.elementAtOrNull(currentIndex.value);
 
     return Scaffold(
-      body: GestureDetector(
-        onTap: () async {
-          if (currentController == null) {
-            return;
-          }
-          if (currentController.value.isPlaying) {
-            currentController.pause();
-          } else {
-            currentController.play();
-          }
-
-          playIconAnimation.value = 1.0;
-          await Future.delayed(500.ms);
-          playIconAnimation.reverse(from: 1.0);
-        },
-        onVerticalDragEnd: (details) {
-          if (details.primaryVelocity == 0) return;
-          if (details.primaryVelocity! > 0) {
-            if (currentIndex.value > 0) {
-              currentIndex.value--;
-            }
-          } else {
-            final last = (streams?.length ?? 0) - 1;
-            if (currentIndex.value == last) {
-              currentIndex.value = 0;
-            } else if (currentIndex.value < last) {
-              currentIndex.value++;
-            }
-          }
-        },
-        child: Stack(
-          children: [
-            if (currentController != null) VideoView(controller: currentController),
-            const Align(
-              alignment: Alignment.topLeft,
-              child: SafeArea(
-                child: SizedBox(
-                  height: 40,
-                  child: CustomBackButton(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-            FadeTransition(
-              opacity: CurvedAnimation(parent: playIconAnimation, curve: Curves.easeInOut, reverseCurve: Curves.easeOut),
-              child: Center(
-                child: isPlaying == false
-                    ? SvgPicture.string(SvgIcons.pause, width: 52, height: 52)
-                    : SvgPicture.string(SvgIcons.play, width: 52, height: 52),
-              ),
-            ),
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: 500,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.black.withOpacity(0.0),
-                        design.colors.background1.withOpacity(0.8),
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-                  child: SafeArea(
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Intervjuer', style: design.textStyles.title1.copyWith(color: design.colors.label1)),
-                          Text('Magazine 11. November', style: design.textStyles.body2.copyWith(color: design.colors.label1)),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 24, right: 24),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      design.buttons.large(
-                        variant: ButtonVariant.secondary,
-                        onPressed: () {},
-                        imagePosition: ButtonImagePosition.right,
-                        image: SvgPicture.string(
-                          SvgIcons.heart,
-                          width: 32,
-                          height: 32,
-                          colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      design.buttons.large(
-                        variant: ButtonVariant.secondary,
-                        onPressed: () {
-                          // share
-                        },
-                        imagePosition: ButtonImagePosition.right,
-                        image: SvgPicture.string(
-                          SvgIcons.share,
-                          width: 32,
-                          height: 32,
-                          colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      design.buttons.large(
-                        variant: ButtonVariant.secondary,
-                        onPressed: () {
-                          currentController?.setVolume(muted ? 1 : 0);
-                        },
-                        imagePosition: ButtonImagePosition.right,
-                        image: SvgPicture.string(
-                          muted ? SvgIcons.volumeMuted : SvgIcons.volume,
-                          width: 32,
-                          height: 32,
-                          colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      design.buttons.large(
-                        variant: ButtonVariant.secondary,
-                        onPressed: () {
-                          final ep = streams?.elementAtOrNull(currentIndex.value);
-                          if (ep == null) return;
-                          context.router.navigate(
-                            EpisodeScreenRoute(
-                              episodeId: ep.id,
-                              autoplay: true,
-                              queryParamStartPosition: currentController?.value.position.inSeconds,
-                            ),
-                          );
-                          currentController?.pause();
-                        },
-                        imagePosition: ButtonImagePosition.right,
-                        image: SvgPicture.string(
-                          SvgIcons.chevronRight,
-                          width: 32,
-                          height: 32,
-                          colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class VideoView extends HookWidget {
-  const VideoView({
-    super.key,
-    required this.controller,
-  });
-
-  final VideoPlayerController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) => Stack(
+      body: Stack(
         children: [
-          Container(color: Colors.black),
-          OverflowBox(
-            maxWidth: double.infinity,
-            minHeight: constraints.maxHeight,
-            maxHeight: constraints.maxHeight,
-            child: AspectRatio(
-              aspectRatio: controller.value.aspectRatio,
-              child: VideoPlayer(controller),
-            ),
+          PageView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: shorts.value.length,
+            onPageChanged: (index) {
+              currentIndex.value = index;
+            },
+            itemBuilder: (context, index) => currentShort == null
+                ? null
+                : ShortView(
+                    short: shorts.value[index],
+                    videoController: shortControllerPairs[index % 3].value?.controller,
+                    muted: muted.value,
+                    onMuteRequested: (value) {
+                      muted.value = value;
+                      for (final c in shortControllerPairs) {
+                        c.value?.controller.setVolume(muted.value ? 0 : 1);
+                      }
+                    },
+                  ),
           ),
-          Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaY: 40, sigmaX: 40),
-              child: Container(),
-            ),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Transform.translate(
-              offset: Offset(150, 0),
-              child: Transform.scale(
-                scale: 3.5,
-                child: AspectRatio(
-                  aspectRatio: controller.value.aspectRatio,
-                  child: VideoPlayer(controller),
+          const Align(
+            alignment: Alignment.topLeft,
+            child: SafeArea(
+              child: SizedBox(
+                height: 40,
+                child: CustomBackButton(
+                  color: Colors.white,
                 ),
               ),
             ),

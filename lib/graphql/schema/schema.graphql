@@ -19,6 +19,15 @@ interface CollectionItem {
     #image(style: ImageStyle): String
 }
 
+interface MediaItem {
+    id: ID!
+    streams: [Stream!]!
+    files: [File!]!
+    title: String!
+    image(style: ImageStyle): String
+    #duration: Int!
+}
+
 scalar Language
 scalar Date
 scalar UUID
@@ -112,6 +121,10 @@ type QueryRoot{
     game(
         id: UUID!
     ): Game!
+
+    short(id: UUID!): Short!
+
+    shorts(cursor: String, limit: Int): ShortsPagination!
 
     pendingAchievements: [Achievement!]!
 

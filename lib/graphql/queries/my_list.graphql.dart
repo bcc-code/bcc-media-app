@@ -284,6 +284,9 @@ class Fragment$MyListEntry$item {
       case "Show":
         return Fragment$MyListEntry$item$$Show.fromJson(json);
 
+      case "Short":
+        return Fragment$MyListEntry$item$$Short.fromJson(json);
+
       default:
         final l$$__typename = json['__typename'];
         return Fragment$MyListEntry$item(
@@ -334,6 +337,7 @@ extension UtilityExtension$Fragment$MyListEntry$item
   _T when<_T>({
     required _T Function(Fragment$MyListEntry$item$$Episode) episode,
     required _T Function(Fragment$MyListEntry$item$$Show) show,
+    required _T Function(Fragment$MyListEntry$item$$Short) short,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
@@ -343,6 +347,9 @@ extension UtilityExtension$Fragment$MyListEntry$item
       case "Show":
         return show(this as Fragment$MyListEntry$item$$Show);
 
+      case "Short":
+        return short(this as Fragment$MyListEntry$item$$Short);
+
       default:
         return orElse();
     }
@@ -351,6 +358,7 @@ extension UtilityExtension$Fragment$MyListEntry$item
   _T maybeWhen<_T>({
     _T Function(Fragment$MyListEntry$item$$Episode)? episode,
     _T Function(Fragment$MyListEntry$item$$Show)? show,
+    _T Function(Fragment$MyListEntry$item$$Short)? short,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
@@ -364,6 +372,13 @@ extension UtilityExtension$Fragment$MyListEntry$item
       case "Show":
         if (show != null) {
           return show(this as Fragment$MyListEntry$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Short":
+        if (short != null) {
+          return short(this as Fragment$MyListEntry$item$$Short);
         } else {
           return orElse();
         }
@@ -743,6 +758,98 @@ class _CopyWithImpl$Fragment$MyListEntry$item$$Show<TRes>
 class _CopyWithStubImpl$Fragment$MyListEntry$item$$Show<TRes>
     implements CopyWith$Fragment$MyListEntry$item$$Show<TRes> {
   _CopyWithStubImpl$Fragment$MyListEntry$item$$Show(this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Fragment$MyListEntry$item$$Short implements Fragment$MyListEntry$item {
+  Fragment$MyListEntry$item$$Short({this.$__typename = 'Short'});
+
+  factory Fragment$MyListEntry$item$$Short.fromJson(Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Fragment$MyListEntry$item$$Short(
+        $__typename: (l$$__typename as String));
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$MyListEntry$item$$Short) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$MyListEntry$item$$Short
+    on Fragment$MyListEntry$item$$Short {
+  CopyWith$Fragment$MyListEntry$item$$Short<Fragment$MyListEntry$item$$Short>
+      get copyWith => CopyWith$Fragment$MyListEntry$item$$Short(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$MyListEntry$item$$Short<TRes> {
+  factory CopyWith$Fragment$MyListEntry$item$$Short(
+    Fragment$MyListEntry$item$$Short instance,
+    TRes Function(Fragment$MyListEntry$item$$Short) then,
+  ) = _CopyWithImpl$Fragment$MyListEntry$item$$Short;
+
+  factory CopyWith$Fragment$MyListEntry$item$$Short.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$MyListEntry$item$$Short;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Fragment$MyListEntry$item$$Short<TRes>
+    implements CopyWith$Fragment$MyListEntry$item$$Short<TRes> {
+  _CopyWithImpl$Fragment$MyListEntry$item$$Short(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$MyListEntry$item$$Short _instance;
+
+  final TRes Function(Fragment$MyListEntry$item$$Short) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Fragment$MyListEntry$item$$Short(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Fragment$MyListEntry$item$$Short<TRes>
+    implements CopyWith$Fragment$MyListEntry$item$$Short<TRes> {
+  _CopyWithStubImpl$Fragment$MyListEntry$item$$Short(this._res);
 
   TRes _res;
 
@@ -1984,6 +2091,638 @@ class _CopyWithImpl$Mutation$addEpisodeToMyList$addEpisodeToMyList<TRes>
 class _CopyWithStubImpl$Mutation$addEpisodeToMyList$addEpisodeToMyList<TRes>
     implements CopyWith$Mutation$addEpisodeToMyList$addEpisodeToMyList<TRes> {
   _CopyWithStubImpl$Mutation$addEpisodeToMyList$addEpisodeToMyList(this._res);
+
+  TRes _res;
+
+  call({
+    String? entryId,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$addShortToMyList {
+  factory Variables$Mutation$addShortToMyList({required String shortId}) =>
+      Variables$Mutation$addShortToMyList._({
+        r'shortId': shortId,
+      });
+
+  Variables$Mutation$addShortToMyList._(this._$data);
+
+  factory Variables$Mutation$addShortToMyList.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$shortId = data['shortId'];
+    result$data['shortId'] = (l$shortId as String);
+    return Variables$Mutation$addShortToMyList._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get shortId => (_$data['shortId'] as String);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$shortId = shortId;
+    result$data['shortId'] = l$shortId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$addShortToMyList<
+          Variables$Mutation$addShortToMyList>
+      get copyWith => CopyWith$Variables$Mutation$addShortToMyList(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Mutation$addShortToMyList) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$shortId = shortId;
+    final lOther$shortId = other.shortId;
+    if (l$shortId != lOther$shortId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$shortId = shortId;
+    return Object.hashAll([l$shortId]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$addShortToMyList<TRes> {
+  factory CopyWith$Variables$Mutation$addShortToMyList(
+    Variables$Mutation$addShortToMyList instance,
+    TRes Function(Variables$Mutation$addShortToMyList) then,
+  ) = _CopyWithImpl$Variables$Mutation$addShortToMyList;
+
+  factory CopyWith$Variables$Mutation$addShortToMyList.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$addShortToMyList;
+
+  TRes call({String? shortId});
+}
+
+class _CopyWithImpl$Variables$Mutation$addShortToMyList<TRes>
+    implements CopyWith$Variables$Mutation$addShortToMyList<TRes> {
+  _CopyWithImpl$Variables$Mutation$addShortToMyList(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$addShortToMyList _instance;
+
+  final TRes Function(Variables$Mutation$addShortToMyList) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? shortId = _undefined}) =>
+      _then(Variables$Mutation$addShortToMyList._({
+        ..._instance._$data,
+        if (shortId != _undefined && shortId != null)
+          'shortId': (shortId as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$addShortToMyList<TRes>
+    implements CopyWith$Variables$Mutation$addShortToMyList<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$addShortToMyList(this._res);
+
+  TRes _res;
+
+  call({String? shortId}) => _res;
+}
+
+class Mutation$addShortToMyList {
+  Mutation$addShortToMyList({
+    required this.addShortToMyList,
+    this.$__typename = 'MutationRoot',
+  });
+
+  factory Mutation$addShortToMyList.fromJson(Map<String, dynamic> json) {
+    final l$addShortToMyList = json['addShortToMyList'];
+    final l$$__typename = json['__typename'];
+    return Mutation$addShortToMyList(
+      addShortToMyList: Mutation$addShortToMyList$addShortToMyList.fromJson(
+          (l$addShortToMyList as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$addShortToMyList$addShortToMyList addShortToMyList;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$addShortToMyList = addShortToMyList;
+    _resultData['addShortToMyList'] = l$addShortToMyList.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$addShortToMyList = addShortToMyList;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$addShortToMyList,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$addShortToMyList) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$addShortToMyList = addShortToMyList;
+    final lOther$addShortToMyList = other.addShortToMyList;
+    if (l$addShortToMyList != lOther$addShortToMyList) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$addShortToMyList
+    on Mutation$addShortToMyList {
+  CopyWith$Mutation$addShortToMyList<Mutation$addShortToMyList> get copyWith =>
+      CopyWith$Mutation$addShortToMyList(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$addShortToMyList<TRes> {
+  factory CopyWith$Mutation$addShortToMyList(
+    Mutation$addShortToMyList instance,
+    TRes Function(Mutation$addShortToMyList) then,
+  ) = _CopyWithImpl$Mutation$addShortToMyList;
+
+  factory CopyWith$Mutation$addShortToMyList.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$addShortToMyList;
+
+  TRes call({
+    Mutation$addShortToMyList$addShortToMyList? addShortToMyList,
+    String? $__typename,
+  });
+  CopyWith$Mutation$addShortToMyList$addShortToMyList<TRes>
+      get addShortToMyList;
+}
+
+class _CopyWithImpl$Mutation$addShortToMyList<TRes>
+    implements CopyWith$Mutation$addShortToMyList<TRes> {
+  _CopyWithImpl$Mutation$addShortToMyList(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$addShortToMyList _instance;
+
+  final TRes Function(Mutation$addShortToMyList) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? addShortToMyList = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$addShortToMyList(
+        addShortToMyList: addShortToMyList == _undefined ||
+                addShortToMyList == null
+            ? _instance.addShortToMyList
+            : (addShortToMyList as Mutation$addShortToMyList$addShortToMyList),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Mutation$addShortToMyList$addShortToMyList<TRes>
+      get addShortToMyList {
+    final local$addShortToMyList = _instance.addShortToMyList;
+    return CopyWith$Mutation$addShortToMyList$addShortToMyList(
+        local$addShortToMyList, (e) => call(addShortToMyList: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$addShortToMyList<TRes>
+    implements CopyWith$Mutation$addShortToMyList<TRes> {
+  _CopyWithStubImpl$Mutation$addShortToMyList(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$addShortToMyList$addShortToMyList? addShortToMyList,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Mutation$addShortToMyList$addShortToMyList<TRes>
+      get addShortToMyList =>
+          CopyWith$Mutation$addShortToMyList$addShortToMyList.stub(_res);
+}
+
+const documentNodeMutationaddShortToMyList = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'addShortToMyList'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'shortId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'addShortToMyList'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'shortId'),
+            value: VariableNode(name: NameNode(value: 'shortId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'entryId'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$addShortToMyList _parserFn$Mutation$addShortToMyList(
+        Map<String, dynamic> data) =>
+    Mutation$addShortToMyList.fromJson(data);
+typedef OnMutationCompleted$Mutation$addShortToMyList = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$addShortToMyList?,
+);
+
+class Options$Mutation$addShortToMyList
+    extends graphql.MutationOptions<Mutation$addShortToMyList> {
+  Options$Mutation$addShortToMyList({
+    String? operationName,
+    required Variables$Mutation$addShortToMyList variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$addShortToMyList? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$addShortToMyList? onCompleted,
+    graphql.OnMutationUpdate<Mutation$addShortToMyList>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$addShortToMyList(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationaddShortToMyList,
+          parserFn: _parserFn$Mutation$addShortToMyList,
+        );
+
+  final OnMutationCompleted$Mutation$addShortToMyList? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$addShortToMyList
+    extends graphql.WatchQueryOptions<Mutation$addShortToMyList> {
+  WatchOptions$Mutation$addShortToMyList({
+    String? operationName,
+    required Variables$Mutation$addShortToMyList variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$addShortToMyList? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationaddShortToMyList,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$addShortToMyList,
+        );
+}
+
+extension ClientExtension$Mutation$addShortToMyList on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$addShortToMyList>>
+      mutate$addShortToMyList(
+              Options$Mutation$addShortToMyList options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$addShortToMyList>
+      watchMutation$addShortToMyList(
+              WatchOptions$Mutation$addShortToMyList options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$addShortToMyList$HookResult {
+  Mutation$addShortToMyList$HookResult(
+    this.runMutation,
+    this.result,
+  );
+
+  final RunMutation$Mutation$addShortToMyList runMutation;
+
+  final graphql.QueryResult<Mutation$addShortToMyList> result;
+}
+
+Mutation$addShortToMyList$HookResult useMutation$addShortToMyList(
+    [WidgetOptions$Mutation$addShortToMyList? options]) {
+  final result = graphql_flutter
+      .useMutation(options ?? WidgetOptions$Mutation$addShortToMyList());
+  return Mutation$addShortToMyList$HookResult(
+    (variables, {optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$addShortToMyList>
+    useWatchMutation$addShortToMyList(
+            WatchOptions$Mutation$addShortToMyList options) =>
+        graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$addShortToMyList
+    extends graphql.MutationOptions<Mutation$addShortToMyList> {
+  WidgetOptions$Mutation$addShortToMyList({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$addShortToMyList? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$addShortToMyList? onCompleted,
+    graphql.OnMutationUpdate<Mutation$addShortToMyList>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$addShortToMyList(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationaddShortToMyList,
+          parserFn: _parserFn$Mutation$addShortToMyList,
+        );
+
+  final OnMutationCompleted$Mutation$addShortToMyList? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+typedef RunMutation$Mutation$addShortToMyList
+    = graphql.MultiSourceResult<Mutation$addShortToMyList> Function(
+  Variables$Mutation$addShortToMyList, {
+  Object? optimisticResult,
+  Mutation$addShortToMyList? typedOptimisticResult,
+});
+typedef Builder$Mutation$addShortToMyList = widgets.Widget Function(
+  RunMutation$Mutation$addShortToMyList,
+  graphql.QueryResult<Mutation$addShortToMyList>?,
+);
+
+class Mutation$addShortToMyList$Widget
+    extends graphql_flutter.Mutation<Mutation$addShortToMyList> {
+  Mutation$addShortToMyList$Widget({
+    widgets.Key? key,
+    WidgetOptions$Mutation$addShortToMyList? options,
+    required Builder$Mutation$addShortToMyList builder,
+  }) : super(
+          key: key,
+          options: options ?? WidgetOptions$Mutation$addShortToMyList(),
+          builder: (
+            run,
+            result,
+          ) =>
+              builder(
+            (
+              variables, {
+              optimisticResult,
+              typedOptimisticResult,
+            }) =>
+                run(
+              variables.toJson(),
+              optimisticResult:
+                  optimisticResult ?? typedOptimisticResult?.toJson(),
+            ),
+            result,
+          ),
+        );
+}
+
+class Mutation$addShortToMyList$addShortToMyList {
+  Mutation$addShortToMyList$addShortToMyList({
+    required this.entryId,
+    this.$__typename = 'AddToCollectionResult',
+  });
+
+  factory Mutation$addShortToMyList$addShortToMyList.fromJson(
+      Map<String, dynamic> json) {
+    final l$entryId = json['entryId'];
+    final l$$__typename = json['__typename'];
+    return Mutation$addShortToMyList$addShortToMyList(
+      entryId: (l$entryId as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String entryId;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$entryId = entryId;
+    _resultData['entryId'] = l$entryId;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$entryId = entryId;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$entryId,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$addShortToMyList$addShortToMyList) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$entryId = entryId;
+    final lOther$entryId = other.entryId;
+    if (l$entryId != lOther$entryId) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$addShortToMyList$addShortToMyList
+    on Mutation$addShortToMyList$addShortToMyList {
+  CopyWith$Mutation$addShortToMyList$addShortToMyList<
+          Mutation$addShortToMyList$addShortToMyList>
+      get copyWith => CopyWith$Mutation$addShortToMyList$addShortToMyList(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$addShortToMyList$addShortToMyList<TRes> {
+  factory CopyWith$Mutation$addShortToMyList$addShortToMyList(
+    Mutation$addShortToMyList$addShortToMyList instance,
+    TRes Function(Mutation$addShortToMyList$addShortToMyList) then,
+  ) = _CopyWithImpl$Mutation$addShortToMyList$addShortToMyList;
+
+  factory CopyWith$Mutation$addShortToMyList$addShortToMyList.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$addShortToMyList$addShortToMyList;
+
+  TRes call({
+    String? entryId,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$addShortToMyList$addShortToMyList<TRes>
+    implements CopyWith$Mutation$addShortToMyList$addShortToMyList<TRes> {
+  _CopyWithImpl$Mutation$addShortToMyList$addShortToMyList(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$addShortToMyList$addShortToMyList _instance;
+
+  final TRes Function(Mutation$addShortToMyList$addShortToMyList) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? entryId = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$addShortToMyList$addShortToMyList(
+        entryId: entryId == _undefined || entryId == null
+            ? _instance.entryId
+            : (entryId as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$addShortToMyList$addShortToMyList<TRes>
+    implements CopyWith$Mutation$addShortToMyList$addShortToMyList<TRes> {
+  _CopyWithStubImpl$Mutation$addShortToMyList$addShortToMyList(this._res);
 
   TRes _res;
 

@@ -337,7 +337,7 @@ const documentNodeQueryKidsGetNextEpisodes = DocumentNode(definitions: [
                 directives: [],
               ),
               FragmentSpreadNode(
-                name: NameNode(value: 'PlayableEpisode'),
+                name: NameNode(value: 'PlayableMediaItem'),
                 directives: [],
               ),
               FieldNode(
@@ -368,7 +368,7 @@ const documentNodeQueryKidsGetNextEpisodes = DocumentNode(definitions: [
     ]),
   ),
   fragmentDefinitionKidsEpisodeThumbnail,
-  fragmentDefinitionPlayableEpisode,
+  fragmentDefinitionPlayableMediaItem,
   fragmentDefinitionBasicStream,
 ]);
 Query$KidsGetNextEpisodes _parserFn$Query$KidsGetNextEpisodes(
@@ -687,7 +687,7 @@ class _CopyWithStubImpl$Query$KidsGetNextEpisodes$episode<TRes>
 }
 
 class Query$KidsGetNextEpisodes$episode$next
-    implements Fragment$KidsEpisodeThumbnail, Fragment$PlayableEpisode {
+    implements Fragment$KidsEpisodeThumbnail, Fragment$PlayableMediaItem {
   Query$KidsGetNextEpisodes$episode$next({
     required this.id,
     required this.title,
@@ -1005,7 +1005,7 @@ class _CopyWithStubImpl$Query$KidsGetNextEpisodes$episode$next<TRes>
 }
 
 class Query$KidsGetNextEpisodes$episode$next$context
-    implements Fragment$PlayableEpisode$context {
+    implements Fragment$PlayableMediaItem$context {
   Query$KidsGetNextEpisodes$episode$next$context({required this.$__typename});
 
   factory Query$KidsGetNextEpisodes$episode$next$context.fromJson(
@@ -1163,7 +1163,7 @@ class _CopyWithStubImpl$Query$KidsGetNextEpisodes$episode$next$context<TRes>
 
 class Query$KidsGetNextEpisodes$episode$next$context$$ContextCollection
     implements
-        Fragment$PlayableEpisode$context$$ContextCollection,
+        Fragment$PlayableMediaItem$context$$ContextCollection,
         Query$KidsGetNextEpisodes$episode$next$context {
   Query$KidsGetNextEpisodes$episode$next$context$$ContextCollection({
     required this.id,
@@ -1306,7 +1306,7 @@ class _CopyWithStubImpl$Query$KidsGetNextEpisodes$episode$next$context$$ContextC
 
 class Query$KidsGetNextEpisodes$episode$next$context$$Season
     implements
-        Fragment$PlayableEpisode$context$$Season,
+        Fragment$PlayableMediaItem$context$$Season,
         Query$KidsGetNextEpisodes$episode$next$context {
   Query$KidsGetNextEpisodes$episode$next$context$$Season(
       {this.$__typename = 'Season'});
@@ -1411,7 +1411,7 @@ class _CopyWithStubImpl$Query$KidsGetNextEpisodes$episode$next$context$$Season<
 }
 
 class Query$KidsGetNextEpisodes$episode$next$season
-    implements Fragment$PlayableEpisode$season {
+    implements Fragment$PlayableMediaItem$season {
   Query$KidsGetNextEpisodes$episode$next$season({
     required this.id,
     required this.title,
@@ -1587,7 +1587,7 @@ class _CopyWithStubImpl$Query$KidsGetNextEpisodes$episode$next$season<TRes>
 }
 
 class Query$KidsGetNextEpisodes$episode$next$season$show
-    implements Fragment$PlayableEpisode$season$show {
+    implements Fragment$PlayableMediaItem$season$show {
   Query$KidsGetNextEpisodes$episode$next$season$show({
     required this.id,
     required this.title,
@@ -2563,6 +2563,10 @@ class Query$GetManyEpisodeIdsForPlaylist$playlist$items$items {
         return Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode
             .fromJson(json);
 
+      case "Short":
+        return Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short
+            .fromJson(json);
+
       default:
         final l$$__typename = json['__typename'];
         return Query$GetManyEpisodeIdsForPlaylist$playlist$items$items(
@@ -2616,12 +2620,19 @@ extension UtilityExtension$Query$GetManyEpisodeIdsForPlaylist$playlist$items$ite
     required _T Function(
             Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode)
         episode,
+    required _T Function(
+            Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short)
+        short,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
       case "Episode":
         return episode(this
             as Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode);
+
+      case "Short":
+        return short(this
+            as Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short);
 
       default:
         return orElse();
@@ -2632,6 +2643,8 @@ extension UtilityExtension$Query$GetManyEpisodeIdsForPlaylist$playlist$items$ite
     _T Function(
             Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode)?
         episode,
+    _T Function(Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short)?
+        short,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
@@ -2639,6 +2652,14 @@ extension UtilityExtension$Query$GetManyEpisodeIdsForPlaylist$playlist$items$ite
         if (episode != null) {
           return episode(this
               as Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Short":
+        if (short != null) {
+          return short(this
+              as Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short);
         } else {
           return orElse();
         }
@@ -2857,6 +2878,117 @@ class _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$
     String? $__typename,
   }) =>
       _res;
+}
+
+class Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short
+    implements Query$GetManyEpisodeIdsForPlaylist$playlist$items$items {
+  Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short(
+      {this.$__typename = 'Short'});
+
+  factory Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short(
+        $__typename: (l$$__typename as String));
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short
+    on Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short {
+  CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short<
+          Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short>
+      get copyWith =>
+          CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short<
+    TRes> {
+  factory CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short(
+    Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short instance,
+    TRes Function(
+            Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short)
+        then,
+  ) = _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short;
+
+  factory CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short<
+        TRes>
+    implements
+        CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short<
+            TRes> {
+  _CopyWithImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short
+      _instance;
+
+  final TRes Function(
+      Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short<
+        TRes>
+    implements
+        CopyWith$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short<
+            TRes> {
+  _CopyWithStubImpl$Query$GetManyEpisodeIdsForPlaylist$playlist$items$items$$Short(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
 }
 
 class Variables$Query$KidsFetchEpisode {
@@ -3176,7 +3308,7 @@ const documentNodeQueryKidsFetchEpisode = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FragmentSpreadNode(
-            name: NameNode(value: 'PlayableEpisode'),
+            name: NameNode(value: 'PlayableMediaItem'),
             directives: [],
           ),
           FieldNode(
@@ -3294,7 +3426,7 @@ const documentNodeQueryKidsFetchEpisode = DocumentNode(definitions: [
       ),
     ]),
   ),
-  fragmentDefinitionPlayableEpisode,
+  fragmentDefinitionPlayableMediaItem,
   fragmentDefinitionBasicStream,
   fragmentDefinitionEpisodeContext,
   fragmentDefinitionSeasonListEpisode,
@@ -3456,14 +3588,14 @@ class Query$KidsFetchEpisode$Widget
         );
 }
 
-class Query$KidsFetchEpisode$episode implements Fragment$PlayableEpisode {
+class Query$KidsFetchEpisode$episode implements Fragment$PlayableMediaItem {
   Query$KidsFetchEpisode$episode({
     required this.id,
     required this.streams,
-    required this.cursor,
-    this.context,
     required this.title,
     this.image,
+    required this.cursor,
+    this.context,
     required this.duration,
     this.season,
     this.$__typename = 'Episode',
@@ -3474,10 +3606,10 @@ class Query$KidsFetchEpisode$episode implements Fragment$PlayableEpisode {
   factory Query$KidsFetchEpisode$episode.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$streams = json['streams'];
-    final l$cursor = json['cursor'];
-    final l$context = json['context'];
     final l$title = json['title'];
     final l$image = json['image'];
+    final l$cursor = json['cursor'];
+    final l$context = json['context'];
     final l$duration = json['duration'];
     final l$season = json['season'];
     final l$$__typename = json['__typename'];
@@ -3489,13 +3621,13 @@ class Query$KidsFetchEpisode$episode implements Fragment$PlayableEpisode {
           .map(
               (e) => Fragment$BasicStream.fromJson((e as Map<String, dynamic>)))
           .toList(),
+      title: (l$title as String),
+      image: (l$image as String?),
       cursor: (l$cursor as String),
       context: l$context == null
           ? null
           : Query$KidsFetchEpisode$episode$context.fromJson(
               (l$context as Map<String, dynamic>)),
-      title: (l$title as String),
-      image: (l$image as String?),
       duration: (l$duration as int),
       season: l$season == null
           ? null
@@ -3514,13 +3646,13 @@ class Query$KidsFetchEpisode$episode implements Fragment$PlayableEpisode {
 
   final List<Fragment$BasicStream> streams;
 
-  final String cursor;
-
-  final Query$KidsFetchEpisode$episode$context? context;
-
   final String title;
 
   final String? image;
+
+  final String cursor;
+
+  final Query$KidsFetchEpisode$episode$context? context;
 
   final int duration;
 
@@ -3538,14 +3670,14 @@ class Query$KidsFetchEpisode$episode implements Fragment$PlayableEpisode {
     _resultData['id'] = l$id;
     final l$streams = streams;
     _resultData['streams'] = l$streams.map((e) => e.toJson()).toList();
-    final l$cursor = cursor;
-    _resultData['cursor'] = l$cursor;
-    final l$context = context;
-    _resultData['context'] = l$context?.toJson();
     final l$title = title;
     _resultData['title'] = l$title;
     final l$image = image;
     _resultData['image'] = l$image;
+    final l$cursor = cursor;
+    _resultData['cursor'] = l$cursor;
+    final l$context = context;
+    _resultData['context'] = l$context?.toJson();
     final l$duration = duration;
     _resultData['duration'] = l$duration;
     final l$season = season;
@@ -3563,10 +3695,10 @@ class Query$KidsFetchEpisode$episode implements Fragment$PlayableEpisode {
   int get hashCode {
     final l$id = id;
     final l$streams = streams;
-    final l$cursor = cursor;
-    final l$context = context;
     final l$title = title;
     final l$image = image;
+    final l$cursor = cursor;
+    final l$context = context;
     final l$duration = duration;
     final l$season = season;
     final l$$__typename = $__typename;
@@ -3575,10 +3707,10 @@ class Query$KidsFetchEpisode$episode implements Fragment$PlayableEpisode {
     return Object.hashAll([
       l$id,
       Object.hashAll(l$streams.map((v) => v)),
-      l$cursor,
-      l$context,
       l$title,
       l$image,
+      l$cursor,
+      l$context,
       l$duration,
       l$season,
       l$$__typename,
@@ -3613,16 +3745,6 @@ class Query$KidsFetchEpisode$episode implements Fragment$PlayableEpisode {
         return false;
       }
     }
-    final l$cursor = cursor;
-    final lOther$cursor = other.cursor;
-    if (l$cursor != lOther$cursor) {
-      return false;
-    }
-    final l$context = context;
-    final lOther$context = other.context;
-    if (l$context != lOther$context) {
-      return false;
-    }
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
@@ -3631,6 +3753,16 @@ class Query$KidsFetchEpisode$episode implements Fragment$PlayableEpisode {
     final l$image = image;
     final lOther$image = other.image;
     if (l$image != lOther$image) {
+      return false;
+    }
+    final l$cursor = cursor;
+    final lOther$cursor = other.cursor;
+    if (l$cursor != lOther$cursor) {
+      return false;
+    }
+    final l$context = context;
+    final lOther$context = other.context;
+    if (l$context != lOther$context) {
       return false;
     }
     final l$duration = duration;
@@ -3690,10 +3822,10 @@ abstract class CopyWith$Query$KidsFetchEpisode$episode<TRes> {
   TRes call({
     String? id,
     List<Fragment$BasicStream>? streams,
-    String? cursor,
-    Query$KidsFetchEpisode$episode$context? context,
     String? title,
     String? image,
+    String? cursor,
+    Query$KidsFetchEpisode$episode$context? context,
     int? duration,
     Query$KidsFetchEpisode$episode$season? season,
     String? $__typename,
@@ -3730,10 +3862,10 @@ class _CopyWithImpl$Query$KidsFetchEpisode$episode<TRes>
   TRes call({
     Object? id = _undefined,
     Object? streams = _undefined,
-    Object? cursor = _undefined,
-    Object? context = _undefined,
     Object? title = _undefined,
     Object? image = _undefined,
+    Object? cursor = _undefined,
+    Object? context = _undefined,
     Object? duration = _undefined,
     Object? season = _undefined,
     Object? $__typename = _undefined,
@@ -3745,16 +3877,16 @@ class _CopyWithImpl$Query$KidsFetchEpisode$episode<TRes>
         streams: streams == _undefined || streams == null
             ? _instance.streams
             : (streams as List<Fragment$BasicStream>),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        image: image == _undefined ? _instance.image : (image as String?),
         cursor: cursor == _undefined || cursor == null
             ? _instance.cursor
             : (cursor as String),
         context: context == _undefined
             ? _instance.context
             : (context as Query$KidsFetchEpisode$episode$context?),
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        image: image == _undefined ? _instance.image : (image as String?),
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
@@ -3820,10 +3952,10 @@ class _CopyWithStubImpl$Query$KidsFetchEpisode$episode<TRes>
   call({
     String? id,
     List<Fragment$BasicStream>? streams,
-    String? cursor,
-    Query$KidsFetchEpisode$episode$context? context,
     String? title,
     String? image,
+    String? cursor,
+    Query$KidsFetchEpisode$episode$context? context,
     int? duration,
     Query$KidsFetchEpisode$episode$season? season,
     String? $__typename,
@@ -3840,7 +3972,7 @@ class _CopyWithStubImpl$Query$KidsFetchEpisode$episode<TRes>
 }
 
 class Query$KidsFetchEpisode$episode$context
-    implements Fragment$PlayableEpisode$context, Fragment$EpisodeContext {
+    implements Fragment$PlayableMediaItem$context, Fragment$EpisodeContext {
   Query$KidsFetchEpisode$episode$context({required this.$__typename});
 
   factory Query$KidsFetchEpisode$episode$context.fromJson(
@@ -3992,7 +4124,7 @@ class _CopyWithStubImpl$Query$KidsFetchEpisode$episode$context<TRes>
 
 class Query$KidsFetchEpisode$episode$context$$ContextCollection
     implements
-        Fragment$PlayableEpisode$context$$ContextCollection,
+        Fragment$PlayableMediaItem$context$$ContextCollection,
         Fragment$EpisodeContext$$ContextCollection,
         Query$KidsFetchEpisode$episode$context {
   Query$KidsFetchEpisode$episode$context$$ContextCollection({
@@ -4172,7 +4304,7 @@ class _CopyWithStubImpl$Query$KidsFetchEpisode$episode$context$$ContextCollectio
 
 class Query$KidsFetchEpisode$episode$context$$Season
     implements
-        Fragment$PlayableEpisode$context$$Season,
+        Fragment$PlayableMediaItem$context$$Season,
         Fragment$EpisodeContext$$Season,
         Query$KidsFetchEpisode$episode$context {
   Query$KidsFetchEpisode$episode$context$$Season({
@@ -4408,7 +4540,7 @@ class _CopyWithStubImpl$Query$KidsFetchEpisode$episode$context$$Season<TRes>
 }
 
 class Query$KidsFetchEpisode$episode$season
-    implements Fragment$PlayableEpisode$season {
+    implements Fragment$PlayableMediaItem$season {
   Query$KidsFetchEpisode$episode$season({
     required this.id,
     required this.title,
@@ -4583,7 +4715,7 @@ class _CopyWithStubImpl$Query$KidsFetchEpisode$episode$season<TRes>
 }
 
 class Query$KidsFetchEpisode$episode$season$show
-    implements Fragment$PlayableEpisode$season$show {
+    implements Fragment$PlayableMediaItem$season$show {
   Query$KidsFetchEpisode$episode$season$show({
     required this.id,
     required this.title,

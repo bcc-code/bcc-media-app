@@ -5,7 +5,7 @@ query FetchEpisode(
 ) {
   episode(id: $id, context: $context) {
     id
-    ...PlayableEpisode
+    ...PlayableMediaItem
     uuid
     status
     title
@@ -123,26 +123,28 @@ query EpisodeDetails($id: ID!) {
   }
 }
 
-fragment PlayableEpisode on Episode {
+fragment PlayableMediaItem on Episode {
   id
   streams {
     ...BasicStream
   }
-  cursor
-  context {
-    ... on ContextCollection {
-      id
-    }
-  }
   title
   image
-  duration
-  season {
-    id
-    title
-    show {
+  ... on Episode {
+    cursor
+    context {
+      ... on ContextCollection {
+        id
+      }
+    }
+    duration
+    season {
       id
       title
+      show {
+        id
+        title
+      }
     }
   }
 }
@@ -172,7 +174,7 @@ query getDefaultEpisodeForShow($showId: ID!) {
 query getNextEpisodes($episodeId: ID!, $context: EpisodeContext) {
   episode(id: $episodeId, context: $context) {
     next {
-      ...PlayableEpisode
+      ...PlayableMediaItem
     }
   }
 }
@@ -185,18 +187,5 @@ fragment EpisodeAvailability on Episode {
 query getEpisodeAvailability($episodeId: ID!) {
   episode(id: $episodeId) {
     ...EpisodeAvailability
-  }
-}
-
-query getShorts {
-  playlist(id: "e7efbde0-b134-46c8-950d-814b9570e903") {
-    items {
-      items {
-        id
-        title
-        image
-        ...PlayableEpisode
-      }
-    }
   }
 }

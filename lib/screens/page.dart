@@ -48,9 +48,7 @@ class PageScreenState extends ConsumerState<PageScreen> with PageMixin {
     return Scaffold(
       appBar: AppBar(
         leadingWidth: kIsWeb ? 300 : 92,
-        leading: const Padding(
-            padding: EdgeInsets.only(left: kIsWeb ? 64 : 0),
-            child: CustomBackButton()),
+        leading: const Padding(padding: EdgeInsets.only(left: kIsWeb ? 64 : 0), child: CustomBackButton()),
         title: Text(pageTitle),
       ),
       body: PageRenderer(

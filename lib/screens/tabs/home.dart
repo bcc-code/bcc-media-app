@@ -69,6 +69,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
   void signupFeatureFlagCheck() async {
     if (ref.read(authStateProvider).auth0AccessToken != null) {
       final me = await ref.read(gqlClientProvider).query$me();
+      if (!context.mounted) return;
       if (!ref.read(featureFlagsProvider).publicSignup &&
           (me.parsedData?.me.completedRegistration != true || me.parsedData?.me.emailVerified != true)) {
         if (!context.mounted) return;

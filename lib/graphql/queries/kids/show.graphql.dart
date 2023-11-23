@@ -2515,6 +2515,10 @@ class Query$GetPlaylistOverview$playlist$items$items {
         return Query$GetPlaylistOverview$playlist$items$items$$Episode.fromJson(
             json);
 
+      case "Short":
+        return Query$GetPlaylistOverview$playlist$items$items$$Short.fromJson(
+            json);
+
       default:
         final l$$__typename = json['__typename'];
         return Query$GetPlaylistOverview$playlist$items$items(
@@ -2567,12 +2571,18 @@ extension UtilityExtension$Query$GetPlaylistOverview$playlist$items$items
     required _T Function(
             Query$GetPlaylistOverview$playlist$items$items$$Episode)
         episode,
+    required _T Function(Query$GetPlaylistOverview$playlist$items$items$$Short)
+        short,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
       case "Episode":
         return episode(
             this as Query$GetPlaylistOverview$playlist$items$items$$Episode);
+
+      case "Short":
+        return short(
+            this as Query$GetPlaylistOverview$playlist$items$items$$Short);
 
       default:
         return orElse();
@@ -2582,6 +2592,7 @@ extension UtilityExtension$Query$GetPlaylistOverview$playlist$items$items
   _T maybeWhen<_T>({
     _T Function(Query$GetPlaylistOverview$playlist$items$items$$Episode)?
         episode,
+    _T Function(Query$GetPlaylistOverview$playlist$items$items$$Short)? short,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
@@ -2589,6 +2600,14 @@ extension UtilityExtension$Query$GetPlaylistOverview$playlist$items$items
         if (episode != null) {
           return episode(
               this as Query$GetPlaylistOverview$playlist$items$items$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Short":
+        if (short != null) {
+          return short(
+              this as Query$GetPlaylistOverview$playlist$items$items$$Short);
         } else {
           return orElse();
         }
@@ -2854,4 +2873,108 @@ class _CopyWithStubImpl$Query$GetPlaylistOverview$playlist$items$items$$Episode<
     String? $__typename,
   }) =>
       _res;
+}
+
+class Query$GetPlaylistOverview$playlist$items$items$$Short
+    implements Query$GetPlaylistOverview$playlist$items$items {
+  Query$GetPlaylistOverview$playlist$items$items$$Short(
+      {this.$__typename = 'Short'});
+
+  factory Query$GetPlaylistOverview$playlist$items$items$$Short.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Query$GetPlaylistOverview$playlist$items$items$$Short(
+        $__typename: (l$$__typename as String));
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$GetPlaylistOverview$playlist$items$items$$Short) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetPlaylistOverview$playlist$items$items$$Short
+    on Query$GetPlaylistOverview$playlist$items$items$$Short {
+  CopyWith$Query$GetPlaylistOverview$playlist$items$items$$Short<
+          Query$GetPlaylistOverview$playlist$items$items$$Short>
+      get copyWith =>
+          CopyWith$Query$GetPlaylistOverview$playlist$items$items$$Short(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetPlaylistOverview$playlist$items$items$$Short<
+    TRes> {
+  factory CopyWith$Query$GetPlaylistOverview$playlist$items$items$$Short(
+    Query$GetPlaylistOverview$playlist$items$items$$Short instance,
+    TRes Function(Query$GetPlaylistOverview$playlist$items$items$$Short) then,
+  ) = _CopyWithImpl$Query$GetPlaylistOverview$playlist$items$items$$Short;
+
+  factory CopyWith$Query$GetPlaylistOverview$playlist$items$items$$Short.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetPlaylistOverview$playlist$items$items$$Short;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetPlaylistOverview$playlist$items$items$$Short<TRes>
+    implements
+        CopyWith$Query$GetPlaylistOverview$playlist$items$items$$Short<TRes> {
+  _CopyWithImpl$Query$GetPlaylistOverview$playlist$items$items$$Short(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetPlaylistOverview$playlist$items$items$$Short _instance;
+
+  final TRes Function(Query$GetPlaylistOverview$playlist$items$items$$Short)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Query$GetPlaylistOverview$playlist$items$items$$Short(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetPlaylistOverview$playlist$items$items$$Short<
+        TRes>
+    implements
+        CopyWith$Query$GetPlaylistOverview$playlist$items$items$$Short<TRes> {
+  _CopyWithStubImpl$Query$GetPlaylistOverview$playlist$items$items$$Short(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
 }

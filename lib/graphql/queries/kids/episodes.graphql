@@ -2,7 +2,7 @@ query KidsGetNextEpisodes($episodeId: ID!, $context: EpisodeContext) {
   episode(id: $episodeId, context: $context) {
     next(limit: 20) {
       ...KidsEpisodeThumbnail
-      ...PlayableEpisode
+      ...PlayableMediaItem
     }
   }
 }
@@ -24,7 +24,7 @@ query GetManyEpisodeIdsForPlaylist($id: ID!) {
 query KidsFetchEpisode($id: ID!, $context: EpisodeContext) {
   episode(id: $id, context: $context) {
     id
-    ...PlayableEpisode
+    ...PlayableMediaItem
     uuid
     title
     image

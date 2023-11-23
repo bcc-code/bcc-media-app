@@ -2,6 +2,8 @@ type MutationRoot {
     setDevicePushToken(token: String!, languages: [String!]!): Device
     setEpisodeProgress(id: ID!, progress: Int, duration: Int, context: EpisodeContext): Episode!
 
+    setShortProgress(id: UUID!, progress: Float, duration: Float): Short!
+
     sendSupportEmail(title: String!, content: String!, html: String!, options: EmailOptions): Boolean!
 
     completeTask(
@@ -24,6 +26,7 @@ type MutationRoot {
 
     addEpisodeToMyList(episodeId: ID!): AddToCollectionResult!
     addShowToMyList(showId: ID!): AddToCollectionResult!
+    addShortToMyList(shortId: ID!): AddToCollectionResult!
 
     removeEntryFromMyList(entryId: UUID!): UserCollection!
 
