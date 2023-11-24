@@ -232,8 +232,8 @@ class AppRouter extends $AppRouter {
           children: [
             CustomRoute(
               page: ShortsScreenRoute.page,
-              path: '',
-              maintainState: false,
+              path: ':id',
+              maintainState: true,
               meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
             ),
             _episodeScreenRoute,

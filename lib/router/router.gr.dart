@@ -302,9 +302,15 @@ abstract class $AppRouter extends _i35.RootStackRouter {
       );
     },
     ShortsScreenRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<ShortsScreenRouteArgs>(
+          orElse: () => ShortsScreenRouteArgs(id: pathParams.optString('id')));
       return _i35.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i26.ShortsScreen(),
+        child: _i26.ShortsScreen(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     ShortsWrapperScreenRoute.name: (routeData) {
@@ -1040,16 +1046,41 @@ class SettingsScreenRoute extends _i35.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i26.ShortsScreen]
-class ShortsScreenRoute extends _i35.PageRouteInfo<void> {
-  const ShortsScreenRoute({List<_i35.PageRouteInfo>? children})
-      : super(
+class ShortsScreenRoute extends _i35.PageRouteInfo<ShortsScreenRouteArgs> {
+  ShortsScreenRoute({
+    _i36.Key? key,
+    String? id,
+    List<_i35.PageRouteInfo>? children,
+  }) : super(
           ShortsScreenRoute.name,
+          args: ShortsScreenRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
   static const String name = 'ShortsScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i35.PageInfo<ShortsScreenRouteArgs> page =
+      _i35.PageInfo<ShortsScreenRouteArgs>(name);
+}
+
+class ShortsScreenRouteArgs {
+  const ShortsScreenRouteArgs({
+    this.key,
+    this.id,
+  });
+
+  final _i36.Key? key;
+
+  final String? id;
+
+  @override
+  String toString() {
+    return 'ShortsScreenRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for

@@ -71,3 +71,9 @@ query getShort($id: UUID!) {
     ...Short
   }
 }
+
+query blablaHarryIsCool($id: UUID!) {
+  short(id: $id) {
+    ...Short
+  }
+}
