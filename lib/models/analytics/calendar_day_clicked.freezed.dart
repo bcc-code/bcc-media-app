@@ -76,23 +76,25 @@ class _$CalendarDayClickedEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CalendarDayClickedEventCopyWith<$Res>
+abstract class _$$CalendarDayClickedEventImplCopyWith<$Res>
     implements $CalendarDayClickedEventCopyWith<$Res> {
-  factory _$$_CalendarDayClickedEventCopyWith(_$_CalendarDayClickedEvent value,
-          $Res Function(_$_CalendarDayClickedEvent) then) =
-      __$$_CalendarDayClickedEventCopyWithImpl<$Res>;
+  factory _$$CalendarDayClickedEventImplCopyWith(
+          _$CalendarDayClickedEventImpl value,
+          $Res Function(_$CalendarDayClickedEventImpl) then) =
+      __$$CalendarDayClickedEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String pageCode, String calendarView, String calendarDate});
 }
 
 /// @nodoc
-class __$$_CalendarDayClickedEventCopyWithImpl<$Res>
+class __$$CalendarDayClickedEventImplCopyWithImpl<$Res>
     extends _$CalendarDayClickedEventCopyWithImpl<$Res,
-        _$_CalendarDayClickedEvent>
-    implements _$$_CalendarDayClickedEventCopyWith<$Res> {
-  __$$_CalendarDayClickedEventCopyWithImpl(_$_CalendarDayClickedEvent _value,
-      $Res Function(_$_CalendarDayClickedEvent) _then)
+        _$CalendarDayClickedEventImpl>
+    implements _$$CalendarDayClickedEventImplCopyWith<$Res> {
+  __$$CalendarDayClickedEventImplCopyWithImpl(
+      _$CalendarDayClickedEventImpl _value,
+      $Res Function(_$CalendarDayClickedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +104,7 @@ class __$$_CalendarDayClickedEventCopyWithImpl<$Res>
     Object? calendarView = null,
     Object? calendarDate = null,
   }) {
-    return _then(_$_CalendarDayClickedEvent(
+    return _then(_$CalendarDayClickedEventImpl(
       pageCode: null == pageCode
           ? _value.pageCode
           : pageCode // ignore: cast_nullable_to_non_nullable
@@ -121,14 +123,14 @@ class __$$_CalendarDayClickedEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CalendarDayClickedEvent implements _CalendarDayClickedEvent {
-  const _$_CalendarDayClickedEvent(
+class _$CalendarDayClickedEventImpl implements _CalendarDayClickedEvent {
+  const _$CalendarDayClickedEventImpl(
       {required this.pageCode,
       required this.calendarView,
       required this.calendarDate});
 
-  factory _$_CalendarDayClickedEvent.fromJson(Map<String, dynamic> json) =>
-      _$$_CalendarDayClickedEventFromJson(json);
+  factory _$CalendarDayClickedEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CalendarDayClickedEventImplFromJson(json);
 
   @override
   final String pageCode;
@@ -146,7 +148,7 @@ class _$_CalendarDayClickedEvent implements _CalendarDayClickedEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CalendarDayClickedEvent &&
+            other is _$CalendarDayClickedEventImpl &&
             (identical(other.pageCode, pageCode) ||
                 other.pageCode == pageCode) &&
             (identical(other.calendarView, calendarView) ||
@@ -163,14 +165,13 @@ class _$_CalendarDayClickedEvent implements _CalendarDayClickedEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CalendarDayClickedEventCopyWith<_$_CalendarDayClickedEvent>
-      get copyWith =>
-          __$$_CalendarDayClickedEventCopyWithImpl<_$_CalendarDayClickedEvent>(
-              this, _$identity);
+  _$$CalendarDayClickedEventImplCopyWith<_$CalendarDayClickedEventImpl>
+      get copyWith => __$$CalendarDayClickedEventImplCopyWithImpl<
+          _$CalendarDayClickedEventImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CalendarDayClickedEventToJson(
+    return _$$CalendarDayClickedEventImplToJson(
       this,
     );
   }
@@ -180,10 +181,10 @@ abstract class _CalendarDayClickedEvent implements CalendarDayClickedEvent {
   const factory _CalendarDayClickedEvent(
       {required final String pageCode,
       required final String calendarView,
-      required final String calendarDate}) = _$_CalendarDayClickedEvent;
+      required final String calendarDate}) = _$CalendarDayClickedEventImpl;
 
   factory _CalendarDayClickedEvent.fromJson(Map<String, dynamic> json) =
-      _$_CalendarDayClickedEvent.fromJson;
+      _$CalendarDayClickedEventImpl.fromJson;
 
   @override
   String get pageCode;
@@ -193,6 +194,6 @@ abstract class _CalendarDayClickedEvent implements CalendarDayClickedEvent {
   String get calendarDate;
   @override
   @JsonKey(ignore: true)
-  _$$_CalendarDayClickedEventCopyWith<_$_CalendarDayClickedEvent>
+  _$$CalendarDayClickedEventImplCopyWith<_$CalendarDayClickedEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

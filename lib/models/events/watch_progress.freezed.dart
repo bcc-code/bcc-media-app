@@ -64,25 +64,25 @@ class _$WatchProgressUpdatedEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_WatchProgressUpdatedEventCopyWith<$Res>
+abstract class _$$WatchProgressUpdatedEventImplCopyWith<$Res>
     implements $WatchProgressUpdatedEventCopyWith<$Res> {
-  factory _$$_WatchProgressUpdatedEventCopyWith(
-          _$_WatchProgressUpdatedEvent value,
-          $Res Function(_$_WatchProgressUpdatedEvent) then) =
-      __$$_WatchProgressUpdatedEventCopyWithImpl<$Res>;
+  factory _$$WatchProgressUpdatedEventImplCopyWith(
+          _$WatchProgressUpdatedEventImpl value,
+          $Res Function(_$WatchProgressUpdatedEventImpl) then) =
+      __$$WatchProgressUpdatedEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String episodeId, int? progress});
 }
 
 /// @nodoc
-class __$$_WatchProgressUpdatedEventCopyWithImpl<$Res>
+class __$$WatchProgressUpdatedEventImplCopyWithImpl<$Res>
     extends _$WatchProgressUpdatedEventCopyWithImpl<$Res,
-        _$_WatchProgressUpdatedEvent>
-    implements _$$_WatchProgressUpdatedEventCopyWith<$Res> {
-  __$$_WatchProgressUpdatedEventCopyWithImpl(
-      _$_WatchProgressUpdatedEvent _value,
-      $Res Function(_$_WatchProgressUpdatedEvent) _then)
+        _$WatchProgressUpdatedEventImpl>
+    implements _$$WatchProgressUpdatedEventImplCopyWith<$Res> {
+  __$$WatchProgressUpdatedEventImplCopyWithImpl(
+      _$WatchProgressUpdatedEventImpl _value,
+      $Res Function(_$WatchProgressUpdatedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -91,7 +91,7 @@ class __$$_WatchProgressUpdatedEventCopyWithImpl<$Res>
     Object? episodeId = null,
     Object? progress = freezed,
   }) {
-    return _then(_$_WatchProgressUpdatedEvent(
+    return _then(_$WatchProgressUpdatedEventImpl(
       episodeId: null == episodeId
           ? _value.episodeId
           : episodeId // ignore: cast_nullable_to_non_nullable
@@ -106,8 +106,8 @@ class __$$_WatchProgressUpdatedEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WatchProgressUpdatedEvent implements _WatchProgressUpdatedEvent {
-  const _$_WatchProgressUpdatedEvent(
+class _$WatchProgressUpdatedEventImpl implements _WatchProgressUpdatedEvent {
+  const _$WatchProgressUpdatedEventImpl(
       {required this.episodeId, required this.progress});
 
   @override
@@ -124,7 +124,7 @@ class _$_WatchProgressUpdatedEvent implements _WatchProgressUpdatedEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WatchProgressUpdatedEvent &&
+            other is _$WatchProgressUpdatedEventImpl &&
             (identical(other.episodeId, episodeId) ||
                 other.episodeId == episodeId) &&
             (identical(other.progress, progress) ||
@@ -137,15 +137,15 @@ class _$_WatchProgressUpdatedEvent implements _WatchProgressUpdatedEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WatchProgressUpdatedEventCopyWith<_$_WatchProgressUpdatedEvent>
-      get copyWith => __$$_WatchProgressUpdatedEventCopyWithImpl<
-          _$_WatchProgressUpdatedEvent>(this, _$identity);
+  _$$WatchProgressUpdatedEventImplCopyWith<_$WatchProgressUpdatedEventImpl>
+      get copyWith => __$$WatchProgressUpdatedEventImplCopyWithImpl<
+          _$WatchProgressUpdatedEventImpl>(this, _$identity);
 }
 
 abstract class _WatchProgressUpdatedEvent implements WatchProgressUpdatedEvent {
   const factory _WatchProgressUpdatedEvent(
       {required final String episodeId,
-      required final int? progress}) = _$_WatchProgressUpdatedEvent;
+      required final int? progress}) = _$WatchProgressUpdatedEventImpl;
 
   @override
   String get episodeId;
@@ -153,6 +153,6 @@ abstract class _WatchProgressUpdatedEvent implements WatchProgressUpdatedEvent {
   int? get progress;
   @override
   @JsonKey(ignore: true)
-  _$$_WatchProgressUpdatedEventCopyWith<_$_WatchProgressUpdatedEvent>
+  _$$WatchProgressUpdatedEventImplCopyWith<_$WatchProgressUpdatedEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -349,6 +349,7 @@ class _CopyWithImpl$Fragment$FAQCategory<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$FAQCategory$questions<TRes> get questions {
     final local$questions = _instance.questions;
     return local$questions == null
@@ -370,6 +371,7 @@ class _CopyWithStubImpl$Fragment$FAQCategory<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$FAQCategory$questions<TRes> get questions =>
       CopyWith$Fragment$FAQCategory$questions.stub(_res);
 }
@@ -596,6 +598,7 @@ class _CopyWithImpl$Fragment$FAQCategory$questions<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Question> Function(
                   Iterable<CopyWith$Fragment$Question<Fragment$Question>>)
@@ -618,6 +621,7 @@ class _CopyWithStubImpl$Fragment$FAQCategory$questions<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -727,6 +731,7 @@ class _CopyWithImpl$Query$FAQ<TRes> implements CopyWith$Query$FAQ<TRes> {
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FAQ$faq<TRes> get faq {
     final local$faq = _instance.faq;
     return CopyWith$Query$FAQ$faq(local$faq, (e) => call(faq: e));
@@ -743,6 +748,7 @@ class _CopyWithStubImpl$Query$FAQ<TRes> implements CopyWith$Query$FAQ<TRes> {
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FAQ$faq<TRes> get faq => CopyWith$Query$FAQ$faq.stub(_res);
 }
 
@@ -1058,6 +1064,7 @@ class _CopyWithImpl$Query$FAQ$faq<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FAQ$faq$categories<TRes> get categories {
     final local$categories = _instance.categories;
     return local$categories == null
@@ -1078,6 +1085,7 @@ class _CopyWithStubImpl$Query$FAQ$faq<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FAQ$faq$categories<TRes> get categories =>
       CopyWith$Query$FAQ$faq$categories.stub(_res);
 }
@@ -1206,6 +1214,7 @@ class _CopyWithImpl$Query$FAQ$faq$categories<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$FAQCategory> Function(
                   Iterable<CopyWith$Fragment$FAQCategory<Fragment$FAQCategory>>)
@@ -1228,5 +1237,6 @@ class _CopyWithStubImpl$Query$FAQ$faq$categories<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }

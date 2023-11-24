@@ -24,6 +24,7 @@ class Variables$Query$GetSeasonEpisodes {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -36,6 +37,7 @@ class Variables$Query$GetSeasonEpisodes {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -212,6 +214,7 @@ class _CopyWithImpl$Query$GetSeasonEpisodes<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSeasonEpisodes$season<TRes> get season {
     final local$season = _instance.season;
     return CopyWith$Query$GetSeasonEpisodes$season(
@@ -230,6 +233,7 @@ class _CopyWithStubImpl$Query$GetSeasonEpisodes<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSeasonEpisodes$season<TRes> get season =>
       CopyWith$Query$GetSeasonEpisodes$season.stub(_res);
 }
@@ -636,6 +640,7 @@ class _CopyWithImpl$Query$GetSeasonEpisodes$season<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSeasonEpisodes$season$episodes<TRes> get episodes {
     final local$episodes = _instance.episodes;
     return CopyWith$Query$GetSeasonEpisodes$season$episodes(
@@ -656,6 +661,7 @@ class _CopyWithStubImpl$Query$GetSeasonEpisodes$season<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSeasonEpisodes$season$episodes<TRes> get episodes =>
       CopyWith$Query$GetSeasonEpisodes$season$episodes.stub(_res);
 }
@@ -788,6 +794,7 @@ class _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$SeasonListEpisode> Function(
                   Iterable<
@@ -813,5 +820,6 @@ class _CopyWithStubImpl$Query$GetSeasonEpisodes$season$episodes<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }

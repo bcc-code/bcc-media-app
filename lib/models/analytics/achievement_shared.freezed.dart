@@ -64,23 +64,25 @@ class _$AchievementSharedEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_AchievementSharedEventCopyWith<$Res>
+abstract class _$$AchievementSharedEventImplCopyWith<$Res>
     implements $AchievementSharedEventCopyWith<$Res> {
-  factory _$$_AchievementSharedEventCopyWith(_$_AchievementSharedEvent value,
-          $Res Function(_$_AchievementSharedEvent) then) =
-      __$$_AchievementSharedEventCopyWithImpl<$Res>;
+  factory _$$AchievementSharedEventImplCopyWith(
+          _$AchievementSharedEventImpl value,
+          $Res Function(_$AchievementSharedEventImpl) then) =
+      __$$AchievementSharedEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String elementTitle});
 }
 
 /// @nodoc
-class __$$_AchievementSharedEventCopyWithImpl<$Res>
+class __$$AchievementSharedEventImplCopyWithImpl<$Res>
     extends _$AchievementSharedEventCopyWithImpl<$Res,
-        _$_AchievementSharedEvent>
-    implements _$$_AchievementSharedEventCopyWith<$Res> {
-  __$$_AchievementSharedEventCopyWithImpl(_$_AchievementSharedEvent _value,
-      $Res Function(_$_AchievementSharedEvent) _then)
+        _$AchievementSharedEventImpl>
+    implements _$$AchievementSharedEventImplCopyWith<$Res> {
+  __$$AchievementSharedEventImplCopyWithImpl(
+      _$AchievementSharedEventImpl _value,
+      $Res Function(_$AchievementSharedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -88,7 +90,7 @@ class __$$_AchievementSharedEventCopyWithImpl<$Res>
   $Res call({
     Object? elementTitle = null,
   }) {
-    return _then(_$_AchievementSharedEvent(
+    return _then(_$AchievementSharedEventImpl(
       elementTitle: null == elementTitle
           ? _value.elementTitle
           : elementTitle // ignore: cast_nullable_to_non_nullable
@@ -99,11 +101,11 @@ class __$$_AchievementSharedEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AchievementSharedEvent implements _AchievementSharedEvent {
-  const _$_AchievementSharedEvent({required this.elementTitle});
+class _$AchievementSharedEventImpl implements _AchievementSharedEvent {
+  const _$AchievementSharedEventImpl({required this.elementTitle});
 
-  factory _$_AchievementSharedEvent.fromJson(Map<String, dynamic> json) =>
-      _$$_AchievementSharedEventFromJson(json);
+  factory _$AchievementSharedEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AchievementSharedEventImplFromJson(json);
 
   @override
   final String elementTitle;
@@ -117,7 +119,7 @@ class _$_AchievementSharedEvent implements _AchievementSharedEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AchievementSharedEvent &&
+            other is _$AchievementSharedEventImpl &&
             (identical(other.elementTitle, elementTitle) ||
                 other.elementTitle == elementTitle));
   }
@@ -129,13 +131,13 @@ class _$_AchievementSharedEvent implements _AchievementSharedEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AchievementSharedEventCopyWith<_$_AchievementSharedEvent> get copyWith =>
-      __$$_AchievementSharedEventCopyWithImpl<_$_AchievementSharedEvent>(
-          this, _$identity);
+  _$$AchievementSharedEventImplCopyWith<_$AchievementSharedEventImpl>
+      get copyWith => __$$AchievementSharedEventImplCopyWithImpl<
+          _$AchievementSharedEventImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AchievementSharedEventToJson(
+    return _$$AchievementSharedEventImplToJson(
       this,
     );
   }
@@ -143,15 +145,15 @@ class _$_AchievementSharedEvent implements _AchievementSharedEvent {
 
 abstract class _AchievementSharedEvent implements AchievementSharedEvent {
   const factory _AchievementSharedEvent({required final String elementTitle}) =
-      _$_AchievementSharedEvent;
+      _$AchievementSharedEventImpl;
 
   factory _AchievementSharedEvent.fromJson(Map<String, dynamic> json) =
-      _$_AchievementSharedEvent.fromJson;
+      _$AchievementSharedEventImpl.fromJson;
 
   @override
   String get elementTitle;
   @override
   @JsonKey(ignore: true)
-  _$$_AchievementSharedEventCopyWith<_$_AchievementSharedEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AchievementSharedEventImplCopyWith<_$AchievementSharedEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

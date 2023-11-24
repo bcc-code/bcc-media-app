@@ -109,6 +109,7 @@ class _CopyWithImpl$Query$me<TRes> implements CopyWith$Query$me<TRes> {
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$me$me<TRes> get me {
     final local$me = _instance.me;
     return CopyWith$Query$me$me(local$me, (e) => call(me: e));
@@ -125,6 +126,7 @@ class _CopyWithStubImpl$Query$me<TRes> implements CopyWith$Query$me<TRes> {
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$me$me<TRes> get me => CopyWith$Query$me$me.stub(_res);
 }
 
@@ -556,6 +558,7 @@ class _CopyWithImpl$Query$me$me<TRes> implements CopyWith$Query$me$me<TRes> {
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$me$me$analytics<TRes> get analytics {
     final local$analytics = _instance.analytics;
     return CopyWith$Query$me$me$analytics(
@@ -579,6 +582,7 @@ class _CopyWithStubImpl$Query$me$me<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$me$me$analytics<TRes> get analytics =>
       CopyWith$Query$me$me$analytics.stub(_res);
 }
@@ -1098,8 +1102,10 @@ class Variables$Mutation$updateUserMetadata {
   Map<String, dynamic> _$data;
 
   Input$NameOptions get nameData => (_$data['nameData'] as Input$NameOptions);
+
   Input$BirthOptions get birthData =>
       (_$data['birthData'] as Input$BirthOptions);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$nameData = nameData;
@@ -1115,6 +1121,7 @@ class Variables$Mutation$updateUserMetadata {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {

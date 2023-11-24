@@ -84,11 +84,11 @@ class _$ChapterClickedEventCopyWithImpl<$Res, $Val extends ChapterClickedEvent>
 }
 
 /// @nodoc
-abstract class _$$_ChapterClickedEventCopyWith<$Res>
+abstract class _$$ChapterClickedEventImplCopyWith<$Res>
     implements $ChapterClickedEventCopyWith<$Res> {
-  factory _$$_ChapterClickedEventCopyWith(_$_ChapterClickedEvent value,
-          $Res Function(_$_ChapterClickedEvent) then) =
-      __$$_ChapterClickedEventCopyWithImpl<$Res>;
+  factory _$$ChapterClickedEventImplCopyWith(_$ChapterClickedEventImpl value,
+          $Res Function(_$ChapterClickedEventImpl) then) =
+      __$$ChapterClickedEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -99,11 +99,11 @@ abstract class _$$_ChapterClickedEventCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChapterClickedEventCopyWithImpl<$Res>
-    extends _$ChapterClickedEventCopyWithImpl<$Res, _$_ChapterClickedEvent>
-    implements _$$_ChapterClickedEventCopyWith<$Res> {
-  __$$_ChapterClickedEventCopyWithImpl(_$_ChapterClickedEvent _value,
-      $Res Function(_$_ChapterClickedEvent) _then)
+class __$$ChapterClickedEventImplCopyWithImpl<$Res>
+    extends _$ChapterClickedEventCopyWithImpl<$Res, _$ChapterClickedEventImpl>
+    implements _$$ChapterClickedEventImplCopyWith<$Res> {
+  __$$ChapterClickedEventImplCopyWithImpl(_$ChapterClickedEventImpl _value,
+      $Res Function(_$ChapterClickedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -114,7 +114,7 @@ class __$$_ChapterClickedEventCopyWithImpl<$Res>
     Object? chapterId = null,
     Object? chapterStart = null,
   }) {
-    return _then(_$_ChapterClickedEvent(
+    return _then(_$ChapterClickedEventImpl(
       elementType: null == elementType
           ? _value.elementType
           : elementType // ignore: cast_nullable_to_non_nullable
@@ -137,15 +137,15 @@ class __$$_ChapterClickedEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChapterClickedEvent implements _ChapterClickedEvent {
-  const _$_ChapterClickedEvent(
+class _$ChapterClickedEventImpl implements _ChapterClickedEvent {
+  const _$ChapterClickedEventImpl(
       {required this.elementType,
       required this.elementId,
       required this.chapterId,
       required this.chapterStart});
 
-  factory _$_ChapterClickedEvent.fromJson(Map<String, dynamic> json) =>
-      _$$_ChapterClickedEventFromJson(json);
+  factory _$ChapterClickedEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChapterClickedEventImplFromJson(json);
 
   @override
   final String elementType;
@@ -165,7 +165,7 @@ class _$_ChapterClickedEvent implements _ChapterClickedEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChapterClickedEvent &&
+            other is _$ChapterClickedEventImpl &&
             (identical(other.elementType, elementType) ||
                 other.elementType == elementType) &&
             (identical(other.elementId, elementId) ||
@@ -184,13 +184,13 @@ class _$_ChapterClickedEvent implements _ChapterClickedEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChapterClickedEventCopyWith<_$_ChapterClickedEvent> get copyWith =>
-      __$$_ChapterClickedEventCopyWithImpl<_$_ChapterClickedEvent>(
+  _$$ChapterClickedEventImplCopyWith<_$ChapterClickedEventImpl> get copyWith =>
+      __$$ChapterClickedEventImplCopyWithImpl<_$ChapterClickedEventImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChapterClickedEventToJson(
+    return _$$ChapterClickedEventImplToJson(
       this,
     );
   }
@@ -201,10 +201,10 @@ abstract class _ChapterClickedEvent implements ChapterClickedEvent {
       {required final String elementType,
       required final String elementId,
       required final String chapterId,
-      required final int chapterStart}) = _$_ChapterClickedEvent;
+      required final int chapterStart}) = _$ChapterClickedEventImpl;
 
   factory _ChapterClickedEvent.fromJson(Map<String, dynamic> json) =
-      _$_ChapterClickedEvent.fromJson;
+      _$ChapterClickedEventImpl.fromJson;
 
   @override
   String get elementType;
@@ -216,6 +216,6 @@ abstract class _ChapterClickedEvent implements ChapterClickedEvent {
   int get chapterStart;
   @override
   @JsonKey(ignore: true)
-  _$$_ChapterClickedEventCopyWith<_$_ChapterClickedEvent> get copyWith =>
+  _$$ChapterClickedEventImplCopyWith<_$ChapterClickedEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

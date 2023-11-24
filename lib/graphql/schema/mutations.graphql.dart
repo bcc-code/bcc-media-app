@@ -15,6 +15,7 @@ class Input$BirthOptions {
   Map<String, dynamic> _$data;
 
   int get year => (_$data['year'] as int);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$year = year;
@@ -27,6 +28,7 @@ class Input$BirthOptions {
         this,
         (i) => i,
       );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -114,7 +116,9 @@ class Input$NameOptions {
   Map<String, dynamic> _$data;
 
   String get first => (_$data['first'] as String);
+
   String get last => (_$data['last'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$first = first;
@@ -129,6 +133,7 @@ class Input$NameOptions {
         this,
         (i) => i,
       );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -237,7 +242,9 @@ class Input$EmailOptions {
   Map<String, dynamic> _$data;
 
   String get name => (_$data['name'] as String);
+
   String get email => (_$data['email'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$name = name;
@@ -252,6 +259,7 @@ class Input$EmailOptions {
         this,
         (i) => i,
       );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {

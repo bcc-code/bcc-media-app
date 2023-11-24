@@ -93,11 +93,11 @@ class _$SearchResultClickedEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_SectionClickedEventCopyWith<$Res>
+abstract class _$$SectionClickedEventImplCopyWith<$Res>
     implements $SearchResultClickedEventCopyWith<$Res> {
-  factory _$$_SectionClickedEventCopyWith(_$_SectionClickedEvent value,
-          $Res Function(_$_SectionClickedEvent) then) =
-      __$$_SectionClickedEventCopyWithImpl<$Res>;
+  factory _$$SectionClickedEventImplCopyWith(_$SectionClickedEventImpl value,
+          $Res Function(_$SectionClickedEventImpl) then) =
+      __$$SectionClickedEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -109,11 +109,12 @@ abstract class _$$_SectionClickedEventCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SectionClickedEventCopyWithImpl<$Res>
-    extends _$SearchResultClickedEventCopyWithImpl<$Res, _$_SectionClickedEvent>
-    implements _$$_SectionClickedEventCopyWith<$Res> {
-  __$$_SectionClickedEventCopyWithImpl(_$_SectionClickedEvent _value,
-      $Res Function(_$_SectionClickedEvent) _then)
+class __$$SectionClickedEventImplCopyWithImpl<$Res>
+    extends _$SearchResultClickedEventCopyWithImpl<$Res,
+        _$SectionClickedEventImpl>
+    implements _$$SectionClickedEventImplCopyWith<$Res> {
+  __$$SectionClickedEventImplCopyWithImpl(_$SectionClickedEventImpl _value,
+      $Res Function(_$SectionClickedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -125,7 +126,7 @@ class __$$_SectionClickedEventCopyWithImpl<$Res>
     Object? elementId = null,
     Object? group = null,
   }) {
-    return _then(_$_SectionClickedEvent(
+    return _then(_$SectionClickedEventImpl(
       searchText: null == searchText
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
@@ -152,16 +153,16 @@ class __$$_SectionClickedEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SectionClickedEvent implements _SectionClickedEvent {
-  const _$_SectionClickedEvent(
+class _$SectionClickedEventImpl implements _SectionClickedEvent {
+  const _$SectionClickedEventImpl(
       {required this.searchText,
       required this.elementPosition,
       required this.elementType,
       required this.elementId,
       required this.group});
 
-  factory _$_SectionClickedEvent.fromJson(Map<String, dynamic> json) =>
-      _$$_SectionClickedEventFromJson(json);
+  factory _$SectionClickedEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SectionClickedEventImplFromJson(json);
 
   @override
   final String searchText;
@@ -183,7 +184,7 @@ class _$_SectionClickedEvent implements _SectionClickedEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SectionClickedEvent &&
+            other is _$SectionClickedEventImpl &&
             (identical(other.searchText, searchText) ||
                 other.searchText == searchText) &&
             (identical(other.elementPosition, elementPosition) ||
@@ -203,13 +204,13 @@ class _$_SectionClickedEvent implements _SectionClickedEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SectionClickedEventCopyWith<_$_SectionClickedEvent> get copyWith =>
-      __$$_SectionClickedEventCopyWithImpl<_$_SectionClickedEvent>(
+  _$$SectionClickedEventImplCopyWith<_$SectionClickedEventImpl> get copyWith =>
+      __$$SectionClickedEventImplCopyWithImpl<_$SectionClickedEventImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SectionClickedEventToJson(
+    return _$$SectionClickedEventImplToJson(
       this,
     );
   }
@@ -221,10 +222,10 @@ abstract class _SectionClickedEvent implements SearchResultClickedEvent {
       required final int elementPosition,
       required final String elementType,
       required final String elementId,
-      required final String group}) = _$_SectionClickedEvent;
+      required final String group}) = _$SectionClickedEventImpl;
 
   factory _SectionClickedEvent.fromJson(Map<String, dynamic> json) =
-      _$_SectionClickedEvent.fromJson;
+      _$SectionClickedEventImpl.fromJson;
 
   @override
   String get searchText;
@@ -238,7 +239,7 @@ abstract class _SectionClickedEvent implements SearchResultClickedEvent {
   String get group;
   @override
   @JsonKey(ignore: true)
-  _$$_SectionClickedEventCopyWith<_$_SectionClickedEvent> get copyWith =>
+  _$$SectionClickedEventImplCopyWith<_$SectionClickedEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -285,22 +286,22 @@ class _$SearchAnalyticsCopyWithImpl<$Res, $Val extends SearchAnalytics>
 }
 
 /// @nodoc
-abstract class _$$_SearchAnalyticsCopyWith<$Res>
+abstract class _$$SearchAnalyticsImplCopyWith<$Res>
     implements $SearchAnalyticsCopyWith<$Res> {
-  factory _$$_SearchAnalyticsCopyWith(
-          _$_SearchAnalytics value, $Res Function(_$_SearchAnalytics) then) =
-      __$$_SearchAnalyticsCopyWithImpl<$Res>;
+  factory _$$SearchAnalyticsImplCopyWith(_$SearchAnalyticsImpl value,
+          $Res Function(_$SearchAnalyticsImpl) then) =
+      __$$SearchAnalyticsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String searchText});
 }
 
 /// @nodoc
-class __$$_SearchAnalyticsCopyWithImpl<$Res>
-    extends _$SearchAnalyticsCopyWithImpl<$Res, _$_SearchAnalytics>
-    implements _$$_SearchAnalyticsCopyWith<$Res> {
-  __$$_SearchAnalyticsCopyWithImpl(
-      _$_SearchAnalytics _value, $Res Function(_$_SearchAnalytics) _then)
+class __$$SearchAnalyticsImplCopyWithImpl<$Res>
+    extends _$SearchAnalyticsCopyWithImpl<$Res, _$SearchAnalyticsImpl>
+    implements _$$SearchAnalyticsImplCopyWith<$Res> {
+  __$$SearchAnalyticsImplCopyWithImpl(
+      _$SearchAnalyticsImpl _value, $Res Function(_$SearchAnalyticsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -308,7 +309,7 @@ class __$$_SearchAnalyticsCopyWithImpl<$Res>
   $Res call({
     Object? searchText = null,
   }) {
-    return _then(_$_SearchAnalytics(
+    return _then(_$SearchAnalyticsImpl(
       searchText: null == searchText
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
@@ -319,8 +320,8 @@ class __$$_SearchAnalyticsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SearchAnalytics implements _SearchAnalytics {
-  const _$_SearchAnalytics({required this.searchText});
+class _$SearchAnalyticsImpl implements _SearchAnalytics {
+  const _$SearchAnalyticsImpl({required this.searchText});
 
   @override
   final String searchText;
@@ -334,7 +335,7 @@ class _$_SearchAnalytics implements _SearchAnalytics {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SearchAnalytics &&
+            other is _$SearchAnalyticsImpl &&
             (identical(other.searchText, searchText) ||
                 other.searchText == searchText));
   }
@@ -345,19 +346,20 @@ class _$_SearchAnalytics implements _SearchAnalytics {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SearchAnalyticsCopyWith<_$_SearchAnalytics> get copyWith =>
-      __$$_SearchAnalyticsCopyWithImpl<_$_SearchAnalytics>(this, _$identity);
+  _$$SearchAnalyticsImplCopyWith<_$SearchAnalyticsImpl> get copyWith =>
+      __$$SearchAnalyticsImplCopyWithImpl<_$SearchAnalyticsImpl>(
+          this, _$identity);
 }
 
 abstract class _SearchAnalytics implements SearchAnalytics {
   const factory _SearchAnalytics({required final String searchText}) =
-      _$_SearchAnalytics;
+      _$SearchAnalyticsImpl;
 
   @override
   String get searchText;
   @override
   @JsonKey(ignore: true)
-  _$$_SearchAnalyticsCopyWith<_$_SearchAnalytics> get copyWith =>
+  _$$SearchAnalyticsImplCopyWith<_$SearchAnalyticsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -422,22 +424,22 @@ class _$SearchItemAnalyticsCopyWithImpl<$Res, $Val extends SearchItemAnalytics>
 }
 
 /// @nodoc
-abstract class _$$_SearchItemAnalyticsCopyWith<$Res>
+abstract class _$$SearchItemAnalyticsImplCopyWith<$Res>
     implements $SearchItemAnalyticsCopyWith<$Res> {
-  factory _$$_SearchItemAnalyticsCopyWith(_$_SearchItemAnalytics value,
-          $Res Function(_$_SearchItemAnalytics) then) =
-      __$$_SearchItemAnalyticsCopyWithImpl<$Res>;
+  factory _$$SearchItemAnalyticsImplCopyWith(_$SearchItemAnalyticsImpl value,
+          $Res Function(_$SearchItemAnalyticsImpl) then) =
+      __$$SearchItemAnalyticsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int position, String type, String id, String group});
 }
 
 /// @nodoc
-class __$$_SearchItemAnalyticsCopyWithImpl<$Res>
-    extends _$SearchItemAnalyticsCopyWithImpl<$Res, _$_SearchItemAnalytics>
-    implements _$$_SearchItemAnalyticsCopyWith<$Res> {
-  __$$_SearchItemAnalyticsCopyWithImpl(_$_SearchItemAnalytics _value,
-      $Res Function(_$_SearchItemAnalytics) _then)
+class __$$SearchItemAnalyticsImplCopyWithImpl<$Res>
+    extends _$SearchItemAnalyticsCopyWithImpl<$Res, _$SearchItemAnalyticsImpl>
+    implements _$$SearchItemAnalyticsImplCopyWith<$Res> {
+  __$$SearchItemAnalyticsImplCopyWithImpl(_$SearchItemAnalyticsImpl _value,
+      $Res Function(_$SearchItemAnalyticsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -448,7 +450,7 @@ class __$$_SearchItemAnalyticsCopyWithImpl<$Res>
     Object? id = null,
     Object? group = null,
   }) {
-    return _then(_$_SearchItemAnalytics(
+    return _then(_$SearchItemAnalyticsImpl(
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -471,8 +473,8 @@ class __$$_SearchItemAnalyticsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SearchItemAnalytics implements _SearchItemAnalytics {
-  const _$_SearchItemAnalytics(
+class _$SearchItemAnalyticsImpl implements _SearchItemAnalytics {
+  const _$SearchItemAnalyticsImpl(
       {required this.position,
       required this.type,
       required this.id,
@@ -496,7 +498,7 @@ class _$_SearchItemAnalytics implements _SearchItemAnalytics {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SearchItemAnalytics &&
+            other is _$SearchItemAnalyticsImpl &&
             (identical(other.position, position) ||
                 other.position == position) &&
             (identical(other.type, type) || other.type == type) &&
@@ -510,8 +512,8 @@ class _$_SearchItemAnalytics implements _SearchItemAnalytics {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SearchItemAnalyticsCopyWith<_$_SearchItemAnalytics> get copyWith =>
-      __$$_SearchItemAnalyticsCopyWithImpl<_$_SearchItemAnalytics>(
+  _$$SearchItemAnalyticsImplCopyWith<_$SearchItemAnalyticsImpl> get copyWith =>
+      __$$SearchItemAnalyticsImplCopyWithImpl<_$SearchItemAnalyticsImpl>(
           this, _$identity);
 }
 
@@ -520,7 +522,7 @@ abstract class _SearchItemAnalytics implements SearchItemAnalytics {
       {required final int position,
       required final String type,
       required final String id,
-      required final String group}) = _$_SearchItemAnalytics;
+      required final String group}) = _$SearchItemAnalyticsImpl;
 
   @override
   int get position;
@@ -532,6 +534,6 @@ abstract class _SearchItemAnalytics implements SearchItemAnalytics {
   String get group;
   @override
   @JsonKey(ignore: true)
-  _$$_SearchItemAnalyticsCopyWith<_$_SearchItemAnalytics> get copyWith =>
+  _$$SearchItemAnalyticsImplCopyWith<_$SearchItemAnalyticsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

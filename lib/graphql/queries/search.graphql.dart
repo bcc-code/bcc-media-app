@@ -987,6 +987,7 @@ class _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
             : (description as String?),
         image: image == _undefined ? _instance.image : (image as String?),
       ));
+
   CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show<TRes> get $show {
     final local$$show = _instance.$show;
     return CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show(
@@ -1011,6 +1012,7 @@ class _CopyWithStubImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
     String? image,
   }) =>
       _res;
+
   CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show<TRes> get $show =>
       CopyWith$Fragment$SearchResultItem$$ShowSearchItem$show.stub(_res);
 }
@@ -1398,8 +1400,11 @@ class Variables$Query$Search {
   Map<String, dynamic> _$data;
 
   String get queryString => (_$data['queryString'] as String);
+
   int? get first => (_$data['first'] as int?);
+
   int? get offset => (_$data['offset'] as int?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$queryString = queryString;
@@ -1420,6 +1425,7 @@ class Variables$Query$Search {
         this,
         (i) => i,
       );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -1629,6 +1635,7 @@ class _CopyWithImpl$Query$Search<TRes> implements CopyWith$Query$Search<TRes> {
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$Search$search<TRes> get search {
     final local$search = _instance.search;
     return CopyWith$Query$Search$search(local$search, (e) => call(search: e));
@@ -1646,6 +1653,7 @@ class _CopyWithStubImpl$Query$Search<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$Search$search<TRes> get search =>
       CopyWith$Query$Search$search.stub(_res);
 }
@@ -2066,6 +2074,7 @@ class _CopyWithImpl$Query$Search$search<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes result(
           Iterable<Fragment$SearchResultItem> Function(
                   Iterable<
@@ -2093,5 +2102,6 @@ class _CopyWithStubImpl$Query$Search$search<TRes>
     String? $__typename,
   }) =>
       _res;
+
   result(_fn) => _res;
 }

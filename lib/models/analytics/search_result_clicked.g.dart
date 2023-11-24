@@ -6,9 +6,9 @@ part of 'search_result_clicked.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SectionClickedEvent _$$_SectionClickedEventFromJson(
+_$SectionClickedEventImpl _$$SectionClickedEventImplFromJson(
         Map<String, dynamic> json) =>
-    _$_SectionClickedEvent(
+    _$SectionClickedEventImpl(
       searchText: json['searchText'] as String,
       elementPosition: json['elementPosition'] as int,
       elementType: json['elementType'] as String,
@@ -16,8 +16,8 @@ _$_SectionClickedEvent _$$_SectionClickedEventFromJson(
       group: json['group'] as String,
     );
 
-Map<String, dynamic> _$$_SectionClickedEventToJson(
-        _$_SectionClickedEvent instance) =>
+Map<String, dynamic> _$$SectionClickedEventImplToJson(
+        _$SectionClickedEventImpl instance) =>
     <String, dynamic>{
       'searchText': instance.searchText,
       'elementPosition': instance.elementPosition,

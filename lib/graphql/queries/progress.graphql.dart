@@ -37,8 +37,11 @@ class Variables$Mutation$setEpisodeProgress {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   int? get duration => (_$data['duration'] as int?);
+
   int? get progress => (_$data['progress'] as int?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -60,6 +63,7 @@ class Variables$Mutation$setEpisodeProgress {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -280,6 +284,7 @@ class _CopyWithImpl$Mutation$setEpisodeProgress<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Mutation$setEpisodeProgress$setEpisodeProgress<TRes>
       get setEpisodeProgress {
     final local$setEpisodeProgress = _instance.setEpisodeProgress;
@@ -299,6 +304,7 @@ class _CopyWithStubImpl$Mutation$setEpisodeProgress<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Mutation$setEpisodeProgress$setEpisodeProgress<TRes>
       get setEpisodeProgress =>
           CopyWith$Mutation$setEpisodeProgress$setEpisodeProgress.stub(_res);

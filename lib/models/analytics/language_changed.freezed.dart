@@ -76,11 +76,11 @@ class _$LanguageChangedEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_LanguageChangedEventCopyWith<$Res>
+abstract class _$$LanguageChangedEventImplCopyWith<$Res>
     implements $LanguageChangedEventCopyWith<$Res> {
-  factory _$$_LanguageChangedEventCopyWith(_$_LanguageChangedEvent value,
-          $Res Function(_$_LanguageChangedEvent) then) =
-      __$$_LanguageChangedEventCopyWithImpl<$Res>;
+  factory _$$LanguageChangedEventImplCopyWith(_$LanguageChangedEventImpl value,
+          $Res Function(_$LanguageChangedEventImpl) then) =
+      __$$LanguageChangedEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -88,11 +88,11 @@ abstract class _$$_LanguageChangedEventCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LanguageChangedEventCopyWithImpl<$Res>
-    extends _$LanguageChangedEventCopyWithImpl<$Res, _$_LanguageChangedEvent>
-    implements _$$_LanguageChangedEventCopyWith<$Res> {
-  __$$_LanguageChangedEventCopyWithImpl(_$_LanguageChangedEvent _value,
-      $Res Function(_$_LanguageChangedEvent) _then)
+class __$$LanguageChangedEventImplCopyWithImpl<$Res>
+    extends _$LanguageChangedEventCopyWithImpl<$Res, _$LanguageChangedEventImpl>
+    implements _$$LanguageChangedEventImplCopyWith<$Res> {
+  __$$LanguageChangedEventImplCopyWithImpl(_$LanguageChangedEventImpl _value,
+      $Res Function(_$LanguageChangedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +102,7 @@ class __$$_LanguageChangedEventCopyWithImpl<$Res>
     Object? languageTo = null,
     Object? languageChangeType = null,
   }) {
-    return _then(_$_LanguageChangedEvent(
+    return _then(_$LanguageChangedEventImpl(
       languageFrom: freezed == languageFrom
           ? _value.languageFrom
           : languageFrom // ignore: cast_nullable_to_non_nullable
@@ -121,14 +121,14 @@ class __$$_LanguageChangedEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LanguageChangedEvent implements _LanguageChangedEvent {
-  const _$_LanguageChangedEvent(
+class _$LanguageChangedEventImpl implements _LanguageChangedEvent {
+  const _$LanguageChangedEventImpl(
       {required this.languageFrom,
       required this.languageTo,
       required this.languageChangeType});
 
-  factory _$_LanguageChangedEvent.fromJson(Map<String, dynamic> json) =>
-      _$$_LanguageChangedEventFromJson(json);
+  factory _$LanguageChangedEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LanguageChangedEventImplFromJson(json);
 
   @override
   final String? languageFrom;
@@ -146,7 +146,7 @@ class _$_LanguageChangedEvent implements _LanguageChangedEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LanguageChangedEvent &&
+            other is _$LanguageChangedEventImpl &&
             (identical(other.languageFrom, languageFrom) ||
                 other.languageFrom == languageFrom) &&
             (identical(other.languageTo, languageTo) ||
@@ -163,13 +163,14 @@ class _$_LanguageChangedEvent implements _LanguageChangedEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LanguageChangedEventCopyWith<_$_LanguageChangedEvent> get copyWith =>
-      __$$_LanguageChangedEventCopyWithImpl<_$_LanguageChangedEvent>(
-          this, _$identity);
+  _$$LanguageChangedEventImplCopyWith<_$LanguageChangedEventImpl>
+      get copyWith =>
+          __$$LanguageChangedEventImplCopyWithImpl<_$LanguageChangedEventImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LanguageChangedEventToJson(
+    return _$$LanguageChangedEventImplToJson(
       this,
     );
   }
@@ -179,10 +180,10 @@ abstract class _LanguageChangedEvent implements LanguageChangedEvent {
   const factory _LanguageChangedEvent(
       {required final String? languageFrom,
       required final String languageTo,
-      required final String languageChangeType}) = _$_LanguageChangedEvent;
+      required final String languageChangeType}) = _$LanguageChangedEventImpl;
 
   factory _LanguageChangedEvent.fromJson(Map<String, dynamic> json) =
-      _$_LanguageChangedEvent.fromJson;
+      _$LanguageChangedEventImpl.fromJson;
 
   @override
   String? get languageFrom;
@@ -192,6 +193,6 @@ abstract class _LanguageChangedEvent implements LanguageChangedEvent {
   String get languageChangeType;
   @override
   @JsonKey(ignore: true)
-  _$$_LanguageChangedEventCopyWith<_$_LanguageChangedEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LanguageChangedEventImplCopyWith<_$LanguageChangedEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

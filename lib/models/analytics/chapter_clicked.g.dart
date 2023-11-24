@@ -6,17 +6,17 @@ part of 'chapter_clicked.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ChapterClickedEvent _$$_ChapterClickedEventFromJson(
+_$ChapterClickedEventImpl _$$ChapterClickedEventImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ChapterClickedEvent(
+    _$ChapterClickedEventImpl(
       elementType: json['elementType'] as String,
       elementId: json['elementId'] as String,
       chapterId: json['chapterId'] as String,
       chapterStart: json['chapterStart'] as int,
     );
 
-Map<String, dynamic> _$$_ChapterClickedEventToJson(
-        _$_ChapterClickedEvent instance) =>
+Map<String, dynamic> _$$ChapterClickedEventImplToJson(
+        _$ChapterClickedEventImpl instance) =>
     <String, dynamic>{
       'elementType': instance.elementType,
       'elementId': instance.elementId,

@@ -114,6 +114,7 @@ class _CopyWithImpl$Query$Application<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$Application$application<TRes> get application {
     final local$application = _instance.application;
     return CopyWith$Query$Application$application(
@@ -132,6 +133,7 @@ class _CopyWithStubImpl$Query$Application<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$Application$application<TRes> get application =>
       CopyWith$Query$Application$application.stub(_res);
 }
@@ -557,6 +559,7 @@ class _CopyWithImpl$Query$Application$application<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$Application$application$page<TRes> get page {
     final local$page = _instance.page;
     return local$page == null
@@ -598,10 +601,13 @@ class _CopyWithStubImpl$Query$Application$application<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$Application$application$page<TRes> get page =>
       CopyWith$Query$Application$application$page.stub(_res);
+
   CopyWith$Query$Application$application$searchPage<TRes> get searchPage =>
       CopyWith$Query$Application$application$searchPage.stub(_res);
+
   CopyWith$Query$Application$application$gamesPage<TRes> get gamesPage =>
       CopyWith$Query$Application$application$gamesPage.stub(_res);
 }

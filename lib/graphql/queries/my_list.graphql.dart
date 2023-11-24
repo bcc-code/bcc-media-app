@@ -114,6 +114,7 @@ class _CopyWithImpl$Fragment$MyListEntry<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$MyListEntry$item<TRes> get item {
     final local$item = _instance.item;
     return CopyWith$Fragment$MyListEntry$item(local$item, (e) => call(item: e));
@@ -131,6 +132,7 @@ class _CopyWithStubImpl$Fragment$MyListEntry<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$MyListEntry$item<TRes> get item =>
       CopyWith$Fragment$MyListEntry$item.stub(_res);
 }
@@ -962,6 +964,7 @@ class _CopyWithImpl$Query$MyList<TRes> implements CopyWith$Query$MyList<TRes> {
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$MyList$myList<TRes> get myList {
     final local$myList = _instance.myList;
     return CopyWith$Query$MyList$myList(local$myList, (e) => call(myList: e));
@@ -979,6 +982,7 @@ class _CopyWithStubImpl$Query$MyList<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$MyList$myList<TRes> get myList =>
       CopyWith$Query$MyList$myList.stub(_res);
 }
@@ -1294,6 +1298,7 @@ class _CopyWithImpl$Query$MyList$myList<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$MyList$myList$entries<TRes> get entries {
     final local$entries = _instance.entries;
     return CopyWith$Query$MyList$myList$entries(
@@ -1312,6 +1317,7 @@ class _CopyWithStubImpl$Query$MyList$myList<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$MyList$myList$entries<TRes> get entries =>
       CopyWith$Query$MyList$myList$entries.stub(_res);
 }
@@ -1440,6 +1446,7 @@ class _CopyWithImpl$Query$MyList$myList$entries<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$MyListEntry> Function(
                   Iterable<CopyWith$Fragment$MyListEntry<Fragment$MyListEntry>>)
@@ -1462,6 +1469,7 @@ class _CopyWithStubImpl$Query$MyList$myList$entries<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -1484,6 +1492,7 @@ class Variables$Mutation$addEpisodeToMyList {
   Map<String, dynamic> _$data;
 
   String get episodeId => (_$data['episodeId'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$episodeId = episodeId;
@@ -1497,6 +1506,7 @@ class Variables$Mutation$addEpisodeToMyList {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -1679,6 +1689,7 @@ class _CopyWithImpl$Mutation$addEpisodeToMyList<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Mutation$addEpisodeToMyList$addEpisodeToMyList<TRes>
       get addEpisodeToMyList {
     final local$addEpisodeToMyList = _instance.addEpisodeToMyList;
@@ -1698,6 +1709,7 @@ class _CopyWithStubImpl$Mutation$addEpisodeToMyList<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Mutation$addEpisodeToMyList$addEpisodeToMyList<TRes>
       get addEpisodeToMyList =>
           CopyWith$Mutation$addEpisodeToMyList$addEpisodeToMyList.stub(_res);
@@ -2120,6 +2132,7 @@ class Variables$Mutation$addShortToMyList {
   Map<String, dynamic> _$data;
 
   String get shortId => (_$data['shortId'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$shortId = shortId;
@@ -2133,6 +2146,7 @@ class Variables$Mutation$addShortToMyList {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -2313,6 +2327,7 @@ class _CopyWithImpl$Mutation$addShortToMyList<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Mutation$addShortToMyList$addShortToMyList<TRes>
       get addShortToMyList {
     final local$addShortToMyList = _instance.addShortToMyList;
@@ -2332,6 +2347,7 @@ class _CopyWithStubImpl$Mutation$addShortToMyList<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Mutation$addShortToMyList$addShortToMyList<TRes>
       get addShortToMyList =>
           CopyWith$Mutation$addShortToMyList$addShortToMyList.stub(_res);
@@ -2752,6 +2768,7 @@ class Variables$Mutation$removeEntryFromMyList {
   Map<String, dynamic> _$data;
 
   String get entryId => (_$data['entryId'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$entryId = entryId;
@@ -2765,6 +2782,7 @@ class Variables$Mutation$removeEntryFromMyList {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -2948,6 +2966,7 @@ class _CopyWithImpl$Mutation$removeEntryFromMyList<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Mutation$removeEntryFromMyList$removeEntryFromMyList<TRes>
       get removeEntryFromMyList {
     final local$removeEntryFromMyList = _instance.removeEntryFromMyList;
@@ -2967,6 +2986,7 @@ class _CopyWithStubImpl$Mutation$removeEntryFromMyList<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Mutation$removeEntryFromMyList$removeEntryFromMyList<TRes>
       get removeEntryFromMyList =>
           CopyWith$Mutation$removeEntryFromMyList$removeEntryFromMyList.stub(

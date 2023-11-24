@@ -115,11 +115,11 @@ class _$EpisodeThumbnailDataCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_EpisodeThumbnailDataCopyWith<$Res>
+abstract class _$$EpisodeThumbnailDataImplCopyWith<$Res>
     implements $EpisodeThumbnailDataCopyWith<$Res> {
-  factory _$$_EpisodeThumbnailDataCopyWith(_$_EpisodeThumbnailData value,
-          $Res Function(_$_EpisodeThumbnailData) then) =
-      __$$_EpisodeThumbnailDataCopyWithImpl<$Res>;
+  factory _$$EpisodeThumbnailDataImplCopyWith(_$EpisodeThumbnailDataImpl value,
+          $Res Function(_$EpisodeThumbnailDataImpl) then) =
+      __$$EpisodeThumbnailDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -135,11 +135,11 @@ abstract class _$$_EpisodeThumbnailDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_EpisodeThumbnailDataCopyWithImpl<$Res>
-    extends _$EpisodeThumbnailDataCopyWithImpl<$Res, _$_EpisodeThumbnailData>
-    implements _$$_EpisodeThumbnailDataCopyWith<$Res> {
-  __$$_EpisodeThumbnailDataCopyWithImpl(_$_EpisodeThumbnailData _value,
-      $Res Function(_$_EpisodeThumbnailData) _then)
+class __$$EpisodeThumbnailDataImplCopyWithImpl<$Res>
+    extends _$EpisodeThumbnailDataCopyWithImpl<$Res, _$EpisodeThumbnailDataImpl>
+    implements _$$EpisodeThumbnailDataImplCopyWith<$Res> {
+  __$$EpisodeThumbnailDataImplCopyWithImpl(_$EpisodeThumbnailDataImpl _value,
+      $Res Function(_$EpisodeThumbnailDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -155,7 +155,7 @@ class __$$_EpisodeThumbnailDataCopyWithImpl<$Res>
     Object? showTitle = freezed,
     Object? seasonNumber = freezed,
   }) {
-    return _then(_$_EpisodeThumbnailData(
+    return _then(_$EpisodeThumbnailDataImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -198,8 +198,8 @@ class __$$_EpisodeThumbnailDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_EpisodeThumbnailData implements _EpisodeThumbnailData {
-  const _$_EpisodeThumbnailData(
+class _$EpisodeThumbnailDataImpl implements _EpisodeThumbnailData {
+  const _$EpisodeThumbnailDataImpl(
       {required this.title,
       required this.duration,
       this.image,
@@ -238,7 +238,7 @@ class _$_EpisodeThumbnailData implements _EpisodeThumbnailData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_EpisodeThumbnailData &&
+            other is _$EpisodeThumbnailDataImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.duration, duration) ||
                 other.duration == duration) &&
@@ -262,9 +262,10 @@ class _$_EpisodeThumbnailData implements _EpisodeThumbnailData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EpisodeThumbnailDataCopyWith<_$_EpisodeThumbnailData> get copyWith =>
-      __$$_EpisodeThumbnailDataCopyWithImpl<_$_EpisodeThumbnailData>(
-          this, _$identity);
+  _$$EpisodeThumbnailDataImplCopyWith<_$EpisodeThumbnailDataImpl>
+      get copyWith =>
+          __$$EpisodeThumbnailDataImplCopyWithImpl<_$EpisodeThumbnailDataImpl>(
+              this, _$identity);
 }
 
 abstract class _EpisodeThumbnailData implements EpisodeThumbnailData {
@@ -277,7 +278,7 @@ abstract class _EpisodeThumbnailData implements EpisodeThumbnailData {
       final String? publishDate,
       final int? number,
       final String? showTitle,
-      final int? seasonNumber}) = _$_EpisodeThumbnailData;
+      final int? seasonNumber}) = _$EpisodeThumbnailDataImpl;
 
   @override
   String get title;
@@ -299,6 +300,6 @@ abstract class _EpisodeThumbnailData implements EpisodeThumbnailData {
   int? get seasonNumber;
   @override
   @JsonKey(ignore: true)
-  _$$_EpisodeThumbnailDataCopyWith<_$_EpisodeThumbnailData> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$EpisodeThumbnailDataImplCopyWith<_$EpisodeThumbnailDataImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

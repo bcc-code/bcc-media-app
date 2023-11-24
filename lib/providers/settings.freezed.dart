@@ -127,10 +127,11 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
 }
 
 /// @nodoc
-abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
-  factory _$$_SettingsCopyWith(
-          _$_Settings value, $Res Function(_$_Settings) then) =
-      __$$_SettingsCopyWithImpl<$Res>;
+abstract class _$$SettingsImplCopyWith<$Res>
+    implements $SettingsCopyWith<$Res> {
+  factory _$$SettingsImplCopyWith(
+          _$SettingsImpl value, $Res Function(_$SettingsImpl) then) =
+      __$$SettingsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -148,11 +149,11 @@ abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SettingsCopyWithImpl<$Res>
-    extends _$SettingsCopyWithImpl<$Res, _$_Settings>
-    implements _$$_SettingsCopyWith<$Res> {
-  __$$_SettingsCopyWithImpl(
-      _$_Settings _value, $Res Function(_$_Settings) _then)
+class __$$SettingsImplCopyWithImpl<$Res>
+    extends _$SettingsCopyWithImpl<$Res, _$SettingsImpl>
+    implements _$$SettingsImplCopyWith<$Res> {
+  __$$SettingsImplCopyWithImpl(
+      _$SettingsImpl _value, $Res Function(_$SettingsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -170,7 +171,7 @@ class __$$_SettingsCopyWithImpl<$Res>
     Object? useNativePlayer = freezed,
     Object? extraUsergroups = null,
   }) {
-    return _then(_$_Settings(
+    return _then(_$SettingsImpl(
       appLanguage: null == appLanguage
           ? _value.appLanguage
           : appLanguage // ignore: cast_nullable_to_non_nullable
@@ -221,8 +222,8 @@ class __$$_SettingsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Settings implements _Settings {
-  const _$_Settings(
+class _$SettingsImpl implements _Settings {
+  const _$SettingsImpl(
       {required this.appLanguage,
       final List<String> audioLanguages = const [],
       final List<String> subtitleLanguages = const [],
@@ -291,7 +292,7 @@ class _$_Settings implements _Settings {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Settings &&
+            other is _$SettingsImpl &&
             (identical(other.appLanguage, appLanguage) ||
                 other.appLanguage == appLanguage) &&
             const DeepCollectionEquality()
@@ -334,8 +335,8 @@ class _$_Settings implements _Settings {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SettingsCopyWith<_$_Settings> get copyWith =>
-      __$$_SettingsCopyWithImpl<_$_Settings>(this, _$identity);
+  _$$SettingsImplCopyWith<_$SettingsImpl> get copyWith =>
+      __$$SettingsImplCopyWithImpl<_$SettingsImpl>(this, _$identity);
 }
 
 abstract class _Settings implements Settings {
@@ -350,7 +351,7 @@ abstract class _Settings implements Settings {
       final String? envOverride,
       final bool? isBetaTester,
       final bool? useNativePlayer,
-      final List<String> extraUsergroups}) = _$_Settings;
+      final List<String> extraUsergroups}) = _$SettingsImpl;
 
   @override
   Locale get appLanguage;
@@ -376,6 +377,6 @@ abstract class _Settings implements Settings {
   List<String> get extraUsergroups;
   @override
   @JsonKey(ignore: true)
-  _$$_SettingsCopyWith<_$_Settings> get copyWith =>
+  _$$SettingsImplCopyWith<_$SettingsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

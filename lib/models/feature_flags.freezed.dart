@@ -142,11 +142,11 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
 }
 
 /// @nodoc
-abstract class _$$_FeatureFlagsCopyWith<$Res>
+abstract class _$$FeatureFlagsImplCopyWith<$Res>
     implements $FeatureFlagsCopyWith<$Res> {
-  factory _$$_FeatureFlagsCopyWith(
-          _$_FeatureFlags value, $Res Function(_$_FeatureFlags) then) =
-      __$$_FeatureFlagsCopyWithImpl<$Res>;
+  factory _$$FeatureFlagsImplCopyWith(
+          _$FeatureFlagsImpl value, $Res Function(_$FeatureFlagsImpl) then) =
+      __$$FeatureFlagsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -166,11 +166,11 @@ abstract class _$$_FeatureFlagsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_FeatureFlagsCopyWithImpl<$Res>
-    extends _$FeatureFlagsCopyWithImpl<$Res, _$_FeatureFlags>
-    implements _$$_FeatureFlagsCopyWith<$Res> {
-  __$$_FeatureFlagsCopyWithImpl(
-      _$_FeatureFlags _value, $Res Function(_$_FeatureFlags) _then)
+class __$$FeatureFlagsImplCopyWithImpl<$Res>
+    extends _$FeatureFlagsCopyWithImpl<$Res, _$FeatureFlagsImpl>
+    implements _$$FeatureFlagsImplCopyWith<$Res> {
+  __$$FeatureFlagsImplCopyWithImpl(
+      _$FeatureFlagsImpl _value, $Res Function(_$FeatureFlagsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -190,7 +190,7 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
     Object? download = null,
     Object? shorts = null,
   }) {
-    return _then(_$_FeatureFlags(
+    return _then(_$FeatureFlagsImpl(
       toggles: null == toggles
           ? _value._toggles
           : toggles // ignore: cast_nullable_to_non_nullable
@@ -249,8 +249,8 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FeatureFlags extends _FeatureFlags {
-  const _$_FeatureFlags(
+class _$FeatureFlagsImpl extends _FeatureFlags {
+  const _$FeatureFlagsImpl(
       {final Map<String, ToggleConfig> toggles = const {},
       this.auth = true,
       this.publicSignup = false,
@@ -322,7 +322,7 @@ class _$_FeatureFlags extends _FeatureFlags {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_FeatureFlags &&
+            other is _$FeatureFlagsImpl &&
             const DeepCollectionEquality().equals(other._toggles, _toggles) &&
             (identical(other.auth, auth) || other.auth == auth) &&
             (identical(other.publicSignup, publicSignup) ||
@@ -368,8 +368,8 @@ class _$_FeatureFlags extends _FeatureFlags {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FeatureFlagsCopyWith<_$_FeatureFlags> get copyWith =>
-      __$$_FeatureFlagsCopyWithImpl<_$_FeatureFlags>(this, _$identity);
+  _$$FeatureFlagsImplCopyWith<_$FeatureFlagsImpl> get copyWith =>
+      __$$FeatureFlagsImplCopyWithImpl<_$FeatureFlagsImpl>(this, _$identity);
 }
 
 abstract class _FeatureFlags extends FeatureFlags {
@@ -386,7 +386,7 @@ abstract class _FeatureFlags extends FeatureFlags {
       final bool playNextButton,
       final bool chapters,
       final bool download,
-      final bool shorts}) = _$_FeatureFlags;
+      final bool shorts}) = _$FeatureFlagsImpl;
   const _FeatureFlags._() : super._();
 
   @override
@@ -417,6 +417,6 @@ abstract class _FeatureFlags extends FeatureFlags {
   bool get shorts;
   @override
   @JsonKey(ignore: true)
-  _$$_FeatureFlagsCopyWith<_$_FeatureFlags> get copyWith =>
+  _$$FeatureFlagsImplCopyWith<_$FeatureFlagsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

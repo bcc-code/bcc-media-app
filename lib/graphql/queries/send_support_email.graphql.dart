@@ -42,9 +42,13 @@ class Variables$Mutation$sendSupportEmail {
   Map<String, dynamic> _$data;
 
   String get title => (_$data['title'] as String);
+
   String get content => (_$data['content'] as String);
+
   String get html => (_$data['html'] as String);
+
   Input$EmailOptions? get options => (_$data['options'] as Input$EmailOptions?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$title = title;
@@ -66,6 +70,7 @@ class Variables$Mutation$sendSupportEmail {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {

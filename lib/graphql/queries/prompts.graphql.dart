@@ -524,6 +524,7 @@ class _CopyWithImpl$Fragment$Prompt$$SurveyPrompt<TRes>
             : (from as String),
         to: to == _undefined || to == null ? _instance.to : (to as String),
       ));
+
   CopyWith$Fragment$Survey<TRes> get survey {
     final local$survey = _instance.survey;
     return CopyWith$Fragment$Survey(local$survey, (e) => call(survey: e));
@@ -545,6 +546,7 @@ class _CopyWithStubImpl$Fragment$Prompt$$SurveyPrompt<TRes>
     String? to,
   }) =>
       _res;
+
   CopyWith$Fragment$Survey<TRes> get survey =>
       CopyWith$Fragment$Survey.stub(_res);
 }
@@ -714,6 +716,7 @@ class _CopyWithImpl$Fragment$Survey<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Survey$questions<TRes> get questions {
     final local$questions = _instance.questions;
     return CopyWith$Fragment$Survey$questions(
@@ -735,6 +738,7 @@ class _CopyWithStubImpl$Fragment$Survey<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Survey$questions<TRes> get questions =>
       CopyWith$Fragment$Survey$questions.stub(_res);
 }
@@ -977,6 +981,7 @@ class _CopyWithImpl$Fragment$Survey$questions<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$SurveyQuestion> Function(
                   Iterable<
@@ -1002,6 +1007,7 @@ class _CopyWithStubImpl$Fragment$Survey$questions<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -1791,6 +1797,7 @@ class _CopyWithImpl$Query$getPrompts<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes prompts(
           Iterable<Fragment$Prompt> Function(
                   Iterable<CopyWith$Fragment$Prompt<Fragment$Prompt>>)
@@ -1813,6 +1820,7 @@ class _CopyWithStubImpl$Query$getPrompts<TRes>
     String? $__typename,
   }) =>
       _res;
+
   prompts(_fn) => _res;
 }
 
@@ -2015,7 +2023,9 @@ class Variables$Mutation$answerSurveyQuestion {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   String get answer => (_$data['answer'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -2031,6 +2041,7 @@ class Variables$Mutation$answerSurveyQuestion {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -2233,6 +2244,7 @@ class _CopyWithImpl$Mutation$answerSurveyQuestion<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Mutation$answerSurveyQuestion$answerSurveyQuestion<TRes>
       get answerSurveyQuestion {
     final local$answerSurveyQuestion = _instance.answerSurveyQuestion;
@@ -2252,6 +2264,7 @@ class _CopyWithStubImpl$Mutation$answerSurveyQuestion<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Mutation$answerSurveyQuestion$answerSurveyQuestion<TRes>
       get answerSurveyQuestion =>
           CopyWith$Mutation$answerSurveyQuestion$answerSurveyQuestion.stub(

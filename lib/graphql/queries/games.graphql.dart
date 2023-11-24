@@ -232,6 +232,7 @@ class Variables$Query$GetGame {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -244,6 +245,7 @@ class Variables$Query$GetGame {
         this,
         (i) => i,
       );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -416,6 +418,7 @@ class _CopyWithImpl$Query$GetGame<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetGame$game<TRes> get game {
     final local$game = _instance.game;
     return CopyWith$Query$GetGame$game(local$game, (e) => call(game: e));
@@ -433,6 +436,7 @@ class _CopyWithStubImpl$Query$GetGame<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetGame$game<TRes> get game =>
       CopyWith$Query$GetGame$game.stub(_res);
 }

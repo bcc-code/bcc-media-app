@@ -119,11 +119,11 @@ class _$SectionClickedEventCopyWithImpl<$Res, $Val extends SectionClickedEvent>
 }
 
 /// @nodoc
-abstract class _$$_SectionClickedEventCopyWith<$Res>
+abstract class _$$SectionClickedEventImplCopyWith<$Res>
     implements $SectionClickedEventCopyWith<$Res> {
-  factory _$$_SectionClickedEventCopyWith(_$_SectionClickedEvent value,
-          $Res Function(_$_SectionClickedEvent) then) =
-      __$$_SectionClickedEventCopyWithImpl<$Res>;
+  factory _$$SectionClickedEventImplCopyWith(_$SectionClickedEventImpl value,
+          $Res Function(_$SectionClickedEventImpl) then) =
+      __$$SectionClickedEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -139,11 +139,11 @@ abstract class _$$_SectionClickedEventCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SectionClickedEventCopyWithImpl<$Res>
-    extends _$SectionClickedEventCopyWithImpl<$Res, _$_SectionClickedEvent>
-    implements _$$_SectionClickedEventCopyWith<$Res> {
-  __$$_SectionClickedEventCopyWithImpl(_$_SectionClickedEvent _value,
-      $Res Function(_$_SectionClickedEvent) _then)
+class __$$SectionClickedEventImplCopyWithImpl<$Res>
+    extends _$SectionClickedEventCopyWithImpl<$Res, _$SectionClickedEventImpl>
+    implements _$$SectionClickedEventImplCopyWith<$Res> {
+  __$$SectionClickedEventImplCopyWithImpl(_$SectionClickedEventImpl _value,
+      $Res Function(_$SectionClickedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -159,7 +159,7 @@ class __$$_SectionClickedEventCopyWithImpl<$Res>
     Object? elementId = null,
     Object? pageCode = freezed,
   }) {
-    return _then(_$_SectionClickedEvent(
+    return _then(_$SectionClickedEventImpl(
       sectionId: null == sectionId
           ? _value.sectionId
           : sectionId // ignore: cast_nullable_to_non_nullable
@@ -202,8 +202,8 @@ class __$$_SectionClickedEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SectionClickedEvent implements _SectionClickedEvent {
-  const _$_SectionClickedEvent(
+class _$SectionClickedEventImpl implements _SectionClickedEvent {
+  const _$SectionClickedEventImpl(
       {required this.sectionId,
       this.sectionName,
       required this.sectionPosition,
@@ -214,8 +214,8 @@ class _$_SectionClickedEvent implements _SectionClickedEvent {
       required this.elementId,
       this.pageCode});
 
-  factory _$_SectionClickedEvent.fromJson(Map<String, dynamic> json) =>
-      _$$_SectionClickedEventFromJson(json);
+  factory _$SectionClickedEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SectionClickedEventImplFromJson(json);
 
   @override
   final String sectionId;
@@ -245,7 +245,7 @@ class _$_SectionClickedEvent implements _SectionClickedEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SectionClickedEvent &&
+            other is _$SectionClickedEventImpl &&
             (identical(other.sectionId, sectionId) ||
                 other.sectionId == sectionId) &&
             (identical(other.sectionName, sectionName) ||
@@ -283,13 +283,13 @@ class _$_SectionClickedEvent implements _SectionClickedEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SectionClickedEventCopyWith<_$_SectionClickedEvent> get copyWith =>
-      __$$_SectionClickedEventCopyWithImpl<_$_SectionClickedEvent>(
+  _$$SectionClickedEventImplCopyWith<_$SectionClickedEventImpl> get copyWith =>
+      __$$SectionClickedEventImplCopyWithImpl<_$SectionClickedEventImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SectionClickedEventToJson(
+    return _$$SectionClickedEventImplToJson(
       this,
     );
   }
@@ -305,10 +305,10 @@ abstract class _SectionClickedEvent implements SectionClickedEvent {
       required final int elementPosition,
       required final String elementType,
       required final String elementId,
-      final String? pageCode}) = _$_SectionClickedEvent;
+      final String? pageCode}) = _$SectionClickedEventImpl;
 
   factory _SectionClickedEvent.fromJson(Map<String, dynamic> json) =
-      _$_SectionClickedEvent.fromJson;
+      _$SectionClickedEventImpl.fromJson;
 
   @override
   String get sectionId;
@@ -330,7 +330,7 @@ abstract class _SectionClickedEvent implements SectionClickedEvent {
   String? get pageCode;
   @override
   @JsonKey(ignore: true)
-  _$$_SectionClickedEventCopyWith<_$_SectionClickedEvent> get copyWith =>
+  _$$SectionClickedEventImplCopyWith<_$SectionClickedEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -402,11 +402,11 @@ class _$SectionAnalyticsCopyWithImpl<$Res, $Val extends SectionAnalytics>
 }
 
 /// @nodoc
-abstract class _$$_SectionAnalyticsCopyWith<$Res>
+abstract class _$$SectionAnalyticsImplCopyWith<$Res>
     implements $SectionAnalyticsCopyWith<$Res> {
-  factory _$$_SectionAnalyticsCopyWith(
-          _$_SectionAnalytics value, $Res Function(_$_SectionAnalytics) then) =
-      __$$_SectionAnalyticsCopyWithImpl<$Res>;
+  factory _$$SectionAnalyticsImplCopyWith(_$SectionAnalyticsImpl value,
+          $Res Function(_$SectionAnalyticsImpl) then) =
+      __$$SectionAnalyticsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -414,11 +414,11 @@ abstract class _$$_SectionAnalyticsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SectionAnalyticsCopyWithImpl<$Res>
-    extends _$SectionAnalyticsCopyWithImpl<$Res, _$_SectionAnalytics>
-    implements _$$_SectionAnalyticsCopyWith<$Res> {
-  __$$_SectionAnalyticsCopyWithImpl(
-      _$_SectionAnalytics _value, $Res Function(_$_SectionAnalytics) _then)
+class __$$SectionAnalyticsImplCopyWithImpl<$Res>
+    extends _$SectionAnalyticsCopyWithImpl<$Res, _$SectionAnalyticsImpl>
+    implements _$$SectionAnalyticsImplCopyWith<$Res> {
+  __$$SectionAnalyticsImplCopyWithImpl(_$SectionAnalyticsImpl _value,
+      $Res Function(_$SectionAnalyticsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -430,7 +430,7 @@ class __$$_SectionAnalyticsCopyWithImpl<$Res>
     Object? position = null,
     Object? type = null,
   }) {
-    return _then(_$_SectionAnalytics(
+    return _then(_$SectionAnalyticsImpl(
       pageCode: freezed == pageCode
           ? _value.pageCode
           : pageCode // ignore: cast_nullable_to_non_nullable
@@ -457,8 +457,8 @@ class __$$_SectionAnalyticsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SectionAnalytics implements _SectionAnalytics {
-  const _$_SectionAnalytics(
+class _$SectionAnalyticsImpl implements _SectionAnalytics {
+  const _$SectionAnalyticsImpl(
       {this.pageCode,
       required this.id,
       this.name,
@@ -485,7 +485,7 @@ class _$_SectionAnalytics implements _SectionAnalytics {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SectionAnalytics &&
+            other is _$SectionAnalyticsImpl &&
             (identical(other.pageCode, pageCode) ||
                 other.pageCode == pageCode) &&
             (identical(other.id, id) || other.id == id) &&
@@ -502,8 +502,9 @@ class _$_SectionAnalytics implements _SectionAnalytics {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SectionAnalyticsCopyWith<_$_SectionAnalytics> get copyWith =>
-      __$$_SectionAnalyticsCopyWithImpl<_$_SectionAnalytics>(this, _$identity);
+  _$$SectionAnalyticsImplCopyWith<_$SectionAnalyticsImpl> get copyWith =>
+      __$$SectionAnalyticsImplCopyWithImpl<_$SectionAnalyticsImpl>(
+          this, _$identity);
 }
 
 abstract class _SectionAnalytics implements SectionAnalytics {
@@ -512,7 +513,7 @@ abstract class _SectionAnalytics implements SectionAnalytics {
       required final String id,
       final String? name,
       required final int position,
-      required final String type}) = _$_SectionAnalytics;
+      required final String type}) = _$SectionAnalyticsImpl;
 
   @override
   String? get pageCode;
@@ -526,7 +527,7 @@ abstract class _SectionAnalytics implements SectionAnalytics {
   String get type;
   @override
   @JsonKey(ignore: true)
-  _$$_SectionAnalyticsCopyWith<_$_SectionAnalytics> get copyWith =>
+  _$$SectionAnalyticsImplCopyWith<_$SectionAnalyticsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -592,22 +593,22 @@ class _$SectionItemAnalyticsCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_SectionItemAnalyticsCopyWith<$Res>
+abstract class _$$SectionItemAnalyticsImplCopyWith<$Res>
     implements $SectionItemAnalyticsCopyWith<$Res> {
-  factory _$$_SectionItemAnalyticsCopyWith(_$_SectionItemAnalytics value,
-          $Res Function(_$_SectionItemAnalytics) then) =
-      __$$_SectionItemAnalyticsCopyWithImpl<$Res>;
+  factory _$$SectionItemAnalyticsImplCopyWith(_$SectionItemAnalyticsImpl value,
+          $Res Function(_$SectionItemAnalyticsImpl) then) =
+      __$$SectionItemAnalyticsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int position, String type, String id, String? name});
 }
 
 /// @nodoc
-class __$$_SectionItemAnalyticsCopyWithImpl<$Res>
-    extends _$SectionItemAnalyticsCopyWithImpl<$Res, _$_SectionItemAnalytics>
-    implements _$$_SectionItemAnalyticsCopyWith<$Res> {
-  __$$_SectionItemAnalyticsCopyWithImpl(_$_SectionItemAnalytics _value,
-      $Res Function(_$_SectionItemAnalytics) _then)
+class __$$SectionItemAnalyticsImplCopyWithImpl<$Res>
+    extends _$SectionItemAnalyticsCopyWithImpl<$Res, _$SectionItemAnalyticsImpl>
+    implements _$$SectionItemAnalyticsImplCopyWith<$Res> {
+  __$$SectionItemAnalyticsImplCopyWithImpl(_$SectionItemAnalyticsImpl _value,
+      $Res Function(_$SectionItemAnalyticsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -618,7 +619,7 @@ class __$$_SectionItemAnalyticsCopyWithImpl<$Res>
     Object? id = null,
     Object? name = freezed,
   }) {
-    return _then(_$_SectionItemAnalytics(
+    return _then(_$SectionItemAnalyticsImpl(
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -641,8 +642,8 @@ class __$$_SectionItemAnalyticsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SectionItemAnalytics implements _SectionItemAnalytics {
-  const _$_SectionItemAnalytics(
+class _$SectionItemAnalyticsImpl implements _SectionItemAnalytics {
+  const _$SectionItemAnalyticsImpl(
       {required this.position,
       required this.type,
       required this.id,
@@ -666,7 +667,7 @@ class _$_SectionItemAnalytics implements _SectionItemAnalytics {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SectionItemAnalytics &&
+            other is _$SectionItemAnalyticsImpl &&
             (identical(other.position, position) ||
                 other.position == position) &&
             (identical(other.type, type) || other.type == type) &&
@@ -680,9 +681,10 @@ class _$_SectionItemAnalytics implements _SectionItemAnalytics {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SectionItemAnalyticsCopyWith<_$_SectionItemAnalytics> get copyWith =>
-      __$$_SectionItemAnalyticsCopyWithImpl<_$_SectionItemAnalytics>(
-          this, _$identity);
+  _$$SectionItemAnalyticsImplCopyWith<_$SectionItemAnalyticsImpl>
+      get copyWith =>
+          __$$SectionItemAnalyticsImplCopyWithImpl<_$SectionItemAnalyticsImpl>(
+              this, _$identity);
 }
 
 abstract class _SectionItemAnalytics implements SectionItemAnalytics {
@@ -690,7 +692,7 @@ abstract class _SectionItemAnalytics implements SectionItemAnalytics {
       {required final int position,
       required final String type,
       required final String id,
-      final String? name}) = _$_SectionItemAnalytics;
+      final String? name}) = _$SectionItemAnalyticsImpl;
 
   @override
   int get position;
@@ -702,6 +704,6 @@ abstract class _SectionItemAnalytics implements SectionItemAnalytics {
   String? get name;
   @override
   @JsonKey(ignore: true)
-  _$$_SectionItemAnalyticsCopyWith<_$_SectionItemAnalytics> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SectionItemAnalyticsImplCopyWith<_$SectionItemAnalyticsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

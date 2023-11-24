@@ -74,22 +74,22 @@ class _$DeepLinkOpenedEventCopyWithImpl<$Res, $Val extends DeepLinkOpenedEvent>
 }
 
 /// @nodoc
-abstract class _$$_DeepLinkOpenedEventCopyWith<$Res>
+abstract class _$$DeepLinkOpenedEventImplCopyWith<$Res>
     implements $DeepLinkOpenedEventCopyWith<$Res> {
-  factory _$$_DeepLinkOpenedEventCopyWith(_$_DeepLinkOpenedEvent value,
-          $Res Function(_$_DeepLinkOpenedEvent) then) =
-      __$$_DeepLinkOpenedEventCopyWithImpl<$Res>;
+  factory _$$DeepLinkOpenedEventImplCopyWith(_$DeepLinkOpenedEventImpl value,
+          $Res Function(_$DeepLinkOpenedEventImpl) then) =
+      __$$DeepLinkOpenedEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String url, String source, String campaignId});
 }
 
 /// @nodoc
-class __$$_DeepLinkOpenedEventCopyWithImpl<$Res>
-    extends _$DeepLinkOpenedEventCopyWithImpl<$Res, _$_DeepLinkOpenedEvent>
-    implements _$$_DeepLinkOpenedEventCopyWith<$Res> {
-  __$$_DeepLinkOpenedEventCopyWithImpl(_$_DeepLinkOpenedEvent _value,
-      $Res Function(_$_DeepLinkOpenedEvent) _then)
+class __$$DeepLinkOpenedEventImplCopyWithImpl<$Res>
+    extends _$DeepLinkOpenedEventCopyWithImpl<$Res, _$DeepLinkOpenedEventImpl>
+    implements _$$DeepLinkOpenedEventImplCopyWith<$Res> {
+  __$$DeepLinkOpenedEventImplCopyWithImpl(_$DeepLinkOpenedEventImpl _value,
+      $Res Function(_$DeepLinkOpenedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_DeepLinkOpenedEventCopyWithImpl<$Res>
     Object? source = null,
     Object? campaignId = null,
   }) {
-    return _then(_$_DeepLinkOpenedEvent(
+    return _then(_$DeepLinkOpenedEventImpl(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -118,12 +118,12 @@ class __$$_DeepLinkOpenedEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DeepLinkOpenedEvent implements _DeepLinkOpenedEvent {
-  const _$_DeepLinkOpenedEvent(
+class _$DeepLinkOpenedEventImpl implements _DeepLinkOpenedEvent {
+  const _$DeepLinkOpenedEventImpl(
       {required this.url, required this.source, required this.campaignId});
 
-  factory _$_DeepLinkOpenedEvent.fromJson(Map<String, dynamic> json) =>
-      _$$_DeepLinkOpenedEventFromJson(json);
+  factory _$DeepLinkOpenedEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DeepLinkOpenedEventImplFromJson(json);
 
   @override
   final String url;
@@ -141,7 +141,7 @@ class _$_DeepLinkOpenedEvent implements _DeepLinkOpenedEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DeepLinkOpenedEvent &&
+            other is _$DeepLinkOpenedEventImpl &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.campaignId, campaignId) ||
@@ -155,13 +155,13 @@ class _$_DeepLinkOpenedEvent implements _DeepLinkOpenedEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeepLinkOpenedEventCopyWith<_$_DeepLinkOpenedEvent> get copyWith =>
-      __$$_DeepLinkOpenedEventCopyWithImpl<_$_DeepLinkOpenedEvent>(
+  _$$DeepLinkOpenedEventImplCopyWith<_$DeepLinkOpenedEventImpl> get copyWith =>
+      __$$DeepLinkOpenedEventImplCopyWithImpl<_$DeepLinkOpenedEventImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeepLinkOpenedEventToJson(
+    return _$$DeepLinkOpenedEventImplToJson(
       this,
     );
   }
@@ -171,10 +171,10 @@ abstract class _DeepLinkOpenedEvent implements DeepLinkOpenedEvent {
   const factory _DeepLinkOpenedEvent(
       {required final String url,
       required final String source,
-      required final String campaignId}) = _$_DeepLinkOpenedEvent;
+      required final String campaignId}) = _$DeepLinkOpenedEventImpl;
 
   factory _DeepLinkOpenedEvent.fromJson(Map<String, dynamic> json) =
-      _$_DeepLinkOpenedEvent.fromJson;
+      _$DeepLinkOpenedEventImpl.fromJson;
 
   @override
   String get url;
@@ -184,6 +184,6 @@ abstract class _DeepLinkOpenedEvent implements DeepLinkOpenedEvent {
   String get campaignId;
   @override
   @JsonKey(ignore: true)
-  _$$_DeepLinkOpenedEventCopyWith<_$_DeepLinkOpenedEvent> get copyWith =>
+  _$$DeepLinkOpenedEventImplCopyWith<_$DeepLinkOpenedEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

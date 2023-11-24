@@ -265,6 +265,7 @@ class _CopyWithImpl$Fragment$ShortsEpisode<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes streams(
           Iterable<Fragment$BasicStream> Function(
                   Iterable<CopyWith$Fragment$BasicStream<Fragment$BasicStream>>)
@@ -275,6 +276,7 @@ class _CopyWithImpl$Fragment$ShortsEpisode<TRes>
                     e,
                     (i) => i,
                   ))).toList());
+
   CopyWith$Fragment$ShortsEpisode$context<TRes> get context {
     final local$context = _instance.context;
     return local$context == null
@@ -310,9 +312,12 @@ class _CopyWithStubImpl$Fragment$ShortsEpisode<TRes>
     String? $__typename,
   }) =>
       _res;
+
   streams(_fn) => _res;
+
   CopyWith$Fragment$ShortsEpisode$context<TRes> get context =>
       CopyWith$Fragment$ShortsEpisode$context.stub(_res);
+
   CopyWith$Fragment$ShortsEpisode$season<TRes> get season =>
       CopyWith$Fragment$ShortsEpisode$season.stub(_res);
 }
@@ -935,6 +940,7 @@ class _CopyWithImpl$Fragment$ShortsEpisode$season<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ShortsEpisode$season$show<TRes> get $show {
     final local$$show = _instance.$show;
     return CopyWith$Fragment$ShortsEpisode$season$show(
@@ -955,6 +961,7 @@ class _CopyWithStubImpl$Fragment$ShortsEpisode$season<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ShortsEpisode$season$show<TRes> get $show =>
       CopyWith$Fragment$ShortsEpisode$season$show.stub(_res);
 }
@@ -1282,6 +1289,7 @@ class _CopyWithImpl$Fragment$PlayableMediaItemShort<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes streams(
           Iterable<Fragment$BasicStream> Function(
                   Iterable<CopyWith$Fragment$BasicStream<Fragment$BasicStream>>)
@@ -1308,6 +1316,7 @@ class _CopyWithStubImpl$Fragment$PlayableMediaItemShort<TRes>
     String? $__typename,
   }) =>
       _res;
+
   streams(_fn) => _res;
 }
 
@@ -1647,6 +1656,7 @@ class _CopyWithImpl$Fragment$Short<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Short$source<TRes> get source {
     final local$source = _instance.source;
     return local$source == null
@@ -1683,8 +1693,10 @@ class _CopyWithStubImpl$Fragment$Short<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Short$source<TRes> get source =>
       CopyWith$Fragment$Short$source.stub(_res);
+
   streams(_fn) => _res;
 }
 
@@ -2005,6 +2017,7 @@ class _CopyWithImpl$Fragment$Short$source<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Short$source$item<TRes> get item {
     final local$item = _instance.item;
     return CopyWith$Fragment$Short$source$item(
@@ -2025,6 +2038,7 @@ class _CopyWithStubImpl$Fragment$Short$source<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Short$source$item<TRes> get item =>
       CopyWith$Fragment$Short$source$item.stub(_res);
 }
@@ -2414,6 +2428,7 @@ class _CopyWithImpl$Query$getShortsStartingEpisode<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$getShortsStartingEpisode$playlist<TRes> get playlist {
     final local$playlist = _instance.playlist;
     return CopyWith$Query$getShortsStartingEpisode$playlist(
@@ -2432,6 +2447,7 @@ class _CopyWithStubImpl$Query$getShortsStartingEpisode<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$getShortsStartingEpisode$playlist<TRes> get playlist =>
       CopyWith$Query$getShortsStartingEpisode$playlist.stub(_res);
 }
@@ -2788,6 +2804,7 @@ class _CopyWithImpl$Query$getShortsStartingEpisode$playlist<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$getShortsStartingEpisode$playlist$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Query$getShortsStartingEpisode$playlist$items(
@@ -2806,6 +2823,7 @@ class _CopyWithStubImpl$Query$getShortsStartingEpisode$playlist<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$getShortsStartingEpisode$playlist$items<TRes> get items =>
       CopyWith$Query$getShortsStartingEpisode$playlist$items.stub(_res);
 }
@@ -2941,6 +2959,7 @@ class _CopyWithImpl$Query$getShortsStartingEpisode$playlist$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$getShortsStartingEpisode$playlist$items$items> Function(
                   Iterable<
@@ -2966,6 +2985,7 @@ class _CopyWithStubImpl$Query$getShortsStartingEpisode$playlist$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -2978,12 +2998,12 @@ class Query$getShortsStartingEpisode$playlist$items$items {
   factory Query$getShortsStartingEpisode$playlist$items$items.fromJson(
       Map<String, dynamic> json) {
     switch (json["__typename"] as String) {
-      case "Episode":
-        return Query$getShortsStartingEpisode$playlist$items$items$$Episode
-            .fromJson(json);
-
       case "Short":
         return Query$getShortsStartingEpisode$playlist$items$items$$Short
+            .fromJson(json);
+
+      case "Episode":
+        return Query$getShortsStartingEpisode$playlist$items$items$$Episode
             .fromJson(json);
 
       default:
@@ -3053,21 +3073,21 @@ extension UtilityExtension$Query$getShortsStartingEpisode$playlist$items$items
           );
   _T when<_T>({
     required _T Function(
-            Query$getShortsStartingEpisode$playlist$items$items$$Episode)
-        episode,
-    required _T Function(
             Query$getShortsStartingEpisode$playlist$items$items$$Short)
         short,
+    required _T Function(
+            Query$getShortsStartingEpisode$playlist$items$items$$Episode)
+        episode,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
-      case "Episode":
-        return episode(this
-            as Query$getShortsStartingEpisode$playlist$items$items$$Episode);
-
       case "Short":
         return short(
             this as Query$getShortsStartingEpisode$playlist$items$items$$Short);
+
+      case "Episode":
+        return episode(this
+            as Query$getShortsStartingEpisode$playlist$items$items$$Episode);
 
       default:
         return orElse();
@@ -3075,25 +3095,25 @@ extension UtilityExtension$Query$getShortsStartingEpisode$playlist$items$items
   }
 
   _T maybeWhen<_T>({
-    _T Function(Query$getShortsStartingEpisode$playlist$items$items$$Episode)?
-        episode,
     _T Function(Query$getShortsStartingEpisode$playlist$items$items$$Short)?
         short,
+    _T Function(Query$getShortsStartingEpisode$playlist$items$items$$Episode)?
+        episode,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
-      case "Episode":
-        if (episode != null) {
-          return episode(this
-              as Query$getShortsStartingEpisode$playlist$items$items$$Episode);
-        } else {
-          return orElse();
-        }
-
       case "Short":
         if (short != null) {
           return short(this
               as Query$getShortsStartingEpisode$playlist$items$items$$Short);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$getShortsStartingEpisode$playlist$items$items$$Episode);
         } else {
           return orElse();
         }
@@ -3153,145 +3173,6 @@ class _CopyWithStubImpl$Query$getShortsStartingEpisode$playlist$items$items<
     implements
         CopyWith$Query$getShortsStartingEpisode$playlist$items$items<TRes> {
   _CopyWithStubImpl$Query$getShortsStartingEpisode$playlist$items$items(
-      this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$getShortsStartingEpisode$playlist$items$items$$Episode
-    implements Query$getShortsStartingEpisode$playlist$items$items {
-  Query$getShortsStartingEpisode$playlist$items$items$$Episode({
-    required this.id,
-    this.$__typename = 'Episode',
-  });
-
-  factory Query$getShortsStartingEpisode$playlist$items$items$$Episode.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$$__typename = json['__typename'];
-    return Query$getShortsStartingEpisode$playlist$items$items$$Episode(
-      id: (l$id as String),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$getShortsStartingEpisode$playlist$items$items$$Episode) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$getShortsStartingEpisode$playlist$items$items$$Episode
-    on Query$getShortsStartingEpisode$playlist$items$items$$Episode {
-  CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode<
-          Query$getShortsStartingEpisode$playlist$items$items$$Episode>
-      get copyWith =>
-          CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode<
-    TRes> {
-  factory CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode(
-    Query$getShortsStartingEpisode$playlist$items$items$$Episode instance,
-    TRes Function(Query$getShortsStartingEpisode$playlist$items$items$$Episode)
-        then,
-  ) = _CopyWithImpl$Query$getShortsStartingEpisode$playlist$items$items$$Episode;
-
-  factory CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$getShortsStartingEpisode$playlist$items$items$$Episode;
-
-  TRes call({
-    String? id,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$getShortsStartingEpisode$playlist$items$items$$Episode<
-        TRes>
-    implements
-        CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode<
-            TRes> {
-  _CopyWithImpl$Query$getShortsStartingEpisode$playlist$items$items$$Episode(
-    this._instance,
-    this._then,
-  );
-
-  final Query$getShortsStartingEpisode$playlist$items$items$$Episode _instance;
-
-  final TRes Function(
-      Query$getShortsStartingEpisode$playlist$items$items$$Episode) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$getShortsStartingEpisode$playlist$items$items$$Episode(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$getShortsStartingEpisode$playlist$items$items$$Episode<
-        TRes>
-    implements
-        CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode<
-            TRes> {
-  _CopyWithStubImpl$Query$getShortsStartingEpisode$playlist$items$items$$Episode(
       this._res);
 
   TRes _res;
@@ -3442,6 +3323,145 @@ class _CopyWithStubImpl$Query$getShortsStartingEpisode$playlist$items$items$$Sho
       _res;
 }
 
+class Query$getShortsStartingEpisode$playlist$items$items$$Episode
+    implements Query$getShortsStartingEpisode$playlist$items$items {
+  Query$getShortsStartingEpisode$playlist$items$items$$Episode({
+    required this.id,
+    this.$__typename = 'Episode',
+  });
+
+  factory Query$getShortsStartingEpisode$playlist$items$items$$Episode.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$getShortsStartingEpisode$playlist$items$items$$Episode(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$getShortsStartingEpisode$playlist$items$items$$Episode) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$getShortsStartingEpisode$playlist$items$items$$Episode
+    on Query$getShortsStartingEpisode$playlist$items$items$$Episode {
+  CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode<
+          Query$getShortsStartingEpisode$playlist$items$items$$Episode>
+      get copyWith =>
+          CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode<
+    TRes> {
+  factory CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode(
+    Query$getShortsStartingEpisode$playlist$items$items$$Episode instance,
+    TRes Function(Query$getShortsStartingEpisode$playlist$items$items$$Episode)
+        then,
+  ) = _CopyWithImpl$Query$getShortsStartingEpisode$playlist$items$items$$Episode;
+
+  factory CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$getShortsStartingEpisode$playlist$items$items$$Episode;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$getShortsStartingEpisode$playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithImpl$Query$getShortsStartingEpisode$playlist$items$items$$Episode(
+    this._instance,
+    this._then,
+  );
+
+  final Query$getShortsStartingEpisode$playlist$items$items$$Episode _instance;
+
+  final TRes Function(
+      Query$getShortsStartingEpisode$playlist$items$items$$Episode) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$getShortsStartingEpisode$playlist$items$items$$Episode(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$getShortsStartingEpisode$playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Query$getShortsStartingEpisode$playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithStubImpl$Query$getShortsStartingEpisode$playlist$items$items$$Episode(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Variables$Query$getShortsFromStartingEpisode {
   factory Variables$Query$getShortsFromStartingEpisode({required String id}) =>
       Variables$Query$getShortsFromStartingEpisode._({
@@ -3461,6 +3481,7 @@ class Variables$Query$getShortsFromStartingEpisode {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -3474,6 +3495,7 @@ class Variables$Query$getShortsFromStartingEpisode {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -3653,6 +3675,7 @@ class _CopyWithImpl$Query$getShortsFromStartingEpisode<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$getShortsFromStartingEpisode$episode<TRes> get episode {
     final local$episode = _instance.episode;
     return CopyWith$Query$getShortsFromStartingEpisode$episode(
@@ -3671,6 +3694,7 @@ class _CopyWithStubImpl$Query$getShortsFromStartingEpisode<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$getShortsFromStartingEpisode$episode<TRes> get episode =>
       CopyWith$Query$getShortsFromStartingEpisode$episode.stub(_res);
 }
@@ -4081,6 +4105,7 @@ class _CopyWithImpl$Query$getShortsFromStartingEpisode$episode<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes next(
           Iterable<Fragment$ShortsEpisode> Function(
                   Iterable<
@@ -4105,6 +4130,7 @@ class _CopyWithStubImpl$Query$getShortsFromStartingEpisode$episode<TRes>
     String? $__typename,
   }) =>
       _res;
+
   next(_fn) => _res;
 }
 
@@ -4136,7 +4162,9 @@ class Variables$Query$getShorts {
   Map<String, dynamic> _$data;
 
   String? get cursor => (_$data['cursor'] as String?);
+
   int? get limit => (_$data['limit'] as int?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('cursor')) {
@@ -4155,6 +4183,7 @@ class Variables$Query$getShorts {
         this,
         (i) => i,
       );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -4356,6 +4385,7 @@ class _CopyWithImpl$Query$getShorts<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$getShorts$shorts<TRes> get shorts {
     final local$shorts = _instance.shorts;
     return CopyWith$Query$getShorts$shorts(
@@ -4374,6 +4404,7 @@ class _CopyWithStubImpl$Query$getShorts<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$getShorts$shorts<TRes> get shorts =>
       CopyWith$Query$getShorts$shorts.stub(_res);
 }
@@ -4783,6 +4814,7 @@ class _CopyWithImpl$Query$getShorts$shorts<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes shorts(
           Iterable<Fragment$Short> Function(
                   Iterable<CopyWith$Fragment$Short<Fragment$Short>>)
@@ -4807,6 +4839,7 @@ class _CopyWithStubImpl$Query$getShorts$shorts<TRes>
     String? $__typename,
   }) =>
       _res;
+
   shorts(_fn) => _res;
 }
 
@@ -4828,6 +4861,7 @@ class Variables$Query$getShort {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -4840,6 +4874,7 @@ class Variables$Query$getShort {
         this,
         (i) => i,
       );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -5013,6 +5048,7 @@ class _CopyWithImpl$Query$getShort<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Short<TRes> get short {
     final local$short = _instance.short;
     return CopyWith$Fragment$Short(local$short, (e) => call(short: e));
@@ -5030,6 +5066,7 @@ class _CopyWithStubImpl$Query$getShort<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Short<TRes> get short => CopyWith$Fragment$Short.stub(_res);
 }
 
@@ -5255,6 +5292,7 @@ class Variables$Query$blablaHarryIsCool {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -5267,6 +5305,7 @@ class Variables$Query$blablaHarryIsCool {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -5442,6 +5481,7 @@ class _CopyWithImpl$Query$blablaHarryIsCool<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Short<TRes> get short {
     final local$short = _instance.short;
     return CopyWith$Fragment$Short(local$short, (e) => call(short: e));
@@ -5459,6 +5499,7 @@ class _CopyWithStubImpl$Query$blablaHarryIsCool<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Short<TRes> get short => CopyWith$Fragment$Short.stub(_res);
 }
 

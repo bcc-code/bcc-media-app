@@ -30,7 +30,9 @@ class Variables$Mutation$SetDeviceToken {
   Map<String, dynamic> _$data;
 
   String get token => (_$data['token'] as String);
+
   List<String> get languages => (_$data['languages'] as List<String>);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$token = token;
@@ -45,6 +47,7 @@ class Variables$Mutation$SetDeviceToken {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -253,6 +256,7 @@ class _CopyWithImpl$Mutation$SetDeviceToken<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Mutation$SetDeviceToken$setDevicePushToken<TRes>
       get setDevicePushToken {
     final local$setDevicePushToken = _instance.setDevicePushToken;
@@ -275,6 +279,7 @@ class _CopyWithStubImpl$Mutation$SetDeviceToken<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Mutation$SetDeviceToken$setDevicePushToken<TRes>
       get setDevicePushToken =>
           CopyWith$Mutation$SetDeviceToken$setDevicePushToken.stub(_res);

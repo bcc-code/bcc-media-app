@@ -152,6 +152,7 @@ class _CopyWithImpl$Fragment$LessonProgressOverview<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$LessonProgressOverview$progress<TRes> get progress {
     final local$progress = _instance.progress;
     return CopyWith$Fragment$LessonProgressOverview$progress(
@@ -172,6 +173,7 @@ class _CopyWithStubImpl$Fragment$LessonProgressOverview<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$LessonProgressOverview$progress<TRes> get progress =>
       CopyWith$Fragment$LessonProgressOverview$progress.stub(_res);
 }
@@ -557,6 +559,7 @@ class _CopyWithImpl$Fragment$EpisodeLessonProgressOverview<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$EpisodeLessonProgressOverview$lessons<TRes> get lessons {
     final local$lessons = _instance.lessons;
     return CopyWith$Fragment$EpisodeLessonProgressOverview$lessons(
@@ -576,6 +579,7 @@ class _CopyWithStubImpl$Fragment$EpisodeLessonProgressOverview<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$EpisodeLessonProgressOverview$lessons<TRes> get lessons =>
       CopyWith$Fragment$EpisodeLessonProgressOverview$lessons.stub(_res);
 }
@@ -813,6 +817,7 @@ class _CopyWithImpl$Fragment$EpisodeLessonProgressOverview$lessons<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$LessonProgressOverview> Function(
                   Iterable<
@@ -838,6 +843,7 @@ class _CopyWithStubImpl$Fragment$EpisodeLessonProgressOverview$lessons<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -866,7 +872,9 @@ class Variables$Query$GetStudyTopicLessonStatuses {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   int get first => (_$data['first'] as int);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -882,6 +890,7 @@ class Variables$Query$GetStudyTopicLessonStatuses {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -1080,6 +1089,7 @@ class _CopyWithImpl$Query$GetStudyTopicLessonStatuses<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic<TRes> get studyTopic {
     final local$studyTopic = _instance.studyTopic;
     return CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic(
@@ -1098,6 +1108,7 @@ class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic<TRes> get studyTopic =>
       CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic.stub(_res);
 }
@@ -1537,6 +1548,7 @@ class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<TRes>
       get lessons {
     final local$lessons = _instance.lessons;
@@ -1556,6 +1568,7 @@ class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<TRes>
       get lessons =>
           CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons.stub(
@@ -1696,6 +1709,7 @@ class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items> Function(
                   Iterable<
@@ -1724,6 +1738,7 @@ class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -1891,6 +1906,7 @@ class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes<
       TRes> get episodes {
     final local$episodes = _instance.episodes;
@@ -1917,6 +1933,7 @@ class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$ite
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes<
           TRes>
       get episodes =>
@@ -2070,6 +2087,7 @@ class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$e
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items> Function(
                   Iterable<
@@ -2100,6 +2118,7 @@ class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$ite
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -2285,6 +2304,7 @@ class Variables$Query$GetEpisodeLessonProgress {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -2298,6 +2318,7 @@ class Variables$Query$GetEpisodeLessonProgress {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -2475,6 +2496,7 @@ class _CopyWithImpl$Query$GetEpisodeLessonProgress<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetEpisodeLessonProgress$episode<TRes> get episode {
     final local$episode = _instance.episode;
     return CopyWith$Query$GetEpisodeLessonProgress$episode(
@@ -2493,6 +2515,7 @@ class _CopyWithStubImpl$Query$GetEpisodeLessonProgress<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetEpisodeLessonProgress$episode<TRes> get episode =>
       CopyWith$Query$GetEpisodeLessonProgress$episode.stub(_res);
 }
@@ -2927,6 +2950,7 @@ class _CopyWithImpl$Query$GetEpisodeLessonProgress$episode<TRes>
             ? _instance.season
             : (season as Query$GetEpisodeLessonProgress$episode$season?),
       ));
+
   CopyWith$Query$GetEpisodeLessonProgress$episode$lessons<TRes> get lessons {
     final local$lessons = _instance.lessons;
     return CopyWith$Query$GetEpisodeLessonProgress$episode$lessons(
@@ -2956,8 +2980,10 @@ class _CopyWithStubImpl$Query$GetEpisodeLessonProgress$episode<TRes>
     Query$GetEpisodeLessonProgress$episode$season? season,
   }) =>
       _res;
+
   CopyWith$Query$GetEpisodeLessonProgress$episode$lessons<TRes> get lessons =>
       CopyWith$Query$GetEpisodeLessonProgress$episode$lessons.stub(_res);
+
   CopyWith$Query$GetEpisodeLessonProgress$episode$season<TRes> get season =>
       CopyWith$Query$GetEpisodeLessonProgress$episode$season.stub(_res);
 }
@@ -3092,6 +3118,7 @@ class _CopyWithImpl$Query$GetEpisodeLessonProgress$episode$lessons<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$LessonProgressOverview> Function(
                   Iterable<
@@ -3117,6 +3144,7 @@ class _CopyWithStubImpl$Query$GetEpisodeLessonProgress$episode$lessons<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -3254,6 +3282,7 @@ class _CopyWithImpl$Query$GetEpisodeLessonProgress$episode$season<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetEpisodeLessonProgress$episode$season$episodes<TRes>
       get episodes {
     final local$episodes = _instance.episodes;
@@ -3274,6 +3303,7 @@ class _CopyWithStubImpl$Query$GetEpisodeLessonProgress$episode$season<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetEpisodeLessonProgress$episode$season$episodes<TRes>
       get episodes =>
           CopyWith$Query$GetEpisodeLessonProgress$episode$season$episodes.stub(
@@ -3413,6 +3443,7 @@ class _CopyWithImpl$Query$GetEpisodeLessonProgress$episode$season$episodes<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$EpisodeLessonProgressOverview> Function(
                   Iterable<
@@ -3441,6 +3472,7 @@ class _CopyWithStubImpl$Query$GetEpisodeLessonProgress$episode$season$episodes<
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -3463,6 +3495,7 @@ class Variables$Query$GetSeasonLessonProgress {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -3476,6 +3509,7 @@ class Variables$Query$GetSeasonLessonProgress {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -3653,6 +3687,7 @@ class _CopyWithImpl$Query$GetSeasonLessonProgress<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSeasonLessonProgress$season<TRes> get season {
     final local$season = _instance.season;
     return CopyWith$Query$GetSeasonLessonProgress$season(
@@ -3671,6 +3706,7 @@ class _CopyWithStubImpl$Query$GetSeasonLessonProgress<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSeasonLessonProgress$season<TRes> get season =>
       CopyWith$Query$GetSeasonLessonProgress$season.stub(_res);
 }
@@ -4037,6 +4073,7 @@ class _CopyWithImpl$Query$GetSeasonLessonProgress$season<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSeasonLessonProgress$season$episodes<TRes> get episodes {
     final local$episodes = _instance.episodes;
     return CopyWith$Query$GetSeasonLessonProgress$season$episodes(
@@ -4055,6 +4092,7 @@ class _CopyWithStubImpl$Query$GetSeasonLessonProgress$season<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSeasonLessonProgress$season$episodes<TRes> get episodes =>
       CopyWith$Query$GetSeasonLessonProgress$season$episodes.stub(_res);
 }
@@ -4188,6 +4226,7 @@ class _CopyWithImpl$Query$GetSeasonLessonProgress$season$episodes<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$EpisodeLessonProgressOverview> Function(
                   Iterable<
@@ -4213,6 +4252,7 @@ class _CopyWithStubImpl$Query$GetSeasonLessonProgress$season$episodes<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -4234,6 +4274,7 @@ class Variables$Query$GetLessonTitle {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -4246,6 +4287,7 @@ class Variables$Query$GetLessonTitle {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -4421,6 +4463,7 @@ class _CopyWithImpl$Query$GetLessonTitle<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetLessonTitle$studyLesson<TRes> get studyLesson {
     final local$studyLesson = _instance.studyLesson;
     return CopyWith$Query$GetLessonTitle$studyLesson(
@@ -4439,6 +4482,7 @@ class _CopyWithStubImpl$Query$GetLessonTitle<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetLessonTitle$studyLesson<TRes> get studyLesson =>
       CopyWith$Query$GetLessonTitle$studyLesson.stub(_res);
 }

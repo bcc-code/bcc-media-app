@@ -63,22 +63,22 @@ class _$CompletedSurveysCopyWithImpl<$Res, $Val extends CompletedSurveys>
 }
 
 /// @nodoc
-abstract class _$$_CompletedSurveysCopyWith<$Res>
+abstract class _$$CompletedSurveysImplCopyWith<$Res>
     implements $CompletedSurveysCopyWith<$Res> {
-  factory _$$_CompletedSurveysCopyWith(
-          _$_CompletedSurveys value, $Res Function(_$_CompletedSurveys) then) =
-      __$$_CompletedSurveysCopyWithImpl<$Res>;
+  factory _$$CompletedSurveysImplCopyWith(_$CompletedSurveysImpl value,
+          $Res Function(_$CompletedSurveysImpl) then) =
+      __$$CompletedSurveysImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<CompletedSurvey> completedSurveys});
 }
 
 /// @nodoc
-class __$$_CompletedSurveysCopyWithImpl<$Res>
-    extends _$CompletedSurveysCopyWithImpl<$Res, _$_CompletedSurveys>
-    implements _$$_CompletedSurveysCopyWith<$Res> {
-  __$$_CompletedSurveysCopyWithImpl(
-      _$_CompletedSurveys _value, $Res Function(_$_CompletedSurveys) _then)
+class __$$CompletedSurveysImplCopyWithImpl<$Res>
+    extends _$CompletedSurveysCopyWithImpl<$Res, _$CompletedSurveysImpl>
+    implements _$$CompletedSurveysImplCopyWith<$Res> {
+  __$$CompletedSurveysImplCopyWithImpl(_$CompletedSurveysImpl _value,
+      $Res Function(_$CompletedSurveysImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -86,7 +86,7 @@ class __$$_CompletedSurveysCopyWithImpl<$Res>
   $Res call({
     Object? completedSurveys = null,
   }) {
-    return _then(_$_CompletedSurveys(
+    return _then(_$CompletedSurveysImpl(
       null == completedSurveys
           ? _value._completedSurveys
           : completedSurveys // ignore: cast_nullable_to_non_nullable
@@ -97,12 +97,12 @@ class __$$_CompletedSurveysCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CompletedSurveys implements _CompletedSurveys {
-  const _$_CompletedSurveys(final List<CompletedSurvey> completedSurveys)
+class _$CompletedSurveysImpl implements _CompletedSurveys {
+  const _$CompletedSurveysImpl(final List<CompletedSurvey> completedSurveys)
       : _completedSurveys = completedSurveys;
 
-  factory _$_CompletedSurveys.fromJson(Map<String, dynamic> json) =>
-      _$$_CompletedSurveysFromJson(json);
+  factory _$CompletedSurveysImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CompletedSurveysImplFromJson(json);
 
   final List<CompletedSurvey> _completedSurveys;
   @override
@@ -122,7 +122,7 @@ class _$_CompletedSurveys implements _CompletedSurveys {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CompletedSurveys &&
+            other is _$CompletedSurveysImpl &&
             const DeepCollectionEquality()
                 .equals(other._completedSurveys, _completedSurveys));
   }
@@ -135,12 +135,13 @@ class _$_CompletedSurveys implements _CompletedSurveys {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CompletedSurveysCopyWith<_$_CompletedSurveys> get copyWith =>
-      __$$_CompletedSurveysCopyWithImpl<_$_CompletedSurveys>(this, _$identity);
+  _$$CompletedSurveysImplCopyWith<_$CompletedSurveysImpl> get copyWith =>
+      __$$CompletedSurveysImplCopyWithImpl<_$CompletedSurveysImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CompletedSurveysToJson(
+    return _$$CompletedSurveysImplToJson(
       this,
     );
   }
@@ -148,16 +149,16 @@ class _$_CompletedSurveys implements _CompletedSurveys {
 
 abstract class _CompletedSurveys implements CompletedSurveys {
   const factory _CompletedSurveys(
-      final List<CompletedSurvey> completedSurveys) = _$_CompletedSurveys;
+      final List<CompletedSurvey> completedSurveys) = _$CompletedSurveysImpl;
 
   factory _CompletedSurveys.fromJson(Map<String, dynamic> json) =
-      _$_CompletedSurveys.fromJson;
+      _$CompletedSurveysImpl.fromJson;
 
   @override
   List<CompletedSurvey> get completedSurveys;
   @override
   @JsonKey(ignore: true)
-  _$$_CompletedSurveysCopyWith<_$_CompletedSurveys> get copyWith =>
+  _$$CompletedSurveysImplCopyWith<_$CompletedSurveysImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -215,22 +216,22 @@ class _$CompletedSurveyCopyWithImpl<$Res, $Val extends CompletedSurvey>
 }
 
 /// @nodoc
-abstract class _$$_CompletedSurveyCopyWith<$Res>
+abstract class _$$CompletedSurveyImplCopyWith<$Res>
     implements $CompletedSurveyCopyWith<$Res> {
-  factory _$$_CompletedSurveyCopyWith(
-          _$_CompletedSurvey value, $Res Function(_$_CompletedSurvey) then) =
-      __$$_CompletedSurveyCopyWithImpl<$Res>;
+  factory _$$CompletedSurveyImplCopyWith(_$CompletedSurveyImpl value,
+          $Res Function(_$CompletedSurveyImpl) then) =
+      __$$CompletedSurveyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, DateTime expiry});
 }
 
 /// @nodoc
-class __$$_CompletedSurveyCopyWithImpl<$Res>
-    extends _$CompletedSurveyCopyWithImpl<$Res, _$_CompletedSurvey>
-    implements _$$_CompletedSurveyCopyWith<$Res> {
-  __$$_CompletedSurveyCopyWithImpl(
-      _$_CompletedSurvey _value, $Res Function(_$_CompletedSurvey) _then)
+class __$$CompletedSurveyImplCopyWithImpl<$Res>
+    extends _$CompletedSurveyCopyWithImpl<$Res, _$CompletedSurveyImpl>
+    implements _$$CompletedSurveyImplCopyWith<$Res> {
+  __$$CompletedSurveyImplCopyWithImpl(
+      _$CompletedSurveyImpl _value, $Res Function(_$CompletedSurveyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -239,7 +240,7 @@ class __$$_CompletedSurveyCopyWithImpl<$Res>
     Object? id = null,
     Object? expiry = null,
   }) {
-    return _then(_$_CompletedSurvey(
+    return _then(_$CompletedSurveyImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -254,11 +255,11 @@ class __$$_CompletedSurveyCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CompletedSurvey implements _CompletedSurvey {
-  const _$_CompletedSurvey({required this.id, required this.expiry});
+class _$CompletedSurveyImpl implements _CompletedSurvey {
+  const _$CompletedSurveyImpl({required this.id, required this.expiry});
 
-  factory _$_CompletedSurvey.fromJson(Map<String, dynamic> json) =>
-      _$$_CompletedSurveyFromJson(json);
+  factory _$CompletedSurveyImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CompletedSurveyImplFromJson(json);
 
   @override
   final String id;
@@ -274,7 +275,7 @@ class _$_CompletedSurvey implements _CompletedSurvey {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CompletedSurvey &&
+            other is _$CompletedSurveyImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.expiry, expiry) || other.expiry == expiry));
   }
@@ -286,12 +287,13 @@ class _$_CompletedSurvey implements _CompletedSurvey {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CompletedSurveyCopyWith<_$_CompletedSurvey> get copyWith =>
-      __$$_CompletedSurveyCopyWithImpl<_$_CompletedSurvey>(this, _$identity);
+  _$$CompletedSurveyImplCopyWith<_$CompletedSurveyImpl> get copyWith =>
+      __$$CompletedSurveyImplCopyWithImpl<_$CompletedSurveyImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CompletedSurveyToJson(
+    return _$$CompletedSurveyImplToJson(
       this,
     );
   }
@@ -300,10 +302,10 @@ class _$_CompletedSurvey implements _CompletedSurvey {
 abstract class _CompletedSurvey implements CompletedSurvey {
   const factory _CompletedSurvey(
       {required final String id,
-      required final DateTime expiry}) = _$_CompletedSurvey;
+      required final DateTime expiry}) = _$CompletedSurveyImpl;
 
   factory _CompletedSurvey.fromJson(Map<String, dynamic> json) =
-      _$_CompletedSurvey.fromJson;
+      _$CompletedSurveyImpl.fromJson;
 
   @override
   String get id;
@@ -311,6 +313,6 @@ abstract class _CompletedSurvey implements CompletedSurvey {
   DateTime get expiry;
   @override
   @JsonKey(ignore: true)
-  _$$_CompletedSurveyCopyWith<_$_CompletedSurvey> get copyWith =>
+  _$$CompletedSurveyImplCopyWith<_$CompletedSurveyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

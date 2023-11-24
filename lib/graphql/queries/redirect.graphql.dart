@@ -22,6 +22,7 @@ class Variables$Query$GetRedirectUrl {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -34,6 +35,7 @@ class Variables$Query$GetRedirectUrl {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -209,6 +211,7 @@ class _CopyWithImpl$Query$GetRedirectUrl<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetRedirectUrl$redirect<TRes> get redirect {
     final local$redirect = _instance.redirect;
     return CopyWith$Query$GetRedirectUrl$redirect(
@@ -227,6 +230,7 @@ class _CopyWithStubImpl$Query$GetRedirectUrl<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetRedirectUrl$redirect<TRes> get redirect =>
       CopyWith$Query$GetRedirectUrl$redirect.stub(_res);
 }

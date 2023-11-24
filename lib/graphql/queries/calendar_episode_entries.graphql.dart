@@ -209,6 +209,7 @@ class _CopyWithImpl$Fragment$CalendarEntryEpisode<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$CalendarEntryEpisode$season<TRes> get season {
     final local$season = _instance.season;
     return local$season == null
@@ -234,6 +235,7 @@ class _CopyWithStubImpl$Fragment$CalendarEntryEpisode<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$CalendarEntryEpisode$season<TRes> get season =>
       CopyWith$Fragment$CalendarEntryEpisode$season.stub(_res);
 }
@@ -541,6 +543,7 @@ class _CopyWithImpl$Fragment$CalendarEntryEpisode$season<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$CalendarEntryEpisode$season$show<TRes> get $show {
     final local$$show = _instance.$show;
     return CopyWith$Fragment$CalendarEntryEpisode$season$show(
@@ -561,6 +564,7 @@ class _CopyWithStubImpl$Fragment$CalendarEntryEpisode$season<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$CalendarEntryEpisode$season$show<TRes> get $show =>
       CopyWith$Fragment$CalendarEntryEpisode$season$show.stub(_res);
 }
@@ -836,6 +840,7 @@ class _CopyWithImpl$Fragment$CalendarDayEntries<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes entries(
           Iterable<Fragment$CalendarDayEntries$entries> Function(
                   Iterable<
@@ -861,6 +866,7 @@ class _CopyWithStubImpl$Fragment$CalendarDayEntries<TRes>
     String? $__typename,
   }) =>
       _res;
+
   entries(_fn) => _res;
 }
 
@@ -1396,6 +1402,7 @@ class _CopyWithImpl$Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry<
             : (start as String),
         end: end == _undefined || end == null ? _instance.end : (end as String),
       ));
+
   CopyWith$Fragment$CalendarEntryEpisode<TRes> get episode {
     final local$episode = _instance.episode;
     return local$episode == null
@@ -1422,6 +1429,7 @@ class _CopyWithStubImpl$Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntr
     String? end,
   }) =>
       _res;
+
   CopyWith$Fragment$CalendarEntryEpisode<TRes> get episode =>
       CopyWith$Fragment$CalendarEntryEpisode.stub(_res);
 }
@@ -1915,6 +1923,7 @@ class Variables$Query$CalendarDayEpisodeEntries {
   Map<String, dynamic> _$data;
 
   String get date => (_$data['date'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$date = date;
@@ -1928,6 +1937,7 @@ class Variables$Query$CalendarDayEpisodeEntries {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -2107,6 +2117,7 @@ class _CopyWithImpl$Query$CalendarDayEpisodeEntries<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$CalendarDayEpisodeEntries$calendar<TRes> get calendar {
     final local$calendar = _instance.calendar;
     return local$calendar == null
@@ -2128,6 +2139,7 @@ class _CopyWithStubImpl$Query$CalendarDayEpisodeEntries<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$CalendarDayEpisodeEntries$calendar<TRes> get calendar =>
       CopyWith$Query$CalendarDayEpisodeEntries$calendar.stub(_res);
 }
@@ -2480,6 +2492,7 @@ class _CopyWithImpl$Query$CalendarDayEpisodeEntries$calendar<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$CalendarDayEntries<TRes> get day {
     final local$day = _instance.day;
     return CopyWith$Fragment$CalendarDayEntries(local$day, (e) => call(day: e));
@@ -2497,6 +2510,7 @@ class _CopyWithStubImpl$Query$CalendarDayEpisodeEntries$calendar<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$CalendarDayEntries<TRes> get day =>
       CopyWith$Fragment$CalendarDayEntries.stub(_res);
 }

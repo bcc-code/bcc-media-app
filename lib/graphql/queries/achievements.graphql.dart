@@ -343,6 +343,7 @@ class Variables$Fragment$AchievementGroup {
   Map<String, dynamic> _$data;
 
   int? get achievementsFirst => (_$data['achievementsFirst'] as int?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('achievementsFirst')) {
@@ -358,6 +359,7 @@ class Variables$Fragment$AchievementGroup {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -578,6 +580,7 @@ class _CopyWithImpl$Fragment$AchievementGroup<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$AchievementGroup$achievements<TRes> get achievements {
     final local$achievements = _instance.achievements;
     return CopyWith$Fragment$AchievementGroup$achievements(
@@ -598,6 +601,7 @@ class _CopyWithStubImpl$Fragment$AchievementGroup<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$AchievementGroup$achievements<TRes> get achievements =>
       CopyWith$Fragment$AchievementGroup$achievements.stub(_res);
 }
@@ -843,6 +847,7 @@ class _CopyWithImpl$Fragment$AchievementGroup$achievements<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Achievement> Function(
                   Iterable<CopyWith$Fragment$Achievement<Fragment$Achievement>>)
@@ -865,6 +870,7 @@ class _CopyWithStubImpl$Fragment$AchievementGroup$achievements<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -893,7 +899,9 @@ class Variables$Query$getAchievementGroups {
   Map<String, dynamic> _$data;
 
   int get first => (_$data['first'] as int);
+
   int get achievementsFirst => (_$data['achievementsFirst'] as int);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$first = first;
@@ -909,6 +917,7 @@ class Variables$Query$getAchievementGroups {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -1110,6 +1119,7 @@ class _CopyWithImpl$Query$getAchievementGroups<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$getAchievementGroups$achievementGroups<TRes>
       get achievementGroups {
     final local$achievementGroups = _instance.achievementGroups;
@@ -1129,6 +1139,7 @@ class _CopyWithStubImpl$Query$getAchievementGroups<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$getAchievementGroups$achievementGroups<TRes>
       get achievementGroups =>
           CopyWith$Query$getAchievementGroups$achievementGroups.stub(_res);
@@ -1499,6 +1510,7 @@ class _CopyWithImpl$Query$getAchievementGroups$achievementGroups<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$AchievementGroup> Function(
                   Iterable<
@@ -1524,6 +1536,7 @@ class _CopyWithStubImpl$Query$getAchievementGroups$achievementGroups<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -1552,7 +1565,9 @@ class Variables$Query$getAchievementGroup {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   int get achievementsFirst => (_$data['achievementsFirst'] as int);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -1568,6 +1583,7 @@ class Variables$Query$getAchievementGroup {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -1767,6 +1783,7 @@ class _CopyWithImpl$Query$getAchievementGroup<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$AchievementGroup<TRes> get achievementGroup {
     final local$achievementGroup = _instance.achievementGroup;
     return CopyWith$Fragment$AchievementGroup(
@@ -1785,6 +1802,7 @@ class _CopyWithStubImpl$Query$getAchievementGroup<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$AchievementGroup<TRes> get achievementGroup =>
       CopyWith$Fragment$AchievementGroup.stub(_res);
 }
@@ -2137,6 +2155,7 @@ class _CopyWithImpl$Query$getPendingAchievements<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes pendingAchievements(
           Iterable<Fragment$Achievement> Function(
                   Iterable<CopyWith$Fragment$Achievement<Fragment$Achievement>>)
@@ -2160,6 +2179,7 @@ class _CopyWithStubImpl$Query$getPendingAchievements<TRes>
     String? $__typename,
   }) =>
       _res;
+
   pendingAchievements(_fn) => _res;
 }
 
@@ -2373,6 +2393,7 @@ class Variables$Mutation$confirmAchievement {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -2386,6 +2407,7 @@ class Variables$Mutation$confirmAchievement {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -2567,6 +2589,7 @@ class _CopyWithImpl$Mutation$confirmAchievement<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Mutation$confirmAchievement$confirmAchievement<TRes>
       get confirmAchievement {
     final local$confirmAchievement = _instance.confirmAchievement;
@@ -2586,6 +2609,7 @@ class _CopyWithStubImpl$Mutation$confirmAchievement<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Mutation$confirmAchievement$confirmAchievement<TRes>
       get confirmAchievement =>
           CopyWith$Mutation$confirmAchievement$confirmAchievement.stub(_res);

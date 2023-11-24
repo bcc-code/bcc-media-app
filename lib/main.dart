@@ -45,7 +45,6 @@ Future<void> $main({
 }) async {
   usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-  Paint.enableDithering = true;
   if (Platform.isAndroid) {
     AndroidDeviceInfo androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
     _isAndroidTv = androidDeviceInfo.systemFeatures.contains('android.software.leanback');

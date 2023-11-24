@@ -573,6 +573,7 @@ class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$EpisodeContext$$ContextCollection$items<TRes> get items {
     final local$items = _instance.items;
     return local$items == null
@@ -595,6 +596,7 @@ class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$EpisodeContext$$ContextCollection$items<TRes> get items =>
       CopyWith$Fragment$EpisodeContext$$ContextCollection$items.stub(_res);
 }
@@ -730,6 +732,7 @@ class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$EpisodeContext$$ContextCollection$items$items> Function(
                   Iterable<
@@ -755,6 +758,7 @@ class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -880,6 +884,7 @@ class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item<TRes>
       get item {
     final local$item = _instance.item;
@@ -902,6 +907,7 @@ class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items<
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item<TRes>
       get item =>
           CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item
@@ -1713,6 +1719,7 @@ class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons {
     final local$lessons = _instance.lessons;
     return CopyWith$Fragment$SeasonListEpisode$lessons(
@@ -1743,6 +1750,7 @@ class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$i
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons =>
       CopyWith$Fragment$SeasonListEpisode$lessons.stub(_res);
 }
@@ -2494,6 +2502,7 @@ class _CopyWithImpl$Fragment$EpisodeContext$$Season<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$EpisodeContext$$Season$episodes<TRes> get episodes {
     final local$episodes = _instance.episodes;
     return CopyWith$Fragment$EpisodeContext$$Season$episodes(
@@ -2522,8 +2531,10 @@ class _CopyWithStubImpl$Fragment$EpisodeContext$$Season<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$EpisodeContext$$Season$episodes<TRes> get episodes =>
       CopyWith$Fragment$EpisodeContext$$Season$episodes.stub(_res);
+
   CopyWith$Fragment$EpisodeContext$$Season$show<TRes> get $show =>
       CopyWith$Fragment$EpisodeContext$$Season$show.stub(_res);
 }
@@ -2656,6 +2667,7 @@ class _CopyWithImpl$Fragment$EpisodeContext$$Season$episodes<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$SeasonListEpisode> Function(
                   Iterable<
@@ -2681,6 +2693,7 @@ class _CopyWithStubImpl$Fragment$EpisodeContext$$Season$episodes<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -2853,6 +2866,7 @@ class _CopyWithImpl$Fragment$EpisodeContext$$Season$show<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$EpisodeContext$$Season$show$seasons<TRes> get seasons {
     final local$seasons = _instance.seasons;
     return CopyWith$Fragment$EpisodeContext$$Season$show$seasons(
@@ -2874,6 +2888,7 @@ class _CopyWithStubImpl$Fragment$EpisodeContext$$Season$show<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$EpisodeContext$$Season$show$seasons<TRes> get seasons =>
       CopyWith$Fragment$EpisodeContext$$Season$show$seasons.stub(_res);
 }
@@ -3008,6 +3023,7 @@ class _CopyWithImpl$Fragment$EpisodeContext$$Season$show$seasons<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$EpisodeContext$$Season$show$seasons$items> Function(
                   Iterable<
@@ -3033,6 +3049,7 @@ class _CopyWithStubImpl$Fragment$EpisodeContext$$Season$show$seasons<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -3783,6 +3800,7 @@ class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons {
     final local$lessons = _instance.lessons;
     return CopyWith$Fragment$SeasonListEpisode$lessons(
@@ -3809,6 +3827,7 @@ class _CopyWithStubImpl$Fragment$SeasonListEpisode<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons =>
       CopyWith$Fragment$SeasonListEpisode$lessons.stub(_res);
 }
@@ -4343,6 +4362,7 @@ class _CopyWithImpl$Fragment$PlayableMediaItem<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes streams(
           Iterable<Fragment$BasicStream> Function(
                   Iterable<CopyWith$Fragment$BasicStream<Fragment$BasicStream>>)
@@ -4353,6 +4373,7 @@ class _CopyWithImpl$Fragment$PlayableMediaItem<TRes>
                     e,
                     (i) => i,
                   ))).toList());
+
   CopyWith$Fragment$PlayableMediaItem$context<TRes> get context {
     final local$context = _instance.context;
     return local$context == null
@@ -4388,9 +4409,12 @@ class _CopyWithStubImpl$Fragment$PlayableMediaItem<TRes>
     String? $__typename,
   }) =>
       _res;
+
   streams(_fn) => _res;
+
   CopyWith$Fragment$PlayableMediaItem$context<TRes> get context =>
       CopyWith$Fragment$PlayableMediaItem$context.stub(_res);
+
   CopyWith$Fragment$PlayableMediaItem$season<TRes> get season =>
       CopyWith$Fragment$PlayableMediaItem$season.stub(_res);
 }
@@ -5148,6 +5172,7 @@ class _CopyWithImpl$Fragment$PlayableMediaItem$season<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$PlayableMediaItem$season$show<TRes> get $show {
     final local$$show = _instance.$show;
     return CopyWith$Fragment$PlayableMediaItem$season$show(
@@ -5168,6 +5193,7 @@ class _CopyWithStubImpl$Fragment$PlayableMediaItem$season<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$PlayableMediaItem$season$show<TRes> get $show =>
       CopyWith$Fragment$PlayableMediaItem$season$show.stub(_res);
 }
@@ -5551,6 +5577,7 @@ class _CopyWithImpl$Fragment$EpisodeDetails<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$EpisodeDetails$season<TRes> get season {
     final local$season = _instance.season;
     return local$season == null
@@ -5577,6 +5604,7 @@ class _CopyWithStubImpl$Fragment$EpisodeDetails<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$EpisodeDetails$season<TRes> get season =>
       CopyWith$Fragment$EpisodeDetails$season.stub(_res);
 }
@@ -5829,6 +5857,7 @@ class _CopyWithImpl$Fragment$EpisodeDetails$season<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$EpisodeDetails$season$show<TRes> get $show {
     final local$$show = _instance.$show;
     return CopyWith$Fragment$EpisodeDetails$season$show(
@@ -5847,6 +5876,7 @@ class _CopyWithStubImpl$Fragment$EpisodeDetails$season<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$EpisodeDetails$season$show<TRes> get $show =>
       CopyWith$Fragment$EpisodeDetails$season$show.stub(_res);
 }
@@ -6229,9 +6259,12 @@ class Variables$Query$FetchEpisode {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Input$EpisodeContext? get context =>
       (_$data['context'] as Input$EpisodeContext?);
+
   bool get authenticated => (_$data['authenticated'] as bool);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -6250,6 +6283,7 @@ class Variables$Query$FetchEpisode {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -6461,6 +6495,7 @@ class _CopyWithImpl$Query$FetchEpisode<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchEpisode$episode<TRes> get episode {
     final local$episode = _instance.episode;
     return CopyWith$Query$FetchEpisode$episode(
@@ -6479,6 +6514,7 @@ class _CopyWithStubImpl$Query$FetchEpisode<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchEpisode$episode<TRes> get episode =>
       CopyWith$Query$FetchEpisode$episode.stub(_res);
 }
@@ -7567,6 +7603,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
         inMyList:
             inMyList == _undefined ? _instance.inMyList : (inMyList as bool?),
       ));
+
   TRes streams(
           Iterable<Fragment$BasicStream> Function(
                   Iterable<CopyWith$Fragment$BasicStream<Fragment$BasicStream>>)
@@ -7577,6 +7614,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
                     e,
                     (i) => i,
                   ))).toList());
+
   CopyWith$Query$FetchEpisode$episode$context<TRes> get context {
     final local$context = _instance.context;
     return local$context == null
@@ -7605,6 +7643,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
                     e,
                     (i) => i,
                   ))).toList());
+
   CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> get relatedItems {
     final local$relatedItems = _instance.relatedItems;
     return local$relatedItems == null
@@ -7652,14 +7691,20 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
     bool? inMyList,
   }) =>
       _res;
+
   streams(_fn) => _res;
+
   CopyWith$Query$FetchEpisode$episode$context<TRes> get context =>
       CopyWith$Query$FetchEpisode$episode$context.stub(_res);
+
   CopyWith$Query$FetchEpisode$episode$season<TRes> get season =>
       CopyWith$Query$FetchEpisode$episode$season.stub(_res);
+
   chapters(_fn) => _res;
+
   CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> get relatedItems =>
       CopyWith$Query$FetchEpisode$episode$relatedItems.stub(_res);
+
   CopyWith$Query$FetchEpisode$episode$lessons<TRes> get lessons =>
       CopyWith$Query$FetchEpisode$episode$lessons.stub(_res);
 }
@@ -7958,6 +8003,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection<TRes>
             : (items
                 as Query$FetchEpisode$episode$context$$ContextCollection$items?),
       ));
+
   CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items<TRes>
       get items {
     final local$items = _instance.items;
@@ -7984,6 +8030,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection<
     Query$FetchEpisode$episode$context$$ContextCollection$items? items,
   }) =>
       _res;
+
   CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items<TRes>
       get items =>
           CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items
@@ -8185,6 +8232,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$context$$Season<TRes>
             ? _instance.$show
             : ($show as Query$FetchEpisode$episode$context$$Season$show),
       ));
+
   CopyWith$Query$FetchEpisode$episode$context$$Season$episodes<TRes>
       get episodes {
     final local$episodes = _instance.episodes;
@@ -8214,10 +8262,12 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season<TRes>
     Query$FetchEpisode$episode$context$$Season$show? $show,
   }) =>
       _res;
+
   CopyWith$Query$FetchEpisode$episode$context$$Season$episodes<TRes>
       get episodes =>
           CopyWith$Query$FetchEpisode$episode$context$$Season$episodes.stub(
               _res);
+
   CopyWith$Query$FetchEpisode$episode$context$$Season$show<TRes> get $show =>
       CopyWith$Query$FetchEpisode$episode$context$$Season$show.stub(_res);
 }
@@ -8391,6 +8441,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$season<TRes>
             ? _instance.number
             : (number as int),
       ));
+
   CopyWith$Query$FetchEpisode$episode$season$show<TRes> get $show {
     final local$$show = _instance.$show;
     return CopyWith$Query$FetchEpisode$episode$season$show(
@@ -8412,6 +8463,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$season<TRes>
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$FetchEpisode$episode$season$show<TRes> get $show =>
       CopyWith$Query$FetchEpisode$episode$season$show.stub(_res);
 }
@@ -8889,6 +8941,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchEpisode$episode$context$$ContextCollection$items$items> Function(
                   Iterable<
@@ -8919,6 +8972,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$it
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -9053,6 +9107,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item<
       TRes> get item {
     final local$item = _instance.item;
@@ -9077,6 +9132,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$it
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item<
           TRes>
       get item =>
@@ -9900,6 +9956,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons {
     final local$lessons = _instance.lessons;
     return CopyWith$Fragment$SeasonListEpisode$lessons(
@@ -9930,6 +9987,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$it
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons =>
       CopyWith$Fragment$SeasonListEpisode$lessons.stub(_res);
 }
@@ -10643,6 +10701,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$episodes<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$SeasonListEpisode> Function(
                   Iterable<
@@ -10671,6 +10730,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$episodes<
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -10847,6 +10907,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$show<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons<TRes>
       get seasons {
     final local$seasons = _instance.seasons;
@@ -10869,6 +10930,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$show<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons<TRes>
       get seasons =>
           CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons.stub(
@@ -11013,6 +11075,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$show$seasons<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchEpisode$episode$context$$Season$show$seasons$items> Function(
                   Iterable<
@@ -11041,6 +11104,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$show$seasons<
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -11330,6 +11394,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$relatedItems<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$GridSectionItem> Function(
                   Iterable<
@@ -11355,6 +11420,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$relatedItems<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -11486,6 +11552,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$lessons<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchEpisode$episode$lessons$items> Function(
                   Iterable<
@@ -11511,6 +11578,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$lessons<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -11667,7 +11735,9 @@ class Variables$Query$legacyIDLookup {
   Map<String, dynamic> _$data;
 
   int? get episodeId => (_$data['episodeId'] as int?);
+
   int? get programId => (_$data['programId'] as int?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('episodeId')) {
@@ -11686,6 +11756,7 @@ class Variables$Query$legacyIDLookup {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -11889,6 +11960,7 @@ class _CopyWithImpl$Query$legacyIDLookup<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$legacyIDLookup$legacyIDLookup<TRes> get legacyIDLookup {
     final local$legacyIDLookup = _instance.legacyIDLookup;
     return CopyWith$Query$legacyIDLookup$legacyIDLookup(
@@ -11907,6 +11979,7 @@ class _CopyWithStubImpl$Query$legacyIDLookup<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$legacyIDLookup$legacyIDLookup<TRes> get legacyIDLookup =>
       CopyWith$Query$legacyIDLookup$legacyIDLookup.stub(_res);
 }
@@ -12280,6 +12353,7 @@ class Variables$Query$EpisodeDetails {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -12292,6 +12366,7 @@ class Variables$Query$EpisodeDetails {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -12467,6 +12542,7 @@ class _CopyWithImpl$Query$EpisodeDetails<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$EpisodeDetails<TRes> get episode {
     final local$episode = _instance.episode;
     return CopyWith$Fragment$EpisodeDetails(
@@ -12485,6 +12561,7 @@ class _CopyWithStubImpl$Query$EpisodeDetails<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$EpisodeDetails<TRes> get episode =>
       CopyWith$Fragment$EpisodeDetails.stub(_res);
 }
@@ -12713,6 +12790,7 @@ class Variables$Query$getDefaultEpisodeForShow {
   Map<String, dynamic> _$data;
 
   String get showId => (_$data['showId'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$showId = showId;
@@ -12726,6 +12804,7 @@ class Variables$Query$getDefaultEpisodeForShow {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -12904,6 +12983,7 @@ class _CopyWithImpl$Query$getDefaultEpisodeForShow<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$getDefaultEpisodeForShow$show<TRes> get $show {
     final local$$show = _instance.$show;
     return CopyWith$Query$getDefaultEpisodeForShow$show(
@@ -12922,6 +13002,7 @@ class _CopyWithStubImpl$Query$getDefaultEpisodeForShow<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$getDefaultEpisodeForShow$show<TRes> get $show =>
       CopyWith$Query$getDefaultEpisodeForShow$show.stub(_res);
 }
@@ -13278,6 +13359,7 @@ class _CopyWithImpl$Query$getDefaultEpisodeForShow$show<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode<TRes>
       get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -13297,6 +13379,7 @@ class _CopyWithStubImpl$Query$getDefaultEpisodeForShow$show<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode<TRes>
       get defaultEpisode =>
           CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode.stub(
@@ -13462,8 +13545,10 @@ class Variables$Query$getNextEpisodes {
   Map<String, dynamic> _$data;
 
   String get episodeId => (_$data['episodeId'] as String);
+
   Input$EpisodeContext? get context =>
       (_$data['context'] as Input$EpisodeContext?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$episodeId = episodeId;
@@ -13480,6 +13565,7 @@ class Variables$Query$getNextEpisodes {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -13680,6 +13766,7 @@ class _CopyWithImpl$Query$getNextEpisodes<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$getNextEpisodes$episode<TRes> get episode {
     final local$episode = _instance.episode;
     return CopyWith$Query$getNextEpisodes$episode(
@@ -13698,6 +13785,7 @@ class _CopyWithStubImpl$Query$getNextEpisodes<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$getNextEpisodes$episode<TRes> get episode =>
       CopyWith$Query$getNextEpisodes$episode.stub(_res);
 }
@@ -14063,6 +14151,7 @@ class _CopyWithImpl$Query$getNextEpisodes$episode<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes next(
           Iterable<Fragment$PlayableMediaItem> Function(
                   Iterable<
@@ -14088,6 +14177,7 @@ class _CopyWithStubImpl$Query$getNextEpisodes$episode<TRes>
     String? $__typename,
   }) =>
       _res;
+
   next(_fn) => _res;
 }
 
@@ -14110,6 +14200,7 @@ class Variables$Query$getEpisodeAvailability {
   Map<String, dynamic> _$data;
 
   String get episodeId => (_$data['episodeId'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$episodeId = episodeId;
@@ -14123,6 +14214,7 @@ class Variables$Query$getEpisodeAvailability {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -14301,6 +14393,7 @@ class _CopyWithImpl$Query$getEpisodeAvailability<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$EpisodeAvailability<TRes> get episode {
     final local$episode = _instance.episode;
     return CopyWith$Fragment$EpisodeAvailability(
@@ -14319,6 +14412,7 @@ class _CopyWithStubImpl$Query$getEpisodeAvailability<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$EpisodeAvailability<TRes> get episode =>
       CopyWith$Fragment$EpisodeAvailability.stub(_res);
 }

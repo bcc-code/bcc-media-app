@@ -74,22 +74,22 @@ class _$GameClosedEventCopyWithImpl<$Res, $Val extends GameClosedEvent>
 }
 
 /// @nodoc
-abstract class _$$_GameClosedEventCopyWith<$Res>
+abstract class _$$GameClosedEventImplCopyWith<$Res>
     implements $GameClosedEventCopyWith<$Res> {
-  factory _$$_GameClosedEventCopyWith(
-          _$_GameClosedEvent value, $Res Function(_$_GameClosedEvent) then) =
-      __$$_GameClosedEventCopyWithImpl<$Res>;
+  factory _$$GameClosedEventImplCopyWith(_$GameClosedEventImpl value,
+          $Res Function(_$GameClosedEventImpl) then) =
+      __$$GameClosedEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String gameId, int timeSpent, int? position});
 }
 
 /// @nodoc
-class __$$_GameClosedEventCopyWithImpl<$Res>
-    extends _$GameClosedEventCopyWithImpl<$Res, _$_GameClosedEvent>
-    implements _$$_GameClosedEventCopyWith<$Res> {
-  __$$_GameClosedEventCopyWithImpl(
-      _$_GameClosedEvent _value, $Res Function(_$_GameClosedEvent) _then)
+class __$$GameClosedEventImplCopyWithImpl<$Res>
+    extends _$GameClosedEventCopyWithImpl<$Res, _$GameClosedEventImpl>
+    implements _$$GameClosedEventImplCopyWith<$Res> {
+  __$$GameClosedEventImplCopyWithImpl(
+      _$GameClosedEventImpl _value, $Res Function(_$GameClosedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_GameClosedEventCopyWithImpl<$Res>
     Object? timeSpent = null,
     Object? position = freezed,
   }) {
-    return _then(_$_GameClosedEvent(
+    return _then(_$GameClosedEventImpl(
       gameId: null == gameId
           ? _value.gameId
           : gameId // ignore: cast_nullable_to_non_nullable
@@ -118,12 +118,12 @@ class __$$_GameClosedEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GameClosedEvent implements _GameClosedEvent {
-  const _$_GameClosedEvent(
+class _$GameClosedEventImpl implements _GameClosedEvent {
+  const _$GameClosedEventImpl(
       {required this.gameId, required this.timeSpent, this.position});
 
-  factory _$_GameClosedEvent.fromJson(Map<String, dynamic> json) =>
-      _$$_GameClosedEventFromJson(json);
+  factory _$GameClosedEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GameClosedEventImplFromJson(json);
 
   @override
   final String gameId;
@@ -141,7 +141,7 @@ class _$_GameClosedEvent implements _GameClosedEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GameClosedEvent &&
+            other is _$GameClosedEventImpl &&
             (identical(other.gameId, gameId) || other.gameId == gameId) &&
             (identical(other.timeSpent, timeSpent) ||
                 other.timeSpent == timeSpent) &&
@@ -156,12 +156,13 @@ class _$_GameClosedEvent implements _GameClosedEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GameClosedEventCopyWith<_$_GameClosedEvent> get copyWith =>
-      __$$_GameClosedEventCopyWithImpl<_$_GameClosedEvent>(this, _$identity);
+  _$$GameClosedEventImplCopyWith<_$GameClosedEventImpl> get copyWith =>
+      __$$GameClosedEventImplCopyWithImpl<_$GameClosedEventImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GameClosedEventToJson(
+    return _$$GameClosedEventImplToJson(
       this,
     );
   }
@@ -171,10 +172,10 @@ abstract class _GameClosedEvent implements GameClosedEvent {
   const factory _GameClosedEvent(
       {required final String gameId,
       required final int timeSpent,
-      final int? position}) = _$_GameClosedEvent;
+      final int? position}) = _$GameClosedEventImpl;
 
   factory _GameClosedEvent.fromJson(Map<String, dynamic> json) =
-      _$_GameClosedEvent.fromJson;
+      _$GameClosedEventImpl.fromJson;
 
   @override
   String get gameId;
@@ -184,6 +185,6 @@ abstract class _GameClosedEvent implements GameClosedEvent {
   int? get position;
   @override
   @JsonKey(ignore: true)
-  _$$_GameClosedEventCopyWith<_$_GameClosedEvent> get copyWith =>
+  _$$GameClosedEventImplCopyWith<_$GameClosedEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -85,9 +85,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
 }
 
 /// @nodoc
-abstract class _$$_AuthCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
-  factory _$$_AuthCopyWith(_$_Auth value, $Res Function(_$_Auth) then) =
-      __$$_AuthCopyWithImpl<$Res>;
+abstract class _$$AuthImplCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
+  factory _$$AuthImplCopyWith(
+          _$AuthImpl value, $Res Function(_$AuthImpl) then) =
+      __$$AuthImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -99,9 +100,10 @@ abstract class _$$_AuthCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
-    implements _$$_AuthCopyWith<$Res> {
-  __$$_AuthCopyWithImpl(_$_Auth _value, $Res Function(_$_Auth) _then)
+class __$$AuthImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthImpl>
+    implements _$$AuthImplCopyWith<$Res> {
+  __$$AuthImplCopyWithImpl(_$AuthImpl _value, $Res Function(_$AuthImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -113,7 +115,7 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
     Object? idToken = freezed,
     Object? signedOutManually = freezed,
   }) {
-    return _then(_$_Auth(
+    return _then(_$AuthImpl(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -140,8 +142,8 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
 
 /// @nodoc
 
-class _$_Auth extends _Auth {
-  const _$_Auth(
+class _$AuthImpl extends _Auth {
+  const _$AuthImpl(
       {this.user,
       this.auth0AccessToken,
       this.expiresAt,
@@ -169,7 +171,7 @@ class _$_Auth extends _Auth {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Auth &&
+            other is _$AuthImpl &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.auth0AccessToken, auth0AccessToken) ||
                 other.auth0AccessToken == auth0AccessToken) &&
@@ -187,8 +189,8 @@ class _$_Auth extends _Auth {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AuthCopyWith<_$_Auth> get copyWith =>
-      __$$_AuthCopyWithImpl<_$_Auth>(this, _$identity);
+  _$$AuthImplCopyWith<_$AuthImpl> get copyWith =>
+      __$$AuthImplCopyWithImpl<_$AuthImpl>(this, _$identity);
 }
 
 abstract class _Auth extends AuthState {
@@ -197,7 +199,7 @@ abstract class _Auth extends AuthState {
       final String? auth0AccessToken,
       final DateTime? expiresAt,
       final String? idToken,
-      final bool? signedOutManually}) = _$_Auth;
+      final bool? signedOutManually}) = _$AuthImpl;
   const _Auth._() : super._();
 
   @override
@@ -212,5 +214,6 @@ abstract class _Auth extends AuthState {
   bool? get signedOutManually;
   @override
   @JsonKey(ignore: true)
-  _$$_AuthCopyWith<_$_Auth> get copyWith => throw _privateConstructorUsedError;
+  _$$AuthImplCopyWith<_$AuthImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -22,6 +22,7 @@ class Variables$Query$KidsPage {
   Map<String, dynamic> _$data;
 
   String get code => (_$data['code'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$code = code;
@@ -34,6 +35,7 @@ class Variables$Query$KidsPage {
         this,
         (i) => i,
       );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -207,6 +209,7 @@ class _CopyWithImpl$Query$KidsPage<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$KidsPage$page<TRes> get page {
     final local$page = _instance.page;
     return CopyWith$Query$KidsPage$page(local$page, (e) => call(page: e));
@@ -224,6 +227,7 @@ class _CopyWithStubImpl$Query$KidsPage<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$KidsPage$page<TRes> get page =>
       CopyWith$Query$KidsPage$page.stub(_res);
 }
@@ -749,6 +753,7 @@ class _CopyWithImpl$Query$KidsPage$page<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$KidsPage$page$sections<TRes> get sections {
     final local$sections = _instance.sections;
     return CopyWith$Query$KidsPage$page$sections(
@@ -770,6 +775,7 @@ class _CopyWithStubImpl$Query$KidsPage$page<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$KidsPage$page$sections<TRes> get sections =>
       CopyWith$Query$KidsPage$page$sections.stub(_res);
 }
@@ -900,6 +906,7 @@ class _CopyWithImpl$Query$KidsPage$page$sections<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$KidsPage$page$sections$items> Function(
                   Iterable<
@@ -925,6 +932,7 @@ class _CopyWithStubImpl$Query$KidsPage$page$sections<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -1448,6 +1456,7 @@ class _CopyWithImpl$Query$KidsPage$page$sections$items$$CardSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$KidsPage$page$sections$items$$CardSection$items<TRes>
       get items {
     final local$items = _instance.items;
@@ -1467,6 +1476,7 @@ class _CopyWithStubImpl$Query$KidsPage$page$sections$items$$CardSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$KidsPage$page$sections$items$$CardSection$items<TRes>
       get items =>
           CopyWith$Query$KidsPage$page$sections$items$$CardSection$items.stub(
@@ -1608,6 +1618,7 @@ class _CopyWithImpl$Query$KidsPage$page$sections$items$$CardSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$KidsPage$page$sections$items$$CardSection$items$items> Function(
                   Iterable<
@@ -1636,6 +1647,7 @@ class _CopyWithStubImpl$Query$KidsPage$page$sections$items$$CardSection$items<
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -1819,6 +1831,7 @@ class _CopyWithImpl$Query$KidsPage$page$sections$items$$CardSection$items$items<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$KidsPage$page$sections$items$$CardSection$items$items$item<
       TRes> get item {
     final local$item = _instance.item;
@@ -1845,6 +1858,7 @@ class _CopyWithStubImpl$Query$KidsPage$page$sections$items$$CardSection$items$it
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$KidsPage$page$sections$items$$CardSection$items$items$item<
           TRes>
       get item =>

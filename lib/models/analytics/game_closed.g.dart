@@ -6,14 +6,16 @@ part of 'game_closed.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GameClosedEvent _$$_GameClosedEventFromJson(Map<String, dynamic> json) =>
-    _$_GameClosedEvent(
+_$GameClosedEventImpl _$$GameClosedEventImplFromJson(
+        Map<String, dynamic> json) =>
+    _$GameClosedEventImpl(
       gameId: json['gameId'] as String,
       timeSpent: json['timeSpent'] as int,
       position: json['position'] as int?,
     );
 
-Map<String, dynamic> _$$_GameClosedEventToJson(_$_GameClosedEvent instance) =>
+Map<String, dynamic> _$$GameClosedEventImplToJson(
+        _$GameClosedEventImpl instance) =>
     <String, dynamic>{
       'gameId': instance.gameId,
       'timeSpent': instance.timeSpent,

@@ -170,6 +170,7 @@ class _CopyWithImpl$Fragment$GridSectionItem<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$GridSectionItem$item<TRes> get item {
     final local$item = _instance.item;
     return CopyWith$Fragment$GridSectionItem$item(
@@ -191,6 +192,7 @@ class _CopyWithStubImpl$Fragment$GridSectionItem<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$GridSectionItem$item<TRes> get item =>
       CopyWith$Fragment$GridSectionItem$item.stub(_res);
 }
@@ -1347,6 +1349,7 @@ class _CopyWithImpl$Fragment$GridSectionItem$item$$Episode<TRes>
             : ($__typename as String),
         number: number == _undefined ? _instance.number : (number as int?),
       ));
+
   CopyWith$Fragment$GridSectionItem$item$$Episode$season<TRes> get season {
     final local$season = _instance.season;
     return local$season == null
@@ -1374,6 +1377,7 @@ class _CopyWithStubImpl$Fragment$GridSectionItem$item$$Episode<TRes>
     int? number,
   }) =>
       _res;
+
   CopyWith$Fragment$GridSectionItem$item$$Episode$season<TRes> get season =>
       CopyWith$Fragment$GridSectionItem$item$$Episode$season.stub(_res);
 }
@@ -1513,6 +1517,7 @@ class _CopyWithImpl$Fragment$GridSectionItem$item$$Episode$season<TRes>
             ? _instance.number
             : (number as int),
       ));
+
   CopyWith$Fragment$GridSectionItem$item$$Episode$season$show<TRes> get $show {
     final local$$show = _instance.$show;
     return CopyWith$Fragment$GridSectionItem$item$$Episode$season$show(
@@ -1532,6 +1537,7 @@ class _CopyWithStubImpl$Fragment$GridSectionItem$item$$Episode$season<TRes>
     int? number,
   }) =>
       _res;
+
   CopyWith$Fragment$GridSectionItem$item$$Episode$season$show<TRes> get $show =>
       CopyWith$Fragment$GridSectionItem$item$$Episode$season$show.stub(_res);
 }
@@ -1845,6 +1851,7 @@ class _CopyWithImpl$Fragment$GridSectionItem$item$$Show<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$GridSectionItem$item$$Show$defaultEpisode<TRes>
       get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -1867,6 +1874,7 @@ class _CopyWithStubImpl$Fragment$GridSectionItem$item$$Show<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$GridSectionItem$item$$Show$defaultEpisode<TRes>
       get defaultEpisode =>
           CopyWith$Fragment$GridSectionItem$item$$Show$defaultEpisode.stub(
@@ -2364,6 +2372,7 @@ class _CopyWithImpl$Fragment$ItemSectionItem<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSectionItem$item<TRes> get item {
     final local$item = _instance.item;
     return CopyWith$Fragment$ItemSectionItem$item(
@@ -2385,6 +2394,7 @@ class _CopyWithStubImpl$Fragment$ItemSectionItem<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSectionItem$item<TRes> get item =>
       CopyWith$Fragment$ItemSectionItem$item.stub(_res);
 }
@@ -3676,6 +3686,7 @@ class _CopyWithImpl$Fragment$ItemSectionItem$item$$Episode<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSectionItem$item$$Episode$season<TRes> get season {
     final local$season = _instance.season;
     return local$season == null
@@ -3702,6 +3713,7 @@ class _CopyWithStubImpl$Fragment$ItemSectionItem$item$$Episode<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSectionItem$item$$Episode$season<TRes> get season =>
       CopyWith$Fragment$ItemSectionItem$item$$Episode$season.stub(_res);
 }
@@ -3821,6 +3833,7 @@ class _CopyWithImpl$Fragment$ItemSectionItem$item$$Episode$season<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSectionItem$item$$Episode$season$show<TRes> get $show {
     final local$$show = _instance.$show;
     return CopyWith$Fragment$ItemSectionItem$item$$Episode$season$show(
@@ -3839,6 +3852,7 @@ class _CopyWithStubImpl$Fragment$ItemSectionItem$item$$Episode$season<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSectionItem$item$$Episode$season$show<TRes> get $show =>
       CopyWith$Fragment$ItemSectionItem$item$$Episode$season$show.stub(_res);
 }
@@ -4149,6 +4163,7 @@ class _CopyWithImpl$Fragment$ItemSectionItem$item$$Show<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSectionItem$item$$Show$defaultEpisode<TRes>
       get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -4171,6 +4186,7 @@ class _CopyWithStubImpl$Fragment$ItemSectionItem$item$$Show<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSectionItem$item$$Show$defaultEpisode<TRes>
       get defaultEpisode =>
           CopyWith$Fragment$ItemSectionItem$item$$Show$defaultEpisode.stub(
@@ -4526,7 +4542,9 @@ class Variables$Fragment$ItemSection {
   Map<String, dynamic> _$data;
 
   int? get first => (_$data['first'] as int?);
+
   int? get offset => (_$data['offset'] as int?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('first')) {
@@ -4545,6 +4563,7 @@ class Variables$Fragment$ItemSection {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -4960,6 +4979,7 @@ class _CopyWithImpl$Fragment$ItemSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -4987,8 +5007,10 @@ class _CopyWithStubImpl$Fragment$ItemSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$ItemSection$metadata.stub(_res);
+
   CopyWith$Fragment$ItemSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$items.stub(_res);
 }
@@ -5560,6 +5582,7 @@ class _CopyWithImpl$Fragment$ItemSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -5587,6 +5610,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -5727,6 +5751,7 @@ class _CopyWithImpl$Fragment$ItemSection$$PosterSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSection$$PosterSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -5755,8 +5780,10 @@ class _CopyWithStubImpl$Fragment$ItemSection$$PosterSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSection$$PosterSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$ItemSection$$PosterSection$metadata.stub(_res);
+
   CopyWith$Fragment$ItemSection$$PosterSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$$PosterSection$items.stub(_res);
 }
@@ -6158,6 +6185,7 @@ class _CopyWithImpl$Fragment$ItemSection$$PosterSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -6185,6 +6213,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$PosterSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -6325,6 +6354,7 @@ class _CopyWithImpl$Fragment$ItemSection$$FeaturedSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSection$$FeaturedSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -6353,8 +6383,10 @@ class _CopyWithStubImpl$Fragment$ItemSection$$FeaturedSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSection$$FeaturedSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$ItemSection$$FeaturedSection$metadata.stub(_res);
+
   CopyWith$Fragment$ItemSection$$FeaturedSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$$FeaturedSection$items.stub(_res);
 }
@@ -6757,6 +6789,7 @@ class _CopyWithImpl$Fragment$ItemSection$$FeaturedSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -6784,6 +6817,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$FeaturedSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -6924,6 +6958,7 @@ class _CopyWithImpl$Fragment$ItemSection$$DefaultSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSection$$DefaultSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -6952,8 +6987,10 @@ class _CopyWithStubImpl$Fragment$ItemSection$$DefaultSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSection$$DefaultSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$ItemSection$$DefaultSection$metadata.stub(_res);
+
   CopyWith$Fragment$ItemSection$$DefaultSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$$DefaultSection$items.stub(_res);
 }
@@ -7356,6 +7393,7 @@ class _CopyWithImpl$Fragment$ItemSection$$DefaultSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -7383,6 +7421,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$DefaultSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -7522,6 +7561,7 @@ class _CopyWithImpl$Fragment$ItemSection$$CardSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSection$$CardSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -7550,8 +7590,10 @@ class _CopyWithStubImpl$Fragment$ItemSection$$CardSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSection$$CardSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$ItemSection$$CardSection$metadata.stub(_res);
+
   CopyWith$Fragment$ItemSection$$CardSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$$CardSection$items.stub(_res);
 }
@@ -7953,6 +7995,7 @@ class _CopyWithImpl$Fragment$ItemSection$$CardSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -7980,6 +8023,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$CardSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -8119,6 +8163,7 @@ class _CopyWithImpl$Fragment$ItemSection$$ListSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSection$$ListSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -8147,8 +8192,10 @@ class _CopyWithStubImpl$Fragment$ItemSection$$ListSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSection$$ListSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$ItemSection$$ListSection$metadata.stub(_res);
+
   CopyWith$Fragment$ItemSection$$ListSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$$ListSection$items.stub(_res);
 }
@@ -8550,6 +8597,7 @@ class _CopyWithImpl$Fragment$ItemSection$$ListSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -8577,6 +8625,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$ListSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -8717,6 +8766,7 @@ class _CopyWithImpl$Fragment$ItemSection$$CardListSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSection$$CardListSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -8745,8 +8795,10 @@ class _CopyWithStubImpl$Fragment$ItemSection$$CardListSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSection$$CardListSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$ItemSection$$CardListSection$metadata.stub(_res);
+
   CopyWith$Fragment$ItemSection$$CardListSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$$CardListSection$items.stub(_res);
 }
@@ -9149,6 +9201,7 @@ class _CopyWithImpl$Fragment$ItemSection$$CardListSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -9176,6 +9229,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$CardListSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -9316,6 +9370,7 @@ class _CopyWithImpl$Fragment$ItemSection$$DefaultGridSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSection$$DefaultGridSection$metadata<TRes>
       get metadata {
     final local$metadata = _instance.metadata;
@@ -9345,9 +9400,11 @@ class _CopyWithStubImpl$Fragment$ItemSection$$DefaultGridSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSection$$DefaultGridSection$metadata<TRes>
       get metadata =>
           CopyWith$Fragment$ItemSection$$DefaultGridSection$metadata.stub(_res);
+
   CopyWith$Fragment$ItemSection$$DefaultGridSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$$DefaultGridSection$items.stub(_res);
 }
@@ -9756,6 +9813,7 @@ class _CopyWithImpl$Fragment$ItemSection$$DefaultGridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -9783,6 +9841,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$DefaultGridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -9923,6 +9982,7 @@ class _CopyWithImpl$Fragment$ItemSection$$PosterGridSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSection$$PosterGridSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -9951,9 +10011,11 @@ class _CopyWithStubImpl$Fragment$ItemSection$$PosterGridSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSection$$PosterGridSection$metadata<TRes>
       get metadata =>
           CopyWith$Fragment$ItemSection$$PosterGridSection$metadata.stub(_res);
+
   CopyWith$Fragment$ItemSection$$PosterGridSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$$PosterGridSection$items.stub(_res);
 }
@@ -10357,6 +10419,7 @@ class _CopyWithImpl$Fragment$ItemSection$$PosterGridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -10384,6 +10447,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$PosterGridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -10524,6 +10588,7 @@ class _CopyWithImpl$Fragment$ItemSection$$IconGridSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSection$$IconGridSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -10552,8 +10617,10 @@ class _CopyWithStubImpl$Fragment$ItemSection$$IconGridSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSection$$IconGridSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$ItemSection$$IconGridSection$metadata.stub(_res);
+
   CopyWith$Fragment$ItemSection$$IconGridSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$$IconGridSection$items.stub(_res);
 }
@@ -10956,6 +11023,7 @@ class _CopyWithImpl$Fragment$ItemSection$$IconGridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -10983,6 +11051,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$IconGridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -11122,6 +11191,7 @@ class _CopyWithImpl$Fragment$ItemSection$$IconSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSection$$IconSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -11150,8 +11220,10 @@ class _CopyWithStubImpl$Fragment$ItemSection$$IconSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSection$$IconSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$ItemSection$$IconSection$metadata.stub(_res);
+
   CopyWith$Fragment$ItemSection$$IconSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$$IconSection$items.stub(_res);
 }
@@ -11553,6 +11625,7 @@ class _CopyWithImpl$Fragment$ItemSection$$IconSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -11580,6 +11653,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$IconSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -11720,6 +11794,7 @@ class _CopyWithImpl$Fragment$ItemSection$$LabelSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$ItemSection$$LabelSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -11748,8 +11823,10 @@ class _CopyWithStubImpl$Fragment$ItemSection$$LabelSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$ItemSection$$LabelSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$ItemSection$$LabelSection$metadata.stub(_res);
+
   CopyWith$Fragment$ItemSection$$LabelSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$$LabelSection$items.stub(_res);
 }
@@ -12151,6 +12228,7 @@ class _CopyWithImpl$Fragment$ItemSection$$LabelSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -12178,6 +12256,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$LabelSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -12209,7 +12288,9 @@ class Variables$Fragment$GridSection {
   Map<String, dynamic> _$data;
 
   int? get first => (_$data['first'] as int?);
+
   int? get offset => (_$data['offset'] as int?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('first')) {
@@ -12228,6 +12309,7 @@ class Variables$Fragment$GridSection {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -12519,6 +12601,7 @@ class _CopyWithImpl$Fragment$GridSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$GridSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$GridSection$items(
@@ -12538,6 +12621,7 @@ class _CopyWithStubImpl$Fragment$GridSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$GridSection$items<TRes> get items =>
       CopyWith$Fragment$GridSection$items.stub(_res);
 }
@@ -12780,6 +12864,7 @@ class _CopyWithImpl$Fragment$GridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$GridSectionItem> Function(
                   Iterable<
@@ -12805,6 +12890,7 @@ class _CopyWithStubImpl$Fragment$GridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -12941,6 +13027,7 @@ class _CopyWithImpl$Fragment$GridSection$$DefaultGridSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$GridSection$$DefaultGridSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$GridSection$$DefaultGridSection$items(
@@ -12960,6 +13047,7 @@ class _CopyWithStubImpl$Fragment$GridSection$$DefaultGridSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$GridSection$$DefaultGridSection$items<TRes> get items =>
       CopyWith$Fragment$GridSection$$DefaultGridSection$items.stub(_res);
 }
@@ -13093,6 +13181,7 @@ class _CopyWithImpl$Fragment$GridSection$$DefaultGridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$GridSectionItem> Function(
                   Iterable<
@@ -13118,6 +13207,7 @@ class _CopyWithStubImpl$Fragment$GridSection$$DefaultGridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -13254,6 +13344,7 @@ class _CopyWithImpl$Fragment$GridSection$$PosterGridSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$GridSection$$PosterGridSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$GridSection$$PosterGridSection$items(
@@ -13273,6 +13364,7 @@ class _CopyWithStubImpl$Fragment$GridSection$$PosterGridSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$GridSection$$PosterGridSection$items<TRes> get items =>
       CopyWith$Fragment$GridSection$$PosterGridSection$items.stub(_res);
 }
@@ -13406,6 +13498,7 @@ class _CopyWithImpl$Fragment$GridSection$$PosterGridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$GridSectionItem> Function(
                   Iterable<
@@ -13431,6 +13524,7 @@ class _CopyWithStubImpl$Fragment$GridSection$$PosterGridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -13567,6 +13661,7 @@ class _CopyWithImpl$Fragment$GridSection$$IconGridSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$GridSection$$IconGridSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$GridSection$$IconGridSection$items(
@@ -13586,6 +13681,7 @@ class _CopyWithStubImpl$Fragment$GridSection$$IconGridSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$GridSection$$IconGridSection$items<TRes> get items =>
       CopyWith$Fragment$GridSection$$IconGridSection$items.stub(_res);
 }
@@ -13718,6 +13814,7 @@ class _CopyWithImpl$Fragment$GridSection$$IconGridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$GridSectionItem> Function(
                   Iterable<
@@ -13743,6 +13840,7 @@ class _CopyWithStubImpl$Fragment$GridSection$$IconGridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -13774,7 +13872,9 @@ class Variables$Fragment$Section {
   Map<String, dynamic> _$data;
 
   int? get first => (_$data['first'] as int?);
+
   int? get offset => (_$data['offset'] as int?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('first')) {
@@ -13793,6 +13893,7 @@ class Variables$Fragment$Section {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -15574,6 +15675,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Fragment$Section$$PosterSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -15606,8 +15708,10 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$PosterSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$Section$$PosterSection$metadata.stub(_res);
+
   CopyWith$Fragment$Section$$PosterSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$PosterSection$items.stub(_res);
 }
@@ -16010,6 +16114,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Section$$PosterSection$items$items> Function(
                   Iterable<
@@ -16037,6 +16142,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -16208,6 +16314,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item<TRes> get item {
     final local$item = _instance.item;
     return CopyWith$Fragment$Section$$PosterSection$items$items$item(
@@ -16229,6 +16336,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item<TRes> get item =>
       CopyWith$Fragment$Section$$PosterSection$items$items$item.stub(_res);
 }
@@ -16964,6 +17072,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist<
             : (items
                 as Fragment$Section$$PosterSection$items$items$item$$Playlist$items),
       ));
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items<
       TRes> get items {
     final local$items = _instance.items;
@@ -16990,6 +17099,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Playli
     Fragment$Section$$PosterSection$items$items$item$$Playlist$items? items,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items<
           TRes>
       get items =>
@@ -17376,6 +17486,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode<
             ? _instance.productionDate
             : (productionDate as String),
       ));
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -17408,6 +17519,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episod
     String? productionDate,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -17546,6 +17658,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$se
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -17570,6 +17683,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episod
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -17928,6 +18042,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Show<TRes>
             : (seasons
                 as Fragment$Section$$PosterSection$items$items$item$$Show$seasons),
       ));
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -17962,11 +18077,13 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Show<
     Fragment$Section$$PosterSection$items$items$item$$Show$seasons? seasons,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
           CopyWith$Fragment$Section$$PosterSection$items$items$item$$Show$defaultEpisode
               .stub(_res);
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Show$seasons<TRes>
       get seasons =>
           CopyWith$Fragment$Section$$PosterSection$items$items$item$$Show$seasons
@@ -18482,6 +18599,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$i
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items> Function(
                   Iterable<
@@ -18512,6 +18630,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Playli
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -18524,12 +18643,12 @@ class Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items {
   factory Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items.fromJson(
       Map<String, dynamic> json) {
     switch (json["__typename"] as String) {
-      case "Episode":
-        return Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-            .fromJson(json);
-
       case "Short":
         return Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+            .fromJson(json);
+
+      case "Episode":
+        return Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
             .fromJson(json);
 
       default:
@@ -18600,21 +18719,21 @@ extension UtilityExtension$Fragment$Section$$PosterSection$items$items$item$$Pla
           );
   _T when<_T>({
     required _T Function(
-            Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
-        episode,
-    required _T Function(
             Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Short)
         short,
+    required _T Function(
+            Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+        episode,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
-      case "Episode":
-        return episode(this
-            as Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
-
       case "Short":
         return short(this
             as Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Short);
+
+      case "Episode":
+        return episode(this
+            as Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
 
       default:
         return orElse();
@@ -18623,26 +18742,26 @@ extension UtilityExtension$Fragment$Section$$PosterSection$items$items$item$$Pla
 
   _T maybeWhen<_T>({
     _T Function(
-            Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)?
-        episode,
-    _T Function(
             Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Short)?
         short,
+    _T Function(
+            Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)?
+        episode,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
-      case "Episode":
-        if (episode != null) {
-          return episode(this
-              as Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
-        } else {
-          return orElse();
-        }
-
       case "Short":
         if (short != null) {
           return short(this
               as Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Short);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
         } else {
           return orElse();
         }
@@ -18711,151 +18830,6 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Playli
         CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items<
             TRes> {
   _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items(
-      this._res);
-
-  TRes _res;
-
-  call({
-    String? image,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-    implements
-        Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items {
-  Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode({
-    this.image,
-    this.$__typename = 'Episode',
-  });
-
-  factory Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.fromJson(
-      Map<String, dynamic> json) {
-    final l$image = json['image'];
-    final l$$__typename = json['__typename'];
-    return Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-      image: (l$image as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String? image;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$image = image;
-    _resultData['image'] = l$image;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$image = image;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$image,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$image = image;
-    final lOther$image = other.image;
-    if (l$image != lOther$image) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-    on Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode {
-  CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-          Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode>
-      get copyWith =>
-          CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-    TRes> {
-  factory CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-    Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-        instance,
-    TRes Function(
-            Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
-        then,
-  ) = _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
-
-  factory CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.stub(
-          TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
-
-  TRes call({
-    String? image,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-            TRes> {
-  _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-      _instance;
-
-  final TRes Function(
-          Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? image = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(
-          Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-        image: image == _undefined ? _instance.image : (image as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-            TRes> {
-  _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
       this._res);
 
   TRes _res;
@@ -19012,6 +18986,151 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Playli
       _res;
 }
 
+class Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items {
+  Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode({
+    this.image,
+    this.$__typename = 'Episode',
+  });
+
+  factory Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.fromJson(
+      Map<String, dynamic> json) {
+    final l$image = json['image'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+      image: (l$image as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? image;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$image = image;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$image,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+    on Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode {
+  CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+          Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode>
+      get copyWith =>
+          CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+    TRes> {
+  factory CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+    Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+        instance,
+    TRes Function(
+            Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+        then,
+  ) = _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
+
+  factory CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
+
+  TRes call({
+    String? image,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+      _instance;
+
+  final TRes Function(
+          Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? image = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+        image: image == _undefined ? _instance.image : (image as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Fragment$Section$$PosterSection$items$items$item$$Show$seasons {
   Fragment$Section$$PosterSection$items$items$item$$Show$seasons({
     required this.items,
@@ -19156,6 +19275,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Show$seaso
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Section$$PosterSection$items$items$item$$Show$seasons$items> Function(
                   Iterable<
@@ -19186,6 +19306,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Show$s
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -19322,6 +19443,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Show$seaso
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
       TRes> get episodes {
     final local$episodes = _instance.episodes;
@@ -19346,6 +19468,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Show$s
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
           TRes>
       get episodes =>
@@ -19500,6 +19623,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Show$seaso
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items> Function(
                   Iterable<
@@ -19530,6 +19654,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Show$s
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -19887,6 +20012,7 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Fragment$Section$$FeaturedSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -19919,8 +20045,10 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$FeaturedSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$Section$$FeaturedSection$metadata.stub(_res);
+
   CopyWith$Fragment$Section$$FeaturedSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$FeaturedSection$items.stub(_res);
 }
@@ -20323,6 +20451,7 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Section$$FeaturedSection$items$items> Function(
                   Iterable<
@@ -20350,6 +20479,7 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -20541,6 +20671,7 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection$items$items<TRes>
             ? _instance.description
             : (description as String),
       ));
+
   CopyWith$Fragment$Section$$FeaturedSection$items$items$item<TRes> get item {
     final local$item = _instance.item;
     return CopyWith$Fragment$Section$$FeaturedSection$items$items$item(
@@ -20563,6 +20694,7 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection$items$items<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$FeaturedSection$items$items$item<TRes> get item =>
       CopyWith$Fragment$Section$$FeaturedSection$items$items$item.stub(_res);
 }
@@ -21641,6 +21773,7 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection$items$items$item$$Episode<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$FeaturedSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -21672,6 +21805,7 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection$items$items$item$$Epis
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$FeaturedSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -21810,6 +21944,7 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection$items$items$item$$Episode$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$FeaturedSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -21834,6 +21969,7 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection$items$items$item$$Epis
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$FeaturedSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -22172,6 +22308,7 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection$items$items$item$$Show<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$FeaturedSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -22199,6 +22336,7 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection$items$items$item$$Show
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$FeaturedSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -22782,6 +22920,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Fragment$Section$$DefaultSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -22814,8 +22953,10 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$DefaultSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$Section$$DefaultSection$metadata.stub(_res);
+
   CopyWith$Fragment$Section$$DefaultSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$DefaultSection$items.stub(_res);
 }
@@ -23218,6 +23359,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Section$$DefaultSection$items$items> Function(
                   Iterable<
@@ -23245,6 +23387,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -23416,6 +23559,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$DefaultSection$items$items$item<TRes> get item {
     final local$item = _instance.item;
     return CopyWith$Fragment$Section$$DefaultSection$items$items$item(
@@ -23437,6 +23581,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$DefaultSection$items$items$item<TRes> get item =>
       CopyWith$Fragment$Section$$DefaultSection$items$items$item.stub(_res);
 }
@@ -24525,6 +24670,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode<
             ? _instance.productionDate
             : (productionDate as String),
       ));
+
   CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -24557,6 +24703,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episo
     String? productionDate,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -24695,6 +24842,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$s
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -24719,6 +24867,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episo
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -25055,6 +25204,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Show<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -25081,6 +25231,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Show<
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -25661,6 +25812,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Fragment$Section$$CardSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -25692,8 +25844,10 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$CardSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$Section$$CardSection$metadata.stub(_res);
+
   CopyWith$Fragment$Section$$CardSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$CardSection$items.stub(_res);
 }
@@ -26096,6 +26250,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Section$$CardSection$items$items> Function(
                   Iterable<
@@ -26123,6 +26278,7 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -26313,6 +26469,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items<TRes>
             ? _instance.description
             : (description as String),
       ));
+
   CopyWith$Fragment$Section$$CardSection$items$items$item<TRes> get item {
     final local$item = _instance.item;
     return CopyWith$Fragment$Section$$CardSection$items$items$item(
@@ -26335,6 +26492,7 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$CardSection$items$items$item<TRes> get item =>
       CopyWith$Fragment$Section$$CardSection$items$items$item.stub(_res);
 }
@@ -27384,6 +27542,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$Episode<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$CardSection$items$items$item$$Episode$season<TRes>
       get season {
     final local$season = _instance.season;
@@ -27414,6 +27573,7 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$Episode<
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$CardSection$items$items$item$$Episode$season<TRes>
       get season =>
           CopyWith$Fragment$Section$$CardSection$items$items$item$$Episode$season
@@ -27549,6 +27709,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$Episode$seas
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$CardSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -27572,6 +27733,7 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$Episode$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$CardSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -27906,6 +28068,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$Show<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$CardSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -27932,6 +28095,7 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$Show<
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$CardSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -28414,6 +28578,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic<
             : (lessonsProgress
                 as Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress),
       ));
+
   TRes images(
           Iterable<Fragment$Section$$CardSection$items$items$item$$StudyTopic$images> Function(
                   Iterable<
@@ -28426,6 +28591,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic<
                 e,
                 (i) => i,
               ))).toList());
+
   CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
       TRes> get lessonsProgress {
     final local$lessonsProgress = _instance.lessonsProgress;
@@ -28455,7 +28621,9 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTop
         lessonsProgress,
   }) =>
       _res;
+
   images(_fn) => _res;
+
   CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
           TRes>
       get lessonsProgress =>
@@ -28652,6 +28820,7 @@ class _CopyWithImpl$Fragment$Section$$ListSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Fragment$Section$$ListSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -28682,8 +28851,10 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$ListSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$Section$$ListSection$metadata.stub(_res);
+
   CopyWith$Fragment$Section$$ListSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$ListSection$items.stub(_res);
 }
@@ -29086,6 +29257,7 @@ class _CopyWithImpl$Fragment$Section$$ListSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Section$$ListSection$items$items> Function(
                   Iterable<
@@ -29113,6 +29285,7 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -29284,6 +29457,7 @@ class _CopyWithImpl$Fragment$Section$$ListSection$items$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$ListSection$items$items$item<TRes> get item {
     final local$item = _instance.item;
     return CopyWith$Fragment$Section$$ListSection$items$items$item(
@@ -29305,6 +29479,7 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$ListSection$items$items$item<TRes> get item =>
       CopyWith$Fragment$Section$$ListSection$items$items$item.stub(_res);
 }
@@ -30409,6 +30584,7 @@ class _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode<
             : (ageRating as String),
         image: image == _undefined ? _instance.image : (image as String?),
       ));
+
   CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season<TRes>
       get season {
     final local$season = _instance.season;
@@ -30442,6 +30618,7 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode<
     String? image,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season<TRes>
       get season =>
           CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season
@@ -30577,6 +30754,7 @@ class _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$seas
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -30600,6 +30778,7 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -30934,6 +31113,7 @@ class _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Show<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$ListSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -30960,6 +31140,7 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Show<
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$ListSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -31517,6 +31698,7 @@ class _CopyWithImpl$Fragment$Section$$CardListSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Fragment$Section$$CardListSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -31548,8 +31730,10 @@ class _CopyWithStubImpl$Fragment$Section$$CardListSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$CardListSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$Section$$CardListSection$metadata.stub(_res);
+
   CopyWith$Fragment$Section$$CardListSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$CardListSection$items.stub(_res);
 }
@@ -31951,6 +32135,7 @@ class _CopyWithImpl$Fragment$Section$$CardListSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -31978,6 +32163,7 @@ class _CopyWithStubImpl$Fragment$Section$$CardListSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -32194,6 +32380,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Fragment$Section$$DefaultGridSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -32226,8 +32413,10 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$DefaultGridSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$Section$$DefaultGridSection$metadata.stub(_res);
+
   CopyWith$Fragment$Section$$DefaultGridSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$DefaultGridSection$items.stub(_res);
 }
@@ -32633,6 +32822,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Section$$DefaultGridSection$items$items> Function(
                   Iterable<
@@ -32660,6 +32850,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -32832,6 +33023,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$DefaultGridSection$items$items$item<TRes>
       get item {
     final local$item = _instance.item;
@@ -32854,6 +33046,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$DefaultGridSection$items$items$item<TRes>
       get item =>
           CopyWith$Fragment$Section$$DefaultGridSection$items$items$item.stub(
@@ -33972,6 +34165,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episo
             : ($__typename as String),
         number: number == _undefined ? _instance.number : (number as int?),
       ));
+
   CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -34005,6 +34199,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$E
     int? number,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -34167,6 +34362,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episo
             ? _instance.number
             : (number as int),
       ));
+
   CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -34192,6 +34388,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$E
     int? number,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -34534,6 +34731,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Show<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -34561,6 +34759,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$S
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -35153,6 +35352,7 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Fragment$Section$$PosterGridSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -35185,8 +35385,10 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$PosterGridSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$Section$$PosterGridSection$metadata.stub(_res);
+
   CopyWith$Fragment$Section$$PosterGridSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$PosterGridSection$items.stub(_res);
 }
@@ -35591,6 +35793,7 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Section$$PosterGridSection$items$items> Function(
                   Iterable<
@@ -35618,6 +35821,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -35790,6 +35994,7 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$PosterGridSection$items$items$item<TRes> get item {
     final local$item = _instance.item;
     return CopyWith$Fragment$Section$$PosterGridSection$items$items$item(
@@ -35811,6 +36016,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$PosterGridSection$items$items$item<TRes>
       get item =>
           CopyWith$Fragment$Section$$PosterGridSection$items$items$item.stub(
@@ -36926,6 +37132,7 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episod
             : ($__typename as String),
         number: number == _undefined ? _instance.number : (number as int?),
       ));
+
   CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -36959,6 +37166,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Ep
     int? number,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -37121,6 +37329,7 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episod
             ? _instance.number
             : (number as int),
       ));
+
   CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -37146,6 +37355,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Ep
     int? number,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -37488,6 +37698,7 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Show<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -37515,6 +37726,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Sh
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -38106,6 +38318,7 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Fragment$Section$$IconGridSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -38138,8 +38351,10 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$IconGridSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$Section$$IconGridSection$metadata.stub(_res);
+
   CopyWith$Fragment$Section$$IconGridSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$IconGridSection$items.stub(_res);
 }
@@ -38544,6 +38759,7 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Section$$IconGridSection$items$items> Function(
                   Iterable<
@@ -38571,6 +38787,7 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -38743,6 +38960,7 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection$items$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$IconGridSection$items$items$item<TRes> get item {
     final local$item = _instance.item;
     return CopyWith$Fragment$Section$$IconGridSection$items$items$item(
@@ -38764,6 +38982,7 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$items$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$IconGridSection$items$items$item<TRes> get item =>
       CopyWith$Fragment$Section$$IconGridSection$items$items$item.stub(_res);
 }
@@ -39864,6 +40083,7 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection$items$items$item$$Episode<
             : ($__typename as String),
         number: number == _undefined ? _instance.number : (number as int?),
       ));
+
   CopyWith$Fragment$Section$$IconGridSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -39896,6 +40116,7 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$items$items$item$$Epis
     int? number,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$IconGridSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -40055,6 +40276,7 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection$items$items$item$$Episode$
             ? _instance.number
             : (number as int),
       ));
+
   CopyWith$Fragment$Section$$IconGridSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -40080,6 +40302,7 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$items$items$item$$Epis
     int? number,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$IconGridSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -40421,6 +40644,7 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection$items$items$item$$Show<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$IconGridSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -40448,6 +40672,7 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$items$items$item$$Show
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$IconGridSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -41016,6 +41241,7 @@ class _CopyWithImpl$Fragment$Section$$IconSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Fragment$Section$$IconSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -41046,8 +41272,10 @@ class _CopyWithStubImpl$Fragment$Section$$IconSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$IconSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$Section$$IconSection$metadata.stub(_res);
+
   CopyWith$Fragment$Section$$IconSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$IconSection$items.stub(_res);
 }
@@ -41449,6 +41677,7 @@ class _CopyWithImpl$Fragment$Section$$IconSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -41476,6 +41705,7 @@ class _CopyWithStubImpl$Fragment$Section$$IconSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -41668,6 +41898,7 @@ class _CopyWithImpl$Fragment$Section$$LabelSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Fragment$Section$$LabelSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -41699,8 +41930,10 @@ class _CopyWithStubImpl$Fragment$Section$$LabelSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$LabelSection$metadata<TRes> get metadata =>
       CopyWith$Fragment$Section$$LabelSection$metadata.stub(_res);
+
   CopyWith$Fragment$Section$$LabelSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$LabelSection$items.stub(_res);
 }
@@ -42102,6 +42335,7 @@ class _CopyWithImpl$Fragment$Section$$LabelSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -42129,6 +42363,7 @@ class _CopyWithStubImpl$Fragment$Section$$LabelSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -42552,6 +42787,7 @@ class _CopyWithImpl$Fragment$Section$$MessageSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   TRes messages(
           Iterable<Fragment$Section$$MessageSection$messages>? Function(
                   Iterable<
@@ -42580,6 +42816,7 @@ class _CopyWithStubImpl$Fragment$Section$$MessageSection<TRes>
     String? description,
   }) =>
       _res;
+
   messages(_fn) => _res;
 }
 
@@ -42716,6 +42953,7 @@ class _CopyWithImpl$Fragment$Section$$MessageSection$messages<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Fragment$Section$$MessageSection$messages$style<TRes> get style {
     final local$style = _instance.style;
     return CopyWith$Fragment$Section$$MessageSection$messages$style(
@@ -42735,6 +42973,7 @@ class _CopyWithStubImpl$Fragment$Section$$MessageSection$messages<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Fragment$Section$$MessageSection$messages$style<TRes> get style =>
       CopyWith$Fragment$Section$$MessageSection$messages$style.stub(_res);
 }
@@ -43590,8 +43829,11 @@ class Variables$Query$Page {
   Map<String, dynamic> _$data;
 
   String get code => (_$data['code'] as String);
+
   int? get first => (_$data['first'] as int?);
+
   int? get offset => (_$data['offset'] as int?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$code = code;
@@ -43612,6 +43854,7 @@ class Variables$Query$Page {
         this,
         (i) => i,
       );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -43819,6 +44062,7 @@ class _CopyWithImpl$Query$Page<TRes> implements CopyWith$Query$Page<TRes> {
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$Page$page<TRes> get page {
     final local$page = _instance.page;
     return CopyWith$Query$Page$page(local$page, (e) => call(page: e));
@@ -43835,6 +44079,7 @@ class _CopyWithStubImpl$Query$Page<TRes> implements CopyWith$Query$Page<TRes> {
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$Page$page<TRes> get page =>
       CopyWith$Query$Page$page.stub(_res);
 }
@@ -44232,6 +44477,7 @@ class _CopyWithImpl$Query$Page$page<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$Page$page$sections<TRes> get sections {
     final local$sections = _instance.sections;
     return CopyWith$Query$Page$page$sections(
@@ -44251,6 +44497,7 @@ class _CopyWithStubImpl$Query$Page$page<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$Page$page$sections<TRes> get sections =>
       CopyWith$Query$Page$page$sections.stub(_res);
 }
@@ -44378,6 +44625,7 @@ class _CopyWithImpl$Query$Page$page$sections<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$Section> Function(
                   Iterable<CopyWith$Fragment$Section<Fragment$Section>>)
@@ -44400,5 +44648,6 @@ class _CopyWithStubImpl$Query$Page$page$sections<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }

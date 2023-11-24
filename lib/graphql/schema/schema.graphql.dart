@@ -26,7 +26,9 @@ class Input$LegacyIDLookupOptions {
   Map<String, dynamic> _$data;
 
   int? get episodeID => (_$data['episodeID'] as int?);
+
   int? get programID => (_$data['programID'] as int?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('episodeID')) {
@@ -45,6 +47,7 @@ class Input$LegacyIDLookupOptions {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -178,9 +181,13 @@ class Input$EpisodeContext {
   Map<String, dynamic> _$data;
 
   String? get collectionId => (_$data['collectionId'] as String?);
+
   String? get playlistId => (_$data['playlistId'] as String?);
+
   bool? get shuffle => (_$data['shuffle'] as bool?);
+
   String? get cursor => (_$data['cursor'] as String?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('collectionId')) {
@@ -207,6 +214,7 @@ class Input$EpisodeContext {
         this,
         (i) => i,
       );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -627,9 +635,9 @@ const possibleTypesMap = <String, Set<String>>{
     'Game',
     'Season',
     'StudyTopic',
+    'Short',
     'Episode',
     'Show',
-    'Short',
   },
   'CalendarEntry': {
     'SimpleCalendarEntry',
@@ -651,17 +659,17 @@ const possibleTypesMap = <String, Set<String>>{
     'VideoTask',
     'LinkTask',
   },
+  'PlaylistItem': {
+    'Short',
+    'Episode',
+  },
+  'MediaItem': {
+    'Short',
+    'Episode',
+  },
+  'SubclipSourceItem': {'Episode'},
   'EpisodeContextUnion': {
     'Season',
     'ContextCollection',
   },
-  'PlaylistItem': {
-    'Episode',
-    'Short',
-  },
-  'MediaItem': {
-    'Episode',
-    'Short',
-  },
-  'SubclipSourceItem': {'Episode'},
 };

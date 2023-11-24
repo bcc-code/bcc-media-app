@@ -6,16 +6,16 @@ part of 'search_performed.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SearchPerformedEvent _$$_SearchPerformedEventFromJson(
+_$SearchPerformedEventImpl _$$SearchPerformedEventImplFromJson(
         Map<String, dynamic> json) =>
-    _$_SearchPerformedEvent(
+    _$SearchPerformedEventImpl(
       searchText: json['searchText'] as String,
       searchLatency: json['searchLatency'] as int,
       searchResultCount: json['searchResultCount'] as int,
     );
 
-Map<String, dynamic> _$$_SearchPerformedEventToJson(
-        _$_SearchPerformedEvent instance) =>
+Map<String, dynamic> _$$SearchPerformedEventImplToJson(
+        _$SearchPerformedEventImpl instance) =>
     <String, dynamic>{
       'searchText': instance.searchText,
       'searchLatency': instance.searchLatency,

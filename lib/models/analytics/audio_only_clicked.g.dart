@@ -6,14 +6,14 @@ part of 'audio_only_clicked.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AudioOnlyClickedEvent _$$_AudioOnlyClickedEventFromJson(
+_$AudioOnlyClickedEventImpl _$$AudioOnlyClickedEventImplFromJson(
         Map<String, dynamic> json) =>
-    _$_AudioOnlyClickedEvent(
+    _$AudioOnlyClickedEventImpl(
       audioOnly: json['audioOnly'] as bool,
     );
 
-Map<String, dynamic> _$$_AudioOnlyClickedEventToJson(
-        _$_AudioOnlyClickedEvent instance) =>
+Map<String, dynamic> _$$AudioOnlyClickedEventImplToJson(
+        _$AudioOnlyClickedEventImpl instance) =>
     <String, dynamic>{
       'audioOnly': instance.audioOnly,
     };

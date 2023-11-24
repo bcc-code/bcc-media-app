@@ -64,22 +64,24 @@ class _$AudioOnlyClickedEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_AudioOnlyClickedEventCopyWith<$Res>
+abstract class _$$AudioOnlyClickedEventImplCopyWith<$Res>
     implements $AudioOnlyClickedEventCopyWith<$Res> {
-  factory _$$_AudioOnlyClickedEventCopyWith(_$_AudioOnlyClickedEvent value,
-          $Res Function(_$_AudioOnlyClickedEvent) then) =
-      __$$_AudioOnlyClickedEventCopyWithImpl<$Res>;
+  factory _$$AudioOnlyClickedEventImplCopyWith(
+          _$AudioOnlyClickedEventImpl value,
+          $Res Function(_$AudioOnlyClickedEventImpl) then) =
+      __$$AudioOnlyClickedEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool audioOnly});
 }
 
 /// @nodoc
-class __$$_AudioOnlyClickedEventCopyWithImpl<$Res>
-    extends _$AudioOnlyClickedEventCopyWithImpl<$Res, _$_AudioOnlyClickedEvent>
-    implements _$$_AudioOnlyClickedEventCopyWith<$Res> {
-  __$$_AudioOnlyClickedEventCopyWithImpl(_$_AudioOnlyClickedEvent _value,
-      $Res Function(_$_AudioOnlyClickedEvent) _then)
+class __$$AudioOnlyClickedEventImplCopyWithImpl<$Res>
+    extends _$AudioOnlyClickedEventCopyWithImpl<$Res,
+        _$AudioOnlyClickedEventImpl>
+    implements _$$AudioOnlyClickedEventImplCopyWith<$Res> {
+  __$$AudioOnlyClickedEventImplCopyWithImpl(_$AudioOnlyClickedEventImpl _value,
+      $Res Function(_$AudioOnlyClickedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +89,7 @@ class __$$_AudioOnlyClickedEventCopyWithImpl<$Res>
   $Res call({
     Object? audioOnly = null,
   }) {
-    return _then(_$_AudioOnlyClickedEvent(
+    return _then(_$AudioOnlyClickedEventImpl(
       audioOnly: null == audioOnly
           ? _value.audioOnly
           : audioOnly // ignore: cast_nullable_to_non_nullable
@@ -98,11 +100,11 @@ class __$$_AudioOnlyClickedEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AudioOnlyClickedEvent implements _AudioOnlyClickedEvent {
-  const _$_AudioOnlyClickedEvent({required this.audioOnly});
+class _$AudioOnlyClickedEventImpl implements _AudioOnlyClickedEvent {
+  const _$AudioOnlyClickedEventImpl({required this.audioOnly});
 
-  factory _$_AudioOnlyClickedEvent.fromJson(Map<String, dynamic> json) =>
-      _$$_AudioOnlyClickedEventFromJson(json);
+  factory _$AudioOnlyClickedEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AudioOnlyClickedEventImplFromJson(json);
 
   @override
   final bool audioOnly;
@@ -116,7 +118,7 @@ class _$_AudioOnlyClickedEvent implements _AudioOnlyClickedEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AudioOnlyClickedEvent &&
+            other is _$AudioOnlyClickedEventImpl &&
             (identical(other.audioOnly, audioOnly) ||
                 other.audioOnly == audioOnly));
   }
@@ -128,13 +130,13 @@ class _$_AudioOnlyClickedEvent implements _AudioOnlyClickedEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AudioOnlyClickedEventCopyWith<_$_AudioOnlyClickedEvent> get copyWith =>
-      __$$_AudioOnlyClickedEventCopyWithImpl<_$_AudioOnlyClickedEvent>(
-          this, _$identity);
+  _$$AudioOnlyClickedEventImplCopyWith<_$AudioOnlyClickedEventImpl>
+      get copyWith => __$$AudioOnlyClickedEventImplCopyWithImpl<
+          _$AudioOnlyClickedEventImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AudioOnlyClickedEventToJson(
+    return _$$AudioOnlyClickedEventImplToJson(
       this,
     );
   }
@@ -142,15 +144,15 @@ class _$_AudioOnlyClickedEvent implements _AudioOnlyClickedEvent {
 
 abstract class _AudioOnlyClickedEvent implements AudioOnlyClickedEvent {
   const factory _AudioOnlyClickedEvent({required final bool audioOnly}) =
-      _$_AudioOnlyClickedEvent;
+      _$AudioOnlyClickedEventImpl;
 
   factory _AudioOnlyClickedEvent.fromJson(Map<String, dynamic> json) =
-      _$_AudioOnlyClickedEvent.fromJson;
+      _$AudioOnlyClickedEventImpl.fromJson;
 
   @override
   bool get audioOnly;
   @override
   @JsonKey(ignore: true)
-  _$$_AudioOnlyClickedEventCopyWith<_$_AudioOnlyClickedEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AudioOnlyClickedEventImplCopyWith<_$AudioOnlyClickedEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

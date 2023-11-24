@@ -318,6 +318,7 @@ class Variables$Query$GetShowOverview {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -330,6 +331,7 @@ class Variables$Query$GetShowOverview {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -505,6 +507,7 @@ class _CopyWithImpl$Query$GetShowOverview<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetShowOverview$show<TRes> get $show {
     final local$$show = _instance.$show;
     return CopyWith$Query$GetShowOverview$show(
@@ -523,6 +526,7 @@ class _CopyWithStubImpl$Query$GetShowOverview<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetShowOverview$show<TRes> get $show =>
       CopyWith$Query$GetShowOverview$show.stub(_res);
 }
@@ -974,6 +978,7 @@ class _CopyWithImpl$Query$GetShowOverview$show<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetShowOverview$show$seasons<TRes> get seasons {
     final local$seasons = _instance.seasons;
     return CopyWith$Query$GetShowOverview$show$seasons(
@@ -994,6 +999,7 @@ class _CopyWithStubImpl$Query$GetShowOverview$show<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetShowOverview$show$seasons<TRes> get seasons =>
       CopyWith$Query$GetShowOverview$show$seasons.stub(_res);
 }
@@ -1126,6 +1132,7 @@ class _CopyWithImpl$Query$GetShowOverview$show$seasons<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetShowOverview$show$seasons$items> Function(
                   Iterable<
@@ -1151,6 +1158,7 @@ class _CopyWithStubImpl$Query$GetShowOverview$show$seasons<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -1268,6 +1276,7 @@ class _CopyWithImpl$Query$GetShowOverview$show$seasons$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetShowOverview$show$seasons$items$episodes<TRes>
       get episodes {
     final local$episodes = _instance.episodes;
@@ -1287,6 +1296,7 @@ class _CopyWithStubImpl$Query$GetShowOverview$show$seasons$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetShowOverview$show$seasons$items$episodes<TRes>
       get episodes =>
           CopyWith$Query$GetShowOverview$show$seasons$items$episodes.stub(_res);
@@ -1426,6 +1436,7 @@ class _CopyWithImpl$Query$GetShowOverview$show$seasons$items$episodes<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetShowOverview$show$seasons$items$episodes$items> Function(
                   Iterable<
@@ -1453,6 +1464,7 @@ class _CopyWithStubImpl$Query$GetShowOverview$show$seasons$items$episodes<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -1688,6 +1700,7 @@ class Variables$Query$GetPlaylistOverview {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -1701,6 +1714,7 @@ class Variables$Query$GetPlaylistOverview {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -1878,6 +1892,7 @@ class _CopyWithImpl$Query$GetPlaylistOverview<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetPlaylistOverview$playlist<TRes> get playlist {
     final local$playlist = _instance.playlist;
     return CopyWith$Query$GetPlaylistOverview$playlist(
@@ -1896,6 +1911,7 @@ class _CopyWithStubImpl$Query$GetPlaylistOverview<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetPlaylistOverview$playlist<TRes> get playlist =>
       CopyWith$Query$GetPlaylistOverview$playlist.stub(_res);
 }
@@ -2306,6 +2322,7 @@ class _CopyWithImpl$Query$GetPlaylistOverview$playlist<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetPlaylistOverview$playlist$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Query$GetPlaylistOverview$playlist$items(
@@ -2325,6 +2342,7 @@ class _CopyWithStubImpl$Query$GetPlaylistOverview$playlist<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetPlaylistOverview$playlist$items<TRes> get items =>
       CopyWith$Query$GetPlaylistOverview$playlist$items.stub(_res);
 }
@@ -2476,6 +2494,7 @@ class _CopyWithImpl$Query$GetPlaylistOverview$playlist$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetPlaylistOverview$playlist$items$items> Function(
                   Iterable<
@@ -2502,6 +2521,7 @@ class _CopyWithStubImpl$Query$GetPlaylistOverview$playlist$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 

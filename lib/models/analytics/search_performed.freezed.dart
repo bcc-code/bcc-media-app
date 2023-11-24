@@ -75,22 +75,22 @@ class _$SearchPerformedEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_SearchPerformedEventCopyWith<$Res>
+abstract class _$$SearchPerformedEventImplCopyWith<$Res>
     implements $SearchPerformedEventCopyWith<$Res> {
-  factory _$$_SearchPerformedEventCopyWith(_$_SearchPerformedEvent value,
-          $Res Function(_$_SearchPerformedEvent) then) =
-      __$$_SearchPerformedEventCopyWithImpl<$Res>;
+  factory _$$SearchPerformedEventImplCopyWith(_$SearchPerformedEventImpl value,
+          $Res Function(_$SearchPerformedEventImpl) then) =
+      __$$SearchPerformedEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String searchText, int searchLatency, int searchResultCount});
 }
 
 /// @nodoc
-class __$$_SearchPerformedEventCopyWithImpl<$Res>
-    extends _$SearchPerformedEventCopyWithImpl<$Res, _$_SearchPerformedEvent>
-    implements _$$_SearchPerformedEventCopyWith<$Res> {
-  __$$_SearchPerformedEventCopyWithImpl(_$_SearchPerformedEvent _value,
-      $Res Function(_$_SearchPerformedEvent) _then)
+class __$$SearchPerformedEventImplCopyWithImpl<$Res>
+    extends _$SearchPerformedEventCopyWithImpl<$Res, _$SearchPerformedEventImpl>
+    implements _$$SearchPerformedEventImplCopyWith<$Res> {
+  __$$SearchPerformedEventImplCopyWithImpl(_$SearchPerformedEventImpl _value,
+      $Res Function(_$SearchPerformedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -100,7 +100,7 @@ class __$$_SearchPerformedEventCopyWithImpl<$Res>
     Object? searchLatency = null,
     Object? searchResultCount = null,
   }) {
-    return _then(_$_SearchPerformedEvent(
+    return _then(_$SearchPerformedEventImpl(
       searchText: null == searchText
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
@@ -119,14 +119,14 @@ class __$$_SearchPerformedEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SearchPerformedEvent implements _SearchPerformedEvent {
-  const _$_SearchPerformedEvent(
+class _$SearchPerformedEventImpl implements _SearchPerformedEvent {
+  const _$SearchPerformedEventImpl(
       {required this.searchText,
       required this.searchLatency,
       required this.searchResultCount});
 
-  factory _$_SearchPerformedEvent.fromJson(Map<String, dynamic> json) =>
-      _$$_SearchPerformedEventFromJson(json);
+  factory _$SearchPerformedEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SearchPerformedEventImplFromJson(json);
 
   @override
   final String searchText;
@@ -144,7 +144,7 @@ class _$_SearchPerformedEvent implements _SearchPerformedEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SearchPerformedEvent &&
+            other is _$SearchPerformedEventImpl &&
             (identical(other.searchText, searchText) ||
                 other.searchText == searchText) &&
             (identical(other.searchLatency, searchLatency) ||
@@ -161,13 +161,14 @@ class _$_SearchPerformedEvent implements _SearchPerformedEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SearchPerformedEventCopyWith<_$_SearchPerformedEvent> get copyWith =>
-      __$$_SearchPerformedEventCopyWithImpl<_$_SearchPerformedEvent>(
-          this, _$identity);
+  _$$SearchPerformedEventImplCopyWith<_$SearchPerformedEventImpl>
+      get copyWith =>
+          __$$SearchPerformedEventImplCopyWithImpl<_$SearchPerformedEventImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SearchPerformedEventToJson(
+    return _$$SearchPerformedEventImplToJson(
       this,
     );
   }
@@ -177,10 +178,10 @@ abstract class _SearchPerformedEvent implements SearchPerformedEvent {
   const factory _SearchPerformedEvent(
       {required final String searchText,
       required final int searchLatency,
-      required final int searchResultCount}) = _$_SearchPerformedEvent;
+      required final int searchResultCount}) = _$SearchPerformedEventImpl;
 
   factory _SearchPerformedEvent.fromJson(Map<String, dynamic> json) =
-      _$_SearchPerformedEvent.fromJson;
+      _$SearchPerformedEventImpl.fromJson;
 
   @override
   String get searchText;
@@ -190,6 +191,6 @@ abstract class _SearchPerformedEvent implements SearchPerformedEvent {
   int get searchResultCount;
   @override
   @JsonKey(ignore: true)
-  _$$_SearchPerformedEventCopyWith<_$_SearchPerformedEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SearchPerformedEventImplCopyWith<_$SearchPerformedEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

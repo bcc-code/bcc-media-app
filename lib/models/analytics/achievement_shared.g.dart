@@ -6,14 +6,14 @@ part of 'achievement_shared.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AchievementSharedEvent _$$_AchievementSharedEventFromJson(
+_$AchievementSharedEventImpl _$$AchievementSharedEventImplFromJson(
         Map<String, dynamic> json) =>
-    _$_AchievementSharedEvent(
+    _$AchievementSharedEventImpl(
       elementTitle: json['elementTitle'] as String,
     );
 
-Map<String, dynamic> _$$_AchievementSharedEventToJson(
-        _$_AchievementSharedEvent instance) =>
+Map<String, dynamic> _$$AchievementSharedEventImplToJson(
+        _$AchievementSharedEventImpl instance) =>
     <String, dynamic>{
       'elementTitle': instance.elementTitle,
     };

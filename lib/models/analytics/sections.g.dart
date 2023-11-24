@@ -6,9 +6,9 @@ part of 'sections.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SectionClickedEvent _$$_SectionClickedEventFromJson(
+_$SectionClickedEventImpl _$$SectionClickedEventImplFromJson(
         Map<String, dynamic> json) =>
-    _$_SectionClickedEvent(
+    _$SectionClickedEventImpl(
       sectionId: json['sectionId'] as String,
       sectionName: json['sectionName'] as String?,
       sectionPosition: json['sectionPosition'] as int,
@@ -20,8 +20,8 @@ _$_SectionClickedEvent _$$_SectionClickedEventFromJson(
       pageCode: json['pageCode'] as String?,
     );
 
-Map<String, dynamic> _$$_SectionClickedEventToJson(
-        _$_SectionClickedEvent instance) =>
+Map<String, dynamic> _$$SectionClickedEventImplToJson(
+        _$SectionClickedEventImpl instance) =>
     <String, dynamic>{
       'sectionId': instance.sectionId,
       'sectionName': instance.sectionName,

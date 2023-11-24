@@ -81,11 +81,11 @@ class _$ContentSharedEventCopyWithImpl<$Res, $Val extends ContentSharedEvent>
 }
 
 /// @nodoc
-abstract class _$$_ContentSharedEventCopyWith<$Res>
+abstract class _$$ContentSharedEventImplCopyWith<$Res>
     implements $ContentSharedEventCopyWith<$Res> {
-  factory _$$_ContentSharedEventCopyWith(_$_ContentSharedEvent value,
-          $Res Function(_$_ContentSharedEvent) then) =
-      __$$_ContentSharedEventCopyWithImpl<$Res>;
+  factory _$$ContentSharedEventImplCopyWith(_$ContentSharedEventImpl value,
+          $Res Function(_$ContentSharedEventImpl) then) =
+      __$$ContentSharedEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -93,11 +93,11 @@ abstract class _$$_ContentSharedEventCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ContentSharedEventCopyWithImpl<$Res>
-    extends _$ContentSharedEventCopyWithImpl<$Res, _$_ContentSharedEvent>
-    implements _$$_ContentSharedEventCopyWith<$Res> {
-  __$$_ContentSharedEventCopyWithImpl(
-      _$_ContentSharedEvent _value, $Res Function(_$_ContentSharedEvent) _then)
+class __$$ContentSharedEventImplCopyWithImpl<$Res>
+    extends _$ContentSharedEventCopyWithImpl<$Res, _$ContentSharedEventImpl>
+    implements _$$ContentSharedEventImplCopyWith<$Res> {
+  __$$ContentSharedEventImplCopyWithImpl(_$ContentSharedEventImpl _value,
+      $Res Function(_$ContentSharedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -108,7 +108,7 @@ class __$$_ContentSharedEventCopyWithImpl<$Res>
     Object? elementId = null,
     Object? position = freezed,
   }) {
-    return _then(_$_ContentSharedEvent(
+    return _then(_$ContentSharedEventImpl(
       pageCode: null == pageCode
           ? _value.pageCode
           : pageCode // ignore: cast_nullable_to_non_nullable
@@ -131,15 +131,15 @@ class __$$_ContentSharedEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ContentSharedEvent implements _ContentSharedEvent {
-  const _$_ContentSharedEvent(
+class _$ContentSharedEventImpl implements _ContentSharedEvent {
+  const _$ContentSharedEventImpl(
       {required this.pageCode,
       required this.elementType,
       required this.elementId,
       this.position});
 
-  factory _$_ContentSharedEvent.fromJson(Map<String, dynamic> json) =>
-      _$$_ContentSharedEventFromJson(json);
+  factory _$ContentSharedEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ContentSharedEventImplFromJson(json);
 
   @override
   final String pageCode;
@@ -159,7 +159,7 @@ class _$_ContentSharedEvent implements _ContentSharedEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ContentSharedEvent &&
+            other is _$ContentSharedEventImpl &&
             (identical(other.pageCode, pageCode) ||
                 other.pageCode == pageCode) &&
             (identical(other.elementType, elementType) ||
@@ -178,13 +178,13 @@ class _$_ContentSharedEvent implements _ContentSharedEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ContentSharedEventCopyWith<_$_ContentSharedEvent> get copyWith =>
-      __$$_ContentSharedEventCopyWithImpl<_$_ContentSharedEvent>(
+  _$$ContentSharedEventImplCopyWith<_$ContentSharedEventImpl> get copyWith =>
+      __$$ContentSharedEventImplCopyWithImpl<_$ContentSharedEventImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ContentSharedEventToJson(
+    return _$$ContentSharedEventImplToJson(
       this,
     );
   }
@@ -195,10 +195,10 @@ abstract class _ContentSharedEvent implements ContentSharedEvent {
       {required final String pageCode,
       required final String elementType,
       required final String elementId,
-      final int? position}) = _$_ContentSharedEvent;
+      final int? position}) = _$ContentSharedEventImpl;
 
   factory _ContentSharedEvent.fromJson(Map<String, dynamic> json) =
-      _$_ContentSharedEvent.fromJson;
+      _$ContentSharedEventImpl.fromJson;
 
   @override
   String get pageCode;
@@ -210,6 +210,6 @@ abstract class _ContentSharedEvent implements ContentSharedEvent {
   int? get position;
   @override
   @JsonKey(ignore: true)
-  _$$_ContentSharedEventCopyWith<_$_ContentSharedEvent> get copyWith =>
+  _$$ContentSharedEventImplCopyWith<_$ContentSharedEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

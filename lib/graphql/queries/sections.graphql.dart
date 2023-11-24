@@ -39,8 +39,11 @@ class Variables$Query$FetchMoreItemsForItemSection {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   int? get first => (_$data['first'] as int?);
+
   int? get offset => (_$data['offset'] as int?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -62,6 +65,7 @@ class Variables$Query$FetchMoreItemsForItemSection {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -278,6 +282,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section<TRes> get section {
     final local$section = _instance.section;
     return CopyWith$Query$FetchMoreItemsForItemSection$section(
@@ -296,6 +301,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section<TRes> get section =>
       CopyWith$Query$FetchMoreItemsForItemSection$section.stub(_res);
 }
@@ -1333,6 +1339,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection<
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata<
       TRes> get metadata {
     final local$metadata = _instance.metadata;
@@ -1372,11 +1379,13 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata<
           TRes>
       get metadata =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata
               .stub(_res);
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items<TRes>
       get items =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items
@@ -1816,6 +1825,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items> Function(
                   Iterable<
@@ -1848,6 +1858,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -2040,6 +2051,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item<
       TRes> get item {
     final local$item = _instance.item;
@@ -2067,6 +2079,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item<
           TRes>
       get item =>
@@ -2871,6 +2884,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
             : (items
                 as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items<
       TRes> get items {
     final local$items = _instance.items;
@@ -2898,6 +2912,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
         items,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items<
           TRes>
       get items =>
@@ -3303,6 +3318,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
             ? _instance.productionDate
             : (productionDate as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -3336,6 +3352,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? productionDate,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -3479,6 +3496,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -3503,6 +3521,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -3876,6 +3895,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
             : (seasons
                 as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -3912,11 +3932,13 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
         seasons,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$defaultEpisode
               .stub(_res);
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons<
           TRes>
       get seasons =>
@@ -4451,6 +4473,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items> Function(
                   Iterable<
@@ -4481,6 +4504,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -4495,12 +4519,12 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
   factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items.fromJson(
       Map<String, dynamic> json) {
     switch (json["__typename"] as String) {
-      case "Episode":
-        return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-            .fromJson(json);
-
       case "Short":
         return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+            .fromJson(json);
+
+      case "Episode":
+        return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
             .fromJson(json);
 
       default:
@@ -4571,21 +4595,21 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSec
           );
   _T when<_T>({
     required _T Function(
-            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
-        episode,
-    required _T Function(
             Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short)
         short,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+        episode,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
-      case "Episode":
-        return episode(this
-            as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
-
       case "Short":
         return short(this
             as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short);
+
+      case "Episode":
+        return episode(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
 
       default:
         return orElse();
@@ -4594,26 +4618,26 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSec
 
   _T maybeWhen<_T>({
     _T Function(
-            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)?
-        episode,
-    _T Function(
             Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short)?
         short,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)?
+        episode,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
-      case "Episode":
-        if (episode != null) {
-          return episode(this
-              as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
-        } else {
-          return orElse();
-        }
-
       case "Short":
         if (short != null) {
           return short(this
               as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
         } else {
           return orElse();
         }
@@ -4682,152 +4706,6 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
         CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items<
             TRes> {
   _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items(
-      this._res);
-
-  TRes _res;
-
-  call({
-    String? image,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-    implements
-        Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode,
-        Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items {
-  Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode({
-    this.image,
-    this.$__typename = 'Episode',
-  });
-
-  factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.fromJson(
-      Map<String, dynamic> json) {
-    final l$image = json['image'];
-    final l$$__typename = json['__typename'];
-    return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-      image: (l$image as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String? image;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$image = image;
-    _resultData['image'] = l$image;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$image = image;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$image,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$image = image;
-    final lOther$image = other.image;
-    if (l$image != lOther$image) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-    on Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode {
-  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode>
-      get copyWith =>
-          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-    TRes> {
-  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-        instance,
-    TRes Function(
-            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
-        then,
-  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
-
-  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
-
-  TRes call({
-    String? image,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-        TRes>
-    implements
-        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-            TRes> {
-  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-      _instance;
-
-  final TRes Function(
-          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? image = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(
-          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-        image: image == _undefined ? _instance.image : (image as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-        TRes>
-    implements
-        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-            TRes> {
-  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
       this._res);
 
   TRes _res;
@@ -4974,6 +4852,152 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
         CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
             TRes> {
   _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode,
+        Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items {
+  Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode({
+    this.image,
+    this.$__typename = 'Episode',
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.fromJson(
+      Map<String, dynamic> json) {
+    final l$image = json['image'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+      image: (l$image as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? image;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$image = image;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$image,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+    on Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+    Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
+
+  TRes call({
+    String? image,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? image = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+        image: image == _undefined ? _instance.image : (image as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
       this._res);
 
   TRes _res;
@@ -5133,6 +5157,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items> Function(
                   Iterable<
@@ -5163,6 +5188,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -5301,6 +5327,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
       TRes> get episodes {
     final local$episodes = _instance.episodes;
@@ -5325,6 +5352,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
           TRes>
       get episodes =>
@@ -5481,6 +5509,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items> Function(
                   Iterable<
@@ -5511,6 +5540,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -5889,6 +5919,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection<
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata<
       TRes> get metadata {
     final local$metadata = _instance.metadata;
@@ -5928,11 +5959,13 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata<
           TRes>
       get metadata =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata
               .stub(_res);
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items<
           TRes>
       get items =>
@@ -6376,6 +6409,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items> Function(
                   Iterable<
@@ -6408,6 +6442,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -6619,6 +6654,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$
             ? _instance.description
             : (description as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item<
       TRes> get item {
     final local$item = _instance.item;
@@ -6647,6 +6683,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item<
           TRes>
       get item =>
@@ -7787,6 +7824,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -7819,6 +7857,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -7962,6 +8001,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -7986,6 +8026,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -8333,6 +8374,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -8360,6 +8402,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -8973,6 +9016,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection<
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata<
       TRes> get metadata {
     final local$metadata = _instance.metadata;
@@ -9012,11 +9056,13 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata<
           TRes>
       get metadata =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata
               .stub(_res);
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items<
           TRes>
       get items =>
@@ -9459,6 +9505,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$i
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items> Function(
                   Iterable<
@@ -9491,6 +9538,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -9683,6 +9731,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$i
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item<
       TRes> get item {
     final local$item = _instance.item;
@@ -9710,6 +9759,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item<
           TRes>
       get item =>
@@ -10869,6 +10919,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$i
             ? _instance.productionDate
             : (productionDate as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -10902,6 +10953,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
     String? productionDate,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -11045,6 +11097,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$i
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -11069,6 +11122,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -11416,6 +11470,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$i
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -11443,6 +11498,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -12052,6 +12108,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection<
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$metadata<
       TRes> get metadata {
     final local$metadata = _instance.metadata;
@@ -12089,11 +12146,13 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection<
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$metadata<
           TRes>
       get metadata =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$metadata
               .stub(_res);
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items<TRes>
       get items =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items
@@ -12531,6 +12590,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchMoreItemsForItemSection$section$$CardSection$items$items> Function(
                   Iterable<
@@ -12563,6 +12623,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -12773,6 +12834,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
             ? _instance.description
             : (description as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item<
       TRes> get item {
     final local$item = _instance.item;
@@ -12801,6 +12863,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item<
           TRes>
       get item =>
@@ -13941,6 +14004,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -13973,6 +14037,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -14116,6 +14181,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -14140,6 +14206,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -14487,6 +14554,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -14514,6 +14582,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -15016,6 +15085,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
             : (lessonsProgress
                 as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress),
       ));
+
   TRes images(
           Iterable<Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images> Function(
                   Iterable<
@@ -15028,6 +15098,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
                 e,
                 (i) => i,
               ))).toList());
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
       TRes> get lessonsProgress {
     final local$lessonsProgress = _instance.lessonsProgress;
@@ -15057,7 +15128,9 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
         lessonsProgress,
   }) =>
       _res;
+
   images(_fn) => _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
           TRes>
       get lessonsProgress =>
@@ -15270,6 +15343,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection<
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$metadata<
       TRes> get metadata {
     final local$metadata = _instance.metadata;
@@ -15306,11 +15380,13 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection<
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$metadata<
           TRes>
       get metadata =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$metadata
               .stub(_res);
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items<TRes>
       get items =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items
@@ -15748,6 +15824,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$item
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchMoreItemsForItemSection$section$$ListSection$items$items> Function(
                   Iterable<
@@ -15780,6 +15857,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -15971,6 +16049,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$item
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item<
       TRes> get item {
     final local$item = _instance.item;
@@ -15998,6 +16077,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item<
           TRes>
       get item =>
@@ -17193,6 +17273,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$item
             : (ageRating as String),
         image: image == _undefined ? _instance.image : (image as String?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -17228,6 +17309,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$
     String? image,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -17371,6 +17453,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$item
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -17395,6 +17478,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -17742,6 +17826,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$item
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -17769,6 +17854,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -18363,6 +18449,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardListSection<
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata<
       TRes> get metadata {
     final local$metadata = _instance.metadata;
@@ -18401,11 +18488,13 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardListSect
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata<
           TRes>
       get metadata =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata
               .stub(_res);
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardListSection$items<
           TRes>
       get items =>
@@ -18843,6 +18932,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardListSection$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -18874,6 +18964,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardListSect
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -19110,6 +19201,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSecti
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata<
       TRes> get metadata {
     final local$metadata = _instance.metadata;
@@ -19149,11 +19241,13 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata<
           TRes>
       get metadata =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata
               .stub(_res);
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items<
           TRes>
       get items =>
@@ -19601,6 +19695,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSecti
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items> Function(
                   Iterable<
@@ -19633,6 +19728,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -19826,6 +19922,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSecti
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item<
       TRes> get item {
     final local$item = _instance.item;
@@ -19853,6 +19950,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item<
           TRes>
       get item =>
@@ -21016,6 +21114,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSecti
             : ($__typename as String),
         number: number == _undefined ? _instance.number : (number as int?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -21049,6 +21148,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -21212,6 +21312,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSecti
             ? _instance.number
             : (number as int),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -21237,6 +21338,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -21586,6 +21688,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSecti
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -21613,6 +21716,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -22231,6 +22335,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSectio
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata<
       TRes> get metadata {
     final local$metadata = _instance.metadata;
@@ -22270,11 +22375,13 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata<
           TRes>
       get metadata =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata
               .stub(_res);
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items<
           TRes>
       get items =>
@@ -22721,6 +22828,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSectio
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items> Function(
                   Iterable<
@@ -22753,6 +22861,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -22946,6 +23055,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSectio
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item<
       TRes> get item {
     final local$item = _instance.item;
@@ -22973,6 +23083,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item<
           TRes>
       get item =>
@@ -24136,6 +24247,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSectio
             : ($__typename as String),
         number: number == _undefined ? _instance.number : (number as int?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -24169,6 +24281,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -24332,6 +24445,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSectio
             ? _instance.number
             : (number as int),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -24357,6 +24471,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -24706,6 +24821,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSectio
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -24733,6 +24849,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -25350,6 +25467,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection<
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata<
       TRes> get metadata {
     final local$metadata = _instance.metadata;
@@ -25389,11 +25507,13 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSect
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata<
           TRes>
       get metadata =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata
               .stub(_res);
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items<
           TRes>
       get items =>
@@ -25838,6 +25958,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items> Function(
                   Iterable<
@@ -25870,6 +25991,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSect
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -26063,6 +26185,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item<
       TRes> get item {
     final local$item = _instance.item;
@@ -26090,6 +26213,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSect
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item<
           TRes>
       get item =>
@@ -27253,6 +27377,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$
             : ($__typename as String),
         number: number == _undefined ? _instance.number : (number as int?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -27286,6 +27411,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSect
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -27449,6 +27575,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$
             ? _instance.number
             : (number as int),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -27474,6 +27601,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSect
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -27823,6 +27951,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -27850,6 +27979,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSect
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -28443,6 +28573,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconSection<
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconSection$metadata<
       TRes> get metadata {
     final local$metadata = _instance.metadata;
@@ -28479,11 +28610,13 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconSection<
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconSection$metadata<
           TRes>
       get metadata =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$IconSection$metadata
               .stub(_res);
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$IconSection$items<TRes>
       get items =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$IconSection$items
@@ -28915,6 +29048,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconSection$item
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -28946,6 +29080,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconSection$
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -29156,6 +29291,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$LabelSection<
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata<
       TRes> get metadata {
     final local$metadata = _instance.metadata;
@@ -29193,11 +29329,13 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$LabelSection
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata<
           TRes>
       get metadata =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata
               .stub(_res);
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$LabelSection$items<TRes>
       get items =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$LabelSection$items
@@ -29631,6 +29769,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$LabelSection$ite
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -29662,6 +29801,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$LabelSection
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -30117,6 +30257,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$MessageSection<
             ? _instance.description
             : (description as String?),
       ));
+
   TRes messages(
           Iterable<Query$FetchMoreItemsForItemSection$section$$MessageSection$messages>? Function(
                   Iterable<
@@ -30150,6 +30291,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$MessageSecti
     String? description,
   }) =>
       _res;
+
   messages(_fn) => _res;
 }
 
@@ -30305,6 +30447,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$MessageSection$m
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$MessageSection$messages$style<
       TRes> get style {
     final local$style = _instance.style;
@@ -30330,6 +30473,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$MessageSecti
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$FetchMoreItemsForItemSection$section$$MessageSection$messages$style<
           TRes>
       get style =>
@@ -31253,9 +31397,13 @@ class Variables$Query$GetSection {
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
+
   String get timestamp => (_$data['timestamp'] as String);
+
   int? get first => (_$data['first'] as int?);
+
   int? get offset => (_$data['offset'] as int?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -31278,6 +31426,7 @@ class Variables$Query$GetSection {
             this,
             (i) => i,
           );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -31502,6 +31651,7 @@ class _CopyWithImpl$Query$GetSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section<TRes> get section {
     final local$section = _instance.section;
     return CopyWith$Query$GetSection$section(
@@ -31520,6 +31670,7 @@ class _CopyWithStubImpl$Query$GetSection<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section<TRes> get section =>
       CopyWith$Query$GetSection$section.stub(_res);
 }
@@ -32414,6 +32565,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$GetSection$section$$PosterSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -32446,9 +32598,11 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$PosterSection$metadata<TRes>
       get metadata =>
           CopyWith$Query$GetSection$section$$PosterSection$metadata.stub(_res);
+
   CopyWith$Query$GetSection$section$$PosterSection$items<TRes> get items =>
       CopyWith$Query$GetSection$section$$PosterSection$items.stub(_res);
 }
@@ -32859,6 +33013,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetSection$section$$PosterSection$items$items> Function(
                   Iterable<
@@ -32886,6 +33041,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -33066,6 +33222,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item<TRes>
       get item {
     final local$item = _instance.item;
@@ -33091,6 +33248,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items<
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item<TRes>
       get item =>
           CopyWith$Query$GetSection$section$$PosterSection$items$items$item
@@ -33876,6 +34034,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Pl
             : (items
                 as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items),
       ));
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items<
       TRes> get items {
     final local$items = _instance.items;
@@ -33903,6 +34062,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
         items,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items<
           TRes>
       get items =>
@@ -34302,6 +34462,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Ep
             ? _instance.productionDate
             : (productionDate as String),
       ));
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -34335,6 +34496,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
     String? productionDate,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -34478,6 +34640,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Ep
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -34502,6 +34665,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -34872,6 +35036,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Sh
             : (seasons
                 as Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons),
       ));
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -34908,11 +35073,13 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
         seasons,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
           CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$defaultEpisode
               .stub(_res);
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons<
           TRes>
       get seasons =>
@@ -35445,6 +35612,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Pl
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items> Function(
                   Iterable<
@@ -35475,6 +35643,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -35489,12 +35658,12 @@ class Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$i
   factory Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items.fromJson(
       Map<String, dynamic> json) {
     switch (json["__typename"] as String) {
-      case "Episode":
-        return Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-            .fromJson(json);
-
       case "Short":
         return Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short
+            .fromJson(json);
+
+      case "Episode":
+        return Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
             .fromJson(json);
 
       default:
@@ -35565,21 +35734,21 @@ extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$i
           );
   _T when<_T>({
     required _T Function(
-            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
-        episode,
-    required _T Function(
             Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short)
         short,
+    required _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+        episode,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
-      case "Episode":
-        return episode(this
-            as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
-
       case "Short":
         return short(this
             as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short);
+
+      case "Episode":
+        return episode(this
+            as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
 
       default:
         return orElse();
@@ -35588,26 +35757,26 @@ extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$i
 
   _T maybeWhen<_T>({
     _T Function(
-            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)?
-        episode,
-    _T Function(
             Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short)?
         short,
+    _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)?
+        episode,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
-      case "Episode":
-        if (episode != null) {
-          return episode(this
-              as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
-        } else {
-          return orElse();
-        }
-
       case "Short":
         if (short != null) {
           return short(this
               as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode);
         } else {
           return orElse();
         }
@@ -35676,152 +35845,6 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
         CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items<
             TRes> {
   _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items(
-      this._res);
-
-  TRes _res;
-
-  call({
-    String? image,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-    implements
-        Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode,
-        Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items {
-  Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode({
-    this.image,
-    this.$__typename = 'Episode',
-  });
-
-  factory Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.fromJson(
-      Map<String, dynamic> json) {
-    final l$image = json['image'];
-    final l$$__typename = json['__typename'];
-    return Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-      image: (l$image as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String? image;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$image = image;
-    _resultData['image'] = l$image;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$image = image;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$image,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$image = image;
-    final lOther$image = other.image;
-    if (l$image != lOther$image) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-    on Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode {
-  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode>
-      get copyWith =>
-          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-    TRes> {
-  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-    Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-        instance,
-    TRes Function(
-            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
-        then,
-  ) = _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
-
-  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
-
-  TRes call({
-    String? image,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-        TRes>
-    implements
-        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-            TRes> {
-  _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-    this._instance,
-    this._then,
-  );
-
-  final Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
-      _instance;
-
-  final TRes Function(
-          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? image = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(
-          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
-        image: image == _undefined ? _instance.image : (image as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-        TRes>
-    implements
-        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
-            TRes> {
-  _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
       this._res);
 
   TRes _res;
@@ -35968,6 +35991,152 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
         CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short<
             TRes> {
   _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Short(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+    implements
+        Fragment$Section$$PosterSection$items$items$item$$Playlist$items$items$$Episode,
+        Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items {
+  Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode({
+    this.image,
+    this.$__typename = 'Episode',
+  });
+
+  factory Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.fromJson(
+      Map<String, dynamic> json) {
+    final l$image = json['image'];
+    final l$$__typename = json['__typename'];
+    return Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+      image: (l$image as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? image;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$image = image;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$image,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+    on Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode {
+  CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode>
+      get copyWith =>
+          CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+    TRes> {
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+    Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+        instance,
+    TRes Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+        then,
+  ) = _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
+
+  factory CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode;
+
+  TRes call({
+    String? image,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode
+      _instance;
+
+  final TRes Function(
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? image = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
+        image: image == _undefined ? _instance.image : (image as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+        TRes>
+    implements
+        CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode<
+            TRes> {
+  _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item$$Playlist$items$items$$Episode(
       this._res);
 
   TRes _res;
@@ -36127,6 +36296,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Sh
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items> Function(
                   Iterable<
@@ -36157,6 +36327,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -36295,6 +36466,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Sh
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
       TRes> get episodes {
     final local$episodes = _instance.episodes;
@@ -36319,6 +36491,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes<
           TRes>
       get episodes =>
@@ -36475,6 +36648,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$items$items$item$$Sh
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetSection$section$$PosterSection$items$items$item$$Show$seasons$items$episodes$items> Function(
                   Iterable<
@@ -36505,6 +36679,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$items$items$item
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -36869,6 +37044,7 @@ class _CopyWithImpl$Query$GetSection$section$$FeaturedSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$GetSection$section$$FeaturedSection$metadata<TRes>
       get metadata {
     final local$metadata = _instance.metadata;
@@ -36902,10 +37078,12 @@ class _CopyWithStubImpl$Query$GetSection$section$$FeaturedSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$FeaturedSection$metadata<TRes>
       get metadata =>
           CopyWith$Query$GetSection$section$$FeaturedSection$metadata.stub(
               _res);
+
   CopyWith$Query$GetSection$section$$FeaturedSection$items<TRes> get items =>
       CopyWith$Query$GetSection$section$$FeaturedSection$items.stub(_res);
 }
@@ -37321,6 +37499,7 @@ class _CopyWithImpl$Query$GetSection$section$$FeaturedSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetSection$section$$FeaturedSection$items$items> Function(
                   Iterable<
@@ -37348,6 +37527,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$FeaturedSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -37547,6 +37727,7 @@ class _CopyWithImpl$Query$GetSection$section$$FeaturedSection$items$items<TRes>
             ? _instance.description
             : (description as String),
       ));
+
   CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item<TRes>
       get item {
     final local$item = _instance.item;
@@ -37573,6 +37754,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$FeaturedSection$items$items<
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item<TRes>
       get item =>
           CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item
@@ -38698,6 +38880,7 @@ class _CopyWithImpl$Query$GetSection$section$$FeaturedSection$items$items$item$$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -38730,6 +38913,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$FeaturedSection$items$items$it
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -38873,6 +39057,7 @@ class _CopyWithImpl$Query$GetSection$section$$FeaturedSection$items$items$item$$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -38897,6 +39082,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$FeaturedSection$items$items$it
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -39241,6 +39427,7 @@ class _CopyWithImpl$Query$GetSection$section$$FeaturedSection$items$items$item$$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -39268,6 +39455,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$FeaturedSection$items$items$it
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -39864,6 +40052,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$GetSection$section$$DefaultSection$metadata<TRes>
       get metadata {
     final local$metadata = _instance.metadata;
@@ -39897,9 +40086,11 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$DefaultSection$metadata<TRes>
       get metadata =>
           CopyWith$Query$GetSection$section$$DefaultSection$metadata.stub(_res);
+
   CopyWith$Query$GetSection$section$$DefaultSection$items<TRes> get items =>
       CopyWith$Query$GetSection$section$$DefaultSection$items.stub(_res);
 }
@@ -40315,6 +40506,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetSection$section$$DefaultSection$items$items> Function(
                   Iterable<
@@ -40342,6 +40534,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -40522,6 +40715,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultSection$items$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$DefaultSection$items$items$item<TRes>
       get item {
     final local$item = _instance.item;
@@ -40547,6 +40741,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultSection$items$items<
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$DefaultSection$items$items$item<TRes>
       get item =>
           CopyWith$Query$GetSection$section$$DefaultSection$items$items$item
@@ -41687,6 +41882,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultSection$items$items$item$$E
             ? _instance.productionDate
             : (productionDate as String),
       ));
+
   CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -41720,6 +41916,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultSection$items$items$ite
     String? productionDate,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -41863,6 +42060,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultSection$items$items$item$$E
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -41887,6 +42085,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultSection$items$items$ite
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -42231,6 +42430,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultSection$items$items$item$$S
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -42258,6 +42458,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultSection$items$items$ite
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$DefaultSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -42854,6 +43055,7 @@ class _CopyWithImpl$Query$GetSection$section$$CardSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$GetSection$section$$CardSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -42886,8 +43088,10 @@ class _CopyWithStubImpl$Query$GetSection$section$$CardSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$CardSection$metadata<TRes> get metadata =>
       CopyWith$Query$GetSection$section$$CardSection$metadata.stub(_res);
+
   CopyWith$Query$GetSection$section$$CardSection$items<TRes> get items =>
       CopyWith$Query$GetSection$section$$CardSection$items.stub(_res);
 }
@@ -43297,6 +43501,7 @@ class _CopyWithImpl$Query$GetSection$section$$CardSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetSection$section$$CardSection$items$items> Function(
                   Iterable<
@@ -43324,6 +43529,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$CardSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -43521,6 +43727,7 @@ class _CopyWithImpl$Query$GetSection$section$$CardSection$items$items<TRes>
             ? _instance.description
             : (description as String),
       ));
+
   CopyWith$Query$GetSection$section$$CardSection$items$items$item<TRes>
       get item {
     final local$item = _instance.item;
@@ -43546,6 +43753,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$CardSection$items$items<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$CardSection$items$items$item<TRes>
       get item =>
           CopyWith$Query$GetSection$section$$CardSection$items$items$item.stub(
@@ -44650,6 +44858,7 @@ class _CopyWithImpl$Query$GetSection$section$$CardSection$items$items$item$$Epis
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -44682,6 +44891,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$CardSection$items$items$item$$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -44825,6 +45035,7 @@ class _CopyWithImpl$Query$GetSection$section$$CardSection$items$items$item$$Epis
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -44849,6 +45060,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$CardSection$items$items$item$$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -45191,6 +45403,7 @@ class _CopyWithImpl$Query$GetSection$section$$CardSection$items$items$item$$Show
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -45218,6 +45431,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$CardSection$items$items$item$$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$CardSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -45715,6 +45929,7 @@ class _CopyWithImpl$Query$GetSection$section$$CardSection$items$items$item$$Stud
             : (lessonsProgress
                 as Query$GetSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress),
       ));
+
   TRes images(
           Iterable<Query$GetSection$section$$CardSection$items$items$item$$StudyTopic$images> Function(
                   Iterable<
@@ -45727,6 +45942,7 @@ class _CopyWithImpl$Query$GetSection$section$$CardSection$items$items$item$$Stud
                 e,
                 (i) => i,
               ))).toList());
+
   CopyWith$Query$GetSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
       TRes> get lessonsProgress {
     final local$lessonsProgress = _instance.lessonsProgress;
@@ -45756,7 +45972,9 @@ class _CopyWithStubImpl$Query$GetSection$section$$CardSection$items$items$item$$
         lessonsProgress,
   }) =>
       _res;
+
   images(_fn) => _res;
+
   CopyWith$Query$GetSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
           TRes>
       get lessonsProgress =>
@@ -45958,6 +46176,7 @@ class _CopyWithImpl$Query$GetSection$section$$ListSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$GetSection$section$$ListSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -45989,8 +46208,10 @@ class _CopyWithStubImpl$Query$GetSection$section$$ListSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$ListSection$metadata<TRes> get metadata =>
       CopyWith$Query$GetSection$section$$ListSection$metadata.stub(_res);
+
   CopyWith$Query$GetSection$section$$ListSection$items<TRes> get items =>
       CopyWith$Query$GetSection$section$$ListSection$items.stub(_res);
 }
@@ -46400,6 +46621,7 @@ class _CopyWithImpl$Query$GetSection$section$$ListSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetSection$section$$ListSection$items$items> Function(
                   Iterable<
@@ -46427,6 +46649,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$ListSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -46605,6 +46828,7 @@ class _CopyWithImpl$Query$GetSection$section$$ListSection$items$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$ListSection$items$items$item<TRes>
       get item {
     final local$item = _instance.item;
@@ -46629,6 +46853,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$ListSection$items$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$ListSection$items$items$item<TRes>
       get item =>
           CopyWith$Query$GetSection$section$$ListSection$items$items$item.stub(
@@ -47788,6 +48013,7 @@ class _CopyWithImpl$Query$GetSection$section$$ListSection$items$items$item$$Epis
             : (ageRating as String),
         image: image == _undefined ? _instance.image : (image as String?),
       ));
+
   CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -47823,6 +48049,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$ListSection$items$items$item$$
     String? image,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -47966,6 +48193,7 @@ class _CopyWithImpl$Query$GetSection$section$$ListSection$items$items$item$$Epis
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -47990,6 +48218,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$ListSection$items$items$item$$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -48332,6 +48561,7 @@ class _CopyWithImpl$Query$GetSection$section$$ListSection$items$items$item$$Show
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -48359,6 +48589,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$ListSection$items$items$item$$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$ListSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -48935,6 +49166,7 @@ class _CopyWithImpl$Query$GetSection$section$$CardListSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$GetSection$section$$CardListSection$metadata<TRes>
       get metadata {
     final local$metadata = _instance.metadata;
@@ -48967,10 +49199,12 @@ class _CopyWithStubImpl$Query$GetSection$section$$CardListSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$CardListSection$metadata<TRes>
       get metadata =>
           CopyWith$Query$GetSection$section$$CardListSection$metadata.stub(
               _res);
+
   CopyWith$Query$GetSection$section$$CardListSection$items<TRes> get items =>
       CopyWith$Query$GetSection$section$$CardListSection$items.stub(_res);
 }
@@ -49383,6 +49617,7 @@ class _CopyWithImpl$Query$GetSection$section$$CardListSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -49410,6 +49645,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$CardListSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -49629,6 +49865,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultGridSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$GetSection$section$$DefaultGridSection$metadata<TRes>
       get metadata {
     final local$metadata = _instance.metadata;
@@ -49662,10 +49899,12 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultGridSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$DefaultGridSection$metadata<TRes>
       get metadata =>
           CopyWith$Query$GetSection$section$$DefaultGridSection$metadata.stub(
               _res);
+
   CopyWith$Query$GetSection$section$$DefaultGridSection$items<TRes> get items =>
       CopyWith$Query$GetSection$section$$DefaultGridSection$items.stub(_res);
 }
@@ -50087,6 +50326,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultGridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetSection$section$$DefaultGridSection$items$items> Function(
                   Iterable<
@@ -50116,6 +50356,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultGridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -50300,6 +50541,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultGridSection$items$items<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item<TRes>
       get item {
     final local$item = _instance.item;
@@ -50326,6 +50568,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultGridSection$items$items
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item<TRes>
       get item =>
           CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item
@@ -51481,6 +51724,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultGridSection$items$items$ite
             : ($__typename as String),
         number: number == _undefined ? _instance.number : (number as int?),
       ));
+
   CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -51514,6 +51758,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultGridSection$items$items
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -51677,6 +51922,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultGridSection$items$items$ite
             ? _instance.number
             : (number as int),
       ));
+
   CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -51702,6 +51948,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultGridSection$items$items
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -52050,6 +52297,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultGridSection$items$items$ite
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -52077,6 +52325,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultGridSection$items$items
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -52681,6 +52930,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterGridSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$GetSection$section$$PosterGridSection$metadata<TRes>
       get metadata {
     final local$metadata = _instance.metadata;
@@ -52714,10 +52964,12 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterGridSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$PosterGridSection$metadata<TRes>
       get metadata =>
           CopyWith$Query$GetSection$section$$PosterGridSection$metadata.stub(
               _res);
+
   CopyWith$Query$GetSection$section$$PosterGridSection$items<TRes> get items =>
       CopyWith$Query$GetSection$section$$PosterGridSection$items.stub(_res);
 }
@@ -53139,6 +53391,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterGridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetSection$section$$PosterGridSection$items$items> Function(
                   Iterable<
@@ -53168,6 +53421,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterGridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -53351,6 +53605,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterGridSection$items$items<
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item<TRes>
       get item {
     final local$item = _instance.item;
@@ -53376,6 +53631,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterGridSection$items$items<
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item<TRes>
       get item =>
           CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item
@@ -54525,6 +54781,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterGridSection$items$items$item
             : ($__typename as String),
         number: number == _undefined ? _instance.number : (number as int?),
       ));
+
   CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -54558,6 +54815,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterGridSection$items$items$
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -54721,6 +54979,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterGridSection$items$items$item
             ? _instance.number
             : (number as int),
       ));
+
   CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -54746,6 +55005,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterGridSection$items$items$
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -55092,6 +55352,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterGridSection$items$items$item
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -55119,6 +55380,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterGridSection$items$items$
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -55722,6 +55984,7 @@ class _CopyWithImpl$Query$GetSection$section$$IconGridSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$GetSection$section$$IconGridSection$metadata<TRes>
       get metadata {
     final local$metadata = _instance.metadata;
@@ -55755,10 +56018,12 @@ class _CopyWithStubImpl$Query$GetSection$section$$IconGridSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$IconGridSection$metadata<TRes>
       get metadata =>
           CopyWith$Query$GetSection$section$$IconGridSection$metadata.stub(
               _res);
+
   CopyWith$Query$GetSection$section$$IconGridSection$items<TRes> get items =>
       CopyWith$Query$GetSection$section$$IconGridSection$items.stub(_res);
 }
@@ -56175,6 +56440,7 @@ class _CopyWithImpl$Query$GetSection$section$$IconGridSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Query$GetSection$section$$IconGridSection$items$items> Function(
                   Iterable<
@@ -56202,6 +56468,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$IconGridSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -56383,6 +56650,7 @@ class _CopyWithImpl$Query$GetSection$section$$IconGridSection$items$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$IconGridSection$items$items$item<TRes>
       get item {
     final local$item = _instance.item;
@@ -56408,6 +56676,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$IconGridSection$items$items<
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$IconGridSection$items$items$item<TRes>
       get item =>
           CopyWith$Query$GetSection$section$$IconGridSection$items$items$item
@@ -57556,6 +57825,7 @@ class _CopyWithImpl$Query$GetSection$section$$IconGridSection$items$items$item$$
             : ($__typename as String),
         number: number == _undefined ? _instance.number : (number as int?),
       ));
+
   CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Episode$season<
       TRes> get season {
     final local$season = _instance.season;
@@ -57589,6 +57859,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$IconGridSection$items$items$it
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Episode$season<
           TRes>
       get season =>
@@ -57752,6 +58023,7 @@ class _CopyWithImpl$Query$GetSection$section$$IconGridSection$items$items$item$$
             ? _instance.number
             : (number as int),
       ));
+
   CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Episode$season$show<
       TRes> get $show {
     final local$$show = _instance.$show;
@@ -57777,6 +58049,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$IconGridSection$items$items$it
     int? number,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Episode$season$show<
           TRes>
       get $show =>
@@ -58123,6 +58396,7 @@ class _CopyWithImpl$Query$GetSection$section$$IconGridSection$items$items$item$$
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Show$defaultEpisode<
       TRes> get defaultEpisode {
     final local$defaultEpisode = _instance.defaultEpisode;
@@ -58150,6 +58424,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$IconGridSection$items$items$it
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$IconGridSection$items$items$item$$Show$defaultEpisode<
           TRes>
       get defaultEpisode =>
@@ -58730,6 +59005,7 @@ class _CopyWithImpl$Query$GetSection$section$$IconSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$GetSection$section$$IconSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -58761,8 +59037,10 @@ class _CopyWithStubImpl$Query$GetSection$section$$IconSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$IconSection$metadata<TRes> get metadata =>
       CopyWith$Query$GetSection$section$$IconSection$metadata.stub(_res);
+
   CopyWith$Query$GetSection$section$$IconSection$items<TRes> get items =>
       CopyWith$Query$GetSection$section$$IconSection$items.stub(_res);
 }
@@ -59169,6 +59447,7 @@ class _CopyWithImpl$Query$GetSection$section$$IconSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -59196,6 +59475,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$IconSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -59393,6 +59673,7 @@ class _CopyWithImpl$Query$GetSection$section$$LabelSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   CopyWith$Query$GetSection$section$$LabelSection$metadata<TRes> get metadata {
     final local$metadata = _instance.metadata;
     return local$metadata == null
@@ -59424,8 +59705,10 @@ class _CopyWithStubImpl$Query$GetSection$section$$LabelSection<TRes>
     String? description,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$LabelSection$metadata<TRes> get metadata =>
       CopyWith$Query$GetSection$section$$LabelSection$metadata.stub(_res);
+
   CopyWith$Query$GetSection$section$$LabelSection$items<TRes> get items =>
       CopyWith$Query$GetSection$section$$LabelSection$items.stub(_res);
 }
@@ -59832,6 +60115,7 @@ class _CopyWithImpl$Query$GetSection$section$$LabelSection$items<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   TRes items(
           Iterable<Fragment$ItemSectionItem> Function(
                   Iterable<
@@ -59859,6 +60143,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$LabelSection$items<TRes>
     String? $__typename,
   }) =>
       _res;
+
   items(_fn) => _res;
 }
 
@@ -60290,6 +60575,7 @@ class _CopyWithImpl$Query$GetSection$section$$MessageSection<TRes>
             ? _instance.description
             : (description as String?),
       ));
+
   TRes messages(
           Iterable<Query$GetSection$section$$MessageSection$messages>? Function(
                   Iterable<
@@ -60318,6 +60604,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$MessageSection<TRes>
     String? description,
   }) =>
       _res;
+
   messages(_fn) => _res;
 }
 
@@ -60461,6 +60748,7 @@ class _CopyWithImpl$Query$GetSection$section$$MessageSection$messages<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
   CopyWith$Query$GetSection$section$$MessageSection$messages$style<TRes>
       get style {
     final local$style = _instance.style;
@@ -60483,6 +60771,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$MessageSection$messages<TRes>
     String? $__typename,
   }) =>
       _res;
+
   CopyWith$Query$GetSection$section$$MessageSection$messages$style<TRes>
       get style =>
           CopyWith$Query$GetSection$section$$MessageSection$messages$style.stub(

@@ -135,11 +135,12 @@ class _$Auth0SignupRequestBodyCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_Auth0SignupRequestBodyCopyWith<$Res>
+abstract class _$$Auth0SignupRequestBodyImplCopyWith<$Res>
     implements $Auth0SignupRequestBodyCopyWith<$Res> {
-  factory _$$_Auth0SignupRequestBodyCopyWith(_$_Auth0SignupRequestBody value,
-          $Res Function(_$_Auth0SignupRequestBody) then) =
-      __$$_Auth0SignupRequestBodyCopyWithImpl<$Res>;
+  factory _$$Auth0SignupRequestBodyImplCopyWith(
+          _$Auth0SignupRequestBodyImpl value,
+          $Res Function(_$Auth0SignupRequestBodyImpl) then) =
+      __$$Auth0SignupRequestBodyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -157,12 +158,13 @@ abstract class _$$_Auth0SignupRequestBodyCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_Auth0SignupRequestBodyCopyWithImpl<$Res>
+class __$$Auth0SignupRequestBodyImplCopyWithImpl<$Res>
     extends _$Auth0SignupRequestBodyCopyWithImpl<$Res,
-        _$_Auth0SignupRequestBody>
-    implements _$$_Auth0SignupRequestBodyCopyWith<$Res> {
-  __$$_Auth0SignupRequestBodyCopyWithImpl(_$_Auth0SignupRequestBody _value,
-      $Res Function(_$_Auth0SignupRequestBody) _then)
+        _$Auth0SignupRequestBodyImpl>
+    implements _$$Auth0SignupRequestBodyImplCopyWith<$Res> {
+  __$$Auth0SignupRequestBodyImplCopyWithImpl(
+      _$Auth0SignupRequestBodyImpl _value,
+      $Res Function(_$Auth0SignupRequestBodyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -180,7 +182,7 @@ class __$$_Auth0SignupRequestBodyCopyWithImpl<$Res>
     Object? pictureUrl = freezed,
     Object? userMetadata = freezed,
   }) {
-    return _then(_$_Auth0SignupRequestBody(
+    return _then(_$Auth0SignupRequestBodyImpl(
       clientId: null == clientId
           ? _value.clientId
           : clientId // ignore: cast_nullable_to_non_nullable
@@ -232,10 +234,10 @@ class __$$_Auth0SignupRequestBodyCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(includeIfNull: false, fieldRename: FieldRename.snake)
-class _$_Auth0SignupRequestBody
+class _$Auth0SignupRequestBodyImpl
     with DiagnosticableTreeMixin
     implements _Auth0SignupRequestBody {
-  _$_Auth0SignupRequestBody(
+  _$Auth0SignupRequestBodyImpl(
       {required this.clientId,
       required this.email,
       required this.password,
@@ -249,8 +251,8 @@ class _$_Auth0SignupRequestBody
       final Map<String, String>? userMetadata})
       : _userMetadata = userMetadata;
 
-  factory _$_Auth0SignupRequestBody.fromJson(Map<String, dynamic> json) =>
-      _$$_Auth0SignupRequestBodyFromJson(json);
+  factory _$Auth0SignupRequestBodyImpl.fromJson(Map<String, dynamic> json) =>
+      _$$Auth0SignupRequestBodyImplFromJson(json);
 
   @override
   final String clientId;
@@ -309,7 +311,7 @@ class _$_Auth0SignupRequestBody
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Auth0SignupRequestBody &&
+            other is _$Auth0SignupRequestBodyImpl &&
             (identical(other.clientId, clientId) ||
                 other.clientId == clientId) &&
             (identical(other.email, email) || other.email == email) &&
@@ -351,13 +353,13 @@ class _$_Auth0SignupRequestBody
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_Auth0SignupRequestBodyCopyWith<_$_Auth0SignupRequestBody> get copyWith =>
-      __$$_Auth0SignupRequestBodyCopyWithImpl<_$_Auth0SignupRequestBody>(
-          this, _$identity);
+  _$$Auth0SignupRequestBodyImplCopyWith<_$Auth0SignupRequestBodyImpl>
+      get copyWith => __$$Auth0SignupRequestBodyImplCopyWithImpl<
+          _$Auth0SignupRequestBodyImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_Auth0SignupRequestBodyToJson(
+    return _$$Auth0SignupRequestBodyImplToJson(
       this,
     );
   }
@@ -375,10 +377,10 @@ abstract class _Auth0SignupRequestBody implements Auth0SignupRequestBody {
       final String? name,
       final String? nickname,
       final String? pictureUrl,
-      final Map<String, String>? userMetadata}) = _$_Auth0SignupRequestBody;
+      final Map<String, String>? userMetadata}) = _$Auth0SignupRequestBodyImpl;
 
   factory _Auth0SignupRequestBody.fromJson(Map<String, dynamic> json) =
-      _$_Auth0SignupRequestBody.fromJson;
+      _$Auth0SignupRequestBodyImpl.fromJson;
 
   @override
   String get clientId;
@@ -404,8 +406,8 @@ abstract class _Auth0SignupRequestBody implements Auth0SignupRequestBody {
   Map<String, String>? get userMetadata;
   @override
   @JsonKey(ignore: true)
-  _$$_Auth0SignupRequestBodyCopyWith<_$_Auth0SignupRequestBody> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$Auth0SignupRequestBodyImplCopyWith<_$Auth0SignupRequestBodyImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 Auth0SignupResponse _$Auth0SignupResponseFromJson(Map<String, dynamic> json) {
@@ -473,11 +475,11 @@ class _$Auth0SignupResponseCopyWithImpl<$Res, $Val extends Auth0SignupResponse>
 }
 
 /// @nodoc
-abstract class _$$_Auth0SignupResponseCopyWith<$Res>
+abstract class _$$Auth0SignupResponseImplCopyWith<$Res>
     implements $Auth0SignupResponseCopyWith<$Res> {
-  factory _$$_Auth0SignupResponseCopyWith(_$_Auth0SignupResponse value,
-          $Res Function(_$_Auth0SignupResponse) then) =
-      __$$_Auth0SignupResponseCopyWithImpl<$Res>;
+  factory _$$Auth0SignupResponseImplCopyWith(_$Auth0SignupResponseImpl value,
+          $Res Function(_$Auth0SignupResponseImpl) then) =
+      __$$Auth0SignupResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -487,11 +489,11 @@ abstract class _$$_Auth0SignupResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_Auth0SignupResponseCopyWithImpl<$Res>
-    extends _$Auth0SignupResponseCopyWithImpl<$Res, _$_Auth0SignupResponse>
-    implements _$$_Auth0SignupResponseCopyWith<$Res> {
-  __$$_Auth0SignupResponseCopyWithImpl(_$_Auth0SignupResponse _value,
-      $Res Function(_$_Auth0SignupResponse) _then)
+class __$$Auth0SignupResponseImplCopyWithImpl<$Res>
+    extends _$Auth0SignupResponseCopyWithImpl<$Res, _$Auth0SignupResponseImpl>
+    implements _$$Auth0SignupResponseImplCopyWith<$Res> {
+  __$$Auth0SignupResponseImplCopyWithImpl(_$Auth0SignupResponseImpl _value,
+      $Res Function(_$Auth0SignupResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -501,7 +503,7 @@ class __$$_Auth0SignupResponseCopyWithImpl<$Res>
     Object? emailVerified = null,
     Object? email = null,
   }) {
-    return _then(_$_Auth0SignupResponse(
+    return _then(_$Auth0SignupResponseImpl(
       user_id: null == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
@@ -520,16 +522,16 @@ class __$$_Auth0SignupResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Auth0SignupResponse
+class _$Auth0SignupResponseImpl
     with DiagnosticableTreeMixin
     implements _Auth0SignupResponse {
-  const _$_Auth0SignupResponse(
+  const _$Auth0SignupResponseImpl(
       {@JsonKey(name: 'user_id') required this.user_id,
       @JsonKey(name: 'email_verified') required this.emailVerified,
       required this.email});
 
-  factory _$_Auth0SignupResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_Auth0SignupResponseFromJson(json);
+  factory _$Auth0SignupResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$Auth0SignupResponseImplFromJson(json);
 
   @override
   @JsonKey(name: 'user_id')
@@ -559,7 +561,7 @@ class _$_Auth0SignupResponse
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Auth0SignupResponse &&
+            other is _$Auth0SignupResponseImpl &&
             (identical(other.user_id, user_id) || other.user_id == user_id) &&
             (identical(other.emailVerified, emailVerified) ||
                 other.emailVerified == emailVerified) &&
@@ -573,13 +575,13 @@ class _$_Auth0SignupResponse
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_Auth0SignupResponseCopyWith<_$_Auth0SignupResponse> get copyWith =>
-      __$$_Auth0SignupResponseCopyWithImpl<_$_Auth0SignupResponse>(
+  _$$Auth0SignupResponseImplCopyWith<_$Auth0SignupResponseImpl> get copyWith =>
+      __$$Auth0SignupResponseImplCopyWithImpl<_$Auth0SignupResponseImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_Auth0SignupResponseToJson(
+    return _$$Auth0SignupResponseImplToJson(
       this,
     );
   }
@@ -589,10 +591,10 @@ abstract class _Auth0SignupResponse implements Auth0SignupResponse {
   const factory _Auth0SignupResponse(
       {@JsonKey(name: 'user_id') required final String user_id,
       @JsonKey(name: 'email_verified') required final bool emailVerified,
-      required final String email}) = _$_Auth0SignupResponse;
+      required final String email}) = _$Auth0SignupResponseImpl;
 
   factory _Auth0SignupResponse.fromJson(Map<String, dynamic> json) =
-      _$_Auth0SignupResponse.fromJson;
+      _$Auth0SignupResponseImpl.fromJson;
 
   @override
   @JsonKey(name: 'user_id')
@@ -604,7 +606,7 @@ abstract class _Auth0SignupResponse implements Auth0SignupResponse {
   String get email;
   @override
   @JsonKey(ignore: true)
-  _$$_Auth0SignupResponseCopyWith<_$_Auth0SignupResponse> get copyWith =>
+  _$$Auth0SignupResponseImplCopyWith<_$Auth0SignupResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -674,22 +676,22 @@ class _$Auth0ApiExceptionCopyWithImpl<$Res, $Val extends Auth0ApiException>
 }
 
 /// @nodoc
-abstract class _$$_Auth0ApiExceptionCopyWith<$Res>
+abstract class _$$Auth0ApiExceptionImplCopyWith<$Res>
     implements $Auth0ApiExceptionCopyWith<$Res> {
-  factory _$$_Auth0ApiExceptionCopyWith(_$_Auth0ApiException value,
-          $Res Function(_$_Auth0ApiException) then) =
-      __$$_Auth0ApiExceptionCopyWithImpl<$Res>;
+  factory _$$Auth0ApiExceptionImplCopyWith(_$Auth0ApiExceptionImpl value,
+          $Res Function(_$Auth0ApiExceptionImpl) then) =
+      __$$Auth0ApiExceptionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? name, String? code, String? description, int? statusCode});
 }
 
 /// @nodoc
-class __$$_Auth0ApiExceptionCopyWithImpl<$Res>
-    extends _$Auth0ApiExceptionCopyWithImpl<$Res, _$_Auth0ApiException>
-    implements _$$_Auth0ApiExceptionCopyWith<$Res> {
-  __$$_Auth0ApiExceptionCopyWithImpl(
-      _$_Auth0ApiException _value, $Res Function(_$_Auth0ApiException) _then)
+class __$$Auth0ApiExceptionImplCopyWithImpl<$Res>
+    extends _$Auth0ApiExceptionCopyWithImpl<$Res, _$Auth0ApiExceptionImpl>
+    implements _$$Auth0ApiExceptionImplCopyWith<$Res> {
+  __$$Auth0ApiExceptionImplCopyWithImpl(_$Auth0ApiExceptionImpl _value,
+      $Res Function(_$Auth0ApiExceptionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -700,7 +702,7 @@ class __$$_Auth0ApiExceptionCopyWithImpl<$Res>
     Object? description = freezed,
     Object? statusCode = freezed,
   }) {
-    return _then(_$_Auth0ApiException(
+    return _then(_$Auth0ApiExceptionImpl(
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -723,14 +725,14 @@ class __$$_Auth0ApiExceptionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Auth0ApiException
+class _$Auth0ApiExceptionImpl
     with DiagnosticableTreeMixin
     implements _Auth0ApiException {
-  const _$_Auth0ApiException(
+  const _$Auth0ApiExceptionImpl(
       {this.name, this.code, this.description, this.statusCode});
 
-  factory _$_Auth0ApiException.fromJson(Map<String, dynamic> json) =>
-      _$$_Auth0ApiExceptionFromJson(json);
+  factory _$Auth0ApiExceptionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$Auth0ApiExceptionImplFromJson(json);
 
   @override
   final String? name;
@@ -761,7 +763,7 @@ class _$_Auth0ApiException
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Auth0ApiException &&
+            other is _$Auth0ApiExceptionImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.description, description) ||
@@ -778,13 +780,13 @@ class _$_Auth0ApiException
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_Auth0ApiExceptionCopyWith<_$_Auth0ApiException> get copyWith =>
-      __$$_Auth0ApiExceptionCopyWithImpl<_$_Auth0ApiException>(
+  _$$Auth0ApiExceptionImplCopyWith<_$Auth0ApiExceptionImpl> get copyWith =>
+      __$$Auth0ApiExceptionImplCopyWithImpl<_$Auth0ApiExceptionImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_Auth0ApiExceptionToJson(
+    return _$$Auth0ApiExceptionImplToJson(
       this,
     );
   }
@@ -795,10 +797,10 @@ abstract class _Auth0ApiException implements Auth0ApiException {
       {final String? name,
       final String? code,
       final String? description,
-      final int? statusCode}) = _$_Auth0ApiException;
+      final int? statusCode}) = _$Auth0ApiExceptionImpl;
 
   factory _Auth0ApiException.fromJson(Map<String, dynamic> json) =
-      _$_Auth0ApiException.fromJson;
+      _$Auth0ApiExceptionImpl.fromJson;
 
   @override
   String? get name;
@@ -810,6 +812,6 @@ abstract class _Auth0ApiException implements Auth0ApiException {
   int? get statusCode;
   @override
   @JsonKey(ignore: true)
-  _$$_Auth0ApiExceptionCopyWith<_$_Auth0ApiException> get copyWith =>
+  _$$Auth0ApiExceptionImplCopyWith<_$Auth0ApiExceptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
