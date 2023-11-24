@@ -12,6 +12,7 @@ import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/helpers/share_extension/share_extension.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
@@ -298,6 +299,7 @@ class ShortActions extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
     final inMyList = useState(short.inMyList);
+    final shortsSourceButtonPrimary = ref.watch(featureFlagsProvider.select((f) => f.shortsSourceButtonPrimary));
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -381,7 +383,7 @@ class ShortActions extends HookConsumerWidget {
           ),
         ),
         design.buttons.large(
-          variant: ButtonVariant.secondary,
+          variant: shortsSourceButtonPrimary ? ButtonVariant.primary : ButtonVariant.secondary,
           onPressed: () {
             final ep = short.source?.item.asOrNull<Fragment$Short$source$item$$Episode>();
             if (ep == null) return;

@@ -46,8 +46,8 @@ Future<void> main() async {
           activeImage: const AssetImage('assets/icons/My_List_Selected.png'),
         ),
         shorts: StateImageProvider(
-          image: const AssetImage('assets/icons/Live_Default.png'),
-          activeImage: const AssetImage('assets/icons/Live_Default.png'),
+          image: const AssetImage('assets/icons/Shorts_Default.png'),
+          activeImage: const AssetImage('assets/icons/Shorts_Default.png'),
         ),
         games: StateImageProvider(
           image: const AssetImage('assets/icons/Games_Default.png'),

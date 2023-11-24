@@ -21,5 +21,6 @@ class FeatureFlags with _$FeatureFlags {
     @Default(false) bool chapters,
     @Default(false) bool download,
     @Default(false) bool shorts,
+    @Default(false) bool shortsSourceButtonPrimary,
   }) = _FeatureFlags;
 }

@@ -29,6 +29,7 @@ mixin _$FeatureFlags {
   bool get chapters => throw _privateConstructorUsedError;
   bool get download => throw _privateConstructorUsedError;
   bool get shorts => throw _privateConstructorUsedError;
+  bool get shortsSourceButtonPrimary => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FeatureFlagsCopyWith<FeatureFlags> get copyWith =>
@@ -54,7 +55,8 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       bool playNextButton,
       bool chapters,
       bool download,
-      bool shorts});
+      bool shorts,
+      bool shortsSourceButtonPrimary});
 }
 
 /// @nodoc
@@ -83,6 +85,7 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? chapters = null,
     Object? download = null,
     Object? shorts = null,
+    Object? shortsSourceButtonPrimary = null,
   }) {
     return _then(_value.copyWith(
       toggles: null == toggles
@@ -137,6 +140,10 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
           ? _value.shorts
           : shorts // ignore: cast_nullable_to_non_nullable
               as bool,
+      shortsSourceButtonPrimary: null == shortsSourceButtonPrimary
+          ? _value.shortsSourceButtonPrimary
+          : shortsSourceButtonPrimary // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -162,7 +169,8 @@ abstract class _$$FeatureFlagsImplCopyWith<$Res>
       bool playNextButton,
       bool chapters,
       bool download,
-      bool shorts});
+      bool shorts,
+      bool shortsSourceButtonPrimary});
 }
 
 /// @nodoc
@@ -189,6 +197,7 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
     Object? chapters = null,
     Object? download = null,
     Object? shorts = null,
+    Object? shortsSourceButtonPrimary = null,
   }) {
     return _then(_$FeatureFlagsImpl(
       toggles: null == toggles
@@ -243,6 +252,10 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
           ? _value.shorts
           : shorts // ignore: cast_nullable_to_non_nullable
               as bool,
+      shortsSourceButtonPrimary: null == shortsSourceButtonPrimary
+          ? _value.shortsSourceButtonPrimary
+          : shortsSourceButtonPrimary // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -263,7 +276,8 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
       this.playNextButton = false,
       this.chapters = false,
       this.download = false,
-      this.shorts = false})
+      this.shorts = false,
+      this.shortsSourceButtonPrimary = false})
       : _toggles = toggles,
         super._();
 
@@ -312,10 +326,13 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   @override
   @JsonKey()
   final bool shorts;
+  @override
+  @JsonKey()
+  final bool shortsSourceButtonPrimary;
 
   @override
   String toString() {
-    return 'FeatureFlags(toggles: $toggles, auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, autoFullscreenOnPlay: $autoFullscreenOnPlay, shareVideoButton: $shareVideoButton, gamesTab: $gamesTab, flutterPlayerControls: $flutterPlayerControls, playNextButton: $playNextButton, chapters: $chapters, download: $download, shorts: $shorts)';
+    return 'FeatureFlags(toggles: $toggles, auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, autoFullscreenOnPlay: $autoFullscreenOnPlay, shareVideoButton: $shareVideoButton, gamesTab: $gamesTab, flutterPlayerControls: $flutterPlayerControls, playNextButton: $playNextButton, chapters: $chapters, download: $download, shorts: $shorts, shortsSourceButtonPrimary: $shortsSourceButtonPrimary)';
   }
 
   @override
@@ -345,7 +362,10 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
                 other.chapters == chapters) &&
             (identical(other.download, download) ||
                 other.download == download) &&
-            (identical(other.shorts, shorts) || other.shorts == shorts));
+            (identical(other.shorts, shorts) || other.shorts == shorts) &&
+            (identical(other.shortsSourceButtonPrimary,
+                    shortsSourceButtonPrimary) ||
+                other.shortsSourceButtonPrimary == shortsSourceButtonPrimary));
   }
 
   @override
@@ -363,7 +383,8 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
       playNextButton,
       chapters,
       download,
-      shorts);
+      shorts,
+      shortsSourceButtonPrimary);
 
   @JsonKey(ignore: true)
   @override
@@ -386,7 +407,8 @@ abstract class _FeatureFlags extends FeatureFlags {
       final bool playNextButton,
       final bool chapters,
       final bool download,
-      final bool shorts}) = _$FeatureFlagsImpl;
+      final bool shorts,
+      final bool shortsSourceButtonPrimary}) = _$FeatureFlagsImpl;
   const _FeatureFlags._() : super._();
 
   @override
@@ -415,6 +437,8 @@ abstract class _FeatureFlags extends FeatureFlags {
   bool get download;
   @override
   bool get shorts;
+  @override
+  bool get shortsSourceButtonPrimary;
   @override
   @JsonKey(ignore: true)
   _$$FeatureFlagsImplCopyWith<_$FeatureFlagsImpl> get copyWith =>
