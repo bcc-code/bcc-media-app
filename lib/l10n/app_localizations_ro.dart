@@ -928,7 +928,7 @@ class SRo extends S {
 
   @override
   String expiresIn(String time) {
-    return 'Expires in $time';
+    return 'Expiră în $time';
   }
 
   @override
@@ -950,25 +950,25 @@ class SRo extends S {
   String get playRandom => 'Redare aleatorie';
 
   @override
-  String get addLanguage => 'Add language';
+  String get addLanguage => 'Adaugă o limbă';
 
   @override
-  String get preferredLanguages => 'Preferred languages';
+  String get preferredLanguages => 'Limbi preferate';
 
   @override
-  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
+  String get contentLanguageExplanation => 'Reordonează limbile pentru a corespunde preferințelor tale în ceea ce privește limba audio și subtitrarea.';
 
   @override
-  String get otherLanguages => 'Other languages';
+  String get otherLanguages => 'Alte limbi';
 
   @override
-  String get select => 'Select';
+  String get select => 'Selectează';
 
   @override
-  String get supportBibleKids => 'Support Bible Kids';
+  String get supportBibleKids => 'Sprijină Bible Kids';
 
   @override
-  String get donateViaPaypal => 'Donate via PayPal';
+  String get donateViaPaypal => 'Donează prin PayPal';
 
   @override
   String get shortsTab => 'Shorts';

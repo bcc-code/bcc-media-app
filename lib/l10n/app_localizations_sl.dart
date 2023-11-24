@@ -928,7 +928,7 @@ class SSl extends S {
 
   @override
   String expiresIn(String time) {
-    return 'Expires in $time';
+    return 'Poteče čez $time';
   }
 
   @override
@@ -959,16 +959,16 @@ class SSl extends S {
   String get contentLanguageExplanation => 'Spremeni vrstni red jezikov tako, da bo ustrezal tvojim željam glede jezika zvoka in podnapisov.';
 
   @override
-  String get otherLanguages => 'Other languages';
+  String get otherLanguages => 'Drugi jeziki';
 
   @override
-  String get select => 'Select';
+  String get select => 'Izberi';
 
   @override
-  String get supportBibleKids => 'Support Bible Kids';
+  String get supportBibleKids => 'Podpri Bible Kids';
 
   @override
-  String get donateViaPaypal => 'Donate via PayPal';
+  String get donateViaPaypal => 'Donacija prek PayPala';
 
   @override
   String get shortsTab => 'Shorts';

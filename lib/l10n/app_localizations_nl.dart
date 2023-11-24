@@ -328,7 +328,7 @@ class SNl extends S {
   String get high => 'Hoog';
 
   @override
-  String get emptySearch => 'U kunt zoeken op alle inhoud van BCC Media. TV series, films en afleveringen.';
+  String get emptySearch => 'Je kunt zoeken op alle inhoud van BCC Media. TV series, films en afleveringen.';
 
   @override
   String get back => 'Terug';
@@ -517,7 +517,7 @@ class SNl extends S {
   String get fAQ => 'FAQ';
 
   @override
-  String get shareStart => 'Delen van start';
+  String get shareStart => 'Delen vanaf het begin';
 
   @override
   String shareTime(String time) {

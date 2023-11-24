@@ -928,7 +928,7 @@ class SDa extends S {
 
   @override
   String expiresIn(String time) {
-    return 'Expires in $time';
+    return 'Udløber om $time';
   }
 
   @override
@@ -938,7 +938,7 @@ class SDa extends S {
   String get technicalDetails => 'Tekniske detaljer';
 
   @override
-  String get contentLanguage => 'Content language';
+  String get contentLanguage => 'Indholdssprog';
 
   @override
   String get contentLanguageShort => 'Indhold';
@@ -947,28 +947,28 @@ class SDa extends S {
   String get appLanguageShort => 'App';
 
   @override
-  String get playRandom => 'Play random';
+  String get playRandom => 'Afspil tilfældig';
 
   @override
-  String get addLanguage => 'Add language';
+  String get addLanguage => 'Tilføj et sprog';
 
   @override
-  String get preferredLanguages => 'Preferred languages';
+  String get preferredLanguages => 'Foretrukne sprog';
 
   @override
-  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
+  String get contentLanguageExplanation => 'Omorganiser sprogene, så de passer til dine præferencer for lyd- og undertekstsprog.';
 
   @override
-  String get otherLanguages => 'Other languages';
+  String get otherLanguages => 'Andre sprog';
 
   @override
-  String get select => 'Select';
+  String get select => 'Vælg';
 
   @override
-  String get supportBibleKids => 'Support Bible Kids';
+  String get supportBibleKids => 'Støt Bible Kids';
 
   @override
-  String get donateViaPaypal => 'Donate via PayPal';
+  String get donateViaPaypal => 'Donér via PayPal';
 
   @override
   String get shortsTab => 'Shorts';

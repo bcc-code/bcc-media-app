@@ -928,7 +928,7 @@ class SHu extends S {
 
   @override
   String expiresIn(String time) {
-    return 'Expires in $time';
+    return 'Lejár $time időn belül';
   }
 
   @override
@@ -959,16 +959,16 @@ class SHu extends S {
   String get contentLanguageExplanation => 'Rendezz át a nyelveket a kívánt hang- és feliratnyelvnek megfelelően.';
 
   @override
-  String get otherLanguages => 'Other languages';
+  String get otherLanguages => 'Más nyelvek';
 
   @override
-  String get select => 'Select';
+  String get select => 'Kiválasztás';
 
   @override
-  String get supportBibleKids => 'Support Bible Kids';
+  String get supportBibleKids => 'Támogasd a Bible Kids-t';
 
   @override
-  String get donateViaPaypal => 'Donate via PayPal';
+  String get donateViaPaypal => 'Adományozz PayPal-on keresztül';
 
   @override
   String get shortsTab => 'Shorts';

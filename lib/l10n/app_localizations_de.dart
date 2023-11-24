@@ -780,25 +780,25 @@ class SDe extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'Kontolöschung erfolgreich beantragt. Sie erhalten eine E-Mail unter $email. Um Ihre Identität zu bestätigen, müssen Sie auf diese E-Mail antworten, um mit der Löschung fortfahren zu können.';
   }
 
   @override
-  String get gamesTab => 'Games';
+  String get gamesTab => 'Spiele';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'Spiel spielen';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Scannen Sie den Code und melden Sie sich mit Ihrem Telefon an';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Oder gehen Sie zu $url und geben Sie den Code ein: $code';
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Kapitel';
 
   @override
   String get removeWatchProgress => 'Remove watch progress';
@@ -810,13 +810,13 @@ class SDe extends S {
   String get releaseDate => 'Veröffentlichungsdatum';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Verfügbar bis';
 
   @override
   String get ageRating => 'Age rating';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Alle';
 
   @override
   String get offline => 'Offline';
@@ -871,16 +871,16 @@ class SDe extends S {
   String get removeFromDeviceButton => 'Remove from device';
 
   @override
-  String get keepVideoButton => 'Keep video';
+  String get keepVideoButton => 'Video behalten';
 
   @override
-  String get noInternetConnection => 'No internet connection';
+  String get noInternetConnection => 'Keine Internetverbindung';
 
   @override
-  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+  String get noInternetConnectionDescription => 'Stelle eine Verbindung zum Internet her, um auf alle Videos zuzugreifen.';
 
   @override
-  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+  String get noInternetButDontWorry => 'Keine Internetverbindung, aber keine Sorge.';
 
   @override
   String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
@@ -915,13 +915,13 @@ class SDe extends S {
   String get failed => 'Failed';
 
   @override
-  String get finished => 'Finished';
+  String get finished => 'Abgeschlossen';
 
   @override
-  String get paused => 'Paused';
+  String get paused => 'Pausiert';
 
   @override
-  String get queued => 'Queued';
+  String get queued => 'In der Warteschlange';
 
   @override
   String get removing => 'Removing';

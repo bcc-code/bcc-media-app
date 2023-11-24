@@ -928,7 +928,7 @@ class SFr extends S {
 
   @override
   String expiresIn(String time) {
-    return 'Expires in $time';
+    return 'Expire dans $time';
   }
 
   @override
@@ -959,16 +959,16 @@ class SFr extends S {
   String get contentLanguageExplanation => 'Réorganiser les langues en fonction de ses préférences en matière de langues audio et de sous-titres.';
 
   @override
-  String get otherLanguages => 'Other languages';
+  String get otherLanguages => 'Autres langues';
 
   @override
-  String get select => 'Select';
+  String get select => 'Sélectionner';
 
   @override
-  String get supportBibleKids => 'Support Bible Kids';
+  String get supportBibleKids => 'Soutenir Bible Kids';
 
   @override
-  String get donateViaPaypal => 'Donate via PayPal';
+  String get donateViaPaypal => 'Faire un don via PayPal';
 
   @override
   String get shortsTab => 'Shorts';
