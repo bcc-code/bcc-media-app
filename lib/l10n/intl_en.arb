@@ -1346,5 +1346,13 @@
   "shortsAiDisclaimer": "The transcriptions and excerpt selections are auto-generated and might contain errors.",
   "@shortsAiDisclaimer": {
     "description": "Disclaimer shown on the shorts page."
+  },
+  "beta": "Beta",
+  "@beta": {
+    "description": "'Beta' features are only available to a selection of users."
+  },
+  "betaExplanation": "This feature is in beta and might contain issues. Please report any issues or feedback via the 'Contact' button in settings.",
+  "@betaExplanation": {
+    "description": "Shown in a popup on beta features."
   }
 }

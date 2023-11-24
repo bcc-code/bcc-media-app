@@ -2000,6 +2000,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'The transcriptions and excerpt selections are auto-generated and might contain errors.'**
   String get shortsAiDisclaimer;
+
+  /// 'Beta' features are only available to a selection of users.
+  ///
+  /// In en, this message translates to:
+  /// **'Beta'**
+  String get beta;
+
+  /// Shown in a popup on beta features.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature is in beta and might contain bugs. Please report any issues or feedback via the \'Contact\' button in settings.'**
+  String get betaExplanation;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

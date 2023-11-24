@@ -1,16 +1,20 @@
 import 'package:async/async.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
+import 'package:brunstadtv_app/components/badges/icon_badge.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/shorts/short_view.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:video_player/video_player.dart';
@@ -109,7 +113,7 @@ class ShortsScreen extends HookConsumerWidget {
       controller.setVolume(muted.value ? 0 : 1);
 
       controller.addListener(() {
-        if (!isMounted()) return;
+        if (!isMounted() || !controller.value.isPlaying) return;
         final gqlClient = ref.read(gqlClientProvider);
         progressDebouncer.run(() {
           gqlClient.mutate$setShortProgress(
@@ -148,13 +152,36 @@ class ShortsScreen extends HookConsumerWidget {
       shortControllerPairs[nextIndex].value?.controller.pause();
 
       debugPrint('SHRT: setupCurrentController index: $index');
-      final currentShort = shorts.value.elementAtOrNull(index);
+      var currentShort = shorts.value.elementAtOrNull(index);
+      if (currentShort == null) {
+        debugPrint('SHRT: no short for index $index, waiting for fetchMoreFuture');
+        await fetchMoreFuture.value;
+        currentShort = shorts.value.elementAtOrNull(index);
+      }
       if (currentShort == null) {
         debugPrint('SHRT: no short for index $index');
         return;
       }
+      if (currentIndex.value != index) {
+        debugPrint('SHRT: setupCurrentController index: $index: index changed, aborting');
+        return;
+      }
+
+      gqlClient
+          .mutate$setShortProgress(
+            Options$Mutation$setShortProgress(
+              variables: Variables$Mutation$setShortProgress(
+                id: currentShort.id,
+                progress: 0,
+              ),
+            ),
+          )
+          .then((_) => debugPrint('SHRT: short set progress to 0'));
+
       final controllerIndex = index % 3;
       await initializeController(controllerIndex, currentShort);
+      if (currentIndex.value != index) return;
+
       final controller = shortControllerPairs[controllerIndex].value;
       if (controller == null) {
         debugPrint('SHRT: no controller for index $index');
@@ -170,8 +197,10 @@ class ShortsScreen extends HookConsumerWidget {
       });
 
       await controller.controller.seekTo(Duration.zero);
+      if (currentIndex.value != index) return;
       await controller.controller.play();
       debugPrint('SHRT: short started playing');
+      if (currentIndex.value != index) return;
     }
 
     setCurrentIndex(int index) {
@@ -227,7 +256,6 @@ class ShortsScreen extends HookConsumerWidget {
           PageView.builder(
             controller: pageController,
             scrollDirection: Axis.vertical,
-            itemCount: shorts.value.length,
             onPageChanged: (index) {
               setCurrentIndex(index);
             },

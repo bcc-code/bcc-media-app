@@ -978,4 +978,10 @@ class SBg extends S {
 
   @override
   String get shortsAiDisclaimer => 'The transcriptions and excerpt selections are auto-generated and might contain errors.';
+
+  @override
+  String get beta => 'Beta';
+
+  @override
+  String get betaExplanation => 'This feature is in beta and might contain bugs. Please report any issues or feedback via the \'Contact\' button in settings.';
 }
