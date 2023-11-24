@@ -1,3 +1,4 @@
+import 'package:async/async.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/shorts/short_view.dart';
@@ -6,6 +7,7 @@ import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -37,8 +39,13 @@ class ShortsScreen extends HookConsumerWidget {
     final shorts = useState<List<Fragment$Short>>([]);
     final nextCursor = useState<String?>(null);
     final muted = useState(false);
+    final pageController = usePageController();
 
-    debugPrint('Short deeplink: $id');
+    final currentIndex = useState(0);
+
+    final isMounted = useIsMounted();
+
+    debugPrint('SHRT: Short deeplink: $id');
 
     final deepLinkShortFuture = useMemoized(
       () => id == null ? null : gqlClient.query$getShort(Options$Query$getShort(variables: Variables$Query$getShort(id: id!))),
@@ -52,6 +59,7 @@ class ShortsScreen extends HookConsumerWidget {
           variables: Variables$Query$getShorts(cursor: nextCursor.value, limit: 10),
         ),
       );
+      if (!isMounted()) return result;
 
       nextCursor.value = result.parsedData?.shorts.nextCursor;
       shorts.value = [
@@ -63,7 +71,6 @@ class ShortsScreen extends HookConsumerWidget {
     }
 
     final fetchMoreFuture = useState<Future<QueryResult<Query$getShorts>>?>(null);
-    final fetchMoreSnapshot = useFuture(fetchMoreFuture.value);
 
     final shortControllerPairs = useMemoized<List<ValueNotifier<ShortsVideoController?>>>(
       () => List.unmodifiable(List.generate(3, (_) => ValueNotifier<ShortsVideoController?>(null))),
@@ -73,26 +80,24 @@ class ShortsScreen extends HookConsumerWidget {
       useListenable(l);
     }
 
-    final currentIndex = useState(0);
-
     initializeController(int index, Fragment$Short short) async {
       final existing = shortControllerPairs[index].value;
       if (existing != null && existing.short.id == short.id) {
-        debugPrint('controller for index $index already initialized, pausing');
+        debugPrint('SHRT: controller for index $index already initialized, pausing');
         existing.controller.pause();
         return;
       } else if (existing != null) {
-        debugPrint('disposing controller for index $index');
+        debugPrint('SHRT: disposing controller for index $index');
         existing.controller.pause();
         existing.controller.dispose();
         shortControllerPairs[index].value = null;
       }
 
-      debugPrint('initializing controller for index $index');
+      debugPrint('SHRT: initializing controller for index $index');
       final url = short.streams.getBestStreamUrl();
       final uri = Uri.tryParse(url);
       if (uri == null) {
-        debugPrint('invalid url: $url');
+        debugPrint('SHRT: invalid url: $url');
         // shorts.value.removeWhere((element) => element.id == short.id);
         return;
       }
@@ -103,65 +108,86 @@ class ShortsScreen extends HookConsumerWidget {
       controller.setVolume(muted.value ? 0 : 1);
     }
 
-    setupNextAndPreviousControllers() async {
-      final previous = currentIndex.value == 0 ? null : shorts.value.elementAtOrNull(currentIndex.value - 1);
+    setupNextAndPreviousControllersForIndex(int index) async {
+      if (!isMounted()) return;
+      final previous = index == 0 ? null : shorts.value.elementAtOrNull(index - 1);
       if (previous != null) {
-        final previousControllerIndex = (currentIndex.value - 1) % 3;
+        final previousControllerIndex = (index - 1) % 3;
         initializeController(previousControllerIndex, previous);
       }
 
-      final next = currentIndex.value == shorts.value.length - 1 ? null : shorts.value.elementAtOrNull(currentIndex.value + 1);
+      final next = index == shorts.value.length - 1 ? null : shorts.value.elementAtOrNull(index + 1);
       if (next != null) {
-        final nextControllerIndex = (currentIndex.value + 1) % 3;
+        final nextControllerIndex = (index + 1) % 3;
         initializeController(nextControllerIndex, next);
       }
     }
 
     setupCurrentController() async {
+      if (!isMounted()) return;
       final index = currentIndex.value;
-      debugPrint('setupCurrentController index: $index');
+      final previousIndex = (index - 1) % 3;
+      final nextIndex = (index + 1) % 3;
+      shortControllerPairs[previousIndex].value?.controller.pause();
+      shortControllerPairs[nextIndex].value?.controller.pause();
+
+      debugPrint('SHRT: setupCurrentController index: $index');
       final currentShort = shorts.value.elementAtOrNull(index);
       if (currentShort == null) {
-        debugPrint('no short for index $index');
+        debugPrint('SHRT: no short for index $index');
         return;
       }
       final controllerIndex = index % 3;
       await initializeController(controllerIndex, currentShort);
       final controller = shortControllerPairs[controllerIndex].value;
       if (controller == null) {
-        debugPrint('no controller for index $index');
+        debugPrint('SHRT: no controller for index $index');
         return;
       }
-      setupNextAndPreviousControllers();
+      Future.delayed(1000.ms, () {
+        if (!isMounted()) return;
+        if (currentIndex.value != index) {
+          debugPrint('SHRT: setupCurrentController index: $index: index changed, aborting');
+          return;
+        }
+        setupNextAndPreviousControllersForIndex(index);
+      });
 
       await controller.controller.seekTo(Duration.zero);
       await controller.controller.play();
-      debugPrint('short started playing');
+      debugPrint('SHRT: short started playing');
     }
 
     setCurrentIndex(int index) {
+      if (!isMounted()) return;
       currentIndex.value = index;
-      setupCurrentController();
+      debugPrint('SHRT: setCurrentIndex: $index');
+      Future.delayed(500.ms, () {
+        if (currentIndex.value != index) {
+          debugPrint('SHRT: setCurrentIndex: $index: index changed, aborting');
+          return;
+        }
+        setupCurrentController();
+      });
       if (currentIndex.value + 4 == shorts.value.length) {
-        debugPrint('fetching more: close to end');
+        debugPrint('SHRT: fetching more: close to end');
         fetchMoreFuture.value = fetchMore();
       }
     }
 
     init() async {
+      if (!isMounted()) return;
       currentIndex.value = 0;
       final short = (await deepLinkShortFuture)?.parsedData?.short;
       if (short != null) {
         shorts.value = [short];
       }
-      debugPrint('fetching more: init');
+      debugPrint('SHRT: fetching more: init');
       fetchMoreFuture.value = fetchMore();
       await fetchMoreFuture.value;
       setCurrentIndex(0);
-      debugPrint('shorts initialized');
+      debugPrint('SHRT: shorts initialized');
     }
-
-    final isMounted = useIsMounted();
 
     dispose() {
       for (var c in shortControllerPairs) {
@@ -183,25 +209,34 @@ class ShortsScreen extends HookConsumerWidget {
       body: Stack(
         children: [
           PageView.builder(
+            controller: pageController,
             scrollDirection: Axis.vertical,
             itemCount: shorts.value.length,
             onPageChanged: (index) {
               setCurrentIndex(index);
             },
             itemBuilder: (context, index) {
-              final short = shorts.value.elementAtOrNull(index);
-              return ShortView(
-                future: short == null ? null : fetchMoreFuture.value,
-                short: short,
-                videoController: shortControllerPairs[index % 3].value?.controller,
-                muted: muted.value,
-                onMuteRequested: (value) {
-                  muted.value = value;
-                  for (final c in shortControllerPairs) {
-                    c.value?.controller.setVolume(muted.value ? 0 : 1);
-                  }
-                },
-              );
+              var shortController = shortControllerPairs[index % 3].value;
+              var short = shorts.value.elementAtOrNull(index);
+              if (shortController?.short.id != short?.id) {
+                short = null;
+                shortController = null;
+              }
+              return HookBuilder(builder: (context) {
+                // Say index == 2 and we want to have a bool indicating that we
+                return ShortView(
+                  future: short == null ? fetchMoreFuture.value : null,
+                  short: short,
+                  videoController: shortController?.controller,
+                  muted: muted.value,
+                  onMuteRequested: (value) {
+                    muted.value = value;
+                    for (final c in shortControllerPairs) {
+                      c.value?.controller.setVolume(muted.value ? 0 : 1);
+                    }
+                  },
+                );
+              });
             },
           ),
           const Align(

@@ -19,7 +19,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import 'package:video_player/video_player.dart';
 
 class ShortView extends HookConsumerWidget {
@@ -43,7 +42,9 @@ class ShortView extends HookConsumerWidget {
     final design = DesignSystem.of(context);
 
     final isPlaying = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isPlaying);
+    final isInitialized = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isInitialized ?? false);
     final playIconAnimation = useAnimationController(duration: 1000.ms);
+    final loadingAnimation = useAnimationController(duration: 1000.ms);
 
     return GestureDetector(
       onTap: () async {
@@ -71,16 +72,26 @@ class ShortView extends HookConsumerWidget {
                   : SvgPicture.string(SvgIcons.play, width: 52, height: 52),
             ),
           ),
-          if (short == null)
+          if (short == null || !isInitialized)
             Positioned.fill(
               child: Stack(
                 children: [
-                  Skeleton.leaf(child: Container()),
-                  Center(child: LoadingIndicator()),
+                  Animate(
+                    controller: loadingAnimation,
+                    onPlay: (c) => c.repeat(),
+                    effects: [
+                      ShimmerEffect(
+                        duration: 1000.ms,
+                        color: design.colors.background2,
+                      ),
+                    ],
+                    child: Container(color: design.colors.background1),
+                  ),
+                  const Center(child: LoadingIndicator()),
                 ],
               ),
-            ),
-          if (short != null)
+            )
+          else ...[
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
@@ -97,7 +108,6 @@ class ShortView extends HookConsumerWidget {
                 ),
               ),
             ),
-          if (short != null)
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
               alignment: Alignment.bottomCenter,
@@ -124,6 +134,7 @@ class ShortView extends HookConsumerWidget {
                 ),
               ),
             ),
+          ]
         ],
       ),
     );
@@ -318,7 +329,7 @@ class VideoView extends HookWidget {
               maxHeight: constraints.maxHeight,
               child: AspectRatio(
                 aspectRatio: aspectRatio,
-                child: VideoPlayer(controller),
+                child: controller.value.isInitialized ? VideoPlayer(controller) : null,
               ),
             ),
           ],
