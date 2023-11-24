@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod/riverpod.dart';
@@ -54,9 +55,18 @@ final unleashRawProvider = Provider<UnleashClient?>((ref) {
 });
 
 final unleashContextProvider = Provider<UnleashContext>((ref) {
+  final gender = ref.watch(authStateProvider.select((value) => value.user?.gender));
+  final birthDate = ref.watch(authStateProvider.select((value) => value.user?.birthdate));
+  final birthDateTime = birthDate == null ? null : DateTime.parse(birthDate);
+  final age = birthDateTime == null ? null : getAgeFromBirthDate(birthDateTime);
+  final ageGroup = age == null ? null : getAgeGroup(age);
   return UnleashContext(
-    userId: ref.watch(
-      authStateProvider.select((value) => value.user?.bccPersonId),
-    ),
-  );
+      userId: ref.watch(
+        authStateProvider.select((value) => value.user?.bccPersonId),
+      ),
+      properties: {
+        if (ageGroup != null) 'ageGroupStart': ageGroup.start.toString(),
+        if (ageGroup != null) 'ageGroup': ageGroup.name,
+        if (gender != null) 'gender': gender,
+      });
 });

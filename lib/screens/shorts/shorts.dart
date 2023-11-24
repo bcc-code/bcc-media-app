@@ -1,9 +1,11 @@
 import 'package:async/async.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/shorts/short_view.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
+import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
@@ -40,10 +42,9 @@ class ShortsScreen extends HookConsumerWidget {
     final nextCursor = useState<String?>(null);
     final muted = useState(false);
     final pageController = usePageController();
-
     final currentIndex = useState(0);
-
     final isMounted = useIsMounted();
+    final progressDebouncer = useMemoized(() => Debouncer(milliseconds: 1000), []);
 
     debugPrint('SHRT: Short deeplink: $id');
 
@@ -106,6 +107,21 @@ class ShortsScreen extends HookConsumerWidget {
       await controller.initialize();
       controller.setLooping(true);
       controller.setVolume(muted.value ? 0 : 1);
+
+      controller.addListener(() {
+        if (!isMounted()) return;
+        final gqlClient = ref.read(gqlClientProvider);
+        progressDebouncer.run(() {
+          gqlClient.mutate$setShortProgress(
+            Options$Mutation$setShortProgress(
+              variables: Variables$Mutation$setShortProgress(
+                id: short.id,
+                progress: controller.value.position.inSeconds.toDouble(),
+              ),
+            ),
+          );
+        });
+      });
     }
 
     setupNextAndPreviousControllersForIndex(int index) async {

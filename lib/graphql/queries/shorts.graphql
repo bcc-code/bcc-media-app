@@ -72,8 +72,8 @@ query getShort($id: UUID!) {
   }
 }
 
-query blablaHarryIsCool($id: UUID!) {
-  short(id: $id) {
+mutation setShortProgress($id: UUID!, $progress: Float!) {
+  setShortProgress(id: $id, progress: $progress) {
     ...Short
   }
 }

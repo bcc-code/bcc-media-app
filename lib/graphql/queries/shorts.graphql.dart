@@ -5273,35 +5273,46 @@ class Query$getShort$Widget extends graphql_flutter.Query<Query$getShort> {
         );
 }
 
-class Variables$Query$blablaHarryIsCool {
-  factory Variables$Query$blablaHarryIsCool({required String id}) =>
-      Variables$Query$blablaHarryIsCool._({
+class Variables$Mutation$setShortProgress {
+  factory Variables$Mutation$setShortProgress({
+    required String id,
+    required double progress,
+  }) =>
+      Variables$Mutation$setShortProgress._({
         r'id': id,
+        r'progress': progress,
       });
 
-  Variables$Query$blablaHarryIsCool._(this._$data);
+  Variables$Mutation$setShortProgress._(this._$data);
 
-  factory Variables$Query$blablaHarryIsCool.fromJson(
+  factory Variables$Mutation$setShortProgress.fromJson(
       Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
-    return Variables$Query$blablaHarryIsCool._(result$data);
+    final l$progress = data['progress'];
+    result$data['progress'] = (l$progress as num).toDouble();
+    return Variables$Mutation$setShortProgress._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
 
+  double get progress => (_$data['progress'] as double);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
     result$data['id'] = l$id;
+    final l$progress = progress;
+    result$data['progress'] = l$progress;
     return result$data;
   }
 
-  CopyWith$Variables$Query$blablaHarryIsCool<Variables$Query$blablaHarryIsCool>
-      get copyWith => CopyWith$Variables$Query$blablaHarryIsCool(
+  CopyWith$Variables$Mutation$setShortProgress<
+          Variables$Mutation$setShortProgress>
+      get copyWith => CopyWith$Variables$Mutation$setShortProgress(
             this,
             (i) => i,
           );
@@ -5311,7 +5322,7 @@ class Variables$Query$blablaHarryIsCool {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Variables$Query$blablaHarryIsCool) ||
+    if (!(other is Variables$Mutation$setShortProgress) ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -5320,80 +5331,102 @@ class Variables$Query$blablaHarryIsCool {
     if (l$id != lOther$id) {
       return false;
     }
+    final l$progress = progress;
+    final lOther$progress = other.progress;
+    if (l$progress != lOther$progress) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
     final l$id = id;
-    return Object.hashAll([l$id]);
+    final l$progress = progress;
+    return Object.hashAll([
+      l$id,
+      l$progress,
+    ]);
   }
 }
 
-abstract class CopyWith$Variables$Query$blablaHarryIsCool<TRes> {
-  factory CopyWith$Variables$Query$blablaHarryIsCool(
-    Variables$Query$blablaHarryIsCool instance,
-    TRes Function(Variables$Query$blablaHarryIsCool) then,
-  ) = _CopyWithImpl$Variables$Query$blablaHarryIsCool;
+abstract class CopyWith$Variables$Mutation$setShortProgress<TRes> {
+  factory CopyWith$Variables$Mutation$setShortProgress(
+    Variables$Mutation$setShortProgress instance,
+    TRes Function(Variables$Mutation$setShortProgress) then,
+  ) = _CopyWithImpl$Variables$Mutation$setShortProgress;
 
-  factory CopyWith$Variables$Query$blablaHarryIsCool.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Query$blablaHarryIsCool;
+  factory CopyWith$Variables$Mutation$setShortProgress.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$setShortProgress;
 
-  TRes call({String? id});
+  TRes call({
+    String? id,
+    double? progress,
+  });
 }
 
-class _CopyWithImpl$Variables$Query$blablaHarryIsCool<TRes>
-    implements CopyWith$Variables$Query$blablaHarryIsCool<TRes> {
-  _CopyWithImpl$Variables$Query$blablaHarryIsCool(
+class _CopyWithImpl$Variables$Mutation$setShortProgress<TRes>
+    implements CopyWith$Variables$Mutation$setShortProgress<TRes> {
+  _CopyWithImpl$Variables$Mutation$setShortProgress(
     this._instance,
     this._then,
   );
 
-  final Variables$Query$blablaHarryIsCool _instance;
+  final Variables$Mutation$setShortProgress _instance;
 
-  final TRes Function(Variables$Query$blablaHarryIsCool) _then;
+  final TRes Function(Variables$Mutation$setShortProgress) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? id = _undefined}) =>
-      _then(Variables$Query$blablaHarryIsCool._({
+  TRes call({
+    Object? id = _undefined,
+    Object? progress = _undefined,
+  }) =>
+      _then(Variables$Mutation$setShortProgress._({
         ..._instance._$data,
         if (id != _undefined && id != null) 'id': (id as String),
+        if (progress != _undefined && progress != null)
+          'progress': (progress as double),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Query$blablaHarryIsCool<TRes>
-    implements CopyWith$Variables$Query$blablaHarryIsCool<TRes> {
-  _CopyWithStubImpl$Variables$Query$blablaHarryIsCool(this._res);
+class _CopyWithStubImpl$Variables$Mutation$setShortProgress<TRes>
+    implements CopyWith$Variables$Mutation$setShortProgress<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$setShortProgress(this._res);
 
   TRes _res;
 
-  call({String? id}) => _res;
+  call({
+    String? id,
+    double? progress,
+  }) =>
+      _res;
 }
 
-class Query$blablaHarryIsCool {
-  Query$blablaHarryIsCool({
-    required this.short,
-    this.$__typename = 'QueryRoot',
+class Mutation$setShortProgress {
+  Mutation$setShortProgress({
+    required this.setShortProgress,
+    this.$__typename = 'MutationRoot',
   });
 
-  factory Query$blablaHarryIsCool.fromJson(Map<String, dynamic> json) {
-    final l$short = json['short'];
+  factory Mutation$setShortProgress.fromJson(Map<String, dynamic> json) {
+    final l$setShortProgress = json['setShortProgress'];
     final l$$__typename = json['__typename'];
-    return Query$blablaHarryIsCool(
-      short: Fragment$Short.fromJson((l$short as Map<String, dynamic>)),
+    return Mutation$setShortProgress(
+      setShortProgress:
+          Fragment$Short.fromJson((l$setShortProgress as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Fragment$Short short;
+  final Fragment$Short setShortProgress;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$short = short;
-    _resultData['short'] = l$short.toJson();
+    final l$setShortProgress = setShortProgress;
+    _resultData['setShortProgress'] = l$setShortProgress.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -5401,10 +5434,10 @@ class Query$blablaHarryIsCool {
 
   @override
   int get hashCode {
-    final l$short = short;
+    final l$setShortProgress = setShortProgress;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$short,
+      l$setShortProgress,
       l$$__typename,
     ]);
   }
@@ -5414,13 +5447,13 @@ class Query$blablaHarryIsCool {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Query$blablaHarryIsCool) ||
+    if (!(other is Mutation$setShortProgress) ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$short = short;
-    final lOther$short = other.short;
-    if (l$short != lOther$short) {
+    final l$setShortProgress = setShortProgress;
+    final lOther$setShortProgress = other.setShortProgress;
+    if (l$setShortProgress != lOther$setShortProgress) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -5432,81 +5465,85 @@ class Query$blablaHarryIsCool {
   }
 }
 
-extension UtilityExtension$Query$blablaHarryIsCool on Query$blablaHarryIsCool {
-  CopyWith$Query$blablaHarryIsCool<Query$blablaHarryIsCool> get copyWith =>
-      CopyWith$Query$blablaHarryIsCool(
+extension UtilityExtension$Mutation$setShortProgress
+    on Mutation$setShortProgress {
+  CopyWith$Mutation$setShortProgress<Mutation$setShortProgress> get copyWith =>
+      CopyWith$Mutation$setShortProgress(
         this,
         (i) => i,
       );
 }
 
-abstract class CopyWith$Query$blablaHarryIsCool<TRes> {
-  factory CopyWith$Query$blablaHarryIsCool(
-    Query$blablaHarryIsCool instance,
-    TRes Function(Query$blablaHarryIsCool) then,
-  ) = _CopyWithImpl$Query$blablaHarryIsCool;
+abstract class CopyWith$Mutation$setShortProgress<TRes> {
+  factory CopyWith$Mutation$setShortProgress(
+    Mutation$setShortProgress instance,
+    TRes Function(Mutation$setShortProgress) then,
+  ) = _CopyWithImpl$Mutation$setShortProgress;
 
-  factory CopyWith$Query$blablaHarryIsCool.stub(TRes res) =
-      _CopyWithStubImpl$Query$blablaHarryIsCool;
+  factory CopyWith$Mutation$setShortProgress.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$setShortProgress;
 
   TRes call({
-    Fragment$Short? short,
+    Fragment$Short? setShortProgress,
     String? $__typename,
   });
-  CopyWith$Fragment$Short<TRes> get short;
+  CopyWith$Fragment$Short<TRes> get setShortProgress;
 }
 
-class _CopyWithImpl$Query$blablaHarryIsCool<TRes>
-    implements CopyWith$Query$blablaHarryIsCool<TRes> {
-  _CopyWithImpl$Query$blablaHarryIsCool(
+class _CopyWithImpl$Mutation$setShortProgress<TRes>
+    implements CopyWith$Mutation$setShortProgress<TRes> {
+  _CopyWithImpl$Mutation$setShortProgress(
     this._instance,
     this._then,
   );
 
-  final Query$blablaHarryIsCool _instance;
+  final Mutation$setShortProgress _instance;
 
-  final TRes Function(Query$blablaHarryIsCool) _then;
+  final TRes Function(Mutation$setShortProgress) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? short = _undefined,
+    Object? setShortProgress = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$blablaHarryIsCool(
-        short: short == _undefined || short == null
-            ? _instance.short
-            : (short as Fragment$Short),
+      _then(Mutation$setShortProgress(
+        setShortProgress:
+            setShortProgress == _undefined || setShortProgress == null
+                ? _instance.setShortProgress
+                : (setShortProgress as Fragment$Short),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  CopyWith$Fragment$Short<TRes> get short {
-    final local$short = _instance.short;
-    return CopyWith$Fragment$Short(local$short, (e) => call(short: e));
+  CopyWith$Fragment$Short<TRes> get setShortProgress {
+    final local$setShortProgress = _instance.setShortProgress;
+    return CopyWith$Fragment$Short(
+        local$setShortProgress, (e) => call(setShortProgress: e));
   }
 }
 
-class _CopyWithStubImpl$Query$blablaHarryIsCool<TRes>
-    implements CopyWith$Query$blablaHarryIsCool<TRes> {
-  _CopyWithStubImpl$Query$blablaHarryIsCool(this._res);
+class _CopyWithStubImpl$Mutation$setShortProgress<TRes>
+    implements CopyWith$Mutation$setShortProgress<TRes> {
+  _CopyWithStubImpl$Mutation$setShortProgress(this._res);
 
   TRes _res;
 
   call({
-    Fragment$Short? short,
+    Fragment$Short? setShortProgress,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Fragment$Short<TRes> get short => CopyWith$Fragment$Short.stub(_res);
+  CopyWith$Fragment$Short<TRes> get setShortProgress =>
+      CopyWith$Fragment$Short.stub(_res);
 }
 
-const documentNodeQueryblablaHarryIsCool = DocumentNode(definitions: [
+const documentNodeMutationsetShortProgress = DocumentNode(definitions: [
   OperationDefinitionNode(
-    type: OperationType.query,
-    name: NameNode(value: 'blablaHarryIsCool'),
+    type: OperationType.mutation,
+    name: NameNode(value: 'setShortProgress'),
     variableDefinitions: [
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'id')),
@@ -5516,18 +5553,31 @@ const documentNodeQueryblablaHarryIsCool = DocumentNode(definitions: [
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
-      )
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'progress')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Float'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
       FieldNode(
-        name: NameNode(value: 'short'),
+        name: NameNode(value: 'setShortProgress'),
         alias: null,
         arguments: [
           ArgumentNode(
             name: NameNode(value: 'id'),
             value: VariableNode(name: NameNode(value: 'id')),
-          )
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'progress'),
+            value: VariableNode(name: NameNode(value: 'progress')),
+          ),
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
@@ -5557,29 +5607,29 @@ const documentNodeQueryblablaHarryIsCool = DocumentNode(definitions: [
   fragmentDefinitionPlayableMediaItemShort,
   fragmentDefinitionBasicStream,
 ]);
-Query$blablaHarryIsCool _parserFn$Query$blablaHarryIsCool(
+Mutation$setShortProgress _parserFn$Mutation$setShortProgress(
         Map<String, dynamic> data) =>
-    Query$blablaHarryIsCool.fromJson(data);
-typedef OnQueryComplete$Query$blablaHarryIsCool = FutureOr<void> Function(
+    Mutation$setShortProgress.fromJson(data);
+typedef OnMutationCompleted$Mutation$setShortProgress = FutureOr<void> Function(
   Map<String, dynamic>?,
-  Query$blablaHarryIsCool?,
+  Mutation$setShortProgress?,
 );
 
-class Options$Query$blablaHarryIsCool
-    extends graphql.QueryOptions<Query$blablaHarryIsCool> {
-  Options$Query$blablaHarryIsCool({
+class Options$Mutation$setShortProgress
+    extends graphql.MutationOptions<Mutation$setShortProgress> {
+  Options$Mutation$setShortProgress({
     String? operationName,
-    required Variables$Query$blablaHarryIsCool variables,
+    required Variables$Mutation$setShortProgress variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$blablaHarryIsCool? typedOptimisticResult,
-    Duration? pollInterval,
+    Mutation$setShortProgress? typedOptimisticResult,
     graphql.Context? context,
-    OnQueryComplete$Query$blablaHarryIsCool? onComplete,
-    graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
+    OnMutationCompleted$Mutation$setShortProgress? onCompleted,
+    graphql.OnMutationUpdate<Mutation$setShortProgress>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
           operationName: operationName,
@@ -5587,42 +5637,42 @@ class Options$Query$blablaHarryIsCool
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
           context: context,
-          onComplete: onComplete == null
+          onCompleted: onCompleted == null
               ? null
-              : (data) => onComplete(
+              : (data) => onCompleted(
                     data,
                     data == null
                         ? null
-                        : _parserFn$Query$blablaHarryIsCool(data),
+                        : _parserFn$Mutation$setShortProgress(data),
                   ),
+          update: update,
           onError: onError,
-          document: documentNodeQueryblablaHarryIsCool,
-          parserFn: _parserFn$Query$blablaHarryIsCool,
+          document: documentNodeMutationsetShortProgress,
+          parserFn: _parserFn$Mutation$setShortProgress,
         );
 
-  final OnQueryComplete$Query$blablaHarryIsCool? onCompleteWithParsed;
+  final OnMutationCompleted$Mutation$setShortProgress? onCompletedWithParsed;
 
   @override
   List<Object?> get properties => [
-        ...super.onComplete == null
+        ...super.onCompleted == null
             ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Query$blablaHarryIsCool
-    extends graphql.WatchQueryOptions<Query$blablaHarryIsCool> {
-  WatchOptions$Query$blablaHarryIsCool({
+class WatchOptions$Mutation$setShortProgress
+    extends graphql.WatchQueryOptions<Mutation$setShortProgress> {
+  WatchOptions$Mutation$setShortProgress({
     String? operationName,
-    required Variables$Query$blablaHarryIsCool variables,
+    required Variables$Mutation$setShortProgress variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$blablaHarryIsCool? typedOptimisticResult,
+    Mutation$setShortProgress? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -5636,81 +5686,138 @@ class WatchOptions$Query$blablaHarryIsCool
           cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
-          document: documentNodeQueryblablaHarryIsCool,
+          document: documentNodeMutationsetShortProgress,
           pollInterval: pollInterval,
           eagerlyFetchResults: eagerlyFetchResults,
           carryForwardDataOnException: carryForwardDataOnException,
           fetchResults: fetchResults,
-          parserFn: _parserFn$Query$blablaHarryIsCool,
+          parserFn: _parserFn$Mutation$setShortProgress,
         );
 }
 
-class FetchMoreOptions$Query$blablaHarryIsCool
-    extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$blablaHarryIsCool({
-    required graphql.UpdateQuery updateQuery,
-    required Variables$Query$blablaHarryIsCool variables,
-  }) : super(
-          updateQuery: updateQuery,
-          variables: variables.toJson(),
-          document: documentNodeQueryblablaHarryIsCool,
+extension ClientExtension$Mutation$setShortProgress on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$setShortProgress>>
+      mutate$setShortProgress(
+              Options$Mutation$setShortProgress options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$setShortProgress>
+      watchMutation$setShortProgress(
+              WatchOptions$Mutation$setShortProgress options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$setShortProgress$HookResult {
+  Mutation$setShortProgress$HookResult(
+    this.runMutation,
+    this.result,
+  );
+
+  final RunMutation$Mutation$setShortProgress runMutation;
+
+  final graphql.QueryResult<Mutation$setShortProgress> result;
+}
+
+Mutation$setShortProgress$HookResult useMutation$setShortProgress(
+    [WidgetOptions$Mutation$setShortProgress? options]) {
+  final result = graphql_flutter
+      .useMutation(options ?? WidgetOptions$Mutation$setShortProgress());
+  return Mutation$setShortProgress$HookResult(
+    (variables, {optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$setShortProgress>
+    useWatchMutation$setShortProgress(
+            WatchOptions$Mutation$setShortProgress options) =>
+        graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$setShortProgress
+    extends graphql.MutationOptions<Mutation$setShortProgress> {
+  WidgetOptions$Mutation$setShortProgress({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$setShortProgress? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$setShortProgress? onCompleted,
+    graphql.OnMutationUpdate<Mutation$setShortProgress>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$setShortProgress(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationsetShortProgress,
+          parserFn: _parserFn$Mutation$setShortProgress,
         );
+
+  final OnMutationCompleted$Mutation$setShortProgress? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
 }
 
-extension ClientExtension$Query$blablaHarryIsCool on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$blablaHarryIsCool>> query$blablaHarryIsCool(
-          Options$Query$blablaHarryIsCool options) async =>
-      await this.query(options);
-  graphql.ObservableQuery<Query$blablaHarryIsCool> watchQuery$blablaHarryIsCool(
-          WatchOptions$Query$blablaHarryIsCool options) =>
-      this.watchQuery(options);
-  void writeQuery$blablaHarryIsCool({
-    required Query$blablaHarryIsCool data,
-    required Variables$Query$blablaHarryIsCool variables,
-    bool broadcast = true,
-  }) =>
-      this.writeQuery(
-        graphql.Request(
-          operation:
-              graphql.Operation(document: documentNodeQueryblablaHarryIsCool),
-          variables: variables.toJson(),
-        ),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
-  Query$blablaHarryIsCool? readQuery$blablaHarryIsCool({
-    required Variables$Query$blablaHarryIsCool variables,
-    bool optimistic = true,
-  }) {
-    final result = this.readQuery(
-      graphql.Request(
-        operation:
-            graphql.Operation(document: documentNodeQueryblablaHarryIsCool),
-        variables: variables.toJson(),
-      ),
-      optimistic: optimistic,
-    );
-    return result == null ? null : Query$blablaHarryIsCool.fromJson(result);
-  }
-}
+typedef RunMutation$Mutation$setShortProgress
+    = graphql.MultiSourceResult<Mutation$setShortProgress> Function(
+  Variables$Mutation$setShortProgress, {
+  Object? optimisticResult,
+  Mutation$setShortProgress? typedOptimisticResult,
+});
+typedef Builder$Mutation$setShortProgress = widgets.Widget Function(
+  RunMutation$Mutation$setShortProgress,
+  graphql.QueryResult<Mutation$setShortProgress>?,
+);
 
-graphql_flutter.QueryHookResult<Query$blablaHarryIsCool>
-    useQuery$blablaHarryIsCool(Options$Query$blablaHarryIsCool options) =>
-        graphql_flutter.useQuery(options);
-graphql.ObservableQuery<Query$blablaHarryIsCool>
-    useWatchQuery$blablaHarryIsCool(
-            WatchOptions$Query$blablaHarryIsCool options) =>
-        graphql_flutter.useWatchQuery(options);
-
-class Query$blablaHarryIsCool$Widget
-    extends graphql_flutter.Query<Query$blablaHarryIsCool> {
-  Query$blablaHarryIsCool$Widget({
+class Mutation$setShortProgress$Widget
+    extends graphql_flutter.Mutation<Mutation$setShortProgress> {
+  Mutation$setShortProgress$Widget({
     widgets.Key? key,
-    required Options$Query$blablaHarryIsCool options,
-    required graphql_flutter.QueryBuilder<Query$blablaHarryIsCool> builder,
+    WidgetOptions$Mutation$setShortProgress? options,
+    required Builder$Mutation$setShortProgress builder,
   }) : super(
           key: key,
-          options: options,
-          builder: builder,
+          options: options ?? WidgetOptions$Mutation$setShortProgress(),
+          builder: (
+            run,
+            result,
+          ) =>
+              builder(
+            (
+              variables, {
+              optimisticResult,
+              typedOptimisticResult,
+            }) =>
+                run(
+              variables.toJson(),
+              optimisticResult:
+                  optimisticResult ?? typedOptimisticResult?.toJson(),
+            ),
+            result,
+          ),
         );
 }

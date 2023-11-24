@@ -255,11 +255,9 @@ class RudderAnalytics extends Analytics {
     final traits = RudderTraits();
 
     final birthDateTime = profile.birthdate == null ? null : DateTime.tryParse(profile.birthdate!);
-    final ageDuration = birthDateTime == null ? null : DateTime.now().difference(birthDateTime);
-    int? age;
-    if (ageDuration != null) {
-      age = (ageDuration.inDays / 365.25).floor();
-      traits.put('ageGroup', _getAgeGroup(age));
+    if (birthDateTime != null) {
+      final age = getAgeFromBirthDate(birthDateTime);
+      traits.put('ageGroup', getAgeGroup(age).name);
     }
     traits.put('country', profile.countryIso2Code);
     traits.put('churchId', profile.churchId.toString());
@@ -304,27 +302,32 @@ class RudderAnalytics extends Analytics {
   void videoDownloadPlayed(VideoDownloadPlayedEvent event) {
     RudderController.instance.track('video_download_played', properties: getCommonData().putValue(map: event.toJson()));
   }
+}
 
-  String _getAgeGroup(int? age) {
-    if (age == null) {
-      return 'UNKNOWN';
-    }
-    if (age >= 65) {
-      return '65+';
-    } else if (age >= 51) {
-      return '51 - 64';
-    } else if (age >= 37) {
-      return '37 - 50';
-    } else if (age >= 26) {
-      return '26 - 36';
-    } else if (age >= 19) {
-      return '19 - 25';
-    } else if (age >= 13) {
-      return '13 - 18';
-    } else if (age >= 10) {
-      return '10 - 12';
-    } else {
-      return '< 10';
-    }
+int getAgeFromBirthDate(DateTime birthdate) {
+  final ageDuration = DateTime.now().difference(birthdate);
+  return (ageDuration.inDays / 365.25).floor();
+}
+
+({int start, String name}) getAgeGroup(int? age) {
+  if (age == null) {
+    return (start: 0, name: 'UNKNOWN');
+  }
+  if (age >= 65) {
+    return (start: 65, name: '65+');
+  } else if (age >= 51) {
+    return (start: 51, name: '51 - 64');
+  } else if (age >= 37) {
+    return (start: 37, name: '37 - 50');
+  } else if (age >= 26) {
+    return (start: 26, name: '26 - 36');
+  } else if (age >= 19) {
+    return (start: 19, name: '19 - 25');
+  } else if (age >= 13) {
+    return (start: 13, name: '13 - 18');
+  } else if (age >= 10) {
+    return (start: 10, name: '10 - 12');
+  } else {
+    return (start: 0, name: '< 10');
   }
 }
