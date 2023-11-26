@@ -324,7 +324,7 @@ SPEC CHECKSUMS:
   FirebaseSessions: 991fb4c20b3505eef125f7cbfa20a5b5b189c2a4
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_appauth: cf9b928962105b2a64a9802585d1c8adaf3e0f46
-  flutter_inappwebview: 50b55a88f5dddadc9e741a7caf72f378116e2156
+  flutter_inappwebview: 166ed136c90e43c69b451f6d825da379be66c847
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
   flutter_to_airplay: 519d8d83d7d8fd1c97a557b98195c4e6396eeb8f

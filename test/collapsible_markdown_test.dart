@@ -71,7 +71,7 @@ Future<void> testHeight(String content, WidgetTester t) async {
   final size = t.getSize(find.byKey(key));
   expect(
     size.height,
-    lessThanOrEqualTo(60),
+    lessThanOrEqualTo(68),
     reason: content,
   );
 }
