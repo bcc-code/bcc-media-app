@@ -83,7 +83,7 @@ dependencies:
   rudder_sdk_flutter_platform_interface: ^2.2.0
   share_plus: ^7.1.0
   restart_app: 1.1.2
-  flutter_inappwebview: ^6.0.0-beta.20
+  flutter_inappwebview: ^6.0.0-beta.28
   app_links: ^3.3.0
   auth0_flutter_web: 0.0.1-alpha.6
   universal_io: ^2.0.4
@@ -204,9 +204,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
-dependency_overrides:
-  flutter_inappwebview:
-    git:
-      url: https://github.com/andreasgangso/flutter_inappwebview.git
-      ref: feat/disable-ios-delay
