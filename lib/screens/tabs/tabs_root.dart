@@ -145,6 +145,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     return CupertinoScaffold(
       body: AutoTabsRouter(
         navigatorObservers: () => [HeroController()],
+        inheritNavigatorObservers: true,
         routes: currentTabIds.map((tabId) => tabInfos.getFor(tabId).route).toList(),
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);

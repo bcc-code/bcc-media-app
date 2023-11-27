@@ -230,8 +230,14 @@ class AppRouter extends $AppRouter {
           path: 'shorts',
           maintainState: true,
           children: [
-            CustomRoute(
+            CupertinoRoute(
               page: ShortsScreenRoute.page,
+              path: '',
+              maintainState: true,
+              meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
+            ),
+            CupertinoRoute(
+              page: ShortScreenRoute.page,
               path: ':id',
               maintainState: true,
               meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},

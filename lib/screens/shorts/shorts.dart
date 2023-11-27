@@ -7,14 +7,12 @@ import 'package:brunstadtv_app/components/shorts/short_view.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
-import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/helpers/hooks/use_route_aware.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:video_player/video_player.dart';
@@ -30,10 +28,25 @@ class ShortsVideoController {
 }
 
 @RoutePage<void>()
+class ShortScreen extends StatelessWidget {
+  const ShortScreen({
+    super.key,
+    @PathParam() required this.id,
+  });
+
+  final String id;
+
+  @override
+  Widget build(BuildContext context) {
+    return ShortsScreen(id: id);
+  }
+}
+
+@RoutePage<void>()
 class ShortsScreen extends HookConsumerWidget {
   const ShortsScreen({
     super.key,
-    @PathParam() this.id,
+    this.id,
   });
 
   final String? id;
@@ -84,6 +97,37 @@ class ShortsScreen extends HookConsumerWidget {
       //ignore: nested_hooks
       useListenable(l);
     }
+
+    final router = context.watchRouter;
+    final pageIsActive = useState(true);
+    useEffect(() {
+      void listener() {
+        final previousValue = pageIsActive.value;
+        final newValue = router.currentSegments.any((r) => r.name == context.routeData.name);
+        if (previousValue && !newValue) {
+          debugPrint('SHRT: page no longer active');
+          for (final c in shortControllerPairs) {
+            c.value?.controller.pause();
+          }
+        } else if (!previousValue && newValue) {
+          debugPrint('SHRT: page became active');
+        }
+        pageIsActive.value = newValue;
+      }
+
+      router.addListener(listener);
+      return () => router.removeListener(listener);
+    });
+
+    final isTabActive = useIsTabActive(
+      onChange: (active) {
+        if (active) return;
+        debugPrint('SHRT: tab no longer active: pausing controllers');
+        for (final c in shortControllerPairs) {
+          c.value?.controller.pause();
+        }
+      },
+    );
 
     initializeController(int index, Fragment$Short short) async {
       final existing = shortControllerPairs[index].value;
@@ -197,7 +241,7 @@ class ShortsScreen extends HookConsumerWidget {
       });
 
       await controller.controller.seekTo(Duration.zero);
-      if (currentIndex.value != index) return;
+      if (!isMounted() || currentIndex.value != index || !isTabActive() || !pageIsActive.value) return;
       await controller.controller.play();
       debugPrint('SHRT: short started playing');
       if (currentIndex.value != index) return;
@@ -238,7 +282,6 @@ class ShortsScreen extends HookConsumerWidget {
       for (var c in shortControllerPairs) {
         c.value?.controller.pause();
         c.value?.controller.dispose();
-        if (isMounted()) c.value = null;
       }
     }
 

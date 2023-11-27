@@ -166,7 +166,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
                 title: 'BCC Media',
                 routerDelegate: widget.appRouter.delegate(
                   initialRoutes: [const AutoLoginScreenRoute()],
-                  navigatorObservers: () => [AnalyticsNavigatorObserver()],
+                  navigatorObservers: () => [AnalyticsNavigatorObserver(), AutoRouteObserver()],
                 ),
                 routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
                 builder: (BuildContext context, Widget? child) {
