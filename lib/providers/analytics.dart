@@ -2,6 +2,7 @@ import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
 import 'package:brunstadtv_app/models/analytics/downloads.dart';
+import 'package:brunstadtv_app/models/analytics/misc.dart';
 import 'package:brunstadtv_app/models/analytics/shorts.dart';
 import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 import 'package:brunstadtv_app/providers/androidtv_provider.dart';
@@ -87,6 +88,8 @@ class Analytics {
   void shortStarted(ShortStartedEvent event) {}
   @mustBeOverridden
   void shortStopped(ShortStoppedEvent event) {}
+  @mustBeOverridden
+  void interaction(InteractionEvent event) {}
 }
 
 class RudderAnalytics extends Analytics {
@@ -316,6 +319,11 @@ class RudderAnalytics extends Analytics {
   @override
   void shortStopped(ShortStoppedEvent event) {
     RudderController.instance.track('short_stopped', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  @override
+  void interaction(InteractionEvent event) {
+    RudderController.instance.track('interaction', properties: getCommonData().putValue(map: event.toJson()));
   }
 }
 

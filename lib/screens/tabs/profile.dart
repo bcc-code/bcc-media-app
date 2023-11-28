@@ -8,12 +8,11 @@ import 'package:brunstadtv_app/components/pages/sections/section_with_header.dar
 import 'package:brunstadtv_app/components/profile/avatar.dart';
 import 'package:brunstadtv_app/components/profile/empty_info.dart';
 import 'package:brunstadtv_app/components/thumbnails/episode_thumbnail.dart';
-import 'package:brunstadtv_app/components/thumbnails/slider/thumbnail_slider_episode.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
-import 'package:brunstadtv_app/screens/shorts/shorts.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -163,42 +162,44 @@ class ProfileScreen extends HookConsumerWidget {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
-              child: SectionWithHeader(
-                title: S.of(context).likedShorts,
-                child: FutureBuilder(
-                  future: myListFuture.value,
-                  builder: (context, snapshot) {
-                    Widget child = const SizedBox.shrink();
-                    final items = snapshot.data?.parsedData?.myList.entries.items.where((el) => el.item is Fragment$MyListEntry$item$$Short).toList();
-                    if (snapshot.connectionState != ConnectionState.done) {
-                      child = const SizedBox(height: 250, child: LoadingGeneric());
-                    } else if (snapshot.hasError || items == null) {
-                      child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onFavoritesRefresh));
-                    } else if (items.isEmpty) {
-                      child = Container(
-                        padding: const EdgeInsets.all(16),
-                        width: double.infinity,
-                        child: EmptyInfo(
-                          icon: SvgPicture.string(
-                            SvgIcons.heartFilled,
-                            height: 36,
+            if (ref.watch(featureFlagsProvider.select((value) => value.shorts)))
+              SliverToBoxAdapter(
+                child: SectionWithHeader(
+                  title: S.of(context).likedShorts,
+                  child: FutureBuilder(
+                    future: myListFuture.value,
+                    builder: (context, snapshot) {
+                      Widget child = const SizedBox.shrink();
+                      final items =
+                          snapshot.data?.parsedData?.myList.entries.items.where((el) => el.item is Fragment$MyListEntry$item$$Short).toList();
+                      if (snapshot.connectionState != ConnectionState.done) {
+                        child = const SizedBox(height: 250, child: LoadingGeneric());
+                      } else if (snapshot.hasError || items == null) {
+                        child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onFavoritesRefresh));
+                      } else if (items.isEmpty) {
+                        child = Container(
+                          padding: const EdgeInsets.all(16),
+                          width: double.infinity,
+                          child: EmptyInfo(
+                            icon: SvgPicture.string(
+                              SvgIcons.heartFilled,
+                              height: 36,
+                            ),
+                            title: S.of(context).saveYourFavoriteShorts,
+                            details: S.of(context).saveYourFavoritesDescription,
                           ),
-                          title: S.of(context).saveYourFavoriteShorts,
-                          details: S.of(context).saveYourFavoritesDescription,
-                        ),
+                        );
+                      } else {
+                        child = _ShortFavorites(items);
+                      }
+                      return AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 250),
+                        child: child,
                       );
-                    } else {
-                      child = _ShortFavorites(items);
-                    }
-                    return AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 250),
-                      child: child,
-                    );
-                  },
+                    },
+                  ),
                 ),
               ),
-            ),
           ],
           if (downloadedVideosCount > 0 || ref.watch(downloadsEnabledProvider))
             const SliverToBoxAdapter(

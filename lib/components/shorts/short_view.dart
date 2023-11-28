@@ -12,6 +12,9 @@ import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/helpers/share_extension/share_extension.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/models/analytics/content_shared.dart';
+import 'package:brunstadtv_app/models/analytics/misc.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
@@ -350,12 +353,24 @@ class ShortActions extends HookConsumerWidget {
           child: design.buttons.large(
             variant: ButtonVariant.secondary,
             onPressed: () async {
+              ref.read(analyticsProvider).interaction(InteractionEvent(
+                    interaction: 'share',
+                    pageCode: 'shorts',
+                    contextElementType: 'short',
+                    contextElementId: short.id,
+                  ));
               final shortUrl = 'https://app.bcc.media/shorts/${short.id}';
               await Share().shareUrl(
                 shortUrl,
                 title: short.title,
                 sharePositionOrigin: iPadSharePositionOrigin(context),
               );
+              ref.read(analyticsProvider).contentShared(ContentSharedEvent(
+                    elementId: short.id,
+                    elementType: 'short',
+                    pageCode: 'shorts',
+                    position: null,
+                  ));
             },
             imagePosition: ButtonImagePosition.right,
             image: SvgPicture.string(
@@ -372,6 +387,12 @@ class ShortActions extends HookConsumerWidget {
             variant: ButtonVariant.secondary,
             onPressed: () {
               onMuteRequested(!muted);
+              ref.read(analyticsProvider).interaction(InteractionEvent(
+                    interaction: muted ? 'unmute' : 'mute',
+                    pageCode: 'shorts',
+                    contextElementType: 'short',
+                    contextElementId: short.id,
+                  ));
             },
             imagePosition: ButtonImagePosition.right,
             image: SvgPicture.string(
@@ -397,6 +418,12 @@ class ShortActions extends HookConsumerWidget {
               ),
             );
             videoController?.pause();
+            ref.read(analyticsProvider).interaction(InteractionEvent(
+                  interaction: 'open-source',
+                  pageCode: 'shorts',
+                  contextElementType: 'short',
+                  contextElementId: short.id,
+                ));
           },
           imagePosition: ButtonImagePosition.right,
           image: SvgPicture.string(

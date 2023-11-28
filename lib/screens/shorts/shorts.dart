@@ -1,9 +1,6 @@
 import 'dart:math';
 
-import 'package:async/async.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/components/badges/icon_badge.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/shorts/short_view.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
@@ -13,7 +10,6 @@ import 'package:brunstadtv_app/helpers/hooks/use_route_aware.dart';
 import 'package:brunstadtv_app/models/analytics/shorts.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -36,7 +32,7 @@ class ShortScreen extends StatelessWidget {
   const ShortScreen({
     super.key,
     @PathParam() required this.id,
-    @QueryParam() this.preventScroll = false,
+    @QueryParam() this.preventScroll = true,
   });
 
   final String id;
@@ -61,7 +57,6 @@ class ShortsScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final design = DesignSystem.of(context);
     final gqlClient = ref.watch(gqlClientProvider);
     final shorts = useState<List<Fragment$Short>>([]);
     final nextCursor = useState<String?>(null);
@@ -320,7 +315,7 @@ class ShortsScreen extends HookConsumerWidget {
       if (!isMounted()) return;
       currentIndex.value = index;
       debugPrint('SHRT: setCurrentIndex: $index');
-      Future.delayed(500.ms, () {
+      Future.delayed(300.ms, () {
         if (currentIndex.value != index) {
           debugPrint('SHRT: setCurrentIndex: $index: index changed, aborting');
           return;
@@ -371,6 +366,7 @@ class ShortsScreen extends HookConsumerWidget {
             onPageChanged: (index) {
               setCurrentIndex(index);
             },
+            physics: const _CustomPageViewScrollPhysics(),
             itemCount: preventScroll ? 1 : null,
             itemBuilder: (context, index) {
               var shortController = shortControllerPairs[index % 3].value;
@@ -411,4 +407,20 @@ class ShortsScreen extends HookConsumerWidget {
       ),
     );
   }
+}
+
+class _CustomPageViewScrollPhysics extends ScrollPhysics {
+  const _CustomPageViewScrollPhysics({ScrollPhysics? parent}) : super(parent: parent);
+
+  @override
+  _CustomPageViewScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return _CustomPageViewScrollPhysics(parent: buildParent(ancestor)!);
+  }
+
+  @override
+  SpringDescription get spring => const SpringDescription(
+        mass: 100,
+        stiffness: 1,
+        damping: 1,
+      );
 }

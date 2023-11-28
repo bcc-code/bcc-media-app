@@ -309,7 +309,7 @@ abstract class $AppRouter extends _i35.RootStackRouter {
                 id: pathParams.getString('id'),
                 preventScroll: queryParams.getBool(
                   'preventScroll',
-                  false,
+                  true,
                 ),
               ));
       return _i35.AutoRoutePage<void>(
@@ -1070,7 +1070,7 @@ class ShortScreenRoute extends _i35.PageRouteInfo<ShortScreenRouteArgs> {
   ShortScreenRoute({
     _i36.Key? key,
     required String id,
-    bool preventScroll = false,
+    bool preventScroll = true,
     List<_i35.PageRouteInfo>? children,
   }) : super(
           ShortScreenRoute.name,
@@ -1094,7 +1094,7 @@ class ShortScreenRouteArgs {
   const ShortScreenRouteArgs({
     this.key,
     required this.id,
-    this.preventScroll = false,
+    this.preventScroll = true,
   });
 
   final _i36.Key? key;
