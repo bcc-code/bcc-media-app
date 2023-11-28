@@ -25,7 +25,9 @@ mixin _$InteractionEvent {
   String? get pageCode => throw _privateConstructorUsedError; // 'shorts'
   String? get contextElementType =>
       throw _privateConstructorUsedError; // 'shorts'
-  String? get contextElementId => throw _privateConstructorUsedError;
+  String? get contextElementId =>
+      throw _privateConstructorUsedError; // e.g. uuid of the short
+  Map<String, dynamic>? get meta => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +45,8 @@ abstract class $InteractionEventCopyWith<$Res> {
       {String? interaction,
       String? pageCode,
       String? contextElementType,
-      String? contextElementId});
+      String? contextElementId,
+      Map<String, dynamic>? meta});
 }
 
 /// @nodoc
@@ -63,6 +66,7 @@ class _$InteractionEventCopyWithImpl<$Res, $Val extends InteractionEvent>
     Object? pageCode = freezed,
     Object? contextElementType = freezed,
     Object? contextElementId = freezed,
+    Object? meta = freezed,
   }) {
     return _then(_value.copyWith(
       interaction: freezed == interaction
@@ -81,6 +85,10 @@ class _$InteractionEventCopyWithImpl<$Res, $Val extends InteractionEvent>
           ? _value.contextElementId
           : contextElementId // ignore: cast_nullable_to_non_nullable
               as String?,
+      meta: freezed == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ) as $Val);
   }
 }
@@ -97,7 +105,8 @@ abstract class _$$InteractionEventImplCopyWith<$Res>
       {String? interaction,
       String? pageCode,
       String? contextElementType,
-      String? contextElementId});
+      String? contextElementId,
+      Map<String, dynamic>? meta});
 }
 
 /// @nodoc
@@ -115,6 +124,7 @@ class __$$InteractionEventImplCopyWithImpl<$Res>
     Object? pageCode = freezed,
     Object? contextElementType = freezed,
     Object? contextElementId = freezed,
+    Object? meta = freezed,
   }) {
     return _then(_$InteractionEventImpl(
       interaction: freezed == interaction
@@ -133,6 +143,10 @@ class __$$InteractionEventImplCopyWithImpl<$Res>
           ? _value.contextElementId
           : contextElementId // ignore: cast_nullable_to_non_nullable
               as String?,
+      meta: freezed == meta
+          ? _value._meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -144,7 +158,9 @@ class _$InteractionEventImpl implements _InteractionEvent {
       {this.interaction,
       this.pageCode,
       this.contextElementType,
-      this.contextElementId});
+      this.contextElementId,
+      final Map<String, dynamic>? meta})
+      : _meta = meta;
 
   factory _$InteractionEventImpl.fromJson(Map<String, dynamic> json) =>
       _$$InteractionEventImplFromJson(json);
@@ -160,10 +176,21 @@ class _$InteractionEventImpl implements _InteractionEvent {
 // 'shorts'
   @override
   final String? contextElementId;
+// e.g. uuid of the short
+  final Map<String, dynamic>? _meta;
+// e.g. uuid of the short
+  @override
+  Map<String, dynamic>? get meta {
+    final value = _meta;
+    if (value == null) return null;
+    if (_meta is EqualUnmodifiableMapView) return _meta;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
-    return 'InteractionEvent(interaction: $interaction, pageCode: $pageCode, contextElementType: $contextElementType, contextElementId: $contextElementId)';
+    return 'InteractionEvent(interaction: $interaction, pageCode: $pageCode, contextElementType: $contextElementType, contextElementId: $contextElementId, meta: $meta)';
   }
 
   @override
@@ -178,13 +205,19 @@ class _$InteractionEventImpl implements _InteractionEvent {
             (identical(other.contextElementType, contextElementType) ||
                 other.contextElementType == contextElementType) &&
             (identical(other.contextElementId, contextElementId) ||
-                other.contextElementId == contextElementId));
+                other.contextElementId == contextElementId) &&
+            const DeepCollectionEquality().equals(other._meta, _meta));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, interaction, pageCode, contextElementType, contextElementId);
+      runtimeType,
+      interaction,
+      pageCode,
+      contextElementType,
+      contextElementId,
+      const DeepCollectionEquality().hash(_meta));
 
   @JsonKey(ignore: true)
   @override
@@ -206,7 +239,8 @@ abstract class _InteractionEvent implements InteractionEvent {
       {final String? interaction,
       final String? pageCode,
       final String? contextElementType,
-      final String? contextElementId}) = _$InteractionEventImpl;
+      final String? contextElementId,
+      final Map<String, dynamic>? meta}) = _$InteractionEventImpl;
 
   factory _InteractionEvent.fromJson(Map<String, dynamic> json) =
       _$InteractionEventImpl.fromJson;
@@ -219,6 +253,8 @@ abstract class _InteractionEvent implements InteractionEvent {
   String? get contextElementType;
   @override // 'shorts'
   String? get contextElementId;
+  @override // e.g. uuid of the short
+  Map<String, dynamic>? get meta;
   @override
   @JsonKey(ignore: true)
   _$$InteractionEventImplCopyWith<_$InteractionEventImpl> get copyWith =>

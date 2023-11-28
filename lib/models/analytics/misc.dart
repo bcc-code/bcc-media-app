@@ -10,6 +10,7 @@ class InteractionEvent with _$InteractionEvent {
     String? pageCode, // 'shorts'
     String? contextElementType, // 'shorts'
     String? contextElementId, // e.g. uuid of the short
+    Map<String, dynamic>? meta,
   }) = _InteractionEvent;
 
   factory InteractionEvent.fromJson(Map<String, dynamic> json) => _$InteractionEventFromJson(json);

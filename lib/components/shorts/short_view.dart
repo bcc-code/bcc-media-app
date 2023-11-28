@@ -51,16 +51,80 @@ class ShortView extends HookConsumerWidget {
     final isInitialized = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isInitialized ?? false);
     final playIconAnimation = useAnimationController(duration: 1000.ms);
     final loadingAnimation = useAnimationController(duration: 1000.ms);
-
+    final dragLeftMostPosition = useRef<double?>(null);
+    final dragRightMostPosition = useRef<double?>(null);
     return GestureDetector(
+      onLongPress: () {
+        debugPrint('SHRT: longpress');
+        ref.read(analyticsProvider).interaction(InteractionEvent(
+              interaction: 'long-press',
+              pageCode: 'shorts',
+              contextElementType: 'short',
+              contextElementId: short?.id,
+            ));
+      },
+      onHorizontalDragStart: (details) {
+        dragLeftMostPosition.value = details.globalPosition.dx;
+        dragRightMostPosition.value = details.globalPosition.dx;
+      },
+      onHorizontalDragCancel: () {
+        dragLeftMostPosition.value = null;
+        dragRightMostPosition.value = null;
+      },
+      onHorizontalDragEnd: (details) {
+        if (dragLeftMostPosition.value == null || dragRightMostPosition.value == null) {
+          dragLeftMostPosition.value = null;
+          dragRightMostPosition.value = null;
+          return;
+        }
+        final dragDistance = dragRightMostPosition.value! - dragLeftMostPosition.value!;
+
+        debugPrint('SHRT: dragDistance: $dragDistance');
+
+        if (dragDistance > 40) {
+          debugPrint('SHRT: sending drag interaction: $dragDistance');
+          ref.read(analyticsProvider).interaction(InteractionEvent(
+                interaction: 'horizontal-drag',
+                pageCode: 'shorts',
+                contextElementType: 'short',
+                contextElementId: short?.id,
+                meta: {
+                  'distance': dragDistance,
+                },
+              ));
+        }
+      },
+      onHorizontalDragUpdate: (details) {
+        if (dragLeftMostPosition.value == null || dragRightMostPosition.value == null) {
+          return;
+        }
+        if (details.globalPosition.dx < dragLeftMostPosition.value!) {
+          dragLeftMostPosition.value = details.globalPosition.dx;
+        }
+        if (details.globalPosition.dx > dragRightMostPosition.value!) {
+          dragRightMostPosition.value = details.globalPosition.dx;
+        }
+      },
       onTap: () async {
         if (videoController == null) {
           return;
         }
         if (videoController!.value.isPlaying) {
           videoController!.pause();
+          ref.read(analyticsProvider).interaction(InteractionEvent(
+                interaction: 'pause',
+                pageCode: 'shorts',
+                contextElementType: 'short',
+                contextElementId: short?.id,
+              ));
         } else {
           videoController!.play();
+          ref.read(analyticsProvider).interaction(InteractionEvent(
+                interaction: 'play',
+                pageCode: 'shorts',
+                contextElementType: 'short',
+                contextElementId: short?.id,
+              ));
         }
 
         playIconAnimation.value = 1.0;
@@ -130,8 +194,8 @@ class ShortView extends HookConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             ShortInfo(title: short!.title, description: short!.description),
-                            SizedBox(height: 8),
-                            const Disclaimers(),
+                            const SizedBox(height: 8),
+                            Disclaimers(short: short!),
                           ],
                         ),
                       ),
@@ -156,19 +220,29 @@ class ShortView extends HookConsumerWidget {
   }
 }
 
-class Disclaimers extends StatelessWidget {
+class Disclaimers extends ConsumerWidget {
   const Disclaimers({
     super.key,
+    required this.short,
   });
 
+  final Fragment$Short short;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
+
     return Row(
       children: [
         GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () {
+            ref.read(analyticsProvider).interaction(InteractionEvent(
+                  interaction: 'pressed-auto-generated',
+                  pageCode: 'shorts',
+                  contextElementType: 'short',
+                  contextElementId: short.id,
+                ));
             showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
@@ -206,6 +280,12 @@ class Disclaimers extends StatelessWidget {
         GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () {
+            ref.read(analyticsProvider).interaction(InteractionEvent(
+                  interaction: 'pressed-beta',
+                  pageCode: 'shorts',
+                  contextElementType: 'short',
+                  contextElementId: short.id,
+                ));
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
@@ -232,7 +312,7 @@ class Disclaimers extends StatelessWidget {
                 disableIconPadding: true,
                 iconHeight: 16,
                 icon: Padding(
-                  padding: EdgeInsets.only(left: 4, right: 2),
+                  padding: const EdgeInsets.only(left: 4, right: 2),
                   child: SvgPicture.string(
                     SvgIcons.infoCircle,
                     colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),

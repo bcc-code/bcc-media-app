@@ -7,6 +7,7 @@ import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:brunstadtv_app/helpers/hooks/use_route_aware.dart';
+import 'package:brunstadtv_app/models/analytics/misc.dart';
 import 'package:brunstadtv_app/models/analytics/shorts.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
@@ -21,10 +22,12 @@ class ShortsVideoController {
   ShortsVideoController({
     required this.controller,
     required this.short,
+    this.replayCount = 0,
   });
 
   final VideoPlayerController controller;
   final Fragment$Short short;
+  int replayCount;
 }
 
 @RoutePage<void>()
@@ -153,22 +156,21 @@ class ShortsScreen extends HookConsumerWidget {
         // shorts.value.removeWhere((element) => element.id == short.id);
         return;
       }
-      final controller = VideoPlayerController.networkUrl(uri, videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true));
+      final controller =
+          VideoPlayerController.networkUrl(uri, videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true), formatHint: VideoFormat.hls);
       final pair = ShortsVideoController(controller: controller, short: short);
       shortControllerPairs[index].value = pair;
       await controller.initialize();
       controller.setLooping(true);
       controller.setVolume(muted.value ? 0 : 1);
 
-      var wasPlaying = false;
-      var replayCount = 0;
-      var previousPosition = Duration.zero;
+      var previousPosition = 0;
       var initialSent = false;
+      var wasPlaying = controller.value.isPlaying;
       controller.addListener(() {
         if (!isMounted()) return;
         final gqlClient = ref.read(gqlClientProvider);
-        bool isPaused() => !controller.value.isPlaying && !controller.value.isBuffering;
-        if (!isPaused()) {
+        if (controller.value.isPlaying) {
           progressDebouncer.run(() {
             gqlClient.mutate$setShortProgress(
               Options$Mutation$setShortProgress(
@@ -180,33 +182,25 @@ class ShortsScreen extends HookConsumerWidget {
             );
           });
         }
-        if (initialSent && wasPlaying && isPaused()) {
-          // paused
-          debugPrint('SHRT: listener - short ${short.id} paused/stopped. Sending stop for play $replayCount');
-          ref.read(analyticsProvider).shortStopped(ShortStoppedEvent(
-                shortId: short.id,
-                shortTitle: short.title,
-                positionFraction: controller.value.position.inSeconds / controller.value.duration.inSeconds,
-                positionSeconds: controller.value.position.inSeconds,
-                replayCount: replayCount,
-              ));
-        }
-        if (!isPaused() && previousPosition > controller.value.position) {
+        ref.read(analyticsProvider).heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
+
+        if (controller.value.position.inSeconds == 0 && previousPosition == controller.value.duration.inSeconds) {
           // looped
-          debugPrint('SHRT: listener - short ${short.id} looped. Sending stop for play $replayCount and start for play ${replayCount + 1}');
+          debugPrint(
+              'SHRT: listener y - short ${short.id} looped. Sending stop for play ${pair.replayCount} and start for play ${pair.replayCount + 1}');
           ref.read(analyticsProvider).shortStopped(ShortStoppedEvent(
                 shortId: short.id,
                 shortTitle: short.title,
-                positionFraction: previousPosition.inSeconds / min(1, controller.value.duration.inSeconds),
-                positionSeconds: previousPosition.inSeconds,
-                replayCount: replayCount,
+                positionFraction: previousPosition / max(1, controller.value.duration.inSeconds),
+                positionSeconds: previousPosition,
+                replayCount: pair.replayCount,
               ));
-          replayCount++;
+          pair.replayCount++;
           ref.read(analyticsProvider).shortStarted(
                 ShortStartedEvent(
                   shortId: short.id,
                   shortTitle: short.title,
-                  replayCount: replayCount,
+                  replayCount: pair.replayCount,
                   resumed: false,
                   positionFraction: 0,
                   positionSeconds: 0,
@@ -214,25 +208,38 @@ class ShortsScreen extends HookConsumerWidget {
               );
         }
 
-        if (!wasPlaying && controller.value.isPlaying) {
-          debugPrint('SHRT: listener - short ${short.id} start. Resume: $initialSent');
-          ref.read(analyticsProvider).shortStarted(
-                ShortStartedEvent(
+        previousPosition = controller.value.position.inSeconds;
+
+        // We ignore start/stop analytics on the first second of playback because of glitches in the player
+        if (controller.value.position.inSeconds > 1 && wasPlaying != controller.value.isPlaying) {
+          if (controller.value.isPlaying) {
+            // started
+            debugPrint('SHRT: listener y - short ${short.id} started. Sending start for play ${pair.replayCount}');
+            ref.read(analyticsProvider).shortStarted(
+                  ShortStartedEvent(
+                    shortId: short.id,
+                    shortTitle: short.title,
+                    replayCount: pair.replayCount,
+                    resumed: !initialSent,
+                    positionFraction: controller.value.position.inSeconds / max(1, controller.value.duration.inSeconds),
+                    positionSeconds: controller.value.position.inSeconds,
+                  ),
+                );
+            initialSent = true;
+          } else {
+            debugPrint('SHRT: listener y - short ${short.id} paused/stopped. Sending stop for play ${pair.replayCount}');
+            ref.read(analyticsProvider).shortStopped(ShortStoppedEvent(
                   shortId: short.id,
                   shortTitle: short.title,
-                  replayCount: replayCount,
-                  positionFraction: controller.value.position.inSeconds / min(1, controller.value.duration.inSeconds),
+                  positionFraction: controller.value.position.inSeconds / controller.value.duration.inSeconds,
                   positionSeconds: controller.value.position.inSeconds,
-                  resumed: initialSent,
-                ),
-              );
-          initialSent = true;
-        }
-        previousPosition = controller.value.position;
-        if (!controller.value.isBuffering) {
+                  replayCount: pair.replayCount,
+                ));
+          }
+
+          debugPrint('SHRT: listener - short ${short.id} playing changed from $wasPlaying to ${controller.value.isPlaying}');
           wasPlaying = controller.value.isPlaying;
         }
-        ref.read(analyticsProvider).heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
       });
     }
 
@@ -304,7 +311,10 @@ class ShortsScreen extends HookConsumerWidget {
         setupNextAndPreviousControllersForIndex(index);
       });
 
-      await controller.controller.seekTo(Duration.zero);
+      if (controller.controller.value.position.inSeconds > 0) {
+        await controller.controller.seekTo(Duration.zero);
+        return;
+      }
       if (!isMounted() || currentIndex.value != index || !isTabActive() || !pageIsActive.value) return;
       await controller.controller.play();
       debugPrint('SHRT: short started playing');
@@ -364,6 +374,17 @@ class ShortsScreen extends HookConsumerWidget {
             controller: pageController,
             scrollDirection: Axis.vertical,
             onPageChanged: (index) {
+              final previous = shorts.value.elementAtOrNull(currentIndex.value)?.id;
+              debugPrint('SHRT: nav $previous -> ${shorts.value.elementAtOrNull(index)?.id}');
+              ref.read(analyticsProvider).interaction(InteractionEvent(
+                    interaction: 'swipe-next',
+                    pageCode: 'shorts',
+                    contextElementType: 'short',
+                    contextElementId: previous,
+                    meta: {
+                      'nextShortId': shorts.value.elementAtOrNull(index)?.id,
+                    },
+                  ));
               setCurrentIndex(index);
             },
             physics: const _CustomPageViewScrollPhysics(),

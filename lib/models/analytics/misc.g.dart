@@ -13,6 +13,7 @@ _$InteractionEventImpl _$$InteractionEventImplFromJson(
       pageCode: json['pageCode'] as String?,
       contextElementType: json['contextElementType'] as String?,
       contextElementId: json['contextElementId'] as String?,
+      meta: json['meta'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$$InteractionEventImplToJson(
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$InteractionEventImplToJson(
       'pageCode': instance.pageCode,
       'contextElementType': instance.contextElementType,
       'contextElementId': instance.contextElementId,
+      'meta': instance.meta,
     };
