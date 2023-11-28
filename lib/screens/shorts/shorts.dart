@@ -167,16 +167,19 @@ class ShortsScreen extends HookConsumerWidget {
       var previousPosition = 0;
       var initialSent = false;
       var wasPlaying = controller.value.isPlaying;
+      var mightLoopSoon = false;
+
       controller.addListener(() {
         if (!isMounted()) return;
+        final value = controller.value;
         final gqlClient = ref.read(gqlClientProvider);
-        if (controller.value.isPlaying) {
+        if (value.isPlaying) {
           progressDebouncer.run(() {
             gqlClient.mutate$setShortProgress(
               Options$Mutation$setShortProgress(
                 variables: Variables$Mutation$setShortProgress(
                   id: short.id,
-                  progress: controller.value.position.inSeconds.toDouble(),
+                  progress: value.position.inSeconds.toDouble(),
                 ),
               ),
             );
@@ -184,14 +187,18 @@ class ShortsScreen extends HookConsumerWidget {
         }
         ref.read(analyticsProvider).heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
 
-        if (controller.value.position.inSeconds == 0 && previousPosition == controller.value.duration.inSeconds) {
+        if (!mightLoopSoon && value.position.inSeconds > value.duration.inSeconds - 2) {
+          mightLoopSoon = true;
+        }
+
+        if (mightLoopSoon && value.position.inSeconds < 2 && previousPosition > value.position.inSeconds) {
           // looped
           debugPrint(
               'SHRT: listener y - short ${short.id} looped. Sending stop for play ${pair.replayCount} and start for play ${pair.replayCount + 1}');
           ref.read(analyticsProvider).shortStopped(ShortStoppedEvent(
                 shortId: short.id,
                 shortTitle: short.title,
-                positionFraction: previousPosition / max(1, controller.value.duration.inSeconds),
+                positionFraction: previousPosition / max(1, value.duration.inSeconds),
                 positionSeconds: previousPosition,
                 replayCount: pair.replayCount,
               ));
@@ -206,13 +213,15 @@ class ShortsScreen extends HookConsumerWidget {
                   positionSeconds: 0,
                 ),
               );
+          mightLoopSoon = false;
         }
-
-        previousPosition = controller.value.position.inSeconds;
+        debugPrint(
+            'SHRT: listener - short ${short.id} position changed to ${value.position.inSeconds}, 0? ${value.position.inSeconds == 0}, duration: ${value.duration.inSeconds}, previousPosition: $previousPosition');
+        previousPosition = value.position.inSeconds;
 
         // We ignore start/stop analytics on the first second of playback because of glitches in the player
-        if (controller.value.position.inSeconds > 1 && wasPlaying != controller.value.isPlaying) {
-          if (controller.value.isPlaying) {
+        if (value.position.inSeconds > 1 && wasPlaying != value.isPlaying) {
+          if (value.isPlaying) {
             // started
             debugPrint('SHRT: listener y - short ${short.id} started. Sending start for play ${pair.replayCount}');
             ref.read(analyticsProvider).shortStarted(
@@ -221,8 +230,8 @@ class ShortsScreen extends HookConsumerWidget {
                     shortTitle: short.title,
                     replayCount: pair.replayCount,
                     resumed: !initialSent,
-                    positionFraction: controller.value.position.inSeconds / max(1, controller.value.duration.inSeconds),
-                    positionSeconds: controller.value.position.inSeconds,
+                    positionFraction: value.position.inSeconds / max(1, value.duration.inSeconds),
+                    positionSeconds: value.position.inSeconds,
                   ),
                 );
             initialSent = true;
@@ -231,14 +240,14 @@ class ShortsScreen extends HookConsumerWidget {
             ref.read(analyticsProvider).shortStopped(ShortStoppedEvent(
                   shortId: short.id,
                   shortTitle: short.title,
-                  positionFraction: controller.value.position.inSeconds / controller.value.duration.inSeconds,
-                  positionSeconds: controller.value.position.inSeconds,
+                  positionFraction: value.position.inSeconds / value.duration.inSeconds,
+                  positionSeconds: value.position.inSeconds,
                   replayCount: pair.replayCount,
                 ));
           }
 
-          debugPrint('SHRT: listener - short ${short.id} playing changed from $wasPlaying to ${controller.value.isPlaying}');
-          wasPlaying = controller.value.isPlaying;
+          debugPrint('SHRT: listener - short ${short.id} playing changed from $wasPlaying to ${value.isPlaying}');
+          wasPlaying = value.isPlaying;
         }
       });
     }

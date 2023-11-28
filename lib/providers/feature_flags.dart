@@ -64,3 +64,15 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
     );
   }
 }
+
+final featureFlagVariantListProvider = Provider<List<String>>((ref) {
+  return ref.watch(featureFlagsProvider.select((value) => value.toggles)).entries.fold<List<String>>([], (list, entry) {
+    final variantName = entry.value.variant.name;
+    if (!entry.value.enabled) return list;
+    if (variantName.isEmpty || entry.value.variant.enabled == false) {
+      return [...list, entry.key];
+    }
+    // "toggle-name:variant;"
+    return [...list, '${entry.key}:$variantName'];
+  });
+});

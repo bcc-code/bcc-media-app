@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
@@ -15,11 +16,13 @@ import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:simple_shadow/simple_shadow.dart';
 
 import '../../components/misc/custom_grid_view.dart';
 import '../../components/offline/downloaded_videos.dart';
@@ -230,13 +233,15 @@ class _ShortFavorites extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final myListEntries = useState(items);
 
-    final episodeItems = myListEntries.value.map((item) => item.item).whereType<Fragment$MyListEntry$item$$Short>();
+    final design = DesignSystem.of(context);
+
+    final shortItems = myListEntries.value.map((item) => item.item).whereType<Fragment$MyListEntry$item$$Short>();
     return HorizontalSlider(
       height: 130 + 32,
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-      itemCount: episodeItems.length,
+      itemCount: shortItems.length,
       itemBuilder: (context, index) {
-        final item = episodeItems.elementAt(index);
+        final item = shortItems.elementAt(index);
         return _FavoriteItemClickWrapper(
           item: item,
           analytics: SectionItemAnalytics(
@@ -249,9 +254,17 @@ class _ShortFavorites extends HookConsumerWidget {
             alignment: Alignment.topCenter,
             child: ConstrainedBox(
               constraints: const BoxConstraints.tightFor(height: 130),
-              child: EpisodeThumbnail.withSize(
-                episode: getEpisodeThumbnailData(item),
-                imageSize: const Size(88, 130),
+              child: Stack(
+                children: [
+                  EpisodeThumbnail.withSize(
+                    episode: getEpisodeThumbnailData(item),
+                    imageSize: const Size(88, 130),
+                  ),
+                  Positioned.fill(child: Container(color: design.colors.background1.withOpacity(0.3))),
+                  Positioned.fill(
+                    child: Center(child: SimpleShadow(offset: const Offset(0, 0), child: SvgPicture.string(SvgIcons.play, height: 24))),
+                  ),
+                ],
               ),
             ),
           ),

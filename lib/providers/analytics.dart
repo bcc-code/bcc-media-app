@@ -6,6 +6,7 @@ import 'package:brunstadtv_app/models/analytics/misc.dart';
 import 'package:brunstadtv_app/models/analytics/shorts.dart';
 import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 import 'package:brunstadtv_app/providers/androidtv_provider.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -136,7 +137,8 @@ class RudderAnalytics extends Analytics {
       'channel': androidTv ? 'androidtv' : 'mobile',
       'appLanguage': settings.appLanguage.languageCode,
       'releaseVersion': packageInfo == null ? null : formatAppVersion(packageInfo!),
-      'sessionId': settings.sessionId
+      'sessionId': settings.sessionId,
+      'featureFlags': ref.read(featureFlagVariantListProvider).join(','),
     });
 
     return commonData;

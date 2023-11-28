@@ -247,7 +247,12 @@ const fragmentDefinitionMyListEntry = FragmentDefinitionNode(
             FieldNode(
               name: NameNode(value: 'image'),
               alias: null,
-              arguments: [],
+              arguments: [
+                ArgumentNode(
+                  name: NameNode(value: 'style'),
+                  value: EnumValueNode(name: NameNode(value: 'poster')),
+                )
+              ],
               directives: [],
               selectionSet: null,
             ),

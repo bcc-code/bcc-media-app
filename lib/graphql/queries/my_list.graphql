@@ -12,7 +12,7 @@ fragment MyListEntry on UserCollectionEntry {
     ... on Short {
       id
       title
-      image
+      image(style: poster)
     }
   }
 }
