@@ -986,8 +986,8 @@ class SSl extends S {
   String get betaExplanation => 'This feature is in beta and might contain issues. Please report any issues or feedback via the \'Contact\' button in settings.';
 
   @override
-  String get likedShorts => 'Liked shorts';
+  String get likedShorts => 'Priljubljeni kratki filmi';
 
   @override
-  String get saveYourFavoriteShorts => 'Save your favorite shorts';
+  String get saveYourFavoriteShorts => 'Shrani svoje priljubljene kratke filme';
 }

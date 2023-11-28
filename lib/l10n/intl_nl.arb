@@ -1355,11 +1355,11 @@
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
-  "likedShorts": "Liked shorts",
+  "likedShorts": "Korte films die ik leuk vind",
   "@likedShorts": {
     "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
-  "saveYourFavoriteShorts": "Save your favorite shorts",
+  "saveYourFavoriteShorts": "Bewaar je favoriete korte films",
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   }

@@ -986,8 +986,8 @@ class SNl extends S {
   String get betaExplanation => 'Deze functie is in de bètafase en kan problemen bevatten. Meld problemen of feedback via de knop \'Contact\' in de instellingen.';
 
   @override
-  String get likedShorts => 'Liked shorts';
+  String get likedShorts => 'Korte films die ik leuk vind';
 
   @override
-  String get saveYourFavoriteShorts => 'Save your favorite shorts';
+  String get saveYourFavoriteShorts => 'Bewaar je favoriete korte films';
 }
