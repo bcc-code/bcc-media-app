@@ -313,6 +313,12 @@ class ShortActions extends HookConsumerWidget {
           child: design.buttons.large(
             variant: ButtonVariant.secondary,
             onPressed: () {
+              ref.read(analyticsProvider).interaction(InteractionEvent(
+                    interaction: 'favorite',
+                    pageCode: 'shorts',
+                    contextElementType: 'short',
+                    contextElementId: short.id,
+                  ));
               if (inMyList.value) {
                 ref.read(gqlClientProvider).mutate$removeEntryFromMyList(
                       Options$Mutation$removeEntryFromMyList(
@@ -406,6 +412,12 @@ class ShortActions extends HookConsumerWidget {
         design.buttons.large(
           variant: shortsSourceButtonPrimary ? ButtonVariant.primary : ButtonVariant.secondary,
           onPressed: () {
+            ref.read(analyticsProvider).interaction(InteractionEvent(
+                  interaction: 'open-source',
+                  pageCode: 'shorts',
+                  contextElementType: 'short',
+                  contextElementId: short.id,
+                ));
             final ep = short.source?.item.asOrNull<Fragment$Short$source$item$$Episode>();
             if (ep == null) return;
             final sourcePosition = short.source?.start?.round() ?? 0;
@@ -418,12 +430,6 @@ class ShortActions extends HookConsumerWidget {
               ),
             );
             videoController?.pause();
-            ref.read(analyticsProvider).interaction(InteractionEvent(
-                  interaction: 'open-source',
-                  pageCode: 'shorts',
-                  contextElementType: 'short',
-                  contextElementId: short.id,
-                ));
           },
           imagePosition: ButtonImagePosition.right,
           image: SvgPicture.string(
