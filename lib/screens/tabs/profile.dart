@@ -2,19 +2,24 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_with_header.dart';
 import 'package:brunstadtv_app/components/profile/avatar.dart';
 import 'package:brunstadtv_app/components/profile/empty_info.dart';
+import 'package:brunstadtv_app/components/thumbnails/episode_thumbnail.dart';
+import 'package:brunstadtv_app/components/thumbnails/slider/thumbnail_slider_episode.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
+import 'package:brunstadtv_app/screens/shorts/shorts.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../components/misc/custom_grid_view.dart';
@@ -47,7 +52,7 @@ class ProfileScreen extends HookConsumerWidget {
       if (user == null) {
         return Future.value(null);
       }
-      return ref.read(gqlClientProvider).query$MyList();
+      return ref.read(gqlClientProvider).query$MyList(Options$Query$MyList(errorPolicy: ErrorPolicy.all));
     }
 
     final myListFuture = useState(useMemoized(getMyList));
@@ -120,7 +125,7 @@ class ProfileScreen extends HookConsumerWidget {
               ),
             ),
           ),
-          if (user != null)
+          if (user != null) ...[
             SliverToBoxAdapter(
               child: SectionWithHeader(
                 title: S.of(context).yourFavorites,
@@ -128,12 +133,13 @@ class ProfileScreen extends HookConsumerWidget {
                   future: myListFuture.value,
                   builder: (context, snapshot) {
                     Widget child = const SizedBox.shrink();
-                    final myList = snapshot.data?.parsedData?.myList;
+                    final items =
+                        snapshot.data?.parsedData?.myList.entries.items.where((el) => el.item is Fragment$MyListEntry$item$$Episode).toList();
                     if (snapshot.connectionState != ConnectionState.done) {
                       child = const SizedBox(height: 250, child: LoadingGeneric());
-                    } else if (snapshot.hasError || myList == null) {
+                    } else if (snapshot.hasError || items == null) {
                       child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onFavoritesRefresh));
-                    } else if (myList.entries.items.isEmpty) {
+                    } else if (items.isEmpty) {
                       child = Container(
                         padding: const EdgeInsets.all(16),
                         width: double.infinity,
@@ -147,7 +153,7 @@ class ProfileScreen extends HookConsumerWidget {
                         ),
                       );
                     } else {
-                      child = _MyListContent(myList.entries.items);
+                      child = _EpisodeFavorites(items);
                     }
                     return AnimatedSwitcher(
                       duration: const Duration(milliseconds: 250),
@@ -157,6 +163,43 @@ class ProfileScreen extends HookConsumerWidget {
                 ),
               ),
             ),
+            SliverToBoxAdapter(
+              child: SectionWithHeader(
+                title: S.of(context).likedShorts,
+                child: FutureBuilder(
+                  future: myListFuture.value,
+                  builder: (context, snapshot) {
+                    Widget child = const SizedBox.shrink();
+                    final items = snapshot.data?.parsedData?.myList.entries.items.where((el) => el.item is Fragment$MyListEntry$item$$Short).toList();
+                    if (snapshot.connectionState != ConnectionState.done) {
+                      child = const SizedBox(height: 250, child: LoadingGeneric());
+                    } else if (snapshot.hasError || items == null) {
+                      child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onFavoritesRefresh));
+                    } else if (items.isEmpty) {
+                      child = Container(
+                        padding: const EdgeInsets.all(16),
+                        width: double.infinity,
+                        child: EmptyInfo(
+                          icon: SvgPicture.string(
+                            SvgIcons.heartFilled,
+                            height: 36,
+                          ),
+                          title: S.of(context).saveYourFavoriteShorts,
+                          details: S.of(context).saveYourFavoritesDescription,
+                        ),
+                      );
+                    } else {
+                      child = _ShortFavorites(items);
+                    }
+                    return AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 250),
+                      child: child,
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
           if (downloadedVideosCount > 0 || ref.watch(downloadsEnabledProvider))
             const SliverToBoxAdapter(
               child: DownloadedVideosSection(),
@@ -168,8 +211,57 @@ class ProfileScreen extends HookConsumerWidget {
   }
 }
 
-class _MyListContent extends HookConsumerWidget {
-  const _MyListContent(this.items);
+class _ShortFavorites extends HookConsumerWidget {
+  const _ShortFavorites(this.items);
+
+  final List<Fragment$MyListEntry> items;
+
+  EpisodeThumbnailData getEpisodeThumbnailData(Fragment$MyListEntry$item$$Short short) {
+    return EpisodeThumbnailData(
+      title: '',
+      duration: null,
+      image: short.image,
+      locked: false,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final myListEntries = useState(items);
+
+    final episodeItems = myListEntries.value.map((item) => item.item).whereType<Fragment$MyListEntry$item$$Short>();
+    return HorizontalSlider(
+      height: 130 + 32,
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      itemCount: episodeItems.length,
+      itemBuilder: (context, index) {
+        final item = episodeItems.elementAt(index);
+        return _FavoriteItemClickWrapper(
+          item: item,
+          analytics: SectionItemAnalytics(
+            id: item.id,
+            name: item.title,
+            type: item.$__typename,
+            position: index,
+          ),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints.tightFor(height: 130),
+              child: EpisodeThumbnail.withSize(
+                episode: getEpisodeThumbnailData(item),
+                imageSize: const Size(88, 130),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _EpisodeFavorites extends HookConsumerWidget {
+  const _EpisodeFavorites(this.items);
 
   final List<Fragment$MyListEntry> items;
 
@@ -214,7 +306,7 @@ class _MyListContent extends HookConsumerWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       children: episodeItems.mapIndexed((index, item) {
-        return _MyListItemClickWrapper(
+        return _FavoriteItemClickWrapper(
           item: item,
           analytics: SectionItemAnalytics(
             id: item.id,
@@ -233,8 +325,8 @@ class _MyListContent extends HookConsumerWidget {
   }
 }
 
-class _MyListItemClickWrapper extends ConsumerWidget {
-  const _MyListItemClickWrapper({required this.item, required this.child, required this.analytics});
+class _FavoriteItemClickWrapper extends ConsumerWidget {
+  const _FavoriteItemClickWrapper({required this.item, required this.child, required this.analytics});
 
   final Fragment$MyListEntry$item item;
   final SectionItemAnalytics analytics;
@@ -244,6 +336,10 @@ class _MyListItemClickWrapper extends ConsumerWidget {
     final episodeItem = item.asOrNull<Fragment$MyListEntry$item$$Episode>();
     if (episodeItem != null) {
       context.navigateTo(EpisodeScreenRoute(episodeId: episodeItem.id));
+    }
+    final shortItem = item.asOrNull<Fragment$MyListEntry$item$$Short>();
+    if (shortItem != null) {
+      context.router.navigate(ShortScreenRoute(id: shortItem.id, preventScroll: true));
     }
     ref.read(analyticsProvider).myListTabEntryClicked(context);
   }

@@ -2012,6 +2012,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'This feature is in beta and might contain issues. Please report any issues or feedback via the \'Contact\' button in settings.'**
   String get betaExplanation;
+
+  /// Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels.
+  ///
+  /// In en, this message translates to:
+  /// **'Liked shorts'**
+  String get likedShorts;
+
+  /// Shown in the 'liked shorts' box when you dont have any favorites saved yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Save your favorite shorts'**
+  String get saveYourFavoriteShorts;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

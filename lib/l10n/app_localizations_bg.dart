@@ -984,4 +984,10 @@ class SBg extends S {
 
   @override
   String get betaExplanation => 'This feature is in beta and might contain issues. Please report any issues or feedback via the \'Contact\' button in settings.';
+
+  @override
+  String get likedShorts => 'Liked shorts';
+
+  @override
+  String get saveYourFavoriteShorts => 'Save your favorite shorts';
 }

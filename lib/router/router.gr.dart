@@ -303,13 +303,21 @@ abstract class $AppRouter extends _i35.RootStackRouter {
     },
     ShortScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
+      final queryParams = routeData.queryParams;
       final args = routeData.argsAs<ShortScreenRouteArgs>(
-          orElse: () => ShortScreenRouteArgs(id: pathParams.getString('id')));
+          orElse: () => ShortScreenRouteArgs(
+                id: pathParams.getString('id'),
+                preventScroll: queryParams.getBool(
+                  'preventScroll',
+                  false,
+                ),
+              ));
       return _i35.AutoRoutePage<void>(
         routeData: routeData,
         child: _i26.ShortScreen(
           key: args.key,
           id: args.id,
+          preventScroll: args.preventScroll,
         ),
       );
     },
@@ -321,6 +329,7 @@ abstract class $AppRouter extends _i35.RootStackRouter {
         child: _i26.ShortsScreen(
           key: args.key,
           id: args.id,
+          preventScroll: args.preventScroll,
         ),
       );
     },
@@ -1061,14 +1070,17 @@ class ShortScreenRoute extends _i35.PageRouteInfo<ShortScreenRouteArgs> {
   ShortScreenRoute({
     _i36.Key? key,
     required String id,
+    bool preventScroll = false,
     List<_i35.PageRouteInfo>? children,
   }) : super(
           ShortScreenRoute.name,
           args: ShortScreenRouteArgs(
             key: key,
             id: id,
+            preventScroll: preventScroll,
           ),
           rawPathParams: {'id': id},
+          rawQueryParams: {'preventScroll': preventScroll},
           initialChildren: children,
         );
 
@@ -1082,15 +1094,18 @@ class ShortScreenRouteArgs {
   const ShortScreenRouteArgs({
     this.key,
     required this.id,
+    this.preventScroll = false,
   });
 
   final _i36.Key? key;
 
   final String id;
 
+  final bool preventScroll;
+
   @override
   String toString() {
-    return 'ShortScreenRouteArgs{key: $key, id: $id}';
+    return 'ShortScreenRouteArgs{key: $key, id: $id, preventScroll: $preventScroll}';
   }
 }
 
@@ -1100,12 +1115,14 @@ class ShortsScreenRoute extends _i35.PageRouteInfo<ShortsScreenRouteArgs> {
   ShortsScreenRoute({
     _i36.Key? key,
     String? id,
+    bool preventScroll = false,
     List<_i35.PageRouteInfo>? children,
   }) : super(
           ShortsScreenRoute.name,
           args: ShortsScreenRouteArgs(
             key: key,
             id: id,
+            preventScroll: preventScroll,
           ),
           initialChildren: children,
         );
@@ -1120,15 +1137,18 @@ class ShortsScreenRouteArgs {
   const ShortsScreenRouteArgs({
     this.key,
     this.id,
+    this.preventScroll = false,
   });
 
   final _i36.Key? key;
 
   final String? id;
 
+  final bool preventScroll;
+
   @override
   String toString() {
-    return 'ShortsScreenRouteArgs{key: $key, id: $id}';
+    return 'ShortsScreenRouteArgs{key: $key, id: $id, preventScroll: $preventScroll}';
   }
 }
 

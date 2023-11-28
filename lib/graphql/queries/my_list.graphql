@@ -9,6 +9,11 @@ fragment MyListEntry on UserCollectionEntry {
       progress
       publishDate
     }
+    ... on Short {
+      id
+      title
+      image
+    }
   }
 }
 

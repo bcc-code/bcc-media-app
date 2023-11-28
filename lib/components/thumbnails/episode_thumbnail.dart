@@ -105,7 +105,7 @@ class _EpisodeThumbnailStack extends StatelessWidget {
     required this.expiresAt,
   });
 
-  bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
+  bool get watched => episode.progress != null && episode.duration != null && episode.progress! > episode.duration! * 0.9;
 
   @override
   Widget build(BuildContext context) {
@@ -135,12 +135,12 @@ class _EpisodeThumbnailStack extends StatelessWidget {
               ),
             ),
           ),
-        if (episode.progress != null && !watched)
+        if (episode.duration != null && episode.progress != null && !watched)
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
               margin: const EdgeInsets.only(left: 4, bottom: 4, right: 4),
-              child: WatchProgressIndicator(totalDuration: episode.duration, watchedDuration: episode.progress!),
+              child: WatchProgressIndicator(totalDuration: episode.duration!, watchedDuration: episode.progress!),
             ),
           )
         else if (!episode.locked)
@@ -154,7 +154,7 @@ class _EpisodeThumbnailStack extends StatelessWidget {
                   if (watched) const WatchedBadge(),
                   if (expiresAt != null) DownloadExpiresBadge(expiresAt: expiresAt!),
                   const Spacer(),
-                  EpisodeDuration(duration: getFormattedDuration(episode.duration)),
+                  if (episode.duration != null) EpisodeDuration(duration: getFormattedDuration(episode.duration!)),
                 ],
               ),
             ),

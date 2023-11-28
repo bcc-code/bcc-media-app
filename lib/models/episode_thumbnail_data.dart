@@ -6,7 +6,7 @@ part 'episode_thumbnail_data.freezed.dart';
 class EpisodeThumbnailData with _$EpisodeThumbnailData {
   const factory EpisodeThumbnailData({
     required String title,
-    required int duration,
+    int? duration,
     String? image,
     required bool locked,
     int? progress,

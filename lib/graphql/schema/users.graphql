@@ -34,7 +34,7 @@ type UserCollectionEntry {
     #    sort: Int!
     #    updatedAt: Date!
     #    createdAt: Date!
-    item: UserCollectionEntryItem! @goField(forceResolver: true)
+    item: UserCollectionEntryItem @goField(forceResolver: true)
 }
 
 type UserCollectionEntryPagination implements Pagination {

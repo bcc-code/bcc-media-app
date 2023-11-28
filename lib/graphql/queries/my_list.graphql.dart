@@ -6,7 +6,7 @@ import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 
 class Fragment$MyListEntry {
   Fragment$MyListEntry({
-    required this.item,
+    this.item,
     this.$__typename = 'UserCollectionEntry',
   });
 
@@ -14,20 +14,22 @@ class Fragment$MyListEntry {
     final l$item = json['item'];
     final l$$__typename = json['__typename'];
     return Fragment$MyListEntry(
-      item:
-          Fragment$MyListEntry$item.fromJson((l$item as Map<String, dynamic>)),
+      item: l$item == null
+          ? null
+          : Fragment$MyListEntry$item.fromJson(
+              (l$item as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Fragment$MyListEntry$item item;
+  final Fragment$MyListEntry$item? item;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$item = item;
-    _resultData['item'] = l$item.toJson();
+    _resultData['item'] = l$item?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -107,9 +109,9 @@ class _CopyWithImpl$Fragment$MyListEntry<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$MyListEntry(
-        item: item == _undefined || item == null
+        item: item == _undefined
             ? _instance.item
-            : (item as Fragment$MyListEntry$item),
+            : (item as Fragment$MyListEntry$item?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -117,7 +119,9 @@ class _CopyWithImpl$Fragment$MyListEntry<TRes>
 
   CopyWith$Fragment$MyListEntry$item<TRes> get item {
     final local$item = _instance.item;
-    return CopyWith$Fragment$MyListEntry$item(local$item, (e) => call(item: e));
+    return local$item == null
+        ? CopyWith$Fragment$MyListEntry$item.stub(_then(_instance))
+        : CopyWith$Fragment$MyListEntry$item(local$item, (e) => call(item: e));
   }
 }
 
@@ -218,6 +222,44 @@ const fragmentDefinitionMyListEntry = FragmentDefinitionNode(
             ),
           ]),
         ),
+        InlineFragmentNode(
+          typeCondition: TypeConditionNode(
+              on: NamedTypeNode(
+            name: NameNode(value: 'Short'),
+            isNonNull: false,
+          )),
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'title'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'image'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        ),
         FieldNode(
           name: NameNode(value: '__typename'),
           alias: null,
@@ -283,11 +325,11 @@ class Fragment$MyListEntry$item {
       case "Episode":
         return Fragment$MyListEntry$item$$Episode.fromJson(json);
 
-      case "Show":
-        return Fragment$MyListEntry$item$$Show.fromJson(json);
-
       case "Short":
         return Fragment$MyListEntry$item$$Short.fromJson(json);
+
+      case "Show":
+        return Fragment$MyListEntry$item$$Show.fromJson(json);
 
       default:
         final l$$__typename = json['__typename'];
@@ -338,19 +380,19 @@ extension UtilityExtension$Fragment$MyListEntry$item
       );
   _T when<_T>({
     required _T Function(Fragment$MyListEntry$item$$Episode) episode,
-    required _T Function(Fragment$MyListEntry$item$$Show) show,
     required _T Function(Fragment$MyListEntry$item$$Short) short,
+    required _T Function(Fragment$MyListEntry$item$$Show) show,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
       case "Episode":
         return episode(this as Fragment$MyListEntry$item$$Episode);
 
-      case "Show":
-        return show(this as Fragment$MyListEntry$item$$Show);
-
       case "Short":
         return short(this as Fragment$MyListEntry$item$$Short);
+
+      case "Show":
+        return show(this as Fragment$MyListEntry$item$$Show);
 
       default:
         return orElse();
@@ -359,8 +401,8 @@ extension UtilityExtension$Fragment$MyListEntry$item
 
   _T maybeWhen<_T>({
     _T Function(Fragment$MyListEntry$item$$Episode)? episode,
-    _T Function(Fragment$MyListEntry$item$$Show)? show,
     _T Function(Fragment$MyListEntry$item$$Short)? short,
+    _T Function(Fragment$MyListEntry$item$$Show)? show,
     required _T Function() orElse,
   }) {
     switch ($__typename) {
@@ -371,16 +413,16 @@ extension UtilityExtension$Fragment$MyListEntry$item
           return orElse();
         }
 
-      case "Show":
-        if (show != null) {
-          return show(this as Fragment$MyListEntry$item$$Show);
+      case "Short":
+        if (short != null) {
+          return short(this as Fragment$MyListEntry$item$$Short);
         } else {
           return orElse();
         }
 
-      case "Short":
-        if (short != null) {
-          return short(this as Fragment$MyListEntry$item$$Short);
+      case "Show":
+        if (show != null) {
+          return show(this as Fragment$MyListEntry$item$$Show);
         } else {
           return orElse();
         }
@@ -674,6 +716,167 @@ class _CopyWithStubImpl$Fragment$MyListEntry$item$$Episode<TRes>
       _res;
 }
 
+class Fragment$MyListEntry$item$$Short implements Fragment$MyListEntry$item {
+  Fragment$MyListEntry$item$$Short({
+    required this.id,
+    required this.title,
+    this.image,
+    this.$__typename = 'Short',
+  });
+
+  factory Fragment$MyListEntry$item$$Short.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
+    final l$image = json['image'];
+    final l$$__typename = json['__typename'];
+    return Fragment$MyListEntry$item$$Short(
+      id: (l$id as String),
+      title: (l$title as String),
+      image: (l$image as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String title;
+
+  final String? image;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$image = image;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$image,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$MyListEntry$item$$Short) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$MyListEntry$item$$Short
+    on Fragment$MyListEntry$item$$Short {
+  CopyWith$Fragment$MyListEntry$item$$Short<Fragment$MyListEntry$item$$Short>
+      get copyWith => CopyWith$Fragment$MyListEntry$item$$Short(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$MyListEntry$item$$Short<TRes> {
+  factory CopyWith$Fragment$MyListEntry$item$$Short(
+    Fragment$MyListEntry$item$$Short instance,
+    TRes Function(Fragment$MyListEntry$item$$Short) then,
+  ) = _CopyWithImpl$Fragment$MyListEntry$item$$Short;
+
+  factory CopyWith$Fragment$MyListEntry$item$$Short.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$MyListEntry$item$$Short;
+
+  TRes call({
+    String? id,
+    String? title,
+    String? image,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$MyListEntry$item$$Short<TRes>
+    implements CopyWith$Fragment$MyListEntry$item$$Short<TRes> {
+  _CopyWithImpl$Fragment$MyListEntry$item$$Short(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$MyListEntry$item$$Short _instance;
+
+  final TRes Function(Fragment$MyListEntry$item$$Short) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
+    Object? image = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$MyListEntry$item$$Short(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        image: image == _undefined ? _instance.image : (image as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$MyListEntry$item$$Short<TRes>
+    implements CopyWith$Fragment$MyListEntry$item$$Short<TRes> {
+  _CopyWithStubImpl$Fragment$MyListEntry$item$$Short(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? title,
+    String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Fragment$MyListEntry$item$$Show implements Fragment$MyListEntry$item {
   Fragment$MyListEntry$item$$Show({this.$__typename = 'Show'});
 
@@ -760,98 +963,6 @@ class _CopyWithImpl$Fragment$MyListEntry$item$$Show<TRes>
 class _CopyWithStubImpl$Fragment$MyListEntry$item$$Show<TRes>
     implements CopyWith$Fragment$MyListEntry$item$$Show<TRes> {
   _CopyWithStubImpl$Fragment$MyListEntry$item$$Show(this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
-}
-
-class Fragment$MyListEntry$item$$Short implements Fragment$MyListEntry$item {
-  Fragment$MyListEntry$item$$Short({this.$__typename = 'Short'});
-
-  factory Fragment$MyListEntry$item$$Short.fromJson(Map<String, dynamic> json) {
-    final l$$__typename = json['__typename'];
-    return Fragment$MyListEntry$item$$Short(
-        $__typename: (l$$__typename as String));
-  }
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Fragment$MyListEntry$item$$Short) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$MyListEntry$item$$Short
-    on Fragment$MyListEntry$item$$Short {
-  CopyWith$Fragment$MyListEntry$item$$Short<Fragment$MyListEntry$item$$Short>
-      get copyWith => CopyWith$Fragment$MyListEntry$item$$Short(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$MyListEntry$item$$Short<TRes> {
-  factory CopyWith$Fragment$MyListEntry$item$$Short(
-    Fragment$MyListEntry$item$$Short instance,
-    TRes Function(Fragment$MyListEntry$item$$Short) then,
-  ) = _CopyWithImpl$Fragment$MyListEntry$item$$Short;
-
-  factory CopyWith$Fragment$MyListEntry$item$$Short.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$MyListEntry$item$$Short;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImpl$Fragment$MyListEntry$item$$Short<TRes>
-    implements CopyWith$Fragment$MyListEntry$item$$Short<TRes> {
-  _CopyWithImpl$Fragment$MyListEntry$item$$Short(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$MyListEntry$item$$Short _instance;
-
-  final TRes Function(Fragment$MyListEntry$item$$Short) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) =>
-      _then(Fragment$MyListEntry$item$$Short(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Fragment$MyListEntry$item$$Short<TRes>
-    implements CopyWith$Fragment$MyListEntry$item$$Short<TRes> {
-  _CopyWithStubImpl$Fragment$MyListEntry$item$$Short(this._res);
 
   TRes _res;
 

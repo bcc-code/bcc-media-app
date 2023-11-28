@@ -2,6 +2,7 @@ import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
 import 'package:brunstadtv_app/models/analytics/downloads.dart';
+import 'package:brunstadtv_app/models/analytics/shorts.dart';
 import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
@@ -82,6 +83,10 @@ class Analytics {
   void videoDownloadRemoved(VideoDownloadRemovedEvent event) {}
   @mustBeOverridden
   void videoDownloadPlayed(VideoDownloadPlayedEvent event) {}
+  @mustBeOverridden
+  void shortStarted(ShortStartedEvent event) {}
+  @mustBeOverridden
+  void shortStopped(ShortStoppedEvent event) {}
 }
 
 class RudderAnalytics extends Analytics {
@@ -301,6 +306,16 @@ class RudderAnalytics extends Analytics {
   @override
   void videoDownloadPlayed(VideoDownloadPlayedEvent event) {
     RudderController.instance.track('video_download_played', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  @override
+  void shortStarted(ShortStartedEvent event) {
+    RudderController.instance.track('short_started', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  @override
+  void shortStopped(ShortStoppedEvent event) {
+    RudderController.instance.track('short_stopped', properties: getCommonData().putValue(map: event.toJson()));
   }
 }
 

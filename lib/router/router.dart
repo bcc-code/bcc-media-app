@@ -236,12 +236,7 @@ class AppRouter extends $AppRouter {
               maintainState: true,
               meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
             ),
-            CupertinoRoute(
-              page: ShortScreenRoute.page,
-              path: ':id',
-              maintainState: true,
-              meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
-            ),
+            _shortScreenRoute,
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
           ],
@@ -249,7 +244,7 @@ class AppRouter extends $AppRouter {
         CustomRoute(
           page: ProfileWrapperScreenRoute.page,
           path: 'profile',
-          maintainState: true,
+          maintainState: false,
           children: [
             CustomRoute(
               page: ProfileScreenRoute.page,
@@ -259,6 +254,7 @@ class AppRouter extends $AppRouter {
             ),
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
+            _shortScreenRoute,
           ],
         ),
         CustomRoute(
@@ -310,6 +306,13 @@ final _episodeScreenRoute = CupertinoRoute(
   page: EpisodeScreenRoute.page,
   path: 'episode/:episodeId',
   meta: const {RouteMetaConstants.analyticsName: 'episode'},
+);
+
+final _shortScreenRoute = CupertinoRoute(
+  page: ShortScreenRoute.page,
+  path: ':id',
+  maintainState: true,
+  meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
 );
 
 final _pageScreenRoute = CupertinoRoute(

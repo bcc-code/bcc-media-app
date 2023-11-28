@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:async/async.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
@@ -8,6 +10,8 @@ import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:brunstadtv_app/helpers/hooks/use_route_aware.dart';
+import 'package:brunstadtv_app/models/analytics/shorts.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
@@ -32,13 +36,15 @@ class ShortScreen extends StatelessWidget {
   const ShortScreen({
     super.key,
     @PathParam() required this.id,
+    @QueryParam() this.preventScroll = false,
   });
 
   final String id;
+  final bool preventScroll;
 
   @override
   Widget build(BuildContext context) {
-    return ShortsScreen(id: id);
+    return ShortsScreen(id: id, preventScroll: preventScroll);
   }
 }
 
@@ -47,9 +53,11 @@ class ShortsScreen extends HookConsumerWidget {
   const ShortsScreen({
     super.key,
     this.id,
+    this.preventScroll = false,
   });
 
   final String? id;
+  final bool preventScroll;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -151,24 +159,85 @@ class ShortsScreen extends HookConsumerWidget {
         return;
       }
       final controller = VideoPlayerController.networkUrl(uri, videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true));
-      shortControllerPairs[index].value = ShortsVideoController(controller: controller, short: short);
+      final pair = ShortsVideoController(controller: controller, short: short);
+      shortControllerPairs[index].value = pair;
       await controller.initialize();
       controller.setLooping(true);
       controller.setVolume(muted.value ? 0 : 1);
 
+      var wasPlaying = false;
+      var replayCount = 0;
+      var previousPosition = Duration.zero;
+      var initialSent = false;
       controller.addListener(() {
-        if (!isMounted() || !controller.value.isPlaying) return;
+        if (!isMounted()) return;
         final gqlClient = ref.read(gqlClientProvider);
-        progressDebouncer.run(() {
-          gqlClient.mutate$setShortProgress(
-            Options$Mutation$setShortProgress(
-              variables: Variables$Mutation$setShortProgress(
-                id: short.id,
-                progress: controller.value.position.inSeconds.toDouble(),
+        bool isPaused() => !controller.value.isPlaying && !controller.value.isBuffering;
+        if (!isPaused()) {
+          progressDebouncer.run(() {
+            gqlClient.mutate$setShortProgress(
+              Options$Mutation$setShortProgress(
+                variables: Variables$Mutation$setShortProgress(
+                  id: short.id,
+                  progress: controller.value.position.inSeconds.toDouble(),
+                ),
               ),
-            ),
-          );
-        });
+            );
+          });
+        }
+        if (initialSent && wasPlaying && isPaused()) {
+          // paused
+          debugPrint('SHRT: listener - short ${short.id} paused/stopped. Sending stop for play $replayCount');
+          ref.read(analyticsProvider).shortStopped(ShortStoppedEvent(
+                shortId: short.id,
+                shortTitle: short.title,
+                positionFraction: controller.value.position.inSeconds / controller.value.duration.inSeconds,
+                positionSeconds: controller.value.position.inSeconds,
+                replayCount: replayCount,
+              ));
+        }
+        if (!isPaused() && previousPosition > controller.value.position) {
+          // looped
+          debugPrint('SHRT: listener - short ${short.id} looped. Sending stop for play $replayCount and start for play ${replayCount + 1}');
+          ref.read(analyticsProvider).shortStopped(ShortStoppedEvent(
+                shortId: short.id,
+                shortTitle: short.title,
+                positionFraction: previousPosition.inSeconds / min(1, controller.value.duration.inSeconds),
+                positionSeconds: previousPosition.inSeconds,
+                replayCount: replayCount,
+              ));
+          replayCount++;
+          ref.read(analyticsProvider).shortStarted(
+                ShortStartedEvent(
+                  shortId: short.id,
+                  shortTitle: short.title,
+                  replayCount: replayCount,
+                  resumed: false,
+                  positionFraction: 0,
+                  positionSeconds: 0,
+                ),
+              );
+        }
+
+        if (!wasPlaying && controller.value.isPlaying) {
+          debugPrint('SHRT: listener - short ${short.id} start. Resume: $initialSent');
+          ref.read(analyticsProvider).shortStarted(
+                ShortStartedEvent(
+                  shortId: short.id,
+                  shortTitle: short.title,
+                  replayCount: replayCount,
+                  positionFraction: controller.value.position.inSeconds / min(1, controller.value.duration.inSeconds),
+                  positionSeconds: controller.value.position.inSeconds,
+                  resumed: initialSent,
+                ),
+              );
+          initialSent = true;
+        }
+        previousPosition = controller.value.position;
+        if (!controller.value.isBuffering) {
+          wasPlaying = controller.value.isPlaying;
+        }
+        ref.read(analyticsProvider).heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
       });
     }
 
@@ -302,6 +371,7 @@ class ShortsScreen extends HookConsumerWidget {
             onPageChanged: (index) {
               setCurrentIndex(index);
             },
+            itemCount: preventScroll ? 1 : null,
             itemBuilder: (context, index) {
               var shortController = shortControllerPairs[index % 3].value;
               var short = shorts.value.elementAtOrNull(index);

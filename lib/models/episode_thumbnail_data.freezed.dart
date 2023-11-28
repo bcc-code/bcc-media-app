@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$EpisodeThumbnailData {
   String get title => throw _privateConstructorUsedError;
-  int get duration => throw _privateConstructorUsedError;
+  int? get duration => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
   bool get locked => throw _privateConstructorUsedError;
   int? get progress => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $EpisodeThumbnailDataCopyWith<$Res> {
   @useResult
   $Res call(
       {String title,
-      int duration,
+      int? duration,
       String? image,
       bool locked,
       int? progress,
@@ -64,7 +64,7 @@ class _$EpisodeThumbnailDataCopyWithImpl<$Res,
   @override
   $Res call({
     Object? title = null,
-    Object? duration = null,
+    Object? duration = freezed,
     Object? image = freezed,
     Object? locked = null,
     Object? progress = freezed,
@@ -78,10 +78,10 @@ class _$EpisodeThumbnailDataCopyWithImpl<$Res,
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      duration: null == duration
+      duration: freezed == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -124,7 +124,7 @@ abstract class _$$EpisodeThumbnailDataImplCopyWith<$Res>
   @useResult
   $Res call(
       {String title,
-      int duration,
+      int? duration,
       String? image,
       bool locked,
       int? progress,
@@ -146,7 +146,7 @@ class __$$EpisodeThumbnailDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = null,
-    Object? duration = null,
+    Object? duration = freezed,
     Object? image = freezed,
     Object? locked = null,
     Object? progress = freezed,
@@ -160,10 +160,10 @@ class __$$EpisodeThumbnailDataImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      duration: null == duration
+      duration: freezed == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -201,7 +201,7 @@ class __$$EpisodeThumbnailDataImplCopyWithImpl<$Res>
 class _$EpisodeThumbnailDataImpl implements _EpisodeThumbnailData {
   const _$EpisodeThumbnailDataImpl(
       {required this.title,
-      required this.duration,
+      this.duration,
       this.image,
       required this.locked,
       this.progress,
@@ -213,7 +213,7 @@ class _$EpisodeThumbnailDataImpl implements _EpisodeThumbnailData {
   @override
   final String title;
   @override
-  final int duration;
+  final int? duration;
   @override
   final String? image;
   @override
@@ -271,7 +271,7 @@ class _$EpisodeThumbnailDataImpl implements _EpisodeThumbnailData {
 abstract class _EpisodeThumbnailData implements EpisodeThumbnailData {
   const factory _EpisodeThumbnailData(
       {required final String title,
-      required final int duration,
+      final int? duration,
       final String? image,
       required final bool locked,
       final int? progress,
@@ -283,7 +283,7 @@ abstract class _EpisodeThumbnailData implements EpisodeThumbnailData {
   @override
   String get title;
   @override
-  int get duration;
+  int? get duration;
   @override
   String? get image;
   @override
