@@ -17,6 +17,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:video_player/video_player.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 class ShortsVideoController {
   ShortsVideoController({
@@ -349,6 +350,7 @@ class ShortsScreen extends HookConsumerWidget {
 
     init() async {
       if (!isMounted()) return;
+      WakelockPlus.enable();
       currentIndex.value = 0;
       final short = (await deepLinkShortFuture)?.parsedData?.short;
       if (short != null) {
@@ -366,6 +368,7 @@ class ShortsScreen extends HookConsumerWidget {
         c.value?.controller.pause();
         c.value?.controller.dispose();
       }
+      WakelockPlus.disable();
     }
 
     useEffect(() {
