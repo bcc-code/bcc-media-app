@@ -34,7 +34,7 @@ fragment PlayableMediaItemShort on Short {
     ...BasicStream
   }
   title
-  image
+  image(style: poster)
 }
 
 fragment Short on Short {
@@ -42,7 +42,7 @@ fragment Short on Short {
   title
   description
   inMyList
-  image
+  image(style: poster)
   source {
     item {
       ... on Episode {

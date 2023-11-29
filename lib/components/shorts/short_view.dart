@@ -9,6 +9,7 @@ import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/my_list.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/helpers/share_extension/share_extension.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
@@ -135,7 +136,7 @@ class ShortView extends HookConsumerWidget {
       },
       child: Stack(
         children: [
-          if (videoController != null) VideoView(controller: videoController!),
+          if (videoController != null && isInitialized) VideoView(controller: videoController!),
           FadeTransition(
             opacity: CurvedAnimation(parent: playIconAnimation, curve: Curves.easeInOut, reverseCurve: Curves.easeOut),
             child: Center(
@@ -144,10 +145,11 @@ class ShortView extends HookConsumerWidget {
                   : SvgPicture.string(SvgIcons.play, width: 52, height: 52),
             ),
           ),
-          if (short == null || !isInitialized)
+          if (short == null || !isInitialized || videoController == null)
             Positioned.fill(
               child: Stack(
                 children: [
+                  Container(color: design.colors.background1),
                   Animate(
                     controller: loadingAnimation,
                     onPlay: (c) => c.repeat(),
@@ -162,65 +164,63 @@ class ShortView extends HookConsumerWidget {
                   const Center(child: LoadingIndicator()),
                 ],
               ),
-            )
-          else ...[
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 200,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.black.withOpacity(0.0),
-                      design.colors.background1.withOpacity(0.8),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
+            ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 200,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.black.withOpacity(0.0),
+                    design.colors.background1.withOpacity(0.8),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
                 ),
               ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                  child: SafeArea(
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                ShortInfo(title: short!.title, description: short!.description),
-                                const SizedBox(height: 8),
-                                Disclaimers(short: short!),
-                              ],
-                            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                child: SafeArea(
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              if (short != null) ShortInfo(title: short!.title, description: short!.description),
+                              const SizedBox(height: 8),
+                              Disclaimers(short: short),
+                            ],
                           ),
-                          Container(
-                            alignment: Alignment.bottomRight,
-                            child: ShortActions(
-                              short: short!,
-                              onMuteRequested: onMuteRequested,
-                              muted: muted,
-                              videoController: videoController,
-                            ),
+                        ),
+                        Container(
+                          alignment: Alignment.bottomRight,
+                          child: ShortActions(
+                            short: short,
+                            onMuteRequested: onMuteRequested,
+                            muted: muted,
+                            videoController: videoController,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                if (videoController != null) _Timeline(videoController: videoController!)
-              ],
-            ),
-          ],
+              ),
+              _Timeline(videoController: videoController)
+            ],
+          ),
         ],
       ),
     );
@@ -233,7 +233,7 @@ class _Timeline extends HookWidget {
     required this.videoController,
   });
 
-  final VideoPlayerController videoController;
+  final VideoPlayerController? videoController;
 
   @override
   Widget build(BuildContext context) {
@@ -246,24 +246,29 @@ class _Timeline extends HookWidget {
           child: LayoutBuilder(builder: (context, constraints) {
             return Align(
               alignment: Alignment.bottomLeft,
-              child: SmoothVideoProgress(
-                  controller: videoController!,
-                  builder: (context, position, duration, child) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
-                        gradient: LinearGradient(
-                          colors: [
-                            design.colors.separatorOnLight,
-                            design.colors.separatorOnLight,
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                      width: constraints.maxWidth * min(1.0, position.inMilliseconds / duration.inMilliseconds),
-                    );
-                  }),
+              child: videoController == null
+                  ? const SizedBox.shrink()
+                  : SmoothVideoProgress(
+                      controller: videoController!,
+                      builder: (context, position, duration, child) {
+                        if (duration.inMilliseconds == 0) {
+                          return const SizedBox.shrink();
+                        }
+                        return Container(
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
+                            gradient: LinearGradient(
+                              colors: [
+                                design.colors.separatorOnLight,
+                                design.colors.separatorOnLight,
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
+                          width: constraints.maxWidth * clampDouble(position.inMilliseconds / duration.inMilliseconds, 0, 1),
+                        );
+                      }),
             );
           }),
         ),
@@ -278,7 +283,7 @@ class Disclaimers extends ConsumerWidget {
     required this.short,
   });
 
-  final Fragment$Short short;
+  final Fragment$Short? short;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -294,7 +299,7 @@ class Disclaimers extends ConsumerWidget {
                     interaction: 'pressed-auto-generated',
                     pageCode: 'shorts',
                     contextElementType: 'short',
-                    contextElementId: short.id,
+                    contextElementId: short?.id,
                   ));
               showDialog(
                   context: context,
@@ -337,7 +342,7 @@ class Disclaimers extends ConsumerWidget {
                   interaction: 'pressed-beta',
                   pageCode: 'shorts',
                   contextElementType: 'short',
-                  contextElementId: short.id,
+                  contextElementId: short?.id,
                 ));
             showDialog(
               context: context,
@@ -426,7 +431,7 @@ class ShortActions extends HookConsumerWidget {
     required this.videoController,
   });
 
-  final Fragment$Short short;
+  final Fragment$Short? short;
   final void Function(bool p1) onMuteRequested;
   final bool muted;
   final VideoPlayerController? videoController;
@@ -434,7 +439,14 @@ class ShortActions extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
-    final inMyList = useState(short.inMyList);
+    final inMyList = useState(short?.inMyList ?? false);
+    useEffect(() {
+      if (short == null) {
+        inMyList.value = false;
+        return;
+      }
+      inMyList.value = short!.inMyList;
+    }, [short]);
     final shortsSourceButtonPrimary = ref.watch(featureFlagsProvider.select((f) => f.shortsSourceButtonPrimary));
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -446,17 +458,18 @@ class ShortActions extends HookConsumerWidget {
           child: design.buttons.large(
             variant: ButtonVariant.secondary,
             onPressed: () {
+              if (short == null) return;
               ref.read(analyticsProvider).interaction(InteractionEvent(
                     interaction: 'favorite',
                     pageCode: 'shorts',
                     contextElementType: 'short',
-                    contextElementId: short.id,
+                    contextElementId: short!.id,
                   ));
               if (inMyList.value) {
                 ref.read(gqlClientProvider).mutate$removeEntryFromMyList(
                       Options$Mutation$removeEntryFromMyList(
                         variables: Variables$Mutation$removeEntryFromMyList(
-                          entryId: short.id,
+                          entryId: short!.id,
                         ),
                       ),
                     );
@@ -464,7 +477,7 @@ class ShortActions extends HookConsumerWidget {
                 ref.read(gqlClientProvider).mutate$addShortToMyList(
                       Options$Mutation$addShortToMyList(
                         variables: Variables$Mutation$addShortToMyList(
-                          shortId: short.id,
+                          shortId: short!.id,
                         ),
                       ),
                     );
@@ -497,16 +510,17 @@ class ShortActions extends HookConsumerWidget {
                       interaction: 'share',
                       pageCode: 'shorts',
                       contextElementType: 'short',
-                      contextElementId: short.id,
+                      contextElementId: short?.id,
                     ));
-                final shortUrl = 'https://app.bcc.media/shorts/${short.id}';
+                if (short == null) return;
+                final shortUrl = 'https://app.bcc.media/shorts/${short!.id}';
                 await Share().shareUrl(
                   shortUrl,
-                  title: short.title,
+                  title: short!.title,
                   sharePositionOrigin: iPadSharePositionOrigin(context),
                 );
                 ref.read(analyticsProvider).contentShared(ContentSharedEvent(
-                      elementId: short.id,
+                      elementId: short!.id,
                       elementType: 'short',
                       pageCode: 'shorts',
                       position: null,
@@ -531,7 +545,7 @@ class ShortActions extends HookConsumerWidget {
                     interaction: muted ? 'unmute' : 'mute',
                     pageCode: 'shorts',
                     contextElementType: 'short',
-                    contextElementId: short.id,
+                    contextElementId: short?.id,
                   ));
             },
             imagePosition: ButtonImagePosition.right,
@@ -550,11 +564,11 @@ class ShortActions extends HookConsumerWidget {
                   interaction: 'open-source',
                   pageCode: 'shorts',
                   contextElementType: 'short',
-                  contextElementId: short.id,
+                  contextElementId: short?.id,
                 ));
-            final ep = short.source?.item.asOrNull<Fragment$Short$source$item$$Episode>();
+            final ep = short?.source?.item.asOrNull<Fragment$Short$source$item$$Episode>();
             if (ep == null) return;
-            final sourcePosition = short.source?.start?.round() ?? 0;
+            final sourcePosition = short?.source?.start?.round() ?? 0;
             final shortPosition = videoController?.value.position.inSeconds ?? 0;
             context.router.navigate(
               EpisodeScreenRoute(
