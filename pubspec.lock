@@ -1601,6 +1601,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  smooth_video_progress:
+    dependency: "direct main"
+    description:
+      name: smooth_video_progress
+      sha256: a47efa055d4f0d7634ffa7c43197d71a30c98f31fffe4bbe1a949c4b851c68db
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
   source_gen:
     dependency: transitive
     description:

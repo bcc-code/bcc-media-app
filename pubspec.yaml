@@ -125,6 +125,7 @@ dependencies:
   video_player: ^2.8.1
   skeletonizer: ^0.8.0
   wakelock_plus: ^1.1.4
+  smooth_video_progress: ^0.0.4
   #smooth: any
 
 dev_dependencies:

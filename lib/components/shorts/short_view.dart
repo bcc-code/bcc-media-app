@@ -26,6 +26,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:smooth_video_progress/smooth_video_progress.dart';
 import 'package:video_player/video_player.dart';
 
 class ShortView extends HookConsumerWidget {
@@ -216,7 +217,7 @@ class ShortView extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                _Timeline(videoController: videoController)
+                if (videoController != null) _Timeline(videoController: videoController!)
               ],
             ),
           ],
@@ -232,41 +233,39 @@ class _Timeline extends HookWidget {
     required this.videoController,
   });
 
-  final VideoPlayerController? videoController;
+  final VideoPlayerController videoController;
 
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
-    final fractionPlayed = useListenableSelector(Listenable.merge([videoController]), () {
-      if (videoController == null) {
-        return 1.0;
-      }
-      return clampDouble((videoController!.value.position.inSeconds + 1) / max(1.0, videoController!.value.duration.inSeconds), 0, 1);
-    });
     return Stack(
       children: [
         SizedBox(
           width: double.infinity,
           height: 4,
-          child: Align(
-            alignment: Alignment.bottomLeft,
-            child: LayoutBuilder(builder: (context, constraints) {
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
-                  gradient: LinearGradient(
-                    colors: [
-                      design.colors.separatorOnLight,
-                      design.colors.separatorOnLight,
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                width: constraints.maxWidth * fractionPlayed,
-              );
-            }),
-          ),
+          child: LayoutBuilder(builder: (context, constraints) {
+            return Align(
+              alignment: Alignment.bottomLeft,
+              child: SmoothVideoProgress(
+                  controller: videoController!,
+                  builder: (context, position, duration, child) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
+                        gradient: LinearGradient(
+                          colors: [
+                            design.colors.separatorOnLight,
+                            design.colors.separatorOnLight,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      ),
+                      width: constraints.maxWidth * min(1.0, position.inMilliseconds / duration.inMilliseconds),
+                    );
+                  }),
+            );
+          }),
         ),
       ],
     );
