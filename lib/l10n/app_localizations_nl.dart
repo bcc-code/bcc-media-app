@@ -990,4 +990,7 @@ class SNl extends S {
 
   @override
   String get saveYourFavoriteShorts => 'Bewaar je favoriete korte films';
+
+  @override
+  String get featureNotAvailableYet => 'This feature is not available yet. Please try again later.';
 }

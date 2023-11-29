@@ -990,4 +990,7 @@ class SRu extends S {
 
   @override
   String get saveYourFavoriteShorts => 'Save your favorite shorts';
+
+  @override
+  String get featureNotAvailableYet => 'This feature is not available yet. Please try again later.';
 }

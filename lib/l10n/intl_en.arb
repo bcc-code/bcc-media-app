@@ -1362,5 +1362,9 @@
   "saveYourFavoriteShorts": "Save your favorite shorts",
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
+  },
+  "featureNotAvailableYet": "This feature is not available yet. Please try again later.",
+  "@featureNotAvailableYet": {
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   }
 }

@@ -2024,6 +2024,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Save your favorite shorts'**
   String get saveYourFavoriteShorts;
+
+  /// Shown when you try to access a feature that is not available yet, e.g. because it is still in beta.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature is not available yet. Please try again later.'**
+  String get featureNotAvailableYet;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

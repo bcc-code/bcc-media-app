@@ -2,6 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/helpers/router/router_utils.dart';
 import 'package:brunstadtv_app/helpers/router/redirect.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -62,6 +65,35 @@ class BccmSpecialRoutesHandler implements SpecialRoutesHandler {
       return true;
     }
 
+    bool handleShorts() {
+      if (ref.read(featureFlagsProvider).shorts) {
+        return false;
+      }
+      showDialog(
+        context: context,
+        builder: (context) {
+          final design = DesignSystem.of(context);
+          return AlertDialog(
+            title: Text(
+              S.of(context).shortsTab,
+              style: design.textStyles.title2.copyWith(color: design.colors.label2),
+            ),
+            content: Text(
+              S.of(context).featureNotAvailableYet,
+              style: design.textStyles.body1.copyWith(color: design.colors.label2),
+            ),
+            actions: [
+              design.buttons.responsive(
+                onPressed: () => Navigator.of(context).pop(),
+                labelText: S.of(context).gotIt,
+              ),
+            ],
+          );
+        },
+      );
+      return false;
+    }
+
     switch (uri.pathSegments[0]) {
       case 'tvlogin':
         return handleTvLogin();
@@ -71,6 +103,8 @@ class BccmSpecialRoutesHandler implements SpecialRoutesHandler {
         return handleLegacy(isSeriesId: true);
       case 'program':
         return handleLegacy(isSeriesId: false);
+      case 'shorts':
+        return handleShorts();
     }
     return false;
   }

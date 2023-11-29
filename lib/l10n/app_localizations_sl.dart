@@ -990,4 +990,7 @@ class SSl extends S {
 
   @override
   String get saveYourFavoriteShorts => 'Shrani svoje priljubljene kratke filme';
+
+  @override
+  String get featureNotAvailableYet => 'This feature is not available yet. Please try again later.';
 }
