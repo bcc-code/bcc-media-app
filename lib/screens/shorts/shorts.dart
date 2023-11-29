@@ -167,8 +167,11 @@ class ShortsScreen extends HookConsumerWidget {
         // shorts.value.removeWhere((element) => element.id == short.id);
         return;
       }
-      final controller = VideoPlayerController.networkUrl(uri,
-          videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true, allowBackgroundPlayback: false), formatHint: VideoFormat.hls);
+      final controller = VideoPlayerController.networkUrl(
+        uri,
+        videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true, allowBackgroundPlayback: false),
+        formatHint: VideoFormat.hls,
+      );
       final pair = ShortsVideoController(controller: controller, short: short);
       shortControllerPairs[index].value = pair;
       await controller.initialize();

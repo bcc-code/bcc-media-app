@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
@@ -178,44 +179,96 @@ class ShortView extends HookConsumerWidget {
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-              alignment: Alignment.bottomCenter,
-              child: SafeArea(
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            ShortInfo(title: short!.title, description: short!.description),
-                            const SizedBox(height: 8),
-                            Disclaimers(short: short!),
-                          ],
-                        ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  child: SafeArea(
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                ShortInfo(title: short!.title, description: short!.description),
+                                const SizedBox(height: 8),
+                                Disclaimers(short: short!),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomRight,
+                            child: ShortActions(
+                              short: short!,
+                              onMuteRequested: onMuteRequested,
+                              muted: muted,
+                              videoController: videoController,
+                            ),
+                          ),
+                        ],
                       ),
-                      Container(
-                        alignment: Alignment.bottomRight,
-                        child: ShortActions(
-                          short: short!,
-                          onMuteRequested: onMuteRequested,
-                          muted: muted,
-                          videoController: videoController,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
+                _Timeline(videoController: videoController)
+              ],
             ),
           ],
         ],
       ),
+    );
+  }
+}
+
+class _Timeline extends HookWidget {
+  const _Timeline({
+    super.key,
+    required this.videoController,
+  });
+
+  final VideoPlayerController? videoController;
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+    final fractionPlayed = useListenableSelector(Listenable.merge([videoController]), () {
+      if (videoController == null) {
+        return 1.0;
+      }
+      return clampDouble((videoController!.value.position.inSeconds + 1) / max(1.0, videoController!.value.duration.inSeconds), 0, 1);
+    });
+    return Stack(
+      children: [
+        SizedBox(
+          width: double.infinity,
+          height: 4,
+          child: Align(
+            alignment: Alignment.bottomLeft,
+            child: LayoutBuilder(builder: (context, constraints) {
+              return Container(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
+                  gradient: LinearGradient(
+                    colors: [
+                      design.colors.separatorOnLight,
+                      design.colors.separatorOnLight,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                width: constraints.maxWidth * fractionPlayed,
+              );
+            }),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -265,7 +318,7 @@ class Disclaimers extends ConsumerWidget {
               height: 20,
               child: FittedBox(
                 child: IconBadge(
-                  color: design.colors.background2,
+                  color: design.colors.background1,
                   disableIconPadding: true,
                   iconHeight: 16,
                   icon: SvgPicture.string(
@@ -309,7 +362,7 @@ class Disclaimers extends ConsumerWidget {
             height: 20,
             child: FittedBox(
               child: IconBadge(
-                color: design.colors.background2,
+                color: design.colors.background1,
                 disableIconPadding: true,
                 iconHeight: 16,
                 icon: Padding(
