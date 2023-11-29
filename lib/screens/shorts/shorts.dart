@@ -107,12 +107,22 @@ class ShortsScreen extends HookConsumerWidget {
 
     final router = context.watchRouter;
     final pageIsActive = useState(true);
+
+    useOnAppLifecycleStateChange((previous, current) {
+      if (current == AppLifecycleState.inactive) {
+        debugPrint('SHRT: app inactive: pausing controllers');
+        for (final c in shortControllerPairs) {
+          c.value?.controller.pause();
+        }
+      }
+    });
+
     useEffect(() {
       void listener() {
         final previousValue = pageIsActive.value;
         final newValue = router.currentSegments.any((r) => r.name == context.routeData.name);
         if (previousValue && !newValue) {
-          debugPrint('SHRT: page no longer active');
+          debugPrint('SHRT: page no longer active, pausing controllers');
           for (final c in shortControllerPairs) {
             c.value?.controller.pause();
           }
@@ -157,8 +167,8 @@ class ShortsScreen extends HookConsumerWidget {
         // shorts.value.removeWhere((element) => element.id == short.id);
         return;
       }
-      final controller =
-          VideoPlayerController.networkUrl(uri, videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true), formatHint: VideoFormat.hls);
+      final controller = VideoPlayerController.networkUrl(uri,
+          videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true, allowBackgroundPlayback: false), formatHint: VideoFormat.hls);
       final pair = ShortsVideoController(controller: controller, short: short);
       shortControllerPairs[index].value = pair;
       await controller.initialize();
@@ -216,8 +226,6 @@ class ShortsScreen extends HookConsumerWidget {
               );
           mightLoopSoon = false;
         }
-        debugPrint(
-            'SHRT: listener - short ${short.id} position changed to ${value.position.inSeconds}, 0? ${value.position.inSeconds == 0}, duration: ${value.duration.inSeconds}, previousPosition: $previousPosition');
         previousPosition = value.position.inSeconds;
 
         // We ignore start/stop analytics on the first second of playback because of glitches in the player
