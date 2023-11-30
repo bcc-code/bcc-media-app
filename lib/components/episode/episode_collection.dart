@@ -17,7 +17,7 @@ class EpisodeCollection extends HookConsumerWidget {
 
   final String episodeId;
   final Fragment$EpisodeContext$$ContextCollection collection;
-  final void Function(String id) onEpisodeTap;
+  final void Function(int index, String id) onEpisodeTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

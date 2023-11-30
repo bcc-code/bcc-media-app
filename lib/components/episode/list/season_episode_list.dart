@@ -1,6 +1,7 @@
 import 'package:brunstadtv_app/components/study/study_progress.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
+import 'package:collection/collection.dart';
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -23,7 +24,7 @@ class SeasonEpisodeList extends StatelessWidget {
   final String? title;
   final List<SeasonEpisodeListEpisodeData> items;
   final String? selectedId;
-  final void Function(String id) onEpisodeTap;
+  final void Function(int index, String id) onEpisodeTap;
 
   const SeasonEpisodeList({super.key, this.title, this.selectedId, required this.items, required this.onEpisodeTap});
 
@@ -41,13 +42,13 @@ class SeasonEpisodeList extends StatelessWidget {
               style: DesignSystem.of(context).textStyles.title2,
             ),
           ),
-        ...items.map(
-          (ep) => IgnorePointer(
+        ...items.mapIndexed(
+          (index, ep) => IgnorePointer(
             ignoring: ep.episode.locked,
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () {
-                onEpisodeTap(ep.episode.id);
+                onEpisodeTap(index, ep.episode.id);
               },
               child: _Episode(data: ep),
             ),
