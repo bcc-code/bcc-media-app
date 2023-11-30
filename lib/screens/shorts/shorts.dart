@@ -400,7 +400,7 @@ class ShortsScreen extends HookConsumerWidget {
               final previous = shorts.value.elementAtOrNull(currentIndex.value)?.id;
               debugPrint('SHRT: nav $previous -> ${shorts.value.elementAtOrNull(index)?.id}');
               ref.read(analyticsProvider).interaction(InteractionEvent(
-                    interaction: 'swipe-next',
+                    interaction: currentIndex.value > index ? 'swipe-next' : 'swipe-previous',
                     pageCode: 'shorts',
                     contextElementType: 'short',
                     contextElementId: previous,
