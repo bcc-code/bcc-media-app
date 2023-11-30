@@ -398,6 +398,27 @@ class _EpisodeDisplay extends HookConsumerWidget {
 
     final showLoadingOverlay = (episodeSnapshot.connectionState == ConnectionState.waiting);
     final showChapters = episode.chapters.isNotEmpty && ref.watch(featureFlagsProvider.select((value) => value.chapters));
+    final chaptersFirstTab = ref.watch(featureFlagsProvider.select((value) => value.chaptersFirstTab));
+
+    final chaptersWidget = EpisodeChapters(
+      episode: episode,
+      onChapterSelected: (id) {
+        final chapter = episode.chapters.firstWhereOrNull((element) => element.id == id);
+        if (chapter == null) return;
+        if (episodeIsCurrentItem) {
+          BccmPlayerController.primary.seekTo(Duration(seconds: chapter.start));
+          scrollToTop();
+        } else {
+          setupPlayer().then((value) => BccmPlayerController.primary.seekTo(Duration(seconds: chapter.start)));
+        }
+        ref.read(analyticsProvider).chapterClicked(ChapterClickedEvent(
+              elementType: 'episode',
+              elementId: episode.id,
+              chapterStart: chapter.start,
+              chapterId: chapter.id,
+            ));
+      },
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -457,11 +478,13 @@ class _EpisodeDisplay extends HookConsumerWidget {
         if (screenParams.hideBottomSection != true && (episode.status != Enum$Status.unlisted || episode.type == Enum$EpisodeType.standalone))
           CustomTabBar(
             tabs: [
+              if (showChapters && chaptersFirstTab) S.of(context).chapters,
               episode.context is Fragment$EpisodeContext$$Season ? S.of(context).episodes.toUpperCase() : S.of(context).videos.toUpperCase(),
-              if (showChapters) S.of(context).chapters,
+              if (showChapters && !chaptersFirstTab) S.of(context).chapters,
               S.of(context).details.toUpperCase()
             ],
             children: [
+              if (showChapters && chaptersFirstTab) chaptersWidget,
               if (episode.context is Fragment$EpisodeContext$$Season)
                 EpisodeSeason(
                   episodeId: screenParams.episodeId,
@@ -490,26 +513,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                 )
               else
                 EpisodeRelated(episode: episode),
-              if (showChapters)
-                EpisodeChapters(
-                  episode: episode,
-                  onChapterSelected: (id) {
-                    final chapter = episode.chapters.firstWhereOrNull((element) => element.id == id);
-                    if (chapter == null) return;
-                    if (episodeIsCurrentItem) {
-                      BccmPlayerController.primary.seekTo(Duration(seconds: chapter.start));
-                      scrollToTop();
-                    } else {
-                      setupPlayer().then((value) => BccmPlayerController.primary.seekTo(Duration(seconds: chapter.start)));
-                    }
-                    ref.read(analyticsProvider).chapterClicked(ChapterClickedEvent(
-                          elementType: 'episode',
-                          elementId: episode.id,
-                          chapterStart: chapter.start,
-                          chapterId: chapter.id,
-                        ));
-                  },
-                ),
+              if (showChapters && !chaptersFirstTab) chaptersWidget,
               EpisodeDetails(episode.id)
             ],
           ),

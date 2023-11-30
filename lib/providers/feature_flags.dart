@@ -58,6 +58,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       flutterPlayerControls: Env.forceFlutterControls || client.isEnabled('flutter-player-controls'),
       playNextButton: client.isEnabled('play-next-button'),
       chapters: client.isEnabled('chapters'),
+      chaptersFirstTab: client.isEnabled('chapters-first-tab'),
       download: client.isEnabled('download'),
       shorts: Env.forceShorts || client.isEnabled('shorts') && client.getVariant('shorts').name != 'disabled',
       shortsSourceButtonPrimary: client.isEnabled('shorts-source-button-primary'),

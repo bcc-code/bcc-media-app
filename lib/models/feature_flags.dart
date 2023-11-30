@@ -19,6 +19,7 @@ class FeatureFlags with _$FeatureFlags {
     @Default(false) bool flutterPlayerControls,
     @Default(false) bool playNextButton,
     @Default(false) bool chapters,
+    @Default(false) bool chaptersFirstTab,
     @Default(false) bool download,
     @Default(false) bool shorts,
     @Default(false) bool shortsSourceButtonPrimary,
