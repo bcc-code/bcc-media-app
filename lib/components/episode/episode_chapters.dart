@@ -29,10 +29,12 @@ class EpisodeChapters extends HookWidget {
                   title: c.title,
                   subTitle: c.description,
                   icon: Container(
-                    width: 46,
+                    width: 48,
                     alignment: Alignment.topLeft,
-                    child: Text(getFormattedDuration(c.start, padFirstSegment: true),
-                        style: design.textStyles.body2.copyWith(color: design.colors.label2)),
+                    child: Text(
+                      getFormattedDuration(c.start, padFirstSegment: true),
+                      style: design.textStyles.title3.copyWith(color: design.colors.label3),
+                    ),
                   ),
                 ))
             .toList(),
