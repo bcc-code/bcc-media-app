@@ -983,7 +983,7 @@ class SNl extends S {
   String get beta => 'Bèta';
 
   @override
-  String get betaExplanation => 'Deze functie is in de bètafase en kan problemen bevatten. Meld problemen of feedback via de knop \'Contact\' in de instellingen.';
+  String get betaExplanation => 'This feature is in beta and is currently not released to all users. Please report any issues or feedback via the \'Contact\' button in settings.';
 
   @override
   String get likedShorts => 'Korte films die ik leuk vind';

@@ -1335,7 +1335,7 @@
   "@donateViaPaypal": {
     "description": "Shown on the settings page."
   },
-  "shortsTab": "Shorts",
+  "shortsTab": "Courts métrages",
   "@shortsTab": {
     "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
@@ -1351,16 +1351,20 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Cette fonctionnalité est en version bêta et peut contenir des erreurs. Veuillez signaler toute erreur ou nous faire part de tout commentaire via le bouton \"Contact\" dans les paramètres.",
+  "betaExplanation": "This feature is in beta and is currently not released to all users. Please report any issues or feedback via the 'Contact' button in settings.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
-  "likedShorts": "Liked shorts",
+  "likedShorts": "Courts métrages appréciés",
   "@likedShorts": {
     "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
-  "saveYourFavoriteShorts": "Save your favorite shorts",
+  "saveYourFavoriteShorts": "Sauvegarder tes courts métrages préférés",
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
+  },
+  "featureNotAvailableYet": "This feature is not available yet. Please try again later.",
+  "@featureNotAvailableYet": {
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   }
 }

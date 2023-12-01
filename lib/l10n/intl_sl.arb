@@ -1351,7 +1351,7 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "This feature is in beta and might contain issues. Please report any issues or feedback via the 'Contact' button in settings.",
+  "betaExplanation": "This feature is in beta and is currently not released to all users. Please report any issues or feedback via the 'Contact' button in settings.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
@@ -1362,5 +1362,9 @@
   "saveYourFavoriteShorts": "Shrani svoje priljubljene kratke filme",
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
+  },
+  "featureNotAvailableYet": "This feature is not available yet. Please try again later.",
+  "@featureNotAvailableYet": {
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   }
 }

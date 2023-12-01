@@ -2010,7 +2010,7 @@ abstract class S {
   /// Shown in a popup on beta features.
   ///
   /// In en, this message translates to:
-  /// **'This feature is in beta and might contain issues. Please report any issues or feedback via the \'Contact\' button in settings.'**
+  /// **'This feature is in beta and is currently not released to all users. Please report any issues or feedback via the \'Contact\' button in settings.'**
   String get betaExplanation;
 
   /// Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels.

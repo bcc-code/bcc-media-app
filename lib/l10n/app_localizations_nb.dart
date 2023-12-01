@@ -983,13 +983,13 @@ class SNb extends S {
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'This feature is in beta and might contain issues. Please report any issues or feedback via the \'Contact\' button in settings.';
+  String get betaExplanation => 'This feature is in beta and is currently not released to all users. Please report any issues or feedback via the \'Contact\' button in settings.';
 
   @override
   String get likedShorts => 'Liked shorts';
 
   @override
-  String get saveYourFavoriteShorts => 'Save your favorite shorts';
+  String get saveYourFavoriteShorts => 'Lagre favorittvideoene dine';
 
   @override
   String get featureNotAvailableYet => 'This feature is not available yet. Please try again later.';

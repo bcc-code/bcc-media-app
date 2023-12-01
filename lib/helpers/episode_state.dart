@@ -39,7 +39,10 @@ bool isLiveNow(String startTime, String endTime) {
 }
 
 /// True if publishDate > (now - 7 days)
-bool isNewEpisode(String? publishDate) {
+bool isNewEpisode(String? publishDate, bool locked) {
+  if (locked) {
+    return false;
+  }
   if (publishDate == null) {
     return false;
   }
@@ -67,7 +70,7 @@ Widget? getFeatureBadge({
       label: S.of(context).comingSoon,
       color: DesignSystem.of(context).colors.background2,
     );
-  } else if (isNewEpisode(publishDate) && !watched) {
+  } else if (isNewEpisode(publishDate, locked) && !watched) {
     return FeatureBadge(
       label: S.of(context).newEpisode,
       color: DesignSystem.of(context).colors.tint2,

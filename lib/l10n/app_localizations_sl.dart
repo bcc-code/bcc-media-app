@@ -983,7 +983,7 @@ class SSl extends S {
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'This feature is in beta and might contain issues. Please report any issues or feedback via the \'Contact\' button in settings.';
+  String get betaExplanation => 'This feature is in beta and is currently not released to all users. Please report any issues or feedback via the \'Contact\' button in settings.';
 
   @override
   String get likedShorts => 'Priljubljeni kratki filmi';
