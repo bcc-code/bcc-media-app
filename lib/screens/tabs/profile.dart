@@ -236,9 +236,11 @@ class _ShortFavorites extends HookConsumerWidget {
     final design = DesignSystem.of(context);
 
     final shortItems = myListEntries.value.map((item) => item.item).whereType<Fragment$MyListEntry$item$$Short>();
+    const double thumbnailHeight = 130;
+    const double basePadding = 16;
     return HorizontalSlider(
-      height: 130 + 32,
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      height: thumbnailHeight + basePadding * 2,
+      padding: const EdgeInsets.all(basePadding),
       itemCount: shortItems.length,
       itemBuilder: (context, index) {
         final item = shortItems.elementAt(index);
@@ -253,12 +255,12 @@ class _ShortFavorites extends HookConsumerWidget {
           child: Align(
             alignment: Alignment.topCenter,
             child: ConstrainedBox(
-              constraints: const BoxConstraints.tightFor(height: 130),
+              constraints: const BoxConstraints.tightFor(height: thumbnailHeight),
               child: Stack(
                 children: [
                   EpisodeThumbnail.withSize(
                     episode: getEpisodeThumbnailData(item),
-                    imageSize: const Size(88, 130),
+                    imageSize: const Size(88, thumbnailHeight),
                   ),
                   Positioned.fill(child: Container(color: design.colors.background1.withOpacity(0.3))),
                   Positioned.fill(
