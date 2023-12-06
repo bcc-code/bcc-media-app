@@ -197,6 +197,7 @@ class ShortView extends HookConsumerWidget {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               if (short != null) ShortInfo(title: short!.title, description: short!.description),
                               const SizedBox(height: 8),
@@ -411,6 +412,7 @@ class ShortInfo extends StatelessWidget {
             Text(
               title!,
               style: design.textStyles.body1.copyWith(color: design.colors.label1),
+              textAlign: TextAlign.left,
             ),
           if (description?.isNotEmpty == true)
             CollapsableMarkdown(
