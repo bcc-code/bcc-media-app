@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
@@ -9,7 +8,6 @@ import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/my_list.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/helpers/share_extension/share_extension.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
@@ -230,7 +228,6 @@ class ShortView extends HookConsumerWidget {
 
 class _Timeline extends HookWidget {
   const _Timeline({
-    super.key,
     required this.videoController,
   });
 
@@ -450,8 +447,10 @@ class ShortActions extends HookConsumerWidget {
         return;
       }
       inMyList.value = short!.inMyList;
+      return;
     }, [short]);
     final shortsSourceButtonPrimary = ref.watch(featureFlagsProvider.select((f) => f.shortsSourceButtonPrimary));
+    final hasSource = short != null && short!.source?.item != null;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -539,58 +538,59 @@ class ShortActions extends HookConsumerWidget {
               ),
             ),
           ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 12),
-          child: design.buttons.large(
-            variant: ButtonVariant.secondary,
-            onPressed: () {
-              onMuteRequested(!muted);
-              ref.read(analyticsProvider).interaction(InteractionEvent(
-                    interaction: muted ? 'unmute' : 'mute',
-                    pageCode: 'shorts',
-                    contextElementType: 'short',
-                    contextElementId: short?.id,
-                  ));
-            },
-            imagePosition: ButtonImagePosition.right,
-            image: SvgPicture.string(
-              muted ? SvgIcons.volumeMuted : SvgIcons.volume,
-              width: 32,
-              height: 32,
-              colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
-            ),
-          ),
-        ),
         design.buttons.large(
-          variant: shortsSourceButtonPrimary ? ButtonVariant.primary : ButtonVariant.secondary,
+          variant: ButtonVariant.secondary,
           onPressed: () {
+            onMuteRequested(!muted);
             ref.read(analyticsProvider).interaction(InteractionEvent(
-                  interaction: 'open-source',
+                  interaction: muted ? 'unmute' : 'mute',
                   pageCode: 'shorts',
                   contextElementType: 'short',
                   contextElementId: short?.id,
                 ));
-            final ep = short?.source?.item.asOrNull<Fragment$Short$source$item$$Episode>();
-            if (ep == null) return;
-            final sourcePosition = short?.source?.start?.round() ?? 0;
-            final shortPosition = videoController?.value.position.inSeconds ?? 0;
-            context.router.navigate(
-              EpisodeScreenRoute(
-                episodeId: ep.id,
-                autoplay: true,
-                queryParamStartPosition: sourcePosition + shortPosition,
-              ),
-            );
-            videoController?.pause();
           },
           imagePosition: ButtonImagePosition.right,
           image: SvgPicture.string(
-            SvgIcons.chevronRight,
+            muted ? SvgIcons.volumeMuted : SvgIcons.volume,
             width: 32,
             height: 32,
             colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
           ),
         ),
+        if (hasSource)
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: design.buttons.large(
+              variant: shortsSourceButtonPrimary ? ButtonVariant.primary : ButtonVariant.secondary,
+              onPressed: () {
+                ref.read(analyticsProvider).interaction(InteractionEvent(
+                      interaction: 'open-source',
+                      pageCode: 'shorts',
+                      contextElementType: 'short',
+                      contextElementId: short?.id,
+                    ));
+                final ep = short?.source?.item.asOrNull<Fragment$Short$source$item$$Episode>();
+                if (ep == null) return;
+                final sourcePosition = short?.source?.start?.round() ?? 0;
+                final shortPosition = videoController?.value.position.inSeconds ?? 0;
+                context.router.navigate(
+                  EpisodeScreenRoute(
+                    episodeId: ep.id,
+                    autoplay: true,
+                    queryParamStartPosition: sourcePosition + shortPosition,
+                  ),
+                );
+                videoController?.pause();
+              },
+              imagePosition: ButtonImagePosition.right,
+              image: SvgPicture.string(
+                SvgIcons.chevronRight,
+                width: 32,
+                height: 32,
+                colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
+              ),
+            ),
+          ),
       ], //.animate(interval: 100.ms).slideY(begin: 1, curve: Curves.easeOutExpo, duration: 1000.ms).fadeIn(),
     );
   }
