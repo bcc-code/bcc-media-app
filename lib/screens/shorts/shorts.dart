@@ -1,14 +1,15 @@
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/shorts/short_view.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:brunstadtv_app/helpers/hooks/use_route_aware.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/misc.dart';
-import 'package:brunstadtv_app/models/analytics/shorts.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
@@ -16,17 +17,20 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:video_player/video_player.dart';
+import 'package:preload_page_view/preload_page_view.dart';
+import 'package:universal_io/io.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
-class ShortsVideoController {
-  ShortsVideoController({
+class ShortsController {
+  ShortsController({
     required this.controller,
     required this.short,
+    required this.texture,
     this.replayCount = 0,
   });
 
-  final VideoPlayerController controller;
+  final BccmPlayerController controller;
+  final BccmTexture? texture;
   final Fragment$Short short;
   int replayCount;
 }
@@ -65,7 +69,6 @@ class ShortsScreen extends HookConsumerWidget {
     final shorts = useState<List<Fragment$Short>>([]);
     final nextCursor = useState<String?>(null);
     final muted = useState(false);
-    final pageController = usePageController();
     final currentIndex = useState(0);
     final isMounted = useIsMounted();
     final progressDebouncer = useMemoized(() => Debouncer(milliseconds: 1000), []);
@@ -97,8 +100,8 @@ class ShortsScreen extends HookConsumerWidget {
 
     final fetchMoreFuture = useState<Future<QueryResult<Query$getShorts>>?>(null);
 
-    final shortControllerPairs = useMemoized<List<ValueNotifier<ShortsVideoController?>>>(
-      () => List.unmodifiable(List.generate(3, (_) => ValueNotifier<ShortsVideoController?>(null))),
+    final shortControllerPairs = useMemoized<List<ValueNotifier<ShortsController?>>>(
+      () => List.unmodifiable(List.generate(3, (_) => ValueNotifier<ShortsController?>(null))),
     );
     for (final l in shortControllerPairs) {
       //ignore: nested_hooks
@@ -114,6 +117,9 @@ class ShortsScreen extends HookConsumerWidget {
         for (final c in shortControllerPairs) {
           c.value?.controller.pause();
         }
+        WakelockPlus.disable();
+      } else {
+        WakelockPlus.enable();
       }
     });
 
@@ -126,8 +132,10 @@ class ShortsScreen extends HookConsumerWidget {
           for (final c in shortControllerPairs) {
             c.value?.controller.pause();
           }
+          WakelockPlus.disable();
         } else if (!previousValue && newValue) {
           debugPrint('SHRT: page became active');
+          WakelockPlus.enable();
         }
         pageIsActive.value = newValue;
       }
@@ -156,6 +164,10 @@ class ShortsScreen extends HookConsumerWidget {
         debugPrint('SHRT: disposing controller for index $index');
         existing.controller.pause();
         existing.controller.dispose();
+        final texture = existing.texture;
+        if (texture != null) {
+          texture.dispose();
+        }
         shortControllerPairs[index].value = null;
       }
 
@@ -167,33 +179,55 @@ class ShortsScreen extends HookConsumerWidget {
         // shorts.value.removeWhere((element) => element.id == short.id);
         return;
       }
-      final controller = VideoPlayerController.networkUrl(
-        uri,
-        videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true, allowBackgroundPlayback: false),
-        formatHint: VideoFormat.hls,
-      );
-      final pair = ShortsVideoController(controller: controller, short: short);
+      final playerController = BccmPlayerController.empty();
+      await playerController.initialize();
+      if (!context.mounted) return;
+
+      BccmTexture? texture;
+      if (Platform.isAndroid) {
+        texture = await playerController.switchToVideoTexture();
+      }
+
+      if (!context.mounted) return;
+      await playerController.replaceCurrentMediaItem(
+          MediaItem(
+            url: url,
+            metadata: MediaMetadata(
+              title: short.title,
+              artist: S.of(context).shortsTab,
+              extras: {
+                'shortId': short.id,
+                'npaw.content.id': short.id,
+                'npaw.content.type': 'short',
+              },
+            ),
+          ),
+          autoplay: false);
+      if (!context.mounted) return;
+
+      playerController.setMixWithOthers(true);
+      final pair = ShortsController(controller: playerController, short: short, texture: texture);
       shortControllerPairs[index].value = pair;
-      await controller.initialize();
-      controller.setLooping(true);
-      controller.setVolume(muted.value ? 0 : 1);
+      playerController.setRepeatMode(RepeatMode.one);
+      playerController.setVolume(muted.value ? 0 : 1);
 
       var previousPosition = 0;
       var initialSent = false;
-      var wasPlaying = controller.value.isPlaying;
+      var wasPlaying = playerController.value.playbackState == PlaybackState.playing;
       var mightLoopSoon = false;
 
-      controller.addListener(() {
+      /*  controller.addListener(() {
         if (!isMounted()) return;
         final value = controller.value;
         final gqlClient = ref.read(gqlClientProvider);
-        if (value.isPlaying) {
+        final playbackSeconds = (value.playbackPositionMs ?? 0.0) / 1000;
+        if (value.playbackState == PlaybackState.playing) {
           progressDebouncer.run(() {
             gqlClient.mutate$setShortProgress(
               Options$Mutation$setShortProgress(
                 variables: Variables$Mutation$setShortProgress(
                   id: short.id,
-                  progress: value.position.inSeconds.toDouble(),
+                  progress: playbackSeconds,
                 ),
               ),
             );
@@ -261,7 +295,7 @@ class ShortsScreen extends HookConsumerWidget {
           debugPrint('SHRT: listener - short ${short.id} playing changed from $wasPlaying to ${value.isPlaying}');
           wasPlaying = value.isPlaying;
         }
-      });
+      }); */
     }
 
     setupNextAndPreviousControllersForIndex(int index) async {
@@ -292,6 +326,7 @@ class ShortsScreen extends HookConsumerWidget {
       if (currentShort == null) {
         debugPrint('SHRT: no short for index $index, waiting for fetchMoreFuture');
         await fetchMoreFuture.value;
+        if (!context.mounted) return;
         currentShort = shorts.value.elementAtOrNull(index);
       }
       if (currentShort == null) {
@@ -315,8 +350,9 @@ class ShortsScreen extends HookConsumerWidget {
           .then((_) => debugPrint('SHRT: short set progress to 0'));
 
       final controllerIndex = index % 3;
+      debugPrint('SHRT: short ${currentShort.id} url: ${currentShort.streams.getBestStreamUrl()}');
       await initializeController(controllerIndex, currentShort);
-      if (currentIndex.value != index) return;
+      if (currentIndex.value != index || !context.mounted) return;
 
       final controller = shortControllerPairs[controllerIndex].value;
       if (controller == null) {
@@ -332,9 +368,8 @@ class ShortsScreen extends HookConsumerWidget {
         setupNextAndPreviousControllersForIndex(index);
       });
 
-      if (controller.controller.value.position.inSeconds > 0) {
+      if ((controller.controller.value.playbackPositionMs ?? 0) > 0) {
         await controller.controller.seekTo(Duration.zero);
-        return;
       }
       if (!isMounted() || currentIndex.value != index || !isTabActive() || !pageIsActive.value) return;
       await controller.controller.play();
@@ -361,7 +396,6 @@ class ShortsScreen extends HookConsumerWidget {
 
     init() async {
       if (!isMounted()) return;
-      WakelockPlus.enable();
       currentIndex.value = 0;
       final short = (await deepLinkShortFuture)?.parsedData?.short;
       if (short != null) {
@@ -378,8 +412,11 @@ class ShortsScreen extends HookConsumerWidget {
       for (var c in shortControllerPairs) {
         c.value?.controller.pause();
         c.value?.controller.dispose();
+        final texture = c.value?.texture;
+        if (texture != null) {
+          texture.dispose();
+        }
       }
-      WakelockPlus.disable();
     }
 
     useEffect(() {
@@ -393,9 +430,9 @@ class ShortsScreen extends HookConsumerWidget {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          PageView.builder(
-            controller: pageController,
+          PreloadPageView.builder(
             scrollDirection: Axis.vertical,
+            preloadPagesCount: 2,
             onPageChanged: (index) {
               final previous = shorts.value.elementAtOrNull(currentIndex.value)?.id;
               debugPrint('SHRT: nav $previous -> ${shorts.value.elementAtOrNull(index)?.id}');
