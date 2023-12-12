@@ -48,6 +48,9 @@ class ShortView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
 
+    final isAtBeginning =
+        useListenableSelector(Listenable.merge([videoController]), () => videoController == null || videoController!.value.playbackPositionMs == 0);
+    final isBuffering = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isBuffering);
     final isPlaying = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.playbackState == PlaybackState.playing);
     final isInitialized = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isInitialized ?? false);
     final playIconAnimation = useAnimationController(duration: 1000.ms);
@@ -171,6 +174,9 @@ class ShortView extends HookConsumerWidget {
                   ],
                 ),
               ),
+            if (isBuffering == true) ...[
+              Center(child: LoadingIndicator()),
+            ],
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
@@ -635,19 +641,6 @@ class VideoView extends HookWidget {
                   allowSystemGestures: true,
                 ),
               ),
-              if (!ready)
-                Positioned.fill(
-                  child: Container(
-                    color: Colors.black.withOpacity(0.5),
-                    child: Center(
-                      child: Text(
-                        'init: ${controller.value.isInitialized}, videoSize: ${controller.value.videoSize}, playbackState: ${controller.value.playbackState}, currentMediaItem: ${controller.value.currentMediaItem}',
-                      ),
-                    ),
-                  ),
-                ), // Fix for videoSize being null on Android until rendered.
-
-              Positioned.fill(child: Container(color: Colors.transparent)) // Fix for gestures not working on Android
             ],
           ),
         ),
