@@ -5,12 +5,9 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.os.StrictMode
-import android.view.View
 import android.view.Window
-import android.widget.FrameLayout
 import io.flutter.embedding.android.FlutterFragmentActivity
 import media.bcc.bccm_player.BccmPlayerPlugin
-import media.bcc.bccm_player.views.FullscreenPlayerView
 
 class MainActivity : FlutterFragmentActivity() {
 

@@ -1,52 +1,24 @@
-import 'dart:math';
+import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/shorts/short_view.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
-import 'package:brunstadtv_app/helpers/debouncer.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/hooks/use_route_aware.dart';
+import 'package:brunstadtv_app/helpers/shorts/short_controller.dart';
 import 'package:brunstadtv_app/models/analytics/misc.dart';
-import 'package:brunstadtv_app/models/analytics/shorts.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:video_player/video_player.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
-class ShortsVideoController {
-  ShortsVideoController({
-    required this.controller,
-    required this.short,
-    this.replayCount = 0,
-  });
-
-  final VideoPlayerController controller;
-  final Fragment$Short short;
-  int replayCount;
-}
-
-@RoutePage<void>()
-class ShortScreen extends StatelessWidget {
-  const ShortScreen({
-    super.key,
-    @PathParam() required this.id,
-    @QueryParam() this.preventScroll = true,
-  });
-
-  final String id;
-  final bool preventScroll;
-
-  @override
-  Widget build(BuildContext context) {
-    return ShortsScreen(id: id, preventScroll: preventScroll);
-  }
-}
+const kPlayerCount = 4;
 
 @RoutePage<void>()
 class ShortsScreen extends HookConsumerWidget {
@@ -65,10 +37,9 @@ class ShortsScreen extends HookConsumerWidget {
     final shorts = useState<List<Fragment$Short>>([]);
     final nextCursor = useState<String?>(null);
     final muted = useState(false);
-    final pageController = usePageController();
     final currentIndex = useState(0);
     final isMounted = useIsMounted();
-    final progressDebouncer = useMemoized(() => Debouncer(milliseconds: 1000), []);
+    final isFirstOpen = useState(true);
 
     debugPrint('SHRT: Short deeplink: $id');
 
@@ -76,7 +47,6 @@ class ShortsScreen extends HookConsumerWidget {
       () => id == null ? null : gqlClient.query$getShort(Options$Query$getShort(variables: Variables$Query$getShort(id: id!))),
       [id],
     );
-    final deepLinkShortSnapshot = useFuture(deepLinkShortFuture);
 
     fetchMore() async {
       final result = await gqlClient.query$getShorts(
@@ -87,9 +57,15 @@ class ShortsScreen extends HookConsumerWidget {
       if (!isMounted()) return result;
 
       nextCursor.value = result.parsedData?.shorts.nextCursor;
+      final fetchedShorts = result.parsedData?.shorts.shorts;
+      if (fetchedShorts == null) {
+        debugPrint('SHRT: fetchMore: no shorts');
+        return result;
+      }
+
       shorts.value = [
         ...shorts.value,
-        ...result.parsedData?.shorts.shorts ?? [],
+        ...fetchedShorts,
       ];
 
       return result;
@@ -97,13 +73,9 @@ class ShortsScreen extends HookConsumerWidget {
 
     final fetchMoreFuture = useState<Future<QueryResult<Query$getShorts>>?>(null);
 
-    final shortControllerPairs = useMemoized<List<ValueNotifier<ShortsVideoController?>>>(
-      () => List.unmodifiable(List.generate(3, (_) => ValueNotifier<ShortsVideoController?>(null))),
-    );
-    for (final l in shortControllerPairs) {
-      //ignore: nested_hooks
-      useListenable(l);
-    }
+    final shortControllersState =
+        useState<List<ShortController>>(useMemoized(() => List.unmodifiable(List.generate(kPlayerCount, (_) => ShortController(ref)))));
+    final shortControllers = shortControllersState.value;
 
     final router = context.watchRouter;
     final pageIsActive = useState(true);
@@ -111,9 +83,12 @@ class ShortsScreen extends HookConsumerWidget {
     useOnAppLifecycleStateChange((previous, current) {
       if (current == AppLifecycleState.inactive) {
         debugPrint('SHRT: app inactive: pausing controllers');
-        for (final c in shortControllerPairs) {
-          c.value?.controller.pause();
+        for (final c in shortControllers) {
+          c.player.pause();
         }
+        WakelockPlus.disable();
+      } else {
+        WakelockPlus.enable();
       }
     });
 
@@ -123,11 +98,13 @@ class ShortsScreen extends HookConsumerWidget {
         final newValue = router.currentSegments.any((r) => r.name == context.routeData.name);
         if (previousValue && !newValue) {
           debugPrint('SHRT: page no longer active, pausing controllers');
-          for (final c in shortControllerPairs) {
-            c.value?.controller.pause();
+          for (final c in shortControllers) {
+            c.player.pause();
           }
+          WakelockPlus.disable();
         } else if (!previousValue && newValue) {
           debugPrint('SHRT: page became active');
+          WakelockPlus.enable();
         }
         pageIsActive.value = newValue;
       }
@@ -136,170 +113,69 @@ class ShortsScreen extends HookConsumerWidget {
       return () => router.removeListener(listener);
     });
 
+    preloadNextAndPreviousFor(int index) async {
+      if (!isMounted()) return;
+      final previous = index == 0 ? null : shorts.value.elementAtOrNull(index - 1);
+      if (previous != null) {
+        final previousControllerIndex = (index - 1) % kPlayerCount;
+        final controller = shortControllers[previousControllerIndex];
+        controller.setupShort(previous, false);
+      }
+
+      for (var i = 1; i < 3; i++) {
+        final next = index == shorts.value.length - 1 ? null : shorts.value.elementAtOrNull(index + i);
+        if (next != null) {
+          final nextControllerIndex = (index + i) % kPlayerCount;
+          final controller = shortControllers[nextControllerIndex];
+          controller.setupShort(next, false);
+        }
+      }
+    }
+
+    final tabOpenAnimation = useAnimationController(
+      duration: 500.ms,
+      initialValue: 0,
+    );
     final isTabActive = useIsTabActive(
       onChange: (active) {
-        if (active) return;
+        if (active) {
+          debugPrint('SHRT: tab became active');
+          if (isFirstOpen.value) {
+            debugPrint('SHRT: tab became active for the first time, playing');
+            final player = shortControllers[currentIndex.value % kPlayerCount].player;
+            if (player.value.isInitialized) {
+              shortControllers[currentIndex.value % kPlayerCount].player.play();
+            }
+            preloadNextAndPreviousFor(currentIndex.value);
+            tabOpenAnimation.forward();
+            isFirstOpen.value = false;
+          }
+          return;
+        }
         debugPrint('SHRT: tab no longer active: pausing controllers');
-        for (final c in shortControllerPairs) {
-          c.value?.controller.pause();
+        for (final c in shortControllers) {
+          c.player.pause();
         }
       },
     );
 
-    initializeController(int index, Fragment$Short short) async {
-      final existing = shortControllerPairs[index].value;
-      if (existing != null && existing.short.id == short.id) {
-        debugPrint('SHRT: controller for index $index already initialized, pausing');
-        existing.controller.pause();
-        return;
-      } else if (existing != null) {
-        debugPrint('SHRT: disposing controller for index $index');
-        existing.controller.pause();
-        existing.controller.dispose();
-        shortControllerPairs[index].value = null;
-      }
-
-      debugPrint('SHRT: initializing controller for index $index');
-      final url = short.streams.getBestStreamUrl();
-      final uri = Uri.tryParse(url);
-      if (uri == null) {
-        debugPrint('SHRT: invalid url: $url');
-        // shorts.value.removeWhere((element) => element.id == short.id);
-        return;
-      }
-      final controller = VideoPlayerController.networkUrl(
-        uri,
-        videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true, allowBackgroundPlayback: false),
-        formatHint: VideoFormat.hls,
-      );
-      final pair = ShortsVideoController(controller: controller, short: short);
-      shortControllerPairs[index].value = pair;
-      await controller.initialize();
-      controller.setLooping(true);
-      controller.setVolume(muted.value ? 0 : 1);
-
-      var previousPosition = 0;
-      var initialSent = false;
-      var wasPlaying = controller.value.isPlaying;
-      var mightLoopSoon = false;
-
-      controller.addListener(() {
-        if (!isMounted()) return;
-        final value = controller.value;
-        final gqlClient = ref.read(gqlClientProvider);
-        if (value.isPlaying) {
-          progressDebouncer.run(() {
-            gqlClient.mutate$setShortProgress(
-              Options$Mutation$setShortProgress(
-                variables: Variables$Mutation$setShortProgress(
-                  id: short.id,
-                  progress: value.position.inSeconds.toDouble(),
-                ),
-              ),
-            );
-          });
-        }
-        ref.read(analyticsProvider).heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
-
-        if (!mightLoopSoon && value.position.inSeconds > value.duration.inSeconds - 2) {
-          mightLoopSoon = true;
-        }
-
-        if (mightLoopSoon && value.position.inSeconds < 2 && previousPosition > value.position.inSeconds) {
-          // looped
-          debugPrint(
-              'SHRT: listener y - short ${short.id} looped. Sending stop for play ${pair.replayCount} and start for play ${pair.replayCount + 1}');
-          ref.read(analyticsProvider).shortStopped(ShortStoppedEvent(
-                shortId: short.id,
-                shortTitle: short.title,
-                positionFraction: previousPosition / max(1, value.duration.inSeconds),
-                positionSeconds: previousPosition,
-                replayCount: pair.replayCount,
-              ));
-          pair.replayCount++;
-          ref.read(analyticsProvider).shortStarted(
-                ShortStartedEvent(
-                  shortId: short.id,
-                  shortTitle: short.title,
-                  replayCount: pair.replayCount,
-                  resumed: false,
-                  positionFraction: 0,
-                  positionSeconds: 0,
-                ),
-              );
-          mightLoopSoon = false;
-        }
-        previousPosition = value.position.inSeconds;
-
-        // We ignore start/stop analytics on the first second of playback because of glitches in the player
-        if (value.position.inSeconds > 1 && wasPlaying != value.isPlaying) {
-          if (value.isPlaying) {
-            // started
-            debugPrint('SHRT: listener y - short ${short.id} started. Sending start for play ${pair.replayCount}');
-            ref.read(analyticsProvider).shortStarted(
-                  ShortStartedEvent(
-                    shortId: short.id,
-                    shortTitle: short.title,
-                    replayCount: pair.replayCount,
-                    resumed: !initialSent,
-                    positionFraction: value.position.inSeconds / max(1, value.duration.inSeconds),
-                    positionSeconds: value.position.inSeconds,
-                  ),
-                );
-            initialSent = true;
-          } else {
-            debugPrint('SHRT: listener y - short ${short.id} paused/stopped. Sending stop for play ${pair.replayCount}');
-            ref.read(analyticsProvider).shortStopped(ShortStoppedEvent(
-                  shortId: short.id,
-                  shortTitle: short.title,
-                  positionFraction: value.position.inSeconds / value.duration.inSeconds,
-                  positionSeconds: value.position.inSeconds,
-                  replayCount: pair.replayCount,
-                ));
-          }
-
-          debugPrint('SHRT: listener - short ${short.id} playing changed from $wasPlaying to ${value.isPlaying}');
-          wasPlaying = value.isPlaying;
-        }
-      });
-    }
-
-    setupNextAndPreviousControllersForIndex(int index) async {
+    setupCurrentController(int index, {required bool preloadNext}) async {
       if (!isMounted()) return;
-      final previous = index == 0 ? null : shorts.value.elementAtOrNull(index - 1);
-      if (previous != null) {
-        final previousControllerIndex = (index - 1) % 3;
-        initializeController(previousControllerIndex, previous);
-      }
-
-      final next = index == shorts.value.length - 1 ? null : shorts.value.elementAtOrNull(index + 1);
-      if (next != null) {
-        final nextControllerIndex = (index + 1) % 3;
-        initializeController(nextControllerIndex, next);
-      }
-    }
-
-    setupCurrentController() async {
-      if (!isMounted()) return;
-      final index = currentIndex.value;
-      final previousIndex = (index - 1) % 3;
-      final nextIndex = (index + 1) % 3;
-      shortControllerPairs[previousIndex].value?.controller.pause();
-      shortControllerPairs[nextIndex].value?.controller.pause();
+      final previousIndex = (index - 1) % kPlayerCount;
+      final nextIndex = (index + 1) % kPlayerCount;
+      shortControllers[previousIndex].player.pause();
+      shortControllers[nextIndex].player.pause();
 
       debugPrint('SHRT: setupCurrentController index: $index');
       var currentShort = shorts.value.elementAtOrNull(index);
       if (currentShort == null) {
         debugPrint('SHRT: no short for index $index, waiting for fetchMoreFuture');
         await fetchMoreFuture.value;
+        if (!context.mounted) return;
         currentShort = shorts.value.elementAtOrNull(index);
       }
       if (currentShort == null) {
         debugPrint('SHRT: no short for index $index');
-        return;
-      }
-      if (currentIndex.value != index) {
-        debugPrint('SHRT: setupCurrentController index: $index: index changed, aborting');
         return;
       }
 
@@ -314,35 +190,37 @@ class ShortsScreen extends HookConsumerWidget {
           )
           .then((_) => debugPrint('SHRT: short set progress to 0'));
 
-      final controllerIndex = index % 3;
-      await initializeController(controllerIndex, currentShort);
-      if (currentIndex.value != index) return;
-
-      final controller = shortControllerPairs[controllerIndex].value;
-      if (controller == null) {
-        debugPrint('SHRT: no controller for index $index');
+      if (currentIndex.value != index) {
+        debugPrint('SHRT: setupCurrentController index: $index: index changed, aborting');
         return;
       }
-      Future.delayed(1000.ms, () {
-        if (!isMounted()) return;
-        if (currentIndex.value != index) {
-          debugPrint('SHRT: setupCurrentController index: $index: index changed, aborting');
-          return;
-        }
-        setupNextAndPreviousControllersForIndex(index);
-      });
+      final controllerIndex = index % kPlayerCount;
+      debugPrint('SHRT: preparing short ${currentShort.id}');
+      final controller = shortControllers[controllerIndex];
+      await controller.setupShort(currentShort, true);
+      if (currentIndex.value != index || !context.mounted) return;
 
-      if (controller.controller.value.position.inSeconds > 0) {
-        await controller.controller.seekTo(Duration.zero);
-        return;
+      if (preloadNext) {
+        Future.delayed(500.ms, () {
+          if (!isMounted()) return;
+          if (currentIndex.value != index) {
+            debugPrint('SHRT: setupCurrentController index: $index: index changed, aborting');
+            return;
+          }
+          preloadNextAndPreviousFor(index);
+        });
+      }
+
+      if ((controller.player.value.playbackPositionMs ?? 0) > 0) {
+        await controller.player.seekTo(Duration.zero);
       }
       if (!isMounted() || currentIndex.value != index || !isTabActive() || !pageIsActive.value) return;
-      await controller.controller.play();
-      debugPrint('SHRT: short started playing');
+      await controller.player.play();
+      debugPrint('SHRT: short started playing in ${controller.player.value.playerId}');
       if (currentIndex.value != index) return;
     }
 
-    setCurrentIndex(int index) {
+    setCurrentIndex(int index, {bool preloadNext = true}) {
       if (!isMounted()) return;
       currentIndex.value = index;
       debugPrint('SHRT: setCurrentIndex: $index');
@@ -351,7 +229,7 @@ class ShortsScreen extends HookConsumerWidget {
           debugPrint('SHRT: setCurrentIndex: $index: index changed, aborting');
           return;
         }
-        setupCurrentController();
+        setupCurrentController(index, preloadNext: preloadNext);
       });
       if (currentIndex.value + 4 == shorts.value.length) {
         debugPrint('SHRT: fetching more: close to end');
@@ -361,7 +239,9 @@ class ShortsScreen extends HookConsumerWidget {
 
     init() async {
       if (!isMounted()) return;
-      WakelockPlus.enable();
+      if (shortControllersState.value.isEmpty) {
+        shortControllersState.value = List.unmodifiable(List.generate(kPlayerCount, (_) => ShortController(ref)));
+      }
       currentIndex.value = 0;
       final short = (await deepLinkShortFuture)?.parsedData?.short;
       if (short != null) {
@@ -370,22 +250,21 @@ class ShortsScreen extends HookConsumerWidget {
       debugPrint('SHRT: fetching more: init');
       fetchMoreFuture.value = fetchMore();
       await fetchMoreFuture.value;
-      setCurrentIndex(0);
+      setCurrentIndex(0, preloadNext: false);
       debugPrint('SHRT: shorts initialized');
     }
 
     dispose() {
-      for (var c in shortControllerPairs) {
-        c.value?.controller.pause();
-        c.value?.controller.dispose();
+      for (var c in shortControllers) {
+        c.dispose();
       }
-      WakelockPlus.disable();
+      shortControllersState.value = [];
     }
 
     useEffect(() {
       init();
       return dispose;
-    }, [id]);
+    }, []);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -393,9 +272,9 @@ class ShortsScreen extends HookConsumerWidget {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          PageView.builder(
-            controller: pageController,
+          PreloadPageView.builder(
             scrollDirection: Axis.vertical,
+            preloadPagesCount: 1,
             onPageChanged: (index) {
               final previous = shorts.value.elementAtOrNull(currentIndex.value)?.id;
               debugPrint('SHRT: nav $previous -> ${shorts.value.elementAtOrNull(index)?.id}');
@@ -414,23 +293,27 @@ class ShortsScreen extends HookConsumerWidget {
             physics: const _CustomPageViewScrollPhysics(),
             itemCount: preventScroll ? 1 : null,
             itemBuilder: (context, index) {
-              var shortController = shortControllerPairs[index % 3].value;
-              var short = shorts.value.elementAtOrNull(index);
-              if (shortController?.short.id != short?.id) {
-                short = null;
-                shortController = null;
-              }
               return HookBuilder(builder: (context) {
                 // Say index == 2 and we want to have a bool indicating that we
+
+                final shortController = shortControllers[index % kPlayerCount];
+                final currentlyPlayingShort = useListenableSelector(
+                  shortController.player,
+                  () => shortController.player.value.currentMediaItem?.metadata?.extras?[MetadataExtraConstants.shortId],
+                );
+                var short = useListenableSelector(shorts, () => shorts.value.elementAtOrNull(index));
+                final wrongShortInController = currentlyPlayingShort == null || currentlyPlayingShort != short?.id;
+
                 return ShortView(
                   future: short == null ? fetchMoreFuture.value : null,
-                  short: short,
-                  videoController: shortController?.controller,
+                  short: wrongShortInController ? null : short,
+                  videoController: shortController.player,
                   muted: muted.value,
+                  tabOpenAnimation: tabOpenAnimation,
                   onMuteRequested: (value) {
                     muted.value = value;
-                    for (final c in shortControllerPairs) {
-                      c.value?.controller.setVolume(muted.value ? 0 : 1);
+                    for (final c in shortControllers) {
+                      c.player.setVolume(muted.value ? 0 : 1);
                     }
                   },
                 );

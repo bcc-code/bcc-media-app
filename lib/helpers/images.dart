@@ -62,7 +62,7 @@ Widget simpleFadeInImage({required String url, Duration? duration}) => LayoutBui
             cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
           ),
           imageErrorBuilder: imageErrorBuilder,
-          fadeInDuration: const Duration(milliseconds: 400),
+          fadeInDuration: duration ?? const Duration(milliseconds: 400),
         );
       },
     );

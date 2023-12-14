@@ -110,7 +110,11 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
     ),
     shorts: TabInfo(
       id: TabId.shorts,
-      route: ShortsScreenRoute(),
+      route: ShortsWrapperScreenRoute(
+        children: [
+          ShortsScreenRoute(),
+        ],
+      ),
       title: (BuildContext context) => S.of(context).shortsTab,
       icon: FlavorConfig.current.bccmImages!.shorts,
       analyticsName: 'shorts',

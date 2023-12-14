@@ -244,12 +244,12 @@ class AppRouter extends $AppRouter {
         CustomRoute(
           page: ProfileWrapperScreenRoute.page,
           path: 'profile',
-          maintainState: false,
+          maintainState: true,
           children: [
             CustomRoute(
               page: ProfileScreenRoute.page,
               path: '',
-              maintainState: true,
+              maintainState: false,
               meta: const {RouteMetaConstants.navTabRoute: true},
             ),
             _episodeScreenRoute,

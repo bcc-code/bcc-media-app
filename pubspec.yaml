@@ -122,10 +122,9 @@ dependencies:
   flutter_layout_grid: ^2.0.5
   flutter_animate: ^4.2.0+1
   simple_shadow: ^0.3.1
-  video_player: ^2.8.1
   skeletonizer: ^0.8.0
   wakelock_plus: ^1.1.4
-  smooth_video_progress: ^0.0.4
+  preload_page_view: ^0.2.0
   #smooth: any
 
 dev_dependencies:

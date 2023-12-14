@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
@@ -11,12 +10,12 @@ import 'package:brunstadtv_app/components/profile/empty_info.dart';
 import 'package:brunstadtv_app/components/thumbnails/episode_thumbnail.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/helpers/hooks/use_route_aware.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
@@ -59,6 +58,12 @@ class ProfileScreen extends HookConsumerWidget {
 
     final myListFuture = useState(useMemoized(getMyList));
     onFavoritesRefresh() => myListFuture.value = getMyList();
+
+    useIsTabActive(onChange: (active) {
+      if (active) {
+        myListFuture.value = getMyList();
+      }
+    });
 
     final design = DesignSystem.of(context);
     final downloadedVideosCount = ref.watch(downloadsProvider.select((value) => value.valueOrNull?.length ?? 0));
@@ -355,7 +360,7 @@ class _FavoriteItemClickWrapper extends ConsumerWidget {
     }
     final shortItem = item.asOrNull<Fragment$MyListEntry$item$$Short>();
     if (shortItem != null) {
-      context.router.navigate(ShortScreenRoute(id: shortItem.id, preventScroll: true));
+      context.router.navigate(ShortScreenRoute(id: shortItem.id));
     }
     ref.read(analyticsProvider).myListTabEntryClicked(context);
   }

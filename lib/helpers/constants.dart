@@ -60,8 +60,14 @@ class EnvironmentOverride {
 }
 
 class RouteMetaConstants {
+  RouteMetaConstants._();
   static const hideMiniPlayer = 'hide_mini_player';
   static const analyticsName = 'analytics_name';
   static const settingsName = 'settings_name';
   static const navTabRoute = 'nav_tab_route';
+}
+
+class MetadataExtraConstants {
+  MetadataExtraConstants._();
+  static const shortId = 'shortId';
 }

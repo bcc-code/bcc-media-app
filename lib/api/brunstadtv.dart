@@ -26,6 +26,19 @@ class ApiErrorCodes {
   ApiErrorCodes._();
   static const String noAccess = 'item/no-access';
   static const String notPublished = 'item/not-published';
+  static const String notFound = 'item/not-found';
+
+  static bool isNoAccess(OperationException? exception) {
+    return exception?.graphqlErrors.any((e) => e.extensions?['code'] == noAccess) ?? false;
+  }
+
+  static bool isNotPublished(OperationException? exception) {
+    return exception?.graphqlErrors.any((e) => e.extensions?['code'] == notPublished) ?? false;
+  }
+
+  static bool isNotFound(OperationException? exception) {
+    return exception?.graphqlErrors.any((e) => e.extensions?['code'] == notFound) ?? false;
+  }
 }
 
 class Api {

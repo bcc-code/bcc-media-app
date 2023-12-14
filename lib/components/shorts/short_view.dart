@@ -1,8 +1,13 @@
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/controls.dart';
+import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/badges/icon_badge.dart';
 import 'package:brunstadtv_app/components/misc/collapsable_markdown.dart';
+import 'package:brunstadtv_app/components/status/error_generic.dart';
+import 'package:brunstadtv_app/components/status/error_no_access.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/my_list.graphql.dart';
@@ -25,8 +30,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:smooth_video_progress/smooth_video_progress.dart';
-import 'package:video_player/video_player.dart';
 
 class ShortView extends HookConsumerWidget {
   const ShortView({
@@ -36,24 +39,29 @@ class ShortView extends HookConsumerWidget {
     required this.videoController,
     required this.muted,
     required this.onMuteRequested,
+    this.tabOpenAnimation,
   });
 
   final Fragment$Short? short;
-  final Future<QueryResult<Query$getShorts>>? future;
-  final VideoPlayerController? videoController;
+  final Future<QueryResult<dynamic>>? future;
+  final BccmPlayerController? videoController;
   final bool muted;
   final void Function(bool) onMuteRequested;
+  final Animation<double>? tabOpenAnimation;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
 
-    final isPlaying = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isPlaying);
+    final isBuffering = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isBuffering);
+    final isPlaying = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.playbackState == PlaybackState.playing);
     final isInitialized = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isInitialized ?? false);
     final playIconAnimation = useAnimationController(duration: 1000.ms);
     final loadingAnimation = useAnimationController(duration: 1000.ms);
     final dragLeftMostPosition = useRef<double?>(null);
     final dragRightMostPosition = useRef<double?>(null);
+    final futureSnapshot = useFuture(future);
+
     return GestureDetector(
       onLongPress: () {
         debugPrint('SHRT: longpress');
@@ -106,11 +114,12 @@ class ShortView extends HookConsumerWidget {
           dragRightMostPosition.value = details.globalPosition.dx;
         }
       },
+      behavior: HitTestBehavior.opaque,
       onTap: () async {
         if (videoController == null) {
           return;
         }
-        if (videoController!.value.isPlaying) {
+        if (videoController!.value.playbackState == PlaybackState.playing) {
           videoController!.pause();
           ref.read(analyticsProvider).interaction(InteractionEvent(
                 interaction: 'pause',
@@ -132,96 +141,105 @@ class ShortView extends HookConsumerWidget {
         await Future.delayed(500.ms);
         playIconAnimation.reverse(from: 1.0);
       },
-      child: Stack(
-        children: [
-          if (videoController != null && isInitialized) VideoView(controller: videoController!),
-          FadeTransition(
-            opacity: CurvedAnimation(parent: playIconAnimation, curve: Curves.easeInOut, reverseCurve: Curves.easeOut),
-            child: Center(
-              child: isPlaying == false
-                  ? SvgPicture.string(SvgIcons.pause, width: 52, height: 52)
-                  : SvgPicture.string(SvgIcons.play, width: 52, height: 52),
-            ),
-          ),
-          if (short == null || !isInitialized || videoController == null)
-            Positioned.fill(
-              child: Stack(
-                children: [
-                  Container(color: design.colors.background1),
-                  Animate(
-                    controller: loadingAnimation,
-                    onPlay: (c) => c.repeat(),
-                    effects: [
-                      ShimmerEffect(
-                        duration: 1000.ms,
-                        color: design.colors.background2,
-                      ),
-                    ],
-                    child: Container(color: design.colors.background1),
+      child: futureSnapshot.data?.parsedData == null && (futureSnapshot.error != null || futureSnapshot.data?.exception != null)
+          ? (ApiErrorCodes.isNotFound(futureSnapshot.data?.exception) ||
+                  ApiErrorCodes.isNoAccess(futureSnapshot.data?.exception) ||
+                  ApiErrorCodes.isNotPublished(futureSnapshot.data?.exception)
+              ? const ErrorNoAccess()
+              : ErrorGeneric(onRetry: () {}))
+          : Stack(
+              fit: StackFit.expand,
+              children: [
+                if (videoController != null && isInitialized) VideoView(controller: videoController!),
+                FadeTransition(
+                  opacity: CurvedAnimation(parent: playIconAnimation, curve: Curves.easeInOut, reverseCurve: Curves.easeOut),
+                  child: Center(
+                    child: isPlaying == false
+                        ? SvgPicture.string(SvgIcons.pause, width: 52, height: 52)
+                        : SvgPicture.string(SvgIcons.play, width: 52, height: 52),
                   ),
-                  const Center(child: LoadingIndicator()),
-                ],
-              ),
-            ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 200,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.black.withOpacity(0.0),
-                    design.colors.background1.withOpacity(0.8),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
                 ),
-              ),
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                child: SafeArea(
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                if (short == null || !isInitialized || videoController == null || isBuffering == true)
+                  Positioned.fill(
+                    child: Stack(
                       children: [
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (short != null) ShortInfo(title: short!.title, description: short!.description),
-                              const SizedBox(height: 8),
-                              Disclaimers(short: short),
-                            ],
-                          ),
+                        Container(color: design.colors.background1),
+                        Animate(
+                          controller: loadingAnimation,
+                          onPlay: (c) => c.repeat(),
+                          effects: [
+                            ShimmerEffect(
+                              duration: 1000.ms,
+                              color: design.colors.separatorOnLight,
+                            ),
+                          ],
+                          child: Container(color: design.colors.background1),
                         ),
-                        Container(
-                          alignment: Alignment.bottomRight,
-                          child: ShortActions(
-                            short: short,
-                            onMuteRequested: onMuteRequested,
-                            muted: muted,
-                            videoController: videoController,
-                          ),
-                        ),
+                        const Center(child: LoadingIndicator()),
                       ],
                     ),
                   ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.black.withOpacity(0.0),
+                          design.colors.background1.withOpacity(0.8),
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              _Timeline(videoController: videoController)
-            ],
-          ),
-        ],
-      ),
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      child: SafeArea(
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    if (short != null) ShortInfo(title: short!.title, description: short!.description),
+                                    const SizedBox(height: 8),
+                                    Disclaimers(short: short),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.bottomRight,
+                                child: ShortActions(
+                                  short: short,
+                                  onMuteRequested: onMuteRequested,
+                                  muted: muted,
+                                  videoController: videoController,
+                                  tabOpenAnimation: tabOpenAnimation,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    _Timeline(videoController: videoController)
+                  ],
+                ),
+              ],
+            ),
     );
   }
 }
@@ -231,7 +249,7 @@ class _Timeline extends HookWidget {
     required this.videoController,
   });
 
-  final VideoPlayerController? videoController;
+  final BccmPlayerController? videoController;
 
   @override
   Widget build(BuildContext context) {
@@ -376,7 +394,7 @@ class Disclaimers extends ConsumerWidget {
                       colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
                     ),
                   ),
-                  label: 'Beta',
+                  label: S.of(context).beta,
                 ),
               ),
             ),
@@ -430,17 +448,34 @@ class ShortActions extends HookConsumerWidget {
     required this.onMuteRequested,
     required this.muted,
     required this.videoController,
+    required this.tabOpenAnimation,
   });
 
   final Fragment$Short? short;
   final void Function(bool p1) onMuteRequested;
   final bool muted;
-  final VideoPlayerController? videoController;
+  final BccmPlayerController? videoController;
+  final Animation<double>? tabOpenAnimation;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
     final inMyList = useState(short?.inMyList ?? false);
+    final initialAnimation = useAnimationController();
+
+    useEffect(() {
+      final listener = ((AnimationStatus status) {
+        if (status == AnimationStatus.forward) {
+          initialAnimation.duration = 500.ms;
+          initialAnimation.forward(from: 0.0);
+        }
+      });
+      tabOpenAnimation?.addStatusListener(listener);
+      return () {
+        tabOpenAnimation?.removeStatusListener(listener);
+      };
+    }, [tabOpenAnimation]);
+
     useEffect(() {
       if (short == null) {
         inMyList.value = false;
@@ -450,12 +485,17 @@ class ShortActions extends HookConsumerWidget {
       return;
     }, [short]);
     final shortsSourceButtonPrimary = ref.watch(featureFlagsProvider.select((f) => f.shortsSourceButtonPrimary));
-    final hasSource = short != null && short!.source?.item != null;
+    final hasSource = short == null || short?.source?.item != null;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
-      children: [
+      children: AnimateList(effects: [
+        const FadeEffect(
+          duration: Duration(milliseconds: 1000),
+          curve: Curves.easeOutExpo,
+        )
+      ], children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 12),
           child: design.buttons.large(
@@ -562,7 +602,7 @@ class ShortActions extends HookConsumerWidget {
             padding: const EdgeInsets.only(top: 12),
             child: design.buttons.large(
               variant: shortsSourceButtonPrimary ? ButtonVariant.primary : ButtonVariant.secondary,
-              onPressed: () {
+              onPressed: () async {
                 ref.read(analyticsProvider).interaction(InteractionEvent(
                       interaction: 'open-source',
                       pageCode: 'shorts',
@@ -572,15 +612,18 @@ class ShortActions extends HookConsumerWidget {
                 final ep = short?.source?.item.asOrNull<Fragment$Short$source$item$$Episode>();
                 if (ep == null) return;
                 final sourcePosition = short?.source?.start?.round() ?? 0;
-                final shortPosition = videoController?.value.position.inSeconds ?? 0;
-                context.router.navigate(
+                final shortPosition = (videoController?.value.playbackPositionMs ?? 0) ~/ 1000;
+
+                videoController?.pause();
+                await context.router.push(
                   EpisodeScreenRoute(
                     episodeId: ep.id,
                     autoplay: true,
                     queryParamStartPosition: sourcePosition + shortPosition,
                   ),
                 );
-                videoController?.pause();
+                // after navigating back, we want to stop the "source"
+                BccmPlayerController.primary.stop(reset: false);
               },
               imagePosition: ButtonImagePosition.right,
               image: SvgPicture.string(
@@ -591,7 +634,7 @@ class ShortActions extends HookConsumerWidget {
               ),
             ),
           ),
-      ], //.animate(interval: 100.ms).slideY(begin: 1, curve: Curves.easeOutExpo, duration: 1000.ms).fadeIn(),
+      ]), //.animate(interval: 100.ms).slideY(begin: 1, curve: Curves.easeOutExpo, duration: 1000.ms).fadeIn(),
     );
   }
 }
@@ -602,27 +645,30 @@ class VideoView extends HookWidget {
     required this.controller,
   });
 
-  final VideoPlayerController controller;
+  final BccmPlayerController controller;
 
   @override
   Widget build(BuildContext context) {
-    final aspectRatio = useListenableSelector(Listenable.merge([controller]), () => controller.value.aspectRatio);
-
-    return ClipRect(
-      child: LayoutBuilder(
-        builder: (context, constraints) => Stack(
-          children: [
-            Container(color: Colors.black),
-            OverflowBox(
-              maxWidth: double.infinity,
-              minHeight: constraints.maxHeight,
-              maxHeight: constraints.maxHeight,
-              child: AspectRatio(
-                aspectRatio: aspectRatio,
-                child: controller.value.isInitialized ? VideoPlayer(controller) : null,
+    return IgnorePointer(
+      child: ClipRect(
+        child: LayoutBuilder(
+          builder: (context, constraints) => Stack(
+            children: [
+              Container(color: Colors.black),
+              OverflowBox(
+                maxWidth: double.infinity,
+                minHeight: constraints.maxHeight,
+                maxHeight: constraints.maxHeight,
+                child: VideoPlatformView(
+                  playerController: controller,
+                  showControls: false,
+                  useSurfaceView: false,
+                  useStandardAndroidView: true,
+                  allowSystemGestures: true,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
