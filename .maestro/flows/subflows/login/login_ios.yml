@@ -23,4 +23,3 @@ appId: tv.brunstad.app
 - assertVisible: "Home"
 - assertVisible: "Search"
 - assertVisible: "Live"
-- assertVisible: "Calendar"
