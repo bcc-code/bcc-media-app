@@ -12,6 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class ShortAnalyticsListener {
   final ShortController controller;
   final WidgetRef ref;
+  String? _previousShortId;
   var _previousSeconds = 0;
   var _previousState = PlaybackState.stopped;
   var _replayCount = 0;
@@ -33,13 +34,24 @@ class ShortAnalyticsListener {
     playbackStateSubscription?.cancel();
   }
 
+  void reset() {
+    _previousSeconds = 0;
+    _previousState = PlaybackState.stopped;
+    _replayCount = 0;
+  }
+
   void onPlayerStateChanged() {
     if (controller.currentShort == null) return;
-    if (controller.player.value.currentMediaItem?.metadata?.extras?[MetadataExtraConstants.shortId] != controller.currentShort?.id) return;
+    final mediaItemShortId = controller.player.value.currentMediaItem?.metadata?.extras?[MetadataExtraConstants.shortId];
+    if (mediaItemShortId != controller.currentShort?.id) return;
     final value = controller.player.value;
     final seconds = (value.playbackPositionMs ?? 0.0) ~/ 1000;
 
     _previousSeconds = seconds;
+    if (_previousShortId != mediaItemShortId) {
+      _previousShortId = mediaItemShortId;
+      reset();
+    }
   }
 
   void onPlaybackStateChanged(PlaybackStateChangedEvent event) {
@@ -51,10 +63,10 @@ class ShortAnalyticsListener {
     final wasPausedOrStopped = _previousState == PlaybackState.paused || _previousState == PlaybackState.stopped;
     final isPausedOrStopped = event.playbackState == PlaybackState.paused || event.playbackState == PlaybackState.stopped;
 
+    final durationMs = controller.player.value.currentMediaItem?.metadata?.durationMs ?? 0;
     if (_previousState == PlaybackState.playing && isPausedOrStopped) {
       // paused
       debugPrint('SHRT: listener y - short ${short.id} paused. Sending stop for play $_replayCount');
-      final durationMs = controller.player.value.currentMediaItem?.metadata?.durationMs ?? 0;
       ref.read(analyticsProvider).shortStopped(ShortStoppedEvent(
             shortId: short.id,
             shortTitle: short.title,
@@ -71,7 +83,7 @@ class ShortAnalyticsListener {
               shortTitle: short.title,
               replayCount: _replayCount,
               resumed: true,
-              positionFraction: _previousSeconds / max(1, controller.player.value.currentMediaItem?.metadata?.durationMs ?? 0),
+              positionFraction: _previousSeconds / max(1, durationMs ~/ 1000),
               positionSeconds: _previousSeconds,
             ),
           );
