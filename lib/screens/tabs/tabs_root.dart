@@ -147,6 +147,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
         navigatorObservers: () => [HeroController()],
         inheritNavigatorObservers: true,
         routes: currentTabIds.map((tabId) => tabInfos.getFor(tabId).route).toList(),
+        lazyLoad: false,
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
           return Theme(

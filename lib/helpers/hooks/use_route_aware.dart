@@ -55,6 +55,13 @@ class _RouteCallbacks implements AutoRouteAware {
   }
 }
 
+bool isRouteInCurrentTab(
+  TabsRouter tabsRouter,
+  RouteData route,
+) {
+  return [tabsRouter.current.route, ...?tabsRouter.current.route.children].contains(route.route);
+}
+
 bool Function() useIsTabActive({
   void Function(bool active)? onChange,
 }) {
@@ -67,18 +74,22 @@ bool Function() useIsTabActive({
     debugPrint('SHRT: route: $route');
     if (tabsController == null) return () {};
 
-    isActive.value = tabsController.currentSegments.any(
-      (r) => r.name == route.name,
-    );
+    isActive.value = isRouteInCurrentTab(tabsController, route);
+
+    debugPrint('tab active: currentSegments: ${tabsController.currentSegments.map((e) => e.name).join('/')}');
     void listener() {
-      final newIsActive = tabsController.currentSegments.any(
-        (r) => r.name == route.name,
-      );
+      if (!context.mounted) return;
+      final newIsActive = isRouteInCurrentTab(tabsController, route);
+      debugPrint('tab active: $newIsActive ');
       if (newIsActive == isActive.value) return;
+      debugPrint('tab active changed');
       onChange?.call(newIsActive);
       isActive.value = newIsActive;
     }
 
+    debugPrint('tab active isActive: $isActive');
+
+    Future.delayed(const Duration(seconds: 1), listener);
     tabsController.addListener(listener);
 
     return () => tabsController.removeListener(listener);

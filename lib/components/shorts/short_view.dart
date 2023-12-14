@@ -3,8 +3,11 @@ import 'dart:ui';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/controls.dart';
+import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/badges/icon_badge.dart';
 import 'package:brunstadtv_app/components/misc/collapsable_markdown.dart';
+import 'package:brunstadtv_app/components/status/error_generic.dart';
+import 'package:brunstadtv_app/components/status/error_no_access.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/my_list.graphql.dart';
@@ -36,20 +39,20 @@ class ShortView extends HookConsumerWidget {
     required this.videoController,
     required this.muted,
     required this.onMuteRequested,
+    this.tabOpenAnimation,
   });
 
   final Fragment$Short? short;
-  final Future<QueryResult<Query$getShorts>>? future;
+  final Future<QueryResult<dynamic>>? future;
   final BccmPlayerController? videoController;
   final bool muted;
   final void Function(bool) onMuteRequested;
+  final Animation<double>? tabOpenAnimation;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
 
-    final isAtBeginning =
-        useListenableSelector(Listenable.merge([videoController]), () => videoController == null || videoController!.value.playbackPositionMs == 0);
     final isBuffering = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isBuffering);
     final isPlaying = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.playbackState == PlaybackState.playing);
     final isInitialized = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isInitialized ?? false);
@@ -61,6 +64,13 @@ class ShortView extends HookConsumerWidget {
       minHeight: MediaQuery.of(context).size.height - 100,
       maxHeight: MediaQuery.of(context).size.height - 100,
     );
+    final futureSnapshot = useFuture(future);
+
+    double tabOpenAnimationValue = 1;
+    if (tabOpenAnimation != null) {
+      tabOpenAnimationValue = useAnimation(tabOpenAnimation!);
+    }
+
     return GestureDetector(
       onLongPress: () {
         debugPrint('SHRT: longpress');
@@ -142,101 +152,108 @@ class ShortView extends HookConsumerWidget {
       },
       child: ConstrainedBox(
         constraints: constraints,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            if (videoController != null && isInitialized) VideoView(controller: videoController!),
-            FadeTransition(
-              opacity: CurvedAnimation(parent: playIconAnimation, curve: Curves.easeInOut, reverseCurve: Curves.easeOut),
-              child: Center(
-                child: isPlaying == false
-                    ? SvgPicture.string(SvgIcons.pause, width: 52, height: 52)
-                    : SvgPicture.string(SvgIcons.play, width: 52, height: 52),
-              ),
-            ),
-            if (short == null || !isInitialized || videoController == null)
-              Positioned.fill(
-                child: Stack(
-                  children: [
-                    Container(color: design.colors.background1),
-                    Animate(
-                      controller: loadingAnimation,
-                      onPlay: (c) => c.repeat(),
-                      effects: [
-                        ShimmerEffect(
-                          duration: 1000.ms,
-                          color: design.colors.background2,
-                        ),
-                      ],
-                      child: Container(color: design.colors.background1),
+        child: futureSnapshot.data?.parsedData == null && (futureSnapshot.error != null || futureSnapshot.data?.exception != null)
+            ? (ApiErrorCodes.isNotFound(futureSnapshot.data?.exception) ||
+                    ApiErrorCodes.isNoAccess(futureSnapshot.data?.exception) ||
+                    ApiErrorCodes.isNotPublished(futureSnapshot.data?.exception)
+                ? const ErrorNoAccess()
+                : ErrorGeneric(onRetry: () {}))
+            : Stack(
+                fit: StackFit.expand,
+                children: [
+                  if (videoController != null && isInitialized) VideoView(controller: videoController!),
+                  FadeTransition(
+                    opacity: CurvedAnimation(parent: playIconAnimation, curve: Curves.easeInOut, reverseCurve: Curves.easeOut),
+                    child: Center(
+                      child: isPlaying == false
+                          ? SvgPicture.string(SvgIcons.pause, width: 52, height: 52)
+                          : SvgPicture.string(SvgIcons.play, width: 52, height: 52),
                     ),
-                    const Center(child: LoadingIndicator()),
-                  ],
-                ),
-              ),
-            if (isBuffering == true) ...[
-              Center(child: LoadingIndicator()),
-            ],
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 200,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.black.withOpacity(0.0),
-                      design.colors.background1.withOpacity(0.8),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
                   ),
-                ),
-              ),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                  child: SafeArea(
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                  if (short == null || !isInitialized || videoController == null)
+                    Positioned.fill(
+                      child: Stack(
                         children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                if (short != null) ShortInfo(title: short!.title, description: short!.description),
-                                const SizedBox(height: 8),
-                                Disclaimers(short: short),
-                              ],
-                            ),
+                          Container(color: design.colors.background1),
+                          Animate(
+                            controller: loadingAnimation,
+                            onPlay: (c) => c.repeat(),
+                            effects: [
+                              ShimmerEffect(
+                                duration: 1000.ms,
+                                color: design.colors.background2,
+                              ),
+                            ],
+                            child: Container(color: design.colors.background1),
                           ),
-                          Container(
-                            alignment: Alignment.bottomRight,
-                            child: ShortActions(
-                              short: short,
-                              onMuteRequested: onMuteRequested,
-                              muted: muted,
-                              videoController: videoController,
-                            ),
-                          ),
+                          const Center(child: LoadingIndicator()),
                         ],
+                      ),
+                    )
+                  else if (isBuffering == true) ...[
+                    Center(child: LoadingIndicator()),
+                  ],
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      height: 200,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.black.withOpacity(0.0),
+                            design.colors.background1.withOpacity(0.8),
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                // _Timeline(videoController: videoController)
-              ],
-            ),
-          ],
-        ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                        child: SafeArea(
+                          child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      if (short != null) ShortInfo(title: short!.title, description: short!.description),
+                                      const SizedBox(height: 8),
+                                      Disclaimers(short: short),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  alignment: Alignment.bottomRight,
+                                  child: ShortActions(
+                                    short: short,
+                                    onMuteRequested: onMuteRequested,
+                                    muted: muted,
+                                    videoController: videoController,
+                                    tabOpenAnimation: tabOpenAnimation,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      // _Timeline(videoController: videoController)
+                    ],
+                  ),
+                ],
+              ),
       ),
     );
   }
@@ -446,17 +463,34 @@ class ShortActions extends HookConsumerWidget {
     required this.onMuteRequested,
     required this.muted,
     required this.videoController,
+    required this.tabOpenAnimation,
   });
 
   final Fragment$Short? short;
   final void Function(bool p1) onMuteRequested;
   final bool muted;
   final BccmPlayerController? videoController;
+  final Animation<double>? tabOpenAnimation;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
     final inMyList = useState(short?.inMyList ?? false);
+    final initialAnimation = useAnimationController();
+
+    useEffect(() {
+      final listener = ((AnimationStatus status) {
+        if (status == AnimationStatus.forward) {
+          initialAnimation.duration = 500.ms;
+          initialAnimation.forward(from: 0.0);
+        }
+      });
+      tabOpenAnimation?.addStatusListener(listener);
+      return () {
+        tabOpenAnimation?.removeStatusListener(listener);
+      };
+    }, [tabOpenAnimation]);
+
     useEffect(() {
       if (short == null) {
         inMyList.value = false;
@@ -471,7 +505,12 @@ class ShortActions extends HookConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
-      children: [
+      children: AnimateList(effects: [
+        SlideEffect(
+          begin: Offset(0, 3),
+          end: Offset.zero,
+        )
+      ], children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 12),
           child: design.buttons.large(
@@ -578,7 +617,7 @@ class ShortActions extends HookConsumerWidget {
             padding: const EdgeInsets.only(top: 12),
             child: design.buttons.large(
               variant: shortsSourceButtonPrimary ? ButtonVariant.primary : ButtonVariant.secondary,
-              onPressed: () {
+              onPressed: () async {
                 ref.read(analyticsProvider).interaction(InteractionEvent(
                       interaction: 'open-source',
                       pageCode: 'shorts',
@@ -589,14 +628,17 @@ class ShortActions extends HookConsumerWidget {
                 if (ep == null) return;
                 final sourcePosition = short?.source?.start?.round() ?? 0;
                 final shortPosition = (videoController?.value.playbackPositionMs ?? 0) ~/ 1000;
-                context.router.navigate(
+
+                videoController?.pause();
+                await context.router.push(
                   EpisodeScreenRoute(
                     episodeId: ep.id,
                     autoplay: true,
                     queryParamStartPosition: sourcePosition + shortPosition,
                   ),
                 );
-                videoController?.pause();
+                // after navigating back, we want to stop the "source"
+                BccmPlayerController.primary.stop(reset: false);
               },
               imagePosition: ButtonImagePosition.right,
               image: SvgPicture.string(
@@ -607,7 +649,7 @@ class ShortActions extends HookConsumerWidget {
               ),
             ),
           ),
-      ], //.animate(interval: 100.ms).slideY(begin: 1, curve: Curves.easeOutExpo, duration: 1000.ms).fadeIn(),
+      ]), //.animate(interval: 100.ms).slideY(begin: 1, curve: Curves.easeOutExpo, duration: 1000.ms).fadeIn(),
     );
   }
 }
