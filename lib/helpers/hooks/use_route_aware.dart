@@ -76,13 +76,10 @@ bool Function() useIsTabActive({
 
     isActive.value = isRouteInCurrentTab(tabsController, route);
 
-    debugPrint('tab active: currentSegments: ${tabsController.currentSegments.map((e) => e.name).join('/')}');
     void listener() {
       if (!context.mounted) return;
       final newIsActive = isRouteInCurrentTab(tabsController, route);
-      debugPrint('tab active: $newIsActive ');
       if (newIsActive == isActive.value) return;
-      debugPrint('tab active changed');
       onChange?.call(newIsActive);
       isActive.value = newIsActive;
     }

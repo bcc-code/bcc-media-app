@@ -20,6 +20,7 @@ class ShortController {
   final _progressDebouncer = Debouncer(milliseconds: 1000);
   int previousSeconds = 0;
 
+  late Future<void> playerInitFuture;
   Future<void>? currentSetupFuture;
   Fragment$Short? _short;
   Fragment$Short? get currentShort => _short;
@@ -29,7 +30,8 @@ class ShortController {
 
   ShortController(this.ref) {
     player = BccmPlayerController.empty(bufferMode: BufferMode.fastStartShortForm);
-    player.initialize().then((_) {
+    playerInitFuture = player.initialize();
+    playerInitFuture.then((_) {
       player.setMixWithOthers(true);
       player.setRepeatMode(RepeatMode.one);
       if (!Platform.isAndroid) return;
@@ -51,6 +53,7 @@ class ShortController {
   }
 
   Future<void> _setupShort(Fragment$Short newShort, bool current) async {
+    await playerInitFuture;
     debugPrint('SHRT: setting up for ${newShort.id}');
     final url = newShort.streams.getBestStreamUrl();
     final uri = Uri.tryParse(url);

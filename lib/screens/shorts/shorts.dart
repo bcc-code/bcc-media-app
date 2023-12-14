@@ -10,7 +10,6 @@ import 'package:brunstadtv_app/helpers/hooks/use_route_aware.dart';
 import 'package:brunstadtv_app/helpers/shorts/short_controller.dart';
 import 'package:brunstadtv_app/models/analytics/misc.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -58,9 +57,15 @@ class ShortsScreen extends HookConsumerWidget {
       if (!isMounted()) return result;
 
       nextCursor.value = result.parsedData?.shorts.nextCursor;
+      final fetchedShorts = result.parsedData?.shorts.shorts;
+      if (fetchedShorts == null) {
+        debugPrint('SHRT: fetchMore: no shorts');
+        return result;
+      }
+
       shorts.value = [
         ...shorts.value,
-        ...result.parsedData?.shorts.shorts ?? [],
+        ...fetchedShorts,
       ];
 
       return result;
@@ -137,7 +142,10 @@ class ShortsScreen extends HookConsumerWidget {
           debugPrint('SHRT: tab became active');
           if (isFirstOpen.value) {
             debugPrint('SHRT: tab became active for the first time, playing');
-            shortControllers[currentIndex.value % kPlayerCount].player.play();
+            final player = shortControllers[currentIndex.value % kPlayerCount].player;
+            if (player.value.isInitialized) {
+              shortControllers[currentIndex.value % kPlayerCount].player.play();
+            }
             preloadNextAndPreviousFor(currentIndex.value);
             tabOpenAnimation.forward();
             isFirstOpen.value = false;
@@ -187,7 +195,7 @@ class ShortsScreen extends HookConsumerWidget {
         return;
       }
       final controllerIndex = index % kPlayerCount;
-      debugPrint('SHRT: short ${currentShort.id} url: ${currentShort.streams.getBestStreamUrl()}');
+      debugPrint('SHRT: preparing short ${currentShort.id}');
       final controller = shortControllers[controllerIndex];
       await controller.setupShort(currentShort, true);
       if (currentIndex.value != index || !context.mounted) return;
