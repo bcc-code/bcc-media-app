@@ -662,6 +662,7 @@ class VideoView extends HookWidget {
                 child: VideoPlatformView(
                   playerController: controller,
                   showControls: false,
+                  pipOnLeave: false,
                   useSurfaceView: false,
                   useStandardAndroidView: true,
                   allowSystemGestures: true,
