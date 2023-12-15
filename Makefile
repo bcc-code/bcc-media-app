@@ -29,14 +29,12 @@ changelog:
 release:
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
-
-release-kids-old:
-	git tag v${BUILD_NUMBER}-kids
-	git push --tags
+	make changelog
 
 release-kids:
 	git tag v${BUILD_NUMBER_KIDS}-kids
 	git push --tags
+	make changelog
 
 # Rerelease (recreate the release tag with a different commit)
 # This can happen often, e.g. because you forgot to sync translations or a ci script needed to be fixed
@@ -46,9 +44,6 @@ rerelease:
 	git tag --delete v${BUILD_NUMBER}${TAG_SUFFIX}
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
-
-rerelease-kids-old:
-	TAG_SUFFIX=-kids make rerelease
 
 rerelease-kids:
 	read -p "delete tag v${BUILD_NUMBER_KIDS}-kids (local and origin), and recreate it with current commit? (CTRL+C to abort)"
