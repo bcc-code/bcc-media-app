@@ -1,4 +1,154 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.0.8+2500008-kids...v) (2023-11-10)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.0.9+2300109...v) (2023-12-15)
+
+
+
+## [5.0.9+2300109](https://github.com/bcc-code/bcc-media-app/compare/v5.0.8+2300108...v5.0.9+2300109) (2023-12-15)
+
+
+### Features
+
+* disable pip on leave for shorts ([2df86b6](https://github.com/bcc-code/bcc-media-app/commit/2df86b64b0eff657875119c2f0c887432ca26a47))
+
+
+
+## [5.0.8+2300108](https://github.com/bcc-code/bcc-media-app/compare/v5.0.7+2300107...v5.0.8+2300108) (2023-12-14)
+
+
+### Bug Fixes
+
+* short analytics calculations wrong ([e8e9b1e](https://github.com/bcc-code/bcc-media-app/commit/e8e9b1eadd8bffc944a48f8d5f685b38c555a273))
+
+
+
+## [5.0.7+2300107](https://github.com/bcc-code/bcc-media-app/compare/v5.0.6+2300106...v5.0.7+2300107) (2023-12-14)
+
+
+### Bug Fixes
+
+* **analytics:** correct swipe-next/swipe-previous ([d3c00d4](https://github.com/bcc-code/bcc-media-app/commit/d3c00d412ccbb9588392ee6a532b494ca1dcef89))
+* **shorts:** align titles left instead of center ([41a774e](https://github.com/bcc-code/bcc-media-app/commit/41a774e58e767949b7865f26330ac1036c5a4391))
+
+
+### Features
+
+* preload 4 and use buffer mode for ios ([43ec66c](https://github.com/bcc-code/bcc-media-app/commit/43ec66c12f47db52300a564e3c1107d0215721ef))
+* **shorts:** hide source button if no source ([43df8d5](https://github.com/bcc-code/bcc-media-app/commit/43df8d52ad1fb3bb138a23b04407a7e732295e0a))
+* use our player ([6f1db23](https://github.com/bcc-code/bcc-media-app/commit/6f1db231ec5aeab86f2928a35ba54029c24e265a))
+
+
+
+## [5.0.6+2300106](https://github.com/bcc-code/bcc-media-app/compare/v5.0.5+2300105...v5.0.6+2300106) (2023-12-01)
+
+
+
+## [5.0.5+2300105](https://github.com/bcc-code/bcc-media-app/compare/v5.0.4+2300104...v5.0.5+2300105) (2023-11-30)
+
+
+### Features
+
+* **analytics:** season list clicks ([ddc9f71](https://github.com/bcc-code/bcc-media-app/commit/ddc9f713a11a3743eb2f6f4c1eeb1db530c3a850))
+* **bccm:** chapters first tab feature flag ([d5cabb0](https://github.com/bcc-code/bcc-media-app/commit/d5cabb02c9d816dce3168db8da5eee06b0545c66))
+* chapters styling ([12c982a](https://github.com/bcc-code/bcc-media-app/commit/12c982a13979eaee73334e35db654b3074c30f44))
+* swipe previous event ([d3d8a54](https://github.com/bcc-code/bcc-media-app/commit/d3d8a54ea28d4060b4c2bb30f6aff68b303b0d95))
+
+
+
+## [5.0.4+2300104](https://github.com/bcc-code/bcc-media-app/compare/v5.0.3+2300103...v5.0.4+2300104) (2023-11-29)
+
+
+### Bug Fixes
+
+* shorts keep playing after app backgrounding ([3f526e7](https://github.com/bcc-code/bcc-media-app/commit/3f526e714f2bb84695091d757f674efb812b3d8c))
+
+
+### Features
+
+* better loading state for shorts ([9146458](https://github.com/bcc-code/bcc-media-app/commit/91464588ead0cf0f67c750cfe18b7dd1229882a9))
+* shorts progress bar ([#695](https://github.com/bcc-code/bcc-media-app/issues/695)) ([7b8fdbc](https://github.com/bcc-code/bcc-media-app/commit/7b8fdbcc21c2f028ea7f59a03a42755dc53f29d3))
+* **shorts:** popup and flags for sharing ++ ([959c7de](https://github.com/bcc-code/bcc-media-app/commit/959c7de00b0e3f094b2e66a4087e2d0ec7e3a42c))
+* smooth progress bar for shorts ([2664daa](https://github.com/bcc-code/bcc-media-app/commit/2664daa477242310359b36185ed2d190f5d9d688))
+
+
+
+## [5.0.3+2300103](https://github.com/bcc-code/bcc-media-app/compare/v5.0.2+2300102...v5.0.3+2300103) (2023-11-29)
+
+
+### Features
+
+* add wakelock ([3dcb9a1](https://github.com/bcc-code/bcc-media-app/commit/3dcb9a1a168e9e21e84e0d8562767f67c4b49c52))
+* **bccm:** analytics improvements ([21135df](https://github.com/bcc-code/bcc-media-app/commit/21135df6a0f5ab9711e78132164b534588f65181))
+
+
+
+## [5.0.2+2300102](https://github.com/bcc-code/bcc-media-app/compare/v5.0.1+2300101...v5.0.2+2300102) (2023-11-28)
+
+
+### Bug Fixes
+
+* shorts tab and deep links ([81c0403](https://github.com/bcc-code/bcc-media-app/commit/81c040316c9578f570c0a21edf9f24e9939880b7))
+
+
+### Features
+
+* shorts icon ([cefca0b](https://github.com/bcc-code/bcc-media-app/commit/cefca0bb522553aab03e4ecf4cc58de3cc938b7e))
+* shorts in profile ([6fce737](https://github.com/bcc-code/bcc-media-app/commit/6fce7378ffdeccbd42d3217d1fd81fc41e781d6e))
+* shorts snappiness, analytics ([56f7b3e](https://github.com/bcc-code/bcc-media-app/commit/56f7b3e42ad4ef5913864ef98d39c4567f9604fd))
+
+
+
+## [5.0.1+2300101](https://github.com/bcc-code/bcc-media-app/compare/v5.1.1+2500011-kids...v5.0.1+2300101) (2023-11-26)
+
+
+### Features
+
+* playlist appbar play random etc ([3317e93](https://github.com/bcc-code/bcc-media-app/commit/3317e933e7722e446346ad9fcd7e4342c9115d27))
+* progress and unleash context ([05c8b51](https://github.com/bcc-code/bcc-media-app/commit/05c8b516c7584ca1702abd339179e26b5de54ee3))
+* send x-feature-flags header ([96a4a3e](https://github.com/bcc-code/bcc-media-app/commit/96a4a3eeaaa1be0ff29b6a2e9ff58ded8ba46e4f))
+* shorts ([091d407](https://github.com/bcc-code/bcc-media-app/commit/091d407e00bf326494d18e1a0a1d51ce669794dd))
+* shorts feature flag ([a552682](https://github.com/bcc-code/bcc-media-app/commit/a5526822aad459faf1ded453e75f81069d81f6ca))
+
+
+
+## [5.1.1+2500011-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.0.0+2300100...v5.1.1+2500011-kids) (2023-11-13)
+
+
+
+# [5.0.0+2300100](https://github.com/bcc-code/bcc-media-app/compare/v5.1.0+2500010-kids...v5.0.0+2300100) (2023-11-13)
+
+
+### Bug Fixes
+
+* android crashes ([ed232d6](https://github.com/bcc-code/bcc-media-app/commit/ed232d6f15be66181897f486add07c6c4a13c307))
+
+
+
+# [5.1.0+2500010-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.0.9+2500009-kids...v5.1.0+2500010-kids) (2023-11-13)
+
+
+### Bug Fixes
+
+* **kids:** android system overlays and haptic intensity ([0be9956](https://github.com/bcc-code/bcc-media-app/commit/0be99563f6a77948b9ced04203097505b36cb1b1))
+* sound effects and haptic on android ([6725054](https://github.com/bcc-code/bcc-media-app/commit/6725054ec47aed85335579c509eb875c4ab86f4a))
+
+
+### Features
+
+* **kids:** make more text translatable ([ac0fbf1](https://github.com/bcc-code/bcc-media-app/commit/ac0fbf1e67f334f6e12badd2927f30444420d16d))
+
+
+
+## [5.0.9+2500009-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.0.8+2500008-kids...v5.0.9+2500009-kids) (2023-11-13)
+
+
+### Bug Fixes
+
+* next episodes stuck in loop if error on cc ([164aa29](https://github.com/bcc-code/bcc-media-app/commit/164aa297395086fa78b8ffe709293d42be9009b3))
+
+
+### Features
+
+* haptic feedback ([49a6656](https://github.com/bcc-code/bcc-media-app/commit/49a66569a8e9315828cc2ca3e8350161fdfc6d96))
+* move duration to the right ([b8a5130](https://github.com/bcc-code/bcc-media-app/commit/b8a5130a02bd9385e594f8224fc70ece10f57f9f))
 
 
 
