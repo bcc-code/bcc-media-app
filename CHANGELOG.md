@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.0.9+2300109...v) (2023-12-15)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.0+2300110...v) (2023-12-15)
+
+
+
+# [5.1.0+2300110](https://github.com/bcc-code/bcc-media-app/compare/v5.0.9+2300109...v5.1.0+2300110) (2023-12-15)
+
+
+### Features
+
+* in app guides ([be91b4d](https://github.com/bcc-code/bcc-media-app/commit/be91b4d2b514b0d8b12e66a86b7a5cb31d6e7de0))
 
 
 
