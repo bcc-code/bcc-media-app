@@ -16,6 +16,7 @@ import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
@@ -41,9 +42,17 @@ import '../../router/router.gr.dart';
 import '../../helpers/extensions.dart';
 import '../../theme/design_system/design_system.dart';
 
+final likedShortsKey = GlobalKey();
+const kProfileScrollQueryLikedShorts = 'liked_shorts';
+
 @RoutePage<void>()
 class ProfileScreen extends HookConsumerWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({
+    Key? key,
+    @QueryParam('scroll') this.scroll,
+  }) : super(key: key);
+
+  final String? scroll;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -67,6 +76,28 @@ class ProfileScreen extends HookConsumerWidget {
 
     final design = DesignSystem.of(context);
     final downloadedVideosCount = ref.watch(downloadsProvider.select((value) => value.valueOrNull?.length ?? 0));
+    final scrollController = useScrollController();
+
+    useEffect(() {
+      debugPrint('guide: scroll: $scroll');
+      if (scroll != null && scroll!.isNotEmpty) {
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          if (scroll == kProfileScrollQueryLikedShorts) {
+            var offset = likedShortsKey.currentContext?.findRenderObject()?.getTransformTo(null).getTranslation().t;
+            if (offset == null) {
+              return;
+            }
+            offset = offset - MediaQuery.of(context).padding.top - 100;
+            final currentOffset = scrollController.offset;
+            var targetOffset = currentOffset + offset;
+            targetOffset = targetOffset.clamp(0, scrollController.position.maxScrollExtent);
+            debugPrint('guide: offset: $targetOffset');
+            scrollController.animateTo(targetOffset, duration: const Duration(milliseconds: 250), curve: Curves.easeInOut);
+            context.router.replace(ProfileScreenRoute(scroll: null));
+          }
+        });
+      }
+    }, [scroll]);
 
     return Scaffold(
       appBar: AppBar(
@@ -85,6 +116,7 @@ class ProfileScreen extends HookConsumerWidget {
         ],
       ),
       body: CustomScrollView(
+        controller: scrollController,
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
@@ -142,7 +174,7 @@ class ProfileScreen extends HookConsumerWidget {
                     Widget child = const SizedBox.shrink();
                     final items =
                         snapshot.data?.parsedData?.myList.entries.items.where((el) => el.item is Fragment$MyListEntry$item$$Episode).toList();
-                    if (snapshot.connectionState != ConnectionState.done) {
+                    if (snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                       child = const SizedBox(height: 250, child: LoadingGeneric());
                     } else if (snapshot.hasError || items == null) {
                       child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onFavoritesRefresh));
@@ -173,6 +205,7 @@ class ProfileScreen extends HookConsumerWidget {
             if (ref.watch(featureFlagsProvider.select((value) => value.shorts)))
               SliverToBoxAdapter(
                 child: SectionWithHeader(
+                  key: likedShortsKey,
                   title: S.of(context).likedShorts,
                   child: FutureBuilder(
                     future: myListFuture.value,
@@ -180,7 +213,7 @@ class ProfileScreen extends HookConsumerWidget {
                       Widget child = const SizedBox.shrink();
                       final items =
                           snapshot.data?.parsedData?.myList.entries.items.where((el) => el.item is Fragment$MyListEntry$item$$Short).toList();
-                      if (snapshot.connectionState != ConnectionState.done) {
+                      if (snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                         child = const SizedBox(height: 250, child: LoadingGeneric());
                       } else if (snapshot.hasError || items == null) {
                         child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onFavoritesRefresh));

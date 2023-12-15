@@ -25,3 +25,17 @@ Map<String, dynamic> _$$InteractionEventImplToJson(
       'contextElementId': instance.contextElementId,
       'meta': instance.meta,
     };
+
+_$GuideShownEventImpl _$$GuideShownEventImplFromJson(
+        Map<String, dynamic> json) =>
+    _$GuideShownEventImpl(
+      guide: json['guide'] as String?,
+      meta: json['meta'] as Map<String, dynamic>?,
+    );
+
+Map<String, dynamic> _$$GuideShownEventImplToJson(
+        _$GuideShownEventImpl instance) =>
+    <String, dynamic>{
+      'guide': instance.guide,
+      'meta': instance.meta,
+    };

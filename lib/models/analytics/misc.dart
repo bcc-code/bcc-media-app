@@ -15,3 +15,13 @@ class InteractionEvent with _$InteractionEvent {
 
   factory InteractionEvent.fromJson(Map<String, dynamic> json) => _$InteractionEventFromJson(json);
 }
+
+@freezed
+class GuideShownEvent with _$GuideShownEvent {
+  const factory GuideShownEvent({
+    String? guide,
+    Map<String, dynamic>? meta,
+  }) = _GuideShownEvent;
+
+  factory GuideShownEvent.fromJson(Map<String, dynamic> json) => _$GuideShownEventFromJson(json);
+}

@@ -266,9 +266,16 @@ abstract class $AppRouter extends _i36.RootStackRouter {
       );
     },
     ProfileScreenRoute.name: (routeData) {
+      final queryParams = routeData.queryParams;
+      final args = routeData.argsAs<ProfileScreenRouteArgs>(
+          orElse: () =>
+              ProfileScreenRouteArgs(scroll: queryParams.optString('scroll')));
       return _i36.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i23.ProfileScreen(),
+        child: _i23.ProfileScreen(
+          key: args.key,
+          scroll: args.scroll,
+        ),
       );
     },
     ProfileWrapperScreenRoute.name: (routeData) {
@@ -321,7 +328,6 @@ abstract class $AppRouter extends _i36.RootStackRouter {
         routeData: routeData,
         child: _i27.ShortsScreen(
           key: args.key,
-          id: args.id,
           preventScroll: args.preventScroll,
         ),
       );
@@ -964,16 +970,41 @@ class PrivacyPolicyScreenRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i23.ProfileScreen]
-class ProfileScreenRoute extends _i36.PageRouteInfo<void> {
-  const ProfileScreenRoute({List<_i36.PageRouteInfo>? children})
-      : super(
+class ProfileScreenRoute extends _i36.PageRouteInfo<ProfileScreenRouteArgs> {
+  ProfileScreenRoute({
+    _i37.Key? key,
+    String? scroll,
+    List<_i36.PageRouteInfo>? children,
+  }) : super(
           ProfileScreenRoute.name,
+          args: ProfileScreenRouteArgs(
+            key: key,
+            scroll: scroll,
+          ),
+          rawQueryParams: {'scroll': scroll},
           initialChildren: children,
         );
 
   static const String name = 'ProfileScreenRoute';
 
-  static const _i36.PageInfo<void> page = _i36.PageInfo<void>(name);
+  static const _i36.PageInfo<ProfileScreenRouteArgs> page =
+      _i36.PageInfo<ProfileScreenRouteArgs>(name);
+}
+
+class ProfileScreenRouteArgs {
+  const ProfileScreenRouteArgs({
+    this.key,
+    this.scroll,
+  });
+
+  final _i37.Key? key;
+
+  final String? scroll;
+
+  @override
+  String toString() {
+    return 'ProfileScreenRouteArgs{key: $key, scroll: $scroll}';
+  }
 }
 
 /// generated route for
@@ -1101,14 +1132,12 @@ class ShortScreenRouteArgs {
 class ShortsScreenRoute extends _i36.PageRouteInfo<ShortsScreenRouteArgs> {
   ShortsScreenRoute({
     _i37.Key? key,
-    String? id,
     bool preventScroll = false,
     List<_i36.PageRouteInfo>? children,
   }) : super(
           ShortsScreenRoute.name,
           args: ShortsScreenRouteArgs(
             key: key,
-            id: id,
             preventScroll: preventScroll,
           ),
           initialChildren: children,
@@ -1123,19 +1152,16 @@ class ShortsScreenRoute extends _i36.PageRouteInfo<ShortsScreenRouteArgs> {
 class ShortsScreenRouteArgs {
   const ShortsScreenRouteArgs({
     this.key,
-    this.id,
     this.preventScroll = false,
   });
 
   final _i37.Key? key;
 
-  final String? id;
-
   final bool preventScroll;
 
   @override
   String toString() {
-    return 'ShortsScreenRouteArgs{key: $key, id: $id, preventScroll: $preventScroll}';
+    return 'ShortsScreenRouteArgs{key: $key, preventScroll: $preventScroll}';
   }
 }
 

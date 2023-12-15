@@ -125,6 +125,7 @@ dependencies:
   skeletonizer: ^0.8.0
   wakelock_plus: ^1.1.4
   preload_page_view: ^0.2.0
+  tutorial_coach_mark: ^1.2.11
   #smooth: any
 
 dev_dependencies:

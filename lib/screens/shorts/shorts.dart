@@ -24,11 +24,9 @@ const kPlayerCount = 4;
 class ShortsScreen extends HookConsumerWidget {
   const ShortsScreen({
     super.key,
-    this.id,
     this.preventScroll = false,
   });
 
-  final String? id;
   final bool preventScroll;
 
   @override
@@ -40,13 +38,6 @@ class ShortsScreen extends HookConsumerWidget {
     final currentIndex = useState(0);
     final isMounted = useIsMounted();
     final isFirstOpen = useState(true);
-
-    debugPrint('SHRT: Short deeplink: $id');
-
-    final deepLinkShortFuture = useMemoized(
-      () => id == null ? null : gqlClient.query$getShort(Options$Query$getShort(variables: Variables$Query$getShort(id: id!))),
-      [id],
-    );
 
     fetchMore() async {
       final result = await gqlClient.query$getShorts(
@@ -243,10 +234,6 @@ class ShortsScreen extends HookConsumerWidget {
         shortControllersState.value = List.unmodifiable(List.generate(kPlayerCount, (_) => ShortController(ref)));
       }
       currentIndex.value = 0;
-      final short = (await deepLinkShortFuture)?.parsedData?.short;
-      if (short != null) {
-        shorts.value = [short];
-      }
       debugPrint('SHRT: fetching more: init');
       fetchMoreFuture.value = fetchMore();
       await fetchMoreFuture.value;

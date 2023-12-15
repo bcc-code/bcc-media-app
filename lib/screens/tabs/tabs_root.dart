@@ -1,14 +1,23 @@
+import 'dart:ui';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
+import 'package:brunstadtv_app/components/guides/tab_feature.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:brunstadtv_app/models/analytics/misc.dart';
 import 'package:brunstadtv_app/providers/connectivity.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
+import 'package:brunstadtv_app/providers/shared_preferences.dart';
 import 'package:brunstadtv_app/screens/tabs/search.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -38,6 +47,40 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
   void didChangeDependencies() {
     super.didChangeDependencies();
     ref.watch(notificationServiceProvider).requestPermissionAndSetup();
+    Future.delayed(1000.ms, checkIfShouldShowShortGuide);
+  }
+
+  GuideController? shortGuideController;
+  void checkIfShouldShowShortGuide() {
+    if (!context.mounted) return;
+    if (context.router.topRoute.name == ShortsWrapperScreenRoute.name || context.router.topRoute.name == ShortsScreenRoute.name) {
+      return;
+    }
+    if (ref.read(featureFlagsProvider).shorts != true) return;
+    //if (ref.read(featureFlagsProvider).shortsGuide != true) return;
+    final prefs = ref.read(sharedPreferencesProvider);
+    final hasShownShortGuide = prefs.getBool(PrefKeys.shortsFeatureGuideShown) ?? false;
+    if (hasShownShortGuide) return;
+    prefs.setBool(PrefKeys.shortsFeatureGuideShown, true);
+
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      final tabInfos = ref.read(tabInfosProvider);
+      shortGuideController = createTabFeaturePopover(
+        context,
+        analyticsName: 'shorts_tab_guide',
+        iconKey: tabInfos.shorts.iconKey,
+        title: 'New feature',
+        description: 'Discover short and powerful excerpts and jump straight into the full message.',
+        onContinue: () {
+          if (!context.mounted) return;
+          context.navigateTo(ShortsWrapperScreenRoute(
+            children: [ShortsScreenRoute()],
+          ));
+        },
+      );
+
+      ref.read(analyticsProvider).guideShown(const GuideShownEvent(guide: 'shorts-tab'));
+    });
   }
 
   @override
@@ -66,6 +109,13 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       tryCatchRecordError(() {
         sendTabChangeAnalytics(index);
       });
+    }
+    final currentTabIds = ref.read(currentTabIdsProvider);
+    if (currentTabIds.elementAtOrNull(index) == TabId.shorts) {
+      if (shortGuideController != null) {
+        shortGuideController!.dismiss();
+        shortGuideController = null;
+      }
     }
     tabsRouter.setActiveIndex(index);
   }
@@ -135,6 +185,11 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       }
     }
     return false;
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override

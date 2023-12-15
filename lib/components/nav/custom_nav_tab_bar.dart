@@ -68,8 +68,8 @@ class CustomNavTabBar extends HookConsumerWidget {
         .map(
           (tabInfo) => BottomNavigationBarItem(
             label: tabInfo.title(context),
-            icon: BottomNavIcon(tabInfo.icon.image, false),
-            activeIcon: BottomNavIcon(tabInfo.icon.activeImage, true),
+            icon: BottomNavIcon(tabInfo.icon.image, false, key: tabInfo.iconKey),
+            activeIcon: BottomNavIcon(tabInfo.icon.activeImage, true, key: tabInfo.iconKey),
           ),
         )
         .toList();

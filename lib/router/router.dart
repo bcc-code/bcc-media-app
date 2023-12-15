@@ -250,6 +250,7 @@ class AppRouter extends $AppRouter {
               page: ProfileScreenRoute.page,
               path: '',
               maintainState: false,
+              usesPathAsKey: true,
               meta: const {RouteMetaConstants.navTabRoute: true},
             ),
             _episodeScreenRoute,

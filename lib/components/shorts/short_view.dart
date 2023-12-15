@@ -5,6 +5,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/controls.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/badges/icon_badge.dart';
+import 'package:brunstadtv_app/components/guides/favorite.dart';
 import 'package:brunstadtv_app/components/misc/collapsable_markdown.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/error_no_access.dart';
@@ -12,6 +13,7 @@ import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/my_list.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/helpers/share_extension/share_extension.dart';
@@ -21,6 +23,7 @@ import 'package:brunstadtv_app/models/analytics/content_shared.dart';
 import 'package:brunstadtv_app/models/analytics/misc.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/providers/shared_preferences.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +33,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
+
+bool gshown = false;
 
 class ShortView extends HookConsumerWidget {
   const ShortView({
@@ -526,6 +531,15 @@ class ShortActions extends HookConsumerWidget {
                     );
               }
               inMyList.value = !inMyList.value;
+              if (inMyList.value) {
+                final prefs = ref.read(sharedPreferencesProvider);
+                final hasShownShortGuide = prefs.getBool(PrefKeys.likedShortsGuideShown) ?? false;
+                if (hasShownShortGuide) return;
+                prefs.setBool(PrefKeys.likedShortsGuideShown, true);
+                createFavoriteShortsGuide(context).show(context: context, rootOverlay: true);
+                videoController?.pause();
+                ref.read(analyticsProvider).guideShown(const GuideShownEvent(guide: 'liked-shorts'));
+              }
             },
             imagePosition: ButtonImagePosition.right,
             image: inMyList.value

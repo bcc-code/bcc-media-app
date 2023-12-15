@@ -260,3 +260,167 @@ abstract class _InteractionEvent implements InteractionEvent {
   _$$InteractionEventImplCopyWith<_$InteractionEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+GuideShownEvent _$GuideShownEventFromJson(Map<String, dynamic> json) {
+  return _GuideShownEvent.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GuideShownEvent {
+  String? get guide => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get meta => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GuideShownEventCopyWith<GuideShownEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GuideShownEventCopyWith<$Res> {
+  factory $GuideShownEventCopyWith(
+          GuideShownEvent value, $Res Function(GuideShownEvent) then) =
+      _$GuideShownEventCopyWithImpl<$Res, GuideShownEvent>;
+  @useResult
+  $Res call({String? guide, Map<String, dynamic>? meta});
+}
+
+/// @nodoc
+class _$GuideShownEventCopyWithImpl<$Res, $Val extends GuideShownEvent>
+    implements $GuideShownEventCopyWith<$Res> {
+  _$GuideShownEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? guide = freezed,
+    Object? meta = freezed,
+  }) {
+    return _then(_value.copyWith(
+      guide: freezed == guide
+          ? _value.guide
+          : guide // ignore: cast_nullable_to_non_nullable
+              as String?,
+      meta: freezed == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$GuideShownEventImplCopyWith<$Res>
+    implements $GuideShownEventCopyWith<$Res> {
+  factory _$$GuideShownEventImplCopyWith(_$GuideShownEventImpl value,
+          $Res Function(_$GuideShownEventImpl) then) =
+      __$$GuideShownEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? guide, Map<String, dynamic>? meta});
+}
+
+/// @nodoc
+class __$$GuideShownEventImplCopyWithImpl<$Res>
+    extends _$GuideShownEventCopyWithImpl<$Res, _$GuideShownEventImpl>
+    implements _$$GuideShownEventImplCopyWith<$Res> {
+  __$$GuideShownEventImplCopyWithImpl(
+      _$GuideShownEventImpl _value, $Res Function(_$GuideShownEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? guide = freezed,
+    Object? meta = freezed,
+  }) {
+    return _then(_$GuideShownEventImpl(
+      guide: freezed == guide
+          ? _value.guide
+          : guide // ignore: cast_nullable_to_non_nullable
+              as String?,
+      meta: freezed == meta
+          ? _value._meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$GuideShownEventImpl implements _GuideShownEvent {
+  const _$GuideShownEventImpl({this.guide, final Map<String, dynamic>? meta})
+      : _meta = meta;
+
+  factory _$GuideShownEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GuideShownEventImplFromJson(json);
+
+  @override
+  final String? guide;
+  final Map<String, dynamic>? _meta;
+  @override
+  Map<String, dynamic>? get meta {
+    final value = _meta;
+    if (value == null) return null;
+    if (_meta is EqualUnmodifiableMapView) return _meta;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'GuideShownEvent(guide: $guide, meta: $meta)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GuideShownEventImpl &&
+            (identical(other.guide, guide) || other.guide == guide) &&
+            const DeepCollectionEquality().equals(other._meta, _meta));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, guide, const DeepCollectionEquality().hash(_meta));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GuideShownEventImplCopyWith<_$GuideShownEventImpl> get copyWith =>
+      __$$GuideShownEventImplCopyWithImpl<_$GuideShownEventImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$GuideShownEventImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GuideShownEvent implements GuideShownEvent {
+  const factory _GuideShownEvent(
+      {final String? guide,
+      final Map<String, dynamic>? meta}) = _$GuideShownEventImpl;
+
+  factory _GuideShownEvent.fromJson(Map<String, dynamic> json) =
+      _$GuideShownEventImpl.fromJson;
+
+  @override
+  String? get guide;
+  @override
+  Map<String, dynamic>? get meta;
+  @override
+  @JsonKey(ignore: true)
+  _$$GuideShownEventImplCopyWith<_$GuideShownEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
