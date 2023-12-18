@@ -1351,7 +1351,7 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "This feature is in beta and is currently not released to all users. Please report any issues or feedback via the 'Contact' button in settings.",
+  "betaExplanation": "Denne funktion er under udvikling og er for øjeblikkt ikke udgivet til alle brugere. Rapporter venligst eventuelle fejl eller feedback via knappen \"Kontakt\" i indstillingerne.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
@@ -1363,8 +1363,28 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "This feature is not available yet. Please try again later.",
+  "featureNotAvailableYet": "Denne funktion er ikke tilgængelig endnu. Prøv igen senere.",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
+  },
+  "newFeature": "New feature",
+  "@newFeature": {
+    "description": "Shown the first time you open the app after a new feature is available."
+  },
+  "shortsFeatureDescription": "Discover short and powerful excerpts, and jump right into its full episode.",
+  "@shortsFeatureDescription": {
+    "description": "Shown the first time you open the app after 'shorts' is enabled."
+  },
+  "likedAndSaved": "Liked and saved",
+  "@likedAndSaved": {
+    "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "shortsLikedAndSavedDescription": "You can find all your liked shorts in your profile.",
+  "@shortsLikedAndSavedDescription": {
+    "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "downloadedVideosGuideDescription": "You can find your downloaded videos under \"Profile\".",
+  "@downloadedVideosGuideDescription": {
+    "description": "Shown when you have downloaded a video for the first time."
   }
 }
