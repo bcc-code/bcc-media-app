@@ -3,19 +3,18 @@ import 'dart:async';
 import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/event_bus.dart';
-import 'package:brunstadtv_app/providers/androidtv_provider.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../components/offline/offline_home.dart';
 import '../components/status/loading_indicator.dart';
 import '../helpers/constants.dart';
 import '../models/events/app_ready.dart';
-import '../providers/shared_preferences.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 
 import '../helpers/router/router_utils.dart';

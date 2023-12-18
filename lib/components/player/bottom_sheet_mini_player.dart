@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
-import 'package:bccm_core/utils/primitive_extensions.dart';
+import 'package:bccm_core/utils.dart';
 import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/providers/connectivity.dart';

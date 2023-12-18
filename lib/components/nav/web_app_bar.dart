@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
 
-import '../../providers/auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 
 final logo = Image.asset('assets/flavors/prod/logo.png');

@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:bccm_core/utils/primitive_extensions.dart';
-import 'package:brunstadtv_app/models/auth0/auth0_api.dart';
+import 'package:bccm_core/utils.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:bccm_core/design_system.dart';
@@ -12,7 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../helpers/analytics.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../providers/auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
 
 import '../onboarding_page_wrapper.dart';
 

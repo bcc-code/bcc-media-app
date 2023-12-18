@@ -9,11 +9,9 @@
 
 import 'dart:convert';
 
-import 'package:brunstadtv_app/api/auth0_api.dart';
-import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/models/auth_state.dart';
-import 'package:brunstadtv_app/providers/auth_state/implementations/auth_state_notifier_mobile.dart';
-import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/src/features/auth/implementations/auth_state_notifier_mobile.dart';
+import 'package:bccm_core/src/utils/constants.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,15 +19,14 @@ import 'package:mockito/annotations.dart';
 
 import 'package:mockito/mockito.dart';
 
-import '../utils/tokens.dart';
+import '../../test/utils/tokens.dart';
 @GenerateNiceMocks([
   MockSpec<FlutterAppAuth>(),
   MockSpec<FlutterSecureStorage>(),
-  MockSpec<SettingsService>(),
   MockSpec<Auth0Api>(),
 ])
 import 'auth_test.mocks.dart';
-import '../utils/basic_init.dart';
+import '../../test/utils/basic_init.dart';
 
 class MockTokenRequest extends Mock implements TokenRequest {}
 
@@ -61,9 +58,13 @@ void main() {
       final auth = AuthStateNotifierMobile(
         appAuth: MockFlutterAppAuth(),
         secureStorage: secureStorage,
-        settingsService: MockSettingsService(),
-        auth0Api: MockAuth0Api(),
-        isTv: false,
+        config: AuthConfig(
+          auth0Audience: 'audience',
+          auth0ClientId: 'clientId',
+          auth0Domain: 'domain',
+          scopes: ['scope'],
+          isTv: false,
+        ),
       );
       auth.state = AuthState(
         auth0AccessToken: 'something',
@@ -85,9 +86,13 @@ void main() {
       final auth = AuthStateNotifierMobile(
         appAuth: mockAppAuth,
         secureStorage: secureStorage,
-        settingsService: MockSettingsService(),
-        auth0Api: MockAuth0Api(),
-        isTv: false,
+        config: AuthConfig(
+          auth0Audience: 'audience',
+          auth0ClientId: 'clientId',
+          auth0Domain: 'domain',
+          scopes: ['scope'],
+          isTv: false,
+        ),
       );
       auth.state = AuthState(
         auth0AccessToken: 'something',

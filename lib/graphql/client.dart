@@ -1,5 +1,6 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/widgets.dart';
@@ -10,7 +11,6 @@ import 'package:http/retry.dart';
 
 import '../flavors.dart';
 import '../helpers/version.dart';
-import '../providers/package_info.dart';
 
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
   final settings = ref.watch(settingsProvider);

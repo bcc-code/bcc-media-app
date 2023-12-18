@@ -2,11 +2,9 @@ import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/languages.dart';
 import 'package:brunstadtv_app/helpers/router/special_routes.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
-import 'package:brunstadtv_app/providers/package_info.dart';
-import 'package:brunstadtv_app/providers/shared_preferences.dart';
-import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/providers/router_provider.dart';
 import 'package:brunstadtv_app/providers/deeplink_service.dart';
@@ -72,14 +70,9 @@ Future<void> $main({
 }) async {
   usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-  if (Platform.isAndroid) {
-    AndroidDeviceInfo androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
-    _isAndroidTv = androidDeviceInfo.systemFeatures.contains('android.software.leanback');
-  }
 
   await setDefaults();
-
-  //FocusDebugger.instance.activate();
+  final coreOverrides = await BccmCore().setup();
 
   if (FlavorConfig.current.firebaseOptions != null) {
     await initFirebase(FlavorConfig.current.firebaseOptions!);
@@ -89,14 +82,10 @@ Future<void> $main({
   await BccmPlayerInterface.instance.setup();
 
   final appRouter = AppRouter(navigatorKey: navigatorKey);
-  final sharedPrefs = await SharedPreferences.getInstance();
-  final packageInfo = await PackageInfo.fromPlatform();
   final providerContainer = await initProviderContainer([
+    ...coreOverrides,
     analyticsMetaEnricherProvider.overrideWith((ref) => KidsAnalyticsMetaEnricher()),
     rootRouterProvider.overrideWithValue(appRouter),
-    sharedPreferencesProvider.overrideWith((ref) => sharedPrefs),
-    packageInfoProvider.overrideWith((ref) => packageInfo),
-    isAndroidTvProvider.overrideWithValue(_isAndroidTv),
     specialRoutesHandlerProvider.overrideWith((ref) => KidsSpecialRoutesHandler(ref)),
     if (providerOverrides != null) ...providerOverrides,
   ]);

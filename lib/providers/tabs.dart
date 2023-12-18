@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -6,7 +7,7 @@ import '../flavors.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
 import '../screens/tabs/search.dart';
-import 'auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'feature_flags.dart';
 
 enum TabId {

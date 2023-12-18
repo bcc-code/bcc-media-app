@@ -1,6 +1,7 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

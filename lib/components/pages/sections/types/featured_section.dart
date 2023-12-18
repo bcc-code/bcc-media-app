@@ -16,7 +16,7 @@ import '../../../../models/analytics/sections.dart';
 import '../../../../graphql/queries/page.graphql.dart';
 import '../../../../models/breakpoints.dart';
 import 'package:bccm_core/design_system.dart';
-import 'package:bccm_core/utils/primitive_extensions.dart';
+import 'package:bccm_core/utils.dart';
 
 import '../../../../helpers/images.dart';
 import '../../../../helpers/transparent_image.dart';

@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

@@ -3,10 +3,11 @@ import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/providers/shared_preferences.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

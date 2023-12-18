@@ -2,20 +2,10 @@
 
 import 'dart:convert';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/auth0/auth0_api.dart';
-import '../env/env.dart';
+import '../../models/auth0/auth0_api.dart';
 import 'dart:async';
-
-final auth0ApiProvider = Provider<Auth0Api>((ref) {
-  return Auth0Api(
-    domain: Env.auth0Domain,
-    clientId: Env.auth0ClientId,
-    audience: Env.auth0Audience,
-  );
-});
 
 class Auth0Api {
   Auth0Api({

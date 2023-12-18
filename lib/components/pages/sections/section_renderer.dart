@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/misc/see_more.dart';
-import 'package:bccm_core/utils/primitive_extensions.dart';
+import 'package:bccm_core/utils.dart';
 import 'package:flutter/material.dart';
 
 import '../../../graphql/queries/page.graphql.dart';

@@ -5,7 +5,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/analytics.dart';
-import 'package:bccm_core/utils/primitive_extensions.dart';
+import 'package:bccm_core/utils.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:bccm_core/design_system.dart';

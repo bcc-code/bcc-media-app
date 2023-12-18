@@ -26,13 +26,6 @@ class PrefKeys {
   static const downloadedVideosGuide = 'downloaded_videos_guide';
 }
 
-class SecureStorageKeys {
-  SecureStorageKeys._();
-  static const refreshToken = 'refresh_token';
-  static const idToken = 'id_token';
-  static const accessToken = 'access_token';
-}
-
 const apiEnvUrls = <String, String>{
   EnvironmentOverride.none: Env.brunstadtvApiEndpoint,
   EnvironmentOverride.dev: 'https://api.dev.brunstad.tv/query',

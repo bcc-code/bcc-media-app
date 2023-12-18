@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../../../graphql/queries/page.graphql.dart';
 import '../../../graphql/schema/sections.graphql.dart';
-import 'package:bccm_core/utils/primitive_extensions.dart';
+import 'package:bccm_core/utils.dart';
 import '../../../models/analytics/sections.dart';
 import '../../../models/episode_thumbnail_data.dart';
 import '../../../providers/todays_calendar_entries.dart';

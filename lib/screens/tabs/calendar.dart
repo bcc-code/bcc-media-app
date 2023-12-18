@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:bccm_core/utils/primitive_extensions.dart';
+import 'package:bccm_core/utils.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';

@@ -1,24 +1,28 @@
 import 'package:auth0_flutter_web/auth0_flutter_web.dart';
-import 'package:brunstadtv_app/api/auth0_api.dart';
-import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
+import 'package:bccm_core/src/models/auth0/auth0_id_token.dart';
+import 'package:bccm_core/src/models/auth_state.dart';
+import 'package:bccm_core/src/features/auth/auth0_api.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../env/env.dart';
-import '../../../models/auth_state.dart';
 import '../auth_state.dart';
 
 // Careful. This line is very important,
 // but because it's conditionally imported (see auth_state_notifier_interface.dart)
 // IDEs don't show any errors when you remove it..
-AuthStateNotifier getPlatformSpecificAuthStateNotifier(Ref ref) => AuthStateNotifierWeb();
-
-final _auth0 = createAuth0Client(Auth0ClientOptions(
-    domain: Env.auth0Domain, client_id: Env.auth0ClientId, audience: Env.auth0Audience, scope: 'openid profile offline_access church country'
-    // cacheLocation: 'localStorage',
-    ));
+AuthStateNotifier getPlatformSpecificAuthStateNotifier(AuthConfig config) => AuthStateNotifierWeb(config);
 
 class AuthStateNotifierWeb extends StateNotifier<AuthState> implements AuthStateNotifier {
-  AuthStateNotifierWeb() : super(const AuthState());
+  AuthStateNotifierWeb(this.config) : super(const AuthState()) {
+    _auth0 = createAuth0Client(Auth0ClientOptions(
+      domain: config.auth0Domain,
+      client_id: config.auth0ClientId,
+      audience: config.auth0Audience,
+      scope: config.scopes.join(' '),
+      // cacheLocation: 'localStorage',
+    ));
+  }
+  late Future<Auth0> _auth0;
+  AuthConfig config;
 
   @override
   Future<AuthState?> getExistingAndEnsureNotExpired() async {
@@ -68,8 +72,8 @@ class AuthStateNotifierWeb extends StateNotifier<AuthState> implements AuthState
     final auth0 = await _auth0;
     await auth0.loginWithPopup(
       options: PopupLoginOptions(
-        audience: Env.auth0Audience,
-        scope: 'openid profile offline_access church country',
+        audience: config.auth0Audience,
+        scope: config.scopes.join(' '),
       ),
     );
     await setStateFromResult(auth0);

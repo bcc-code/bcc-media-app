@@ -308,7 +308,7 @@ class _$Auth0SignupRequestBodyImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Auth0SignupRequestBodyImpl &&
@@ -558,7 +558,7 @@ class _$Auth0SignupResponseImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Auth0SignupResponseImpl &&
@@ -760,7 +760,7 @@ class _$Auth0ApiExceptionImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Auth0ApiExceptionImpl &&

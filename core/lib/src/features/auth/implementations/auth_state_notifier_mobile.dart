@@ -1,14 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:brunstadtv_app/api/auth0_api.dart';
-import 'package:brunstadtv_app/flavors.dart';
-import 'package:bccm_core/utils/primitive_extensions.dart';
-import 'package:brunstadtv_app/providers/androidtv_provider.dart';
-import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:bccm_core/src/features/auth/auth0_api.dart';
+import 'package:bccm_core/utils.dart';
 import 'package:clock/clock.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
@@ -16,21 +12,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../env/env.dart';
-import '../../../helpers/constants.dart';
 import '../../../models/auth0/auth0_id_token.dart';
 import '../../../models/auth_state.dart';
+import '../../../utils/constants.dart';
 import '../auth_state.dart';
 
 // Careful. The function naming here is very important,
 // but because it's conditionally imported (see auth_state_notifier_interface.dart)
 // IDEs don't show any errors when you remove/change it..
-AuthStateNotifier getPlatformSpecificAuthStateNotifier(Ref ref) {
+AuthStateNotifier getPlatformSpecificAuthStateNotifier(AuthConfig config) {
   return AuthStateNotifierMobile(
     appAuth: const FlutterAppAuth(),
     secureStorage: const FlutterSecureStorage(
@@ -39,9 +33,7 @@ AuthStateNotifier getPlatformSpecificAuthStateNotifier(Ref ref) {
         sharedPreferencesName: 'auth',
       ),
     ),
-    settingsService: ref.watch(settingsProvider.notifier),
-    auth0Api: ref.watch(auth0ApiProvider),
-    isTv: ref.watch(isAndroidTvProvider),
+    config: config,
   );
 }
 
@@ -51,22 +43,21 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
   AuthStateNotifierMobile({
     required FlutterAppAuth appAuth,
     required FlutterSecureStorage secureStorage,
-    required SettingsService settingsService,
-    required Auth0Api auth0Api,
-    required bool isTv,
+    required this.config,
   })  : _appAuth = appAuth,
         _secureStorage = secureStorage,
-        _settingsService = settingsService,
-        _auth0Api = auth0Api,
-        _isTv = isTv,
+        _auth0Api = Auth0Api(
+          audience: config.auth0Audience,
+          domain: config.auth0Domain,
+          clientId: config.auth0ClientId,
+        ),
         super(const AuthState());
 
   final appAuthLock = Lock();
   final FlutterAppAuth _appAuth;
   final FlutterSecureStorage _secureStorage;
-  final SettingsService _settingsService;
+  final AuthConfig config;
   final Auth0Api _auth0Api;
-  final bool _isTv;
 
   Future<T> _syncAppAuth<T>(Future<T> Function() call) {
     return appAuthLock.synchronized(
@@ -147,11 +138,11 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       final TokenResponse? result = await _syncAppAuth(
         () => _appAuth.token(
           TokenRequest(
-            Env.auth0ClientId,
+            config.auth0ClientId,
             '${info.packageName}://login-callback',
-            issuer: 'https://${Env.auth0Domain}',
+            issuer: 'https://${config.auth0Domain}',
             refreshToken: refreshToken,
-            additionalParameters: {'audience': Env.auth0Audience},
+            additionalParameters: {'audience': config.auth0Audience},
           ),
         ),
       );
@@ -178,12 +169,12 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
   @override
   Future logout({bool manual = true}) async {
     await _clearCredentials();
-    if (Platform.isAndroid && manual && !_isTv) {
+    if (Platform.isAndroid && manual && !config.isTv) {
       final PackageInfo info = await PackageInfo.fromPlatform();
       final url = Uri.https(
-        Env.auth0Domain,
+        config.auth0Domain,
         '/v2/logout',
-        {'client_id': Env.auth0ClientId, 'returnTo': '${info.packageName}://logout-callback'},
+        {'client_id': config.auth0ClientId, 'returnTo': '${info.packageName}://logout-callback'},
       );
       // Log out of auth0.
       // Couldn't get the callback url to work properly with iOS in-app-browser
@@ -192,12 +183,13 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       await launchUrl(url, mode: LaunchMode.externalApplication);
     }
     state = AuthState(signedOutManually: manual);
+    /* TODO: core
+    RudderController.instance.reset();
     if (FlavorConfig.current.enableNotifications) {
       FirebaseMessaging.instance.deleteToken();
     }
-    RudderController.instance.reset();
     _settingsService.setAnalyticsId(null);
-    _settingsService.refreshSessionId();
+    _settingsService.refreshSessionId(); */
 
     return;
   }
@@ -225,15 +217,15 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
   Future<bool> login({String? connection}) async {
     final PackageInfo info = await PackageInfo.fromPlatform();
     try {
-      var additionalParameters = {'audience': Env.auth0Audience};
+      var additionalParameters = {'audience': config.auth0Audience};
       if (connection != null) {
         additionalParameters['connection'] = connection;
       }
       final authorizationTokenRequest = AuthorizationTokenRequest(
-        Env.auth0ClientId,
+        config.auth0ClientId,
         '${info.packageName}://login-callback',
-        issuer: 'https://${Env.auth0Domain}',
-        scopes: ['openid', 'profile', 'offline_access', 'church', 'country', 'email'],
+        issuer: 'https://${config.auth0Domain}',
+        scopes: config.scopes,
         promptValues: state.signedOutManually == true ? ['login'] : null,
         additionalParameters: additionalParameters,
       );

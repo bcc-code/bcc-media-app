@@ -11,7 +11,8 @@ import 'package:brunstadtv_app/components/thumbnails/episode_thumbnail.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/helpers/hooks/use_route_aware.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:collection/collection.dart';
@@ -39,7 +40,7 @@ import '../../models/events/watch_progress.dart';
 import '../../providers/analytics.dart';
 import '../../providers/inherited_data.dart';
 import '../../router/router.gr.dart';
-import 'package:bccm_core/utils/primitive_extensions.dart';
+import 'package:bccm_core/utils.dart';
 import 'package:bccm_core/design_system.dart';
 
 const kProfileScrollQueryLikedShorts = 'liked_shorts';

@@ -1,6 +1,6 @@
-import 'package:brunstadtv_app/api/auth0_api.dart';
-import 'package:brunstadtv_app/models/auth_state.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:bccm_core/src/models/auth_state.dart';
+import 'package:bccm_core/src/features/auth/auth0_api.dart';
+import 'package:bccm_core/src/features/auth/auth_state.dart';
 import 'package:riverpod/riverpod.dart';
 
 class AuthStateNotifierDisabled extends StateNotifier<AuthState> implements AuthStateNotifier {
