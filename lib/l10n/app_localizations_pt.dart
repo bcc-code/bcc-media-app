@@ -928,7 +928,7 @@ class SPt extends S {
 
   @override
   String expiresIn(String time) {
-    return 'Expires in $time';
+    return 'Expira em $time';
   }
 
   @override

@@ -137,7 +137,7 @@ TutorialCoachMark createDownloadedIsInProfileGuide(
     onClickTarget: (target) {
       onContinue?.call();
       if (target.identify == 'profile') {
-        router.navigate(ProfileWrapperScreenRoute(children: [ProfileScreenRoute(scroll: kProfileScrollQueryLikedShorts)]));
+        router.navigate(ProfileWrapperScreenRoute(children: [ProfileScreenRoute(scroll: kProfileScrollQueryDownloaded)]));
       }
     },
     onClickTargetWithTapPosition: (target, tapDetails) {},

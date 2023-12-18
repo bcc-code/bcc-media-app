@@ -983,7 +983,7 @@ class SNl extends S {
   String get beta => 'Bèta';
 
   @override
-  String get betaExplanation => 'This feature is in beta and is currently not released to all users. Please report any issues or feedback via the \'Contact\' button in settings.';
+  String get betaExplanation => 'Deze functie bevindt zich in de bètafase en is momenteel niet beschikbaar voor alle gebruikers. Rapporteer eventuele problemen of feedback via de knop \'Contact\' in de instellingen.';
 
   @override
   String get likedShorts => 'Korte films die ik leuk vind';
@@ -992,7 +992,7 @@ class SNl extends S {
   String get saveYourFavoriteShorts => 'Bewaar je favoriete korte films';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available yet. Please try again later.';
+  String get featureNotAvailableYet => 'Deze functie is nog niet beschikbaar. Probeer het later nog eens.';
 
   @override
   String get newFeature => 'New feature';

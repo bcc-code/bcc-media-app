@@ -983,7 +983,7 @@ class SDa extends S {
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'This feature is in beta and is currently not released to all users. Please report any issues or feedback via the \'Contact\' button in settings.';
+  String get betaExplanation => 'Denne funktion er under udvikling og er for øjeblikkt ikke udgivet til alle brugere. Rapporter venligst eventuelle fejl eller feedback via knappen \"Kontakt\" i indstillingerne.';
 
   @override
   String get likedShorts => 'Yndlingskortfilm';
@@ -992,7 +992,7 @@ class SDa extends S {
   String get saveYourFavoriteShorts => 'Gem dine yndlingskortfilm';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available yet. Please try again later.';
+  String get featureNotAvailableYet => 'Denne funktion er ikke tilgængelig endnu. Prøv igen senere.';
 
   @override
   String get newFeature => 'New feature';

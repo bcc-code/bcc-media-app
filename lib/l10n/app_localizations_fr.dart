@@ -983,7 +983,7 @@ class SFr extends S {
   String get beta => 'Bêta';
 
   @override
-  String get betaExplanation => 'This feature is in beta and is currently not released to all users. Please report any issues or feedback via the \'Contact\' button in settings.';
+  String get betaExplanation => 'Cette fonctionnalité est en version bêta et n\'est actuellement pas disponible pour tous les utilisateurs. Veuillez signaler tout problème ou commentaire via le bouton « Contact » dans les paramètres.';
 
   @override
   String get likedShorts => 'Courts métrages appréciés';
@@ -992,7 +992,7 @@ class SFr extends S {
   String get saveYourFavoriteShorts => 'Sauvegarder tes courts métrages préférés';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available yet. Please try again later.';
+  String get featureNotAvailableYet => 'Cette fonctionnalité n\'est pas encore disponible. Veuillez réessayer plus tard.';
 
   @override
   String get newFeature => 'New feature';

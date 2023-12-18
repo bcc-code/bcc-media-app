@@ -983,7 +983,7 @@ class SSl extends S {
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'This feature is in beta and is currently not released to all users. Please report any issues or feedback via the \'Contact\' button in settings.';
+  String get betaExplanation => 'Ta funkcija je v beta različici in trenutno ni na voljo vsem uporabnikom. Morebitne težave ali povratne informacije sporočite prek gumba \"Kontakt\" v nastavitvah.';
 
   @override
   String get likedShorts => 'Priljubljeni kratki filmi';
@@ -992,7 +992,7 @@ class SSl extends S {
   String get saveYourFavoriteShorts => 'Shrani svoje priljubljene kratke filme';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available yet. Please try again later.';
+  String get featureNotAvailableYet => 'Ta funkcija še ni na voljo. Poskusi kasneje.';
 
   @override
   String get newFeature => 'New feature';
