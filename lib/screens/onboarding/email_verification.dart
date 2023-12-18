@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/components/onboarding/email_verification/email_verification_success_page.dart';
 import 'package:brunstadtv_app/components/onboarding/email_verification/email_verification_prompt_page.dart';
-import 'package:brunstadtv_app/helpers/hooks/use_interval.dart';
+import 'package:bccm_core/src/utils/hooks/use_interval.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

@@ -1,6 +1,6 @@
 library bccm_core;
 
-export 'src/features/setup/setup.dart';
+export 'src/setup.dart';
 export 'src/features/globals/globals.dart';
 export 'src/features/auth/auth0_api.dart';
 export 'src/features/auth/auth_state.dart';
@@ -10,3 +10,5 @@ export 'src/features/providers/package_info.dart';
 export 'src/models/auth_state.dart';
 export 'src/models/auth0/auth0_id_token.dart';
 export 'src/models/auth0/auth0_api.dart';
+export 'src/utils/hooks/use_interval.dart';
+export 'src/utils/hooks/use_route_aware.dart';

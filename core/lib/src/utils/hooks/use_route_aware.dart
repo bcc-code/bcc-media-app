@@ -8,16 +8,12 @@ class _RouteCallbacks implements AutoRouteAware {
     this.handleDidPush,
     this.handleDidPop,
     this.handleDidPushNext,
-    this.handleDidChangeTabRoute,
-    this.handleDidInitTabRoute,
   });
 
   final VoidCallback? handleDidPopNext;
   final VoidCallback? handleDidPush;
   final VoidCallback? handleDidPop;
   final VoidCallback? handleDidPushNext;
-  final void Function(TabPageRoute previousRoute)? handleDidChangeTabRoute;
-  final void Function(TabPageRoute previousRoute)? handleDidInitTabRoute;
 
   @override
   void didPopNext() {
@@ -45,14 +41,10 @@ class _RouteCallbacks implements AutoRouteAware {
   }
 
   @override
-  void didChangeTabRoute(TabPageRoute previousRoute) {
-    handleDidChangeTabRoute?.call(previousRoute);
-  }
+  void didChangeTabRoute(TabPageRoute previousRoute) {}
 
   @override
-  void didInitTabRoute(TabPageRoute? previousRoute) {
-    handleDidInitTabRoute?.call(previousRoute!);
-  }
+  void didInitTabRoute(TabPageRoute? previousRoute) {}
 }
 
 bool isRouteInCurrentTab(

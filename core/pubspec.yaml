@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   auth0_flutter_web: ^0.0.1-alpha.6
+  auto_route: ^7.8.4
   clock: ^1.1.1
   device_info_plus: ^9.1.1
   firebase_crashlytics: ^3.4.8
@@ -16,6 +17,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_appauth: ^6.0.2
+  flutter_hooks: ^0.20.3
   flutter_riverpod: ^2.4.9
   flutter_secure_storage: ^9.0.0
   freezed_annotation: ^2.4.1

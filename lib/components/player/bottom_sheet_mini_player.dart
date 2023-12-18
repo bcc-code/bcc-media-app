@@ -13,7 +13,6 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 
 import '../../l10n/app_localizations.dart';
 import 'package:bccm_core/design_system.dart';
-import '../../providers/fun.dart';
 
 class BottomSheetMiniPlayer extends ConsumerStatefulWidget {
   const BottomSheetMiniPlayer({Key? key, required this.hidden}) : super(key: key);
@@ -68,7 +67,6 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         } else if (offlineMediaItem) {
           ref.read(playbackServiceProvider).openFullscreen(context);
         } else if (id != null) {
-          ref.read(tempTitleProvider.notifier).state = title;
           try {
             await context.navigateTo(EpisodeScreenRoute(episodeId: id, collectionId: collectionId));
           } catch (_) {
