@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/player/live_mini_player.dart';
-import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import '../../components/player/custom_cast_player.dart';
 import '../../helpers/insets.dart';
 import '../../providers/todays_calendar_entries.dart';

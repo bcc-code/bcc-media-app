@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/controls.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
@@ -16,7 +15,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/player/player_view.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/helpers/transitions.dart';
-import 'package:kids/router/router.gr.dart';
 
 @RoutePage<void>()
 class EpisodeScreen extends HookConsumerWidget {

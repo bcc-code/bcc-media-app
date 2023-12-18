@@ -18,3 +18,5 @@ export 'src/utils/haptic_feedback.dart';
 export 'src/utils/scroll_behaviors.dart';
 export 'src/utils/time.dart';
 export 'src/utils/misc.dart';
+export 'src/utils/transparent_image.dart';
+export 'src/utils/images.dart';

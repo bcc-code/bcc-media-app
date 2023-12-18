@@ -18,8 +18,6 @@ import '../../../../models/breakpoints.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/utils.dart';
 
-import '../../../../helpers/images.dart';
-import '../../../../helpers/transparent_image.dart';
 import '../../../../providers/todays_calendar_entries.dart';
 
 const marginX = 2.0;

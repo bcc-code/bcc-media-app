@@ -13,7 +13,6 @@ import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/firebase.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -30,9 +29,6 @@ import 'package:kids/design_system.dart';
 import 'package:kids/helpers/analytics_meta.dart';
 import 'package:kids/providers/special_routes.dart';
 import 'package:kids/router/router.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_io/io.dart';
 import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 
 import 'package:brunstadtv_app/flavors.dart';

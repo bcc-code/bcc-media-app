@@ -4,7 +4,7 @@ import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
-import 'package:brunstadtv_app/helpers/images.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/search_performed.dart';
 import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';

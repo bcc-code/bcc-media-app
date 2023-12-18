@@ -4,8 +4,6 @@ import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/badges/offline_badge.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/helpers/images.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:bccm_core/bccm_core.dart';

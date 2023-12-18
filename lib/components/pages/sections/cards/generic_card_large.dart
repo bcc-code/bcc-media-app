@@ -1,5 +1,5 @@
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/helpers/images.dart';
+import 'package:bccm_core/src/utils/images.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../graphql/queries/page.graphql.dart';

@@ -1,5 +1,4 @@
-import 'package:brunstadtv_app/helpers/images.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';

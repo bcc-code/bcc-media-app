@@ -11,7 +11,6 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../graphql/queries/achievements.graphql.dart';
 import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
-import '../../helpers/images.dart';
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/analytics.dart';
