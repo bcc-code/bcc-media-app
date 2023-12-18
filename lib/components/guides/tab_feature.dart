@@ -1,103 +1,10 @@
-import 'dart:ui';
-
-import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/misc.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
-
-TutorialCoachMark createTabFeatureGuideFullscreen(
-  BuildContext context, {
-  required GlobalKey iconKey,
-  required String title,
-  required String description,
-  required String analyticsName,
-  VoidCallback? onSkip,
-  VoidCallback? onContinue,
-}) {
-  final design = DesignSystem.of(context);
-  final container = ProviderScope.containerOf(context);
-  return TutorialCoachMark(
-    targets: [
-      TargetFocus(
-        keyTarget: iconKey,
-        alignSkip: Alignment.topRight,
-        enableOverlayTab: true,
-        focusAnimationDuration: 2000.ms,
-        unFocusAnimationDuration: 300.ms,
-        contents: [
-          TargetContent(
-            align: ContentAlign.top,
-            builder: (context, controller) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    title,
-                    style: design.textStyles.title2,
-                  ),
-                  Text(
-                    description,
-                    style: design.textStyles.body2.copyWith(color: design.colors.label1),
-                  ),
-                ],
-              );
-            },
-          ),
-        ],
-      ),
-    ],
-    colorShadow: design.colors.tint1,
-    skipWidget: design.buttons.small(variant: ButtonVariant.secondary, onPressed: () {}, labelText: S.of(context).close),
-    paddingFocus: 15,
-    opacityShadow: 0.7,
-    imageFilter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
-    focusAnimationDuration: 2000.ms,
-    pulseAnimationDuration: 600.ms,
-    unFocusAnimationDuration: 300.ms,
-    onClickTarget: (target) {
-      debugPrint('GUIDE: onClickTarget');
-      onContinue?.call();
-      container.read(analyticsProvider).interaction(
-            InteractionEvent(
-              interaction: 'guide-continue',
-              contextElementType: 'guide',
-              contextElementId: analyticsName,
-            ),
-          );
-    },
-    onClickOverlay: (_) {
-      debugPrint('GUIDE: onClickOverlay');
-      onSkip?.call();
-      container.read(analyticsProvider).interaction(
-            InteractionEvent(
-              interaction: 'guide-skip',
-              contextElementType: 'guide',
-              contextElementId: analyticsName,
-            ),
-          );
-    },
-    onSkip: () {
-      debugPrint('GUIDE: onSkip');
-      onSkip?.call();
-      container.read(analyticsProvider).interaction(
-            InteractionEvent(
-              interaction: 'guide-skip',
-              contextElementType: 'guide',
-              contextElementId: analyticsName,
-            ),
-          );
-      return true;
-    },
-  );
-}
 
 class GuideController {
   late VoidCallback dismiss;

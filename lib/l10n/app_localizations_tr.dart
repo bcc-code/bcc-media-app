@@ -993,4 +993,16 @@ class STr extends S {
 
   @override
   String get featureNotAvailableYet => 'This feature is not available yet. Please try again later.';
+
+  @override
+  String get newFeature => 'New feature';
+
+  @override
+  String get shortsFeatureDescription => 'Discover short and powerful excerpts, and jump right into its full episode.';
+
+  @override
+  String get likedAndSaved => 'Liked and saved';
+
+  @override
+  String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
 }

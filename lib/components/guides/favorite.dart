@@ -44,11 +44,11 @@ TutorialCoachMark createFavoriteShortsGuide(
                     height: 24,
                   ),
                   Text(
-                    'Liked and saved',
+                    S.of(context).likedAndSaved,
                     style: design.textStyles.title2,
                   ),
                   Text(
-                    'You can find all your liked shorts in your profile.',
+                    S.of(context).shortsLikedAndSavedDescription,
                     style: design.textStyles.body2.copyWith(color: design.colors.label1),
                   ),
                 ],

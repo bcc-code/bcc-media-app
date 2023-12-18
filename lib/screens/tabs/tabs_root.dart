@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
@@ -7,6 +5,7 @@ import 'package:brunstadtv_app/components/guides/tab_feature.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/misc.dart';
 import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
@@ -69,8 +68,8 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
         context,
         analyticsName: 'shorts_tab_guide',
         iconKey: tabInfos.shorts.iconKey,
-        title: 'New feature',
-        description: 'Discover short and powerful excerpts and jump straight into the full message.',
+        title: S.of(context).newFeature,
+        description: S.of(context).shortsFeatureDescription,
         onContinue: () {
           if (!context.mounted) return;
           context.navigateTo(ShortsWrapperScreenRoute(

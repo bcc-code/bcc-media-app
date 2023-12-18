@@ -2030,6 +2030,30 @@ abstract class S {
   /// In en, this message translates to:
   /// **'This feature is not available yet. Please try again later.'**
   String get featureNotAvailableYet;
+
+  /// Shown the first time you open the app after a new feature is available.
+  ///
+  /// In en, this message translates to:
+  /// **'New feature'**
+  String get newFeature;
+
+  /// Shown the first time you open the app after 'shorts' is enabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover short and powerful excerpts, and jump right into its full episode.'**
+  String get shortsFeatureDescription;
+
+  /// Shown when you have liked and saved a 'short' for the first time.
+  ///
+  /// In en, this message translates to:
+  /// **'Liked and saved'**
+  String get likedAndSaved;
+
+  /// Shown when you have liked and saved a 'short' for the first time.
+  ///
+  /// In en, this message translates to:
+  /// **'You can find all your liked shorts in your profile.'**
+  String get shortsLikedAndSavedDescription;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
