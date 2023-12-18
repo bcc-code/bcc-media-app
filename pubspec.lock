@@ -581,10 +581,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_image
-      sha256: b41c6cbf9462d8cbdeeb7b5dd84c7bca5176e9e4d6e8b968290e371ab758cc0c
+      sha256: "0fd3090d50f3bb5619905102f4e61995cce14cae8af8d116d55ae03ea744a1e4"
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.8"
+    version: "4.1.10"
   flutter_inappwebview:
     dependency: "direct main"
     description:
