@@ -17,7 +17,7 @@ import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import '../../components/player/custom_cast_player.dart';
 import '../../helpers/insets.dart';
 import '../../providers/todays_calendar_entries.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';

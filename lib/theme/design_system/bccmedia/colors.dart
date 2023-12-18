@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import '../design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class BccMediaColors extends DesignSystemColors {
   BccMediaColors()

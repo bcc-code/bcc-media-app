@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:flutter/material.dart';

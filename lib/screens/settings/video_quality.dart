@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../../components/menus/option_list.dart';
 import '../../components/web/dialog_on_web.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
 @RoutePage<void>()

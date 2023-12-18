@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../graphql/queries/prompts.graphql.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import 'rating_bar.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../models/episode_thumbnail_data.dart';
-import '../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../episode_thumbnail.dart';
 

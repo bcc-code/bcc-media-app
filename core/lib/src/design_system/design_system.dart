@@ -1,4 +1,6 @@
-import 'package:brunstadtv_app/helpers/extensions.dart';
+library bccm_core;
+
+import '../../utils/primitive_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 

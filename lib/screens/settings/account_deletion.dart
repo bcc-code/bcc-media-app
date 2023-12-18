@@ -12,7 +12,7 @@ import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../l10n/app_localizations.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
 
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 @RoutePage<void>()
 class AccountDeletionScreen extends HookConsumerWidget {

@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/components/menus/option_list.dart';
 import 'package:brunstadtv_app/helpers/time.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 

@@ -12,7 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../graphql/client.dart';
 import '../helpers/event_bus.dart';
 import '../models/events/app_ready.dart';
-import '../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 final notificationServiceProvider = Provider<NotificationService>((ref) {
   if (!FlavorConfig.current.enableNotifications) {

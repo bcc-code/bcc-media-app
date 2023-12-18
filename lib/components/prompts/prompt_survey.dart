@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../graphql/queries/prompts.graphql.dart';
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../surveys/bottom_sheet_survey.dart';
 

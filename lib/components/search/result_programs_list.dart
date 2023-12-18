@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../../helpers/router/router_utils.dart';
 import '../../providers/inherited_data.dart';

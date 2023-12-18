@@ -10,7 +10,7 @@ import '../../../../graphql/schema/sections.graphql.dart';
 import '../../../../models/breakpoints.dart';
 import '../../../../models/episode_thumbnail_data.dart';
 import '../../../../providers/todays_calendar_entries.dart';
-import '../../../../helpers/extensions.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 import '../../../../models/analytics/sections.dart';
 import '../../../thumbnails/slider/thumbnail_slider_episode.dart';
 import '../../../thumbnails/slider/thumbnail_slider_show.dart';
@@ -97,11 +97,11 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
       context,
       defaultValue: 1.0,
       conditionalValues: [
-        const Condition.equals(name: BP.sm, value: 1.0),
-        const Condition.equals(name: BP.md, value: 1.5),
-        const Condition.equals(name: BP.lg, value: 1.7),
-        const Condition.equals(name: BP.xl, value: 2.0),
-        const Condition.largerThan(name: BP.xl, value: 2.5),
+        Condition.equals(name: BP.sm, value: 1.0),
+        Condition.equals(name: BP.md, value: 1.5),
+        Condition.equals(name: BP.lg, value: 1.7),
+        Condition.equals(name: BP.xl, value: 2.0),
+        Condition.largerThan(name: BP.xl, value: 2.5),
       ],
     ).value!;
 

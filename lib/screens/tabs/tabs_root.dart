@@ -3,7 +3,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/guides/tab_feature_guides.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/misc.dart';
@@ -29,7 +29,7 @@ import '../../models/scroll_screen.dart';
 import '../../providers/analytics.dart';
 import '../../providers/app_config.dart';
 import '../../providers/tabs.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 @RoutePage<void>()
 class TabsRootScreen extends ConsumerStatefulWidget {

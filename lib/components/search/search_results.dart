@@ -10,7 +10,7 @@ import '../../graphql/client.dart';
 import '../../graphql/queries/search.graphql.dart';
 import '../episode/list/episode_list_episode.dart';
 import 'result_programs_list.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../models/analytics/search_performed.dart';

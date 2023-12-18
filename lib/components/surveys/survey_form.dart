@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../graphql/queries/prompts.graphql.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'survey_question_rating.dart';
 import 'survey_question_text.dart';
 

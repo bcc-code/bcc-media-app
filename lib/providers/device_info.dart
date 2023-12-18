@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/constants.dart';
 import '../helpers/version.dart';
-import '../helpers/extensions.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 import '../models/contact_device_info.dart';
 import 'auth_state/auth_state.dart';
 import 'shared_preferences.dart';

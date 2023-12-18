@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,7 +15,6 @@ import '../../router/router.gr.dart';
 import 'special_routes.dart';
 import 'navigation_override.dart';
 import '../misc.dart';
-import '../extensions.dart';
 
 extension StackRouterCustomNavigation on StackRouter {
   Future navigateNamedFromRoot(String path, {OnNavigationFailure? onFailure}) async {

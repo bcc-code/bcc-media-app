@@ -7,7 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:kids/components/search/search_bar.dart';
 import 'package:kids/components/search/search_results.dart';
 import 'package:kids/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 

@@ -5,7 +5,7 @@ import 'package:brunstadtv_app/helpers/translations.dart';
 import 'package:flutter/material.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class DownloadStatusBadge extends StatelessWidget {
   const DownloadStatusBadge(

@@ -39,8 +39,8 @@ import '../../models/events/watch_progress.dart';
 import '../../providers/analytics.dart';
 import '../../providers/inherited_data.dart';
 import '../../router/router.gr.dart';
-import '../../helpers/extensions.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
+import 'package:bccm_core/design_system.dart';
 
 const kProfileScrollQueryLikedShorts = 'liked_shorts';
 const kProfileScrollQueryDownloaded = 'downloaded';

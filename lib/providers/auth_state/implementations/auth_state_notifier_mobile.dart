@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:brunstadtv_app/api/auth0_api.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:clock/clock.dart';

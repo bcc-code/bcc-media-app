@@ -69,7 +69,6 @@ dependencies:
   clock: ^1.1.1
   flutter_hooks: ^0.18.5+1
   hooks_riverpod: ^2.2.0
-  flutter_hooks_lint_plugin: ^0.6.1
   vibration: ^1.7.6
   email_validator: ^2.1.17
   open_mail_app: ^0.4.5
@@ -79,7 +78,7 @@ dependencies:
   cloud_firestore: ^4.5.0
   riverpod_annotation: ^2.0.4
   image: ^4.0.15
-  responsive_framework: 1.0.0
+  responsive_framework: ^1.1.1
   intl: ^0.18.0
   device_preview: ^1.1.0
   focusable_control_builder: ^1.0.2+1
@@ -106,6 +105,8 @@ dependencies:
   flutter_slidable: ^3.0.1
   video_player: ^2.7.2
   auto_size_text: ^3.0.0
+  bccm_core:
+    path: ../core
 
 dev_dependencies:
   flutter_test:
@@ -114,11 +115,12 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   auto_route_generator: ^7.3.1
   freezed: ^2.3.4
-  custom_lint: ^0.4.0
-  riverpod_generator: ^2.1.6
-  riverpod_lint: ^1.2.0
+  custom_lint: any
+  riverpod_generator: ^2.3.8
+  riverpod_lint: any
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.2.19
+  #flutter_hooks_lint_plugin: any
 
 flutter:
   uses-material-design: true

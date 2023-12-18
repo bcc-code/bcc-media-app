@@ -12,8 +12,9 @@ import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:bccm_core/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -135,7 +136,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
         LogicalKeySet(LogicalKeyboardKey.select): const ActivateIntent(),
       },
       child: DesignSystem(
-        designSystem: FlavorConfig.current.designSystem?.call() ?? BccMediaDesignSystem(),
+        designSystem: FlavorConfig.current.designSystem(),
         child: (context) => BccmPlayerTheme(
           playerTheme: BccmPlayerThemeData(
             controls: BccmControlsThemeData(

@@ -13,7 +13,7 @@ import '../../../helpers/widget_keys.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../l10n/app_localizations_en.dart';
 import '../../../screens/onboarding/signup.dart';
-import '../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../birth_year_picker.dart';
 

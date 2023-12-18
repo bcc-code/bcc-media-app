@@ -8,7 +8,7 @@ import '../../components/nav/custom_back_button.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../flavors.dart';
 import '../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 @RoutePage<void>()
 class AboutScreen extends StatelessWidget {

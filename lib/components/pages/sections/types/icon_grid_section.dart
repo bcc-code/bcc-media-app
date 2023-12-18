@@ -40,7 +40,7 @@ class _IconGridSectionList extends StatelessWidget {
     final colSize = ResponsiveValue(
       context,
       defaultValue: _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!,
-      conditionalValues: const [
+      conditionalValues:  [
         Condition.equals(name: BP.md, value: 3),
         Condition.equals(name: BP.lg, value: 4),
         Condition.equals(name: BP.xl, value: 5),

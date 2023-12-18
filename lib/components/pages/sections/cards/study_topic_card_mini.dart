@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../../../helpers/svg_icons.dart';
 import '../../../../graphql/queries/page.graphql.dart';
 import '../../../../helpers/router/router_utils.dart';

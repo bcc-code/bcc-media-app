@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 String getFormattedAgeRating(String ageRating) {
   return ageRating == 'A' ? '0+' : '$ageRating+';

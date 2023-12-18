@@ -16,7 +16,7 @@ import '../components/status/loading_indicator.dart';
 import '../helpers/constants.dart';
 import '../models/events/app_ready.dart';
 import '../providers/shared_preferences.dart';
-import '../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../helpers/router/router_utils.dart';
 import '../helpers/misc.dart';

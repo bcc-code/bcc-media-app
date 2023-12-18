@@ -42,10 +42,10 @@ import '../graphql/queries/studies.graphql.dart';
 import '../graphql/schema/episodes.graphql.dart';
 import '../graphql/schema/schema.graphql.dart';
 import '../helpers/insets.dart';
-import '../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../helpers/misc.dart';
-import '../helpers/extensions.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 import '../l10n/app_localizations.dart';
 
 @RoutePage<void>()

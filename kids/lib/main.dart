@@ -28,6 +28,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:kids/app_root.dart';
+import 'package:kids/design_system.dart';
 import 'package:kids/helpers/analytics_meta.dart';
 import 'package:kids/providers/special_routes.dart';
 import 'package:kids/router/router.dart';
@@ -38,7 +39,6 @@ import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:kids/design_system.dart';
 import 'package:brunstadtv_app/env/kids_prod/firebase_options.dart' as kids_prod_firebase;
 
 const useDevicePreview = false;

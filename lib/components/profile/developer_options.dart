@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -14,7 +14,7 @@ import 'package:restart_app/restart_app.dart';
 import '../../providers/notification_service.dart';
 
 import '../../helpers/constants.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../menus/option_list.dart';
 
 class DeveloperOptionsTrigger extends HookWidget {

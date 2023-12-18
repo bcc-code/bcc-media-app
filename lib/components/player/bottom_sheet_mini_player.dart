@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/providers/connectivity.dart';
@@ -12,7 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../providers/fun.dart';
 
 class BottomSheetMiniPlayer extends ConsumerStatefulWidget {

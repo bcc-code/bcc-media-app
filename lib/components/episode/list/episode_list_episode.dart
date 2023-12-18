@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../../../models/episode_thumbnail_data.dart';
-import '../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../../helpers/misc.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/todays_calendar_entries.dart';

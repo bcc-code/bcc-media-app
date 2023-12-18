@@ -8,7 +8,7 @@ import '../../../graphql/queries/page.graphql.dart';
 import '../../../helpers/event_bus.dart';
 import '../../../models/events/my_list_changed.dart';
 import '../../../providers/section_updates.dart';
-import '../../../helpers/extensions.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 import 'section_renderer.dart';
 
 class SectionUpdateHandler extends HookConsumerWidget {

@@ -6,7 +6,7 @@ import 'package:universal_io/io.dart';
 
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../onboarding/email_text_field.dart';
 
 class ContactPublicInputPage extends HookWidget {

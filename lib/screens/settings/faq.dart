@@ -13,7 +13,7 @@ import '../../components/status/error_generic.dart';
 import '../../components/status/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../helpers/misc.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../graphql/queries/faq.graphql.dart';
 import '../../l10n/app_localizations.dart';
 

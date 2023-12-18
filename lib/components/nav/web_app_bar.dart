@@ -10,7 +10,7 @@ import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
 
 import '../../providers/auth_state/auth_state.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 final logo = Image.asset('assets/flavors/prod/logo.png');
 final icons = {

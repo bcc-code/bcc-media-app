@@ -20,7 +20,7 @@ import '../../components/offline/offline_home.dart';
 import '../../flavors.dart';
 import '../../graphql/queries/application.graphql.dart';
 import '../../providers/connectivity.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../components/pages/page_renderer.dart';
 import '../../graphql/queries/page.graphql.dart';
 

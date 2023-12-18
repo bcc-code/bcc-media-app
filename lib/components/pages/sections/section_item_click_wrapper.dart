@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../graphql/queries/page.graphql.dart';
-import '../../../helpers/extensions.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 import '../../../helpers/router/router_utils.dart';
 import '../../../models/analytics/sections.dart';
 import '../../../providers/inherited_data.dart';

@@ -6,7 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import '../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 Future<bool> checkParentalGate(BuildContext context) async {
   if (FlavorConfig.current.flavor != Flavor.kids) {

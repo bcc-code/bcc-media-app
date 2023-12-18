@@ -33,7 +33,7 @@ import '../../models/analytics/sections.dart';
 import '../../models/episode_thumbnail_data.dart';
 import '../../providers/analytics.dart';
 import '../../providers/inherited_data.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../misc/two_action_generic_dialog.dart';
 import '../thumbnails/misc/bordered_image_container.dart';
 

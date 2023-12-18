@@ -19,7 +19,7 @@ import '../../helpers/event_bus.dart';
 import '../../models/events/my_list_changed.dart';
 import '../../providers/downloads.dart';
 import '../../router/router.gr.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../misc/collapsable_markdown.dart';
 
 class EpisodeInfo extends HookConsumerWidget {

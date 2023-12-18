@@ -15,7 +15,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../../components/onboarding/onboarding_buttons_auth_enabled.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../flavors.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
 @RoutePage<void>()

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../graphql/queries/page.graphql.dart';
-import '../../helpers/extensions.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 import '../../helpers/sections.dart';
 import '../../models/pagination_status.dart';
 import '../../providers/inherited_data.dart';

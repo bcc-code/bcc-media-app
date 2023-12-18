@@ -15,7 +15,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../components/status/error_generic.dart';
 import '../../flavors.dart';
 import '../../helpers/webview/main_js_channel.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 @RoutePage<void>()
 class GameScreen extends HookConsumerWidget {

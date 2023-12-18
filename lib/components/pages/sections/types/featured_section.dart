@@ -15,8 +15,8 @@ import '../../../../models/analytics/sections.dart';
 
 import '../../../../graphql/queries/page.graphql.dart';
 import '../../../../models/breakpoints.dart';
-import '../../../../theme/design_system/design_system.dart';
-import '../../../../helpers/extensions.dart';
+import 'package:bccm_core/design_system.dart';
+import 'package:bccm_core/utils/primitive_extensions.dart';
 
 import '../../../../helpers/images.dart';
 import '../../../../helpers/transparent_image.dart';
@@ -94,8 +94,8 @@ class FeaturedSection extends ConsumerWidget {
         context,
         defaultValue: 325.0,
         conditionalValues: [
-          const Condition.equals(name: BP.md, value: 380.0),
-          const Condition.largerThan(name: BP.md, value: 470.0),
+          Condition.equals(name: BP.md, value: 380.0),
+          Condition.largerThan(name: BP.md, value: 470.0),
         ],
       ).value,
       child: PageView.builder(
@@ -128,8 +128,8 @@ class FeaturedSection extends ConsumerWidget {
       context,
       defaultValue: 1,
       conditionalValues: [
-        const Condition.equals(name: BP.xl, value: 2),
-        const Condition.largerThan(name: BP.xl, value: 3),
+        Condition.equals(name: BP.xl, value: 2),
+        Condition.largerThan(name: BP.xl, value: 3),
       ],
     ).value!;
     const paddingX = kIsWeb ? 80.0 : 16.0;
