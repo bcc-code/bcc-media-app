@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/haptic_feedback.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/settings.dart';

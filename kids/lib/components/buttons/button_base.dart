@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:brunstadtv_app/helpers/haptic_feedback.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

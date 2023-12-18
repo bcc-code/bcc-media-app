@@ -4,7 +4,7 @@ import 'package:brunstadtv_app/components/episode/episode_download_button.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:bccm_core/bccm_core.dart';

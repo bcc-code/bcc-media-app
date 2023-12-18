@@ -1,3 +1,4 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/study/study_progress_row.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:collection/collection.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/material.dart';
 import '../../../../graphql/queries/page.graphql.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../../../helpers/router/router_utils.dart';
-import '../../../../helpers/misc.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../status/loading_indicator.dart';
 

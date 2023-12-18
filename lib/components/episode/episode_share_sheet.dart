@@ -10,14 +10,12 @@ import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/content_shared.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../helpers/share_extension/share_extension.dart';
-
-import '../../helpers/time.dart';
 
 class EpisodeShareSheet extends ConsumerStatefulWidget {
   const EpisodeShareSheet({

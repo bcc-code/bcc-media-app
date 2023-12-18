@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:collection';
 import 'dart:math';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
-import '../../helpers/time.dart';
 import '../../helpers/episode_state.dart';
 import '../../helpers/insets.dart';
 import 'package:bccm_core/design_system.dart';

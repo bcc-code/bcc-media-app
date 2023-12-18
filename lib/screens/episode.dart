@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/episode/episode_chapters.dart';
@@ -44,7 +45,6 @@ import '../graphql/schema/schema.graphql.dart';
 import '../helpers/insets.dart';
 import 'package:bccm_core/design_system.dart';
 
-import '../helpers/misc.dart';
 import 'package:bccm_core/utils.dart';
 import '../l10n/app_localizations.dart';
 

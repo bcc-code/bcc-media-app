@@ -10,7 +10,7 @@ import '../../components/web/dialog_on_web.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:bccm_core/bccm_core.dart';
 
 import 'package:bccm_core/design_system.dart';
 

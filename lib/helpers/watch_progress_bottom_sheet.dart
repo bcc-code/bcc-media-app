@@ -18,7 +18,7 @@ void showWatchProgressBottomSheet(BuildContext context, WidgetRef ref, String ep
     useRootNavigator: true,
     context: context,
     builder: (ctx) => BottomSheetSelect(
-      title: 'Options',
+      title: S.of(context).options,
       selectedId: 'fromStart',
       items: [
         Option(

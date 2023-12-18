@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'misc.dart';
 import 'package:flutter/services.dart';
 import 'package:universal_io/io.dart';
 import 'package:vibration/vibration.dart';

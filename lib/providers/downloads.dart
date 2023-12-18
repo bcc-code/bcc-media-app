@@ -11,7 +11,6 @@ import 'package:brunstadtv_app/providers/availability.dart';
 import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../helpers/time.dart';
 import 'feature_flags.dart';
 
 final downloadsEnabledProvider = Provider<bool>((ref) {

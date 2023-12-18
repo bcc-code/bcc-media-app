@@ -3,8 +3,6 @@ import 'dart:ui';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/translations.dart';
 import 'package:flutter/material.dart';
-
-import '../../l10n/app_localizations.dart';
 import 'package:bccm_core/design_system.dart';
 
 class DownloadStatusBadge extends StatelessWidget {

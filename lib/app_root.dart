@@ -13,8 +13,6 @@ import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:bccm_core/design_system.dart';
-import 'package:bccm_core/design_system.dart';
-import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +22,6 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'l10n/app_localizations.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'models/breakpoints.dart';
-import 'package:bccm_core/bccm_core.dart';
 
 class AppRoot extends ConsumerStatefulWidget {
   const AppRoot({super.key, required this.navigatorKey, required this.appRouter});

@@ -14,7 +14,7 @@ import '../../providers/todays_calendar_entries.dart';
 import '../../router/router.gr.dart';
 import 'special_routes.dart';
 import 'navigation_override.dart';
-import '../misc.dart';
+import 'package:bccm_core/bccm_core.dart';
 
 extension StackRouterCustomNavigation on StackRouter {
   Future navigateNamedFromRoot(String path, {OnNavigationFailure? onFailure}) async {

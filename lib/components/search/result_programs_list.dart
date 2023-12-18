@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:flutter/foundation.dart';

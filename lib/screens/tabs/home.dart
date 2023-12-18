@@ -10,7 +10,7 @@ import 'package:flutter/foundation.dart';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/version.dart';
 import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:flutter/material.dart';

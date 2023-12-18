@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/components/misc/custom_grid_view.dart';
 import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
-import 'package:brunstadtv_app/helpers/haptic_feedback.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:bccm_core/design_system.dart';

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/helpers/markdown.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -12,7 +13,6 @@ import '../../components/tabs/custom_tab_bar.dart';
 import '../../components/status/error_generic.dart';
 import '../../components/status/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
-import '../../helpers/misc.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../graphql/queries/faq.graphql.dart';
 import '../../l10n/app_localizations.dart';

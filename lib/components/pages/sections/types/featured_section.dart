@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_item_click_wrapper.dart';
 import 'package:flutter/foundation.dart';
@@ -9,7 +10,6 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../../../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../../../../helpers/router/router_utils.dart';
-import '../../../../helpers/scroll_behaviors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../models/analytics/sections.dart';
 

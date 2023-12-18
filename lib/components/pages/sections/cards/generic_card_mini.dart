@@ -1,3 +1,4 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/thumbnails/misc/bordered_image_container.dart';
 import 'package:brunstadtv_app/components/misc/shiny_clipper.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:bccm_core/design_system.dart';
 import '../../../../helpers/svg_icons.dart';
 import '../../../../graphql/queries/page.graphql.dart';
 import '../../../../helpers/router/router_utils.dart';
-import '../../../../helpers/misc.dart';
 import '../../../status/loading_indicator.dart';
 
 class GenericCardMini extends StatefulWidget {

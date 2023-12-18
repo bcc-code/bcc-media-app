@@ -15,7 +15,7 @@ import 'package:brunstadtv_app/graphql/queries/my_list.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:bccm_core/utils.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/share_extension/share_extension.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';

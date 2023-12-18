@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/pages/page_mixin.dart';
@@ -6,7 +7,7 @@ import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/application.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
