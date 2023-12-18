@@ -29,7 +29,11 @@ changelog:
 release:
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
+# Check if empty working tree
+	git diff-index --quiet HEAD -- || (echo "Working tree not clean, not creating changelog"; exit 1)
 	make changelog
+	git add CHANGELOG.md
+	git commit -m "chore: update changelog for v${BUILD_NUMBER}${TAG_SUFFIX}"
 
 release-kids:
 	git tag v${BUILD_NUMBER_KIDS}-kids
