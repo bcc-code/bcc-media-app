@@ -1382,5 +1382,9 @@
   "shortsLikedAndSavedDescription": "You can find all your liked shorts in your profile.",
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "downloadedVideosGuideDescription": "You can find your downloaded videos under \"Profile\".",
+  "@downloadedVideosGuideDescription": {
+    "description": "Shown when you have downloaded a video for the first time."
   }
 }

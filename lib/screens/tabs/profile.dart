@@ -42,8 +42,8 @@ import '../../router/router.gr.dart';
 import '../../helpers/extensions.dart';
 import '../../theme/design_system/design_system.dart';
 
-final likedShortsKey = GlobalKey();
 const kProfileScrollQueryLikedShorts = 'liked_shorts';
+const kProfileScrollQueryDownloaded = 'downloaded';
 
 @RoutePage<void>()
 class ProfileScreen extends HookConsumerWidget {
@@ -57,6 +57,8 @@ class ProfileScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.read(authStateProvider.select((value) => value.user));
+    final likedShortsKey = useMemoized(() => GlobalKey());
+    final downloadedKey = useMemoized(() => GlobalKey());
 
     getMyList() {
       if (user == null) {
@@ -78,22 +80,29 @@ class ProfileScreen extends HookConsumerWidget {
     final downloadedVideosCount = ref.watch(downloadsProvider.select((value) => value.valueOrNull?.length ?? 0));
     final scrollController = useScrollController();
 
+    void scrollTo(GlobalKey key) {
+      var offset = key.currentContext?.findRenderObject()?.getTransformTo(null).getTranslation().t;
+      if (offset == null) {
+        return;
+      }
+      offset = offset - MediaQuery.of(context).padding.top - 100;
+      final currentOffset = scrollController.offset;
+      var targetOffset = currentOffset + offset;
+      targetOffset = targetOffset.clamp(0, scrollController.position.maxScrollExtent);
+      debugPrint('guide: offset: $targetOffset');
+      scrollController.animateTo(targetOffset, duration: const Duration(milliseconds: 400), curve: Curves.easeOut);
+    }
+
     useEffect(() {
       debugPrint('guide: scroll: $scroll');
       if (scroll != null && scroll!.isNotEmpty) {
         SchedulerBinding.instance.addPostFrameCallback((_) {
           if (scroll == kProfileScrollQueryLikedShorts) {
-            var offset = likedShortsKey.currentContext?.findRenderObject()?.getTransformTo(null).getTranslation().t;
-            if (offset == null) {
-              return;
-            }
-            offset = offset - MediaQuery.of(context).padding.top - 100;
-            final currentOffset = scrollController.offset;
-            var targetOffset = currentOffset + offset;
-            targetOffset = targetOffset.clamp(0, scrollController.position.maxScrollExtent);
-            debugPrint('guide: offset: $targetOffset');
-            scrollController.animateTo(targetOffset, duration: const Duration(milliseconds: 250), curve: Curves.easeInOut);
             context.router.replace(ProfileScreenRoute(scroll: null));
+            scrollTo(likedShortsKey);
+          } else if (scroll == kProfileScrollQueryDownloaded) {
+            context.router.replace(ProfileScreenRoute(scroll: null));
+            scrollTo(downloadedKey);
           }
         });
       }
@@ -243,8 +252,8 @@ class ProfileScreen extends HookConsumerWidget {
               ),
           ],
           if (downloadedVideosCount > 0 || ref.watch(downloadsEnabledProvider))
-            const SliverToBoxAdapter(
-              child: DownloadedVideosSection(),
+            SliverToBoxAdapter(
+              child: DownloadedVideosSection(key: downloadedKey),
             ),
           const SliverToBoxAdapter(child: SizedBox(height: 32)),
         ],

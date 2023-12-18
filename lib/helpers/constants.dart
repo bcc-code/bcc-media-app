@@ -23,6 +23,7 @@ class PrefKeys {
   static const useNativePlayer = 'use_native_player';
   static const shortsFeatureGuideShown = 'shorts_feature_guide_shown';
   static const likedShortsGuideShown = 'liked_shorts_guide_shown2';
+  static const downloadedVideosGuide = 'downloaded_videos_guide';
 }
 
 class SecureStorageKeys {

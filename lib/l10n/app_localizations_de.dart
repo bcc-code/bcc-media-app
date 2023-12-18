@@ -1005,4 +1005,7 @@ class SDe extends S {
 
   @override
   String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
+
+  @override
+  String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
 }

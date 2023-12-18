@@ -2054,6 +2054,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'You can find all your liked shorts in your profile.'**
   String get shortsLikedAndSavedDescription;
+
+  /// Shown when you have downloaded a video for the first time.
+  ///
+  /// In en, this message translates to:
+  /// **'You can find your downloaded videos under \"Profile\".'**
+  String get downloadedVideosGuideDescription;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

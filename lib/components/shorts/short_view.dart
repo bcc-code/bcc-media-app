@@ -5,7 +5,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/controls.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/badges/icon_badge.dart';
-import 'package:brunstadtv_app/components/guides/favorite.dart';
+import 'package:brunstadtv_app/components/guides/favorite_guides.dart';
 import 'package:brunstadtv_app/components/misc/collapsable_markdown.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/error_no_access.dart';
@@ -532,13 +532,12 @@ class ShortActions extends HookConsumerWidget {
               }
               inMyList.value = !inMyList.value;
               if (inMyList.value) {
-                final prefs = ref.read(sharedPreferencesProvider);
-                final hasShownShortGuide = prefs.getBool(PrefKeys.likedShortsGuideShown) ?? false;
-                if (hasShownShortGuide) return;
-                prefs.setBool(PrefKeys.likedShortsGuideShown, true);
+                final hasShownGuide = ref.read(sharedPreferencesProvider).getBool(PrefKeys.likedShortsGuideShown) ?? false;
+                if (hasShownGuide) return;
+                ref.read(sharedPreferencesProvider).setBool(PrefKeys.likedShortsGuideShown, true);
+                ref.read(analyticsProvider).guideShown(const GuideShownEvent(guide: 'liked-shorts'));
                 createFavoriteShortsGuide(context).show(context: context, rootOverlay: true);
                 videoController?.pause();
-                ref.read(analyticsProvider).guideShown(const GuideShownEvent(guide: 'liked-shorts'));
               }
             },
             imagePosition: ButtonImagePosition.right,
