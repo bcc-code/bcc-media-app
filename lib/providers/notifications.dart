@@ -2,10 +2,8 @@ import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
-final notificationServiceProvider = Provider<NotificationService>((ref) {
+final notificationServiceProviderOverride = notificationServiceProvider.overrideWith((ref) {
   if (!FlavorConfig.current.enableNotifications) {
     final service = DisabledNotificationService();
     ref.onDispose(service.dispose);

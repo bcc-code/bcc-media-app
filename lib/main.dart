@@ -9,8 +9,10 @@ import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:brunstadtv_app/providers/notifications.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/firebase.dart';
+import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/router/router.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -61,6 +63,9 @@ Future<void> $main({
     authStateProviderOverride: authStateProviderOverride,
     analyticsProviderOverride: analyticsProviderOverride,
     featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
+    rawUnleashProviderOverride: rawUnleashProviderOverride,
+    unleashContextProviderOverride: unleashContextProviderOverride,
+    notificationServiceProviderOverride: notificationServiceProviderOverride,
   );
   final providerContainer = await initProviderContainer([
     ...coreOverrides,

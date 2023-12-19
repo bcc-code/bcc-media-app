@@ -8,7 +8,7 @@ import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
 import '../models/feature_flags.dart';
 
 final featureFlagsProvider = StateNotifierProvider<FeatureFlagsNotifier, FeatureFlags>((ref) {
-  return FeatureFlagsNotifier(ref.watch(unleashRawProvider));
+  return FeatureFlagsNotifier(ref.watch(unleashProvider).value);
 });
 
 class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
