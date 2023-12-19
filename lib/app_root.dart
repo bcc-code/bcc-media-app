@@ -3,7 +3,6 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
-import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:brunstadtv_app/router/router.dart';
@@ -87,7 +86,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
 
   Future ensureValidUser() async {
     await Future.delayed(const Duration(milliseconds: 1000), () async {
-      final context = navigatorKey.currentContext;
+      final context = globalNavigatorKey.currentContext;
       if (context == null) return;
       return showCupertinoModalPopup(
         context: context,
@@ -106,7 +105,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
   }
 
   Future showVerifyEmail() async {
-    final context = navigatorKey.currentContext;
+    final context = globalNavigatorKey.currentContext;
     if (context == null) return;
     await showCupertinoModalPopup(
       context: context,

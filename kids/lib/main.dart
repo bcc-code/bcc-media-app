@@ -11,7 +11,7 @@ import 'package:brunstadtv_app/providers/deeplink_service.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:brunstadtv_app/helpers/firebase.dart';
+import 'package:bccm_core/firebase.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -29,7 +29,6 @@ import 'package:kids/design_system.dart';
 import 'package:kids/helpers/analytics_meta.dart';
 import 'package:kids/providers/special_routes.dart';
 import 'package:kids/router/router.dart';
-import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
@@ -77,7 +76,7 @@ Future<void> $main({
   // Initialize bccm_player
   await BccmPlayerInterface.instance.setup();
 
-  final appRouter = AppRouter(navigatorKey: navigatorKey);
+  final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
   final providerContainer = await initProviderContainer([
     ...coreOverrides,
     analyticsMetaEnricherProvider.overrideWith((ref) => KidsAnalyticsMetaEnricher()),
@@ -88,7 +87,7 @@ Future<void> $main({
 
   final app = UncontrolledProviderScope(
     container: providerContainer,
-    child: AppRoot(appRouter: appRouter, navigatorKey: navigatorKey),
+    child: AppRoot(appRouter: appRouter, navigatorKey: globalNavigatorKey),
   );
   Widget maybeWrappedApp;
   if (kDebugMode && !kIsWeb) {

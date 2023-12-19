@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/router/router_utils.dart';
-import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/api.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +114,7 @@ class FcmNotificationService implements NotificationService {
       debugPrint('Got a message whilst in the foreground!');
     }
     debugPrint('Message data: ${message.data}, notification: ${message.notification?.title}');
-    final context = navigatorKey.currentContext;
+    final context = globalNavigatorKey.currentContext;
     if (context?.mounted != true) {
       debugPrint('Navigator was not mounted while handling an FCM message. Aborting.');
       return;

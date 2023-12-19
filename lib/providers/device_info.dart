@@ -2,7 +2,6 @@ import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:universal_io/io.dart';
-import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,7 +24,7 @@ final isPhysicalDeviceProvider = FutureProvider<bool>((ref) {
 });
 
 final contactDeviceInfoProvider = FutureProvider<ContactDeviceInfo?>((ref) async {
-  final context = navigatorKey.currentContext;
+  final context = globalNavigatorKey.currentContext;
   if (context == null) {
     return null;
   }

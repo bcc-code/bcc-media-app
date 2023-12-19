@@ -4,7 +4,6 @@ import 'package:brunstadtv_app/background_tasks.dart';
 import 'package:brunstadtv_app/helpers/languages.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
-import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/providers/router_provider.dart';
@@ -54,7 +53,7 @@ Future<void> $main({
   // Initialize bccm_player
   await BccmPlayerInterface.instance.setup();
 
-  final appRouter = AppRouter(navigatorKey: navigatorKey);
+  final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
   final providerContainer = await initProviderContainer([
     ...coreOverrides,
     rootRouterProvider.overrideWithValue(appRouter),
@@ -64,7 +63,7 @@ Future<void> $main({
   final app = UncontrolledProviderScope(
     container: providerContainer,
     child: AppRoot(
-      navigatorKey: navigatorKey,
+      navigatorKey: globalNavigatorKey,
       appRouter: appRouter,
     ),
   );
