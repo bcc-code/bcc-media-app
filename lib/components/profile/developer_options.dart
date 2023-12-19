@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';

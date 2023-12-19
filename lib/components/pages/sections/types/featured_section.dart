@@ -16,7 +16,7 @@ import '../../../../models/analytics/sections.dart';
 import 'package:bccm_core/api.dart';
 import '../../../../models/breakpoints.dart';
 import 'package:bccm_core/design_system.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 
 import '../../../../providers/todays_calendar_entries.dart';
 

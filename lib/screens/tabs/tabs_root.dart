@@ -3,7 +3,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/guides/tab_feature_guides.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/misc.dart';

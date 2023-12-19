@@ -45,7 +45,7 @@ import 'package:bccm_core/api.dart';
 import '../helpers/insets.dart';
 import 'package:bccm_core/design_system.dart';
 
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import '../l10n/app_localizations.dart';
 
 @RoutePage<void>()

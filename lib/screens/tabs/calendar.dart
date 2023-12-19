@@ -5,7 +5,7 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';

@@ -9,7 +9,7 @@ import 'package:bccm_core/api.dart';
 import '../../../../models/breakpoints.dart';
 import '../../../../models/episode_thumbnail_data.dart';
 import '../../../../providers/todays_calendar_entries.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import '../../../../models/analytics/sections.dart';
 import '../../../thumbnails/slider/thumbnail_slider_episode.dart';
 import '../../../thumbnails/slider/thumbnail_slider_show.dart';

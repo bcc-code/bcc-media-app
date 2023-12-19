@@ -1,6 +1,6 @@
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/study/study_progress_row.dart';
-import 'package:bccm_core/src/utils/images.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 

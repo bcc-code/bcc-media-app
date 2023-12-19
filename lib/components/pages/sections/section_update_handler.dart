@@ -8,7 +8,7 @@ import 'package:bccm_core/api.dart';
 import '../../../helpers/event_bus.dart';
 import '../../../models/events/my_list_changed.dart';
 import '../../../providers/section_updates.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'section_renderer.dart';
 
 class SectionUpdateHandler extends HookConsumerWidget {

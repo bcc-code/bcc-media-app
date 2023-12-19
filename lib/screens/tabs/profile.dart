@@ -40,7 +40,7 @@ import '../../models/events/watch_progress.dart';
 import '../../providers/analytics.dart';
 import '../../providers/inherited_data.dart';
 import '../../router/router.gr.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 
 const kProfileScrollQueryLikedShorts = 'liked_shorts';

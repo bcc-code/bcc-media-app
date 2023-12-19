@@ -8,7 +8,7 @@ import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:bccm_core/api.dart';
 import 'package:bccm_core/api.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:collection/collection.dart';

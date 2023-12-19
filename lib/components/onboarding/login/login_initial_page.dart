@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/screens/onboarding/social_auth_buttons.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';

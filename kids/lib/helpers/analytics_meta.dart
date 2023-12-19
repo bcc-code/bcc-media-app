@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:kids/router/router.gr.dart';

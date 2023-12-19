@@ -3,7 +3,7 @@ import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/components/menus/option_list.dart';
 import 'package:bccm_core/api.dart';
 import 'package:bccm_core/api.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 
 import 'package:brunstadtv_app/helpers/svg_icons.dart';

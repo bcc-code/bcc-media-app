@@ -1,4 +1,4 @@
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/widgets.dart';
 
 class InheritedData<T> extends InheritedWidget {

@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/constants.dart';
 import '../helpers/version.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import '../models/contact_device_info.dart';
 import 'package:bccm_core/bccm_core.dart';
 

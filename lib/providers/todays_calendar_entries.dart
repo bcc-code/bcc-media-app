@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:bccm_core/api.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/episode_state.dart';

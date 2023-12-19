@@ -1,5 +1,4 @@
 import 'package:bccm_core/bccm_core.dart';
-import 'package:bccm_core/src/utils/images.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bccm_core/api.dart';

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bccm_core/api.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 
 import '../models/events/watch_progress.dart';
