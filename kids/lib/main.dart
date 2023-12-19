@@ -66,9 +66,9 @@ Future<void> $main({
 }) async {
   usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
+  final coreOverrides = await BccmCore().setup();
 
   await setDefaults();
-  final coreOverrides = await BccmCore().setup();
 
   if (FlavorConfig.current.firebaseOptions != null) {
     await initFirebase(FlavorConfig.current.firebaseOptions!);
