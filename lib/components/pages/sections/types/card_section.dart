@@ -1,12 +1,11 @@
 import 'package:brunstadtv_app/components/pages/sections/cards/generic_card_large.dart';
 import 'package:brunstadtv_app/components/pages/sections/cards/study_topic_card_mini.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../graphql/queries/page.graphql.dart';
-import '../../../../graphql/schema/sections.graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../../../providers/inherited_data.dart';
 import '../cards/generic_card_mini.dart';
 import '../cards/study_topic_card_large.dart';

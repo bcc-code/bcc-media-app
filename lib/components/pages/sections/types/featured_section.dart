@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_item_click_wrapper.dart';
 import 'package:flutter/foundation.dart';
@@ -7,19 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import '../../../../graphql/queries/calendar_episode_entries.graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../../../helpers/router/router_utils.dart';
-import '../../../../helpers/scroll_behaviors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../models/analytics/sections.dart';
 
-import '../../../../graphql/queries/page.graphql.dart';
 import '../../../../models/breakpoints.dart';
-import '../../../../theme/design_system/design_system.dart';
-import '../../../../helpers/extensions.dart';
+import 'package:bccm_core/design_system.dart';
 
-import '../../../../helpers/images.dart';
-import '../../../../helpers/transparent_image.dart';
 import '../../../../providers/todays_calendar_entries.dart';
 
 const marginX = 2.0;
@@ -94,8 +90,8 @@ class FeaturedSection extends ConsumerWidget {
         context,
         defaultValue: 325.0,
         conditionalValues: [
-          const Condition.equals(name: BP.md, value: 380.0),
-          const Condition.largerThan(name: BP.md, value: 470.0),
+          Condition.equals(name: BP.md, value: 380.0),
+          Condition.largerThan(name: BP.md, value: 470.0),
         ],
       ).value,
       child: PageView.builder(
@@ -128,8 +124,8 @@ class FeaturedSection extends ConsumerWidget {
       context,
       defaultValue: 1,
       conditionalValues: [
-        const Condition.equals(name: BP.xl, value: 2),
-        const Condition.largerThan(name: BP.xl, value: 3),
+        Condition.equals(name: BP.xl, value: 2),
+        Condition.largerThan(name: BP.xl, value: 3),
       ],
     ).value!;
     const paddingX = kIsWeb ? 80.0 : 16.0;

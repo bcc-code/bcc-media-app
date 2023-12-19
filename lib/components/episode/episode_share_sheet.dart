@@ -1,23 +1,19 @@
 import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/components/menus/option_list.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/graphql/schema/episodes.graphql.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/api.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/design_system.dart';
 
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/content_shared.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../helpers/share_extension/share_extension.dart';
-
-import '../../helpers/time.dart';
 
 class EpisodeShareSheet extends ConsumerStatefulWidget {
   const EpisodeShareSheet({

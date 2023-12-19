@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:universal_io/io.dart';
@@ -7,10 +8,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/constants.dart';
 import '../helpers/version.dart';
-import '../helpers/extensions.dart';
+import 'package:bccm_core/bccm_core.dart';
 import '../models/contact_device_info.dart';
-import 'auth_state/auth_state.dart';
-import 'shared_preferences.dart';
 
 final isPhysicalDeviceProvider = FutureProvider<bool>((ref) {
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();

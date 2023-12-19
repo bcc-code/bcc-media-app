@@ -2,7 +2,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/models/analytics/language_changed.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/shared_preferences.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

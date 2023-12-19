@@ -34,7 +34,7 @@ dependencies:
   flutter_riverpod: ^2.1.1
   freezed_annotation: ^2.1.0
   collection: ^1.16.0
-  package_info_plus: ^4.0.1
+  package_info_plus: ^5.0.1
   table_calendar: ^3.0.7
   graphql: ^5.2.0-beta.4
   graphql_flutter: ^5.2.0-beta.5
@@ -42,7 +42,7 @@ dependencies:
   hive: ^2.2.3
   firebase_messaging: ^14.0.3
   firebase_core: ^2.1.1
-  flutter_secure_storage: ^8.0.0
+  flutter_secure_storage: ^9.0.0
   visibility_detector: ^0.4.0+2
   pull_to_refresh: ^2.0.0
   device_info_plus: ^9.0.3
@@ -67,9 +67,8 @@ dependencies:
   flutter_appauth: ^6.0.1
   synchronized: ^3.0.1
   clock: ^1.1.1
-  flutter_hooks: ^0.18.5+1
+  flutter_hooks: ^0.18.6
   hooks_riverpod: ^2.2.0
-  flutter_hooks_lint_plugin: ^0.6.1
   vibration: ^1.7.6
   email_validator: ^2.1.17
   open_mail_app: ^0.4.5
@@ -79,7 +78,7 @@ dependencies:
   cloud_firestore: ^4.5.0
   riverpod_annotation: ^2.0.4
   image: ^4.0.15
-  responsive_framework: 1.0.0
+  responsive_framework: ^1.1.1
   intl: ^0.18.0
   device_preview: ^1.1.0
   focusable_control_builder: ^1.0.2+1
@@ -106,6 +105,8 @@ dependencies:
   flutter_slidable: ^3.0.1
   video_player: ^2.7.2
   auto_size_text: ^3.0.0
+  bccm_core:
+    path: ../core
 
 dev_dependencies:
   flutter_test:
@@ -114,11 +115,12 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   auto_route_generator: ^7.3.1
   freezed: ^2.3.4
-  custom_lint: ^0.4.0
-  riverpod_generator: ^2.1.6
-  riverpod_lint: ^1.2.0
+  custom_lint: any
+  riverpod_generator: ^2.3.8
+  riverpod_lint: any
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.2.19
+  #flutter_hooks_lint_plugin: any
 
 flutter:
   uses-material-design: true

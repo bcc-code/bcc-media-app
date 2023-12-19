@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'misc/bordered_image_container.dart';
 import '../badges/feature_badge.dart';
 

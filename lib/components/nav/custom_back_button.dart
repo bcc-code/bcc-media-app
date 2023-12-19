@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/screens/tabs/home.dart';
 import 'package:brunstadtv_app/screens/tabs/search.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ import '../../helpers/widget_keys.dart';
 import '../../l10n/app_localizations.dart';
 import '../../screens/games/games.dart';
 import '../../screens/page.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 String? getLocalizedRouteName(S localizations, Type route) {
   switch (route) {

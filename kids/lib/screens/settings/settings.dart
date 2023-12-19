@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -21,7 +21,7 @@ import 'package:brunstadtv_app/components/web/dialog_on_web.dart';
 import 'package:brunstadtv_app/helpers/languages.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 @RoutePage<void>()
 class SettingsScreen extends HookConsumerWidget {

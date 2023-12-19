@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/pages/page_mixin.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/nav/custom_back_button.dart';
 import '../components/pages/page_renderer.dart';
-import '../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 
 @RoutePage<void>()
 class PageScreen extends ConsumerStatefulWidget {

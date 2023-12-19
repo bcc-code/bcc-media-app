@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/languages.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
-import 'package:brunstadtv_app/providers/package_info.dart';
-import 'package:brunstadtv_app/providers/shared_preferences.dart';
-import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/providers/router_provider.dart';
 import 'package:brunstadtv_app/providers/deeplink_service.dart';
@@ -15,7 +13,6 @@ import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/firebase.dart';
 import 'package:brunstadtv_app/router/router.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -27,16 +24,12 @@ import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_io/io.dart';
 
 import 'app_root.dart';
 import 'flavors.dart';
 import 'l10n/app_localizations.dart';
 
 const useDevicePreview = false;
-bool _isAndroidTv = false;
 
 /// This function is called from the flavor-specific entrypoints
 /// E.g. main_dev.dart, main_prod.dart
@@ -45,11 +38,7 @@ Future<void> $main({
 }) async {
   usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-  if (Platform.isAndroid) {
-    AndroidDeviceInfo androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
-    _isAndroidTv = androidDeviceInfo.systemFeatures.contains('android.software.leanback');
-  }
-
+  final coreOverrides = await BccmCore().setup();
   await setDefaults();
 
   //FocusDebugger.instance.activate();
@@ -62,13 +51,9 @@ Future<void> $main({
   await BccmPlayerInterface.instance.setup();
 
   final appRouter = AppRouter(navigatorKey: navigatorKey);
-  final sharedPrefs = await SharedPreferences.getInstance();
-  final packageInfo = await PackageInfo.fromPlatform();
   final providerContainer = await initProviderContainer([
+    ...coreOverrides,
     rootRouterProvider.overrideWithValue(appRouter),
-    sharedPreferencesProvider.overrideWith((ref) => sharedPrefs),
-    packageInfoProvider.overrideWith((ref) => packageInfo),
-    isAndroidTvProvider.overrideWithValue(_isAndroidTv),
     if (providerOverrides != null) ...providerOverrides,
   ]);
 
@@ -105,7 +90,7 @@ Future setDefaults() async {
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
-  if (!_isAndroidTv) {
+  if (!isAndroidTv) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);

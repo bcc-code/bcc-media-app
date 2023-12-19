@@ -1,18 +1,13 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/haptic_feedback.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/router/router_utils.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/share_image.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vibration/vibration.dart';
-import 'package:universal_io/io.dart';
-
-import '../../providers/auth_state/auth_state.dart';
 
 class MainJsChannel {
   final ProviderContainer ref;

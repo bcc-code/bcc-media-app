@@ -5,7 +5,7 @@ import 'package:collection/collection.dart';
 
 import 'bottom_sheet_select.dart';
 import 'option_list.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class DropDownSelect<T> extends StatelessWidget {
   final T selectedId;

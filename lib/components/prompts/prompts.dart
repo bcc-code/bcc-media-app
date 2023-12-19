@@ -3,8 +3,8 @@ import 'package:collection/collection.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../helpers/extensions.dart';
-import '../../graphql/queries/prompts.graphql.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/api.dart';
 import '../../models/survey.dart';
 import '../../providers/prompts.dart';
 import '../../providers/surveys.dart';

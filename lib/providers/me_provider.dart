@@ -1,5 +1,5 @@
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final meProvider = FutureProvider<Query$me?>((ref) {

@@ -1,9 +1,9 @@
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/breakpoints.dart';
 import 'package:flutter/material.dart';

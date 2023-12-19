@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../components/contact/device_info_table.dart';
 import '../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../components/nav/general_app_bar.dart';
 
 @RoutePage<void>()

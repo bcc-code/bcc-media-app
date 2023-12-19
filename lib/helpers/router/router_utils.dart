@@ -1,20 +1,17 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import '../../graphql/client.dart';
-import '../../graphql/queries/episode.graphql.dart';
-import '../../graphql/queries/page.graphql.dart';
-import '../../graphql/queries/studies.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../providers/analytics.dart';
 import '../../providers/todays_calendar_entries.dart';
 import '../../router/router.gr.dart';
 import 'special_routes.dart';
 import 'navigation_override.dart';
-import '../misc.dart';
-import '../extensions.dart';
 
 extension StackRouterCustomNavigation on StackRouter {
   Future navigateNamedFromRoot(String path, {OnNavigationFailure? onFailure}) async {

@@ -3,13 +3,13 @@ import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:open_mail_app/open_mail_app.dart';
-import '../../../graphql/queries/me.graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../../l10n/app_localizations.dart';
 
 class EmailVerificationPromptPage extends HookConsumerWidget {

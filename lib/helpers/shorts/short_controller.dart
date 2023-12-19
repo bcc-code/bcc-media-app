@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:brunstadtv_app/helpers/shorts/short_analytics.dart';
@@ -62,13 +62,14 @@ class ShortController {
       // shorts.value.removeWhere((element) => element.id == short.id);
       return;
     }
-    if (!ref.context.mounted) return;
+    final context = ref.context;
+    if (!context.mounted) return;
     await player.replaceCurrentMediaItem(
       MediaItem(
         url: url,
         metadata: MediaMetadata(
           title: newShort.title,
-          artist: S.of(ref.context).shortsTab,
+          artist: S.of(context).shortsTab,
           extras: {
             MetadataExtraConstants.shortId: newShort.id,
             'npaw.content.id': newShort.id,

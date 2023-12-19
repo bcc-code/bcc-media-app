@@ -10,11 +10,11 @@ import '../../components/contact/contact_success.dart';
 import '../../components/status/error_generic.dart';
 import '../../components/status/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
-import '../../graphql/client.dart';
-import '../../graphql/queries/send_support_email.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../components/buttons/btv_buttons.dart';
 import '../../providers/device_info.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
 

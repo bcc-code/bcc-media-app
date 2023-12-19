@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class OnboardingPageWrapper extends StatelessWidget {
   const OnboardingPageWrapper({super.key, required this.body, this.bottomArea, this.title, this.description});

@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:brunstadtv_app/components/web/dialog_on_web.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 @RoutePage<void>()
 class AboutScreen extends StatelessWidget {

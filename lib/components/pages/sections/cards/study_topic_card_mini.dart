@@ -1,14 +1,14 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/thumbnails/misc/bordered_image_container.dart';
 import 'package:brunstadtv_app/components/misc/shiny_clipper.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../../../helpers/svg_icons.dart';
-import '../../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../../../helpers/router/router_utils.dart';
-import '../../../../helpers/misc.dart';
 import '../../../status/loading_indicator.dart';
 import '../../../study/study_progress_row.dart';
 

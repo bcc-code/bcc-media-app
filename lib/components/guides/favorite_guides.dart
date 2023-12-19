@@ -6,7 +6,7 @@ import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/tabs.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/screens/tabs/profile.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

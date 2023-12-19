@@ -1,9 +1,8 @@
-import 'package:brunstadtv_app/theme/design_system/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../bccm_gradients.dart';
-import '../design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'buttons.dart';
 import 'decorations.dart';
 import 'text_styles.dart';

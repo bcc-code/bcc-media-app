@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../components/badges/feature_badge.dart';
 import '../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 bool isUnavailable(String? publishDate) {
   if (publishDate == null) {

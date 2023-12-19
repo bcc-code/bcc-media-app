@@ -1,7 +1,9 @@
-import 'package:brunstadtv_app/graphql/queries/application.graphql.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -16,8 +18,8 @@ String formatAppVersion(PackageInfo packageInfo) {
   return '${packageInfo.version}+${packageInfo.buildNumber}';
 }
 
-Future<void> showDialogIfOldAppVersion(BuildContext context, Query$Application appConfig) async {
-  final packageInfo = await PackageInfo.fromPlatform();
+void showDialogIfOldAppVersion(BuildContext context, Query$Application appConfig) {
+  final packageInfo = ProviderScope.containerOf(context).read(packageInfoProvider);
   final minVersionNumber = appConfig.application.clientVersion;
   final currentVersionNumber = packageInfo.version;
   if (getExtendedVersionNumber(minVersionNumber) > getExtendedVersionNumber(currentVersionNumber) && context.mounted) {

@@ -4,8 +4,8 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../graphql/queries/page.graphql.dart';
-import '../../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/api.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../../../helpers/webview/main_js_channel.dart';
 
 class WebSection extends StatefulWidget {

@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/global_navigator_key.dart';
-import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:brunstadtv_app/router/router.dart';
@@ -12,8 +12,7 @@ import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,9 +20,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'l10n/app_localizations.dart';
-import 'models/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'models/breakpoints.dart';
-import 'providers/auth_state/auth_state.dart';
 
 class AppRoot extends ConsumerStatefulWidget {
   const AppRoot({super.key, required this.navigatorKey, required this.appRouter});
@@ -135,7 +133,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
         LogicalKeySet(LogicalKeyboardKey.select): const ActivateIntent(),
       },
       child: DesignSystem(
-        designSystem: FlavorConfig.current.designSystem?.call() ?? BccMediaDesignSystem(),
+        designSystem: FlavorConfig.current.designSystem(),
         child: (context) => BccmPlayerTheme(
           playerTheme: BccmPlayerThemeData(
             controls: BccmControlsThemeData(

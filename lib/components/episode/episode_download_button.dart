@@ -4,7 +4,7 @@ import 'package:brunstadtv_app/components/episode/episode_download_sheet.dart';
 import 'package:brunstadtv_app/components/misc/generic_dialog.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/translations.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
@@ -18,7 +18,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class EpisodeDownloadButton extends HookConsumerWidget {
   const EpisodeDownloadButton({

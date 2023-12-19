@@ -1,7 +1,7 @@
 import 'package:graphql/client.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../graphql/queries/redirect.graphql.dart';
+import 'package:bccm_core/api.dart';
 
 Future performRedirect({required String code, required GraphQLClient gqlClient}) async {
   print('Redirect code: $code');

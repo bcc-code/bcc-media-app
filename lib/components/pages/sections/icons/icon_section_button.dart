@@ -1,8 +1,7 @@
-import 'package:brunstadtv_app/helpers/images.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class IconSectionButton extends StatelessWidget {
   final String label;

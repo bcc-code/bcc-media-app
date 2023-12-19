@@ -1,18 +1,19 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/api/auth0_api.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
+import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:bccm_core/bccm_core.dart';
 
 @RoutePage<void>()
 class TvLoginScreen extends HookConsumerWidget {
@@ -20,7 +21,6 @@ class TvLoginScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final auth0Api = ref.watch(auth0ApiProvider);
     final authStateNotifier = ref.watch(authStateProvider.notifier);
 
     final deviceCodeFuture = useState<Future<DeviceTokenRequestResponse>?>(null);
@@ -28,7 +28,10 @@ class TvLoginScreen extends HookConsumerWidget {
     final loginFuture = useState<Future<void>?>(null);
     final loginSnapshot = useFuture(loginFuture.value, preserveState: false);
 
-    final fetchDeviceCode = useCallback(() => auth0Api.fetchDeviceCode(scope: 'openid profile offline_access church country'), [auth0Api]);
+    final fetchDeviceCode = useCallback(
+        () => Auth0Api(audience: Env.auth0Audience, clientId: Env.auth0ClientId, domain: Env.auth0Domain)
+            .fetchDeviceCode(scope: 'openid profile offline_access church country'),
+        []);
 
     useEffect(() {
       debugPrint('Get device code for QR');

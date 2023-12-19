@@ -1,14 +1,13 @@
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/sections.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../graphql/queries/page.graphql.dart';
-import '../../helpers/extensions.dart';
+import 'package:bccm_core/bccm_core.dart';
 import '../../helpers/sections.dart';
 import '../../models/pagination_status.dart';
 import '../../providers/inherited_data.dart';

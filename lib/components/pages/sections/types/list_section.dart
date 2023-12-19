@@ -3,7 +3,7 @@ import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../../episode/list/episode_list_episode.dart';
 
 class ListSection extends StatelessWidget {

@@ -1,12 +1,12 @@
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../api/brunstadtv.dart';
-import '../../../graphql/queries/prompts.graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../../providers/surveys.dart';
 import '../status/loading_indicator.dart';

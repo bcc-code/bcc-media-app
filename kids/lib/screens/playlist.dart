@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
-import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
@@ -11,7 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:kids/components/grid/episode_grid.dart';
 import 'package:kids/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids/helpers/transitions.dart';

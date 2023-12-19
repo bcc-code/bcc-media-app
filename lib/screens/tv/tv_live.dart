@@ -4,19 +4,16 @@ import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/badges/offline_badge.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/helpers/images.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:brunstadtv_app/screens/tabs/live.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../helpers/misc.dart';
 
 @RoutePage<void>()
 class TvLiveScreen extends HookConsumerWidget {

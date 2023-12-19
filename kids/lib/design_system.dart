@@ -1,9 +1,8 @@
-import 'package:brunstadtv_app/theme/design_system/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:brunstadtv_app/theme/bccm_gradients.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:kids/components/buttons/button.dart';
 
 class BibleKidsDesignSystem extends DesignSystemData {

@@ -2,11 +2,9 @@ import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/languages.dart';
 import 'package:brunstadtv_app/helpers/router/special_routes.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
-import 'package:brunstadtv_app/providers/package_info.dart';
-import 'package:brunstadtv_app/providers/shared_preferences.dart';
-import 'package:brunstadtv_app/providers/androidtv_provider.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/providers/router_provider.dart';
 import 'package:brunstadtv_app/providers/deeplink_service.dart';
@@ -15,7 +13,6 @@ import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/firebase.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -28,17 +25,14 @@ import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:kids/app_root.dart';
+import 'package:kids/design_system.dart';
 import 'package:kids/helpers/analytics_meta.dart';
 import 'package:kids/providers/special_routes.dart';
 import 'package:kids/router/router.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_io/io.dart';
 import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:kids/design_system.dart';
 import 'package:brunstadtv_app/env/kids_prod/firebase_options.dart' as kids_prod_firebase;
 
 const useDevicePreview = false;
@@ -72,14 +66,9 @@ Future<void> $main({
 }) async {
   usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-  if (Platform.isAndroid) {
-    AndroidDeviceInfo androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
-    _isAndroidTv = androidDeviceInfo.systemFeatures.contains('android.software.leanback');
-  }
+  final coreOverrides = await BccmCore().setup();
 
   await setDefaults();
-
-  //FocusDebugger.instance.activate();
 
   if (FlavorConfig.current.firebaseOptions != null) {
     await initFirebase(FlavorConfig.current.firebaseOptions!);
@@ -89,14 +78,10 @@ Future<void> $main({
   await BccmPlayerInterface.instance.setup();
 
   final appRouter = AppRouter(navigatorKey: navigatorKey);
-  final sharedPrefs = await SharedPreferences.getInstance();
-  final packageInfo = await PackageInfo.fromPlatform();
   final providerContainer = await initProviderContainer([
+    ...coreOverrides,
     analyticsMetaEnricherProvider.overrideWith((ref) => KidsAnalyticsMetaEnricher()),
     rootRouterProvider.overrideWithValue(appRouter),
-    sharedPreferencesProvider.overrideWith((ref) => sharedPrefs),
-    packageInfoProvider.overrideWith((ref) => packageInfo),
-    isAndroidTvProvider.overrideWithValue(_isAndroidTv),
     specialRoutesHandlerProvider.overrideWith((ref) => KidsSpecialRoutesHandler(ref)),
     if (providerOverrides != null) ...providerOverrides,
   ]);

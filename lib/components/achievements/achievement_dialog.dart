@@ -1,5 +1,6 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_shared.dart';
-import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +9,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../graphql/queries/achievements.graphql.dart';
-import '../../theme/design_system/design_system.dart';
-import '../../helpers/images.dart';
+import 'package:bccm_core/api.dart';
+import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/analytics.dart';
 import '../../helpers/share_image.dart';
-import '../../helpers/misc.dart';
 import '../../helpers/widget_to_image.dart';
 import '../misc/dialog_with_image.dart';
 import '../status/loading_indicator.dart';

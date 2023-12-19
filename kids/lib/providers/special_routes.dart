@@ -1,14 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:brunstadtv_app/helpers/router/redirect.dart';
 import 'package:brunstadtv_app/helpers/router/router_utils.dart';
 import 'package:brunstadtv_app/helpers/router/special_routes.dart';
-import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class KidsSpecialRoutesHandler implements SpecialRoutesHandler {
   Ref ref;

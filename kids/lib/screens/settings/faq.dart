@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -12,8 +12,8 @@ import 'package:brunstadtv_app/components/tabs/custom_tab_bar.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/components/web/dialog_on_web.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
-import 'package:brunstadtv_app/graphql/queries/faq.graphql.dart';
+import 'package:bccm_core/design_system.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 
 @RoutePage<void>()

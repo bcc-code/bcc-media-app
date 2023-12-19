@@ -1,12 +1,11 @@
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../achievements/achievement_dialog.dart';
 import '../../../achievements/achievement_list_item.dart';
 import '../../../misc/horizontal_slider.dart';
-import '../../../../graphql/queries/page.graphql.dart';
 
 class AchievementSection extends StatelessWidget {
   final Fragment$Section$$AchievementSection data;

@@ -5,7 +5,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../../helpers/version.dart';
 
 import '../../../l10n/app_localizations.dart';
-import '../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class AppVersion extends HookWidget {
   const AppVersion({super.key});

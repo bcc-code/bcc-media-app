@@ -1,8 +1,7 @@
 // ignore_for_file: constant_identifier_names
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 enum Flavor {
   bccmedia,

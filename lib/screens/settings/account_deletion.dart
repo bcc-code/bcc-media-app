@@ -1,18 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../components/web/dialog_on_web.dart';
-import '../../graphql/client.dart';
-import '../../graphql/queries/send_support_email.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:bccm_core/bccm_core.dart';
 
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 @RoutePage<void>()
 class AccountDeletionScreen extends HookConsumerWidget {

@@ -1,6 +1,5 @@
 import 'package:brunstadtv_app/components/study/study_progress.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:collection/collection.dart';
 
 import 'package:flutter/material.dart';
@@ -9,11 +8,10 @@ import 'package:intl/intl.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../../env/env.dart';
-import '../../../helpers/time.dart';
 import '../../../helpers/episode_state.dart';
 import '../../../models/breakpoints.dart';
-import '../../../theme/design_system/design_system.dart';
-import '../../../helpers/misc.dart';
+import 'package:bccm_core/design_system.dart';
+import 'package:bccm_core/bccm_core.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../thumbnails/misc/bordered_image_container.dart';
 import '../../thumbnails/misc/episode_duration.dart';
@@ -92,7 +90,7 @@ class _Episode extends StatelessWidget {
           height: ResponsiveValue(
             context,
             defaultValue: 98.0,
-            conditionalValues: const [
+            conditionalValues: [
               Condition.equals(name: BP.md, value: 130.0),
               Condition.equals(name: BP.lg, value: 160.0),
               Condition.largerThan(name: BP.lg, value: 180.0),

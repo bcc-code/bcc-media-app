@@ -3,14 +3,12 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/guides/tab_feature_guides.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/misc.dart';
 import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
-import 'package:brunstadtv_app/providers/shared_preferences.dart';
 import 'package:brunstadtv_app/screens/tabs/search.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
@@ -29,7 +27,7 @@ import '../../models/scroll_screen.dart';
 import '../../providers/analytics.dart';
 import '../../providers/app_config.dart';
 import '../../providers/tabs.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 @RoutePage<void>()
 class TabsRootScreen extends ConsumerStatefulWidget {

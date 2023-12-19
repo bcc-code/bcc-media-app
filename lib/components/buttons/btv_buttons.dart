@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class BtvButton extends StatelessWidget {
   final Widget? image;

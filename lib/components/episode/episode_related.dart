@@ -1,9 +1,8 @@
 import 'package:brunstadtv_app/components/thumbnails/grid/thumbnail_grid.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/helpers/router/navigation_override.dart';
 import 'package:flutter/material.dart';
 
-import '../../graphql/schema/sections.graphql.dart';
 
 class EpisodeRelated extends StatelessWidget {
   const EpisodeRelated({

@@ -1,8 +1,8 @@
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';

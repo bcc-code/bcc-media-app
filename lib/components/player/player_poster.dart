@@ -1,7 +1,6 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:brunstadtv_app/helpers/images.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

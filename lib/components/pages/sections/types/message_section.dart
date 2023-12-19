@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../../../../graphql/queries/page.graphql.dart';
-import '../../../../helpers/colors.dart';
+import 'package:bccm_core/api.dart';
+import 'package:bccm_core/bccm_core.dart';
 
 class MessageSection extends StatelessWidget {
   final Fragment$Section$$MessageSection section;

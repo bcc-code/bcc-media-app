@@ -1,12 +1,11 @@
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/controls.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids/helpers/svg_icons.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class PlayerControls extends HookWidget {
   const PlayerControls({

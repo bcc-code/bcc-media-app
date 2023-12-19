@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../../../helpers/time.dart';
-import '../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/design_system.dart';
 
 class WatchProgressIndicator extends StatelessWidget {
   final int totalDuration;
