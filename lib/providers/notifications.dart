@@ -4,7 +4,6 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:brunstadtv_app/providers/graphql.dart';
 
 final notificationServiceProvider = Provider<NotificationService>((ref) {
   if (!FlavorConfig.current.enableNotifications) {

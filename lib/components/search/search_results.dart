@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/helpers/debouncer.dart';
+import 'package:bccm_core/src/utils/debouncer.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:bccm_core/platform.dart';
 import '../episode/list/episode_list_episode.dart';
 import 'result_programs_list.dart';

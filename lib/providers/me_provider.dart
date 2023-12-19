@@ -1,4 +1,3 @@
-import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

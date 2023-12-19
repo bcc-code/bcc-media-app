@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:brunstadtv_app/providers/graphql.dart';
 import '../../../models/events/my_list_changed.dart';
 import '../../../providers/section_updates.dart';
 import 'package:bccm_core/bccm_core.dart';

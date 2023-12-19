@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

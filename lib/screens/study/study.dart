@@ -3,7 +3,6 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/achievements/achievement_dialog.dart';
 import 'package:brunstadtv_app/components/misc/dialog_with_image.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';

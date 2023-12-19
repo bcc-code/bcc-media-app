@@ -5,7 +5,6 @@ import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';

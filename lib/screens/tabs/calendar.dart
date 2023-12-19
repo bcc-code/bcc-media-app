@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:math';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';

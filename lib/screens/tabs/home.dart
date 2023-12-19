@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/misc/app_update_dialog.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:ui';

@@ -5,7 +5,6 @@ import 'package:brunstadtv_app/components/onboarding/signup/signup_name_page.dar
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/router.dart';
 import 'package:brunstadtv_app/screens/onboarding/email_verification.dart';

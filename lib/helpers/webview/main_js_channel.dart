@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/helpers/router/router_utils.dart';
-import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/share_image.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';

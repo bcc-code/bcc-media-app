@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/helpers/debouncer.dart';
+import 'package:bccm_core/src/utils/debouncer.dart';
 import 'package:brunstadtv_app/helpers/shorts/short_analytics.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';

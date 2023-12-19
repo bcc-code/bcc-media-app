@@ -1,13 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/badges/feature_badge.dart';
 import 'package:brunstadtv_app/components/episode/episode_download_button.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

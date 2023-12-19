@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 
