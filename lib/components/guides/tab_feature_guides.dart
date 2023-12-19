@@ -80,7 +80,7 @@ class FeatureGuideOverlay extends HookWidget {
       debugPrint('GUIDE: dismiss');
       onSkip?.call();
       if (!context.mounted) return;
-      ProviderScope.containerOf(context).read(analyticsProvider).interaction(
+      ProviderScope.containerOf(context, listen: false).read(analyticsProvider).interaction(
             InteractionEvent(
               interaction: 'guide-skip',
               contextElementType: 'guide',
@@ -138,7 +138,7 @@ class FeatureGuideOverlay extends HookWidget {
               debugPrint('GUIDE: onTap');
               onSkip?.call();
               if (!context.mounted) return;
-              ProviderScope.containerOf(context).read(analyticsProvider).interaction(
+              ProviderScope.containerOf(context, listen: false).read(analyticsProvider).interaction(
                     InteractionEvent(
                       interaction: 'guide-skip',
                       contextElementType: 'guide',

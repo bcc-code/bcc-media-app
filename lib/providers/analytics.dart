@@ -7,8 +7,6 @@ import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final analyticsProviderOverride = analyticsProvider.overrideWith((ref) {
   return RudderAnalytics(

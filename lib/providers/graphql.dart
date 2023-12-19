@@ -1,7 +1,6 @@
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/widgets.dart';
 import 'package:graphql/client.dart';

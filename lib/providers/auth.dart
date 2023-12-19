@@ -36,8 +36,8 @@ final authStateProviderOverride = authStateProvider.overrideWith((ref) {
         if (FlavorConfig.current.enableNotifications) {
           FirebaseMessaging.instance.deleteToken();
         }
-        ref.watch(settingsProvider.notifier).setAnalyticsId(null);
-        ref.watch(settingsProvider.notifier).refreshSessionId();
+        ref.read(settingsProvider.notifier).setAnalyticsId(null);
+        ref.read(settingsProvider.notifier).refreshSessionId();
       },
     ),
   );

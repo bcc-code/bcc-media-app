@@ -20,7 +20,7 @@ TutorialCoachMark createFavoriteShortsGuide(
   VoidCallback? onContinue,
 }) {
   final design = DesignSystem.of(context);
-  final tabInfos = ProviderScope.containerOf(context).read(tabInfosProvider);
+  final tabInfos = ProviderScope.containerOf(context, listen: false).read(tabInfosProvider);
   final iconKey = tabInfos.profile.iconKey;
   return TutorialCoachMark(
     targets: [
@@ -89,7 +89,7 @@ TutorialCoachMark createDownloadedIsInProfileGuide(
   VoidCallback? onContinue,
 }) {
   final design = DesignSystem.of(context);
-  final tabInfos = ProviderScope.containerOf(context).read(tabInfosProvider);
+  final tabInfos = ProviderScope.containerOf(context, listen: false).read(tabInfosProvider);
   final iconKey = tabInfos.profile.iconKey;
   final router = context.router;
   return TutorialCoachMark(
