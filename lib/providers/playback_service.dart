@@ -5,10 +5,8 @@ import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/player/custom_cast_player.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +16,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:universal_io/io.dart';
 
 import '../api/brunstadtv.dart';
-import '../helpers/version.dart';
 
 final playbackServiceProvider = Provider<PlaybackService>((ref) {
   return PlaybackService(
@@ -155,7 +152,7 @@ class PlaybackService {
       return null;
     }
     final collectionId = ref.read(playerProviderFor(playerId))?.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
-    final episode = await ref.read(gqlClientProvider).query$getNextEpisodes(
+    final episode = await ref.read(bccmGraphQLProvider).query$getNextEpisodes(
           Options$Query$getNextEpisodes(
             variables: Variables$Query$getNextEpisodes(
               episodeId: episodeId,

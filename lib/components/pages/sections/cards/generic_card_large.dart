@@ -1,7 +1,7 @@
 import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../../../helpers/router/router_utils.dart';
 import '../../../../l10n/app_localizations.dart';

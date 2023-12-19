@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/watch_progress.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/events/watch_progress.dart';
-import '../../helpers/event_bus.dart';
 
 mixin PageMixin<T extends StatefulWidget> on State<T> {
   StreamSubscription? _watchProgressChanged;

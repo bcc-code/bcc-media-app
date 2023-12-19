@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/shorts/short_controller.dart';
-import 'package:brunstadtv_app/models/analytics/shorts.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

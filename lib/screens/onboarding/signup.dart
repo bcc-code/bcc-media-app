@@ -3,7 +3,7 @@ import 'package:brunstadtv_app/components/onboarding/signup/signup_birthdate_pag
 import 'package:brunstadtv_app/components/onboarding/signup/signup_done_page.dart';
 import 'package:brunstadtv_app/components/onboarding/signup/signup_name_page.dart';
 import 'package:brunstadtv_app/env/env.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
@@ -16,7 +16,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../components/onboarding/signup/signup_initial_page.dart';
 import '../../components/onboarding/signup/signup_password_page.dart';
 import '../../l10n/app_localizations.dart';
-import '../../providers/analytics.dart';
 
 abstract class SignupScreenPage implements Widget {
   abstract final String analyticsPageCode;

@@ -13,7 +13,7 @@ import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/components/web/dialog_on_web.dart';
 import 'package:bccm_core/design_system.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 
 @RoutePage<void>()
@@ -22,10 +22,10 @@ class FAQScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categoriesFuture = useState(useMemoized(() => ref.read(gqlClientProvider).query$FAQ()));
+    final categoriesFuture = useState(useMemoized(() => ref.read(bccmGraphQLProvider).query$FAQ()));
     final categoriesSnapshot = useFuture(categoriesFuture.value);
 
-    void refresh() => categoriesFuture.value = ref.read(gqlClientProvider).query$FAQ();
+    void refresh() => categoriesFuture.value = ref.read(bccmGraphQLProvider).query$FAQ();
 
     Widget? child;
     if (categoriesSnapshot.connectionState == ConnectionState.waiting) {

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
@@ -20,8 +21,6 @@ import 'package:bccm_core/design_system.dart';
 
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
-import '../../models/analytics/audio_only_clicked.dart';
-import '../../providers/analytics.dart';
 import 'calendar.dart';
 
 final liveMetadataProvider = Provider<MediaMetadata>((ref) {

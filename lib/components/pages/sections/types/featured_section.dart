@@ -8,10 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import '../../../../helpers/router/router_utils.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../../models/analytics/sections.dart';
 
 import '../../../../models/breakpoints.dart';
 import 'package:bccm_core/design_system.dart';

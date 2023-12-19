@@ -1,9 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/controls.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
-import 'package:brunstadtv_app/providers/inherited_data.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -34,7 +33,7 @@ class EpisodeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final gqlClient = ref.watch(gqlClientProvider);
+    final gqlClient = ref.watch(bccmGraphQLProvider);
 
     final episodeFuture = useMemoized<Future<QueryResult<Query$KidsFetchEpisode?>>>(
       () => gqlClient.query$KidsFetchEpisode(

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/badges/download_status_badge.dart';
 import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
@@ -26,11 +27,7 @@ import '../../components/status/loading_generic.dart';
 import '../../components/thumbnails/grid/thumbnail_grid_episode.dart';
 import '../../helpers/svg_icons.dart';
 import 'package:bccm_core/bccm_core.dart';
-import '../../models/analytics/downloads.dart';
-import '../../models/analytics/sections.dart';
 import '../../models/episode_thumbnail_data.dart';
-import '../../providers/analytics.dart';
-import '../../providers/inherited_data.dart';
 import 'package:bccm_core/design_system.dart';
 import '../misc/two_action_generic_dialog.dart';
 import '../thumbnails/misc/bordered_image_container.dart';

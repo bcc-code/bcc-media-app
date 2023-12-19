@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/components/misc/app_update_dialog.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
@@ -9,14 +10,12 @@ import 'package:flutter/foundation.dart';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/version.dart';
 import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../api/brunstadtv.dart';
 import '../../components/offline/offline_home.dart';
 import '../../flavors.dart';
-import '../../providers/connectivity.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../components/pages/page_renderer.dart';
 
@@ -42,11 +41,16 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
   void initState() {
     super.initState();
     pageResult = wrapInCompleter(getHomePage());
-    _appConfigListener = ref.listenManual<Future<Query$Application?>>(appConfigFutureProvider, (prev, next) async {
+    _appConfigListener = ref.listenManual(appConfigFutureProvider, (prev, next) async {
       final value = await next;
       if (value == null) return;
       if (!context.mounted) return;
-      showDialogIfOldAppVersion(context, value);
+      if (isOldAppVersion(context, value)) {
+        showDialog(
+          context: context,
+          builder: (context) => const AppUpdateDialog(),
+        );
+      }
       signupFeatureFlagCheck();
     }, fireImmediately: true);
   }
@@ -64,7 +68,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
 
   void signupFeatureFlagCheck() async {
     if (ref.read(authStateProvider).auth0AccessToken != null) {
-      final me = await ref.read(gqlClientProvider).query$me();
+      final me = await ref.read(bccmGraphQLProvider).query$me();
       if (!mounted) return;
       if (!ref.read(featureFlagsProvider).publicSignup &&
           (me.parsedData?.me.completedRegistration != true || me.parsedData?.me.emailVerified != true)) {

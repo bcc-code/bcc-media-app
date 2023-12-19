@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
 import 'package:bccm_core/design_system.dart';

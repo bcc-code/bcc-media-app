@@ -19,7 +19,7 @@ final authEnabledProvider = StateProvider<bool>((ref) {
   return true;
 });
 
-final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
+final authStateProviderOverride = authStateProvider.overrideWith((ref) {
   if (!ref.watch(authEnabledProvider)) {
     debugPrint('authStateProvider: $AuthStateNotifierDisabled');
     return AuthStateNotifierDisabled();

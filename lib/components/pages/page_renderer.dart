@@ -1,8 +1,6 @@
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
-import 'package:brunstadtv_app/models/analytics/sections.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,7 +8,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:bccm_core/bccm_core.dart';
 import '../../helpers/sections.dart';
 import '../../models/pagination_status.dart';
-import '../../providers/inherited_data.dart';
 import 'sections/section_update_handler.dart';
 
 /// How close to the bottom of the page do you have to be before we load more items
@@ -113,7 +110,7 @@ class _PageRendererState extends ConsumerState<PageRenderer> {
       return;
     }
     debugPrint('loading more for section $sectionId');
-    final result = await ref.read(gqlClientProvider).query$FetchMoreItemsForItemSection(Options$Query$FetchMoreItemsForItemSection(
+    final result = await ref.read(bccmGraphQLProvider).query$FetchMoreItemsForItemSection(Options$Query$FetchMoreItemsForItemSection(
         variables:
             Variables$Query$FetchMoreItemsForItemSection(id: sectionId, offset: sectionPagination.currentOffset, first: kItemsToFetchForPagination)));
     final items = result.parsedData?.section.asOrNull<Fragment$ItemSection>()?.items.items;

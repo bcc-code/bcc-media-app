@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
 import '../../../helpers/router/router_utils.dart';
-import '../../../models/analytics/sections.dart';
-import '../../../providers/inherited_data.dart';
 import '../../../helpers/watch_progress_bottom_sheet.dart';
 
 class SectionItemClickWrapper extends ConsumerWidget {

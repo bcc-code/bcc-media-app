@@ -1,12 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/menus/option_list.dart';
 import '../../components/web/dialog_on_web.dart';
-import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
-import '../../models/analytics/language_changed.dart';
-import '../../providers/analytics.dart';
 import '../../providers/settings.dart';
 
 @RoutePage<void>()

@@ -2,16 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
+import 'package:brunstadtv_app/components/misc/app_update_dialog.dart';
 import 'package:brunstadtv_app/components/pages/page_mixin.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:bccm_core/api.dart';
-import 'package:brunstadtv_app/providers/inherited_data.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/helpers/version.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
@@ -36,11 +35,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
   void initState() {
     super.initState();
     pageResult = wrapInCompleter(getHomePage());
-    _appConfigListener = ref.listenManual<Future<Query$Application?>>(appConfigFutureProvider, (prev, next) async {
+    _appConfigListener = ref.listenManual(appConfigFutureProvider, (prev, next) async {
       final value = await next;
       if (value == null) return;
       if (!context.mounted) return;
-      showDialogIfOldAppVersion(context, value);
+      if (isOldAppVersion(context, value)) {
+        showDialog(
+          context: context,
+          builder: (context) => const AppUpdateDialog(),
+        );
+      }
     }, fireImmediately: true);
   }
 

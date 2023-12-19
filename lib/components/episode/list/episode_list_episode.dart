@@ -2,7 +2,7 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import '../../../models/episode_thumbnail_data.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../../l10n/app_localizations.dart';

@@ -1,16 +1,13 @@
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:bccm_core/design_system.dart';
 
 import '../../helpers/router/router_utils.dart';
-import '../../providers/inherited_data.dart';
 import '../misc/horizontal_slider.dart';
 import '../thumbnails/misc/bordered_image_container.dart';
 

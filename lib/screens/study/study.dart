@@ -4,7 +4,7 @@ import 'package:brunstadtv_app/components/achievements/achievement_dialog.dart';
 import 'package:brunstadtv_app/components/misc/dialog_with_image.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';
 import 'package:flutter/foundation.dart';
@@ -51,7 +51,7 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
 
   Future getTitle() async {
     final value = await ref
-        .read(gqlClientProvider)
+        .read(bccmGraphQLProvider)
         .query$GetLessonTitle(Options$Query$GetLessonTitle(variables: Variables$Query$GetLessonTitle(id: widget.lessonId)));
     setState(() {
       pageTitle = value.parsedData?.studyLesson.title ?? '';
@@ -120,7 +120,7 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
 
   Future handleTasksCompleted() async {
     final navigatorContext = Navigator.of(context).context;
-    final gqlClient = ref.read(gqlClientProvider);
+    final gqlClient = ref.read(bccmGraphQLProvider);
     final achievements = await gqlClient.query$getPendingAchievements();
 
     if (achievements.parsedData?.pendingAchievements.isNotEmpty != true && navigatorContext.mounted) {

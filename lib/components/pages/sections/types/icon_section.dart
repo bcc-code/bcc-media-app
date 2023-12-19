@@ -3,11 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import '../../../../models/analytics/sections.dart';
 import '../../../../models/breakpoints.dart';
 import '../icons/icon_section_button.dart';
 import '../../../misc/horizontal_slider.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 
 class IconSection extends StatelessWidget {
   final Fragment$Section$$IconSection data;

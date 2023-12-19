@@ -6,65 +6,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
-import '../../providers/analytics.dart';
+import 'package:bccm_core/platform.dart';
 import '../../providers/todays_calendar_entries.dart';
 import '../../router/router.gr.dart';
-import 'special_routes.dart';
 import 'navigation_override.dart';
-
-extension StackRouterCustomNavigation on StackRouter {
-  Future navigateNamedFromRoot(String path, {OnNavigationFailure? onFailure}) async {
-    final context = navigatorKey.currentState?.context;
-    debugPrint('navigateNamedFromRoot, navigatorKey: ${navigatorKey.currentState?.context}, using context: $context');
-    // ignore: use_build_context_synchronously
-    if (context != null) {
-      final ref = ProviderScope.containerOf(context, listen: false);
-      if (await ref.read(specialRoutesHandlerProvider).handle(context, path)) {
-        debugPrint('Route handled by SpecialRoutesHandler');
-        return;
-      }
-    }
-    var result = root.matcher.match(path, includePrefixMatches: true);
-    if (result != null) {
-      return navigateAll(result, onFailure: onFailure);
-    }
-    return Future.value();
-  }
-}
-
-extension ToQueryString on Parameters {
-  String toQueryString() {
-    return mapToQueryString(rawMap);
-  }
-}
-
-String mapToQueryString(Map<String, dynamic> rawMap) {
-  if (rawMap.isEmpty) {
-    return '';
-  }
-  var queryString = '?';
-  queryString += rawMap.entries.map((kv) => '${kv.key}=${kv.value}').join('&');
-  return queryString;
-}
-
-String uriStringWithoutHost(Uri uri) {
-  var result = uri.path;
-  if (uri.query.isNotEmpty) {
-    result += '?${uri.query}';
-  }
-  if (uri.fragment.isNotEmpty) {
-    result += '#${uri.fragment}';
-  }
-  return result;
-}
 
 Future<dynamic>? navigateToShowWithoutEpisodeId(BuildContext context, String showId) async {
   debugPrint('navigateToShowWithoutEpisodeId');
   final navigationOverride = NavigationOverride.of(context);
   final router = context.router;
   final result = await ProviderScope.containerOf(context, listen: false)
-      .read(gqlClientProvider)
+      .read(bccmGraphQLProvider)
       .query$getDefaultEpisodeForShow(Options$Query$getDefaultEpisodeForShow(variables: Variables$Query$getDefaultEpisodeForShow(showId: showId)));
   final episodeId = result.parsedData?.$show.defaultEpisode.id;
   if (episodeId == null) {
@@ -83,7 +35,7 @@ Future<bool>? navigateToStudyTopic(BuildContext context, String topicId) async {
     final analytics = ref.read(analyticsProvider);
     analytics.sectionItemClicked(context);
   });
-  final result = await ref.read(gqlClientProvider).query$GetStudyTopicLessonStatuses(Options$Query$GetStudyTopicLessonStatuses(
+  final result = await ref.read(bccmGraphQLProvider).query$GetStudyTopicLessonStatuses(Options$Query$GetStudyTopicLessonStatuses(
         variables: Variables$Query$GetStudyTopicLessonStatuses(id: topicId, first: 100),
       ));
   var episodeId = result.parsedData?.studyTopic.lessons.items

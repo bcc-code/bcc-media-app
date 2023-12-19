@@ -1,4 +1,4 @@
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 
 bool sectionIsVertical(element) =>
     element is Fragment$Section$$ListSection ||

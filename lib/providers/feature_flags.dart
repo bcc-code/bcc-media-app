@@ -1,6 +1,6 @@
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
@@ -70,7 +70,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
   }
 }
 
-final featureFlagVariantListProvider = Provider<List<String>>((ref) {
+final featureFlagVariantListProviderOverride = featureFlagVariantListProvider.overrideWith((ref) {
   return ref.watch(featureFlagsProvider.select((value) => value.toggles)).entries.fold<List<String>>([], (list, entry) {
     final variantName = entry.value.variant.name;
     if (!entry.value.enabled) return list;

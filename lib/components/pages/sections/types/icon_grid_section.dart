@@ -1,11 +1,10 @@
 import 'package:brunstadtv_app/components/pages/sections/section_item_click_wrapper.dart';
-import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import '../../../../models/breakpoints.dart';
 import '../../../misc/custom_grid_view.dart';
 import '../icons/icon_section_button.dart';

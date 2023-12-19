@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/components/study/study_progress.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:collection/collection.dart';
 
 import 'package:flutter/material.dart';

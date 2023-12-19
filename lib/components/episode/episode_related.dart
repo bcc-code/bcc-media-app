@@ -1,8 +1,7 @@
 import 'package:brunstadtv_app/components/thumbnails/grid/thumbnail_grid.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/router/navigation_override.dart';
 import 'package:flutter/material.dart';
-
 
 class EpisodeRelated extends StatelessWidget {
   const EpisodeRelated({

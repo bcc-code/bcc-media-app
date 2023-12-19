@@ -8,7 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../components/web/dialog_on_web.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import '../../l10n/app_localizations.dart';
 import 'package:bccm_core/bccm_core.dart';
 
@@ -23,7 +23,7 @@ class AccountDeletionScreen extends HookConsumerWidget {
     final deleteEmailFuture = useState<Future?>(null);
     final iAmSure = useState(false);
     Future<bool> sendDeleteEmail() async {
-      var sendResult = await ref.read(gqlClientProvider).mutate$sendSupportEmail(
+      var sendResult = await ref.read(bccmGraphQLProvider).mutate$sendSupportEmail(
             Options$Mutation$sendSupportEmail(
               variables: Variables$Mutation$sendSupportEmail(
                 title: 'Account deletion',

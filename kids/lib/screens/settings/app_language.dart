@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/design_system.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:kids/components/settings/option_list.dart';
-import 'package:brunstadtv_app/helpers/languages.dart';
 
 @RoutePage<void>()
 class AppLanguageScreen extends ConsumerWidget {

@@ -1,9 +1,8 @@
 import 'package:brunstadtv_app/components/pages/sections/section_item_click_wrapper.dart';
-import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import '../../../episode/list/episode_list_episode.dart';
 
 class ListSection extends StatelessWidget {

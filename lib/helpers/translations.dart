@@ -1,3 +1,4 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/models/offline/download_quality.dart';
 import 'package:flutter/widgets.dart';
@@ -42,4 +43,16 @@ extension DownloadStatusTranslations on DownloadStatus {
         return '?';
     }
   }
+}
+
+extension ContactDeviceInfoTranslations on ContactDeviceInfo {
+  Map<String, String?> asLocalizedMap(BuildContext cxt) => {
+        S.of(cxt).deviceInfoDevice: device,
+        S.of(cxt).deviceInfoEnvOverride: envOverride,
+        S.of(cxt).deviceInfoManufacturer: manufacturer,
+        S.of(cxt).deviceInfoOs: os,
+        S.of(cxt).deviceInfoScreenSize: screenSize,
+        S.of(cxt).deviceInfoAppVer: appVer,
+        S.of(cxt).deviceInfoUserId: userId,
+      };
 }

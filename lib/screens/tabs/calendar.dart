@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'dart:math';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,8 +19,6 @@ import 'package:bccm_core/design_system.dart';
 
 import '../../helpers/constants.dart';
 import '../../l10n/app_localizations.dart';
-import '../../models/analytics/calendar_day_clicked.dart';
-import '../../providers/analytics.dart';
 
 @RoutePage<void>()
 class CalendarScreen extends ConsumerStatefulWidget {
@@ -161,7 +159,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   loadInputPeriodData() async {
     var from = getFormattedDateTime(_focusedDay.subtract(const Duration(days: 40)));
     var to = getFormattedDateTime(_focusedDay.add(const Duration(days: 40)));
-    final client = ref.read(gqlClientProvider);
+    final client = ref.read(bccmGraphQLProvider);
 
     _calendarPeriodFuture = client
         .query$CalendarPeriod(Options$Query$CalendarPeriod(
@@ -191,7 +189,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   }
 
   loadSelectedDay() {
-    final client = ref.read(gqlClientProvider);
+    final client = ref.read(bccmGraphQLProvider);
     _selectedDayFuture = client
         .query$CalendarDay(Options$Query$CalendarDay(variables: Variables$Query$CalendarDay(date: getFormattedDateTime(_selectedDay!))))
         .onError((error, stackTrace) {

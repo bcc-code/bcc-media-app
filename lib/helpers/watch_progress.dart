@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 
 import '../models/events/watch_progress.dart';
-import 'event_bus.dart';
 
 mixin WatchProgressOverrides<T extends StatefulWidget> on State<T> {
   StreamSubscription? _watchProgressChanged;

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
@@ -7,16 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import '../episode/list/episode_list_episode.dart';
 import 'result_programs_list.dart';
 import 'package:bccm_core/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../../models/analytics/search_performed.dart';
-import '../../models/analytics/search_result_clicked.dart';
-import '../../providers/analytics.dart';
-import '../../providers/inherited_data.dart';
 
 class SearchResults extends ConsumerStatefulWidget {
   final String searchInput;
@@ -32,7 +29,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
   final AsyncDebouncer<Query$Search$search?> debouncer = AsyncDebouncer(milliseconds: 150);
 
   void setResultFuture() {
-    final client = ref.read(gqlClientProvider);
+    final client = ref.read(bccmGraphQLProvider);
     if (widget.searchInput != '') {
       setState(() {
         _resultFuture = debouncer.run(

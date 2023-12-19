@@ -1,4 +1,4 @@
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:brunstadtv_app/providers/graphql.dart';
@@ -29,7 +29,7 @@ class LessonProgressCacheNotifier extends StateNotifier<LessonProgressCache> {
   }
 
   Future<Query$GetEpisodeLessonProgress?> loadLessonProgressForEpisode(String id) async {
-    final value = await ref.read(gqlClientProvider).query$GetEpisodeLessonProgress(
+    final value = await ref.read(bccmGraphQLProvider).query$GetEpisodeLessonProgress(
           Options$Query$GetEpisodeLessonProgress(
             variables: Variables$Query$GetEpisodeLessonProgress(
               id: id,
@@ -42,7 +42,7 @@ class LessonProgressCacheNotifier extends StateNotifier<LessonProgressCache> {
   }
 
   Future<Query$GetSeasonLessonProgress?> loadLessonProgressForSeason(String id) async {
-    final value = await ref.read(gqlClientProvider).query$GetSeasonLessonProgress(
+    final value = await ref.read(bccmGraphQLProvider).query$GetSeasonLessonProgress(
           Options$Query$GetSeasonLessonProgress(
             variables: Variables$Query$GetSeasonLessonProgress(id: id),
           ),

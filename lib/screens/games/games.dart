@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../api/brunstadtv.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/app_config.dart';
 

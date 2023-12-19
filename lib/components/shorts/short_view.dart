@@ -11,15 +11,12 @@ import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/error_no_access.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/share_extension/share_extension.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/models/analytics/content_shared.dart';
-import 'package:brunstadtv_app/models/analytics/misc.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:bccm_core/design_system.dart';
@@ -511,7 +508,7 @@ class ShortActions extends HookConsumerWidget {
                     contextElementId: short!.id,
                   ));
               if (inMyList.value) {
-                ref.read(gqlClientProvider).mutate$removeEntryFromMyList(
+                ref.read(bccmGraphQLProvider).mutate$removeEntryFromMyList(
                       Options$Mutation$removeEntryFromMyList(
                         variables: Variables$Mutation$removeEntryFromMyList(
                           entryId: short!.id,
@@ -519,7 +516,7 @@ class ShortActions extends HookConsumerWidget {
                       ),
                     );
               } else {
-                ref.read(gqlClientProvider).mutate$addShortToMyList(
+                ref.read(bccmGraphQLProvider).mutate$addShortToMyList(
                       Options$Mutation$addShortToMyList(
                         variables: Variables$Mutation$addShortToMyList(
                           shortId: short!.id,

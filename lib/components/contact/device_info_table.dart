@@ -1,7 +1,8 @@
+import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/helpers/translations.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../providers/device_info.dart';
 import 'package:bccm_core/design_system.dart';
 
 class DeviceInfoTable extends HookConsumerWidget {

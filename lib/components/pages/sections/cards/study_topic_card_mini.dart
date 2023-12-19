@@ -7,7 +7,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:bccm_core/design_system.dart';
 import '../../../../helpers/svg_icons.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import '../../../../helpers/router/router_utils.dart';
 import '../../../status/loading_indicator.dart';
 import '../../../study/study_progress_row.dart';

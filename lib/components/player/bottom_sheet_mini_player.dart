@@ -4,7 +4,6 @@ import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
-import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

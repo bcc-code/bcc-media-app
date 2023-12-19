@@ -5,7 +5,7 @@ import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../utils/basic_init.dart';
+import '../../submodules/bccm_flutter/bccm_core/test/utils/basic_init.dart';
 
 void main() {
   group('Signup tests', () {

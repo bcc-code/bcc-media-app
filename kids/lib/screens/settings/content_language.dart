@@ -5,7 +5,6 @@ import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,7 +15,6 @@ import 'package:kids/components/settings/language_list_dialog.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-import 'package:brunstadtv_app/helpers/languages.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 @RoutePage<void>()

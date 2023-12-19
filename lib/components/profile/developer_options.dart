@@ -1,3 +1,4 @@
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
@@ -9,8 +10,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restart_app/restart_app.dart';
-
-import '../../providers/notification_service.dart';
 
 import '../../helpers/constants.dart';
 import 'package:bccm_core/design_system.dart';

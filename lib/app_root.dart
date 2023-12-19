@@ -1,14 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:brunstadtv_app/providers/auth.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
-import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:brunstadtv_app/router/router.dart';
 import 'package:brunstadtv_app/screens/onboarding/email_verification.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:bccm_core/design_system.dart';
@@ -80,6 +78,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
           ensureValidUser();
         }
         analytics.identify(next.user!, me.analytics.anonymousId);
+        ref.read(settingsProvider.notifier).setAnalyticsId(me.analytics.anonymousId);
       });
     }
   }
@@ -140,7 +139,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
             ),
           ),
           child: GraphQLProvider(
-            client: ValueNotifier(ref.watch(gqlClientProvider)),
+            client: ValueNotifier(ref.watch(bccmGraphQLProvider)),
             child: Directionality(
               textDirection: TextDirection.ltr,
               child: MaterialApp.router(

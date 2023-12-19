@@ -6,9 +6,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/availability.dart';
-import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'feature_flags.dart';

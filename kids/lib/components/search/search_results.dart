@@ -1,15 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/models/analytics/search_performed.dart';
-import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +26,7 @@ class SliverSearchResults extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final gqlClient = ref.watch(gqlClientProvider);
+    final gqlClient = ref.watch(bccmGraphQLProvider);
 
     final debouncer = useMemoized(() => AsyncDebouncer<Query$Search$search?>(milliseconds: 150));
 

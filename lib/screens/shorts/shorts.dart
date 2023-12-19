@@ -4,12 +4,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/shorts/short_view.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/shorts/short_controller.dart';
-import 'package:brunstadtv_app/models/analytics/misc.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -31,7 +29,7 @@ class ShortsScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final gqlClient = ref.watch(gqlClientProvider);
+    final gqlClient = ref.watch(bccmGraphQLProvider);
     final shorts = useState<List<Fragment$Short>>([]);
     final nextCursor = useState<String?>(null);
     final muted = useState(false);

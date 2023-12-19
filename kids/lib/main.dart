@@ -1,18 +1,14 @@
 import 'dart:async';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/helpers/languages.dart';
-import 'package:brunstadtv_app/helpers/router/special_routes.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/providers/auth.dart';
-import 'package:brunstadtv_app/providers/notification_service.dart';
-import 'package:brunstadtv_app/providers/unleash.dart';
-import 'package:brunstadtv_app/providers/router_provider.dart';
-import 'package:brunstadtv_app/providers/deeplink_service.dart';
-import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
+import 'package:brunstadtv_app/providers/app_config.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/firebase.dart';
-import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -22,7 +18,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:kids/app_root.dart';
 import 'package:kids/design_system.dart';
@@ -65,7 +60,7 @@ Future<void> $main({
 }) async {
   usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-  final coreOverrides = await BccmCore().setup();
+  await BccmCore().setup();
 
   await setDefaults();
 
@@ -77,11 +72,18 @@ Future<void> $main({
   await BccmPlayerInterface.instance.setup();
 
   final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
+  final coreOverrides = await BccmCore().setupCoreOverrides(
+    analyticsMetaEnricherProviderOverride: analyticsMetaEnricherProvider.overrideWith((ref) => KidsAnalyticsMetaEnricher()),
+    specialRoutesHandlerProviderOverride: specialRoutesHandlerProvider.overrideWith((ref) => KidsSpecialRoutesHandler(ref)),
+    rootRouterProviderOverride: rootRouterProvider.overrideWithValue(appRouter),
+    commonSettingsProviderOverride: commonSettingsProviderOverride,
+    bccmGraphQLProviderOverride: bccmGraphQLProviderOverride,
+    authStateProviderOverride: authStateProviderOverride,
+    analyticsProviderOverride: analyticsProviderOverride,
+    featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
+  );
   final providerContainer = await initProviderContainer([
     ...coreOverrides,
-    analyticsMetaEnricherProvider.overrideWith((ref) => KidsAnalyticsMetaEnricher()),
-    rootRouterProvider.overrideWithValue(appRouter),
-    specialRoutesHandlerProvider.overrideWith((ref) => KidsSpecialRoutesHandler(ref)),
     if (providerOverrides != null) ...providerOverrides,
   ]);
 
@@ -132,22 +134,12 @@ Future setDefaults() async {
   // I don't think this was very important, so there is room for increasing it if necessary.
   PaintingBinding.instance.imageCache.maximumSizeBytes = 1024 * 1024 * 50;
 
-  // Locale normally comes from the MaterialApp.locale field.
+// Locale normally comes from the MaterialApp.locale field.
   // This sets the default locale when Intl is used "outside" a MaterialApp-descendant BuildContext.
-  Intl.defaultLocale = await getDefaultLocale();
-}
-
-Future<String> getDefaultLocale() async {
-  final String systemLocale = await findSystemLocale();
-  final verifiedLocale = Intl.verifiedLocale(systemLocale, NumberFormat.localeExists, onFailure: (String _) => FlavorConfig.current.defaultLanguage);
-  if (verifiedLocale == null) {
-    return FlavorConfig.current.defaultLanguage;
-  }
-  final shortLocale = Intl.shortLocale(verifiedLocale);
-  if (!S.supportedLocales.map((l) => l.languageCode).contains(shortLocale)) {
-    return FlavorConfig.current.defaultLanguage;
-  }
-  return normalizeLanguage(shortLocale);
+  Intl.defaultLocale = await getDefaultLocale(
+    fallbackLanguage: FlavorConfig.current.defaultLanguage,
+    supportedLocales: S.supportedLocales.map((l) => l.languageCode).toList(),
+  );
 }
 
 Future<ProviderContainer> initProviderContainer(List<Override> overrides) async {

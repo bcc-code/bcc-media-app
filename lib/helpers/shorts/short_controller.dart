@@ -2,12 +2,11 @@ import 'dart:async';
 
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:brunstadtv_app/helpers/shorts/short_analytics.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -90,7 +89,7 @@ class ShortController {
     final progressSeconds = (player.value.playbackPositionMs ?? 0) ~/ 1000;
     if (progressSeconds != previousSeconds) {
       _progressDebouncer.run(() {
-        ref.read(gqlClientProvider).mutate$setShortProgress(
+        ref.read(bccmGraphQLProvider).mutate$setShortProgress(
               Options$Mutation$setShortProgress(
                 variables: Variables$Mutation$setShortProgress(
                   id: s.id,

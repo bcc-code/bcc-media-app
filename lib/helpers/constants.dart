@@ -1,3 +1,4 @@
+import 'package:bccm_core/platform.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../env/env.dart';
@@ -9,7 +10,6 @@ const auth0Issuer = 'https://${Env.auth0Domain}';
 class PrefKeys {
   PrefKeys._();
   static const envOverride = 'env_override';
-  static const refreshToken = 'refresh_token';
   static const appLanguage = 'app_language';
   static const audioLanguage = 'audio_language';
   static const subtitleLanguage = 'subtitle_language';
@@ -58,9 +58,9 @@ class EnvironmentOverride {
 class RouteMetaConstants {
   RouteMetaConstants._();
   static const hideMiniPlayer = 'hide_mini_player';
-  static const analyticsName = 'analytics_name';
+  static const analyticsName = kRouteMetaAnalyticsName;
   static const settingsName = 'settings_name';
-  static const navTabRoute = 'nav_tab_route';
+  static const navTabRoute = kRouteMetaNavTab;
 }
 
 class MetadataExtraConstants {

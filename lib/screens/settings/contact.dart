@@ -1,3 +1,4 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/nav/general_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
@@ -10,10 +11,9 @@ import '../../components/contact/contact_success.dart';
 import '../../components/status/error_generic.dart';
 import '../../components/status/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import '../../components/buttons/btv_buttons.dart';
-import '../../providers/device_info.dart';
+import '../../helpers/translations.dart';
 import 'package:bccm_core/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
@@ -40,7 +40,7 @@ class ContactScreen extends HookConsumerWidget {
     Future<QueryResult> getSendSupportEmailFuture() {
       final appVer = deviceInfo?.appVer;
       final os = deviceInfo?.os;
-      return ref.read(gqlClientProvider).mutate$sendSupportEmail(
+      return ref.read(bccmGraphQLProvider).mutate$sendSupportEmail(
             Options$Mutation$sendSupportEmail(
               variables: Variables$Mutation$sendSupportEmail(
                 title: 'BTV $appVer $os',

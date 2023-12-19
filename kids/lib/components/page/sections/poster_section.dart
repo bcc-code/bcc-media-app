@@ -1,13 +1,9 @@
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/analytics.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/models/analytics/sections.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -47,7 +43,7 @@ class PosterSection extends ConsumerWidget {
                           item: playlistItem,
                           onPressed: () => ref.read(analyticsProvider).sectionItemClicked(context),
                           onPlayPressed: () async {
-                            final episodeIds = await ref.read(gqlClientProvider).query$GetManyEpisodeIdsForPlaylist(
+                            final episodeIds = await ref.read(bccmGraphQLProvider).query$GetManyEpisodeIdsForPlaylist(
                                   Options$Query$GetManyEpisodeIdsForPlaylist(
                                     variables: Variables$Query$GetManyEpisodeIdsForPlaylist(id: item.id),
                                   ),
@@ -73,7 +69,7 @@ class PosterSection extends ConsumerWidget {
                           hasNewEpisodes: publishDate != null ? DateTime.now().difference(publishDate).inDays <= 7 : false,
                           onPressed: () => ref.read(analyticsProvider).sectionItemClicked(context),
                           onPlayPressed: () async {
-                            final result = await ref.read(gqlClientProvider).query$getDefaultEpisodeForShow(
+                            final result = await ref.read(bccmGraphQLProvider).query$getDefaultEpisodeForShow(
                                   Options$Query$getDefaultEpisodeForShow(
                                     variables: Variables$Query$getDefaultEpisodeForShow(showId: item.id),
                                   ),

@@ -1,10 +1,9 @@
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:brunstadtv_app/providers/graphql.dart';
-import '../../../helpers/event_bus.dart';
 import '../../../models/events/my_list_changed.dart';
 import '../../../providers/section_updates.dart';
 import 'package:bccm_core/bccm_core.dart';
@@ -32,7 +31,7 @@ class SectionUpdateHandler extends HookConsumerWidget {
     }, [section]);
 
     void refreshSection() async {
-      final response = await ref.watch(gqlClientProvider).query$GetSection(
+      final response = await ref.watch(bccmGraphQLProvider).query$GetSection(
             Options$Query$GetSection(
               variables: Variables$Query$GetSection(
                 id: section.id,

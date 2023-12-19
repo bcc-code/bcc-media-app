@@ -4,7 +4,7 @@ import 'package:brunstadtv_app/components/episode/episode_download_sheet.dart';
 import 'package:brunstadtv_app/components/misc/generic_dialog.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/translations.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';

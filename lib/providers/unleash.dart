@@ -1,27 +1,10 @@
-import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/auth.dart';
+import 'package:brunstadtv_app/env/env.dart';
+import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:flutter/foundation.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:unleash_proxy_client_flutter/unleash_context.dart';
 import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
 
-import '../env/env.dart';
-import '../flavors.dart';
-
-final unleashProvider = FutureProvider<UnleashClient?>((ref) async {
-  final unleash = ref.watch(unleashRawProvider);
-  if (unleash == null) return null;
-  try {
-    await unleash.start();
-  } catch (e, st) {
-    FlutterError.reportError(FlutterErrorDetails(exception: e, stack: st));
-    return null;
-  }
-  return unleash;
-});
-
-final unleashRawProvider = Provider<UnleashClient?>((ref) {
+UnleashClient? getRawUnleashProvider(Ref ref) {
   if (Env.unleashClientKey.isEmpty) return null;
   final isBetaTester = ref.watch(settingsProvider.select((s) => s.isBetaTester == true));
   final client = UnleashClient(
@@ -33,40 +16,5 @@ final unleashRawProvider = Provider<UnleashClient?>((ref) {
       'UNLEASH-APPNAME': Env.unleashAppName,
     },
   );
-  client.on(
-    'error',
-    (err) => FlutterError.reportError(
-      FlutterErrorDetails(
-        exception: Exception(err),
-        context: ErrorDescription('Unleash got error $err'),
-        stack: StackTrace.current,
-      ),
-    ),
-  );
-  client.on('update', (_) => debugPrint('Unleash refresh'));
-  ref.listen(
-    unleashContextProvider,
-    (UnleashContext? previous, UnleashContext next) {
-      client.updateContext(next);
-    },
-    fireImmediately: true,
-  );
   return client;
-});
-
-final unleashContextProvider = Provider<UnleashContext>((ref) {
-  final gender = ref.watch(authStateProvider.select((value) => value.user?.gender));
-  final birthDate = ref.watch(authStateProvider.select((value) => value.user?.birthdate));
-  final birthDateTime = birthDate == null ? null : DateTime.parse(birthDate);
-  final age = birthDateTime == null ? null : getAgeFromBirthDate(birthDateTime);
-  final ageGroup = age == null ? null : getAgeGroup(age);
-  return UnleashContext(
-      userId: ref.watch(
-        authStateProvider.select((value) => value.user?.bccPersonId),
-      ),
-      properties: {
-        if (ageGroup != null) 'ageGroupStart': ageGroup.start.toString(),
-        if (ageGroup != null) 'ageGroup': ageGroup.name,
-        if (gender != null) 'gender': gender,
-      });
-});
+}

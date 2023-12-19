@@ -26,18 +26,14 @@ import 'package:simple_shadow/simple_shadow.dart';
 
 import '../../components/misc/custom_grid_view.dart';
 import '../../components/offline/downloaded_videos.dart';
-import '../../helpers/event_bus.dart';
 import '../../helpers/watch_progress_bottom_sheet.dart';
 import '../../components/status/error_generic.dart';
 import '../../components/status/loading_generic.dart';
 import '../../components/thumbnails/grid/thumbnail_grid_episode.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import '../../helpers/svg_icons.dart';
-import '../../models/analytics/sections.dart';
 import '../../models/episode_thumbnail_data.dart';
 import '../../models/events/watch_progress.dart';
-import '../../providers/analytics.dart';
-import '../../providers/inherited_data.dart';
 import '../../router/router.gr.dart';
 import 'package:bccm_core/design_system.dart';
 
@@ -63,7 +59,7 @@ class ProfileScreen extends HookConsumerWidget {
       if (user == null) {
         return Future.value(null);
       }
-      return ref.read(gqlClientProvider).query$MyList(Options$Query$MyList(errorPolicy: ErrorPolicy.all));
+      return ref.read(bccmGraphQLProvider).query$MyList(Options$Query$MyList(errorPolicy: ErrorPolicy.all));
     }
 
     final myListFuture = useState(useMemoized(getMyList));

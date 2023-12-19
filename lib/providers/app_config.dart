@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final appConfigFutureProvider = StateProvider<Future<Query$Application?>>((ref) async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 import '../../../l10n/app_localizations.dart';
 
 import 'package:bccm_core/design_system.dart';

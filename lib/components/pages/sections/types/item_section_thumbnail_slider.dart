@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'package:bccm_core/api.dart';
+import 'package:bccm_core/platform.dart';
 
 import '../../../../models/breakpoints.dart';
 import '../../../../models/episode_thumbnail_data.dart';
 import '../../../../providers/todays_calendar_entries.dart';
 import 'package:bccm_core/bccm_core.dart';
-import '../../../../models/analytics/sections.dart';
 import '../../../thumbnails/slider/thumbnail_slider_episode.dart';
 import '../../../thumbnails/slider/thumbnail_slider_show.dart';
 import '../../../misc/horizontal_slider.dart';

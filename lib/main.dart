@@ -1,15 +1,14 @@
 import 'dart:async';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/background_tasks.dart';
-import 'package:brunstadtv_app/helpers/languages.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/providers/auth.dart';
-import 'package:brunstadtv_app/providers/notification_service.dart';
-import 'package:brunstadtv_app/providers/unleash.dart';
-import 'package:brunstadtv_app/providers/router_provider.dart';
-import 'package:brunstadtv_app/providers/deeplink_service.dart';
-import 'package:brunstadtv_app/providers/app_config.dart';
+import 'package:brunstadtv_app/helpers/router/special_routes.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
+import 'package:brunstadtv_app/providers/app_config.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/firebase.dart';
 import 'package:brunstadtv_app/router/router.dart';
@@ -22,7 +21,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'app_root.dart';
@@ -38,7 +36,7 @@ Future<void> $main({
 }) async {
   usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-  final coreOverrides = await BccmCore().setup();
+  await BccmCore().setup();
   await setDefaults();
 
   //FocusDebugger.instance.activate();
@@ -54,9 +52,18 @@ Future<void> $main({
   await BccmPlayerInterface.instance.setup();
 
   final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
+  final coreOverrides = await BccmCore().setupCoreOverrides(
+    analyticsMetaEnricherProviderOverride: analyticsMetaEnricherProvider.overrideWith((ref) => BccmAnalyticsMetaEnricher()),
+    specialRoutesHandlerProviderOverride: specialRoutesHandlerProvider.overrideWith((ref) => BccmSpecialRoutesHandler(ref)),
+    rootRouterProviderOverride: rootRouterProvider.overrideWithValue(appRouter),
+    commonSettingsProviderOverride: commonSettingsProviderOverride,
+    bccmGraphQLProviderOverride: bccmGraphQLProviderOverride,
+    authStateProviderOverride: authStateProviderOverride,
+    analyticsProviderOverride: analyticsProviderOverride,
+    featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
+  );
   final providerContainer = await initProviderContainer([
     ...coreOverrides,
-    rootRouterProvider.overrideWithValue(appRouter),
     if (providerOverrides != null) ...providerOverrides,
   ]);
 
@@ -106,21 +113,10 @@ Future setDefaults() async {
 
   // Locale normally comes from the MaterialApp.locale field.
   // This sets the default locale when Intl is used "outside" a MaterialApp-descendant BuildContext.
-  Intl.defaultLocale = await getDefaultLocale();
-}
-
-Future<String> getDefaultLocale() async {
-  final String systemLocale = await findSystemLocale();
-  final verifiedLocale = Intl.verifiedLocale(systemLocale, NumberFormat.localeExists, onFailure: (String _) => FlavorConfig.current.defaultLanguage);
-  if (verifiedLocale == null) {
-    return FlavorConfig.current.defaultLanguage;
-  }
-  final shortLocale = Intl.shortLocale(verifiedLocale);
-  if (!S.supportedLocales.map((l) => l.languageCode).contains(shortLocale)) {
-    return FlavorConfig.current.defaultLanguage;
-  }
-
-  return normalizeLanguage(shortLocale);
+  Intl.defaultLocale = await getDefaultLocale(
+    fallbackLanguage: FlavorConfig.current.defaultLanguage,
+    supportedLocales: S.supportedLocales.map((l) => l.languageCode).toList(),
+  );
 }
 
 Future<ProviderContainer> initProviderContainer(List<Override> overrides) async {

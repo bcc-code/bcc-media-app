@@ -1,14 +1,13 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/badges/offline_badge.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
-import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:brunstadtv_app/screens/tabs/live.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
