@@ -1,1 +1,0 @@
-library bccm_core;

@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:bccm_core/src/features/auth/auth0_api.dart';
-import 'package:bccm_core/utils.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:clock/clock.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -16,10 +15,7 @@ import 'package:synchronized/synchronized.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../models/auth0/auth0_id_token.dart';
-import '../../../models/auth_state.dart';
 import '../../../utils/constants.dart';
-import '../auth_state.dart';
 
 // Careful. The function naming here is very important,
 // but because it's conditionally imported (see auth_state_notifier_interface.dart)
