@@ -62,13 +62,14 @@ class ShortController {
       // shorts.value.removeWhere((element) => element.id == short.id);
       return;
     }
-    if (!ref.context.mounted) return;
+    final context = ref.context;
+    if (!context.mounted) return;
     await player.replaceCurrentMediaItem(
       MediaItem(
         url: url,
         metadata: MediaMetadata(
           title: newShort.title,
-          artist: S.of(ref.context).shortsTab,
+          artist: S.of(context).shortsTab,
           extras: {
             MetadataExtraConstants.shortId: newShort.id,
             'npaw.content.id': newShort.id,

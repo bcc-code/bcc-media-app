@@ -145,7 +145,7 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       await _setStateBasedOnResponse(result!);
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, StackTrace.current);
-      print('error on Refresh Token: $e - stack: $s');
+      debugPrint('error on Refresh Token: $e - stack: $s');
       // logOut() possibly
       return false;
     }
