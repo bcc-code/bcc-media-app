@@ -63,7 +63,7 @@ class FcmNotificationService implements NotificationService {
 
     final token = await FirebaseMessaging.instance.getToken();
     if (token != null) {
-      await _setDeviceToken(token);
+      await _setDeviceTokenWithLanguagesFromSettings(token);
     } else {
       debugPrint('FirebaseMessaging.instance.getToken() returned null');
     }
@@ -71,7 +71,7 @@ class FcmNotificationService implements NotificationService {
   }
 
   void _setupTokenListeners() {
-    _tokenSubscription ??= FirebaseMessaging.instance.onTokenRefresh.listen(_setDeviceToken)
+    _tokenSubscription ??= FirebaseMessaging.instance.onTokenRefresh.listen(_setDeviceTokenWithLanguagesFromSettings)
       ..onError((err) {
         print('error onTokenRefresh');
       });
@@ -79,7 +79,7 @@ class FcmNotificationService implements NotificationService {
       if (old?.appLanguage != value.appLanguage) {
         var token = await FirebaseMessaging.instance.getToken();
         if (token == null) return;
-        _setDeviceToken(token);
+        _setDeviceTokenWithLanguagesFromSettings(token);
       }
     });
   }
@@ -101,11 +101,17 @@ class FcmNotificationService implements NotificationService {
     debugPrint('Notification listeners set up.');
   }
 
-  Future _setDeviceToken(String token) async {
+  Future _setDeviceTokenWithLanguagesFromSettings(String token) async {
     debugPrint('Sending FCM token. $token');
     fcmToken = token;
-    var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(Options$Mutation$SetDeviceToken(
-        variables: Variables$Mutation$SetDeviceToken(token: token, languages: [ref.read(settingsProvider).appLanguage.languageCode])));
+    var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(
+          Options$Mutation$SetDeviceToken(
+            variables: Variables$Mutation$SetDeviceToken(
+              token: token,
+              languages: [ref.read(settingsProvider).appLanguage.languageCode],
+            ),
+          ),
+        );
     return result;
   }
 
