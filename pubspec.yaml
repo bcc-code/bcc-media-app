@@ -127,7 +127,7 @@ dependencies:
   preload_page_view: ^0.2.0
   tutorial_coach_mark: ^1.2.11
   bccm_core:
-    path: core
+    path: submodules/bccm_flutter/bccm_core
   #smooth: any
 
 dev_dependencies:

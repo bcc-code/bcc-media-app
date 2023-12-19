@@ -92,7 +92,7 @@ packages:
   bccm_core:
     dependency: "direct main"
     description:
-      path: core
+      path: "submodules/bccm_flutter/bccm_core"
       relative: true
     source: path
     version: "0.0.1"

@@ -1,7 +1,0 @@
-mutation SetDeviceToken($token: String!, $languages: [String!]!) {
-  setDevicePushToken(token: $token, languages: $languages) {
-    __typename
-    token
-    updatedAt
-  }
-}

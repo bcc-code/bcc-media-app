@@ -1,4 +1,0 @@
-type Export {
-  dbVersion: String!
-  url: String!
-}

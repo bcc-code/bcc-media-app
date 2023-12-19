@@ -106,7 +106,7 @@ dependencies:
   video_player: ^2.7.2
   auto_size_text: ^3.0.0
   bccm_core:
-    path: ../core
+    path: ../submodules/bccm_flutter/bccm_core
 
 dev_dependencies:
   flutter_test:
