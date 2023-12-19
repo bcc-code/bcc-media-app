@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/controls.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
-import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';

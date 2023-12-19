@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/utils.dart';
 import '../../../helpers/router/router_utils.dart';
 import '../../../models/analytics/sections.dart';

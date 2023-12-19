@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';

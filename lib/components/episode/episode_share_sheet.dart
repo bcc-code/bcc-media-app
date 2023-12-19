@@ -1,8 +1,8 @@
 import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/components/menus/option_list.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/graphql/schema/episodes.graphql.dart';
+import 'package:bccm_core/api.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/utils.dart';
 import 'package:bccm_core/design_system.dart';
 

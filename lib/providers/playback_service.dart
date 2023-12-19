@@ -5,9 +5,9 @@ import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/player/custom_cast_player.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/utils.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
@@ -20,7 +20,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:universal_io/io.dart';
 
 import '../api/brunstadtv.dart';
-import '../graphql/schema/episodes.graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../helpers/version.dart';
 
 final playbackServiceProvider = Provider<PlaybackService>((ref) {

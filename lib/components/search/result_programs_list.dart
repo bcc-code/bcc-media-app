@@ -4,7 +4,7 @@ import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:bccm_core/design_system.dart';

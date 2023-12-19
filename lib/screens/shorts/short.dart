@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/shorts/short_view.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/shorts/short_controller.dart';

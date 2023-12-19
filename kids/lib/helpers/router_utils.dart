@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
-import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
+import 'package:bccm_core/api.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/utils.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';

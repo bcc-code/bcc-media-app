@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../../thumbnails/grid/thumbnail_grid.dart';
 
 class ItemSectionThumbnailGrid extends StatelessWidget {

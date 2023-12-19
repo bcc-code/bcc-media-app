@@ -6,8 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../graphql/client.dart';
-import '../../graphql/queries/search.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../episode/list/episode_list_episode.dart';
 import 'result_programs_list.dart';
 import 'package:bccm_core/design_system.dart';

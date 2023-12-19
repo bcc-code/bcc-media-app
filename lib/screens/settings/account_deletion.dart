@@ -7,8 +7,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../components/web/dialog_on_web.dart';
-import '../../graphql/client.dart';
-import '../../graphql/queries/send_support_email.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../l10n/app_localizations.dart';
 import 'package:bccm_core/bccm_core.dart';
 

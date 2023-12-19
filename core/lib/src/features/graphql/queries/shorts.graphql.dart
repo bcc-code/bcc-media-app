@@ -2645,11 +2645,10 @@ extension ClientExtension$Query$getShortsStartingEpisode
       query$getShortsStartingEpisode(
               [Options$Query$getShortsStartingEpisode? options]) async =>
           await this.query(options ?? Options$Query$getShortsStartingEpisode());
-  graphql.ObservableQuery<Query$getShortsStartingEpisode>
-      watchQuery$getShortsStartingEpisode(
-              [WatchOptions$Query$getShortsStartingEpisode? options]) =>
-          this.watchQuery(
-              options ?? WatchOptions$Query$getShortsStartingEpisode());
+  graphql.ObservableQuery<
+      Query$getShortsStartingEpisode> watchQuery$getShortsStartingEpisode(
+          [WatchOptions$Query$getShortsStartingEpisode? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$getShortsStartingEpisode());
   void writeQuery$getShortsStartingEpisode({
     required Query$getShortsStartingEpisode data,
     bool broadcast = true,

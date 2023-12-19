@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import '../../../../graphql/queries/page.graphql.dart';
-import '../../../../graphql/schema/sections.graphql.dart';
+import 'package:bccm_core/api.dart';
+import 'package:bccm_core/api.dart';
 import '../../../../models/breakpoints.dart';
 import '../../../misc/custom_grid_view.dart';
 import '../icons/icon_section_button.dart';
@@ -40,7 +40,7 @@ class _IconGridSectionList extends StatelessWidget {
     final colSize = ResponsiveValue(
       context,
       defaultValue: _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!,
-      conditionalValues:  [
+      conditionalValues: [
         Condition.equals(name: BP.md, value: 3),
         Condition.equals(name: BP.lg, value: 4),
         Condition.equals(name: BP.xl, value: 5),

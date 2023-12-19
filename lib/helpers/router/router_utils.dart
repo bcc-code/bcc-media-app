@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import '../../graphql/client.dart';
-import '../../graphql/queries/episode.graphql.dart';
-import '../../graphql/queries/page.graphql.dart';
-import '../../graphql/queries/studies.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../providers/analytics.dart';
 import '../../providers/todays_calendar_entries.dart';
 import '../../router/router.gr.dart';

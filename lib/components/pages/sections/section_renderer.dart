@@ -3,7 +3,7 @@ import 'package:brunstadtv_app/components/misc/see_more.dart';
 import 'package:bccm_core/utils.dart';
 import 'package:flutter/material.dart';
 
-import '../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../../router/router.gr.dart';
 import 'types/achievement_section.dart';
 import 'types/icon_section.dart';

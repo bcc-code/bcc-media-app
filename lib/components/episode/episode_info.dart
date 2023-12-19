@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/badges/feature_badge.dart';
 import 'package:brunstadtv_app/components/episode/episode_download_button.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
@@ -15,7 +15,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../graphql/queries/my_list.graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../helpers/event_bus.dart';
 import '../../models/events/my_list_changed.dart';
 import '../../providers/downloads.dart';

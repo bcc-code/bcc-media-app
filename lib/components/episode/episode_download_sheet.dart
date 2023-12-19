@@ -1,7 +1,7 @@
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/guides/favorite_guides.dart';
 import 'package:brunstadtv_app/components/menus/option_list.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';

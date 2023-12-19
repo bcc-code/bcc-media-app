@@ -7,7 +7,7 @@ import '../../../../models/analytics/sections.dart';
 import '../../../../models/breakpoints.dart';
 import '../icons/icon_section_button.dart';
 import '../../../misc/horizontal_slider.dart';
-import '../../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 
 class IconSection extends StatelessWidget {
   final Fragment$Section$$IconSection data;

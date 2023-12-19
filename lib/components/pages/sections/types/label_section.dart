@@ -2,7 +2,7 @@ import 'package:brunstadtv_app/components/pages/sections/section_item_click_wrap
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/design_system.dart';
 
 import '../../../../models/analytics/sections.dart';

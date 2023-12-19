@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

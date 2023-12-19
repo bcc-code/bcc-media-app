@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
@@ -19,11 +19,11 @@ import 'package:flutter_svg/svg.dart';
 import '../../api/brunstadtv.dart';
 import '../../components/offline/offline_home.dart';
 import '../../flavors.dart';
-import '../../graphql/queries/application.graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../providers/connectivity.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../components/pages/page_renderer.dart';
-import '../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 
 import '../../components/pages/page_mixin.dart';
 import '../../l10n/app_localizations.dart';

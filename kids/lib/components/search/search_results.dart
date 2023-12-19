@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';

@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/components/episode/list/season_episode_list.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';

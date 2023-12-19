@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/utils.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';

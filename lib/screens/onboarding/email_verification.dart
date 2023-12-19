@@ -11,7 +11,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../graphql/queries/me.graphql.dart';
+import 'package:bccm_core/api.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/analytics.dart';
 import '../../providers/me_provider.dart';

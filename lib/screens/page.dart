@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/nav/custom_back_button.dart';
 import '../components/pages/page_renderer.dart';
-import '../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 
 @RoutePage<void>()
 class PageScreen extends ConsumerStatefulWidget {

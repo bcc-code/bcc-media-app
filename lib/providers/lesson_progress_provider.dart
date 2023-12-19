@@ -1,7 +1,7 @@
-import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../graphql/client.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
 
 typedef LessonProgressCache = Map<String, Fragment$EpisodeLessonProgressOverview>;
 

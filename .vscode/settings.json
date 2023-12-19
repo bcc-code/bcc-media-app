@@ -7,5 +7,6 @@
   "git.detectSubmodules": false,
   "files.associations": {
     "*.dart.template": "dart"
-  }
+  },
+  "graphql-config.load.rootDir": "core"
 }

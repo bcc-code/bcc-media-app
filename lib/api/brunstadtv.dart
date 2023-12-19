@@ -1,25 +1,18 @@
 import 'dart:convert';
 
-import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
-import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
-import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/utils.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/graphql/queries/season.graphql.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:http/http.dart' as http;
 
-import '../graphql/client.dart';
-import '../graphql/queries/application.graphql.dart';
-import '../graphql/queries/progress.graphql.dart';
-// import '../graphql/queries/survey.graphql.dart';
-import '../graphql/queries/prompts.graphql.dart';
-import '../graphql/schema/schema.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+// import 'package:bccm_core/api.dart';
+import 'package:bccm_core/api.dart';
 
 class ApiErrorCodes {
   ApiErrorCodes._();

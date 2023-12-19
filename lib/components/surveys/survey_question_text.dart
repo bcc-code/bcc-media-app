@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../graphql/queries/prompts.graphql.dart';
+import 'package:bccm_core/api.dart';
 
 import 'package:bccm_core/design_system.dart';
 

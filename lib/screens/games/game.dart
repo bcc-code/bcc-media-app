@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
-import 'package:brunstadtv_app/graphql/queries/games.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/models/analytics/game_closed.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:flutter/foundation.dart';

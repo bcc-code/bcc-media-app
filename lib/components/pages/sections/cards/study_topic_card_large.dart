@@ -4,7 +4,7 @@ import 'package:bccm_core/src/utils/images.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../../../helpers/router/router_utils.dart';
 import '../../../../l10n/app_localizations.dart';

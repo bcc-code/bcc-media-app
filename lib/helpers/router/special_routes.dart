@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../graphql/client.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
 
 final specialRoutesHandlerProvider = Provider<SpecialRoutesHandler>((ref) {
   return BccmSpecialRoutesHandler(ref);

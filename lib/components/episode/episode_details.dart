@@ -1,5 +1,5 @@
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:bccm_core/design_system.dart';

@@ -1,8 +1,8 @@
-import 'package:bccm_core/src/utils/images.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../graphql/queries/achievements.graphql.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/design_system.dart';
 
 class AchievementListItem extends StatelessWidget {

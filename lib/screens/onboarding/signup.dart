@@ -3,8 +3,8 @@ import 'package:brunstadtv_app/components/onboarding/signup/signup_birthdate_pag
 import 'package:brunstadtv_app/components/onboarding/signup/signup_done_page.dart';
 import 'package:brunstadtv_app/components/onboarding/signup/signup_name_page.dart';
 import 'package:brunstadtv_app/env/env.dart';
-import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
-import 'package:brunstadtv_app/graphql/schema/mutations.graphql.dart';
+import 'package:bccm_core/api.dart';
+import 'package:bccm_core/api.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
