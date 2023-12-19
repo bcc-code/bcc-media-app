@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/background_tasks.dart';
 import 'package:brunstadtv_app/helpers/languages.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
@@ -11,7 +12,7 @@ import 'package:brunstadtv_app/providers/deeplink_service.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:brunstadtv_app/helpers/firebase.dart';
+import 'package:bccm_core/firebase.dart';
 import 'package:brunstadtv_app/router/router.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -44,7 +45,10 @@ Future<void> $main({
   //FocusDebugger.instance.activate();
 
   if (FlavorConfig.current.firebaseOptions != null) {
-    await initFirebase(FlavorConfig.current.firebaseOptions!);
+    await initFirebase(
+      FlavorConfig.current.firebaseOptions!,
+      onFirebaseBackgroundMessage: onFirebaseBackgroundMessage,
+    );
   }
 
   // Initialize bccm_player
