@@ -8,7 +8,6 @@ import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
 
 import '../env/env.dart';
 import '../flavors.dart';
-import 'package:bccm_core/bccm_core.dart';
 
 final unleashProvider = FutureProvider<UnleashClient?>((ref) async {
   final unleash = ref.watch(unleashRawProvider);

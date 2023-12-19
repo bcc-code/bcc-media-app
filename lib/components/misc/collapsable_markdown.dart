@@ -1,4 +1,3 @@
-import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/markdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';

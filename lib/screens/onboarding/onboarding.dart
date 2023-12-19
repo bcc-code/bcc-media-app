@@ -7,7 +7,6 @@ import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 
-import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

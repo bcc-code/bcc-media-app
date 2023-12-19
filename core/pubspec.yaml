@@ -47,6 +47,7 @@ dev_dependencies:
   json_serializable: ^6.7.1
   mockito: ^5.4.4
   graphql_codegen: ^0.13.11
+  flutter_appauth_platform_interface: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

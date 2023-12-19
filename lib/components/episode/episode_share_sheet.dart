@@ -2,7 +2,6 @@ import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/components/menus/option_list.dart';
 import 'package:bccm_core/api.dart';
-import 'package:bccm_core/api.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 
@@ -10,7 +9,6 @@ import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/content_shared.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';

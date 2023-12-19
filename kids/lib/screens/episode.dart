@@ -3,7 +3,6 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/controls.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:bccm_core/api.dart';
-import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';

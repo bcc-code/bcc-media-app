@@ -13,7 +13,6 @@ import '../../components/web/dialog_on_web.dart';
 import '../../components/nav/general_app_bar.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:bccm_core/api.dart';
-import 'package:bccm_core/api.dart';
 import '../../components/buttons/btv_buttons.dart';
 import '../../providers/device_info.dart';
 import 'package:bccm_core/design_system.dart';

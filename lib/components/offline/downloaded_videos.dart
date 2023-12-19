@@ -5,7 +5,6 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/badges/download_status_badge.dart';
 import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
 import 'package:brunstadtv_app/components/menus/option_list.dart';
-import 'package:brunstadtv_app/components/misc/generic_dialog.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_with_header.dart';
 import 'package:brunstadtv_app/components/profile/empty_info.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';

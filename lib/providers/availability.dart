@@ -1,4 +1,3 @@
-import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:collection/collection.dart';

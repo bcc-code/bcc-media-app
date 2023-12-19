@@ -7,7 +7,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:bccm_core/api.dart';
 import 'package:bccm_core/bccm_core.dart';
 import '../../helpers/sections.dart';
 import '../../models/pagination_status.dart';

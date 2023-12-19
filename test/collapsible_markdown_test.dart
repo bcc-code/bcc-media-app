@@ -1,7 +1,6 @@
 import 'package:brunstadtv_app/components/misc/collapsable_markdown.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:bccm_core/design_system.dart';
-import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

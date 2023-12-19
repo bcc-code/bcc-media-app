@@ -16,8 +16,6 @@ import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/components/episode/episode_share_sheet.dart';
 import 'package:brunstadtv_app/models/analytics/chapter_clicked.dart';
-import 'package:brunstadtv_app/models/analytics/misc.dart';
-import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
@@ -39,13 +37,9 @@ import '../components/episode/episode_details.dart';
 import '../components/status/error_no_access.dart';
 import '../components/study/study_button.dart';
 import '../env/env.dart';
-import 'package:bccm_core/api.dart';
-import 'package:bccm_core/api.dart';
-import 'package:bccm_core/api.dart';
 import '../helpers/insets.dart';
 import 'package:bccm_core/design_system.dart';
 
-import 'package:bccm_core/bccm_core.dart';
 import '../l10n/app_localizations.dart';
 
 @RoutePage<void>()

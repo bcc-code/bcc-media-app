@@ -4,7 +4,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:bccm_core/api.dart';
 import '../../../helpers/event_bus.dart';
 import '../../../models/events/my_list_changed.dart';
 import '../../../providers/section_updates.dart';

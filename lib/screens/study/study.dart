@@ -15,7 +15,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../components/nav/custom_back_button.dart';
-import 'package:bccm_core/api.dart';
 import '../../helpers/svg_icons.dart';
 import '../../helpers/webview/main_js_channel.dart';
 import '../../l10n/app_localizations.dart';

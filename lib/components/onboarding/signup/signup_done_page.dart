@@ -12,7 +12,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../helpers/analytics.dart';
 import '../../../l10n/app_localizations.dart';
-import 'package:bccm_core/bccm_core.dart';
 
 import '../onboarding_page_wrapper.dart';
 

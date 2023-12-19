@@ -6,7 +6,6 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:bccm_core/api.dart';
 import 'package:brunstadtv_app/helpers/analytics.dart';
-import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:bccm_core/api.dart';
-import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
@@ -10,20 +9,16 @@ import 'package:flutter/foundation.dart';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/version.dart';
 import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import '../../api/brunstadtv.dart';
 import '../../components/offline/offline_home.dart';
 import '../../flavors.dart';
-import 'package:bccm_core/api.dart';
 import '../../providers/connectivity.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../components/pages/page_renderer.dart';
-import 'package:bccm_core/api.dart';
 
 import '../../components/pages/page_mixin.dart';
 import '../../l10n/app_localizations.dart';

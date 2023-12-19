@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import '../../../achievements/achievement_dialog.dart';
 import '../../../achievements/achievement_list_item.dart';
 import '../../../misc/horizontal_slider.dart';
-import 'package:bccm_core/api.dart';
 
 class AchievementSection extends StatelessWidget {
   final Fragment$Section$$AchievementSection data;

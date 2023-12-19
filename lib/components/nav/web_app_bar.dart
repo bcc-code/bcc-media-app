@@ -10,7 +10,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
 
-import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 
 final logo = Image.asset('assets/flavors/prod/logo.png');

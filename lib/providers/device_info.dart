@@ -10,7 +10,6 @@ import '../helpers/constants.dart';
 import '../helpers/version.dart';
 import 'package:bccm_core/bccm_core.dart';
 import '../models/contact_device_info.dart';
-import 'package:bccm_core/bccm_core.dart';
 
 final isPhysicalDeviceProvider = FutureProvider<bool>((ref) {
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();

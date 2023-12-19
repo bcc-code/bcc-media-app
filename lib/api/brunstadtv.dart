@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:bccm_core/api.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,6 @@ import 'package:http/http.dart' as http;
 
 import 'package:brunstadtv_app/providers/graphql.dart';
 // import 'package:bccm_core/api.dart';
-import 'package:bccm_core/api.dart';
 
 class ApiErrorCodes {
   ApiErrorCodes._();

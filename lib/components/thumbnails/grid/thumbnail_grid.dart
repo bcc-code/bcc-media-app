@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:bccm_core/api.dart';
-import 'package:bccm_core/api.dart';
 import 'package:bccm_core/bccm_core.dart';
 import '../../../models/analytics/sections.dart';
 import '../../../models/episode_thumbnail_data.dart';

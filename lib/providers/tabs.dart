@@ -7,7 +7,6 @@ import '../flavors.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
 import '../screens/tabs/search.dart';
-import 'package:bccm_core/bccm_core.dart';
 import 'feature_flags.dart';
 
 enum TabId {

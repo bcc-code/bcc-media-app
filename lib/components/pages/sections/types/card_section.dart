@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bccm_core/api.dart';
-import 'package:bccm_core/api.dart';
 import '../../../../providers/inherited_data.dart';
 import '../cards/generic_card_mini.dart';
 import '../cards/study_topic_card_large.dart';

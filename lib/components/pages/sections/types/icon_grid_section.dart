@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'package:bccm_core/api.dart';
-import 'package:bccm_core/api.dart';
 import '../../../../models/breakpoints.dart';
 import '../../../misc/custom_grid_view.dart';
 import '../icons/icon_section_button.dart';
