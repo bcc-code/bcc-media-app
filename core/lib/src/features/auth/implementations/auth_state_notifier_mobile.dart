@@ -179,13 +179,7 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       await launchUrl(url, mode: LaunchMode.externalApplication);
     }
     state = AuthState(signedOutManually: manual);
-    /* TODO: core
-    RudderController.instance.reset();
-    if (FlavorConfig.current.enableNotifications) {
-      FirebaseMessaging.instance.deleteToken();
-    }
-    _settingsService.setAnalyticsId(null);
-    _settingsService.refreshSessionId(); */
+    config.onSignout?.call();
 
     return;
   }
