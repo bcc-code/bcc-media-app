@@ -56,9 +56,14 @@ class DeveloperOptions extends ConsumerWidget {
             'Choose environment override',
             style: DesignSystem.of(context).textStyles.title3,
           ),
-          children: [EnvironmentOverride.none, EnvironmentOverride.dev, EnvironmentOverride.sta, EnvironmentOverride.prod]
+          children: ['none', EnvironmentOverride.dev, EnvironmentOverride.sta, EnvironmentOverride.prod]
               .map((env) => SimpleDialogOption(
                     onPressed: () async {
+                      if (env == 'none') {
+                        await ref.read(sharedPreferencesProvider).remove(PrefKeys.envOverride);
+                        Restart.restartApp();
+                        return;
+                      }
                       await ref.read(sharedPreferencesProvider).setString(PrefKeys.envOverride, env);
                       Restart.restartApp();
                     },

@@ -23,16 +23,15 @@ class PrefKeys {
 }
 
 final webEnvUrls = <String, String>{
-  EnvironmentOverride.none: Env.webUrl,
   EnvironmentOverride.dev: 'https://web.dev.brunstad.tv',
   EnvironmentOverride.sta: 'https://web.sta.brunstad.tv',
-  EnvironmentOverride.prod: 'https://app.bcc.media',
+  EnvironmentOverride.prod: Env.webUrl,
 };
 
 Future getWebUrl() async {
   final sharedPrefs = await SharedPreferences.getInstance();
   final envOverride = sharedPrefs.getString(PrefKeys.envOverride);
-  final webUrl = webEnvUrls[envOverride] ?? webEnvUrls[EnvironmentOverride.none]!;
+  final webUrl = webEnvUrls[envOverride] ?? webEnvUrls[EnvironmentOverride.prod]!;
   return webUrl;
 }
 

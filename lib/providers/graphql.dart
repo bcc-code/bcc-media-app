@@ -20,7 +20,7 @@ final bccmGraphQLProviderOverride = bccmGraphQLProvider.overrideWith((ref) {
   final featureFlagsHeader = ref.watch(featureFlagVariantListProvider).join(',');
 
   final httpLink = HttpLink(
-    apiEnvUrls[settings.envOverride] ?? apiEnvUrls[EnvironmentOverride.none]!,
+    apiEnvUrls[settings.envOverride] ?? apiEnvUrls[EnvironmentOverride.prod]!,
     defaultHeaders: BccmGraphqlHeaders(
       acceptLanguage: [settings.appLanguage.languageCode],
       application: FlavorConfig.current.applicationCode,
