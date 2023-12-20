@@ -1,4 +1,5 @@
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:universal_io/io.dart';
 
@@ -27,7 +28,7 @@ class BottomNavIcon extends StatelessWidget {
       image: image,
       gaplessPlayback: true,
     );
-    final gradient = DesignSystem.of(context).appThemeData.tabTheme?.iconActiveGradient;
+    final gradient = AppTheme.of(context).tabTheme?.iconActiveGradient;
     return Padding(
       padding: EdgeInsets.only(top: 2, bottom: Platform.isAndroid ? 2 : 0),
       child: SizedBox(
@@ -94,7 +95,7 @@ class CustomNavTabBar extends HookConsumerWidget {
       currentIndex: tabsRouter.activeIndex,
       onTap: onTabTap,
       inactiveColor: design.colors.label3,
-      activeColor: design.appThemeData.tabTheme?.activeColor,
+      activeColor: AppTheme.of(context).tabTheme?.activeColor,
       border: Border(top: BorderSide(width: 1, color: design.colors.separatorOnLight)),
       items: items,
     );

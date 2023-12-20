@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 import 'package:bccm_core/design_system.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -90,6 +91,7 @@ class FlavorConfig {
     required this.strings,
     required this.enableNotifications,
     required this.designSystem,
+    required this.appTheme,
     this.bccmImages,
     this.strictAnonymousAnalytics,
     this.defaultLanguage = 'en',
@@ -100,6 +102,7 @@ class FlavorConfig {
   final FirebaseOptions? firebaseOptions;
   final BccmFlavorImages? bccmImages;
   final DesignSystemData Function() designSystem;
+  final AppThemeData Function(BuildContext context) appTheme;
   final String applicationCode;
   final FlavorStrings Function(BuildContext context) strings;
   final bool enableNotifications;

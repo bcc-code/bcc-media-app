@@ -1,16 +1,18 @@
 import 'dart:async';
+import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
-import 'package:brunstadtv_app/providers/notifications.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/firebase.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
+import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -49,6 +51,20 @@ Future<void> main() async {
         aboutText: S.of(context).biblekidsAbout,
         contactEmail: 'hello@biblekids.io',
         contactWebsite: Uri.parse('https://biblekids.io'),
+      ),
+      appTheme: (context) => AppThemeData(
+        studyGradient: BccmGradients.greenYellow,
+        genericBackgroundGradient: BccmGradients.purpleTransparentTopBottom,
+        achievementBackgroundGradient: BccmGradients.purpleTransparent,
+        appBarTransparent: false,
+        tabTheme: AppTabThemeData(
+          activeColor: DesignSystem.of(context).colors.tint3,
+          iconActiveGradient: LinearGradient(
+            colors: [DesignSystem.of(context).colors.tint3, DesignSystem.of(context).colors.tint3],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
       ),
     ),
   );

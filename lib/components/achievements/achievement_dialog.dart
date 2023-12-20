@@ -1,5 +1,6 @@
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -107,7 +108,7 @@ class AchievementShareRender extends StatelessWidget {
     final design = BccMediaDesignSystem();
     return DesignSystem(
       designSystem: design,
-      child: (context) => MaterialApp(
+      builder: (context) => MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: Container(
@@ -118,7 +119,7 @@ class AchievementShareRender extends StatelessWidget {
               children: [
                 Positioned.fill(
                   child: Container(
-                    decoration: BoxDecoration(gradient: design.appThemeData.achievementBackgroundGradient),
+                    decoration: BoxDecoration(gradient: AppTheme.of(context).achievementBackgroundGradient),
                   ),
                 ),
                 SizedBox(

@@ -43,7 +43,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
       },
       child: DesignSystem(
         designSystem: FlavorConfig.current.designSystem(),
-        child: (context) => BccmPlayerTheme(
+        builder: (context) => BccmPlayerTheme(
           playerTheme: BccmPlayerThemeData(
             controls: BccmControlsThemeData(
               settingsListTextStyle: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),

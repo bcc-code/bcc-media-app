@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/flavors.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/router.dart';
 import 'package:brunstadtv_app/screens/onboarding/email_verification.dart';
@@ -131,49 +132,52 @@ class _AppRootState extends ConsumerState<AppRoot> {
       },
       child: DesignSystem(
         designSystem: FlavorConfig.current.designSystem(),
-        child: (context) => BccmPlayerTheme(
-          playerTheme: BccmPlayerThemeData(
-            controls: BccmControlsThemeData(
-              settingsListTextStyle: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
+        builder: (context) => AppTheme(
+          theme: FlavorConfig.current.appTheme(context),
+          builder: (context) => BccmPlayerTheme(
+            playerTheme: BccmPlayerThemeData(
+              controls: BccmControlsThemeData(
+                settingsListTextStyle: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
+              ),
             ),
-          ),
-          child: GraphQLProvider(
-            client: ValueNotifier(ref.watch(bccmGraphQLProvider)),
-            child: Directionality(
-              textDirection: TextDirection.ltr,
-              child: MaterialApp.router(
-                localizationsDelegates: S.localizationsDelegates,
-                localeResolutionCallback: (locale, supportedLocales) {
-                  if (locale?.languageCode == 'no') {
-                    return const Locale('nb');
-                  }
-                  if (supportedLocales.map((e) => e.languageCode).contains(locale?.languageCode)) {
-                    return locale;
-                  }
-                  return Locale(FlavorConfig.current.defaultLanguage);
-                },
-                supportedLocales: S.supportedLocales,
-                locale: ref.watch(settingsProvider).appLanguage,
-                theme: ThemeData(),
-                darkTheme: DesignSystem.of(context).materialThemeData,
-                themeMode: ThemeMode.dark,
-                debugShowCheckedModeBanner: false,
-                title: 'BCC Media',
-                routerDelegate: widget.appRouter.delegate(
-                  initialRoutes: [const AutoLoginScreenRoute()],
-                  navigatorObservers: () => [AnalyticsNavigatorObserver(), AutoRouteObserver()],
+            child: GraphQLProvider(
+              client: ValueNotifier(ref.watch(bccmGraphQLProvider)),
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: MaterialApp.router(
+                  localizationsDelegates: S.localizationsDelegates,
+                  localeResolutionCallback: (locale, supportedLocales) {
+                    if (locale?.languageCode == 'no') {
+                      return const Locale('nb');
+                    }
+                    if (supportedLocales.map((e) => e.languageCode).contains(locale?.languageCode)) {
+                      return locale;
+                    }
+                    return Locale(FlavorConfig.current.defaultLanguage);
+                  },
+                  supportedLocales: S.supportedLocales,
+                  locale: ref.watch(settingsProvider).appLanguage,
+                  theme: ThemeData(),
+                  darkTheme: DesignSystem.of(context).materialThemeData,
+                  themeMode: ThemeMode.dark,
+                  debugShowCheckedModeBanner: false,
+                  title: 'BCC Media',
+                  routerDelegate: widget.appRouter.delegate(
+                    initialRoutes: [const AutoLoginScreenRoute()],
+                    navigatorObservers: () => [AnalyticsNavigatorObserver(), AutoRouteObserver()],
+                  ),
+                  routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
+                  builder: (BuildContext context, Widget? child) {
+                    return ResponsiveBreakpoints.builder(
+                      child: MediaQuery(
+                        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                        child: child!,
+                      ),
+                      breakpoints: breakpoints,
+                      breakpointsLandscape: breakpoints,
+                    );
+                  },
                 ),
-                routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
-                builder: (BuildContext context, Widget? child) {
-                  return ResponsiveBreakpoints.builder(
-                    child: MediaQuery(
-                      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                      child: child!,
-                    ),
-                    breakpoints: breakpoints,
-                    breakpointsLandscape: breakpoints,
-                  );
-                },
               ),
             ),
           ),

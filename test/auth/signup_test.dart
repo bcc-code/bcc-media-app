@@ -24,7 +24,7 @@ void main() {
       final page = PageController();
       await t.pumpWidget(DesignSystem(
         designSystem: design,
-        child: (context) => MaterialApp(
+        builder: (context) => MaterialApp(
           locale: const Locale('en'),
           localizationsDelegates: S.localizationsDelegates,
           home: Scaffold(

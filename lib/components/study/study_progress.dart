@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'dart:math';
 
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -62,7 +63,7 @@ class LessonProgressTree extends ConsumerWidget {
           child: OverflowBox(
             child: CustomPaint(
               painter: ArcPainter(
-                gradient: design.appThemeData.studyGradient,
+                gradient: AppTheme.of(context).studyGradient,
                 strokeWidth: outerStrokeWidth,
                 progress: completedFraction,
               ),
@@ -73,7 +74,7 @@ class LessonProgressTree extends ConsumerWidget {
           padding: EdgeInsets.all(arcToTreePadding),
           child: ShaderMask(
               shaderCallback: (bounds) {
-                return design.appThemeData.studyGradient.createShader(bounds);
+                return AppTheme.of(context).studyGradient.createShader(bounds);
               },
               blendMode: BlendMode.srcATop,
               child: treeWidget),

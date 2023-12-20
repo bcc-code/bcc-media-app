@@ -3,6 +3,7 @@ import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -67,7 +68,7 @@ class TvLoginScreen extends HookConsumerWidget {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                gradient: DesignSystem.of(context).appThemeData.genericBackgroundGradient,
+                gradient: AppTheme.of(context).genericBackgroundGradient,
               ),
             ),
           ),

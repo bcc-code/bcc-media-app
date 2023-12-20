@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bccm_core/design_system.dart';
@@ -47,7 +48,7 @@ class StudyProgressRow extends StatelessWidget {
                 child: Container(
                   height: 6,
                   decoration: BoxDecoration(
-                    gradient: design.appThemeData.studyGradient,
+                    gradient: AppTheme.of(context).studyGradient,
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),

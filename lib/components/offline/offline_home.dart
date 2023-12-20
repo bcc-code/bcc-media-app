@@ -1,5 +1,6 @@
 import 'package:brunstadtv_app/components/offline/downloaded_videos.dart';
 import 'package:brunstadtv_app/flavors.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -18,7 +19,7 @@ class OfflineHome extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 44,
-        backgroundColor: design.appThemeData.appBarTransparent ? Colors.transparent : design.colors.background1,
+        backgroundColor: AppTheme.of(context).appBarTransparent ? Colors.transparent : design.colors.background1,
         elevation: 0,
         centerTitle: true,
         title: Image(

@@ -1,5 +1,8 @@
+import 'package:bccm_core/design_system.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/main.dart';
 import 'package:brunstadtv_app/env/prod/firebase_options.dart' as prod_firebase;
+import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import 'package:flutter/material.dart';
 import 'flavors.dart';
@@ -20,6 +23,16 @@ Future<void> main() async {
         aboutText: S.of(context).bccMediaCenter,
         contactEmail: 'support@bcc.media',
         contactWebsite: Uri.parse('https://bcc.media'),
+      ),
+      appTheme: (context) => AppThemeData(
+        studyGradient: BccmGradients.greenYellow,
+        genericBackgroundGradient: BccmGradients.purpleTransparentTopBottom,
+        achievementBackgroundGradient: BccmGradients.purpleTransparent,
+        appBarTransparent: true,
+        tabTheme: AppTabThemeData(
+          activeColor: DesignSystem.of(context).colors.tint1,
+          iconActiveGradient: BccmGradients.softPurpleBlue,
+        ),
       ),
       bccmImages: BccmFlavorImages(
         logoHeight: 20,

@@ -3,6 +3,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/misc/app_update_dialog.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:ui';
@@ -127,7 +128,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                 : AppBar(
                     toolbarHeight: 44,
                     shadowColor: Colors.black,
-                    backgroundColor: design.appThemeData.appBarTransparent ? Colors.transparent : design.colors.background1,
+                    backgroundColor: AppTheme.of(context).appBarTransparent ? Colors.transparent : design.colors.background1,
                     elevation: 0,
                     centerTitle: true,
                     title: Image(
@@ -145,7 +146,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                         ),
                       ),
                     ],
-                    flexibleSpace: !design.appThemeData.appBarTransparent
+                    flexibleSpace: !AppTheme.of(context).appBarTransparent
                         ? null
                         : ClipRect(
                             clipBehavior: Clip.hardEdge,
