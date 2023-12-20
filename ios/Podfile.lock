@@ -13,8 +13,8 @@ PODS:
     - Protobuf (~> 3.13)
     - YouboraAVPlayerAdapter (= 6.6.8)
     - YouboraLib (= 6.6.22)
-  - cloud_firestore (4.8.4):
-    - Firebase/Firestore (= 10.12.0)
+  - cloud_firestore (4.13.6):
+    - Firebase/Firestore (= 10.18.0)
     - firebase_core
     - Flutter
     - nanopb (< 2.30910.0, >= 2.30908.0)
@@ -23,37 +23,37 @@ PODS:
     - ReachabilitySwift
   - device_info_plus (0.0.1):
     - Flutter
-  - Firebase/CoreOnly (10.12.0):
-    - FirebaseCore (= 10.12.0)
-  - Firebase/Crashlytics (10.12.0):
+  - Firebase/CoreOnly (10.18.0):
+    - FirebaseCore (= 10.18.0)
+  - Firebase/Crashlytics (10.18.0):
     - Firebase/CoreOnly
-    - FirebaseCrashlytics (~> 10.12.0)
-  - Firebase/Firestore (10.12.0):
+    - FirebaseCrashlytics (~> 10.18.0)
+  - Firebase/Firestore (10.18.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (~> 10.12.0)
-  - Firebase/Messaging (10.12.0):
+    - FirebaseFirestore (~> 10.18.0)
+  - Firebase/Messaging (10.18.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 10.12.0)
-  - firebase_core (2.15.0):
-    - Firebase/CoreOnly (= 10.12.0)
+    - FirebaseMessaging (~> 10.18.0)
+  - firebase_core (2.24.2):
+    - Firebase/CoreOnly (= 10.18.0)
     - Flutter
-  - firebase_crashlytics (3.3.4):
-    - Firebase/Crashlytics (= 10.12.0)
+  - firebase_crashlytics (3.4.8):
+    - Firebase/Crashlytics (= 10.18.0)
     - firebase_core
     - Flutter
-  - firebase_messaging (14.6.5):
-    - Firebase/Messaging (= 10.12.0)
+  - firebase_messaging (14.7.9):
+    - Firebase/Messaging (= 10.18.0)
     - firebase_core
     - Flutter
-  - FirebaseCore (10.12.0):
+  - FirebaseCore (10.18.0):
     - FirebaseCoreInternal (~> 10.0)
-    - GoogleUtilities/Environment (~> 7.8)
-    - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreExtension (10.13.0):
+    - GoogleUtilities/Environment (~> 7.12)
+    - GoogleUtilities/Logger (~> 7.12)
+  - FirebaseCoreExtension (10.19.0):
     - FirebaseCore (~> 10.0)
-  - FirebaseCoreInternal (10.13.0):
+  - FirebaseCoreInternal (10.19.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseCrashlytics (10.12.0):
+  - FirebaseCrashlytics (10.18.0):
     - FirebaseCore (~> 10.5)
     - FirebaseInstallations (~> 10.0)
     - FirebaseSessions (~> 10.5)
@@ -61,20 +61,20 @@ PODS:
     - GoogleUtilities/Environment (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (~> 2.1)
-  - FirebaseFirestore (10.12.0):
-    - FirebaseFirestore/AutodetectLeveldb (= 10.12.0)
-  - FirebaseFirestore/AutodetectLeveldb (10.12.0):
+  - FirebaseFirestore (10.18.0):
+    - FirebaseFirestore/AutodetectLeveldb (= 10.18.0)
+  - FirebaseFirestore/AutodetectLeveldb (10.18.0):
     - FirebaseFirestore/Base
     - FirebaseFirestore/WithLeveldb
-  - FirebaseFirestore/Base (10.12.0)
-  - FirebaseFirestore/WithLeveldb (10.12.0):
+  - FirebaseFirestore/Base (10.18.0)
+  - FirebaseFirestore/WithLeveldb (10.18.0):
     - FirebaseFirestore/Base
-  - FirebaseInstallations (10.13.0):
+  - FirebaseInstallations (10.19.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - PromisesObjC (~> 2.1)
-  - FirebaseMessaging (10.12.0):
+  - FirebaseMessaging (10.18.0):
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
     - GoogleDataTransport (~> 9.2)
@@ -83,7 +83,7 @@ PODS:
     - GoogleUtilities/Reachability (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseSessions (10.13.0):
+  - FirebaseSessions (10.19.0):
     - FirebaseCore (~> 10.5)
     - FirebaseCoreExtension (~> 10.0)
     - FirebaseInstallations (~> 10.0)
@@ -112,36 +112,37 @@ PODS:
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - google-cast-sdk-dynamic-xcframework-no-bluetooth (4.7.1)
-  - GoogleDataTransport (9.2.5):
+  - GoogleDataTransport (9.3.0):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/AppDelegateSwizzler (7.11.5):
+  - GoogleUtilities/AppDelegateSwizzler (7.12.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.11.5):
+  - GoogleUtilities/Environment (7.12.0):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.11.5):
+  - GoogleUtilities/Logger (7.12.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/Network (7.11.5):
+  - GoogleUtilities/Network (7.12.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.11.5)"
-  - GoogleUtilities/Reachability (7.11.5):
+  - "GoogleUtilities/NSData+zlib (7.12.0)"
+  - GoogleUtilities/Reachability (7.12.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.11.5):
+  - GoogleUtilities/UserDefaults (7.12.0):
     - GoogleUtilities/Logger
   - integration_test (0.0.1):
     - Flutter
-  - MetricsReporter (1.0.0):
-    - RudderKit (~> 1.4.0)
-  - nanopb (2.30909.0):
-    - nanopb/decode (= 2.30909.0)
-    - nanopb/encode (= 2.30909.0)
-  - nanopb/decode (2.30909.0)
-  - nanopb/encode (2.30909.0)
+  - MetricsReporter (1.1.1):
+    - RSCrashReporter (= 1.0.0)
+    - RudderKit (= 1.4.0)
+  - nanopb (2.30909.1):
+    - nanopb/decode (= 2.30909.1)
+    - nanopb/encode (= 2.30909.1)
+  - nanopb/decode (2.30909.1)
+  - nanopb/encode (2.30909.1)
   - open_mail_app (0.0.1):
     - Flutter
   - OrderedSet (5.0.0)
@@ -153,13 +154,14 @@ PODS:
   - PromisesObjC (2.3.1)
   - PromisesSwift (2.3.1):
     - PromisesObjC (= 2.3.1)
-  - Protobuf (3.24.0)
+  - Protobuf (3.25.1)
   - ReachabilitySwift (5.0.0)
-  - Rudder (1.19.2):
-    - MetricsReporter (= 1.0.0)
+  - RSCrashReporter (1.0.0)
+  - Rudder (1.24.0):
+    - MetricsReporter (= 1.1.1)
   - rudder_plugin_ios (0.0.1):
     - Flutter
-    - Rudder (< 2.0.0, >= 1.19.2)
+    - Rudder (< 2.0.0, >= 1.23.0)
   - RudderKit (1.4.0)
   - share_plus (0.0.1):
     - Flutter
@@ -191,7 +193,7 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
-  - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `10.12.0`)
+  - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `10.18.0`)
   - Flutter (from `Flutter`)
   - flutter_appauth (from `.symlinks/plugins/flutter_appauth/ios`)
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
@@ -232,6 +234,7 @@ SPEC REPOS:
     - PromisesSwift
     - Protobuf
     - ReachabilitySwift
+    - RSCrashReporter
     - Rudder
     - RudderKit
     - YouboraAVPlayerAdapter
@@ -256,7 +259,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_messaging/ios"
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 10.12.0
+    :tag: 10.18.0
   Flutter:
     :path: Flutter
   flutter_appauth:
@@ -295,27 +298,27 @@ EXTERNAL SOURCES:
 CHECKOUT OPTIONS:
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 10.12.0
+    :tag: 10.18.0
 
 SPEC CHECKSUMS:
   app_links: 5ef33d0d295a89d9d16bb81b0e3b0d5f70d6c875
   AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
   bccm_player: 604487689efbc99aeb2093d900785b7e36fd43a7
-  cloud_firestore: 005e157ad342dbfb2e461cb111a9020aa71bfb22
+  cloud_firestore: c29d4c2e96fe31374d9dab458a99d7a488d3a735
   connectivity_plus: 07c49e96d7fc92bc9920617b83238c4d178b446a
-  device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
-  Firebase: 07150e75d142fb9399f6777fa56a187b17f833a0
-  firebase_core: e477125798fc37cd4ab43ca6a8536bf7e0929c00
-  firebase_crashlytics: 6043ce85800f96e53f15ee5051f9cfad10cce73d
-  firebase_messaging: 334d68c3a36b6d4d5cd91e4f42509e0d4ae49828
-  FirebaseCore: f86a1394906b97ac445ae49c92552a9425831bed
-  FirebaseCoreExtension: ce60f9db46d83944cf444664d6d587474128eeca
-  FirebaseCoreInternal: b342e37cd4f5b4454ec34308f073420e7920858e
-  FirebaseCrashlytics: c4d111b7430c49744c74bcc6346ea00868661ac8
-  FirebaseFirestore: 8d9dd05bb50e0891ebe4fdd9bd0f9b9d22ea5556
-  FirebaseInstallations: b28af1b9f997f1a799efe818c94695a3728c352f
-  FirebaseMessaging: bb2c4f6422a753038fe137d90ae7c1af57251316
-  FirebaseSessions: 991fb4c20b3505eef125f7cbfa20a5b5b189c2a4
+  device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
+  Firebase: 414ad272f8d02dfbf12662a9d43f4bba9bec2a06
+  firebase_core: 0af4a2b24f62071f9bf283691c0ee41556dcb3f5
+  firebase_crashlytics: 55714f63ae0973c54b3a721c451ae5f815086c1f
+  firebase_messaging: 875385354f623750aa03204a028d640108bc3412
+  FirebaseCore: 2322423314d92f946219c8791674d2f3345b598f
+  FirebaseCoreExtension: c08d14c7b22e07994e876d837e6f58642f340087
+  FirebaseCoreInternal: b444828ea7cfd594fca83046b95db98a2be4f290
+  FirebaseCrashlytics: 86d5bce01f42fa1db265f87ff1d591f04db610ec
+  FirebaseFirestore: 584e3f563142f63d20e9ec9c505370d674d44eba
+  FirebaseInstallations: 033d199474164db20c8350736842a94fe717b960
+  FirebaseMessaging: 9bc34a98d2e0237e1b121915120d4d48ddcf301e
+  FirebaseSessions: e5f4caa188dc8bc6142abc974355be75b042215e
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_appauth: cf9b928962105b2a64a9802585d1c8adaf3e0f46
   flutter_inappwebview: 166ed136c90e43c69b451f6d825da379be66c847
@@ -324,31 +327,32 @@ SPEC CHECKSUMS:
   flutter_to_airplay: 519d8d83d7d8fd1c97a557b98195c4e6396eeb8f
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   google-cast-sdk-dynamic-xcframework-no-bluetooth: 1fa9e267df3fd6f8a1c6e3345142ca5286297968
-  GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
-  GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
+  GoogleDataTransport: 57c22343ab29bc686febbf7cbb13bad167c2d8fe
+  GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
   integration_test: 13825b8a9334a850581300559b8839134b124670
-  MetricsReporter: 35d1a8e62cd99e1434bc8fdd06bf2baf7cb23e42
-  nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
+  MetricsReporter: 759631361ffd2b8f0d375b1225c8a631311f6da2
+  nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   open_mail_app: 794172f6a22cd16319d3ddaf45e945b2f74952b0
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
-  package_info_plus: fd030dabf36271f146f1f3beacd48f564b0f17f7
+  package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
-  Protobuf: 74a8b46ebe3001096a6f4b624e9efbae8adb2edd
+  Protobuf: d94761c33f1239c0a43a0817ca1a5f7f7c900241
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  Rudder: 26a9b6756628cb953f3151d835104ac9f5635861
-  rudder_plugin_ios: 6d73f06a3c4f2f5906746790af65e697976b04bd
+  RSCrashReporter: e9ccaebd996263f8325a6cbef44ff74aa5f58e30
+  Rudder: 87c28fa4b4124538f7770062f735e647192a2dad
+  rudder_plugin_ios: 940ac533f6b3882d7d4389d084aeb2a844c8f4c4
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
   share_plus: 599aa54e4ea31d4b4c0e9c911bcc26c55e791028
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
-  url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
+  url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
   vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
   wakelock_plus: 8b09852c8876491e4b6d179e17dfe2a0b5f60d47
   YouboraAVPlayerAdapter: bc898a61e09c667202a77491b677a42dfa0adc04
   YouboraLib: fc65b030ac93499f8beb3f5daa10deb3879fb2d2
 
-PODFILE CHECKSUM: c6aeebdee2e79c148e29591609832b92319002e0
+PODFILE CHECKSUM: 6f0ef5810022b3791acf2c961403dffcdb8fc599
 
 COCOAPODS: 1.12.1
