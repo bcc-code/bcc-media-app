@@ -3,10 +3,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../env/env.dart';
 
-const bundleIdentifier = 'tv.brunstad.app';
-const auth0RedirectUri = '$bundleIdentifier://login-callback';
-const auth0Issuer = 'https://${Env.auth0Domain}';
-
 class PrefKeys {
   PrefKeys._();
   static const envOverride = 'env_override';
@@ -26,13 +22,6 @@ class PrefKeys {
   static const downloadedVideosGuide = 'downloaded_videos_guide';
 }
 
-const apiEnvUrls = <String, String>{
-  EnvironmentOverride.none: Env.brunstadtvApiEndpoint,
-  EnvironmentOverride.dev: 'https://api.dev.brunstad.tv/query',
-  EnvironmentOverride.sta: 'https://api.sta.brunstad.tv/query',
-  EnvironmentOverride.prod: 'https://api.brunstad.tv/query',
-};
-
 final webEnvUrls = <String, String>{
   EnvironmentOverride.none: Env.webUrl,
   EnvironmentOverride.dev: 'https://web.dev.brunstad.tv',
@@ -47,19 +36,11 @@ Future getWebUrl() async {
   return webUrl;
 }
 
-class EnvironmentOverride {
-  EnvironmentOverride._();
-  static const dev = 'dev';
-  static const sta = 'sta';
-  static const prod = 'prod';
-  static const none = 'none';
-}
-
 class RouteMetaConstants {
   RouteMetaConstants._();
   static const hideMiniPlayer = 'hide_mini_player';
   static const analyticsName = kRouteMetaAnalyticsName;
-  static const settingsName = 'settings_name';
+  static const settingsName = kRouteMetaSettingsName;
   static const navTabRoute = kRouteMetaNavTab;
 }
 

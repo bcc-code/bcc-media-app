@@ -57,7 +57,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
   Future<Query$Page$page> getHomePage() async {
     final api = ref.read(apiProvider);
     return ref.read(appConfigFutureProvider).then((value) {
-      final code = value?.application.page?.code;
+      final code = value.application.page?.code;
       if (code == null) {
         throw ErrorHint('Application config error');
       }
@@ -66,7 +66,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
   }
 
   Future<Query$Page$page> getHomeAndAppConfig() async {
-    reloadAppConfig(ref);
+    ref.invalidate(appConfigFutureProvider);
     return getHomePage();
   }
 

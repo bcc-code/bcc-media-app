@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/helpers/router/redirect.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:bccm_core/design_system.dart';
@@ -31,7 +30,18 @@ class BccmSpecialRoutesHandler implements SpecialRoutesHandler {
       if (code == null) {
         throw Exception("Couldn't handle /r/ special route, missing path segments. Path: $path");
       }
-      performRedirect(code: code, gqlClient: ref.read(bccmGraphQLProvider));
+      getBccmRedirectUri(code: code, gqlClient: ref.read(bccmGraphQLProvider)).then((value) {
+        if (value != null) {
+          launchUrl(value, mode: LaunchMode.externalApplication);
+        } else {
+          FlutterError.reportError(FlutterErrorDetails(
+            exception: Exception('Could not get uri for redirect code: $code'),
+            stack: StackTrace.current,
+            library: 'BccmSpecialRoutesHandler',
+            context: ErrorDescription('While handling redirect code'),
+          ));
+        }
+      });
       return true;
     }
 

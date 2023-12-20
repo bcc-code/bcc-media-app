@@ -1,4 +1,5 @@
 import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/models/feature_flags.dart';
@@ -32,9 +33,9 @@ final authStateProviderOverride = authStateProvider.overrideWith((ref) {
       scopes: Env.auth0Scopes,
       isTv: ref.watch(isAndroidTvProvider),
       onSignout: () {
-        RudderController.instance.reset();
+        ref.read(analyticsProvider).reset();
         if (FlavorConfig.current.enableNotifications) {
-          FirebaseMessaging.instance.deleteToken();
+          ref.read(notificationServiceProvider).deleteToken();
         }
         ref.read(settingsProvider.notifier).setAnalyticsId(null);
         ref.read(settingsProvider.notifier).refreshSessionId();

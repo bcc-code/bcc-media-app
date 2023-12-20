@@ -107,18 +107,6 @@ class Api {
     );
   }
 
-  Future<Query$Application?> queryAppConfig() {
-    return gqlClient.query$Application().then((value) {
-      if (value.exception != null) {
-        throw value.exception!;
-      }
-      if (value.parsedData == null) {
-        throw ErrorDescription('App config data is null.');
-      }
-      return value.parsedData;
-    });
-  }
-
   Future<LivestreamUrl> fetchLiveUrl() async {
     var url = 'https://livestreamfunctions.brunstad.tv/api/urls/live';
     final response = await http.get(Uri.parse(url), headers: {'Authorization': 'Bearer $accessToken'});

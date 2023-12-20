@@ -110,7 +110,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
   }
 
   Future<Query$Page$page> getHomeAndAppConfig() async {
-    reloadAppConfig(ref);
+    ref.invalidate(appConfigFutureProvider);
     return getHomePage();
   }
 

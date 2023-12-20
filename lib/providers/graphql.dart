@@ -21,13 +21,13 @@ final bccmGraphQLProviderOverride = bccmGraphQLProvider.overrideWith((ref) {
 
   final httpLink = HttpLink(
     apiEnvUrls[settings.envOverride] ?? apiEnvUrls[EnvironmentOverride.none]!,
-    defaultHeaders: {
-      'Accept-Language': settings.appLanguage.languageCode,
-      'X-Application': FlavorConfig.current.applicationCode,
-      'X-Application-Version': formatAppVersion(ref.watch(packageInfoProvider)),
-      'X-Feature-Flags': featureFlagsHeader,
-      if (extraUsergroups.isNotEmpty) 'x-explicit-roles': extraUsergroups.join(','),
-    },
+    defaultHeaders: BccmGraphqlHeaders(
+      acceptLanguage: [settings.appLanguage.languageCode],
+      application: FlavorConfig.current.applicationCode,
+      applicationVersion: formatAppVersion(ref.watch(packageInfoProvider)),
+      featureFlags: featureFlagsHeader,
+      extraUsergroups: extraUsergroups,
+    ).toMap(),
     httpClient: RetryClient(
       Client(),
       retries: 1,
