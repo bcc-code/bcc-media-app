@@ -1,15 +1,7 @@
 .PHONY: update-schema git-tag-recreate
 
-BACKEND_SCHEMA_DIR=../bcc-media-platform/backend/graph/api/schema
-APP_SCHEMA_DIR=./lib/graphql/schema
 BUILD_NUMBER=$(shell grep -i -e "version: " pubspec.yaml | cut -d " " -f 2)
 BUILD_NUMBER_KIDS=$(shell grep -i -e "version: " kids/pubspec.yaml | cut -d " " -f 2)
-
-copy-schema: SHELL:=/bin/bash
-copy-schema:
-	for f in $(shell ls ${BACKEND_SCHEMA_DIR}) ;\
-		do cp ${BACKEND_SCHEMA_DIR}/$$f "${APP_SCHEMA_DIR}/$${f%.graphqls}.graphql" ;\
-	done
 
 rm-locales:
 	for file in $$(find ./lib/l10n/ -name *.arb -mindepth 1 -type f); do sed -i '' '/\@\@locale/d' $$file; done
