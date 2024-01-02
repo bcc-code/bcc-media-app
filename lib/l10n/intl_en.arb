@@ -1386,5 +1386,17 @@
   "downloadedVideosGuideDescription": "You can find your downloaded videos under \"Profile\".",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
+  },
+  "bccLiveForcedDescription": "The live stream has moved to a new app called \"BCC Live\". You can download it in the App Store or Google Play.",
+  "@bccLiveForcedDescription": {
+    "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
+  },
+  "bccLiveLinkDescription": "The live stream is moving to a new app called \"BCC Live\". You can download it in the App Store or Google Play.",
+  "@bccLiveLinkDescription": {
+    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both BCC Live and BCC Meida"
+  },
+  "openStore": "Open store",
+  "@openStore": {
+    "description": "A button to open play store / app store."
   }
 }

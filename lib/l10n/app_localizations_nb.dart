@@ -1008,4 +1008,13 @@ class SNb extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'Du finner dine nedlastede videoer under \"Min profil\".';
+
+  @override
+  String get bccLiveForcedDescription => 'The live stream has moved to a new app called \"BCC Live\". You can download it in the App Store or Google Play.';
+
+  @override
+  String get bccLiveLinkDescription => 'The live stream is moving to a new app called \"BCC Live\". You can download it in the App Store or Google Play.';
+
+  @override
+  String get openStore => 'Open store';
 }

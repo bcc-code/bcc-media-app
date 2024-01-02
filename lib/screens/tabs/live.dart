@@ -6,7 +6,9 @@ import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
+import 'package:brunstadtv_app/components/buttons/btv_buttons.dart';
 import 'package:brunstadtv_app/components/player/live_mini_player.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:hive/hive.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:universal_io/io.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import '../../components/player/custom_cast_player.dart';
 import '../../helpers/insets.dart';
 import '../../providers/todays_calendar_entries.dart';
@@ -161,6 +167,11 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAwareStat
   @override
   Widget build(BuildContext context) {
     var player = ref.watch(primaryPlayerProvider);
+    final forceBccLive = ref.watch(featureFlagsProvider.select((value) => value.forceBccLive));
+
+    if (forceBccLive) {
+      return const _ForceBccLive();
+    }
 
     if (player == null) return const SizedBox.shrink();
     return Scaffold(
@@ -230,6 +241,8 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAwareStat
 
   Widget _info() {
     const episodeInfo = null;
+    final design = DesignSystem.of(context);
+    final linkToBccLive = ref.watch(featureFlagsProvider.select((value) => value.linkToBccLive));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -251,7 +264,56 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAwareStat
               ],
             ),
           ),
-        const CalendarWidget(collapsed: true)
+        if (linkToBccLive) ...[
+          Container(
+            decoration: BoxDecoration(
+              color: design.colors.background2,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    'BCC Live',
+                    style: design.textStyles.title1.copyWith(color: design.colors.label1),
+                    textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    S.of(context).bccLiveLinkDescription,
+                    style: design.textStyles.body2.copyWith(color: design.colors.label1),
+                    textAlign: TextAlign.left,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: design.buttons.small(
+                        variant: ButtonVariant.primary,
+                        onPressed: () {
+                          if (Platform.isIOS) {
+                            launchUrlString(
+                              'itms-apps://itunes.apple.com',
+                              mode: LaunchMode.externalApplication,
+                            );
+                          } else if (Platform.isAndroid) {
+                            launchUrlString(
+                              'https://play.google.com/store/search?q=bcc+live&c=apps',
+                              mode: LaunchMode.externalApplication,
+                            );
+                          }
+                        },
+                        labelText: S.of(context).openStore,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ] else
+          const CalendarWidget(collapsed: true)
       ],
     );
   }
@@ -315,6 +377,63 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAwareStat
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _ForceBccLive extends HookConsumerWidget {
+  const _ForceBccLive();
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Container(
+            decoration: BoxDecoration(
+              color: DesignSystem.of(context).colors.background1,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('BCC Live', style: design.textStyles.title1.copyWith(color: design.colors.label1)),
+                Padding(
+                  padding: const EdgeInsets.all(16.0).copyWith(top: 8),
+                  child: Text(
+                    S.of(context).bccLiveForcedDescription,
+                    textAlign: TextAlign.center,
+                    style: design.textStyles.body2.copyWith(color: design.colors.label2),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: DesignSystem.of(context).buttons.small(
+                          variant: ButtonVariant.primary,
+                          onPressed: () {
+                            if (Platform.isIOS) {
+                              launchUrlString(
+                                'itms-apps://itunes.apple.com',
+                                mode: LaunchMode.externalApplication,
+                              );
+                            } else if (Platform.isAndroid) {
+                              launchUrlString(
+                                'https://play.google.com/store/search?q=bcc+live&c=apps',
+                                mode: LaunchMode.externalApplication,
+                              );
+                            }
+                          },
+                          labelText: S.of(context).openStore,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
