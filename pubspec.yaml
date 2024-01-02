@@ -114,7 +114,7 @@ dependencies:
   flutter_image: ^4.1.8
   qr_flutter: ^4.1.0
   focus_debugger: ^0.0.2
-  connectivity_plus: ^4.0.2
+  connectivity_plus: ^5.0.2
   flutter_cache_manager: ^3.3.1
   cached_network_image: ^3.3.0
   async: ^2.11.0
