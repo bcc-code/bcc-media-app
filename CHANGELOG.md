@@ -1,4 +1,20 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.1+2300111...v) (2023-12-18)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.2+2300112...v) (2024-01-02)
+
+
+
+## [5.1.2+2300112](https://github.com/bcc-code/bcc-media-app/compare/v5.1.1+2300111...v5.1.2+2300112) (2024-01-02)
+
+
+### Bug Fixes
+
+* [#331](https://github.com/bcc-code/bcc-media-app/issues/331) - stop short when moving between tabs ([fb8d946](https://github.com/bcc-code/bcc-media-app/commit/fb8d946cb7abd07733c38efc3dc324015bc01cd5))
+* liked shorts not updating on tab change ([c6d625f](https://github.com/bcc-code/bcc-media-app/commit/c6d625fdb6668f08d88e7ae777d923d0e62bbb19))
+
+
+### Features
+
+* direct users to bcc live feature flags [#722](https://github.com/bcc-code/bcc-media-app/issues/722) ([3d74612](https://github.com/bcc-code/bcc-media-app/commit/3d74612f437838a715009c8a66cc495316b7ec44))
+* download guide ([6e6ef9c](https://github.com/bcc-code/bcc-media-app/commit/6e6ef9c1e46d7ece4e409a40415e6b5f2ef0b581))
 
 
 
