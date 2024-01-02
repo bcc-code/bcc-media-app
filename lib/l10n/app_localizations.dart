@@ -2064,13 +2064,13 @@ abstract class S {
   /// Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media.
   ///
   /// In en, this message translates to:
-  /// **'The live stream has moved to a new app called \"BCC Live\". You can download it in the App Store or Google Play.'**
+  /// **'The livestream has moved to a new app called \"BCC Live\". You can download it in the App Store or Google Play.'**
   String get bccLiveForcedDescription;
 
   /// Will be shown in the future when you open the live tab, if the livestream is available in both BCC Live and BCC Meida
   ///
   /// In en, this message translates to:
-  /// **'The live stream is moving to a new app called \"BCC Live\". You can download it in the App Store or Google Play.'**
+  /// **'The livestream is moving to a new app called \"BCC Live\". You can download it in the App Store or Google Play.'**
   String get bccLiveLinkDescription;
 
   /// A button to open play store / app store.
