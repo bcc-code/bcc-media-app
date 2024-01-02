@@ -995,17 +995,17 @@ class SDa extends S {
   String get featureNotAvailableYet => 'Denne funktion er ikke tilgængelig endnu. Prøv igen senere.';
 
   @override
-  String get newFeature => 'New feature';
+  String get newFeature => 'Ny funktion';
 
   @override
-  String get shortsFeatureDescription => 'Discover short and powerful excerpts, and jump right into its full episode.';
+  String get shortsFeatureDescription => 'Oplev korte og kraftfulde uddrag, og spring direkte til dens fulde episode.';
 
   @override
-  String get likedAndSaved => 'Liked and saved';
+  String get likedAndSaved => 'Synes om og gem';
 
   @override
-  String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
+  String get shortsLikedAndSavedDescription => 'Du kan finde alle dine favoritkortfilm i din profil.';
 
   @override
-  String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
+  String get downloadedVideosGuideDescription => 'Du kan finde dine downloadede videoer under \"Profil\".';
 }

@@ -995,17 +995,17 @@ class SNl extends S {
   String get featureNotAvailableYet => 'Deze functie is nog niet beschikbaar. Probeer het later nog eens.';
 
   @override
-  String get newFeature => 'New feature';
+  String get newFeature => 'Nieuwe functie';
 
   @override
-  String get shortsFeatureDescription => 'Discover short and powerful excerpts, and jump right into its full episode.';
+  String get shortsFeatureDescription => 'Ontdek korte en krachtige fragmenten en spring meteen naar de volledige aflevering.';
 
   @override
-  String get likedAndSaved => 'Liked and saved';
+  String get likedAndSaved => 'Geliked en opgeslagen';
 
   @override
-  String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
+  String get shortsLikedAndSavedDescription => 'Je kunt al je favoriete shorts vinden in je profiel.';
 
   @override
-  String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
+  String get downloadedVideosGuideDescription => 'Je gedownloade video\'s vind je onder \"Profiel\".';
 }

@@ -995,17 +995,17 @@ class SNb extends S {
   String get featureNotAvailableYet => 'This feature is not available yet. Please try again later.';
 
   @override
-  String get newFeature => 'New feature';
+  String get newFeature => 'Ny funksjon';
 
   @override
-  String get shortsFeatureDescription => 'Discover short and powerful excerpts, and jump right into its full episode.';
+  String get shortsFeatureDescription => 'Oppdag korte og kraftige utdrag, og hopp rett inn i hele episoden.';
 
   @override
-  String get likedAndSaved => 'Liked and saved';
+  String get likedAndSaved => 'Likt og lagret';
 
   @override
-  String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
+  String get shortsLikedAndSavedDescription => 'Du finner alt du har likt i profilen din.';
 
   @override
-  String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
+  String get downloadedVideosGuideDescription => 'Du finner dine nedlastede videoer under \"Min profil\".';
 }

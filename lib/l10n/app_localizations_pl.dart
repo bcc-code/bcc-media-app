@@ -995,17 +995,17 @@ class SPl extends S {
   String get featureNotAvailableYet => 'Ta funkcja nie jest jeszcze dostępna. Spróbuj ponownie później.';
 
   @override
-  String get newFeature => 'New feature';
+  String get newFeature => 'Nowa funkcja';
 
   @override
-  String get shortsFeatureDescription => 'Discover short and powerful excerpts, and jump right into its full episode.';
+  String get shortsFeatureDescription => 'Odkrywaj krótkie i mocne fragmenty i przejdź od razu do pełnego odcinka.';
 
   @override
-  String get likedAndSaved => 'Liked and saved';
+  String get likedAndSaved => 'Polubione i zapisane';
 
   @override
-  String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
+  String get shortsLikedAndSavedDescription => 'Wszystkie polubione filmy można znaleźć w swoim profilu.';
 
   @override
-  String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
+  String get downloadedVideosGuideDescription => 'Pobrane filmy można znaleźć w \"Profilu\".';
 }

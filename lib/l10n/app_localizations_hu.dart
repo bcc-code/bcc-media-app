@@ -995,17 +995,17 @@ class SHu extends S {
   String get featureNotAvailableYet => 'Ez a funkció még nem érhető el. Kérlek, próbáld újra később.';
 
   @override
-  String get newFeature => 'New feature';
+  String get newFeature => 'Új funkció';
 
   @override
-  String get shortsFeatureDescription => 'Discover short and powerful excerpts, and jump right into its full episode.';
+  String get shortsFeatureDescription => 'Fedezz fel rövid és erőteljes kivonatokat és ugorj a teljes epizódra.';
 
   @override
-  String get likedAndSaved => 'Liked and saved';
+  String get likedAndSaved => 'Kedvelt és elmentett';
 
   @override
-  String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
+  String get shortsLikedAndSavedDescription => 'A profilodban megtalálhatod az összes kedvelt shortodat.';
 
   @override
-  String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
+  String get downloadedVideosGuideDescription => 'A letöltött videókat a \"Profil\" menüpont alatt találod.';
 }

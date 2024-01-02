@@ -995,17 +995,17 @@ class SSl extends S {
   String get featureNotAvailableYet => 'Ta funkcija še ni na voljo. Poskusi kasneje.';
 
   @override
-  String get newFeature => 'New feature';
+  String get newFeature => 'Nova funkcija';
 
   @override
-  String get shortsFeatureDescription => 'Discover short and powerful excerpts, and jump right into its full episode.';
+  String get shortsFeatureDescription => 'Odkrij kratke in močne izseke ter skoči v celotno epizodo.';
 
   @override
-  String get likedAndSaved => 'Liked and saved';
+  String get likedAndSaved => 'Všečkano in shranjeno';
 
   @override
-  String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
+  String get shortsLikedAndSavedDescription => 'Vse priljubljene kratke filme lahko najdeš v svojem profilu.';
 
   @override
-  String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
+  String get downloadedVideosGuideDescription => 'Prenesene videoposnetke lahko najdeš v razdelku \"Profil\".';
 }

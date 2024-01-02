@@ -1367,23 +1367,23 @@
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
-  "newFeature": "New feature",
+  "newFeature": "Nowa funkcja",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
   },
-  "shortsFeatureDescription": "Discover short and powerful excerpts, and jump right into its full episode.",
+  "shortsFeatureDescription": "Odkrywaj krótkie i mocne fragmenty i przejdź od razu do pełnego odcinka.",
   "@shortsFeatureDescription": {
     "description": "Shown the first time you open the app after 'shorts' is enabled."
   },
-  "likedAndSaved": "Liked and saved",
+  "likedAndSaved": "Polubione i zapisane",
   "@likedAndSaved": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "shortsLikedAndSavedDescription": "You can find all your liked shorts in your profile.",
+  "shortsLikedAndSavedDescription": "Wszystkie polubione filmy można znaleźć w swoim profilu.",
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "downloadedVideosGuideDescription": "You can find your downloaded videos under \"Profile\".",
+  "downloadedVideosGuideDescription": "Pobrane filmy można znaleźć w \"Profilu\".",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   }

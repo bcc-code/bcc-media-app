@@ -1367,23 +1367,23 @@
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
-  "newFeature": "New feature",
+  "newFeature": "Funcții noi",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
   },
-  "shortsFeatureDescription": "Discover short and powerful excerpts, and jump right into its full episode.",
+  "shortsFeatureDescription": "Descoperă fragmente scurte și puternice, și sări direct la episodul complet.",
   "@shortsFeatureDescription": {
     "description": "Shown the first time you open the app after 'shorts' is enabled."
   },
-  "likedAndSaved": "Liked and saved",
+  "likedAndSaved": "Apreciat și salvat",
   "@likedAndSaved": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "shortsLikedAndSavedDescription": "You can find all your liked shorts in your profile.",
+  "shortsLikedAndSavedDescription": "Poți găsi în profilul tău toate scurtmetrajele care ți-au plăcut.",
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "downloadedVideosGuideDescription": "You can find your downloaded videos under \"Profile\".",
+  "downloadedVideosGuideDescription": "Poți găsi videourile descărcate la rubrica „Profil\".",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   }

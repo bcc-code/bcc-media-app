@@ -995,17 +995,17 @@ class SRo extends S {
   String get featureNotAvailableYet => 'Această funcție nu este încă disponibilă. Te rugăm să încerci din nou mai târziu.';
 
   @override
-  String get newFeature => 'New feature';
+  String get newFeature => 'Funcții noi';
 
   @override
-  String get shortsFeatureDescription => 'Discover short and powerful excerpts, and jump right into its full episode.';
+  String get shortsFeatureDescription => 'Descoperă fragmente scurte și puternice, și sări direct la episodul complet.';
 
   @override
-  String get likedAndSaved => 'Liked and saved';
+  String get likedAndSaved => 'Apreciat și salvat';
 
   @override
-  String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
+  String get shortsLikedAndSavedDescription => 'Poți găsi în profilul tău toate scurtmetrajele care ți-au plăcut.';
 
   @override
-  String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
+  String get downloadedVideosGuideDescription => 'Poți găsi videourile descărcate la rubrica „Profil\".';
 }

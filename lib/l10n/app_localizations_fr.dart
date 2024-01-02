@@ -995,17 +995,17 @@ class SFr extends S {
   String get featureNotAvailableYet => 'Cette fonctionnalité n\'est pas encore disponible. Veuillez réessayer plus tard.';
 
   @override
-  String get newFeature => 'New feature';
+  String get newFeature => 'Nouvelle fonctionnalité';
 
   @override
-  String get shortsFeatureDescription => 'Discover short and powerful excerpts, and jump right into its full episode.';
+  String get shortsFeatureDescription => 'Découvrez des extraits courts et puissants, et accédez directement à l\'épisode complet.';
 
   @override
-  String get likedAndSaved => 'Liked and saved';
+  String get likedAndSaved => 'Aimé et enregistré';
 
   @override
-  String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
+  String get shortsLikedAndSavedDescription => 'Vous pouvez trouver tous vos courts métrages préférés dans votre profil.';
 
   @override
-  String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
+  String get downloadedVideosGuideDescription => 'Vous pouvez trouver vos vidéos téléchargées sous « Profil ».';
 }

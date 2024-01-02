@@ -1367,23 +1367,23 @@
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
-  "newFeature": "New feature",
+  "newFeature": "Ny funktion",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
   },
-  "shortsFeatureDescription": "Discover short and powerful excerpts, and jump right into its full episode.",
+  "shortsFeatureDescription": "Oplev korte og kraftfulde uddrag, og spring direkte til dens fulde episode.",
   "@shortsFeatureDescription": {
     "description": "Shown the first time you open the app after 'shorts' is enabled."
   },
-  "likedAndSaved": "Liked and saved",
+  "likedAndSaved": "Synes om og gem",
   "@likedAndSaved": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "shortsLikedAndSavedDescription": "You can find all your liked shorts in your profile.",
+  "shortsLikedAndSavedDescription": "Du kan finde alle dine favoritkortfilm i din profil.",
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "downloadedVideosGuideDescription": "You can find your downloaded videos under \"Profile\".",
+  "downloadedVideosGuideDescription": "Du kan finde dine downloadede videoer under \"Profil\".",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   }
