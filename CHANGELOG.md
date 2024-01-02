@@ -7,7 +7,9 @@
 
 ### Bug Fixes
 
+* [#326](https://github.com/bcc-code/bcc-media-app/issues/326) implement context everywhere ([4914efd](https://github.com/bcc-code/bcc-media-app/commit/4914efd8ce608ed624c6df8ce46fd69efaf2c30e))
 * [#331](https://github.com/bcc-code/bcc-media-app/issues/331) - stop short when moving between tabs ([fb8d946](https://github.com/bcc-code/bcc-media-app/commit/fb8d946cb7abd07733c38efc3dc324015bc01cd5))
+* deep links not working ([ec3282d](https://github.com/bcc-code/bcc-media-app/commit/ec3282dd199dc0ee3c090fe09079ab16f451dbef))
 * liked shorts not updating on tab change ([c6d625f](https://github.com/bcc-code/bcc-media-app/commit/c6d625fdb6668f08d88e7ae777d923d0e62bbb19))
 
 
