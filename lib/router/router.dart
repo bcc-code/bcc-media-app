@@ -312,6 +312,7 @@ final _episodeScreenRoute = CupertinoRoute(
 final _shortScreenRoute = CupertinoRoute(
   page: ShortScreenRoute.page,
   path: ':id',
+  usesPathAsKey: true,
   maintainState: true,
   meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
 );

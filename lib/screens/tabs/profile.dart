@@ -397,7 +397,7 @@ class _FavoriteItemClickWrapper extends ConsumerWidget {
     }
     final shortItem = item.asOrNull<Fragment$MyListEntry$item$$Short>();
     if (shortItem != null) {
-      context.router.navigate(ShortScreenRoute(id: shortItem.id));
+      context.router.push(ShortScreenRoute(id: shortItem.id));
     }
     ref.read(analyticsProvider).myListTabEntryClicked(context);
   }
