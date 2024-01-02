@@ -66,7 +66,7 @@ class ProfileScreen extends HookConsumerWidget {
 
     useIsTabActive(onChange: (active) {
       if (active) {
-        myListFuture.value = getMyList();
+        onFavoritesRefresh();
       }
     });
 
@@ -92,10 +92,10 @@ class ProfileScreen extends HookConsumerWidget {
       if (scroll != null && scroll!.isNotEmpty) {
         SchedulerBinding.instance.addPostFrameCallback((_) {
           if (scroll == kProfileScrollQueryLikedShorts) {
-            context.router.replace(ProfileScreenRoute(scroll: null));
+            context.router.replace(ProfileScreenRoute());
             scrollTo(likedShortsKey);
           } else if (scroll == kProfileScrollQueryDownloaded) {
-            context.router.replace(ProfileScreenRoute(scroll: null));
+            context.router.replace(ProfileScreenRoute());
             scrollTo(downloadedKey);
           }
         });
@@ -272,11 +272,9 @@ class _ShortFavorites extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final myListEntries = useState(items);
-
     final design = DesignSystem.of(context);
 
-    final shortItems = myListEntries.value.map((item) => item.item).whereType<Fragment$MyListEntry$item$$Short>();
+    final shortItems = items.map((item) => item.item).whereType<Fragment$MyListEntry$item$$Short>();
     const double thumbnailHeight = 130;
     const double basePadding = 16;
     return HorizontalSlider(
@@ -352,6 +350,9 @@ class _EpisodeFavorites extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final myListEntries = useState(items);
+    useEffect(() {
+      myListEntries.value = items;
+    }, [items]);
 
     useEffect(() {
       final subscription = setEpisodeProgressUpdateSubscription(myListEntries);
