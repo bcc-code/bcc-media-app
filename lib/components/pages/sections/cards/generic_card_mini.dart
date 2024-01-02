@@ -12,7 +12,12 @@ import '../../../status/loading_indicator.dart';
 
 class GenericCardMini extends StatefulWidget {
   final Fragment$Section$$CardSection$items$items item;
-  const GenericCardMini({super.key, required this.item});
+  final String? collectionId;
+  const GenericCardMini({
+    super.key,
+    required this.item,
+    this.collectionId,
+  });
 
   @override
   State<GenericCardMini> createState() => _GenericCardMiniState();
@@ -36,7 +41,7 @@ class _GenericCardMiniState extends State<GenericCardMini> {
     final design = DesignSystem.of(context);
     return GestureDetector(
       onTap: () => setState(() {
-        navigationFuture = handleSectionItemClick(context, widget.item.item);
+        navigationFuture = handleSectionItemClick(context, widget.item.item, collectionId: widget.collectionId);
       }),
       child: Stack(
         children: [

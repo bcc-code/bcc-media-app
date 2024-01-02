@@ -23,7 +23,7 @@ class ItemSectionThumbnailGrid extends StatelessWidget {
       data: data,
       showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
       aspectRatio: 16 / 9,
-      collectionId: data.metadata?.collectionId,
+      collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
     );
   }
 
@@ -32,7 +32,7 @@ class ItemSectionThumbnailGrid extends StatelessWidget {
       data: data,
       showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
       aspectRatio: 0.67,
-      collectionId: data.metadata?.collectionId,
+      collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
     );
   }
 

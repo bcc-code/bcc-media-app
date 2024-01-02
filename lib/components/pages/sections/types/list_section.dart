@@ -23,6 +23,7 @@ class ListSection extends StatelessWidget {
             .map(
               (kv) => SectionItemClickWrapper(
                 item: kv.value,
+                collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
                 analytics: SectionItemAnalytics(id: kv.value.id, position: kv.key, type: kv.value.$__typename, name: kv.value.title),
                 child: EpisodeListEpisode(
                   showSecondaryTitle: data.metadata?.secondaryTitles ?? true,

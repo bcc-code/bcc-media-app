@@ -22,29 +22,39 @@ class IconGridSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
-      child: _IconGridSectionList(size: data.gridSize, sectionItems: data.items.items),
+      child: _IconGridSectionList(
+        size: data.gridSize,
+        sectionItems: data.items.items,
+        collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
+      ),
     );
   }
 }
 
 class _IconGridSectionList extends StatelessWidget {
-  const _IconGridSectionList({required this.size, required this.sectionItems});
+  const _IconGridSectionList({
+    required this.size,
+    required this.sectionItems,
+    this.collectionId,
+  });
 
   final Enum$GridSectionSize size;
   final List<Fragment$ItemSectionItem> sectionItems;
+  final String? collectionId;
 
   @override
   Widget build(BuildContext context) {
     final colSize = ResponsiveValue(
-      context,
-      defaultValue: _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!,
-      conditionalValues: [
-        Condition.equals(name: BP.md, value: 3),
-        Condition.equals(name: BP.lg, value: 4),
-        Condition.equals(name: BP.xl, value: 5),
-        Condition.largerThan(name: BP.xl, value: 6),
-      ],
-    ).value!;
+          context,
+          conditionalValues: [
+            Condition.equals(name: BP.md, value: 3),
+            Condition.equals(name: BP.lg, value: 4),
+            Condition.equals(name: BP.xl, value: 5),
+            Condition.largerThan(name: BP.xl, value: 6),
+          ],
+        ).value ??
+        _columnSize[size] ??
+        _columnSize[Enum$GridSectionSize.half]!;
 
     return CustomGridView(
       verticalSpacing: 12,
@@ -54,6 +64,7 @@ class _IconGridSectionList extends StatelessWidget {
           .mapIndexed(
             (index, item) => SectionItemClickWrapper(
               item: item.item,
+              collectionId: collectionId,
               analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
               child: IconSectionButton(
                 label: item.title,

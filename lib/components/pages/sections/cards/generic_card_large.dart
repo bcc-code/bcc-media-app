@@ -9,7 +9,12 @@ import '../../../status/loading_indicator.dart';
 
 class GenericCardLarge extends StatefulWidget {
   final Fragment$Section$$CardSection$items$items item;
-  const GenericCardLarge({super.key, required this.item});
+  final String? collectionId;
+  const GenericCardLarge({
+    super.key,
+    required this.item,
+    this.collectionId,
+  });
 
   @override
   State<GenericCardLarge> createState() => _GenericCardLargeState();
@@ -20,7 +25,7 @@ class _GenericCardLargeState extends State<GenericCardLarge> {
 
   void onCardTapped() {
     setState(() {
-      navigationFuture = handleSectionItemClick(context, widget.item.item);
+      navigationFuture = handleSectionItemClick(context, widget.item.item, collectionId: widget.collectionId);
     });
   }
 

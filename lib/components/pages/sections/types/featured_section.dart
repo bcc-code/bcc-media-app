@@ -101,6 +101,7 @@ class FeaturedSection extends ConsumerWidget {
           final item = sectionItems[index % sectionItems.length];
           return SectionItemClickWrapper(
             item: item.item,
+            collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
             analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
             child: _FeaturedItem(
               sectionItem: item,
@@ -140,11 +141,13 @@ class FeaturedSection extends ConsumerWidget {
           width: (constraints.maxWidth - (2 * paddingX) - gap) / numItems,
           child: SectionItemClickWrapper(
             item: item.item,
+            collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
             analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
             child: _FeaturedItem(
               sectionItem: item,
               margin: const EdgeInsets.symmetric(horizontal: marginX),
               isLive: item.id == curLiveEpisode?.id,
+              collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
             ),
           ),
         );
@@ -157,11 +160,13 @@ class _FeaturedItem extends StatelessWidget {
   final Fragment$Section$$FeaturedSection$items$items sectionItem;
   final EdgeInsetsGeometry? margin;
   final bool isLive;
+  final String? collectionId;
 
   const _FeaturedItem({
     required this.sectionItem,
     this.margin = const EdgeInsets.all(0),
     this.isLive = false,
+    this.collectionId,
   });
 
   @override
@@ -216,7 +221,7 @@ class _FeaturedItem extends StatelessWidget {
                         image: Image.asset('assets/icons/Play.png'),
                         labelText: S.of(context).liveNow,
                         onPressed: () {
-                          handleSectionItemClick(context, sectionItem.item);
+                          handleSectionItemClick(context, sectionItem.item, collectionId: collectionId);
                         },
                       )
                     : design.buttons.small(
@@ -224,7 +229,7 @@ class _FeaturedItem extends StatelessWidget {
                         image: Image.asset('assets/icons/Play.png'),
                         labelText: S.of(context).watchNow,
                         onPressed: () {
-                          handleSectionItemClick(context, sectionItem.item);
+                          handleSectionItemClick(context, sectionItem.item, collectionId: collectionId);
                         },
                       ),
               ],

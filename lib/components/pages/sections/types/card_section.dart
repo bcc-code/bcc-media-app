@@ -15,6 +15,7 @@ class CardSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final collectionId = data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
       child: Column(
@@ -37,9 +38,9 @@ class CardSection extends StatelessWidget {
                     }
                   }
                   if (data.cardSize == Enum$CardSectionSize.large) {
-                    return GenericCardLarge(item: cardSectionItem);
+                    return GenericCardLarge(item: cardSectionItem, collectionId: collectionId);
                   } else if (data.cardSize == Enum$CardSectionSize.mini) {
-                    return GenericCardMini(item: cardSectionItem);
+                    return GenericCardMini(item: cardSectionItem, collectionId: collectionId);
                   } else {
                     return const SizedBox.shrink();
                   }
