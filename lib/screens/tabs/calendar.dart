@@ -509,7 +509,7 @@ class _EntriesSlot extends StatelessWidget {
       children: <Widget>[
         if (entriesList != null && entriesList.isNotEmpty) ...[
           ...entriesList.map((entry) {
-            final episode = entry.asOrNull<Fragment$CalendarDay$entries$$EpisodeCalendarEntry>();
+            final episode = entry.asOrNull<Fragment$CalendarEntry$$EpisodeCalendarEntry>();
             return GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTapUp: (details) {
