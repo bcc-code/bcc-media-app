@@ -8,10 +8,9 @@ import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
 
 final rawUnleashProviderOverride = rawUnleashProvider.overrideWith((Ref ref) {
   if (Env.unleashClientKey.isEmpty) return null;
-  final isBetaTester = ref.watch(settingsProvider.select((s) => s.isBetaTester == true));
   final client = UnleashClient(
     url: Uri.parse(Env.unleashProxyUrl),
-    clientKey: isBetaTester ? Env.unleashClientKeyBetaTester : Env.unleashClientKey,
+    clientKey: Env.unleashClientKey,
     appName: FlavorConfig.current.applicationCode,
     refreshInterval: 60,
     customHeaders: {

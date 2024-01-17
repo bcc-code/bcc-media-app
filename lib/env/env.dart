@@ -16,7 +16,6 @@ class Env {
   static const rudderstackWriteKey = _Secrets.rudderstackWriteKey;
   static final webUrl = _Secrets.webUrl.isNotEmpty ? _Secrets.webUrl : 'https://app.bcc.media';
   static const unleashClientKey = _Secrets.unleashClientKey;
-  static const unleashClientKeyBetaTester = _Secrets.unleashClientKeyBetaTester;
   static const unleashProxyUrl = _Secrets.unleashProxyUrl;
   static const unleashAppName = _Secrets.unleashAppName;
   static const forceFlutterControls = _Secrets.forceFlutterControls;
