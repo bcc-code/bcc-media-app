@@ -142,11 +142,12 @@ final currentTabIdsProvider = Provider<List<TabId>>((ref) {
   final enableGames = ref.watch(featureFlagsProvider.select((value) => value.gamesTab));
   final guest = ref.watch(authStateProvider).guestMode;
   final shorts = ref.watch(featureFlagsProvider.select((value) => value.shorts));
+  final live = !ref.watch(featureFlagsProvider.select((value) => value.removeLiveTab));
   return [
     TabId.home,
     if (enableGames) TabId.games,
     TabId.search,
-    if (!guest) TabId.live,
+    if (!guest && live) TabId.live,
     if (!guest && shorts) TabId.shorts,
     if (!guest && !shorts) TabId.calendar,
     TabId.profile,

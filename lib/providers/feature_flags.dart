@@ -68,6 +68,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       shortsGuide: client.isEnabled('shorts-guide'),
       linkToBccLive: client.isEnabled('link-to-bcc-live'),
       forceBccLive: client.isEnabled('force-bcc-live'),
+      removeLiveTab: client.isEnabled('remove-live-tab'),
     );
   }
 }
