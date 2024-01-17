@@ -1386,5 +1386,17 @@
   "downloadedVideosGuideDescription": "Löydät lataamasi videot kohdasta \"Profiili\".",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
+  },
+  "bccLiveForcedDescription": "Suora lähetys on siirtynyt uuteen sovellukseen nimeltä \"BCC Live\". Voit ladata sen App Storesta tai Google Playsta.",
+  "@bccLiveForcedDescription": {
+    "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
+  },
+  "bccLiveLinkDescription": "Suora lähetys siirtyy uuteen sovellukseen nimeltä \"BCC Live\". Voit ladata sen App Storesta tai Google Playsta.",
+  "@bccLiveLinkDescription": {
+    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both BCC Live and BCC Meida"
+  },
+  "openStore": "Avaa kauppa",
+  "@openStore": {
+    "description": "A button to open play store / app store."
   }
 }

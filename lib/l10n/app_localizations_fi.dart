@@ -1010,11 +1010,11 @@ class SFi extends S {
   String get downloadedVideosGuideDescription => 'Löydät lataamasi videot kohdasta \"Profiili\".';
 
   @override
-  String get bccLiveForcedDescription => 'The livestream has moved to a new app called \"BCC Live\". You can download it in the App Store or Google Play.';
+  String get bccLiveForcedDescription => 'Suora lähetys on siirtynyt uuteen sovellukseen nimeltä \"BCC Live\". Voit ladata sen App Storesta tai Google Playsta.';
 
   @override
-  String get bccLiveLinkDescription => 'The livestream is moving to a new app called \"BCC Live\". You can download it in the App Store or Google Play.';
+  String get bccLiveLinkDescription => 'Suora lähetys siirtyy uuteen sovellukseen nimeltä \"BCC Live\". Voit ladata sen App Storesta tai Google Playsta.';
 
   @override
-  String get openStore => 'Open store';
+  String get openStore => 'Avaa kauppa';
 }

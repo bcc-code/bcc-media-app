@@ -215,7 +215,7 @@ class SNb extends S {
   String get goBack => 'Gå tilbake';
 
   @override
-  String get yesCancel => 'Ja, Avbryt';
+  String get yesCancel => 'Ja, avbryt';
 
   @override
   String get upNext => 'Neste';
@@ -1016,5 +1016,5 @@ class SNb extends S {
   String get bccLiveLinkDescription => 'The livestream is moving to a new app called \"BCC Live\". You can download it in the App Store or Google Play.';
 
   @override
-  String get openStore => 'Open store';
+  String get openStore => 'Åpne';
 }

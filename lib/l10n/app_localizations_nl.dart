@@ -1010,10 +1010,10 @@ class SNl extends S {
   String get downloadedVideosGuideDescription => 'Je gedownloade video\'s vind je onder \"Profiel\".';
 
   @override
-  String get bccLiveForcedDescription => 'The livestream has moved to a new app called \"BCC Live\". You can download it in the App Store or Google Play.';
+  String get bccLiveForcedDescription => 'De livestream is verplaatst naar een nieuwe app genaamd \"BCC Live\". Je kunt hem downloaden in de App Store of Google Play.';
 
   @override
-  String get bccLiveLinkDescription => 'The livestream is moving to a new app called \"BCC Live\". You can download it in the App Store or Google Play.';
+  String get bccLiveLinkDescription => 'De livestream verhuist naar een nieuwe app genaamd \"BCC Live\". Je kunt hem downloaden in de App Store of Google Play.';
 
   @override
   String get openStore => 'Open store';

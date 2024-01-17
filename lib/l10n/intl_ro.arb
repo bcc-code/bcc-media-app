@@ -1386,5 +1386,17 @@
   "downloadedVideosGuideDescription": "Poți găsi videourile descărcate la rubrica „Profil\".",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
+  },
+  "bccLiveForcedDescription": "Transmisiunea în direct s-a mutat într-o nouă aplicație numită „BCC Live\". Se poate descărca din App Store sau Google Play.",
+  "@bccLiveForcedDescription": {
+    "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
+  },
+  "bccLiveLinkDescription": "Transmisiunea în direct s-a mutat într-o nouă aplicație numită „BCC Live\". Se poate descărca din App Store sau Google Play.",
+  "@bccLiveLinkDescription": {
+    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both BCC Live and BCC Meida"
+  },
+  "openStore": "Magazin deschis",
+  "@openStore": {
+    "description": "A button to open play store / app store."
   }
 }

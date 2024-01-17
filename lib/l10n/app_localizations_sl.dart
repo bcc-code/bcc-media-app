@@ -1010,11 +1010,11 @@ class SSl extends S {
   String get downloadedVideosGuideDescription => 'Prenesene videoposnetke lahko najdeš v razdelku \"Profil\".';
 
   @override
-  String get bccLiveForcedDescription => 'The livestream has moved to a new app called \"BCC Live\". You can download it in the App Store or Google Play.';
+  String get bccLiveForcedDescription => 'Prenos v živo se je preselil v novo aplikacijo, imenovano \"BCC Live\". Preneseš jo lahko v App Store ali Google Play.';
 
   @override
-  String get bccLiveLinkDescription => 'The livestream is moving to a new app called \"BCC Live\". You can download it in the App Store or Google Play.';
+  String get bccLiveLinkDescription => 'Prenos v živo se seli v novo aplikacijo, imenovano \"BCC Live\". Preneseš jo lahko v App Store ali Google Play.';
 
   @override
-  String get openStore => 'Open store';
+  String get openStore => 'Odpri trgovino';
 }

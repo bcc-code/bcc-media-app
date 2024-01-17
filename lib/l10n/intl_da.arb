@@ -1386,5 +1386,17 @@
   "downloadedVideosGuideDescription": "Du kan finde dine downloadede videoer under \"Profil\".",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
+  },
+  "bccLiveForcedDescription": "Livestreamen er flyttet til en ny app: \"BCC Live\". Du kan downloade appen i App Store eller Google Play.",
+  "@bccLiveForcedDescription": {
+    "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
+  },
+  "bccLiveLinkDescription": "Livestreamen er flyttet til en ny app: \"BCC Live\". Du kan downloade appen i App Store eller Google Play.",
+  "@bccLiveLinkDescription": {
+    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both BCC Live and BCC Meida"
+  },
+  "openStore": "Åbn",
+  "@openStore": {
+    "description": "A button to open play store / app store."
   }
 }

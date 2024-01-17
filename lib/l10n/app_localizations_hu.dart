@@ -1010,11 +1010,11 @@ class SHu extends S {
   String get downloadedVideosGuideDescription => 'A letöltött videókat a \"Profil\" menüpont alatt találod.';
 
   @override
-  String get bccLiveForcedDescription => 'The livestream has moved to a new app called \"BCC Live\". You can download it in the App Store or Google Play.';
+  String get bccLiveForcedDescription => 'A livestream átkerült egy új alkalmazásba, a \"BCC Live\"-ba. Letölthető az App Store-ból vagy a Google Play-ből.';
 
   @override
-  String get bccLiveLinkDescription => 'The livestream is moving to a new app called \"BCC Live\". You can download it in the App Store or Google Play.';
+  String get bccLiveLinkDescription => 'A livestream át fog kerülni egy új alkalmazásba, a \"BCC Live\"-ba. Letölthető az App Store-ból vagy a Google Play-ből.';
 
   @override
-  String get openStore => 'Open store';
+  String get openStore => 'App Store/Play Áruház megnyitása';
 }

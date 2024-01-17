@@ -1386,5 +1386,17 @@
   "downloadedVideosGuideDescription": "A letöltött videókat a \"Profil\" menüpont alatt találod.",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
+  },
+  "bccLiveForcedDescription": "A livestream átkerült egy új alkalmazásba, a \"BCC Live\"-ba. Letölthető az App Store-ból vagy a Google Play-ből.",
+  "@bccLiveForcedDescription": {
+    "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
+  },
+  "bccLiveLinkDescription": "A livestream át fog kerülni egy új alkalmazásba, a \"BCC Live\"-ba. Letölthető az App Store-ból vagy a Google Play-ből.",
+  "@bccLiveLinkDescription": {
+    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both BCC Live and BCC Meida"
+  },
+  "openStore": "App Store/Play Áruház megnyitása",
+  "@openStore": {
+    "description": "A button to open play store / app store."
   }
 }

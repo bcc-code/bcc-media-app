@@ -1386,5 +1386,17 @@
   "downloadedVideosGuideDescription": "Você pode encontrar seus vídeos baixados em \"Perfil\".",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
+  },
+  "bccLiveForcedDescription": "A transmissão ao vivo mudou para um novo aplicativo chamado \"BCC Live\". Você pode baixá-lo na App Store ou no Google Play.",
+  "@bccLiveForcedDescription": {
+    "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
+  },
+  "bccLiveLinkDescription": "A transmissão ao vivo está migrando para um novo aplicativo chamado “BCC Live”. Você pode baixá-lo na App Store ou no Google Play.",
+  "@bccLiveLinkDescription": {
+    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both BCC Live and BCC Meida"
+  },
+  "openStore": "Loja aberta",
+  "@openStore": {
+    "description": "A button to open play store / app store."
   }
 }
