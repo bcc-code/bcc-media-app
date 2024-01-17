@@ -1,5 +1,6 @@
 import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,40 +14,47 @@ import '../status/loading_indicator.dart';
 import 'dialog_confirm_cancel.dart';
 import 'survey_form.dart';
 
-class BottomSheetSurvey extends StatelessWidget {
+class BottomSheetSurvey extends HookWidget {
   final Fragment$Prompt$$SurveyPrompt prompt;
 
   const BottomSheetSurvey(this.prompt, {super.key});
 
-  void onClose(BuildContext context) {
-    Navigator.pop(context);
-  }
-
-  void onCancel(BuildContext context) {
-    final curFocusScope =
-        FocusScope.of(context); // Fix glitch with keyboard popping up and down quickly when survey is closed by interacting with the dialog.
-    curFocusScope.unfocus();
-
-    Future<bool?> isCancelConfirmed = showDialog(
-      context: context,
-      builder: (context) => const DialogConfirmCancel(),
-    );
-    isCancelConfirmed.then((cancelConfirmed) {
-      if (cancelConfirmed == true) {
-        onClose(context);
-      } else {
-        curFocusScope.requestFocus();
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
-    return WillPopScope(
-      onWillPop: () async {
-        onCancel(context);
-        return false;
+    final completed = useState(false);
+
+    void onClose() {
+      Navigator.pop(context);
+    }
+
+    void onCancel() {
+      final curFocusScope =
+          FocusScope.of(context); // Fix glitch with keyboard popping up and down quickly when survey is closed by interacting with the dialog.
+      curFocusScope.unfocus();
+
+      if (completed.value) {
+        onClose();
+        return;
+      }
+
+      Future<bool?> isCancelConfirmed = showDialog(
+        context: context,
+        builder: (context) => const DialogConfirmCancel(),
+      );
+      isCancelConfirmed.then((cancelConfirmed) {
+        if (cancelConfirmed == true) {
+          onClose();
+        } else {
+          curFocusScope.requestFocus();
+        }
+      });
+    }
+
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (v) async {
+        onCancel();
       },
       child: Padding(
         padding: MediaQuery.of(context).viewInsets,
@@ -91,8 +99,9 @@ class BottomSheetSurvey extends StatelessWidget {
                     duration: const Duration(milliseconds: 200),
                     child: _BottomSheetBody(
                       survey: prompt.survey,
-                      onClose: () => onClose(context),
-                      onCancel: () => onCancel(context),
+                      onClose: () => onClose(),
+                      onCancel: () => onCancel(),
+                      onComplete: () => completed.value = true,
                     ),
                   ),
                 ),
@@ -109,8 +118,14 @@ class _BottomSheetBody extends ConsumerStatefulWidget {
   final Fragment$Survey survey;
   final VoidCallback onClose;
   final VoidCallback onCancel;
+  final VoidCallback onComplete;
 
-  const _BottomSheetBody({required this.survey, required this.onClose, required this.onCancel});
+  const _BottomSheetBody({
+    required this.survey,
+    required this.onClose,
+    required this.onCancel,
+    required this.onComplete,
+  });
 
   @override
   ConsumerState<_BottomSheetBody> createState() => _BottomSheetBodyState();
@@ -134,6 +149,7 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
     setState(() {
       surveySubmissionFuture = Future.wait(futures, eagerError: true).then((value) {
         completedSurveysNotifier.addSurvey(widget.survey.id);
+        widget.onComplete();
         return value;
       });
     });
