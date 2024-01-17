@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # major.minor.patch+xxxxxxx
 # Note: On play store, any dots in the build
 # number (i.e. the number after +) gets removed
-version: 5.1.2+2300112
+version: 5.1.3+2300113
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
