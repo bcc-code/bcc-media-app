@@ -48,9 +48,8 @@ class BottomSheetSurvey extends StatelessWidget {
         onCancel(context);
         return false;
       },
-      child: AnimatedPadding(
+      child: Padding(
         padding: MediaQuery.of(context).viewInsets,
-        duration: const Duration(milliseconds: 200),
         child: Container(
           decoration: BoxDecoration(
             color: design.colors.background1,
@@ -156,7 +155,7 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
   Widget build(BuildContext context) {
     if (surveySubmissionFuture == null) {
       return SurveyForm(
-        surveyQuestions: widget.survey.questions.items,
+        survey: widget.survey,
         onSubmit: onSubmitSurvey,
         onCancel: widget.onCancel,
       );
