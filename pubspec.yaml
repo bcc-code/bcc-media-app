@@ -127,6 +127,8 @@ dependencies:
   tutorial_coach_mark: ^1.2.11
   bccm_core:
     path: submodules/bccm_flutter/bccm_core
+  marquee: ^2.2.3
+  auto_size_text: ^3.0.0
   #smooth: any
 
 dev_dependencies:

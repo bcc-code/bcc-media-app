@@ -67,6 +67,10 @@ class BccMediaDesignSystem extends DesignSystemData {
           ),
         ),
         scaffoldBackgroundColor: colors.background1,
+        bottomSheetTheme: const BottomSheetThemeData(
+          constraints: BoxConstraints(maxWidth: double.infinity),
+          backgroundColor: Colors.transparent,
+        ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           selectedItemColor: colors.tint1,
           elevation: 0,

@@ -23,6 +23,7 @@ class BottomSheetSurvey extends HookWidget {
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
     final completed = useState(false);
+    final hasStarted = useState(false);
 
     void onClose() {
       Navigator.pop(context);
@@ -33,7 +34,7 @@ class BottomSheetSurvey extends HookWidget {
           FocusScope.of(context); // Fix glitch with keyboard popping up and down quickly when survey is closed by interacting with the dialog.
       curFocusScope.unfocus();
 
-      if (completed.value) {
+      if (completed.value || !hasStarted.value) {
         onClose();
         return;
       }
@@ -102,6 +103,7 @@ class BottomSheetSurvey extends HookWidget {
                       onClose: () => onClose(),
                       onCancel: () => onCancel(),
                       onComplete: () => completed.value = true,
+                      hasStarted: hasStarted,
                     ),
                   ),
                 ),
@@ -119,12 +121,14 @@ class _BottomSheetBody extends ConsumerStatefulWidget {
   final VoidCallback onClose;
   final VoidCallback onCancel;
   final VoidCallback onComplete;
+  final ValueNotifier<bool> hasStarted;
 
   const _BottomSheetBody({
     required this.survey,
     required this.onClose,
     required this.onCancel,
     required this.onComplete,
+    required this.hasStarted,
   });
 
   @override
@@ -174,6 +178,7 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
         survey: widget.survey,
         onSubmit: onSubmitSurvey,
         onCancel: widget.onCancel,
+        hasStarted: widget.hasStarted,
       );
     }
     return simpleFutureBuilder(

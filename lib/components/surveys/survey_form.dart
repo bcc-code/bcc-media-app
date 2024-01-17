@@ -26,12 +26,14 @@ class SurveyForm extends StatefulHookWidget {
   final Fragment$Survey survey;
   final Function(List<SurveyAnswer>) onSubmit;
   final VoidCallback onCancel;
+  final ValueNotifier<bool> hasStarted;
 
   const SurveyForm({
     super.key,
     required this.survey,
     required this.onSubmit,
     required this.onCancel,
+    required this.hasStarted,
   });
 
   @override
@@ -45,6 +47,7 @@ class _SurveyFormState extends State<SurveyForm> {
   bool get showOnlyFirstQuestion => ratingFirst && !surveyAnswers.containsKey(widget.survey.questions.items.first.id);
 
   void updateAnswer(String id, SurveyAnswer? answer) {
+    widget.hasStarted.value = true;
     setState(() {
       if (answer == null) {
         surveyAnswers.remove(id);

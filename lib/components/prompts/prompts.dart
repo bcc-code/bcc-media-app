@@ -24,6 +24,7 @@ class _PromptsState extends ConsumerState<Prompts> {
   }
 
   bool isCompletedSurvey(List<CompletedSurvey> completedSurveys, Fragment$Prompt$$SurveyPrompt surveyPrompt) {
+    return false;
     return completedSurveys.where((survey) => survey.id == surveyPrompt.survey.id).isNotEmpty;
   }
 
