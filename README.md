@@ -40,6 +40,12 @@ Most of the tests run during the release pipeline for the app.
 
 # App architecture details
 
+## Core library
+
+The bccm_core package is located at /submodules/bccm_core as a submodule, and linked in pubspec.yaml to the local path for convenience.
+This is where most of the core functionality is, e.g. graphql, auth, push, many utils, etc.
+Anything that needs to be shared with other apps should be a part of the bccm_core package.
+
 ## Styling
 
 You can find constants for colors, typography, etc. based on our design system under [/lib/theme](./lib/theme).
