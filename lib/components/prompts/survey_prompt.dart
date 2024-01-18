@@ -13,11 +13,11 @@ import 'package:bccm_core/design_system.dart';
 
 import '../surveys/bottom_sheet_survey.dart';
 
-class PromptSurvey extends StatelessWidget {
+class SurveyPrompt extends StatelessWidget {
   final Fragment$Prompt$$SurveyPrompt prompt;
   final VoidCallback onClose;
 
-  const PromptSurvey({
+  const SurveyPrompt({
     super.key,
     required this.prompt,
     required this.onClose,
@@ -65,7 +65,8 @@ class PromptSurvey extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (false) Text('Feedback', style: design.textStyles.caption2.copyWith(color: design.colors.label3)),
+                    if (prompt.secondaryTitle != null)
+                      Text(prompt.secondaryTitle!, style: design.textStyles.caption2.copyWith(color: design.colors.label3)),
                     AutoSizeText(
                       prompt.title,
                       style: design.textStyles.caption1.copyWith(color: design.colors.label1),
