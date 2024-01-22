@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.3+2300113...v) (2024-01-18)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.4+2300114...v) (2024-01-22)
+
+
+
+## [5.1.4+2300114](https://github.com/bcc-code/bcc-media-app/compare/v5.1.3+2300113...v5.1.4+2300114) (2024-01-22)
+
+
+### Bug Fixes
+
+* survey prompt never disappearing ([2916f63](https://github.com/bcc-code/bcc-media-app/commit/2916f63078deadad006d77496ecfd069b866ff5b))
+
+
+### Features
+
+* **analytics:** pop meta for screen events ([f511212](https://github.com/bcc-code/bcc-media-app/commit/f51121237644413cbf47b3db8aa173cec635fa7d))
 
 
 
