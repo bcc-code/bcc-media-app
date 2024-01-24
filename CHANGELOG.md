@@ -1,6 +1,17 @@
 # [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.5+2300115...v) (2024-01-24)
 
 
+### Bug Fixes
+
+* closing prompts ([386524c](https://github.com/bcc-code/bcc-media-app/commit/386524c7e4d0a3a9896aee775f31d66a367b19c7))
+* deep link to live bug ([839e860](https://github.com/bcc-code/bcc-media-app/commit/839e860fed918342ef882dd093d776b8d7f4896c))
+
+
+### Features
+
+* improved force live design ([18b03e5](https://github.com/bcc-code/bcc-media-app/commit/18b03e5aa7106a69b0ef52078978daa670e015dd))
+
+
 
 ## [5.1.5+2300115](https://github.com/bcc-code/bcc-media-app/compare/v5.1.4+2300114...v5.1.5+2300115) (2024-01-24)
 
