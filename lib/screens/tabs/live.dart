@@ -7,11 +7,16 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/player/live_mini_player.dart';
+import 'package:brunstadtv_app/components/thumbnails/misc/bordered_image_container.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -374,6 +379,21 @@ class _ForceBccLive extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
+
+    void onPressed() {
+      openAppOrStore(packageName: kLivePackageName, iosStoreId: kLiveIosId);
+    }
+
+    final animControllers = useState<List<AnimationController>>([]);
+
+    final isActive = useIsTabActive(onChange: (isActive) {
+      if (isActive) {
+        for (final element in animControllers.value) {
+          element.forward(from: 0);
+        }
+      }
+    });
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -382,32 +402,53 @@ class _ForceBccLive extends HookConsumerWidget {
               color: DesignSystem.of(context).colors.background1,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Live', style: design.textStyles.title1.copyWith(color: design.colors.label1)),
-                Padding(
-                  padding: const EdgeInsets.all(16.0).copyWith(top: 8),
-                  child: Text(
-                    S.of(context).bccLiveForcedDescription2,
-                    textAlign: TextAlign.center,
-                    style: design.textStyles.body2.copyWith(color: design.colors.label2),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: onPressed,
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 48),
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: AspectRatio(
+                        aspectRatio: 16 / 8,
+                        child: simpleFadeInImage(url: 'https://static.bcc.media/images/bcc-connect-live-banner.jpg'),
+                      ),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: DesignSystem.of(context).buttons.small(
-                          variant: ButtonVariant.primary,
-                          onPressed: () {
-                            openAppOrStore(packageName: kLivePackageName, iosStoreId: kLiveIosId);
-                          },
-                          labelText: S.of(context).open,
-                        ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: Text(
+                      S.of(context).bccLiveForcedDescription2,
+                      textAlign: TextAlign.center,
+                      style: design.textStyles.body1.copyWith(color: design.colors.label2),
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: DesignSystem.of(context).buttons.large(
+                            variant: ButtonVariant.primary,
+                            onPressed: () {
+                              onPressed();
+                            },
+                            labelText: S.of(context).open,
+                          ),
+                    ),
+                  ),
+                ]
+                    .animate(autoPlay: false, onInit: (c) => animControllers.value.add(c), interval: 200.ms)
+                    .slideY(duration: 5000.ms, curve: Curves.easeOutExpo, begin: -0.2)
+                    .fade(duration: 3000.ms, curve: Curves.easeOutExpo),
+              ),
             ),
           ),
         ),

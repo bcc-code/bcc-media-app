@@ -198,14 +198,15 @@ class AppRouter extends $AppRouter {
       path: '/',
       children: [
         MaterialRoute(
-            page: LiveScreenRoute.page,
-            path: 'live',
-            meta: const {
-              RouteMetaConstants.hideMiniPlayer: true,
-              RouteMetaConstants.navTabRoute: true,
-              RouteMetaConstants.analyticsName: 'livestream',
-            },
-            maintainState: true),
+          page: LiveScreenRoute.page,
+          path: 'live',
+          meta: const {
+            RouteMetaConstants.hideMiniPlayer: true,
+            RouteMetaConstants.navTabRoute: true,
+            RouteMetaConstants.analyticsName: 'livestream',
+          },
+          maintainState: true,
+        ),
         MaterialRoute(
           page: SearchWrapperScreenRoute.page,
           path: 'search',
