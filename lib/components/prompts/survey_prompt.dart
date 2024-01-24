@@ -6,9 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:bccm_core/platform.dart';
-import 'package:marquee/marquee.dart';
 import '../../helpers/svg_icons.dart';
-import '../../l10n/app_localizations.dart';
 import 'package:bccm_core/design_system.dart';
 
 import '../surveys/bottom_sheet_survey.dart';
@@ -27,7 +25,7 @@ class SurveyPrompt extends StatelessWidget {
     CustomHapticFeedback.mediumImpact();
     showModalBottomSheet(
       context: context,
-      useRootNavigator: true,
+      useRootNavigator: false,
       isScrollControlled: true,
       useSafeArea: true,
       isDismissible: true,

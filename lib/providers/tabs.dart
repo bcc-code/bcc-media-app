@@ -143,13 +143,15 @@ final currentTabIdsProvider = Provider<List<TabId>>((ref) {
   final guest = ref.watch(authStateProvider).guestMode;
   final shorts = ref.watch(featureFlagsProvider.select((value) => value.shorts));
   final live = !ref.watch(featureFlagsProvider.select((value) => value.removeLiveTab));
+  final liveAppTransitionStarted =
+      ref.watch(featureFlagsProvider.select((value) => value.linkToBccLive || value.forceBccLive || value.removeLiveTab));
   return [
     TabId.home,
     if (enableGames) TabId.games,
     TabId.search,
     if (!guest && live) TabId.live,
     if (!guest && shorts) TabId.shorts,
-    if (!guest && !shorts) TabId.calendar,
+    if (!guest && !shorts && !liveAppTransitionStarted) TabId.calendar,
     TabId.profile,
   ];
 });

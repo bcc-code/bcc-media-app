@@ -445,7 +445,7 @@ class _ForceBccLive extends HookConsumerWidget {
                     ),
                   ),
                 ]
-                    .animate(autoPlay: false, onInit: (c) => animControllers.value.add(c), interval: 200.ms)
+                    .animate(autoPlay: false, onInit: (c) => animControllers.value.add(c))
                     .slideY(duration: 5000.ms, curve: Curves.easeOutExpo, begin: -0.2)
                     .fade(duration: 3000.ms, curve: Curves.easeOutExpo),
               ),

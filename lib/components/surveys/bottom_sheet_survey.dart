@@ -29,85 +29,89 @@ class BottomSheetSurvey extends HookWidget {
       Navigator.pop(context);
     }
 
-    void onCancel() {
+    void onCancel() async {
       final curFocusScope =
           FocusScope.of(context); // Fix glitch with keyboard popping up and down quickly when survey is closed by interacting with the dialog.
       curFocusScope.unfocus();
 
       if (completed.value || !hasStarted.value) {
-        onClose();
+        Navigator.pop(context);
         return;
       }
 
-      Future<bool?> isCancelConfirmed = showDialog(
+      final cancelConfirmed = await showDialog<bool>(
         context: context,
         builder: (context) => const DialogConfirmCancel(),
       );
-      isCancelConfirmed.then((cancelConfirmed) {
-        if (cancelConfirmed == true) {
-          onClose();
-        } else {
-          curFocusScope.requestFocus();
+
+      if (cancelConfirmed == true) {
+        if (context.mounted) {
+          Navigator.pop(context);
         }
-      });
+      } else {
+        curFocusScope.requestFocus();
+      }
     }
 
     return PopScope(
       canPop: false,
       onPopInvoked: (v) async {
+        if (v) return;
         onCancel();
       },
-      child: Padding(
-        padding: MediaQuery.of(context).viewInsets,
-        child: Container(
-          decoration: BoxDecoration(
-            color: design.colors.background1,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
+      child: SafeArea(
+        child: Padding(
+          padding: MediaQuery.of(context).viewInsets,
+          child: Container(
+            decoration: BoxDecoration(
+              color: design.colors.background1,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
             ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  child: UnconstrainedBox(
-                    child: Container(
-                      height: 5,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: design.colors.label4,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 32),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    child: UnconstrainedBox(
+                      child: Container(
+                        height: 5,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: design.colors.label4,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  child: Text(
-                    prompt.survey.title,
-                    textAlign: TextAlign.center,
-                    style: design.textStyles.title3,
-                  ),
-                ),
-                Flexible(
-                  child: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 200),
-                    child: _BottomSheetBody(
-                      survey: prompt.survey,
-                      onClose: () => onClose(),
-                      onCancel: () => onCancel(),
-                      onComplete: () => completed.value = true,
-                      hasStarted: hasStarted,
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    child: Text(
+                      prompt.survey.title,
+                      textAlign: TextAlign.center,
+                      style: design.textStyles.title3,
                     ),
                   ),
-                ),
-              ],
+                  Flexible(
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 200),
+                      child: _BottomSheetBody(
+                        survey: prompt.survey,
+                        onClose: () => onClose(),
+                        onCancel: () => onCancel(),
+                        onComplete: () => completed.value = true,
+                        hasStarted: hasStarted,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
