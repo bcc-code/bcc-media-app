@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.4+2300114...v) (2024-01-22)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.5+2300115...v) (2024-01-24)
+
+
+
+## [5.1.5+2300115](https://github.com/bcc-code/bcc-media-app/compare/v5.1.4+2300114...v5.1.5+2300115) (2024-01-24)
+
+
+### Bug Fixes
+
+* live by bcc connect ([78dec14](https://github.com/bcc-code/bcc-media-app/commit/78dec14ec07452cc2de5580fd6ad4b59e6d5030a))
 
 
 
