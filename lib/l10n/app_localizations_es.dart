@@ -1010,10 +1010,10 @@ class SEs extends S {
   String get downloadedVideosGuideDescription => 'Puedes encontrar tus videos descargados en \"Perfil\".';
 
   @override
-  String get bccLiveForcedDescription => 'La transmisión en vivo se trasladó a una nueva aplicación llamada \"BCC Live\". Puedes descargarlo en App Store o Google Play.';
+  String get bccLiveForcedDescription2 => 'The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
 
   @override
-  String get bccLiveLinkDescription => 'La transmisión en vivo se trasladará a una nueva aplicación llamada \"BCC Live\". Puedes descargarlo en App Store o Google Play.';
+  String get bccLiveLinkDescription2 => 'The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
 
   @override
   String get openStore => 'Abrir tienda';

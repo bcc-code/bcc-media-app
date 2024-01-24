@@ -1010,10 +1010,10 @@ class SDa extends S {
   String get downloadedVideosGuideDescription => 'Du kan finde dine downloadede videoer under \"Profil\".';
 
   @override
-  String get bccLiveForcedDescription => 'Livestreamen er flyttet til en ny app: \"BCC Live\". Du kan downloade appen i App Store eller Google Play.';
+  String get bccLiveForcedDescription2 => 'The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
 
   @override
-  String get bccLiveLinkDescription => 'Livestreamen er flyttet til en ny app: \"BCC Live\". Du kan downloade appen i App Store eller Google Play.';
+  String get bccLiveLinkDescription2 => 'The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
 
   @override
   String get openStore => 'Åbn';

@@ -272,13 +272,13 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAwareStat
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'BCC Live',
+                    'Live',
                     style: design.textStyles.title1.copyWith(color: design.colors.label1),
                     textAlign: TextAlign.left,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    S.of(context).bccLiveLinkDescription,
+                    S.of(context).bccLiveLinkDescription2,
                     style: design.textStyles.body2.copyWith(color: design.colors.label1),
                     textAlign: TextAlign.left,
                   ),
@@ -289,19 +289,9 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAwareStat
                       child: design.buttons.small(
                         variant: ButtonVariant.primary,
                         onPressed: () {
-                          if (Platform.isIOS) {
-                            launchUrlString(
-                              'itms-apps://itunes.apple.com',
-                              mode: LaunchMode.externalApplication,
-                            );
-                          } else if (Platform.isAndroid) {
-                            launchUrlString(
-                              'https://play.google.com/store/search?q=bcc+live&c=apps',
-                              mode: LaunchMode.externalApplication,
-                            );
-                          }
+                          openAppOrStore(packageName: kLivePackageName, iosStoreId: kLiveIosId);
                         },
-                        labelText: S.of(context).openStore,
+                        labelText: S.of(context).open,
                       ),
                     ),
                   ),
@@ -395,11 +385,11 @@ class _ForceBccLive extends HookConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('BCC Live', style: design.textStyles.title1.copyWith(color: design.colors.label1)),
+                Text('Live', style: design.textStyles.title1.copyWith(color: design.colors.label1)),
                 Padding(
                   padding: const EdgeInsets.all(16.0).copyWith(top: 8),
                   child: Text(
-                    S.of(context).bccLiveForcedDescription,
+                    S.of(context).bccLiveForcedDescription2,
                     textAlign: TextAlign.center,
                     style: design.textStyles.body2.copyWith(color: design.colors.label2),
                   ),
@@ -411,19 +401,9 @@ class _ForceBccLive extends HookConsumerWidget {
                     child: DesignSystem.of(context).buttons.small(
                           variant: ButtonVariant.primary,
                           onPressed: () {
-                            if (Platform.isIOS) {
-                              launchUrlString(
-                                'itms-apps://itunes.apple.com',
-                                mode: LaunchMode.externalApplication,
-                              );
-                            } else if (Platform.isAndroid) {
-                              launchUrlString(
-                                'https://play.google.com/store/search?q=bcc+live&c=apps',
-                                mode: LaunchMode.externalApplication,
-                              );
-                            }
+                            openAppOrStore(packageName: kLivePackageName, iosStoreId: kLiveIosId);
                           },
-                          labelText: S.of(context).openStore,
+                          labelText: S.of(context).open,
                         ),
                   ),
                 ),

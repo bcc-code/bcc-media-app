@@ -1010,10 +1010,10 @@ class SRu extends S {
   String get downloadedVideosGuideDescription => 'Загруженные видеоролики можно найти в разделе \"Профиль\".';
 
   @override
-  String get bccLiveForcedDescription => 'Прямая трансляция перенесена в новое приложение под названием «BCC Live». Скачать его можно в App Store или Google Play.';
+  String get bccLiveForcedDescription2 => 'The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
 
   @override
-  String get bccLiveLinkDescription => 'Прямая трансляция переходит в новое приложение под названием \"BCC Live\". Вы можете скачать его в App Store или Google Play.';
+  String get bccLiveLinkDescription2 => 'The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
 
   @override
   String get openStore => 'Открытый магазин';

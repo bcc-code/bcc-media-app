@@ -1010,10 +1010,10 @@ class SRo extends S {
   String get downloadedVideosGuideDescription => 'Poți găsi videourile descărcate la rubrica „Profil\".';
 
   @override
-  String get bccLiveForcedDescription => 'Transmisiunea în direct s-a mutat într-o nouă aplicație numită „BCC Live\". Se poate descărca din App Store sau Google Play.';
+  String get bccLiveForcedDescription2 => 'The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
 
   @override
-  String get bccLiveLinkDescription => 'Transmisiunea în direct s-a mutat într-o nouă aplicație numită „BCC Live\". Se poate descărca din App Store sau Google Play.';
+  String get bccLiveLinkDescription2 => 'The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
 
   @override
   String get openStore => 'Magazin deschis';
