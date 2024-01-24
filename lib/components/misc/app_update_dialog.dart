@@ -25,12 +25,7 @@ class AppUpdateDialog extends ConsumerWidget {
         ),
         DesignSystem.of(context).buttons.medium(
               onPressed: () {
-                if (Platform.isIOS) {
-                  launchUrlString('itms-apps://itunes.apple.com', mode: LaunchMode.externalApplication);
-                } else if (Platform.isAndroid) {
-                  launchUrlString('market://details?id=${packageInfo.packageName}',
-                      mode: LaunchMode.externalApplication); // TODO: core, check if this works
-                }
+                openStore(packageName: kBccmPackageName, iosStoreId: kBccmIosId);
               },
               labelText: S.of(context).appUpdateAccepted,
             ),

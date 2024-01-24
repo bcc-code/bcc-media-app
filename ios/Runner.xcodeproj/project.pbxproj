@@ -686,7 +686,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Runner/Entitlements/Entitlements-bccm.entitlements";
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = KJ6LCYQ3A8;
+				DEVELOPMENT_TEAM = 6734NUF6AV;
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = lib/main_prod.dart;
 				INFOPLIST_FILE = "Runner/Info-$(CONFIGURATION).plist";
@@ -1448,7 +1448,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Runner/Entitlements/Entitlements-kids.entitlements";
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = KJ6LCYQ3A8;
+				DEVELOPMENT_TEAM = 6734NUF6AV;
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = lib/main_kids_prod.dart;
 				INFOPLIST_FILE = "Runner/Info-$(CONFIGURATION).plist";
@@ -1604,7 +1604,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Runner/Entitlements/Entitlements-kids.entitlements";
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = KJ6LCYQ3A8;
+				DEVELOPMENT_TEAM = 6734NUF6AV;
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = lib/main_kids_prod.dart;
 				INFOPLIST_FILE = "Runner/Info-$(CONFIGURATION).plist";
@@ -1754,7 +1754,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Runner/Entitlements/Entitlements-kids.entitlements";
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = KJ6LCYQ3A8;
+				DEVELOPMENT_TEAM = 6734NUF6AV;
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = lib/main_kids_prod.dart;
 				INFOPLIST_FILE = "Runner/Info-$(CONFIGURATION).plist";
@@ -1969,7 +1969,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Runner/Entitlements/Entitlements-bccm.entitlements";
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = KJ6LCYQ3A8;
+				DEVELOPMENT_TEAM = 6734NUF6AV;
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = lib/main_prod.dart;
 				INFOPLIST_FILE = "Runner/Info-$(CONFIGURATION).plist";
@@ -2001,7 +2001,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Runner/Entitlements/Entitlements-bccm.entitlements";
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = KJ6LCYQ3A8;
+				DEVELOPMENT_TEAM = 6734NUF6AV;
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = lib/main_prod.dart;
 				INFOPLIST_FILE = "Runner/Info-$(CONFIGURATION).plist";
