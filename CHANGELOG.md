@@ -1,4 +1,8 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.6+2300116...v) (2024-01-25)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.7+2300117...v) (2024-01-25)
+
+
+
+## [5.1.7+2300117](https://github.com/bcc-code/bcc-media-app/compare/v5.1.6+2300116...v5.1.7+2300117) (2024-01-25)
 
 
 ### Features
