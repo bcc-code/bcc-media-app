@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.5+2300115...v) (2024-01-24)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.6+2300116...v) (2024-01-25)
+
+
+### Features
+
+* force bcc live for androidtv ([2674d2f](https://github.com/bcc-code/bcc-media-app/commit/2674d2fb14fbb985461423a834c21b989dede61a))
+* foreground notifications ([d817960](https://github.com/bcc-code/bcc-media-app/commit/d817960d2e823eebb82c9a81df828c33a1ba9fa3))
+
+
+
+## [5.1.6+2300116](https://github.com/bcc-code/bcc-media-app/compare/v5.1.5+2300115...v5.1.6+2300116) (2024-01-24)
 
 
 ### Bug Fixes
