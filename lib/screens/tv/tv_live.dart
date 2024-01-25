@@ -7,8 +7,10 @@ import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/screens/tabs/live.dart';
 import 'package:bccm_core/design_system.dart';
+import 'package:brunstadtv_app/screens/tv/tv_force_new_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -19,6 +21,11 @@ class TvLiveScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final forceBccLive = ref.watch(featureFlagsProvider.select((value) => value.forceBccLive));
+
+    if (forceBccLive) {
+      return const ForceNewApp();
+    }
     final design = DesignSystem.of(context);
     final api = ref.watch(apiProvider);
     final liveUrlFuture = useState<Future<LivestreamUrl>?>(null);
