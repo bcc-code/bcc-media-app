@@ -6,8 +6,10 @@ import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:bccm_core/design_system.dart';
+import 'package:brunstadtv_app/screens/tv/tv_force_new_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,6 +23,11 @@ class TvLoginScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final forceBccLive = ref.watch(featureFlagsProvider.select((value) => value.forceBccLive));
+
+    if (forceBccLive) {
+      return const ForceNewApp();
+    }
     final authStateNotifier = ref.watch(authStateProvider.notifier);
 
     final deviceCodeFuture = useState<Future<DeviceTokenRequestResponse>?>(null);
