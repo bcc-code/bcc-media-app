@@ -10,6 +10,7 @@ final notificationServiceProviderOverride = notificationServiceProvider.override
     return service;
   }
   final service = FcmNotificationService(
+    localNotificationService: ref.read(localNotificationServiceProvider),
     onTokenChanged: (token) async {
       debugPrint('Sending FCM token. $token');
       await ref.read(bccmGraphQLProvider).mutate$SetDeviceToken(
@@ -21,6 +22,9 @@ final notificationServiceProviderOverride = notificationServiceProvider.override
             ),
           );
     },
+    onAppOpenWhenNotificationReceived: null,
+    onShowInAppRequested: null,
+    onCacheClearRequested: null,
   );
   ref.onDispose(service.dispose);
   return service;
