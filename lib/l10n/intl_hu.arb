@@ -1387,13 +1387,13 @@
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription": "A livestream átkerült egy új alkalmazásba, a \"BCC Live\"-ba. Letölthető az App Store-ból vagy a Google Play-ből.",
-  "@bccLiveForcedDescription": {
+  "bccLiveForcedDescription2": "The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
-  "bccLiveLinkDescription": "A livestream át fog kerülni egy új alkalmazásba, a \"BCC Live\"-ba. Letölthető az App Store-ból vagy a Google Play-ből.",
-  "@bccLiveLinkDescription": {
-    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both BCC Live and BCC Meida"
+  "bccLiveLinkDescription2": "The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "@bccLiveLinkDescription2": {
+    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both Live and BCC Media."
   },
   "openStore": "App Store/Play Áruház megnyitása",
   "@openStore": {

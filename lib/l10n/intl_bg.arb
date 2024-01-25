@@ -1387,13 +1387,13 @@
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription": "The livestream has moved to a new app called \"BCC Live\". You can download it in the App Store or Google Play.",
-  "@bccLiveForcedDescription": {
+  "bccLiveForcedDescription2": "The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
-  "bccLiveLinkDescription": "The livestream is moving to a new app called \"BCC Live\". You can download it in the App Store or Google Play.",
-  "@bccLiveLinkDescription": {
-    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both BCC Live and BCC Meida"
+  "bccLiveLinkDescription2": "The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "@bccLiveLinkDescription2": {
+    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both Live and BCC Media."
   },
   "openStore": "Open store",
   "@openStore": {

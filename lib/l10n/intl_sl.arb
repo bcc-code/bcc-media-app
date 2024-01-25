@@ -1387,13 +1387,13 @@
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription": "Prenos v živo se je preselil v novo aplikacijo, imenovano \"BCC Live\". Preneseš jo lahko v App Store ali Google Play.",
-  "@bccLiveForcedDescription": {
+  "bccLiveForcedDescription2": "The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
-  "bccLiveLinkDescription": "Prenos v živo se seli v novo aplikacijo, imenovano \"BCC Live\". Preneseš jo lahko v App Store ali Google Play.",
-  "@bccLiveLinkDescription": {
-    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both BCC Live and BCC Meida"
+  "bccLiveLinkDescription2": "The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "@bccLiveLinkDescription2": {
+    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both Live and BCC Media."
   },
   "openStore": "Odpri trgovino",
   "@openStore": {
