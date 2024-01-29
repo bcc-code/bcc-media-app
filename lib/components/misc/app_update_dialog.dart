@@ -11,7 +11,6 @@ class AppUpdateDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final packageInfo = ref.watch(packageInfoProvider);
     return SimpleDialog(
       title: Text(
         S.of(context).appUpdateTitle,
@@ -25,7 +24,10 @@ class AppUpdateDialog extends ConsumerWidget {
         ),
         DesignSystem.of(context).buttons.medium(
               onPressed: () {
-                openStore(androidPackageName: kBccmAndroidScheme, iosStoreId: kBccmIosId);
+                openStore(
+                  androidPackageName: kBccmPackageName,
+                  iosStoreId: kBccmIosId,
+                );
               },
               labelText: S.of(context).appUpdateAccepted,
             ),
