@@ -1017,4 +1017,7 @@ class SPt extends S {
 
   @override
   String get openStore => 'Loja aberta';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
 }

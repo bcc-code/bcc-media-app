@@ -1017,4 +1017,7 @@ class SIt extends S {
 
   @override
   String get openStore => 'Open store';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
 }

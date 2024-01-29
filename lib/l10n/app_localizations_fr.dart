@@ -1017,4 +1017,7 @@ class SFr extends S {
 
   @override
   String get openStore => 'Ouvrir';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
 }

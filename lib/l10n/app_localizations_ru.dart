@@ -1017,4 +1017,7 @@ class SRu extends S {
 
   @override
   String get openStore => 'Открытый магазин';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
 }

@@ -1017,4 +1017,7 @@ class SRo extends S {
 
   @override
   String get openStore => 'Magazin deschis';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
 }

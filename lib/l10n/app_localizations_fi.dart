@@ -1017,4 +1017,7 @@ class SFi extends S {
 
   @override
   String get openStore => 'Avaa kauppa';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
 }

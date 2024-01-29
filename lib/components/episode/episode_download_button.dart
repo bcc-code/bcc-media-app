@@ -127,7 +127,7 @@ class EpisodeDownloadButton extends HookConsumerWidget {
               context: context,
               builder: (context) => GenericDialog(
                 title: S.of(context).anErrorOccurred,
-                description: "This video can't be downloaded.",
+                description: S.of(context).thisVideoCantBeDownloaded,
                 dismissButtonText: S.of(context).ok,
                 titleStyle: design.textStyles.title2.copyWith(color: design.colors.onTint),
                 descriptionStyle: design.textStyles.body2.copyWith(color: design.colors.label3),

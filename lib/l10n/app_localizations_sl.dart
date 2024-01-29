@@ -1017,4 +1017,7 @@ class SSl extends S {
 
   @override
   String get openStore => 'Odpri trgovino';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
 }
