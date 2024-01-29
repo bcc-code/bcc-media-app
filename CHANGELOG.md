@@ -1,4 +1,19 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.0+2300120...v) (2024-01-29)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.3+2300123...v) (2024-01-29)
+
+
+### Bug Fixes
+
+* pick first cmaf stream not cmaf || hls ([6e914c4](https://github.com/bcc-code/bcc-media-app/commit/6e914c460110f42f945429e73e07ec4e1c25dc15))
+
+
+### Features
+
+* select video language ([a241a3c](https://github.com/bcc-code/bcc-media-app/commit/a241a3c75eb2b8f70f40cb5c268897cb501e4971))
+* translate "This video can't be downloaded." ([e73edcc](https://github.com/bcc-code/bcc-media-app/commit/e73edccfd8cb41f615ec44b0e0f3ae868ceed242))
+
+
+
+## [5.2.3+2300123](https://github.com/bcc-code/bcc-media-app/compare/v5.2.0+2300120...v5.2.3+2300123) (2024-01-29)
 
 
 
