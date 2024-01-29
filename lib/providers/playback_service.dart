@@ -206,14 +206,14 @@ class PlaybackService {
 
 extension StreamUrlExtension on List<Fragment$BasicStream> {
   Fragment$BasicStream? getDownloadableStream() {
-    var stream = firstWhereOrNull(
-      (s) => s.downloadable && (s.type == Enum$StreamType.hls_cmaf || s.type == Enum$StreamType.hls_ts),
-    );
+    var stream = firstWhereOrNull((s) => s.downloadable && (s.type == Enum$StreamType.hls_cmaf));
+    stream ??= firstWhereOrNull((s) => s.downloadable && (s.type == Enum$StreamType.hls_ts));
     return stream;
   }
 
   String getBestStreamUrl() {
-    var streamUrl = firstWhereOrNull((element) => element.type == Enum$StreamType.hls_cmaf || element.type == Enum$StreamType.hls_ts)?.url;
+    var streamUrl = firstWhereOrNull((element) => element.type == Enum$StreamType.hls_cmaf)?.url;
+    streamUrl ??= firstWhereOrNull((element) => element.type == Enum$StreamType.hls_ts)?.url;
     streamUrl ??= first.url;
     return streamUrl;
   }
