@@ -25,7 +25,7 @@ class AppUpdateDialog extends ConsumerWidget {
         ),
         DesignSystem.of(context).buttons.medium(
               onPressed: () {
-                openStore(packageName: kBccmPackageName, iosStoreId: kBccmIosId);
+                openStore(androidPackageName: kBccmAndroidScheme, iosStoreId: kBccmIosId);
               },
               labelText: S.of(context).appUpdateAccepted,
             ),

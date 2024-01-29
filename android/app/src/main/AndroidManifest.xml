@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <queries>
-        <package android:name="connect.bcc.live" />
+        <package android:name="connect.bcc.live.main" />
     </queries>
 
     <uses-feature
@@ -38,6 +38,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tv.brunstad.app.main" />
+            </intent-filter>
+
             <!-- Deep linking -->
             <meta-data
                 android:name="flutter_deeplinking_enabled"

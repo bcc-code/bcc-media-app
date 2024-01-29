@@ -36,6 +36,7 @@ const useDevicePreview = false;
 Future<void> $main({
   List<Override>? providerOverrides,
 }) async {
+  final sw = Stopwatch()..start();
   usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
   await BccmCore().setup();
@@ -90,7 +91,7 @@ Future<void> $main({
   if (kDebugMode) {
     Animate.restartOnHotReload = true;
   }
-
+  debugPrint('App initialized in ${sw.elapsedMilliseconds}ms');
   runApp(maybeWrappedApp);
 }
 

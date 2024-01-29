@@ -294,7 +294,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAwareStat
                       child: design.buttons.small(
                         variant: ButtonVariant.primary,
                         onPressed: () {
-                          openAppOrStore(packageName: kLivePackageName, iosStoreId: kLiveIosId);
+                          openLiveOrStore();
                         },
                         labelText: S.of(context).open,
                       ),
@@ -381,7 +381,7 @@ class _ForceBccLive extends HookConsumerWidget {
     final design = DesignSystem.of(context);
 
     void onPressed() {
-      openAppOrStore(packageName: kLivePackageName, iosStoreId: kLiveIosId);
+      openLiveOrStore();
     }
 
     final animControllers = useState<List<AnimationController>>([]);

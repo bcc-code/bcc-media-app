@@ -4,6 +4,7 @@ import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:universal_io/io.dart';
 
 class ForceNewApp extends HookWidget {
   const ForceNewApp({super.key});
@@ -13,7 +14,7 @@ class ForceNewApp extends HookWidget {
     final design = DesignSystem.of(context);
 
     void onPressed() {
-      openAppOrStore(packageName: kLivePackageName, iosStoreId: kLiveIosId);
+      openLiveOrStore();
     }
 
     final animControllers = useState<List<AnimationController>>([]);
