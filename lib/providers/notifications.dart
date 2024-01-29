@@ -12,7 +12,6 @@ final notificationServiceProviderOverride = notificationServiceProvider.override
   }
   final service = FcmNotificationService(
     onAppOpenWhenNotificationReceived: null,
-    localNotificationService: ref.read(localNotificationServiceProvider),
     onCacheClearRequested: null,
     onShowInAppRequested: (message) {
       final context = globalNavigatorKey.currentContext;
