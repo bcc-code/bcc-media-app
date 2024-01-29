@@ -1017,4 +1017,7 @@ class SEs extends S {
 
   @override
   String get openStore => 'Abrir tienda';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
 }

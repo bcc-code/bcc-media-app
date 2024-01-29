@@ -1398,5 +1398,9 @@
   "openStore": "Open store",
   "@openStore": {
     "description": "A button to open play store / app store."
+  },
+  "thisVideoCantBeDownloaded": "This video can't be downloaded.",
+  "@thisVideoCantBeDownloaded": {
+    "description": "Shown when you try to download a video that cannot be downloaded."
   }
 }

@@ -1017,4 +1017,7 @@ class SNb extends S {
 
   @override
   String get openStore => 'Åpne';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
 }

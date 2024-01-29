@@ -2078,6 +2078,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Open store'**
   String get openStore;
+
+  /// Shown when you try to download a video that cannot be downloaded.
+  ///
+  /// In en, this message translates to:
+  /// **'This video can\'t be downloaded.'**
+  String get thisVideoCantBeDownloaded;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

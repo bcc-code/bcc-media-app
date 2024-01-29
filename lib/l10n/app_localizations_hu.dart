@@ -1017,4 +1017,7 @@ class SHu extends S {
 
   @override
   String get openStore => 'App Store/Play Áruház megnyitása';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
 }

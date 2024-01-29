@@ -1017,4 +1017,7 @@ class SDa extends S {
 
   @override
   String get openStore => 'Åbn';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
 }
