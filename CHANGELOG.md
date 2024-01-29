@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.8+2300118...v) (2024-01-25)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.9+2300119...v) (2024-01-29)
+
+
+### Bug Fixes
+
+* deep linking custom scheme conflicts ([2dff225](https://github.com/bcc-code/bcc-media-app/commit/2dff2251d7694eff281f0ef99515421a80335219))
+
+
+### Features
+
+* androidtv unleash/analytics ([9434aa6](https://github.com/bcc-code/bcc-media-app/commit/9434aa69f5e3fd9b009d4d2cee67ba7fdedb2efa))
+
+
+
+## [5.1.9+2300119](https://github.com/bcc-code/bcc-media-app/compare/v5.1.8+2300118...v5.1.9+2300119) (2024-01-25)
 
 
 
