@@ -87,10 +87,11 @@ class PlaybackService {
     );
   }
 
-  MediaItem mapEpisode(Fragment$PlayableMediaItem episode, {String? playlistId}) {
+  MediaItem mapEpisode(Fragment$PlayableMediaItem episode, {String? playlistId, String? videoLanguageCode}) {
     final collectionId = episode.context.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id;
+    final stream = episode.streams.getBestStream(videoLanguageCode: videoLanguageCode);
     return MediaItem(
-      url: episode.streams.getBestStreamUrl(),
+      url: stream.url,
       mimeType: 'application/x-mpegURL',
       metadata: MediaMetadata(
         title: episode.title,
@@ -99,6 +100,7 @@ class PlaybackService {
         durationMs: (episode.duration * 1000).toDouble(),
         extras: {
           'id': episode.id.toString(),
+          if (stream.videoLanguage != null) 'videoLanguage': stream.videoLanguage,
           if (collectionId != null) 'context.collectionId': collectionId,
           if (playlistId != null) 'context.playlistId': playlistId,
           'context.cursor': episode.cursor,
@@ -174,8 +176,9 @@ class PlaybackService {
     bool? autoplay,
     int? playbackPositionMs,
     String? playlistId,
+    String? videoLanguageCode,
   }) async {
-    var mediaItem = mapEpisode(episode, playlistId: playlistId);
+    var mediaItem = mapEpisode(episode, playlistId: playlistId, videoLanguageCode: videoLanguageCode);
     mediaItem.playbackStartPositionMs = playbackPositionMs?.toDouble();
     await platformApi.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
   }
@@ -211,10 +214,13 @@ extension StreamUrlExtension on List<Fragment$BasicStream> {
     return stream;
   }
 
-  String getBestStreamUrl() {
-    var streamUrl = firstWhereOrNull((element) => element.type == Enum$StreamType.hls_cmaf)?.url;
-    streamUrl ??= firstWhereOrNull((element) => element.type == Enum$StreamType.hls_ts)?.url;
-    streamUrl ??= first.url;
+  Fragment$BasicStream getBestStream({String? videoLanguageCode}) {
+    bool correctLang(Fragment$BasicStream? s) => s == null ? true : s.videoLanguage == videoLanguageCode;
+    var streamUrl = firstWhereOrNull((s) => s.type == Enum$StreamType.hls_cmaf && correctLang(s));
+    streamUrl ??= firstWhereOrNull((s) => s.type == Enum$StreamType.hls_cmaf);
+    streamUrl ??= firstWhereOrNull((s) => s.type == Enum$StreamType.hls_ts && correctLang(s));
+    streamUrl ??= firstWhereOrNull((s) => s.type == Enum$StreamType.hls_ts);
+    streamUrl ??= first;
     return streamUrl;
   }
 }

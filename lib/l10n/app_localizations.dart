@@ -2084,6 +2084,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'This video can\'t be downloaded.'**
   String get thisVideoCantBeDownloaded;
+
+  /// Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos.
+  ///
+  /// In en, this message translates to:
+  /// **'Video language'**
+  String get videoLanguage;
+
+  /// E.g. original language.
+  ///
+  /// In en, this message translates to:
+  /// **'Original'**
+  String get original;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

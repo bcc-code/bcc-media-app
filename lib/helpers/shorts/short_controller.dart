@@ -53,7 +53,7 @@ class ShortController {
   Future<void> _setupShort(Fragment$Short newShort, bool current) async {
     await playerInitFuture;
     debugPrint('SHRT: setting up for ${newShort.id}');
-    final url = newShort.streams.getBestStreamUrl();
+    final url = newShort.streams.getBestStream().url;
     final uri = Uri.tryParse(url);
     if (uri == null) {
       debugPrint('SHRT: invalid url: $url');

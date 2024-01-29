@@ -1020,4 +1020,10 @@ class STr extends S {
 
   @override
   String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+
+  @override
+  String get videoLanguage => 'Video language';
+
+  @override
+  String get original => 'Original';
 }

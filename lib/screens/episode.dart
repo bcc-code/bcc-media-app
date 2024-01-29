@@ -1,9 +1,11 @@
 // ignore_for_file: exhaustive_keys
 import 'dart:async';
+import 'dart:collection';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/controls.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/episode/episode_chapters.dart';
 import 'package:brunstadtv_app/components/episode/episode_collection.dart';
@@ -310,9 +312,19 @@ class _EpisodeDisplay extends HookConsumerWidget {
     );
     useEffect(() {
       final defaultViewConfig = playbackService.getDefaultViewConfig();
+      final languages = LinkedHashSet<String?>.from(episode.streams.map((e) => e.videoLanguage));
       viewController.setConfig(
         defaultViewConfig.copyWith(
           controlsConfig: defaultViewConfig.controlsConfig.copyWith(
+            extraSettingsBuilder: (context) {
+              return [
+                if (languages.whereNotNull().isNotEmpty)
+                  VideoLanguageSettings(
+                    episode: episode,
+                    languages: languages.toList(),
+                  ),
+              ];
+            },
             playNextButton: !enablePlayNextButton
                 ? null
                 : (context) => PlayNextButton(
@@ -324,7 +336,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
         ),
       );
       return null;
-    }, [enablePlayNextButton, player.playerId, playbackService]);
+    }, [enablePlayNextButton, player.playerId, playbackService, episode]);
 
     useEffect(() => () => viewController.dispose(), []);
 
@@ -510,6 +522,50 @@ class _EpisodeDisplay extends HookConsumerWidget {
             ],
           ),
       ],
+    );
+  }
+}
+
+class VideoLanguageSettings extends HookConsumerWidget {
+  const VideoLanguageSettings({
+    super.key,
+    required this.episode,
+    required this.languages,
+  });
+
+  final Query$FetchEpisode$episode episode;
+  final List<String?> languages;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ListTile(
+      dense: true,
+      title: Text(S.of(context).videoLanguage, style: BccmPlayerTheme.safeOf(context).controls?.settingsListTextStyle),
+      onTap: () async {
+        final current = BccmPlayerController.primary.value.currentMediaItem?.metadata;
+        final selected = await showModalOptionList<String?>(
+          context: context,
+          options: [
+            ...languages.map(
+              (l) => SettingsOption(
+                value: l,
+                label: l == null ? S.of(context).original : getLanguageName(l) ?? l,
+                isSelected: current?.extras?['videoLanguage'] == l,
+              ),
+            ),
+          ],
+        );
+
+        if (selected != null && context.mounted) {
+          ref.read(playbackServiceProvider).playEpisode(
+                playerId: BccmPlayerController.primary.value.playerId,
+                episode: episode,
+                videoLanguageCode: selected.value,
+                autoplay: true,
+                playbackPositionMs: BccmPlayerController.primary.value.playbackPositionMs,
+              );
+        }
+      },
     );
   }
 }
