@@ -17,6 +17,7 @@ import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/components/episode/episode_share_sheet.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -26,6 +27,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -325,6 +327,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                   ),
               ];
             },
+            topRightNextToSettingsSlot: languages.length < 2 ? null : (context) => const MultiVideoLangNotice(),
             playNextButton: !enablePlayNextButton
                 ? null
                 : (context) => PlayNextButton(
@@ -526,6 +529,30 @@ class _EpisodeDisplay extends HookConsumerWidget {
   }
 }
 
+class MultiVideoLangNotice extends StatelessWidget {
+  const MultiVideoLangNotice({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final viewController = BccmPlayerViewController.of(context);
+    if (!viewController.isFullscreen) return const SizedBox.shrink();
+    final design = DesignSystem.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric().copyWith(bottom: 12),
+      child: Row(
+        children: [
+          Text(
+            S.of(context).openSettingsToChangeVideoLang,
+            style: design.textStyles.caption2.copyWith(fontStyle: FontStyle.italic),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class VideoLanguageSettings extends HookConsumerWidget {
   const VideoLanguageSettings({
     super.key,
@@ -540,7 +567,7 @@ class VideoLanguageSettings extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       dense: true,
-      title: Text(S.of(context).videoLanguage, style: BccmPlayerTheme.safeOf(context).controls?.settingsListTextStyle),
+      title: Text(S.of(context).videoTextLanguage, style: BccmPlayerTheme.safeOf(context).controls?.settingsListTextStyle),
       onTap: () async {
         final current = BccmPlayerController.primary.value.currentMediaItem?.metadata;
         final selected = await showModalOptionList<String?>(

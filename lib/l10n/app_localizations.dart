@@ -2091,11 +2091,23 @@ abstract class S {
   /// **'Video language'**
   String get videoLanguage;
 
+  /// Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos.
+  ///
+  /// In en, this message translates to:
+  /// **'Video text language'**
+  String get videoTextLanguage;
+
   /// E.g. original language.
   ///
   /// In en, this message translates to:
   /// **'Original'**
   String get original;
+
+  /// Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings to change the video text language'**
+  String get openSettingsToChangeVideoLang;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

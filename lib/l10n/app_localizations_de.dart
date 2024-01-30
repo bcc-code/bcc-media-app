@@ -1025,5 +1025,11 @@ class SDe extends S {
   String get videoLanguage => 'Video language';
 
   @override
+  String get videoTextLanguage => 'Video text language';
+
+  @override
   String get original => 'Original';
+
+  @override
+  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
 }
