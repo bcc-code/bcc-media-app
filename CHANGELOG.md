@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.3+2300123...v) (2024-01-29)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.4+2300124...v) (2024-01-30)
+
+
+### Features
+
+* video text language info notice in fullscreen ([c990551](https://github.com/bcc-code/bcc-media-app/commit/c9905514aab38cbfc3838025ee0a3e6d550e9a59))
+
+
+
+## [5.2.4+2300124](https://github.com/bcc-code/bcc-media-app/compare/v5.2.3+2300123...v5.2.4+2300124) (2024-01-29)
 
 
 ### Bug Fixes
