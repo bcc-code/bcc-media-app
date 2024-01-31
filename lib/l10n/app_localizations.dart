@@ -2064,7 +2064,7 @@ abstract class S {
   /// Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media.
   ///
   /// In en, this message translates to:
-  /// **'The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.'**
+  /// **'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.'**
   String get bccLiveForcedDescription2;
 
   /// Will be shown in the future when you open the live tab, if the livestream is available in both Live and BCC Media.

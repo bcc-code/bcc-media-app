@@ -1387,7 +1387,7 @@
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription2": "The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "bccLiveForcedDescription2": "We're sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.",
   "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
