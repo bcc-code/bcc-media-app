@@ -1,13 +1,13 @@
 {
-  "loadingContent": "Sisältöä ladataan",
+  "loadingContent": "Indlæser indhold",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
   },
-  "signInTooltip": "Kirjautumalla näet lisää",
+  "signInTooltip": "Log ind for at se mere indhold",
   "@signInTooltip": {
     "description": "Text for tooltip displayed when a non-member user opens the home page."
   },
-  "skipToPublicContent": "Ohita, ja katso vain julkista sisältöä",
+  "skipToPublicContent": "Spring over for at se offentligt indhold",
   "@skipToPublicContent": {
     "description": "Text for button displayed on login screen to skip sign in and watch public content."
   },
@@ -15,39 +15,39 @@
   "@minutesShort": {
     "description": "Text for minutes."
   },
-  "calendarThisWeek": "Tällä viikolla",
+  "calendarThisWeek": "Denne uge",
   "@calendarThisWeek": {
     "description": "Text for This week."
   },
-  "calendarWeek": "viikko",
+  "calendarWeek": "uge",
   "@calendarWeek": {
     "description": "Text week."
   },
-  "close": "Sulje",
+  "close": "Luk",
   "@close": {
     "description": "Text displayed on 'Close' button"
   },
-  "loading": "Ladataan",
+  "loading": "Indlæser",
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "Kaikista maailman\n sanomista voimakkain",
+  "loginPageDisplay1": "Det kraftigste budskab i verden",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Katsele Kristillisten arvojen mukaisia videoita, esityksiä, ja sarjoja",
+  "loginPageDisplay2": "Se serier, shows og film baseret på kristne værdier",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "kidsOnboardingTitle": "Teemme Raamatun sanomasta elävää!",
+  "kidsOnboardingTitle": "Vi vækker Bibelens budskab til live!",
   "@kidsOnboardingTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "kidsOnboardingSecondaryTitle": "Haluamme että lapset saavat kokea Jeesuken parhaana ystävänään. Loppuelämäkseen.",
+  "kidsOnboardingSecondaryTitle": "Vores vision er at børnene skal opleve Jesus som deres allerbedste ven - for resten af deres liv.",
   "@kidsOnboardingSecondaryTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "loginPageDisplay3": "BCC Median tuottama",
+  "loginPageDisplay3": "Produceret af BCC Media",
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
@@ -55,79 +55,79 @@
   "@liveTab": {
     "description": "Title of live page tab"
   },
-  "logOutButton": "Kirjaudu ulos",
+  "logOutButton": "Log ud",
   "@logOutButton": {
     "description": "Text displayed on Log out button"
   },
-  "profileTab": "Profiili",
+  "profileTab": "Profil",
   "@profileTab": {
     "description": "Title of the profile page"
   },
-  "faq": "Usein kysyttyä",
+  "faq": "Ofte stillede spørgsmål",
   "@faq": {
     "description": "Long title of the FAQ page."
   },
-  "bccMediaCenter": "BCC Media on BCC Liiton mediayksikkö. Se tuottaa ja toimittaa positiivista Kristillisten arvojen mukaista sisältöä.",
+  "bccMediaCenter": "BCC Media er en mediefond i BCC-forbundet, der producerer og distribuerer indhold med positive og kristne værdier.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
-  "signInButton": "Kirjaudu sisään",
+  "signInButton": "Log ind",
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
-  "signInOrSignUp": "Kirjautuminen",
+  "signInOrSignUp": "Tilmeld dig / Log ind",
   "@signInOrSignUp": {
     "description": "Button to go to the onboarding page (short)"
   },
-  "signUpButton": "Luo tunnus nyt",
+  "signUpButton": "Tilmeld dig nu",
   "@signUpButton": {
     "description": "Button to start the sign up process"
   },
-  "signUpTitle": "Luo tunnus",
+  "signUpTitle": "Tilmeld dig",
   "@signUpTitle": {
     "description": "Title on the sign up page"
   },
-  "signUpDescription": "Luomalla tunnuksen saat enemmän sisältöä ja paremmat ominaisuudet.",
+  "signUpDescription": "Få adgang til mere indhold og bedre funktioner ved at oprette en konto.",
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Voin osoittaa olevani vähintään 13 vuotias, ja hyväksyn <a>Tietosuojakäytännöt</a>sekä <a>Käyttöehdot</a>.",
+  "signUpAgreePrivacyPolicy": "Jeg bekræfter, at jeg er 13 år eller ældre, og jeg er indforstået med følgende  <a>Privatlivspolitik</a> og <a>Vilkår for brug</a>. ",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
-  "setPassword": "Aseta salasana",
+  "setPassword": "Skriv password",
   "@setPassword": {
     "description": "Title for the 'Set password' page of the signup process."
   },
-  "tryAgainButton": "Koita uudelleen",
+  "tryAgainButton": "Prøv igen",
   "@tryAgainButton": {
     "description": "Button on error alert that lets user to retry failed action"
   },
-  "loggedOutTitle": "Kirjautunut ulos",
+  "loggedOutTitle": "Logget ud",
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Et ole kirjautuneena. Kirjaudu sisään uudelleen.",
+  "loggedOutMessage": "Du er blevet logget ud. Venligst log ind igen.",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
-  "makeDonation": "Lahjoita rahaa",
+  "makeDonation": "Giv en donation",
   "@makeDonation": {
     "description": "Text for button which opens donation page."
   },
-  "mostWatched": "Eniten katsellut",
+  "mostWatched": "Mest sete",
   "@mostWatched": {
     "description": "Sorting option on audience page"
   },
-  "mostRecent": "Tuoreimmat",
+  "mostRecent": "Seneste",
   "@mostRecent": {
     "description": "Sorting option on audience page"
   },
-  "latelyPublished": "Tuoreita julkaisuja",
+  "latelyPublished": "Sidst publiceret",
   "@latelyPublished": {
     "description": "Title for the list of videos on login page"
   },
-  "anErrorOccurred": "Sattui ongelma",
+  "anErrorOccurred": "Der er sket en fejl",
   "@anErrorOccurred": {
     "description": "Title in error popup"
   },
@@ -135,179 +135,179 @@
   "@ok": {
     "description": "Popup confirmation button"
   },
-  "open": "Avaa",
+  "open": "Åben",
   "@open": {
     "description": "Open button"
   },
-  "loginFailedCheckNetwork": "Kirjautuminen epäonnistui. Tarkista nettiyhteys ja koita uudelleen.",
+  "loginFailedCheckNetwork": "Login mislykkedes. Tjek din netværksforbindelse, og prøv igen.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "Kirjautuminen epäonnistui. Yritä myöhemmin uudelleen.",
+  "loginFailedTryAgain": "Login mislykkedes. Prøv igen senere.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
-  "soundLanguage": "Äänen kieli",
+  "soundLanguage": "Lydsprog",
   "@soundLanguage": {
     "description": "Settings item on profile page"
   },
-  "subtitleLanguage": "Tekstityksen kieli",
+  "subtitleLanguage": "Undertekster",
   "@subtitleLanguage": {
     "description": "Settings item on profile page"
   },
-  "appLanguage": "Sovelluksen kieli",
+  "appLanguage": "App-sprog",
   "@appLanguage": {
     "description": "Settings item on profile page"
   },
-  "checkNetwork": "Tarkista nettiyhteys ja yritä uudelleen.",
+  "checkNetwork": "Tjek din netværksforbindelse, og prøv igen.",
   "@checkNetwork": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "tryAgain": "Yritä myöhemmin uudelleen.",
+  "tryAgain": "Prøv igen senere.",
   "@tryAgain": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "cantPlayVideo": "Tätä videota ei voi nyt toistaa.",
+  "cantPlayVideo": "Du kan ikke afspille denne video nu.",
   "@cantPlayVideo": {
     "description": "Error message for the user displayed when video playback attempt failed."
   },
-  "about": "Tietoa",
+  "about": "Om",
   "@about": {
     "description": "Title of About page and item in profile page settings."
   },
-  "version": "Versio",
+  "version": "Version",
   "@version": {
     "description": "Version ot the application on About page; followed by version number"
   },
-  "contactSupport": "Tukipyyntö",
+  "contactSupport": "Kontakt support",
   "@contactSupport": {
     "description": "Title for contact support page"
   },
-  "contactIssueHint": "Kuvaile ongelmaa",
+  "contactIssueHint": "Beskriv problemet",
   "@contactIssueHint": {
     "description": "Hint for the message box for logged in users"
   },
-  "contactUs": "Yhteydenotto",
+  "contactUs": "Kontakt os",
   "@contactUs": {
     "description": "Title for contact us page"
   },
-  "deviceInfo": "Tietoa laitteesta",
+  "deviceInfo": "Info om enheden",
   "@deviceInfo": {
     "description": "Device info page title"
   },
-  "contactIncludeDeviceInfo": "Liitä mukaan laitteen tiedot paremman tuen saamiseksi.",
+  "contactIncludeDeviceInfo": "Inkluder enhedsoplysninger for bedre support",
   "@contactIncludeDeviceInfo": {
     "description": "Text for checkbox to include device information"
   },
-  "contactSeeData": "Tästä näet tiedot.",
+  "contactSeeData": "Klik for at se data",
   "@contactSeeData": {
     "description": "Text for link to see device data"
   },
-  "contactName": "Nimi",
+  "contactName": "Navn",
   "@contactName": {
     "description": "Label for name field in contact support page"
   },
-  "contactNameHint": "Kirjoita nimesi",
+  "contactNameHint": "Indtast dit navn",
   "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactEmail": "Sähköpostiosoitteesi",
+  "contactEmail": "Din e-mail",
   "@contactEmail": {
     "description": "Label for email field in contact support page"
   },
-  "contactEmailHint": "Kirjoita sähköpostiosoitteesi",
+  "contactEmailHint": "Indtast din e-mailadresse",
   "@contactEmailHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactMessage": "Viesti",
+  "contactMessage": "Besked",
   "@contactMessage": {
     "description": "Label for message field in contact support page"
   },
-  "contactMessageHint": "Kirjoita viestisi tähän",
+  "contactMessageHint": "Indtast din besked her",
   "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
-  "deviceInfoDevice": "Laite",
+  "deviceInfoDevice": "Enhed",
   "@deviceInfoDevice": {
     "description": "Label for device"
   },
-  "deviceInfoEnvOverride": "Environment override",
+  "deviceInfoEnvOverride": "Overstyring af miljø",
   "@deviceInfoEnvOverride": {
     "description": "Label for environment override"
   },
-  "deviceInfoManufacturer": "Valmistaja",
+  "deviceInfoManufacturer": "Producent",
   "@deviceInfoManufacturer": {
     "description": "Label for manufacturer"
   },
-  "deviceInfoOs": "Käyttöjärjestelmä",
+  "deviceInfoOs": "Operativ system",
   "@deviceInfoOs": {
     "description": "Label for operating system"
   },
-  "deviceInfoScreenSize": "Ruutukoko",
+  "deviceInfoScreenSize": "Skærmstørrelse",
   "@deviceInfoScreenSize": {
     "description": "Label for screen size"
   },
-  "deviceInfoAppVer": "Sovellusversio",
+  "deviceInfoAppVer": "App-version",
   "@deviceInfoAppVer": {
     "description": "Label for app Version"
   },
-  "deviceInfoUserId": "Käyttäjätunniste",
+  "deviceInfoUserId": "Bruger-ID",
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-  "deviceInfoPageDesc": "Viestiin lisätään nämä tiedot. Ne auttavat meitä antamaan parempaa tukea.",
+  "deviceInfoPageDesc": "Din besked vil indeholde disse oplysninger for at hjælpe os med at yde bedre support",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
   },
-  "userVoice": "Ehdota ominaisuutta",
+  "userVoice": "Foreslå en funktion",
   "@userVoice": {
     "description": "Settings item on profile page to navigate to uservoice"
   },
-  "cancel": "Peru",
+  "cancel": "Annuller",
   "@cancel": {
     "description": "General cancel action button"
   },
-  "cancelConfirmation": "Varmastiko haluat perua?",
+  "cancelConfirmation": "Er du sikker på at du vil annullere?",
   "@cancelConfirmation": {
     "description": "Title text for cancel confirmation dialog."
   },
-  "cancelConfirmationDescription": "Tallentamattomat muutokset katoavat.",
+  "cancelConfirmationDescription": "Alle ændringer, der ikke er gemt, vil gå tabt.",
   "@cancelConfirmationDescription": {
     "description": "Description for cancel confirmation dialog."
   },
-  "goBack": "Palaa",
+  "goBack": "Tilbage",
   "@goBack": {
     "description": "Text for back button."
   },
-  "yesCancel": "Niin, hylkää",
+  "yesCancel": "Ja, annullér",
   "@yesCancel": {
     "description": "Confirm cancel."
   },
-  "upNext": "Tulossa",
+  "upNext": "Næste",
   "@upNext": {
     "description": "Title indiciating what's next on the livestream."
   },
-  "done": "Valmis",
+  "done": "Færdig",
   "@done": {
     "description": "Generic Done button, for example to dismiss a page after completing an action."
   },
-  "playerSettings": "Soittimen asetukset",
+  "playerSettings": "Afspillerindstillinger",
   "@playerSettings": {
     "description": "Title of the Player settings activity in Android"
   },
-  "settings": "Asetukset",
+  "settings": "Indstillinger",
   "@settings": {
     "description": "Label of the button to go to Android/iOS settings"
   },
-  "none": "Ei mikään",
+  "none": "Ingen",
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
-  "nextEpisode": "Seuraava jakso",
+  "nextEpisode": "Næste episode",
   "@nextEpisode": {
     "description": "Button indicating the next video will play soon."
   },
-  "auto": "Automaattinen",
+  "auto": "Auto",
   "@auto": {
     "description": "Indicator on profile page that audio and app language are chosen automatically."
   },
@@ -315,67 +315,67 @@
   "@live": {
     "description": "Title of the live stream"
   },
-  "subtitles": "Tekstitys",
+  "subtitles": "Undertekster",
   "@subtitles": {
     "description": "Generic."
   },
-  "audio": "Ääni",
+  "audio": "Audio",
   "@audio": {
     "description": "Generic."
   },
-  "quality": "Laatu",
+  "quality": "Kvalitet",
   "@quality": {
     "description": "Generic."
   },
-  "seasons": "Tuotantokautta",
+  "seasons": "Sæsoner",
   "@seasons": {
     "description": "Followed by number of seasons in given series."
   },
-  "episodes": "Jaksoja",
+  "episodes": "Episoder \n",
   "@episodes": {
     "description": "Followed by number of episodes in given series."
   },
-  "search": "Haku",
+  "search": "Søg",
   "@search": {
     "description": "Button to clear cache"
   },
-  "sendFeedback": "Lähetä palautetta",
+  "sendFeedback": "Indsend feedback",
   "@sendFeedback": {
     "description": "Button to submit feedback(Survey)"
   },
-  "noResults": "Mitään ei löytynyt",
+  "noResults": "Ingen resultater fundet",
   "@noResults": {
     "description": "No search results."
   },
-  "doYouWantCast": "Haluatko lähettää videon ruudulle?",
+  "doYouWantCast": "Vil du caste denne video?\n",
   "@doYouWantCast": {
     "description": "Prompt displayed to the user"
   },
-  "play": "Toista",
+  "play": "Afspil",
   "@play": {
     "description": "Option in prompt dialog."
   },
-  "pause": "Tauko",
+  "pause": "Pause",
   "@pause": {
     "description": "A button to pause the video."
   },
-  "castQueue": "Toista kaikki isolle ruudulle",
+  "castQueue": "Cast listen",
   "@castQueue": {
     "description": "Queue page title"
   },
-  "options": "Asetukset",
+  "options": "Valgmuligheder",
   "@options": {
     "description": "Options dialog title"
   },
-  "remove": "Poista",
+  "remove": "Fjern",
   "@remove": {
     "description": "Option in options dialog"
   },
-  "queueLimitTitle": "Rajoitus",
+  "queueLimitTitle": "Begrænsning",
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "Jonossa ei voi olle enempää kuin {elementCount} juttua.",
+  "queueLimitMessage": "Du kan ikke have mere end {elementCount} elementer i kø.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -384,123 +384,123 @@
       }
     }
   },
-  "recentSearches": "Aiemmin haettu",
+  "recentSearches": "Seneste søgninger",
   "@recentSearches": {
     "description": "Recent searches list title."
   },
-  "tVLogin": "Kirjaudu sisään televisiolla",
+  "tVLogin": "TV Login",
   "@tVLogin": {
     "description": "Title of the TV login alert"
   },
-  "tVLoginSuccessful": "Kirjautuminen onnistui. Vahvista televisiosta.",
+  "tVLoginSuccessful": "Indlogningen lykkedes, bekræft venligst på TV.\n",
   "@tVLoginSuccessful": {
     "description": "Message of the TV login alert"
   },
-  "seeMore": "Näytä lisää",
+  "seeMore": "Se mere",
   "@seeMore": {
     "description": "Button on featured item to navigete to page with player"
   },
-  "seeAll": "Näytä kaikki",
+  "seeAll": "Se alle",
   "@seeAll": {
     "description": "Button to see all of some collection."
   },
-  "series": "Sarjat",
+  "series": "Serier",
   "@series": {
     "description": "Title of the tab on info page"
   },
-  "homeTab": "Etusivu",
+  "homeTab": "Hjem",
   "@homeTab": {
     "description": "Title of the home page"
   },
-  "sortBy": "Järjestelyperuste",
+  "sortBy": "Sorter efter",
   "@sortBy": {
     "description": "Sorting criteria selector"
   },
-  "videoQuality": "Videon laatu",
+  "videoQuality": "Videokvalitet",
   "@videoQuality": {
     "description": "Settings item in profile page for Android."
   },
-  "low": "Alhainen",
+  "low": "Lav",
   "@low": {
     "description": "Low quality video option"
   },
-  "medium": "Keskiverto",
+  "medium": "Medium",
   "@medium": {
     "description": "Medium quality video option"
   },
-  "high": "Laadukas",
+  "high": "Høj",
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Täältä voit hakea mitä tahansa BCC Median sisältöä; sarjoja, elokuvia, ja jaksoja.",
+  "emptySearch": "Du kan søge i alt indhold fra BCC Media. Serier, film og episoder.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
-  "back": "Takaisin",
+  "back": "Tilbage",
   "@back": {
     "description": "General back button to navigate back"
   },
-  "seasonLetter": "TK",
+  "seasonLetter": "S",
   "@seasonLetter": {
     "description": "Season  letter in label S1E3"
   },
-  "episodeLetter": "J",
+  "episodeLetter": "E",
   "@episodeLetter": {
     "description": "Episode letter in label S1E3"
   },
-  "atoZ": "A-Ö",
+  "atoZ": "A-Z",
   "@atoZ": {
     "description": "Sort order"
   },
-  "ztoA": "Ö-A",
+  "ztoA": "Z-A",
   "@ztoA": {
     "description": "Sort order"
   },
-  "shortFilms": "Lyhytfilmit",
+  "shortFilms": "Kortfilm",
   "@shortFilms": {
     "description": "Title of the films collection."
   },
-  "videos": "Videot",
+  "videos": "Film",
   "@videos": {
     "description": "Followed by number of videos"
   },
-  "moreInfo": "Lisätietoja",
+  "moreInfo": "Mere information",
   "@moreInfo": {
     "description": "Option in action sheet for the video that triggers info page for the video."
   },
-  "info": "Tietoa",
+  "info": "Information",
   "@info": {
     "description": "Video info page title."
   },
-  "episode": "Jakso",
+  "episode": "Episode",
   "@episode": {
     "description": "Title of the tab on info page"
   },
-  "takePhoto": "Ota kuva",
+  "takePhoto": "Tag et billede",
   "@takePhoto": {
     "description": "Option in menu"
   },
-  "pickPhoto": "Valitse kuvakansiosta",
+  "pickPhoto": "Vælg fra galleri",
   "@pickPhoto": {
     "description": "Option in menu"
   },
-  "uploadFileTitle": "Lähetä tiedosto",
+  "uploadFileTitle": "Upload fil",
   "@uploadFileTitle": {
     "description": "Title of the dialog to confirm upload"
   },
-  "uploadFileMessage": "Haluatko lähettää tämän tiedoston?",
+  "uploadFileMessage": "Vil du uploade denne fil?",
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "uploading": "Lähetetään",
+  "uploading": "Uploader",
   "@uploading": {
     "description": "Message during file upload"
   },
-  "uploadFail": "Lähettäminen epäonnistui",
+  "uploadFail": "Upload mislykkedes",
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{charsTotal} merkistä {charsLeft} jäljellä",
+  "charactersLimit": "{charsLeft} af {charsTotal} tegn tilbage",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -512,87 +512,87 @@
       }
     }
   },
-  "thankYou": "Kiitoksia!",
+  "thankYou": "Mange tak!",
   "@thankYou": {
     "description": "Title in upload success page"
   },
-  "thankYouForContribution": "Kiitos panoksesta!",
+  "thankYouForContribution": "Tak for dit bidrag!",
   "@thankYouForContribution": {
     "description": "Title in upload success page"
   },
-  "next": "Seuraava",
+  "next": "Næste",
   "@next": {
     "description": "NEXT program in check in section"
   },
-  "add": "Lisää",
+  "add": "Tilføj",
   "@add": {
     "description": "Button text"
   },
-  "change": "Vaihda",
+  "change": "Ændre",
   "@change": {
     "description": "Button text"
   },
-  "writeHere": "Kirjoita tähän",
+  "writeHere": "Skriv her",
   "@writeHere": {
     "description": "New post text field placeholder"
   },
-  "feed": "Syöte",
+  "feed": "Feed",
   "@feed": {
     "description": "Feed page bar title"
   },
-  "information": "Tietoa",
+  "information": "Information",
   "@information": {
     "description": "Feed information item title"
   },
-  "question": "Kysymys",
+  "question": "Spørgsmål",
   "@question": {
     "description": "Title of the question page"
   },
-  "now": "Nyt",
+  "now": "Nu",
   "@now": {
     "description": "Tv guide now playing label"
   },
-  "debugInfoExplanation": "Palautteesi sisältää myös seuraavat tiedot, jotta ymmärrämme ongelman paremmin.",
+  "debugInfoExplanation": "Din besked vil indeholde disse oplysninger for at hjælpe os med at forstå problemet bedre.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
-  "send": "Lähetä",
+  "send": "Send",
   "@send": {
     "description": "General button to send a form"
   },
-  "sending": "Lähetetään",
+  "sending": "Sender",
   "@sending": {
     "description": "General sending action indicator"
   },
-  "thankYouSupportTitle": "Kiitos palautteesta!",
+  "thankYouSupportTitle": "Tak for din feedback!",
   "@thankYouSupportTitle": {
     "description": "Text on contact support confirmation page"
   },
-  "thankYouSupportDescription": "Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseksi.",
+  "thankYouSupportDescription": "Vi sætter pris på al feedback, og vi vil løse problemet så hurtigt som muligt.",
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Lähettäminen epäonnistui",
+  "sendFail": "Kunne ikke sende din besked",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.",
+  "sendFailDescription": "Kunne gik galt. Tjek din internetforbindelse og prøv igen.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
-  "sendSuccessDescription": "Kiitos palautteesta.",
+  "sendSuccessDescription": "Vi sætter pris på din feedback.",
   "@sendSuccessDescription": {
     "description": "General message when sending is successful"
   },
-  "today": "Tänään",
+  "today": "I dag",
   "@today": {
     "description": "First category in tv guide"
   },
-  "expired": "Vanhentunut",
+  "expired": "Udløbet",
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Saatavilla {date}",
+  "availableFrom": "Tilgængelig {date}\n",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -601,23 +601,23 @@
       }
     }
   },
-  "submit": "Lähetä",
+  "submit": "Indsend",
   "@submit": {
     "description": "Submit button."
   },
-  "wellDone": "Hyvin tehty!",
+  "wellDone": "Godt klaret!",
   "@wellDone": {
     "description": "Positive message that may be used e.g. after completing some action."
   },
-  "editPicture": "Muokkaa kuvaa",
+  "editPicture": "Rediger billede",
   "@editPicture": {
     "description": "Button on profile page to edit profile picture."
   },
-  "profilePicture": "Profiilikuva",
+  "profilePicture": "Profilbillede",
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Kellonajat ovat sinun paikallista aikaa: {timeZone}",
+  "timezoneInformation": "Tv-guidens tidsplan er i din lokale tid: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -626,79 +626,79 @@
       }
     }
   },
-  "share": "Jaa",
+  "share": "Del",
   "@share": {
     "description": "Generic."
   },
-  "showMore": "Näytä lisää",
+  "showMore": "Vis mere",
   "@showMore": {
     "description": "Text used on link to expand collapsed text."
   },
-  "showLess": "Näytä vähemmän",
+  "showLess": "Vis mindre",
   "@showLess": {
     "description": "Text used on link to collapse expanded text."
   },
-  "liveNow": "Suorana nyt",
+  "liveNow": "Live nu",
   "@liveNow": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
   },
-  "comingSoon": "Tulossa pian",
+  "comingSoon": "Kommer snart",
   "@comingSoon": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
   },
-  "newEpisode": "Uutta",
+  "newEpisode": "Ny",
   "@newEpisode": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
   },
-  "tomorrow": "Huomenna",
+  "tomorrow": "I morgen",
   "@tomorrow": {
     "description": "Day of transmission in tv guide."
   },
-  "readBy": "Lukenut: ",
+  "readBy": "Læst af",
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "broadcasts": "Lähetykset",
+  "broadcasts": "Sendinger",
   "@broadcasts": {
     "description": "Title for live broadcasts."
   },
-  "calendar": "Kalenteri",
+  "calendar": "Kalender",
   "@calendar": {
     "description": "Title of calendar page."
   },
-  "noEvents": "Ei suunniteltuja lähetyksiä",
+  "noEvents": "Ingen planlagte sendinger",
   "@noEvents": {
     "description": "Info in calendar page that no transmissions are scheduled for selected day."
   },
-  "appUpdateTitle": "Päivitys on tarpeen",
+  "appUpdateTitle": "Opdatering nødvendig",
   "@appUpdateTitle": {
     "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateRequest": "Päivitä sovellus. Siinä on uusia ominaisuuksia ja vikoja on korjattu.",
+  "appUpdateRequest": "Download venligst den seneste app for at tage alle de nyeste funktioner og fejlrettelser i brug.",
   "@appUpdateRequest": {
     "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateAccepted": "Päivitä",
+  "appUpdateAccepted": "Opdater",
   "@appUpdateAccepted": {
     "description": "Option that can be chosen by the user to update his application."
   },
-  "copy": "Kopioi",
+  "copy": "Kopier",
   "@copy": {
     "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
-  "reload": "Uusi yritys",
+  "reload": "Genindlæs\n",
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
   },
-  "fAQ": "UKK",
+  "fAQ": "FAQ",
   "@fAQ": {
     "description": "Title on FAQ page and item in profile page settings."
   },
-  "shareStart": "Jaa video",
+  "shareStart": "Del fra starten ",
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Jaa video tästä kohtaa {time}",
+  "shareTime": "Del fra {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -707,55 +707,55 @@
       }
     }
   },
-  "loadContentError": "Sisällön lataaminen epäonnistui",
+  "loadContentError": "Ikke ikke indlæse indhold",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "privacyPolicy": "Tietosuojakäytäntö",
+  "privacyPolicy": "Fortrolighedspolitik",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "termsOfUse": "Käyttöehdot",
+  "termsOfUse": "Betingelser for brug",
   "@termsOfUse": {
     "description": "Title on the 'Terms of use' page."
   },
-  "categoriesTab": "Luokat",
+  "categoriesTab": "Kategorier",
   "@categoriesTab": {
     "description": "Title of the Categories Tab"
   },
-  "seriesTab": "Sarjat",
+  "seriesTab": "Serier",
   "@seriesTab": {
     "description": "Series Tab title"
   },
-  "filmsTab": "Filmit",
+  "filmsTab": "Film",
   "@filmsTab": {
     "description": "Films Tab title"
   },
-  "eventsTab": "Tapahtumat",
+  "eventsTab": "Events",
   "@eventsTab": {
     "description": "Events Tab title"
   },
-  "audioLanguage": "Äänen kieli",
+  "audioLanguage": "Audio sprog",
   "@audioLanguage": {
     "description": "Label indicating that the Audio Language can be changed here."
   },
-  "subtitlesLanguage": "Tekstityksen kieli",
+  "subtitlesLanguage": "Undertekster",
   "@subtitlesLanguage": {
     "description": "Label indicating that the Subtitles Language can be changed here."
   },
-  "removeFromRecentSearches": "Haluatko poistaa tämän hakuhistoriasta?",
+  "removeFromRecentSearches": "Vil du fjerne dette element fra de seneste søgninger?",
   "@removeFromRecentSearches": {
     "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
   },
-  "noTransmissionToday": "Tänään ei ole lähetystä",
+  "noTransmissionToday": "Ingen planlagt sending i dag\n",
   "@noTransmissionToday": {
     "description": "Messages that informs the user, that there are no schedules transmission for today."
   },
-  "featured": "Ajankohtaista",
+  "featured": "Featured",
   "@featured": {
     "description": "Featured videos collection header"
   },
-  "errorTryAgain": "Jokin meni pieleen. Yritä myöhemmin uudelleen.",
+  "errorTryAgain": "Noget gik galt, prøv venligst igen senere.",
   "@errorTryAgain": {
     "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
   },
@@ -763,91 +763,91 @@
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
-  "programsSection": "Ohjelmat",
+  "programsSection": "Programmer",
   "@programsSection": {
     "description": "Section in search."
   },
-  "noPlannedEvents": "Ei tapahtumia tänään",
+  "noPlannedEvents": "Ingen begivenheder planlagt denne dag",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
-  "watchNow": "Katso",
+  "watchNow": "Se nu",
   "@watchNow": {
     "description": "Button on featured carousel"
   },
-  "exploreContent": "Tutustu sisältöön",
+  "exploreContent": "Udforsk indhold",
   "@exploreContent": {
     "description": "A button"
   },
-  "explorePublicContent": "Tutustu avoimeen sisältöön",
+  "explorePublicContent": "Udforsk offentligt indhold",
   "@explorePublicContent": {
     "description": "A button on the welcome page"
   },
-  "startExploring": "Tutustu sisältöön",
+  "startExploring": "Udforsk",
   "@startExploring": {
     "description": "A button on the welcome page"
   },
-  "taskCompleted": "tehtävä suoritettu",
+  "taskCompleted": "Opgave udført",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "tehtävää suoritettu",
+  "tasksCompleted": "Opgaver udført",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
-  "studyCompleteTaskDescription": "Suorita tehtäviä ja löydä siihen liittyvää sisältöä",
+  "studyCompleteTaskDescription": "Fuldfør opgaver og opdag relateret indhold",
   "@studyCompleteTaskDescription": {
     "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
   },
-  "discoverMore": "Löydä lisää",
+  "discoverMore": "Opdag mere",
   "@discoverMore": {
     "description": "Generic button text."
   },
-  "completePreviousTasks": "Avaa suorittamalla edellinen tehtävä",
+  "completePreviousTasks": "Fuldfør tidligere opgaver for at låse op",
   "@completePreviousTasks": {
     "description": "Shown on a locked button, short explanation why the button is locked."
   },
-  "studyDiscoverMoreDescription": "Löydä aiheeseen liittyvää inspiroivaa ja valaisevaa sisältöä",
+  "studyDiscoverMoreDescription": "Find mere inspiration fra relateret indhold\n",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },
-  "watchAgain": "Katso uudelleen",
+  "watchAgain": "Se igen",
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
-  "continueToTaskIn": "Tehtävän jatkoon",
+  "continueToTaskIn": "Fortsæt med opgaven ",
   "@continueToTaskIn": {
     "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "continueToTasksIn": "Tehtävien jatkoon",
+  "continueToTasksIn": "Fortsæt med opgaverne ",
   "@continueToTasksIn": {
     "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "studyLessonCompleted": "oppitunti suoritettu",
+  "studyLessonCompleted": "Lektion udført",
   "@studyLessonCompleted": {
     "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
   },
-  "studyLessonsCompleted": "oppituntia suoritettu",
+  "studyLessonsCompleted": "Lektioner udført",
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Jatka opintoa",
+  "continueStudy": "Fortsæt",
   "@continueStudy": {
     "description": "Button."
   },
-  "startStudy": "Aloita opinto",
+  "startStudy": "Start",
   "@startStudy": {
     "description": "Button."
   },
-  "videoCompletedText": "Hienoa, katsoit videon loppuun.",
+  "videoCompletedText": "Godt arbejde med at se hele videoen.\n",
   "@videoCompletedText": {
     "description": "Shown after completing tasks related to a video."
   },
-  "achievementFirstDescription": "Ensimmäinen saavutus - katsoit videon. Hieno homma!",
+  "achievementFirstDescription": "Godt arbejde med at se hele videoen og få din første streak.\n",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Hieno homma. Olet suorittanut opintokokonaisuuden {name}",
+  "achievementStudyTopic": "Godt arbejdet med at udføre temaet {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -856,7 +856,7 @@
       }
     }
   },
-  "videoCount": "{count} videota",
+  "videoCount": "{count} film",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -865,7 +865,7 @@
       }
     }
   },
-  "taskCount": "{count} tehtävää",
+  "taskCount": "{count} opgaver\n",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -874,7 +874,7 @@
       }
     }
   },
-  "posterCount": "{count} julistetta",
+  "posterCount": "{count} plakater\n",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -883,7 +883,7 @@
       }
     }
   },
-  "resourceCount": "{count} sisältöpakettia",
+  "resourceCount": "{count} indhold\n",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -892,19 +892,19 @@
       }
     }
   },
-  "continueButton": "Jatka",
+  "continueButton": "Fortsæt",
   "@continueButton": {
     "description": "Generic button text."
   },
-  "registerButton": "Ilmoittaudu",
+  "registerButton": "Tilmeld",
   "@registerButton": {
     "description": "Generic button text."
   },
-  "achievements": "Saavutukset",
+  "achievements": "Streaks",
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "passwordConditionLength": "Vähintään {n} merkkiä",
+  "passwordConditionLength": "Mindst {n} tegn",
   "@passwordConditionLength": {
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
@@ -913,143 +913,143 @@
       }
     }
   },
-  "passwordConditionComplexity": "Täytyy sisältää isoja ja pieniä kirjaimia sekä numeroita.",
+  "passwordConditionComplexity": "Skal indeholde små bogstaver, store bogstaver og tal.",
   "@passwordConditionComplexity": {
     "description": "Password condition, shown when signing up."
   },
-  "oops": "Hupsista!",
+  "oops": "Ups!",
   "@oops": {
     "description": "An informal title on some error screens."
   },
-  "dontHaveAccess": "Sinulla ei ole oikeutta tähän sisältöön.",
+  "dontHaveAccess": "Du har ikke adgang til dette indhold",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
-  "mustBeLoggedIn": "Tämän katsominen vaatii kirjautumista",
+  "mustBeLoggedIn": "Du må være logget ind for at se dette indhold",
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
   },
-  "plentyOfOtherContent": "Mutta ei syytä huoleen. On edelleen paljon katsottavaa!",
+  "plentyOfOtherContent": "Bare rolig, der er stadig masser af andet indhold at se!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   },
-  "notAchieved": "Ei saavutettu",
+  "notAchieved": "Ikke opnået",
   "@notAchieved": {
     "description": "A label indicating that this achievement has not been achieved yet."
   },
-  "details": "Lisätietoa",
+  "details": "Detaljer",
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   },
-  "myList": "Listani",
+  "myList": "Min liste",
   "@myList": {
     "description": "My list tab name"
   },
-  "didYouKnowTitle": "Tiesitkö?",
+  "didYouKnowTitle": "Vidste du?",
   "@didYouKnowTitle": {
     "description": "Title for info displayed on 'My list' page."
   },
-  "didYouKnowContent": "Sydäntä painamalla voit lisätä jakson \"Listaani\".",
+  "didYouKnowContent": "Du kan tilføje dine favoritudsendelser til \"Min liste\" ved at trykke på hjertet.",
   "@didYouKnowContent": {
     "description": "Content for info displayed on 'My list' page."
   },
-  "selectSeason": "Valitse tuotantokausi",
+  "selectSeason": "Vælg sæson",
   "@selectSeason": {
     "description": "A title prompting to select a season from the list."
   },
-  "deleteMyAccount": "Poista tilini",
+  "deleteMyAccount": "Slet min konto",
   "@deleteMyAccount": {
     "description": "Button to request to delete your account"
   },
-  "iAmSureIWantToDelete": "Aivan varmasti haluan poistaa tilini ja tietoni BCC Media sovelluksesta.",
+  "iAmSureIWantToDelete": "Jeg er sikker på, at jeg vil slette min konto og mine data i BCC Media-appen.",
   "@iAmSureIWantToDelete": {
     "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
   },
-  "areYouSure": "Oletko varma?",
+  "areYouSure": "Er du sikker?",
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
   },
-  "youCanContactUsAt": "Yhteydenotot:",
+  "youCanContactUsAt": "Du kan kontakte os på",
   "@youCanContactUsAt": {
     "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
   },
-  "biblekidsAbout": "Bible Kids on BCC Median tuote. BCC Liiton alainen BCC Media tuottaa ja toimittaa positiivista Kristillisten arvojen mukaista sisältöä.",
+  "biblekidsAbout": "Bible Kids er et initiativ fra BCC Media, en mediestiftelsen under BCC-forbundet, som producerer og distribuerer indhold med positive og kristne værdier.",
   "@biblekidsAbout": {
     "description": "Shown on about page"
   },
-  "askYourParents": "Pyydä vanhempiasi",
+  "askYourParents": "Spørg dine forældre",
   "@askYourParents": {
     "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
   },
-  "whatIsMath": "Mitä on",
+  "whatIsMath": "Hvad er",
   "@whatIsMath": {
     "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
   },
-  "answerLabel": "Vastaus",
+  "answerLabel": "Svar",
   "@answerLabel": {
     "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
   },
-  "checkAnswerButton": "Tarkista vastaus",
+  "checkAnswerButton": "Se svar",
   "@checkAnswerButton": {
     "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
   },
-  "videoOnlyAccessibleToLoggedIn": "Tämä video näkyy vain sisäänkirjautuneille.",
+  "videoOnlyAccessibleToLoggedIn": "Denne video er kun tilgængelig for brugere, der er logget ind i appen.",
   "@videoOnlyAccessibleToLoggedIn": {
     "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
   },
-  "verifyYourAccount": "Vahvista tili",
+  "verifyYourAccount": "Bekræft din konto",
   "@verifyYourAccount": {
     "description": "Title of the page where you can verify your email/account."
   },
-  "weHaveSentAnEmailTo": "Sähköposti on lähetetty osoitteeseen",
+  "weHaveSentAnEmailTo": "Vi har sendt en e-mail til",
   "@weHaveSentAnEmailTo": {
     "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
   },
-  "clickTheLinkToVerify": "Klikkaa sähköpostissa olevaa linkkiä.",
+  "clickTheLinkToVerify": "Klik på linket i e-mailen for at bekræfte din konto.",
   "@clickTheLinkToVerify": {
     "description": "Shown on the verify account page."
   },
-  "openEmailApp": "Avaa sähköpostisovellus",
+  "openEmailApp": "Åbn e-mail-appen",
   "@openEmailApp": {
     "description": "Shown on the verify account page. Button to open your email app."
   },
-  "resendEmail": "Lähetä sähköposti uudelleen",
+  "resendEmail": "Send e-mail igen",
   "@resendEmail": {
     "description": "Shown on the verify account page. Button to resend the verification email."
   },
-  "noMailAppsDescription": "Ei sähköpostisovellusta asennettuna",
+  "noMailAppsDescription": "Ingen mail-apps installeret",
   "@noMailAppsDescription": {
     "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
   },
-  "verificationEmailSent": "Vahvistussähköposti lähetetty",
+  "verificationEmailSent": "Bekræftelses-e-mail sendt",
   "@verificationEmailSent": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "ifYouDidntReceiveVerificationEmail": "Jos et vieläkään saanut sähköpostia, ota meihin yhteyttä: ",
+  "ifYouDidntReceiveVerificationEmail": "Hvis du stadig ikke har modtaget en e-mail, bedes du kontakte support på",
   "@ifYouDidntReceiveVerificationEmail": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "accountCreated": "Tili luotu",
+  "accountCreated": "Brugerkonto oprettet",
   "@accountCreated": {
     "description": "Shown when the user has successfully created an account."
   },
-  "youCanNowUseYourAccount": "Tilin kautta voit nyt tutustua laajaan valikoimaan rakentavaa sisältöä.",
+  "youCanNowUseYourAccount": "Du kan nu bruge din brugerkonto og udforske et udvalg af opbyggeligt indhold.",
   "@youCanNowUseYourAccount": {
     "description": "Shown when the user has successfully completed account setup."
   },
-  "youCanNowLogInToYourAccount": "Voit nyt kirjautua sisään ja tutustua laajaan valikoimaan rakentavaa sisältöä.",
+  "youCanNowLogInToYourAccount": "Du kan nu logge ind på din brugerkonto og udforske et udvalg af opbyggeligt indhold.",
   "@youCanNowLogInToYourAccount": {
     "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
   },
-  "accountDeletionExplanation": "Olet pyytämässä BCC Media -tilisi poistamista mukaanlukien kaikki sovelluksen tallentama tieto.",
+  "accountDeletionExplanation": "Du er ved at anmode om at slette din konto hos BCC Media og alle dine data relateret til denne app.",
   "@accountDeletionExplanation": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionWarning": "Tilin poistamista ei voi peruuttaa.",
+  "accountDeletionWarning": "Det er en handling, der ikke kan fortrydes.",
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Tilin poistaminen tapahtuu yleensä {x} työpäivän kuluessa.",
+  "accountDeletionTimeframe": "Din brugerkonto vil blive slettet inden for {x} arbejdsdage.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1058,11 +1058,11 @@
       }
     }
   },
-  "accountDeletionTitle": "Poista tilini",
+  "accountDeletionTitle": "Slet min konto",
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Pyyntö tilin poistamiseksi on lähetetty. Saat asiasta sähköpostin osoitteeseen {email}. Identiteettisi varmistamiseksi sinun tulee vastata sähköpostiin - jolloin tili voidaan poistaa.",
+  "accountDeletionSuccess": "Anmodning om at slette din brugerkonto gennemført. Du vil modtage en e-mail på {email}. For at bekræfte din identitet har vi brug for, at du svarer på den e-mail for at fortsætte med at slette din brugerkonto.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1071,19 +1071,19 @@
       }
     }
   },
-  "gamesTab": "Pelit",
+  "gamesTab": "Spil",
   "@gamesTab": {
     "description": "Title of the games page"
   },
-  "playGame": "Pelaa",
+  "playGame": "Start spil",
   "@playGame": {
     "description": "Title on a game"
   },
-  "tvScanQr": "Kuvaa qr-koodi ja kirjaudu puhelimella",
+  "tvScanQr": "Scan koden og log ind med din telefon",
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Taikka mene tänne: {url} ja syötä sinne: {code}",
+  "tvEnterCode": "Eller gå til {url} og indtast koden: {code}",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1095,31 +1095,31 @@
       }
     }
   },
-  "chapters": "Luvut",
+  "chapters": "Kapitler",
   "@chapters": {
     "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
   },
-  "removeWatchProgress": "Unohda katselun edistyminen",
+  "removeWatchProgress": "Fjern afspilningsvisning",
   "@removeWatchProgress": {
     "description": "Shown when holding on an episode in the 'continue watching' section."
   },
-  "showDescription": "Näytä kuvaus",
+  "showDescription": "Beskrivelse af udsendelse",
   "@showDescription": {
     "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
   },
-  "releaseDate": "Julkaisupäivämäärä",
+  "releaseDate": "Publiceringsdato",
   "@releaseDate": {
     "description": "Release date of the episode, shown in the 'details' tab under an episode."
   },
-  "availableTo": "Poistuu:",
+  "availableTo": "Tilgængelig",
   "@availableTo": {
     "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
   },
-  "ageRating": "Ikäsuositus",
+  "ageRating": "Alder",
   "@ageRating": {
     "description": "Age rating for the episode, shown in the 'details' tab under an episode."
   },
-  "ageRatingAll": "Ei ikärajaa",
+  "ageRatingAll": "Alle",
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
@@ -1127,11 +1127,11 @@
   "@offline": {
     "description": "Status indicator, indicating that you are offline; not connected to the internet."
   },
-  "downloadButton": "Lataa",
+  "downloadButton": "Download",
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Ääntä ei ole saatavilla {lang}ksi",
+  "audioNotAvailableInLanguage": "Lyd ikke tilgængelig på {lang}",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1140,15 +1140,15 @@
       }
     }
   },
-  "notEnoughAvailableSpace": "Laitteessa ei riitä enää tila",
+  "notEnoughAvailableSpace": "Ikke nok ledig plads på din enhed",
   "@notEnoughAvailableSpace": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "considerDeletingOtherVideos": "Harkitse muiden sovelluksesta lataamiesi videoiden poistamista.",
+  "considerDeletingOtherVideos": "Overvej at slette andre videoer, du har downloadet i appen.",
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "Videotiedoston koko on {size}.",
+  "theVideoFileSizeIs": "Videofilens størrelse er {size}.",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1157,75 +1157,75 @@
       }
     }
   },
-  "gotIt": "Selvä",
+  "gotIt": "Forstået",
   "@gotIt": {
     "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
   },
-  "saveYourFavorites": "Tallenna suosikkivideosi",
+  "saveYourFavorites": "Gem dine yndlingsvideoer",
   "@saveYourFavorites": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "saveYourFavoritesDescription": "Napauta videon sydänkuvaketta tallentaaksesi sen profiiliisi.",
+  "saveYourFavoritesDescription": "Tryk på hjerteikonet på en video for at gemme den i din profil.",
   "@saveYourFavoritesDescription": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "yourFavorites": "Suosikkini",
+  "yourFavorites": "Mine favoritter",
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
-  "downloaded": "Ladatut",
+  "downloaded": "Downloaded",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."
   },
-  "saveVideosForOfflineViewing": "Tallenna videoita offline-katselua varten",
+  "saveVideosForOfflineViewing": "Gem videoer til offlinevisning",
   "@saveVideosForOfflineViewing": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "tapOnTheDownloadIcon": "Napauta videon latauskuvaketta ladataksesi ja toistaaksesi offline-tilassa.",
+  "tapOnTheDownloadIcon": "Tryk på download-ikonet på en video for at downloade og afspille offline.",
   "@tapOnTheDownloadIcon": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "removeOfflineVideo": "Poistetaanko offline-video?",
+  "removeOfflineVideo": "Fjerne offline video?",
   "@removeOfflineVideo": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeOfflineVideoDescription": "Kun poistat tämän videon, se ei ole enää saatavilla ilman verkkoyhteyttä.",
+  "removeOfflineVideoDescription": "Ved at fjerne denne video vil den ikke længere være tilgængelig uden en netværksforbindelse.",
   "@removeOfflineVideoDescription": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeFromDeviceButton": "Poista laitteesta",
+  "removeFromDeviceButton": "Fjern fra enheden",
   "@removeFromDeviceButton": {
     "description": "Button text, to remove a downloaded video from the device."
   },
-  "keepVideoButton": "Säilytä video",
+  "keepVideoButton": "Behold video",
   "@keepVideoButton": {
     "description": "Button when asking to remove a downloaded video. This button cancels."
   },
-  "noInternetConnection": "Ei Internet-yhteyttä",
+  "noInternetConnection": "Ingen internetforbindelse",
   "@noInternetConnection": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetConnectionDescription": "Muodosta yhteys Internetiin nähdäksesi kaikki videot.",
+  "noInternetConnectionDescription": "Opret forbindelse til internettet for at få adgang til alle videoer.",
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "Ei Internet-yhteyttä, mutta älä huoli.",
+  "noInternetButDontWorry": "Ingen internetforbindelse,\nmen bare rolig.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
-  "hereAreAllTheVideosYouDownloaded": "Tässä ovat kaikki lataamasi videot.",
+  "hereAreAllTheVideosYouDownloaded": "Her er alle de videoer, du har downloadet til din enhed.",
   "@hereAreAllTheVideosYouDownloaded": {
     "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "connectToExplore": "Muodosta yhteys Internetiin nähdäksesi kaikki videot.",
+  "connectToExplore": "Opret forbindelse til internettet for at udforske alle videoer.",
   "@connectToExplore": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "language": "Kieli",
+  "language": "Sprog",
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Arvioitu tiedostokoko: {size}",
+  "estimatedFileSize": "Anslået filstørrelse: {size}",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1234,47 +1234,47 @@
       }
     }
   },
-  "downloadVideo": "Lataa video",
+  "downloadVideo": "Download video",
   "@downloadVideo": {
     "description": "Title on the download video form."
   },
-  "noSubtitles": "Ei tekstityksiä",
+  "noSubtitles": "Ingen undertekster",
   "@noSubtitles": {
     "description": "Shown in the download form, indicating that there are no subtitles available for the video."
   },
-  "subtitlesIncluded": "Tekstitykset on",
+  "subtitlesIncluded": "Undertekster inkluderet",
   "@subtitlesIncluded": {
     "description": "Shown in the download form, indicating that all subtitles are included in the video."
   },
-  "allSubtitlesWillBeAvailableOffline": "Kaikki tekstitykset toimivat myös offline-tilassa",
+  "allSubtitlesWillBeAvailableOffline": "Alle undertekster vil være tilgængelige offline",
   "@allSubtitlesWillBeAvailableOffline": {
     "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "downloading": "Ladataan",
+  "downloading": "Downloader",
   "@downloading": {
     "description": "Download status, indicating that the video is currently downloading."
   },
-  "failed": "Epäonnistui",
+  "failed": "Fejl",
   "@failed": {
     "description": "Generic status label. Used e.g. for downloads that failed."
   },
-  "finished": "Valmis",
+  "finished": "Afsluttet",
   "@finished": {
     "description": "Generic status label. Used e.g. for downloads that finished."
   },
-  "paused": "Tauko",
+  "paused": "Sat på pause",
   "@paused": {
     "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
   },
-  "queued": "Jonossa",
+  "queued": "I kø",
   "@queued": {
     "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
   },
-  "removing": "Poistetaan",
+  "removing": "Fjern",
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "expiresIn": "Vanhenee {time} kuluessa",
+  "expiresIn": "Udløber om {time}",
   "@expiresIn": {
     "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
     "placeholders": {
@@ -1283,67 +1283,67 @@
       }
     }
   },
-  "availableOffline": "Käytettävissä offline-tilassa",
+  "availableOffline": "Tilgængelig offline",
   "@availableOffline": {
     "description": "Label indicating that the video is available offline."
   },
-  "technicalDetails": "Tekniset tiedot",
+  "technicalDetails": "Tekniske detaljer",
   "@technicalDetails": {
     "description": "Shown when errors occur, and you want to see more technical details about the error."
   },
-  "contentLanguage": "Sisällön kieli",
+  "contentLanguage": "Indholdssprog",
   "@contentLanguage": {
     "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
   },
-  "contentLanguageShort": "Sisältö",
+  "contentLanguageShort": "Indhold",
   "@contentLanguageShort": {
     "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
   },
-  "appLanguageShort": "Sovellus",
+  "appLanguageShort": "App",
   "@appLanguageShort": {
     "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
   },
-  "playRandom": "Satunnaistoisto",
+  "playRandom": "Afspil tilfældig",
   "@playRandom": {
     "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
   },
-  "addLanguage": "Lisää kieli",
+  "addLanguage": "Tilføj et sprog",
   "@addLanguage": {
     "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
   },
-  "preferredLanguages": "Enisijaiset kielet",
+  "preferredLanguages": "Foretrukne sprog",
   "@preferredLanguages": {
     "description": "Shown when you are selecting preferred content languages. Title."
   },
-  "contentLanguageExplanation": "Järjestä kielet uudelleen vastaamaan haluamaasi äänen ja tekstityksen kieltä.",
+  "contentLanguageExplanation": "Omorganiser sprogene, så de passer til dine præferencer for lyd- og undertekstsprog.",
   "@contentLanguageExplanation": {
     "description": "Shown when you are selecting preferred content languages."
   },
-  "otherLanguages": "Muut kielet",
+  "otherLanguages": "Andre sprog",
   "@otherLanguages": {
     "description": "Languages that are available but in your list of preferred languages."
   },
-  "select": "Valitse",
+  "select": "Vælg",
   "@select": {
     "description": "Prompt. Shown at the top of a list of options."
   },
-  "supportBibleKids": "Tue Bible Kidsiä",
+  "supportBibleKids": "Støt Bible Kids",
   "@supportBibleKids": {
     "description": "Shown on the settings page."
   },
-  "donateViaPaypal": "Lahjoita PayPalilla",
+  "donateViaPaypal": "Donér via PayPal",
   "@donateViaPaypal": {
     "description": "Shown on the settings page."
   },
-  "shortsTab": "Lyhytfilmit",
+  "shortsTab": "Kortfilm",
   "@shortsTab": {
     "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
-  "autoGenerated": "Automaattisesti luotu",
+  "autoGenerated": "Autogenereret",
   "@autoGenerated": {
     "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
   },
-  "shortsAiDisclaimer": "Kuvatekstit on automaattisesti luotu ja voivat sisältää virheitä.",
+  "shortsAiDisclaimer": "Transskriptionerne og uddragene er autogenererede og kan indeholde fejl.",
   "@shortsAiDisclaimer": {
     "description": "Disclaimer shown on the shorts page."
   },
@@ -1351,51 +1351,51 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Tämä ominaisuus on beta-vaiheessa, eikä sitä ole tällä hetkellä julkaistu kaikille käyttäjille. Ilmoita ongelmista tai palautteesta \"Ota yhteyttä\" -painikkeen kautta asetuksissa.",
+  "betaExplanation": "Denne funktion er under udvikling og er for øjeblikkt ikke udgivet til alle brugere. Rapporter venligst eventuelle fejl eller feedback via knappen \"Kontakt\" i indstillingerne.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
-  "likedShorts": "Tykkäämäsi lyhytvideot",
+  "likedShorts": "Yndlingskortfilm",
   "@likedShorts": {
     "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
-  "saveYourFavoriteShorts": "Tallenna parhaat lyhytvideot",
+  "saveYourFavoriteShorts": "Gem dine yndlingskortfilm",
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Tämä ominaisuus ei ole vielä käytettävissä. Yritä toiste uudelleen.",
+  "featureNotAvailableYet": "Denne funktion er ikke tilgængelig endnu. Prøv igen senere.",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
-  "newFeature": "Uusi ominaisuus",
+  "newFeature": "Ny funktion",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
   },
-  "shortsFeatureDescription": "Löydä lyhyitä ja tehokkaita pätkiä ja hyppää suoraan vastaavaan videoon.",
+  "shortsFeatureDescription": "Oplev korte og kraftfulde uddrag, og spring direkte til dens fulde episode.",
   "@shortsFeatureDescription": {
     "description": "Shown the first time you open the app after 'shorts' is enabled."
   },
-  "likedAndSaved": "Tykätyt ja tallennetut",
+  "likedAndSaved": "Synes om og gem",
   "@likedAndSaved": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "shortsLikedAndSavedDescription": "Löydät kaikki tykkäämäsi lyhytvideot profiilistasi.",
+  "shortsLikedAndSavedDescription": "Du kan finde alle dine favoritkortfilm i din profil.",
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "downloadedVideosGuideDescription": "Löydät lataamasi videot kohdasta \"Profiili\".",
+  "downloadedVideosGuideDescription": "Du kan finde dine downloadede videoer under \"Profil\".",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription2": "The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "bccLiveForcedDescription2": "Livestreaming er flyttet til en ny app: \"Live by BCC Connect\". Du kan downloade den i App Store eller Google Play.",
   "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
-  "bccLiveLinkDescription2": "The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "bccLiveLinkDescription2": "Livestreaming flyttes til en ny app: \"Live by BCC Connect\". Du kan downloade den i App Store eller Google Play.",
   "@bccLiveLinkDescription2": {
     "description": "Will be shown in the future when you open the live tab, if the livestream is available in both Live and BCC Media."
   },
-  "openStore": "Avaa kauppa",
+  "openStore": "Åbn",
   "@openStore": {
     "description": "A button to open play store / app store."
   }

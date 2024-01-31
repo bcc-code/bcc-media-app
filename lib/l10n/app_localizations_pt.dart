@@ -1010,10 +1010,10 @@ class SPt extends S {
   String get downloadedVideosGuideDescription => 'Você pode encontrar seus vídeos baixados em \"Perfil\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
+  String get bccLiveForcedDescription2 => 'A transmissão ao vivo mudou para um novo aplicativo: \"Live by BCC Connect\". Você pode baixá-lo na App Store ou no Google Play.';
 
   @override
-  String get bccLiveLinkDescription2 => 'The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
+  String get bccLiveLinkDescription2 => 'A transmissão ao vivo está migrando para um novo aplicativo: \"Live by BCC Connect\". Você pode baixá-lo na App Store ou no Google Play.';
 
   @override
   String get openStore => 'Loja aberta';

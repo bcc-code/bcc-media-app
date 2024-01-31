@@ -801,7 +801,7 @@ class SDe extends S {
   String get chapters => 'Kapitel';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'Wiedergabeliste entfernen';
 
   @override
   String get showDescription => 'Sendungsbeschreibung';
@@ -813,7 +813,7 @@ class SDe extends S {
   String get availableTo => 'Verfügbar bis';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Altersfreigabe';
 
   @override
   String get ageRatingAll => 'Alle';
@@ -826,11 +826,11 @@ class SDe extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Audio not available in $lang';
+    return 'Audio in $lang nicht verfügbar';
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+  String get notEnoughAvailableSpace => 'Auf Ihrem Gerät ist nicht genügend Speicherplatz verfügbar';
 
   @override
   String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';

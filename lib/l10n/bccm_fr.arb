@@ -1,13 +1,13 @@
 {
-  "loadingContent": "Cargando contenido",
+  "loadingContent": "Chargement du contenu",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
   },
-  "signInTooltip": "Inicia sesión para ver más contenido",
+  "signInTooltip": "Se connecter pour voir plus de contenu",
   "@signInTooltip": {
     "description": "Text for tooltip displayed when a non-member user opens the home page."
   },
-  "skipToPublicContent": "Saltar para ver contenido público",
+  "skipToPublicContent": "Passer à la visualisation du contenu public",
   "@skipToPublicContent": {
     "description": "Text for button displayed on login screen to skip sign in and watch public content."
   },
@@ -15,307 +15,307 @@
   "@minutesShort": {
     "description": "Text for minutes."
   },
-  "calendarThisWeek": "Esta semana",
+  "calendarThisWeek": "Cette semaine",
   "@calendarThisWeek": {
     "description": "Text for This week."
   },
-  "calendarWeek": "semana",
+  "calendarWeek": "semaine",
   "@calendarWeek": {
     "description": "Text week."
   },
-  "close": "Cerrar",
+  "close": "Fermer",
   "@close": {
     "description": "Text displayed on 'Close' button"
   },
-  "loading": "Cargando",
+  "loading": "Chargement",
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "El mensaje más \npoderoso del mundo",
+  "loginPageDisplay1": "Le message le plus\n puissant au monde",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Ver series, espectáculos y películas basadas en Valores cristianos",
+  "loginPageDisplay2": "Regarde des séries, des émissions et des films basés sur les valeurs chrétiennes",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "kidsOnboardingTitle": "¡Damos vida al mensaje de la Biblia!",
+  "kidsOnboardingTitle": "Nous donnons vie au message de la Bible !",
   "@kidsOnboardingTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "kidsOnboardingSecondaryTitle": "Nuestra visión es que los niños experimenten a Jesús como su mejor amigo, por el resto de sus vidas.",
+  "kidsOnboardingSecondaryTitle": "Notre vision est que les enfants fassent l'expérience de Jésus comme leur meilleur ami - pour le reste de leur vie.",
   "@kidsOnboardingSecondaryTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "loginPageDisplay3": "Producida por BCC Media",
+  "loginPageDisplay3": "Produit par BCC Media",
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
-  "liveTab": "En Vivo",
+  "liveTab": "En direct",
   "@liveTab": {
     "description": "Title of live page tab"
   },
-  "logOutButton": "Cerrar sesión",
+  "logOutButton": "Déconnexion",
   "@logOutButton": {
     "description": "Text displayed on Log out button"
   },
-  "profileTab": "Perfil",
+  "profileTab": "Profil",
   "@profileTab": {
     "description": "Title of the profile page"
   },
-  "faq": "Preguntas frecuentes",
+  "faq": "Foire aux Questions",
   "@faq": {
     "description": "Long title of the FAQ page."
   },
-  "bccMediaCenter": "BCC Media es una fundación de medios de la federación BCC que produce y distribuye contenido con valores positivos y cristianos.",
+  "bccMediaCenter": "BCC Media est une fondation médiatique de la fédération BCC qui produit et distribue des contenus aux valeurs positives et chrétiennes.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
-  "signInButton": "Iniciar Sesión",
+  "signInButton": "Se connecter",
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
-  "signInOrSignUp": "Registrarse/ ingresar",
+  "signInOrSignUp": "S'inscrire / Se connecter",
   "@signInOrSignUp": {
     "description": "Button to go to the onboarding page (short)"
   },
-  "signUpButton": "Regístrate ahora",
+  "signUpButton": "S'inscrire maintenant",
   "@signUpButton": {
     "description": "Button to start the sign up process"
   },
-  "signUpTitle": "Regístrarse",
+  "signUpTitle": "S'inscrire",
   "@signUpTitle": {
     "description": "Title on the sign up page"
   },
-  "signUpDescription": "Obtenga acceso a más contenido y mejores funciones creando una cuenta.",
+  "signUpDescription": "Accédez à plus de contenu et à de meilleures fonctionnalités en créant un compte.",
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Certifico que tengo 13 años o más y acepto la <a>Política de privacidad</a> y los <a>Términos de uso</a>.",
+  "signUpAgreePrivacyPolicy": "Je certifie que j'ai 13 ans ou plus, et j'accepte la <a>Politique de confidentialité</a> et <a>les conditions d'utilisation</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
-  "setPassword": "Configurar la clave",
+  "setPassword": "Définir le mot de passe",
   "@setPassword": {
     "description": "Title for the 'Set password' page of the signup process."
   },
-  "tryAgainButton": "Inténtalo nuevamente",
+  "tryAgainButton": "Essayer à nouveau",
   "@tryAgainButton": {
     "description": "Button on error alert that lets user to retry failed action"
   },
-  "loggedOutTitle": "Sesión cerrada",
+  "loggedOutTitle": "Déconnecté",
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Tu sesión ha sido cerrada. Por favor inicia sesión nuevamente.",
+  "loggedOutMessage": "Tu as été déconnecté. Merci de te connecter à nouveau.",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
-  "makeDonation": "Haz una donación",
+  "makeDonation": "Faire un don",
   "@makeDonation": {
     "description": "Text for button which opens donation page."
   },
-  "mostWatched": "Más vistos",
+  "mostWatched": "Le plus regardé",
   "@mostWatched": {
     "description": "Sorting option on audience page"
   },
-  "mostRecent": "Más recientes",
+  "mostRecent": "Le plus récent",
   "@mostRecent": {
     "description": "Sorting option on audience page"
   },
-  "latelyPublished": "Últimas publicaciones",
+  "latelyPublished": "Publié récemment",
   "@latelyPublished": {
     "description": "Title for the list of videos on login page"
   },
-  "anErrorOccurred": "Ha ocurrido un error",
+  "anErrorOccurred": "Une erreur s'est produite",
   "@anErrorOccurred": {
     "description": "Title in error popup"
   },
-  "ok": "Ok",
+  "ok": "OK",
   "@ok": {
     "description": "Popup confirmation button"
   },
-  "open": "Abierta",
+  "open": "Ouvrir",
   "@open": {
     "description": "Open button"
   },
-  "loginFailedCheckNetwork": "La conexión ha fallado, revise su conexión a internet e inténtelo una vez más.",
+  "loginFailedCheckNetwork": "Échec de la connexion. Vérifie ta connexion internet et retente à nouveau.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "La conexión ha fallado. Por favor inténtelo más tarde.",
+  "loginFailedTryAgain": "Échec de la connexion. Merci de retenter plus tard.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
-  "soundLanguage": "Lenguaje del audio",
+  "soundLanguage": "Langage audio",
   "@soundLanguage": {
     "description": "Settings item on profile page"
   },
-  "subtitleLanguage": "Idioma de los subtítulos",
+  "subtitleLanguage": "Langue des sous-titres",
   "@subtitleLanguage": {
     "description": "Settings item on profile page"
   },
-  "appLanguage": "Idioma de la Aplicación",
+  "appLanguage": "Langue de l'application",
   "@appLanguage": {
     "description": "Settings item on profile page"
   },
-  "checkNetwork": "Revise su conexión a internet e inténtelo más tarde.",
+  "checkNetwork": "Vérifie ta connexion internet et retente à nouveau.",
   "@checkNetwork": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "tryAgain": "Por favor inténtelo de nuevo más tarde.",
+  "tryAgain": "Merci de retenter plus tard.",
   "@tryAgain": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "cantPlayVideo": "No puede reproducirse este video en este momento.",
+  "cantPlayVideo": "Tu ne peux pas lire cette vidéo maintenant.",
   "@cantPlayVideo": {
     "description": "Error message for the user displayed when video playback attempt failed."
   },
-  "about": "Acerca de",
+  "about": "À propos",
   "@about": {
     "description": "Title of About page and item in profile page settings."
   },
-  "version": "Versión",
+  "version": "Version",
   "@version": {
     "description": "Version ot the application on About page; followed by version number"
   },
-  "contactSupport": "Contactar al soporte",
+  "contactSupport": "Contacter le support",
   "@contactSupport": {
     "description": "Title for contact support page"
   },
-  "contactIssueHint": "Describa el problema",
+  "contactIssueHint": "Décris le problème",
   "@contactIssueHint": {
     "description": "Hint for the message box for logged in users"
   },
-  "contactUs": "Contactenos",
+  "contactUs": "Nous contacter",
   "@contactUs": {
     "description": "Title for contact us page"
   },
-  "deviceInfo": "Información del dispositivo",
+  "deviceInfo": "Informations sur l'appareil",
   "@deviceInfo": {
     "description": "Device info page title"
   },
-  "contactIncludeDeviceInfo": "Incluya información sobre el dispositivo para una mejor asistencia.",
+  "contactIncludeDeviceInfo": "Inclure les informations relatives à l'appareil pour une meilleure assistance.",
   "@contactIncludeDeviceInfo": {
     "description": "Text for checkbox to include device information"
   },
-  "contactSeeData": "Haga clic para ver los datos.",
+  "contactSeeData": "Cliquer pour voir les données.",
   "@contactSeeData": {
     "description": "Text for link to see device data"
   },
-  "contactName": "Nombre",
+  "contactName": "Nom",
   "@contactName": {
     "description": "Label for name field in contact support page"
   },
-  "contactNameHint": "Escriba su nombre",
+  "contactNameHint": "Saisir votre nom",
   "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactEmail": "Su correo electrónico de contacto",
+  "contactEmail": "Votre email de contact",
   "@contactEmail": {
     "description": "Label for email field in contact support page"
   },
-  "contactEmailHint": "Escriba su dirección de correo electrónico",
+  "contactEmailHint": "Saisir votre adresse électronique",
   "@contactEmailHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactMessage": "Mensaje",
+  "contactMessage": "Message",
   "@contactMessage": {
     "description": "Label for message field in contact support page"
   },
-  "contactMessageHint": "Escriba aquí su mensaje",
+  "contactMessageHint": "Saisir votre message",
   "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
-  "deviceInfoDevice": "Dispositivo",
+  "deviceInfoDevice": "Appareil",
   "@deviceInfoDevice": {
     "description": "Label for device"
   },
-  "deviceInfoEnvOverride": "Cancelación de ambiente",
+  "deviceInfoEnvOverride": "Remplacement de l'environnement",
   "@deviceInfoEnvOverride": {
     "description": "Label for environment override"
   },
-  "deviceInfoManufacturer": "Fabricante",
+  "deviceInfoManufacturer": "Fabricant",
   "@deviceInfoManufacturer": {
     "description": "Label for manufacturer"
   },
-  "deviceInfoOs": "Sistema operativo",
+  "deviceInfoOs": "Système d'exploitation",
   "@deviceInfoOs": {
     "description": "Label for operating system"
   },
-  "deviceInfoScreenSize": "Tamaño de la pantalla",
+  "deviceInfoScreenSize": "Taille de l'écran",
   "@deviceInfoScreenSize": {
     "description": "Label for screen size"
   },
-  "deviceInfoAppVer": "Versión App",
+  "deviceInfoAppVer": "Version de l'application",
   "@deviceInfoAppVer": {
     "description": "Label for app Version"
   },
-  "deviceInfoUserId": "ID de usuario",
+  "deviceInfoUserId": "Identifiant de l'utilisateur",
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-  "deviceInfoPageDesc": "Su mensaje incluirá esta información, para ayudarnos a ofrecerle una mejor asistencia.",
+  "deviceInfoPageDesc": "Votre message contiendra ces informations, afin de nous aider à fournir une meilleure assistance.",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
   },
-  "userVoice": "Sugerir una característica",
+  "userVoice": "Suggérer une fonction",
   "@userVoice": {
     "description": "Settings item on profile page to navigate to uservoice"
   },
-  "cancel": "Cancelar",
+  "cancel": "Annuler",
   "@cancel": {
     "description": "General cancel action button"
   },
-  "cancelConfirmation": "¿Estás seguro/a de que quieres cancelar?",
+  "cancelConfirmation": "Es-tu sûr de vouloir annuler ?",
   "@cancelConfirmation": {
     "description": "Title text for cancel confirmation dialog."
   },
-  "cancelConfirmationDescription": "Cualquier cambio no guardado se perderá.",
+  "cancelConfirmationDescription": "Toute modification non enregistrée sera perdue.",
   "@cancelConfirmationDescription": {
     "description": "Description for cancel confirmation dialog."
   },
-  "goBack": "Volver",
+  "goBack": "Retour",
   "@goBack": {
     "description": "Text for back button."
   },
-  "yesCancel": "Sí, Cancelar",
+  "yesCancel": "Oui, Annuler",
   "@yesCancel": {
     "description": "Confirm cancel."
   },
-  "upNext": "Siguiente",
+  "upNext": "Suivant",
   "@upNext": {
     "description": "Title indiciating what's next on the livestream."
   },
-  "done": "Listo",
+  "done": "Terminé",
   "@done": {
     "description": "Generic Done button, for example to dismiss a page after completing an action."
   },
-  "playerSettings": "Configuración del reproductor",
+  "playerSettings": "Paramètres du lecteur",
   "@playerSettings": {
     "description": "Title of the Player settings activity in Android"
   },
-  "settings": "Configuración",
+  "settings": "Paramètres",
   "@settings": {
     "description": "Label of the button to go to Android/iOS settings"
   },
-  "none": "Ninguno",
+  "none": "Aucun",
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
-  "nextEpisode": "Próximo episodio",
+  "nextEpisode": "Prochain épisode",
   "@nextEpisode": {
     "description": "Button indicating the next video will play soon."
   },
-  "auto": "Automatico",
+  "auto": "Auto",
   "@auto": {
     "description": "Indicator on profile page that audio and app language are chosen automatically."
   },
-  "live": "En Vivo",
+  "live": "En direct",
   "@live": {
     "description": "Title of the live stream"
   },
-  "subtitles": "Subtitulos",
+  "subtitles": "Sous-titres",
   "@subtitles": {
     "description": "Generic."
   },
@@ -323,51 +323,51 @@
   "@audio": {
     "description": "Generic."
   },
-  "quality": "Calidad",
+  "quality": "Qualité",
   "@quality": {
     "description": "Generic."
   },
-  "seasons": "Temporadas",
+  "seasons": "Saisons",
   "@seasons": {
     "description": "Followed by number of seasons in given series."
   },
-  "episodes": "Episodios",
+  "episodes": "Épisodes",
   "@episodes": {
     "description": "Followed by number of episodes in given series."
   },
-  "search": "Buscar",
+  "search": "Rechercher",
   "@search": {
     "description": "Button to clear cache"
   },
-  "sendFeedback": "Enviar comentarios",
+  "sendFeedback": "Envoyer un commentaire",
   "@sendFeedback": {
     "description": "Button to submit feedback(Survey)"
   },
-  "noResults": "Sin resultados",
+  "noResults": "Aucun résultat trouvé",
   "@noResults": {
     "description": "No search results."
   },
-  "doYouWantCast": "¿Desea transmitir este video?",
+  "doYouWantCast": "Veux-tu caster cette vidéo ?",
   "@doYouWantCast": {
     "description": "Prompt displayed to the user"
   },
-  "play": "Reproducir",
+  "play": "Lire",
   "@play": {
     "description": "Option in prompt dialog."
   },
-  "pause": "Pausar",
+  "pause": "Pause",
   "@pause": {
     "description": "A button to pause the video."
   },
-  "castQueue": "Emitir cola de reproducción",
+  "castQueue": "File d'attente du Chromecast",
   "@castQueue": {
     "description": "Queue page title"
   },
-  "options": "Opciones",
+  "options": "Options",
   "@options": {
     "description": "Options dialog title"
   },
-  "remove": "Remover",
+  "remove": "Supprimer",
   "@remove": {
     "description": "Option in options dialog"
   },
@@ -375,7 +375,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "No puede tener más de {elementCount} elementos en cola.",
+  "queueLimitMessage": "Tu ne peux pas avoir plus de {elementCount} éléments dans la file d'attente.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -384,59 +384,59 @@
       }
     }
   },
-  "recentSearches": "Búsquedas recientes",
+  "recentSearches": "Recherches récentes",
   "@recentSearches": {
     "description": "Recent searches list title."
   },
-  "tVLogin": "Inicio de sesión de TV",
+  "tVLogin": "Connexion TV",
   "@tVLogin": {
     "description": "Title of the TV login alert"
   },
-  "tVLoginSuccessful": "Inicio de sesión exitoso, confirme en la TV.",
+  "tVLoginSuccessful": "Connexion réussie, merci de confirmer sur la TV.",
   "@tVLoginSuccessful": {
     "description": "Message of the TV login alert"
   },
-  "seeMore": "Ver más",
+  "seeMore": "Voir plus",
   "@seeMore": {
     "description": "Button on featured item to navigete to page with player"
   },
-  "seeAll": "Ver todo",
+  "seeAll": "Voir tout",
   "@seeAll": {
     "description": "Button to see all of some collection."
   },
-  "series": "Series",
+  "series": "Séries",
   "@series": {
     "description": "Title of the tab on info page"
   },
-  "homeTab": "Inicio",
+  "homeTab": "Accueil",
   "@homeTab": {
     "description": "Title of the home page"
   },
-  "sortBy": "Ordenar por",
+  "sortBy": "Trié par",
   "@sortBy": {
     "description": "Sorting criteria selector"
   },
-  "videoQuality": "Calidad del video",
+  "videoQuality": "Qualité vidéo",
   "@videoQuality": {
     "description": "Settings item in profile page for Android."
   },
-  "low": "Baja",
+  "low": "Basse",
   "@low": {
     "description": "Low quality video option"
   },
-  "medium": "Media",
+  "medium": "Moyenne",
   "@medium": {
     "description": "Medium quality video option"
   },
-  "high": "Alta",
+  "high": "Haute",
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Puedes buscar todo el contenido de BCC Media, series, películas y episodios.",
+  "emptySearch": "Tu peux faire une recherche sur tout le contenu de BCC Media. Séries, vidéos et épisodes.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
-  "back": "Atrás",
+  "back": "Retour",
   "@back": {
     "description": "General back button to navigate back"
   },
@@ -456,51 +456,51 @@
   "@ztoA": {
     "description": "Sort order"
   },
-  "shortFilms": "Películas cortas",
+  "shortFilms": "Courts-métrages",
   "@shortFilms": {
     "description": "Title of the films collection."
   },
-  "videos": "Videos",
+  "videos": "Vidéos",
   "@videos": {
     "description": "Followed by number of videos"
   },
-  "moreInfo": "Mas información",
+  "moreInfo": "Plus d'informations",
   "@moreInfo": {
     "description": "Option in action sheet for the video that triggers info page for the video."
   },
-  "info": "Información",
+  "info": "Information",
   "@info": {
     "description": "Video info page title."
   },
-  "episode": "Episodio",
+  "episode": "Épisode",
   "@episode": {
     "description": "Title of the tab on info page"
   },
-  "takePhoto": "Tome una fotografía",
+  "takePhoto": "Prendre une photo",
   "@takePhoto": {
     "description": "Option in menu"
   },
-  "pickPhoto": "Elegir de la galería",
+  "pickPhoto": "Choisir dans la galerie",
   "@pickPhoto": {
     "description": "Option in menu"
   },
-  "uploadFileTitle": "Subir archivo",
+  "uploadFileTitle": "Télécharger un fichier",
   "@uploadFileTitle": {
     "description": "Title of the dialog to confirm upload"
   },
-  "uploadFileMessage": "¿Desea subir este archivo?",
+  "uploadFileMessage": "Veux-tu télécharger ce fichier ?",
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "uploading": "Subiendo",
+  "uploading": "Téléchargement",
   "@uploading": {
     "description": "Message during file upload"
   },
-  "uploadFail": "La subida ha fallado",
+  "uploadFail": "Echec du téléchargement",
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "Quedan {charsLeft} de {charsTotal} caracteres",
+  "charactersLimit": "{charsLeft} sur {charsTotal} caractères restants",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -512,87 +512,87 @@
       }
     }
   },
-  "thankYou": "¡Gracias!",
+  "thankYou": "Merci beaucoup !",
   "@thankYou": {
     "description": "Title in upload success page"
   },
-  "thankYouForContribution": "¡Gracias por su contribución!",
+  "thankYouForContribution": "Merci pour ta contribution !",
   "@thankYouForContribution": {
     "description": "Title in upload success page"
   },
-  "next": "Siguiente",
+  "next": "Suivant",
   "@next": {
     "description": "NEXT program in check in section"
   },
-  "add": "Añadir",
+  "add": "Ajouter",
   "@add": {
     "description": "Button text"
   },
-  "change": "Cambiar",
+  "change": "Modifier",
   "@change": {
     "description": "Button text"
   },
-  "writeHere": "Escribe aquí",
+  "writeHere": "Écris ici",
   "@writeHere": {
     "description": "New post text field placeholder"
   },
-  "feed": "Feed",
+  "feed": "Flux",
   "@feed": {
     "description": "Feed page bar title"
   },
-  "information": "Información",
+  "information": "Information",
   "@information": {
     "description": "Feed information item title"
   },
-  "question": "Pregunta",
+  "question": "Question",
   "@question": {
     "description": "Title of the question page"
   },
-  "now": "Ahora",
+  "now": "Maintenant",
   "@now": {
     "description": "Tv guide now playing label"
   },
-  "debugInfoExplanation": "Su mensaje incluirá esta información para ayudarnos a comprender mejor el problema.",
+  "debugInfoExplanation": "Ton message inclura cette information, pour nous aider à mieux comprendre le problème.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
-  "send": "Enviar",
+  "send": "Envoyer",
   "@send": {
     "description": "General button to send a form"
   },
-  "sending": "Enviando",
+  "sending": "Envoi en cours",
   "@sending": {
     "description": "General sending action indicator"
   },
-  "thankYouSupportTitle": "¡Gracias por tus comentarios!",
+  "thankYouSupportTitle": "Merci pour ton commentaire !",
   "@thankYouSupportTitle": {
     "description": "Text on contact support confirmation page"
   },
-  "thankYouSupportDescription": "Agradecemos todos los comentarios y abordaremos el problema lo antes posible.",
+  "thankYouSupportDescription": "Nous apprécions tous les commentaires et nous nous pencherons sur ce problème dès que possible.",
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Tu mensaje no pudo ser enviado",
+  "sendFail": "Ton message n'a pas pu être envoyé",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Algo salió mal. Verifique su conexión a Internet e intente nuevamente.",
+  "sendFailDescription": "Une erreur est survenue. Vérifie ta connexion internet et réessaye.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
-  "sendSuccessDescription": "Agradecemos sus comentarios.",
+  "sendSuccessDescription": "Nous apprécions tes commentaires.",
   "@sendSuccessDescription": {
     "description": "General message when sending is successful"
   },
-  "today": "Hoy",
+  "today": "Aujourd'hui",
   "@today": {
     "description": "First category in tv guide"
   },
-  "expired": "Caducado",
+  "expired": "Expiré",
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Disponible{date}",
+  "availableFrom": "Disponible {date}",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -601,23 +601,23 @@
       }
     }
   },
-  "submit": "Enviar",
+  "submit": "Envoyer",
   "@submit": {
     "description": "Submit button."
   },
-  "wellDone": "¡Bien hecho!",
+  "wellDone": "Bien joué !",
   "@wellDone": {
     "description": "Positive message that may be used e.g. after completing some action."
   },
-  "editPicture": "Editar imagen",
+  "editPicture": "Modifier l'image",
   "@editPicture": {
     "description": "Button on profile page to edit profile picture."
   },
-  "profilePicture": "Imagen de Perfil",
+  "profilePicture": "Photo de profil",
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "El horario de la guía de televisión está en su hora local: {timeZone}",
+  "timezoneInformation": "Le calendrier du guide TV s'affiche selon l'heure locale : {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -626,79 +626,79 @@
       }
     }
   },
-  "share": "Compartir",
+  "share": "Partager",
   "@share": {
     "description": "Generic."
   },
-  "showMore": "Ver más",
+  "showMore": "Afficher plus",
   "@showMore": {
     "description": "Text used on link to expand collapsed text."
   },
-  "showLess": "Ver menos",
+  "showLess": "Afficher moins",
   "@showLess": {
     "description": "Text used on link to collapse expanded text."
   },
-  "liveNow": "En vivo",
+  "liveNow": "En direct maintenant",
   "@liveNow": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
   },
-  "comingSoon": "Próximamente",
+  "comingSoon": "Bientôt disponible",
   "@comingSoon": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
   },
-  "newEpisode": "Nuevo",
+  "newEpisode": "Nouveau",
   "@newEpisode": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
   },
-  "tomorrow": "Mañana",
+  "tomorrow": "Demain",
   "@tomorrow": {
     "description": "Day of transmission in tv guide."
   },
-  "readBy": "Leido por",
+  "readBy": "Lu par",
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "broadcasts": "Transmision",
+  "broadcasts": "Transmissions",
   "@broadcasts": {
     "description": "Title for live broadcasts."
   },
-  "calendar": "Calendario",
+  "calendar": "Calendrier",
   "@calendar": {
     "description": "Title of calendar page."
   },
-  "noEvents": "No hay transmisiones programadas",
+  "noEvents": "Aucune transmission prévue",
   "@noEvents": {
     "description": "Info in calendar page that no transmissions are scheduled for selected day."
   },
-  "appUpdateTitle": "Se requiere la actualización",
+  "appUpdateTitle": "Mise à jour requise",
   "@appUpdateTitle": {
     "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateRequest": "Por favor, Descargue la última version de la aplicación para disfrutar de las últimas funciones y correcciones de errores.",
+  "appUpdateRequest": "Merci de télécharger la dernière version de l'application pour profiter des dernières fonctionnalités et éviter les bugs.",
   "@appUpdateRequest": {
     "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateAccepted": "Actualización",
+  "appUpdateAccepted": "Mettre à jour",
   "@appUpdateAccepted": {
     "description": "Option that can be chosen by the user to update his application."
   },
-  "copy": "Copiar",
+  "copy": "Copier",
   "@copy": {
     "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
-  "reload": "Cargar",
+  "reload": "Recharger",
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
   },
-  "fAQ": "Preguntas frecuentes",
+  "fAQ": "FAQ",
   "@fAQ": {
     "description": "Title on FAQ page and item in profile page settings."
   },
-  "shareStart": "Compartir desde el inicio",
+  "shareStart": "Partager depuis le début",
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Compartir desde {time}",
+  "shareTime": "Partager à partir de {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -707,147 +707,147 @@
       }
     }
   },
-  "loadContentError": "No se pudo cargar el contenido",
+  "loadContentError": "Impossible de charger le contenu",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "privacyPolicy": "Políticas de privacidad",
+  "privacyPolicy": "Politique de confidentialité",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "termsOfUse": "Condiciones de uso",
+  "termsOfUse": "Conditions d'utilisation",
   "@termsOfUse": {
     "description": "Title on the 'Terms of use' page."
   },
-  "categoriesTab": "Categorías",
+  "categoriesTab": "Catégories",
   "@categoriesTab": {
     "description": "Title of the Categories Tab"
   },
-  "seriesTab": "Series",
+  "seriesTab": "Séries",
   "@seriesTab": {
     "description": "Series Tab title"
   },
-  "filmsTab": "Películas",
+  "filmsTab": "Films",
   "@filmsTab": {
     "description": "Films Tab title"
   },
-  "eventsTab": "Eventos",
+  "eventsTab": "Événements",
   "@eventsTab": {
     "description": "Events Tab title"
   },
-  "audioLanguage": "Idioma del audio",
+  "audioLanguage": "Langue audio",
   "@audioLanguage": {
     "description": "Label indicating that the Audio Language can be changed here."
   },
-  "subtitlesLanguage": "Idioma de subtitulos",
+  "subtitlesLanguage": "Langue des sous-titres",
   "@subtitlesLanguage": {
     "description": "Label indicating that the Subtitles Language can be changed here."
   },
-  "removeFromRecentSearches": "¿Desea eliminar este elemento de las búsquedas recientes?",
+  "removeFromRecentSearches": "Veux-tu supprimer cet élément des recherches récentes ?",
   "@removeFromRecentSearches": {
     "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
   },
-  "noTransmissionToday": "No hay transmisiónes programadas para hoy",
+  "noTransmissionToday": "Aucune transmission prévue aujourd'hui",
   "@noTransmissionToday": {
     "description": "Messages that informs the user, that there are no schedules transmission for today."
   },
-  "featured": "Destacado",
+  "featured": "Recommandé",
   "@featured": {
     "description": "Featured videos collection header"
   },
-  "errorTryAgain": "Algo salio mal, por favor inténtelo nuevamente.",
+  "errorTryAgain": "Une erreur est survenue, merci de réessayer plus tard.",
   "@errorTryAgain": {
     "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
   },
-  "liveHeader": "En Vivo",
+  "liveHeader": "En direct",
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
-  "programsSection": "Programas",
+  "programsSection": "Programmes",
   "@programsSection": {
     "description": "Section in search."
   },
-  "noPlannedEvents": "No hay eventos planificados para ese día",
+  "noPlannedEvents": "Aucun événement prévu ce jour",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
-  "watchNow": "Ver ahora",
+  "watchNow": "Regarder maintenant",
   "@watchNow": {
     "description": "Button on featured carousel"
   },
-  "exploreContent": "Explora el contenido",
+  "exploreContent": "Explorer le contenu",
   "@exploreContent": {
     "description": "A button"
   },
-  "explorePublicContent": "Explora el contenido público",
+  "explorePublicContent": "Explorer le contenu public",
   "@explorePublicContent": {
     "description": "A button on the welcome page"
   },
-  "startExploring": "Empieza a explorar",
+  "startExploring": "Commencer à explorer",
   "@startExploring": {
     "description": "A button on the welcome page"
   },
-  "taskCompleted": "tarea terminada",
+  "taskCompleted": "tâche terminée",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "tareas terminadas",
+  "tasksCompleted": "tâches terminées",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
-  "studyCompleteTaskDescription": "Completa tareas y descubre recursos relacionados",
+  "studyCompleteTaskDescription": "Effectuer des tâches et découvrir des ressources connexes",
   "@studyCompleteTaskDescription": {
     "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
   },
-  "discoverMore": "Descubrir más",
+  "discoverMore": "Découvrir plus",
   "@discoverMore": {
     "description": "Generic button text."
   },
-  "completePreviousTasks": "Completa las tareas previas para desbloquear",
+  "completePreviousTasks": "Terminer les tâches précédentes pour débloquer",
   "@completePreviousTasks": {
     "description": "Shown on a locked button, short explanation why the button is locked."
   },
-  "studyDiscoverMoreDescription": "Encuentre más inspiración e información de recursos relacionados",
+  "studyDiscoverMoreDescription": "Trouver plus d'inspiration et d'idées dans les ressources connexes",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },
-  "watchAgain": "Ver de nuevo",
+  "watchAgain": "Regarder à nouveau",
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
-  "continueToTaskIn": "Continuar con la tarea",
+  "continueToTaskIn": "Poursuivre la tâche dans",
   "@continueToTaskIn": {
     "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "continueToTasksIn": "Continuar a tareas",
+  "continueToTasksIn": "Poursuivre les tâches dans",
   "@continueToTasksIn": {
     "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "studyLessonCompleted": "lección completada",
+  "studyLessonCompleted": "leçon terminée",
   "@studyLessonCompleted": {
     "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
   },
-  "studyLessonsCompleted": "Lecciones completadas",
+  "studyLessonsCompleted": "leçons terminées",
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Continuar con el estudio",
+  "continueStudy": "Continuer l'étude",
   "@continueStudy": {
     "description": "Button."
   },
-  "startStudy": "Empezar a estudiar",
+  "startStudy": "Commencer l'étude",
   "@startStudy": {
     "description": "Button."
   },
-  "videoCompletedText": "Buen trabajo completando el video.",
+  "videoCompletedText": "Bravo ! Tu as regardé toute la vidéo.",
   "@videoCompletedText": {
     "description": "Shown after completing tasks related to a video."
   },
-  "achievementFirstDescription": "Buen trabajo completando el video y obtener tu primer logro de progreso.",
+  "achievementFirstDescription": "Bravo ! Tu as terminé la vidéo et obtenu ton premier progrès.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Buen trabajo completando el tema de estudio {name}",
+  "achievementStudyTopic": "Bravo ! Tu as terminé le sujet d'étude {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -856,7 +856,7 @@
       }
     }
   },
-  "videoCount": "{count} videos",
+  "videoCount": "{count} vidéos",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -865,7 +865,7 @@
       }
     }
   },
-  "taskCount": "{count} tareas",
+  "taskCount": "{count} tâches",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -874,7 +874,7 @@
       }
     }
   },
-  "posterCount": "{count} posters",
+  "posterCount": "{count} affiches",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -883,7 +883,7 @@
       }
     }
   },
-  "resourceCount": "{count} recursos",
+  "resourceCount": "{count} ressources",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -892,19 +892,19 @@
       }
     }
   },
-  "continueButton": "Continúe",
+  "continueButton": "Continuer",
   "@continueButton": {
     "description": "Generic button text."
   },
-  "registerButton": "Registro",
+  "registerButton": "Enregistrer",
   "@registerButton": {
     "description": "Generic button text."
   },
-  "achievements": "Logros",
+  "achievements": "Réalisations",
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "passwordConditionLength": "Mínimo {n} caracteres",
+  "passwordConditionLength": "Au moins {n} caractères",
   "@passwordConditionLength": {
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
@@ -913,143 +913,143 @@
       }
     }
   },
-  "passwordConditionComplexity": "Debe contener minúsculas, mayúsculas y números.",
+  "passwordConditionComplexity": "Doit contenir des minuscules, des majuscules et des chiffres.",
   "@passwordConditionComplexity": {
     "description": "Password condition, shown when signing up."
   },
-  "oops": "Oops!",
+  "oops": "Oups !",
   "@oops": {
     "description": "An informal title on some error screens."
   },
-  "dontHaveAccess": "Tú no tienes acceso a este contenido.",
+  "dontHaveAccess": "Tu n'as pas accès à ce contenu.",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
-  "mustBeLoggedIn": "Debes iniciar sesión para ver este contenido",
+  "mustBeLoggedIn": "Tu dois être connecté pour regarder ce contenu",
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
   },
-  "plentyOfOtherContent": "¡No te preocupes, todavía hay mucho contenido para disfrutar!",
+  "plentyOfOtherContent": "Pas d'inquiétude ! Il reste beaucoup de contenus à apprécier !",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   },
-  "notAchieved": "No logrado",
+  "notAchieved": "Non atteint",
   "@notAchieved": {
     "description": "A label indicating that this achievement has not been achieved yet."
   },
-  "details": "Detalles",
+  "details": "Détails",
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   },
-  "myList": "Mi lista",
+  "myList": "Ma liste",
   "@myList": {
     "description": "My list tab name"
   },
-  "didYouKnowTitle": "¿Sabías?",
+  "didYouKnowTitle": "Le savais-tu ?",
   "@didYouKnowTitle": {
     "description": "Title for info displayed on 'My list' page."
   },
-  "didYouKnowContent": "Puede agregar sus programas favoritos a \"Mi lista\" tocando el corazón.",
+  "didYouKnowContent": "Tu peux ajouter tes programmes préférés à \"Ma liste\" en touchant le cœur.",
   "@didYouKnowContent": {
     "description": "Content for info displayed on 'My list' page."
   },
-  "selectSeason": "Seleccionar temporada",
+  "selectSeason": "Sélectionner une saison",
   "@selectSeason": {
     "description": "A title prompting to select a season from the list."
   },
-  "deleteMyAccount": "Borrar mi cuenta",
+  "deleteMyAccount": "Supprimer mon compte",
   "@deleteMyAccount": {
     "description": "Button to request to delete your account"
   },
-  "iAmSureIWantToDelete": "Estoy seguro de que quiero eliminar mi cuenta y mis datos relacionados con la aplicación BCC Media.",
+  "iAmSureIWantToDelete": "Je suis sûr de vouloir supprimer mon compte et mes données liées à l'application BCC Media.",
   "@iAmSureIWantToDelete": {
     "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
   },
-  "areYouSure": "¿Estás seguro?",
+  "areYouSure": "Es-tu sûr ?",
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
   },
-  "youCanContactUsAt": "Puede ponerse en contacto con nosotros en",
+  "youCanContactUsAt": "Vous pouvez nous contacter à",
   "@youCanContactUsAt": {
     "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
   },
-  "biblekidsAbout": "Bible Kids es una iniciativa de BCC Media, una fundación mediática de la Federación BCC que produce y distribuye contenidos con valores positivos y cristianos.",
+  "biblekidsAbout": "Bible Kids est une initiative de BCC Media, une fondation de média au sein de la Fédération BCC qui produit et distribue du contenu avec des valeurs positives et chrétiennes.",
   "@biblekidsAbout": {
     "description": "Shown on about page"
   },
-  "askYourParents": "Pregunta a tus padres",
+  "askYourParents": "Demande à tes parents",
   "@askYourParents": {
     "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
   },
-  "whatIsMath": "¿Cual es la",
+  "whatIsMath": "Combien font",
   "@whatIsMath": {
     "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
   },
-  "answerLabel": "Respuesta",
+  "answerLabel": "Réponse",
   "@answerLabel": {
     "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
   },
-  "checkAnswerButton": "Comprobar respuesta",
+  "checkAnswerButton": "Vérifier la réponse",
   "@checkAnswerButton": {
     "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
   },
-  "videoOnlyAccessibleToLoggedIn": "A este vídeo solo pueden acceder los usuarios que hayan iniciado sesión en la aplicación.",
+  "videoOnlyAccessibleToLoggedIn": "Cette vidéo n'est accessible qu'aux utilisateurs connectés à l'application.",
   "@videoOnlyAccessibleToLoggedIn": {
     "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
   },
-  "verifyYourAccount": "Verifique su cuenta",
+  "verifyYourAccount": "Vérifier son compte",
   "@verifyYourAccount": {
     "description": "Title of the page where you can verify your email/account."
   },
-  "weHaveSentAnEmailTo": "Hemos enviado un correo electrónico a",
+  "weHaveSentAnEmailTo": "Nous avons envoyé un email à",
   "@weHaveSentAnEmailTo": {
     "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
   },
-  "clickTheLinkToVerify": "Haga clic en el enlace del correo electrónico para verificar su cuenta.",
+  "clickTheLinkToVerify": "Cliquez sur le lien contenu dans l'e-mail pour vérifier votre compte.",
   "@clickTheLinkToVerify": {
     "description": "Shown on the verify account page."
   },
-  "openEmailApp": "Abrir la aplicación de correo electrónico",
+  "openEmailApp": "Ouvrir l'application de messagerie",
   "@openEmailApp": {
     "description": "Shown on the verify account page. Button to open your email app."
   },
-  "resendEmail": "Reenviar correo electrónico",
+  "resendEmail": "Renvoyer l'email",
   "@resendEmail": {
     "description": "Shown on the verify account page. Button to resend the verification email."
   },
-  "noMailAppsDescription": "No hay aplicaciones de correo instaladas",
+  "noMailAppsDescription": "Aucune application de messagerie installée",
   "@noMailAppsDescription": {
     "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
   },
-  "verificationEmailSent": "Correo electrónico de verificación enviado",
+  "verificationEmailSent": "Email de vérification envoyé",
   "@verificationEmailSent": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "ifYouDidntReceiveVerificationEmail": "Si sigue sin recibir un correo electrónico, póngase en contacto con el servicio de asistencia en",
+  "ifYouDidntReceiveVerificationEmail": "Si vous n'avez toujours pas reçu d'e-mail, contactez le service d'assistance à l'adresse suivante",
   "@ifYouDidntReceiveVerificationEmail": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "accountCreated": "Cuenta creada",
+  "accountCreated": "Compte créé",
   "@accountCreated": {
     "description": "Shown when the user has successfully created an account."
   },
-  "youCanNowUseYourAccount": "Ya puedes utilizar tu cuenta y explorar una gran variedad de contenidos edificantes.",
+  "youCanNowUseYourAccount": "Vous pouvez maintenant utiliser votre compte et consulter une multitude de contenus édifiants.",
   "@youCanNowUseYourAccount": {
     "description": "Shown when the user has successfully completed account setup."
   },
-  "youCanNowLogInToYourAccount": "Ahora puede acceder a su cuenta y explorar una gran variedad de contenidos edificantes.",
+  "youCanNowLogInToYourAccount": "Vous pouvez maintenant vous connecter à votre compte et consulter toute une série de contenus édifiants.",
   "@youCanNowLogInToYourAccount": {
     "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
   },
-  "accountDeletionExplanation": "Estás a punto de solicitar la eliminación de tu cuenta con BCC Media y de todos tus datos relacionados con esta aplicación.",
+  "accountDeletionExplanation": "Vous allez demander la suppression de votre compte chez BCC Media et de toutes vos données liées à cette application.",
   "@accountDeletionExplanation": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionWarning": "Se trata de una acción que no puede deshacerse.",
+  "accountDeletionWarning": "Il s'agit d'une action irréversible.",
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Por lo general, la eliminación de la cuenta se realizará en un plazo de {x} días laborables.",
+  "accountDeletionTimeframe": "La suppression du compte est généralement effectuée dans un délai de {x} jours ouvrables.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1058,11 +1058,11 @@
       }
     }
   },
-  "accountDeletionTitle": "Borrar mi cuenta",
+  "accountDeletionTitle": "Supprimer mon compte",
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Eliminación de cuenta solicitada con éxito. Recibirás un correo electrónico en la dirección {email}. Para confirmar su identidad, necesitamos que responda a ese correo electrónico para proceder a la eliminación.",
+  "accountDeletionSuccess": "La suppression du compte a été demandée avec succès. Vous recevrez un courriel à l'adresse {email}. Pour confirmer votre identité, nous avons besoin que vous répondiez à cet e-mail pour procéder à la suppression.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1071,19 +1071,19 @@
       }
     }
   },
-  "gamesTab": "Juegos",
+  "gamesTab": "Jeux",
   "@gamesTab": {
     "description": "Title of the games page"
   },
-  "playGame": "Jugar",
+  "playGame": "Jouer au jeu",
   "@playGame": {
     "description": "Title on a game"
   },
-  "tvScanQr": "Escanea el código para iniciar sesión con tu teléfono",
+  "tvScanQr": "Scanne le code et connecte-toi avec ton téléphone",
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "O vaya a {url} e introduzca el código: {code}",
+  "tvEnterCode": "Ou va sur {url} et entre le code : {code}",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1095,43 +1095,43 @@
       }
     }
   },
-  "chapters": "Capitulos",
+  "chapters": "Chapitres",
   "@chapters": {
     "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
   },
-  "removeWatchProgress": "Eliminar el progreso",
+  "removeWatchProgress": "Supprimer la sélection",
   "@removeWatchProgress": {
     "description": "Shown when holding on an episode in the 'continue watching' section."
   },
-  "showDescription": "Descripción de shows",
+  "showDescription": "Description de l'émission",
   "@showDescription": {
     "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
   },
-  "releaseDate": "Fecha de estreno",
+  "releaseDate": "Date de parution",
   "@releaseDate": {
     "description": "Release date of the episode, shown in the 'details' tab under an episode."
   },
-  "availableTo": "Disponible ´para",
+  "availableTo": "Disponible jusqu'au",
   "@availableTo": {
     "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
   },
-  "ageRating": "Clasificación por edades",
+  "ageRating": "Classement par âge",
   "@ageRating": {
     "description": "Age rating for the episode, shown in the 'details' tab under an episode."
   },
-  "ageRatingAll": "Todo",
+  "ageRatingAll": "Tous",
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
-  "offline": "Fuera de línea",
+  "offline": "Hors connexion",
   "@offline": {
     "description": "Status indicator, indicating that you are offline; not connected to the internet."
   },
-  "downloadButton": "Descargar",
+  "downloadButton": "Télécharger",
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Audio no disponible en {lang}",
+  "audioNotAvailableInLanguage": "L'audio n'est pas disponible en {lang}",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1140,15 +1140,15 @@
       }
     }
   },
-  "notEnoughAvailableSpace": "No hay suficiente espacio disponible en el dispositivo",
+  "notEnoughAvailableSpace": "L'espace disponible sur ton appareil est insuffisant",
   "@notEnoughAvailableSpace": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "considerDeletingOtherVideos": "Considera la posibilidad de borrar otros vídeos que hayas descargado en la aplicación.",
+  "considerDeletingOtherVideos": "Pense à supprimer les autres vidéos téléchargées dans l'application.",
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "El tamaño del archivo de vídeo es {size}.",
+  "theVideoFileSizeIs": "La taille du fichier vidéo est de {size}.",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1157,75 +1157,75 @@
       }
     }
   },
-  "gotIt": "Entendido",
+  "gotIt": "J'ai compris",
   "@gotIt": {
     "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
   },
-  "saveYourFavorites": "Guarda tus vídeos favoritos",
+  "saveYourFavorites": "Sauvegarder tes vidéos préférées",
   "@saveYourFavorites": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "saveYourFavoritesDescription": "Toca el icono del corazón en un vídeo para guardarlo en tu perfil.",
+  "saveYourFavoritesDescription": "Clique sur l'icône en forme de cœur d'une vidéo pour l'enregistrer dans ton profil.",
   "@saveYourFavoritesDescription": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "yourFavorites": "Favoritos",
+  "yourFavorites": "Tes favoris",
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
-  "downloaded": "Descargado",
+  "downloaded": "Téléchargé",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."
   },
-  "saveVideosForOfflineViewing": "Guardar vídeos para verlos sin conexión",
+  "saveVideosForOfflineViewing": "Enregistrer les vidéos pour les visionner hors ligne",
   "@saveVideosForOfflineViewing": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "tapOnTheDownloadIcon": "Pulse el icono de descarga de un vídeo para descargarlo y reproducirlo sin conexión.",
+  "tapOnTheDownloadIcon": "Clique sur l'icône de téléchargement d'une vidéo pour la télécharger et la lire hors ligne.",
   "@tapOnTheDownloadIcon": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "removeOfflineVideo": "¿Quitar el vídeo sin conexión?",
+  "removeOfflineVideo": "Supprimer la vidéo hors ligne ?",
   "@removeOfflineVideo": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeOfflineVideoDescription": "Al eliminar este vídeo, dejará de estar disponible sin conexión a la red.",
+  "removeOfflineVideoDescription": "En supprimant cette vidéo, elle ne sera plus disponible sans connexion réseau.",
   "@removeOfflineVideoDescription": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeFromDeviceButton": "Retirar del dispositivo",
+  "removeFromDeviceButton": "Supprimer de l'appareil",
   "@removeFromDeviceButton": {
     "description": "Button text, to remove a downloaded video from the device."
   },
-  "keepVideoButton": "Mantener vídeo",
+  "keepVideoButton": "Garder la vidéo",
   "@keepVideoButton": {
     "description": "Button when asking to remove a downloaded video. This button cancels."
   },
-  "noInternetConnection": "Sin conexión a Internet",
+  "noInternetConnection": "Pas de connexion internet",
   "@noInternetConnection": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetConnectionDescription": "Conéctate a Internet para acceder a todos los vídeos.",
+  "noInternetConnectionDescription": "Connecte-toi à l'internet pour accéder à toutes les vidéos.",
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "No hay conexión a Internet,\npero no te preocupes.",
+  "noInternetButDontWorry": "Pas de connexion internet,\nmais pas d'inquiétude.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
-  "hereAreAllTheVideosYouDownloaded": "Aquí tienes todos los vídeos que has descargado en tu dispositivo.",
+  "hereAreAllTheVideosYouDownloaded": "Voici toutes les vidéos téléchargées sur ton appareil.",
   "@hereAreAllTheVideosYouDownloaded": {
     "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "connectToExplore": "Conéctate a Internet para explorar todos los vídeos.",
+  "connectToExplore": "Se connecter à l'internet pour découvrir toutes les vidéos.",
   "@connectToExplore": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "language": "Idiomas",
+  "language": "Langue",
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Tamaño estimado del archivo: {size}",
+  "estimatedFileSize": "Taille estimée du fichier : {size}",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1234,47 +1234,47 @@
       }
     }
   },
-  "downloadVideo": "Descargar vídeo",
+  "downloadVideo": "Télécharger la vidéo",
   "@downloadVideo": {
     "description": "Title on the download video form."
   },
-  "noSubtitles": "Sin subtítulos",
+  "noSubtitles": "Aucun sous-titre",
   "@noSubtitles": {
     "description": "Shown in the download form, indicating that there are no subtitles available for the video."
   },
-  "subtitlesIncluded": "Subtítulos incluidos",
+  "subtitlesIncluded": "Sous-titres inclus",
   "@subtitlesIncluded": {
     "description": "Shown in the download form, indicating that all subtitles are included in the video."
   },
-  "allSubtitlesWillBeAvailableOffline": "Todos los subtítulos estarán disponibles sin conexión",
+  "allSubtitlesWillBeAvailableOffline": "Tous les sous-titres seront disponibles hors ligne",
   "@allSubtitlesWillBeAvailableOffline": {
     "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "downloading": "Descargando",
+  "downloading": "Téléchargement",
   "@downloading": {
     "description": "Download status, indicating that the video is currently downloading."
   },
-  "failed": "Fallido",
+  "failed": "Échec",
   "@failed": {
     "description": "Generic status label. Used e.g. for downloads that failed."
   },
-  "finished": "Finalizado",
+  "finished": "Terminé",
   "@finished": {
     "description": "Generic status label. Used e.g. for downloads that finished."
   },
-  "paused": "En pausa",
+  "paused": "Mise en pause",
   "@paused": {
     "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
   },
-  "queued": "En cola",
+  "queued": "En file d'attente",
   "@queued": {
     "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
   },
-  "removing": "Removiendo",
+  "removing": "Suppression",
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "expiresIn": "Caduca en {time}",
+  "expiresIn": "Expire dans {time}",
   "@expiresIn": {
     "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
     "placeholders": {
@@ -1283,119 +1283,119 @@
       }
     }
   },
-  "availableOffline": "Disponible sin conexión",
+  "availableOffline": "Disponible hors ligne",
   "@availableOffline": {
     "description": "Label indicating that the video is available offline."
   },
-  "technicalDetails": "Ficha técnica",
+  "technicalDetails": "Détails techniques",
   "@technicalDetails": {
     "description": "Shown when errors occur, and you want to see more technical details about the error."
   },
-  "contentLanguage": "Idioma del contenido",
+  "contentLanguage": "Langue du contenu",
   "@contentLanguage": {
     "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
   },
-  "contentLanguageShort": "Contenido",
+  "contentLanguageShort": "Contenu",
   "@contentLanguageShort": {
     "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
   },
-  "appLanguageShort": "Aplicación",
+  "appLanguageShort": "Application",
   "@appLanguageShort": {
     "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
   },
-  "playRandom": "Reproducción aleatoria",
+  "playRandom": "Lecture aléatoire",
   "@playRandom": {
     "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
   },
-  "addLanguage": "Agregar idioma",
+  "addLanguage": "Ajouter une langue",
   "@addLanguage": {
     "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
   },
-  "preferredLanguages": "Idiomas preferidos",
+  "preferredLanguages": "Langues préférées",
   "@preferredLanguages": {
     "description": "Shown when you are selecting preferred content languages. Title."
   },
-  "contentLanguageExplanation": "Reordene los idiomas para que coincidan con su preferencia de idioma de audio y subtítulos.",
+  "contentLanguageExplanation": "Réorganiser les langues en fonction de ses préférences en matière de langues audio et de sous-titres.",
   "@contentLanguageExplanation": {
     "description": "Shown when you are selecting preferred content languages."
   },
-  "otherLanguages": "Otros idiomas",
+  "otherLanguages": "Autres langues",
   "@otherLanguages": {
     "description": "Languages that are available but in your list of preferred languages."
   },
-  "select": "Seleccionar",
+  "select": "Sélectionner",
   "@select": {
     "description": "Prompt. Shown at the top of a list of options."
   },
-  "supportBibleKids": "Apoya a Bible Kids",
+  "supportBibleKids": "Soutenir Bible Kids",
   "@supportBibleKids": {
     "description": "Shown on the settings page."
   },
-  "donateViaPaypal": "Donar a través de PayPal",
+  "donateViaPaypal": "Faire un don via PayPal",
   "@donateViaPaypal": {
     "description": "Shown on the settings page."
   },
-  "shortsTab": "Cortos",
+  "shortsTab": "Courts métrages",
   "@shortsTab": {
     "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
-  "autoGenerated": "Auto generado",
+  "autoGenerated": "Généré automatiquement",
   "@autoGenerated": {
     "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
   },
-  "shortsAiDisclaimer": "Las transcripciones y selecciones de extractos se generan automáticamente y pueden contener errores.",
+  "shortsAiDisclaimer": "Les transcriptions et les sélections d'extraits sont générées automatiquement et peuvent contenir des erreurs.",
   "@shortsAiDisclaimer": {
     "description": "Disclaimer shown on the shorts page."
   },
-  "beta": "Beta",
+  "beta": "Bêta",
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Esta función está en versión beta y actualmente no está disponible para todos los usuarios. Informe cualquier problema o comentario a través del botón \"Contacto\" en la configuración.",
+  "betaExplanation": "Cette fonctionnalité est en version bêta et n'est actuellement pas disponible pour tous les utilisateurs. Veuillez signaler tout problème ou commentaire via le bouton « Contact » dans les paramètres.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
-  "likedShorts": "Cortos que gustaron",
+  "likedShorts": "Courts métrages appréciés",
   "@likedShorts": {
     "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
-  "saveYourFavoriteShorts": "Guarda tus cortos favoritos",
+  "saveYourFavoriteShorts": "Sauvegarder tes courts métrages préférés",
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Esta función aún no está disponible. Por favor, inténtelo de nuevo más tarde.",
+  "featureNotAvailableYet": "Cette fonctionnalité n'est pas encore disponible. Veuillez réessayer plus tard.",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
-  "newFeature": "Nueva caracteristica",
+  "newFeature": "Nouvelle fonctionnalité",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
   },
-  "shortsFeatureDescription": "Descubra extractos breves y potentes y salte directamente al episodio completo.",
+  "shortsFeatureDescription": "Découvrez des extraits courts et puissants, et accédez directement à l'épisode complet.",
   "@shortsFeatureDescription": {
     "description": "Shown the first time you open the app after 'shorts' is enabled."
   },
-  "likedAndSaved": "Gustado y guardado",
+  "likedAndSaved": "Aimé et enregistré",
   "@likedAndSaved": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "shortsLikedAndSavedDescription": "Puedes encontrar todos los cortos que te gustan en tu perfil.",
+  "shortsLikedAndSavedDescription": "Vous pouvez trouver tous vos courts métrages préférés dans votre profil.",
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "downloadedVideosGuideDescription": "Puedes encontrar tus videos descargados en \"Perfil\".",
+  "downloadedVideosGuideDescription": "Vous pouvez trouver vos vidéos téléchargées sous « Profil ».",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription2": "The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "bccLiveForcedDescription2": "La retransmission en direct a été transférée dans une nouvelle application : \"Live by BCC Connect\". Vous pouvez la télécharger sur l'App Store ou Google Play.",
   "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
-  "bccLiveLinkDescription2": "The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "bccLiveLinkDescription2": "La transmission en direct migre vers une nouvelle application : \"Live by BCC Connect\". Vous pouvez la télécharger sur l'App Store ou Google Play.",
   "@bccLiveLinkDescription2": {
     "description": "Will be shown in the future when you open the live tab, if the livestream is available in both Live and BCC Media."
   },
-  "openStore": "Abrir tienda",
+  "openStore": "Ouvrir",
   "@openStore": {
     "description": "A button to open play store / app store."
   }

@@ -1,13 +1,13 @@
 {
-  "loadingContent": "Nalagam vsebino",
+  "loadingContent": "Laster innhold",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
   },
-  "signInTooltip": "Za ogled ostalih vsebin se prijavi",
+  "signInTooltip": "Logg inn for å se mer innhold",
   "@signInTooltip": {
     "description": "Text for tooltip displayed when a non-member user opens the home page."
   },
-  "skipToPublicContent": "Nadaljuj z ogledom javno dostopne vsebine",
+  "skipToPublicContent": "Hopp over for å se offentlig innhold",
   "@skipToPublicContent": {
     "description": "Text for button displayed on login screen to skip sign in and watch public content."
   },
@@ -15,119 +15,119 @@
   "@minutesShort": {
     "description": "Text for minutes."
   },
-  "calendarThisWeek": "Ta teden",
+  "calendarThisWeek": "Denne uken",
   "@calendarThisWeek": {
     "description": "Text for This week."
   },
-  "calendarWeek": "teden",
+  "calendarWeek": "uke",
   "@calendarWeek": {
     "description": "Text week."
   },
-  "close": "Zapri",
+  "close": "Lukk",
   "@close": {
     "description": "Text displayed on 'Close' button"
   },
-  "loading": "Nalaganje",
+  "loading": "Laster",
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "Najmočnejše \nsporočilo na svetu",
+  "loginPageDisplay1": "Det kraftigste\nbudskapet i verden",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Oglej si serije in filme, narejene na podlagi krščanskih vrednot",
+  "loginPageDisplay2": "Se serier, programmer og filmer basert på kristne verdier",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "kidsOnboardingTitle": "Oznanilo Svetega pisma oživimo!",
+  "kidsOnboardingTitle": "Vi gjør Bibelens budskap levende!",
   "@kidsOnboardingTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "kidsOnboardingSecondaryTitle": "Naša vizija je, da otroci doživijo Jezusa kot najboljšega prijatelja - do konca življenja.",
+  "kidsOnboardingSecondaryTitle": "Vår visjon er at barna skal oppleve Jesus som sin aller beste venn - resten av livet.",
   "@kidsOnboardingSecondaryTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "loginPageDisplay3": "Produkcija: BCC Media",
+  "loginPageDisplay3": "Produsert av BCC Media",
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
-  "liveTab": "V živo",
+  "liveTab": "Direkte",
   "@liveTab": {
     "description": "Title of live page tab"
   },
-  "logOutButton": "Odjava",
+  "logOutButton": "Logg ut",
   "@logOutButton": {
     "description": "Text displayed on Log out button"
   },
-  "profileTab": "Profil",
+  "profileTab": "Min profil",
   "@profileTab": {
     "description": "Title of the profile page"
   },
-  "faq": "Pogosta vprašanja",
+  "faq": "Ofte stilte spørsmål",
   "@faq": {
     "description": "Long title of the FAQ page."
   },
-  "bccMediaCenter": "BCC Media je medijska fundacija v BCC zvezi, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.",
+  "bccMediaCenter": "BCC Media er en mediestiftelse i BCC-forbundet som produserer og distribuerer innhold med positive og kristne verdier.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
-  "signInButton": "Vpis",
+  "signInButton": "Logg inn",
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
-  "signInOrSignUp": "Registracija / Prijava",
+  "signInOrSignUp": "Registrer deg / Logg inn",
   "@signInOrSignUp": {
     "description": "Button to go to the onboarding page (short)"
   },
-  "signUpButton": "Prijavi se zdaj",
+  "signUpButton": "Registrer deg nå",
   "@signUpButton": {
     "description": "Button to start the sign up process"
   },
-  "signUpTitle": "Prijavi se",
+  "signUpTitle": "Registrer deg",
   "@signUpTitle": {
     "description": "Title on the sign up page"
   },
-  "signUpDescription": "Z ustvarjenim računom dobiš dostop do več vsebin in boljših funkcij.",
+  "signUpDescription": "Få tilgang til mer innhold og bedre funksjoner ved å opprette en konto.",
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Potrjujem, da sem star 13 let ali več, in se strinjam s <a>Pravili zasebnosti</a> in <a>Pogoji uporabe</a>.",
+  "signUpAgreePrivacyPolicy": "Jeg bekrefter at jeg er 13 år eller eldre, og jeg er enig i <a>Personvernreglene</a>og <a>Vilkår for bruk</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
-  "setPassword": "Nastavi geslo",
+  "setPassword": "Nytt passord",
   "@setPassword": {
     "description": "Title for the 'Set password' page of the signup process."
   },
-  "tryAgainButton": "Poskusite znova",
+  "tryAgainButton": "Prøv igjen",
   "@tryAgainButton": {
     "description": "Button on error alert that lets user to retry failed action"
   },
-  "loggedOutTitle": "Odjavljen",
+  "loggedOutTitle": "Logget ut",
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Odjavili ste se. Prosim, ponovno se prijavite.",
+  "loggedOutMessage": "Du har blitt logget ut. Vennligst logg inn igjen.",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
-  "makeDonation": "Doniraj",
+  "makeDonation": "Gi en donasjon",
   "@makeDonation": {
     "description": "Text for button which opens donation page."
   },
-  "mostWatched": "Najbolj gledano",
+  "mostWatched": "Mest sett",
   "@mostWatched": {
     "description": "Sorting option on audience page"
   },
-  "mostRecent": "Najnovejše",
+  "mostRecent": "Sist publisert",
   "@mostRecent": {
     "description": "Sorting option on audience page"
   },
-  "latelyPublished": "Nedavno objavljeno",
+  "latelyPublished": "Sist publisert",
   "@latelyPublished": {
     "description": "Title for the list of videos on login page"
   },
-  "anErrorOccurred": "Prišlo je do napake",
+  "anErrorOccurred": "Det har oppstått en feil",
   "@anErrorOccurred": {
     "description": "Title in error popup"
   },
@@ -135,247 +135,247 @@
   "@ok": {
     "description": "Popup confirmation button"
   },
-  "open": "Odpri",
+  "open": "Åpne",
   "@open": {
     "description": "Open button"
   },
-  "loginFailedCheckNetwork": "Napaka pri prijavi. Preverite internetno povezavo in poskusite znova.",
+  "loginFailedCheckNetwork": "Det har oppstått en feil. Sjekk nettverksforbindelsen og prøv en gang til.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "Napaka pri prijavi. Prosim, poskusite znova kasneje.",
+  "loginFailedTryAgain": "Det har oppstått en feil. Prøv igjen senere.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
-  "soundLanguage": "Jezik zvoka",
+  "soundLanguage": "Lydspråk",
   "@soundLanguage": {
     "description": "Settings item on profile page"
   },
-  "subtitleLanguage": "Jezik podnapisov",
+  "subtitleLanguage": "Språk for undertekster",
   "@subtitleLanguage": {
     "description": "Settings item on profile page"
   },
-  "appLanguage": "Jezik aplikacije",
+  "appLanguage": "App-språk",
   "@appLanguage": {
     "description": "Settings item on profile page"
   },
-  "checkNetwork": "Preverite svojo internetno povezavo in poskusite znova.",
+  "checkNetwork": "Sjekk nettverksforbindelsen og prøv igjen.",
   "@checkNetwork": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "tryAgain": "Prosim, poskusite znova kasneje.",
+  "tryAgain": "Prøv igjen senere.",
   "@tryAgain": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "cantPlayVideo": "Ta videoposnetek trenutno ni na voljo.",
+  "cantPlayVideo": "Kan ikke spille av denne videoen nå.",
   "@cantPlayVideo": {
     "description": "Error message for the user displayed when video playback attempt failed."
   },
-  "about": "O aplikaciji",
+  "about": "Om",
   "@about": {
     "description": "Title of About page and item in profile page settings."
   },
-  "version": "Verzija",
+  "version": "Versjon",
   "@version": {
     "description": "Version ot the application on About page; followed by version number"
   },
-  "contactSupport": "Podpora",
+  "contactSupport": "Kontakt support",
   "@contactSupport": {
     "description": "Title for contact support page"
   },
-  "contactIssueHint": "Opiši težavo",
+  "contactIssueHint": "Beskriv problemet",
   "@contactIssueHint": {
     "description": "Hint for the message box for logged in users"
   },
-  "contactUs": "Kontaktiraj nas",
+  "contactUs": "Kontakt oss",
   "@contactUs": {
     "description": "Title for contact us page"
   },
-  "deviceInfo": "Informacije o napravi",
+  "deviceInfo": "Enhetsinformasjon",
   "@deviceInfo": {
     "description": "Device info page title"
   },
-  "contactIncludeDeviceInfo": "Za boljšo podporo vključi informacije o napravi.",
+  "contactIncludeDeviceInfo": "Inkluder enhetsinformasjon for bedre støtte.",
   "@contactIncludeDeviceInfo": {
     "description": "Text for checkbox to include device information"
   },
-  "contactSeeData": "Klikni za ogled podatkov.",
+  "contactSeeData": "Klikk for å se data.",
   "@contactSeeData": {
     "description": "Text for link to see device data"
   },
-  "contactName": "Ime",
+  "contactName": "Navn",
   "@contactName": {
     "description": "Label for name field in contact support page"
   },
-  "contactNameHint": "Vpiši svoje ime",
+  "contactNameHint": "Skriv inn ditt navn",
   "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactEmail": "Tvoj elektronski naslov",
+  "contactEmail": "Din e-post kontakt",
   "@contactEmail": {
     "description": "Label for email field in contact support page"
   },
-  "contactEmailHint": "Vpiši svoj elektronski naslov",
+  "contactEmailHint": "Skriv inn din e-postadresse",
   "@contactEmailHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactMessage": "Sporočilo",
+  "contactMessage": "Melding",
   "@contactMessage": {
     "description": "Label for message field in contact support page"
   },
-  "contactMessageHint": "Tukaj vpiši svoje sporočilo",
+  "contactMessageHint": "Skriv inn din melding her",
   "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
-  "deviceInfoDevice": "Naprava",
+  "deviceInfoDevice": "Enhet",
   "@deviceInfoDevice": {
     "description": "Label for device"
   },
-  "deviceInfoEnvOverride": "Environment override",
+  "deviceInfoEnvOverride": "Miljøoverstyring",
   "@deviceInfoEnvOverride": {
     "description": "Label for environment override"
   },
-  "deviceInfoManufacturer": "Proizvajalec",
+  "deviceInfoManufacturer": "Produsent",
   "@deviceInfoManufacturer": {
     "description": "Label for manufacturer"
   },
-  "deviceInfoOs": "Operacijski sistem",
+  "deviceInfoOs": "Operativsystem",
   "@deviceInfoOs": {
     "description": "Label for operating system"
   },
-  "deviceInfoScreenSize": "Velikost zaslona",
+  "deviceInfoScreenSize": "Skjermstørrelse",
   "@deviceInfoScreenSize": {
     "description": "Label for screen size"
   },
-  "deviceInfoAppVer": "Različica aplikacije",
+  "deviceInfoAppVer": "App-versjon",
   "@deviceInfoAppVer": {
     "description": "Label for app Version"
   },
-  "deviceInfoUserId": "User ID",
+  "deviceInfoUserId": "Bruker-ID",
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-  "deviceInfoPageDesc": "Tvoje sporočilo bo vsebovalo to informacijo. To nam bo omogočilo lažjo pomoč.",
+  "deviceInfoPageDesc": "Meldingen din vil inneholde denne informasjonen for å hjelpe oss å gi bedre støtte.",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
   },
-  "userVoice": "Predlagaj funkcijo",
+  "userVoice": "Foreslå en funksjon",
   "@userVoice": {
     "description": "Settings item on profile page to navigate to uservoice"
   },
-  "cancel": "Prekliči",
+  "cancel": "Avbryt",
   "@cancel": {
     "description": "General cancel action button"
   },
-  "cancelConfirmation": "Ali si prepričan, da želiš preklicati?",
+  "cancelConfirmation": "Er du sikker på at du vil avslutte?",
   "@cancelConfirmation": {
     "description": "Title text for cancel confirmation dialog."
   },
-  "cancelConfirmationDescription": "Neshranjene spremembe bodo izgubljene.",
+  "cancelConfirmationDescription": "Alle ulagrede endringer vil gå tapt.",
   "@cancelConfirmationDescription": {
     "description": "Description for cancel confirmation dialog."
   },
-  "goBack": "Nazaj",
+  "goBack": "Gå tilbake",
   "@goBack": {
     "description": "Text for back button."
   },
-  "yesCancel": "Ja, prekliči",
+  "yesCancel": "Ja, avbryt",
   "@yesCancel": {
     "description": "Confirm cancel."
   },
-  "upNext": "Sledi",
+  "upNext": "Neste",
   "@upNext": {
     "description": "Title indiciating what's next on the livestream."
   },
-  "done": "Končano",
+  "done": "Ferdig",
   "@done": {
     "description": "Generic Done button, for example to dismiss a page after completing an action."
   },
-  "playerSettings": "Nastavitve predvajalnika",
+  "playerSettings": "Innstilling for videoavspiller",
   "@playerSettings": {
     "description": "Title of the Player settings activity in Android"
   },
-  "settings": "Nastavitve",
+  "settings": "Innstillinger",
   "@settings": {
     "description": "Label of the button to go to Android/iOS settings"
   },
-  "none": "Brez",
+  "none": "Ingen",
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
-  "nextEpisode": "Naslednji del",
+  "nextEpisode": "Neste episode",
   "@nextEpisode": {
     "description": "Button indicating the next video will play soon."
   },
-  "auto": "Samodejno",
+  "auto": "Auto",
   "@auto": {
     "description": "Indicator on profile page that audio and app language are chosen automatically."
   },
-  "live": "V živo",
+  "live": "Direkte",
   "@live": {
     "description": "Title of the live stream"
   },
-  "subtitles": "Podnapisi",
+  "subtitles": "Undertekster",
   "@subtitles": {
     "description": "Generic."
   },
-  "audio": "Zvok",
+  "audio": "Lyd",
   "@audio": {
     "description": "Generic."
   },
-  "quality": "Kakovost",
+  "quality": "Kvalitet",
   "@quality": {
     "description": "Generic."
   },
-  "seasons": "Sezone",
+  "seasons": "Sesonger",
   "@seasons": {
     "description": "Followed by number of seasons in given series."
   },
-  "episodes": "Deli",
+  "episodes": "Episoder",
   "@episodes": {
     "description": "Followed by number of episodes in given series."
   },
-  "search": "Išči",
+  "search": "Søk",
   "@search": {
     "description": "Button to clear cache"
   },
-  "sendFeedback": "Povratne informacije",
+  "sendFeedback": "Send tilbakemelding",
   "@sendFeedback": {
     "description": "Button to submit feedback(Survey)"
   },
-  "noResults": "Ni najdenih rezultatov",
+  "noResults": "Ingen resultater funnet",
   "@noResults": {
     "description": "No search results."
   },
-  "doYouWantCast": "Ali hočete predvajati ta video?",
+  "doYouWantCast": "Vil du sende denne videoen til Chromecast?",
   "@doYouWantCast": {
     "description": "Prompt displayed to the user"
   },
-  "play": "Predvajaj",
+  "play": "Spill av",
   "@play": {
     "description": "Option in prompt dialog."
   },
-  "pause": "Premor",
+  "pause": "Pause",
   "@pause": {
     "description": "A button to pause the video."
   },
-  "castQueue": "Predvajaj čakalno vrsto",
+  "castQueue": "Legg til i kø",
   "@castQueue": {
     "description": "Queue page title"
   },
-  "options": "Možnosti",
+  "options": "Alternativer",
   "@options": {
     "description": "Options dialog title"
   },
-  "remove": "Odstrani",
+  "remove": "Fjern",
   "@remove": {
     "description": "Option in options dialog"
   },
-  "queueLimitTitle": "Limit",
+  "queueLimitTitle": "Købegrensing",
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "V čakalni vrsti ne more biti več kot {elementCount} elementov.",
+  "queueLimitMessage": "Du kan ikke ha mer enn {elementCount} elementer i køen.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -384,59 +384,59 @@
       }
     }
   },
-  "recentSearches": "Nedavna iskanja",
+  "recentSearches": "Nylige søk",
   "@recentSearches": {
     "description": "Recent searches list title."
   },
-  "tVLogin": "TV prijava",
+  "tVLogin": "TV-innlogging",
   "@tVLogin": {
     "description": "Title of the TV login alert"
   },
-  "tVLoginSuccessful": "Prijava je bila uspešna, prosim potrdite jo na TV.",
+  "tVLoginSuccessful": "Du er nå logget inn, vennligst bekreft på TV-en",
   "@tVLoginSuccessful": {
     "description": "Message of the TV login alert"
   },
-  "seeMore": "Več",
+  "seeMore": "Se mer",
   "@seeMore": {
     "description": "Button on featured item to navigete to page with player"
   },
-  "seeAll": "Poglej vse",
+  "seeAll": "Se alt",
   "@seeAll": {
     "description": "Button to see all of some collection."
   },
-  "series": "Serije",
+  "series": "Serier",
   "@series": {
     "description": "Title of the tab on info page"
   },
-  "homeTab": "Domov",
+  "homeTab": "Hjem",
   "@homeTab": {
     "description": "Title of the home page"
   },
-  "sortBy": "Razvrsti",
+  "sortBy": "Sorter etter",
   "@sortBy": {
     "description": "Sorting criteria selector"
   },
-  "videoQuality": "Kakovost videoposnetka",
+  "videoQuality": "Videokvalitet",
   "@videoQuality": {
     "description": "Settings item in profile page for Android."
   },
-  "low": "Nizka",
+  "low": "Lav",
   "@low": {
     "description": "Low quality video option"
   },
-  "medium": "Srednja",
+  "medium": "Medium",
   "@medium": {
     "description": "Medium quality video option"
   },
-  "high": "Visoka",
+  "high": "Høy",
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Iščeš lahko po vsej vsebini od BCC Media. Serije, filmi in deli.",
+  "emptySearch": "Du kan søke på alt innhold fra BCC Media. Serier, filmer og episoder.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
-  "back": "Nazaj",
+  "back": "Tilbake",
   "@back": {
     "description": "General back button to navigate back"
   },
@@ -448,59 +448,59 @@
   "@episodeLetter": {
     "description": "Episode letter in label S1E3"
   },
-  "atoZ": "A-Z",
+  "atoZ": "A-Å",
   "@atoZ": {
     "description": "Sort order"
   },
-  "ztoA": "Z-A",
+  "ztoA": "Å-A",
   "@ztoA": {
     "description": "Sort order"
   },
-  "shortFilms": "Kratki filmi",
+  "shortFilms": "Kortfilmer",
   "@shortFilms": {
     "description": "Title of the films collection."
   },
-  "videos": "Videoposnetki",
+  "videos": "Videoer",
   "@videos": {
     "description": "Followed by number of videos"
   },
-  "moreInfo": "Več informacij",
+  "moreInfo": "Mer informasjon",
   "@moreInfo": {
     "description": "Option in action sheet for the video that triggers info page for the video."
   },
-  "info": "Informacije",
+  "info": "Informasjon",
   "@info": {
     "description": "Video info page title."
   },
-  "episode": "Del",
+  "episode": "Episode",
   "@episode": {
     "description": "Title of the tab on info page"
   },
-  "takePhoto": "Slikaj",
+  "takePhoto": "Ta et bilde",
   "@takePhoto": {
     "description": "Option in menu"
   },
-  "pickPhoto": "Izberi iz galerije",
+  "pickPhoto": "Velg fra galleri",
   "@pickPhoto": {
     "description": "Option in menu"
   },
-  "uploadFileTitle": "Naloži datoteko",
+  "uploadFileTitle": "Last opp fil",
   "@uploadFileTitle": {
     "description": "Title of the dialog to confirm upload"
   },
-  "uploadFileMessage": "Ali hočete naložiti to datoteko?",
+  "uploadFileMessage": "Vil du laste opp denne filen?",
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "uploading": "Nalaganje",
+  "uploading": "Opplasting",
   "@uploading": {
     "description": "Message during file upload"
   },
-  "uploadFail": "Nalaganje ni uspelo",
+  "uploadFail": "Opplasting feilet",
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{charsLeft} od {charsTotal} znakov",
+  "charactersLimit": "{charsLeft} av {charsTotal} tegn igjen",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -512,87 +512,87 @@
       }
     }
   },
-  "thankYou": "Hvala!",
+  "thankYou": "Tusen takk!",
   "@thankYou": {
     "description": "Title in upload success page"
   },
-  "thankYouForContribution": "Hvala za tvoj prispevek!",
+  "thankYouForContribution": "Takk for ditt bidrag!",
   "@thankYouForContribution": {
     "description": "Title in upload success page"
   },
-  "next": "Sledi",
+  "next": "Neste",
   "@next": {
     "description": "NEXT program in check in section"
   },
-  "add": "Dodaj",
+  "add": "Legg til",
   "@add": {
     "description": "Button text"
   },
-  "change": "Spremeni",
+  "change": "Endre",
   "@change": {
     "description": "Button text"
   },
-  "writeHere": "Napiši tukaj",
+  "writeHere": "Skriv her",
   "@writeHere": {
     "description": "New post text field placeholder"
   },
-  "feed": "Prispevki",
+  "feed": "Feed",
   "@feed": {
     "description": "Feed page bar title"
   },
-  "information": "Informacije",
+  "information": "Informasjon",
   "@information": {
     "description": "Feed information item title"
   },
-  "question": "Vprašanje",
+  "question": "Spørsmål",
   "@question": {
     "description": "Title of the question page"
   },
-  "now": "Zdaj",
+  "now": "Nå",
   "@now": {
     "description": "Tv guide now playing label"
   },
-  "debugInfoExplanation": "Tvoje sporočilo bo vsebovalo to informacijo. To nam bo pomagalo, da bomo bolje razumeli težavo.",
+  "debugInfoExplanation": "Meldingen din vil inneholde denne informasjonen for å hjelpe oss å forstå problemet bedre.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
-  "send": "Pošlji",
+  "send": "Send",
   "@send": {
     "description": "General button to send a form"
   },
-  "sending": "Pošiljam",
+  "sending": "Sender",
   "@sending": {
     "description": "General sending action indicator"
   },
-  "thankYouSupportTitle": "Hvala za povratno sporočilo!",
+  "thankYouSupportTitle": "Takk for din tilbakemelding!",
   "@thankYouSupportTitle": {
     "description": "Text on contact support confirmation page"
   },
-  "thankYouSupportDescription": "Cenimo vsa povratna sporočila in težave bomo rešili v najkrajšem možnem času.",
+  "thankYouSupportDescription": "Vi setter pris på alle tilbakemeldinger og vi vil se på problemet så snart som mulig.",
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Sporočila ni bilo mogoče poslati",
+  "sendFail": "Kunne ikke sende din melding",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Nekaj je šlo narobe. Preveri svojo internetno povezavo in poskusi znova.",
+  "sendFailDescription": "Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
-  "sendSuccessDescription": "Cenimo tvojo povratno informacijo.",
+  "sendSuccessDescription": "Vi setter pris på din tilbakemelding.",
   "@sendSuccessDescription": {
     "description": "General message when sending is successful"
   },
-  "today": "Danes",
+  "today": "I dag",
   "@today": {
     "description": "First category in tv guide"
   },
-  "expired": "Preteklo",
+  "expired": "Utgått",
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Na voljo {date}",
+  "availableFrom": "Tilgjengelig {date}",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -601,23 +601,23 @@
       }
     }
   },
-  "submit": "Oddaj",
+  "submit": "Send inn",
   "@submit": {
     "description": "Submit button."
   },
-  "wellDone": "Bravo!",
+  "wellDone": "Bra gjort!",
   "@wellDone": {
     "description": "Positive message that may be used e.g. after completing some action."
   },
-  "editPicture": "Uredi sliko",
+  "editPicture": "Rediger bilde",
   "@editPicture": {
     "description": "Button on profile page to edit profile picture."
   },
-  "profilePicture": "Profilna slika",
+  "profilePicture": "Profilbilde",
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Tv spored je v tvojem lokalnem času: {timeZone}",
+  "timezoneInformation": "Tidspunkter er oppgitt i din lokaltid: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -626,67 +626,67 @@
       }
     }
   },
-  "share": "Deli",
+  "share": "Del",
   "@share": {
     "description": "Generic."
   },
-  "showMore": "Pokaži več",
+  "showMore": "Vis mer",
   "@showMore": {
     "description": "Text used on link to expand collapsed text."
   },
-  "showLess": "Pokaži manj",
+  "showLess": "Vis mindre",
   "@showLess": {
     "description": "Text used on link to collapse expanded text."
   },
-  "liveNow": "V živo",
+  "liveNow": "Direkte nå",
   "@liveNow": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
   },
-  "comingSoon": "Pride kmalu",
+  "comingSoon": "Kommer snart",
   "@comingSoon": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
   },
-  "newEpisode": "Novo",
+  "newEpisode": "Ny",
   "@newEpisode": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
   },
-  "tomorrow": "Jutri",
+  "tomorrow": "I morgen",
   "@tomorrow": {
     "description": "Day of transmission in tv guide."
   },
-  "readBy": "Prebral",
+  "readBy": "Lest av",
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "broadcasts": "Oddaje",
+  "broadcasts": "Sendinger",
   "@broadcasts": {
     "description": "Title for live broadcasts."
   },
-  "calendar": "Koledar",
+  "calendar": "Kalender",
   "@calendar": {
     "description": "Title of calendar page."
   },
-  "noEvents": "Ni načrtovanih prenosov",
+  "noEvents": "Ingen planlagte sendinger",
   "@noEvents": {
     "description": "Info in calendar page that no transmissions are scheduled for selected day."
   },
-  "appUpdateTitle": "Potrebna posodobitev",
+  "appUpdateTitle": "Krever oppdatering",
   "@appUpdateTitle": {
     "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateRequest": "Prosim prenesi zadnjo verzijo aplikacije, da dobiš najnovejše dodatke in izboljšave.",
+  "appUpdateRequest": "Vennligst last ned den siste versjonen av appen for å få gleden av de siste funksjonene og feilrettingene.",
   "@appUpdateRequest": {
     "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateAccepted": "Posodobitev",
+  "appUpdateAccepted": "Oppdater",
   "@appUpdateAccepted": {
     "description": "Option that can be chosen by the user to update his application."
   },
-  "copy": "Kopiraj",
+  "copy": "Kopier",
   "@copy": {
     "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
-  "reload": "Ponovno naloži",
+  "reload": "Last inn på nytt",
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
   },
@@ -694,11 +694,11 @@
   "@fAQ": {
     "description": "Title on FAQ page and item in profile page settings."
   },
-  "shareStart": "Deli od začetka",
+  "shareStart": "Del fra start",
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Deli od {time}",
+  "shareTime": "Del fra {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -707,147 +707,147 @@
       }
     }
   },
-  "loadContentError": "Nalaganje vsebine ni uspelo",
+  "loadContentError": "Kunne ikke laste innhold",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "privacyPolicy": "Pravilnik o zasebnosti",
+  "privacyPolicy": "Personvernerklæring",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "termsOfUse": "Pogoji uporabe",
+  "termsOfUse": "Vilkår for bruk",
   "@termsOfUse": {
     "description": "Title on the 'Terms of use' page."
   },
-  "categoriesTab": "Kategorije",
+  "categoriesTab": "Kategorier",
   "@categoriesTab": {
     "description": "Title of the Categories Tab"
   },
-  "seriesTab": "Serije",
+  "seriesTab": "Serier",
   "@seriesTab": {
     "description": "Series Tab title"
   },
-  "filmsTab": "Filmi",
+  "filmsTab": "Filmer",
   "@filmsTab": {
     "description": "Films Tab title"
   },
-  "eventsTab": "Dogodki",
+  "eventsTab": "Eventer",
   "@eventsTab": {
     "description": "Events Tab title"
   },
-  "audioLanguage": "Jezik zvoka",
+  "audioLanguage": "Lydspråk",
   "@audioLanguage": {
     "description": "Label indicating that the Audio Language can be changed here."
   },
-  "subtitlesLanguage": "Jezik podnapisov",
+  "subtitlesLanguage": "Språk for undertekster",
   "@subtitlesLanguage": {
     "description": "Label indicating that the Subtitles Language can be changed here."
   },
-  "removeFromRecentSearches": "Ali želite odstraniti ta element iz nedavnih iskanj?",
+  "removeFromRecentSearches": "Vil du fjerne dette elementet fra siste søk?",
   "@removeFromRecentSearches": {
     "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
   },
-  "noTransmissionToday": "Danes ni načrtovanih prenosov",
+  "noTransmissionToday": "Ingen planlagte sendinger i dag",
   "@noTransmissionToday": {
     "description": "Messages that informs the user, that there are no schedules transmission for today."
   },
-  "featured": "Priporočamo",
+  "featured": "Anbefalt",
   "@featured": {
     "description": "Featured videos collection header"
   },
-  "errorTryAgain": "Prišlo je do napake, prosim poskusi znova.",
+  "errorTryAgain": "Noe gikk galt, vennligst prøv igjen senere.",
   "@errorTryAgain": {
     "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
   },
-  "liveHeader": "V živo",
+  "liveHeader": "Direkte",
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
-  "programsSection": "Programi",
+  "programsSection": "Programmer",
   "@programsSection": {
     "description": "Section in search."
   },
-  "noPlannedEvents": "Za ta dan ni načrtovanih dogodkov",
+  "noPlannedEvents": "Ingen planlagte hendelser denne dagen",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
-  "watchNow": "Glej zdaj",
+  "watchNow": "Se nå",
   "@watchNow": {
     "description": "Button on featured carousel"
   },
-  "exploreContent": "Razišči vsebino",
+  "exploreContent": "Utforsk innhold",
   "@exploreContent": {
     "description": "A button"
   },
-  "explorePublicContent": "Razišči javno vsebino",
+  "explorePublicContent": "Utforsk offentlig innhold",
   "@explorePublicContent": {
     "description": "A button on the welcome page"
   },
-  "startExploring": "Začni raziskovati",
+  "startExploring": "Begynn å utforske",
   "@startExploring": {
     "description": "A button on the welcome page"
   },
-  "taskCompleted": "naloga opravljena",
+  "taskCompleted": "oppgave fullført",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "naloge opravljene",
+  "tasksCompleted": "oppgaver fullført",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
-  "studyCompleteTaskDescription": "Dokončaj naloge in odkrij s tem povezane vire",
+  "studyCompleteTaskDescription": "Fullfør oppgaver og få tilgang til relatert innhold",
   "@studyCompleteTaskDescription": {
     "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
   },
-  "discoverMore": "Odkrij več",
+  "discoverMore": "Oppdag mer",
   "@discoverMore": {
     "description": "Generic button text."
   },
-  "completePreviousTasks": "Da odkleneš, moraš dokončati prejšnje naloge",
+  "completePreviousTasks": "Fullfør tidligere oppgaver for å låse opp",
   "@completePreviousTasks": {
     "description": "Shown on a locked button, short explanation why the button is locked."
   },
-  "studyDiscoverMoreDescription": "Najdi več navdiha in vpogleda iz povezanih virov",
+  "studyDiscoverMoreDescription": "Finn mer inspirasjon og innsikt fra relatert innhold",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },
-  "watchAgain": "Poglej znova",
+  "watchAgain": "Se igjen",
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
-  "continueToTaskIn": "Nadaljuj na nalogo v",
+  "continueToTaskIn": "Fortsett å jobbe i",
   "@continueToTaskIn": {
     "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "continueToTasksIn": "Nadaljuj na naloge v",
+  "continueToTasksIn": "Fortsett med oppgaver i",
   "@continueToTasksIn": {
     "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "studyLessonCompleted": "lekcija dokončana",
+  "studyLessonCompleted": "leksjon fullført",
   "@studyLessonCompleted": {
     "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
   },
-  "studyLessonsCompleted": "lekcije dokončane",
+  "studyLessonsCompleted": "leksjoner fullført",
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Nadaljuj preučevanje",
+  "continueStudy": "Fortsett studie",
   "@continueStudy": {
     "description": "Button."
   },
-  "startStudy": "Začni preučevanje",
+  "startStudy": "Start studie",
   "@startStudy": {
     "description": "Button."
   },
-  "videoCompletedText": "Bravo! Prišel si do konca videoposnetka.",
+  "videoCompletedText": "Gratulerer med å ha fullført videoen.",
   "@videoCompletedText": {
     "description": "Shown after completing tasks related to a video."
   },
-  "achievementFirstDescription": "Bravo! Prišel si do konca videoposnetka in zaslužil svoj prvi dosežek.",
+  "achievementFirstDescription": "Gratulerer med å ha fullført videoen og fått ditt første prestasjonsmerke.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Bravo! Dokončal si temo {name}",
+  "achievementStudyTopic": "Gratulerer med å ha fullført bibelstudiet {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -856,7 +856,7 @@
       }
     }
   },
-  "videoCount": "{count} videoposnetki",
+  "videoCount": "{count} videoer",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -865,7 +865,7 @@
       }
     }
   },
-  "taskCount": "{count} naloge",
+  "taskCount": "{count} oppgaver",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -874,7 +874,7 @@
       }
     }
   },
-  "posterCount": "{count} posterji",
+  "posterCount": "{count} plakater",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -883,7 +883,7 @@
       }
     }
   },
-  "resourceCount": "{count} viri",
+  "resourceCount": "{count} innholdsressurser",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -892,19 +892,19 @@
       }
     }
   },
-  "continueButton": "Nadaljuj",
+  "continueButton": "Fortsett",
   "@continueButton": {
     "description": "Generic button text."
   },
-  "registerButton": "Registracija",
+  "registerButton": "Meld på",
   "@registerButton": {
     "description": "Generic button text."
   },
-  "achievements": "Dosežki",
+  "achievements": "Prestasjoner",
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "passwordConditionLength": "Najmanj {n} znakov",
+  "passwordConditionLength": "Minimum {n} tegn",
   "@passwordConditionLength": {
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
@@ -913,143 +913,143 @@
       }
     }
   },
-  "passwordConditionComplexity": "Vsebovati mora male in velike črke ter številke.",
+  "passwordConditionComplexity": "Må inneholde små bokstaver, store bokstaver og tall.",
   "@passwordConditionComplexity": {
     "description": "Password condition, shown when signing up."
   },
-  "oops": "Oops!",
+  "oops": "Uups!",
   "@oops": {
     "description": "An informal title on some error screens."
   },
-  "dontHaveAccess": "Do te vsebina nimaš dostopa.",
+  "dontHaveAccess": "Du har ikke tilgang til dette innholdet.",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
-  "mustBeLoggedIn": "Za ogled te vsebine moraš biti prijavljen",
+  "mustBeLoggedIn": "Du må være logget inn for å se dette innholdet",
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
   },
-  "plentyOfOtherContent": "Brez skrbi, na voljo je dovolj druge vsebine!",
+  "plentyOfOtherContent": "Fortvil ikke, det er fortsatt mye innhold du kan se!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   },
-  "notAchieved": "Ni dosežen",
+  "notAchieved": "Ikke oppnådd ennå",
   "@notAchieved": {
     "description": "A label indicating that this achievement has not been achieved yet."
   },
-  "details": "Podrobnosti",
+  "details": "Detaljer",
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   },
-  "myList": "Moj seznam",
+  "myList": "Min liste",
   "@myList": {
     "description": "My list tab name"
   },
-  "didYouKnowTitle": "Ali si vedel?",
+  "didYouKnowTitle": "Visste du?",
   "@didYouKnowTitle": {
     "description": "Title for info displayed on 'My list' page."
   },
-  "didYouKnowContent": "S klikom na srce lahko dodaš svoje najljubše serije na \"Moj seznam\".",
+  "didYouKnowContent": "Du kan legge til favorittprogrammene dine i «Min liste» ved å trykke på hjertet.",
   "@didYouKnowContent": {
     "description": "Content for info displayed on 'My list' page."
   },
-  "selectSeason": "Izberi sezono",
+  "selectSeason": "Velg sesong",
   "@selectSeason": {
     "description": "A title prompting to select a season from the list."
   },
-  "deleteMyAccount": "Izbriši moj račun",
+  "deleteMyAccount": "Slett min konto",
   "@deleteMyAccount": {
     "description": "Button to request to delete your account"
   },
-  "iAmSureIWantToDelete": "Prepričan sem, da želim izbrisati svoj račun in podatke, povezane z aplikacijo BCC Media.",
+  "iAmSureIWantToDelete": "Jeg er sikker på at jeg vil slette min konto og mine data relatert til BCC Media appen.",
   "@iAmSureIWantToDelete": {
     "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
   },
-  "areYouSure": "Si prepričan?",
+  "areYouSure": "Er du sikker?",
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
   },
-  "youCanContactUsAt": "Z nami lahko vzpostaviš stik na",
+  "youCanContactUsAt": "Du kan kontakte oss på",
   "@youCanContactUsAt": {
     "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
   },
-  "biblekidsAbout": "BCC Media je iniciativa BCC zveze, medijske fundacije, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.",
+  "biblekidsAbout": "Bible Kids er et initiativ av BCC Media, en mediestiftelse i BCC-forbundet som produserer og distribuerer innhold med positive og kristne verdier.",
   "@biblekidsAbout": {
     "description": "Shown on about page"
   },
-  "askYourParents": "Vprašaj starše",
+  "askYourParents": "Spør dine foresatte",
   "@askYourParents": {
     "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
   },
-  "whatIsMath": "Kaj je",
+  "whatIsMath": "Hva er",
   "@whatIsMath": {
     "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
   },
-  "answerLabel": "Odgovor",
+  "answerLabel": "Svar",
   "@answerLabel": {
     "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
   },
-  "checkAnswerButton": "Preveri odgovor",
+  "checkAnswerButton": "Sjekk svar",
   "@checkAnswerButton": {
     "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
   },
-  "videoOnlyAccessibleToLoggedIn": "Ta video je na voljo samo prijavljenim uporabnikom.",
+  "videoOnlyAccessibleToLoggedIn": "Denne videoen er kun tilgjengelig for brukere som er logget inn.",
   "@videoOnlyAccessibleToLoggedIn": {
     "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
   },
-  "verifyYourAccount": "Potrdi svoj račun",
+  "verifyYourAccount": "Bekreft din konto",
   "@verifyYourAccount": {
     "description": "Title of the page where you can verify your email/account."
   },
-  "weHaveSentAnEmailTo": "Pošto smo poslali na",
+  "weHaveSentAnEmailTo": "Vi har sendt en e-post til",
   "@weHaveSentAnEmailTo": {
     "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
   },
-  "clickTheLinkToVerify": "Klikni na povezavo v elektronski pošti, da potrdiš svoj račun.",
+  "clickTheLinkToVerify": "Klikk på linken i e-posten for å bekrefte din konto.",
   "@clickTheLinkToVerify": {
     "description": "Shown on the verify account page."
   },
-  "openEmailApp": "Odpri pošto",
+  "openEmailApp": "Åpne e-post appen",
   "@openEmailApp": {
     "description": "Shown on the verify account page. Button to open your email app."
   },
-  "resendEmail": "Ponovno pošlji pošto",
+  "resendEmail": "Send e-post på nytt",
   "@resendEmail": {
     "description": "Shown on the verify account page. Button to resend the verification email."
   },
-  "noMailAppsDescription": "Ni naloženih aplikacij za pošto",
+  "noMailAppsDescription": "Ingen e-post apper innstallert",
   "@noMailAppsDescription": {
     "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
   },
-  "verificationEmailSent": "Poslana pošta za potrditev",
+  "verificationEmailSent": "Bekreftelses e-post sendt",
   "@verificationEmailSent": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "ifYouDidntReceiveVerificationEmail": "Če še vedno nisi prejel pošte, kontaktiraj podporo na",
+  "ifYouDidntReceiveVerificationEmail": "Hvis du fortsatt ikke har mottatt en e-post, vennligst kontakt støtte på",
   "@ifYouDidntReceiveVerificationEmail": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "accountCreated": "Račun je ustvarjen",
+  "accountCreated": "Konto oprettet",
   "@accountCreated": {
     "description": "Shown when the user has successfully created an account."
   },
-  "youCanNowUseYourAccount": "Sedaj lahko uporabiš svoj račun in raziščeš različne izgrajujoče vsebine.",
+  "youCanNowUseYourAccount": "Du kan nå bruke din konto og utforske et utvalg av oppbyggelig innhold.",
   "@youCanNowUseYourAccount": {
     "description": "Shown when the user has successfully completed account setup."
   },
-  "youCanNowLogInToYourAccount": "Sedaj se lahko vpišeš v svoj račun in raziščeš različne izgrajujoče vsebine.",
+  "youCanNowLogInToYourAccount": "Du kan nå logge inn på din konto og utforske et utvalg av oppbyggelig innhold.",
   "@youCanNowLogInToYourAccount": {
     "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
   },
-  "accountDeletionExplanation": "Zaprosil boš za izbris tvojega računa v BCC Media in vseh povezanih podatkov.",
+  "accountDeletionExplanation": "Du er i ferd med å be om å slette din konto hos BCC Media og alle dine data knyttet til denne appen.",
   "@accountDeletionExplanation": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionWarning": "To dejanje ne more biti razveljavljeno.",
+  "accountDeletionWarning": "Dette er en hendelse som ikke kan gjøres om.",
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Izbris računa bo izveden v roku {x} delovnih dni.",
+  "accountDeletionTimeframe": "Sletting av konto vil vanligvis være ferdig innen {x} arbeidsdager.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1058,11 +1058,11 @@
       }
     }
   },
-  "accountDeletionTitle": "Izbriši moj račun",
+  "accountDeletionTitle": "Slett min konto",
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Izbris računa je bil potrjen. Prejel boš sporočilo na {email}. Za potrditev identitete, moraš odgovoriti na sporočilo, da se bo račun izbrisal.",
+  "accountDeletionSuccess": "Forespørsel om sletting av konto vellykket. Du vil motta en e-post på {email}. For å bekrefte din identitet trenger vi at du svarer på den e-posten for å kunne gå videre med slettingen.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1071,19 +1071,19 @@
       }
     }
   },
-  "gamesTab": "Igre",
+  "gamesTab": "Spill",
   "@gamesTab": {
     "description": "Title of the games page"
   },
-  "playGame": "Igraj igre",
+  "playGame": "Spille spill",
   "@playGame": {
     "description": "Title on a game"
   },
-  "tvScanQr": "Skeniraj kodo in se vpiši s svojim telefonom",
+  "tvScanQr": "Skann koden og logg inn med telefonen",
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Ali pojdi na {url} in vpiši kodo: {code}",
+  "tvEnterCode": "Eller gå til {url} og skriv inn koden: {code}",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1095,43 +1095,43 @@
       }
     }
   },
-  "chapters": "Poglavja",
+  "chapters": "Kapitler",
   "@chapters": {
     "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
   },
-  "removeWatchProgress": "Remove watch progress",
+  "removeWatchProgress": "Start episoden på nytt",
   "@removeWatchProgress": {
     "description": "Shown when holding on an episode in the 'continue watching' section."
   },
-  "showDescription": "Opis oddaje",
+  "showDescription": "Serie beskrivelse",
   "@showDescription": {
     "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
   },
-  "releaseDate": "Datum izida",
+  "releaseDate": "Utgivelsesdato",
   "@releaseDate": {
     "description": "Release date of the episode, shown in the 'details' tab under an episode."
   },
-  "availableTo": "Available to",
+  "availableTo": "Tilgjengelig til",
   "@availableTo": {
     "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
   },
-  "ageRating": "Age rating",
+  "ageRating": "Aldersgrense",
   "@ageRating": {
     "description": "Age rating for the episode, shown in the 'details' tab under an episode."
   },
-  "ageRatingAll": "All",
+  "ageRatingAll": "Alle",
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
-  "offline": "Brez povezave",
+  "offline": "Offline",
   "@offline": {
     "description": "Status indicator, indicating that you are offline; not connected to the internet."
   },
-  "downloadButton": "Prenesi",
+  "downloadButton": "Last ned",
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Audio not available in {lang}",
+  "audioNotAvailableInLanguage": "Språk er ikke tilgjengelig på {lang}",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1140,15 +1140,15 @@
       }
     }
   },
-  "notEnoughAvailableSpace": "Ni dovolj prostora na tvoji napravi",
+  "notEnoughAvailableSpace": "Det er ikke nok ledig plass på enheten din",
   "@notEnoughAvailableSpace": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "considerDeletingOtherVideos": "Consider deleting other videos you downloaded in the app.",
+  "considerDeletingOtherVideos": "Vurder å slette andre videoer du har lastet ned i appen.",
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "Velikost videa je {size}.",
+  "theVideoFileSizeIs": "Videofilens størrelse er {size}.",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1157,75 +1157,75 @@
       }
     }
   },
-  "gotIt": "Razumem",
+  "gotIt": "Skjønner",
   "@gotIt": {
     "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
   },
-  "saveYourFavorites": "Shrani svoje priljubljene videe",
+  "saveYourFavorites": "Lagre favorittvideoene dine",
   "@saveYourFavorites": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "saveYourFavoritesDescription": "Pritisni ikono srca, da shraniš video v svoj profil.",
+  "saveYourFavoritesDescription": "Trykk på hjerteikonet på en video for å lagre den i profilen din.",
   "@saveYourFavoritesDescription": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "yourFavorites": "Tvoje priljubljene",
+  "yourFavorites": "Dine favoritter",
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
-  "downloaded": "Preneseno",
+  "downloaded": "Nedlastet",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."
   },
-  "saveVideosForOfflineViewing": "Shrani videe za ogled brez povezave",
+  "saveVideosForOfflineViewing": "Lagre videoer for offline visning",
   "@saveVideosForOfflineViewing": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "tapOnTheDownloadIcon": "Tap on the download icon on a video, to download and play while offline.",
+  "tapOnTheDownloadIcon": "Trykk på nedlastingsikonet på en video for å laste ned og spille av uten internett.",
   "@tapOnTheDownloadIcon": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "removeOfflineVideo": "Remove offline video?",
+  "removeOfflineVideo": "Vil du fjerne offline video?",
   "@removeOfflineVideo": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeOfflineVideoDescription": "By removing this video it will no longer be available without a network connection.",
+  "removeOfflineVideoDescription": "Ved å fjerne denne videoen vil den ikke lenger være tilgjengelig uten en nettverkstilkobling.",
   "@removeOfflineVideoDescription": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeFromDeviceButton": "Remove from device",
+  "removeFromDeviceButton": "Fjern fra enhet",
   "@removeFromDeviceButton": {
     "description": "Button text, to remove a downloaded video from the device."
   },
-  "keepVideoButton": "Keep video",
+  "keepVideoButton": "Behold video",
   "@keepVideoButton": {
     "description": "Button when asking to remove a downloaded video. This button cancels."
   },
-  "noInternetConnection": "No internet connection",
+  "noInternetConnection": "Ingen internettforbindelse",
   "@noInternetConnection": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetConnectionDescription": "Connect to the internet to access all videos.",
+  "noInternetConnectionDescription": "Koble til internett for å få tilgang til alle videoer.",
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "Ni povezave,\nampak ne skrbi.",
+  "noInternetButDontWorry": "Ingen internettforbindelse, men ta det rolig ...",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
-  "hereAreAllTheVideosYouDownloaded": "Tukaj so vsi videi, ki si jih prenesel na svojo napravo.",
+  "hereAreAllTheVideosYouDownloaded": "Her er alle videoene du har lastet ned til enheten din.",
   "@hereAreAllTheVideosYouDownloaded": {
     "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "connectToExplore": "Poveži se z internetom, da raziščeš vse videe.",
+  "connectToExplore": "Koble til internett for å få tilgang til alle videoer.",
   "@connectToExplore": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "language": "Jezik",
+  "language": "Språk",
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Ocenjena velikost datoteke: {size}",
+  "estimatedFileSize": "Estimert filstørrelse: {size}",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1234,47 +1234,47 @@
       }
     }
   },
-  "downloadVideo": "Prenesi video",
+  "downloadVideo": "Last ned video",
   "@downloadVideo": {
     "description": "Title on the download video form."
   },
-  "noSubtitles": "Ni podnapisov",
+  "noSubtitles": "Ingen undertekster",
   "@noSubtitles": {
     "description": "Shown in the download form, indicating that there are no subtitles available for the video."
   },
-  "subtitlesIncluded": "Podnapisi so vključeni",
+  "subtitlesIncluded": "Inkludert undertekster",
   "@subtitlesIncluded": {
     "description": "Shown in the download form, indicating that all subtitles are included in the video."
   },
-  "allSubtitlesWillBeAvailableOffline": "Vsi podnapisi bodo na voljo brez povezave",
+  "allSubtitlesWillBeAvailableOffline": "Alle undertekster vil være tilgjengelig offline",
   "@allSubtitlesWillBeAvailableOffline": {
     "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "downloading": "Prenašam",
+  "downloading": "Laster ned",
   "@downloading": {
     "description": "Download status, indicating that the video is currently downloading."
   },
-  "failed": "Neuspešno",
+  "failed": "Mislyktes",
   "@failed": {
     "description": "Generic status label. Used e.g. for downloads that failed."
   },
-  "finished": "Dokončano",
+  "finished": "Ferdig",
   "@finished": {
     "description": "Generic status label. Used e.g. for downloads that finished."
   },
-  "paused": "Ustavljeno",
+  "paused": "Satt på pause",
   "@paused": {
     "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
   },
-  "queued": "V vrsti",
+  "queued": "I kø",
   "@queued": {
     "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
   },
-  "removing": "Odstranjujem",
+  "removing": "Sletter",
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "expiresIn": "Poteče čez {time}",
+  "expiresIn": "Utløper om {time}",
   "@expiresIn": {
     "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
     "placeholders": {
@@ -1283,55 +1283,55 @@
       }
     }
   },
-  "availableOffline": "Na voljo brez povezave",
+  "availableOffline": "Tilgjengelig offline",
   "@availableOffline": {
     "description": "Label indicating that the video is available offline."
   },
-  "technicalDetails": "Tehnične podrobnosti",
+  "technicalDetails": "Tekniske detaljer",
   "@technicalDetails": {
     "description": "Shown when errors occur, and you want to see more technical details about the error."
   },
-  "contentLanguage": "Jezik vsebine",
+  "contentLanguage": "Innholdsspråk",
   "@contentLanguage": {
     "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
   },
-  "contentLanguageShort": "Vsebina",
+  "contentLanguageShort": "Innhold",
   "@contentLanguageShort": {
     "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
   },
-  "appLanguageShort": "Aplikacija",
+  "appLanguageShort": "App",
   "@appLanguageShort": {
     "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
   },
-  "playRandom": "Naključno predvajanje",
+  "playRandom": "Spill tilfeldig",
   "@playRandom": {
     "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
   },
-  "addLanguage": "Dodaj jezik",
+  "addLanguage": "Legg til språk",
   "@addLanguage": {
     "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
   },
-  "preferredLanguages": "Preferred languages",
+  "preferredLanguages": "Foretrukne språk",
   "@preferredLanguages": {
     "description": "Shown when you are selecting preferred content languages. Title."
   },
-  "contentLanguageExplanation": "Spremeni vrstni red jezikov tako, da bo ustrezal tvojim željam glede jezika zvoka in podnapisov.",
+  "contentLanguageExplanation": "Endre rekkefølgen på språkene så de samsvarer med dine språkpreferanser for lyd og undertekst.",
   "@contentLanguageExplanation": {
     "description": "Shown when you are selecting preferred content languages."
   },
-  "otherLanguages": "Drugi jeziki",
+  "otherLanguages": "Andre språk",
   "@otherLanguages": {
     "description": "Languages that are available but in your list of preferred languages."
   },
-  "select": "Izberi",
+  "select": "Velg",
   "@select": {
     "description": "Prompt. Shown at the top of a list of options."
   },
-  "supportBibleKids": "Podpri Bible Kids",
+  "supportBibleKids": "Støtt Bible Kids",
   "@supportBibleKids": {
     "description": "Shown on the settings page."
   },
-  "donateViaPaypal": "Donacija prek PayPala",
+  "donateViaPaypal": "Doner via PayPal",
   "@donateViaPaypal": {
     "description": "Shown on the settings page."
   },
@@ -1339,11 +1339,11 @@
   "@shortsTab": {
     "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
-  "autoGenerated": "Auto-generated",
+  "autoGenerated": "Autogenerert",
   "@autoGenerated": {
     "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
   },
-  "shortsAiDisclaimer": "The transcriptions and excerpt selections are auto-generated and might contain errors.",
+  "shortsAiDisclaimer": "Transkripsjonene og utdragsvalgene er automatisk generert og kan inneholde feil.",
   "@shortsAiDisclaimer": {
     "description": "Disclaimer shown on the shorts page."
   },
@@ -1351,51 +1351,51 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Ta funkcija je v beta različici in trenutno ni na voljo vsem uporabnikom. Morebitne težave ali povratne informacije sporočite prek gumba \"Kontakt\" v nastavitvah.",
+  "betaExplanation": "Denne funksjonen er i betaversjon og er foreløpig ikke utgitt for alle brukere. Vennligst rapporter eventuelle problemer eller tilbakemeldinger via \"Kontakt\"-knappen i innstillingene.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
-  "likedShorts": "Priljubljeni kratki filmi",
+  "likedShorts": "Likte shorts",
   "@likedShorts": {
     "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
-  "saveYourFavoriteShorts": "Shrani svoje priljubljene kratke filme",
+  "saveYourFavoriteShorts": "Lagre favorittvideoene dine",
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Ta funkcija še ni na voljo. Poskusi kasneje.",
+  "featureNotAvailableYet": "Denne funksjonen er ikke tilgjengelig ennå. Prøv igjen senere.",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
-  "newFeature": "Nova funkcija",
+  "newFeature": "Ny funksjon",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
   },
-  "shortsFeatureDescription": "Odkrij kratke in močne izseke ter skoči v celotno epizodo.",
+  "shortsFeatureDescription": "Oppdag korte og kraftige utdrag, og hopp rett inn i hele episoden.",
   "@shortsFeatureDescription": {
     "description": "Shown the first time you open the app after 'shorts' is enabled."
   },
-  "likedAndSaved": "Všečkano in shranjeno",
+  "likedAndSaved": "Likt og lagret",
   "@likedAndSaved": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "shortsLikedAndSavedDescription": "Vse priljubljene kratke filme lahko najdeš v svojem profilu.",
+  "shortsLikedAndSavedDescription": "Du finner alt du har likt i profilen din.",
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "downloadedVideosGuideDescription": "Prenesene videoposnetke lahko najdeš v razdelku \"Profil\".",
+  "downloadedVideosGuideDescription": "Du finner dine nedlastede videoer under \"Min profil\".",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription2": "The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "bccLiveForcedDescription2": "Direktesendingen er flyttet til en ny app: \"Live by BCC Connect\". Du kan laste den ned i App Store eller Google Play.",
   "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
-  "bccLiveLinkDescription2": "The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "bccLiveLinkDescription2": "Direktesendingen blir flyttet til en ny app: \"Live by BCC Connect\". Du kan laste den ned i App Store eller Google Play.",
   "@bccLiveLinkDescription2": {
     "description": "Will be shown in the future when you open the live tab, if the livestream is available in both Live and BCC Media."
   },
-  "openStore": "Odpri trgovino",
+  "openStore": "Åpne",
   "@openStore": {
     "description": "A button to open play store / app store."
   }

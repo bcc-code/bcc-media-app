@@ -1,381 +1,381 @@
 {
-  "loadingContent": "Conținutul se încarcă",
+  "loadingContent": "Carregando conteúdo",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
   },
-  "signInTooltip": "Autentificați-vă pentru a viziona mai mult conținut",
+  "signInTooltip": "Faça login para assistir mais conteúdo",
   "@signInTooltip": {
     "description": "Text for tooltip displayed when a non-member user opens the home page."
   },
-  "skipToPublicContent": "Sări peste pentru a viziona conținut public",
+  "skipToPublicContent": "Pular para assistir ao conteúdo público",
   "@skipToPublicContent": {
     "description": "Text for button displayed on login screen to skip sign in and watch public content."
   },
-  "minutesShort": "min",
+  "minutesShort": "Min",
   "@minutesShort": {
     "description": "Text for minutes."
   },
-  "calendarThisWeek": "Această săptămână",
+  "calendarThisWeek": "Essa semana ",
   "@calendarThisWeek": {
     "description": "Text for This week."
   },
-  "calendarWeek": "săptămână",
+  "calendarWeek": "Semana ",
   "@calendarWeek": {
     "description": "Text week."
   },
-  "close": "Închide",
+  "close": "Fechar",
   "@close": {
     "description": "Text displayed on 'Close' button"
   },
-  "loading": "Se încarcă",
+  "loading": "Carregando",
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "Cel mai puternic \nmesaj din lume",
+  "loginPageDisplay1": "A mensagem mais poderosa do mundo ",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Vezi seriale, emisiuni și filme bazate pe valori Creștine",
+  "loginPageDisplay2": "Assistir séries, programas e filmes baseados nos valores cristãos",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "kidsOnboardingTitle": "Aducem mesajul Bibliei la viață!",
+  "kidsOnboardingTitle": "Nós trazemos a mensagem da Bíblia para a vida!",
   "@kidsOnboardingTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "kidsOnboardingSecondaryTitle": "Viziunea noastră este ca copiii să îl experimenteze pe Isus ca fiind cel mai bun prieten al lor - pentru tot restul vieții.",
+  "kidsOnboardingSecondaryTitle": "Nossa visão é que as crianças experimentem Jesus como seu melhor amigo - pelo resto de suas vidas.",
   "@kidsOnboardingSecondaryTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "loginPageDisplay3": "Produs de BCC Media",
+  "loginPageDisplay3": "Produzido por BCC Mídia ",
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
-  "liveTab": "În direct",
+  "liveTab": "Ao vivo. ",
   "@liveTab": {
     "description": "Title of live page tab"
   },
-  "logOutButton": "Deconectare",
+  "logOutButton": "Sair",
   "@logOutButton": {
     "description": "Text displayed on Log out button"
   },
-  "profileTab": "Profil",
+  "profileTab": "Perfil",
   "@profileTab": {
     "description": "Title of the profile page"
   },
-  "faq": "Întrebări frecvente",
+  "faq": "Perguntas frequentes",
   "@faq": {
     "description": "Long title of the FAQ page."
   },
-  "bccMediaCenter": "BCC Media este o fundație media din cadrul federației BCC care produce și distribuie conținut cu valori pozitive și creștine.",
+  "bccMediaCenter": "BCC Mídia é uma fundação de mídia da federação BCC que produz e distribui conteúdo com valores positivos e cristãos.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
-  "signInButton": "Conectare",
+  "signInButton": "Entrar",
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
-  "signInOrSignUp": "Înregistrare / Autentificare",
+  "signInOrSignUp": "Inscreva-se / Entrar",
   "@signInOrSignUp": {
     "description": "Button to go to the onboarding page (short)"
   },
-  "signUpButton": "Înregistrează-te acum",
+  "signUpButton": "Inscreva-se agora",
   "@signUpButton": {
     "description": "Button to start the sign up process"
   },
-  "signUpTitle": "Înregistrează-te",
+  "signUpTitle": "Inscrever-se",
   "@signUpTitle": {
     "description": "Title on the sign up page"
   },
-  "signUpDescription": "Obține acces la mai mult conținut și funcții mai bune prin crearea unui cont.",
+  "signUpDescription": "Obtenha acesso a mais conteúdo e melhores recursos criando uma conta.",
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Confirm faptul că am 13 ani sau mai mult, și sunt de acord cu <a>Politica de confidențialitate</a> și <a>Termenii de utilizare</a>.",
+  "signUpAgreePrivacyPolicy": "Certifico que tenho 13 anos ou mais e concordo com a <a>Política de Privacidade</a> e os <a>Termos de uso</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
-  "setPassword": "Setează-ți parola",
+  "setPassword": "Configurar senha",
   "@setPassword": {
     "description": "Title for the 'Set password' page of the signup process."
   },
-  "tryAgainButton": "Încearcă din nou",
+  "tryAgainButton": "Tente novamente",
   "@tryAgainButton": {
     "description": "Button on error alert that lets user to retry failed action"
   },
-  "loggedOutTitle": "Deconectat",
+  "loggedOutTitle": "Desconectado",
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Ai fost deconectat. Te rugăm să te conectezi din nou.",
+  "loggedOutMessage": "Você foi desconectado. Por favor faça login novamente.",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
-  "makeDonation": "Depune o donație",
+  "makeDonation": "Faça uma doação",
   "@makeDonation": {
     "description": "Text for button which opens donation page."
   },
-  "mostWatched": "Cele mai vizionate",
+  "mostWatched": "Mais assistidos",
   "@mostWatched": {
     "description": "Sorting option on audience page"
   },
-  "mostRecent": "Cele mai recente",
+  "mostRecent": "Mais recentes",
   "@mostRecent": {
     "description": "Sorting option on audience page"
   },
-  "latelyPublished": "Ultimele publicate",
+  "latelyPublished": "Publicado recentemente",
   "@latelyPublished": {
     "description": "Title for the list of videos on login page"
   },
-  "anErrorOccurred": "A apărut o eroare",
+  "anErrorOccurred": "Ocorreu um erro",
   "@anErrorOccurred": {
     "description": "Title in error popup"
   },
-  "ok": "Bine",
+  "ok": "Ok",
   "@ok": {
     "description": "Popup confirmation button"
   },
-  "open": "Deschide",
+  "open": "Abrir",
   "@open": {
     "description": "Open button"
   },
-  "loginFailedCheckNetwork": "Conectarea a eșuat. Verifică conexiunea la internet și încearcă din nou.",
+  "loginFailedCheckNetwork": "Falha na autenticação. Verifique sua conexão de rede e tente novamente.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "Conectare eșuată. Te rog să încerci din nou mai târziu.",
+  "loginFailedTryAgain": "Falha na autêntica. Por favor, tente mais tarde.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
-  "soundLanguage": "Limba sunetului",
+  "soundLanguage": "Linguagem sonora",
   "@soundLanguage": {
     "description": "Settings item on profile page"
   },
-  "subtitleLanguage": "Limba subtitrării",
+  "subtitleLanguage": "Idioma das legendas",
   "@subtitleLanguage": {
     "description": "Settings item on profile page"
   },
-  "appLanguage": "Limba aplicației",
+  "appLanguage": "Idioma do aplicativo",
   "@appLanguage": {
     "description": "Settings item on profile page"
   },
-  "checkNetwork": "Verifică conexiunea la internet și încearcă din nou.",
+  "checkNetwork": "Verifique sua conexão de rede e tente novamente.",
   "@checkNetwork": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "tryAgain": "Te rog să încerci din nou mai târziu.",
+  "tryAgain": "Por favor tente novamente mais tarde.",
   "@tryAgain": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "cantPlayVideo": "Nu se poate reda acest video acum.",
+  "cantPlayVideo": "Você não pode reproduzir este vídeo agora.",
   "@cantPlayVideo": {
     "description": "Error message for the user displayed when video playback attempt failed."
   },
-  "about": "Detalii aplicație",
+  "about": "Sobre",
   "@about": {
     "description": "Title of About page and item in profile page settings."
   },
-  "version": "Versiune",
+  "version": "Versão",
   "@version": {
     "description": "Version ot the application on About page; followed by version number"
   },
-  "contactSupport": "Contactare suport",
+  "contactSupport": "Entre em contato com o suporte",
   "@contactSupport": {
     "description": "Title for contact support page"
   },
-  "contactIssueHint": "Descrie problema",
+  "contactIssueHint": "Descreva o problema",
   "@contactIssueHint": {
     "description": "Hint for the message box for logged in users"
   },
-  "contactUs": "Contactează-ne",
+  "contactUs": "Entre em contato ",
   "@contactUs": {
     "description": "Title for contact us page"
   },
-  "deviceInfo": "Informații despre dispozitiv",
+  "deviceInfo": "Informação do dispositivo",
   "@deviceInfo": {
     "description": "Device info page title"
   },
-  "contactIncludeDeviceInfo": "Include informații despre dispozitiv pentru o asistență mai bună.",
+  "contactIncludeDeviceInfo": "Inclua informações do dispositivo para melhor suporte.",
   "@contactIncludeDeviceInfo": {
     "description": "Text for checkbox to include device information"
   },
-  "contactSeeData": "Faceți clic pentru a vedea datele.",
+  "contactSeeData": "Clique para ver os dados.",
   "@contactSeeData": {
     "description": "Text for link to see device data"
   },
-  "contactName": "Nume",
+  "contactName": "Nome",
   "@contactName": {
     "description": "Label for name field in contact support page"
   },
-  "contactNameHint": "Introdu numele tău",
+  "contactNameHint": "Digite seu nome",
   "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactEmail": "Adresa ta de e-mail de contact",
+  "contactEmail": "Seu e-mail de contato",
   "@contactEmail": {
     "description": "Label for email field in contact support page"
   },
-  "contactEmailHint": "Introdu adresa ta de e-mail",
+  "contactEmailHint": "Digite seu endereço de e-mail",
   "@contactEmailHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactMessage": "Mesaj",
+  "contactMessage": "Mensagens",
   "@contactMessage": {
     "description": "Label for message field in contact support page"
   },
-  "contactMessageHint": "Introdu mesajul tău aici",
+  "contactMessageHint": "Digite sua mensagem aqui",
   "@contactMessageHint": {
     "description": "Hint text for message field in contact support page"
   },
-  "deviceInfoDevice": "Dispozitiv",
+  "deviceInfoDevice": "Dispositivo",
   "@deviceInfoDevice": {
     "description": "Label for device"
   },
-  "deviceInfoEnvOverride": "Suprascrierea mediului",
+  "deviceInfoEnvOverride": "Substituição do ambiente",
   "@deviceInfoEnvOverride": {
     "description": "Label for environment override"
   },
-  "deviceInfoManufacturer": "Producător",
+  "deviceInfoManufacturer": "Fabricante",
   "@deviceInfoManufacturer": {
     "description": "Label for manufacturer"
   },
-  "deviceInfoOs": "Sistem de operare",
+  "deviceInfoOs": "Sistema operacional",
   "@deviceInfoOs": {
     "description": "Label for operating system"
   },
-  "deviceInfoScreenSize": "Mărimea ecranului",
+  "deviceInfoScreenSize": "Tamanho da tela",
   "@deviceInfoScreenSize": {
     "description": "Label for screen size"
   },
-  "deviceInfoAppVer": "Versiunea aplicației",
+  "deviceInfoAppVer": "Versão do App",
   "@deviceInfoAppVer": {
     "description": "Label for app Version"
   },
-  "deviceInfoUserId": "ID de utilizator",
+  "deviceInfoUserId": "ID do usuário",
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-  "deviceInfoPageDesc": "Mesajul tău va include aceste informații, pentru a ne ajuta să înțelegem mai bine problema.",
+  "deviceInfoPageDesc": "Sua mensagem incluirá essas informações para nos ajudar a fornecer um melhor suporte.",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
   },
-  "userVoice": "Propune o funcție",
+  "userVoice": "Sugerir um recurso",
   "@userVoice": {
     "description": "Settings item on profile page to navigate to uservoice"
   },
-  "cancel": "Anulare",
+  "cancel": "Cancelar",
   "@cancel": {
     "description": "General cancel action button"
   },
-  "cancelConfirmation": "Ești sigur că vrei să anulezi?",
+  "cancelConfirmation": "Tem certeza que deseja cancelar?",
   "@cancelConfirmation": {
     "description": "Title text for cancel confirmation dialog."
   },
-  "cancelConfirmationDescription": "Orice modificări nesalvate vor fi pierdute.",
+  "cancelConfirmationDescription": "Quaisquer alterações não salvas serão perdidas.",
   "@cancelConfirmationDescription": {
     "description": "Description for cancel confirmation dialog."
   },
-  "goBack": "Mergi înapoi",
+  "goBack": "Voltar",
   "@goBack": {
     "description": "Text for back button."
   },
-  "yesCancel": "Da, Anulează",
+  "yesCancel": "Sim, Cancelar",
   "@yesCancel": {
     "description": "Confirm cancel."
   },
-  "upNext": "Urmează",
+  "upNext": "A seguir",
   "@upNext": {
     "description": "Title indiciating what's next on the livestream."
   },
-  "done": "Efectuat",
+  "done": "Feito",
   "@done": {
     "description": "Generic Done button, for example to dismiss a page after completing an action."
   },
-  "playerSettings": "Setări player/redare",
+  "playerSettings": "Configuração do player",
   "@playerSettings": {
     "description": "Title of the Player settings activity in Android"
   },
-  "settings": "Setări",
+  "settings": "Configurações.",
   "@settings": {
     "description": "Label of the button to go to Android/iOS settings"
   },
-  "none": "Niciunul",
+  "none": "Nenhum",
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
-  "nextEpisode": "Episodul următor",
+  "nextEpisode": "Próximo episódio",
   "@nextEpisode": {
     "description": "Button indicating the next video will play soon."
   },
-  "auto": "Auto",
+  "auto": "Automático",
   "@auto": {
     "description": "Indicator on profile page that audio and app language are chosen automatically."
   },
-  "live": "În direct",
+  "live": "Ao vivo. ",
   "@live": {
     "description": "Title of the live stream"
   },
-  "subtitles": "Subtitrări",
+  "subtitles": "Legendas",
   "@subtitles": {
     "description": "Generic."
   },
-  "audio": "Audio",
+  "audio": "Áudio",
   "@audio": {
     "description": "Generic."
   },
-  "quality": "Calitate",
+  "quality": "Qualidade",
   "@quality": {
     "description": "Generic."
   },
-  "seasons": "Sezoane",
+  "seasons": "Temporadas",
   "@seasons": {
     "description": "Followed by number of seasons in given series."
   },
-  "episodes": "Episoade",
+  "episodes": "Episódios",
   "@episodes": {
     "description": "Followed by number of episodes in given series."
   },
-  "search": "Căutare",
+  "search": "Busca",
   "@search": {
     "description": "Button to clear cache"
   },
-  "sendFeedback": "Trimite Feedback",
+  "sendFeedback": "Enviar comentário",
   "@sendFeedback": {
     "description": "Button to submit feedback(Survey)"
   },
-  "noResults": "Nici un rezultat gasit",
+  "noResults": "Nenhum resultado encontrado",
   "@noResults": {
     "description": "No search results."
   },
-  "doYouWantCast": "Vrei să trimiți acest video prin Cast?",
+  "doYouWantCast": "Deseja transmitir este vídeo?",
   "@doYouWantCast": {
     "description": "Prompt displayed to the user"
   },
-  "play": "Redare",
+  "play": "Jogar",
   "@play": {
     "description": "Option in prompt dialog."
   },
-  "pause": "Pauză",
+  "pause": "Pausa",
   "@pause": {
     "description": "A button to pause the video."
   },
-  "castQueue": "Lista de redare",
+  "castQueue": "Fila de transmissão",
   "@castQueue": {
     "description": "Queue page title"
   },
-  "options": "Opțiuni",
+  "options": "Opções",
   "@options": {
     "description": "Options dialog title"
   },
-  "remove": "Elimină",
+  "remove": "Remover",
   "@remove": {
     "description": "Option in options dialog"
   },
-  "queueLimitTitle": "Limită",
+  "queueLimitTitle": "Limite",
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "Nu poți avea mai mult de {elementCount} elemente în coadă.",
+  "queueLimitMessage": "Você não pode ter mais de {elementCount} elementos na fila.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -384,59 +384,59 @@
       }
     }
   },
-  "recentSearches": "Căutări recente",
+  "recentSearches": "Buscas recentes",
   "@recentSearches": {
     "description": "Recent searches list title."
   },
-  "tVLogin": "Conectare TV",
+  "tVLogin": "Login na TV",
   "@tVLogin": {
     "description": "Title of the TV login alert"
   },
-  "tVLoginSuccessful": "Conectare cu succes, confirmă te rog pe TV.",
+  "tVLoginSuccessful": "Login bem-sucedido, confirme na TV.",
   "@tVLoginSuccessful": {
     "description": "Message of the TV login alert"
   },
-  "seeMore": "Vezi mai mult",
+  "seeMore": "Ver mais",
   "@seeMore": {
     "description": "Button on featured item to navigete to page with player"
   },
-  "seeAll": "Vezi toate",
+  "seeAll": "Ver tudo",
   "@seeAll": {
     "description": "Button to see all of some collection."
   },
-  "series": "Episoade",
+  "series": "Séries",
   "@series": {
     "description": "Title of the tab on info page"
   },
-  "homeTab": "Acasă",
+  "homeTab": "Início",
   "@homeTab": {
     "description": "Title of the home page"
   },
-  "sortBy": "Sortare după",
+  "sortBy": "Ordenar por",
   "@sortBy": {
     "description": "Sorting criteria selector"
   },
-  "videoQuality": "Calitatea video",
+  "videoQuality": "Qualidade de vídeo",
   "@videoQuality": {
     "description": "Settings item in profile page for Android."
   },
-  "low": "Redusă",
+  "low": "Baixo",
   "@low": {
     "description": "Low quality video option"
   },
-  "medium": "Mediu",
+  "medium": "Médio",
   "@medium": {
     "description": "Medium quality video option"
   },
-  "high": "Înaltă",
+  "high": "Alto",
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Poți căuta tot conținutul de la BCC Media. Serii, videouri și episoade.",
+  "emptySearch": "Você pode pesquisar todo o conteúdo da BCC Media. Séries, vídeos e episódios.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
-  "back": "Înapoi",
+  "back": "Voltar",
   "@back": {
     "description": "General back button to navigate back"
   },
@@ -456,51 +456,51 @@
   "@ztoA": {
     "description": "Sort order"
   },
-  "shortFilms": "Filme scurte",
+  "shortFilms": "Filmes curtos",
   "@shortFilms": {
     "description": "Title of the films collection."
   },
-  "videos": "Videouri",
+  "videos": "Vídeos",
   "@videos": {
     "description": "Followed by number of videos"
   },
-  "moreInfo": "Mai multe informații",
+  "moreInfo": "Mais informações",
   "@moreInfo": {
     "description": "Option in action sheet for the video that triggers info page for the video."
   },
-  "info": "Detalii",
+  "info": "Informação",
   "@info": {
     "description": "Video info page title."
   },
-  "episode": "Episod",
+  "episode": "Episódio",
   "@episode": {
     "description": "Title of the tab on info page"
   },
-  "takePhoto": "Fă o poză",
+  "takePhoto": "Tirar uma foto",
   "@takePhoto": {
     "description": "Option in menu"
   },
-  "pickPhoto": "Alege din galerie",
+  "pickPhoto": "Escolha da galeria",
   "@pickPhoto": {
     "description": "Option in menu"
   },
-  "uploadFileTitle": "Încarcă fişier",
+  "uploadFileTitle": "Arquivo enviado",
   "@uploadFileTitle": {
     "description": "Title of the dialog to confirm upload"
   },
-  "uploadFileMessage": "Vrei să încarci acest fișier?",
+  "uploadFileMessage": "Deseja baixar este arquivo?",
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "uploading": "Se încarcă",
+  "uploading": "Enviando",
   "@uploading": {
     "description": "Message during file upload"
   },
-  "uploadFail": "Încărcarea a eșuat",
+  "uploadFail": "Falha no envio",
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "Au rămas {charsLeft} din {charsTotal} caractere",
+  "charactersLimit": "{charsLeft} De {charsTotal} caracteres restantes",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -512,27 +512,27 @@
       }
     }
   },
-  "thankYou": "Mulțumim!",
+  "thankYou": "Obrigada!",
   "@thankYou": {
     "description": "Title in upload success page"
   },
-  "thankYouForContribution": "Mulțumim pentru contribuție!",
+  "thankYouForContribution": "Obrigado pela sua contribuição!",
   "@thankYouForContribution": {
     "description": "Title in upload success page"
   },
-  "next": "Urmează",
+  "next": "Próximo",
   "@next": {
     "description": "NEXT program in check in section"
   },
-  "add": "Adaugă",
+  "add": "Adicionar",
   "@add": {
     "description": "Button text"
   },
-  "change": "Modifică",
+  "change": "Mudar",
   "@change": {
     "description": "Button text"
   },
-  "writeHere": "Scrie aici",
+  "writeHere": "Escreva aqui",
   "@writeHere": {
     "description": "New post text field placeholder"
   },
@@ -540,59 +540,59 @@
   "@feed": {
     "description": "Feed page bar title"
   },
-  "information": "Detalii",
+  "information": "Informação",
   "@information": {
     "description": "Feed information item title"
   },
-  "question": "Întrebare",
+  "question": "Questão",
   "@question": {
     "description": "Title of the question page"
   },
-  "now": "Acum",
+  "now": "Agora",
   "@now": {
     "description": "Tv guide now playing label"
   },
-  "debugInfoExplanation": "Mesajul tău va include aceste informații, pentru a ne ajuta să înțelegem mai bine problema.",
+  "debugInfoExplanation": "Sua mensagem incluirá essas informações para nos ajudar a entender melhor o problema.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
-  "send": "Trimite",
+  "send": "Enviar",
   "@send": {
     "description": "General button to send a form"
   },
-  "sending": "Se trimite",
+  "sending": "Enviado",
   "@sending": {
     "description": "General sending action indicator"
   },
-  "thankYouSupportTitle": "Mulțumim pentru feedback-ul tău!",
+  "thankYouSupportTitle": "Obrigada pela sua avaliação!",
   "@thankYouSupportTitle": {
     "description": "Text on contact support confirmation page"
   },
-  "thankYouSupportDescription": "Apreciem toate feedback-urile și vom aborda problema cât de curând posibil.",
+  "thankYouSupportDescription": "Agradecemos todos os comentários e abordaremos o problema o mais rápido possível.",
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Nu am putut trimite mesajul dvs",
+  "sendFail": "Não foi possível enviar sua mensagem",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Ceva n-a mers bine. Verifică conexiunea la internet și încearcă din nou.",
+  "sendFailDescription": "Algo deu errado. Verifique sua conexão com a internet e tente novamente.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
-  "sendSuccessDescription": "Apreciem feedbackul tău.",
+  "sendSuccessDescription": "Agradecemos seus comentários.",
   "@sendSuccessDescription": {
     "description": "General message when sending is successful"
   },
-  "today": "Astăzi",
+  "today": "Hoje",
   "@today": {
     "description": "First category in tv guide"
   },
-  "expired": "Expirat",
+  "expired": "Expirado",
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Disponibil de pe {date}",
+  "availableFrom": "Disponível {date}",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -601,23 +601,23 @@
       }
     }
   },
-  "submit": "Trimite",
+  "submit": "Enviar",
   "@submit": {
     "description": "Submit button."
   },
-  "wellDone": "Bună treabă!",
+  "wellDone": "Bem feito!",
   "@wellDone": {
     "description": "Positive message that may be used e.g. after completing some action."
   },
-  "editPicture": "Editează poza",
+  "editPicture": "Editar imagem",
   "@editPicture": {
     "description": "Button on profile page to edit profile picture."
   },
-  "profilePicture": "Poză de profil",
+  "profilePicture": "Foto de perfil",
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Programul ghidului Tv este afișat în ora ta locală: {timeZone}",
+  "timezoneInformation": "O horário do guia de Tv está no seu horário local: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -626,79 +626,79 @@
       }
     }
   },
-  "share": "Distribuie",
+  "share": "Compartilhar",
   "@share": {
     "description": "Generic."
   },
-  "showMore": "Arată mai mult",
+  "showMore": "Mostrar mais",
   "@showMore": {
     "description": "Text used on link to expand collapsed text."
   },
-  "showLess": "Arată mai puțin",
+  "showLess": "Mostrar menos",
   "@showLess": {
     "description": "Text used on link to collapse expanded text."
   },
-  "liveNow": "Acum în direct",
+  "liveNow": "Ao vivo agora",
   "@liveNow": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
   },
-  "comingSoon": "Apare în curând",
+  "comingSoon": "Em breve",
   "@comingSoon": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
   },
-  "newEpisode": "Nou",
+  "newEpisode": "Novo",
   "@newEpisode": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
   },
-  "tomorrow": "Mâine",
+  "tomorrow": "Amanhã",
   "@tomorrow": {
     "description": "Day of transmission in tv guide."
   },
-  "readBy": "Citit de",
+  "readBy": "Lido por",
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "broadcasts": "Transmisii",
+  "broadcasts": "Transmissão",
   "@broadcasts": {
     "description": "Title for live broadcasts."
   },
-  "calendar": "Calendar",
+  "calendar": "Calendário",
   "@calendar": {
     "description": "Title of calendar page."
   },
-  "noEvents": "Nici o transmisie programată",
+  "noEvents": "Sem transmissões programadas",
   "@noEvents": {
     "description": "Info in calendar page that no transmissions are scheduled for selected day."
   },
-  "appUpdateTitle": "Necesită actualizare",
+  "appUpdateTitle": "Atualização necessária",
   "@appUpdateTitle": {
     "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateRequest": "Actualizează la cea mai recentă aplicație pentru a te bucura de toate funcțiile recente și de repararea erorilor.",
+  "appUpdateRequest": "Por favor, baixe o aplicativo mais recente para desfrutar de todos os recursos e correções de erros mais recentes.",
   "@appUpdateRequest": {
     "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateAccepted": "Actualizare",
+  "appUpdateAccepted": "Atualizar",
   "@appUpdateAccepted": {
     "description": "Option that can be chosen by the user to update his application."
   },
-  "copy": "Copiere",
+  "copy": "Cópia",
   "@copy": {
     "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
-  "reload": "Reîncarcă",
+  "reload": "Recarregar",
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
   },
-  "fAQ": "Întrebări frecvente",
+  "fAQ": "Perguntas frequentes",
   "@fAQ": {
     "description": "Title on FAQ page and item in profile page settings."
   },
-  "shareStart": "Distribuie de la început",
+  "shareStart": "Compartilhar desde o início",
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Distribuie de la {time}",
+  "shareTime": "Compartilhar de {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -707,147 +707,147 @@
       }
     }
   },
-  "loadContentError": "Conținutul nu a putut fi încărcat",
+  "loadContentError": "Não foi possível carregar o conteúdo",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "privacyPolicy": "Politica de Confidențialitate",
+  "privacyPolicy": "Política de privacidade",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "termsOfUse": "Termeni de utilizare",
+  "termsOfUse": "Termos de uso",
   "@termsOfUse": {
     "description": "Title on the 'Terms of use' page."
   },
-  "categoriesTab": "Categorii",
+  "categoriesTab": "Categorias",
   "@categoriesTab": {
     "description": "Title of the Categories Tab"
   },
-  "seriesTab": "Episoade",
+  "seriesTab": "Séries",
   "@seriesTab": {
     "description": "Series Tab title"
   },
-  "filmsTab": "Filme",
+  "filmsTab": "Filmes",
   "@filmsTab": {
     "description": "Films Tab title"
   },
-  "eventsTab": "Evenimente",
+  "eventsTab": "Eventos",
   "@eventsTab": {
     "description": "Events Tab title"
   },
-  "audioLanguage": "Limba sunetului",
+  "audioLanguage": "Linguagem de áudio",
   "@audioLanguage": {
     "description": "Label indicating that the Audio Language can be changed here."
   },
-  "subtitlesLanguage": "Limba subtitrării",
+  "subtitlesLanguage": "Idioma das legendas",
   "@subtitlesLanguage": {
     "description": "Label indicating that the Subtitles Language can be changed here."
   },
-  "removeFromRecentSearches": "Dorești să elimini acest element din căutările recente?",
+  "removeFromRecentSearches": "Deseja remover este elemento das buscas recentes?",
   "@removeFromRecentSearches": {
     "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
   },
-  "noTransmissionToday": "Nicio transmisie programată pentru astăzi",
+  "noTransmissionToday": "Nenhuma transmissão programada para hoje",
   "@noTransmissionToday": {
     "description": "Messages that informs the user, that there are no schedules transmission for today."
   },
-  "featured": "Recomandate",
+  "featured": "Destaque",
   "@featured": {
     "description": "Featured videos collection header"
   },
-  "errorTryAgain": "A apărut o eroare, te rugăm să încerci din nou mai târziu.",
+  "errorTryAgain": "Ocorreu um erro. Tente novamente mais tarde.",
   "@errorTryAgain": {
     "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
   },
-  "liveHeader": "În direct",
+  "liveHeader": "Ao vivo. ",
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
-  "programsSection": "Programe",
+  "programsSection": "Programas",
   "@programsSection": {
     "description": "Section in search."
   },
-  "noPlannedEvents": "Astăzi nu sunt evenimente planificate",
+  "noPlannedEvents": "Nenhum evento planejado para este dia",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
-  "watchNow": "Vezi acum",
+  "watchNow": "Assistir agora",
   "@watchNow": {
     "description": "Button on featured carousel"
   },
-  "exploreContent": "Descoperă conținut",
+  "exploreContent": "Explorar conteúdo",
   "@exploreContent": {
     "description": "A button"
   },
-  "explorePublicContent": "Explorează conținut public",
+  "explorePublicContent": "Explorar conteúdo público",
   "@explorePublicContent": {
     "description": "A button on the welcome page"
   },
-  "startExploring": "Începe explorarea",
+  "startExploring": "Comece a explorar",
   "@startExploring": {
     "description": "A button on the welcome page"
   },
-  "taskCompleted": "sarcină îndeplinită",
+  "taskCompleted": "tarefa completa",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "sarcini îndeplinite",
+  "tasksCompleted": "tarefas concluídas",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
-  "studyCompleteTaskDescription": "Îndeplinește sarcini și descoperă resurse aferente",
+  "studyCompleteTaskDescription": "Conclua tarefas e descubra recursos relacionados",
   "@studyCompleteTaskDescription": {
     "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
   },
-  "discoverMore": "Descoperă mai mult",
+  "discoverMore": "Descubra mais ",
   "@discoverMore": {
     "description": "Generic button text."
   },
-  "completePreviousTasks": "Completează sarcini anterioare pentru a debloca",
+  "completePreviousTasks": "Complete as tarefas anteriores para desbloquear",
   "@completePreviousTasks": {
     "description": "Shown on a locked button, short explanation why the button is locked."
   },
-  "studyDiscoverMoreDescription": "Găsește mai multă inspirație și perspectivă din resurse aferente",
+  "studyDiscoverMoreDescription": "Encontre mais inspiração e conhecimentos de recursos relacionados",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },
-  "watchAgain": "Vezi din nou",
+  "watchAgain": "Ver de novo ",
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
-  "continueToTaskIn": "Continuă să lucrezi la",
+  "continueToTaskIn": "Continuar a tarefa em",
   "@continueToTaskIn": {
     "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "continueToTasksIn": "Continuă să lucrezi la",
+  "continueToTasksIn": "Continuar as tarefas em",
   "@continueToTasksIn": {
     "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "studyLessonCompleted": "temă finalizată",
+  "studyLessonCompleted": "lição concluída",
   "@studyLessonCompleted": {
     "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
   },
-  "studyLessonsCompleted": "teme finalizate",
+  "studyLessonsCompleted": "lições concluídas",
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Continuă studiul",
+  "continueStudy": "Continuar estudo ",
   "@continueStudy": {
     "description": "Button."
   },
-  "startStudy": "Începe studiul",
+  "startStudy": "Começar estudo",
   "@startStudy": {
     "description": "Button."
   },
-  "videoCompletedText": "Foarte bine! Ai finalizat videoul.",
+  "videoCompletedText": "Ótimo trabalho na conclusão do vídeo.",
   "@videoCompletedText": {
     "description": "Shown after completing tasks related to a video."
   },
-  "achievementFirstDescription": "Foarte bine! Ai finalizat videoul și ai obținut primul progres.",
+  "achievementFirstDescription": "Ótimo trabalho ao concluir o vídeo e obter sua primeira conquista de progresso.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Foarte bine! Ai finalizat subiectului de studiu {name}",
+  "achievementStudyTopic": "Ótimo trabalho ao concluir o tópico de estudo {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -856,7 +856,7 @@
       }
     }
   },
-  "videoCount": "{count} videouri",
+  "videoCount": "{count} vídeos",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -865,7 +865,7 @@
       }
     }
   },
-  "taskCount": "{count} sarcini",
+  "taskCount": "{count} tarefas",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -874,7 +874,7 @@
       }
     }
   },
-  "posterCount": "{count} postere",
+  "posterCount": "{count} postagens",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -883,7 +883,7 @@
       }
     }
   },
-  "resourceCount": "{count} resurse",
+  "resourceCount": "{count} recursos",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -892,19 +892,19 @@
       }
     }
   },
-  "continueButton": "Continuă",
+  "continueButton": "Continuar",
   "@continueButton": {
     "description": "Generic button text."
   },
-  "registerButton": "Înregistrare",
+  "registerButton": "Registar",
   "@registerButton": {
     "description": "Generic button text."
   },
-  "achievements": "Realizări",
+  "achievements": "Conquistas",
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "passwordConditionLength": "Minimum {n} caractere",
+  "passwordConditionLength": "Mínimo de {n} caracteres",
   "@passwordConditionLength": {
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
@@ -913,143 +913,143 @@
       }
     }
   },
-  "passwordConditionComplexity": "Trebuie să conțină litere mici, majuscule și numere.",
+  "passwordConditionComplexity": "Deve conter minúsculas, maiúsculas e números.",
   "@passwordConditionComplexity": {
     "description": "Password condition, shown when signing up."
   },
-  "oops": "Oops!",
+  "oops": "Oops! ",
   "@oops": {
     "description": "An informal title on some error screens."
   },
-  "dontHaveAccess": "Nu ai acces la acest conținut.",
+  "dontHaveAccess": "Você não tem acesso a esse conteúdo.",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
-  "mustBeLoggedIn": "Trebuie să fii conectat cu contul propriu pentru a urmări acest conținut",
+  "mustBeLoggedIn": "Você precisa estar logado para assistir a este conteúdo",
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
   },
-  "plentyOfOtherContent": "Stai liniștit, este foarte mult conținut de care te poți bucura!",
+  "plentyOfOtherContent": "Não se preocupe, ainda há muito conteúdo para aproveitar!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   },
-  "notAchieved": "Nerealizat încă",
+  "notAchieved": "Não alcançado",
   "@notAchieved": {
     "description": "A label indicating that this achievement has not been achieved yet."
   },
-  "details": "Detalii",
+  "details": "Detalhes ",
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   },
-  "myList": "Lista mea",
+  "myList": "Minha lista",
   "@myList": {
     "description": "My list tab name"
   },
-  "didYouKnowTitle": "Știai că?",
+  "didYouKnowTitle": "Você sabia?",
   "@didYouKnowTitle": {
     "description": "Title for info displayed on 'My list' page."
   },
-  "didYouKnowContent": "Poți adăuga emisiunile tale preferate pe „Lista mea\" apăsând pe inimă.",
+  "didYouKnowContent": "Você pode adicionar seus programas favoritos à \"Minha lista\" tocando no coração",
   "@didYouKnowContent": {
     "description": "Content for info displayed on 'My list' page."
   },
-  "selectSeason": "Selectează sezonul",
+  "selectSeason": "Selecione a temporada",
   "@selectSeason": {
     "description": "A title prompting to select a season from the list."
   },
-  "deleteMyAccount": "Șterge contul meu",
+  "deleteMyAccount": "Excluir minha conta",
   "@deleteMyAccount": {
     "description": "Button to request to delete your account"
   },
-  "iAmSureIWantToDelete": "Sunt sigur că vreau să-mi șterg contul și datele legate de aplicația BCC Media.",
+  "iAmSureIWantToDelete": "Tenho certeza de que quero excluir minha conta e meus dados relacionados ao aplicativo BCC Media.",
   "@iAmSureIWantToDelete": {
     "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
   },
-  "areYouSure": "Ești sigur?",
+  "areYouSure": "Tem certeza?",
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
   },
-  "youCanContactUsAt": "Ne poți contacta la",
+  "youCanContactUsAt": "Você pode entrar em contato conosco em",
   "@youCanContactUsAt": {
     "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
   },
-  "biblekidsAbout": "Bible Kids este o inițiativă a BCC Media, o fundație media din cadrul Federației BCC care produce și distribuie conținut cu valori pozitive și Creștine.",
+  "biblekidsAbout": "Bible Kids é uma iniciativa de BCC Media, uma fundação de mídia dentro da Federação BCC que produz e distribui conteúdo com valores positivos e cristãos.",
   "@biblekidsAbout": {
     "description": "Shown on about page"
   },
-  "askYourParents": "Întreabă părinții tăi",
+  "askYourParents": "Pergunte aos seus pais",
   "@askYourParents": {
     "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
   },
-  "whatIsMath": "Cât este",
+  "whatIsMath": "O que é",
   "@whatIsMath": {
     "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
   },
-  "answerLabel": "Răspuns",
+  "answerLabel": "Responder",
   "@answerLabel": {
     "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
   },
-  "checkAnswerButton": "Verifică răspunsul",
+  "checkAnswerButton": "Checar resposta",
   "@checkAnswerButton": {
     "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
   },
-  "videoOnlyAccessibleToLoggedIn": "Acest video este accesibil doar utilizatorilor care sunt conectați în aplicație.",
+  "videoOnlyAccessibleToLoggedIn": "Este vídeo é acessível apenas para usuários que estão logados no aplicativo.",
   "@videoOnlyAccessibleToLoggedIn": {
     "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
   },
-  "verifyYourAccount": "Verifică contul tău",
+  "verifyYourAccount": "Verifique sua conta",
   "@verifyYourAccount": {
     "description": "Title of the page where you can verify your email/account."
   },
-  "weHaveSentAnEmailTo": "Am trimis un email pe",
+  "weHaveSentAnEmailTo": "Enviamos um e-mail para",
   "@weHaveSentAnEmailTo": {
     "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
   },
-  "clickTheLinkToVerify": "Apasă pe linkul din e-mail pentru a vă verifica contul.",
+  "clickTheLinkToVerify": "Clique no link no e-mail para verificar sua conta.",
   "@clickTheLinkToVerify": {
     "description": "Shown on the verify account page."
   },
-  "openEmailApp": "Deschide aplicația de e-mail",
+  "openEmailApp": "Abra o aplicativo do e-mail",
   "@openEmailApp": {
     "description": "Shown on the verify account page. Button to open your email app."
   },
-  "resendEmail": "Retrimite e-mail",
+  "resendEmail": "Reenviar e-mail",
   "@resendEmail": {
     "description": "Shown on the verify account page. Button to resend the verification email."
   },
-  "noMailAppsDescription": "Nu sunt instalate aplicații de poștă electronică",
+  "noMailAppsDescription": "Nenhum aplicativo de e-mail instalado",
   "@noMailAppsDescription": {
     "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
   },
-  "verificationEmailSent": "E-mail de verificare trimis",
+  "verificationEmailSent": "E-mail de verificação enviado",
   "@verificationEmailSent": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "ifYouDidntReceiveVerificationEmail": "Dacă tot nu ați primit un e-mail, te rugăm să contactezi serviciul de asistență la adresa",
+  "ifYouDidntReceiveVerificationEmail": "Se você ainda não recebeu um e-mail, entre em contato com o suporte em",
   "@ifYouDidntReceiveVerificationEmail": {
     "description": "Shown when the user has requested a new verification email."
   },
-  "accountCreated": "Cont creat",
+  "accountCreated": "Conta criada",
   "@accountCreated": {
     "description": "Shown when the user has successfully created an account."
   },
-  "youCanNowUseYourAccount": "Acum îți poți folosi contul și explora o varietate de conținut edificator.",
+  "youCanNowUseYourAccount": "Agora você pode usar sua conta e explorar uma variedade de conteúdos edificantes.",
   "@youCanNowUseYourAccount": {
     "description": "Shown when the user has successfully completed account setup."
   },
-  "youCanNowLogInToYourAccount": "Acum poți să te conectezi în contul tău și să explorezi o varietate de conținut edificator.",
+  "youCanNowLogInToYourAccount": "Agora você pode fazer login em sua conta e explorar uma variedade de conteúdos edificantes.",
   "@youCanNowLogInToYourAccount": {
     "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
   },
-  "accountDeletionExplanation": "Ești pe cale să soliciți ștergerea contului tău din BCC Media și a tuturor datelor tale legate de această aplicație.",
+  "accountDeletionExplanation": "Você está prestes a solicitar a exclusão de sua conta da BCC Media e de todos os seus dados relacionados a este aplicativo.",
   "@accountDeletionExplanation": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionWarning": "Aceasta este o acțiune care nu poate fi anulată.",
+  "accountDeletionWarning": "Esta é uma ação que não pode ser desfeita.",
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Ștergerea contului se va face de obicei în termen de {x} zile lucrătoare.",
+  "accountDeletionTimeframe": "A exclusão da conta geralmente será feita em {x} dias úteis.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1058,11 +1058,11 @@
       }
     }
   },
-  "accountDeletionTitle": "Șterge contul meu",
+  "accountDeletionTitle": "Excluir minha conta",
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Ștergerea contului a fost solicitată cu succes. Vei primi un e-mail pe {email}. Pentru a confirma identitatea trebuie să ne răspunzi la acel e-mail pentru a continua ștergerea.",
+  "accountDeletionSuccess": "Exclusão de conta solicitada com sucesso. Você receberá um e-mail em {email}. Para confirmar sua identidade, precisamos que você responda a esse e-mail para prosseguir com a exclusão.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1071,19 +1071,19 @@
       }
     }
   },
-  "gamesTab": "Jocuri",
+  "gamesTab": "Jogos",
   "@gamesTab": {
     "description": "Title of the games page"
   },
-  "playGame": "Joacă jocul",
+  "playGame": "Jogar um jogo ",
   "@playGame": {
     "description": "Title on a game"
   },
-  "tvScanQr": "Scanează codul și conectează-te cu telefonul tău",
+  "tvScanQr": "Digitalize o código e faça login com seu telefone",
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Sau accesează {url} și introdu codul: {code}",
+  "tvEnterCode": "Ou vá para {url} e digite o código: {code}",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1095,43 +1095,43 @@
       }
     }
   },
-  "chapters": "Capitole",
+  "chapters": "Capítulo",
   "@chapters": {
     "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
   },
-  "removeWatchProgress": "Șterge progresul vizionării",
+  "removeWatchProgress": "Remover o progresso da exibição",
   "@removeWatchProgress": {
     "description": "Shown when holding on an episode in the 'continue watching' section."
   },
-  "showDescription": "Arată descrierea",
+  "showDescription": "Sem descrição",
   "@showDescription": {
     "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
   },
-  "releaseDate": "Data de lansare",
+  "releaseDate": "Datas de lançamento",
   "@releaseDate": {
     "description": "Release date of the episode, shown in the 'details' tab under an episode."
   },
-  "availableTo": "Disponibil pentru",
+  "availableTo": "Disponível para",
   "@availableTo": {
     "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
   },
-  "ageRating": "Ratingul de vârstă",
+  "ageRating": "Classificação etária",
   "@ageRating": {
     "description": "Age rating for the episode, shown in the 'details' tab under an episode."
   },
-  "ageRatingAll": "Tot",
+  "ageRatingAll": "Todos",
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
-  "offline": "Fără internet",
+  "offline": "Off-line",
   "@offline": {
     "description": "Status indicator, indicating that you are offline; not connected to the internet."
   },
-  "downloadButton": "Descarcă",
+  "downloadButton": "Baixar",
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Audio nu este disponibil în {lang}",
+  "audioNotAvailableInLanguage": "Áudio indisponível em {lang}",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1140,15 +1140,15 @@
       }
     }
   },
-  "notEnoughAvailableSpace": "Nu este suficient spațiu disponibil pe dispozitivul tău",
+  "notEnoughAvailableSpace": "Não há espaço disponível suficiente no seu dispositivo",
   "@notEnoughAvailableSpace": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "considerDeletingOtherVideos": "Consideră posibilitatea ștergerii altor videouri pe care le-ai descărcat în aplicație.",
+  "considerDeletingOtherVideos": "Considere excluir outros vídeos baixados no aplicativo.",
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "Dimensiunea fișierului video este {size}.",
+  "theVideoFileSizeIs": "O tamanho do arquivo de vídeo é {size}.",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1157,75 +1157,75 @@
       }
     }
   },
-  "gotIt": "Am înțeles",
+  "gotIt": "Entendi",
   "@gotIt": {
     "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
   },
-  "saveYourFavorites": "Salvează videourile preferate",
+  "saveYourFavorites": "Salve os seus vídeos favoritos",
   "@saveYourFavorites": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "saveYourFavoritesDescription": "Apasă pe pictograma cu inima de pe un videoclip pentru a-l salva în profilul tău.",
+  "saveYourFavoritesDescription": "Toque no ícone de coração em um vídeo para salvá-lo em seu perfil.",
   "@saveYourFavoritesDescription": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "yourFavorites": "Favoritele mele",
+  "yourFavorites": "Seus favoritos",
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
-  "downloaded": "Descărcate",
+  "downloaded": "Baixado",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."
   },
-  "saveVideosForOfflineViewing": "Salvează videouri pentru vizualizare fără conexiune la internet",
+  "saveVideosForOfflineViewing": "Salve vídeos para visualização off-line",
   "@saveVideosForOfflineViewing": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "tapOnTheDownloadIcon": "Apasă pe pictograma de descărcare de pe un videoclip pentru a-l descărca și a-l reda fără a fi conectat la internet.",
+  "tapOnTheDownloadIcon": "Toque no ícone de download em um vídeo para baixar e reproduzir offline.",
   "@tapOnTheDownloadIcon": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "removeOfflineVideo": "Eliminare video offline?",
+  "removeOfflineVideo": "Remover vídeo off-line?",
   "@removeOfflineVideo": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeOfflineVideoDescription": "Prin eliminarea acestui video, acesta nu va mai fi disponibil fără o conexiune la internet.",
+  "removeOfflineVideoDescription": "Ao remover este vídeo ele não estará mais disponível sem uma conexão de rede.",
   "@removeOfflineVideoDescription": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeFromDeviceButton": "Îndepărtare din dispozitiv",
+  "removeFromDeviceButton": "Remover do dispositivo",
   "@removeFromDeviceButton": {
     "description": "Button text, to remove a downloaded video from the device."
   },
-  "keepVideoButton": "Păstrează video",
+  "keepVideoButton": "Manter vídeo",
   "@keepVideoButton": {
     "description": "Button when asking to remove a downloaded video. This button cancels."
   },
-  "noInternetConnection": "Fără conexiune la internet",
+  "noInternetConnection": "Sem conexão com a internet",
   "@noInternetConnection": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetConnectionDescription": "Conectează-te la internet pentru a accesa toate videourile.",
+  "noInternetConnectionDescription": "Conecte-se à internet para acessar todos os vídeos.",
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "Nu există conexiune la internet, dar nu-ți face griji.",
+  "noInternetButDontWorry": "Sem conexão com a internet,\nmas não se preocupe.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
-  "hereAreAllTheVideosYouDownloaded": "Aici sunt toate videourile pe care le-ai descărcat pe dispozitiv.",
+  "hereAreAllTheVideosYouDownloaded": "Aqui estão todos os vídeos que você baixou para o seu dispositivo.",
   "@hereAreAllTheVideosYouDownloaded": {
     "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "connectToExplore": "Conectează-te la internet pentru a accesa toate videourile.",
+  "connectToExplore": "Conecte-se à internet para explorar todos os vídeos.",
   "@connectToExplore": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "language": "Limbă",
+  "language": "Idiomas",
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Dimensiunea estimată a fișierului: {size}",
+  "estimatedFileSize": "Tamanho estimado do arquivo: {size}",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1234,47 +1234,47 @@
       }
     }
   },
-  "downloadVideo": "Descarcă video",
+  "downloadVideo": "Baixar video",
   "@downloadVideo": {
     "description": "Title on the download video form."
   },
-  "noSubtitles": "Fără subtitrare",
+  "noSubtitles": "Sem legendas",
   "@noSubtitles": {
     "description": "Shown in the download form, indicating that there are no subtitles available for the video."
   },
-  "subtitlesIncluded": "Subtitrare inclusă",
+  "subtitlesIncluded": "Legendas incluídas",
   "@subtitlesIncluded": {
     "description": "Shown in the download form, indicating that all subtitles are included in the video."
   },
-  "allSubtitlesWillBeAvailableOffline": "Toate subtitrările vor fi disponibile și fără internet",
+  "allSubtitlesWillBeAvailableOffline": "Todas as legendas estarão disponíveis off-line",
   "@allSubtitlesWillBeAvailableOffline": {
     "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "downloading": "Se descarcă",
+  "downloading": "Baixando",
   "@downloading": {
     "description": "Download status, indicating that the video is currently downloading."
   },
-  "failed": "Eroare",
+  "failed": "Falhou",
   "@failed": {
     "description": "Generic status label. Used e.g. for downloads that failed."
   },
-  "finished": "Finalizat",
+  "finished": "Finalizado",
   "@finished": {
     "description": "Generic status label. Used e.g. for downloads that finished."
   },
-  "paused": "Pus pe pauză",
+  "paused": "Pausado",
   "@paused": {
     "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
   },
-  "queued": "În coadă de așteptare",
+  "queued": "Em andamento",
   "@queued": {
     "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
   },
-  "removing": "Se șterge",
+  "removing": "Removendo",
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "expiresIn": "Expiră în {time}",
+  "expiresIn": "Expira em {time}",
   "@expiresIn": {
     "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
     "placeholders": {
@@ -1283,67 +1283,67 @@
       }
     }
   },
-  "availableOffline": "Disponibile fără internet",
+  "availableOffline": "Disponível off-line",
   "@availableOffline": {
     "description": "Label indicating that the video is available offline."
   },
-  "technicalDetails": "Detalii tehnice",
+  "technicalDetails": "Detalhes técnicos",
   "@technicalDetails": {
     "description": "Shown when errors occur, and you want to see more technical details about the error."
   },
-  "contentLanguage": "Limba conținutului",
+  "contentLanguage": "Linguagem do conteúdo",
   "@contentLanguage": {
     "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
   },
-  "contentLanguageShort": "Conţinut",
+  "contentLanguageShort": "Conteúdo ",
   "@contentLanguageShort": {
     "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
   },
-  "appLanguageShort": "App",
+  "appLanguageShort": "Aplicativo",
   "@appLanguageShort": {
     "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
   },
-  "playRandom": "Redare aleatorie",
+  "playRandom": "Reprodução aleatória",
   "@playRandom": {
     "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
   },
-  "addLanguage": "Adaugă o limbă",
+  "addLanguage": "Adicionar idioma",
   "@addLanguage": {
     "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
   },
-  "preferredLanguages": "Limbi preferate",
+  "preferredLanguages": "Idiomas preferidos",
   "@preferredLanguages": {
     "description": "Shown when you are selecting preferred content languages. Title."
   },
-  "contentLanguageExplanation": "Reordonează limbile pentru a corespunde preferințelor tale în ceea ce privește limba audio și subtitrarea.",
+  "contentLanguageExplanation": "Reordene os idiomas para corresponder à sua preferência de idioma de áudio e legenda.",
   "@contentLanguageExplanation": {
     "description": "Shown when you are selecting preferred content languages."
   },
-  "otherLanguages": "Alte limbi",
+  "otherLanguages": "Outros idiomas",
   "@otherLanguages": {
     "description": "Languages that are available but in your list of preferred languages."
   },
-  "select": "Selectează",
+  "select": "Selecione",
   "@select": {
     "description": "Prompt. Shown at the top of a list of options."
   },
-  "supportBibleKids": "Sprijină Bible Kids",
+  "supportBibleKids": "Apoiar o Bible Kids",
   "@supportBibleKids": {
     "description": "Shown on the settings page."
   },
-  "donateViaPaypal": "Donează prin PayPal",
+  "donateViaPaypal": "Doar através de PayPal",
   "@donateViaPaypal": {
     "description": "Shown on the settings page."
   },
-  "shortsTab": "Scurtmetraje",
+  "shortsTab": "Vídeos",
   "@shortsTab": {
     "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
-  "autoGenerated": "Generată automat",
+  "autoGenerated": "Gerado automaticamente",
   "@autoGenerated": {
     "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
   },
-  "shortsAiDisclaimer": "Transcrierile și selecțiile de extrase sunt generate automat și pot conține erori.",
+  "shortsAiDisclaimer": "As transcrições e seleções de trechos são geradas automaticamente e podem conter erros.",
   "@shortsAiDisclaimer": {
     "description": "Disclaimer shown on the shorts page."
   },
@@ -1351,51 +1351,51 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Această funcție este în versiune beta și nu este momentan disponibilă pentru toți utilizatorii. Vă rugăm să raportați orice problemă sau feedback prin intermediul butonului „Contact\" din setări.",
+  "betaExplanation": "Este recurso está em versão beta e atualmente não está liberado para todos os usuários. Por favor, relate quaisquer problemas ou comentários através do botão 'Contato' nas configurações.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
-  "likedShorts": "Scurtmetraje preferate",
+  "likedShorts": "Gostou dos vídeos",
   "@likedShorts": {
     "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
-  "saveYourFavoriteShorts": "Salvează-ți videourile preferate",
+  "saveYourFavoriteShorts": "Salve os seus vídeos favoritos",
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Această funcție nu este încă disponibilă. Te rugăm să încerci din nou mai târziu.",
+  "featureNotAvailableYet": "Este recurso ainda não está disponível. Por favor, tente novamente mais tarde.",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
-  "newFeature": "Funcții noi",
+  "newFeature": "Nova funcionalidade",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
   },
-  "shortsFeatureDescription": "Descoperă fragmente scurte și puternice, și sări direct la episodul complet.",
+  "shortsFeatureDescription": "Descubra trechos curtos e poderosos e vá direto para o episódio completo.",
   "@shortsFeatureDescription": {
     "description": "Shown the first time you open the app after 'shorts' is enabled."
   },
-  "likedAndSaved": "Apreciat și salvat",
+  "likedAndSaved": "Curtido e salvo",
   "@likedAndSaved": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "shortsLikedAndSavedDescription": "Poți găsi în profilul tău toate scurtmetrajele care ți-au plăcut.",
+  "shortsLikedAndSavedDescription": "Você pode encontrar todos os seus vídeos favoritos em seu perfil.",
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "downloadedVideosGuideDescription": "Poți găsi videourile descărcate la rubrica „Profil\".",
+  "downloadedVideosGuideDescription": "Você pode encontrar seus vídeos baixados em \"Perfil\".",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription2": "The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "bccLiveForcedDescription2": "A transmissão ao vivo mudou para um novo aplicativo: \"Live by BCC Connect\". Você pode baixá-lo na App Store ou no Google Play.",
   "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
-  "bccLiveLinkDescription2": "The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "bccLiveLinkDescription2": "A transmissão ao vivo está migrando para um novo aplicativo: \"Live by BCC Connect\". Você pode baixá-lo na App Store ou no Google Play.",
   "@bccLiveLinkDescription2": {
     "description": "Will be shown in the future when you open the live tab, if the livestream is available in both Live and BCC Media."
   },
-  "openStore": "Magazin deschis",
+  "openStore": "Loja aberta",
   "@openStore": {
     "description": "A button to open play store / app store."
   }
