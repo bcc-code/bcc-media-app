@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.4+2300124...v) (2024-01-30)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.5+2300125...v) (2024-01-31)
+
+
+### Features
+
+* update forceLive text ([f74eed5](https://github.com/bcc-code/bcc-media-app/commit/f74eed533b9ec53676ffbde1b0570d084fea87d3))
+
+
+
+## [5.2.5+2300125](https://github.com/bcc-code/bcc-media-app/compare/v5.2.4+2300124...v5.2.5+2300125) (2024-01-30)
 
 
 ### Features
