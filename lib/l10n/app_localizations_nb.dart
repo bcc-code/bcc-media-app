@@ -1010,7 +1010,7 @@ class SNb extends S {
   String get downloadedVideosGuideDescription => 'Du finner dine nedlastede videoer under \"Min profil\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'Direktesendingen er flyttet til en ny app: \"Live by BCC Connect\". Du kan laste den ned i App Store eller Google Play.';
+  String get bccLiveForcedDescription2 => 'Vi beklager! Du kan ikke lenger se livesendinger i denne appen. Last ned «Live by BCC Connect» i App Store eller Google Play for å fortsette å se livesendinger fra Brunstad.';
 
   @override
   String get bccLiveLinkDescription2 => 'Direktesendingen blir flyttet til en ny app: \"Live by BCC Connect\". Du kan laste den ned i App Store eller Google Play.';
@@ -1019,17 +1019,17 @@ class SNb extends S {
   String get openStore => 'Åpne';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Denne videoen kan ikke lastes ned.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Videospråk';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Språk for tekst i video';
 
   @override
   String get original => 'Original';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Åpne innstillinger for å endre tekstspråk';
 }

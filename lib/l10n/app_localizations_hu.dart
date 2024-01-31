@@ -1010,7 +1010,7 @@ class SHu extends S {
   String get downloadedVideosGuideDescription => 'A letöltött videókat a \"Profil\" menüpont alatt találod.';
 
   @override
-  String get bccLiveForcedDescription2 => 'Az élőadás átkerült egy új alkalmazásba, a \"Live by BCC Connect\"-ba. Letölthető az App Store-ból vagy a Google Play-ből.';
+  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
 
   @override
   String get bccLiveLinkDescription2 => 'Az élőadás át fog kerülni egy új alkalmazásba, a \"Live by BCC Connect\"-ba. Letölthető az App Store-ból vagy a Google Play-ből.';

@@ -1387,7 +1387,7 @@
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription2": "The livestream has moved to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "bccLiveForcedDescription2": "We're sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.",
   "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
@@ -1398,5 +1398,25 @@
   "openStore": "Открытый магазин",
   "@openStore": {
     "description": "A button to open play store / app store."
+  },
+  "thisVideoCantBeDownloaded": "This video can't be downloaded.",
+  "@thisVideoCantBeDownloaded": {
+    "description": "Shown when you try to download a video that cannot be downloaded."
+  },
+  "videoLanguage": "Video language",
+  "@videoLanguage": {
+    "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
+  },
+  "videoTextLanguage": "Video text language",
+  "@videoTextLanguage": {
+    "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
+  },
+  "original": "Original",
+  "@original": {
+    "description": "E.g. original language."
+  },
+  "openSettingsToChangeVideoLang": "Open settings to change the video text language",
+  "@openSettingsToChangeVideoLang": {
+    "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
   }
 }

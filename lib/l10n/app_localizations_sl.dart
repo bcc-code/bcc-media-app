@@ -1010,7 +1010,7 @@ class SSl extends S {
   String get downloadedVideosGuideDescription => 'Prenesene videoposnetke lahko najdeš v razdelku \"Profil\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'Prenos v živo se je preselil v novo aplikacijo, imenovano \"Live by BCC Connect\". Preneseš jo lahko v App Store ali Google Play.';
+  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
 
   @override
   String get bccLiveLinkDescription2 => 'Prenos v živo se seli v novo aplikacijo, imenovano \"Live by BCC Connect\". Preneseš jo lahko v App Store ali Google Play.';
@@ -1028,7 +1028,7 @@ class SSl extends S {
   String get videoTextLanguage => 'Video text language';
 
   @override
-  String get original => 'Original';
+  String get original => 'Izvirnik';
 
   @override
   String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';

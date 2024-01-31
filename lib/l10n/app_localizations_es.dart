@@ -1010,7 +1010,7 @@ class SEs extends S {
   String get downloadedVideosGuideDescription => 'Puedes encontrar tus videos descargados en \"Perfil\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'La transmisión en vivo se ha mudado a una nueva aplicación: \"Live by BCC Connect\". Puedes descargarla en la App Store o en Google Play.';
+  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
 
   @override
   String get bccLiveLinkDescription2 => 'La transmisión en vivo se está trasladando a una nueva aplicación: \"Live by BCC Connect\". Puedes descargarla en la App Store o en Google Play.';

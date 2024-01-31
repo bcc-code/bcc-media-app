@@ -1010,7 +1010,7 @@ class SFi extends S {
   String get downloadedVideosGuideDescription => 'Löydät lataamasi videot kohdasta \"Profiili\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'Suoralähetys tapahtuu jatkossa sovelluksessa nimeltä \"Live by BCC Connect\". Voit ladata sen App Storesta tai Google Playsta.';
+  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
 
   @override
   String get bccLiveLinkDescription2 => 'Suoralähetys siirtyy sovellukseen nimeltä \"Live by BCC Connect\". Voit ladata sen App Storesta tai Google Playsta.';
