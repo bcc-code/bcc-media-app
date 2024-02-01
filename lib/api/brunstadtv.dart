@@ -83,7 +83,10 @@ class Api {
   Future<Query$Page$page> getPage(String code) async {
     return gqlClient
         .query$Page(
-      Options$Query$Page(variables: Variables$Query$Page(code: code)),
+      Options$Query$Page(
+        variables: Variables$Query$Page(code: code),
+        errorPolicy: ErrorPolicy.all,
+      ),
     )
         .then(
       (value) {
