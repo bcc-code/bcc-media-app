@@ -19,7 +19,7 @@ changelog:
 
 # Release
 release:
-	git diff-index --quiet HEAD -- || (echo "Working tree not clean, not creating changelog"; exit 1)
+	git diff-index --quiet HEAD -- || (echo "Working tree not clean, not creating changelog, continue anyway? y/n" && read ans && [ $$ans == "y" ])
 	make changelog
 	git add CHANGELOG.md
 	git commit -m "chore: update changelog for v${BUILD_NUMBER}${TAG_SUFFIX}"
