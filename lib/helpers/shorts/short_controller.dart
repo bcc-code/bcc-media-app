@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:bccm_core/src/utils/debouncer.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/shorts/short_analytics.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
@@ -50,21 +50,38 @@ class ShortController {
     return currentSetupFuture = _setupShort(newShort, true);
   }
 
+  Fragment$BasicStream? _getStream(List<Fragment$BasicStream> streams) {
+    final stream = streams.getBestStream();
+    final uri = Uri.tryParse(stream.url);
+    if (uri == null) {
+      debugPrint('SHRT: invalid url: ${stream.url}');
+      return null;
+    }
+    return stream;
+  }
+
   Future<void> _setupShort(Fragment$Short newShort, bool current) async {
     await playerInitFuture;
     debugPrint('SHRT: setting up for ${newShort.id}');
-    final url = newShort.streams.getBestStream().url;
-    final uri = Uri.tryParse(url);
-    if (uri == null) {
-      debugPrint('SHRT: invalid url: $url');
-      // shorts.value.removeWhere((element) => element.id == short.id);
-      return;
+    var stream = _getStream(newShort.streams);
+    if (stream == null) return;
+    final expiresAt = DateTime.tryParse(stream.expiresAt);
+    if (expiresAt != null && expiresAt.isBefore(DateTime.now().add(const Duration(minutes: 30)))) {
+      final result = await ref
+          .read(bccmGraphQLProvider)
+          .query$getShortStreams(Options$Query$getShortStreams(variables: Variables$Query$getShortStreams(id: newShort.id)));
+      final streams = result.parsedData?.short.streams;
+      if (streams != null) {
+        stream = _getStream(streams);
+      }
     }
+    if (stream == null) return;
+
     final context = ref.context;
     if (!context.mounted) return;
     await player.replaceCurrentMediaItem(
       MediaItem(
-        url: url,
+        url: stream.url,
         metadata: MediaMetadata(
           title: newShort.title,
           artist: S.of(context).shortsTab,
