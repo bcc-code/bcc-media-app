@@ -992,13 +992,13 @@ class SRu extends S {
   String get saveYourFavoriteShorts => 'Сохраните любимые видео';
 
   @override
-  String get featureNotAvailableYet => 'Эта функция пока недоступна. Пожалуйста, повторите попытку позже.';
+  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'Новая функция';
 
   @override
-  String get shortsFeatureDescription => 'Откройте для себя короткие и содержательные выдержки и сразу переходите к полному эпизоду.';
+  String get shortsFeatureDescription => 'Смотрите короткие и содержательные отрывки и переходите к полному эпизоду.';
 
   @override
   String get likedAndSaved => 'Понравившиеся и сохраненные';
@@ -1007,29 +1007,29 @@ class SRu extends S {
   String get shortsLikedAndSavedDescription => 'Вы можете найти все понравившиеся видео в своем профиле.';
 
   @override
-  String get downloadedVideosGuideDescription => 'Загруженные видеоролики можно найти в разделе \"Профиль\".';
+  String get downloadedVideosGuideDescription => 'Загруженные видео можно найти в разделе Профиль.';
 
   @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
+  String get bccLiveForcedDescription2 => 'Мы сожалеем! Вы больше не можете смотреть прямые трансляции в этом приложении. Загрузите Live by BCC Connect в App Store или Google Play, чтобы продолжить просмотр прямых трансляций из Брюнстада.';
 
   @override
-  String get bccLiveLinkDescription2 => 'The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
+  String get bccLiveLinkDescription2 => 'Прямые трансляции будут показываться в новом приложении под названием «Live by BCC Connect». Скачать его можно в App Store или Google Play.';
 
   @override
-  String get openStore => 'Открытый магазин';
+  String get openStore => 'Открыть магазин';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Это видео нельзя скачать.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Язык видео';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Язык текста видео';
 
   @override
-  String get original => 'Original';
+  String get original => 'Оригинал';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Откройте настройки, чтобы изменить язык текста видео';
 }

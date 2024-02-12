@@ -11,7 +11,6 @@ class Env {
   static const auth0Scopes = ['openid', 'profile', 'offline_access', 'church', 'country', 'email'];
   static const auth0Audience = 'api.bcc.no';
   static const auth0SignupConnection = 'BCC-Members';
-  static const brunstadtvApiEndpoint = 'https://api.brunstad.tv/query';
   static const npawAccountCode = _Secrets.npawAccountCode;
   static const rudderstackWriteKey = _Secrets.rudderstackWriteKey;
   static final webUrl = _Secrets.webUrl.isNotEmpty ? _Secrets.webUrl : 'https://app.bcc.media';

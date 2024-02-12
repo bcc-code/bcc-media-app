@@ -10,5 +10,6 @@ files:
       "source": "/lib/l10n/bccm_en.arb",
       "translation": "/lib/l10n/bccm_%two_letters_code%.arb",
       "dest": "/BrunstadTV-4.0/intl.arb",
+      "skip_untranslated_strings": true,
     },
   ]

@@ -992,7 +992,7 @@ class SNl extends S {
   String get saveYourFavoriteShorts => 'Bewaar je favoriete korte films';
 
   @override
-  String get featureNotAvailableYet => 'Deze functie is nog niet beschikbaar. Probeer het later nog eens.';
+  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'Nieuwe functie';
@@ -1010,7 +1010,7 @@ class SNl extends S {
   String get downloadedVideosGuideDescription => 'Je gedownloade video\'s vind je onder \"Profiel\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
+  String get bccLiveForcedDescription2 => 'Het spijt ons! Je kunt geen livestreams meer bekijken in deze app. Download \"Live by BCC Connect\" in de App Store of Google Play om livestreams van Brunstad te blijven bekijken.';
 
   @override
   String get bccLiveLinkDescription2 => 'De livestream verhuist naar een nieuwe app: \"Live by BCC Connect\". Je kunt hem downloaden in de App Store of Google Play.';
@@ -1019,17 +1019,17 @@ class SNl extends S {
   String get openStore => 'Open store';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Deze video kan niet worden gedownload.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Videotaal';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Taal van videocontent';
 
   @override
   String get original => 'Origineel';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Open instellingen om de taal van de videocontent te wijzigen';
 }

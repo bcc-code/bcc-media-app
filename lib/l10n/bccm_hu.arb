@@ -1363,10 +1363,6 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Ez a funkció még nem érhető el. Kérlek, próbáld újra később.",
-  "@featureNotAvailableYet": {
-    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
-  },
   "newFeature": "Új funkció",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
@@ -1387,7 +1383,7 @@
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription2": "We're sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.",
+  "bccLiveForcedDescription2": "Sajnáljuk! Ebben az alkalmazásban már nem tudsz élő közvetítéseket nézni. Töltsd le a \"Live by BCC Connect\" alkalmazást az App Store-ból vagy Google Play-ről, hogy továbbra is tudj élő közvetítéseket nézni Brunstadból.",
   "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
@@ -1399,23 +1395,23 @@
   "@openStore": {
     "description": "A button to open play store / app store."
   },
-  "thisVideoCantBeDownloaded": "This video can't be downloaded.",
+  "thisVideoCantBeDownloaded": "Ez a videó nem tölthető le.",
   "@thisVideoCantBeDownloaded": {
     "description": "Shown when you try to download a video that cannot be downloaded."
   },
-  "videoLanguage": "Video language",
+  "videoLanguage": "Videó nyelve",
   "@videoLanguage": {
     "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
   },
-  "videoTextLanguage": "Video text language",
+  "videoTextLanguage": "Videó szövegének nyelve",
   "@videoTextLanguage": {
     "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
   },
-  "original": "Original",
+  "original": "Eredeti",
   "@original": {
     "description": "E.g. original language."
   },
-  "openSettingsToChangeVideoLang": "Open settings to change the video text language",
+  "openSettingsToChangeVideoLang": "Nyisd meg a beállításokat a videó szöveg nyelvének megváltoztatásához",
   "@openSettingsToChangeVideoLang": {
     "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
   }

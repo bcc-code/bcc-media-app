@@ -992,7 +992,7 @@ class SPl extends S {
   String get saveYourFavoriteShorts => 'Zapisz swoje ulubione krótkie filmiki';
 
   @override
-  String get featureNotAvailableYet => 'Ta funkcja nie jest jeszcze dostępna. Spróbuj ponownie później.';
+  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'Nowa funkcja';
@@ -1028,7 +1028,7 @@ class SPl extends S {
   String get videoTextLanguage => 'Video text language';
 
   @override
-  String get original => 'Original';
+  String get original => 'Oryginalny';
 
   @override
   String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';

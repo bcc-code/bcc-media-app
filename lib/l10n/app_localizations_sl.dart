@@ -992,7 +992,7 @@ class SSl extends S {
   String get saveYourFavoriteShorts => 'Shrani svoje priljubljene kratke filme';
 
   @override
-  String get featureNotAvailableYet => 'Ta funkcija še ni na voljo. Poskusi kasneje.';
+  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'Nova funkcija';
@@ -1010,7 +1010,7 @@ class SSl extends S {
   String get downloadedVideosGuideDescription => 'Prenesene videoposnetke lahko najdeš v razdelku \"Profil\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
+  String get bccLiveForcedDescription2 => 'Na žalost v tej aplikaciji ne moreš več gledati prenosov v živo. Če želiš še naprej spremljati neposredne prenose iz Brunstada, si v App Store ali Google Play prenesi aplikacijo \"Live by BCC Connect\".';
 
   @override
   String get bccLiveLinkDescription2 => 'Prenos v živo se seli v novo aplikacijo, imenovano \"Live by BCC Connect\". Preneseš jo lahko v App Store ali Google Play.';
@@ -1019,17 +1019,17 @@ class SSl extends S {
   String get openStore => 'Odpri trgovino';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Tega videoposnetka ni mogoče prenesti.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Jezik videoposnetka';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Jezik besedila videoposnetka';
 
   @override
   String get original => 'Izvirnik';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Odpri nastavitve in spremeni jezik besedila videoposnetka';
 }

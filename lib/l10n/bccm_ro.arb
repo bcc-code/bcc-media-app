@@ -51,7 +51,7 @@
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
-  "liveTab": "În direct",
+  "liveTab": "Direct",
   "@liveTab": {
     "description": "Title of live page tab"
   },
@@ -311,7 +311,7 @@
   "@auto": {
     "description": "Indicator on profile page that audio and app language are chosen automatically."
   },
-  "live": "În direct",
+  "live": "Direct",
   "@live": {
     "description": "Title of the live stream"
   },
@@ -759,7 +759,7 @@
   "@errorTryAgain": {
     "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
   },
-  "liveHeader": "În direct",
+  "liveHeader": "Direct",
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
@@ -1363,10 +1363,6 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Această funcție nu este încă disponibilă. Te rugăm să încerci din nou mai târziu.",
-  "@featureNotAvailableYet": {
-    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
-  },
   "newFeature": "Funcții noi",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
@@ -1387,7 +1383,7 @@
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription2": "We're sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.",
+  "bccLiveForcedDescription2": "Ne pare rău! Nu mai poți urmări emisiuni în direct din această aplicație. Descarcă „Live by BCC Connect\" din App Store sau Magazinul Play pentru a continua să urmărești transmisiunile în direct de la Brunstad.",
   "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
@@ -1399,15 +1395,15 @@
   "@openStore": {
     "description": "A button to open play store / app store."
   },
-  "thisVideoCantBeDownloaded": "This video can't be downloaded.",
+  "thisVideoCantBeDownloaded": "Acest video nu poate fi descărcat.",
   "@thisVideoCantBeDownloaded": {
     "description": "Shown when you try to download a video that cannot be downloaded."
   },
-  "videoLanguage": "Video language",
+  "videoLanguage": "Limbă video",
   "@videoLanguage": {
     "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
   },
-  "videoTextLanguage": "Video text language",
+  "videoTextLanguage": "Limba textului din video",
   "@videoTextLanguage": {
     "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
   },
@@ -1415,7 +1411,7 @@
   "@original": {
     "description": "E.g. original language."
   },
-  "openSettingsToChangeVideoLang": "Open settings to change the video text language",
+  "openSettingsToChangeVideoLang": "Deschide setările pentru a schimba limba textului din video",
   "@openSettingsToChangeVideoLang": {
     "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
   }

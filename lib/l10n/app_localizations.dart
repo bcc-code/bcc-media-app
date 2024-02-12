@@ -2028,7 +2028,7 @@ abstract class S {
   /// Shown when you try to access a feature that is not available yet, e.g. because it is still in beta.
   ///
   /// In en, this message translates to:
-  /// **'This feature is not available yet. Please try again later.'**
+  /// **'This feature is not available on your device yet. Please try again later.'**
   String get featureNotAvailableYet;
 
   /// Shown the first time you open the app after a new feature is available.

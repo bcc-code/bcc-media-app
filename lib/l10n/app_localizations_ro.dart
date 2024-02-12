@@ -44,7 +44,7 @@ class SRo extends S {
   String get loginPageDisplay3 => 'Produs de BCC Media';
 
   @override
-  String get liveTab => 'În direct';
+  String get liveTab => 'Direct';
 
   @override
   String get logOutButton => 'Deconectare';
@@ -239,7 +239,7 @@ class SRo extends S {
   String get auto => 'Auto';
 
   @override
-  String get live => 'În direct';
+  String get live => 'Direct';
 
   @override
   String get subtitles => 'Subtitrări';
@@ -564,7 +564,7 @@ class SRo extends S {
   String get errorTryAgain => 'A apărut o eroare, te rugăm să încerci din nou mai târziu.';
 
   @override
-  String get liveHeader => 'În direct';
+  String get liveHeader => 'Direct';
 
   @override
   String get programsSection => 'Programe';
@@ -992,7 +992,7 @@ class SRo extends S {
   String get saveYourFavoriteShorts => 'Salvează-ți videourile preferate';
 
   @override
-  String get featureNotAvailableYet => 'Această funcție nu este încă disponibilă. Te rugăm să încerci din nou mai târziu.';
+  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'Funcții noi';
@@ -1010,7 +1010,7 @@ class SRo extends S {
   String get downloadedVideosGuideDescription => 'Poți găsi videourile descărcate la rubrica „Profil\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
+  String get bccLiveForcedDescription2 => 'Ne pare rău! Nu mai poți urmări emisiuni în direct din această aplicație. Descarcă „Live by BCC Connect\" din App Store sau Magazinul Play pentru a continua să urmărești transmisiunile în direct de la Brunstad.';
 
   @override
   String get bccLiveLinkDescription2 => 'Transmisiunea în direct s-a mutat într-o nouă aplicație numită „BCC Live\". Se poate descărca din App Store sau Google Play.';
@@ -1019,17 +1019,17 @@ class SRo extends S {
   String get openStore => 'Magazin deschis';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Acest video nu poate fi descărcat.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Limbă video';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Limba textului din video';
 
   @override
   String get original => 'Original';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Deschide setările pentru a schimba limba textului din video';
 }

@@ -992,7 +992,7 @@ class SHu extends S {
   String get saveYourFavoriteShorts => 'Kedvenc shortok mentése';
 
   @override
-  String get featureNotAvailableYet => 'Ez a funkció még nem érhető el. Kérlek, próbáld újra később.';
+  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'Új funkció';
@@ -1010,7 +1010,7 @@ class SHu extends S {
   String get downloadedVideosGuideDescription => 'A letöltött videókat a \"Profil\" menüpont alatt találod.';
 
   @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
+  String get bccLiveForcedDescription2 => 'Sajnáljuk! Ebben az alkalmazásban már nem tudsz élő közvetítéseket nézni. Töltsd le a \"Live by BCC Connect\" alkalmazást az App Store-ból vagy Google Play-ről, hogy továbbra is tudj élő közvetítéseket nézni Brunstadból.';
 
   @override
   String get bccLiveLinkDescription2 => 'Az élőadás át fog kerülni egy új alkalmazásba, a \"Live by BCC Connect\"-ba. Letölthető az App Store-ból vagy a Google Play-ből.';
@@ -1019,17 +1019,17 @@ class SHu extends S {
   String get openStore => 'App Store/Play Áruház megnyitása';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Ez a videó nem tölthető le.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Videó nyelve';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Videó szövegének nyelve';
 
   @override
-  String get original => 'Original';
+  String get original => 'Eredeti';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Nyisd meg a beállításokat a videó szöveg nyelvének megváltoztatásához';
 }

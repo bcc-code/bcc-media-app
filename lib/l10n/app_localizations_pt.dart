@@ -992,7 +992,7 @@ class SPt extends S {
   String get saveYourFavoriteShorts => 'Salve os seus vídeos favoritos';
 
   @override
-  String get featureNotAvailableYet => 'Este recurso ainda não está disponível. Por favor, tente novamente mais tarde.';
+  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'Nova funcionalidade';
@@ -1010,7 +1010,7 @@ class SPt extends S {
   String get downloadedVideosGuideDescription => 'Você pode encontrar seus vídeos baixados em \"Perfil\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
+  String get bccLiveForcedDescription2 => 'Lamentamos! Já não é possível assistir a transmissões ao vivo neste aplicativo. Baixe \"Live by BCC Connect\" na App Store ou no Google Play para continuar a ver transmissões ao vivo de Brunstad.';
 
   @override
   String get bccLiveLinkDescription2 => 'A transmissão ao vivo está migrando para um novo aplicativo: \"Live by BCC Connect\". Você pode baixá-lo na App Store ou no Google Play.';
@@ -1019,17 +1019,17 @@ class SPt extends S {
   String get openStore => 'Loja aberta';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Este vídeo não pode ser baixado.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Idioma do vídeo';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Idioma do texto do vídeo';
 
   @override
   String get original => 'Original';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Abra as configurações para alterar o idioma do texto do vídeo';
 }

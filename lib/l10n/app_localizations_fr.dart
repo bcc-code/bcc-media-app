@@ -992,7 +992,7 @@ class SFr extends S {
   String get saveYourFavoriteShorts => 'Sauvegarder tes courts métrages préférés';
 
   @override
-  String get featureNotAvailableYet => 'Cette fonctionnalité n\'est pas encore disponible. Veuillez réessayer plus tard.';
+  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'Nouvelle fonctionnalité';
@@ -1010,7 +1010,7 @@ class SFr extends S {
   String get downloadedVideosGuideDescription => 'Vous pouvez trouver vos vidéos téléchargées sous « Profil ».';
 
   @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
+  String get bccLiveForcedDescription2 => 'Nous sommes désolés! Vous ne pouvez plus regarder les diffusions en direct dans cette application. Téléchargez « Live by BCC Connect » dans l\'App Store ou Google Play pour continuer à regarder les diffusions en direct de Brunstad.';
 
   @override
   String get bccLiveLinkDescription2 => 'La transmission en direct migre vers une nouvelle application : \"Live by BCC Connect\". Vous pouvez la télécharger sur l\'App Store ou Google Play.';
@@ -1019,17 +1019,17 @@ class SFr extends S {
   String get openStore => 'Ouvrir';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Cette vidéo ne peut pas être téléchargée.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Langue vidéo';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Langue du texte vidéo';
 
   @override
   String get original => 'Original';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Ouvrir les paramètres pour changer la langue du texte de la vidéo';
 }

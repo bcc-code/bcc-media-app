@@ -992,7 +992,7 @@ class SDa extends S {
   String get saveYourFavoriteShorts => 'Gem dine yndlingskortfilm';
 
   @override
-  String get featureNotAvailableYet => 'Denne funktion er ikke tilgængelig endnu. Prøv igen senere.';
+  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'Ny funktion';

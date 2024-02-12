@@ -992,7 +992,7 @@ class SIt extends S {
   String get saveYourFavoriteShorts => 'Save your favorite shorts';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available yet. Please try again later.';
+  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'New feature';

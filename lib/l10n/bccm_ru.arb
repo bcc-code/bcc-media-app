@@ -1363,15 +1363,11 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Эта функция пока недоступна. Пожалуйста, повторите попытку позже.",
-  "@featureNotAvailableYet": {
-    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
-  },
   "newFeature": "Новая функция",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
   },
-  "shortsFeatureDescription": "Откройте для себя короткие и содержательные выдержки и сразу переходите к полному эпизоду.",
+  "shortsFeatureDescription": "Смотрите короткие и содержательные отрывки и переходите к полному эпизоду.",
   "@shortsFeatureDescription": {
     "description": "Shown the first time you open the app after 'shorts' is enabled."
   },
@@ -1383,39 +1379,39 @@
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "downloadedVideosGuideDescription": "Загруженные видеоролики можно найти в разделе \"Профиль\".",
+  "downloadedVideosGuideDescription": "Загруженные видео можно найти в разделе Профиль.",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription2": "We're sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.",
+  "bccLiveForcedDescription2": "Мы сожалеем! Вы больше не можете смотреть прямые трансляции в этом приложении. Загрузите Live by BCC Connect в App Store или Google Play, чтобы продолжить просмотр прямых трансляций из Брюнстада.",
   "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
-  "bccLiveLinkDescription2": "The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "bccLiveLinkDescription2": "Прямые трансляции будут показываться в новом приложении под названием «Live by BCC Connect». Скачать его можно в App Store или Google Play.",
   "@bccLiveLinkDescription2": {
     "description": "Will be shown in the future when you open the live tab, if the livestream is available in both Live and BCC Media."
   },
-  "openStore": "Открытый магазин",
+  "openStore": "Открыть магазин",
   "@openStore": {
     "description": "A button to open play store / app store."
   },
-  "thisVideoCantBeDownloaded": "This video can't be downloaded.",
+  "thisVideoCantBeDownloaded": "Это видео нельзя скачать.",
   "@thisVideoCantBeDownloaded": {
     "description": "Shown when you try to download a video that cannot be downloaded."
   },
-  "videoLanguage": "Video language",
+  "videoLanguage": "Язык видео",
   "@videoLanguage": {
     "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
   },
-  "videoTextLanguage": "Video text language",
+  "videoTextLanguage": "Язык текста видео",
   "@videoTextLanguage": {
     "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
   },
-  "original": "Original",
+  "original": "Оригинал",
   "@original": {
     "description": "E.g. original language."
   },
-  "openSettingsToChangeVideoLang": "Open settings to change the video text language",
+  "openSettingsToChangeVideoLang": "Откройте настройки, чтобы изменить язык текста видео",
   "@openSettingsToChangeVideoLang": {
     "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
   }

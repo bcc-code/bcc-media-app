@@ -1144,11 +1144,11 @@
   "@notEnoughAvailableSpace": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "considerDeletingOtherVideos": "Consider deleting other videos you downloaded in the app.",
+  "considerDeletingOtherVideos": "Überlege, ob du andere Videos, die du in der App heruntergeladen hast, löschen willst.",
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "The video file size is {size}.",
+  "theVideoFileSizeIs": "Die Videodateigröße beträgt {size}.",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1157,43 +1157,43 @@
       }
     }
   },
-  "gotIt": "Got it",
+  "gotIt": "Verstanden",
   "@gotIt": {
     "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
   },
-  "saveYourFavorites": "Save your favorite videos",
+  "saveYourFavorites": "Speichere deine Lieblingsvideos",
   "@saveYourFavorites": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "saveYourFavoritesDescription": "Tap on the heart icon on a video to save it in your profile.",
+  "saveYourFavoritesDescription": "Tippe auf das Herzsymbol in einem Video, um es in deinem Profil zu speichern.",
   "@saveYourFavoritesDescription": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "yourFavorites": "Your favorites",
+  "yourFavorites": "Deine Favoriten",
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
-  "downloaded": "Downloaded",
+  "downloaded": "Heruntergeladen",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."
   },
-  "saveVideosForOfflineViewing": "Save videos for offline viewing",
+  "saveVideosForOfflineViewing": "Videos für die Offline-Anzeige speichern",
   "@saveVideosForOfflineViewing": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "tapOnTheDownloadIcon": "Tap on the download icon on a video, to download and play while offline.",
+  "tapOnTheDownloadIcon": "Tippe auf das Download-Symbol in einem Video, um es herunterzuladen und offline abzuspielen.",
   "@tapOnTheDownloadIcon": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "removeOfflineVideo": "Remove offline video?",
+  "removeOfflineVideo": "Offline-Video entfernen?",
   "@removeOfflineVideo": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeOfflineVideoDescription": "By removing this video it will no longer be available without a network connection.",
+  "removeOfflineVideoDescription": "Durch das Entfernen dieses Videos ist es ohne Netzwerkverbindung nicht mehr verfügbar.",
   "@removeOfflineVideoDescription": {
     "description": "Shown when holding on a downloaded video in the 'downloaded' section."
   },
-  "removeFromDeviceButton": "Remove from device",
+  "removeFromDeviceButton": "Vom Gerät entfernen",
   "@removeFromDeviceButton": {
     "description": "Button text, to remove a downloaded video from the device."
   },
@@ -1213,11 +1213,11 @@
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
-  "hereAreAllTheVideosYouDownloaded": "Here are all the videos you have downloaded to your device.",
+  "hereAreAllTheVideosYouDownloaded": "Hier findest du alle Videos, die du auf dein Gerät heruntergeladen hast.",
   "@hereAreAllTheVideosYouDownloaded": {
     "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "connectToExplore": "Connect to the internet to explore all videos.",
+  "connectToExplore": "Stelle eine Verbindung zum Internet her, um auf alle Videos zuzugreifen.",
   "@connectToExplore": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
@@ -1225,7 +1225,7 @@
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Estimated file size: {size}",
+  "estimatedFileSize": "Geschätzte Dateigröße: {size}",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1234,27 +1234,27 @@
       }
     }
   },
-  "downloadVideo": "Download video",
+  "downloadVideo": "Video herunterladen",
   "@downloadVideo": {
     "description": "Title on the download video form."
   },
-  "noSubtitles": "No subtitles",
+  "noSubtitles": "Keine Untertitel",
   "@noSubtitles": {
     "description": "Shown in the download form, indicating that there are no subtitles available for the video."
   },
-  "subtitlesIncluded": "Subtitles included",
+  "subtitlesIncluded": "Untertitel inklusive",
   "@subtitlesIncluded": {
     "description": "Shown in the download form, indicating that all subtitles are included in the video."
   },
-  "allSubtitlesWillBeAvailableOffline": "All subtitles will be available offline",
+  "allSubtitlesWillBeAvailableOffline": "Alle Untertitel werden offline verfügbar sein",
   "@allSubtitlesWillBeAvailableOffline": {
     "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "downloading": "Downloading",
+  "downloading": " wird heruntergeladen",
   "@downloading": {
     "description": "Download status, indicating that the video is currently downloading."
   },
-  "failed": "Failed",
+  "failed": "Fehlgeschlagen",
   "@failed": {
     "description": "Generic status label. Used e.g. for downloads that failed."
   },
@@ -1270,11 +1270,11 @@
   "@queued": {
     "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
   },
-  "removing": "Removing",
+  "removing": "Wird entfernt",
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "expiresIn": "Expires in {time}",
+  "expiresIn": "Läuft in {time} ab",
   "@expiresIn": {
     "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
     "placeholders": {
@@ -1283,15 +1283,15 @@
       }
     }
   },
-  "availableOffline": "Available offline",
+  "availableOffline": "Offline verfügbar",
   "@availableOffline": {
     "description": "Label indicating that the video is available offline."
   },
-  "technicalDetails": "Technical details",
+  "technicalDetails": "Technische Details",
   "@technicalDetails": {
     "description": "Shown when errors occur, and you want to see more technical details about the error."
   },
-  "contentLanguage": "Content language",
+  "contentLanguage": "Inhaltssprachen",
   "@contentLanguage": {
     "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
   },
@@ -1303,47 +1303,47 @@
   "@appLanguageShort": {
     "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
   },
-  "playRandom": "Play random",
+  "playRandom": "Zufällige Wiedergabe",
   "@playRandom": {
     "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
   },
-  "addLanguage": "Add language",
+  "addLanguage": "Sprache hinzufügen",
   "@addLanguage": {
     "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
   },
-  "preferredLanguages": "Preferred languages",
+  "preferredLanguages": "Bevorzugte Sprache",
   "@preferredLanguages": {
     "description": "Shown when you are selecting preferred content languages. Title."
   },
-  "contentLanguageExplanation": "Reorder the languages to match your preference for audio & subtitle language.",
+  "contentLanguageExplanation": "Ordne die Sprachen so an, dass sie deinen Vorlieben für die Audio- und Untertitelsprache entsprechen.",
   "@contentLanguageExplanation": {
     "description": "Shown when you are selecting preferred content languages."
   },
-  "otherLanguages": "Other languages",
+  "otherLanguages": "Andere Sprachen",
   "@otherLanguages": {
     "description": "Languages that are available but in your list of preferred languages."
   },
-  "select": "Select",
+  "select": "Wähle",
   "@select": {
     "description": "Prompt. Shown at the top of a list of options."
   },
-  "supportBibleKids": "Support Bible Kids",
+  "supportBibleKids": "Unterstütze Bible Kids",
   "@supportBibleKids": {
     "description": "Shown on the settings page."
   },
-  "donateViaPaypal": "Donate via PayPal",
+  "donateViaPaypal": "Spende über PayPal",
   "@donateViaPaypal": {
     "description": "Shown on the settings page."
   },
-  "shortsTab": "Shorts",
+  "shortsTab": "Kurzfilme",
   "@shortsTab": {
     "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
-  "autoGenerated": "Auto-generated",
+  "autoGenerated": "Automatisch generiert",
   "@autoGenerated": {
     "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
   },
-  "shortsAiDisclaimer": "The transcriptions and excerpt selections are auto-generated and might contain errors.",
+  "shortsAiDisclaimer": "Die Transkriptionen und die Auswahl der Auszüge sind automatisch generiert und können Fehler enthalten.",
   "@shortsAiDisclaimer": {
     "description": "Disclaimer shown on the shorts page."
   },
@@ -1351,63 +1351,59 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "This feature is in beta and is currently not released to all users. Please report any issues or feedback via the 'Contact' button in settings.",
+  "betaExplanation": "Diese Funktion befindet sich in der Betaphase und ist derzeit nicht für alle Benutzer verfügbar. Bitte melden Sie etwaige Probleme oder Rückmeldungen über die Schaltfläche „Kontakt“ in den Einstellungen.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
-  "likedShorts": "Liked shorts",
+  "likedShorts": "Kurzfilme, die mir gefallen",
   "@likedShorts": {
     "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
-  "saveYourFavoriteShorts": "Save your favorite shorts",
+  "saveYourFavoriteShorts": "Speichere deine Lieblingskurzfilme",
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "This feature is not available yet. Please try again later.",
-  "@featureNotAvailableYet": {
-    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
-  },
-  "newFeature": "New feature",
+  "newFeature": "Neue Funktion",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
   },
-  "shortsFeatureDescription": "Discover short and powerful excerpts, and jump right into its full episode.",
+  "shortsFeatureDescription": "Entdecke kurze und kraftvolle Auszüge und springe direkt in die gesamte Folge.",
   "@shortsFeatureDescription": {
     "description": "Shown the first time you open the app after 'shorts' is enabled."
   },
-  "likedAndSaved": "Liked and saved",
+  "likedAndSaved": "Gefällt mir und gespeichert",
   "@likedAndSaved": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "shortsLikedAndSavedDescription": "You can find all your liked shorts in your profile.",
+  "shortsLikedAndSavedDescription": "Alle Kurzfilme, die dir gefallen, findest du in deinem Profil.",
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
-  "downloadedVideosGuideDescription": "You can find your downloaded videos under \"Profile\".",
+  "downloadedVideosGuideDescription": "Deine heruntergeladenen Videos findest du unter „Profil“.",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "bccLiveForcedDescription2": "We're sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.",
+  "bccLiveForcedDescription2": "Es tut uns leid! Du kannst in dieser App keine Livestreams mehr ansehen. Lade „Live by BCC Connect“ im App Store oder bei Google Play herunter, um weiterhin Livestreams von Brunstad anzusehen.",
   "@bccLiveForcedDescription2": {
     "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
   },
-  "bccLiveLinkDescription2": "The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.",
+  "bccLiveLinkDescription2": "Der Livestream zieht in eine neue App um: „Live by BCC Connect“. Du kannst es im App Store oder bei Google Play herunterladen.",
   "@bccLiveLinkDescription2": {
     "description": "Will be shown in the future when you open the live tab, if the livestream is available in both Live and BCC Media."
   },
-  "openStore": "Open store",
+  "openStore": "Öffnen",
   "@openStore": {
     "description": "A button to open play store / app store."
   },
-  "thisVideoCantBeDownloaded": "This video can't be downloaded.",
+  "thisVideoCantBeDownloaded": "Dieses Video kann nicht heruntergeladen werden.",
   "@thisVideoCantBeDownloaded": {
     "description": "Shown when you try to download a video that cannot be downloaded."
   },
-  "videoLanguage": "Video language",
+  "videoLanguage": "Videosprache",
   "@videoLanguage": {
     "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
   },
-  "videoTextLanguage": "Video text language",
+  "videoTextLanguage": "Textsprache im Video",
   "@videoTextLanguage": {
     "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
   },
@@ -1415,7 +1411,7 @@
   "@original": {
     "description": "E.g. original language."
   },
-  "openSettingsToChangeVideoLang": "Open settings to change the video text language",
+  "openSettingsToChangeVideoLang": "Einstellungen öffnen, um die Videotextsprache zu ändern",
   "@openSettingsToChangeVideoLang": {
     "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
   }

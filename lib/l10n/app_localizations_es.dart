@@ -992,7 +992,7 @@ class SEs extends S {
   String get saveYourFavoriteShorts => 'Guarda tus cortos favoritos';
 
   @override
-  String get featureNotAvailableYet => 'Esta función aún no está disponible. Por favor, inténtelo de nuevo más tarde.';
+  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'Nueva caracteristica';
@@ -1010,7 +1010,7 @@ class SEs extends S {
   String get downloadedVideosGuideDescription => 'Puedes encontrar tus videos descargados en \"Perfil\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
+  String get bccLiveForcedDescription2 => '¡Lo lamentamos! Ya no puedes ver transmisiones en vivo en esta aplicación. Descargue \"Live by BCC Connect\" en App Store o Google Play para continuar viendo transmisiones en vivo desde Brunstad.';
 
   @override
   String get bccLiveLinkDescription2 => 'La transmisión en vivo se está trasladando a una nueva aplicación: \"Live by BCC Connect\". Puedes descargarla en la App Store o en Google Play.';
@@ -1019,17 +1019,17 @@ class SEs extends S {
   String get openStore => 'Abrir tienda';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Este vídeo no se puede descargar.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Idioma del vídeo';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Idioma del texto del vídeo';
 
   @override
   String get original => 'Original';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Abra la configuración para cambiar el idioma del texto del video';
 }

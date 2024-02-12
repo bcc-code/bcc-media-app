@@ -992,7 +992,7 @@ class SFi extends S {
   String get saveYourFavoriteShorts => 'Tallenna parhaat lyhytvideot';
 
   @override
-  String get featureNotAvailableYet => 'Tämä ominaisuus ei ole vielä käytettävissä. Yritä toiste uudelleen.';
+  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'Uusi ominaisuus';
@@ -1010,7 +1010,7 @@ class SFi extends S {
   String get downloadedVideosGuideDescription => 'Löydät lataamasi videot kohdasta \"Profiili\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
+  String get bccLiveForcedDescription2 => 'Tässä sovelluksessa ei voi enää seurata suoralähetyksiä. Asenna \"Live by BCC Connect\" jotta voit seurata lähetyksiä.';
 
   @override
   String get bccLiveLinkDescription2 => 'Suoralähetys siirtyy sovellukseen nimeltä \"Live by BCC Connect\". Voit ladata sen App Storesta tai Google Playsta.';
@@ -1019,17 +1019,17 @@ class SFi extends S {
   String get openStore => 'Avaa kauppa';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Tätä videota ei voi ladata.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Videon kieli';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Videotekstityksen kieli';
 
   @override
-  String get original => 'Original';
+  String get original => 'Alkuperäinen';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Asetuksista voi vaihtaa videon tekstityskielen';
 }
