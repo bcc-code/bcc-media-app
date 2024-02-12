@@ -1,4 +1,16 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.5+2300125...v) (2024-01-31)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.6+2300126...v) (2024-02-12)
+
+
+### Features
+
+* ignore errors on page load ([59f9139](https://github.com/bcc-code/bcc-media-app/commit/59f9139bd92996c3e31c479aacce41951c66a34f))
+* refresh short if it's expired ([6272e2d](https://github.com/bcc-code/bcc-media-app/commit/6272e2d2d7e679cb56c499d9c583d77dea1c4dfc))
+* shorts in poster sections ([d040fdf](https://github.com/bcc-code/bcc-media-app/commit/d040fdfb0840bc2b593c9f585c4f266d0e20cb1f))
+* update short unavailable text [#780](https://github.com/bcc-code/bcc-media-app/issues/780) ([0739026](https://github.com/bcc-code/bcc-media-app/commit/073902625d6429aa307e0e5ee6cf810a76326600))
+
+
+
+## [5.2.6+2300126](https://github.com/bcc-code/bcc-media-app/compare/v5.2.5+2300125...v5.2.6+2300126) (2024-01-31)
 
 
 ### Features
