@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/components/thumbnails/slider/thumbnail_slider_short.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,11 +17,10 @@ import '../section_item_click_wrapper.dart';
 
 class ThumbnailSliderSize {
   final Size imageSize;
-  final double sectionHeight;
 
   ThumbnailSliderSize operator *(double factor) => ThumbnailSliderSize(imageSize: imageSize * factor);
 
-  ThumbnailSliderSize({required this.imageSize, double? sectionHeight}) : sectionHeight = sectionHeight ?? imageSize.height + 76;
+  ThumbnailSliderSize({required this.imageSize, double? sectionHeight});
 }
 
 class ItemSectionThumbnailSlider extends ConsumerWidget {
@@ -73,17 +73,17 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
 
   EpisodeThumbnailData? getEpisodeThumbnailData(Fragment$ItemSectionItem item) {
     final episode = item.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
-    if (episode == null) {
-      return null;
+    if (episode != null) {
+      return EpisodeThumbnailData(
+        title: item.title,
+        duration: episode.duration,
+        image: item.image,
+        locked: episode.locked,
+        progress: episode.progress,
+        publishDate: episode.publishDate,
+      );
     }
-    return EpisodeThumbnailData(
-      title: item.title,
-      duration: episode.duration,
-      image: item.image,
-      locked: episode.locked,
-      progress: episode.progress,
-      publishDate: episode.publishDate,
-    );
+    return null;
   }
 
   @override
@@ -104,12 +104,20 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
 
     final responsiveSliderSize = sliderSize * factor;
 
+    const paddingForTitle = 52;
+
     final items = data.items.items
-        .where((element) => element.item is Fragment$ItemSectionItem$item$$Episode || element.item is Fragment$ItemSectionItem$item$$Show)
+        .where((element) =>
+            element.item is Fragment$ItemSectionItem$item$$Episode ||
+            element.item is Fragment$ItemSectionItem$item$$Show ||
+            element.item is Fragment$ItemSectionItem$item$$Short)
         .toList();
+
+    final hideTitle = items.every((item) => item.item is Fragment$ItemSectionItem$item$$Short);
+
     return HorizontalSlider(
       itemWidth: responsiveSliderSize.imageSize.width,
-      height: responsiveSliderSize.sectionHeight,
+      height: responsiveSliderSize.imageSize.height + (hideTitle ? 24 : 24 + paddingForTitle),
       clipBehaviour: Clip.none,
       padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
       itemCount: items.length,
@@ -117,20 +125,26 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
         final item = items[index];
         final episodeThumbnailData = getEpisodeThumbnailData(item);
         final showItem = item.item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
+        final shortItem = item.item.asOrNull<Fragment$ItemSectionItem$item$$Short>();
         Widget? sectionItemWidget;
-        if (episodeThumbnailData != null) {
-          sectionItemWidget = ThumbnailSliderEpisode(
-            episode: episodeThumbnailData,
-            imageSize: responsiveSliderSize.imageSize,
-            showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
-            isLive: item.id == curLiveEpisode?.id,
-          );
-        } else if (showItem != null) {
+        if (showItem != null) {
           sectionItemWidget = ThumbnailSliderShow(
             sectionItem: item,
             show: showItem,
             imageSize: responsiveSliderSize.imageSize,
             showSeasonEpisodeCounts: displaySeasonEpisodeCountsForShows,
+          );
+        } else if (shortItem != null && item.image != null) {
+          sectionItemWidget = ThumbnailSliderShort(
+            image: item.image!,
+            imageSize: responsiveSliderSize.imageSize,
+          );
+        } else if (episodeThumbnailData != null) {
+          sectionItemWidget = ThumbnailSliderEpisode(
+            episode: episodeThumbnailData,
+            imageSize: responsiveSliderSize.imageSize,
+            showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+            isLive: item.id == curLiveEpisode?.id,
           );
         }
         if (sectionItemWidget == null) {

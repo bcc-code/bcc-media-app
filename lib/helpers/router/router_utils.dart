@@ -81,6 +81,13 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
     }
   }
 
+  final shortItem = item.asOrNull<Fragment$ItemSectionItem$item$$Short>();
+  if (shortItem != null) {
+    return router.navigate(ShortsWrapperScreenRoute(
+      children: [ShortScreenRoute(id: shortItem.id)],
+    ));
+  }
+
   final showItem = item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
   if (showItem != null) {
     return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
