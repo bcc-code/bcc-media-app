@@ -565,11 +565,19 @@ class VideoLanguageSettings extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final selectedCode = useListenableSelector(
+      BccmPlayerController.primary,
+      () => BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['videoLanguage'],
+    );
+    final selectedName = selectedCode == null ? S.of(context).original : getLanguageName(selectedCode) ?? selectedCode;
     return ListTile(
       dense: true,
-      title: Text(S.of(context).videoTextLanguage, style: BccmPlayerTheme.safeOf(context).controls?.settingsListTextStyle),
+      title: Text(
+        '${S.of(context).videoTextLanguage}: $selectedName',
+        style: BccmPlayerTheme.safeOf(context).controls?.settingsListTextStyle,
+      ),
       onTap: () async {
-        final current = BccmPlayerController.primary.value.currentMediaItem?.metadata;
+        final current = BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['videoLanguage'];
         final selected = await showModalOptionList<String?>(
           context: context,
           options: [
@@ -577,7 +585,7 @@ class VideoLanguageSettings extends HookConsumerWidget {
               (l) => SettingsOption(
                 value: l,
                 label: l == null ? S.of(context).original : getLanguageName(l) ?? l,
-                isSelected: current?.extras?['videoLanguage'] == l,
+                isSelected: current == l,
               ),
             ),
           ],
