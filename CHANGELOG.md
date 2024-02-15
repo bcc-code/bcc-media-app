@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.6+2300126...v) (2024-02-12)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.8+2300128...v) (2024-02-15)
+
+
+### Features
+
+* bump version ([978a823](https://github.com/bcc-code/bcc-media-app/commit/978a8232e529cb1f6bef2a28ee327e45284700af))
+* show selected in video language settings [#349](https://github.com/bcc-code/bcc-media-app/issues/349) ([4fe6bca](https://github.com/bcc-code/bcc-media-app/commit/4fe6bca068646716464ff7b45f27c0c9305d7bb3))
+
+
+
+## [5.2.8+2300128](https://github.com/bcc-code/bcc-media-app/compare/v5.2.6+2300126...v5.2.8+2300128) (2024-02-12)
 
 
 ### Features
