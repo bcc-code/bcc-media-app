@@ -1032,4 +1032,7 @@ class SNb extends S {
 
   @override
   String get openSettingsToChangeVideoLang => 'Åpne innstillinger for å endre tekstspråk';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
 }

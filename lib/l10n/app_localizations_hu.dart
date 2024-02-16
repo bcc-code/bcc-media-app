@@ -1032,4 +1032,7 @@ class SHu extends S {
 
   @override
   String get openSettingsToChangeVideoLang => 'Nyisd meg a beállításokat a videó szöveg nyelvének megváltoztatásához';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
 }

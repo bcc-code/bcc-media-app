@@ -2108,6 +2108,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Open settings to change the video text language'**
   String get openSettingsToChangeVideoLang;
+
+  /// Generic error title/message.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get somethingWentWrong;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

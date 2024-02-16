@@ -1032,4 +1032,7 @@ class SPt extends S {
 
   @override
   String get openSettingsToChangeVideoLang => 'Abra as configurações para alterar o idioma do texto do vídeo';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
 }

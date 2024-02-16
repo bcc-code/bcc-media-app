@@ -1032,4 +1032,7 @@ class SFr extends S {
 
   @override
   String get openSettingsToChangeVideoLang => 'Ouvrir les paramètres pour changer la langue du texte de la vidéo';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
 }

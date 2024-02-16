@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:bccm_core/design_system.dart';
 
-class PlayerError extends StatelessWidget {
-  const PlayerError({
+class PlayerErrorView extends StatelessWidget {
+  const PlayerErrorView({
     super.key,
     required this.onRetry,
     required this.imageUrl,

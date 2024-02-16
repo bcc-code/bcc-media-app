@@ -34,7 +34,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../api/brunstadtv.dart';
 import '../components/nav/custom_back_button.dart';
 import '../components/tabs/custom_tab_bar.dart';
-import '../components/player/player_error.dart';
+import '../components/player/player_error_view.dart';
 import '../components/episode/episode_details.dart';
 import '../components/status/error_no_access.dart';
 import '../components/study/study_button.dart';
@@ -435,7 +435,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
             Column(
               children: [
                 if (!episodeIsCurrentItem && playerSetupSnapshot.hasError && playerSetupSnapshot.connectionState != ConnectionState.waiting)
-                  PlayerError(
+                  PlayerErrorView(
                     imageUrl: episode.image,
                     onRetry: setupPlayer,
                   )

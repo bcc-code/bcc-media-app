@@ -147,6 +147,8 @@ class ShortsScreen extends HookConsumerWidget {
       },
     );
 
+    bool okToAutoplay() => isMounted() && isTabActive() && pageIsActive.value;
+
     setupCurrentController(int index, {required bool preloadNext}) async {
       if (!isMounted()) return;
       final previousIndex = (index - 1) % kPlayerCount;
@@ -202,7 +204,7 @@ class ShortsScreen extends HookConsumerWidget {
       if ((controller.player.value.playbackPositionMs ?? 0) > 0) {
         await controller.player.seekTo(Duration.zero);
       }
-      if (!isMounted() || currentIndex.value != index || !isTabActive() || !pageIsActive.value) return;
+      if (!okToAutoplay() || currentIndex.value != index) return;
       await controller.player.play();
       debugPrint('SHRT: short started playing in ${controller.player.value.playerId}');
       if (currentIndex.value != index) return;
@@ -294,6 +296,14 @@ class ShortsScreen extends HookConsumerWidget {
                   videoController: shortController.player,
                   muted: muted.value,
                   tabOpenAnimation: tabOpenAnimation,
+                  onReloadRequested: () async {
+                    if (short == null) return;
+                    await shortController.setupShort(short, true);
+                    if (currentIndex.value == index) {
+                      if (!okToAutoplay()) return;
+                      await shortController.player.play();
+                    }
+                  },
                   onMuteRequested: (value) {
                     muted.value = value;
                     for (final c in shortControllers) {

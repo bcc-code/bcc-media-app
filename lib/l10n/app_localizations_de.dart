@@ -1032,4 +1032,7 @@ class SDe extends S {
 
   @override
   String get openSettingsToChangeVideoLang => 'Einstellungen öffnen, um die Videotextsprache zu ändern';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
 }

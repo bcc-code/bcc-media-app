@@ -1418,5 +1418,9 @@
   "openSettingsToChangeVideoLang": "Open settings to change the video text language",
   "@openSettingsToChangeVideoLang": {
     "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
+  },
+  "somethingWentWrong": "Something went wrong",
+  "@somethingWentWrong": {
+    "description": "Generic error title/message."
   }
 }

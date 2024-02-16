@@ -1032,4 +1032,7 @@ class SNl extends S {
 
   @override
   String get openSettingsToChangeVideoLang => 'Open instellingen om de taal van de videocontent te wijzigen';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
 }

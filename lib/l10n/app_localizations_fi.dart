@@ -1032,4 +1032,7 @@ class SFi extends S {
 
   @override
   String get openSettingsToChangeVideoLang => 'Asetuksista voi vaihtaa videon tekstityskielen';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
 }

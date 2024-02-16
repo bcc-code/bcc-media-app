@@ -1032,4 +1032,7 @@ class SRo extends S {
 
   @override
   String get openSettingsToChangeVideoLang => 'Deschide setările pentru a schimba limba textului din video';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
 }

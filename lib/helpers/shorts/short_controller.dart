@@ -42,12 +42,17 @@ class ShortController {
   }
 
   Future<void> setupShort(Fragment$Short newShort, bool current) async {
-    if (newShort.id == _short?.id) {
-      debugPrint('SHRT: setting up for ${newShort.id}');
+    if (newShort.id == _short?.id && currentSetupFuture != null) {
       return currentSetupFuture;
     }
     _short = newShort;
-    return currentSetupFuture = _setupShort(newShort, true);
+    final future = currentSetupFuture = _setupShort(newShort);
+    future.then((_) {
+      if (future == currentSetupFuture) {
+        currentSetupFuture = null;
+      }
+    });
+    return future;
   }
 
   Fragment$BasicStream? _getStream(List<Fragment$BasicStream> streams) {
@@ -60,13 +65,13 @@ class ShortController {
     return stream;
   }
 
-  Future<void> _setupShort(Fragment$Short newShort, bool current) async {
+  Future<void> _setupShort(Fragment$Short newShort, {bool? forceRefetchUrl}) async {
     await playerInitFuture;
     debugPrint('SHRT: setting up for ${newShort.id}');
     var stream = _getStream(newShort.streams);
     if (stream == null) return;
     final expiresAt = DateTime.tryParse(stream.expiresAt);
-    if (expiresAt != null && expiresAt.isBefore(DateTime.now().add(const Duration(minutes: 30)))) {
+    if (forceRefetchUrl == true || expiresAt != null && expiresAt.isBefore(DateTime.now().add(const Duration(minutes: 30)))) {
       final result = await ref
           .read(bccmGraphQLProvider)
           .query$getShortStreams(Options$Query$getShortStreams(variables: Variables$Query$getShortStreams(id: newShort.id)));
@@ -99,6 +104,7 @@ class ShortController {
     player.setVolume(muted ? 0 : 1);
   }
 
+  int retries = 0;
   onPlayerStateChanged() {
     final s = currentShort;
     if (s == null) return;
@@ -118,6 +124,16 @@ class ShortController {
     }
 
     previousSeconds = progressSeconds;
+
+    if (player.value.error != null && currentSetupFuture == null) {
+      debugPrint('SHRT: player error: ${player.value.error}');
+      if (retries > 3) {
+        debugPrint('SHRT: failed to play short ${s.id} after 3 retries. Player error: ${player.value.error}');
+        return;
+      }
+      currentSetupFuture = _setupShort(s, forceRefetchUrl: true);
+      retries++;
+    }
   }
 
   void dispose() {

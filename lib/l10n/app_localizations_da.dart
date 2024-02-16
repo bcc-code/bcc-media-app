@@ -1032,4 +1032,7 @@ class SDa extends S {
 
   @override
   String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
 }

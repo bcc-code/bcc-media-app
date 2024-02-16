@@ -1032,4 +1032,7 @@ class SRu extends S {
 
   @override
   String get openSettingsToChangeVideoLang => 'Откройте настройки, чтобы изменить язык текста видео';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
 }

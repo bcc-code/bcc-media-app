@@ -24,11 +24,9 @@ class ShortScreen extends HookConsumerWidget {
     final gqlClient = ref.watch(bccmGraphQLProvider);
     final muted = useState(false);
     final isMounted = useIsMounted();
-    final shortFuture = useMemoized(
-      () => gqlClient.query$getShort(Options$Query$getShort(variables: Variables$Query$getShort(id: id))),
-      [id],
-    );
-    final shortSnapshot = useFuture(shortFuture);
+    query() => gqlClient.query$getShort(Options$Query$getShort(variables: Variables$Query$getShort(id: id)));
+    final shortFuture = useState(useMemoized(query, []));
+    final shortSnapshot = useFuture(shortFuture.value);
     final shortController = useMemoized(() => ShortController(ref));
     final router = context.watchRouter;
     final pageIsActive = useState(true);
@@ -96,7 +94,7 @@ class ShortScreen extends HookConsumerWidget {
     }
 
     init() async {
-      final short = (await shortFuture).parsedData?.short;
+      final short = (await shortFuture.value).parsedData?.short;
       if (!isMounted()) return;
       if (short != null) {
         await setupShort(short);
@@ -111,6 +109,10 @@ class ShortScreen extends HookConsumerWidget {
       init();
       return dispose;
     }, []);
+
+    useValueChanged(id, (_, void __) {
+      shortFuture.value = query();
+    });
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -127,10 +129,17 @@ class ShortScreen extends HookConsumerWidget {
             final wrongShortInController = currentlyPlayingShort == null || currentlyPlayingShort != short?.id;
 
             return ShortView(
-              future: short == null ? shortFuture : null,
+              future: short == null ? shortFuture.value : null,
               short: wrongShortInController ? null : short,
               videoController: shortController.player,
               muted: muted.value,
+              onReloadRequested: () async {
+                shortFuture.value = query();
+                final short = (await shortFuture.value).parsedData?.short;
+                if (short != null) {
+                  await setupShort(short);
+                }
+              },
               onMuteRequested: (value) {
                 muted.value = value;
                 shortController.player.setVolume(muted.value ? 0 : 1);
