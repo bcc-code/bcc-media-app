@@ -1,4 +1,15 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.8+2300128...v) (2024-02-15)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.9+2300129...v) (2024-02-16)
+
+
+### Features
+
+* error ui for episodes ([369060e](https://github.com/bcc-code/bcc-media-app/commit/369060ee988c924a8d27b155809a1c44e30bd6a7))
+* new translations ([225ca68](https://github.com/bcc-code/bcc-media-app/commit/225ca686cd068bd94c447c93b5cc40c13ef2d12b))
+* shorts error ui ([52a3106](https://github.com/bcc-code/bcc-media-app/commit/52a3106486e959df2555523bc510bc4b977055c6))
+
+
+
+## [5.2.9+2300129](https://github.com/bcc-code/bcc-media-app/compare/v5.2.8+2300128...v5.2.9+2300129) (2024-02-15)
 
 
 ### Features
