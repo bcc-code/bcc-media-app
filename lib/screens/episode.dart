@@ -111,7 +111,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
     // Fetch the episode when needed
     final episodeFuture = useState<Future<Query$FetchEpisode$episode?>?>(null);
     fetchCurrentEpisode() {
-      episodeFuture.value = ref.read(apiProvider).fetchEpisode(
+      return episodeFuture.value = ref.read(apiProvider).fetchEpisode(
             episodeId.toString(),
             context: Input$EpisodeContext(collectionId: collectionId),
           );
@@ -134,10 +134,11 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
         child = const ErrorNoAccess();
       }
       child = SliverFillRemaining(
-          child: ErrorGeneric(
-        onRetry: fetchCurrentEpisode,
-        details: episodeSnapshot.error.toString(),
-      ));
+        child: ErrorGeneric(
+          onRetry: fetchCurrentEpisode,
+          details: episodeSnapshot.error.toString(),
+        ),
+      );
     } else if (episodeSnapshot.data == null || (hasInitialRouteAnimation.value && !initialRouteAnimationDone.value)) {
       child = const SliverFillRemaining(child: _LoadingWidget());
     } else {
@@ -146,6 +147,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
           screenParams: this,
           episodeFuture: episodeFuture.value,
           scrollController: scrollController,
+          triggerReload: fetchCurrentEpisode,
         ),
       );
     }
@@ -208,11 +210,13 @@ class _EpisodeDisplay extends HookConsumerWidget {
     required this.screenParams,
     required this.episodeFuture,
     required this.scrollController,
+    required this.triggerReload,
   });
 
   final _EpisodeScreenImplementation screenParams;
   final Future<Query$FetchEpisode$episode?>? episodeFuture;
   final ScrollController scrollController;
+  final Future<void> Function() triggerReload;
 
   Future<bool> autoplayNext(PlaybackService playbackService, String playerId, StackRouter router) async {
     final nextEpisode = await playbackService.getNextEpisodeForPlayer(playerId: playerId);
@@ -243,9 +247,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
 
   Future setupPlayerForEpisode(Query$FetchEpisode$episode episode, {required WidgetRef ref}) async {
     var player = ref.read(primaryPlayerProvider);
-    if (player!.currentMediaItem?.metadata?.extras?['id'] == screenParams.episodeId.toString()) {
-      return;
-    }
+    if (player == null) return;
 
     var startPositionSeconds = (episode.progress ?? 0);
     if (screenParams.queryParamStartPosition != null && screenParams.queryParamStartPosition! >= 0) {
@@ -427,6 +429,8 @@ class _EpisodeDisplay extends HookConsumerWidget {
       },
     );
 
+    final playerError = useListenableSelector(viewController.playerController, () => viewController.playerController.value.error);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -434,10 +438,17 @@ class _EpisodeDisplay extends HookConsumerWidget {
           children: [
             Column(
               children: [
-                if (!episodeIsCurrentItem && playerSetupSnapshot.hasError && playerSetupSnapshot.connectionState != ConnectionState.waiting)
+                if (!episodeIsCurrentItem && playerSetupSnapshot.hasError && playerSetupSnapshot.connectionState != ConnectionState.waiting ||
+                    playerError != null)
                   PlayerErrorView(
                     imageUrl: episode.image,
-                    onRetry: setupPlayer,
+                    onRetry: () async {
+                      final currentPos = player.playbackPositionMs ?? 0;
+                      await triggerReload();
+                      if (!isMounted()) return;
+                      await setupPlayer();
+                      BccmPlayerController.primary.seekTo(Duration(milliseconds: currentPos));
+                    },
                   )
                 else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb || viewController.isFullscreen)
                   PlayerPoster(
