@@ -1103,7 +1103,7 @@
   "@removeWatchProgress": {
     "description": "Shown when holding on an episode in the 'continue watching' section."
   },
-  "showDescription": "Serie beskrivelse",
+  "showDescription": "Seriebeskrivelse",
   "@showDescription": {
     "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
   },
@@ -1362,6 +1362,10 @@
   "saveYourFavoriteShorts": "Lagre favorittvideoene dine",
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
+  },
+  "featureNotAvailableYet": "Denne funksjonen er ikke tilgjengelig på din enhet ennå. Prøv igjen senere.",
+  "@featureNotAvailableYet": {
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
   "newFeature": "Ny funksjon",
   "@newFeature": {

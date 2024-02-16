@@ -481,7 +481,7 @@ class SRu extends S {
   String get comingSoon => 'Скоро выйдут';
 
   @override
-  String get newEpisode => 'Новика';
+  String get newEpisode => 'Новое';
 
   @override
   String get tomorrow => 'Завтра';

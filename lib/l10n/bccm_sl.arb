@@ -1363,6 +1363,10 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
+  "featureNotAvailableYet": "Ta funkcija še ni na voljo na tvoji napravi. Prosim poskusi kasneje.",
+  "@featureNotAvailableYet": {
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
+  },
   "newFeature": "Nova funkcija",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."

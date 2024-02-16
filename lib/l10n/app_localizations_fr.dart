@@ -992,7 +992,7 @@ class SFr extends S {
   String get saveYourFavoriteShorts => 'Sauvegarder tes courts métrages préférés';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Cette fonction n\'est pas encore disponible sur votre appareil. Veuillez réessayer plus tard.';
 
   @override
   String get newFeature => 'Nouvelle fonctionnalité';

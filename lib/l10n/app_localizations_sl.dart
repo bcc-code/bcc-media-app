@@ -992,7 +992,7 @@ class SSl extends S {
   String get saveYourFavoriteShorts => 'Shrani svoje priljubljene kratke filme';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Ta funkcija še ni na voljo na tvoji napravi. Prosim poskusi kasneje.';
 
   @override
   String get newFeature => 'Nova funkcija';

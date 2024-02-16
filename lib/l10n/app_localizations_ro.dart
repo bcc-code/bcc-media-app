@@ -992,7 +992,7 @@ class SRo extends S {
   String get saveYourFavoriteShorts => 'Salvează-ți videourile preferate';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Această funcție nu este încă disponibilă pe acest dispozitiv. Te rugăm să încerci din nou mai târziu.';
 
   @override
   String get newFeature => 'Funcții noi';

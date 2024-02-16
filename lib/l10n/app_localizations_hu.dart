@@ -992,7 +992,7 @@ class SHu extends S {
   String get saveYourFavoriteShorts => 'Kedvenc shortok mentése';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Ez a funkció nem érhető el a eszközeden. Kérlek, próbáld újra később.';
 
   @override
   String get newFeature => 'Új funkció';

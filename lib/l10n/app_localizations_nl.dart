@@ -992,7 +992,7 @@ class SNl extends S {
   String get saveYourFavoriteShorts => 'Bewaar je favoriete korte films';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Deze functie is nog niet beschikbaar op uw apparaat. Probeer het later opnieuw.';
 
   @override
   String get newFeature => 'Nieuwe functie';

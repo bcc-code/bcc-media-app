@@ -1363,6 +1363,10 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
+  "featureNotAvailableYet": "Ez a funkció nem érhető el a eszközeden. Kérlek, próbáld újra később.",
+  "@featureNotAvailableYet": {
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
+  },
   "newFeature": "Új funkció",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."

@@ -804,7 +804,7 @@ class SNb extends S {
   String get removeWatchProgress => 'Start episoden på nytt';
 
   @override
-  String get showDescription => 'Serie beskrivelse';
+  String get showDescription => 'Seriebeskrivelse';
 
   @override
   String get releaseDate => 'Utgivelsesdato';
@@ -992,7 +992,7 @@ class SNb extends S {
   String get saveYourFavoriteShorts => 'Lagre favorittvideoene dine';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Denne funksjonen er ikke tilgjengelig på din enhet ennå. Prøv igjen senere.';
 
   @override
   String get newFeature => 'Ny funksjon';
