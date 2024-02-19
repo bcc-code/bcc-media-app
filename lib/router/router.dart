@@ -176,6 +176,14 @@ class AppRouter extends $AppRouter {
       meta: const {RouteMetaConstants.analyticsName: 'study-lesson'},
     ),
     CustomRoute(
+      page: WebviewScreenRoute.page,
+      path: '/w/:redirectCode',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideUp(),
+      meta: const {RouteMetaConstants.analyticsName: 'webview'},
+    ),
+    CustomRoute(
       page: AchievementsScreenRoute.page,
       path: '/achievements',
       durationInMilliseconds: 400,

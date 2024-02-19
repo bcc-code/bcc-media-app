@@ -1,4 +1,6 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../env/env.dart';
@@ -28,8 +30,8 @@ final webEnvUrls = <String, String>{
   EnvironmentOverride.prod: Env.webUrl,
 };
 
-Future getWebUrl() async {
-  final sharedPrefs = await SharedPreferences.getInstance();
+String getWebUrl(WidgetRef ref) {
+  final sharedPrefs = ref.read(sharedPreferencesProvider);
   final envOverride = sharedPrefs.getString(PrefKeys.envOverride);
   final webUrl = webEnvUrls[envOverride] ?? webEnvUrls[EnvironmentOverride.prod]!;
   return webUrl;

@@ -118,7 +118,7 @@ class GameScreen extends HookConsumerWidget {
                     ''');
                 },
                 onWebViewCreated: (InAppWebViewController controller) {
-                  MainJsChannel.register(context, controller);
+                  MainJsChannel.register(context, controller, enableAuth: true);
                 },
                 onReceivedError: (controller, req, err) {
                   debugPrint('Error loading game: $err');

@@ -22,7 +22,6 @@ import '../../components/nav/custom_nav_tab_bar.dart';
 import '../../components/prompts/prompts.dart';
 import '../../components/nav/web_app_bar.dart';
 import '../../models/scroll_screen.dart';
-import '../../providers/app_config.dart';
 import '../../providers/tabs.dart';
 import 'package:bccm_core/design_system.dart';
 

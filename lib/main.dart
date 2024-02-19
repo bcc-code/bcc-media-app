@@ -6,7 +6,6 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/router/special_routes.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
-import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:brunstadtv_app/providers/notifications.dart';

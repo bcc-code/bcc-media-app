@@ -10,13 +10,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class MainJsChannel {
   final ProviderContainer ref;
   final StackRouter router;
-  const MainJsChannel._({required this.router, required this.ref});
+  final bool enableAuth;
+  const MainJsChannel._({required this.router, required this.ref, required this.enableAuth});
 
-  static void register(BuildContext context, InAppWebViewController controller) {
+  static void register(BuildContext context, InAppWebViewController controller, {required bool enableAuth}) {
     final ref = ProviderScope.containerOf(context, listen: false);
+    final channel = MainJsChannel._(router: context.router, ref: ref, enableAuth: enableAuth);
     controller.addJavaScriptHandler(
       handlerName: 'flutter_main',
-      callback: MainJsChannel._(router: context.router, ref: ref).handleMessage,
+      callback: channel.handleMessage,
     );
   }
 
@@ -27,7 +29,7 @@ class MainJsChannel {
       return _push(arguments);
     } else if (arguments[0] == 'exit') {
       return _exit(arguments);
-    } else if (arguments[0] == 'get_access_token') {
+    } else if (arguments[0] == 'get_access_token' && enableAuth) {
       return _getAccessToken(arguments);
     } else if (arguments[0] == 'get_locale') {
       return _getLocale(arguments);

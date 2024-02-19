@@ -20,7 +20,6 @@ import '../../components/pages/page_renderer.dart';
 
 import '../../components/pages/page_mixin.dart';
 import '../../l10n/app_localizations.dart';
-import '../../providers/app_config.dart';
 
 @RoutePage<void>()
 class HomeScreen extends ConsumerStatefulWidget {

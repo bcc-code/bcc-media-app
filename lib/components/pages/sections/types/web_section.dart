@@ -38,7 +38,7 @@ class _WebSectionState extends State<WebSection> {
         ),
       );
     }
-    MainJsChannel.register(context, controller);
+    MainJsChannel.register(context, controller, enableAuth: true);
   }
 
   Widget _heightOrAspectRatio({double? height, required double aspectRatio, required Widget child}) {
