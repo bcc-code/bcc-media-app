@@ -6,6 +6,7 @@ import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/shorts/short_analytics.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -27,7 +28,9 @@ class ShortController {
   bool muted = false;
 
   ShortController(this.ref) {
-    player = BccmPlayerController.empty(bufferMode: BufferMode.fastStartShortForm);
+    final disableNpaw = ref.read(featureFlagsProvider).disableNpawShorts;
+    debugPrint('SHRT: disableNpaw: $disableNpaw');
+    player = BccmPlayerController.empty(bufferMode: BufferMode.fastStartShortForm, disableNpaw: disableNpaw);
     playerInitFuture = player.initialize();
     playerInitFuture.then((_) {
       player.setMixWithOthers(true);
