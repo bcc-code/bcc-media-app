@@ -72,6 +72,9 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
   }
 
   EpisodeThumbnailData? getEpisodeThumbnailData(Fragment$ItemSectionItem item) {
+    if (item.image == null) {
+      return null;
+    }
     final episode = item.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
     if (episode != null) {
       return EpisodeThumbnailData(
@@ -83,7 +86,11 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
         publishDate: episode.publishDate,
       );
     }
-    return null;
+    return EpisodeThumbnailData(
+      title: item.title,
+      image: item.image,
+      locked: false,
+    );
   }
 
   @override
@@ -106,12 +113,7 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
 
     const paddingForTitle = 52;
 
-    final items = data.items.items
-        .where((element) =>
-            element.item is Fragment$ItemSectionItem$item$$Episode ||
-            element.item is Fragment$ItemSectionItem$item$$Show ||
-            element.item is Fragment$ItemSectionItem$item$$Short)
-        .toList();
+    final items = data.items.items.toList();
 
     final hideTitle = items.every((item) => item.item is Fragment$ItemSectionItem$item$$Short);
 

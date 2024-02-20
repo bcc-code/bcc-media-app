@@ -55,9 +55,9 @@ class WebviewScreen extends HookConsumerWidget {
             const LoadingGeneric()
           else if (!redirectSnapshot.hasData)
             ErrorGeneric(onRetry: () {
-              redirectFuture.value = useMemoized(getRedirect);
+              redirectFuture.value = getRedirect();
             })
-          else
+          else ...[
             Opacity(
               opacity: firstLoadDone.value ? 1 : 0,
               child: InAppWebView(
@@ -84,7 +84,8 @@ class WebviewScreen extends HookConsumerWidget {
                 shouldOverrideUrlLoading: shouldOverrideUrlLoading(redirectSnapshot.data!.url),
               ),
             ),
-          if (!firstLoadDone.value) const LoadingGeneric()
+            if (!firstLoadDone.value) const LoadingGeneric(),
+          ],
         ],
       ),
     );
