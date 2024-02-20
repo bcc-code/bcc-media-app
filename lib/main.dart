@@ -50,9 +50,6 @@ Future<void> $main({
     );
   }
 
-  // Initialize bccm_player
-  await BccmPlayerInterface.instance.setup();
-
   final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
   final coreOverrides = await BccmCore().setupCoreOverrides(
     analyticsMetaEnricherProviderOverride: analyticsMetaEnricherProvider.overrideWith((ref) => BccmAnalyticsMetaEnricher()),
@@ -71,6 +68,9 @@ Future<void> $main({
     ...coreOverrides,
     if (providerOverrides != null) ...providerOverrides,
   ]);
+
+  // Initialize bccm_player
+  await BccmPlayerInterface.instance.setup();
 
   final app = UncontrolledProviderScope(
     container: providerContainer,
@@ -127,14 +127,12 @@ Future setDefaults() async {
 Future<ProviderContainer> initProviderContainer(List<Override> overrides) async {
   var providerContainer = ProviderContainer(overrides: overrides);
   providerContainer.read(settingsProvider.notifier);
-  providerContainer.read(appConfigFutureProvider);
   providerContainer.read(analyticsProvider);
   providerContainer.read(deepLinkServiceProvider);
   providerContainer.read(notificationServiceProvider);
   providerContainer.read(authFeatureFlagListener);
-  await providerContainer.read(playbackServiceProvider).init();
   try {
-    await providerContainer.read(unleashProvider.future).timeout(const Duration(milliseconds: 300));
+    await providerContainer.read(unleashProvider.future).timeout(const Duration(milliseconds: 1000));
   } catch (e, st) {
     if (e is TimeoutException) {
       debugPrint('Timeout: Unleash not ready, continuing boot.');
@@ -142,5 +140,6 @@ Future<ProviderContainer> initProviderContainer(List<Override> overrides) async 
       FirebaseCrashlytics.instance.recordError(e, st);
     }
   }
+  await providerContainer.read(playbackServiceProvider).init();
   return providerContainer;
 }
