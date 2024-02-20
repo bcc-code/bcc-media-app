@@ -40,6 +40,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
     super.initState();
     pageResult = wrapInCompleter(getHomePage());
     _appConfigListener = ref.listenManual(appConfigFutureProvider, (prev, next) async {
+      pageResult = wrapInCompleter(getHomePage());
       final value = await next;
       if (value == null) return;
       if (!context.mounted) return;
@@ -100,7 +101,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
   Future<Query$Page$page> getHomePage() async {
     final api = ref.read(apiProvider);
     return ref.read(appConfigFutureProvider).then((value) {
-      final code = value?.application.page?.code;
+      final code = value.application.page?.code;
       if (code == null) {
         throw ErrorHint('Application config error');
       }
