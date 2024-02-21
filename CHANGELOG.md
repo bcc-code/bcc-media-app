@@ -1,4 +1,22 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.2.9+2300129...v) (2024-02-16)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.3.0+2300130...v) (2024-02-21)
+
+
+### Bug Fixes
+
+* wait for feature flag before fetching home screen ([b0244e2](https://github.com/bcc-code/bcc-media-app/commit/b0244e226d61aba6b7bbc885a9adccef78b4127a))
+
+
+### Features
+
+* /w routes ([4d3b235](https://github.com/bcc-code/bcc-media-app/commit/4d3b235a14ff00277182484c5c2871067218ab95))
+* disable npaw for shorts via feature flag ([40f58b2](https://github.com/bcc-code/bcc-media-app/commit/40f58b275c3503c91e5658b093b5c0d03db796c3))
+* links in sections [#828](https://github.com/bcc-code/bcc-media-app/issues/828) ([3cea509](https://github.com/bcc-code/bcc-media-app/commit/3cea509f87fdf7b476422ba546bd93832de76366))
+* refresh homepage when feature flag changes ([528ab5e](https://github.com/bcc-code/bcc-media-app/commit/528ab5e10610871254b705cd2a57ea0a23a1a09a))
+* sync danish and polish ([3dd4bc9](https://github.com/bcc-code/bcc-media-app/commit/3dd4bc959de6d2b1795817b04326bd21e2e10923))
+
+
+
+# [5.3.0+2300130](https://github.com/bcc-code/bcc-media-app/compare/v5.2.9+2300129...v5.3.0+2300130) (2024-02-16)
 
 
 ### Features
