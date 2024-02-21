@@ -992,7 +992,7 @@ class SPl extends S {
   String get saveYourFavoriteShorts => 'Zapisz swoje ulubione krótkie filmiki';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Ta funkcja nie jest jeszcze dostępna na twoim urządzeniu. Spróbuj ponownie później.';
 
   @override
   String get newFeature => 'Nowa funkcja';
@@ -1010,28 +1010,28 @@ class SPl extends S {
   String get downloadedVideosGuideDescription => 'Pobrane filmy można znaleźć w \"Profilu\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
+  String get bccLiveForcedDescription2 => 'Przepraszamy! Nie możesz już oglądać transmisji na żywo w tej aplikacji. Pobierz \"Live by BCC Connect\" w App Store lub Google Play, aby kontynuować oglądanie transmisji na żywo z Brunstad.';
 
   @override
-  String get bccLiveLinkDescription2 => 'The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
+  String get bccLiveLinkDescription2 => 'Transmisja na żywo przenosi się do nowej aplikacji: \"Live by BCC Connect\". Możesz ją pobrać w App Store lub Google Play.';
 
   @override
-  String get openStore => 'Open store';
+  String get openStore => 'Otwórz';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Tego filmu nie można pobrać.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Język wideo';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Język tekstu na wideo';
 
   @override
   String get original => 'Oryginalny';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Otwórz ustawienia, aby zmienić język tekstu wideo';
 
   @override
   String get somethingWentWrong => 'Something went wrong';

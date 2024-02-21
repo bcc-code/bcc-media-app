@@ -992,7 +992,7 @@ class SDa extends S {
   String get saveYourFavoriteShorts => 'Gem dine yndlingskortfilm';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Denne funktion er ikke tilgængelig på din enhed endnu. Prøv venligst igen senere.';
 
   @override
   String get newFeature => 'Ny funktion';
@@ -1010,7 +1010,7 @@ class SDa extends S {
   String get downloadedVideosGuideDescription => 'Du kan finde dine downloadede videoer under \"Profil\".';
 
   @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
+  String get bccLiveForcedDescription2 => 'Du kan ikke længere se livestreams i denne app. Download \"Live by BCC Connect\" i App Store eller Google Play for at fortsætte med at se livestreams fra Brunstad.';
 
   @override
   String get bccLiveLinkDescription2 => 'Livestreaming flyttes til en ny app: \"Live by BCC Connect\". Du kan downloade den i App Store eller Google Play.';
@@ -1019,19 +1019,19 @@ class SDa extends S {
   String get openStore => 'Åbn';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Denne video kan ikke downloades.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Audio sprog';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Sprog undertekster';
 
   @override
   String get original => 'Original';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Åbn indstillinger for at ændre sprog på underteksterne';
 
   @override
   String get somethingWentWrong => 'Something went wrong';
