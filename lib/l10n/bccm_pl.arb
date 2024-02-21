@@ -1363,6 +1363,10 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
+  "featureNotAvailableYet": "Ta funkcja nie jest jeszcze dostępna na twoim urządzeniu. Spróbuj ponownie później.",
+  "@featureNotAvailableYet": {
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
+  },
   "newFeature": "Nowa funkcja",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
@@ -1383,8 +1387,36 @@
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
+  "bccLiveForcedDescription2": "Przepraszamy! Nie możesz już oglądać transmisji na żywo w tej aplikacji. Pobierz \"Live by BCC Connect\" w App Store lub Google Play, aby kontynuować oglądanie transmisji na żywo z Brunstad.",
+  "@bccLiveForcedDescription2": {
+    "description": "Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media."
+  },
+  "bccLiveLinkDescription2": "Transmisja na żywo przenosi się do nowej aplikacji: \"Live by BCC Connect\". Możesz ją pobrać w App Store lub Google Play.",
+  "@bccLiveLinkDescription2": {
+    "description": "Will be shown in the future when you open the live tab, if the livestream is available in both Live and BCC Media."
+  },
+  "openStore": "Otwórz",
+  "@openStore": {
+    "description": "A button to open play store / app store."
+  },
+  "thisVideoCantBeDownloaded": "Tego filmu nie można pobrać.",
+  "@thisVideoCantBeDownloaded": {
+    "description": "Shown when you try to download a video that cannot be downloaded."
+  },
+  "videoLanguage": "Język wideo",
+  "@videoLanguage": {
+    "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
+  },
+  "videoTextLanguage": "Język tekstu na wideo",
+  "@videoTextLanguage": {
+    "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
+  },
   "original": "Oryginalny",
   "@original": {
     "description": "E.g. original language."
+  },
+  "openSettingsToChangeVideoLang": "Otwórz ustawienia, aby zmienić język tekstu wideo",
+  "@openSettingsToChangeVideoLang": {
+    "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
   }
 }
