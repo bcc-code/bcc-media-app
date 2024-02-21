@@ -75,6 +75,7 @@ class WebviewScreen extends HookConsumerWidget {
                   useShouldOverrideUrlLoading: true,
                   allowsInlineMediaPlayback: true,
                   mediaPlaybackRequiresUserGesture: false,
+                  isInspectable: kDebugMode,
                   iframeAllowFullscreen: true,
                 ),
                 onWebViewCreated: onWebViewCreated,

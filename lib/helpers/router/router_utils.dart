@@ -103,7 +103,7 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
     final uri = Uri.tryParse(linkItem.url);
     if (uri == null) return null;
     if (uri.scheme.isEmpty) {
-      return context.router.navigateNamedFromRoot(linkItem.url);
+      return context.router.root.navigateNamedFromRoot(linkItem.url);
     }
     return launchUrlString(linkItem.url, mode: LaunchMode.externalApplication);
   }
