@@ -111,7 +111,7 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
 
     final responsiveSliderSize = sliderSize * factor;
 
-    const paddingForTitle = 52;
+    const paddingForTitle = 38;
 
     final items = data.items.items.toList();
 
