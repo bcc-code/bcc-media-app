@@ -26,6 +26,7 @@ class ShortController {
   BccmTexture? _texture;
   bool _disposed = false;
   bool muted = false;
+  int retries = 0;
 
   ShortController(this.ref) {
     final disableNpaw = ref.read(featureFlagsProvider).disableNpawShorts;
@@ -45,17 +46,13 @@ class ShortController {
   }
 
   Future<void> setupShort(Fragment$Short newShort, bool current) async {
-    if (newShort.id == _short?.id && currentSetupFuture != null) {
+    if (newShort.id == _short?.id) {
+      debugPrint('SHRT: setting up for ${newShort.id}');
       return currentSetupFuture;
     }
+    retries = 0;
     _short = newShort;
-    final future = currentSetupFuture = _setupShort(newShort);
-    future.then((_) {
-      if (future == currentSetupFuture) {
-        currentSetupFuture = null;
-      }
-    });
-    return future;
+    return currentSetupFuture = _setupShort(newShort);
   }
 
   Fragment$BasicStream? _getStream(List<Fragment$BasicStream> streams) {
@@ -105,9 +102,10 @@ class ShortController {
     debugPrint('${player.value.playerId} done with replaceCurrentMediaItem');
     if (_disposed) return;
     player.setVolume(muted ? 0 : 1);
+    retries = 0;
   }
 
-  int retries = 0;
+  Completer<void>? retryCompleter;
   onPlayerStateChanged() {
     final s = currentShort;
     if (s == null) return;
@@ -128,13 +126,13 @@ class ShortController {
 
     previousSeconds = progressSeconds;
 
-    if (player.value.error != null && currentSetupFuture == null) {
+    if (player.value.error != null && (retryCompleter == null || retryCompleter!.isCompleted)) {
       debugPrint('SHRT: player error: ${player.value.error}');
       if (retries > 3) {
         debugPrint('SHRT: failed to play short ${s.id} after 3 retries. Player error: ${player.value.error}');
         return;
       }
-      currentSetupFuture = _setupShort(s, forceRefetchUrl: true);
+      retryCompleter = wrapInCompleter(_setupShort(s, forceRefetchUrl: true));
       retries++;
     }
   }
