@@ -55,6 +55,9 @@ appId: tv.brunstad.app
 # ---
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/shorts/206488a5-f44c-4e11-b746-287d25e8a914"
+- assertVisible: .*Paused..*
+- tapOn:
+    point: "50%,50%"
 - assertVisible: .*Playing..*
 - assertNotVisible: .*Error.*
 
