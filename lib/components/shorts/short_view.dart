@@ -75,6 +75,16 @@ class ShortView extends HookConsumerWidget {
       }
     }
 
+    String? buildSemantics() {
+      if (short == null) {
+        return null;
+      }
+      final title = short!.title;
+      final playbackStatus = isPlaying == true ? 'Playing.' : 'Paused.';
+      final errorState = playerError != null ? 'Error: ${playerError.code} ${playerError.message}.' : '';
+      return '$title. $playbackStatus $errorState';
+    }
+
     return GestureDetector(
       onLongPress: () {
         debugPrint('SHRT: longpress');
@@ -155,111 +165,114 @@ class ShortView extends HookConsumerWidget {
         playIconAnimation.reverse(from: 1.0);
       },
       child: errorWidget ??
-          Stack(
-            fit: StackFit.expand,
-            children: [
-              if (videoController != null && isInitialized) VideoView(controller: videoController!),
-              FadeTransition(
-                opacity: CurvedAnimation(parent: playIconAnimation, curve: Curves.easeInOut, reverseCurve: Curves.easeOut),
-                child: Center(
-                  child: isPlaying == false
-                      ? SvgPicture.string(SvgIcons.pause, width: 52, height: 52)
-                      : SvgPicture.string(SvgIcons.play, width: 52, height: 52),
-                ),
-              ),
-              if (playerError != null)
-                Positioned.fill(
-                  child: Container(
-                    padding: const EdgeInsets.only(top: 48),
-                    color: Colors.black.withOpacity(0.5),
-                    child: ShortErrorView(
-                      title: S.of(context).somethingWentWrong,
-                      onRetry: onReloadRequested,
-                      errorCode: playerError.code,
-                      errorMessage: playerError.message,
-                    ),
+          Semantics(
+            value: buildSemantics(),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                if (videoController != null && isInitialized) VideoView(controller: videoController!),
+                FadeTransition(
+                  opacity: CurvedAnimation(parent: playIconAnimation, curve: Curves.easeInOut, reverseCurve: Curves.easeOut),
+                  child: Center(
+                    child: isPlaying == false
+                        ? SvgPicture.string(SvgIcons.pause, width: 52, height: 52)
+                        : SvgPicture.string(SvgIcons.play, width: 52, height: 52),
                   ),
                 ),
-              if (short == null || !isInitialized || videoController == null || isBuffering == true)
-                Positioned.fill(
-                  child: Stack(
-                    children: [
-                      Container(color: design.colors.background1),
-                      Animate(
-                        controller: loadingAnimation,
-                        onPlay: (c) => c.repeat(),
-                        effects: [
-                          ShimmerEffect(
-                            duration: 1000.ms,
-                            color: design.colors.separatorOnLight,
-                          ),
-                        ],
-                        child: Container(color: design.colors.background1),
+                if (playerError != null)
+                  Positioned.fill(
+                    child: Container(
+                      padding: const EdgeInsets.only(top: 48),
+                      color: Colors.black.withOpacity(0.5),
+                      child: ShortErrorView(
+                        title: S.of(context).somethingWentWrong,
+                        onRetry: onReloadRequested,
+                        errorCode: playerError.code,
+                        errorMessage: playerError.message,
                       ),
-                      const Center(child: LoadingIndicator()),
-                    ],
-                  ),
-                ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.black.withOpacity(0.0),
-                        design.colors.background1.withOpacity(0.8),
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
                     ),
                   ),
-                ),
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                    child: SafeArea(
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  if (short != null) ShortInfo(title: short!.title, description: short!.description),
-                                  const SizedBox(height: 8),
-                                  Disclaimers(short: short),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.bottomRight,
-                              child: ShortActions(
-                                short: short,
-                                onMuteRequested: onMuteRequested,
-                                muted: muted,
-                                videoController: videoController,
-                                tabOpenAnimation: tabOpenAnimation,
-                              ),
+                if (short == null || !isInitialized || videoController == null || isBuffering == true)
+                  Positioned.fill(
+                    child: Stack(
+                      children: [
+                        Container(color: design.colors.background1),
+                        Animate(
+                          controller: loadingAnimation,
+                          onPlay: (c) => c.repeat(),
+                          effects: [
+                            ShimmerEffect(
+                              duration: 1000.ms,
+                              color: design.colors.separatorOnLight,
                             ),
                           ],
+                          child: Container(color: design.colors.background1),
+                        ),
+                        const Center(child: LoadingIndicator()),
+                      ],
+                    ),
+                  ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.black.withOpacity(0.0),
+                          design.colors.background1.withOpacity(0.8),
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                    ),
+                  ),
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      child: SafeArea(
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    if (short != null) ShortInfo(title: short!.title, description: short!.description),
+                                    const SizedBox(height: 8),
+                                    Disclaimers(short: short),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.bottomRight,
+                                child: ShortActions(
+                                  short: short,
+                                  onMuteRequested: onMuteRequested,
+                                  muted: muted,
+                                  videoController: videoController,
+                                  tabOpenAnimation: tabOpenAnimation,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  _Timeline(videoController: videoController),
-                ],
-              ),
-            ],
+                    _Timeline(videoController: videoController),
+                  ],
+                ),
+              ],
+            ),
           ),
     );
   }

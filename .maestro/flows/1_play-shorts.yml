@@ -5,9 +5,6 @@ appId: tv.brunstad.app
 - runScript: scripts/.env.js
 - runFlow: subflows/init.yml
 - runFlow: subflows/login.yml
-- tapOn: Live.*
-- tapOn:
-    point: "50%,20%"
-- tapOn: Home.*
-- assertVisible: .*BrunstadTV.*
-- assertVisible: Pause
+- tapOn: Shorts.*
+- assertVisible: .*Playing..*
+- assertNotVisible: .*Error.*
