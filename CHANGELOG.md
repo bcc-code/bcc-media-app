@@ -1,4 +1,23 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.3.0+2300130...v) (2024-02-21)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.3.1+2300131...v) (2024-02-22)
+
+
+### Bug Fixes
+
+* shorts reloading when you swipe to them ([96a66be](https://github.com/bcc-code/bcc-media-app/commit/96a66bed9af90e82ebdc53a13359496c60bcb6d8))
+* tweak padding for sections ([fafdc74](https://github.com/bcc-code/bcc-media-app/commit/fafdc74318a3497067b98d9b68744fee3f3bad5c))
+
+
+### Features
+
+* always autoplay shorts when you switch between tabs ([b74498a](https://github.com/bcc-code/bcc-media-app/commit/b74498a987feae3f8704eaeec502a90553fbe5a9))
+* better shorts auto-fixing upon expiry, reload button improvement, etc. ([109a919](https://github.com/bcc-code/bcc-media-app/commit/109a919dfc5eeb35a3aea987f37c158b88dc0968))
+* comics opens on top of tabs ([f89b214](https://github.com/bcc-code/bcc-media-app/commit/f89b2143312bddc156834f5e2e6fb10663e06259))
+* sending custom_scope on auth refresh /token request ([7771a8b](https://github.com/bcc-code/bcc-media-app/commit/7771a8b1e1ad2e0fac09c76e036eceaf2bdd1a94))
+* update translations (fi) ([f99b290](https://github.com/bcc-code/bcc-media-app/commit/f99b290df9785e56a49f3374af1590a73fb6f62e))
+
+
+
+## [5.3.1+2300131](https://github.com/bcc-code/bcc-media-app/compare/v5.3.0+2300130...v5.3.1+2300131) (2024-02-21)
 
 
 ### Bug Fixes
