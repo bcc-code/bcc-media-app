@@ -992,7 +992,7 @@ class SFi extends S {
   String get saveYourFavoriteShorts => 'Tallenna parhaat lyhytvideot';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Tämä ominaisuus ei ole vielä käytettävissä laitteellasi. Yritä toiste uudelleen.';
 
   @override
   String get newFeature => 'Uusi ominaisuus';
