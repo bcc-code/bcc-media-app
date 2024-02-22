@@ -46,7 +46,7 @@ class ShortErrorView extends StatelessWidget {
                     labelText: retryButtonText ?? S.of(context).tryAgainButton,
                     image: Icon(Icons.refresh, color: design.colors.label1, size: 22),
                     imagePosition: ButtonImagePosition.right,
-                    onPressed: () => onRetry(),
+                    onPressed: onRetry,
                   ),
                   if (errorCode != null || errorMessage != null)
                     Container(

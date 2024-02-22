@@ -107,7 +107,7 @@ class ShortsScreen extends HookConsumerWidget {
       if (previous != null) {
         final previousControllerIndex = (index - 1) % kPlayerCount;
         final controller = shortControllers[previousControllerIndex];
-        controller.setupShort(previous, false);
+        controller.setupShort(previous);
       }
 
       for (var i = 1; i < 3; i++) {
@@ -115,7 +115,7 @@ class ShortsScreen extends HookConsumerWidget {
         if (next != null) {
           final nextControllerIndex = (index + i) % kPlayerCount;
           final controller = shortControllers[nextControllerIndex];
-          controller.setupShort(next, false);
+          controller.setupShort(next);
         }
       }
     }
@@ -187,7 +187,7 @@ class ShortsScreen extends HookConsumerWidget {
       final controllerIndex = index % kPlayerCount;
       debugPrint('SHRT: preparing short ${currentShort.id}');
       final controller = shortControllers[controllerIndex];
-      await controller.setupShort(currentShort, true);
+      await controller.setupShort(currentShort);
       if (currentIndex.value != index || !context.mounted) return;
 
       if (preloadNext) {
@@ -213,6 +213,9 @@ class ShortsScreen extends HookConsumerWidget {
     setCurrentIndex(int index, {bool preloadNext = true}) {
       if (!isMounted()) return;
       currentIndex.value = index;
+      for (var i = 0; i < shortControllers.length; i++) {
+        shortControllers[i].isCurrent = i == index % shortControllers.length;
+      }
       debugPrint('SHRT: setCurrentIndex: $index');
       Future.delayed(300.ms, () {
         if (currentIndex.value != index) {
@@ -298,7 +301,7 @@ class ShortsScreen extends HookConsumerWidget {
                   tabOpenAnimation: tabOpenAnimation,
                   onReloadRequested: () async {
                     if (short == null) return;
-                    await shortController.setupShort(short, true);
+                    await shortController.setupShort(short, forceReload: true);
                     if (currentIndex.value == index) {
                       if (!okToAutoplay()) return;
                       await shortController.player.play();

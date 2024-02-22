@@ -27,7 +27,7 @@ class ShortScreen extends HookConsumerWidget {
     query() => gqlClient.query$getShort(Options$Query$getShort(variables: Variables$Query$getShort(id: id)));
     final shortFuture = useState(useMemoized(query, []));
     final shortSnapshot = useFuture(shortFuture.value);
-    final shortController = useMemoized(() => ShortController(ref));
+    final shortController = useMemoized(() => ShortController(ref)..isCurrent = true);
     final router = context.watchRouter;
     final pageIsActive = useState(true);
 
@@ -82,7 +82,7 @@ class ShortScreen extends HookConsumerWidget {
           )
           .then((_) => debugPrint('SHRT: short set progress to 0'));
 
-      await shortController.setupShort(short, true);
+      await shortController.setupShort(short, forceReload: true);
       if (!isMounted()) return;
 
       if ((shortController.player.value.playbackPositionMs ?? 0) > 0) {
