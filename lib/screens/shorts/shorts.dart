@@ -126,18 +126,16 @@ class ShortsScreen extends HookConsumerWidget {
     );
     final isTabActive = useIsTabActive(
       onChange: (active) {
-        if (active) {
-          debugPrint('SHRT: tab became active');
-          if (isFirstOpen.value) {
-            debugPrint('SHRT: tab became active for the first time, playing');
-            final player = shortControllers[currentIndex.value % kPlayerCount].player;
-            if (player.value.isInitialized) {
-              shortControllers[currentIndex.value % kPlayerCount].player.play();
-            }
-            preloadNextAndPreviousFor(currentIndex.value);
-            tabOpenAnimation.forward();
-            isFirstOpen.value = false;
+        final isTopRoute = router.topMatch == context.routeData.route;
+        if (active && isTopRoute) {
+          debugPrint('SHRT: tab became active, playing');
+          final player = shortControllers[currentIndex.value % kPlayerCount].player;
+          if (player.value.isInitialized) {
+            shortControllers[currentIndex.value % kPlayerCount].player.play();
           }
+          preloadNextAndPreviousFor(currentIndex.value);
+          tabOpenAnimation.forward();
+          isFirstOpen.value = false;
           return;
         }
         debugPrint('SHRT: tab no longer active: pausing controllers');

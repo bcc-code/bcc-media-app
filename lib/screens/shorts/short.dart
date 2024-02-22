@@ -62,7 +62,9 @@ class ShortScreen extends HookConsumerWidget {
 
     final isTabActive = useIsTabActive(
       onChange: (active) {
+        if (!shortController.player.value.isInitialized) return;
         if (active) {
+          shortController.player.play();
           return;
         }
         debugPrint('SHRT: tab no longer active: pausing controller');
