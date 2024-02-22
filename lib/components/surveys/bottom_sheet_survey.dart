@@ -14,10 +14,22 @@ import '../status/loading_indicator.dart';
 import 'dialog_confirm_cancel.dart';
 import 'survey_form.dart';
 
-class BottomSheetSurvey extends HookWidget {
-  final Fragment$Prompt$$SurveyPrompt prompt;
+Future<void> openBottomSheetSurvey(BuildContext context, Fragment$Survey survey) {
+  CustomHapticFeedback.mediumImpact();
+  return showModalBottomSheet(
+    context: context,
+    useRootNavigator: false,
+    isScrollControlled: true,
+    useSafeArea: true,
+    isDismissible: true,
+    builder: (context) => BottomSheetSurvey(survey),
+  );
+}
 
-  const BottomSheetSurvey(this.prompt, {super.key});
+class BottomSheetSurvey extends HookWidget {
+  final Fragment$Survey survey;
+
+  const BottomSheetSurvey(this.survey, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +105,7 @@ class BottomSheetSurvey extends HookWidget {
                   Container(
                     margin: const EdgeInsets.only(bottom: 16),
                     child: Text(
-                      prompt.survey.title,
+                      survey.title,
                       textAlign: TextAlign.center,
                       style: design.textStyles.title3,
                     ),
@@ -102,7 +114,7 @@ class BottomSheetSurvey extends HookWidget {
                     child: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 200),
                       child: _BottomSheetBody(
-                        survey: prompt.survey,
+                        survey: survey,
                         onClose: () => onClose(),
                         onCancel: () => onCancel(),
                         onComplete: () => completed.value = true,

@@ -21,23 +21,11 @@ class SurveyPrompt extends StatelessWidget {
     required this.onClose,
   });
 
-  openBottomSheet(context) {
-    CustomHapticFeedback.mediumImpact();
-    showModalBottomSheet(
-      context: context,
-      useRootNavigator: false,
-      isScrollControlled: true,
-      useSafeArea: true,
-      isDismissible: true,
-      builder: (context) => BottomSheetSurvey(prompt),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
     return GestureDetector(
-      onTap: () => openBottomSheet(context),
+      onTap: () => openBottomSheetSurvey(context, prompt.survey),
       child: Container(
         height: 62,
         padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
