@@ -145,7 +145,7 @@ class ShortsScreen extends HookConsumerWidget {
       },
     );
 
-    bool okToAutoplay() => isMounted() && isTabActive() && pageIsActive.value;
+    bool okToAutoplay() => isMounted() && isTabActive() && pageIsActive.value && router.topMatch == context.routeData.route;
 
     setupCurrentController(int index, {required bool preloadNext}) async {
       if (!isMounted()) return;
