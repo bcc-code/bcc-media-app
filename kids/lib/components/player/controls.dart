@@ -84,7 +84,8 @@ class PlayerControls extends HookWidget {
                       : design.buttons.small(
                           variant: ButtonVariant.secondary,
                           onPressed: () {
-                            if (viewController.playerController.value.currentMediaItem != null) {
+                            if (viewController.playerController.value.currentMediaItem != null &&
+                                viewController.playerController.value.error == null) {
                               viewController.playerController.play();
                             } else {
                               onPlayRequestedWithoutVideo();

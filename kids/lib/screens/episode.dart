@@ -35,9 +35,7 @@ class EpisodeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final gqlClient = ref.watch(bccmGraphQLProvider);
 
-    final episodeFuture = useMemoized<Future<QueryResult<Query$KidsFetchEpisode?>>>(
-      () => gqlClient.query$KidsFetchEpisode(
-        Options$Query$KidsFetchEpisode(
+    fetchEpisode() async => gqlClient.query$KidsFetchEpisode(Options$Query$KidsFetchEpisode(
           variables: Variables$Query$KidsFetchEpisode(
             id: id,
             context: Input$EpisodeContext(
@@ -46,19 +44,15 @@ class EpisodeScreen extends HookConsumerWidget {
               playlistId: playlistId,
             ),
           ),
-        ),
-      ),
-      // ignore: exhaustive_keys
-      [id, shuffle, cursor],
-    );
-    final episodeSnapshot = useFuture(episodeFuture);
+        ));
+
+    final episodeFuture = useState(useMemoized(fetchEpisode));
+    final episodeSnapshot = useFuture(episodeFuture.value);
     final episodeData = episodeSnapshot.data?.parsedData?.episode;
     final playbackService = ref.watch(playbackServiceProvider);
     final firstLoadDone = useState(false);
     final currentId = useState(BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['id']);
     final morphTransition = InheritedData.listen<MorphTransitionInfo>(context);
-
-    debugPrint('Rendering EpisodeScreen: $id');
 
     useEffect(() {
       void listener() {
@@ -73,36 +67,35 @@ class EpisodeScreen extends HookConsumerWidget {
 
     final transitionDone = useState(false);
 
-    final play = useCallback(() {
-      if (episodeData == null) {
-        return;
-      }
-      playbackService.playEpisode(
-        playerId: BccmPlayerController.primary.value.playerId,
-        episode: episodeData,
-        autoplay: true,
-        playlistId: playlistId,
-      );
-    }, [episodeData, playlistId, playbackService]);
-
     useEffect(() {
       if (episodeData != null && !episodeIsCurrentItem) {
         final duration = morphTransition?.duration ?? 0.ms;
         Future.delayed(duration - 100.ms, () {
           if (!context.mounted) return;
           transitionDone.value = true;
-          play();
+          playbackService.playEpisode(
+            playerId: BccmPlayerController.primary.value.playerId,
+            episode: episodeData,
+            autoplay: true,
+            playlistId: playlistId,
+          );
         });
         firstLoadDone.value = true;
       }
-      return () {
-        // on dispose
-        if (BccmPlayerController.primary.value.currentMediaItem != null && episodeIsCurrentItem) {
-          if (BccmPlayerController.primary.isChromecast) return;
-          BccmPlayerController.primary.stop(reset: true);
-        }
-      };
+      return () {};
     }, [episodeData]);
+
+    void onDispose() {
+      if (BccmPlayerController.primary.value.currentMediaItem != null && episodeIsCurrentItem) {
+        if (BccmPlayerController.primary.isChromecast) return;
+        BccmPlayerController.primary.stop(reset: true);
+      }
+    }
+
+    useEffect(() {
+      episodeFuture.value = fetchEpisode();
+      return onDispose;
+    }, [id, shuffle, playlistId, cursor]);
 
     final viewController = useMemoized(
         () => BccmPlayerViewController(
@@ -125,7 +118,19 @@ class EpisodeScreen extends HookConsumerWidget {
       child: PlayerView(
         episode: episodeData,
         playlistId: playlistId,
-        onReplayRequested: play,
+        onReloadRequested: () async {
+          episodeFuture.value = fetchEpisode();
+          final r = await episodeFuture.value;
+          final ep = r.parsedData?.episode;
+          if (ep != null) {
+            playbackService.playEpisode(
+              playerId: BccmPlayerController.primary.value.playerId,
+              episode: ep,
+              autoplay: true,
+              playlistId: playlistId,
+            );
+          }
+        },
       ),
     );
   }

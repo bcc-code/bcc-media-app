@@ -31,6 +31,7 @@ import 'package:kids/router/router.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/env/kids_prod/firebase_options.dart' as kids_prod_firebase;
+import 'package:universal_io/io.dart';
 
 const useDevicePreview = false;
 bool _isAndroidTv = false;
@@ -87,6 +88,9 @@ Future<void> $main({
 
   // Initialize bccm_player
   await BccmPlayerInterface.instance.setup();
+  if (Platform.isAndroid) {
+    BccmPlayerController.primary.switchToVideoTexture();
+  }
 
   final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
   final coreOverrides = await BccmCore().setupCoreOverrides(

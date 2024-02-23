@@ -23,6 +23,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:universal_io/io.dart';
 
 import 'app_root.dart';
 import 'flavors.dart';
