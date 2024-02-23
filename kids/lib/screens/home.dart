@@ -60,7 +60,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
       if (code == null) {
         throw ErrorHint('Application config error');
       }
-      return api.getPage("kids2-frontpage");
+      return api.getPage(code);
     });
   }
 
