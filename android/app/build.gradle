@@ -53,7 +53,7 @@ android {
 
     defaultConfig {
         applicationId 'tv.brunstad.app'
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

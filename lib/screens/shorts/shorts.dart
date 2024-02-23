@@ -7,6 +7,7 @@ import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/shorts/short_controller.dart';
+import 'package:brunstadtv_app/providers/performance_class_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -14,8 +15,6 @@ import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
-
-const kPlayerCount = 4;
 
 @RoutePage<void>()
 class ShortsScreen extends HookConsumerWidget {
@@ -35,6 +34,10 @@ class ShortsScreen extends HookConsumerWidget {
     final currentIndex = useState(0);
     final isMounted = useIsMounted();
     final isFirstOpen = useState(true);
+    final performanceClass = ref.read(performanceClassProvider);
+    final playerCount = useMemoized(() {
+      return performanceClass.valueOrNull != null && performanceClass.valueOrNull! >= 12 ? 4 : 2;
+    });
 
     fetchMore() async {
       final result = await gqlClient.query$getShorts(
@@ -62,7 +65,7 @@ class ShortsScreen extends HookConsumerWidget {
     final fetchMoreFuture = useState<Future<QueryResult<Query$getShorts>>?>(null);
 
     final shortControllersState =
-        useState<List<ShortController>>(useMemoized(() => List.unmodifiable(List.generate(kPlayerCount, (_) => ShortController(ref)))));
+        useState<List<ShortController>>(useMemoized(() => List.unmodifiable(List.generate(playerCount, (_) => ShortController(ref)))));
     final shortControllers = shortControllersState.value;
 
     final router = context.watchRouter;
@@ -103,20 +106,32 @@ class ShortsScreen extends HookConsumerWidget {
 
     preloadNextAndPreviousFor(int index) async {
       if (!isMounted()) return;
-      final previous = index == 0 ? null : shorts.value.elementAtOrNull(index - 1);
-      if (previous != null) {
-        final previousControllerIndex = (index - 1) % kPlayerCount;
-        final controller = shortControllers[previousControllerIndex];
-        controller.setupShort(previous);
+      if (playerCount == 1) {
+        debugPrint('SHRT: Player count is 1, not preloading next+previous');
+        return;
       }
 
-      for (var i = 1; i < 3; i++) {
+      final ignorePrevious = playerCount == 2;
+      final nextPlayers = ignorePrevious ? 2 : playerCount - 1;
+      for (var i = 1; i < nextPlayers; i++) {
         final next = index == shorts.value.length - 1 ? null : shorts.value.elementAtOrNull(index + i);
         if (next != null) {
-          final nextControllerIndex = (index + i) % kPlayerCount;
+          final nextControllerIndex = (index + i) % playerCount;
           final controller = shortControllers[nextControllerIndex];
           controller.setupShort(next);
         }
+      }
+
+      if (ignorePrevious) {
+        debugPrint('SHRT: Not preloading previous');
+        return;
+      }
+
+      final previous = index == 0 ? null : shorts.value.elementAtOrNull(index - 1);
+      if (previous != null) {
+        final previousControllerIndex = (index - 1) % playerCount;
+        final controller = shortControllers[previousControllerIndex];
+        controller.setupShort(previous);
       }
     }
 
@@ -129,9 +144,9 @@ class ShortsScreen extends HookConsumerWidget {
         final isTopRoute = router.topMatch == context.routeData.route;
         if (active && isTopRoute) {
           debugPrint('SHRT: tab became active, playing');
-          final player = shortControllers[currentIndex.value % kPlayerCount].player;
+          final player = shortControllers[currentIndex.value % playerCount].player;
           if (player.value.isInitialized) {
-            shortControllers[currentIndex.value % kPlayerCount].player.play();
+            shortControllers[currentIndex.value % playerCount].player.play();
           }
           preloadNextAndPreviousFor(currentIndex.value);
           tabOpenAnimation.forward();
@@ -149,8 +164,8 @@ class ShortsScreen extends HookConsumerWidget {
 
     setupCurrentController(int index, {required bool preloadNext}) async {
       if (!isMounted()) return;
-      final previousIndex = (index - 1) % kPlayerCount;
-      final nextIndex = (index + 1) % kPlayerCount;
+      final previousIndex = (index - 1) % playerCount;
+      final nextIndex = (index + 1) % playerCount;
       shortControllers[previousIndex].player.pause();
       shortControllers[nextIndex].player.pause();
 
@@ -182,7 +197,7 @@ class ShortsScreen extends HookConsumerWidget {
         debugPrint('SHRT: setupCurrentController index: $index: index changed, aborting');
         return;
       }
-      final controllerIndex = index % kPlayerCount;
+      final controllerIndex = index % playerCount;
       debugPrint('SHRT: preparing short ${currentShort.id}');
       final controller = shortControllers[controllerIndex];
       await controller.setupShort(currentShort);
@@ -231,7 +246,7 @@ class ShortsScreen extends HookConsumerWidget {
     init() async {
       if (!isMounted()) return;
       if (shortControllersState.value.isEmpty) {
-        shortControllersState.value = List.unmodifiable(List.generate(kPlayerCount, (_) => ShortController(ref)));
+        shortControllersState.value = List.unmodifiable(List.generate(playerCount, (_) => ShortController(ref)));
       }
       currentIndex.value = 0;
       debugPrint('SHRT: fetching more: init');
@@ -261,7 +276,7 @@ class ShortsScreen extends HookConsumerWidget {
         children: [
           PreloadPageView.builder(
             scrollDirection: Axis.vertical,
-            preloadPagesCount: 1,
+            preloadPagesCount: playerCount > 1 ? 1 : 0,
             onPageChanged: (index) {
               final previous = shorts.value.elementAtOrNull(currentIndex.value)?.id;
               debugPrint('SHRT: nav $previous -> ${shorts.value.elementAtOrNull(index)?.id}');
@@ -283,7 +298,7 @@ class ShortsScreen extends HookConsumerWidget {
               return HookBuilder(builder: (context) {
                 // Say index == 2 and we want to have a bool indicating that we
 
-                final shortController = shortControllers[index % kPlayerCount];
+                final shortController = shortControllers[index % playerCount];
                 final currentlyPlayingShort = useListenableSelector(
                   shortController.player,
                   () => shortController.player.value.currentMediaItem?.metadata?.extras?[MetadataExtraConstants.shortId],

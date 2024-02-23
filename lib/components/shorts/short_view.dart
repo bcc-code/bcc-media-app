@@ -28,8 +28,6 @@ import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
-bool gshown = false;
-
 class ShortView extends HookConsumerWidget {
   const ShortView({
     super.key,
@@ -54,6 +52,7 @@ class ShortView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
 
+    final isAtStart = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.playbackPositionMs == 0);
     final isBuffering = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isBuffering);
     final isPlaying = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.playbackState == PlaybackState.playing);
     final isInitialized = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isInitialized ?? false);
@@ -192,7 +191,7 @@ class ShortView extends HookConsumerWidget {
                       ),
                     ),
                   ),
-                if (short == null || !isInitialized || videoController == null || isBuffering == true)
+                if (short == null || !isInitialized || videoController == null || (isBuffering == true && isAtStart))
                   Positioned.fill(
                     child: Stack(
                       children: [
@@ -209,6 +208,14 @@ class ShortView extends HookConsumerWidget {
                           child: Container(color: design.colors.background1),
                         ),
                         const Center(child: LoadingIndicator()),
+                      ],
+                    ),
+                  )
+                else if (isBuffering == true)
+                  const Positioned.fill(
+                    child: Stack(
+                      children: [
+                        Center(child: LoadingIndicator()),
                       ],
                     ),
                   ),
