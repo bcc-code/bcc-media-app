@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/player/player_view.dart';
 import 'package:kids/helpers/svg_icons.dart';
@@ -47,6 +46,19 @@ class EpisodeScreen extends HookConsumerWidget {
         ));
 
     final episodeFuture = useState(useMemoized(fetchEpisode));
+
+    void onDispose() {
+      if (BccmPlayerController.primary.value.currentMediaItem != null && episodeIsCurrentItem) {
+        if (BccmPlayerController.primary.isChromecast) return;
+        BccmPlayerController.primary.pause();
+      }
+    }
+
+    useEffect(() {
+      episodeFuture.value = fetchEpisode();
+      return onDispose;
+    }, [id, shuffle, playlistId, cursor]);
+
     final episodeSnapshot = useFuture(episodeFuture.value);
     final episodeData = episodeSnapshot.data?.parsedData?.episode;
     final playbackService = ref.watch(playbackServiceProvider);
@@ -84,18 +96,6 @@ class EpisodeScreen extends HookConsumerWidget {
       }
       return () {};
     }, [episodeData]);
-
-    void onDispose() {
-      if (BccmPlayerController.primary.value.currentMediaItem != null && episodeIsCurrentItem) {
-        if (BccmPlayerController.primary.isChromecast) return;
-        BccmPlayerController.primary.stop(reset: true);
-      }
-    }
-
-    useEffect(() {
-      episodeFuture.value = fetchEpisode();
-      return onDispose;
-    }, [id, shuffle, playlistId, cursor]);
 
     final viewController = useMemoized(
         () => BccmPlayerViewController(
