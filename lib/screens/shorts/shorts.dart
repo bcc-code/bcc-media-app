@@ -14,6 +14,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:preload_page_view/preload_page_view.dart';
+import 'package:universal_io/io.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 @RoutePage<void>()
@@ -34,9 +35,12 @@ class ShortsScreen extends HookConsumerWidget {
     final currentIndex = useState(0);
     final isMounted = useIsMounted();
     final isFirstOpen = useState(true);
-    final performanceClass = ref.read(performanceClassProvider);
+    final performanceClass = ref.read(androidPerformanceClassProvider);
     final playerCount = useMemoized(() {
-      return performanceClass.valueOrNull != null && performanceClass.valueOrNull! >= 12 ? 4 : 2;
+      if (Platform.isAndroid) {
+        return performanceClass.valueOrNull != null && performanceClass.valueOrNull! >= 12 ? 4 : 2;
+      }
+      return 4;
     });
 
     fetchMore() async {
