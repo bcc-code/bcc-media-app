@@ -123,9 +123,16 @@ class ButtonBase extends HookConsumerWidget {
                       ),
                     ],
             ),
-            child: _InnerShadow(
-              offset: pressed.value ? const Offset(0, 0) : Offset(0, -elevationHeight * transition),
-              color: sideColor != null ? sideColor! : Colors.black.withOpacity(0.1),
+            child: _childWrap(
+              builder: (child) {
+                return !Platform.isAndroid
+                    ? child
+                    : _InnerShadow(
+                        offset: pressed.value ? const Offset(0, 0) : Offset(0, -elevationHeight * transition),
+                        color: sideColor != null ? sideColor! : Colors.black.withOpacity(0.1),
+                        child: child,
+                      );
+              },
               child: Container(
                 decoration: BoxDecoration(
                   color: !pressed.value ? color : activeColor,
@@ -142,6 +149,13 @@ class ButtonBase extends HookConsumerWidget {
       ),
     );
   }
+}
+
+Widget _childWrap({
+  required Widget Function(Widget child) builder,
+  required Widget child,
+}) {
+  return builder(child);
 }
 
 class _InnerShadow extends SingleChildRenderObjectWidget {
