@@ -125,7 +125,7 @@ class ButtonBase extends HookConsumerWidget {
             ),
             child: _childWrap(
               builder: (child) {
-                return !Platform.isAndroid
+                return Platform.isAndroid
                     ? child
                     : _InnerShadow(
                         offset: pressed.value ? const Offset(0, 0) : Offset(0, -elevationHeight * transition),
