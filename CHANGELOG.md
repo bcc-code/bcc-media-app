@@ -1,4 +1,24 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.3.1+2300131...v) (2024-02-22)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.2+2500012-kids...v) (2024-02-26)
+
+
+
+## [5.1.2+2500012-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.3.2+2300132...v5.1.2+2500012-kids) (2024-02-26)
+
+
+### Bug Fixes
+
+* android shorts infinite load + preload less on low-end devices ([7e55625](https://github.com/bcc-code/bcc-media-app/commit/7e556253667abb35e62ebd2c0bf5b6ffa9d3d22d))
+* performance issues on android because of innershadow ([806508b](https://github.com/bcc-code/bcc-media-app/commit/806508bfacb0dc4e08c3e50c912fca36a071f35a))
+
+
+### Features
+
+* error ui for kids [#355](https://github.com/bcc-code/bcc-media-app/issues/355) + use textures for improved android performance ([13f6614](https://github.com/bcc-code/bcc-media-app/commit/13f6614fd9c570a020c9e5d9401616d490cdde4a))
+* **kids:** use application page code for kids ([5c0439f](https://github.com/bcc-code/bcc-media-app/commit/5c0439fb1b5d58ce323a11541fb67086987a534e))
+
+
+
+## [5.3.2+2300132](https://github.com/bcc-code/bcc-media-app/compare/v5.3.1+2300131...v5.3.2+2300132) (2024-02-22)
 
 
 ### Bug Fixes
