@@ -35,11 +35,14 @@ release-kids:
 # This can happen often, e.g. because you forgot to sync translations or a ci script needed to be fixed
 rerelease:
 	read -p "delete tag v${BUILD_NUMBER}${TAG_SUFFIX} (local and origin), and recreate it with current commit? (CTRL+C to abort)"
+	git diff-index --quiet HEAD -- || (echo "Working tree not clean, continue anyway? y/n" && read ans && [ $$ans == "y" ])
+	make changelog
+	git add CHANGELOG.md
+	git commit -m "chore: update changelog for v${BUILD_NUMBER}${TAG_SUFFIX}"
 	git push --delete origin v${BUILD_NUMBER}${TAG_SUFFIX}
 	git tag --delete v${BUILD_NUMBER}${TAG_SUFFIX}
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
-	make changelog
 
 rerelease-kids:
 	read -p "delete tag v${BUILD_NUMBER_KIDS}-kids (local and origin), and recreate it with current commit? (CTRL+C to abort)"
