@@ -155,12 +155,14 @@ class ShortsScreen extends HookConsumerWidget {
           preloadNextAndPreviousFor(currentIndex.value);
           tabOpenAnimation.forward();
           isFirstOpen.value = false;
+          WakelockPlus.enable();
           return;
         }
         debugPrint('SHRT: tab no longer active: pausing controllers');
         for (final c in shortControllers) {
           c.player.pause();
         }
+        WakelockPlus.disable();
       },
     );
 
