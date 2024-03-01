@@ -1,8 +1,13 @@
 # [](https://github.com/bcc-code/bcc-media-app/compare/v5.3.3+2300133...v) (2024-03-01)
 
 
+### Bug Fixes
 
-## [5.3.3+2300133](https://github.com/bcc-code/bcc-media-app/compare/v5.1.3+2500013-kids...v5.3.3+2300133) (2024-02-29)
+* android wakelock for shorts ([d4031f1](https://github.com/bcc-code/bcc-media-app/commit/d4031f108eb4783f37842e8a2d1a85b587cd7c79))
+
+
+
+## [5.3.3+2300133](https://github.com/bcc-code/bcc-media-app/compare/v5.1.3+2500013-kids...v5.3.3+2300133) (2024-03-01)
 
 
 
