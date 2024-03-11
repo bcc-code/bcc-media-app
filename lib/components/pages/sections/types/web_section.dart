@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -64,6 +65,7 @@ class _WebSectionState extends State<WebSection> {
             InAppWebView(
               initialSettings: InAppWebViewSettings(
                 useHybridComposition: false,
+                isInspectable: kDebugMode,
                 transparentBackground: true,
               ),
               onWebViewCreated: onWebViewCreated,
