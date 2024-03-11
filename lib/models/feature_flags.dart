@@ -29,7 +29,7 @@ class FeatureFlags with _$FeatureFlags {
     @Default(false) bool shortsGuide,
     @Default(false) bool linkToBccLive,
     @Default(false) bool forceBccLive,
-    @Default(false) bool removeLiveTab,
+    @Default(true) bool removeLiveTab,
     @Default(false) bool disableNpawShorts,
   }) = _FeatureFlags;
 }
