@@ -1,13 +1,30 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.3.3+2300133...v) (2024-03-01)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.3.3+2300133...v) (2024-03-11)
+
+
+### Bug Fixes
+
+* attempt at fixing mediaperformanceclass crashes ([e5efb0d](https://github.com/bcc-code/bcc-media-app/commit/e5efb0d7d329230edd52d29f7056bad4ed7520d3))
+* edge case search analytics error ([79171d4](https://github.com/bcc-code/bcc-media-app/commit/79171d45f2be3c3265d2e8f754253539cfb1378d))
+* episode progress not updating ([7fd1834](https://github.com/bcc-code/bcc-media-app/commit/7fd1834c13b2db2034c1f1d8bd705f1d22064c2d))
+* refresh appconfig when auth token changes ([a9091e3](https://github.com/bcc-code/bcc-media-app/commit/a9091e3e5e636e2c5125a58f0bf08b0bf67650c9))
+
+
+### Features
+
+* add share for android ([6bd9278](https://github.com/bcc-code/bcc-media-app/commit/6bd927859eacd4d1c064da1a3ea43539b057c22c))
+* force live app by default ([fcea12a](https://github.com/bcc-code/bcc-media-app/commit/fcea12af55d08070730101c01ac98df8313c492f))
+* live and calendar disabled by default ([4dc0b7d](https://github.com/bcc-code/bcc-media-app/commit/4dc0b7df7ae147edefd54a8907be84d31aec59d9))
+* sync translations (es, pt) ([1d1dffa](https://github.com/bcc-code/bcc-media-app/commit/1d1dffa3bb4f78fe36c39bf1f32fd5c8f05dfca1))
+* tweak search bar text style ([3deaae6](https://github.com/bcc-code/bcc-media-app/commit/3deaae6c3b09452d089df5f66341718cc1c5517c))
+
+
+
+## [5.3.3+2300133](https://github.com/bcc-code/bcc-media-app/compare/v5.1.3+2500013-kids...v5.3.3+2300133) (2024-03-01)
 
 
 ### Bug Fixes
 
 * android wakelock for shorts ([d4031f1](https://github.com/bcc-code/bcc-media-app/commit/d4031f108eb4783f37842e8a2d1a85b587cd7c79))
-
-
-
-## [5.3.3+2300133](https://github.com/bcc-code/bcc-media-app/compare/v5.1.3+2500013-kids...v5.3.3+2300133) (2024-03-01)
 
 
 
