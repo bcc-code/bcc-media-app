@@ -43,7 +43,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
       pageResult = wrapInCompleter(getHomePage());
       final value = await next;
       if (value == null) return;
-      if (!context.mounted) return;
+      if (!mounted) return;
       if (isOldAppVersion(context, value)) {
         showDialog(
           context: context,
