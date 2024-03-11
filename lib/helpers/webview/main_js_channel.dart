@@ -6,6 +6,8 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class MainJsChannel {
   final ProviderContainer ref;
@@ -22,23 +24,64 @@ class MainJsChannel {
     );
   }
 
+  get supportedFeatures => {
+        'navigate': true,
+        'push': true,
+        'exit': true,
+        'get_access_token': enableAuth,
+        'get_locale': true,
+        'share_image': true,
+        'share': true,
+        'haptic_feedback': true,
+        'launch_url': true,
+        'get_supported_features': true,
+      };
+
   Object? handleMessage(List<dynamic> arguments) {
-    if (arguments[0] == 'navigate') {
-      return _navigate(arguments);
-    } else if (arguments[0] == 'push') {
-      return _push(arguments);
-    } else if (arguments[0] == 'exit') {
-      return _exit(arguments);
-    } else if (arguments[0] == 'get_access_token' && enableAuth) {
-      return _getAccessToken(arguments);
-    } else if (arguments[0] == 'get_locale') {
-      return _getLocale(arguments);
-    } else if (arguments[0] == 'share_image') {
-      return _shareImage(arguments);
-    } else if (arguments[0] == 'haptic_feedback') {
-      return _hapticFeedback(arguments);
+    final command = arguments[0];
+    if (command is! String) {
+      throw Exception('Invalid command: $command');
+    }
+
+    switch (command) {
+      case 'navigate':
+        return _navigate(arguments);
+      case 'push':
+        return _push(arguments);
+      case 'exit':
+        return _exit(arguments);
+      case 'get_access_token':
+        return _getAccessToken(arguments);
+      case 'get_locale':
+        return _getLocale(arguments);
+      case 'share_image':
+        return _shareImage(arguments);
+      case 'share':
+        return _share(arguments);
+      case 'haptic_feedback':
+        return _hapticFeedback(arguments);
+      case 'launch_url':
+        return _launchUrl(arguments);
+      case 'get_supported_features':
+        return _getSupportedFeatures(arguments);
     }
     return null;
+  }
+
+  Map<String, bool> _getSupportedFeatures(List<dynamic> arguments) {
+    return supportedFeatures;
+  }
+
+  Future _launchUrl(List<dynamic> arguments) async {
+    if (arguments[1]! is String) {
+      throw Exception('Tried to launch with invalid argument: ${arguments[1]}');
+    }
+    final url = arguments[1] as String;
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(url);
+    } else {
+      FirebaseCrashlytics.instance.recordError(Exception('Cannot launch url: $url'), StackTrace.current);
+    }
   }
 
   Future _navigate(List<dynamic> arguments) {
@@ -101,6 +144,25 @@ class MainJsChannel {
       return true;
     }
     FirebaseCrashlytics.instance.recordError(Exception('shareImage: Invalid argument: ${arguments[1]}'), StackTrace.current);
+    return false;
+  }
+
+  Future<bool> _share(List<dynamic> arguments) async {
+    final text = arguments[1];
+    if (text is String) {
+      final context = router.navigatorKey.currentState?.context;
+      if (context == null) {
+        FirebaseCrashlytics.instance.recordError(Exception('share: context is null'), StackTrace.current);
+        return false;
+      }
+      String? subject;
+      if (arguments.length > 2 && arguments[2] is String) {
+        subject = arguments[2] as String;
+      }
+      await Share.share(text, subject: subject, sharePositionOrigin: iPadSharePositionOrigin(context));
+      return true;
+    }
+    FirebaseCrashlytics.instance.recordError(Exception('share: Invalid argument: ${arguments[1]}'), StackTrace.current);
     return false;
   }
 }

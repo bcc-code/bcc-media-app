@@ -67,6 +67,11 @@ class _WebSectionState extends State<WebSection> {
                 useHybridComposition: false,
                 isInspectable: kDebugMode,
                 transparentBackground: true,
+                verticalScrollBarEnabled: false,
+                useShouldOverrideUrlLoading: true,
+                allowsInlineMediaPlayback: true,
+                mediaPlaybackRequiresUserGesture: false,
+                iframeAllowFullscreen: true,
               ),
               onWebViewCreated: onWebViewCreated,
               onLoadStop: (controller, url) {
