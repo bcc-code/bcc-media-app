@@ -992,7 +992,7 @@ class SPt extends S {
   String get saveYourFavoriteShorts => 'Salve os seus vídeos favoritos';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Este recurso ainda não está disponível no seu dispositivo. Por favor, tente novamente mais tarde.';
 
   @override
   String get newFeature => 'Nova funcionalidade';

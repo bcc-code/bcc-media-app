@@ -992,7 +992,7 @@ class SEs extends S {
   String get saveYourFavoriteShorts => 'Guarda tus cortos favoritos';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Esta función aún no está disponible en tu dispositivo. Por favor, inténtalo de nuevo más tarde.';
 
   @override
   String get newFeature => 'Nueva caracteristica';
