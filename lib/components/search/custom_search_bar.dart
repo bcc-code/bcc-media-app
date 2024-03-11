@@ -70,6 +70,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return SizedBox(
       height: 40,
       child: Row(
@@ -79,7 +80,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
               padding: const EdgeInsets.symmetric(vertical: 3),
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(28)),
-                color: DesignSystem.of(context).colors.background2,
+                color: design.colors.background2,
               ),
               child: FocusScope(
                 child: Focus(
@@ -87,12 +88,13 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                   child: TextField(
                     controller: _fieldController,
                     focusNode: focusNode,
+                    style: design.textStyles.body2.copyWith(color: design.colors.label1),
                     decoration: InputDecoration(
                       isDense: true,
                       prefixIcon: Padding(
                         padding: const EdgeInsets.only(left: 8, top: 1, bottom: 1, right: 10),
                         child: ImageIcon(
-                          color: DesignSystem.of(context).colors.tint1,
+                          color: design.colors.tint1,
                           const AssetImage('assets/icons/Search_Default.png'),
                           size: 24,
                         ),
@@ -112,7 +114,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                       suffixIconConstraints: const BoxConstraints(minWidth: 0, maxHeight: 24),
                       border: InputBorder.none,
                       hintText: S.of(context).search,
-                      hintStyle: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label4, height: 1.45),
+                      hintStyle: design.textStyles.body2.copyWith(color: design.colors.label4),
                     ),
                   ),
                 ),
@@ -131,7 +133,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                 onPressed: _onCancelled,
                 child: Text(
                   S.of(context).cancel,
-                  style: DesignSystem.of(context).textStyles.button2,
+                  style: design.textStyles.button2,
                 ),
               ),
             )
