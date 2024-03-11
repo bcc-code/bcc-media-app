@@ -29,6 +29,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
 
   void setResultFuture() {
     final client = ref.read(bccmGraphQLProvider);
+    final analytics = ref.read(analyticsProvider);
     if (widget.searchInput != '') {
       setState(() {
         _resultFuture = debouncer.run(
@@ -50,7 +51,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
               },
             );
 
-            sendSearchPerformedAnalytics(searchResultFuture);
+            sendSearchPerformedAnalytics(analytics, searchResultFuture);
 
             return searchResultFuture;
           },
@@ -59,15 +60,15 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
     }
   }
 
-  void sendSearchPerformedAnalytics(Future<Query$Search$search?> searchResultFuture) {
+  void sendSearchPerformedAnalytics(Analytics analytics, Future<Query$Search$search?> searchResultFuture) {
     final searchStopwatch = Stopwatch()..start();
     searchResultFuture.then((searchResult) {
       searchStopwatch.stop();
-      ref.read(analyticsProvider).searchPerformed(SearchPerformedEvent(
-            searchText: widget.searchInput,
-            searchLatency: searchStopwatch.elapsedMilliseconds,
-            searchResultCount: searchResult?.hits ?? 0,
-          ));
+      analytics.searchPerformed(SearchPerformedEvent(
+        searchText: widget.searchInput,
+        searchLatency: searchStopwatch.elapsedMilliseconds,
+        searchResultCount: searchResult?.hits ?? 0,
+      ));
     });
   }
 
