@@ -29,3 +29,4 @@ jobs:
         with:
           title: BrunstadTV App
           description: BrunstadTV app documentation
+          authentication: 'portal'
