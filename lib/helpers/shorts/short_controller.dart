@@ -63,9 +63,11 @@ class ShortController {
       }
       debugPrint('SHRT: stream already initialized for ${newShort.id}');
       return currentSetupCompleter!.future;
+    } else if (newShort.id != _short?.id) {
+      debugPrint('SHRT: resetting retries for ${newShort.id}');
+      retries = 0;
     }
     debugPrint('SHRT: setting up for ${newShort.id}');
-    retries = 0;
     _short = newShort;
     currentSetupCompleter = wrapInCompleter(_setupShort(newShort));
     return currentSetupCompleter!.future;
@@ -102,7 +104,6 @@ class ShortController {
     debugPrint('${player.value.playerId} done with replaceCurrentMediaItem');
     if (_disposed) return;
     player.setVolume(muted ? 0 : 1);
-    retries = 0;
   }
 
   Fragment$BasicStream? _getBestStreamUri(List<Fragment$BasicStream> streams) {
@@ -135,7 +136,7 @@ class ShortController {
     final s = currentShort;
     if (s == null) return;
     final progressSeconds = (player.value.playbackPositionMs ?? 0) ~/ 1000;
-    if (progressSeconds != previousSeconds) {
+    if (progressSeconds != previousSeconds && progressSeconds > 0) {
       _progressDebouncer.run(() {
         ref.read(bccmGraphQLProvider).mutate$setShortProgress(
               Options$Mutation$setShortProgress(
@@ -152,7 +153,7 @@ class ShortController {
     previousSeconds = progressSeconds;
 
     if (player.value.error != null && (currentSetupCompleter == null || currentSetupCompleter!.isCompleted)) {
-      debugPrint('SHRT: player error: ${player.value.error}');
+      debugPrint('SHRT: player error: ${player.value.error}, retries: $retries');
       if (retries > 3) {
         debugPrint('SHRT: failed to play short ${s.id} after 3 retries. Player error: ${player.value.error}');
         return;
