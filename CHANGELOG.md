@@ -1,4 +1,19 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.3.3+2300133...v) (2024-03-11)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.3.4+2300134...v) (2024-03-22)
+
+
+### Bug Fixes
+
+* excessive section fetching ([6cc1096](https://github.com/bcc-code/bcc-media-app/commit/6cc1096386175220e018aaa2db43f13660c161c8))
+* **shorts:** retry logic could cause excessive retries ([141eef8](https://github.com/bcc-code/bcc-media-app/commit/141eef8597c7db6fdc77712c310bb7845bef6020))
+
+
+### Features
+
+* reduce amount of network requests on app launch ([8a30ab6](https://github.com/bcc-code/bcc-media-app/commit/8a30ab67a4f1a7b8e0a910a44480915529d4bfb9))
+
+
+
+## [5.3.4+2300134](https://github.com/bcc-code/bcc-media-app/compare/v5.3.3+2300133...v5.3.4+2300134) (2024-03-11)
 
 
 ### Bug Fixes
