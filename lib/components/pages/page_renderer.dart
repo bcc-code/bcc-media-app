@@ -68,7 +68,7 @@ class _PageRendererState extends ConsumerState<PageRenderer> {
           },
           child: ListView.builder(
             controller: scrollController,
-            cacheExtent: 3000,
+            cacheExtent: mediaQueryData.size.height * 0.3,
             physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             itemCount: sectionItems.length,
             itemBuilder: ((context, index) {

@@ -78,7 +78,7 @@ class HorizontalSlider extends HookWidget {
               child: ListView.builder(
                 controller: actualController,
                 padding: padding,
-                cacheExtent: MediaQuery.of(context).size.width * 2,
+                cacheExtent: 0,
                 addAutomaticKeepAlives: false,
                 clipBehavior: clipBehaviour,
                 physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
