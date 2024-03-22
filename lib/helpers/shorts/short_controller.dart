@@ -138,6 +138,7 @@ class ShortController {
     final progressSeconds = (player.value.playbackPositionMs ?? 0) ~/ 1000;
     if (progressSeconds != previousSeconds && progressSeconds > 0) {
       _progressDebouncer.run(() {
+        debugPrint('SHRT: setting progress: ${progressSeconds}s for ${s.id}');
         ref.read(bccmGraphQLProvider).mutate$setShortProgress(
               Options$Mutation$setShortProgress(
                 variables: Variables$Mutation$setShortProgress(

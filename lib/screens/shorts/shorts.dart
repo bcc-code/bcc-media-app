@@ -188,6 +188,7 @@ class ShortsScreen extends HookConsumerWidget {
         return;
       }
 
+      debugPrint('SHRT: setting progress: ${0}s for ${currentShort.id}');
       gqlClient
           .mutate$setShortProgress(
             Options$Mutation$setShortProgress(
