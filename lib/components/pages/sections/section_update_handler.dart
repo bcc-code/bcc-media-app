@@ -1,6 +1,7 @@
 import 'package:bccm_core/platform.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../models/events/my_list_changed.dart';
@@ -34,8 +35,9 @@ class SectionUpdateHandler extends HookConsumerWidget {
             Options$Query$GetSection(
               variables: Variables$Query$GetSection(
                 id: section.id,
-                timestamp: DateTime.now().toIso8601String(),
+                timestamp: DateTime.now().toUtc().toIso8601String(),
               ),
+              errorPolicy: ErrorPolicy.all,
             ),
           );
       final newSection = response.parsedData?.section;
