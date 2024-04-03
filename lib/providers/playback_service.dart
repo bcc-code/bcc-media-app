@@ -87,7 +87,7 @@ class PlaybackService {
     );
   }
 
-  MediaItem mapEpisode(Fragment$PlayableMediaItem episode, {String? playlistId, String? videoLanguageCode}) {
+  MediaItem mapEpisode(Fragment$PlayableMediaItem$$Episode episode, {String? playlistId, String? videoLanguageCode}) {
     final collectionId = episode.context.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id;
     final stream = episode.streams.getBestStream(videoLanguageCode: videoLanguageCode);
     final user = ref.read(authStateProvider).user;
@@ -109,7 +109,7 @@ class PlaybackService {
           'npaw.content.id': episode.id,
           'npaw.content.tvShow': episode.season?.$show.id,
           if (episode.season != null) 'npaw.content.season': episode.season!.id,
-          'npaw.content.episodeTitle': episode.title,
+          'npaw.content.episodeTitle': episode.originalTitle,
           if (ageGroup != null) 'npaw.content.customDimension2': ageGroup.name,
         },
       ),
@@ -148,7 +148,7 @@ class PlaybackService {
     );
   }
 
-  Future<Fragment$PlayableMediaItem?> getNextEpisodeForPlayer({
+  Future<Fragment$PlayableMediaItem$$Episode?> getNextEpisodeForPlayer({
     required String playerId,
   }) async {
     final episodeId = ref.read(playerProviderFor(playerId))?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
@@ -175,7 +175,7 @@ class PlaybackService {
 
   Future playEpisode({
     required String playerId,
-    required Fragment$PlayableMediaItem episode,
+    required Fragment$PlayableMediaItem$$Episode episode,
     bool? autoplay,
     int? playbackPositionMs,
     String? playlistId,
