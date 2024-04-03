@@ -19,6 +19,7 @@ class AppRouter extends $AppRouter {
     AutoRoute(
       page: AutoLoginScreenRoute.page,
       path: '/auto-login',
+      initial: true,
     ),
     AutoRoute(
       page: TvLiveScreenRoute.page,

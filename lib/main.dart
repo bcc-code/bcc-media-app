@@ -13,7 +13,6 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/firebase.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/router/router.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import 'package:universal_io/io.dart';
 
 import 'app_root.dart';
 import 'flavors.dart';
@@ -82,8 +80,7 @@ Future<void> $main({
   );
   Widget maybeWrappedApp;
   if (kDebugMode && !kIsWeb) {
-    final interactiveViewer = InteractiveViewer(maxScale: 10, child: app);
-    maybeWrappedApp = useDevicePreview ? DevicePreview(builder: (context) => interactiveViewer) : interactiveViewer;
+    maybeWrappedApp = InteractiveViewer(maxScale: 10, child: app);
   } else {
     maybeWrappedApp = app;
   }
