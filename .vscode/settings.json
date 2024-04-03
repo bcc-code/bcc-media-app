@@ -3,7 +3,7 @@
   "[dart]": {
     "editor.rulers": [150]
   },
-  "git.autoRepositoryDetection": "openEditors",
+  "git.autoRepositoryDetection": "subFolders",
   "git.detectSubmodules": true,
   "files.associations": {
     ".env.dart": "dart",

@@ -39,7 +39,7 @@ class PlaybackService {
   Future init() async {
     var npawAppName = FlavorConfig.current.applicationCode;
     if (FlavorConfig.current.flavor == Flavor.bccmedia) {
-      npawAppName = ref.read(isAndroidTvProvider) ? 'androidtv' : 'mobile';
+      npawAppName = ref.read(isAndroidTvProvider) ? 'androidtv' : 'bccm-mobile';
     }
     BccmPlaybackListener(
       ref: ref,
@@ -90,6 +90,8 @@ class PlaybackService {
   MediaItem mapEpisode(Fragment$PlayableMediaItem episode, {String? playlistId, String? videoLanguageCode}) {
     final collectionId = episode.context.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id;
     final stream = episode.streams.getBestStream(videoLanguageCode: videoLanguageCode);
+    final user = ref.read(authStateProvider).user;
+    final ageGroup = user?.let((u) => getAgeGroupFromUser(u));
     return MediaItem(
       url: stream.url,
       mimeType: 'application/x-mpegURL',
@@ -106,8 +108,9 @@ class PlaybackService {
           'context.cursor': episode.cursor,
           'npaw.content.id': episode.id,
           'npaw.content.tvShow': episode.season?.$show.id,
-          if (episode.season != null) 'npaw.content.season': '${episode.season!.id} - ${episode.season!.title}',
+          if (episode.season != null) 'npaw.content.season': episode.season!.id,
           'npaw.content.episodeTitle': episode.title,
+          if (ageGroup != null) 'npaw.content.customDimension2': ageGroup.name,
         },
       ),
     );

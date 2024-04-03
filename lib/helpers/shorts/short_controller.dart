@@ -85,6 +85,8 @@ class ShortController {
 
     final context = ref.context;
     if (!context.mounted) return;
+    final user = ref.read(authStateProvider).user;
+    final ageGroup = user?.let((u) => getAgeGroupFromUser(u));
     await player.replaceCurrentMediaItem(
       MediaItem(
         url: stream.url,
@@ -96,6 +98,7 @@ class ShortController {
             'npaw.content.id': newShort.id,
             'npaw.content.type': 'short',
             'expires_at': stream.expiresAt,
+            if (ageGroup != null) 'npaw.content.customDimension2': ageGroup.name,
           },
         ),
       ),

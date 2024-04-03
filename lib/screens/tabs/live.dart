@@ -33,6 +33,8 @@ import 'calendar.dart';
 
 final liveMetadataProvider = Provider<MediaMetadata>((ref) {
   final currentEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
+  final user = ref.watch(authStateProvider.select((value) => value.user));
+  final ageGroup = user?.let((it) => getAgeGroupFromUser(it));
   return MediaMetadata(
     artist: 'BrunstadTV',
     title: 'Live',
@@ -42,8 +44,9 @@ final liveMetadataProvider = Provider<MediaMetadata>((ref) {
         'npaw.content.id': currentEpisode.id,
         'npaw.content.tvShow': currentEpisode.season?.$show.id,
         'npaw.content.season': currentEpisode.season?.title,
-        'npaw.content.episodeTitle': currentEpisode.title
+        'npaw.content.episodeTitle': currentEpisode.title,
       },
+      if (ageGroup != null) 'npaw.content.customDimension2': ageGroup.name,
     },
     artworkUri: 'https://static.bcc.media/images/live-placeholder.jpg',
   );
@@ -104,9 +107,15 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAwareStat
       });
 
       await BccmPlayerInterface.instance.replaceCurrentMediaItem(
-          player.playerId,
-          autoplay: true,
-          MediaItem(url: liveUrl.streamUrl, mimeType: 'application/x-mpegURL', isLive: true, metadata: ref.read(liveMetadataProvider)));
+        player.playerId,
+        autoplay: true,
+        MediaItem(
+          url: liveUrl.streamUrl,
+          mimeType: 'application/x-mpegURL',
+          isLive: true,
+          metadata: ref.read(liveMetadataProvider),
+        ),
+      );
 
       if (!mounted) return;
 
