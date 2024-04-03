@@ -109,7 +109,7 @@ class PlaybackService {
           'npaw.content.id': episode.id,
           'npaw.content.tvShow': episode.season?.$show.id,
           if (episode.season != null) 'npaw.content.season': episode.season!.id,
-          'npaw.content.episodeTitle': episode.originalTitle,
+          'npaw.content.title': episode.originalTitle,
           if (ageGroup != null) 'npaw.content.customDimension2': ageGroup.name,
         },
       ),
