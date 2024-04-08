@@ -205,6 +205,7 @@ class AppRouter extends $AppRouter {
     CustomRoute(
       page: TabsRootScreenRoute.page,
       path: '/',
+      initial: false,
       children: [
         MaterialRoute(
           page: LiveScreenRoute.page,
