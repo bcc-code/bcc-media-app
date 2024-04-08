@@ -1,6 +1,0 @@
-flutter_launcher_icons:
-  android: true
-  ios: true
-  remove_alpha_ios: true
-  image_path: "assets/flavors/kids_prod/logo_icon.png"
-  image_path_ios: "assets/flavors/kids_prod/logo_icon_square.png"

@@ -30,7 +30,7 @@ import 'package:kids/router/router.dart';
 
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/env/kids_prod/firebase_options.dart' as kids_prod_firebase;
+import './firebase_options.dart';
 import 'package:universal_io/io.dart';
 
 const useDevicePreview = false;
@@ -40,7 +40,7 @@ Future<void> main() async {
   FlavorConfig.register(
     FlavorConfig(
       flavor: Flavor.kids,
-      firebaseOptions: kids_prod_firebase.DefaultFirebaseOptions.currentPlatform,
+      firebaseOptions: DefaultFirebaseOptions.currentPlatform,
       enableNotifications: false,
       applicationCode: 'kids',
       strictAnonymousAnalytics: true,

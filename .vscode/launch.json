@@ -66,39 +66,6 @@
       "cwd": "${workspaceFolder}",
       "program": "lib/main_prod.dart"
     },
-    /// Biblekids
-    {
-      "name": "old kids_prod (debug)",
-      "request": "launch",
-      "type": "dart",
-      "cwd": "${workspaceFolder}",
-      "args": [
-        "--flavor",
-        "kids_prod",
-        "--web-port",
-        "3001",
-        "--web-renderer",
-        "canvaskit"
-      ], // Remember to change the "program" property too
-      "program": "lib/main_kids_prod.dart"
-    },
-    /// Biblekids release
-    {
-      "name": "old kids_prod (release)",
-      "request": "launch",
-      "type": "dart",
-      "cwd": "${workspaceFolder}",
-      "flutterMode": "release",
-      "args": [
-        "--flavor",
-        "kids_prod",
-        "--web-port",
-        "3001",
-        "--web-renderer",
-        "canvaskit"
-      ], // Remember to change the "program" property too
-      "program": "lib/main_kids_prod.dart"
-    },
     {
       "name": "Debug build_runner",
       "cwd": "${workspaceFolder}/kids",

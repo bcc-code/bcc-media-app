@@ -181,7 +181,6 @@ flutter:
   assets:
     - assets/images/
     - assets/flavors/prod/
-    - assets/flavors/kids_prod/
     - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
