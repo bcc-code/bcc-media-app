@@ -1,3 +1,4 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,10 @@ GuideController createTabFeaturePopover(
   VoidCallback? onSkip,
   VoidCallback? onContinue,
 }) {
-  final RenderBox rb = iconKey.currentContext!.findRenderObject() as RenderBox;
+  final rb = iconKey.currentContext?.findRenderObject().asOrNull<RenderBox>();
+  if (rb == null) {
+    throw Exception('The widget referenced by `iconKey` is not mounted. iconKey: $iconKey');
+  }
   final size = rb.size;
 
   final position = rb.localToGlobal(Offset.zero);
