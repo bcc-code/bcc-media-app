@@ -335,7 +335,7 @@ SPEC CHECKSUMS:
   google-cast-sdk-dynamic-xcframework-no-bluetooth: 1fa9e267df3fd6f8a1c6e3345142ca5286297968
   GoogleDataTransport: 57c22343ab29bc686febbf7cbb13bad167c2d8fe
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
-  integration_test: 13825b8a9334a850581300559b8839134b124670
+  integration_test: ce0a3ffa1de96d1a89ca0ac26fca7ea18a749ef4
   MetricsReporter: 759631361ffd2b8f0d375b1225c8a631311f6da2
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   open_mail_app: 794172f6a22cd16319d3ddaf45e945b2f74952b0
