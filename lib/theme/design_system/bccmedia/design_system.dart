@@ -35,7 +35,7 @@ class BccMediaDesignSystem extends DesignSystemData {
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,
           seedColor: colors.tint1,
-          background: colors.background2,
+          surface: colors.background2,
         ),
         fontFamily: 'Barlow',
         canvasColor: colors.background1,
