@@ -96,6 +96,7 @@ class ShortController {
           extras: {
             MetadataExtraConstants.shortId: newShort.id,
             'npaw.content.id': newShort.id,
+            'npaw.content.title': newShort.title.isNotEmpty ? newShort.title : 'Short',
             'npaw.content.type': 'short',
             'expires_at': stream.expiresAt,
             if (ageGroup != null) 'npaw.content.customDimension2': ageGroup.name,
