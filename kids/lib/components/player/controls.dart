@@ -29,6 +29,7 @@ class PlayerControls extends HookWidget {
         animationController.reverse(from: 1);
         debugPrint('running reverse');
       }
+      return null;
     }, [show]);
     final viewController = BccmPlayerViewController.of(context);
     final design = DesignSystem.of(context);

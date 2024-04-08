@@ -147,7 +147,7 @@ class PlayerView extends HookConsumerWidget {
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         // Calculate the height of the middle box based on the aspect ratio
-        final sideOpenTargetWidth = 152.0;
+        const sideOpenTargetWidth = 152.0;
         final bottomOpenMinimumHeight = bp.smallerThan(TABLET) ? 170.0 : 300.0;
         final topOpenTargetHeight = bp.smallerThan(TABLET) ? 12.0 : 40.0;
 

@@ -31,15 +31,6 @@ class StudyScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Future getTitle() async {
-      final value = await ref
-          .read(bccmGraphQLProvider)
-          .query$GetLessonTitle(Options$Query$GetLessonTitle(variables: Variables$Query$GetLessonTitle(id: lessonId)));
-      return value.parsedData?.studyLesson.title;
-    }
-
-    final titleFuture = useState(useMemoized(getTitle));
-    final titleSnapshot = useFuture(titleFuture.value);
     final webViewController = useState<InAppWebViewController?>(null);
     final firstLoadDone = useState(false);
     final initialUrl = useState('${getWebUrl(ref)}/embed/episode/$episodeId/lesson/$lessonId');

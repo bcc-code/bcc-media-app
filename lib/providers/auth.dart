@@ -5,10 +5,8 @@ import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/models/feature_flags.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rudder_sdk_flutter/RudderController.dart';
 
 final authFeatureFlagListener = Provider<void>((ref) {
   ref.listen<FeatureFlags>(featureFlagsProvider, (previous, next) {

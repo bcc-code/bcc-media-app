@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../helpers/svg_icons.dart';
-import 'package:bccm_core/design_system.dart';
 
 enum LessonProgressTreeVariant { border2, border3 }
 
@@ -39,7 +38,6 @@ class LessonProgressTree extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final design = DesignSystem.of(context);
     return Stack(
       alignment: Alignment.center,
       children: [

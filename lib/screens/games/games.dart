@@ -17,7 +17,7 @@ class GamesScreen extends HookConsumerWidget {
     Future<Query$Page$page> getGamesPage() async {
       final api = ref.read(apiProvider);
       final appConfig = await ref.read(appConfigFutureProvider);
-      final code = appConfig?.application.gamesPage?.code;
+      final code = appConfig.application.gamesPage?.code;
       if (code == null) {
         throw Exception('Application config error');
       }

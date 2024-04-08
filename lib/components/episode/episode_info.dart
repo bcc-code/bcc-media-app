@@ -5,7 +5,6 @@ import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
-import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -27,8 +26,6 @@ class EpisodeInfo extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const showEpisodeNumber = false;
-    final episodeNumberFormatted = '${S.of(context).seasonLetter}${episode.season?.number}:${S.of(context).episodeLetter}${episode.number}';
     final design = DesignSystem.of(context);
 
     final inMyList = useState(episode.inMyList);
@@ -93,10 +90,6 @@ class EpisodeInfo extends HookConsumerWidget {
                             ),
                           ),
                         ),
-                      if (showEpisodeNumber)
-                        Padding(
-                            padding: const EdgeInsets.only(left: 4),
-                            child: Text(episodeNumberFormatted, style: design.textStyles.caption1.copyWith(color: design.colors.label4)))
                     ],
                   ),
                   const SizedBox(height: 16),

@@ -7,21 +7,16 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/player/live_mini_player.dart';
-import 'package:brunstadtv_app/components/thumbnails/misc/bordered_image_container.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:universal_io/io.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 import '../../components/player/custom_cast_player.dart';
 import '../../helpers/insets.dart';
 import '../../providers/todays_calendar_entries.dart';
@@ -202,9 +197,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAwareStat
               Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: Theme(
-                  data: Theme.of(context).copyWith(
-                    useMaterial3: false,
-                  ),
+                  data: Theme.of(context).copyWith(),
                   child: Switch(
                     inactiveTrackColor: DesignSystem.of(context).colors.tint2,
                     inactiveThumbColor: DesignSystem.of(context).colors.label1,
@@ -395,7 +388,7 @@ class _ForceBccLive extends HookConsumerWidget {
 
     final animControllers = useState<List<AnimationController>>([]);
 
-    final isActive = useIsTabActive(onChange: (isActive) {
+    useIsTabActive(onChange: (isActive) {
       if (isActive) {
         for (final element in animControllers.value) {
           element.forward(from: 0);

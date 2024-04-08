@@ -3,8 +3,6 @@ import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:universal_io/io.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class AppUpdateDialog extends ConsumerWidget {
   const AppUpdateDialog({super.key});

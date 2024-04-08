@@ -100,6 +100,7 @@ class ProfileScreen extends HookConsumerWidget {
           }
         });
       }
+      return null;
     }, [scroll]);
 
     return Scaffold(
@@ -352,6 +353,7 @@ class _EpisodeFavorites extends HookConsumerWidget {
     final myListEntries = useState(items);
     useEffect(() {
       myListEntries.value = items;
+      return null;
     }, [items]);
 
     useEffect(() {

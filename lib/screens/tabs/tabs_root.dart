@@ -126,9 +126,9 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     appConfig.then((value) {
       String? pageCode;
       if (tabId == TabId.home) {
-        pageCode = value?.application.page?.code;
+        pageCode = value.application.page?.code;
       } else if (tabId == TabId.search) {
-        pageCode = value?.application.searchPage?.code;
+        pageCode = value.application.searchPage?.code;
       }
       ref.read(analyticsProvider).screen(tabInfo.analyticsName, properties: {
         if (pageCode != null) 'pageCode': pageCode,

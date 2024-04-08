@@ -84,6 +84,7 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
         final track = qualityTracks[quality]!;
         selectedVideoQuality.value = (quality: quality, track: track);
       }
+      return null;
     }, [mediaInfo]);
 
     double? estimatedFileSizeKb = selectedVideoQuality.value?.track.bitrate != null

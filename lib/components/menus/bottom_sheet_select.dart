@@ -87,7 +87,7 @@ class _BottomSheetSelectState<T> extends State<BottomSheetSelect<T>> {
                     if (widget.description != null) SliverToBoxAdapter(child: widget.description!),
                     SliverToBoxAdapter(
                       child: OptionList<T>(
-                        optionData: widget.items as List<Option<T>>,
+                        optionData: widget.items,
                         currentSelection: localSelectedId,
                         showSelection: widget.showSelection,
                         onSelectionChange: (val) {
