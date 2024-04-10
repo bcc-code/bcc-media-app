@@ -1,4 +1,16 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.3.4+2300134...v) (2024-03-22)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.3.5+2300135...v) (2024-04-10)
+
+
+### Features
+
+* default title for short in npaw instead of empty string ([6017614](https://github.com/bcc-code/bcc-media-app/commit/6017614fa4c9c78e1451c87a78cf4055715448c7))
+* npaw cleanups, ios and android ([cd9ea61](https://github.com/bcc-code/bcc-media-app/commit/cd9ea6108120fb57499c0e4569bf466973998b84))
+* originalTitle for mediaitems ([05b1a74](https://github.com/bcc-code/bcc-media-app/commit/05b1a74cdcc27110ad552e3a4273aa4bccbcced6))
+* remove episodeTitle, and use originalTitle for contentTitle ([0a0760b](https://github.com/bcc-code/bcc-media-app/commit/0a0760b2fd06bc5bd6a0d6a363eb6397dcc5c21d))
+
+
+
+## [5.3.5+2300135](https://github.com/bcc-code/bcc-media-app/compare/v5.3.4+2300134...v5.3.5+2300135) (2024-03-22)
 
 
 ### Bug Fixes
