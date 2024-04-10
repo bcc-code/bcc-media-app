@@ -35,4 +35,4 @@ test:
 	maestro test --format junit --output reports/$(current_time).xml -e PLATFORM=${PLATFORM} flows/${flow}
 
 debug:
-	maestro test -c -e PLATFORM=${platform} flows/${flow}
+	maestro test -c -e PLATFORM=${platform} ${flow}

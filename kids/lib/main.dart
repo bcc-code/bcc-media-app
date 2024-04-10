@@ -12,7 +12,6 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/firebase.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/theme/bccm_gradients.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +32,6 @@ import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import './firebase_options.dart';
 import 'package:universal_io/io.dart';
 
-const useDevicePreview = false;
 bool _isAndroidTv = false;
 
 Future<void> main() async {
@@ -115,20 +113,13 @@ Future<void> $main({
     container: providerContainer,
     child: AppRoot(appRouter: appRouter, navigatorKey: globalNavigatorKey),
   );
-  Widget maybeWrappedApp;
-  if (kDebugMode && !kIsWeb) {
-    final interactiveViewer = InteractiveViewer(maxScale: 10, child: app);
-    maybeWrappedApp = useDevicePreview ? DevicePreview(builder: (context) => interactiveViewer) : interactiveViewer;
-  } else {
-    maybeWrappedApp = app;
-  }
 
   if (kDebugMode) {
     Animate.restartOnHotReload = true;
     //debugRepaintRainbowEnabled = true;
   }
 
-  runApp(maybeWrappedApp);
+  runApp(kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app);
 }
 
 Future setDefaults() async {
