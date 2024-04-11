@@ -1,4 +1,10 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.4+2500014-kids...v) (2024-04-10)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.4+2500014-kids...v) (2024-04-11)
+
+
+### Bug Fixes
+
+* kids build ([16f3442](https://github.com/bcc-code/bcc-media-app/commit/16f344235f70f1ead3b9bf3646c4d38afd78937c))
+* startup crash on 17.4 ([5b39406](https://github.com/bcc-code/bcc-media-app/commit/5b39406cf19a2b4816fc77b495577c3f4ebb5d57))
 
 
 
