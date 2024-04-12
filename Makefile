@@ -1,4 +1,4 @@
-.PHONY: update-schema git-tag-recreate
+.PHONY: update-schema git-tag-recreate changelog changelog-commit release release-kids rerelease rerelease-kids
 
 BUILD_NUMBER=$(shell grep -i -e "version: " pubspec.yaml | cut -d " " -f 2)
 BUILD_NUMBER_KIDS=$(shell grep -i -e "version: " kids/pubspec.yaml | cut -d " " -f 2)
@@ -17,37 +17,36 @@ web-beta-upload:
 changelog:
 	standard-changelog -f -p conventionalcommits
 
+changelog-commit:
+	git diff-index --quiet HEAD -- || (echo "Working tree not clean, not creating changelog, continue anyway? y/n" && read ans && [ $$ans == "y" ])
+	git add CHANGELOG.md
+	git commit -m "chore: update changelog" || true
+
 # Release
 release:
-	git diff-index --quiet HEAD -- || (echo "Working tree not clean, not creating changelog, continue anyway? y/n" && read ans && [ $$ans == "y" ])
-	make changelog
-	git add CHANGELOG.md
-	git commit -m "chore: update changelog for v${BUILD_NUMBER}${TAG_SUFFIX}" || true
+	make changelog-commit
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
 
 release-kids:
+	make changelog-commit
 	git tag v${BUILD_NUMBER_KIDS}-kids
 	git push --tags
-	make changelog
 
 # Rerelease (recreate the release tag with a different commit)
-# This can happen often, e.g. because you forgot to sync translations or a ci script needed to be fixed
+# e.g. because you forgot to sync translations or a ci script needed to be fixed
 rerelease:
+	make changelog-commit
 	read -p "delete tag v${BUILD_NUMBER}${TAG_SUFFIX} (local and origin), and recreate it with current commit? (CTRL+C to abort)"
-	git diff-index --quiet HEAD -- || (echo "Working tree not clean, continue anyway? y/n" && read ans && [ $$ans == "y" ])
-	make changelog
-	git add CHANGELOG.md
-	git commit -m "chore: update changelog for v${BUILD_NUMBER}${TAG_SUFFIX}" || true
 	git push --delete origin v${BUILD_NUMBER}${TAG_SUFFIX}
 	git tag --delete v${BUILD_NUMBER}${TAG_SUFFIX}
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
 
 rerelease-kids:
+	make changelog-commit
 	read -p "delete tag v${BUILD_NUMBER_KIDS}-kids (local and origin), and recreate it with current commit? (CTRL+C to abort)"
 	git push --delete origin v${BUILD_NUMBER_KIDS}-kids
 	git tag --delete v${BUILD_NUMBER_KIDS}-kids
 	git tag v${BUILD_NUMBER_KIDS}-kids
 	git push --tags
-	make changelog
