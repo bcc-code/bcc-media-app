@@ -34,19 +34,19 @@ dependencies:
   flutter_riverpod: ^2.1.1
   freezed_annotation: ^2.1.0
   collection: ^1.16.0
-  package_info_plus: ^5.0.1
+  package_info_plus: ^7.0.0
   table_calendar: ^3.0.7
   graphql: ^5.2.0-beta.4
   graphql_flutter: ^5.2.0-beta.5
   shared_preferences: ^2.0.15
   hive: ^2.2.3
-  firebase_messaging: ^14.0.3
-  firebase_core: ^2.1.1
+  firebase_core: ^2.29.0
+  firebase_crashlytics: ^3.5.1
+  firebase_messaging: ^14.8.1
   flutter_secure_storage: ^9.0.0
   visibility_detector: ^0.4.0+2
   pull_to_refresh: ^2.0.0
   device_info_plus: ^9.0.3
-  firebase_crashlytics: ^3.0.4
   flutter_svg_provider: ^1.0.5
   on_screen_ruler: ^0.0.1
   url_launcher: ^6.1.6
