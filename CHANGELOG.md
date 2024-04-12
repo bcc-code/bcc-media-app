@@ -1,4 +1,17 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.4+2500014-kids...v) (2024-04-11)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.5+2500015-kids...v) (2024-04-12)
+
+
+
+## [5.1.5+2500015-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.3.8+2300138...v5.1.5+2500015-kids) (2024-04-12)
+
+
+### Bug Fixes
+
+* **kids:** update firebase to fix ios 17.4 crash ([2eb1f59](https://github.com/bcc-code/bcc-media-app/commit/2eb1f593ffaeb258add05d464ae373549e545137))
+
+
+
+## [5.3.8+2300138](https://github.com/bcc-code/bcc-media-app/compare/v5.1.4+2500014-kids...v5.3.8+2300138) (2024-04-11)
 
 
 ### Bug Fixes
