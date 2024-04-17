@@ -53,6 +53,7 @@ class ShortScrollView extends HookConsumerWidget {
             limit: 10,
             initialShortId: initialShortId,
           ),
+          errorPolicy: initialShortId != null ? ErrorPolicy.none : ErrorPolicy.all,
         ),
       );
       if (!isMounted()) return result;
