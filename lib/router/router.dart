@@ -247,7 +247,6 @@ class AppRouter extends $AppRouter {
               maintainState: true,
               meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
             ),
-            _shortScreenRoute,
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
           ],
@@ -266,7 +265,7 @@ class AppRouter extends $AppRouter {
             ),
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
-            _shortScreenRoute,
+            _shortScreenRoute('shorts/'),
           ],
         ),
         CustomRoute(
@@ -298,6 +297,7 @@ class AppRouter extends $AppRouter {
               maintainState: true,
               meta: const {RouteMetaConstants.navTabRoute: true},
             ),
+            _shortScreenRoute('shorts/'),
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
             _pageScreenRoute,
@@ -320,13 +320,13 @@ final _episodeScreenRoute = CupertinoRoute(
   meta: const {RouteMetaConstants.analyticsName: 'episode'},
 );
 
-final _shortScreenRoute = CupertinoRoute(
-  page: ShortScreenRoute.page,
-  path: ':id',
-  usesPathAsKey: true,
-  maintainState: true,
-  meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
-);
+_shortScreenRoute(String pathPrefix) => CupertinoRoute(
+      page: ShortScreenRoute.page,
+      path: '$pathPrefix:id',
+      usesPathAsKey: true,
+      maintainState: true,
+      meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
+    );
 
 final _pageScreenRoute = CupertinoRoute(
   page: PageScreenRoute.page,

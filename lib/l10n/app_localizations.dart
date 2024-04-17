@@ -1425,6 +1425,12 @@ abstract class S {
   /// **'You do not have access to this content.'**
   String get dontHaveAccess;
 
+  /// Error message when the requested content is not found.
+  ///
+  /// In en, this message translates to:
+  /// **'The content you are looking for doesn\'t seem to exist.'**
+  String get notFound;
+
   /// Error message when you open a link to content you dont have access to, and you are not logged in.
   ///
   /// In en, this message translates to:

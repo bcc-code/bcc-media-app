@@ -678,6 +678,9 @@ class SPt extends S {
   String get dontHaveAccess => 'Você não tem acesso a esse conteúdo.';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Você precisa estar logado para assistir a este conteúdo';
 
   @override

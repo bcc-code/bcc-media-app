@@ -77,7 +77,7 @@ class CustomBackButton extends StatelessWidget {
                       pageTitle,
                       semanticsLabel: S.of(context).back,
                       overflow: TextOverflow.ellipsis,
-                      style: DesignSystem.of(context).textStyles.button2.copyWith(height: 1),
+                      style: DesignSystem.of(context).textStyles.button2.copyWith(height: 1, color: color),
                     ),
                   ),
                 ),

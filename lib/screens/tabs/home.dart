@@ -56,6 +56,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
 
   @override
   void scrollToTop() {
+    if (!pageScrollController.hasClients) return;
     pageScrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
   }
 
@@ -119,64 +120,66 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
     final design = DesignSystem.of(context);
 
     final isOffline = ref.watch(isOfflineProvider);
-    return isOffline
-        ? const OfflineHome()
-        : Scaffold(
-            extendBodyBehindAppBar: true,
-            appBar: kIsWeb
-                ? null
-                : AppBar(
-                    toolbarHeight: 44,
-                    shadowColor: Colors.black,
-                    backgroundColor: AppTheme.of(context).appBarTransparent ? Colors.transparent : design.colors.background1,
-                    elevation: 0,
-                    centerTitle: true,
-                    title: Image(
-                      image: FlavorConfig.current.bccmImages!.logo,
-                      height: FlavorConfig.current.bccmImages!.logoHeight,
-                      gaplessPlayback: true,
+    if (isOffline) {
+      return const OfflineHome();
+    } else {
+      return Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: kIsWeb
+            ? null
+            : AppBar(
+                toolbarHeight: 44,
+                shadowColor: Colors.black,
+                backgroundColor: AppTheme.of(context).appBarTransparent ? Colors.transparent : design.colors.background1,
+                elevation: 0,
+                centerTitle: true,
+                title: Image(
+                  image: FlavorConfig.current.bccmImages!.logo,
+                  height: FlavorConfig.current.bccmImages!.logoHeight,
+                  gaplessPlayback: true,
+                ),
+                leadingWidth: kIsWeb ? 300 : 100,
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints.loose(const Size(24, 24)),
+                      child: CastButton(color: DesignSystem.of(context).colors.tint1),
                     ),
-                    leadingWidth: kIsWeb ? 300 : 100,
-                    actions: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 16.0),
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints.loose(const Size(24, 24)),
-                          child: CastButton(color: DesignSystem.of(context).colors.tint1),
-                        ),
-                      ),
-                    ],
-                    flexibleSpace: !AppTheme.of(context).appBarTransparent
-                        ? null
-                        : ClipRect(
-                            clipBehavior: Clip.hardEdge,
-                            child: BackdropFilter(
-                              filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [DesignSystem.of(context).colors.background1, Colors.transparent],
-                                  ),
-                                ),
-                                height: 1000,
+                  ),
+                ],
+                flexibleSpace: !AppTheme.of(context).appBarTransparent
+                    ? null
+                    : ClipRect(
+                        clipBehavior: Clip.hardEdge,
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [DesignSystem.of(context).colors.background1, Colors.transparent],
                               ),
                             ),
+                            height: 1000,
                           ),
-                  ),
-            body: SafeArea(
-              top: false,
-              child: PageRenderer(
-                pageFuture: pageResult.future,
-                onRefresh: ({bool? retry}) async {
-                  setState(() {
-                    pageResult = wrapInCompleter(retry == true ? getHomeAndAppConfig() : getHomePage());
-                  });
-                },
-                scrollController: pageScrollController,
+                        ),
+                      ),
               ),
-            ),
-          );
+        body: SafeArea(
+          top: false,
+          child: PageRenderer(
+            pageFuture: pageResult.future,
+            onRefresh: ({bool? retry}) async {
+              setState(() {
+                pageResult = wrapInCompleter(retry == true ? getHomeAndAppConfig() : getHomePage());
+              });
+            },
+            scrollController: pageScrollController,
+          ),
+        ),
+      );
+    }
   }
 }

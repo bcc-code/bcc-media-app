@@ -7,10 +7,8 @@ import 'package:bccm_core/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
 
-class ErrorNoAccess extends ConsumerWidget {
-  const ErrorNoAccess({
-    Key? key,
-  }) : super(key: key);
+class ErrorNotFound extends ConsumerWidget {
+  const ErrorNotFound({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Center(
@@ -32,7 +30,7 @@ class ErrorNoAccess extends ConsumerWidget {
                     Container(
                       margin: const EdgeInsets.only(bottom: 16),
                       child: Text(
-                        ref.read(authStateProvider).guestMode ? S.of(context).mustBeLoggedIn : S.of(context).dontHaveAccess,
+                        S.of(context).notFound,
                         textAlign: TextAlign.center,
                         style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.onTint),
                       ),

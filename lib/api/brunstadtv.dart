@@ -27,6 +27,10 @@ class ApiErrorCodes {
   static bool isNotFound(OperationException? exception) {
     return exception?.graphqlErrors.any((e) => e.extensions?['code'] == notFound) ?? false;
   }
+
+  static bool isInaccessible(OperationException? exception) {
+    return isNotFound(exception) || isNoAccess(exception) || isNotPublished(exception);
+  }
 }
 
 class Api {

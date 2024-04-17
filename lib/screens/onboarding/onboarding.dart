@@ -124,7 +124,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                           Padding(padding: const EdgeInsets.all(16), child: Image(image: FlavorConfig.current.bccmImages!.onboarding))
                         else
                           Container(
-                            height: 220 * (MediaQuery.of(context).size.height / 600),
+                            height: min(220 * (MediaQuery.of(context).size.height / 600), MediaQuery.of(context).size.height - 500),
                             margin: const EdgeInsets.only(top: 40, bottom: 30),
                             child: Transform.scale(
                               scale: 1.3 * (MediaQuery.of(context).size.height / 800),

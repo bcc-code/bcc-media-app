@@ -678,6 +678,9 @@ class SDe extends S {
   String get dontHaveAccess => 'Du hast keinen Zugang zu diesem Inhalt.';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Du musst angemeldet sein, um diesen Inhalt zu schauen';
 
   @override

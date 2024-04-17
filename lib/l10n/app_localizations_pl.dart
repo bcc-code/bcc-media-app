@@ -678,6 +678,9 @@ class SPl extends S {
   String get dontHaveAccess => 'Nie masz dostępu do tej zawartości.';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Musisz być zalogowany, by obejrzeć tę zawartość';
 
   @override

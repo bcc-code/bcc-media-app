@@ -1,13 +1,11 @@
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:html/dom.dart' as html_dom;
 import 'package:html/parser.dart' as html_parser;
 import 'package:intl/intl.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-
 import '../../../helpers/analytics.dart';
 import '../../../helpers/widget_keys.dart';
 import '../../../l10n/app_localizations.dart';
@@ -149,20 +147,6 @@ class _PrivacyPolicyAgreeText extends StatelessWidget {
     anchors[0].attributes['href'] = 'https://bcc.media/${Intl.defaultLocale}/privacy';
     anchors[1].attributes['href'] = 'https://bcc.media/${Intl.defaultLocale}/terms-of-use';
     final design = DesignSystem.of(context);
-    return Html(
-      data: '<p>${document.outerHtml}</p>',
-      onAnchorTap: (url, context, attributes, element) => launchUrlString(url!, mode: LaunchMode.externalApplication),
-      shrinkWrap: true,
-      style: {
-        'p': Style(
-          fontSize: FontSize(design.textStyles.caption1.fontSize!),
-          color: design.colors.label4,
-          margin: Margins.only(bottom: 12),
-        ),
-        'a': Style(
-          color: design.colors.tint1,
-        ),
-      },
-    );
+    return Container();
   }
 }

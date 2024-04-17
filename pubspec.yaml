@@ -98,7 +98,6 @@ dependencies:
   open_mail_app: ^0.4.5
   unleash_proxy_client_flutter: ^1.4.0
   html: ^0.15.2
-  flutter_html: 3.0.0-alpha.6
   cloud_firestore: ^4.5.0
   riverpod_annotation: ^2.0.4
   image: ^4.0.15
@@ -128,7 +127,11 @@ dependencies:
     path: submodules/bccm_flutter/bccm_core
   marquee: ^2.2.3
   auto_size_text: ^3.0.0
+  flutter_widget_from_html_core: ^0.14.11
   #smooth: any
+
+dependency_overrides:
+  intl: ^0.18.0
 
 dev_dependencies:
   integration_test:

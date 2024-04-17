@@ -569,14 +569,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.18.6"
-  flutter_html:
-    dependency: "direct main"
-    description:
-      name: flutter_html
-      sha256: "342c7908f0a67bcec62b6e0f7cf23e23bafe7f64693665dd35be98d5e783bdfd"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0-alpha.6"
   flutter_image:
     dependency: "direct main"
     description:
@@ -777,6 +769,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_widget_from_html_core:
+    dependency: "direct main"
+    description:
+      name: flutter_widget_from_html_core
+      sha256: "028f4989b9ff4907466af233d50146d807772600d98a3e895662fbdb09c39225"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.14.11"
   focus_debugger:
     dependency: "direct main"
     description:
@@ -1195,14 +1195,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.8.2+1"
-  numerus:
-    dependency: transitive
-    description:
-      name: numerus
-      sha256: ada1b55e4a505b8e4578218e57be1ce4b7968bb0e51d824082ac0c74ef18a10d
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.2"
   octo_image:
     dependency: transitive
     description:
@@ -1956,10 +1948,10 @@ packages:
     dependency: transitive
     description:
       name: vm_service
-      sha256: a2662fb1f114f4296cf3f5a50786a2d888268d7776cf681aa17d660ffa23b246
+      sha256: a75f83f14ad81d5fe4b3319710b90dec37da0e22612326b696c9e1b8f34bbf48
       url: "https://pub.dev"
     source: hosted
-    version: "14.0.0"
+    version: "14.2.0"
   wakelock_plus:
     dependency: "direct main"
     description:

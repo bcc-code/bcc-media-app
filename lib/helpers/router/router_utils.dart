@@ -83,7 +83,7 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
 
   final shortItem = item.asOrNull<Fragment$ItemSectionItem$item$$Short>();
   if (shortItem != null) {
-    return router.navigate(ShortsWrapperScreenRoute(
+    return router.navigate(HomeWrapperScreenRoute(
       children: [ShortScreenRoute(id: shortItem.id)],
     ));
   }

@@ -678,6 +678,9 @@ class STr extends S {
   String get dontHaveAccess => 'You do not have access to this content.';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Bu içeriği izlemek için giriş yapmalısınız';
 
   @override

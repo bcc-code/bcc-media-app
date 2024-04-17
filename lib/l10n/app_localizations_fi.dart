@@ -678,6 +678,9 @@ class SFi extends S {
   String get dontHaveAccess => 'Sinulla ei ole oikeutta tähän sisältöön.';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Tämän katsominen vaatii kirjautumista';
 
   @override

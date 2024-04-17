@@ -678,6 +678,9 @@ class SDa extends S {
   String get dontHaveAccess => 'Du har ikke adgang til dette indhold';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Du må være logget ind for at se dette indhold';
 
   @override

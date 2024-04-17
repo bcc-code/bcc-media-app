@@ -678,6 +678,9 @@ class SRu extends S {
   String get dontHaveAccess => 'У вас нет доступа к этому контенту.';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Вы должны войти в систему, чтобы смотреть этот контент';
 
   @override

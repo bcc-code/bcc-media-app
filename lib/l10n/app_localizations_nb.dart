@@ -678,6 +678,9 @@ class SNb extends S {
   String get dontHaveAccess => 'Du har ikke tilgang til dette innholdet.';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Du må være logget inn for å se dette innholdet';
 
   @override

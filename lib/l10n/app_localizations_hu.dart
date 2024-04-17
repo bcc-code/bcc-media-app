@@ -678,6 +678,9 @@ class SHu extends S {
   String get dontHaveAccess => 'Ehhez a tartalomhoz nincs hozzáférésed.';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Be kell jelentkezned, hogy megnézhesd ezt a tartalmat';
 
   @override

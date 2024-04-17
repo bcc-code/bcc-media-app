@@ -678,6 +678,9 @@ class SNl extends S {
   String get dontHaveAccess => 'Je hebt geen toegang tot deze content.';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Je moet ingelogd zijn om dit te kunnen bekijken';
 
   @override

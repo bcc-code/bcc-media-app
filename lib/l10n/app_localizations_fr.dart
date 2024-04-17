@@ -678,6 +678,9 @@ class SFr extends S {
   String get dontHaveAccess => 'Tu n\'as pas accès à ce contenu.';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Tu dois être connecté pour regarder ce contenu';
 
   @override

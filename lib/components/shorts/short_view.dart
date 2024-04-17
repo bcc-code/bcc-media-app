@@ -8,6 +8,7 @@ import 'package:brunstadtv_app/components/badges/icon_badge.dart';
 import 'package:brunstadtv_app/components/guides/favorite_guides.dart';
 import 'package:brunstadtv_app/components/misc/collapsable_markdown.dart';
 import 'package:brunstadtv_app/components/shorts/short_error_view.dart';
+import 'package:brunstadtv_app/components/status/error_adaptive.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/error_no_access.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
@@ -63,15 +64,8 @@ class ShortView extends HookConsumerWidget {
     final dragRightMostPosition = useRef<double?>(null);
     final futureSnapshot = useFuture(future);
 
-    Widget? errorWidget;
     if (futureSnapshot.data?.parsedData == null && (futureSnapshot.error != null || futureSnapshot.data?.exception != null)) {
-      if (ApiErrorCodes.isNotFound(futureSnapshot.data?.exception) ||
-          ApiErrorCodes.isNoAccess(futureSnapshot.data?.exception) ||
-          ApiErrorCodes.isNotPublished(futureSnapshot.data?.exception)) {
-        errorWidget = const ErrorNoAccess();
-      } else {
-        errorWidget = ErrorGeneric(onRetry: onReloadRequested);
-      }
+      return ErrorAdaptive(onRetry: onReloadRequested, exception: futureSnapshot.data?.exception);
     }
 
     String? buildSemantics() {
@@ -163,124 +157,123 @@ class ShortView extends HookConsumerWidget {
         await Future.delayed(500.ms);
         playIconAnimation.reverse(from: 1.0);
       },
-      child: errorWidget ??
-          Semantics(
-            value: buildSemantics(),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                if (videoController != null && isInitialized) VideoView(controller: videoController!),
-                FadeTransition(
-                  opacity: CurvedAnimation(parent: playIconAnimation, curve: Curves.easeInOut, reverseCurve: Curves.easeOut),
-                  child: Center(
-                    child: isPlaying == false
-                        ? SvgPicture.string(SvgIcons.pause, width: 52, height: 52)
-                        : SvgPicture.string(SvgIcons.play, width: 52, height: 52),
+      child: Semantics(
+        value: buildSemantics(),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            if (videoController != null && isInitialized) VideoView(controller: videoController!),
+            FadeTransition(
+              opacity: CurvedAnimation(parent: playIconAnimation, curve: Curves.easeInOut, reverseCurve: Curves.easeOut),
+              child: Center(
+                child: isPlaying == false
+                    ? SvgPicture.string(SvgIcons.pause, width: 52, height: 52)
+                    : SvgPicture.string(SvgIcons.play, width: 52, height: 52),
+              ),
+            ),
+            if (playerError != null)
+              Positioned.fill(
+                child: Container(
+                  padding: const EdgeInsets.only(top: 48),
+                  color: Colors.black.withOpacity(0.5),
+                  child: ShortErrorView(
+                    title: S.of(context).somethingWentWrong,
+                    onRetry: onReloadRequested,
+                    errorCode: playerError.code,
+                    errorMessage: playerError.message,
                   ),
                 ),
-                if (playerError != null)
-                  Positioned.fill(
-                    child: Container(
-                      padding: const EdgeInsets.only(top: 48),
-                      color: Colors.black.withOpacity(0.5),
-                      child: ShortErrorView(
-                        title: S.of(context).somethingWentWrong,
-                        onRetry: onReloadRequested,
-                        errorCode: playerError.code,
-                        errorMessage: playerError.message,
-                      ),
-                    ),
-                  ),
-                if (short == null || !isInitialized || videoController == null || (isBuffering == true && isAtStart))
-                  Positioned.fill(
-                    child: Stack(
-                      children: [
-                        Container(color: design.colors.background1),
-                        Animate(
-                          controller: loadingAnimation,
-                          onPlay: (c) => c.repeat(),
-                          effects: [
-                            ShimmerEffect(
-                              duration: 1000.ms,
-                              color: design.colors.separatorOnLight,
-                            ),
-                          ],
-                          child: Container(color: design.colors.background1),
-                        ),
-                        const Center(child: LoadingIndicator()),
-                      ],
-                    ),
-                  )
-                else if (isBuffering == true)
-                  const Positioned.fill(
-                    child: Stack(
-                      children: [
-                        Center(child: LoadingIndicator()),
-                      ],
-                    ),
-                  ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    height: 200,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.black.withOpacity(0.0),
-                          design.colors.background1.withOpacity(0.8),
-                        ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                      ),
-                    ),
-                  ),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
+              ),
+            if (short == null || !isInitialized || videoController == null || (isBuffering == true && isAtStart))
+              Positioned.fill(
+                child: Stack(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                      child: SafeArea(
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    if (short != null) ShortInfo(title: short!.title, description: short!.description),
-                                    const SizedBox(height: 8),
-                                    Disclaimers(short: short),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.bottomRight,
-                                child: ShortActions(
-                                  short: short,
-                                  onMuteRequested: onMuteRequested,
-                                  muted: muted,
-                                  videoController: videoController,
-                                  tabOpenAnimation: tabOpenAnimation,
-                                ),
-                              ),
-                            ],
-                          ),
+                    Container(color: design.colors.background1),
+                    Animate(
+                      controller: loadingAnimation,
+                      onPlay: (c) => c.repeat(),
+                      effects: [
+                        ShimmerEffect(
+                          duration: 1000.ms,
+                          color: design.colors.separatorOnLight,
                         ),
-                      ),
+                      ],
+                      child: Container(color: design.colors.background1),
                     ),
-                    _Timeline(videoController: videoController),
+                    const Center(child: LoadingIndicator()),
                   ],
                 ),
+              )
+            else if (isBuffering == true)
+              const Positioned.fill(
+                child: Stack(
+                  children: [
+                    Center(child: LoadingIndicator()),
+                  ],
+                ),
+              ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 200,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.black.withOpacity(0.0),
+                      design.colors.background1.withOpacity(0.8),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+              ),
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  child: SafeArea(
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                if (short != null) ShortInfo(title: short!.title, description: short!.description),
+                                const SizedBox(height: 8),
+                                Disclaimers(short: short),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomRight,
+                            child: ShortActions(
+                              short: short,
+                              onMuteRequested: onMuteRequested,
+                              muted: muted,
+                              videoController: videoController,
+                              tabOpenAnimation: tabOpenAnimation,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                _Timeline(videoController: videoController),
               ],
             ),
-          ),
+          ],
+        ),
+      ),
     );
   }
 }

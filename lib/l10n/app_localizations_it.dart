@@ -678,6 +678,9 @@ class SIt extends S {
   String get dontHaveAccess => 'Non hai accesso a questo contenuto';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Devi essere loggato per guardare questo contenuto';
 
   @override

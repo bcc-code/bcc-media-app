@@ -678,6 +678,9 @@ class SEs extends S {
   String get dontHaveAccess => 'Tú no tienes acceso a este contenido.';
 
   @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+
+  @override
   String get mustBeLoggedIn => 'Debes iniciar sesión para ver este contenido';
 
   @override
