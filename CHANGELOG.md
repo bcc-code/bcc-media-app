@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.5+2500015-kids...v) (2024-04-12)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.6+2500016-kids...v) (2024-04-19)
+
+
+
+## [5.1.6+2500016-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.3.9+2300139...v5.1.6+2500016-kids) (2024-04-19)
+
+
+
+## [5.3.9+2300139](https://github.com/bcc-code/bcc-media-app/compare/v5.1.5+2500015-kids...v5.3.9+2300139) (2024-04-19)
+
+
+### Features
+
+* continue scrolling from short. Closes [#362](https://github.com/bcc-code/bcc-media-app/issues/362) ([4a03afa](https://github.com/bcc-code/bcc-media-app/commit/4a03afa4a3c46b0b890e60e0bd27e42897de18b9))
+* ignore errors for shorts as long as we got content ([9b268d3](https://github.com/bcc-code/bcc-media-app/commit/9b268d3a107021b1cc692b5f78d2d85d92648650))
 
 
 
