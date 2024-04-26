@@ -1040,7 +1040,7 @@ class SRu extends S {
   String get somethingWentWrong => 'Something went wrong';
 
   @override
-  String get all => 'All';
+  String get all => 'Все';
 
   @override
   String countItems(int x) {

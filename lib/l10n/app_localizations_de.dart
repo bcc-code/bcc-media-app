@@ -995,7 +995,7 @@ class SDe extends S {
   String get saveYourFavoriteShorts => 'Speichere deine Lieblingskurzfilme';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Diese Funktion ist auf deinem Endgerät noch nicht verfügbar. Bitte versuche es später noch einmal.';
 
   @override
   String get newFeature => 'Neue Funktion';
@@ -1037,10 +1037,10 @@ class SDe extends S {
   String get openSettingsToChangeVideoLang => 'Einstellungen öffnen, um die Videotextsprache zu ändern';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'Etwas ist schief gelaufen';
 
   @override
-  String get all => 'All';
+  String get all => 'Alle';
 
   @override
   String countItems(int x) {

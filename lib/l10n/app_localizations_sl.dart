@@ -1037,10 +1037,10 @@ class SSl extends S {
   String get openSettingsToChangeVideoLang => 'Odpri nastavitve in spremeni jezik besedila videoposnetka';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'Nekaj je šlo narobe';
 
   @override
-  String get all => 'All';
+  String get all => 'Vse';
 
   @override
   String countItems(int x) {

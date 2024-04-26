@@ -1418,5 +1418,13 @@
   "openSettingsToChangeVideoLang": "Odpri nastavitve in spremeni jezik besedila videoposnetka",
   "@openSettingsToChangeVideoLang": {
     "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
+  },
+  "somethingWentWrong": "Nekaj je šlo narobe",
+  "@somethingWentWrong": {
+    "description": "Generic error title/message."
+  },
+  "all": "Vse",
+  "@all": {
+    "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
   }
 }

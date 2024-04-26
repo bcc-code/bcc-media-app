@@ -1037,10 +1037,10 @@ class SFi extends S {
   String get openSettingsToChangeVideoLang => 'Asetuksista voi vaihtaa videon tekstityskielen';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'Jokin meni pieleen';
 
   @override
-  String get all => 'All';
+  String get all => 'Ei ikärajaa';
 
   @override
   String countItems(int x) {

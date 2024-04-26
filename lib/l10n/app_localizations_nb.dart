@@ -1037,10 +1037,10 @@ class SNb extends S {
   String get openSettingsToChangeVideoLang => 'Åpne innstillinger for å endre tekstspråk';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'Noe gikk galt';
 
   @override
-  String get all => 'All';
+  String get all => 'Alle';
 
   @override
   String countItems(int x) {

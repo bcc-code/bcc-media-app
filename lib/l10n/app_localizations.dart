@@ -21,6 +21,7 @@ import 'app_localizations_pt.dart';
 import 'app_localizations_ro.dart';
 import 'app_localizations_ru.dart';
 import 'app_localizations_sl.dart';
+import 'app_localizations_ta.dart';
 import 'app_localizations_tr.dart';
 
 /// Callers can lookup localized strings with an instance of S
@@ -120,6 +121,7 @@ abstract class S {
     Locale('ro'),
     Locale('ru'),
     Locale('sl'),
+    Locale('ta'),
     Locale('tr')
   ];
 
@@ -2143,7 +2145,7 @@ class _SDelegate extends LocalizationsDelegate<S> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['bg', 'da', 'de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'nb', 'nl', 'pl', 'pt', 'ro', 'ru', 'sl', 'tr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['bg', 'da', 'de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'nb', 'nl', 'pl', 'pt', 'ro', 'ru', 'sl', 'ta', 'tr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SDelegate old) => false;
@@ -2170,6 +2172,7 @@ S lookupS(Locale locale) {
     case 'ro': return SRo();
     case 'ru': return SRu();
     case 'sl': return SSl();
+    case 'ta': return STa();
     case 'tr': return STr();
   }
 

@@ -1037,10 +1037,10 @@ class SHu extends S {
   String get openSettingsToChangeVideoLang => 'Nyisd meg a beállításokat a videó szöveg nyelvének megváltoztatásához';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'Hiba lépett fel';
 
   @override
-  String get all => 'All';
+  String get all => 'Összes';
 
   @override
   String countItems(int x) {

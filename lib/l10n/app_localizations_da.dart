@@ -1037,10 +1037,10 @@ class SDa extends S {
   String get openSettingsToChangeVideoLang => 'Åbn indstillinger for at ændre sprog på underteksterne';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'Noget gik galt...';
 
   @override
-  String get all => 'All';
+  String get all => 'Alle';
 
   @override
   String countItems(int x) {

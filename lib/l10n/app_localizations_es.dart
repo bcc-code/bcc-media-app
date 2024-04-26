@@ -1037,10 +1037,10 @@ class SEs extends S {
   String get openSettingsToChangeVideoLang => 'Abra la configuración para cambiar el idioma del texto del video';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'Algo salió mal';
 
   @override
-  String get all => 'All';
+  String get all => 'Todo';
 
   @override
   String countItems(int x) {

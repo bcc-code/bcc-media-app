@@ -1037,10 +1037,10 @@ class SNl extends S {
   String get openSettingsToChangeVideoLang => 'Open instellingen om de taal van de videocontent te wijzigen';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'Er ging iets fout';
 
   @override
-  String get all => 'All';
+  String get all => 'Alle';
 
   @override
   String countItems(int x) {

@@ -1037,10 +1037,10 @@ class SPl extends S {
   String get openSettingsToChangeVideoLang => 'Otwórz ustawienia, aby zmienić język tekstu wideo';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'Coś poszło nie tak';
 
   @override
-  String get all => 'All';
+  String get all => 'Wszyscy';
 
   @override
   String countItems(int x) {
