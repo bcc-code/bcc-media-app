@@ -1,4 +1,9 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.6+2500016-kids...v) (2024-04-19)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.6+2500016-kids...v) (2024-04-26)
+
+
+### Features
+
+* contributor ([f37220d](https://github.com/bcc-code/bcc-media-app/commit/f37220d002c04f188a10d6fd7b4e93988c85c7b3))
 
 
 
