@@ -2120,6 +2120,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Something went wrong'**
   String get somethingWentWrong;
+
+  /// This is a short title on a tab that shows all items within a collection. I.e. no filter.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.
+  ///
+  /// In en, this message translates to:
+  /// **'{x} items'**
+  String countItems(int x);
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

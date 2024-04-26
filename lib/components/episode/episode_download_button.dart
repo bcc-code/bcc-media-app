@@ -148,7 +148,7 @@ class EpisodeDownloadButton extends HookConsumerWidget {
         },
         behavior: HitTestBehavior.opaque,
         child: FocusableActionDetector(
-          mouseCursor: MaterialStateMouseCursor.clickable,
+          mouseCursor: WidgetStateMouseCursor.clickable,
           child: Padding(
             padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
             child: SvgPicture.string(

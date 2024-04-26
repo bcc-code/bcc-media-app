@@ -11,16 +11,17 @@ import 'package:bccm_core/design_system.dart';
 class Avatar extends HookConsumerWidget {
   const Avatar({
     Key? key,
+    required this.imageUrl,
     this.width = 100.0,
     this.backgroundColor,
   }) : super(key: key);
 
   final double? width;
   final Color? backgroundColor;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final imageUrl = ref.watch(authStateProvider.select((value) => value.user?.picture));
     final design = DesignSystem.of(context);
     return kIsWeb
         ? Container(

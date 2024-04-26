@@ -84,7 +84,7 @@ class EpisodeInfo extends HookConsumerWidget {
                         GestureDetector(
                           onTap: () => context.pushRoute(EpisodeScreenRoute(episodeId: episode.id)),
                           child: FocusableActionDetector(
-                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            mouseCursor: WidgetStateMouseCursor.clickable,
                             child: Center(
                               child: Text(episode.season!.$show.title, style: design.textStyles.caption1.copyWith(color: design.colors.tint1)),
                             ),
@@ -110,7 +110,7 @@ class EpisodeInfo extends HookConsumerWidget {
                           onTap: toggleInMyList,
                           behavior: HitTestBehavior.opaque,
                           child: FocusableActionDetector(
-                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            mouseCursor: WidgetStateMouseCursor.clickable,
                             child: Padding(
                               padding: const EdgeInsets.only(top: 4, right: 12),
                               child: AnimatedSwitcher(
@@ -138,7 +138,7 @@ class EpisodeInfo extends HookConsumerWidget {
                           onTap: onShareVideoTapped,
                           behavior: HitTestBehavior.opaque,
                           child: FocusableActionDetector(
-                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            mouseCursor: WidgetStateMouseCursor.clickable,
                             child: Padding(
                               padding: EdgeInsets.only(top: 4, left: showMyListButton ? 12 : 0, right: 12),
                               child: SvgPicture.string(

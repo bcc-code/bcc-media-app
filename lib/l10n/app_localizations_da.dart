@@ -1038,4 +1038,12 @@ class SDa extends S {
 
   @override
   String get somethingWentWrong => 'Something went wrong';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String countItems(int x) {
+    return '$x items';
+  }
 }

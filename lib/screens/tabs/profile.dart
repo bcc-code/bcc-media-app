@@ -128,7 +128,7 @@ class ProfileScreen extends HookConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Avatar(),
+                  Avatar(imageUrl: user?.picture),
                   if (user != null)
                     Padding(
                       padding: const EdgeInsets.only(top: 12),

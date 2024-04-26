@@ -95,6 +95,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                           Padding(
                             padding: const EdgeInsets.all(12),
                             child: Avatar(
+                              imageUrl: user.picture,
                               width: 52,
                               backgroundColor: design.colors.background1,
                             ),

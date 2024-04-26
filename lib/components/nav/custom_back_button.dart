@@ -46,7 +46,7 @@ class CustomBackButton extends StatelessWidget {
     final pageTitle = previousPageTitle ?? localizedTitle ?? '';
 
     return FocusableActionDetector(
-      mouseCursor: MaterialStateMouseCursor.clickable,
+      mouseCursor: WidgetStateMouseCursor.clickable,
       child: Padding(
         padding: padding ?? const EdgeInsets.only(left: 17),
         child: Align(

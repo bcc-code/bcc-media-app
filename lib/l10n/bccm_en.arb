@@ -1426,5 +1426,18 @@
   "somethingWentWrong": "Something went wrong",
   "@somethingWentWrong": {
     "description": "Generic error title/message."
+  },
+  "all": "All",
+  "@all": {
+    "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
+  },
+  "countItems": "{x} items",
+  "@countItems": {
+    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/misc/see_more.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/components/pages/sections/types/avatar_section.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bccm_core/platform.dart';
@@ -35,6 +36,10 @@ class SectionRenderer extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
+    final avatarSection = section.asOrNull<Fragment$Section$$AvatarSection>();
+    if (avatarSection != null) {
+      return SectionWithHeader.fromFragment(avatarSection, child: AvatarSection(avatarSection));
+    }
     final iconSection = section.asOrNull<Fragment$Section$$IconSection>();
     if (iconSection != null) {
       return SectionWithHeader.fromFragment(iconSection, child: IconSection(iconSection));

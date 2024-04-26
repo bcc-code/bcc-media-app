@@ -301,6 +301,7 @@ class AppRouter extends $AppRouter {
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
             _pageScreenRoute,
+            _contributorScreenRoute,
           ],
         ),
       ],
@@ -318,6 +319,12 @@ final _episodeScreenRoute = CupertinoRoute(
   page: EpisodeScreenRoute.page,
   path: 'episode/:episodeId',
   meta: const {RouteMetaConstants.analyticsName: 'episode'},
+);
+
+final _contributorScreenRoute = CupertinoRoute(
+  page: ContributorScreenRoute.page,
+  path: 'contributor/:personId',
+  meta: const {RouteMetaConstants.analyticsName: 'contributor'},
 );
 
 _shortScreenRoute(String pathPrefix) => CupertinoRoute(

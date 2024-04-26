@@ -74,6 +74,10 @@ class SvgIcons {
 <path fill-rule="evenodd" clip-rule="evenodd" d="M33.6144 25.1652C38.7952 22.3996 38.7952 15.6004 33.6144 12.8348L12.378 1.4984C7.12376 -1.30644 0.5 2.13154 0.5 7.66356V30.3364C0.5 35.8685 7.12376 39.3064 12.378 36.5016L33.6144 25.1652Z" fill="white"/>
 </svg>
 ''';
+  static const playSmall = '''<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M13.9498 11.6663C15.3501 10.9188 15.3501 9.0812 13.9498 8.33374L8.21028 5.26984C6.79021 4.51177 5 5.44096 5 6.9361V13.0639C5 14.559 6.79021 15.4882 8.21028 14.7302L13.9498 11.6663Z" fill="white"/>
+</svg>
+''';
 
   static const pause = '''<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="14.6313" y="1" width="7.3685" height="22.1581" rx="3" fill="white"/>
