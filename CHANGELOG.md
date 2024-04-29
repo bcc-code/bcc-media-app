@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.6+2500016-kids...v) (2024-04-26)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.0+2300140...v) (2024-04-29)
+
+
+### Bug Fixes
+
+* dont re-run queries unnecessarily ([5a82f66](https://github.com/bcc-code/bcc-media-app/commit/5a82f66e43d4905d86982e883754bab8aae73005))
+
+
+
+# [5.4.0+2300140](https://github.com/bcc-code/bcc-media-app/compare/v5.1.6+2500016-kids...v5.4.0+2300140) (2024-04-26)
 
 
 ### Features
