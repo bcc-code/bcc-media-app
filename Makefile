@@ -18,8 +18,8 @@ changelog:
 	standard-changelog -f -p conventionalcommits
 
 changelog-commit:
+	git diff-index --quiet HEAD -- || (echo "Working tree not clean, continue anyway? y/n" && read ans && [ $$ans == "y" ])
 	make changelog
-	git diff-index --quiet HEAD -- || (echo "Working tree not clean, not creating changelog, continue anyway? y/n" && read ans && [ $$ans == "y" ])
 	git add CHANGELOG.md
 	git commit -m "chore: update changelog" || true
 
