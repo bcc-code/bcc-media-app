@@ -36,15 +36,13 @@ class ContributorScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
+
     final personQuery = useQuery$GetPerson(
       Options$Query$GetPerson(variables: Variables$Query$GetPerson(id: id), fetchPolicy: FetchPolicy.networkOnly),
     );
-    final firstLoadDone = useState(false);
-    final openedAt = useMemoized(DateTime.now, [id]);
-
     final person = personQuery.result.parsedData?.person;
 
-    if (personQuery.result.isLoading) {
+    if (personQuery.result.isLoading && person == null) {
       return const Scaffold(body: LoadingGeneric());
     }
 
@@ -304,7 +302,7 @@ class _ContributionsList extends HookConsumerWidget {
                       showTitle: episode.title,
                       showSecondaryTitle: true,
                       title: chapter.title,
-                      image: episode.image,
+                      image: chapter.image ?? episode.image,
                     ),
                   );
                 }
