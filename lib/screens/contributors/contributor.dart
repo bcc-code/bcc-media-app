@@ -1,14 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/components/buttons/btv_buttons.dart';
 import 'package:brunstadtv_app/components/episode/list/episode_list_episode.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
-import 'package:brunstadtv_app/components/pages/sections/section_item_click_wrapper.dart';
 import 'package:brunstadtv_app/components/profile/avatar.dart';
 import 'package:brunstadtv_app/components/status/error_adaptive.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:bccm_core/platform.dart';
-import 'package:brunstadtv_app/components/tabs/custom_tab_bar.dart';
 import 'package:brunstadtv_app/components/tabs/tab_selector.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
@@ -298,7 +295,7 @@ class _ContributionsList extends HookConsumerWidget {
                     child: EpisodeListEpisode(
                       id: episode.id,
                       ageRating: episode.ageRating,
-                      duration: episode.duration,
+                      duration: chapter.duration,
                       showTitle: episode.title,
                       showSecondaryTitle: true,
                       title: chapter.title,
