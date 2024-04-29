@@ -1,4 +1,8 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.1+2300141...v) (2024-04-29)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.3+2300143...v) (2024-04-29)
+
+
+
+## [5.4.3+2300143](https://github.com/bcc-code/bcc-media-app/compare/v5.4.1+2300141...v5.4.3+2300143) (2024-04-29)
 
 
 ### Bug Fixes
