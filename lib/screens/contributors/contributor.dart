@@ -151,7 +151,7 @@ class _ContributionsList extends HookConsumerWidget {
             Options$Query$GetContributions(
               variables: Variables$Query$GetContributions(
                 id: personId,
-                offset: 0,
+                offset: offset.value,
                 types: type != null ? [type!] : null,
               ),
               fetchPolicy: FetchPolicy.networkOnly,
