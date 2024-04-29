@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.0+2300140...v) (2024-04-29)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.1+2300141...v) (2024-04-29)
+
+
+### Bug Fixes
+
+* chapter timecode width ([78253b3](https://github.com/bcc-code/bcc-media-app/commit/78253b35d84809ddfc1a8eb74439b4b786feca92))
+
+
+### Features
+
+* chapter durations ([fef2dc7](https://github.com/bcc-code/bcc-media-app/commit/fef2dc7759758e39f61a836c49e3967019efaa17))
+
+
+
+## [5.4.1+2300141](https://github.com/bcc-code/bcc-media-app/compare/v5.4.0+2300140...v5.4.1+2300141) (2024-04-29)
 
 
 ### Bug Fixes
