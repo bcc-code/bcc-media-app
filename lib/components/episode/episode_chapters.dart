@@ -29,7 +29,7 @@ class EpisodeChapters extends HookWidget {
                   title: c.title,
                   subTitle: c.description,
                   icon: Container(
-                    width: 48,
+                    width: 70,
                     alignment: Alignment.topLeft,
                     child: Text(
                       getFormattedDuration(c.start, padFirstSegment: true),
