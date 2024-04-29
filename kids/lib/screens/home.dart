@@ -37,7 +37,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
     _appConfigListener = ref.listenManual(appConfigFutureProvider, (prev, next) async {
       final value = await next;
       if (value == null) return;
-      if (!context.mounted) return;
+      if (!mounted) return;
       if (isOldAppVersion(context, value)) {
         showDialog(
           context: context,
