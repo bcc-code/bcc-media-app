@@ -11,6 +11,7 @@
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		5DB1FA637B3304CA434488CD /* Pods_Runner_RunnerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DCE712BAB4422F4BD4ACABD /* Pods_Runner_RunnerUITests.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
+		7E31D5792BE1374B00A3A7C5 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 7E31D5782BE1374B00A3A7C5 /* PrivacyInfo.xcprivacy */; };
 		8121BF6C2993D68E00043C5C /* RunnerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8121BF6B2993D68E00043C5C /* RunnerUITests.m */; };
 		8157041A29262B030005D66B /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8157041929262B030005D66B /* logo.png */; };
 		816B852D2A0D053D0051D834 /* Entitlements-bccm.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 816B852B2A0D053D0051D834 /* Entitlements-bccm.entitlements */; };
@@ -70,6 +71,7 @@
 		76979AF8D3D3A727B79DFBC0 /* Pods-Runner-RunnerUITests.debug-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner-RunnerUITests.debug-dev.xcconfig"; path = "Target Support Files/Pods-Runner-RunnerUITests/Pods-Runner-RunnerUITests.debug-dev.xcconfig"; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
 		7C8CF8501BE8728AC7914379 /* Pods-Runner.profile-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-prod.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-prod.xcconfig"; sourceTree = "<group>"; };
+		7E31D5782BE1374B00A3A7C5 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8121BF692993D68A00043C5C /* RunnerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8121BF6B2993D68E00043C5C /* RunnerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunnerUITests.m; sourceTree = "<group>"; };
 		813228DB290151AB001984C1 /* Info-Release-prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Release-prod.plist"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
+				7E31D5782BE1374B00A3A7C5 /* PrivacyInfo.xcprivacy */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				8121BF6A2993D68E00043C5C /* RunnerUITests */,
@@ -331,6 +334,7 @@
 				816B852E2A0D053D0051D834 /* Entitlements-kids.entitlements in Resources */,
 				97C147011CF9000F007C117D /* LaunchScreenProd.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				7E31D5792BE1374B00A3A7C5 /* PrivacyInfo.xcprivacy in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 				8157041A29262B030005D66B /* logo.png in Resources */,
