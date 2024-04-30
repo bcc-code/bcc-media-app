@@ -13,11 +13,9 @@ import 'package:bccm_core/design_system.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:wakelock_plus/wakelock_plus.dart';
 import 'l10n/app_localizations.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'models/breakpoints.dart';
@@ -170,31 +168,13 @@ class _AppRootState extends ConsumerState<AppRoot> {
                   ),
                   routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
                   builder: (BuildContext context, Widget? child) {
-                    return HookBuilder(
-                      builder: (context) {
-                        f() async => await WakelockPlus.enabled;
-                        final thing = useState(useMemoized(f));
-                        useInterval(() async {
-                          thing.value = f();
-                        }, const Duration(seconds: 1));
-                        final snapshot = useFuture(thing.value);
-
-                        return Stack(
-                          children: [
-                            ResponsiveBreakpoints.builder(
-                              child: MediaQuery(
-                                data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
-                                child: child!,
-                              ),
-                              breakpoints: breakpoints,
-                              breakpointsLandscape: breakpoints,
-                            ),
-                            Center(
-                              child: Text(snapshot.data?.toString() ?? 'null'),
-                            ),
-                          ],
-                        );
-                      },
+                    return ResponsiveBreakpoints.builder(
+                      child: MediaQuery(
+                        data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
+                        child: child!,
+                      ),
+                      breakpoints: breakpoints,
+                      breakpointsLandscape: breakpoints,
                     );
                   },
                 ),
