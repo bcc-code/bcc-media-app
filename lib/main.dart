@@ -58,9 +58,9 @@ Future<void> $main({
     bccmGraphQLProviderOverride: bccmGraphQLProviderOverride,
     authStateProviderOverride: authStateProviderOverride,
     analyticsProviderOverride: analyticsProviderOverride,
-    featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
     rawUnleashProviderOverride: rawUnleashProviderOverride,
     unleashContextProviderOverride: unleashContextProviderOverride,
+    featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
     notificationServiceProviderOverride: notificationServiceProviderOverride,
   );
   final providerContainer = await initProviderContainer([

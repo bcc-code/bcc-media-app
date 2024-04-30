@@ -8,7 +8,7 @@ import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
 import '../models/feature_flags.dart';
 
 final featureFlagsProvider = StateNotifierProvider<FeatureFlagsNotifier, FeatureFlags>((ref) {
-  return FeatureFlagsNotifier(ref.watch(unleashProvider).value);
+  return FeatureFlagsNotifier(ref.watch(rawUnleashProvider));
 });
 
 class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
@@ -17,12 +17,14 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
     _update();
     client?.on('update', onUnleashUpdate);
     client?.on('ready', onUnleashReady);
+    client?.on('initialized', onUnleashReady);
   }
 
   @override
   void dispose() {
     client?.off(type: 'update', callback: onUnleashUpdate);
     client?.off(type: 'ready', callback: onUnleashReady);
+    client?.off(type: 'initialized', callback: onUnleashReady);
     super.dispose();
   }
 
