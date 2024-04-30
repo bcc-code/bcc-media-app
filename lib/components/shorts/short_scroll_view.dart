@@ -97,19 +97,19 @@ class ShortScrollView extends HookConsumerWidget {
 
     useEffect(() {
       void listener() {
-        final previousValue = pageIsActive.value;
-        final newValue = router.currentSegments.any((r) => r.name == context.routeData.name);
-        if (previousValue && !newValue) {
+        final wasActive = pageIsActive.value;
+        final isActive = router.currentSegments.any((r) => r.name == context.routeData.name);
+        if (wasActive && !isActive) {
           debugPrint('SHRT: page no longer active, pausing controllers');
           for (final c in shortControllers) {
             c.player.pause();
           }
           WakelockPlus.disable();
-        } else if (!previousValue && newValue) {
+        } else if (!wasActive && isActive) {
           debugPrint('SHRT: page became active');
           WakelockPlus.enable();
         }
-        pageIsActive.value = newValue;
+        pageIsActive.value = isActive;
       }
 
       router.addListener(listener);
