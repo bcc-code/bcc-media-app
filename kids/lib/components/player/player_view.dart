@@ -28,6 +28,7 @@ import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 class PlayerView extends HookConsumerWidget {
   const PlayerView({
@@ -55,6 +56,14 @@ class PlayerView extends HookConsumerWidget {
       curve: Curves.easeOutExpo,
       reverseCurve: Curves.easeInExpo,
     );
+
+    useWakelockWhilePlaying(viewController.playerController);
+
+    useInterval(() async {
+      final enabled = await WakelockPlus.enabled;
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Wakelock enabled: $enabled')));
+    }, const Duration(seconds: 3));
 
     void navigateToEpisode(Fragment$KidsEpisodeThumbnail episode) {
       context.replaceRoute(EpisodeScreenRoute(
