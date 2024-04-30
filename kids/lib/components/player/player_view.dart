@@ -59,12 +59,6 @@ class PlayerView extends HookConsumerWidget {
 
     useWakelockWhilePlaying(viewController.playerController);
 
-    useInterval(() async {
-      final enabled = await WakelockPlus.enabled;
-      if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Wakelock enabled: $enabled')));
-    }, const Duration(seconds: 3));
-
     void navigateToEpisode(Fragment$KidsEpisodeThumbnail episode) {
       context.replaceRoute(EpisodeScreenRoute(
         id: episode.id,
