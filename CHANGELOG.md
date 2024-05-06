@@ -1,4 +1,19 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.3+2300143...v) (2024-04-29)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.4+2300144...v) (2024-05-06)
+
+
+### Bug Fixes
+
+* avatar section clipping ([d27e644](https://github.com/bcc-code/bcc-media-app/commit/d27e644a2a888c6400361f808bb443ef002f47b7))
+* **kids:** wakelock while playing ([#372](https://github.com/bcc-code/bcc-media-app/issues/372)) ([2da9e42](https://github.com/bcc-code/bcc-media-app/commit/2da9e42c0e64f73cd93f132b3309b5a86d888013))
+
+
+### Features
+
+* cache feature flags instead of reloading frontpage on change ([e4c0734](https://github.com/bcc-code/bcc-media-app/commit/e4c073479955a1d96cc0a2c324600f93b2a4f87a))
+
+
+
+## [5.4.4+2300144](https://github.com/bcc-code/bcc-media-app/compare/v5.4.3+2300143...v5.4.4+2300144) (2024-04-29)
 
 
 
