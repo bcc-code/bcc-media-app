@@ -38,33 +38,35 @@ class AvatarSectionButton extends StatelessWidget {
             AspectRatio(
               aspectRatio: aspectRatio,
               child: Container(
-                padding: padding,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(width: 1, color: DesignSystem.of(context).colors.separatorOnLight),
                   color: DesignSystem.of(context).colors.background2,
                 ),
-                child: LayoutBuilder(builder: (context, constraints) {
-                  return Center(
-                    child: assetImage != null
-                        ? Image.asset(
-                            assetImage!,
-                            fit: BoxFit.fitHeight,
-                          )
-                        : networkImage != null
-                            ? FadeInImage(
-                                placeholder: MemoryImage(kTransparentImage),
-                                fadeInDuration: const Duration(milliseconds: 200),
-                                image: networkImageWithRetryAndResize(
-                                  imageUrl: networkImage!,
-                                  cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
-                                ),
-                                imageErrorBuilder: imageErrorBuilder,
-                                fit: BoxFit.fitHeight,
-                              )
-                            : null,
-                  );
-                }),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: LayoutBuilder(builder: (context, constraints) {
+                    return Center(
+                      child: assetImage != null
+                          ? Image.asset(
+                              assetImage!,
+                              fit: BoxFit.fitHeight,
+                            )
+                          : networkImage != null
+                              ? FadeInImage(
+                                  placeholder: MemoryImage(kTransparentImage),
+                                  fadeInDuration: const Duration(milliseconds: 200),
+                                  image: networkImageWithRetryAndResize(
+                                    imageUrl: networkImage!,
+                                    cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                                  ),
+                                  imageErrorBuilder: imageErrorBuilder,
+                                  fit: BoxFit.fitHeight,
+                                )
+                              : null,
+                    );
+                  }),
+                ),
               ),
             ),
             Padding(
