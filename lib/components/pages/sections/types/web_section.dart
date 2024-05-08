@@ -57,63 +57,67 @@ class _WebSectionState extends State<WebSection> {
     final design = DesignSystem.of(context);
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: _heightOrAspectRatio(
-        height: widget.data.height?.toDouble(),
-        aspectRatio: widget.data.widthRatio,
-        child: Stack(
-          children: [
-            InAppWebView(
-              initialSettings: InAppWebViewSettings(
-                useHybridComposition: false,
-                isInspectable: kDebugMode,
-                transparentBackground: true,
-                verticalScrollBarEnabled: false,
-                useShouldOverrideUrlLoading: true,
-                allowsInlineMediaPlayback: true,
-                mediaPlaybackRequiresUserGesture: false,
-                iframeAllowFullscreen: true,
-              ),
-              onWebViewCreated: onWebViewCreated,
-              onLoadStop: (controller, url) {
-                Future.delayed(const Duration(seconds: 0), () => setState(() => loading = false));
-              },
-              shouldOverrideUrlLoading: (controller, navigationAction) async {
-                if (navigationAction.isForMainFrame) return NavigationActionPolicy.ALLOW;
-                var originalUri = Uri.tryParse(widget.data.url);
-                var navigationUri = navigationAction.request.url?.uriValue;
-                if (originalUri != null &&
-                    navigationAction.request.url?.host == originalUri.host &&
-                    navigationAction.request.url?.queryParameters['launch_url'] != 'true') {
-                  return NavigationActionPolicy.ALLOW;
-                }
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 500),
+        child: _heightOrAspectRatio(
+          height: widget.data.height?.toDouble(),
+          aspectRatio: widget.data.widthRatio,
+          child: Stack(
+            children: [
+              InAppWebView(
+                initialSettings: InAppWebViewSettings(
+                  useHybridComposition: false,
+                  isInspectable: kDebugMode,
+                  transparentBackground: true,
+                  verticalScrollBarEnabled: false,
+                  useShouldOverrideUrlLoading: true,
+                  allowsInlineMediaPlayback: true,
+                  mediaPlaybackRequiresUserGesture: false,
+                  iframeAllowFullscreen: true,
+                ),
+                onWebViewCreated: onWebViewCreated,
+                onLoadStop: (controller, url) {
+                  Future.delayed(const Duration(seconds: 0), () => setState(() => loading = false));
+                },
+                shouldOverrideUrlLoading: (controller, navigationAction) async {
+                  if (navigationAction.isForMainFrame) return NavigationActionPolicy.ALLOW;
+                  var originalUri = Uri.tryParse(widget.data.url);
+                  var navigationUri = navigationAction.request.url?.uriValue;
+                  if (originalUri != null &&
+                      navigationAction.request.url?.host == originalUri.host &&
+                      navigationAction.request.url?.queryParameters['launch_url'] != 'true') {
+                    return NavigationActionPolicy.ALLOW;
+                  }
 
-                if (navigationUri != null && await canLaunchUrl(navigationUri)) {
-                  await launchUrl(navigationUri, mode: LaunchMode.externalApplication);
+                  if (navigationUri != null && await canLaunchUrl(navigationUri)) {
+                    await launchUrl(navigationUri, mode: LaunchMode.externalApplication);
+                    return NavigationActionPolicy.CANCEL;
+                  }
+                  debugPrint("Error: Couldn't launch the url in the view.");
                   return NavigationActionPolicy.CANCEL;
-                }
-                debugPrint("Error: Couldn't launch the url in the view.");
-                return NavigationActionPolicy.CANCEL;
-              },
-            ),
-            Positioned.fill(
-              child: IgnorePointer(
-                ignoring: !loading,
-                child: AnimatedOpacity(
-                  duration: const Duration(milliseconds: 200),
-                  opacity: loading ? 1 : 0,
-                  curve: Curves.easeInOut,
-                  child: Shimmer.fromColors(
-                    enabled: loading,
-                    baseColor: design.colors.background1,
-                    highlightColor: design.colors.background2,
-                    child: Container(
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(9), color: design.colors.background2),
-                    ),
+                },
+              ),
+              Positioned.fill(
+                child: IgnorePointer(
+                  ignoring: !loading,
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 200),
+                    switchInCurve: Curves.easeInOut,
+                    switchOutCurve: Curves.easeInOut,
+                    child: loading
+                        ? Shimmer.fromColors(
+                            baseColor: design.colors.background1,
+                            highlightColor: design.colors.background2,
+                            child: Container(
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(9), color: design.colors.background2),
+                            ),
+                          )
+                        : null,
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
