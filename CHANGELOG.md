@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.5+2300145...v) (2024-05-07)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.7+2500017-kids...v) (2024-05-08)
+
+
+### Bug Fixes
+
+* downgrade to flutter stable 3.19.x to fix ipad flickering ([71a927d](https://github.com/bcc-code/bcc-media-app/commit/71a927d4dcc7f4e9fc32273568fbf4488d2e8f38))
+* hide web section on ipad because of flickering issues ([e9dcc5d](https://github.com/bcc-code/bcc-media-app/commit/e9dcc5d9bf330de4978f2554845ffe8b2e4e639b))
+
+
+
+## [5.1.7+2500017-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.4.5+2300145...v5.1.7+2500017-kids) (2024-05-07)
 
 
 
