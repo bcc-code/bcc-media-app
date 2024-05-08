@@ -238,7 +238,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
             availableGestures: AvailableGestures.horizontalSwipe,
             rangeSelectionMode: RangeSelectionMode.disabled,
             calendarStyle: CalendarStyle(
-              tableBorder: const TableBorder.symmetric(),
+              tableBorder: TableBorder.symmetric(),
               canMarkersOverflow: true,
               defaultTextStyle: design.textStyles.title3,
               todayTextStyle: design.textStyles.title3.copyWith(color: design.colors.tint2),

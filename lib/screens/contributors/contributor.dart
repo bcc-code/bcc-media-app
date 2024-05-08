@@ -354,7 +354,7 @@ class _ClickWrapper extends ConsumerWidget {
           behavior: HitTestBehavior.opaque,
           onTap: onPressed,
           child: FocusableActionDetector(
-            mouseCursor: WidgetStateMouseCursor.clickable,
+            mouseCursor: MaterialStateMouseCursor.clickable,
             actions: {
               ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) => onPressed()),
             },

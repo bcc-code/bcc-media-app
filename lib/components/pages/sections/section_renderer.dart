@@ -91,7 +91,7 @@ class SectionRenderer extends StatelessWidget {
     }
     final webSection = section.asOrNull<Fragment$Section$$WebSection>();
     if (webSection != null) {
-      if (isTablet) return const SizedBox.shrink();
+      //if (isTablet) return const SizedBox.shrink();
       return SectionWithHeader.fromFragment(webSection, child: WebSection(webSection));
     }
     final messageSection = section.asOrNull<Fragment$Section$$MessageSection>();

@@ -93,7 +93,7 @@ class _OptionListOption<T> extends HookWidget {
         IgnorePointer(
           ignoring: option.disabled,
           child: FocusableActionDetector(
-            mouseCursor: WidgetStateMouseCursor.clickable,
+            mouseCursor: MaterialStateMouseCursor.clickable,
             onShowHoverHighlight: (value) => hovering.value = value,
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,

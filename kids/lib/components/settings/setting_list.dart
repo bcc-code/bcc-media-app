@@ -71,7 +71,7 @@ class _ItemRenderer extends HookWidget {
         IgnorePointer(
           ignoring: item.disabled,
           child: FocusableActionDetector(
-            mouseCursor: WidgetStateMouseCursor.clickable,
+            mouseCursor: MaterialStateMouseCursor.clickable,
             onShowHoverHighlight: (value) => hovering.value = value,
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,

@@ -153,7 +153,7 @@ class SliderNavButton extends HookWidget {
   Widget build(BuildContext context) {
     final hovering = useState(false);
     return FocusableActionDetector(
-      mouseCursor: WidgetStateMouseCursor.clickable,
+      mouseCursor: MaterialStateMouseCursor.clickable,
       onShowHoverHighlight: (value) => hovering.value = value,
       child: AnimatedOpacity(
         duration: const Duration(milliseconds: 100),

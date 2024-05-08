@@ -32,7 +32,7 @@ class SectionItemClickWrapper extends ConsumerWidget {
           },
           onTap: onPressed,
           child: FocusableActionDetector(
-            mouseCursor: WidgetStateMouseCursor.clickable,
+            mouseCursor: MaterialStateMouseCursor.clickable,
             actions: {
               ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) => onPressed()),
             },
