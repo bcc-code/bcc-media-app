@@ -678,7 +678,7 @@ class SSl extends S {
   String get dontHaveAccess => 'Do te vsebina nimaš dostopa.';
 
   @override
-  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+  String get notFound => 'Vsebina, ki jo iščeš, ne obstaja.';
 
   @override
   String get mustBeLoggedIn => 'Za ogled te vsebine moraš biti prijavljen';
@@ -1044,6 +1044,6 @@ class SSl extends S {
 
   @override
   String countItems(int x) {
-    return '$x items';
+    return '$x stvari';
   }
 }

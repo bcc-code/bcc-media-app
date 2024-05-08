@@ -678,7 +678,7 @@ class STa extends S {
   String get dontHaveAccess => 'இந்த உள்ளடக்கத்திற்கான அணுகல் உங்களிடம் இல்லை.';
 
   @override
-  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+  String get notFound => 'நீங்கள் தேடும் உள்ளடக்கம் இருப்பதாகத் தெரியவில்லை.';
 
   @override
   String get mustBeLoggedIn => 'இந்த உள்ளடக்கத்தைப் பார்க்க நீங்கள் உள்நுழைந்திருக்க வேண்டும்';
@@ -1044,6 +1044,6 @@ class STa extends S {
 
   @override
   String countItems(int x) {
-    return '$x items';
+    return '$x பொருட்கள்';
   }
 }

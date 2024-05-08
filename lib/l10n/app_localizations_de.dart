@@ -678,7 +678,7 @@ class SDe extends S {
   String get dontHaveAccess => 'Du hast keinen Zugang zu diesem Inhalt.';
 
   @override
-  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+  String get notFound => 'Der gesuchte Inhalt scheint nicht zu existieren.';
 
   @override
   String get mustBeLoggedIn => 'Du musst angemeldet sein, um diesen Inhalt zu schauen';
@@ -1037,7 +1037,7 @@ class SDe extends S {
   String get openSettingsToChangeVideoLang => 'Einstellungen öffnen, um die Videotextsprache zu ändern';
 
   @override
-  String get somethingWentWrong => 'Etwas ist schief gelaufen';
+  String get somethingWentWrong => 'Etwas ist schiefgelaufen';
 
   @override
   String get all => 'Alle';

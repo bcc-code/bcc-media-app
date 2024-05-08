@@ -678,7 +678,7 @@ class SFr extends S {
   String get dontHaveAccess => 'Tu n\'as pas accès à ce contenu.';
 
   @override
-  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+  String get notFound => 'Le contenu que vous recherchez ne semble pas exister.';
 
   @override
   String get mustBeLoggedIn => 'Tu dois être connecté pour regarder ce contenu';
@@ -1044,6 +1044,6 @@ class SFr extends S {
 
   @override
   String countItems(int x) {
-    return '$x items';
+    return '$x éléments';
   }
 }

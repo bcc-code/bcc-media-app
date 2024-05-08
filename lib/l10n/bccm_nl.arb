@@ -925,6 +925,10 @@
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
+  "notFound": "De inhoud die je zoekt lijkt niet te bestaan.",
+  "@notFound": {
+    "description": "Error message when the requested content is not found."
+  },
   "mustBeLoggedIn": "Je moet ingelogd zijn om dit te kunnen bekijken",
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
@@ -1426,5 +1430,14 @@
   "all": "Alle",
   "@all": {
     "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
+  },
+  "countItems": "{x} items",
+  "@countItems": {
+    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
   }
 }

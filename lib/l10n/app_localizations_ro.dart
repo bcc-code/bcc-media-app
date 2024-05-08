@@ -678,7 +678,7 @@ class SRo extends S {
   String get dontHaveAccess => 'Nu ai acces la acest conținut.';
 
   @override
-  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+  String get notFound => 'Conținutul pe care îl cauți nu pare să existe.';
 
   @override
   String get mustBeLoggedIn => 'Trebuie să fii conectat cu contul propriu pentru a urmări acest conținut';
@@ -1044,6 +1044,6 @@ class SRo extends S {
 
   @override
   String countItems(int x) {
-    return '$x items';
+    return '$x rezultate';
   }
 }
