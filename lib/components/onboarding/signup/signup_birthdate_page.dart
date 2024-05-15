@@ -1,15 +1,15 @@
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:html/dom.dart' as html_dom;
-import 'package:html/parser.dart' as html_parser;
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../../helpers/analytics.dart';
 import '../../../helpers/widget_keys.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../l10n/app_localizations_en.dart';
 import '../../../screens/onboarding/signup.dart';
 import 'package:bccm_core/design_system.dart';
 
@@ -86,7 +86,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
                 Expanded(
                   child: Container(
                     height: 75,
-                    alignment: Alignment.center,
+                    alignment: Alignment.centerLeft,
                     child: const _PrivacyPolicyAgreeText(),
                   ),
                 )
@@ -128,25 +128,51 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
   }
 }
 
-class _PrivacyPolicyAgreeText extends StatelessWidget {
+class _PrivacyPolicyAgreeText extends ConsumerWidget {
   const _PrivacyPolicyAgreeText();
 
-  html_dom.DocumentFragment getValidatedAndParsedLocalization(BuildContext context) {
-    final localized = html_parser.parseFragment(S.of(context).signUpAgreePrivacyPolicy);
-    final anchors = localized.querySelectorAll('a');
-    if (anchors.length == 2) {
-      return localized;
-    }
-    return html_parser.parseFragment(SEn().signUpAgreePrivacyPolicy);
-  }
-
   @override
-  Widget build(BuildContext context) {
-    final document = getValidatedAndParsedLocalization(context);
-    final anchors = document.querySelectorAll('a');
-    anchors[0].attributes['href'] = 'https://bcc.media/${Intl.defaultLocale}/privacy';
-    anchors[1].attributes['href'] = 'https://bcc.media/${Intl.defaultLocale}/terms-of-use';
+  Widget build(BuildContext context, WidgetRef ref) {
+    final privacyLink = 'https://bcc.media/${Intl.defaultLocale}/privacy';
+    final termsLink = 'https://bcc.media/${Intl.defaultLocale}/terms-of-use';
+
+    final text = S.of(context).signUpAgreePrivacyPolicy;
+    final parts = text.split(RegExp('<a>|</a>'));
+
     final design = DesignSystem.of(context);
-    return Container();
+    return RichText(
+      textAlign: TextAlign.left,
+      text: TextSpan(
+        children: <TextSpan>[
+          TextSpan(text: parts[0], style: design.textStyles.body1),
+          TextSpan(
+            text: parts[1],
+            style: design.textStyles.body1.copyWith(color: Colors.blue),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                ref.read(analyticsProvider).interaction(const InteractionEvent(
+                      interaction: 'privacy_policy_clicked',
+                      pageCode: 'signup',
+                    ));
+                launchUrlString(privacyLink);
+              },
+          ),
+          TextSpan(text: parts[2], style: design.textStyles.body1),
+          TextSpan(
+            text: parts[3],
+            style: design.textStyles.body1.copyWith(color: Colors.blue),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                ref.read(analyticsProvider).interaction(const InteractionEvent(
+                      interaction: 'terms_of_use_clicked',
+                      pageCode: 'signup',
+                    ));
+                launchUrlString(termsLink);
+              },
+          ),
+          TextSpan(text: parts[4], style: design.textStyles.body1),
+        ],
+      ),
+    );
   }
 }

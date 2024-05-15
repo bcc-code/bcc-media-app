@@ -152,11 +152,6 @@ class AppRouter extends $AppRouter {
       customRouteBuilder: settingsRouteBuilder,
       meta: const {RouteMetaConstants.analyticsName: 'extra-usergroups'},
     ),
-    CupertinoRoute(
-      page: GameScreenRoute.page,
-      path: '/game/:gameId',
-      maintainState: false,
-    ),
     CustomRoute(
       page: StudyScreenRoute.page,
       path: '/study-lesson',
@@ -257,25 +252,6 @@ class AppRouter extends $AppRouter {
           ],
         ),
         CustomRoute(
-          page: GamesWrapperScreenRoute.page,
-          path: 'games',
-          maintainState: true,
-          children: [
-            CupertinoRoute(
-              page: GamesScreenRoute.page,
-              path: '',
-              maintainState: true,
-              meta: const {RouteMetaConstants.navTabRoute: true},
-            ),
-            CupertinoRoute(
-              page: GameScreenRoute.page,
-              path: ':gameId',
-              maintainState: false,
-              meta: const {RouteMetaConstants.analyticsName: 'game'},
-            ),
-          ],
-        ),
-        CustomRoute(
           page: HomeWrapperScreenRoute.page,
           path: '',
           children: [
@@ -338,11 +314,6 @@ class SearchWrapperScreen extends AutoRouter {
 @RoutePage<void>()
 class TabsWrapperScreen extends AutoRouter {
   const TabsWrapperScreen({super.key});
-}
-
-@RoutePage<void>()
-class GamesWrapperScreen extends AutoRouter {
-  const GamesWrapperScreen({super.key});
 }
 
 @RoutePage<void>()

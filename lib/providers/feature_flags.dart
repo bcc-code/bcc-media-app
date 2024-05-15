@@ -55,8 +55,6 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       socialSignup: client.isEnabled('social-signup'),
       autoplayNext: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('autoplay-next'),
       shareVideoButton: FlavorConfig.current.flavor != Flavor.kids,
-      autoFullscreenOnPlay: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('auto-fullscreen-on-play'),
-      gamesTab: FlavorConfig.current.flavor == Flavor.kids || client.isEnabled('games-tab'),
       flutterPlayerControls: Env.forceFlutterControls || client.isEnabled('flutter-player-controls'),
       playNextButton: client.isEnabled('play-next-button'),
       chapters: client.isEnabled('chapters'),

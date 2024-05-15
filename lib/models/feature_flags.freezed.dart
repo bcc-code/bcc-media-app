@@ -21,9 +21,7 @@ mixin _$FeatureFlags {
   bool get publicSignup => throw _privateConstructorUsedError;
   bool get socialSignup => throw _privateConstructorUsedError;
   bool get autoplayNext => throw _privateConstructorUsedError;
-  bool get autoFullscreenOnPlay => throw _privateConstructorUsedError;
   bool get shareVideoButton => throw _privateConstructorUsedError;
-  bool get gamesTab => throw _privateConstructorUsedError;
   bool get flutterPlayerControls => throw _privateConstructorUsedError;
   bool get playNextButton => throw _privateConstructorUsedError;
   bool get chapters => throw _privateConstructorUsedError;
@@ -57,9 +55,7 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       bool publicSignup,
       bool socialSignup,
       bool autoplayNext,
-      bool autoFullscreenOnPlay,
       bool shareVideoButton,
-      bool gamesTab,
       bool flutterPlayerControls,
       bool playNextButton,
       bool chapters,
@@ -95,9 +91,7 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? publicSignup = null,
     Object? socialSignup = null,
     Object? autoplayNext = null,
-    Object? autoFullscreenOnPlay = null,
     Object? shareVideoButton = null,
-    Object? gamesTab = null,
     Object? flutterPlayerControls = null,
     Object? playNextButton = null,
     Object? chapters = null,
@@ -135,17 +129,9 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
           ? _value.autoplayNext
           : autoplayNext // ignore: cast_nullable_to_non_nullable
               as bool,
-      autoFullscreenOnPlay: null == autoFullscreenOnPlay
-          ? _value.autoFullscreenOnPlay
-          : autoFullscreenOnPlay // ignore: cast_nullable_to_non_nullable
-              as bool,
       shareVideoButton: null == shareVideoButton
           ? _value.shareVideoButton
           : shareVideoButton // ignore: cast_nullable_to_non_nullable
-              as bool,
-      gamesTab: null == gamesTab
-          ? _value.gamesTab
-          : gamesTab // ignore: cast_nullable_to_non_nullable
               as bool,
       flutterPlayerControls: null == flutterPlayerControls
           ? _value.flutterPlayerControls
@@ -225,9 +211,7 @@ abstract class _$$FeatureFlagsImplCopyWith<$Res>
       bool publicSignup,
       bool socialSignup,
       bool autoplayNext,
-      bool autoFullscreenOnPlay,
       bool shareVideoButton,
-      bool gamesTab,
       bool flutterPlayerControls,
       bool playNextButton,
       bool chapters,
@@ -261,9 +245,7 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
     Object? publicSignup = null,
     Object? socialSignup = null,
     Object? autoplayNext = null,
-    Object? autoFullscreenOnPlay = null,
     Object? shareVideoButton = null,
-    Object? gamesTab = null,
     Object? flutterPlayerControls = null,
     Object? playNextButton = null,
     Object? chapters = null,
@@ -301,17 +283,9 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
           ? _value.autoplayNext
           : autoplayNext // ignore: cast_nullable_to_non_nullable
               as bool,
-      autoFullscreenOnPlay: null == autoFullscreenOnPlay
-          ? _value.autoFullscreenOnPlay
-          : autoFullscreenOnPlay // ignore: cast_nullable_to_non_nullable
-              as bool,
       shareVideoButton: null == shareVideoButton
           ? _value.shareVideoButton
           : shareVideoButton // ignore: cast_nullable_to_non_nullable
-              as bool,
-      gamesTab: null == gamesTab
-          ? _value.gamesTab
-          : gamesTab // ignore: cast_nullable_to_non_nullable
               as bool,
       flutterPlayerControls: null == flutterPlayerControls
           ? _value.flutterPlayerControls
@@ -386,9 +360,7 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
       this.publicSignup = false,
       this.socialSignup = false,
       this.autoplayNext = false,
-      this.autoFullscreenOnPlay = false,
       this.shareVideoButton = true,
-      this.gamesTab = false,
       this.flutterPlayerControls = false,
       this.playNextButton = false,
       this.chapters = false,
@@ -430,13 +402,7 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   final bool autoplayNext;
   @override
   @JsonKey()
-  final bool autoFullscreenOnPlay;
-  @override
-  @JsonKey()
   final bool shareVideoButton;
-  @override
-  @JsonKey()
-  final bool gamesTab;
   @override
   @JsonKey()
   final bool flutterPlayerControls;
@@ -485,7 +451,7 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
 
   @override
   String toString() {
-    return 'FeatureFlags(toggles: $toggles, auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, autoFullscreenOnPlay: $autoFullscreenOnPlay, shareVideoButton: $shareVideoButton, gamesTab: $gamesTab, flutterPlayerControls: $flutterPlayerControls, playNextButton: $playNextButton, chapters: $chapters, chaptersFirstTab: $chaptersFirstTab, download: $download, shorts: $shorts, shortsSourceButtonPrimary: $shortsSourceButtonPrimary, shortsSharing: $shortsSharing, shortsHideAutoGenerated: $shortsHideAutoGenerated, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, linkToBccLive: $linkToBccLive, forceBccLive: $forceBccLive, removeLiveTab: $removeLiveTab, disableNpawShorts: $disableNpawShorts)';
+    return 'FeatureFlags(toggles: $toggles, auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, shareVideoButton: $shareVideoButton, flutterPlayerControls: $flutterPlayerControls, playNextButton: $playNextButton, chapters: $chapters, chaptersFirstTab: $chaptersFirstTab, download: $download, shorts: $shorts, shortsSourceButtonPrimary: $shortsSourceButtonPrimary, shortsSharing: $shortsSharing, shortsHideAutoGenerated: $shortsHideAutoGenerated, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, linkToBccLive: $linkToBccLive, forceBccLive: $forceBccLive, removeLiveTab: $removeLiveTab, disableNpawShorts: $disableNpawShorts)';
   }
 
   @override
@@ -501,12 +467,8 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
                 other.socialSignup == socialSignup) &&
             (identical(other.autoplayNext, autoplayNext) ||
                 other.autoplayNext == autoplayNext) &&
-            (identical(other.autoFullscreenOnPlay, autoFullscreenOnPlay) ||
-                other.autoFullscreenOnPlay == autoFullscreenOnPlay) &&
             (identical(other.shareVideoButton, shareVideoButton) ||
                 other.shareVideoButton == shareVideoButton) &&
-            (identical(other.gamesTab, gamesTab) ||
-                other.gamesTab == gamesTab) &&
             (identical(other.flutterPlayerControls, flutterPlayerControls) ||
                 other.flutterPlayerControls == flutterPlayerControls) &&
             (identical(other.playNextButton, playNextButton) ||
@@ -548,9 +510,7 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
         publicSignup,
         socialSignup,
         autoplayNext,
-        autoFullscreenOnPlay,
         shareVideoButton,
-        gamesTab,
         flutterPlayerControls,
         playNextButton,
         chapters,
@@ -582,9 +542,7 @@ abstract class _FeatureFlags extends FeatureFlags {
       final bool publicSignup,
       final bool socialSignup,
       final bool autoplayNext,
-      final bool autoFullscreenOnPlay,
       final bool shareVideoButton,
-      final bool gamesTab,
       final bool flutterPlayerControls,
       final bool playNextButton,
       final bool chapters,
@@ -613,11 +571,7 @@ abstract class _FeatureFlags extends FeatureFlags {
   @override
   bool get autoplayNext;
   @override
-  bool get autoFullscreenOnPlay;
-  @override
   bool get shareVideoButton;
-  @override
-  bool get gamesTab;
   @override
   bool get flutterPlayerControls;
   @override

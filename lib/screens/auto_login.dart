@@ -4,7 +4,6 @@ import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -62,10 +61,9 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
       );
       return;
     }
-    final isGuestMode = ref.read(authStateProvider).guestMode;
+    final isLoggedIn = ref.read(authStateProvider).isLoggedIn;
     final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingCompleted) == true;
-    final alwaysShowOnboarding = ref.read(authEnabledProvider);
-    if (isGuestMode || !hasCompletedOnboarding || alwaysShowOnboarding) {
+    if (!isLoggedIn && !hasCompletedOnboarding) {
       router.replaceAll([OnboardingScreenRoute()]);
     } else {
       router.replaceAll([const TabsRootScreenRoute()]);

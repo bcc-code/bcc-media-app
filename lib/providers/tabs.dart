@@ -11,7 +11,6 @@ import 'feature_flags.dart';
 
 enum TabId {
   home,
-  games,
   search,
   live,
   calendar,
@@ -39,7 +38,6 @@ class TabInfo {
 
 class TabInfos {
   final TabInfo home;
-  final TabInfo games;
   final TabInfo search;
   final TabInfo live;
   final TabInfo calendar;
@@ -48,7 +46,6 @@ class TabInfos {
 
   const TabInfos({
     required this.home,
-    required this.games,
     required this.search,
     required this.live,
     required this.calendar,
@@ -59,7 +56,6 @@ class TabInfos {
   TabInfo getFor(TabId id) {
     return switch (id) {
       TabId.home => home,
-      TabId.games => games,
       TabId.search => search,
       TabId.live => live,
       TabId.calendar => calendar,
@@ -77,14 +73,6 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
       title: (BuildContext context) => S.of(context).homeTab,
       icon: FlavorConfig.current.bccmImages!.home,
       analyticsName: 'home',
-      iconKey: GlobalKey(),
-    ),
-    games: TabInfo(
-      id: TabId.games,
-      route: const GamesWrapperScreenRoute(),
-      title: (BuildContext context) => S.of(context).gamesTab,
-      icon: FlavorConfig.current.bccmImages!.games,
-      analyticsName: 'games',
       iconKey: GlobalKey(),
     ),
     search: TabInfo(
@@ -139,19 +127,12 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
 });
 
 final currentTabIdsProvider = Provider<List<TabId>>((ref) {
-  final enableGames = ref.watch(featureFlagsProvider.select((value) => value.gamesTab));
-  final guest = ref.watch(authStateProvider).guestMode;
+  final bccMember = ref.watch(authStateProvider).isBccMember;
   final shorts = ref.watch(featureFlagsProvider.select((value) => value.shorts));
-  final live = !ref.watch(featureFlagsProvider.select((value) => value.removeLiveTab));
-  final liveAppTransitionStarted =
-      ref.watch(featureFlagsProvider.select((value) => value.linkToBccLive || value.forceBccLive || value.removeLiveTab));
   return [
     TabId.home,
-    if (enableGames) TabId.games,
     TabId.search,
-    if (!guest && live) TabId.live,
-    if (!guest && shorts) TabId.shorts,
-    if (!guest && !shorts && !liveAppTransitionStarted) TabId.calendar,
+    if (bccMember && shorts) TabId.shorts,
     TabId.profile,
   ];
 });

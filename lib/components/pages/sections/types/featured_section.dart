@@ -89,8 +89,8 @@ class FeaturedSection extends ConsumerWidget {
         context,
         defaultValue: 325.0,
         conditionalValues: [
-          Condition.equals(name: BP.md, value: 380.0),
-          Condition.largerThan(name: BP.md, value: 470.0),
+          const Condition.equals(name: BP.md, value: 380.0),
+          const Condition.largerThan(name: BP.md, value: 470.0),
         ],
       ).value,
       child: PageView.builder(
@@ -124,10 +124,10 @@ class FeaturedSection extends ConsumerWidget {
       context,
       defaultValue: 1,
       conditionalValues: [
-        Condition.equals(name: BP.xl, value: 2),
-        Condition.largerThan(name: BP.xl, value: 3),
+        const Condition.equals(name: BP.xl, value: 2),
+        const Condition.largerThan(name: BP.xl, value: 3),
       ],
-    ).value!;
+    ).value;
     const paddingX = kIsWeb ? 80.0 : 16.0;
     const gap = kIsWeb ? 16.0 : 4.0;
     return HorizontalSlider(

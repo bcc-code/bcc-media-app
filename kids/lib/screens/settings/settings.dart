@@ -143,7 +143,7 @@ class SettingsScreen extends HookConsumerWidget {
                                         context.router.push(const ContactScreenRoute());
                                       },
                                     ),
-                                    if (!ref.read(authStateProvider).guestMode) ...[
+                                    if (ref.read(authStateProvider).isBccMember) ...[
                                       SettingListItem(
                                         title: S.of(context).userVoice,
                                         onPressed: () {

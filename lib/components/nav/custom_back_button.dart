@@ -8,7 +8,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../helpers/widget_keys.dart';
 import '../../l10n/app_localizations.dart';
-import '../../screens/games/games.dart';
 import '../../screens/page.dart';
 import 'package:bccm_core/design_system.dart';
 
@@ -18,8 +17,6 @@ String? getLocalizedRouteName(S localizations, Type route) {
       return localizations.search;
     case HomeScreen:
       return localizations.homeTab;
-    case GamesScreen:
-      return localizations.gamesTab;
   }
   return null;
 }

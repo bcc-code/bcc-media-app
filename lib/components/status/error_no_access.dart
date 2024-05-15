@@ -32,7 +32,7 @@ class ErrorNoAccess extends ConsumerWidget {
                     Container(
                       margin: const EdgeInsets.only(bottom: 16),
                       child: Text(
-                        ref.read(authStateProvider).guestMode ? S.of(context).mustBeLoggedIn : S.of(context).dontHaveAccess,
+                        !ref.read(authStateProvider).isLoggedIn ? S.of(context).mustBeLoggedIn : S.of(context).dontHaveAccess,
                         textAlign: TextAlign.center,
                         style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.onTint),
                       ),

@@ -29,7 +29,7 @@ class EpisodeInfo extends HookConsumerWidget {
     final design = DesignSystem.of(context);
 
     final inMyList = useState(episode.inMyList);
-    final showMyListButton = ref.read(authStateProvider.select((value) => !value.guestMode)) && inMyList.value != null;
+    final showMyListButton = ref.read(authStateProvider.select((value) => value.isLoggedIn)) && inMyList.value != null;
 
     useEffect(() {
       inMyList.value = episode.inMyList;

@@ -1,4 +1,3 @@
-import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:universal_io/io.dart';
@@ -63,7 +62,6 @@ class CustomNavTabBar extends HookConsumerWidget {
     final tabInfos = ref.watch(tabInfosProvider);
     final currentTabIds = ref.watch(currentTabIdsProvider);
 
-    final guestMode = ref.watch(authStateProvider.select((value) => value.guestMode));
     final items = currentTabIds
         .map((tabId) => tabInfos.getFor(tabId))
         .map(
@@ -74,7 +72,6 @@ class CustomNavTabBar extends HookConsumerWidget {
           ),
         )
         .toList();
-    debugPrint('custom_tab_bar rebuild. guestMode: $guestMode');
 
     if (Platform.isAndroid) {
       return Container(

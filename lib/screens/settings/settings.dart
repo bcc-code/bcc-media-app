@@ -165,11 +165,11 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                               optionName: S.of(context).contactSupport,
                               onPressed: () {
                                 context.router.push(
-                                  ref.read(authStateProvider).guestMode ? const ContactPublicScreenRoute() : const ContactScreenRoute(),
+                                  !ref.read(authStateProvider).isBccMember ? const ContactPublicScreenRoute() : const ContactScreenRoute(),
                                 );
                               },
                             ),
-                            if (!ref.read(authStateProvider).guestMode) ...[
+                            if (ref.read(authStateProvider).isBccMember) ...[
                               OptionButton(
                                 optionName: S.of(context).userVoice,
                                 onPressed: () {

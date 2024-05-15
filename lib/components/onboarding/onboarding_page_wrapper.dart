@@ -24,7 +24,7 @@ class OnboardingPageWrapper extends StatelessWidget {
                     constraints: BoxConstraints(minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
                     child: IntrinsicHeight(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           if (title != null)
                             Padding(

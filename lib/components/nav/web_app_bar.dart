@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_core/bccm_core.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
@@ -45,18 +44,6 @@ class WebAppBar extends ConsumerWidget implements PreferredSizeWidget {
       BottomNavigationBarItem(label: S.of(context).homeTab, icon: icons['home_default']!, activeIcon: icons['home_selected']),
       BottomNavigationBarItem(label: S.of(context).search, icon: icons['search_default']!, activeIcon: icons['search_selected']),
     ];
-    final guestMode = ref.watch(authStateProvider.select((value) => value.guestMode));
-    debugPrint('custom_tab_bar rebuild. guestMode: $guestMode');
-    if (!guestMode) {
-      tabs.addAll([
-        BottomNavigationBarItem(
-          label: S.of(context).liveTab,
-          icon: icons['live_default']!,
-          activeIcon: icons['live_selected'],
-        ),
-        BottomNavigationBarItem(label: S.of(context).calendar, icon: icons['calendar_default']!, activeIcon: icons['calendar_selected']),
-      ]);
-    }
     return AppBar(
       toolbarHeight: 64,
       shadowColor: Colors.black,

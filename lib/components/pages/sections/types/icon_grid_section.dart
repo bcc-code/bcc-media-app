@@ -45,16 +45,15 @@ class _IconGridSectionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colSize = ResponsiveValue(
-          context,
-          conditionalValues: [
-            Condition.equals(name: BP.md, value: 3),
-            Condition.equals(name: BP.lg, value: 4),
-            Condition.equals(name: BP.xl, value: 5),
-            Condition.largerThan(name: BP.xl, value: 6),
-          ],
-        ).value ??
-        _columnSize[size] ??
-        _columnSize[Enum$GridSectionSize.half]!;
+      context,
+      conditionalValues: [
+        const Condition.equals(name: BP.md, value: 3),
+        const Condition.equals(name: BP.lg, value: 4),
+        const Condition.equals(name: BP.xl, value: 5),
+        const Condition.largerThan(name: BP.xl, value: 6),
+      ],
+      defaultValue: _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!,
+    ).value;
 
     return CustomGridView(
       verticalSpacing: 12,

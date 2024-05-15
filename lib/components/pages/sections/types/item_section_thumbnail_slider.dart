@@ -101,13 +101,13 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
       context,
       defaultValue: 1.0,
       conditionalValues: [
-        Condition.equals(name: BP.sm, value: 1.0),
-        Condition.equals(name: BP.md, value: 1.5),
-        Condition.equals(name: BP.lg, value: 1.7),
-        Condition.equals(name: BP.xl, value: 2.0),
-        Condition.largerThan(name: BP.xl, value: 2.5),
+        const Condition.equals(name: BP.sm, value: 1.0),
+        const Condition.equals(name: BP.md, value: 1.5),
+        const Condition.equals(name: BP.lg, value: 1.7),
+        const Condition.equals(name: BP.xl, value: 2.0),
+        const Condition.largerThan(name: BP.xl, value: 2.5),
       ],
-    ).value!;
+    ).value;
 
     final responsiveSliderSize = sliderSize * factor;
 

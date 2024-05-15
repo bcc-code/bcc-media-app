@@ -91,11 +91,11 @@ class _Episode extends StatelessWidget {
             context,
             defaultValue: 98.0,
             conditionalValues: [
-              Condition.equals(name: BP.md, value: 130.0),
-              Condition.equals(name: BP.lg, value: 160.0),
-              Condition.largerThan(name: BP.lg, value: 180.0),
+              const Condition.equals(name: BP.md, value: 130.0),
+              const Condition.equals(name: BP.lg, value: 160.0),
+              const Condition.largerThan(name: BP.lg, value: 180.0),
             ],
-          ).value!,
+          ).value,
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

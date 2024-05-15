@@ -343,16 +343,6 @@ class _EpisodeDisplay extends HookConsumerWidget {
 
     useEffect(() => () => viewController.dispose(), []);
 
-    ref.listen<bool>(primaryPlayerProvider.select((p) => p?.playbackState == PlaybackState.playing), (prev, next) {
-      if (!isMounted()) return;
-      if (!ref.read(featureFlagsProvider).autoFullscreenOnPlay) return;
-      if (next == true && episodeIsCurrentItem && viewController.isFullscreen == false) {
-        viewController.enterFullscreen(
-          context: context,
-        );
-      }
-    });
-
     // Fetch lesson progress
     final lessonProgressFuture = useState<Future<Query$GetEpisodeLessonProgress?>?>(null);
     final hasStudy = episode.lessons.items.isNotEmpty;

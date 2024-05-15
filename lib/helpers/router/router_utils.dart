@@ -117,7 +117,7 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
 
   final gameItem = item.asOrNull<Fragment$ItemSectionItem$item$$Game>();
   if (gameItem != null) {
-    return context.router.root.push(GameScreenRoute(gameId: gameItem.uuid));
+    return context.router.root.push(WebviewScreenRoute(redirectCode: '/game-${gameItem.uuid}'));
   }
 
   return null;
