@@ -37,17 +37,17 @@ release-kids:
 # Rerelease (recreate the release tag with a different commit)
 # e.g. because you forgot to sync translations or a ci script needed to be fixed
 rerelease:
-	make changelog-commit
 	read -p "delete tag v${BUILD_NUMBER}${TAG_SUFFIX} (local and origin), and recreate it with current commit? (CTRL+C to abort)"
 	git push --delete origin v${BUILD_NUMBER}${TAG_SUFFIX}
 	git tag --delete v${BUILD_NUMBER}${TAG_SUFFIX}
+	make changelog-commit
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
 
 rerelease-kids:
-	make changelog-commit
 	read -p "delete tag v${BUILD_NUMBER_KIDS}-kids (local and origin), and recreate it with current commit? (CTRL+C to abort)"
 	git push --delete origin v${BUILD_NUMBER_KIDS}-kids
 	git tag --delete v${BUILD_NUMBER_KIDS}-kids
+	make changelog-commit
 	git tag v${BUILD_NUMBER_KIDS}-kids
 	git push --tags
