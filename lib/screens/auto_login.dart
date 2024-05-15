@@ -62,18 +62,18 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
       );
       return;
     }
-    final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
+    final isGuestMode = ref.read(authStateProvider).guestMode;
     final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingCompleted) == true;
     final alwaysShowOnboarding = ref.read(authEnabledProvider);
     if (ref.read(isAndroidTvProvider)) {
-      if (hasCredentials) {
+      if (!isGuestMode) {
         router.replaceAll([const TvLiveScreenRoute()]);
       } else {
         router.replaceAll([const TvLoginScreenRoute()]);
       }
       return;
     }
-    if (!hasCredentials && (!hasCompletedOnboarding || alwaysShowOnboarding)) {
+    if (isGuestMode || !hasCompletedOnboarding || alwaysShowOnboarding) {
       router.replaceAll([OnboardingScreenRoute()]);
     } else {
       router.replaceAll([const TabsRootScreenRoute()]);

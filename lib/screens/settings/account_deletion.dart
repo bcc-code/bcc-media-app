@@ -28,7 +28,7 @@ class AccountDeletionScreen extends HookConsumerWidget {
                 content: '',
                 html: '''
                     A user has requested to delete their account.<br/>
-                    <strong>User ID:</storng> ${ref.read(authStateProvider).user?.sub}<br/><br/>
+                    <strong>User ID:</strong> ${ref.read(authStateProvider).user?.id}<br/><br/>
                     Programmatically sent via the BCC Media "Delete my account" screen.<br/>
                     <strong>Important:</strong> To ensure this was really sent from this user, please request confirmation via email before proceeding with deletion.<br/>
                     ''',
