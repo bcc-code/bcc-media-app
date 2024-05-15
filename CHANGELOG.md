@@ -1,4 +1,20 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.7+2500017-kids...v) (2024-05-08)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.6+2300146...v) (2024-05-15)
+
+
+### Bug Fixes
+
+* auth issues, remove unused code, signup privacy policy, lint, etc ([a315701](https://github.com/bcc-code/bcc-media-app/commit/a315701d275097c09b7b42f7bdcb0ff7aca79485))
+* dispose scroll views ([defa710](https://github.com/bcc-code/bcc-media-app/commit/defa7103a6590bc03ba68092e03b0a871c6f7b62))
+* make sure users have user profile ([84eef8e](https://github.com/bcc-code/bcc-media-app/commit/84eef8edae50292361067cefbea70715152fc5a3))
+
+
+### Features
+
+* shorts guide feature flag now works ([eaaaad8](https://github.com/bcc-code/bcc-media-app/commit/eaaaad86b8fdcccec385e0034b825b7c6c628038))
+
+
+
+## [5.4.6+2300146](https://github.com/bcc-code/bcc-media-app/compare/v5.1.7+2500017-kids...v5.4.6+2300146) (2024-05-08)
 
 
 ### Bug Fixes
