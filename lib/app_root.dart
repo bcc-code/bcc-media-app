@@ -41,9 +41,9 @@ class _AppRootState extends ConsumerState<AppRoot> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    debugPrint('app_root didChangeDependencies');
     authSubscription?.close();
     authSubscription = ref.listenManual<AuthState>(authStateProvider, onAuthChanged);
+
     for (var image in FlavorConfig.current.bccmImages!) {
       precacheImage(image, context)
           .then((value) => print('precache succeeded for $image.'))
@@ -51,36 +51,29 @@ class _AppRootState extends ConsumerState<AppRoot> {
     }
   }
 
-  void onAuthChanged(AuthState? previous, AuthState next) {
+  void onAuthChanged(AuthState? previous, AuthState next) async {
     final analytics = ref.read(analyticsProvider);
-    debugPrint('authSubscription');
     if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
-      if (ref.read(isAndroidTvProvider)) {
-        widget.navigatorKey.currentContext?.router.root.replaceAll([const TvLoginScreenRoute()]);
-        return;
-      }
-      widget.navigatorKey.currentContext?.router.root.navigate(OnboardingScreenRoute());
-    } else if (next.auth0AccessToken != null && next.user != null) {
-      // ignore: unused_result
-      ref.refresh(meProvider);
-      ref.read(meProvider.future).then((value) {
-        if (!mounted) return;
-        final me = value?.me;
-        if (me == null) {
-          throw ErrorDescription('"Me" data is null.');
-        }
-        if (me.roles.contains('betatesters')) {
-          ref.read(settingsProvider.notifier).setBetaTester(true);
-        }
-        if (!me.emailVerified && context.mounted) {
-          showVerifyEmail();
-        } else if (!me.completedRegistration && context.mounted) {
-          ensureValidUser();
-        }
-        analytics.identify(next.user!, me.analytics.anonymousId);
-        ref.read(settingsProvider.notifier).setAnalyticsId(me.analytics.anonymousId);
-      });
+      final rootRouter = widget.navigatorKey.currentContext?.router.root;
+      rootRouter?.navigate(OnboardingScreenRoute());
+      return;
     }
+    if (next.auth0AccessToken == null || next.user == null) return;
+
+    ref.invalidate(meProvider);
+    final me = (await ref.read(meProvider.future))?.me;
+    if (!mounted) return;
+    if (me == null) throw ErrorDescription('"Me" data is null.');
+    if (me.roles.contains('betatesters')) {
+      ref.read(settingsProvider.notifier).setBetaTester(true);
+    }
+    if (!me.emailVerified && context.mounted) {
+      showVerifyEmail();
+    } else if (!me.completedRegistration && context.mounted) {
+      ensureValidUser();
+    }
+    analytics.identify(next.user!, me.analytics.anonymousId);
+    ref.read(settingsProvider.notifier).setAnalyticsId(me.analytics.anonymousId);
   }
 
   Future ensureValidUser() async {
@@ -95,8 +88,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
       );
     });
     if (!mounted) return;
-    // ignore: unused_result
-    ref.refresh(meProvider);
+    ref.invalidate(meProvider);
     final me = await ref.read(meProvider.future);
     if (mounted && me?.me.completedRegistration == false) {
       ref.read(authStateProvider.notifier).logout(manual: true);
