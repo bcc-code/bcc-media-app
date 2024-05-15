@@ -32,7 +32,6 @@ class HomeScreen extends ConsumerStatefulWidget {
 class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implements ScrollScreen {
   late ProviderSubscription<Future<Query$Application?>> _appConfigListener;
   bool tooltipDismissed = false;
-  String loginError = '';
   final pageScrollController = ScrollController();
 
   @override

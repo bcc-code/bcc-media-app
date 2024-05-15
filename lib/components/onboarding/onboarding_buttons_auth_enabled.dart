@@ -1,12 +1,14 @@
+import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bccm_core/design_system.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../helpers/widget_keys.dart';
 import '../../l10n/app_localizations.dart';
 
-class OnboardingButtons extends ConsumerWidget {
+class OnboardingButtons extends HookConsumerWidget {
   const OnboardingButtons({
     super.key,
     required this.loginAction,
@@ -14,7 +16,7 @@ class OnboardingButtons extends ConsumerWidget {
     required this.signupAction,
   });
 
-  final void Function() loginAction;
+  final Future Function() loginAction;
   final void Function() exploreAction;
   final void Function() signupAction;
 
@@ -22,6 +24,8 @@ class OnboardingButtons extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authEnabled = ref.watch(featureFlagsProvider.select((value) => value.auth));
     final signupEnabled = ref.watch(featureFlagsProvider.select((value) => value.publicSignup));
+    final loginFuture = useState<Future?>(null);
+    final loginSnapshot = useFuture(loginFuture.value);
     if (!authEnabled) {
       return Padding(
         padding: const EdgeInsets.only(bottom: 24),
@@ -36,13 +40,29 @@ class OnboardingButtons extends ConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Container(
-          margin: const EdgeInsets.only(bottom: 12),
-          child: DesignSystem.of(context).buttons.large(
-                key: WidgetKeys.signInButton,
-                labelText: S.of(context).signInButton,
-                onPressed: loginAction,
-              ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: Stack(
+            fit: StackFit.passthrough,
+            children: [
+              DesignSystem.of(context).buttons.large(
+                    key: WidgetKeys.signInButton,
+                    labelText: S.of(context).signInButton,
+                    onPressed: () {
+                      loginFuture.value = loginAction();
+                    },
+                  ),
+              if (loginSnapshot.connectionState == ConnectionState.waiting)
+                Positioned.fill(
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                    child: const Center(
+                      child: LoadingIndicator(),
+                    ),
+                  ),
+                ),
+            ],
+          ),
         ),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 200),

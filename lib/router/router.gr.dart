@@ -227,7 +227,6 @@ abstract class $AppRouter extends _i34.RootStackRouter {
         child: _i19.OnboardingScreen(
           key: args.key,
           loginError: args.loginError,
-          onResult: args.onResult,
           auto: args.auto,
         ),
       );
@@ -832,7 +831,6 @@ class OnboardingScreenRoute
   OnboardingScreenRoute({
     _i36.Key? key,
     String? loginError,
-    void Function(bool)? onResult,
     bool auto = false,
     List<_i34.PageRouteInfo>? children,
   }) : super(
@@ -840,7 +838,6 @@ class OnboardingScreenRoute
           args: OnboardingScreenRouteArgs(
             key: key,
             loginError: loginError,
-            onResult: onResult,
             auto: auto,
           ),
           rawQueryParams: {'auto': auto},
@@ -857,7 +854,6 @@ class OnboardingScreenRouteArgs {
   const OnboardingScreenRouteArgs({
     this.key,
     this.loginError,
-    this.onResult,
     this.auto = false,
   });
 
@@ -865,13 +861,11 @@ class OnboardingScreenRouteArgs {
 
   final String? loginError;
 
-  final void Function(bool)? onResult;
-
   final bool auto;
 
   @override
   String toString() {
-    return 'OnboardingScreenRouteArgs{key: $key, loginError: $loginError, onResult: $onResult, auto: $auto}';
+    return 'OnboardingScreenRouteArgs{key: $key, loginError: $loginError, auto: $auto}';
   }
 }
 

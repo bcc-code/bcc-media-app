@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
@@ -20,13 +21,11 @@ import '../../l10n/app_localizations.dart';
 @RoutePage<void>()
 class OnboardingScreen extends ConsumerStatefulWidget {
   final String? loginError;
-  final void Function(bool)? onResult;
   final bool auto;
 
   const OnboardingScreen({
     super.key,
     this.loginError,
-    this.onResult,
     @QueryParam('auto') this.auto = false,
   });
 
@@ -35,62 +34,50 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 }
 
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
-  bool isProgressing = false;
-  bool isLoggedIn = false;
-  String errorMessage = '';
   bool imagesLoaded = false;
+  bool error = false;
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 200)).then(
-      (_) => setState(() => imagesLoaded = true),
-    );
     if (widget.auto) {
-      loginAction();
+      doLogin();
     }
+    Future.delayed(const Duration(milliseconds: 200)).then((_) {
+      if (!mounted) return;
+      setState(() => imagesLoaded = true);
+    });
   }
 
   @override
   void didUpdateWidget(OnboardingScreen old) {
     super.didUpdateWidget(old);
     if (widget.auto && !old.auto) {
-      loginAction();
+      doLogin();
     }
   }
 
-  handleSuccess() {
+  Future<void> doLogin() async {
     setState(() {
-      isProgressing = false;
-      isLoggedIn = true;
+      error = false;
     });
-    if (widget.onResult != null) {
-      widget.onResult!(true);
-    }
-
-    context.router.replaceAll([const TabsRootScreenRoute()]);
-  }
-
-  handleError(String message) {
-    setState(() {
-      isProgressing = false;
-      errorMessage = message;
-    });
-  }
-
-  Future<void> loginAction() async {
-    final tryAgainMessage = S.of(context).errorTryAgain;
-    setState(() {
-      isProgressing = true;
-      errorMessage = '';
-    });
-
     final success = await ref.read(authStateProvider.notifier).login();
-    if (success) {
-      handleSuccess();
-    } else {
-      handleError(tryAgainMessage);
+    if (!mounted) return;
+    if (!success) {
+      setState(() {
+        error = true;
+      });
+      return;
     }
+    // Restart Unleash to force a new feature flag fetch
+    ref.read(rawUnleashProvider)?.stop();
+    try {
+      await ref.read(rawUnleashProvider)?.start().timeout(const Duration(milliseconds: 3000));
+    } catch (e) {
+      // ignore
+    }
+    if (!mounted) return;
+    context.router.replaceAll([const TabsRootScreenRoute()]);
   }
 
   @override
@@ -164,10 +151,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        if (errorMessage != '')
-                          Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(errorMessage, textAlign: TextAlign.center)),
+                        if (error)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: Text(S.of(context).errorTryAgain, textAlign: TextAlign.center),
+                          ),
                         OnboardingButtons(
-                          loginAction: loginAction,
+                          loginAction: doLogin,
                           exploreAction: () {
                             context.router.popUntil((route) => false);
                             context.router.push(const TabsRootScreenRoute());
