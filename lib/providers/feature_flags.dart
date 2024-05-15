@@ -8,31 +8,28 @@ import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
 import '../models/feature_flags.dart';
 
 final featureFlagsProvider = StateNotifierProvider<FeatureFlagsNotifier, FeatureFlags>((ref) {
-  return FeatureFlagsNotifier(ref.watch(rawUnleashProvider));
+  return FeatureFlagsNotifier(ref, ref.watch(rawUnleashProvider));
 });
 
 class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
   final UnleashClient? client;
-  FeatureFlagsNotifier(this.client) : super(_getFlags(client)) {
+  final Ref ref;
+  FeatureFlagsNotifier(this.ref, this.client) : super(_getFlags(client)) {
     _update();
-    client?.on('update', onUnleashUpdate);
-    client?.on('ready', onUnleashReady);
-    client?.on('initialized', onUnleashReady);
+    client?.on('update', onUnleashEvent);
+    client?.on('ready', onUnleashEvent);
+    client?.on('initialized', onUnleashEvent);
   }
 
   @override
   void dispose() {
-    client?.off(type: 'update', callback: onUnleashUpdate);
-    client?.off(type: 'ready', callback: onUnleashReady);
-    client?.off(type: 'initialized', callback: onUnleashReady);
+    client?.off(type: 'update', callback: onUnleashEvent);
+    client?.off(type: 'ready', callback: onUnleashEvent);
+    client?.off(type: 'initialized', callback: onUnleashEvent);
     super.dispose();
   }
 
-  void onUnleashUpdate(_) {
-    _update();
-  }
-
-  void onUnleashReady(_) {
+  void onUnleashEvent(_) {
     _update();
   }
 

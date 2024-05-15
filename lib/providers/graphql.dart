@@ -60,12 +60,13 @@ class _ApiHttpClient extends BaseClient {
       if (settings.isBetaTester == true) '${FlavorConfig.current.applicationCode}-betatesters',
       ...settings.extraUsergroups,
     ];
-    final featureFlagsHeader = ref.read(featureFlagVariantListProvider).join(',');
+    final isLoggedIn = ref.read(authStateProvider).isLoggedIn;
+    final featureFlagVariants = ref.read(featureFlagVariantListProvider);
     final headers = BccmGraphqlHeaders(
       acceptLanguage: [settings.appLanguage.languageCode],
       application: FlavorConfig.current.applicationCode,
       applicationVersion: formatAppVersion(ref.watch(packageInfoProvider)),
-      featureFlags: featureFlagsHeader,
+      featureFlags: isLoggedIn ? featureFlagVariants : null,
       extraUsergroups: extraUsergroups,
     ).toMap();
     request.headers.addAll(headers);
