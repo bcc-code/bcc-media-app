@@ -49,8 +49,9 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     if (context.router.topRoute.name == ShortsWrapperScreenRoute.name || context.router.topRoute.name == ShortsScreenRoute.name) {
       return;
     }
-    if (ref.read(featureFlagsProvider).shorts != true) return;
-    //if (ref.read(featureFlagsProvider).shortsGuide != true) return;
+    if (!ref.read(currentTabIdsProvider).contains(TabId.shorts)) return;
+    if (ref.read(featureFlagsProvider).shortsGuide != true) return;
+
     final prefs = ref.read(sharedPreferencesProvider);
     final hasShownShortGuide = prefs.getBool(PrefKeys.shortsFeatureGuideShown) ?? false;
     if (hasShownShortGuide) return;
