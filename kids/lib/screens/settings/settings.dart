@@ -15,7 +15,7 @@ import 'package:kids/components/settings/setting_list.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:brunstadtv_app/components/web/dialog_on_web.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';

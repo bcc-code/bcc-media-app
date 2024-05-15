@@ -27,7 +27,7 @@ import 'package:kids/components/settings/option_list.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 class PlayerView extends HookConsumerWidget {

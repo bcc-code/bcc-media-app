@@ -32,8 +32,6 @@ import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import './firebase_options.dart';
 import 'package:universal_io/io.dart';
 
-bool _isAndroidTv = false;
-
 Future<void> main() async {
   FlavorConfig.register(
     FlavorConfig(
@@ -137,12 +135,10 @@ Future setDefaults() async {
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
-  if (!_isAndroidTv) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-    ]);
-  }
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]);
 
   // How much space all bitmaps collectively can take up in memory.
   // The default is 100MiB, as of flutter 3.7. This lowers it to 50MiB.

@@ -15,7 +15,7 @@ import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids/components/page/section_renderer.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 final GlobalKey homeKey = GlobalKey<_HomeScreenState>();
 

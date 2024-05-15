@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/flavors.dart';
@@ -11,7 +12,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:kids/components/splash_video.dart';
 import 'package:kids/router/router.dart';
-import 'package:kids/router/router.gr.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class AppRoot extends ConsumerStatefulWidget {
@@ -72,7 +72,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
                 debugShowCheckedModeBanner: false,
                 title: 'Bible Kids',
                 routerDelegate: widget.appRouter.delegate(
-                  initialRoutes: [const HomeScreenRoute()],
+                  deepLinkBuilder: (_) => const DeepLink.path('/'),
                   navigatorObservers: () => [AnalyticsNavigatorObserver()],
                 ),
                 routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),

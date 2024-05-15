@@ -9,7 +9,7 @@ import 'package:kids/components/search/search_results.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 @RoutePage<void>()
 class SearchScreen extends HookWidget {

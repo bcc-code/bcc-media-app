@@ -14,7 +14,7 @@ import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:kids/components/settings/language_list_dialog.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 @RoutePage<void>()

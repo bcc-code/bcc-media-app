@@ -19,17 +19,6 @@ class AppRouter extends $AppRouter {
     AutoRoute(
       page: AutoLoginScreenRoute.page,
       path: '/auto-login',
-      initial: true,
-    ),
-    AutoRoute(
-      page: TvLiveScreenRoute.page,
-      path: '/tv/live',
-      meta: const {RouteMetaConstants.analyticsName: 'tv-live'},
-    ),
-    AutoRoute(
-      page: TvLoginScreenRoute.page,
-      path: '/tv/login',
-      meta: const {RouteMetaConstants.analyticsName: 'tv-login'},
     ),
     CustomRoute(
       page: OnboardingScreenRoute.page,
@@ -205,7 +194,6 @@ class AppRouter extends $AppRouter {
     CustomRoute(
       page: TabsRootScreenRoute.page,
       path: '/',
-      initial: false,
       children: [
         MaterialRoute(
           page: LiveScreenRoute.page,

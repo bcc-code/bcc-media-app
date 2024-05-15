@@ -103,11 +103,9 @@ Future setDefaults() async {
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
-  if (!isAndroidTv) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-  }
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   // How much space all bitmaps collectively can take up in memory.
   // The default is 100MiB, as of flutter 3.7. This lowers it to 50MiB.
