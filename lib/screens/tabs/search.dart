@@ -42,6 +42,12 @@ class SearchScreenState extends ConsumerState<SearchScreen> implements ScrollScr
   }
 
   @override
+  void dispose() {
+    pageScrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   void scrollToTop() {
     if (!pageScrollController.hasClients) return;
     pageScrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);

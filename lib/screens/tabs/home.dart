@@ -63,6 +63,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
   @override
   void dispose() {
     _appConfigListener.close();
+    pageScrollController.dispose();
     super.dispose();
   }
 
