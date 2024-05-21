@@ -831,7 +831,7 @@
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Untersuchung fortsetzen",
+  "continueStudy": "Bibelstudium fortsetzen",
   "@continueStudy": {
     "description": "Button."
   },

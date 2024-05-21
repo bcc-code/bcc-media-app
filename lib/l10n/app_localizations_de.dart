@@ -618,7 +618,7 @@ class SDe extends S {
   String get studyLessonsCompleted => 'Lektion abgeschlossen';
 
   @override
-  String get continueStudy => 'Untersuchung fortsetzen';
+  String get continueStudy => 'Bibelstudium fortsetzen';
 
   @override
   String get startStudy => 'Untersuchung starten';
