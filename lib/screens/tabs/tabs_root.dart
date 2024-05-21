@@ -190,6 +190,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
   Widget build(BuildContext context) {
     final tabInfos = ref.watch(tabInfosProvider);
     final currentTabIds = ref.watch(currentTabIdsProvider);
+    final authStatusSemantics = ref.watch(authStateProvider.select((u) => u.isLoggedIn)) ? 'Signed in' : 'Signed out';
 
     return CupertinoScaffold(
       body: AutoTabsRouter(
@@ -199,25 +200,28 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
         lazyLoad: false,
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
-          return Scaffold(
-            appBar: kIsWeb ? WebAppBar(tabsRouter: tabsRouter, onTabTap: (i) => onTabTap(context, i)) : null,
-            body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
-            bottomSheet: Container(
-              color: DesignSystem.of(context).colors.background1, // Fix gap between prompts and miniPlayer due to antialiasing issue
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Prompts(),
-                  BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
-                ],
+          return Semantics(
+            label: authStatusSemantics,
+            child: Scaffold(
+              appBar: kIsWeb ? WebAppBar(tabsRouter: tabsRouter, onTabTap: (i) => onTabTap(context, i)) : null,
+              body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
+              bottomSheet: Container(
+                color: DesignSystem.of(context).colors.background1, // Fix gap between prompts and miniPlayer due to antialiasing issue
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Prompts(),
+                    BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
+                  ],
+                ),
               ),
+              bottomNavigationBar: kIsWeb
+                  ? null
+                  : CustomNavTabBar(
+                      tabsRouter: tabsRouter,
+                      onTabTap: (i) => onTabTap(context, i),
+                    ),
             ),
-            bottomNavigationBar: kIsWeb
-                ? null
-                : CustomNavTabBar(
-                    tabsRouter: tabsRouter,
-                    onTabTap: (i) => onTabTap(context, i),
-                  ),
           );
         },
       ),

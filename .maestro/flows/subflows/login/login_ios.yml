@@ -22,4 +22,4 @@ appId: tv.brunstad.app
 - pressKey: Enter
 - assertVisible: "Home"
 - assertVisible: "Search"
-- assertVisible: "Live"
+- assertVisible: "Signed in"
