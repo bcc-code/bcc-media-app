@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.6+2300146...v) (2024-05-15)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.7+2300147...v) (2024-05-21)
+
+
+### Bug Fixes
+
+* contributor deep link ([66d3c4c](https://github.com/bcc-code/bcc-media-app/commit/66d3c4c4355965c52ed43011cbf0236ced35aff7))
+
+
+
+## [5.4.7+2300147](https://github.com/bcc-code/bcc-media-app/compare/v5.4.6+2300146...v5.4.7+2300147) (2024-05-15)
 
 
 ### Bug Fixes
