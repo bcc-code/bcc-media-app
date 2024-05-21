@@ -58,7 +58,7 @@ appId: tv.brunstad.app
 - assertVisible: .*Playing..*
 - tapOn:
     point: "50%,50%"
-- assertVisible: .*Playing..*
+- assertVisible: .*Paused..*
 - assertNotVisible: .*Error.*
 
 # FOREGROUND TESTS
