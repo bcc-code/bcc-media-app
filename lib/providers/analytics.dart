@@ -44,7 +44,7 @@ class BccmAnalyticsMetaEnricher extends AnalyticsMetaEnricher {
     }
     final personRouteArgs = route.settings.arguments.asOrNull<ContributorScreenRouteArgs>();
     if (personRouteArgs != null) {
-      extraProperties['meta']['id'] = personRouteArgs.id;
+      extraProperties['meta']['id'] = personRouteArgs.personId;
     }
 
     final routeData = route.data;

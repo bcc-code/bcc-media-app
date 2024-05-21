@@ -143,13 +143,13 @@ abstract class $AppRouter extends _i34.RootStackRouter {
     ContributorScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<ContributorScreenRouteArgs>(
-          orElse: () =>
-              ContributorScreenRouteArgs(id: pathParams.getString('id')));
+          orElse: () => ContributorScreenRouteArgs(
+              personId: pathParams.getString('personId')));
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: _i12.ContributorScreen(
           key: args.key,
-          id: args.id,
+          personId: args.personId,
         ),
       );
     },
@@ -626,15 +626,15 @@ class ContributorScreenRoute
     extends _i34.PageRouteInfo<ContributorScreenRouteArgs> {
   ContributorScreenRoute({
     _i35.Key? key,
-    required String id,
+    required String personId,
     List<_i34.PageRouteInfo>? children,
   }) : super(
           ContributorScreenRoute.name,
           args: ContributorScreenRouteArgs(
             key: key,
-            id: id,
+            personId: personId,
           ),
-          rawPathParams: {'id': id},
+          rawPathParams: {'personId': personId},
           initialChildren: children,
         );
 
@@ -647,16 +647,16 @@ class ContributorScreenRoute
 class ContributorScreenRouteArgs {
   const ContributorScreenRouteArgs({
     this.key,
-    required this.id,
+    required this.personId,
   });
 
   final _i35.Key? key;
 
-  final String id;
+  final String personId;
 
   @override
   String toString() {
-    return 'ContributorScreenRouteArgs{key: $key, id: $id}';
+    return 'ContributorScreenRouteArgs{key: $key, personId: $personId}';
   }
 }
 

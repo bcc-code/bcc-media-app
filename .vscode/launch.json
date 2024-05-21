@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "prod",
+      "name": "prod: debug",
       "request": "launch",
       "type": "dart",
       "cwd": "${workspaceFolder}",
@@ -20,7 +20,7 @@
       "program": "lib/main_prod.dart"
     },
     {
-      "name": "prod (attach)",
+      "name": "prod: attach",
       "request": "attach",
       "type": "dart",
       "cwd": "${workspaceFolder}",
@@ -35,7 +35,7 @@
       "program": "lib/main_prod.dart"
     },
     {
-      "name": "prod (profile)",
+      "name": "prod: profile",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile",
@@ -51,7 +51,7 @@
       "program": "lib/main_prod.dart"
     },
     {
-      "name": "prod (release)",
+      "name": "prod: release",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release",

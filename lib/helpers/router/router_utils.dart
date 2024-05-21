@@ -84,7 +84,7 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
   final personItem = item.asOrNull<Fragment$ItemSectionItem$item$$Person>();
   if (personItem != null) {
     return router.navigate(HomeWrapperScreenRoute(
-      children: [ContributorScreenRoute(id: personItem.id)],
+      children: [ContributorScreenRoute(personId: personItem.id)],
     ));
   }
 
