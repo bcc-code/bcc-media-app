@@ -112,12 +112,12 @@ class PlaylistScreen extends HookConsumerWidget {
                           context.router.push(EpisodeScreenRoute(id: item.id, playlistId: id));
 
                           ref.read(analyticsProvider).sectionItemClicked(context,
-                              sectionAnalyticsOverride: SectionAnalytics(
+                              sectionAnalyticsOverride: SectionAnalyticsData(
                                 id: 'PlaylistEpisodes-$id',
                                 position: 0,
                                 type: 'PlaylistEpisodes',
                               ),
-                              itemAnalyticsOverride: SectionItemAnalytics(
+                              itemAnalyticsOverride: SectionItemAnalyticsData(
                                 position: index,
                                 type: 'Episode',
                                 id: item.id,

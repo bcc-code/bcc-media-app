@@ -115,12 +115,12 @@ class ShowScreen extends HookConsumerWidget {
                           currentMorphKey = morphKey;
                           context.router.push(EpisodeScreenRoute(id: item.id));
                           ref.read(analyticsProvider).sectionItemClicked(context,
-                              sectionAnalyticsOverride: SectionAnalytics(
+                              sectionAnalyticsOverride: SectionAnalyticsData(
                                 id: 'ShowEpisodes-$showId',
                                 position: 0,
                                 type: 'ShowEpisodes',
                               ),
-                              itemAnalyticsOverride: SectionItemAnalytics(
+                              itemAnalyticsOverride: SectionItemAnalyticsData(
                                 position: index,
                                 type: 'Episode',
                                 id: item.id,

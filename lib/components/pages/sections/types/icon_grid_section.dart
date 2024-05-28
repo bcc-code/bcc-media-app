@@ -64,7 +64,7 @@ class _IconGridSectionList extends StatelessWidget {
             (index, item) => SectionItemClickWrapper(
               item: item.item,
               collectionId: collectionId,
-              analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+              analytics: SectionItemAnalyticsData(id: item.id, position: index, type: item.$__typename, name: item.title),
               child: IconSectionButton(
                 label: item.title,
                 networkImage: item.image,

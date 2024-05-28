@@ -26,7 +26,7 @@ class LabelSection extends StatelessWidget {
           return SectionItemClickWrapper(
             item: item.item,
             collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
-            analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+            analytics: SectionItemAnalyticsData(id: item.id, position: index, type: item.$__typename, name: item.title),
             child: _LabelItem(item),
           );
         },

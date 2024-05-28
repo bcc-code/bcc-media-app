@@ -10,13 +10,13 @@ class SectionItemClickWrapper extends ConsumerWidget {
   const SectionItemClickWrapper({super.key, required this.item, required this.child, required this.analytics, this.collectionId});
 
   final Fragment$ItemSectionItem$item item;
-  final SectionItemAnalytics analytics;
+  final SectionItemAnalyticsData analytics;
   final Widget child;
   final String? collectionId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return InheritedData<SectionItemAnalytics>(
+    return InheritedData<SectionItemAnalyticsData>(
       inheritedData: analytics,
       child: (context) {
         // Important that the inheriteddata is in the context

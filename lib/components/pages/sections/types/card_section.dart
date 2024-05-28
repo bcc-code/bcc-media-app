@@ -25,8 +25,8 @@ class CardSection extends StatelessWidget {
             final cardSectionItem = kv.value;
             return Padding(
               padding: kv.key == data.items.items.length - 1 ? EdgeInsets.zero : const EdgeInsets.only(bottom: 8),
-              child: InheritedData<SectionItemAnalytics>(
-                inheritedData: SectionItemAnalytics(
+              child: InheritedData<SectionItemAnalyticsData>(
+                inheritedData: SectionItemAnalyticsData(
                     position: kv.key, id: cardSectionItem.id, type: cardSectionItem.item.$__typename, name: cardSectionItem.title),
                 child: (context) {
                   final studyTopic = cardSectionItem.item.asOrNull<Fragment$Section$$CardSection$items$items$item$$StudyTopic>();

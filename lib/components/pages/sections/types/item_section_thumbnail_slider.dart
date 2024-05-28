@@ -154,7 +154,7 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
         }
         return SectionItemClickWrapper(
           item: item.item,
-          analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+          analytics: SectionItemAnalyticsData(id: item.id, position: index, type: item.$__typename, name: item.title),
           collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
           child: sectionItemWidget,
         );

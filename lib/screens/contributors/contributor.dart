@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/contributions/contributions_list.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/profile/avatar.dart';
@@ -6,6 +7,7 @@ import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/components/tabs/tab_selector.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
@@ -103,7 +105,24 @@ class ContributorScreen extends HookConsumerWidget {
             ),
           ],
           body: TabBarView(
-            children: filterTabs.map((f) => ContributionsList(personId: person.id, type: f.typeCode)).toList(),
+            children: filterTabs
+                .mapIndexed(
+                  (i, f) => SectionAnalytics(
+                    data: SectionAnalyticsData(
+                      id: '',
+                      position: i,
+                      type: 'ContributorList',
+                      name: person.name,
+                      pageCode: 'person',
+                      meta: {
+                        'personId': person.id,
+                        'type': f.typeCode,
+                      },
+                    ),
+                    child: (context) => ContributionsList(personId: person.id, type: f.typeCode),
+                  ),
+                )
+                .toList(),
           ),
         ),
       ),

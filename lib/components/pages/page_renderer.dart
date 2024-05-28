@@ -73,8 +73,8 @@ class _PageRendererState extends ConsumerState<PageRenderer> {
             itemCount: sectionItems.length,
             itemBuilder: ((context, index) {
               var s = sectionItems[index];
-              return InheritedData<SectionAnalytics>(
-                inheritedData: SectionAnalytics(id: s.id, position: index, type: s.$__typename, name: s.title),
+              return SectionAnalytics(
+                data: SectionAnalyticsData(id: s.id, position: index, type: s.$__typename, name: s.title),
                 child: (context) => SectionUpdateHandler(section: s, extraItems: paginationMap[s.id]?.items),
               );
             }),

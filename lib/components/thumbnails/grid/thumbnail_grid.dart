@@ -92,7 +92,7 @@ class ThumbnailGrid extends ConsumerWidget {
         return SectionItemClickWrapper(
           item: item.item,
           collectionId: collectionId,
-          analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+          analytics: SectionItemAnalyticsData(id: item.id, position: index, type: item.$__typename, name: item.title),
           child: getItemWidget(item, curLiveEpisode),
         );
       }).toList(),

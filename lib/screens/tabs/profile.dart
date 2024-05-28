@@ -286,7 +286,7 @@ class _ShortFavorites extends HookConsumerWidget {
         final item = shortItems.elementAt(index);
         return _FavoriteItemClickWrapper(
           item: item,
-          analytics: SectionItemAnalytics(
+          analytics: SectionItemAnalyticsData(
             id: item.id,
             name: item.title,
             type: item.$__typename,
@@ -368,7 +368,7 @@ class _EpisodeFavorites extends HookConsumerWidget {
       children: episodeItems.mapIndexed((index, item) {
         return _FavoriteItemClickWrapper(
           item: item,
-          analytics: SectionItemAnalytics(
+          analytics: SectionItemAnalyticsData(
             id: item.id,
             name: item.title,
             type: item.$__typename,
@@ -389,7 +389,7 @@ class _FavoriteItemClickWrapper extends ConsumerWidget {
   const _FavoriteItemClickWrapper({required this.item, required this.child, required this.analytics});
 
   final Fragment$MyListEntry$item item;
-  final SectionItemAnalytics analytics;
+  final SectionItemAnalyticsData analytics;
   final Widget child;
 
   onTap(BuildContext context, WidgetRef ref) {
@@ -406,7 +406,7 @@ class _FavoriteItemClickWrapper extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return InheritedData<SectionItemAnalytics>(
+    return InheritedData<SectionItemAnalyticsData>(
       inheritedData: analytics,
       child: (context) => GestureDetector(
         behavior: HitTestBehavior.opaque,

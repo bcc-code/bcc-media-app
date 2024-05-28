@@ -1,16 +1,16 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/episode/list/episode_list_episode.dart';
 import 'package:brunstadtv_app/components/status/error_adaptive.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:bccm_core/platform.dart';
+import 'package:brunstadtv_app/helpers/router/router_utils.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:graphql/client.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -77,9 +77,7 @@ class ContributionsList extends HookConsumerWidget {
       }();
     }
 
-    useEffect(() {
-      fetchMore();
-    }, []);
+    useOnInit(fetchMore);
 
     if (snapshot.hasError) {
       return ErrorGeneric(
@@ -88,17 +86,17 @@ class ContributionsList extends HookConsumerWidget {
       );
     }
 
-    final c = PrimaryScrollController.of(context);
+    final scrollController = PrimaryScrollController.of(context);
     useEffect(() {
-      fn() {
-        if (c.position.extentAfter < 500) {
+      scrollListener() {
+        if (scrollController.position.extentAfter < 500) {
           if (!shouldAutoFetchMore.value) return;
           fetchMore();
         }
       }
 
-      c.addListener(fn);
-      return () => c.removeListener(fn);
+      scrollController.addListener(scrollListener);
+      return () => scrollController.removeListener(scrollListener);
     }, []);
 
     if (items.value.isEmpty && snapshot.connectionState != ConnectionState.done) {
@@ -108,9 +106,7 @@ class ContributionsList extends HookConsumerWidget {
     if (items.value.isEmpty && snapshot.hasError) {
       return ErrorAdaptive(
         exception: snapshot.error?.asOrNull<OperationException>(),
-        onRetry: () {
-          fetchMore();
-        },
+        onRetry: fetchMore,
       );
     }
 
@@ -126,7 +122,7 @@ class ContributionsList extends HookConsumerWidget {
       final item = result.parsedData?.person.contributions.items.firstOrNull?.item;
       if (item == null) return;
       if (!context.mounted) return;
-      _navigateToItem(context, item);
+      navigateToContributionItem(context, item);
     }
 
     final design = DesignSystem.of(context);
@@ -180,7 +176,11 @@ class ContributionsList extends HookConsumerWidget {
                 if (contribution == null) {
                   return const SizedBox.shrink();
                 }
-                return _ContributionListItem(contribution: contribution, index: index);
+                return _ContributionListItem(
+                  personId: personId,
+                  contribution: contribution,
+                  index: index,
+                );
               },
             ),
           ),
@@ -192,12 +192,14 @@ class ContributionsList extends HookConsumerWidget {
 
 class _ContributionListItem extends StatelessWidget {
   const _ContributionListItem({
+    required this.personId,
     required this.contribution,
     required this.index,
   });
 
   final int index;
   final Fragment$Contribution contribution;
+  final String personId;
 
   @override
   Widget build(BuildContext context) {
@@ -207,9 +209,15 @@ class _ContributionListItem extends StatelessWidget {
       if (episode == null) {
         return const SizedBox.shrink();
       }
-      return _ClickWrapper(
+      return _ItemClickWrapper(
+        personId: personId,
         contribution: contribution,
-        analytics: SectionItemAnalytics(id: chapter.id, type: 'Chapter', position: index),
+        analytics: SectionItemAnalyticsData(
+          id: chapter.id,
+          position: index,
+          type: chapter.$__typename,
+          name: chapter.title,
+        ),
         child: EpisodeListEpisode(
           id: episode.id,
           ageRating: episode.ageRating,
@@ -223,9 +231,15 @@ class _ContributionListItem extends StatelessWidget {
     }
     final episode = contribution.item.asOrNull<Fragment$Contribution$item$$Episode>();
     if (episode != null) {
-      return _ClickWrapper(
+      return _ItemClickWrapper(
+        personId: personId,
         contribution: contribution,
-        analytics: SectionItemAnalytics(id: episode.id, type: 'Episode', position: index),
+        analytics: SectionItemAnalyticsData(
+          id: episode.id,
+          position: index,
+          type: episode.$__typename,
+          name: episode.title,
+        ),
         child: EpisodeListEpisode(
           id: episode.id,
           ageRating: episode.ageRating,
@@ -241,58 +255,33 @@ class _ContributionListItem extends StatelessWidget {
   }
 }
 
-class _ClickWrapper extends ConsumerWidget {
-  const _ClickWrapper({
+class _ItemClickWrapper extends ConsumerWidget {
+  const _ItemClickWrapper({
     Key? key,
+    required this.personId,
     required this.contribution,
     required this.analytics,
     required this.child,
   }) : super(key: key);
 
   final Fragment$Contribution contribution;
-  final SectionItemAnalytics analytics;
+  final String personId;
+  final SectionItemAnalyticsData analytics;
   final Widget child;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return InheritedData<SectionItemAnalytics>(
-      inheritedData: analytics,
-      child: (context) {
-        void onPressed() {
-          _navigateToItem(context, contribution.item);
-        }
-
-        return GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: onPressed,
-          child: FocusableActionDetector(
-            mouseCursor: WidgetStateMouseCursor.clickable,
-            actions: {
-              ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) => onPressed()),
-            },
-            child: child,
-          ),
-        );
-      },
-    );
-  }
-}
-
-void _navigateToItem(BuildContext context, Fragment$Contribution$item item) {
-  final chapter = item.asOrNull<Fragment$Contribution$item$$Chapter>();
-  if (chapter != null) {
-    final episode = chapter.episode;
-    if (episode == null) return;
-    context.navigateTo(
-      EpisodeScreenRoute(
-        episodeId: episode.id,
-        queryParamStartPosition: chapter.start,
-        autoplay: true,
+    return SectionItemAnalytics(
+      data: analytics,
+      child: (context) => FocusableControlBuilder(
+        cursor: SystemMouseCursors.click,
+        hitTestBehavior: HitTestBehavior.opaque,
+        onPressed: () {
+          navigateToContributionItem(context, contribution.item);
+          ref.read(analyticsProvider).sectionItemClicked(context);
+        },
+        builder: (context, control) => child,
       ),
     );
-  }
-  final ep = item.asOrNull<Fragment$Contribution$item$$Episode>();
-  if (ep != null) {
-    context.navigateTo(EpisodeScreenRoute(episodeId: ep.id));
   }
 }

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:collection/collection.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -66,46 +67,58 @@ Future overrideAwareNavigation(NavigationOverride? override, StackRouter router,
 
 Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSectionItem$item item, {String? collectionId}) {
   final ref = ProviderScope.containerOf(context, listen: false);
-  final analytics = ref.read(analyticsProvider);
-  analytics.sectionItemClicked(context);
+  ref.read(analyticsProvider).sectionItemClicked(context);
+  return navigateToSectionItem(context, item, collectionId: collectionId);
+}
 
+/// Type-safe wrapper for [_navigateToItem]
+Future<dynamic>? navigateToSectionItem(BuildContext context, Fragment$ItemSectionItem$item item, {String? collectionId}) {
+  return _navigateToItem(context, item, collectionId: collectionId);
+}
+
+/// Type-safe wrapper for [_navigateToItem]
+Future<dynamic>? navigateToContributionItem(BuildContext context, Fragment$Contribution$item item, {String? collectionId}) {
+  return _navigateToItem(context, item, collectionId: collectionId);
+}
+
+/// For this to work, the item must be navigatable, i.e. one of the Fragment$Navigatable* types
+Future<dynamic>? _navigateToItem(BuildContext context, Object item, {String? collectionId}) {
   final navigationOverride = NavigationOverride.of(context);
   final router = context.router;
-  final episodeItem = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
+  final episodeItem = item.asOrNull<Fragment$NavigatableEpisode>();
   if (episodeItem != null) {
-    final isLive = ref.read(currentLiveEpisodeProvider)?.episode?.id == episodeItem.id;
-    if (!episodeItem.locked) {
-      return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeItem.id, collectionId: collectionId));
-    } else if (isLive) {
-      return router.navigate(const LiveScreenRoute());
+    if (episodeItem.locked) {
+      debugPrint('bccm: warning, tried to navigate to locked episode ${episodeItem.id} ${StackTrace.current}');
+      return null;
     }
+    return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeItem.id, collectionId: collectionId));
   }
 
-  final personItem = item.asOrNull<Fragment$ItemSectionItem$item$$Person>();
+  final personItem = item.asOrNull<Fragment$NavigatablePerson>();
   if (personItem != null) {
     return router.navigate(HomeWrapperScreenRoute(
       children: [ContributorScreenRoute(personId: personItem.id)],
     ));
   }
 
-  final shortItem = item.asOrNull<Fragment$ItemSectionItem$item$$Short>();
+  final shortItem = item.asOrNull<Fragment$NavigatableShort>();
   if (shortItem != null) {
     return router.navigate(HomeWrapperScreenRoute(
       children: [ShortScreenRoute(id: shortItem.id)],
     ));
   }
 
-  final showItem = item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
+  final showItem = item.asOrNull<Fragment$NavigatableShow>();
   if (showItem != null) {
     return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
   }
 
-  final pageItem = item.asOrNull<Fragment$ItemSectionItem$item$$Page>();
+  final pageItem = item.asOrNull<Fragment$NavigatablePage>();
   if (pageItem != null) {
     return overrideAwareNavigation(navigationOverride, router, PageScreenRoute(pageCode: pageItem.code));
   }
 
-  final linkItem = item.asOrNull<Fragment$ItemSectionItem$item$$Link>();
+  final linkItem = item.asOrNull<Fragment$NavigatableLink>();
   if (linkItem != null) {
     final uri = Uri.tryParse(linkItem.url);
     if (uri == null) return null;
@@ -115,9 +128,27 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
     return launchUrlString(linkItem.url, mode: LaunchMode.externalApplication);
   }
 
-  final gameItem = item.asOrNull<Fragment$ItemSectionItem$item$$Game>();
+  final gameItem = item.asOrNull<Fragment$NavigatableGame>();
   if (gameItem != null) {
     return context.router.root.push(WebviewScreenRoute(redirectCode: '/game-${gameItem.uuid}'));
+  }
+
+  final chapter = item.asOrNull<Fragment$Contribution$item$$Chapter>();
+  if (chapter != null) {
+    final episode = chapter.episode;
+    if (episode == null) {
+      FirebaseCrashlytics.instance.recordError(ErrorHint('Chapter without episode'), StackTrace.current);
+      return null;
+    }
+    overrideAwareNavigation(
+      navigationOverride,
+      router,
+      EpisodeScreenRoute(
+        episodeId: episode.id,
+        queryParamStartPosition: chapter.start,
+        autoplay: true,
+      ),
+    );
   }
 
   return null;

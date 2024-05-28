@@ -25,8 +25,8 @@ class SectionRenderer extends StatelessWidget {
   Widget build(BuildContext context) {
     final widget = getWidget();
     if (widget != null) {
-      return InheritedData<SectionAnalytics>(
-        inheritedData: SectionAnalytics(id: section.id, position: index, type: section.$__typename, name: section.title),
+      return SectionAnalytics(
+        data: SectionAnalyticsData(id: section.id, position: index, type: section.$__typename, name: section.title),
         child: (context) => widget,
       );
     }

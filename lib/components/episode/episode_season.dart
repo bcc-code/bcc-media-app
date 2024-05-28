@@ -96,8 +96,8 @@ class EpisodeSeason extends HookConsumerWidget {
             onEpisodeTap: (index, e) {
               ref.read(analyticsProvider).sectionItemClicked(
                     context,
-                    itemAnalyticsOverride: SectionItemAnalytics(position: index, type: 'Episode', id: e),
-                    sectionAnalyticsOverride: SectionAnalytics(id: episodeId, position: 0, type: 'SeasonList'),
+                    itemAnalyticsOverride: SectionItemAnalyticsData(position: index, type: 'Episode', id: e),
+                    sectionAnalyticsOverride: SectionAnalyticsData(id: episodeId, position: 0, type: 'SeasonList'),
                   );
               onEpisodeTap(e);
             },

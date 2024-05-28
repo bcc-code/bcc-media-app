@@ -1,4 +1,3 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
@@ -85,8 +84,8 @@ class _DownloadedContent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return InheritedData<SectionAnalytics>(
-      inheritedData: const SectionAnalytics(
+    return SectionAnalytics(
+      data: const SectionAnalyticsData(
         id: 'downloaded',
         position: 0,
         type: 'downloaded',
@@ -109,7 +108,7 @@ class _DownloadedContent extends HookConsumerWidget {
               ]);
               return _DownloadSectionItemClickWrapper(
                 download: item,
-                analytics: SectionItemAnalytics(
+                analytics: SectionItemAnalyticsData(
                   id: item.config.typedAdditionalData.episodeId ?? index.toString(),
                   name: item.config.title,
                   type: 'download',
@@ -218,7 +217,7 @@ class _DownloadSectionItemClickWrapper extends ConsumerWidget {
   const _DownloadSectionItemClickWrapper({required this.download, required this.child, required this.analytics});
 
   final Download download;
-  final SectionItemAnalytics analytics;
+  final SectionItemAnalyticsData analytics;
   final Widget child;
 
   onTap(BuildContext context, WidgetRef ref) {
@@ -240,7 +239,7 @@ class _DownloadSectionItemClickWrapper extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return InheritedData<SectionItemAnalytics>(
+    return InheritedData<SectionItemAnalyticsData>(
       inheritedData: analytics,
       child: (context) => GestureDetector(
         behavior: HitTestBehavior.opaque,

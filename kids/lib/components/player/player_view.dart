@@ -635,12 +635,12 @@ class PlayerEpisodes extends HookConsumerWidget {
 
                   ref.read(analyticsProvider).sectionItemClicked(
                         context,
-                        sectionAnalyticsOverride: SectionAnalytics(
+                        sectionAnalyticsOverride: SectionAnalyticsData(
                           id: 'NextEpisodes-${episode?.id}',
                           position: 0,
                           type: 'NextEpisodesGrid',
                         ),
-                        itemAnalyticsOverride: SectionItemAnalytics(
+                        itemAnalyticsOverride: SectionItemAnalyticsData(
                           id: ep.id,
                           position: i,
                           type: ep.$__typename,
