@@ -67,7 +67,7 @@ class PlayerView extends HookConsumerWidget {
       ));
     }
 
-    final morphTransition = InheritedData.listen<MorphTransitionInfo>(context);
+    final morphTransition = InheritedData.watch<MorphTransitionInfo>(context);
     final currentMediaItem = useState(viewController.playerController.value.currentMediaItem);
 
     final controlsVisible = useState(false);

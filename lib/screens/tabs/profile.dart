@@ -406,9 +406,9 @@ class _FavoriteItemClickWrapper extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return InheritedData<SectionItemAnalyticsData>(
-      inheritedData: analytics,
-      child: (context) => GestureDetector(
+    return SectionItemAnalytics(
+      data: analytics,
+      builder: (context) => GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () => onTap(context, ref),
         onLongPress: () {

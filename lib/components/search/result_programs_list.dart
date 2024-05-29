@@ -44,7 +44,7 @@ class _ResultProgramsListState extends ConsumerState<ResultProgramsList> {
             var item = widget.items[index];
             return InheritedData<SearchItemAnalytics>(
               inheritedData: SearchItemAnalytics(position: index, type: item.$__typename, id: item.id, group: 'shows'),
-              child: (context) => _Program(item),
+              builder: (context) => _Program(item),
             );
           },
         ),

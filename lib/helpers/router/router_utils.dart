@@ -7,7 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:bccm_core/platform.dart';
-import '../../providers/todays_calendar_entries.dart';
 import '../../router/router.gr.dart';
 import 'navigation_override.dart';
 

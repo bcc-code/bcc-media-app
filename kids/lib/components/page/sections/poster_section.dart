@@ -34,9 +34,9 @@ class PosterSection extends ConsumerWidget {
               return SizedBox(
                 child: Padding(
                   padding: kv.key == data.items.items.length - 1 ? EdgeInsets.zero : EdgeInsets.only(right: sectionSpacing),
-                  child: InheritedData<SectionItemAnalyticsData>(
-                    inheritedData: SectionItemAnalyticsData(position: kv.key, id: item.id, type: item.item.$__typename, name: item.title),
-                    child: (context) {
+                  child: SectionItemAnalytics(
+                    data: SectionItemAnalyticsData(position: kv.key, id: item.id, type: item.item.$__typename, name: item.title),
+                    builder: (context) {
                       final playlistItem = item.item.asOrNull<Fragment$Section$$PosterSection$items$items$item$$Playlist>();
                       if (playlistItem != null) {
                         return PlaylistPosterLarge.fromItem(

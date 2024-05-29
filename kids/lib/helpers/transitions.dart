@@ -124,7 +124,7 @@ class MorphTransition extends HookWidget {
                                   duration: duration,
                                   active: active,
                                 ),
-                                child: (context) => child!,
+                                builder: (context) => child!,
                               ),
                             ),
                           ),

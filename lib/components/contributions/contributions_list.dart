@@ -273,7 +273,7 @@ class _ItemClickWrapper extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SectionItemAnalytics(
       data: analytics,
-      child: (context) => FocusableControlBuilder(
+      builder: (context) => FocusableControlBuilder(
         cursor: SystemMouseCursors.click,
         hitTestBehavior: HitTestBehavior.opaque,
         onPressed: () {

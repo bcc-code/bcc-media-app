@@ -28,7 +28,7 @@ class CardSection extends StatelessWidget {
               child: InheritedData<SectionItemAnalyticsData>(
                 inheritedData: SectionItemAnalyticsData(
                     position: kv.key, id: cardSectionItem.id, type: cardSectionItem.item.$__typename, name: cardSectionItem.title),
-                child: (context) {
+                builder: (context) {
                   final studyTopic = cardSectionItem.item.asOrNull<Fragment$Section$$CardSection$items$items$item$$StudyTopic>();
                   if (studyTopic != null) {
                     if (data.cardSize == Enum$CardSectionSize.mini) {

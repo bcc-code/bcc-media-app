@@ -27,7 +27,7 @@ class SectionRenderer extends StatelessWidget {
     if (widget != null) {
       return SectionAnalytics(
         data: SectionAnalyticsData(id: section.id, position: index, type: section.$__typename, name: section.title),
-        child: (context) => widget,
+        builder: (context) => widget,
       );
     }
     return const SizedBox.shrink();

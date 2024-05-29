@@ -119,7 +119,7 @@ class ContributorScreen extends HookConsumerWidget {
                         'type': f.typeCode,
                       },
                     ),
-                    child: (context) => ContributionsList(personId: person.id, type: f.typeCode),
+                    builder: (context) => ContributionsList(personId: person.id, type: f.typeCode),
                   ),
                 )
                 .toList(),

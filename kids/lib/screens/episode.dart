@@ -64,7 +64,7 @@ class EpisodeScreen extends HookConsumerWidget {
     final playbackService = ref.watch(playbackServiceProvider);
     final firstLoadDone = useState(false);
     final currentId = useState(BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['id']);
-    final morphTransition = InheritedData.listen<MorphTransitionInfo>(context);
+    final morphTransition = InheritedData.watch<MorphTransitionInfo>(context);
 
     useEffect(() {
       void listener() {

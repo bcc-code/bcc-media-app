@@ -89,7 +89,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
   Widget build(BuildContext context) {
     return InheritedData<SearchAnalytics>(
       inheritedData: SearchAnalytics(searchText: widget.searchInput),
-      child: (context) => FutureBuilder<Query$Search$search?>(
+      builder: (context) => FutureBuilder<Query$Search$search?>(
         future: _resultFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -129,7 +129,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
                             .mapIndexed(
                               (index, e) => InheritedData<SearchItemAnalytics>(
                                 inheritedData: SearchItemAnalytics(position: index, type: e.$__typename, id: e.id, group: 'episodes'),
-                                child: (context) => GestureDetector(
+                                builder: (context) => GestureDetector(
                                   behavior: HitTestBehavior.opaque,
                                   onTap: () {
                                     context.navigateTo(EpisodeScreenRoute(episodeId: e.id));

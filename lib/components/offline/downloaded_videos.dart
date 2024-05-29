@@ -92,47 +92,45 @@ class _DownloadedContent extends HookConsumerWidget {
         name: 'Downloaded',
         pageCode: 'profile',
       ),
-      child: (context) {
-        return CustomGridView(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          children: items.mapIndexed((index, item) {
-            if (item.status != DownloadStatus.finished) {
-              return _DownloadingGridItem(item: item);
-            } else {
-              final episodeId = item.config.typedAdditionalData.episodeId;
-              final availableTo = episodeId == null ? null : ref.watch(episodeAvailabilityProvider(episodeId)).valueOrNull?.availableTo;
-              final expiresAt = getEarliestNullableDateTime([
-                item.config.typedAdditionalData.expiresAt,
-                availableTo,
-              ]);
-              return _DownloadSectionItemClickWrapper(
-                download: item,
-                analytics: SectionItemAnalyticsData(
-                  id: item.config.typedAdditionalData.episodeId ?? index.toString(),
-                  name: item.config.title,
-                  type: 'download',
-                  position: index,
+      builder: (context) => CustomGridView(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        children: items.mapIndexed((index, item) {
+          if (item.status != DownloadStatus.finished) {
+            return _DownloadingGridItem(item: item);
+          } else {
+            final episodeId = item.config.typedAdditionalData.episodeId;
+            final availableTo = episodeId == null ? null : ref.watch(episodeAvailabilityProvider(episodeId)).valueOrNull?.availableTo;
+            final expiresAt = getEarliestNullableDateTime([
+              item.config.typedAdditionalData.expiresAt,
+              availableTo,
+            ]);
+            return _DownloadSectionItemClickWrapper(
+              download: item,
+              analytics: SectionItemAnalyticsData(
+                id: item.config.typedAdditionalData.episodeId ?? index.toString(),
+                name: item.config.title,
+                type: 'download',
+                position: index,
+              ),
+              child: ThumbnailGridEpisode(
+                useCache: true,
+                episode: EpisodeThumbnailData(
+                  title: item.config.title,
+                  duration: ((item.config.typedAdditionalData.durationMs ?? 0) / Duration.millisecondsPerSecond).round(),
+                  image: item.config.typedAdditionalData.artworkUri,
+                  locked: false,
+                  progress: null,
+                  publishDate: null,
                 ),
-                child: ThumbnailGridEpisode(
-                  useCache: true,
-                  episode: EpisodeThumbnailData(
-                    title: item.config.title,
-                    duration: ((item.config.typedAdditionalData.durationMs ?? 0) / Duration.millisecondsPerSecond).round(),
-                    image: item.config.typedAdditionalData.artworkUri,
-                    locked: false,
-                    progress: null,
-                    publishDate: null,
-                  ),
-                  showSecondaryTitle: false,
-                  aspectRatio: 16 / 9,
-                  expiresAt: expiresAt,
-                ),
-              );
-            }
-          }).toList(),
-        );
-      },
+                showSecondaryTitle: false,
+                aspectRatio: 16 / 9,
+                expiresAt: expiresAt,
+              ),
+            );
+          }
+        }).toList(),
+      ),
     );
   }
 }
@@ -239,9 +237,9 @@ class _DownloadSectionItemClickWrapper extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return InheritedData<SectionItemAnalyticsData>(
-      inheritedData: analytics,
-      child: (context) => GestureDetector(
+    return SectionItemAnalytics(
+      data: analytics,
+      builder: (context) => GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () => onTap(context, ref),
         onLongPress: () async {

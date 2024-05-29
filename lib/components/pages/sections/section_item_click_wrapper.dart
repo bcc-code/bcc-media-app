@@ -16,9 +16,9 @@ class SectionItemClickWrapper extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return InheritedData<SectionItemAnalyticsData>(
-      inheritedData: analytics,
-      child: (context) {
+    return SectionItemAnalytics(
+      data: analytics,
+      builder: (context) {
         // Important that the inheriteddata is in the context
         void onPressed() => handleSectionItemClick(context, item, collectionId: collectionId);
         return GestureDetector(

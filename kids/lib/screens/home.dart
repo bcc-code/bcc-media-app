@@ -90,7 +90,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                       future: pageResult.future,
                       builder: (context, result) => InheritedData<ScrollController>(
                         inheritedData: scrollController,
-                        child: (context) => PrimaryScrollController(
+                        builder: (context) => PrimaryScrollController(
                           controller: scrollController,
                           child: CustomScrollView(
                             primary: true,

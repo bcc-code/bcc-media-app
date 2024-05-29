@@ -94,7 +94,7 @@ class SliverSearchResults extends HookConsumerWidget {
 
     return InheritedData<SearchAnalytics>(
       inheritedData: SearchAnalytics(searchText: searchQuery),
-      child: (context) => SliverToBoxAdapter(
+      builder: (context) => SliverToBoxAdapter(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
