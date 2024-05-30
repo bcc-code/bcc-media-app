@@ -123,6 +123,17 @@ class ContributionsList extends HookConsumerWidget {
       if (item == null) return;
       if (!context.mounted) return;
       navigateToContributionItem(context, item);
+
+      ref.read(analyticsProvider).interaction(InteractionEvent(
+            interaction: 'play_random_clicked',
+            pageCode: 'contributor',
+            contextElementId: personId,
+            contextElementType: 'person',
+            meta: {
+              'contributorType': type,
+              'itemId': item.asOrNull<Fragment$ContributionItemId>()?.id,
+            },
+          ));
     }
 
     final design = DesignSystem.of(context);
