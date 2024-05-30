@@ -73,8 +73,10 @@ class AvatarSectionButton extends StatelessWidget {
               padding: const EdgeInsets.only(top: 4),
               child: Text(
                 name,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
-                style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label1),
+                style: DesignSystem.of(context).textStyles.body3.copyWith(color: DesignSystem.of(context).colors.label1),
               ),
             )
           ],
