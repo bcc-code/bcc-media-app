@@ -1,4 +1,19 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.7+2300147...v) (2024-05-21)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.8+2300148...v) (2024-05-30)
+
+
+### Bug Fixes
+
+* avatarsection height ([7d820cd](https://github.com/bcc-code/bcc-media-app/commit/7d820cd3ca7489de2f70c52665462a767673a39e))
+
+
+### Features
+
+* play_random_clicked ([721dbbc](https://github.com/bcc-code/bcc-media-app/commit/721dbbcb354222a7590dd09cb703e5c55ef5f936))
+* type_clicked analytics ([6aac54b](https://github.com/bcc-code/bcc-media-app/commit/6aac54ba244baf78ad705eef2c3fc783fd7d8485))
+
+
+
+## [5.4.8+2300148](https://github.com/bcc-code/bcc-media-app/compare/v5.4.7+2300147...v5.4.8+2300148) (2024-05-21)
 
 
 ### Bug Fixes
