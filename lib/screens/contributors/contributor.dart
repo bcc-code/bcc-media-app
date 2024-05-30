@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/contributions/contributions_list.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/profile/avatar.dart';
@@ -92,7 +91,19 @@ class ContributorScreen extends HookConsumerWidget {
                             return TabSelector(
                               tabs: filterTabs.map((f) => f.name).toList(),
                               selectedIndex: tabController.index,
-                              onSelectionChange: (newIndex) => tabController.index = newIndex,
+                              onSelectionChange: (newIndex) {
+                                tabController.index = newIndex;
+
+                                ref.read(analyticsProvider).interaction(InteractionEvent(
+                                      interaction: 'contributor_type_clicked',
+                                      pageCode: 'contributor',
+                                      contextElementId: person.id,
+                                      contextElementType: 'person',
+                                      meta: {
+                                        'contributorType': filterTabs[newIndex].typeCode,
+                                      },
+                                    ));
+                              },
                               padding: const EdgeInsets.only(top: 16, bottom: 8),
                             );
                           },
@@ -116,7 +127,7 @@ class ContributorScreen extends HookConsumerWidget {
                       pageCode: 'person',
                       meta: {
                         'personId': person.id,
-                        'type': f.typeCode,
+                        'contributorType': f.typeCode,
                       },
                     ),
                     builder: (context) => ContributionsList(personId: person.id, type: f.typeCode),
