@@ -15,10 +15,10 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
   final UnleashClient? client;
   final Ref ref;
   FeatureFlagsNotifier(this.ref, this.client) : super(_getFlags(client)) {
-    _update();
     client?.on('update', onUnleashEvent);
     client?.on('ready', onUnleashEvent);
     client?.on('initialized', onUnleashEvent);
+    _update();
   }
 
   @override

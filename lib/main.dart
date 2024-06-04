@@ -122,6 +122,7 @@ Future setDefaults() async {
 
 Future<ProviderContainer> initProviderContainer(List<Override> overrides) async {
   var providerContainer = ProviderContainer(overrides: overrides);
+  providerContainer.read(featureFlagsProvider);
   providerContainer.read(settingsProvider.notifier);
   providerContainer.read(analyticsProvider);
   providerContainer.read(deepLinkServiceProvider);
