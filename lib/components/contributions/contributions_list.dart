@@ -50,7 +50,7 @@ class ContributionsList extends HookConsumerWidget {
               variables: Variables$Query$GetContributions(
                 id: personId,
                 offset: offset.value,
-                types: type != null ? [type!] : null,
+                contentTypes: type != null ? [type!] : null,
               ),
               fetchPolicy: FetchPolicy.networkOnly,
             ),
@@ -130,7 +130,7 @@ class ContributionsList extends HookConsumerWidget {
             contextElementId: personId,
             contextElementType: 'person',
             meta: {
-              'contributorType': type,
+              'contentType': type,
               'itemId': item.asOrNull<Fragment$ContributionItemId>()?.id,
             },
           ));

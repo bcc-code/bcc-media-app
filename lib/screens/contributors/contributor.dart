@@ -50,7 +50,7 @@ class ContributorScreen extends HookConsumerWidget {
 
     final filterTabs = <({String name, String? typeCode})>[
       (name: S.of(context).seeAll, typeCode: null),
-      ...person.contributionTypes.map((t) => (name: t.type.title, typeCode: t.type.code))
+      ...person.contributionContentTypes.map((t) => (name: t.type.title, typeCode: t.type.code))
     ];
 
     return DefaultTabController(
@@ -100,7 +100,7 @@ class ContributorScreen extends HookConsumerWidget {
                                       contextElementId: person.id,
                                       contextElementType: 'person',
                                       meta: {
-                                        'contributorType': filterTabs[newIndex].typeCode,
+                                        'contentType': filterTabs[newIndex].typeCode,
                                       },
                                     ));
                               },
@@ -127,7 +127,7 @@ class ContributorScreen extends HookConsumerWidget {
                       pageCode: 'person',
                       meta: {
                         'personId': person.id,
-                        'contributorType': f.typeCode,
+                        'contentType': f.typeCode,
                       },
                     ),
                     builder: (context) => ContributionsList(personId: person.id, type: f.typeCode),
