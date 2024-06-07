@@ -115,7 +115,7 @@ class ContributionsList extends HookConsumerWidget {
             Options$Query$GetRandomContribution(
               variables: Variables$Query$GetRandomContribution(
                 id: personId,
-                types: type != null ? [type!] : null,
+                contentTypes: type != null ? [type!] : null,
               ),
             ),
           );
