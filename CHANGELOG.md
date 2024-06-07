@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.8+2300148...v) (2024-05-30)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.9+2300149...v) (2024-06-07)
+
+
+### Features
+
+* content types instead of contribution types ([843c200](https://github.com/bcc-code/bcc-media-app/commit/843c20055ba881e717cfb1144fd4ae8a5d44ea52))
+* sync ru translations ([ebaec04](https://github.com/bcc-code/bcc-media-app/commit/ebaec04cff87b246e8f9dc458412d7fbb0bf1025))
+
+
+
+## [5.4.9+2300149](https://github.com/bcc-code/bcc-media-app/compare/v5.4.8+2300148...v5.4.9+2300149) (2024-05-30)
 
 
 ### Bug Fixes
