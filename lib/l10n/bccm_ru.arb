@@ -925,6 +925,10 @@
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
+  "notFound": "Судя по всему, искомый контент не существует.",
+  "@notFound": {
+    "description": "Error message when the requested content is not found."
+  },
   "mustBeLoggedIn": "Вы должны войти в систему, чтобы смотреть этот контент",
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
@@ -1363,6 +1367,10 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
+  "featureNotAvailableYet": "Эта функция пока недоступна. Пожалуйста, повторите попытку позже.",
+  "@featureNotAvailableYet": {
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
+  },
   "newFeature": "Новая функция",
   "@newFeature": {
     "description": "Shown the first time you open the app after a new feature is available."
@@ -1415,8 +1423,21 @@
   "@openSettingsToChangeVideoLang": {
     "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
   },
+  "somethingWentWrong": "Что-то пошло не так",
+  "@somethingWentWrong": {
+    "description": "Generic error title/message."
+  },
   "all": "Все",
   "@all": {
     "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
+  },
+  "countItems": "{x} предметов",
+  "@countItems": {
+    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
   }
 }

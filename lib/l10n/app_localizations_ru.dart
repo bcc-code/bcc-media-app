@@ -678,7 +678,7 @@ class SRu extends S {
   String get dontHaveAccess => 'У вас нет доступа к этому контенту.';
 
   @override
-  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+  String get notFound => 'Судя по всему, искомый контент не существует.';
 
   @override
   String get mustBeLoggedIn => 'Вы должны войти в систему, чтобы смотреть этот контент';
@@ -995,7 +995,7 @@ class SRu extends S {
   String get saveYourFavoriteShorts => 'Сохраните любимые видео';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Эта функция пока недоступна. Пожалуйста, повторите попытку позже.';
 
   @override
   String get newFeature => 'Новая функция';
@@ -1037,13 +1037,13 @@ class SRu extends S {
   String get openSettingsToChangeVideoLang => 'Откройте настройки, чтобы изменить язык текста видео';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'Что-то пошло не так';
 
   @override
   String get all => 'Все';
 
   @override
   String countItems(int x) {
-    return '$x items';
+    return '$x предметов';
   }
 }
