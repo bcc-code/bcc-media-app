@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.4.9+2300149...v) (2024-06-07)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.0+2300150...v) (2024-06-09)
+
+
+### Bug Fixes
+
+* play random contenttype ([3ec2fb1](https://github.com/bcc-code/bcc-media-app/commit/3ec2fb1b191cf28507dabee7e3d9977dc5598c56))
+
+
+
+# [5.5.0+2300150](https://github.com/bcc-code/bcc-media-app/compare/v5.4.9+2300149...v5.5.0+2300150) (2024-06-07)
 
 
 ### Features
