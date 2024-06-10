@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:universal_io/io.dart';
+
+class AppBarWithScrollToTop extends StatelessWidget implements PreferredSizeWidget {
+  final AppBar appBar;
+  final ScrollController? scrollController;
+
+  const AppBarWithScrollToTop({Key? key, required this.appBar, required this.scrollController}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (Platform.isIOS) {
+      return appBar;
+    }
+    return Stack(
+      children: [
+        appBar,
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          child: SafeArea(
+            bottom: false,
+            top: true,
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                scrollController?.animateTo(
+                  0.0,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeOutExpo,
+                );
+              },
+              child: Container(
+                height: 8,
+                color: Colors.transparent,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Size get preferredSize => appBar.preferredSize;
+}

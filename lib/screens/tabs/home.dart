@@ -2,7 +2,9 @@ import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
+import 'package:brunstadtv_app/app_bar_with_scroll_to_top.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
+import 'package:brunstadtv_app/providers/tabs.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:ui';
 
@@ -25,8 +27,6 @@ class HomeScreen extends HookConsumerWidget {
     pageScrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
   } */
 
-/*    */
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isOffline = ref.watch(isOfflineProvider);
@@ -34,10 +34,11 @@ class HomeScreen extends HookConsumerWidget {
       return const OfflineHome();
     }
 
+    final scrollController = ref.watch(tabInfosProvider.select((tabInfos) => tabInfos.home.scrollController));
+
     final pageCode = ref.watch(appConfigProvider.select((appConfig) => appConfig?.application.page?.code));
     debugPrint('HomeScreen: pageCode: $pageCode');
 
-    final scrollController = useScrollController();
     final pageFuture = useState<Future<Query$Page$page>?>(null);
     useEffect(() {
       if (pageCode != null) {
@@ -52,28 +53,31 @@ class HomeScreen extends HookConsumerWidget {
       extendBodyBehindAppBar: true,
       appBar: kIsWeb
           ? null
-          : AppBar(
-              toolbarHeight: 44,
-              shadowColor: Colors.black,
-              backgroundColor: AppTheme.of(context).appBarTransparent ? Colors.transparent : design.colors.background1,
-              elevation: 0,
-              centerTitle: true,
-              title: Image(
-                image: FlavorConfig.current.bccmImages!.logo,
-                height: FlavorConfig.current.bccmImages!.logoHeight,
-                gaplessPlayback: true,
-              ),
-              leadingWidth: kIsWeb ? 300 : 100,
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints.loose(const Size(24, 24)),
-                    child: CastButton(color: DesignSystem.of(context).colors.tint1),
-                  ),
+          : AppBarWithScrollToTop(
+              scrollController: scrollController,
+              appBar: AppBar(
+                toolbarHeight: 44,
+                shadowColor: Colors.black,
+                backgroundColor: AppTheme.of(context).appBarTransparent ? Colors.transparent : design.colors.background1,
+                elevation: 0,
+                centerTitle: true,
+                title: Image(
+                  image: FlavorConfig.current.bccmImages!.logo,
+                  height: FlavorConfig.current.bccmImages!.logoHeight,
+                  gaplessPlayback: true,
                 ),
-              ],
-              flexibleSpace: AppTheme.of(context).appBarTransparent ? const _BlurredAppBarBackground() : null,
+                leadingWidth: kIsWeb ? 300 : 100,
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints.loose(const Size(24, 24)),
+                      child: CastButton(color: DesignSystem.of(context).colors.tint1),
+                    ),
+                  ),
+                ],
+                flexibleSpace: AppTheme.of(context).appBarTransparent ? const _BlurredAppBarBackground() : null,
+              ),
             ),
       body: SafeArea(
         top: false,

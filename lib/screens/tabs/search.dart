@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/pages/page_renderer.dart';
-import 'package:brunstadtv_app/models/scroll_screen.dart';
+import 'package:brunstadtv_app/providers/tabs.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,11 +23,10 @@ class SearchScreen extends ConsumerStatefulWidget {
   ConsumerState<SearchScreen> createState() => SearchScreenState();
 }
 
-class SearchScreenState extends ConsumerState<SearchScreen> implements ScrollScreen {
+class SearchScreenState extends ConsumerState<SearchScreen> {
   var focusing = false;
   String? _curSearchValue;
   late Future<Query$Page$page> pageFuture;
-  final pageScrollController = ScrollController();
 
   clear() {
     _onSearchInputChanged(null);
@@ -39,18 +38,6 @@ class SearchScreenState extends ConsumerState<SearchScreen> implements ScrollScr
         _curSearchValue = input;
       });
     });
-  }
-
-  @override
-  void dispose() {
-    pageScrollController.dispose();
-    super.dispose();
-  }
-
-  @override
-  void scrollToTop() {
-    if (!pageScrollController.hasClients) return;
-    pageScrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
   }
 
   @override
@@ -115,7 +102,7 @@ class SearchScreenState extends ConsumerState<SearchScreen> implements ScrollScr
             pageFuture = getSearchPage();
           });
         },
-        scrollController: pageScrollController,
+        scrollController: ref.watch(tabInfosProvider.select((tabInfos) => tabInfos.search.scrollController)),
       );
     }
   }

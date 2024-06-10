@@ -13,20 +13,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../components/player/bottom_sheet_mini_player.dart';
 import '../../components/nav/custom_nav_tab_bar.dart';
 import '../../components/prompts/prompts.dart';
 import '../../components/nav/web_app_bar.dart';
-import '../../models/scroll_screen.dart';
 import '../../providers/tabs.dart';
 import 'package:bccm_core/design_system.dart';
 
 @RoutePage<void>()
-class TabsRootScreen extends ConsumerStatefulWidget {
+class TabsRootScreen extends StatefulHookConsumerWidget {
   static const route = '/';
 
   const TabsRootScreen({super.key});
@@ -84,6 +83,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
 
   onTabTap(BuildContext context, int index) {
     final tabsRouter = AutoTabsRouter.of(context);
+    final tabId = ref.read(currentTabIdsProvider).elementAtOrNull(index);
     // here we switch between tabs
     if (tabsRouter.activeIndex == index) {
       final stackRouterOfIndex = tabsRouter.stackRouterOfIndex(index);
@@ -92,9 +92,11 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
         if (searchState != null) {
           searchState.clear();
         }
-        final screenState = tabsRouter.topPage?.child.key?.asOrNull<GlobalKey>()?.currentState.asOrNull<ScrollScreen>();
-        if (screenState != null) {
-          screenState.scrollToTop();
+        if (tabId != null) {
+          final scrollController = PrimaryScrollController.of(context);
+          if (scrollController.hasClients) {
+            scrollController.animateTo(0, duration: 500.ms, curve: Curves.easeOutExpo);
+          }
         }
       } else {
         stackRouterOfIndex?.popUntilRoot();
@@ -104,8 +106,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
         sendTabChangeAnalytics(index);
       });
     }
-    final currentTabIds = ref.read(currentTabIdsProvider);
-    if (currentTabIds.elementAtOrNull(index) == TabId.shorts) {
+    if (tabId == TabId.shorts) {
       if (shortGuideController != null) {
         shortGuideController!.dismiss();
         shortGuideController = null;
@@ -200,27 +201,34 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
         lazyLoad: false,
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
+          final tabId = currentTabIds.elementAtOrNull(tabsRouter.activeIndex);
+          final scrollController = tabId != null ? tabInfos.getFor(tabId).scrollController : null;
           return Semantics(
             label: authStatusSemantics,
-            child: Scaffold(
-              appBar: kIsWeb ? WebAppBar(tabsRouter: tabsRouter, onTabTap: (i) => onTabTap(context, i)) : null,
-              body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
-              bottomSheet: Container(
-                color: DesignSystem.of(context).colors.background1, // Fix gap between prompts and miniPlayer due to antialiasing issue
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Prompts(),
-                    BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
-                  ],
+            child: PrimaryScrollController(
+              controller: scrollController ?? PrimaryScrollController.of(context),
+              child: Builder(
+                builder: (context) => Scaffold(
+                  appBar: kIsWeb ? WebAppBar(tabsRouter: tabsRouter, onTabTap: (i) => onTabTap(context, i)) : null,
+                  body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
+                  bottomSheet: Container(
+                    color: DesignSystem.of(context).colors.background1, // Fix gap between prompts and miniPlayer due to antialiasing issue
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Prompts(),
+                        BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
+                      ],
+                    ),
+                  ),
+                  bottomNavigationBar: kIsWeb
+                      ? null
+                      : CustomNavTabBar(
+                          tabsRouter: tabsRouter,
+                          onTabTap: (i) => onTabTap(context, i),
+                        ),
                 ),
               ),
-              bottomNavigationBar: kIsWeb
-                  ? null
-                  : CustomNavTabBar(
-                      tabsRouter: tabsRouter,
-                      onTabTap: (i) => onTabTap(context, i),
-                    ),
             ),
           );
         },

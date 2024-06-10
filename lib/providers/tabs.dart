@@ -25,6 +25,7 @@ class TabInfo {
   final StateImageProvider icon;
   final String analyticsName;
   final GlobalKey iconKey;
+  final ScrollController? scrollController;
 
   const TabInfo({
     required this.id,
@@ -33,6 +34,7 @@ class TabInfo {
     required this.icon,
     required this.analyticsName,
     required this.iconKey,
+    this.scrollController,
   });
 }
 
@@ -65,6 +67,15 @@ class TabInfos {
   }
 }
 
+/// Using riverpod here just because it's a simple way to cache the scroll controllers for each tab
+final _scrollControllers = Provider.family<ScrollController, String>((ref, String id) {
+  final controller = ScrollController(debugLabel: id);
+  ref.onDispose(() {
+    controller.dispose();
+  });
+  return controller;
+});
+
 final tabInfosProvider = Provider<TabInfos>((ref) {
   return TabInfos(
     home: TabInfo(
@@ -74,6 +85,7 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
       icon: FlavorConfig.current.bccmImages!.home,
       analyticsName: 'home',
       iconKey: GlobalKey(),
+      scrollController: ref.watch(_scrollControllers('home')),
     ),
     search: TabInfo(
       id: TabId.search,
@@ -86,6 +98,7 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
       icon: FlavorConfig.current.bccmImages!.search,
       analyticsName: 'search',
       iconKey: GlobalKey(),
+      scrollController: ref.watch(_scrollControllers('search')),
     ),
     live: TabInfo(
       id: TabId.live,
