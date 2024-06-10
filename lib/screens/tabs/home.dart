@@ -35,6 +35,7 @@ class HomeScreen extends HookConsumerWidget {
     }
 
     final pageCode = ref.watch(appConfigProvider.select((appConfig) => appConfig?.application.page?.code));
+    debugPrint('HomeScreen: pageCode: $pageCode');
 
     final scrollController = useScrollController();
     final pageFuture = useState<Future<Query$Page$page>?>(null);

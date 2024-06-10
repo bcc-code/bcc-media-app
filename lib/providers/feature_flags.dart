@@ -47,7 +47,6 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
 
   @override
   FeatureFlags build() {
-    ref.listen<AuthStateNotifier?>(authStateProvider.notifier, _onAuthStateNotifierChanged, fireImmediately: true);
     final unleash = this.unleash;
     if (unleash == null || unleash.clientState != ClientState.ready) return _getCachedFlags(ref);
     ref.listen(
@@ -96,14 +95,12 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     return enabled && (!hasVariant || variant.name != 'disabled');
   }
 
-  void _onAuthStateNotifierChanged(AuthStateNotifier? prev, AuthStateNotifier? authNotifier) async {
-    if (unleash != null || authNotifier == null) return;
-    await authNotifier.initializeCompleter.future;
-    debugPrint('ag: FeatureFlagsNotifier. auth initialized, starting unleash');
-    _createUnleashClient();
+  @override
+  Future<void> start() {
+    return _createUnleashClient();
   }
 
-  void _createUnleashClient() {
+  Future<void> _createUnleashClient() async {
     print('ag: Unleash client created');
     final unleash = this.unleash = UnleashClient(
       url: Uri.parse(Env.unleashProxyUrl),
@@ -200,13 +197,15 @@ final featureFlagVariantListProviderOverride = featureFlagVariantListProvider.ov
 });
 
 abstract class FeatureFlagsNotifierBase extends Notifier<FeatureFlags> {
+  Future<void> start();
   Future<void> refresh();
 }
 
 class FeatureFlagsDisabledNotifier extends FeatureFlagsNotifierBase {
   @override
+  Future<void> start() async {}
+  @override
   Future<void> refresh() async {}
-
   @override
   FeatureFlags build() {
     return getBaseFeatureFlags();

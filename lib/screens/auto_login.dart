@@ -4,6 +4,7 @@ import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -48,11 +49,10 @@ class _AutoLoginScreenState extends ConsumerState<AutoLoginScreen> {
     await authFuture;
     debugPrint('AutoLoginScreen: AuthFuture completed, refreshing feature flags');
     await tryCatchRecordErrorAsync(() async {
-      // Try refreshing feature flags before continuing navigation, in case it affects e.g. frontpage.
-      // but don't block too long
-      await ref.read(featureFlagsProvider.notifier).refresh().timeout(const Duration(seconds: 1));
+      await ref.read(featureFlagsProvider.notifier).start().timeout(const Duration(seconds: 2));
     });
-    debugPrint('AutoLoginScreen: Feature flags refreshed or timed out, continuing navigation.');
+    ref.invalidate(appConfigFutureProvider);
+    debugPrint('AutoLoginScreen: Feature flags started or timed out, continuing navigation.');
     continueNavigation();
     globalEventBus.fire(AppReadyEvent());
   }
