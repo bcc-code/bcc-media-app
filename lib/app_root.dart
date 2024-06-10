@@ -172,7 +172,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
                   debugShowCheckedModeBanner: false,
                   title: 'BCC Media',
                   routerDelegate: widget.appRouter.delegate(
-                    deepLinkBuilder: (_) => const DeepLink.path('/auto-login'),
+                    deepLinkBuilder: (_) => const DeepLink.path('/init'),
                     navigatorObservers: () => [AnalyticsNavigatorObserver(), AutoRouteObserver()],
                   ),
                   routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),

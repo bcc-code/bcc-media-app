@@ -15,19 +15,31 @@ import '../helpers/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
 
-/// The screen that is shown when the app is starting up.
+/// The route that is shown when the app is starting up.
 ///
-/// It will try to auto-login the user and show a loading indicator.
-/// If the auto-login fails, it will show an error message and allow retrying / logging out.
+/// It will show a loading spinner while:
+/// - Initializing the authentication state
+/// - Other async tasks that are required to start the app, such as waiting a few seconds for feature flags
+/// - Checking for deep links
+///
+/// If the setup fails, it will show an error message and allow retrying / logging out.
+///
+/// Why is it not in main()? Because that wouldnt allow us to show a loading spinner while initializing.
+/// Why is it not in AppRoot? I wish, but it's hard because of how navigation works with auto_route:
+///
+/// - MaterialApp or AutoRoute makes a Navigator, and we can't use router.navigate() etc until that exists.
+/// - We could use a Stack with a loading spinner on top of the navigator, but we would anyways need to render an initial route.
+/// - PS #1: MaterialApp has a builder((child) => ...), but that 'child' is the navigator, so we can't replace it with eg. a loading spinner otherwise we can't navigate.
+/// - PS #2: Optimal solution: If you can somehow set the initial route AFTER MaterialApp and BEFORE rendering the navigator, that would be cleaner.
 @RoutePage<void>()
-class AutoLoginScreen extends ConsumerStatefulWidget {
-  const AutoLoginScreen({super.key});
+class InitScreen extends ConsumerStatefulWidget {
+  const InitScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AutoLoginScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _InitScreenState();
 }
 
-class _AutoLoginScreenState extends ConsumerState<AutoLoginScreen> {
+class _InitScreenState extends ConsumerState<InitScreen> {
   Future<void>? authFuture;
 
   @override

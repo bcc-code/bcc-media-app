@@ -9,10 +9,10 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i34;
-import 'package:brunstadtv_app/router/router.dart' as _i17;
-import 'package:brunstadtv_app/screens/auto_login.dart' as _i7;
-import 'package:brunstadtv_app/screens/contributors/contributor.dart' as _i12;
-import 'package:brunstadtv_app/screens/episode.dart' as _i9;
+import 'package:brunstadtv_app/router/router.dart' as _i16;
+import 'package:brunstadtv_app/screens/contributors/contributor.dart' as _i11;
+import 'package:brunstadtv_app/screens/episode.dart' as _i8;
+import 'package:brunstadtv_app/screens/init.dart' as _i17;
 import 'package:brunstadtv_app/screens/onboarding/onboarding.dart' as _i19;
 import 'package:brunstadtv_app/screens/onboarding/signup.dart' as _i27;
 import 'package:brunstadtv_app/screens/page.dart' as _i20;
@@ -20,11 +20,11 @@ import 'package:brunstadtv_app/screens/settings/about.dart' as _i1;
 import 'package:brunstadtv_app/screens/settings/account_deletion.dart' as _i2;
 import 'package:brunstadtv_app/screens/settings/app_language.dart' as _i5;
 import 'package:brunstadtv_app/screens/settings/audio_language.dart' as _i6;
-import 'package:brunstadtv_app/screens/settings/contact.dart' as _i11;
-import 'package:brunstadtv_app/screens/settings/contact_public.dart' as _i10;
-import 'package:brunstadtv_app/screens/settings/device_info.dart' as _i13;
-import 'package:brunstadtv_app/screens/settings/extra_usergroups.dart' as _i14;
-import 'package:brunstadtv_app/screens/settings/faq.dart' as _i15;
+import 'package:brunstadtv_app/screens/settings/contact.dart' as _i10;
+import 'package:brunstadtv_app/screens/settings/contact_public.dart' as _i9;
+import 'package:brunstadtv_app/screens/settings/device_info.dart' as _i12;
+import 'package:brunstadtv_app/screens/settings/extra_usergroups.dart' as _i13;
+import 'package:brunstadtv_app/screens/settings/faq.dart' as _i14;
 import 'package:brunstadtv_app/screens/settings/privacy_policy.dart' as _i21;
 import 'package:brunstadtv_app/screens/settings/settings.dart' as _i24;
 import 'package:brunstadtv_app/screens/settings/subtitle_language.dart' as _i29;
@@ -35,8 +35,8 @@ import 'package:brunstadtv_app/screens/shorts/shorts.dart' as _i26;
 import 'package:brunstadtv_app/screens/study/achievement_group.dart' as _i3;
 import 'package:brunstadtv_app/screens/study/achievements.dart' as _i4;
 import 'package:brunstadtv_app/screens/study/study.dart' as _i28;
-import 'package:brunstadtv_app/screens/tabs/calendar.dart' as _i8;
-import 'package:brunstadtv_app/screens/tabs/home.dart' as _i16;
+import 'package:brunstadtv_app/screens/tabs/calendar.dart' as _i7;
+import 'package:brunstadtv_app/screens/tabs/home.dart' as _i15;
 import 'package:brunstadtv_app/screens/tabs/live.dart' as _i18;
 import 'package:brunstadtv_app/screens/tabs/profile.dart' as _i22;
 import 'package:brunstadtv_app/screens/tabs/search.dart' as _i23;
@@ -93,16 +93,10 @@ abstract class $AppRouter extends _i34.RootStackRouter {
         child: const _i6.AudioLanguageScreen(),
       );
     },
-    AutoLoginScreenRoute.name: (routeData) {
-      return _i34.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i7.AutoLoginScreen(),
-      );
-    },
     CalendarScreenRoute.name: (routeData) {
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i8.CalendarScreen(),
+        child: const _i7.CalendarScreen(),
       );
     },
     CollectionEpisodeScreenRoute.name: (routeData) {
@@ -118,7 +112,7 @@ abstract class $AppRouter extends _i34.RootStackRouter {
               ));
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: _i9.CollectionEpisodeScreen(
+        child: _i8.CollectionEpisodeScreen(
           key: args.key,
           episodeId: args.episodeId,
           autoplay: args.autoplay,
@@ -131,13 +125,13 @@ abstract class $AppRouter extends _i34.RootStackRouter {
     ContactPublicScreenRoute.name: (routeData) {
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i10.ContactPublicScreen(),
+        child: const _i9.ContactPublicScreen(),
       );
     },
     ContactScreenRoute.name: (routeData) {
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i11.ContactScreen(),
+        child: const _i10.ContactScreen(),
       );
     },
     ContributorScreenRoute.name: (routeData) {
@@ -147,7 +141,7 @@ abstract class $AppRouter extends _i34.RootStackRouter {
               personId: pathParams.getString('personId')));
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: _i12.ContributorScreen(
+        child: _i11.ContributorScreen(
           key: args.key,
           personId: args.personId,
         ),
@@ -156,7 +150,7 @@ abstract class $AppRouter extends _i34.RootStackRouter {
     DeviceInfoScreenRoute.name: (routeData) {
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i13.DeviceInfoScreen(),
+        child: const _i12.DeviceInfoScreen(),
       );
     },
     EpisodeScreenRoute.name: (routeData) {
@@ -172,7 +166,7 @@ abstract class $AppRouter extends _i34.RootStackRouter {
               ));
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: _i9.EpisodeScreen(
+        child: _i8.EpisodeScreen(
           key: args.key,
           episodeId: args.episodeId,
           autoplay: args.autoplay,
@@ -185,13 +179,13 @@ abstract class $AppRouter extends _i34.RootStackRouter {
     ExtraUsergroupsScreenRoute.name: (routeData) {
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i14.ExtraUsergroupsScreen(),
+        child: const _i13.ExtraUsergroupsScreen(),
       );
     },
     FAQScreenRoute.name: (routeData) {
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i15.FAQScreen(),
+        child: const _i14.FAQScreen(),
       );
     },
     HomeScreenRoute.name: (routeData) {
@@ -199,13 +193,19 @@ abstract class $AppRouter extends _i34.RootStackRouter {
           orElse: () => const HomeScreenRouteArgs());
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: _i16.HomeScreen(key: args.key),
+        child: _i15.HomeScreen(key: args.key),
       );
     },
     HomeWrapperScreenRoute.name: (routeData) {
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i17.HomeWrapperScreen(),
+        child: const _i16.HomeWrapperScreen(),
+      );
+    },
+    InitScreenRoute.name: (routeData) {
+      return _i34.AutoRoutePage<void>(
+        routeData: routeData,
+        child: const _i17.InitScreen(),
       );
     },
     LiveScreenRoute.name: (routeData) {
@@ -266,7 +266,7 @@ abstract class $AppRouter extends _i34.RootStackRouter {
     ProfileWrapperScreenRoute.name: (routeData) {
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i17.ProfileWrapperScreen(),
+        child: const _i16.ProfileWrapperScreen(),
       );
     },
     SearchScreenRoute.name: (routeData) {
@@ -285,7 +285,7 @@ abstract class $AppRouter extends _i34.RootStackRouter {
     SearchWrapperScreenRoute.name: (routeData) {
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i17.SearchWrapperScreen(),
+        child: const _i16.SearchWrapperScreen(),
       );
     },
     SettingsScreenRoute.name: (routeData) {
@@ -320,7 +320,7 @@ abstract class $AppRouter extends _i34.RootStackRouter {
     ShortsWrapperScreenRoute.name: (routeData) {
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i17.ShortsWrapperScreen(),
+        child: const _i16.ShortsWrapperScreen(),
       );
     },
     SignupScreenRoute.name: (routeData) {
@@ -355,7 +355,7 @@ abstract class $AppRouter extends _i34.RootStackRouter {
     TabsWrapperScreenRoute.name: (routeData) {
       return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i17.TabsWrapperScreen(),
+        child: const _i16.TabsWrapperScreen(),
       );
     },
     TermsOfUseScreenRoute.name: (routeData) {
@@ -497,21 +497,7 @@ class AudioLanguageScreenRoute extends _i34.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.AutoLoginScreen]
-class AutoLoginScreenRoute extends _i34.PageRouteInfo<void> {
-  const AutoLoginScreenRoute({List<_i34.PageRouteInfo>? children})
-      : super(
-          AutoLoginScreenRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'AutoLoginScreenRoute';
-
-  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i8.CalendarScreen]
+/// [_i7.CalendarScreen]
 class CalendarScreenRoute extends _i34.PageRouteInfo<void> {
   const CalendarScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
@@ -525,7 +511,7 @@ class CalendarScreenRoute extends _i34.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.CollectionEpisodeScreen]
+/// [_i8.CollectionEpisodeScreen]
 class CollectionEpisodeScreenRoute
     extends _i34.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
   CollectionEpisodeScreenRoute({
@@ -593,7 +579,7 @@ class CollectionEpisodeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i10.ContactPublicScreen]
+/// [_i9.ContactPublicScreen]
 class ContactPublicScreenRoute extends _i34.PageRouteInfo<void> {
   const ContactPublicScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
@@ -607,7 +593,7 @@ class ContactPublicScreenRoute extends _i34.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.ContactScreen]
+/// [_i10.ContactScreen]
 class ContactScreenRoute extends _i34.PageRouteInfo<void> {
   const ContactScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
@@ -621,7 +607,7 @@ class ContactScreenRoute extends _i34.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i12.ContributorScreen]
+/// [_i11.ContributorScreen]
 class ContributorScreenRoute
     extends _i34.PageRouteInfo<ContributorScreenRouteArgs> {
   ContributorScreenRoute({
@@ -661,7 +647,7 @@ class ContributorScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i13.DeviceInfoScreen]
+/// [_i12.DeviceInfoScreen]
 class DeviceInfoScreenRoute extends _i34.PageRouteInfo<void> {
   const DeviceInfoScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
@@ -675,7 +661,7 @@ class DeviceInfoScreenRoute extends _i34.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.EpisodeScreen]
+/// [_i8.EpisodeScreen]
 class EpisodeScreenRoute extends _i34.PageRouteInfo<EpisodeScreenRouteArgs> {
   EpisodeScreenRoute({
     _i36.Key? key,
@@ -740,7 +726,7 @@ class EpisodeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i14.ExtraUsergroupsScreen]
+/// [_i13.ExtraUsergroupsScreen]
 class ExtraUsergroupsScreenRoute extends _i34.PageRouteInfo<void> {
   const ExtraUsergroupsScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
@@ -754,7 +740,7 @@ class ExtraUsergroupsScreenRoute extends _i34.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i15.FAQScreen]
+/// [_i14.FAQScreen]
 class FAQScreenRoute extends _i34.PageRouteInfo<void> {
   const FAQScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
@@ -768,7 +754,7 @@ class FAQScreenRoute extends _i34.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i16.HomeScreen]
+/// [_i15.HomeScreen]
 class HomeScreenRoute extends _i34.PageRouteInfo<HomeScreenRouteArgs> {
   HomeScreenRoute({
     _i36.Key? key,
@@ -797,7 +783,7 @@ class HomeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i17.HomeWrapperScreen]
+/// [_i16.HomeWrapperScreen]
 class HomeWrapperScreenRoute extends _i34.PageRouteInfo<void> {
   const HomeWrapperScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
@@ -806,6 +792,20 @@ class HomeWrapperScreenRoute extends _i34.PageRouteInfo<void> {
         );
 
   static const String name = 'HomeWrapperScreenRoute';
+
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i17.InitScreen]
+class InitScreenRoute extends _i34.PageRouteInfo<void> {
+  const InitScreenRoute({List<_i34.PageRouteInfo>? children})
+      : super(
+          InitScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'InitScreenRoute';
 
   static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
@@ -962,7 +962,7 @@ class ProfileScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i17.ProfileWrapperScreen]
+/// [_i16.ProfileWrapperScreen]
 class ProfileWrapperScreenRoute extends _i34.PageRouteInfo<void> {
   const ProfileWrapperScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
@@ -1015,7 +1015,7 @@ class SearchScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i17.SearchWrapperScreen]
+/// [_i16.SearchWrapperScreen]
 class SearchWrapperScreenRoute extends _i34.PageRouteInfo<void> {
   const SearchWrapperScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
@@ -1120,7 +1120,7 @@ class ShortsScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i17.ShortsWrapperScreen]
+/// [_i16.ShortsWrapperScreen]
 class ShortsWrapperScreenRoute extends _i34.PageRouteInfo<void> {
   const ShortsWrapperScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
@@ -1219,7 +1219,7 @@ class TabsRootScreenRoute extends _i34.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i17.TabsWrapperScreen]
+/// [_i16.TabsWrapperScreen]
 class TabsWrapperScreenRoute extends _i34.PageRouteInfo<void> {
   const TabsWrapperScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
