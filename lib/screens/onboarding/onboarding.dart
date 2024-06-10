@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -69,13 +69,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       });
       return;
     }
-    // Restart Unleash to force a new feature flag fetch
-    ref.read(rawUnleashProvider)?.stop();
-    try {
-      await ref.read(rawUnleashProvider)?.start().timeout(const Duration(milliseconds: 3000));
-    } catch (e) {
-      // ignore
-    }
+    await tryCatchRecordErrorAsync(() {
+      return ref.read(featureFlagsProvider.notifier).refresh().timeout(const Duration(seconds: 2));
+    });
     if (!mounted) return;
     context.router.replaceAll([const TabsRootScreenRoute()]);
   }

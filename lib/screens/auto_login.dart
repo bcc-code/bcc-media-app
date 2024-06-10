@@ -4,6 +4,7 @@ import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,15 +14,19 @@ import '../helpers/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
 
+/// The screen that is shown when the app is starting up.
+///
+/// It will try to auto-login the user and show a loading indicator.
+/// If the auto-login fails, it will show an error message and allow retrying / logging out.
 @RoutePage<void>()
 class AutoLoginScreen extends ConsumerStatefulWidget {
   const AutoLoginScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AutoLoginScreeenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _AutoLoginScreenState();
 }
 
-class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
+class _AutoLoginScreenState extends ConsumerState<AutoLoginScreen> {
   Future<void>? authFuture;
 
   @override
@@ -37,18 +42,23 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
 
   void load() async {
     if (!mounted) return;
-    final deepLinkUri = await AppLinks().getInitialAppLink();
     setState(() {
-      authFuture = ref.read(authStateProvider.notifier).load();
+      authFuture = ref.read(authStateProvider.notifier).initialize();
     });
-    authFuture!.then((_) {
-      debugPrint('navigate(deepLinkUri: $deepLinkUri)');
-      navigate(deepLinkUri: deepLinkUri);
-      globalEventBus.fire(AppReadyEvent());
+    await authFuture;
+    debugPrint('AutoLoginScreen: AuthFuture completed, refreshing feature flags');
+    await tryCatchRecordErrorAsync(() async {
+      // Try refreshing feature flags before continuing navigation, in case it affects e.g. frontpage.
+      // but don't block too long
+      await ref.read(featureFlagsProvider.notifier).refresh().timeout(const Duration(seconds: 1));
     });
+    debugPrint('AutoLoginScreen: Feature flags refreshed or timed out, continuing navigation.');
+    continueNavigation();
+    globalEventBus.fire(AppReadyEvent());
   }
 
-  void navigate({Uri? deepLinkUri}) {
+  Future<void> continueNavigation({Uri? deepLinkUri}) async {
+    final deepLinkUri = await tryCatchRecordErrorAsync(() => AppLinks().getInitialAppLink());
     if (!mounted) return;
     final router = context.router;
     if (deepLinkUri != null && !deepLinkUri.path.contains('auto-login')) {
@@ -59,14 +69,14 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
           router.navigateNamedFromRoot('/');
         },
       );
-      return;
-    }
-    final isLoggedIn = ref.read(authStateProvider).isLoggedIn;
-    final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingCompleted) == true;
-    if (!isLoggedIn && !hasCompletedOnboarding) {
-      router.replaceAll([OnboardingScreenRoute()]);
     } else {
-      router.replaceAll([const TabsRootScreenRoute()]);
+      final isLoggedIn = ref.read(authStateProvider).isLoggedIn;
+      final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingCompleted) == true;
+      if (!isLoggedIn && !hasCompletedOnboarding) {
+        router.replaceAll([OnboardingScreenRoute()]);
+      } else {
+        router.replaceAll([const TabsRootScreenRoute()]);
+      }
     }
   }
 
@@ -74,31 +84,38 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
   Widget build(BuildContext context) {
     return simpleFutureBuilder<void>(
       future: authFuture,
-      error: (e) => _Error(onRetry: load),
-      noData: () => loading(context),
-      ready: (_) => loading(context),
-      loading: () => loading(context),
+      error: (e) => _ErrorWidget(onRetry: load),
+      noData: () => const _LoadingWidget(),
+      ready: (_) => const _LoadingWidget(),
+      loading: () => const _LoadingWidget(),
     );
   }
-
-  Widget loading(BuildContext context) => Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const LoadingIndicator(),
-              const SizedBox(height: 12),
-              Text(S.of(context).loading, style: DesignSystem.of(context).textStyles.body2),
-            ],
-          ),
-        ),
-      );
 }
 
-class _Error extends HookConsumerWidget {
+class _LoadingWidget extends StatelessWidget {
+  const _LoadingWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const LoadingIndicator(),
+            const SizedBox(height: 12),
+            Text(S.of(context).loading, style: DesignSystem.of(context).textStyles.body2),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ErrorWidget extends HookConsumerWidget {
   final VoidCallback onRetry;
 
-  const _Error({Key? key, required this.onRetry}) : super(key: key);
+  const _ErrorWidget({Key? key, required this.onRetry}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

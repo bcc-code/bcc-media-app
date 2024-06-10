@@ -14,29 +14,14 @@ import 'package:kids/components/splash_video.dart';
 import 'package:kids/router/router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-class AppRoot extends ConsumerStatefulWidget {
+class AppRoot extends ConsumerWidget {
   const AppRoot({super.key, required this.navigatorKey, required this.appRouter});
 
   final GlobalKey<NavigatorState> navigatorKey;
   final AppRouter appRouter;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AppRootState();
-}
-
-class _AppRootState extends ConsumerState<AppRoot> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Shortcuts(
       shortcuts: <LogicalKeySet, Intent>{
         LogicalKeySet(LogicalKeyboardKey.select): const ActivateIntent(),
@@ -71,11 +56,11 @@ class _AppRootState extends ConsumerState<AppRoot> {
                 themeMode: ThemeMode.dark,
                 debugShowCheckedModeBanner: false,
                 title: 'Bible Kids',
-                routerDelegate: widget.appRouter.delegate(
+                routerDelegate: appRouter.delegate(
                   deepLinkBuilder: (_) => const DeepLink.path('/'),
                   navigatorObservers: () => [AnalyticsNavigatorObserver()],
                 ),
-                routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
+                routeInformationParser: appRouter.defaultRouteParser(includePrefixMatches: true),
                 builder: (BuildContext context, Widget? child) {
                   return ResponsiveBreakpoints.builder(
                     child: MediaQuery(

@@ -17,7 +17,7 @@ const kLoadMoreBottomScrollOffset = 300;
 const kItemsToFetchForPagination = 20;
 
 class PageRenderer extends ConsumerStatefulWidget {
-  final Future<Query$Page$page> pageFuture;
+  final Future<Query$Page$page>? pageFuture;
   final Future Function({bool? retry}) onRefresh;
   final ScrollController? scrollController;
 
@@ -89,7 +89,7 @@ class _PageRendererState extends ConsumerState<PageRenderer> {
       loadingBottomSectionItems = true;
     });
     var page = await widget.pageFuture;
-    final sectionId = page.sections.items.lastWhereOrNull((element) => sectionIsVertical(element))?.id;
+    final sectionId = page?.sections.items.lastWhereOrNull((element) => sectionIsVertical(element))?.id;
     if (sectionId == null) {
       return;
     }
@@ -102,7 +102,7 @@ class _PageRendererState extends ConsumerState<PageRenderer> {
 
   loadMoreItemsForSection(String sectionId) async {
     var page = await widget.pageFuture;
-    final section = page.sections.items.firstWhereOrNull((element) => element.id == sectionId).asOrNull<Fragment$ItemSection>();
+    final section = page?.sections.items.firstWhereOrNull((element) => element.id == sectionId).asOrNull<Fragment$ItemSection>();
     if (section == null) return;
     final sectionPagination =
         paginationMap[sectionId] ?? PaginationStatus<Fragment$ItemSectionItem>(currentOffset: section.items.offset + section.items.first, items: []);

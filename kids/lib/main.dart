@@ -98,7 +98,6 @@ Future<void> $main({
     authStateProviderOverride: authStateProviderOverride,
     analyticsProviderOverride: analyticsProviderOverride,
     featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
-    rawUnleashProviderOverride: rawUnleashProviderOverride,
     unleashContextProviderOverride: unleashContextProviderOverride,
     notificationServiceProviderOverride: null,
   );
@@ -162,14 +161,5 @@ Future<ProviderContainer> initProviderContainer(List<Override> overrides) async 
   providerContainer.read(notificationServiceProvider);
   providerContainer.read(authFeatureFlagListener);
   await providerContainer.read(playbackServiceProvider).init();
-  try {
-    await providerContainer.read(unleashProvider.future).timeout(const Duration(milliseconds: 300));
-  } catch (e, st) {
-    if (e is TimeoutException) {
-      debugPrint('Timeout: Unleash not ready, continuing boot.');
-    } else {
-      FirebaseCrashlytics.instance.recordError(e, st);
-    }
-  }
   return providerContainer;
 }

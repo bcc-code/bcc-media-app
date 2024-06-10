@@ -21,6 +21,7 @@ class PrefKeys {
   static const shortsFeatureGuideShown = 'shorts_feature_guide_shown';
   static const likedShortsGuideShown = 'liked_shorts_guide_shown2';
   static const downloadedVideosGuide = 'downloaded_videos_guide';
+  static const featureFlags = 'feature_flags';
 }
 
 final webEnvUrls = <String, String>{

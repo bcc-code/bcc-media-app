@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/components/misc/app_update_dialog.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
@@ -21,9 +22,8 @@ import 'package:bccm_core/bccm_core.dart';
 import 'models/breakpoints.dart';
 
 class AppRoot extends ConsumerStatefulWidget {
-  const AppRoot({super.key, required this.navigatorKey, required this.appRouter});
+  const AppRoot({super.key, required this.appRouter});
 
-  final GlobalKey<NavigatorState> navigatorKey;
   final AppRouter appRouter;
 
   @override
@@ -32,6 +32,7 @@ class AppRoot extends ConsumerStatefulWidget {
 
 class _AppRootState extends ConsumerState<AppRoot> {
   ProviderSubscription? authSubscription;
+  ProviderSubscription? appConfigSubscription;
 
   @override
   void initState() {
@@ -44,6 +45,9 @@ class _AppRootState extends ConsumerState<AppRoot> {
     authSubscription?.close();
     authSubscription = ref.listenManual<AuthState>(authStateProvider, onAuthChanged);
 
+    appConfigSubscription?.close();
+    appConfigSubscription = ref.listenManual<Query$Application?>(appConfigProvider, onAppConfigChanged, fireImmediately: true);
+
     for (var image in FlavorConfig.current.bccmImages!) {
       precacheImage(image, context)
           .then((value) => print('precache succeeded for $image.'))
@@ -51,10 +55,21 @@ class _AppRootState extends ConsumerState<AppRoot> {
     }
   }
 
+  void onAppConfigChanged(Query$Application? previous, Query$Application? next) {
+    if (next == null) return;
+    final packageInfo = ref.read(packageInfoProvider);
+    if (isOldAppVersion(current: packageInfo.version, minimum: next.application.clientVersion)) {
+      showDialog(
+        context: context,
+        builder: (context) => const AppUpdateDialog(),
+      );
+    }
+  }
+
   void onAuthChanged(AuthState? previous, AuthState next) async {
     final analytics = ref.read(analyticsProvider);
     if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
-      final rootRouter = widget.navigatorKey.currentContext?.router.root;
+      final rootRouter = globalNavigatorKey.currentContext?.router.root;
       rootRouter?.navigate(OnboardingScreenRoute());
       return;
     }
@@ -70,13 +85,14 @@ class _AppRootState extends ConsumerState<AppRoot> {
     if (!me.emailVerified && context.mounted) {
       showVerifyEmail();
     } else if (!me.completedRegistration && context.mounted) {
-      ensureValidUser();
+      continueSignup();
     }
     analytics.identify(next.user!, me.analytics.anonymousId);
     ref.read(settingsProvider.notifier).setAnalyticsId(me.analytics.anonymousId);
   }
 
-  Future ensureValidUser() async {
+  /// Opens the signup screen, so that the user can complete the registration process.
+  Future continueSignup() async {
     await Future.delayed(const Duration(milliseconds: 1000), () async {
       final context = globalNavigatorKey.currentContext;
       if (context == null) return;
@@ -88,6 +104,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
       );
     });
     if (!mounted) return;
+    // if the user has not completed the registration process after closing the signup screen, log them out.
     ref.invalidate(meProvider);
     final me = await ref.read(meProvider.future);
     if (mounted && me?.me.completedRegistration == false) {

@@ -37,6 +37,8 @@ final authStateProviderOverride = authStateProvider.overrideWith((ref) {
         }
         ref.read(settingsProvider.notifier).setAnalyticsId(null);
         ref.read(settingsProvider.notifier).refreshSessionId();
+
+        ref.read(featureFlagsProvider.notifier).refresh();
       },
     ),
   );

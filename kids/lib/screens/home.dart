@@ -28,23 +28,24 @@ class HomeScreen extends StatefulHookConsumerWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
-  late ProviderSubscription<Future<Query$Application?>> _appConfigListener;
+  late ProviderSubscription<Query$Application?> _appConfigListener;
 
   @override
   void initState() {
     super.initState();
     pageResult = wrapInCompleter(getHomePage());
-    _appConfigListener = ref.listenManual(appConfigFutureProvider, (prev, next) async {
-      final value = await next;
-      if (value == null) return;
-      if (!mounted) return;
-      if (isOldAppVersion(context, value)) {
-        showDialog(
-          context: context,
-          builder: (context) => const AppUpdateDialog(),
-        );
-      }
-    }, fireImmediately: true);
+    _appConfigListener = ref.listenManual(appConfigProvider, onAppConfigChanged, fireImmediately: true);
+  }
+
+  void onAppConfigChanged(Query$Application? previous, Query$Application? next) {
+    if (next == null) return;
+    final packageInfo = ref.read(packageInfoProvider);
+    if (isOldAppVersion(current: packageInfo.version, minimum: next.application.clientVersion)) {
+      showDialog(
+        context: context,
+        builder: (context) => const AppUpdateDialog(),
+      );
+    }
   }
 
   @override

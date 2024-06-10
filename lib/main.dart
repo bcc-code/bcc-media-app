@@ -13,7 +13,6 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/firebase.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/router/router.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -58,7 +57,6 @@ Future<void> $main({
     bccmGraphQLProviderOverride: bccmGraphQLProviderOverride,
     authStateProviderOverride: authStateProviderOverride,
     analyticsProviderOverride: analyticsProviderOverride,
-    rawUnleashProviderOverride: rawUnleashProviderOverride,
     unleashContextProviderOverride: unleashContextProviderOverride,
     featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
     notificationServiceProviderOverride: notificationServiceProviderOverride,
@@ -74,7 +72,6 @@ Future<void> $main({
   final app = UncontrolledProviderScope(
     container: providerContainer,
     child: AppRoot(
-      navigatorKey: globalNavigatorKey,
       appRouter: appRouter,
     ),
   );
@@ -128,15 +125,6 @@ Future<ProviderContainer> initProviderContainer(List<Override> overrides) async 
   providerContainer.read(deepLinkServiceProvider);
   providerContainer.read(notificationServiceProvider);
   providerContainer.read(authFeatureFlagListener);
-  try {
-    await providerContainer.read(unleashProvider.future).timeout(const Duration(milliseconds: 1000));
-  } catch (e, st) {
-    if (e is TimeoutException) {
-      debugPrint('Timeout: Unleash not ready, continuing boot.');
-    } else {
-      FirebaseCrashlytics.instance.recordError(e, st);
-    }
-  }
   await providerContainer.read(playbackServiceProvider).init();
   return providerContainer;
 }
