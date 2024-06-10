@@ -69,9 +69,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       });
       return;
     }
+    debugPrint('ag: OnboardingScreen: refreshing feature flags');
     await tryCatchRecordErrorAsync(() {
       return ref.read(featureFlagsProvider.notifier).refresh().timeout(const Duration(seconds: 2));
     });
+    debugPrint('ag: OnboardingScreen: Feature flags refreshed or timed out, continuing navigation.');
     if (!mounted) return;
     context.router.replaceAll([const TabsRootScreenRoute()]);
   }
