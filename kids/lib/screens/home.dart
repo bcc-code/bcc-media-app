@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
@@ -27,22 +29,20 @@ class HomeScreen extends HookConsumerWidget {
       final api = ref.read(apiProvider);
       String? pageCode = ref.read(appConfigProvider)?.application.page?.code;
       if (reloadAppConfig == true) {
-        final ac = await ref.refresh(appConfigFutureProvider);
-        pageCode = ac.application.page?.code;
+        ref.invalidate(appConfigFutureProvider);
       }
+
+      final ac = await ref.read(appConfigFutureProvider);
+      pageCode = ac.application.page?.code;
+
       if (pageCode == null) {
         throw Exception('No page code found in app config');
       }
+
       return api.getPage(pageCode);
     }
 
-    final pageFuture = useState<Future<Query$Page$page>?>(null);
-    useEffect(() {
-      if (pageCode != null) {
-        pageFuture.value = getPage(false);
-      }
-    }, [pageCode]);
-
+    final pageFuture = useState<Future<Query$Page$page>?>(useMemoized(() => getPage(false)));
     final pageResult = useFuture(pageFuture.value);
     final page = pageResult.data;
 

@@ -29,28 +29,24 @@ class HomeScreen extends HookConsumerWidget {
     }
 
     final scrollController = ref.watch(tabInfosProvider.select((tabInfos) => tabInfos.home.scrollController));
-    final pageCode = ref.watch(appConfigProvider.select((appConfig) => appConfig?.application.page?.code));
-    debugPrint('HomeScreen: pageCode: $pageCode');
-
     getPage(bool reloadAppConfig) async {
       final api = ref.read(apiProvider);
       String? pageCode = ref.read(appConfigProvider)?.application.page?.code;
       if (reloadAppConfig == true) {
-        final ac = await ref.refresh(appConfigFutureProvider);
-        pageCode = ac.application.page?.code;
+        ref.invalidate(appConfigFutureProvider);
       }
+
+      final ac = await ref.read(appConfigFutureProvider);
+      pageCode = ac.application.page?.code;
+
       if (pageCode == null) {
         throw Exception('No page code found in app config');
       }
+
       return api.getPage(pageCode);
     }
 
-    final pageFuture = useState<Future<Query$Page$page>?>(null);
-    useEffect(() {
-      if (pageCode != null) {
-        pageFuture.value = getPage(false);
-      }
-    }, [pageCode]);
+    final pageFuture = useState<Future<Query$Page$page>?>(useMemoized(() => getPage(false)));
 
     final design = DesignSystem.of(context);
     return Scaffold(
