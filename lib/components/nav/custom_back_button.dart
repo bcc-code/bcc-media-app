@@ -1,14 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/screens/tabs/home.dart';
 import 'package:brunstadtv_app/screens/tabs/search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../helpers/widget_keys.dart';
 import '../../l10n/app_localizations.dart';
-import '../../screens/page.dart';
 import 'package:bccm_core/design_system.dart';
 
 String? getLocalizedRouteName(S localizations, Type route) {
@@ -21,7 +20,9 @@ String? getLocalizedRouteName(S localizations, Type route) {
   return null;
 }
 
-class CustomBackButton extends StatelessWidget {
+final widgetTitleProvider = StateProvider.autoDispose.family<String?, int>((ref, hashCode) => null);
+
+class CustomBackButton extends ConsumerWidget {
   const CustomBackButton({Key? key, this.color, this.onPressed, this.padding}) : super(key: key ?? WidgetKeys.backButton);
 
   final Color? color;
@@ -29,14 +30,14 @@ class CustomBackButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final stack = context.router.stack;
     if (stack.length < 2) {
       return const SizedBox.shrink();
     }
     final previousInStack = stack[stack.length - 2];
-    final previousPage = previousInStack.child.asOrNull<PageScreen>();
-    final previousPageTitle = previousPage?.key.asOrNull<GlobalKey<PageScreenState>>()?.currentState?.pageTitle;
+    final previousWidgetHashCode = previousInStack.child.hashCode;
+    final previousPageTitle = ref.watch(widgetTitleProvider(previousWidgetHashCode));
 
     final localizedTitle = getLocalizedRouteName(S.of(context), previousInStack.child.runtimeType);
 

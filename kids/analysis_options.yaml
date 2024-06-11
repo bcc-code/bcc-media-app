@@ -28,4 +28,7 @@ linter:
 # https://dart.dev/guides/language/analysis-options
 
 analyzer:
-  exclude: [lib/**.freezed.dart, lib/**.g.dart, lib/**.graphql.dart]
+  errors:
+    body_might_complete_normally_nullable: ignore
+  exclude:
+    [lib/**.freezed.dart, lib/**.g.dart, lib/**.graphql.dart, lib/l10n/**.dart]

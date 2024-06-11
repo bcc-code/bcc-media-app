@@ -11,6 +11,7 @@ import 'package:brunstadtv_app/components/profile/empty_info.dart';
 import 'package:brunstadtv_app/components/thumbnails/episode_thumbnail.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/models/events.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
@@ -34,7 +35,6 @@ import '../../components/thumbnails/grid/thumbnail_grid_episode.dart';
 import 'package:bccm_core/platform.dart';
 import '../../helpers/svg_icons.dart';
 import '../../models/episode_thumbnail_data.dart';
-import '../../models/events/watch_progress.dart';
 import '../../router/router.gr.dart';
 import 'package:bccm_core/design_system.dart';
 

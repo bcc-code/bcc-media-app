@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/components/pages/sections/section_renderer.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:bccm_core/platform.dart';
@@ -75,7 +76,13 @@ class _PageRendererState extends ConsumerState<PageRenderer> {
               var s = sectionItems[index];
               return SectionAnalytics(
                 data: SectionAnalyticsData(id: s.id, position: index, type: s.$__typename, name: s.title),
-                builder: (context) => SectionUpdateHandler(section: s, extraItems: paginationMap[s.id]?.items),
+                builder: (context) => SectionUpdateHandler(
+                  section: s,
+                  extraItems: paginationMap[s.id]?.items,
+                  builder: (context, section, extraItems) {
+                    return SectionRenderer(section: section, extraItems: extraItems);
+                  },
+                ),
               );
             }),
           ),

@@ -21,12 +21,6 @@ import '../../components/pages/page_renderer.dart';
 class HomeScreen extends HookConsumerWidget {
   HomeScreen({Key? key}) : super(key: key ?? GlobalKey());
 
-/*   @override
-  void scrollToTop() {
-    if (!pageScrollController.hasClients) return;
-    pageScrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
-  } */
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isOffline = ref.watch(isOfflineProvider);
@@ -35,18 +29,28 @@ class HomeScreen extends HookConsumerWidget {
     }
 
     final scrollController = ref.watch(tabInfosProvider.select((tabInfos) => tabInfos.home.scrollController));
-
     final pageCode = ref.watch(appConfigProvider.select((appConfig) => appConfig?.application.page?.code));
     debugPrint('HomeScreen: pageCode: $pageCode');
+
+    getPage(bool reloadAppConfig) async {
+      final api = ref.read(apiProvider);
+      String? pageCode = ref.read(appConfigProvider)?.application.page?.code;
+      if (reloadAppConfig == true) {
+        final ac = await ref.refresh(appConfigFutureProvider);
+        pageCode = ac.application.page?.code;
+      }
+      if (pageCode == null) {
+        throw Exception('No page code found in app config');
+      }
+      return api.getPage(pageCode);
+    }
 
     final pageFuture = useState<Future<Query$Page$page>?>(null);
     useEffect(() {
       if (pageCode != null) {
-        pageFuture.value = ref.read(apiProvider).getPage(pageCode);
+        pageFuture.value = getPage(false);
       }
     }, [pageCode]);
-
-    // TODO: Handle watch progress updates
 
     final design = DesignSystem.of(context);
     return Scaffold(
@@ -84,12 +88,7 @@ class HomeScreen extends HookConsumerWidget {
         child: PageRenderer(
           pageFuture: pageFuture.value,
           onRefresh: ({bool? retry}) async {
-            if (retry == true) {
-              ref.invalidate(appConfigFutureProvider);
-            }
-            if (pageCode != null) {
-              pageFuture.value = ref.read(apiProvider).getPage(pageCode);
-            }
+            pageFuture.value = getPage(retry == true);
           },
           scrollController: scrollController,
         ),

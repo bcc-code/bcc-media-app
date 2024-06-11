@@ -2,8 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/components/misc/app_update_dialog.dart';
-import 'package:brunstadtv_app/components/pages/page_mixin.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:bccm_core/platform.dart';
@@ -17,61 +15,39 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids/components/page/section_renderer.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-final GlobalKey homeKey = GlobalKey<_HomeScreenState>();
-
 @RoutePage<void>()
-class HomeScreen extends StatefulHookConsumerWidget {
+class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  ConsumerState<HomeScreen> createState() => _HomeScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final pageCode = ref.watch(appConfigProvider.select((appConfig) => appConfig?.application.page?.code));
 
-class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
-  late ProviderSubscription<Query$Application?> _appConfigListener;
-
-  @override
-  void initState() {
-    super.initState();
-    pageResult = wrapInCompleter(getHomePage());
-    _appConfigListener = ref.listenManual(appConfigProvider, onAppConfigChanged, fireImmediately: true);
-  }
-
-  void onAppConfigChanged(Query$Application? previous, Query$Application? next) {
-    if (next == null) return;
-    final packageInfo = ref.read(packageInfoProvider);
-    if (isOldAppVersion(current: packageInfo.version, minimum: next.application.clientVersion)) {
-      showDialog(
-        context: context,
-        builder: (context) => const AppUpdateDialog(),
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    _appConfigListener.close();
-    super.dispose();
-  }
-
-  Future<Query$Page$page> getHomePage() async {
-    final api = ref.read(apiProvider);
-    return ref.read(appConfigFutureProvider).then((value) {
-      final code = value.application.page?.code;
-      if (code == null) {
-        throw ErrorHint('Application config error');
+    getPage(bool reloadAppConfig) async {
+      final api = ref.read(apiProvider);
+      String? pageCode = ref.read(appConfigProvider)?.application.page?.code;
+      if (reloadAppConfig == true) {
+        final ac = await ref.refresh(appConfigFutureProvider);
+        pageCode = ac.application.page?.code;
       }
-      return api.getPage(code);
-    });
-  }
+      if (pageCode == null) {
+        throw Exception('No page code found in app config');
+      }
+      return api.getPage(pageCode);
+    }
 
-  Future<Query$Page$page> getHomeAndAppConfig() async {
-    ref.invalidate(appConfigFutureProvider);
-    return getHomePage();
-  }
+    final pageFuture = useState<Future<Query$Page$page>?>(null);
+    useEffect(() {
+      if (pageCode != null) {
+        pageFuture.value = getPage(false);
+      }
+    }, [pageCode]);
 
-  @override
-  Widget build(BuildContext context) {
+    final pageResult = useFuture(pageFuture.value);
+    final page = pageResult.data;
+
+    debugPrint('HomeScreen: pageCode: $pageCode');
+
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
     final double basePadding = bp.smallerThan(TABLET) ? 20 : 48;
@@ -79,7 +55,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
     final isCasting = useListenableSelector(BccmPlayerController.primary, () => BccmPlayerController.primary.isChromecast);
     return OrientationBuilder(
       builder: (context, orientation) => Scaffold(
-        key: homeKey,
         resizeToAvoidBottomInset: false,
         body: orientation == Orientation.portrait
             ? Container(color: Colors.white)
@@ -87,65 +62,60 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                 children: [
                   SizedBox(height: basePadding),
                   Expanded(
-                    child: FutureBuilder(
-                      future: pageResult.future,
-                      builder: (context, result) => InheritedData<ScrollController>(
-                        inheritedData: scrollController,
-                        builder: (context) => PrimaryScrollController(
-                          controller: scrollController,
-                          child: CustomScrollView(
-                            primary: true,
-                            scrollDirection: Axis.horizontal,
-                            slivers: [
-                              SliverSafeArea(
-                                right: false,
-                                sliver: SliverPadding(padding: EdgeInsets.only(left: basePadding)),
-                              ),
-                              SliverToBoxAdapter(
-                                child: Container(
-                                  alignment: Alignment.bottomLeft,
-                                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                                  child: SizedBox(
-                                    width: basePadding,
-                                    child: RotatedBox(
-                                      quarterTurns: -1,
-                                      child: Image.asset(
-                                        'assets/flavors/prod/logo_neg.png',
-                                      ),
-                                    )
-                                        .animate()
-                                        .slideX(begin: 4, curve: Curves.easeOutExpo, duration: 2000.ms)
-                                        .scale(begin: const Offset(0.5, 0.5))
-                                        .rotate(begin: 0.05)
-                                        .fadeIn(),
-                                  ),
+                    child: InheritedData<ScrollController>(
+                      inheritedData: scrollController,
+                      builder: (context) => PrimaryScrollController(
+                        controller: scrollController,
+                        child: CustomScrollView(
+                          primary: true,
+                          scrollDirection: Axis.horizontal,
+                          slivers: [
+                            SliverSafeArea(
+                              right: false,
+                              sliver: SliverPadding(padding: EdgeInsets.only(left: basePadding)),
+                            ),
+                            SliverToBoxAdapter(
+                              child: Container(
+                                alignment: Alignment.bottomLeft,
+                                padding: const EdgeInsets.symmetric(horizontal: 12),
+                                child: SizedBox(
+                                  width: basePadding,
+                                  child: RotatedBox(
+                                    quarterTurns: -1,
+                                    child: Image.asset(
+                                      'assets/flavors/prod/logo_neg.png',
+                                    ),
+                                  )
+                                      .animate()
+                                      .slideX(begin: 4, curve: Curves.easeOutExpo, duration: 2000.ms)
+                                      .scale(begin: const Offset(0.5, 0.5))
+                                      .rotate(begin: 0.05)
+                                      .fadeIn(),
                                 ),
                               ),
-                              const SliverPadding(padding: EdgeInsets.only(left: 32)),
-                              if (result.connectionState == ConnectionState.waiting)
-                                const SliverFillRemaining(hasScrollBody: true, child: Center(child: LoadingIndicator()))
-                              else if (result.data == null || result.hasError)
-                                SliverFillRemaining(
-                                  hasScrollBody: true,
-                                  child: ErrorGeneric(
-                                    onRetry: () {
-                                      setState(() {
-                                        pageResult = wrapInCompleter(getHomeAndAppConfig());
-                                      });
-                                    },
-                                  ),
-                                )
-                              else
-                                SliverList.builder(
-                                  itemCount: result.data!.sections.items.length,
-                                  itemBuilder: (context, index) {
-                                    final section = result.data!.sections.items[index];
-                                    return SectionRenderer(section: section, index: index);
+                            ),
+                            const SliverPadding(padding: EdgeInsets.only(left: 32)),
+                            if (pageResult.connectionState == ConnectionState.waiting)
+                              const SliverFillRemaining(hasScrollBody: true, child: Center(child: LoadingIndicator()))
+                            else if (page == null || pageResult.hasError)
+                              SliverFillRemaining(
+                                hasScrollBody: true,
+                                child: ErrorGeneric(
+                                  onRetry: () async {
+                                    pageFuture.value = getPage(true);
                                   },
                                 ),
-                              const SliverPadding(padding: EdgeInsets.only(right: 60)),
-                            ],
-                          ),
+                              )
+                            else
+                              SliverList.builder(
+                                itemCount: page.sections.items.length,
+                                itemBuilder: (context, index) {
+                                  final section = page.sections.items[index];
+                                  return SectionRenderer(section: section, index: index);
+                                },
+                              ),
+                            const SliverPadding(padding: EdgeInsets.only(right: 60)),
+                          ],
                         ),
                       ),
                     ),
