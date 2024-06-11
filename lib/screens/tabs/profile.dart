@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/app_bar_with_scroll_to_top.dart';
 import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_with_header.dart';
@@ -13,6 +14,7 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/providers/tabs.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -72,7 +74,7 @@ class ProfileScreen extends HookConsumerWidget {
 
     final design = DesignSystem.of(context);
     final downloadedVideosCount = ref.watch(downloadsProvider.select((value) => value.valueOrNull?.length ?? 0));
-    final scrollController = useScrollController();
+    final scrollController = ref.watch(tabInfosProvider.select((tabInfos) => tabInfos.profile.scrollController!));
 
     void scrollTo(GlobalKey key) {
       var offset = key.currentContext?.findRenderObject()?.getTransformTo(null).getTranslation().t;
@@ -104,20 +106,23 @@ class ProfileScreen extends HookConsumerWidget {
     }, [scroll]);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Image(
-          image: FlavorConfig.current.bccmImages!.logo,
-          height: FlavorConfig.current.bccmImages!.logoHeight,
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: ConstrainedBox(
-              constraints: BoxConstraints.loose(const Size(24, 24)),
-              child: CastButton(color: design.colors.tint1),
-            ),
+      appBar: AppBarWithScrollToTop(
+        scrollController: scrollController,
+        child: AppBar(
+          title: Image(
+            image: FlavorConfig.current.bccmImages!.logo,
+            height: FlavorConfig.current.bccmImages!.logoHeight,
           ),
-        ],
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: ConstrainedBox(
+                constraints: BoxConstraints.loose(const Size(24, 24)),
+                child: CastButton(color: design.colors.tint1),
+              ),
+            ),
+          ],
+        ),
       ),
       body: CustomScrollView(
         controller: scrollController,

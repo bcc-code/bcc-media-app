@@ -135,6 +135,7 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
       icon: FlavorConfig.current.bccmImages!.profile,
       analyticsName: 'profile',
       iconKey: GlobalKey(),
+      scrollController: ref.watch(_scrollControllers('profile')),
     ),
   );
 });

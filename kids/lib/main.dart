@@ -12,7 +12,6 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/firebase.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/theme/bccm_gradients.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

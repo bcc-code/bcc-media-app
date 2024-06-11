@@ -55,7 +55,7 @@ class HomeScreen extends HookConsumerWidget {
           ? null
           : AppBarWithScrollToTop(
               scrollController: scrollController,
-              appBar: AppBar(
+              child: AppBar(
                 toolbarHeight: 44,
                 shadowColor: Colors.black,
                 backgroundColor: AppTheme.of(context).appBarTransparent ? Colors.transparent : design.colors.background1,

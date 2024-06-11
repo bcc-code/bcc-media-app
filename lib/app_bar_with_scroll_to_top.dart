@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
 
 class AppBarWithScrollToTop extends StatelessWidget implements PreferredSizeWidget {
-  final AppBar appBar;
+  final AppBar child;
   final ScrollController? scrollController;
 
-  const AppBarWithScrollToTop({Key? key, required this.appBar, required this.scrollController}) : super(key: key);
+  const AppBarWithScrollToTop({Key? key, required this.child, required this.scrollController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (Platform.isIOS) {
-      return appBar;
+      return child;
     }
     return Stack(
       children: [
-        appBar,
+        child,
         Positioned(
           top: 0,
           left: 0,
@@ -43,5 +43,5 @@ class AppBarWithScrollToTop extends StatelessWidget implements PreferredSizeWidg
   }
 
   @override
-  Size get preferredSize => appBar.preferredSize;
+  Size get preferredSize => child.preferredSize;
 }
