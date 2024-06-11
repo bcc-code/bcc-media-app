@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:kids/app_root_inner.dart';
 import 'package:kids/components/splash_video.dart';
 import 'package:kids/router/router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -65,7 +66,11 @@ class AppRoot extends ConsumerWidget {
                   return ResponsiveBreakpoints.builder(
                     child: MediaQuery(
                       data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
-                      child: SplashVideo(child: child ?? const SizedBox()),
+                      child: AppRootInner(
+                        child: SplashVideo(
+                          child: child ?? const SizedBox(),
+                        ),
+                      ),
                     ),
                     breakpoints: breakpoints,
                     breakpointsLandscape: breakpoints,
