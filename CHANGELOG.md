@@ -1,9 +1,15 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.0+2300150...v) (2024-06-09)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.0+2300150...v) (2024-06-11)
 
 
 ### Bug Fixes
 
 * play random contenttype ([3ec2fb1](https://github.com/bcc-code/bcc-media-app/commit/3ec2fb1b191cf28507dabee7e3d9977dc5598c56))
+
+
+### Features
+
+* directly invalidate app config after auth initialization ([bb06e2a](https://github.com/bcc-code/bcc-media-app/commit/bb06e2a9f3c9d7df3a3cab48389d4a99e9cc10b0))
+* feature flag revamp ([48fbd64](https://github.com/bcc-code/bcc-media-app/commit/48fbd647aed1f055b8473f43ef9d12755979b11a))
 
 
 
