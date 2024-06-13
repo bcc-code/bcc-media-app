@@ -127,7 +127,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     unleash.on('update', onUnleashUpdate);
     unleash.on('ready', onUnleashReady);
     unleash.on('initialized', onUnleashInit);
-    unleash.start();
+    await unleash.start();
   }
 
   /// Refreshes the feature flags by stopping and starting unleash.
