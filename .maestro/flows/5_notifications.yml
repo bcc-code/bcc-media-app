@@ -21,7 +21,7 @@ tags:
 - runFlow:
     file: subflows/notification.yml
     env:
-      CONTAINING: deep_link_live
+      CONTAINING: deep_link_shorts
 - assertVisible: Today,.*
 # deep_link_live
 - runFlow: subflows/home.yml

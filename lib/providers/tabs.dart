@@ -12,8 +12,6 @@ import 'feature_flags.dart';
 enum TabId {
   home,
   search,
-  live,
-  calendar,
   shorts,
   profile,
 }
@@ -41,16 +39,12 @@ class TabInfo {
 class TabInfos {
   final TabInfo home;
   final TabInfo search;
-  final TabInfo live;
-  final TabInfo calendar;
   final TabInfo shorts;
   final TabInfo profile;
 
   const TabInfos({
     required this.home,
     required this.search,
-    required this.live,
-    required this.calendar,
     required this.shorts,
     required this.profile,
   });
@@ -59,10 +53,8 @@ class TabInfos {
     return switch (id) {
       TabId.home => home,
       TabId.search => search,
-      TabId.live => live,
-      TabId.calendar => calendar,
       TabId.shorts => shorts,
-      TabId.profile => profile
+      TabId.profile => profile,
     };
   }
 }
@@ -99,22 +91,6 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
       analyticsName: 'search',
       iconKey: GlobalKey(),
       scrollController: ref.watch(_scrollControllers('search')),
-    ),
-    live: TabInfo(
-      id: TabId.live,
-      route: const LiveScreenRoute(),
-      title: (BuildContext context) => S.of(context).liveTab,
-      icon: FlavorConfig.current.bccmImages!.live,
-      analyticsName: 'live',
-      iconKey: GlobalKey(),
-    ),
-    calendar: TabInfo(
-      id: TabId.calendar,
-      route: const CalendarScreenRoute(),
-      title: (BuildContext context) => S.of(context).calendar,
-      icon: FlavorConfig.current.bccmImages!.calendar,
-      analyticsName: 'calendar',
-      iconKey: GlobalKey(),
     ),
     shorts: TabInfo(
       id: TabId.shorts,

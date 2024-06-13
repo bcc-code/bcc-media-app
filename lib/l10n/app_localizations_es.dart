@@ -44,9 +44,6 @@ class SEs extends S {
   String get loginPageDisplay3 => 'Producida por BCC Media';
 
   @override
-  String get liveTab => 'En Vivo';
-
-  @override
   String get logOutButton => 'Cerrar sesión';
 
   @override
@@ -218,9 +215,6 @@ class SEs extends S {
   String get yesCancel => 'Sí, Cancelar';
 
   @override
-  String get upNext => 'Siguiente';
-
-  @override
   String get done => 'Listo';
 
   @override
@@ -237,9 +231,6 @@ class SEs extends S {
 
   @override
   String get auto => 'Automatico';
-
-  @override
-  String get live => 'En Vivo';
 
   @override
   String get subtitles => 'Subtitulos';
@@ -475,9 +466,6 @@ class SEs extends S {
   String get showLess => 'Ver menos';
 
   @override
-  String get liveNow => 'En vivo';
-
-  @override
   String get comingSoon => 'Próximamente';
 
   @override
@@ -562,9 +550,6 @@ class SEs extends S {
 
   @override
   String get errorTryAgain => 'Algo salio mal, por favor inténtelo nuevamente.';
-
-  @override
-  String get liveHeader => 'En Vivo';
 
   @override
   String get programsSection => 'Programas';
@@ -1011,12 +996,6 @@ class SEs extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'Puedes encontrar tus videos descargados en \"Perfil\".';
-
-  @override
-  String get bccLiveForcedDescription2 => '¡Lo lamentamos! Ya no puedes ver transmisiones en vivo en esta aplicación. Descargue \"Live by BCC Connect\" en App Store o Google Play para continuar viendo transmisiones en vivo desde Brunstad.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'La transmisión en vivo se está trasladando a una nueva aplicación: \"Live by BCC Connect\". Puedes descargarla en la App Store o en Google Play.';
 
   @override
   String get openStore => 'Abrir tienda';

@@ -44,9 +44,6 @@ class SFr extends S {
   String get loginPageDisplay3 => 'Produit par BCC Media';
 
   @override
-  String get liveTab => 'En direct';
-
-  @override
   String get logOutButton => 'Déconnexion';
 
   @override
@@ -218,9 +215,6 @@ class SFr extends S {
   String get yesCancel => 'Oui, Annuler';
 
   @override
-  String get upNext => 'Suivant';
-
-  @override
   String get done => 'Terminé';
 
   @override
@@ -237,9 +231,6 @@ class SFr extends S {
 
   @override
   String get auto => 'Auto';
-
-  @override
-  String get live => 'En direct';
 
   @override
   String get subtitles => 'Sous-titres';
@@ -475,9 +466,6 @@ class SFr extends S {
   String get showLess => 'Afficher moins';
 
   @override
-  String get liveNow => 'En direct maintenant';
-
-  @override
   String get comingSoon => 'Bientôt disponible';
 
   @override
@@ -562,9 +550,6 @@ class SFr extends S {
 
   @override
   String get errorTryAgain => 'Une erreur est survenue, merci de réessayer plus tard.';
-
-  @override
-  String get liveHeader => 'En direct';
 
   @override
   String get programsSection => 'Programmes';
@@ -1011,12 +996,6 @@ class SFr extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'Vous pouvez trouver vos vidéos téléchargées sous « Profil ».';
-
-  @override
-  String get bccLiveForcedDescription2 => 'Nous sommes désolés! Vous ne pouvez plus regarder les diffusions en direct dans cette application. Téléchargez « Live by BCC Connect » dans l\'App Store ou Google Play pour continuer à regarder les diffusions en direct de Brunstad.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'La transmission en direct migre vers une nouvelle application : \"Live by BCC Connect\". Vous pouvez la télécharger sur l\'App Store ou Google Play.';
 
   @override
   String get openStore => 'Ouvrir';

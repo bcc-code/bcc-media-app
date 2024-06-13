@@ -44,9 +44,6 @@ class SEn extends S {
   String get loginPageDisplay3 => 'Produced by BCC Media';
 
   @override
-  String get liveTab => 'Live';
-
-  @override
   String get logOutButton => 'Log out';
 
   @override
@@ -218,9 +215,6 @@ class SEn extends S {
   String get yesCancel => 'Yes, Cancel';
 
   @override
-  String get upNext => 'Up next';
-
-  @override
   String get done => 'Done';
 
   @override
@@ -237,9 +231,6 @@ class SEn extends S {
 
   @override
   String get auto => 'Auto';
-
-  @override
-  String get live => 'Live';
 
   @override
   String get subtitles => 'Subtitles';
@@ -475,9 +466,6 @@ class SEn extends S {
   String get showLess => 'Show less';
 
   @override
-  String get liveNow => 'Live now';
-
-  @override
   String get comingSoon => 'Coming soon';
 
   @override
@@ -562,9 +550,6 @@ class SEn extends S {
 
   @override
   String get errorTryAgain => 'Something went wrong, please try again later.';
-
-  @override
-  String get liveHeader => 'Live';
 
   @override
   String get programsSection => 'Programs';
@@ -1011,12 +996,6 @@ class SEn extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
-
-  @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
 
   @override
   String get openStore => 'Open store';

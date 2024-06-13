@@ -191,16 +191,6 @@ class AppRouter extends $AppRouter {
       path: '/',
       children: [
         MaterialRoute(
-          page: LiveScreenRoute.page,
-          path: 'live',
-          meta: const {
-            RouteMetaConstants.hideMiniPlayer: true,
-            RouteMetaConstants.navTabRoute: true,
-            RouteMetaConstants.analyticsName: 'livestream',
-          },
-          maintainState: true,
-        ),
-        MaterialRoute(
           page: SearchWrapperScreenRoute.page,
           path: 'search',
           children: [
@@ -213,11 +203,6 @@ class AppRouter extends $AppRouter {
             _collectionEpisodeScreenRoute,
             _pageScreenRoute,
           ],
-        ),
-        MaterialRoute(
-          page: CalendarScreenRoute.page,
-          path: 'calendar',
-          meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'calendar'},
         ),
         CustomRoute(
           page: ShortsWrapperScreenRoute.page,

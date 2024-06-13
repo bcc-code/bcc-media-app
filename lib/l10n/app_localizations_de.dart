@@ -44,9 +44,6 @@ class SDe extends S {
   String get loginPageDisplay3 => 'Produziert von BCC Media';
 
   @override
-  String get liveTab => 'Live ';
-
-  @override
   String get logOutButton => 'Abmelden';
 
   @override
@@ -218,9 +215,6 @@ class SDe extends S {
   String get yesCancel => 'Ja, Abbrechen';
 
   @override
-  String get upNext => 'Nächste';
-
-  @override
   String get done => 'Erledigt';
 
   @override
@@ -237,9 +231,6 @@ class SDe extends S {
 
   @override
   String get auto => 'Auto';
-
-  @override
-  String get live => 'Live ';
 
   @override
   String get subtitles => 'Untertitel';
@@ -475,9 +466,6 @@ class SDe extends S {
   String get showLess => 'Zeige weniger';
 
   @override
-  String get liveNow => 'Jetzt live';
-
-  @override
   String get comingSoon => 'Kommt in Kürze';
 
   @override
@@ -562,9 +550,6 @@ class SDe extends S {
 
   @override
   String get errorTryAgain => 'Etwas ist schief gelaufen, bitte versuche es später noch einmal.';
-
-  @override
-  String get liveHeader => 'Live ';
 
   @override
   String get programsSection => 'Programme';
@@ -1011,12 +996,6 @@ class SDe extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'Deine heruntergeladenen Videos findest du unter „Profil“.';
-
-  @override
-  String get bccLiveForcedDescription2 => 'Es tut uns leid! Du kannst in dieser App keine Livestreams mehr ansehen. Lade „Live by BCC Connect“ im App Store oder bei Google Play herunter, um weiterhin Livestreams von Brunstad anzusehen.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'Der Livestream zieht in eine neue App um: „Live by BCC Connect“. Du kannst es im App Store oder bei Google Play herunterladen.';
 
   @override
   String get openStore => 'Öffnen';

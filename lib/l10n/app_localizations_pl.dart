@@ -44,9 +44,6 @@ class SPl extends S {
   String get loginPageDisplay3 => 'Wyprodukowano przez BCC Media';
 
   @override
-  String get liveTab => 'Na żywo';
-
-  @override
   String get logOutButton => 'Wyloguj się';
 
   @override
@@ -218,9 +215,6 @@ class SPl extends S {
   String get yesCancel => 'Tak, anuluj';
 
   @override
-  String get upNext => 'Następne';
-
-  @override
   String get done => 'Gotowe';
 
   @override
@@ -237,9 +231,6 @@ class SPl extends S {
 
   @override
   String get auto => 'Auto';
-
-  @override
-  String get live => 'Na żywo';
 
   @override
   String get subtitles => 'Napisy';
@@ -475,9 +466,6 @@ class SPl extends S {
   String get showLess => 'Pokaż mniej';
 
   @override
-  String get liveNow => 'Teraz na żywo';
-
-  @override
   String get comingSoon => 'Dostępne wkrótce';
 
   @override
@@ -562,9 +550,6 @@ class SPl extends S {
 
   @override
   String get errorTryAgain => 'Coś się nie udało, proszę spróbuj ponownie później.';
-
-  @override
-  String get liveHeader => 'Na żywo';
 
   @override
   String get programsSection => 'Programy';
@@ -1011,12 +996,6 @@ class SPl extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'Pobrane filmy można znaleźć w \"Profilu\".';
-
-  @override
-  String get bccLiveForcedDescription2 => 'Przepraszamy! Nie możesz już oglądać transmisji na żywo w tej aplikacji. Pobierz \"Live by BCC Connect\" w App Store lub Google Play, aby kontynuować oglądanie transmisji na żywo z Brunstad.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'Transmisja na żywo przenosi się do nowej aplikacji: \"Live by BCC Connect\". Możesz ją pobrać w App Store lub Google Play.';
 
   @override
   String get openStore => 'Otwórz';

@@ -44,9 +44,6 @@ class SNb extends S {
   String get loginPageDisplay3 => 'Produsert av BCC Media';
 
   @override
-  String get liveTab => 'Direkte';
-
-  @override
   String get logOutButton => 'Logg ut';
 
   @override
@@ -218,9 +215,6 @@ class SNb extends S {
   String get yesCancel => 'Ja, avbryt';
 
   @override
-  String get upNext => 'Neste';
-
-  @override
   String get done => 'Ferdig';
 
   @override
@@ -237,9 +231,6 @@ class SNb extends S {
 
   @override
   String get auto => 'Auto';
-
-  @override
-  String get live => 'Direkte';
 
   @override
   String get subtitles => 'Undertekster';
@@ -475,9 +466,6 @@ class SNb extends S {
   String get showLess => 'Vis mindre';
 
   @override
-  String get liveNow => 'Direkte nå';
-
-  @override
   String get comingSoon => 'Kommer snart';
 
   @override
@@ -562,9 +550,6 @@ class SNb extends S {
 
   @override
   String get errorTryAgain => 'Noe gikk galt, vennligst prøv igjen senere.';
-
-  @override
-  String get liveHeader => 'Direkte';
 
   @override
   String get programsSection => 'Programmer';
@@ -1011,12 +996,6 @@ class SNb extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'Du finner dine nedlastede videoer under \"Min profil\".';
-
-  @override
-  String get bccLiveForcedDescription2 => 'Vi beklager! Du kan ikke lenger se livesendinger i denne appen. Last ned «Live by BCC Connect» i App Store eller Google Play for å fortsette å se livesendinger fra Brunstad.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'Direktesendingen blir flyttet til en ny app: \"Live by BCC Connect\". Du kan laste den ned i App Store eller Google Play.';
 
   @override
   String get openStore => 'Åpne';

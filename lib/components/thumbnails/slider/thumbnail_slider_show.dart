@@ -13,9 +13,6 @@ class ThumbnailSliderShow extends StatelessWidget {
   final Size imageSize;
   final bool showSeasonEpisodeCounts;
 
-  // TODO: Remove this
-  final bool hasNewEpisodes = false;
-
   const ThumbnailSliderShow({
     super.key,
     required this.sectionItem,
@@ -35,7 +32,6 @@ class ThumbnailSliderShow extends StatelessWidget {
           ShowThumbnail.withSize(
             imageSize: imageSize,
             sectionItem: sectionItem,
-            hasNewEpisodes: hasNewEpisodes,
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 2),

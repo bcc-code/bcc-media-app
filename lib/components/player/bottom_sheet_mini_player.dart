@@ -61,9 +61,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         final id = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
         final collectionId = player.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
         final offlineMediaItem = player.currentMediaItem?.isOffline == true;
-        if (id == 'livestream') {
-          context.router.navigate(const LiveScreenRoute());
-        } else if (offlineMediaItem) {
+        if (offlineMediaItem) {
           ref.read(playbackServiceProvider).openFullscreen(context);
         } else if (id != null) {
           try {

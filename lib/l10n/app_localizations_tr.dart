@@ -44,9 +44,6 @@ class STr extends S {
   String get loginPageDisplay3 => 'Yapımcı: BCC Media';
 
   @override
-  String get liveTab => 'Canlı';
-
-  @override
   String get logOutButton => 'Oturumu kapat';
 
   @override
@@ -218,9 +215,6 @@ class STr extends S {
   String get yesCancel => 'Yes, Cancel';
 
   @override
-  String get upNext => 'Bir sonraki';
-
-  @override
   String get done => 'Tamam';
 
   @override
@@ -237,9 +231,6 @@ class STr extends S {
 
   @override
   String get auto => 'Otomatik';
-
-  @override
-  String get live => 'Canlı';
 
   @override
   String get subtitles => 'Altyazılar';
@@ -475,9 +466,6 @@ class STr extends S {
   String get showLess => 'Show less';
 
   @override
-  String get liveNow => 'Şimdi canlı';
-
-  @override
   String get comingSoon => 'Yakında geliyor';
 
   @override
@@ -562,9 +550,6 @@ class STr extends S {
 
   @override
   String get errorTryAgain => 'Bir şeyler yanlış oldu. Lütfen sonra tekrar deneyiniz.';
-
-  @override
-  String get liveHeader => 'Canlı';
 
   @override
   String get programsSection => 'Programlar';
@@ -1011,12 +996,6 @@ class STr extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
-
-  @override
-  String get bccLiveForcedDescription2 => 'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.';
 
   @override
   String get openStore => 'Open store';

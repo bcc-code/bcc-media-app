@@ -215,23 +215,14 @@ class _FeaturedItem extends StatelessWidget {
                     style: design.textStyles.body2.copyWith(color: design.colors.label2),
                   ),
                 ),
-                isLive
-                    ? design.buttons.small(
-                        variant: ButtonVariant.red,
-                        image: Image.asset('assets/icons/Play.png'),
-                        labelText: S.of(context).liveNow,
-                        onPressed: () {
-                          handleSectionItemClick(context, sectionItem.item, collectionId: collectionId);
-                        },
-                      )
-                    : design.buttons.small(
-                        variant: ButtonVariant.secondary,
-                        image: Image.asset('assets/icons/Play.png'),
-                        labelText: S.of(context).watchNow,
-                        onPressed: () {
-                          handleSectionItemClick(context, sectionItem.item, collectionId: collectionId);
-                        },
-                      ),
+                design.buttons.small(
+                  variant: ButtonVariant.secondary,
+                  image: Image.asset('assets/icons/Play.png'),
+                  labelText: S.of(context).watchNow,
+                  onPressed: () {
+                    handleSectionItemClick(context, sectionItem.item, collectionId: collectionId);
+                  },
+                ),
               ],
             ),
           ),

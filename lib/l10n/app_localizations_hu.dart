@@ -44,9 +44,6 @@ class SHu extends S {
   String get loginPageDisplay3 => 'Készítette a BCC Media';
 
   @override
-  String get liveTab => 'Élő';
-
-  @override
   String get logOutButton => 'Kijelentkezés';
 
   @override
@@ -218,9 +215,6 @@ class SHu extends S {
   String get yesCancel => 'Igen, törlés';
 
   @override
-  String get upNext => 'Következő';
-
-  @override
   String get done => 'Kész';
 
   @override
@@ -237,9 +231,6 @@ class SHu extends S {
 
   @override
   String get auto => 'Autó';
-
-  @override
-  String get live => 'Élő';
 
   @override
   String get subtitles => 'Felíratok';
@@ -475,9 +466,6 @@ class SHu extends S {
   String get showLess => 'Mutass kevesebbet';
 
   @override
-  String get liveNow => 'Most élőben';
-
-  @override
   String get comingSoon => 'Hamarosan jön';
 
   @override
@@ -562,9 +550,6 @@ class SHu extends S {
 
   @override
   String get errorTryAgain => 'Valami nem sikerült, próbáld később újra.';
-
-  @override
-  String get liveHeader => 'Élő';
 
   @override
   String get programsSection => 'Programok';
@@ -1011,12 +996,6 @@ class SHu extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'A letöltött videókat a \"Profil\" menüpont alatt találod.';
-
-  @override
-  String get bccLiveForcedDescription2 => 'Sajnáljuk! Ebben az alkalmazásban már nem tudsz élő közvetítéseket nézni. Töltsd le a \"Live by BCC Connect\" alkalmazást az App Store-ból vagy Google Play-ről, hogy továbbra is tudj élő közvetítéseket nézni Brunstadból.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'Az élőadás át fog kerülni egy új alkalmazásba, a \"Live by BCC Connect\"-ba. Letölthető az App Store-ból vagy a Google Play-ből.';
 
   @override
   String get openStore => 'App Store/Play Áruház megnyitása';

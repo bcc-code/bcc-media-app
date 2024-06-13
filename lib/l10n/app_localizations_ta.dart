@@ -44,9 +44,6 @@ class STa extends S {
   String get loginPageDisplay3 => 'பிசிசி மீடியா தயாரித்தது';
 
   @override
-  String get liveTab => 'நேரலை';
-
-  @override
   String get logOutButton => 'வெளியேறு';
 
   @override
@@ -218,9 +215,6 @@ class STa extends S {
   String get yesCancel => 'ஆம், ரத்துசெய்';
 
   @override
-  String get upNext => 'அடுத்தது';
-
-  @override
   String get done => 'முடிந்தது';
 
   @override
@@ -237,9 +231,6 @@ class STa extends S {
 
   @override
   String get auto => 'தானியங்கு';
-
-  @override
-  String get live => 'நேரலை';
 
   @override
   String get subtitles => 'சப்டைட்டில்கள்';
@@ -475,9 +466,6 @@ class STa extends S {
   String get showLess => 'குறைவாகக் காட்டு';
 
   @override
-  String get liveNow => 'இப்போது நேரலை';
-
-  @override
   String get comingSoon => 'விரைவில் வரும்';
 
   @override
@@ -562,9 +550,6 @@ class STa extends S {
 
   @override
   String get errorTryAgain => 'ஏதோ தவறு நடந்துவிட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.';
-
-  @override
-  String get liveHeader => 'நேரலை';
 
   @override
   String get programsSection => 'நிகழ்ச்சிகள்';
@@ -1011,12 +996,6 @@ class STa extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'நீங்கள் பதிவிறக்கிய வீடியோக்களை \"சுயவிவரம்\" என்பதன் கீழ் காணலாம்.';
-
-  @override
-  String get bccLiveForcedDescription2 => 'நாங்கள் வருந்துகிறோம்! இந்த செயலியில் இனி நேரடி ஒளிபரப்புகளை பார்க்க முடியாது. Brunstad இலிருந்து நேரடி ஒளிபரப்புகளைத் தொடர்ந்து பார்க்க App Store அல்லது Google Play இல் \"Live by BCC Connect\" என்ற செயலியை பதிவிறக்கவும்.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'நேரடி ஒளிபரப்பு புதிய செயலிக்கு நகர்கிறது: \"Live by BCC Connect\". நீங்கள் அதை App Store அல்லது Google Play இல் பதிவிறக்கலாம்.';
 
   @override
   String get openStore => 'Store - ஐ திறக்கவும்';

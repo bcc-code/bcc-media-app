@@ -44,9 +44,6 @@ class SRo extends S {
   String get loginPageDisplay3 => 'Produs de BCC Media';
 
   @override
-  String get liveTab => 'Direct';
-
-  @override
   String get logOutButton => 'Deconectare';
 
   @override
@@ -218,9 +215,6 @@ class SRo extends S {
   String get yesCancel => 'Da, Anulează';
 
   @override
-  String get upNext => 'Urmează';
-
-  @override
   String get done => 'Efectuat';
 
   @override
@@ -237,9 +231,6 @@ class SRo extends S {
 
   @override
   String get auto => 'Auto';
-
-  @override
-  String get live => 'Direct';
 
   @override
   String get subtitles => 'Subtitrări';
@@ -475,9 +466,6 @@ class SRo extends S {
   String get showLess => 'Arată mai puțin';
 
   @override
-  String get liveNow => 'Acum în direct';
-
-  @override
   String get comingSoon => 'Apare în curând';
 
   @override
@@ -562,9 +550,6 @@ class SRo extends S {
 
   @override
   String get errorTryAgain => 'A apărut o eroare, te rugăm să încerci din nou mai târziu.';
-
-  @override
-  String get liveHeader => 'Direct';
 
   @override
   String get programsSection => 'Programe';
@@ -1011,12 +996,6 @@ class SRo extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'Poți găsi videourile descărcate la rubrica „Profil\".';
-
-  @override
-  String get bccLiveForcedDescription2 => 'Ne pare rău! Nu mai poți urmări emisiuni în direct din această aplicație. Descarcă „Live by BCC Connect\" din App Store sau Magazinul Play pentru a continua să urmărești transmisiunile în direct de la Brunstad.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'Transmisiunea în direct s-a mutat într-o nouă aplicație numită „BCC Live\". Se poate descărca din App Store sau Google Play.';
 
   @override
   String get openStore => 'Magazin deschis';

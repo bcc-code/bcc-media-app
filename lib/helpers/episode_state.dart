@@ -60,12 +60,7 @@ Widget? getFeatureBadge({
   bool watched = false,
   bool isLive = false,
 }) {
-  if (isLive && locked) {
-    return FeatureBadge(
-      label: S.of(context).liveNow,
-      color: DesignSystem.of(context).colors.tint2,
-    );
-  } else if (isComingSoon(publishDate: publishDate, locked: locked)) {
+  if (isComingSoon(publishDate: publishDate, locked: locked)) {
     return FeatureBadge(
       label: S.of(context).comingSoon,
       color: DesignSystem.of(context).colors.background2,

@@ -1,10 +1,10 @@
 {
     "aps": {
-        "alert": "deep_link_live",
+        "alert": "deep_link_shorts",
         "sound": "bingbong.aiff"
     },
     "action": "deep_link",
-    "deep_link": "/live",
+    "deep_link": "/shorts",
     "Simulator Target Bundle": "tv.brunstad.app",
     "type": "abc",
     "id": 1,

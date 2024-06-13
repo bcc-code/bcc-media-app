@@ -44,9 +44,6 @@ class SSl extends S {
   String get loginPageDisplay3 => 'Produkcija: BCC Media';
 
   @override
-  String get liveTab => 'V živo';
-
-  @override
   String get logOutButton => 'Odjava';
 
   @override
@@ -218,9 +215,6 @@ class SSl extends S {
   String get yesCancel => 'Ja, prekliči';
 
   @override
-  String get upNext => 'Sledi';
-
-  @override
   String get done => 'Končano';
 
   @override
@@ -237,9 +231,6 @@ class SSl extends S {
 
   @override
   String get auto => 'Samodejno';
-
-  @override
-  String get live => 'V živo';
 
   @override
   String get subtitles => 'Podnapisi';
@@ -475,9 +466,6 @@ class SSl extends S {
   String get showLess => 'Pokaži manj';
 
   @override
-  String get liveNow => 'V živo';
-
-  @override
   String get comingSoon => 'Pride kmalu';
 
   @override
@@ -562,9 +550,6 @@ class SSl extends S {
 
   @override
   String get errorTryAgain => 'Prišlo je do napake, prosim poskusi znova.';
-
-  @override
-  String get liveHeader => 'V živo';
 
   @override
   String get programsSection => 'Programi';
@@ -1011,12 +996,6 @@ class SSl extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'Prenesene videoposnetke lahko najdeš v razdelku \"Profil\".';
-
-  @override
-  String get bccLiveForcedDescription2 => 'Na žalost v tej aplikaciji ne moreš več gledati prenosov v živo. Če želiš še naprej spremljati neposredne prenose iz Brunstada, si v App Store ali Google Play prenesi aplikacijo \"Live by BCC Connect\".';
-
-  @override
-  String get bccLiveLinkDescription2 => 'Prenos v živo se seli v novo aplikacijo, imenovano \"Live by BCC Connect\". Preneseš jo lahko v App Store ali Google Play.';
 
   @override
   String get openStore => 'Odpri trgovino';

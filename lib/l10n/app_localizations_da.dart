@@ -44,9 +44,6 @@ class SDa extends S {
   String get loginPageDisplay3 => 'Produceret af BCC Media';
 
   @override
-  String get liveTab => 'Live';
-
-  @override
   String get logOutButton => 'Log ud';
 
   @override
@@ -218,9 +215,6 @@ class SDa extends S {
   String get yesCancel => 'Ja, annullér';
 
   @override
-  String get upNext => 'Næste';
-
-  @override
   String get done => 'Færdig';
 
   @override
@@ -237,9 +231,6 @@ class SDa extends S {
 
   @override
   String get auto => 'Auto';
-
-  @override
-  String get live => 'Live';
 
   @override
   String get subtitles => 'Undertekster';
@@ -475,9 +466,6 @@ class SDa extends S {
   String get showLess => 'Vis mindre';
 
   @override
-  String get liveNow => 'Live nu';
-
-  @override
   String get comingSoon => 'Kommer snart';
 
   @override
@@ -562,9 +550,6 @@ class SDa extends S {
 
   @override
   String get errorTryAgain => 'Noget gik galt, prøv venligst igen senere.';
-
-  @override
-  String get liveHeader => 'Live';
 
   @override
   String get programsSection => 'Programmer';
@@ -1011,12 +996,6 @@ class SDa extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'Du kan finde dine downloadede videoer under \"Profil\".';
-
-  @override
-  String get bccLiveForcedDescription2 => 'Du kan ikke længere se livestreams i denne app. Download \"Live by BCC Connect\" i App Store eller Google Play for at fortsætte med at se livestreams fra Brunstad.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'Livestreaming flyttes til en ny app: \"Live by BCC Connect\". Du kan downloade den i App Store eller Google Play.';
 
   @override
   String get openStore => 'Åbn';

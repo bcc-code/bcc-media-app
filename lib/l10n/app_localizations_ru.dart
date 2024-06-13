@@ -44,9 +44,6 @@ class SRu extends S {
   String get loginPageDisplay3 => 'Произведено BCC Media';
 
   @override
-  String get liveTab => 'Прямой эфир';
-
-  @override
   String get logOutButton => 'Выйти';
 
   @override
@@ -218,9 +215,6 @@ class SRu extends S {
   String get yesCancel => 'Да, отменить';
 
   @override
-  String get upNext => 'К следующему';
-
-  @override
   String get done => 'Готово';
 
   @override
@@ -237,9 +231,6 @@ class SRu extends S {
 
   @override
   String get auto => 'Авто';
-
-  @override
-  String get live => 'Прямой эфир';
 
   @override
   String get subtitles => 'Субтитры';
@@ -475,9 +466,6 @@ class SRu extends S {
   String get showLess => 'Показать меньше';
 
   @override
-  String get liveNow => 'В прямом эфире';
-
-  @override
   String get comingSoon => 'Скоро выйдут';
 
   @override
@@ -562,9 +550,6 @@ class SRu extends S {
 
   @override
   String get errorTryAgain => 'Что-то пошло не так. Пожалуйста, повторите попытку позже.';
-
-  @override
-  String get liveHeader => 'Прямой эфир';
 
   @override
   String get programsSection => 'Передачи';
@@ -1011,12 +996,6 @@ class SRu extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'Загруженные видео можно найти в разделе Профиль.';
-
-  @override
-  String get bccLiveForcedDescription2 => 'Мы сожалеем! Вы больше не можете смотреть прямые трансляции в этом приложении. Загрузите Live by BCC Connect в App Store или Google Play, чтобы продолжить просмотр прямых трансляций из Брюнстада.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'Прямые трансляции будут показываться в новом приложении под названием «Live by BCC Connect». Скачать его можно в App Store или Google Play.';
 
   @override
   String get openStore => 'Открыть магазин';

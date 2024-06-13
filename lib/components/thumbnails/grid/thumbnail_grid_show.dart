@@ -17,9 +17,6 @@ class ThumbnailGridShow extends StatelessWidget {
     required this.aspectRatio,
   });
 
-  // TODO: Remove this
-  final bool hasNewEpisodes = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,7 +26,6 @@ class ThumbnailGridShow extends StatelessWidget {
           sectionItem: sectionItem,
           imageWidth: double.infinity,
           aspectRatio: aspectRatio,
-          hasNewEpisodes: hasNewEpisodes,
         ),
         Container(
           margin: const EdgeInsets.only(bottom: 2),

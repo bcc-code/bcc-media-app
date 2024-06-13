@@ -47,14 +47,6 @@ void main() async {
           image: const AssetImage('assets/icons/Search_Default.png'),
           activeImage: const AssetImage('assets/icons/Search_Selected.png'),
         ),
-        live: StateImageProvider(
-          image: const AssetImage('assets/icons/Live_Default.png'),
-          activeImage: const AssetImage('assets/icons/Live_Selected.png'),
-        ),
-        calendar: StateImageProvider(
-          image: const AssetImage('assets/icons/Calendar_Default.png'),
-          activeImage: const AssetImage('assets/icons/Calendar_Selected.png'),
-        ),
         shorts: StateImageProvider(
           image: const AssetImage('assets/icons/Live_Default.png'),
           activeImage: const AssetImage('assets/icons/Live_Selected.png'),

@@ -203,12 +203,6 @@ abstract class S {
   /// **'Produced by BCC Media'**
   String get loginPageDisplay3;
 
-  /// Title of live page tab
-  ///
-  /// In en, this message translates to:
-  /// **'Live'**
-  String get liveTab;
-
   /// Text displayed on Log out button
   ///
   /// In en, this message translates to:
@@ -551,12 +545,6 @@ abstract class S {
   /// **'Yes, Cancel'**
   String get yesCancel;
 
-  /// Title indiciating what's next on the livestream.
-  ///
-  /// In en, this message translates to:
-  /// **'Up next'**
-  String get upNext;
-
   /// Generic Done button, for example to dismiss a page after completing an action.
   ///
   /// In en, this message translates to:
@@ -592,12 +580,6 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Auto'**
   String get auto;
-
-  /// Title of the live stream
-  ///
-  /// In en, this message translates to:
-  /// **'Live'**
-  String get live;
 
   /// Generic.
   ///
@@ -1049,12 +1031,6 @@ abstract class S {
   /// **'Show less'**
   String get showLess;
 
-  /// Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now.
-  ///
-  /// In en, this message translates to:
-  /// **'Live now'**
-  String get liveNow;
-
   /// Generic, short. Used in buttons, badges, etc to indicate that an item is available soon.
   ///
   /// In en, this message translates to:
@@ -1222,12 +1198,6 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Something went wrong, please try again later.'**
   String get errorTryAgain;
-
-  /// Header of the Live Tab — the tab that contains the livestream player on AppleTV.
-  ///
-  /// In en, this message translates to:
-  /// **'Live'**
-  String get liveHeader;
 
   /// Section in search.
   ///
@@ -2068,18 +2038,6 @@ abstract class S {
   /// In en, this message translates to:
   /// **'You can find your downloaded videos under \"Profile\".'**
   String get downloadedVideosGuideDescription;
-
-  /// Will be shown in the future when you open the live tab, when the livestream is no longer available in BCC Media.
-  ///
-  /// In en, this message translates to:
-  /// **'We\'re sorry! You are no longer able to watch livestreams in this app. Download \"Live by BCC Connect\" in the App Store or Google Play to continue watching livestreams from Brunstad.'**
-  String get bccLiveForcedDescription2;
-
-  /// Will be shown in the future when you open the live tab, if the livestream is available in both Live and BCC Media.
-  ///
-  /// In en, this message translates to:
-  /// **'The livestream is moving to a new app: \"Live by BCC Connect\". You can download it in the App Store or Google Play.'**
-  String get bccLiveLinkDescription2;
 
   /// A button to open play store / app store.
   ///

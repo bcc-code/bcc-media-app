@@ -44,9 +44,6 @@ class SFi extends S {
   String get loginPageDisplay3 => 'BCC Median tuottama';
 
   @override
-  String get liveTab => 'Live';
-
-  @override
   String get logOutButton => 'Kirjaudu ulos';
 
   @override
@@ -218,9 +215,6 @@ class SFi extends S {
   String get yesCancel => 'Niin, hylkää';
 
   @override
-  String get upNext => 'Tulossa';
-
-  @override
   String get done => 'Valmis';
 
   @override
@@ -237,9 +231,6 @@ class SFi extends S {
 
   @override
   String get auto => 'Automaattinen';
-
-  @override
-  String get live => 'Live';
 
   @override
   String get subtitles => 'Tekstitys';
@@ -475,9 +466,6 @@ class SFi extends S {
   String get showLess => 'Näytä vähemmän';
 
   @override
-  String get liveNow => 'Suorana nyt';
-
-  @override
   String get comingSoon => 'Tulossa pian';
 
   @override
@@ -562,9 +550,6 @@ class SFi extends S {
 
   @override
   String get errorTryAgain => 'Jokin meni pieleen. Yritä myöhemmin uudelleen.';
-
-  @override
-  String get liveHeader => 'Live';
 
   @override
   String get programsSection => 'Ohjelmat';
@@ -1011,12 +996,6 @@ class SFi extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'Löydät lataamasi videot kohdasta \"Profiili\".';
-
-  @override
-  String get bccLiveForcedDescription2 => 'Tässä sovelluksessa ei voi enää seurata suoralähetyksiä. Asenna \"Live by BCC Connect\" jotta voit seurata lähetyksiä.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'Suoralähetys siirtyy sovellukseen nimeltä \"Live by BCC Connect\". Voit ladata sen App Storesta tai Google Playsta.';
 
   @override
   String get openStore => 'Avaa kauppa';

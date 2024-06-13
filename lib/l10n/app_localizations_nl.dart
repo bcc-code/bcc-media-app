@@ -44,9 +44,6 @@ class SNl extends S {
   String get loginPageDisplay3 => 'Geproduceerd door BCC Media';
 
   @override
-  String get liveTab => 'Live';
-
-  @override
   String get logOutButton => 'Log uit';
 
   @override
@@ -218,9 +215,6 @@ class SNl extends S {
   String get yesCancel => 'Ja, Annuleer';
 
   @override
-  String get upNext => 'Volgende';
-
-  @override
   String get done => 'Klaar';
 
   @override
@@ -237,9 +231,6 @@ class SNl extends S {
 
   @override
   String get auto => 'Auto';
-
-  @override
-  String get live => 'Live';
 
   @override
   String get subtitles => 'Ondertitels';
@@ -475,9 +466,6 @@ class SNl extends S {
   String get showLess => 'Toon minder';
 
   @override
-  String get liveNow => 'Nu live';
-
-  @override
   String get comingSoon => 'Komt binnenkort';
 
   @override
@@ -562,9 +550,6 @@ class SNl extends S {
 
   @override
   String get errorTryAgain => 'Er is iets mis gegaan, probeer het later nog eens.';
-
-  @override
-  String get liveHeader => 'Live';
 
   @override
   String get programsSection => 'Programma\'s';
@@ -1011,12 +996,6 @@ class SNl extends S {
 
   @override
   String get downloadedVideosGuideDescription => 'Je gedownloade video\'s vind je onder \"Profiel\".';
-
-  @override
-  String get bccLiveForcedDescription2 => 'Het spijt ons! Je kunt geen livestreams meer bekijken in deze app. Download \"Live by BCC Connect\" in de App Store of Google Play om livestreams van Brunstad te blijven bekijken.';
-
-  @override
-  String get bccLiveLinkDescription2 => 'De livestream verhuist naar een nieuwe app: \"Live by BCC Connect\". Je kunt hem downloaden in de App Store of Google Play.';
 
   @override
   String get openStore => 'Open store';

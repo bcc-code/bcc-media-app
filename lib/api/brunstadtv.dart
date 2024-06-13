@@ -1,14 +1,9 @@
-import 'dart:convert';
-
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:http/http.dart' as http;
-
-// import 'package:bccm_core/platform.dart';
 
 class ApiErrorCodes {
   ApiErrorCodes._();
@@ -114,18 +109,7 @@ class Api {
     );
   }
 
-  Future<LivestreamUrl> fetchLiveUrl() async {
-    var url = 'https://livestreamfunctions.brunstad.tv/api/urls/live';
-    final response = await http.get(Uri.parse(url), headers: {'Authorization': 'Bearer $accessToken'});
-    if (response.statusCode != 200) {
-      return Future.error('statuscode ${response.statusCode}');
-    }
-    var body = jsonDecode(response.body);
-    return LivestreamUrl.fromJson(body);
-  }
-
   Future updateProgress({required String episodeId, required int? progress}) async {
-    if (episodeId == 'livestream') return;
     if (accessToken == null) return;
     return gqlClient
         .mutate$setEpisodeProgress(
@@ -214,15 +198,3 @@ class Api {
 final apiProvider = Provider<Api>((ref) {
   return Api(accessToken: ref.watch(authStateProvider).auth0AccessToken, gqlClient: ref.watch(bccmGraphQLProvider));
 });
-
-class LivestreamUrl {
-  final String streamUrl;
-  final DateTime expiryTime;
-
-  LivestreamUrl({required this.streamUrl, DateTime? expiryTime}) : expiryTime = (expiryTime ?? DateTime.now().add(const Duration(hours: 3)));
-
-  factory LivestreamUrl.fromJson(Map<String, dynamic> json) {
-    String streamUrl = json['url'];
-    return LivestreamUrl(streamUrl: streamUrl, expiryTime: DateTime.tryParse(json['expiryTime']));
-  }
-}
