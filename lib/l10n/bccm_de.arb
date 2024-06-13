@@ -135,7 +135,7 @@
   "@ok": {
     "description": "Popup confirmation button"
   },
-  "open": "Offen",
+  "open": "Öffnen",
   "@open": {
     "description": "Open button"
   },

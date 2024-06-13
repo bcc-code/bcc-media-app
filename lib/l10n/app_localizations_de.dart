@@ -107,7 +107,7 @@ class SDe extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Offen';
+  String get open => 'Öffnen';
 
   @override
   String get loginFailedCheckNetwork => 'Anmeldung fehlgeschlagen. Überprüfe deine Netzwerkverbindung und versuche es erneut.';
