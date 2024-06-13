@@ -14,8 +14,6 @@ import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:graphql/client.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../components/status/error_generic.dart';
 import 'package:bccm_core/design_system.dart';
 
 class ContributionsList extends HookConsumerWidget {
@@ -53,6 +51,7 @@ class ContributionsList extends HookConsumerWidget {
                 contentTypes: type != null ? [type!] : null,
               ),
               fetchPolicy: FetchPolicy.networkOnly,
+              errorPolicy: ErrorPolicy.all,
             ),
           );
         } finally {
@@ -78,13 +77,6 @@ class ContributionsList extends HookConsumerWidget {
     }
 
     useOnInit(fetchMore);
-
-    if (snapshot.hasError) {
-      return ErrorGeneric(
-        onRetry: fetchMore,
-        details: snapshot.error.toString(),
-      );
-    }
 
     final scrollController = PrimaryScrollController.of(context);
     useEffect(() {
@@ -145,6 +137,7 @@ class ContributionsList extends HookConsumerWidget {
         )
       ],
       child: CustomScrollView(
+        physics: const ClampingScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
