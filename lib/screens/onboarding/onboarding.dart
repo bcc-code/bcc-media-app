@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
@@ -73,6 +74,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     await tryCatchRecordErrorAsync(() {
       return ref.read(featureFlagsProvider.notifier).refresh().timeout(const Duration(seconds: 2));
     });
+    ref.invalidate(appConfigFutureProvider);
     debugPrint('ag: OnboardingScreen: Feature flags refreshed or timed out, continuing navigation.');
     if (!mounted) return;
     context.router.replaceAll([const TabsRootScreenRoute()]);
