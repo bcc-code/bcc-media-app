@@ -72,6 +72,8 @@ class EpisodeListEpisode extends ConsumerWidget {
                     child: Text(
                       showTitle!,
                       style: design.textStyles.caption2.copyWith(color: design.colors.tint1),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 Flexible(
