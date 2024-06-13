@@ -146,7 +146,7 @@ class ContributionsList extends HookConsumerWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      S.of(context).countItems(snapshot.data?.parsedData?.person.contributions.total ?? 0),
+                      S.of(context).countItems(items.value.length),
                       style: design.textStyles.caption1.copyWith(color: design.colors.label4),
                     ),
                   ),
