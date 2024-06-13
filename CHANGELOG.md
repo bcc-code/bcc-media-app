@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.1+2300151...v) (2024-06-13)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.2+2300152...v) (2024-06-13)
+
+
+### Bug Fixes
+
+* contribution items count ([f4b47ad](https://github.com/bcc-code/bcc-media-app/commit/f4b47adee3275e70986397b05154b427e822f79e))
+* title overflow ([da5f4ef](https://github.com/bcc-code/bcc-media-app/commit/da5f4ef64b48b5b7b27af3ad1f2c74ad8c397855))
+
+
+
+## [5.5.2+2300152](https://github.com/bcc-code/bcc-media-app/compare/v5.5.1+2300151...v5.5.2+2300152) (2024-06-13)
 
 
 ### Bug Fixes
