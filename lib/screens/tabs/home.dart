@@ -84,7 +84,7 @@ class HomeScreen extends HookConsumerWidget {
         child: PageRenderer(
           pageFuture: pageFuture.value,
           onRefresh: ({bool? retry}) async {
-            pageFuture.value = getPage(retry == true);
+            pageFuture.value = getPage(true);
           },
           scrollController: scrollController,
         ),

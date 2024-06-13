@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
@@ -23,8 +21,6 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pageCode = ref.watch(appConfigProvider.select((appConfig) => appConfig?.application.page?.code));
-
     getPage(bool reloadAppConfig) async {
       final api = ref.read(apiProvider);
       String? pageCode = ref.read(appConfigProvider)?.application.page?.code;
@@ -45,8 +41,6 @@ class HomeScreen extends HookConsumerWidget {
     final pageFuture = useState<Future<Query$Page$page>?>(useMemoized(() => getPage(false)));
     final pageResult = useFuture(pageFuture.value);
     final page = pageResult.data;
-
-    debugPrint('HomeScreen: pageCode: $pageCode');
 
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
