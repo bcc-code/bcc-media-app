@@ -1,4 +1,20 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.0+2300150...v) (2024-06-11)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.1+2300151...v) (2024-06-13)
+
+
+### Bug Fixes
+
+* actually wait for unleash ([8d45480](https://github.com/bcc-code/bcc-media-app/commit/8d45480f0413413890baa24e887c81636fe47218))
+* **contributors:** dont throw away all the content on error ([4e891aa](https://github.com/bcc-code/bcc-media-app/commit/4e891aa24fe54f7f8682e63ea8c1e0a27009a78f))
+* invalidate app config after signing in ([cf683a4](https://github.com/bcc-code/bcc-media-app/commit/cf683a4a17851f0d485e4364e9857eb77f7ed06a))
+
+
+### Features
+
+* reload app config on refresh ([fcb109f](https://github.com/bcc-code/bcc-media-app/commit/fcb109fd8837af2f672d9092ec0411295ad6f81e))
+
+
+
+## [5.5.1+2300151](https://github.com/bcc-code/bcc-media-app/compare/v5.5.0+2300150...v5.5.1+2300151) (2024-06-11)
 
 
 ### Bug Fixes
