@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.3+2300153...v) (2024-06-14)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.4+2300154...v) (2024-06-14)
+
+
+### Bug Fixes
+
+* total actually total ([cfa2ecf](https://github.com/bcc-code/bcc-media-app/commit/cfa2ecfc14f933944a1774ae777d7dabd3646108))
+
+
+
+## [5.5.4+2300154](https://github.com/bcc-code/bcc-media-app/compare/v5.5.3+2300153...v5.5.4+2300154) (2024-06-14)
 
 
 ### Bug Fixes
