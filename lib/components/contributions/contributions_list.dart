@@ -29,6 +29,7 @@ class ContributionsList extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final offset = useState(0);
+    final total = useState<int?>(null);
     final items = useState<List<Fragment$Contribution?>>([]);
     final future = useState<Future<QueryResult<Query$GetContributions>?>?>(null);
     final snapshot = useFuture(future.value);
@@ -60,6 +61,7 @@ class ContributionsList extends HookConsumerWidget {
 
         final newPage = result.parsedData?.person.contributions;
         if (newPage != null) {
+          total.value = newPage.total;
           offset.value += newPage.items.length;
           items.value = [
             ...items.value,
@@ -142,7 +144,7 @@ class ContributionsList extends HookConsumerWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        S.of(context).countItems(items.value.length),
+                        S.of(context).countItems(total.value ?? 0),
                         style: design.textStyles.caption1.copyWith(color: design.colors.label4),
                       ),
                     ),
