@@ -43,10 +43,6 @@
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
-  "liveTab": "Diretta",
-  "@liveTab": {
-    "description": "Title of live page tab"
-  },
   "logOutButton": "Esci",
   "@logOutButton": {
     "description": "Text displayed on Log out button"
@@ -171,10 +167,6 @@
   "@cancel": {
     "description": "General cancel action button"
   },
-  "upNext": "Al prossimo",
-  "@upNext": {
-    "description": "Title indiciating what's next on the livestream."
-  },
   "done": "Fatto",
   "@done": {
     "description": "Generic Done button, for example to dismiss a page after completing an action."
@@ -194,10 +186,6 @@
   "auto": "Auto",
   "@auto": {
     "description": "Indicator on profile page that audio and app language are chosen automatically."
-  },
-  "live": "Diretta",
-  "@live": {
-    "description": "Title of the live stream"
   },
   "subtitles": "Sottotitoli",
   "@subtitles": {
@@ -510,10 +498,6 @@
   "@share": {
     "description": "Generic."
   },
-  "liveNow": "In onda adesso",
-  "@liveNow": {
-    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
-  },
   "comingSoon": "Prossimamente",
   "@comingSoon": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
@@ -626,10 +610,6 @@
   "errorTryAgain": "Qualcosa è andato storto, riprova più tardi.",
   "@errorTryAgain": {
     "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
-  },
-  "liveHeader": "Diretta",
-  "@liveHeader": {
-    "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
   "programsSection": "Programmi",
   "@programsSection": {
