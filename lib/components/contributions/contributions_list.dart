@@ -57,9 +57,6 @@ class ContributionsList extends HookConsumerWidget {
         } finally {
           fetchingMore.value = false;
         }
-        if (result.hasException) {
-          throw result.exception!;
-        }
 
         final newPage = result.parsedData?.person.contributions;
         if (newPage != null) {
@@ -71,6 +68,9 @@ class ContributionsList extends HookConsumerWidget {
         }
         if (newPage == null || newPage.items.isEmpty) {
           shouldAutoFetchMore.value = false;
+        }
+        if (result.hasException) {
+          throw result.exception!;
         }
         return result;
       }();
