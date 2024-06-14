@@ -78,19 +78,6 @@ class ContributionsList extends HookConsumerWidget {
 
     useOnInit(fetchMore);
 
-    final scrollController = PrimaryScrollController.of(context);
-    useEffect(() {
-      scrollListener() {
-        if (scrollController.position.extentAfter < 500) {
-          if (!shouldAutoFetchMore.value) return;
-          fetchMore();
-        }
-      }
-
-      scrollController.addListener(scrollListener);
-      return () => scrollController.removeListener(scrollListener);
-    }, []);
-
     if (items.value.isEmpty && snapshot.connectionState != ConnectionState.done) {
       return const LoadingGeneric();
     }
@@ -136,59 +123,69 @@ class ContributionsList extends HookConsumerWidget {
           curve: Curves.easeOutExpo,
         )
       ],
-      child: CustomScrollView(
-        physics: const ClampingScrollPhysics(),
-        slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 4),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      S.of(context).countItems(items.value.length),
-                      style: design.textStyles.caption1.copyWith(color: design.colors.label4),
+      child: NotificationListener(
+        onNotification: (notification) {
+          if (notification is ScrollUpdateNotification) {
+            if (shouldAutoFetchMore.value && notification.metrics.pixels > notification.metrics.maxScrollExtent - 500) {
+              fetchMore();
+            }
+          }
+          return false;
+        },
+        child: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
+          slivers: [
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16, right: 16, bottom: 4),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        S.of(context).countItems(items.value.length),
+                        style: design.textStyles.caption1.copyWith(color: design.colors.label4),
+                      ),
                     ),
-                  ),
-                  design.buttons.small(
-                    variant: ButtonVariant.secondary,
-                    onPressed: playRandom,
-                    labelText: S.of(context).playRandom,
-                    image: SvgPicture.string(SvgIcons.playSmall),
-                  ),
-                ],
+                    design.buttons.small(
+                      variant: ButtonVariant.secondary,
+                      onPressed: playRandom,
+                      labelText: S.of(context).playRandom,
+                      image: SvgPicture.string(SvgIcons.playSmall),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            sliver: SliverList.builder(
-              itemCount: items.value.length + 1,
-              itemBuilder: (context, index) {
-                if (index == items.value.length) {
-                  if (snapshot.connectionState != ConnectionState.waiting) {
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              sliver: SliverList.builder(
+                itemCount: items.value.length + 1,
+                itemBuilder: (context, index) {
+                  if (index == items.value.length) {
+                    if (snapshot.connectionState != ConnectionState.waiting) {
+                      return const SizedBox.shrink();
+                    }
+                    return const Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 56, top: 32, left: 16, right: 16),
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
+                  final contribution = items.value.elementAtOrNull(index);
+                  if (contribution == null) {
                     return const SizedBox.shrink();
                   }
-                  return const Center(
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 56, top: 32, left: 16, right: 16),
-                      child: CircularProgressIndicator(),
-                    ),
+                  return _ContributionListItem(
+                    personId: personId,
+                    contribution: contribution,
+                    index: index,
                   );
-                }
-                final contribution = items.value.elementAtOrNull(index);
-                if (contribution == null) {
-                  return const SizedBox.shrink();
-                }
-                return _ContributionListItem(
-                  personId: personId,
-                  contribution: contribution,
-                  index: index,
-                );
-              },
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

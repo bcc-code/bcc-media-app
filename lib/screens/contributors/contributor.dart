@@ -52,6 +52,7 @@ class ContributorScreen extends HookConsumerWidget {
       (name: S.of(context).seeAll, typeCode: null),
       ...person.contributionContentTypes.map((t) => (name: t.type.title, typeCode: t.type.code))
     ];
+    final shouldHorizontalScroll = useState(true);
 
     return DefaultTabController(
       initialIndex: 0,
@@ -116,6 +117,7 @@ class ContributorScreen extends HookConsumerWidget {
             ),
           ],
           body: TabBarView(
+            physics: !shouldHorizontalScroll.value ? const NeverScrollableScrollPhysics() : null,
             children: filterTabs
                 .mapIndexed(
                   (i, f) => SectionAnalytics(
@@ -130,7 +132,15 @@ class ContributorScreen extends HookConsumerWidget {
                         'contentType': f.typeCode,
                       },
                     ),
-                    builder: (context) => ContributionsList(personId: person.id, type: f.typeCode),
+                    builder: (context) => NotificationListener(
+                      onNotification: (notification) {
+                        if (notification is ScrollUpdateNotification) {
+                          shouldHorizontalScroll.value = notification.metrics.pixels < 1;
+                        }
+                        return false;
+                      },
+                      child: ContributionsList(personId: person.id, type: f.typeCode),
+                    ),
                   ),
                 )
                 .toList(),
