@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.2+2300152...v) (2024-06-13)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.3+2300153...v) (2024-06-14)
+
+
+### Bug Fixes
+
+* better error handling, dont spam network requests ([af843f5](https://github.com/bcc-code/bcc-media-app/commit/af843f5acca23612486707b9b6f66c0cf927a3d5))
+
+
+### Features
+
+* contributor page: only allow horizontal swiping at the top of the page ([a949030](https://github.com/bcc-code/bcc-media-app/commit/a9490309a8500ec53a80b09ecd917bd26dbc4199))
+
+
+
+## [5.5.3+2300153](https://github.com/bcc-code/bcc-media-app/compare/v5.5.2+2300152...v5.5.3+2300153) (2024-06-13)
 
 
 ### Bug Fixes
