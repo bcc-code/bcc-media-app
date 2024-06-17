@@ -1976,8 +1976,8 @@ abstract class S {
   /// Disclaimer shown on the shorts page.
   ///
   /// In en, this message translates to:
-  /// **'The transcriptions and excerpt selections are auto-generated and might contain errors.'**
-  String get shortsAiDisclaimer;
+  /// **'The transcriptions are auto-generated and might contain errors.'**
+  String get shortsTranscriptionDisclaimer;
 
   /// 'Beta' features are only available to a selection of users.
   ///
