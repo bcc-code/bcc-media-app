@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.4+2300154...v) (2024-06-14)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.5+2300155...v) (2024-06-17)
+
+
+### Features
+
+* updated shorts transcription disclaimer text ([23f3cb9](https://github.com/bcc-code/bcc-media-app/commit/23f3cb9ccf908b5247e3f6276fc129835b49f582))
+
+
+
+## [5.5.5+2300155](https://github.com/bcc-code/bcc-media-app/compare/v5.5.4+2300154...v5.5.5+2300155) (2024-06-14)
 
 
 ### Bug Fixes
