@@ -39,14 +39,15 @@ Future<void> $main({
   await BccmCore().setup();
   await setDefaults();
 
-  //FocusDebugger.instance.activate();
-
   if (FlavorConfig.current.firebaseOptions != null) {
     await initFirebase(
       FlavorConfig.current.firebaseOptions!,
       onFirebaseBackgroundMessage: onFirebaseBackgroundMessage,
     );
   }
+
+  // Initialize bccm_player
+  await BccmPlayerInterface.instance.setup();
 
   final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
   final coreOverrides = await BccmCore().setupCoreOverrides(
@@ -65,9 +66,6 @@ Future<void> $main({
     ...coreOverrides,
     if (providerOverrides != null) ...providerOverrides,
   ]);
-
-  // Initialize bccm_player
-  await BccmPlayerInterface.instance.setup();
 
   final app = UncontrolledProviderScope(
     container: providerContainer,

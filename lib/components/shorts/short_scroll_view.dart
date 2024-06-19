@@ -274,6 +274,7 @@ class ShortScrollView extends HookConsumerWidget {
       for (var c in shortControllers) {
         c.dispose();
       }
+      if (!isMounted()) return;
       shortControllersState.value = [];
     }
 
