@@ -67,6 +67,8 @@ class _InitScreenState extends ConsumerState<InitScreen> {
     debugPrint('AutoLoginScreen: Feature flags started or timed out, continuing navigation.');
     continueNavigation();
     globalEventBus.fire(AppReadyEvent());
+    TimeMeasurements.startupToInitDone.track(ref.read(analyticsProvider));
+    TimeMeasurements.mainFunction.track(ref.read(analyticsProvider));
   }
 
   Future<void> continueNavigation({Uri? deepLinkUri}) async {

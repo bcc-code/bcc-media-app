@@ -4,6 +4,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/background_tasks.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/router/special_routes.dart';
+import 'package:bccm_core/src/features/analytics/time_measurements.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
@@ -33,7 +34,9 @@ const useDevicePreview = false;
 Future<void> $main({
   List<Override>? providerOverrides,
 }) async {
-  final sw = Stopwatch()..start();
+  TimeMeasurements.mainFunction.start();
+  TimeMeasurements.startupToInitDone.start();
+  TimeMeasurements.startupToHomeLoaded.start();
   usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
   await BccmCore().setup();
@@ -83,7 +86,8 @@ Future<void> $main({
   if (kDebugMode) {
     Animate.restartOnHotReload = true;
   }
-  debugPrint('App initialized in ${sw.elapsedMilliseconds}ms');
+  TimeMeasurements.mainFunction.stop();
+  debugPrint('Main function done after ${TimeMeasurements.mainFunction.elapsedMilliseconds}ms');
   runApp(maybeWrappedApp);
 }
 
