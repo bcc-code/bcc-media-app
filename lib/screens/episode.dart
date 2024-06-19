@@ -23,6 +23,7 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
@@ -446,30 +447,41 @@ class _EpisodeDisplay extends HookConsumerWidget {
                 else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb || viewController.isFullscreen)
                   Container(
                     color: DesignSystem.of(context).colors.background2,
-                    child: PlayerPoster(
-                      imageUrl: episode.image,
-                      setupPlayer: setupPlayer,
-                      loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || viewController.isFullscreen,
+                    child: Animate(
+                      effects: [
+                        FadeEffect(duration: 1000.ms, curve: Curves.easeOutExpo),
+                      ],
+                      child: PlayerPoster(
+                        imageUrl: episode.image,
+                        setupPlayer: setupPlayer,
+                        loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || viewController.isFullscreen,
+                      ),
                     ),
                   )
                 else
                   BccmPlayerView.withViewController(viewController),
-                EpisodeInfo(
-                  episode,
-                  onShareVideoTapped: () => shareVideo(context, ref, episode),
-                  extraChildren: [
-                    if (Env.enableStudy && hasStudy && lessonProgressFuture.value != null)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16),
-                        child: StudyMoreButton(
-                          lessonProgressFuture: lessonProgressFuture.value!,
-                          onNavigateBack: () {
-                            if (!isMounted()) return;
-                            lessonProgressFuture.value = ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForEpisode(episode.id);
-                          },
+                AnimatedSize(
+                  duration: const Duration(milliseconds: 800),
+                  alignment: Alignment.topCenter,
+                  curve: Curves.easeOutExpo,
+                  child: EpisodeInfo(
+                    key: ValueKey(episode.id),
+                    episode,
+                    onShareVideoTapped: () => shareVideo(context, ref, episode),
+                    extraChildren: [
+                      if (Env.enableStudy && hasStudy && lessonProgressFuture.value != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16),
+                          child: StudyMoreButton(
+                            lessonProgressFuture: lessonProgressFuture.value!,
+                            onNavigateBack: () {
+                              if (!isMounted()) return;
+                              lessonProgressFuture.value = ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForEpisode(episode.id);
+                            },
+                          ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
