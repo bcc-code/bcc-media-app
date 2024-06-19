@@ -502,46 +502,60 @@ class _EpisodeDisplay extends HookConsumerWidget {
           ],
         ),
         if (screenParams.hideBottomSection != true && (episode.status != Enum$Status.unlisted || episode.type == Enum$EpisodeType.standalone))
-          CustomTabBar(
-            tabs: [
-              if (showChapters && chaptersFirstTab) S.of(context).chapters,
-              episode.context is Fragment$EpisodeContext$$Season ? S.of(context).episodes.toUpperCase() : S.of(context).videos.toUpperCase(),
-              if (showChapters && !chaptersFirstTab) S.of(context).chapters,
-              S.of(context).details.toUpperCase()
+          Animate(
+            effects: [
+              FadeEffect(
+                begin: 0,
+                duration: 3000.ms,
+                curve: Curves.easeOutExpo,
+              ),
+              SlideEffect(
+                begin: const Offset(0, -0.01),
+                duration: 2000.ms,
+                curve: Curves.easeOutExpo,
+              ),
             ],
-            children: [
-              if (showChapters && chaptersFirstTab) chaptersWidget,
-              if (episode.context is Fragment$EpisodeContext$$Season)
-                EpisodeSeason(
-                  episodeId: screenParams.episodeId,
-                  season: episode.context as Fragment$EpisodeContext$$Season,
-                  onEpisodeTap: (tappedEpisodeId) {
-                    if (tappedEpisodeId != episode.id) {
-                      context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: kIsWeb ? null : true));
-                    }
-                    scrollToTop();
-                  },
-                )
-              else if (episode.context is Fragment$EpisodeContext$$ContextCollection)
-                EpisodeCollection(
-                  episodeId: screenParams.episodeId,
-                  collection: episode.context as Fragment$EpisodeContext$$ContextCollection,
-                  onEpisodeTap: (index, tappedEpisodeId) {
-                    if (tappedEpisodeId != episode.id) {
-                      context.navigateTo(EpisodeScreenRoute(
-                        episodeId: tappedEpisodeId,
-                        collectionId: screenParams.collectionId,
-                        autoplay: kIsWeb ? null : true,
-                      ));
-                    }
-                    scrollToTop();
-                  },
-                )
-              else
-                EpisodeRelated(episode: episode),
-              if (showChapters && !chaptersFirstTab) chaptersWidget,
-              EpisodeDetails(episode.id)
-            ],
+            child: CustomTabBar(
+              tabs: [
+                if (showChapters && chaptersFirstTab) S.of(context).chapters,
+                episode.context is Fragment$EpisodeContext$$Season ? S.of(context).episodes.toUpperCase() : S.of(context).videos.toUpperCase(),
+                if (showChapters && !chaptersFirstTab) S.of(context).chapters,
+                S.of(context).details.toUpperCase()
+              ],
+              children: [
+                if (showChapters && chaptersFirstTab) chaptersWidget,
+                if (episode.context is Fragment$EpisodeContext$$Season)
+                  EpisodeSeason(
+                    episodeId: screenParams.episodeId,
+                    season: episode.context as Fragment$EpisodeContext$$Season,
+                    onEpisodeTap: (tappedEpisodeId) {
+                      if (tappedEpisodeId != episode.id) {
+                        context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: kIsWeb ? null : true));
+                      }
+                      scrollToTop();
+                    },
+                  )
+                else if (episode.context is Fragment$EpisodeContext$$ContextCollection)
+                  EpisodeCollection(
+                    episodeId: screenParams.episodeId,
+                    collection: episode.context as Fragment$EpisodeContext$$ContextCollection,
+                    onEpisodeTap: (index, tappedEpisodeId) {
+                      if (tappedEpisodeId != episode.id) {
+                        context.navigateTo(EpisodeScreenRoute(
+                          episodeId: tappedEpisodeId,
+                          collectionId: screenParams.collectionId,
+                          autoplay: kIsWeb ? null : true,
+                        ));
+                      }
+                      scrollToTop();
+                    },
+                  )
+                else
+                  EpisodeRelated(episode: episode),
+                if (showChapters && !chaptersFirstTab) chaptersWidget,
+                EpisodeDetails(episode.id)
+              ],
+            ),
           ),
       ],
     );

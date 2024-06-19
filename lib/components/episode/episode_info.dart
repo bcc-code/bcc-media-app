@@ -69,7 +69,7 @@ class EpisodeInfo extends HookConsumerWidget {
           child: Animate(
             effects: [
               SlideEffect(
-                begin: const Offset(0, 0.1),
+                begin: const Offset(0, -0.025),
                 duration: 2000.ms,
                 curve: Curves.easeOutExpo,
               ),
