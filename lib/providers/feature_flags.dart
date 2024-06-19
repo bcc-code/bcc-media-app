@@ -76,7 +76,6 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     ));
 
     _saveCache(value);
-    print('ag: Feature flags refreshed, context: ${unleash.context.properties.toString()}');
     print('ag: Feature flags refreshed: $value');
     return value;
   }
@@ -107,7 +106,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     );
     final c = ref.read(unleashContextProvider);
     unleash.updateContext(c);
-    debugPrint('ag: FeatureFlagsNotifier._startUnleash, starting unleash, context: ${c.properties.toString()}');
+    debugPrint('ag: FeatureFlagsNotifier._createUnleashClient, starting unleash');
     unleash.on(
       'error',
       (err) => FlutterError.reportError(
@@ -129,10 +128,8 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
   /// Remember: You may want to do .timeout() on this method to avoid hanging the app if it takes a long time to refresh.
   @override
   Future<void> refresh() async {
-    debugPrint('ag: FeatureFlagsNotifier.refresh');
     unleash?.stop();
     unleash?.updateContext(ref.read(unleashContextProvider));
-    debugPrint('ag: FeatureFlagsNotifier.refresh, starting unleash, context: ${unleash?.context.properties.toString()}');
     await unleash?.start();
     debugPrint('ag: Feature flags refresh() completed');
   }
