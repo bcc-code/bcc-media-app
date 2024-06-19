@@ -58,7 +58,7 @@ class OptionButton extends HookWidget {
       behavior: HitTestBehavior.opaque,
       onTap: onPressed,
       child: FocusableActionDetector(
-        mouseCursor: MaterialStateMouseCursor.clickable,
+        mouseCursor: WidgetStateMouseCursor.clickable,
         onShowHoverHighlight: (value) => hovering.value = value,
         child: Container(
           height: 56,

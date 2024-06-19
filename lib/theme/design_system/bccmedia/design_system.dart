@@ -46,8 +46,8 @@ class BccMediaDesignSystem extends DesignSystemData {
           color: colors.tint1,
         ),
         switchTheme: SwitchThemeData(
-          trackColor: MaterialStateProperty.resolveWith((state) => state.contains(MaterialState.selected) ? colors.tint1 : colors.separatorOnLight),
-          thumbColor: MaterialStateProperty.resolveWith((state) => colors.onTint),
+          trackColor: WidgetStateProperty.resolveWith((state) => state.contains(WidgetState.selected) ? colors.tint1 : colors.separatorOnLight),
+          thumbColor: WidgetStateProperty.resolveWith((state) => colors.onTint),
         ),
         appBarTheme: AppBarTheme(
           titleTextStyle: textStyles.title3.copyWith(height: 1),

@@ -53,7 +53,7 @@ class WebAppBar extends ConsumerWidget implements PreferredSizeWidget {
       title: Padding(
         padding: const EdgeInsets.only(left: 64),
         child: FocusableActionDetector(
-          mouseCursor: MaterialStateMouseCursor.clickable,
+          mouseCursor: WidgetStateMouseCursor.clickable,
           child: GestureDetector(
             onTap: () => onTabTap(0),
             child: logo,
@@ -84,7 +84,7 @@ class WebAppBar extends ConsumerWidget implements PreferredSizeWidget {
         Align(
           alignment: Alignment.centerRight,
           child: FocusableActionDetector(
-            mouseCursor: MaterialStateMouseCursor.clickable,
+            mouseCursor: WidgetStateMouseCursor.clickable,
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () {
@@ -120,7 +120,7 @@ class WebTabButton extends HookWidget {
     final hovering = useState(false);
     final highlighted = hovering.value || active;
     return MouseRegion(
-      cursor: MaterialStateMouseCursor.clickable,
+      cursor: WidgetStateMouseCursor.clickable,
       onEnter: (_) => hovering.value = true,
       onExit: (_) => hovering.value = false,
       child: AnimatedContainer(
