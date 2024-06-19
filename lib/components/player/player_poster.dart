@@ -31,38 +31,38 @@ class PlayerPoster extends StatelessWidget {
           },
           child: Stack(
             children: [
-              AspectRatio(
-                aspectRatio: 16 / 9,
-                child: imageUrl == null
-                    ? null
-                    : LayoutBuilder(
-                        builder: (context, constraints) {
-                          return Opacity(
-                            opacity: 0.5,
-                            child: FadeInImage(
-                              key: Key('player_poster_$imageUrl'),
-                              fit: BoxFit.cover,
-                              placeholder: MemoryImage(kTransparentImage),
-                              image: networkImageWithRetryAndResize(
-                                imageUrl: imageUrl!,
-                                cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
-                              ),
-                              imageErrorBuilder: imageErrorBuilder,
-                              fadeInDuration: const Duration(milliseconds: 150),
-                            ),
-                          );
-                        },
-                      ),
-              ),
-              Center(
-                child: loading
-                    ? const LoadingIndicator()
-                    : SizedBox(
-                        width: 36,
-                        height: 36,
-                        child: SvgPicture.string(SvgIcons.play),
-                      ),
-              ),
+              if (imageUrl != null)
+                AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      return Opacity(
+                        opacity: 0.5,
+                        child: FadeInImage(
+                          key: Key('player_poster_$imageUrl'),
+                          fit: BoxFit.cover,
+                          placeholder: MemoryImage(kTransparentImage),
+                          image: networkImageWithRetryAndResize(
+                            imageUrl: imageUrl!,
+                            cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                          ),
+                          imageErrorBuilder: imageErrorBuilder,
+                          fadeInDuration: const Duration(milliseconds: 150),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              if (loading)
+                const Center(child: LoadingIndicator())
+              else
+                Center(
+                  child: SizedBox(
+                    width: 36,
+                    height: 36,
+                    child: SvgPicture.string(SvgIcons.play),
+                  ),
+                ),
             ],
           ),
         ),
