@@ -6,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../flavors.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
-import '../screens/tabs/search.dart';
 import 'feature_flags.dart';
 
 enum TabId {
@@ -83,7 +82,7 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
       id: TabId.search,
       route: SearchWrapperScreenRoute(
         children: [
-          SearchScreenRoute(key: GlobalKey<SearchScreenState>()),
+          SearchScreenRoute(),
         ],
       ),
       title: (BuildContext context) => S.of(context).search,

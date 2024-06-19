@@ -266,12 +266,12 @@ abstract class $AppRouter extends _i33.RootStackRouter {
       final queryParams = routeData.queryParams;
       final args = routeData.argsAs<SearchScreenRouteArgs>(
           orElse: () =>
-              SearchScreenRouteArgs(query: queryParams.optString('q')));
+              SearchScreenRouteArgs(queryParam: queryParams.optString('q')));
       return _i33.AutoRoutePage<void>(
         routeData: routeData,
         child: _i22.SearchScreen(
           key: args.key,
-          query: args.query,
+          queryParam: args.queryParam,
         ),
       );
     },
@@ -959,15 +959,15 @@ class ProfileWrapperScreenRoute extends _i33.PageRouteInfo<void> {
 class SearchScreenRoute extends _i33.PageRouteInfo<SearchScreenRouteArgs> {
   SearchScreenRoute({
     _i35.Key? key,
-    String? query,
+    String? queryParam,
     List<_i33.PageRouteInfo>? children,
   }) : super(
           SearchScreenRoute.name,
           args: SearchScreenRouteArgs(
             key: key,
-            query: query,
+            queryParam: queryParam,
           ),
-          rawQueryParams: {'q': query},
+          rawQueryParams: {'q': queryParam},
           initialChildren: children,
         );
 
@@ -980,16 +980,16 @@ class SearchScreenRoute extends _i33.PageRouteInfo<SearchScreenRouteArgs> {
 class SearchScreenRouteArgs {
   const SearchScreenRouteArgs({
     this.key,
-    this.query,
+    this.queryParam,
   });
 
   final _i35.Key? key;
 
-  final String? query;
+  final String? queryParam;
 
   @override
   String toString() {
-    return 'SearchScreenRouteArgs{key: $key, query: $query}';
+    return 'SearchScreenRouteArgs{key: $key, queryParam: $queryParam}';
   }
 }
 

@@ -6,8 +6,8 @@ import 'package:brunstadtv_app/components/guides/tab_feature_guides.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/models/events.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
-import 'package:brunstadtv_app/screens/tabs/search.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -88,15 +88,12 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     if (tabsRouter.activeIndex == index) {
       final stackRouterOfIndex = tabsRouter.stackRouterOfIndex(index);
       if (stackRouterOfIndex?.stack.length == 1) {
-        final searchState = tabsRouter.topPage?.child.asOrNull<SearchScreen>()?.key?.asOrNull<GlobalKey<SearchScreenState>>()?.currentState;
-        if (searchState != null) {
-          searchState.clear();
-        }
         if (tabId != null) {
           final scrollController = PrimaryScrollController.of(context);
           if (scrollController.hasClients) {
             scrollController.animateTo(0, duration: 500.ms, curve: Curves.easeOutExpo);
           }
+          globalEventBus.fire(TabClickedEvent(tabId));
         }
       } else {
         stackRouterOfIndex?.popUntilRoot();

@@ -1,114 +1,96 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/pages/page_renderer.dart';
+import 'package:brunstadtv_app/models/events.dart';
 import 'package:brunstadtv_app/providers/tabs.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/design_system.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../components/search/search_results.dart';
 import '../../components/search/custom_search_bar.dart';
 
 @RoutePage<void>()
-class SearchScreen extends ConsumerStatefulWidget {
-  final String? query;
+class SearchScreen extends HookConsumerWidget {
+  final String? queryParam;
 
-  const SearchScreen({Key? key, @QueryParam('q') this.query}) : super(key: key);
+  const SearchScreen({Key? key, @QueryParam('q') this.queryParam}) : super(key: key);
 
   @override
-  ConsumerState<SearchScreen> createState() => SearchScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final focusing = useState(false);
 
-class SearchScreenState extends ConsumerState<SearchScreen> {
-  var focusing = false;
-  String? _curSearchValue;
-  late Future<Query$Page$page> pageFuture;
-
-  clear() {
-    _onSearchInputChanged(null);
-  }
-
-  void _onSearchInputChanged(String? input) {
-    WidgetsBinding.instance.scheduleFrameCallback((d) {
-      setState(() {
-        _curSearchValue = input;
+    Future<Query$Page$page> getSearchPage() async {
+      final api = ref.read(apiProvider);
+      return ref.read(appConfigFutureProvider).then((value) {
+        final code = value.application.searchPage?.code;
+        if (code == null) {
+          throw ErrorHint('Application config error');
+        }
+        return api.getPage(code);
       });
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    processQueryParam();
-    pageFuture = getSearchPage();
-  }
-
-  @override
-  void didUpdateWidget(SearchScreen oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.query != widget.query) {
-      processQueryParam();
     }
-  }
 
-  Future<Query$Page$page> getSearchPage() async {
-    final api = ref.read(apiProvider);
-    return ref.read(appConfigFutureProvider).then((value) {
-      final code = value.application.searchPage?.code;
-      if (code == null) {
-        throw ErrorHint('Application config error');
+    final pageFuture = useState<Future<Query$Page$page>?>(useMemoized(getSearchPage));
+
+    final searchText = useState(queryParam);
+
+    void onSearchInputChanged(String? input) {
+      WidgetsBinding.instance.scheduleFrameCallback((d) {
+        searchText.value = input;
+      });
+    }
+
+    // Update search text when queryParam changes
+    useEffect(() {
+      String? q = queryParam?.trim();
+      if (q?.isEmpty == true) {
+        return;
       }
-      return api.getPage(code);
-    });
-  }
+      if (searchText.value != q) {
+        searchText.value = q;
+      }
+    }, [queryParam]);
 
-  processQueryParam() {
-    String? queryParam = widget.query?.trim();
-    if (queryParam?.isEmpty == true) {
-      return;
-    }
-    if (_curSearchValue != queryParam) {
-      setState(() {
-        _curSearchValue = queryParam;
+    // Clear search text when clicking tab
+    useEffect(() {
+      final listener = globalEventBus.on<TabClickedEvent>().where((e) => e.tabId == TabId.search).listen((event) {
+        searchText.value = null;
       });
-    }
-  }
+      return listener.cancel;
+    });
 
-  getNoInputInfoWidget(context) => Center(
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 24),
-          child: Text(
-            S.of(context).emptySearch,
-            textAlign: TextAlign.center,
-            style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
+    Widget getMainWidget() {
+      if (searchText.value?.isEmpty == true && focusing.value) {
+        return Center(
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 24),
+            child: Text(
+              S.of(context).emptySearch,
+              textAlign: TextAlign.center,
+              style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
+            ),
           ),
-        ),
-      );
-
-  Widget get mainContent {
-    if (_curSearchValue?.isEmpty == true && focusing) {
-      return getNoInputInfoWidget(context);
-    } else if (_curSearchValue?.isNotEmpty == true) {
-      return SearchResults(_curSearchValue!);
-    } else {
-      return PageRenderer(
-        pageFuture: pageFuture,
-        onRefresh: ({bool? retry}) async {
-          setState(() {
-            pageFuture = getSearchPage();
-          });
-        },
-        scrollController: ref.watch(tabInfosProvider.select((tabInfos) => tabInfos.search.scrollController)),
-      );
+        );
+      } else if (searchText.value?.isNotEmpty == true) {
+        return SearchResults(searchText.value!);
+      } else {
+        return PageRenderer(
+          pageFuture: pageFuture.value,
+          onRefresh: ({bool? retry}) async {
+            pageFuture.value = getSearchPage();
+          },
+          scrollController: ref.watch(tabInfosProvider.select((tabInfos) => tabInfos.search.scrollController)),
+        );
+      }
     }
-  }
 
-  @override
-  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -118,20 +100,19 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 16, bottom: kIsWeb ? 12 : 8, right: kIsWeb ? 80 : 16, left: kIsWeb ? 80 : 16),
                 child: CustomSearchBar(
-                  onFocusChanged: (val) {
+                  onFocusChanged: (val) async {
                     if (!val) {
-                      setState(() {
-                        focusing = false;
-                      });
+                      focusing.value = false;
                     } else {
                       // This is just to avoid some visual glitches with the _noInputInfoWidget.
-                      Future.delayed(const Duration(milliseconds: 100)).whenComplete(() => setState(() {
-                            focusing = true;
-                          }));
+                      await Future.delayed(const Duration(milliseconds: 100));
+                      if (context.mounted) {
+                        focusing.value = true;
+                      }
                     }
                   },
-                  currentValue: _curSearchValue,
-                  onInputChange: _onSearchInputChanged,
+                  currentValue: searchText.value,
+                  onInputChange: onSearchInputChanged,
                 ),
               ),
               Container(
@@ -139,7 +120,10 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
                 child: Divider(height: 1, color: DesignSystem.of(context).colors.separatorOnLight),
               ),
               Expanded(
-                child: AnimatedSwitcher(duration: const Duration(milliseconds: 100), child: mainContent),
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 100),
+                  child: getMainWidget(),
+                ),
               )
             ],
           ),
