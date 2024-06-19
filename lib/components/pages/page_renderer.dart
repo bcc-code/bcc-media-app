@@ -84,9 +84,8 @@ class _PageRendererState extends ConsumerState<PageRenderer> {
                     return Animate(
                       effects: [
                         MoveEffect(
-                          begin: const Offset(0, 10),
+                          begin: const Offset(0, 15),
                           duration: 1500.ms,
-                          delay: Duration(milliseconds: 100 * index),
                           curve: Curves.easeOutExpo,
                         ),
                         FadeEffect(
