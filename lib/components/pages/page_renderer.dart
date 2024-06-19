@@ -35,6 +35,9 @@ class PageRenderer extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final sc = scrollController ?? useScrollController();
     final snapshot = useFuture(pageFuture);
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return const LoadingGeneric();
+    }
     if (snapshot.hasData) {
       return _PageRendererImpl(
         page: snapshot.data!,
@@ -48,9 +51,6 @@ class PageRenderer extends HookConsumerWidget {
         },
       );
     }
-    if (snapshot.connectionState == ConnectionState.waiting) {
-      return const LoadingGeneric();
-    }
     return const LoadingGeneric();
   }
 }
@@ -61,7 +61,6 @@ class _PageRendererImpl extends HookConsumerWidget {
   final ScrollController scrollController;
 
   const _PageRendererImpl({
-    super.key,
     required this.page,
     required this.onRefresh,
     required this.scrollController,
@@ -109,6 +108,8 @@ class _PageRendererImpl extends HookConsumerWidget {
       loadingBottomSectionItems.value = false;
     }
 
+    final hasScrolled = useState(false);
+
     return MediaQuery(
       data: mediaQueryData.copyWith(padding: mediaQueryData.padding.copyWith(bottom: mediaQueryData.padding.bottom + 32)),
       child: RefreshIndicator(
@@ -117,6 +118,7 @@ class _PageRendererImpl extends HookConsumerWidget {
         displacement: 40,
         onRefresh: () {
           paginationMap.value = {};
+          hasScrolled.value = false;
           return onRefresh();
         },
         notificationPredicate: (notification) => true,
@@ -125,6 +127,9 @@ class _PageRendererImpl extends HookConsumerWidget {
             final approachingBottom = t.metrics.pixels > scrollController.position.maxScrollExtent - kLoadMoreBottomScrollOffset;
             if (!loadingBottomSectionItems.value && approachingBottom) {
               loadMoreBottomSectionItems();
+            }
+            if (!hasScrolled.value && t.metrics.pixels > 0) {
+              hasScrolled.value = true;
             }
             return false;
           },
@@ -153,6 +158,7 @@ class _PageRendererImpl extends HookConsumerWidget {
                   extraItems: paginationMap.value[s.id]?.items,
                   builder: (context, section, extraItems) {
                     return Animate(
+                      delay: !hasScrolled.value ? Duration(milliseconds: index * 100) : Duration.zero,
                       effects: [
                         MoveEffect(
                           begin: const Offset(0, 15),
