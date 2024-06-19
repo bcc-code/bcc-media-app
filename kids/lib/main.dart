@@ -112,7 +112,6 @@ Future<void> $main({
 
   if (kDebugMode) {
     Animate.restartOnHotReload = true;
-    //debugRepaintRainbowEnabled = true;
   }
 
   runApp(kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app);

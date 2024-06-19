@@ -137,22 +137,24 @@ class ShortController {
   }
 
   onPlayerStateChanged() {
+    final gql = ref.read(bccmGraphQLProvider);
+    final analytics = ref.read(analyticsProvider);
     final s = currentShort;
     if (s == null) return;
     final progressSeconds = (player.value.playbackPositionMs ?? 0) ~/ 1000;
     if (progressSeconds != previousSeconds && progressSeconds > 0) {
       _progressDebouncer.run(() {
         debugPrint('SHRT: setting progress: ${progressSeconds}s for ${s.id}');
-        ref.read(bccmGraphQLProvider).mutate$setShortProgress(
-              Options$Mutation$setShortProgress(
-                variables: Variables$Mutation$setShortProgress(
-                  id: s.id,
-                  progress: progressSeconds.toDouble(),
-                ),
-              ),
-            );
+        gql.mutate$setShortProgress(
+          Options$Mutation$setShortProgress(
+            variables: Variables$Mutation$setShortProgress(
+              id: s.id,
+              progress: progressSeconds.toDouble(),
+            ),
+          ),
+        );
       });
-      ref.read(analyticsProvider).heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
+      analytics.heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
     }
 
     previousSeconds = progressSeconds;
