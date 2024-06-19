@@ -1,4 +1,20 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.5+2300155...v) (2024-06-17)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.6+2300156...v) (2024-06-19)
+
+
+### Bug Fixes
+
+* fix an edge case error for shorts ([1e56fc0](https://github.com/bcc-code/bcc-media-app/commit/1e56fc0dd1d7615fa7c0b97bc29d1a69e1192685))
+
+
+### Features
+
+* add some animations to episode page ([140b684](https://github.com/bcc-code/bcc-media-app/commit/140b68470532efd18880f3994e79b82613710ec8))
+* page animations ([08ca648](https://github.com/bcc-code/bcc-media-app/commit/08ca6489882ed2f4ae57ba9e7eb2dc6972a41473))
+* time measurements ([bc01fc3](https://github.com/bcc-code/bcc-media-app/commit/bc01fc31f1c4027590e172600a36ed7597b0aa79))
+
+
+
+## [5.5.6+2300156](https://github.com/bcc-code/bcc-media-app/compare/v5.5.5+2300155...v5.5.6+2300156) (2024-06-17)
 
 
 ### Features
