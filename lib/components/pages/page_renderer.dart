@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:bccm_core/bccm_core.dart';
@@ -80,7 +81,22 @@ class _PageRendererState extends ConsumerState<PageRenderer> {
                   section: s,
                   extraItems: paginationMap[s.id]?.items,
                   builder: (context, section, extraItems) {
-                    return SectionRenderer(section: section, extraItems: extraItems);
+                    return Animate(
+                      effects: [
+                        MoveEffect(
+                          begin: const Offset(0, 10),
+                          duration: 1500.ms,
+                          delay: Duration(milliseconds: 100 * index),
+                          curve: Curves.easeOutExpo,
+                        ),
+                        FadeEffect(
+                          begin: 0.0,
+                          duration: 1500.ms,
+                          curve: Curves.easeOutExpo,
+                        ),
+                      ],
+                      child: SectionRenderer(section: section, extraItems: extraItems),
+                    );
                   },
                 ),
               );
@@ -145,7 +161,6 @@ class _PageRendererState extends ConsumerState<PageRenderer> {
         if (snapshot.hasData) {
           return getPage(context, snapshot.data!);
         } else if (snapshot.hasError) {
-          print(snapshot.error);
           return ErrorGeneric(
             onRetry: () {
               resetState();
@@ -166,5 +181,27 @@ class _PageRendererState extends ConsumerState<PageRenderer> {
       futureBuilderKey = GlobalKey();
       paginationMap = {};
     });
+  }
+}
+
+class _PageRendererImpl extends HookConsumerWidget {
+  final Future<Query$Page$page>? pageFuture;
+  final Future Function({bool? retry}) onRefresh;
+  final ScrollController? scrollController;
+
+  const _PageRendererImpl({
+    super.key,
+    required this.pageFuture,
+    required this.onRefresh,
+    this.scrollController,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return PageRenderer(
+      pageFuture: pageFuture,
+      onRefresh: onRefresh,
+      scrollController: scrollController,
+    );
   }
 }
