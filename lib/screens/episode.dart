@@ -142,7 +142,8 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
         return SliverToBoxAdapter(
           child: _EpisodeDisplay(
             screenParams: this,
-            episodeFuture: episodeFuture.value,
+            episode: episodeSnapshot.data!,
+            loading: episodeSnapshot.connectionState == ConnectionState.waiting,
             scrollController: scrollController,
             triggerReload: fetchCurrentEpisode,
           ),
@@ -153,6 +154,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
     return Scaffold(
       appBar: ScreenInsetAppBar(
         appBar: AppBar(
+          scrolledUnderElevation: 0,
           leadingWidth: 92,
           leading: const CustomBackButton(padding: kIsWeb ? EdgeInsets.zero : null),
           title: Text(episodeSnapshot.data?.season?.$show.title ?? episodeSnapshot.data?.title ?? ''),
@@ -207,13 +209,15 @@ class _LoadingWidget extends StatelessWidget {
 class _EpisodeDisplay extends HookConsumerWidget {
   const _EpisodeDisplay({
     required this.screenParams,
-    required this.episodeFuture,
+    required this.episode,
+    required this.loading,
     required this.scrollController,
     required this.triggerReload,
   });
 
   final _EpisodeScreenImplementation screenParams;
-  final Future<Query$FetchEpisode$episode?>? episodeFuture;
+  final Query$FetchEpisode$episode episode;
+  final bool loading;
   final ScrollController scrollController;
   final Future<void> Function() triggerReload;
 
@@ -285,10 +289,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isMounted = useIsMounted();
-    final episodeSnapshot = useFuture(episodeFuture);
-    final episode = episodeSnapshot.data;
     var player = ref.watch(primaryPlayerProvider);
-    if (player == null || episode == null) return const SizedBox.shrink();
+    if (player == null) {
+      return const SizedBox.shrink();
+    }
 
     final playerSetupFuture = useState<Future?>(null);
     Future setupPlayer() {
@@ -394,7 +398,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
       return () => subscription.cancel();
     }, [ref, playerEvents, playbackService, enableAutoplayNext, player.playerId]);
 
-    final showLoadingOverlay = (episodeSnapshot.connectionState == ConnectionState.waiting);
+    final showLoadingOverlay = loading;
     final showChapters = episode.chapters.isNotEmpty && ref.watch(featureFlagsProvider.select((value) => value.chapters));
     final chaptersFirstTab = ref.watch(featureFlagsProvider.select((value) => value.chaptersFirstTab));
 
@@ -440,10 +444,13 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     },
                   )
                 else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb || viewController.isFullscreen)
-                  PlayerPoster(
-                    imageUrl: episode.image,
-                    setupPlayer: setupPlayer,
-                    loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || viewController.isFullscreen,
+                  Container(
+                    color: DesignSystem.of(context).colors.background2,
+                    child: PlayerPoster(
+                      imageUrl: episode.image,
+                      setupPlayer: setupPlayer,
+                      loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || viewController.isFullscreen,
+                    ),
                   )
                 else
                   BccmPlayerView.withViewController(viewController),

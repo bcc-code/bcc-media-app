@@ -55,6 +55,7 @@ class BccMediaDesignSystem extends DesignSystemData {
           centerTitle: true,
           elevation: 0,
           toolbarHeight: 44,
+          scrolledUnderElevation: 0,
           iconTheme: IconThemeData(color: colors.tint1),
           backgroundColor: colors.background1,
         ),
