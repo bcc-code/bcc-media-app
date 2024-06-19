@@ -106,7 +106,6 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
       return () => modalRoute?.animation?.removeStatusListener(routeAnimationStatusListener);
     }, [modalRoute]);
 
-    // Fetch the episode when needed
     final episodeFuture = useState<Future<Query$FetchEpisode$episode?>?>(null);
     fetchCurrentEpisode() {
       return episodeFuture.value = ref.read(apiProvider).fetchEpisode(
@@ -115,40 +114,42 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
           );
     }
 
+    // Fetch the episode when needed
     useEffect(() {
       fetchCurrentEpisode();
-      return null;
     }, [episodeId, collectionId, queryParamStartPosition]);
 
     final episodeSnapshot = useFuture(episodeFuture.value);
 
-    Widget? child;
-    if (episodeSnapshot.hasError && episodeSnapshot.connectionState == ConnectionState.done) {
-      var noAccess = episodeSnapshot.error
-          .asOrNull<OperationException>()
-          ?.graphqlErrors
-          .any((err) => err.extensions?['code'] == ApiErrorCodes.noAccess || err.extensions?['code'] == ApiErrorCodes.notPublished);
-      if (noAccess == true) {
-        child = const ErrorNoAccess();
+    Widget? getMainWidget() {
+      if (episodeSnapshot.hasError && episodeSnapshot.connectionState == ConnectionState.done) {
+        var noAccess = episodeSnapshot.error
+            .asOrNull<OperationException>()
+            ?.graphqlErrors
+            .any((err) => err.extensions?['code'] == ApiErrorCodes.noAccess || err.extensions?['code'] == ApiErrorCodes.notPublished);
+        if (noAccess == true) {
+          return const ErrorNoAccess();
+        }
+        return SliverFillRemaining(
+          child: ErrorGeneric(
+            onRetry: fetchCurrentEpisode,
+            details: episodeSnapshot.error.toString(),
+          ),
+        );
+      } else if (episodeSnapshot.data == null || (hasInitialRouteAnimation.value && !initialRouteAnimationDone.value)) {
+        return const SliverFillRemaining(child: _LoadingWidget());
+      } else {
+        return SliverToBoxAdapter(
+          child: _EpisodeDisplay(
+            screenParams: this,
+            episodeFuture: episodeFuture.value,
+            scrollController: scrollController,
+            triggerReload: fetchCurrentEpisode,
+          ),
+        );
       }
-      child = SliverFillRemaining(
-        child: ErrorGeneric(
-          onRetry: fetchCurrentEpisode,
-          details: episodeSnapshot.error.toString(),
-        ),
-      );
-    } else if (episodeSnapshot.data == null || (hasInitialRouteAnimation.value && !initialRouteAnimationDone.value)) {
-      child = const SliverFillRemaining(child: _LoadingWidget());
-    } else {
-      child = SliverToBoxAdapter(
-        child: _EpisodeDisplay(
-          screenParams: this,
-          episodeFuture: episodeFuture.value,
-          scrollController: scrollController,
-          triggerReload: fetchCurrentEpisode,
-        ),
-      );
     }
+
     return Scaffold(
       appBar: ScreenInsetAppBar(
         appBar: AppBar(
@@ -172,7 +173,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
         slivers: [
           SliverPadding(
             padding: screenInsets(context),
-            sliver: child,
+            sliver: getMainWidget(),
           ),
         ],
       ),
