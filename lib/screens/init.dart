@@ -59,12 +59,10 @@ class _InitScreenState extends ConsumerState<InitScreen> {
       authFuture = ref.read(authStateProvider.notifier).initialize();
     });
     await authFuture;
-    debugPrint('AutoLoginScreen: AuthFuture completed, refreshing feature flags');
     await tryCatchRecordErrorAsync(() async {
       await ref.read(featureFlagsProvider.notifier).start().timeout(const Duration(seconds: 2));
     });
     ref.invalidate(appConfigFutureProvider);
-    debugPrint('AutoLoginScreen: Feature flags started or timed out, continuing navigation.');
     continueNavigation();
     globalEventBus.fire(AppReadyEvent());
     TimeMeasurements.startupToInitDone.track(ref.read(analyticsProvider));
