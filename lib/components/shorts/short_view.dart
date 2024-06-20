@@ -186,17 +186,6 @@ class ShortView extends HookConsumerWidget {
                 child: Stack(
                   children: [
                     Container(color: design.colors.background1),
-                    Animate(
-                      controller: loadingAnimation,
-                      onPlay: (c) => c.repeat(),
-                      effects: [
-                        ShimmerEffect(
-                          duration: 1000.ms,
-                          color: design.colors.separatorOnLight,
-                        ),
-                      ],
-                      child: Container(color: design.colors.background1),
-                    ),
                     const Center(child: LoadingIndicator()),
                   ],
                 ),

@@ -38,10 +38,11 @@ class ShortController {
     playerInitFuture.then((_) {
       player.setMixWithOthers(true);
       player.setRepeatMode(RepeatMode.one);
-      if (!Platform.isAndroid) return;
-      player.switchToVideoTexture().then((t) {
-        _texture = t;
-      });
+      if (Platform.isAndroid) {
+        player.switchToVideoTexture().then((t) {
+          _texture = t;
+        });
+      }
     });
     _analyticsListener = ShortAnalyticsListener(this, ref);
     player.addListener(onPlayerStateChanged);

@@ -274,8 +274,6 @@ class ShortScrollView extends HookConsumerWidget {
       for (var c in shortControllers) {
         c.dispose();
       }
-      if (!isMounted()) return;
-      shortControllersState.value = [];
     }
 
     useEffect(() {
@@ -313,9 +311,11 @@ class ShortScrollView extends HookConsumerWidget {
       physics: const _CustomPageViewScrollPhysics(),
       itemCount: preventScroll ? 1 : null,
       itemBuilder: (context, index) {
-        return HookBuilder(builder: (context) {
-          // Say index == 2 and we want to have a bool indicating that we
+        if (!isTabActive()) {
+          return const SizedBox();
+        }
 
+        return HookBuilder(builder: (context) {
           final shortController = shortControllers[index % playerCount];
           final currentlyPlayingShort = useListenableSelector(
             shortController.player,

@@ -157,22 +157,27 @@ class _PageRendererImpl extends HookConsumerWidget {
                   section: s,
                   extraItems: paginationMap.value[s.id]?.items,
                   builder: (context, section, extraItems) {
-                    return Animate(
-                      delay: !hasScrolled.value ? Duration(milliseconds: index * 100) : Duration.zero,
-                      effects: [
-                        MoveEffect(
-                          begin: const Offset(0, 15),
-                          duration: 1500.ms,
-                          curve: Curves.easeOutExpo,
-                        ),
-                        FadeEffect(
-                          begin: 0.0,
-                          duration: 1500.ms,
-                          curve: Curves.easeOutExpo,
-                        ),
-                      ],
-                      child: SectionRenderer(section: section, extraItems: extraItems),
-                    );
+                    return HookBuilder(builder: (context) {
+                      final shouldAnimate = useMemoized(() => !hasScrolled.value, []);
+                      return Animate(
+                        delay: Duration(milliseconds: index * 100),
+                        effects: [
+                          if (shouldAnimate) ...[
+                            MoveEffect(
+                              begin: const Offset(0, 15),
+                              duration: 1500.ms,
+                              curve: Curves.easeOutExpo,
+                            ),
+                            FadeEffect(
+                              begin: 0.0,
+                              duration: 1500.ms,
+                              curve: Curves.easeOutExpo,
+                            ),
+                          ],
+                        ],
+                        child: SectionRenderer(section: section, extraItems: extraItems),
+                      );
+                    });
                   },
                 ),
               );

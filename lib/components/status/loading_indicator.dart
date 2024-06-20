@@ -8,6 +8,12 @@ class LoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(width: width ?? 32, height: height ?? 32, child: const CircularProgressIndicator(strokeWidth: 2));
+    return RepaintBoundary(
+      child: SizedBox(
+        width: width ?? 32,
+        height: height ?? 32,
+        child: const CircularProgressIndicator(strokeWidth: 2),
+      ),
+    );
   }
 }
