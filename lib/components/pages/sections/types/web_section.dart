@@ -71,6 +71,7 @@ class _WebSectionState extends State<WebSection> {
                   transparentBackground: true,
                   verticalScrollBarEnabled: false,
                   useShouldOverrideUrlLoading: true,
+                  horizontalScrollBarEnabled: false,
                   allowsInlineMediaPlayback: true,
                   mediaPlaybackRequiresUserGesture: false,
                   iframeAllowFullscreen: true,
@@ -106,6 +107,7 @@ class _WebSectionState extends State<WebSection> {
                     switchOutCurve: Curves.easeInOut,
                     child: loading
                         ? Shimmer.fromColors(
+                            period: const Duration(milliseconds: 1000),
                             baseColor: design.colors.background1,
                             highlightColor: design.colors.background2,
                             child: Container(
