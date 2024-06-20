@@ -49,12 +49,16 @@ class HomeScreen extends HookConsumerWidget {
     final pageFuture = useState<Future<Query$Page$page>?>(useMemoized(() => getPage(false)));
     final pageSnapshot = useFuture(pageFuture.value!);
 
-    // event when pageFuture is done loading
+    // Track time to load home screen
     useEffect(() {
+      if (pageSnapshot.hasError) {
+        TimeMeasurements.startupToHomeLoaded.cancel();
+      }
       if (pageSnapshot.connectionState == ConnectionState.done) {
         TimeMeasurements.startupToHomeLoaded.track(ref.read(analyticsProvider));
       }
-    }, [pageSnapshot.connectionState]);
+    }, [pageSnapshot]);
+
     final design = DesignSystem.of(context);
     return Scaffold(
       extendBodyBehindAppBar: true,

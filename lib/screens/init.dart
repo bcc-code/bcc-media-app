@@ -73,7 +73,7 @@ class _InitScreenState extends ConsumerState<InitScreen> {
     final deepLinkUri = await tryCatchRecordErrorAsync(() => AppLinks().getInitialAppLink());
     if (!mounted) return;
     final router = context.router;
-    if (deepLinkUri != null && !deepLinkUri.path.contains('auto-login')) {
+    if (deepLinkUri != null && !deepLinkUri.path.contains('init')) {
       router.replaceAll([const TabsRootScreenRoute()]);
       router.navigateNamedFromRoot(
         uriStringWithoutHost(deepLinkUri),
@@ -81,15 +81,16 @@ class _InitScreenState extends ConsumerState<InitScreen> {
           router.navigateNamedFromRoot('/');
         },
       );
-    } else {
-      final isLoggedIn = ref.read(authStateProvider).isLoggedIn;
-      final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingCompleted) == true;
-      if (!isLoggedIn && !hasCompletedOnboarding) {
-        router.replaceAll([OnboardingScreenRoute()]);
-      } else {
-        router.replaceAll([const TabsRootScreenRoute()]);
-      }
+      return;
     }
+    final isLoggedIn = ref.read(authStateProvider).isLoggedIn;
+    final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingCompleted) == true;
+    if (!isLoggedIn && !hasCompletedOnboarding) {
+      router.replaceAll([OnboardingScreenRoute()]);
+      return;
+    }
+    TimeMeasurements.startupToHomeLoaded.addCheckpoint('init');
+    router.replaceAll([const TabsRootScreenRoute()]);
   }
 
   @override
