@@ -1,4 +1,15 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.7+2300157...v) (2024-06-21)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.8+2300158...v) (2024-06-21)
+
+
+### Features
+
+* episode page performance improvements ([aa60074](https://github.com/bcc-code/bcc-media-app/commit/aa6007413b757401fce9bfbffecb5cf0f9de2304))
+* liked shorts section on tablet ([d5c101a](https://github.com/bcc-code/bcc-media-app/commit/d5c101a014af431ee1525b61b76aad4ca23a3145))
+* sync translations(fr,nb,nl) ([05d9418](https://github.com/bcc-code/bcc-media-app/commit/05d94183d23bb6e25afb9a917b21bff250dd5b66))
+
+
+
+## [5.5.8+2300158](https://github.com/bcc-code/bcc-media-app/compare/v5.5.7+2300157...v5.5.8+2300158) (2024-06-21)
 
 
 ### Bug Fixes
