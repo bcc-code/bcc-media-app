@@ -1,4 +1,19 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.6+2300156...v) (2024-06-19)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.7+2300157...v) (2024-06-21)
+
+
+### Bug Fixes
+
+* only measure homescreen on happy path ([aa57da6](https://github.com/bcc-code/bcc-media-app/commit/aa57da65257656db40a21df2d6eaec72cf2ba54e))
+
+
+### Features
+
+* performance improvements ([ceff8bf](https://github.com/bcc-code/bcc-media-app/commit/ceff8bf0fe818c4ef1027dbc1c1bf253279a48d7))
+* tweak websection ([0ecd01f](https://github.com/bcc-code/bcc-media-app/commit/0ecd01f666752d0e98df8b4044ef6b597d3fbbb6))
+
+
+
+## [5.5.7+2300157](https://github.com/bcc-code/bcc-media-app/compare/v5.5.6+2300156...v5.5.7+2300157) (2024-06-19)
 
 
 ### Bug Fixes
