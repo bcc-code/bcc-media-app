@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/app_bar_with_scroll_to_top.dart';
 import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
@@ -10,7 +11,6 @@ import 'package:brunstadtv_app/components/profile/avatar.dart';
 import 'package:brunstadtv_app/components/profile/empty_info.dart';
 import 'package:brunstadtv_app/components/thumbnails/episode_thumbnail.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/models/events.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/downloads.dart';
@@ -24,6 +24,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
 import '../../components/misc/custom_grid_view.dart';
@@ -281,7 +282,9 @@ class _ShortFavorites extends HookConsumerWidget {
     final design = DesignSystem.of(context);
 
     final shortItems = items.map((item) => item.item).whereType<Fragment$MyListEntry$item$$Short>();
-    const double thumbnailHeight = 130;
+    final bp = ResponsiveBreakpoints.of(context);
+    final thumbnailWidth = bp.smallerThan(TABLET) ? 88.0 : 150.0;
+    final thumbnailHeight = bp.smallerThan(TABLET) ? 120.0 : 240.0;
     const double basePadding = 16;
     return HorizontalSlider(
       height: thumbnailHeight + basePadding * 2,
@@ -300,12 +303,12 @@ class _ShortFavorites extends HookConsumerWidget {
           child: Align(
             alignment: Alignment.topCenter,
             child: ConstrainedBox(
-              constraints: const BoxConstraints.tightFor(height: thumbnailHeight),
+              constraints: BoxConstraints.tightFor(height: thumbnailHeight),
               child: Stack(
                 children: [
                   EpisodeThumbnail.withSize(
                     episode: getEpisodeThumbnailData(item),
-                    imageSize: const Size(88, thumbnailHeight),
+                    imageSize: Size(thumbnailWidth, thumbnailHeight),
                   ),
                   Positioned.fill(child: Container(color: design.colors.background1.withOpacity(0.3))),
                   Positioned.fill(
