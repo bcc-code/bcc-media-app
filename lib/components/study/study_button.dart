@@ -7,9 +7,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:bccm_core/design_system.dart';
+import 'package:universal_io/io.dart';
 
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
+import 'pulse_animation.dart';
 import '../misc/shiny_clipper.dart';
 import 'study_progress.dart';
 
@@ -116,7 +118,8 @@ class StudyMoreButton extends HookWidget {
                     padding: const EdgeInsets.only(left: 16),
                     child: Stack(
                       children: [
-                        //if (!lesson.locked) const Positioned.fill(child: PulseAnimation()),
+                        if (!lesson.locked && !Platform.isAndroid) // android has some perf issues because of skia
+                          const Positioned.fill(child: PulseAnimation()),
                         Container(
                           decoration: BoxDecoration(
                             color: const Color(0xFF3D4E63),
