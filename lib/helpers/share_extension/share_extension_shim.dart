@@ -8,7 +8,7 @@ extension ShareUrl on Share {
     String? title,
     Rect? sharePositionOrigin,
   }) async {
-    return Share.share(
+    await Share.share(
       url,
       sharePositionOrigin: sharePositionOrigin,
     );

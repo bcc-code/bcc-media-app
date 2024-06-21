@@ -1,5 +1,6 @@
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
+import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -108,49 +109,52 @@ class AchievementShareRender extends StatelessWidget {
     final design = BccMediaDesignSystem();
     return DesignSystem(
       designSystem: design,
-      builder: (context) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: Container(
-            width: 400,
-            height: 350,
-            color: design.colors.background2,
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: Container(
-                    decoration: BoxDecoration(gradient: AppTheme.of(context).achievementBackgroundGradient),
+      builder: (context) => AppTheme(
+        theme: FlavorConfig.current.appTheme(context),
+        builder: (context) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
+            body: Container(
+              width: 400,
+              height: 350,
+              color: design.colors.background2,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(gradient: AppTheme.of(context).achievementBackgroundGradient),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      if (achievement.image != null)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 24),
-                          child: SizedBox(height: 160, child: Image.memory(imageBytes)),
-                        ),
-                      if (formattedAchievedAt != null)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 4),
-                          child: Text(
-                            formattedAchievedAt!,
-                            style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label3),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if (achievement.image != null)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 24),
+                            child: SizedBox(height: 160, child: Image.memory(imageBytes)),
                           ),
+                        if (formattedAchievedAt != null)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 4),
+                            child: Text(
+                              formattedAchievedAt!,
+                              style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label3),
+                            ),
+                          ),
+                        Text(
+                          achievement.title,
+                          style: DesignSystem.of(context).textStyles.headline2,
+                          textAlign: TextAlign.center,
                         ),
-                      Text(
-                        achievement.title,
-                        style: DesignSystem.of(context).textStyles.headline2,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
