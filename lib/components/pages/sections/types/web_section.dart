@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:bccm_core/platform.dart';
@@ -105,7 +106,7 @@ class _WebSectionState extends State<WebSection> {
                     duration: const Duration(milliseconds: 200),
                     switchInCurve: Curves.easeInOut,
                     switchOutCurve: Curves.easeInOut,
-                    child: loading
+                    child: loading && !Platform.isAndroid
                         ? Shimmer.fromColors(
                             period: const Duration(milliseconds: 1000),
                             baseColor: design.colors.background1,

@@ -289,7 +289,6 @@ class _EpisodeDisplay extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMounted = useIsMounted();
     var player = ref.watch(primaryPlayerProvider);
     if (player == null) {
       return const SizedBox.shrink();
@@ -439,7 +438,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     onRetry: () async {
                       final currentPos = player.playbackPositionMs ?? 0;
                       await triggerReload();
-                      if (!isMounted()) return;
+                      if (!context.mounted) return;
                       await setupPlayer();
                       BccmPlayerController.primary.seekTo(Duration(milliseconds: currentPos));
                     },
@@ -447,15 +446,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
                 else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb || viewController.isFullscreen)
                   Container(
                     color: DesignSystem.of(context).colors.background2,
-                    child: Animate(
-                      effects: [
-                        FadeEffect(duration: 1000.ms, curve: Curves.easeOutExpo),
-                      ],
-                      child: PlayerPoster(
-                        imageUrl: episode.image,
-                        setupPlayer: setupPlayer,
-                        loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || viewController.isFullscreen,
-                      ),
+                    child: PlayerPoster(
+                      imageUrl: episode.image,
+                      setupPlayer: setupPlayer,
+                      loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || viewController.isFullscreen,
                     ),
                   )
                 else
@@ -475,7 +469,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                           child: StudyMoreButton(
                             lessonProgressFuture: lessonProgressFuture.value!,
                             onNavigateBack: () {
-                              if (!isMounted()) return;
+                              if (!context.mounted) return;
                               lessonProgressFuture.value = ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForEpisode(episode.id);
                             },
                           ),

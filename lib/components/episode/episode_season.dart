@@ -28,12 +28,11 @@ class EpisodeSeason extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedSeasonId = useState(season.id);
     final episodesCache = useState<Map<String, List<SeasonEpisodeListEpisodeData>?>>({});
-    final isMounted = useIsMounted();
 
     Future onSeasonSelected(String id) async {
       selectedSeasonId.value = id;
       var season = await ref.read(apiProvider).getSeasonEpisodes(id);
-      if (!isMounted() || season == null) return;
+      if (!context.mounted || season == null) return;
       if (season.episodes.items.any((element) => element.lessons.total > 0)) {
         ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForSeason(season.id);
       }
@@ -63,7 +62,6 @@ class EpisodeSeason extends HookConsumerWidget {
         ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForSeason(season.id);
       }
       return null;
-      // ignore: exhaustive_keys
     }, [season]);
 
     final episodes = episodesCache.value[selectedSeasonId.value];
