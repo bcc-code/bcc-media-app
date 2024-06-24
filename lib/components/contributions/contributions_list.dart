@@ -86,7 +86,7 @@ class ContributionsList extends HookConsumerWidget {
 
     if (items.value.isEmpty && snapshot.hasError) {
       return ErrorAdaptive(
-        exception: snapshot.error?.asOrNull<OperationException>(),
+        exception: snapshot.error?.asOrNull<Exception>(),
         onRetry: fetchMore,
       );
     }

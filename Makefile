@@ -51,3 +51,6 @@ rerelease-kids:
 	make changelog-commit
 	git tag v${BUILD_NUMBER_KIDS}-kids
 	git push --tags
+
+fix-time:
+	adb shell "su 0 date `date +%m%d%H%M%Y.%S`"

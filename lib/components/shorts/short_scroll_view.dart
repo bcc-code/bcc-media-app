@@ -36,13 +36,13 @@ class ShortScrollView extends HookConsumerWidget {
     final currentIndex = useState(0);
     final isMounted = useIsMounted();
     final isFirstOpen = useState(true);
-    final performanceClass = ref.read(androidPerformanceClassProvider);
+    final performanceClass = ref.watch(androidPerformanceClassProvider).valueOrNull;
     final playerCount = useMemoized(() {
       if (Platform.isAndroid) {
-        return performanceClass.valueOrNull != null && performanceClass.valueOrNull! >= 12 ? 4 : 2;
+        return performanceClass != null && performanceClass >= 12 ? 4 : 2;
       }
       return 4;
-    });
+    }, [performanceClass]);
 
     fetchMore() async {
       final result = await gqlClient.query$getShorts(
