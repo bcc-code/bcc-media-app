@@ -80,7 +80,6 @@ class ShortScrollView extends HookConsumerWidget {
     final shortControllers = shortControllersState.value;
 
     final router = context.watchRouter;
-    final pageIsActive = useState(true);
 
     useOnAppLifecycleStateChange((previous, current) {
       if (current == AppLifecycleState.inactive) {
@@ -92,27 +91,6 @@ class ShortScrollView extends HookConsumerWidget {
       } else {
         WakelockPlus.enable();
       }
-    });
-
-    useEffect(() {
-      void listener() {
-        final wasActive = pageIsActive.value;
-        final isActive = router.currentSegments.any((r) => r.name == context.routeData.name);
-        if (wasActive && !isActive) {
-          debugPrint('SHRT: page no longer active, pausing controllers');
-          for (final c in shortControllers) {
-            c.player.pause();
-          }
-          WakelockPlus.disable();
-        } else if (!wasActive && isActive) {
-          debugPrint('SHRT: page became active');
-          WakelockPlus.enable();
-        }
-        pageIsActive.value = isActive;
-      }
-
-      router.addListener(listener);
-      return () => router.removeListener(listener);
     });
 
     preloadNextAndPreviousFor(int index) async {
@@ -153,10 +131,10 @@ class ShortScrollView extends HookConsumerWidget {
 
     final isRouteActive = useIsRouteActive();
     final isRouteActiveRef = useRef(isRouteActive);
-    useEffect(() {
+    useValueChangedSimple(isRouteActive, (wasActive) {
       isRouteActiveRef.value = isRouteActive;
       if (isRouteActive) {
-        debugPrint('SHRT: tab became active, playing');
+        debugPrint('SHRT: shorts view became active, playing');
         final player = shortControllers[currentIndex.value % playerCount].player;
         if (player.value.isInitialized) {
           shortControllers[currentIndex.value % playerCount].player.play();
@@ -165,16 +143,16 @@ class ShortScrollView extends HookConsumerWidget {
         tabOpenAnimation.forward();
         isFirstOpen.value = false;
         WakelockPlus.enable();
-        return;
+      } else if (wasActive) {
+        debugPrint('SHRT: shorts view no longer active: pausing controllers');
+        for (final c in shortControllers) {
+          c.player.pause();
+        }
+        WakelockPlus.disable();
       }
-      debugPrint('SHRT: tab no longer active: pausing controllers');
-      for (final c in shortControllers) {
-        c.player.pause();
-      }
-      WakelockPlus.disable();
-    }, [isRouteActive]);
+    });
 
-    bool okToAutoplay() => isMounted() && isRouteActiveRef.value && pageIsActive.value && router.topMatch == context.routeData.route;
+    bool okToAutoplay() => isMounted() && isRouteActiveRef.value && router.topMatch == context.routeData.route;
 
     setupCurrentController(int index, {required bool preloadNext}) async {
       if (!isMounted()) return;
