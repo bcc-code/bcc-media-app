@@ -150,30 +150,31 @@ class ShortScrollView extends HookConsumerWidget {
       duration: 500.ms,
       initialValue: 0,
     );
-    final isTabActive = useIsTabActive(
-      onChange: (active) {
-        final isTopRoute = router.topMatch == context.routeData.route;
-        if (active && isTopRoute) {
-          debugPrint('SHRT: tab became active, playing');
-          final player = shortControllers[currentIndex.value % playerCount].player;
-          if (player.value.isInitialized) {
-            shortControllers[currentIndex.value % playerCount].player.play();
-          }
-          preloadNextAndPreviousFor(currentIndex.value);
-          tabOpenAnimation.forward();
-          isFirstOpen.value = false;
-          WakelockPlus.enable();
-          return;
-        }
-        debugPrint('SHRT: tab no longer active: pausing controllers');
-        for (final c in shortControllers) {
-          c.player.pause();
-        }
-        WakelockPlus.disable();
-      },
-    );
 
-    bool okToAutoplay() => isMounted() && isTabActive() && pageIsActive.value && router.topMatch == context.routeData.route;
+    final isRouteActive = useIsRouteActive();
+    final isRouteActiveRef = useRef(isRouteActive);
+    useEffect(() {
+      isRouteActiveRef.value = isRouteActive;
+      if (isRouteActive) {
+        debugPrint('SHRT: tab became active, playing');
+        final player = shortControllers[currentIndex.value % playerCount].player;
+        if (player.value.isInitialized) {
+          shortControllers[currentIndex.value % playerCount].player.play();
+        }
+        preloadNextAndPreviousFor(currentIndex.value);
+        tabOpenAnimation.forward();
+        isFirstOpen.value = false;
+        WakelockPlus.enable();
+        return;
+      }
+      debugPrint('SHRT: tab no longer active: pausing controllers');
+      for (final c in shortControllers) {
+        c.player.pause();
+      }
+      WakelockPlus.disable();
+    }, [isRouteActive]);
+
+    bool okToAutoplay() => isMounted() && isRouteActiveRef.value && pageIsActive.value && router.topMatch == context.routeData.route;
 
     setupCurrentController(int index, {required bool preloadNext}) async {
       if (!isMounted()) return;
@@ -311,7 +312,7 @@ class ShortScrollView extends HookConsumerWidget {
       physics: const _CustomPageViewScrollPhysics(),
       itemCount: preventScroll ? 1 : null,
       itemBuilder: (context, index) {
-        if (!isTabActive()) {
+        if (!isRouteActive) {
           return const SizedBox();
         }
 

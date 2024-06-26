@@ -39,7 +39,6 @@ final notificationServiceProviderOverride = notificationServiceProvider.override
       );
     },
     onTokenChanged: (token) async {
-      debugPrint('Sending FCM token. $token');
       await ref.read(bccmGraphQLProvider).mutate$SetDeviceToken(
             Options$Mutation$SetDeviceToken(
               variables: Variables$Mutation$SetDeviceToken(

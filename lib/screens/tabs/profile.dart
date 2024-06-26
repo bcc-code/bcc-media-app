@@ -65,13 +65,14 @@ class ProfileScreen extends HookConsumerWidget {
     }
 
     final myListFuture = useState(useMemoized(getMyList));
-    onFavoritesRefresh() => myListFuture.value = getMyList();
+    refreshFavorites() => myListFuture.value = getMyList();
 
-    useIsTabActive(onChange: (active) {
-      if (active) {
-        onFavoritesRefresh();
+    final isRouteActive = useIsRouteActive();
+    useEffect(() {
+      if (isRouteActive) {
+        refreshFavorites();
       }
-    });
+    }, [isRouteActive]);
 
     final design = DesignSystem.of(context);
     final downloadedVideosCount = ref.watch(downloadsProvider.select((value) => value.valueOrNull?.length ?? 0));
@@ -187,7 +188,7 @@ class ProfileScreen extends HookConsumerWidget {
                     if (snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                       child = const SizedBox(height: 250, child: LoadingGeneric());
                     } else if (snapshot.hasError || items == null) {
-                      child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onFavoritesRefresh));
+                      child = SizedBox(height: 200, child: ErrorGeneric(onRetry: refreshFavorites));
                     } else if (items.isEmpty) {
                       child = Container(
                         padding: const EdgeInsets.all(16),
@@ -226,7 +227,7 @@ class ProfileScreen extends HookConsumerWidget {
                       if (snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                         child = const SizedBox(height: 250, child: LoadingGeneric());
                       } else if (snapshot.hasError || items == null) {
-                        child = SizedBox(height: 200, child: ErrorGeneric(onRetry: onFavoritesRefresh));
+                        child = SizedBox(height: 200, child: ErrorGeneric(onRetry: refreshFavorites));
                       } else if (items.isEmpty) {
                         child = Container(
                           padding: const EdgeInsets.all(16),
