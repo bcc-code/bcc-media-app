@@ -54,3 +54,15 @@ rerelease-kids:
 
 fix-time:
 	adb shell "su 0 date `date +%m%d%H%M%Y.%S`"
+
+
+# bumps the minor version in pubspec.yaml e.g. 0.4.5+45 -> 0.4.6+46
+bump:
+	@VERSION_LINE=$$(grep -i -e "version: " pubspec.yaml); \
+	CURRENT_VERSION=$$(echo $$VERSION_LINE | cut -d " " -f 2); \
+	VERSION_PART=$$(echo $$CURRENT_VERSION | cut -d "+" -f 1); \
+	BUILD_NUMBER=$$(echo $$CURRENT_VERSION | cut -d "+" -f 2); \
+	IFS='.' read -r MAJOR MINOR PATCH <<< "$$VERSION_PART"; \
+	NEW_VERSION="$${MAJOR}.$${MINOR}.$$((PATCH + 1))+$$(($$BUILD_NUMBER + 1))"; \
+	sed -i '' "s/version: .*/version: $${NEW_VERSION}/" pubspec.yaml; \
+	echo "Bumped version to $${NEW_VERSION}"
