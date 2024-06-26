@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.8+2300158...v) (2024-06-21)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.9+2300159...v) (2024-06-26)
+
+
+### Bug Fixes
+
+* pausing and playing shorts ([affbbeb](https://github.com/bcc-code/bcc-media-app/commit/affbbeb93fb08e46c8aa2585b719bd4ce865d3bc))
+
+
+### Features
+
+* sync translations (es, si) ([b512bd0](https://github.com/bcc-code/bcc-media-app/commit/b512bd0f8d7ebfe69221a8c7a4a804a3435112b4))
+
+
+
+## [5.5.9+2300159](https://github.com/bcc-code/bcc-media-app/compare/v5.5.8+2300158...v5.5.9+2300159) (2024-06-21)
 
 
 ### Features
