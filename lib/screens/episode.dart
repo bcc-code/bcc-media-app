@@ -408,7 +408,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
         final chapter = episode.chapters.firstWhereOrNull((element) => element.id == id);
         if (chapter == null) return;
         if (episodeIsCurrentItem) {
-          BccmPlayerController.primary.seekTo(Duration(seconds: chapter.start));
+          BccmPlayerController.primary.seekTo(Duration(seconds: chapter.start)).then((value) => BccmPlayerController.primary.play());
           scrollToTop();
         } else {
           setupPlayer().then((value) => BccmPlayerController.primary.seekTo(Duration(seconds: chapter.start)));
