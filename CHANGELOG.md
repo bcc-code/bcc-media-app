@@ -1,4 +1,19 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.5.9+2300159...v) (2024-06-26)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.0+2300160...v) (2024-06-29)
+
+
+### Bug Fixes
+
+* minor seek improvement, seeking slightly earlier ([dd3cb16](https://github.com/bcc-code/bcc-media-app/commit/dd3cb168e9b9abaa2484be36c0796010cd8a7420))
+
+
+### Features
+
+* always play when clicking chapters underneath video ([d7f1c61](https://github.com/bcc-code/bcc-media-app/commit/d7f1c6163816b31467b929b73be0da36b77d814c))
+* playback start improvements on ios and android ([f072f21](https://github.com/bcc-code/bcc-media-app/commit/f072f21eef14a28203e556ee00c6602bb66dfaf9))
+
+
+
+# [5.6.0+2300160](https://github.com/bcc-code/bcc-media-app/compare/v5.5.9+2300159...v5.6.0+2300160) (2024-06-26)
 
 
 ### Bug Fixes
