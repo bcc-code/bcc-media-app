@@ -230,7 +230,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     if (screenParams.queryParamStartPositionSeconds != null && screenParams.queryParamStartPositionSeconds! >= 0) {
       startPositionSeconds = screenParams.queryParamStartPositionSeconds!;
     }
-    if (startPositionSeconds > episode.duration) {
+    if (startPositionSeconds > episode.duration || startPositionSeconds < 0) {
       startPositionSeconds = 0;
     }
 
