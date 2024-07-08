@@ -13,6 +13,7 @@ import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/share_extension/share_extension.dart';
+import 'package:brunstadtv_app/helpers/shorts/short_controller.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
@@ -31,7 +32,7 @@ class ShortView extends HookConsumerWidget {
     super.key,
     required this.short,
     required this.future,
-    required this.videoController,
+    required this.shortController,
     required this.muted,
     required this.onMuteRequested,
     required this.onReloadRequested,
@@ -40,7 +41,7 @@ class ShortView extends HookConsumerWidget {
 
   final Fragment$Short? short;
   final Future<QueryResult<dynamic>>? future;
-  final BccmPlayerController? videoController;
+  final ShortController shortController;
   final bool muted;
   final void Function(bool) onMuteRequested;
   final void Function() onReloadRequested;
@@ -49,14 +50,14 @@ class ShortView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
+    final videoController = shortController.player;
 
-    final isAtStart = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.playbackPositionMs == 0);
-    final isBuffering = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isBuffering);
-    final isPlaying = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.playbackState == PlaybackState.playing);
-    final isInitialized = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.isInitialized ?? false);
-    final playerError = useListenableSelector(Listenable.merge([videoController]), () => videoController?.value.error);
+    final isAtStart = useListenableSelector(Listenable.merge([videoController]), () => videoController.value.playbackPositionMs == 0);
+    final isBuffering = useListenableSelector(Listenable.merge([videoController]), () => videoController.value.isBuffering);
+    final isPlaying = useListenableSelector(Listenable.merge([videoController]), () => videoController.value.playbackState == PlaybackState.playing);
+    final isInitialized = useListenableSelector(Listenable.merge([videoController]), () => videoController.value.isInitialized);
+    final playerError = useListenableSelector(Listenable.merge([videoController]), () => videoController.value.error);
     final playIconAnimation = useAnimationController(duration: 1000.ms);
-    final loadingAnimation = useAnimationController(duration: 1000.ms);
     final dragLeftMostPosition = useRef<double?>(null);
     final dragRightMostPosition = useRef<double?>(null);
     final futureSnapshot = useFuture(future);
@@ -66,13 +67,17 @@ class ShortView extends HookConsumerWidget {
     }
 
     String? buildSemantics() {
-      if (short == null) {
-        return null;
-      }
-      final title = short!.title;
-      final playbackStatus = isPlaying == true ? 'Playing.' : 'Paused.';
-      final errorState = playerError != null ? 'Error: ${playerError.code} ${playerError.message}.' : '';
-      return '$title. $playbackStatus $errorState';
+      final short = this.short;
+      if (short == null) return null;
+      final title = short.title;
+      final iteration = useListenable(shortController.analytics.replayCount);
+      final parts = <String>[
+        title,
+        isPlaying == true ? 'Playing' : 'Paused',
+        'Replayed ${iteration.value} times.',
+        if (playerError != null) 'Error: ${playerError.code}',
+      ];
+      return parts.map((p) => '$p.').join(' ');
     }
 
     return GestureDetector(
@@ -129,11 +134,8 @@ class ShortView extends HookConsumerWidget {
       },
       behavior: HitTestBehavior.opaque,
       onTap: () async {
-        if (videoController == null) {
-          return;
-        }
-        if (videoController!.value.playbackState == PlaybackState.playing) {
-          videoController!.pause();
+        if (videoController.value.playbackState == PlaybackState.playing) {
+          videoController.pause();
           ref.read(analyticsProvider).interaction(InteractionEvent(
                 interaction: 'pause',
                 pageCode: 'shorts',
@@ -141,7 +143,7 @@ class ShortView extends HookConsumerWidget {
                 contextElementId: short?.id,
               ));
         } else {
-          videoController!.play();
+          videoController.play();
           ref.read(analyticsProvider).interaction(InteractionEvent(
                 interaction: 'play',
                 pageCode: 'shorts',
@@ -159,7 +161,7 @@ class ShortView extends HookConsumerWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            if (videoController != null && isInitialized) VideoView(controller: videoController!),
+            if (isInitialized) VideoView(controller: videoController),
             FadeTransition(
               opacity: CurvedAnimation(parent: playIconAnimation, curve: Curves.easeInOut, reverseCurve: Curves.easeOut),
               child: Center(
@@ -181,7 +183,7 @@ class ShortView extends HookConsumerWidget {
                   ),
                 ),
               ),
-            if (short == null || !isInitialized || videoController == null || (isBuffering == true && isAtStart))
+            if (short == null || !isInitialized || (isBuffering == true && isAtStart))
               Positioned.fill(
                 child: Stack(
                   children: [

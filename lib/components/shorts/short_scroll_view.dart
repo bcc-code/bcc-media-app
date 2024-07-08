@@ -306,7 +306,7 @@ class ShortScrollView extends HookConsumerWidget {
           return ShortView(
             future: short == null ? fetchMoreFuture.value : null,
             short: wrongShortInController ? null : short,
-            videoController: shortController.player,
+            shortController: shortController,
             muted: muted.value,
             tabOpenAnimation: tabOpenAnimation,
             onReloadRequested: () async {

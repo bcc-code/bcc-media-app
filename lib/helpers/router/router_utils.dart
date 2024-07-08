@@ -139,6 +139,7 @@ Future<dynamic>? _navigateToItem(BuildContext context, Object item, {String? col
       FirebaseCrashlytics.instance.recordError(ErrorHint('Chapter without episode'), StackTrace.current);
       return null;
     }
+    debugPrint('Navigating to chapter ${chapter.id} in episode ${episode.id} at time ${chapter.start}');
     overrideAwareNavigation(
       navigationOverride,
       router,

@@ -8,3 +8,9 @@ appId: tv.brunstad.app
 - tapOn: Shorts.*
 - assertVisible: .*Playing..*
 - assertNotVisible: .*Error.*
+- openLink: "https://app.bcc.media/shorts/ec5120e8-f4de-4002-9e1e-645f7e324117"
+- assertVisible: .*Playing..*
+- assertNotVisible: .*Error.*
+- extendedWaitUntil:
+    visible: "Replayed [1-9] times"
+    timeout: 20000 # Timeout in milliseconds

@@ -15,7 +15,7 @@ import 'package:universal_io/io.dart';
 
 class ShortController {
   late final BccmPlayerController player;
-  late final ShortAnalyticsListener _analyticsListener;
+  late final ShortAnalyticsListener analytics;
   final WidgetRef ref;
   final _progressDebouncer = Debouncer(milliseconds: 1000);
   int previousSeconds = 0;
@@ -44,7 +44,7 @@ class ShortController {
         });
       }
     });
-    _analyticsListener = ShortAnalyticsListener(this, ref);
+    analytics = ShortAnalyticsListener(this, ref);
     player.addListener(onPlayerStateChanged);
   }
 
@@ -139,7 +139,7 @@ class ShortController {
 
   onPlayerStateChanged() {
     final gql = ref.read(bccmGraphQLProvider);
-    final analytics = ref.read(analyticsProvider);
+    final coreAnalytics = ref.read(analyticsProvider);
     final s = currentShort;
     if (s == null) return;
     final progressSeconds = (player.value.playbackPositionMs ?? 0) ~/ 1000;
@@ -155,7 +155,7 @@ class ShortController {
           ),
         );
       });
-      analytics.heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
+      coreAnalytics.heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
     }
 
     previousSeconds = progressSeconds;
@@ -185,6 +185,6 @@ class ShortController {
     player.removeListener(onPlayerStateChanged);
     player.dispose();
     _texture?.dispose();
-    _analyticsListener.dispose();
+    analytics.dispose();
   }
 }
