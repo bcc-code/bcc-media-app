@@ -144,7 +144,7 @@ Future<dynamic>? _navigateToItem(BuildContext context, Object item, {String? col
       router,
       EpisodeScreenRoute(
         episodeId: episode.id,
-        queryParamStartPosition: chapter.start,
+        queryParamStartPositionSeconds: chapter.start,
         autoplay: true,
       ),
     );

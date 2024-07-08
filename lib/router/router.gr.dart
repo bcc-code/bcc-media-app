@@ -105,7 +105,7 @@ abstract class $AppRouter extends _i33.RootStackRouter {
           orElse: () => CollectionEpisodeScreenRouteArgs(
                 episodeId: pathParams.getString('episodeId'),
                 autoplay: queryParams.optBool('autoplay'),
-                queryParamStartPosition: queryParams.optInt('t'),
+                queryParamStartPositionSeconds: queryParams.optInt('t'),
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
                 collectionId: pathParams.optString('collectionId'),
               ));
@@ -115,7 +115,7 @@ abstract class $AppRouter extends _i33.RootStackRouter {
           key: args.key,
           episodeId: args.episodeId,
           autoplay: args.autoplay,
-          queryParamStartPosition: args.queryParamStartPosition,
+          queryParamStartPositionSeconds: args.queryParamStartPositionSeconds,
           hideBottomSection: args.hideBottomSection,
           collectionId: args.collectionId,
         ),
@@ -159,7 +159,7 @@ abstract class $AppRouter extends _i33.RootStackRouter {
           orElse: () => EpisodeScreenRouteArgs(
                 episodeId: pathParams.getString('episodeId'),
                 autoplay: queryParams.optBool('autoplay'),
-                queryParamStartPosition: queryParams.optInt('t'),
+                queryParamStartPositionSeconds: queryParams.optInt('t'),
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
                 collectionId: queryParams.optString('collectionId'),
               ));
@@ -169,7 +169,7 @@ abstract class $AppRouter extends _i33.RootStackRouter {
           key: args.key,
           episodeId: args.episodeId,
           autoplay: args.autoplay,
-          queryParamStartPosition: args.queryParamStartPosition,
+          queryParamStartPositionSeconds: args.queryParamStartPositionSeconds,
           hideBottomSection: args.hideBottomSection,
           collectionId: args.collectionId,
         ),
@@ -511,7 +511,7 @@ class CollectionEpisodeScreenRoute
     _i35.Key? key,
     required String episodeId,
     bool? autoplay,
-    int? queryParamStartPosition,
+    int? queryParamStartPositionSeconds,
     bool? hideBottomSection,
     String? collectionId,
     List<_i33.PageRouteInfo>? children,
@@ -521,7 +521,7 @@ class CollectionEpisodeScreenRoute
             key: key,
             episodeId: episodeId,
             autoplay: autoplay,
-            queryParamStartPosition: queryParamStartPosition,
+            queryParamStartPositionSeconds: queryParamStartPositionSeconds,
             hideBottomSection: hideBottomSection,
             collectionId: collectionId,
           ),
@@ -531,7 +531,7 @@ class CollectionEpisodeScreenRoute
           },
           rawQueryParams: {
             'autoplay': autoplay,
-            't': queryParamStartPosition,
+            't': queryParamStartPositionSeconds,
             'hide_bottom_section': hideBottomSection,
           },
           initialChildren: children,
@@ -548,7 +548,7 @@ class CollectionEpisodeScreenRouteArgs {
     this.key,
     required this.episodeId,
     this.autoplay,
-    this.queryParamStartPosition,
+    this.queryParamStartPositionSeconds,
     this.hideBottomSection,
     this.collectionId,
   });
@@ -559,7 +559,7 @@ class CollectionEpisodeScreenRouteArgs {
 
   final bool? autoplay;
 
-  final int? queryParamStartPosition;
+  final int? queryParamStartPositionSeconds;
 
   final bool? hideBottomSection;
 
@@ -567,7 +567,7 @@ class CollectionEpisodeScreenRouteArgs {
 
   @override
   String toString() {
-    return 'CollectionEpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
+    return 'CollectionEpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPositionSeconds: $queryParamStartPositionSeconds, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
   }
 }
 
@@ -660,7 +660,7 @@ class EpisodeScreenRoute extends _i33.PageRouteInfo<EpisodeScreenRouteArgs> {
     _i35.Key? key,
     required String episodeId,
     bool? autoplay,
-    int? queryParamStartPosition,
+    int? queryParamStartPositionSeconds,
     bool? hideBottomSection,
     String? collectionId,
     List<_i33.PageRouteInfo>? children,
@@ -670,14 +670,14 @@ class EpisodeScreenRoute extends _i33.PageRouteInfo<EpisodeScreenRouteArgs> {
             key: key,
             episodeId: episodeId,
             autoplay: autoplay,
-            queryParamStartPosition: queryParamStartPosition,
+            queryParamStartPositionSeconds: queryParamStartPositionSeconds,
             hideBottomSection: hideBottomSection,
             collectionId: collectionId,
           ),
           rawPathParams: {'episodeId': episodeId},
           rawQueryParams: {
             'autoplay': autoplay,
-            't': queryParamStartPosition,
+            't': queryParamStartPositionSeconds,
             'hide_bottom_section': hideBottomSection,
             'collectionId': collectionId,
           },
@@ -695,7 +695,7 @@ class EpisodeScreenRouteArgs {
     this.key,
     required this.episodeId,
     this.autoplay,
-    this.queryParamStartPosition,
+    this.queryParamStartPositionSeconds,
     this.hideBottomSection,
     this.collectionId,
   });
@@ -706,7 +706,7 @@ class EpisodeScreenRouteArgs {
 
   final bool? autoplay;
 
-  final int? queryParamStartPosition;
+  final int? queryParamStartPositionSeconds;
 
   final bool? hideBottomSection;
 
@@ -714,7 +714,7 @@ class EpisodeScreenRouteArgs {
 
   @override
   String toString() {
-    return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
+    return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPositionSeconds: $queryParamStartPositionSeconds, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
   }
 }
 

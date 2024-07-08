@@ -648,7 +648,7 @@ class ShortActions extends HookConsumerWidget {
                   EpisodeScreenRoute(
                     episodeId: ep.id,
                     autoplay: true,
-                    queryParamStartPosition: sourcePosition + shortPosition,
+                    queryParamStartPositionSeconds: sourcePosition + shortPosition,
                   ),
                 );
                 // after navigating back, we want to stop the "source"

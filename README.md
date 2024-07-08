@@ -12,8 +12,14 @@ Recommended editor: VS Code, because we have some default debug options set up i
 1. Install flutter, then run `flutter doctor -v` until it reports everything is OK.
 2. Run in a terminal: `flutter pub get`
 3. Inside lib/env/, copy the .env.dart.template file to .env.dart, and update the values according to the comments.
-4. You can now run the app, e.g. with `flutter run --flavor prod -t lib/main_prod.dart` or Run > Start Debugging in VSCode
+4. You can now run the app, e.g. with Run > Start Debugging in VSCode
 5. For development, it's important to read the [Code generation](#code-generation) section below before you begin.
+
+## Updating the core packages
+
+```
+make update
+```
 
 ## Code generation
 

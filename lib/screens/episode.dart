@@ -49,7 +49,7 @@ class EpisodeScreen extends _EpisodeScreenImplementation {
     super.key,
     @PathParam() required super.episodeId,
     @QueryParam() super.autoplay,
-    @QueryParam('t') super.queryParamStartPosition,
+    @QueryParam('t') super.queryParamStartPositionSeconds,
     @QueryParam('hide_bottom_section') super.hideBottomSection,
     @QueryParam('collectionId') super.collectionId,
   });
@@ -61,7 +61,7 @@ class CollectionEpisodeScreen extends _EpisodeScreenImplementation {
     super.key,
     @PathParam() required super.episodeId,
     @QueryParam() super.autoplay,
-    @QueryParam('t') super.queryParamStartPosition,
+    @QueryParam('t') super.queryParamStartPositionSeconds,
     @QueryParam('hide_bottom_section') super.hideBottomSection,
     @PathParam('collectionId') super.collectionId,
   });
@@ -70,7 +70,7 @@ class CollectionEpisodeScreen extends _EpisodeScreenImplementation {
 class _EpisodeScreenImplementation extends HookConsumerWidget {
   final String episodeId;
   final bool? autoplay;
-  final int? queryParamStartPosition;
+  final int? queryParamStartPositionSeconds;
   final bool? hideBottomSection;
   final String? collectionId;
 
@@ -78,13 +78,16 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
     super.key,
     required this.episodeId,
     this.autoplay,
-    this.queryParamStartPosition,
+    this.queryParamStartPositionSeconds,
     this.hideBottomSection,
     this.collectionId,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final d = Duration(seconds: queryParamStartPositionSeconds ?? 0);
+    debugPrint('ag: startTime $queryParamStartPositionSeconds ${d.inMinutes}:${d.inSeconds.remainder(60)}');
+
     // Listen to route animation status
     final scrollController = useScrollController();
     final modalRoute = ModalRoute.of(context);
@@ -118,7 +121,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
     // Fetch the episode when needed
     useEffect(() {
       fetchCurrentEpisode();
-    }, [episodeId, collectionId, queryParamStartPosition]);
+    }, [episodeId, collectionId, queryParamStartPositionSeconds]);
 
     final episodeSnapshot = useFuture(episodeFuture.value);
 
@@ -222,40 +225,13 @@ class _EpisodeDisplay extends HookConsumerWidget {
   final ScrollController scrollController;
   final Future<void> Function() triggerReload;
 
-  Future<bool> autoplayNext(PlaybackService playbackService, String playerId, StackRouter router) async {
-    final nextEpisode = await playbackService.getNextEpisodeForPlayer(playerId: playerId);
-    if (nextEpisode == null) {
-      playbackService.platformApi.exitFullscreen(playerId);
-      return false;
-    }
-    // When we are fullscreen on iOS, flutter's lifecyclestate becomes 'paused', and the widget tree won't build e.g. on navigation.
-    // Therefore we can't rely on the routing to autoplay the next episode.
-    // But we still call navigate(), so that it's performed when the user exits fullscreen.
-    // TODO: Navigate upon fullscreen exit instead. Basically: if leaving fullscreen and we're on the wrong page, navigate.
-    playbackService.playEpisode(
-      playerId: playerId,
-      episode: nextEpisode,
-      playbackPositionMs: 0,
-      autoplay: true,
-    );
-    router.navigate(
-      EpisodeScreenRoute(
-        episodeId: nextEpisode.id,
-        collectionId: nextEpisode.context?.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id,
-        autoplay: true,
-        queryParamStartPosition: 0,
-      ),
-    );
-    return true;
-  }
-
   Future setupPlayerForEpisode(Query$FetchEpisode$episode episode, {required WidgetRef ref}) async {
     var player = ref.read(primaryPlayerProvider);
     if (player == null) return;
 
     var startPositionSeconds = (episode.progress ?? 0);
-    if (screenParams.queryParamStartPosition != null && screenParams.queryParamStartPosition! >= 0) {
-      startPositionSeconds = screenParams.queryParamStartPosition!;
+    if (screenParams.queryParamStartPositionSeconds != null && screenParams.queryParamStartPositionSeconds! >= 0) {
+      startPositionSeconds = screenParams.queryParamStartPositionSeconds!;
     }
     if (startPositionSeconds > episode.duration * 0.9) {
       startPositionSeconds = 0;
@@ -312,7 +288,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
         setupPlayer();
       }
       return null;
-    }, [episode.id, screenParams.autoplay, screenParams.queryParamStartPosition]);
+    }, [episode.id, screenParams.autoplay, screenParams.queryParamStartPositionSeconds]);
 
     final viewController = useMemoized(
       () => BccmPlayerViewController(playerController: BccmPlayerController.primary),
@@ -337,7 +313,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                 ? null
                 : (context) => PlayNextButton(
                       playerController: BccmPlayerController.primary,
-                      onTap: () => autoplayNext(playbackService, player.playerId, context.router),
+                      onTap: () => _getNextEpisodeAndAutoplayIt(playbackService, player.playerId, context.router),
                       text: S.of(context).nextEpisode,
                     ),
           ),
@@ -371,7 +347,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
       if (!scrollController.hasClients || isScrolling) return;
       scrollToTop();
       return null;
-    }, [screenParams.hideBottomSection, screenParams.queryParamStartPosition]);
+    }, [screenParams.hideBottomSection, screenParams.queryParamStartPositionSeconds]);
 
     // Start playing when chromecast disconnects
     useEffect(() {
@@ -390,7 +366,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     useEffect(() {
       final subscription = playerEvents.where((event) => event is PlaybackEndedEvent).cast<PlaybackEndedEvent>().listen((event) async {
         if (enableAutoplayNext) {
-          autoplayNext(playbackService, player.playerId, context.router);
+          _getNextEpisodeAndAutoplayIt(playbackService, player.playerId, context.router);
           return;
         }
         playbackService.platformApi.exitFullscreen(player.playerId);
@@ -630,4 +606,34 @@ class VideoLanguageSettings extends HookConsumerWidget {
       },
     );
   }
+}
+
+/// A helper function to autoplay and navigate to the next episode, if available
+///
+/// Works even when in background e.g. on iOS, as it doesn't rely on the new episode page to render.
+Future<bool> _getNextEpisodeAndAutoplayIt(PlaybackService playbackService, String playerId, StackRouter router) async {
+  final nextEpisode = await playbackService.getNextEpisodeForPlayer(playerId: playerId);
+  if (nextEpisode == null) {
+    playbackService.platformApi.exitFullscreen(playerId);
+    return false;
+  }
+  // When we are fullscreen on iOS, flutter's lifecyclestate becomes 'paused', and the widget tree won't build e.g. on navigation.
+  // Therefore we can't rely on the routing to autoplay the next episode.
+  // But we still call navigate(), so that it's performed when the user exits fullscreen.
+  // TODO: Navigate upon fullscreen exit instead. Basically: if leaving fullscreen and we're on the wrong page, navigate.
+  playbackService.playEpisode(
+    playerId: playerId,
+    episode: nextEpisode,
+    playbackPositionMs: 0,
+    autoplay: true,
+  );
+  router.navigate(
+    EpisodeScreenRoute(
+      episodeId: nextEpisode.id,
+      collectionId: nextEpisode.context?.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id,
+      autoplay: true,
+      queryParamStartPositionSeconds: 0,
+    ),
+  );
+  return true;
 }
