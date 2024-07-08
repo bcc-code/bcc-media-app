@@ -1,4 +1,11 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.1+2300161...v) (2024-06-29)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.1+2300161...v) (2024-07-08)
+
+
+### Bug Fixes
+
+* auto replay on shorts [#390](https://github.com/bcc-code/bcc-media-app/issues/390), and disable auto-audio-only for shorts ([9ae7d6f](https://github.com/bcc-code/bcc-media-app/commit/9ae7d6ff6e36cc24815891fe034e9ce6ef18ed69))
+* chapter start tiem ([d67b387](https://github.com/bcc-code/bcc-media-app/commit/d67b3879fab17ebc7a41aa74e19f66f1223e7d3b))
+* contributors doesnt land on correct timestamp [#398](https://github.com/bcc-code/bcc-media-app/issues/398) ([354d221](https://github.com/bcc-code/bcc-media-app/commit/354d221d65e3cd2853bf40343f69cf8f4ca6d5e2))
 
 
 
