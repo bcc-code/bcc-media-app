@@ -85,9 +85,6 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final d = Duration(seconds: queryParamStartPositionSeconds ?? 0);
-    debugPrint('ag: startTime $queryParamStartPositionSeconds ${d.inMinutes}:${d.inSeconds.remainder(60)}');
-
     // Listen to route animation status
     final scrollController = useScrollController();
     final modalRoute = ModalRoute.of(context);

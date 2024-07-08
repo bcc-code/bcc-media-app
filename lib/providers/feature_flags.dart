@@ -49,7 +49,6 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     ref.listen(
       unleashContextProvider,
       (UnleashContext? previous, UnleashContext next) {
-        debugPrint('ag: Unleash context updated: ${next.properties.toString()}');
         unleash.updateContext(next);
       },
     );
@@ -76,7 +75,6 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     ));
 
     _saveCache(value);
-    print('ag: Feature flags refreshed: $value');
     return value;
   }
 
@@ -94,7 +92,6 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
   }
 
   Future<void> _createUnleashClient() async {
-    print('ag: Unleash client created');
     final unleash = this.unleash = UnleashClient(
       url: Uri.parse(Env.unleashProxyUrl),
       clientKey: Env.unleashClientKey,
@@ -106,7 +103,6 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     );
     final c = ref.read(unleashContextProvider);
     unleash.updateContext(c);
-    debugPrint('ag: FeatureFlagsNotifier._createUnleashClient, starting unleash');
     unleash.on(
       'error',
       (err) => FlutterError.reportError(
@@ -131,22 +127,18 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     unleash?.stop();
     unleash?.updateContext(ref.read(unleashContextProvider));
     await unleash?.start();
-    debugPrint('ag: Feature flags refresh() completed');
   }
 
   /// We dont need to do anything on init, as we dont want to use unleash's cached values.
   void onUnleashInit(_) {
-    debugPrint('ag: FeatureFlagsNotifier.onInit');
     return;
   }
 
   void onUnleashReady(_) {
-    debugPrint('ag: FeatureFlagsNotifier.onReady');
     _handleUpdate();
   }
 
   void onUnleashUpdate(_) {
-    debugPrint('ag: FeatureFlagsNotifier.onUpdate');
     _handleUpdate();
   }
 
