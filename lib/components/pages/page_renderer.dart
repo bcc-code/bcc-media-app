@@ -76,6 +76,10 @@ class _PageRendererImpl extends HookConsumerWidget {
     loadMoreItemsForSection(String sectionId) async {
       final section = page.sections.items.firstWhereOrNull((element) => element.id == sectionId).asOrNull<Fragment$ItemSection>();
       if (section == null) return;
+      final limit = section.metadata?.limit;
+      if (limit != null && section.items.items.length >= limit) {
+        return;
+      }
       final sectionPagination = paginationMap.value[sectionId] ??
           PaginationStatus<Fragment$ItemSectionItem>(currentOffset: section.items.offset + section.items.first, items: []);
       if (sectionPagination.reachedMax) {
