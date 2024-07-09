@@ -306,7 +306,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
               ];
             },
             topRightNextToSettingsSlot: languages.length < 2 ? null : (context) => const MultiVideoLangNotice(),
-            playNextButton: !enablePlayNextButton
+            rightSideSlot: !enablePlayNextButton
                 ? null
                 : (context) => PlayNextButton(
                       playerController: BccmPlayerController.primary,

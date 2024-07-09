@@ -28,6 +28,7 @@ sealed class FeatureFlags with _$FeatureFlags {
     required bool disableNpawShorts,
     required String? featuredSectionVariant,
     required String? iconSectionVariant,
+    required bool jumpToChapter,
   }) = _FeatureFlags;
 
   factory FeatureFlags.fromJson(Map<String, dynamic> json) => _$FeatureFlagsFromJson(json);
@@ -57,6 +58,7 @@ sealed class FeatureFlags with _$FeatureFlags {
       disableNpawShorts: newFlags.disableNpawShorts || disableNpawShorts,
       featuredSectionVariant: newFlags.featuredSectionVariant ?? featuredSectionVariant,
       iconSectionVariant: newFlags.iconSectionVariant ?? iconSectionVariant,
+      jumpToChapter: newFlags.jumpToChapter ?? jumpToChapter,
     );
   }
 }
