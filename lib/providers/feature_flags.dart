@@ -36,6 +36,8 @@ FeatureFlags getBaseFeatureFlags() {
     shortsHideBeta: false,
     shortsGuide: false,
     disableNpawShorts: false,
+    featuredSectionVariant: null,
+    iconSectionVariant: null,
   );
 }
 
@@ -72,6 +74,8 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
       shortsHideBeta: _verifyToggle(unleash, 'shorts-hide-beta'),
       shortsGuide: _verifyToggle(unleash, 'shorts-guide'),
       disableNpawShorts: _verifyToggle(unleash, 'disable-npaw-shorts'),
+      featuredSectionVariant: unleash.getVariant('featured-section-variant').name,
+      iconSectionVariant: unleash.getVariant('icon-section-variant').name,
     ));
 
     _saveCache(value);

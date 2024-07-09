@@ -2,11 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/misc/see_more.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/pages/sections/types/avatar_section.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bccm_core/platform.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../router/router.gr.dart';
 import 'types/achievement_section.dart';
+import 'types/featured_section_v2.dart';
 import 'types/icon_section.dart';
 import 'section_with_header.dart';
 import 'types/card_section.dart';
@@ -20,7 +23,7 @@ import 'types/web_section.dart';
 import 'types/item_section_thumbnail_grid.dart';
 import 'types/item_section_thumbnail_slider.dart';
 
-class SectionRenderer extends StatelessWidget {
+class SectionRenderer extends ConsumerWidget {
   const SectionRenderer({
     super.key,
     required this.section,
@@ -31,7 +34,7 @@ class SectionRenderer extends StatelessWidget {
   final List<Fragment$ItemSectionItem>? extraItems;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     if (section.asOrNull<Fragment$ItemSection>()?.items.items.isEmpty == true) {
       return const SizedBox.shrink();
     }
@@ -76,6 +79,10 @@ class SectionRenderer extends StatelessWidget {
     }
     final featuredSection = section.asOrNull<Fragment$Section$$FeaturedSection>();
     if (featuredSection != null) {
+      final variant = ref.watch(featureFlagsProvider.select((f) => f.featuredSectionVariant));
+      if (variant == 'v2') {
+        return SectionWithHeader.fromFragment(featuredSection, child: FeaturedSectionV2(featuredSection));
+      }
       return SectionWithHeader.fromFragment(featuredSection, child: FeaturedSection(featuredSection));
     }
     final iconGridSection = section.asOrNull<Fragment$Section$$IconGridSection>();

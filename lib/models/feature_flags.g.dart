@@ -27,6 +27,8 @@ _$FeatureFlagsImpl _$$FeatureFlagsImplFromJson(Map<String, dynamic> json) =>
       shortsHideBeta: json['shortsHideBeta'] as bool,
       shortsGuide: json['shortsGuide'] as bool,
       disableNpawShorts: json['disableNpawShorts'] as bool,
+      featuredSectionVariant: json['featuredSectionVariant'] as String?,
+      iconSectionVariant: json['iconSectionVariant'] as String?,
     );
 
 Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
@@ -49,4 +51,6 @@ Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
       'shortsHideBeta': instance.shortsHideBeta,
       'shortsGuide': instance.shortsGuide,
       'disableNpawShorts': instance.disableNpawShorts,
+      'featuredSectionVariant': instance.featuredSectionVariant,
+      'iconSectionVariant': instance.iconSectionVariant,
     };
