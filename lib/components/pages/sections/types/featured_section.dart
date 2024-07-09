@@ -24,36 +24,6 @@ class FeaturedSection extends ConsumerWidget {
 
   const FeaturedSection(this.data, {super.key});
 
-  List<Fragment$Section$$FeaturedSection$items$items> getItemsWithLiveItem(
-    List<Fragment$Section$$FeaturedSection$items$items> items,
-    Fragment$CalendarEntryEpisode? curLiveEpisode,
-  ) {
-    if (data.metadata == null || curLiveEpisode == null || !curLiveEpisode.locked) {
-      return items;
-    }
-    if (data.metadata!.prependLiveElement) {
-      return [
-        Fragment$Section$$FeaturedSection$items$items(
-          id: curLiveEpisode.id,
-          title: curLiveEpisode.title,
-          image: curLiveEpisode.image,
-          description: curLiveEpisode.description,
-          $__typename: 'SectionItem',
-          item: Fragment$Section$$FeaturedSection$items$items$item$$Episode(
-            id: curLiveEpisode.id,
-            duration: 0,
-            progress: 0,
-            publishDate: '',
-            $__typename: 'Episode',
-            locked: curLiveEpisode.locked,
-          ),
-        ),
-        ...items.where((item) => item.id != curLiveEpisode.id)
-      ];
-    }
-    return items;
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
@@ -63,15 +33,14 @@ class FeaturedSection extends ConsumerWidget {
         final episode = e.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
         return episode == null || !episode.locked;
       }).toList();
-      final sectionItems = getItemsWithLiveItem(filteredItems, curLiveEpisode);
 
       return Padding(
         padding: const EdgeInsets.only(top: 16),
         child: ScrollConfiguration(
           behavior: AnyPointerScrollBehavior(),
           child: kIsWeb || ResponsiveBreakpoints.of(context).largerThan(BP.lg)
-              ? buildSlider(context, sectionItems, constraints, curLiveEpisode)
-              : buildPageView(context, sectionItems, constraints, curLiveEpisode),
+              ? buildSlider(context, filteredItems, constraints, curLiveEpisode)
+              : buildPageView(context, filteredItems, constraints, curLiveEpisode),
         ),
       );
     });
