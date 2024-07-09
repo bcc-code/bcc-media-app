@@ -74,7 +74,7 @@ class _IconGridSectionList extends ConsumerWidget {
               child: iconSectionVariant == 'v2'
                   ? _IconSectionButtonV2(
                       label: item.title,
-                      networkImage: 'https://imgix.bcc.media/efe38076-11fe-415a-af56-61f49f43177c.png?w=160&h=160&fit=crop&crop=faces',
+                      networkImage: item.image,
                       width: 80,
                       aspectRatio: 175 / 48,
                       padding: const EdgeInsets.all(8),
