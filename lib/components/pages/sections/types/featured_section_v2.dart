@@ -9,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:bccm_core/platform.dart';
-import 'package:brunstadtv_app/helpers/router/router_utils.dart';
-import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/breakpoints.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/providers/todays_calendar_entries.dart';
@@ -134,7 +132,6 @@ class _FeaturedItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
-    final image = 'https://unsplash.it/1920/1080?image=1';
     return Container(
       foregroundDecoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
@@ -147,7 +144,7 @@ class _FeaturedItem extends StatelessWidget {
       height: double.infinity,
       child: Stack(children: [
         BorderedImageContainer(
-          imageUrl: image,
+          imageUrl: sectionItem.image,
           borderRadius: BorderRadius.circular(6),
         ),
         Align(

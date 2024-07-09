@@ -126,28 +126,31 @@ class _IconSectionButtonV2 extends StatelessWidget {
             ),
             child: Row(
               children: [
-                LayoutBuilder(builder: (context, constraints) {
-                  return Center(
-                    child: networkImage != null
-                        ? FadeInImage(
-                            placeholder: MemoryImage(kTransparentImage),
-                            fadeInDuration: const Duration(milliseconds: 200),
-                            image: networkImageWithRetryAndResize(
-                              imageUrl: networkImage!,
-                              cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
-                            ),
-                            imageErrorBuilder: imageErrorBuilder,
-                            fit: BoxFit.fitHeight,
-                          )
-                        : null,
-                  );
-                }),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Text(
-                    label,
-                    textAlign: TextAlign.center,
-                    style: design.textStyles.body2.copyWith(color: design.colors.label1),
+                if (networkImage != null)
+                  LayoutBuilder(builder: (context, constraints) {
+                    return Center(
+                      child: FadeInImage(
+                        placeholder: MemoryImage(kTransparentImage),
+                        fadeInDuration: const Duration(milliseconds: 200),
+                        image: networkImageWithRetryAndResize(
+                          imageUrl: networkImage!,
+                          cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                        ),
+                        imageErrorBuilder: imageErrorBuilder,
+                        fit: BoxFit.fitHeight,
+                      ),
+                    );
+                  }),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(
+                      label,
+                      textAlign: TextAlign.left,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: design.textStyles.caption1.copyWith(color: design.colors.label1),
+                    ),
                   ),
                 )
               ],
