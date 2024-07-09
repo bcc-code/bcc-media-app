@@ -13,7 +13,6 @@ class EpisodeRelated extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (episode.relatedItems == null) const SizedBox.shrink();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -21,7 +20,10 @@ class EpisodeRelated extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: NavigationOverride(
             pushInsteadOfReplace: true,
-            child: ThumbnailGrid(gridSize: Enum$GridSectionSize.half, sectionItems: episode.relatedItems!.items),
+            child: ThumbnailGrid(
+              gridSize: Enum$GridSectionSize.half,
+              sectionItems: episode.relatedItems?.items ?? [],
+            ),
           ),
         )
       ],

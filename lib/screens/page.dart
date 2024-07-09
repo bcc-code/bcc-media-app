@@ -16,9 +16,9 @@ class PageScreen extends HookConsumerWidget {
   final String pageCode;
 
   const PageScreen({
-    Key? key,
+    super.key,
     @PathParam() required this.pageCode,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
