@@ -13,7 +13,7 @@ import 'package:brunstadtv_app/models/breakpoints.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/providers/todays_calendar_entries.dart';
 
-const marginX = 2.0;
+const marginX = 4.0;
 
 class FeaturedSectionV2 extends ConsumerWidget {
   final Fragment$Section$$FeaturedSection section;
@@ -36,7 +36,7 @@ class FeaturedSectionV2 extends ConsumerWidget {
           behavior: AnyPointerScrollBehavior(),
           child: kIsWeb || ResponsiveBreakpoints.of(context).largerThan(BP.lg)
               ? buildSlider(context, filteredItems, constraints, curLiveEpisode)
-              : buildPageView(context, filteredItems, constraints, curLiveEpisode),
+              : buildPageView(context, [...filteredItems, ...filteredItems, ...filteredItems], constraints, curLiveEpisode),
         ),
       );
     });
@@ -65,6 +65,7 @@ class FeaturedSectionV2 extends ConsumerWidget {
               aspectRatio: 16 / 9,
               child: _FeaturedItem(
                 sectionItem: item,
+                margin: const EdgeInsets.symmetric(horizontal: marginX),
                 isLive: item.id == curLiveEpisode?.id,
               ),
             ),
@@ -134,10 +135,10 @@ class _FeaturedItem extends StatelessWidget {
     final design = DesignSystem.of(context);
     return Container(
       foregroundDecoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(
           width: 1,
-          color: DesignSystem.of(context).colors.onTint.withOpacity(0.1),
+          color: DesignSystem.of(context).colors.separatorOnLight,
         ),
       ),
       margin: margin,
@@ -145,7 +146,7 @@ class _FeaturedItem extends StatelessWidget {
       child: Stack(children: [
         BorderedImageContainer(
           imageUrl: sectionItem.image,
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(16),
         ),
         Align(
           alignment: Alignment.bottomCenter,
