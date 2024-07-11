@@ -1,4 +1,4 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.3+2300163...v) (2024-07-11)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.2+2300162...v) (2024-07-11)
 
 
 ### Bug Fixes
@@ -8,17 +8,9 @@
 
 ### Features
 
-* skip to chapter ([0c7c166](https://github.com/bcc-code/bcc-media-app/commit/0c7c166ee4450ad2b9c6b09167ba7a083c6e7021))
-
-
-
-## [5.6.3+2300163](https://github.com/bcc-code/bcc-media-app/compare/v5.6.2+2300162...v5.6.3+2300163) (2024-07-10)
-
-
-### Features
-
 * add show more button to listsections ([f2372d9](https://github.com/bcc-code/bcc-media-app/commit/f2372d949ea004fe0e100f25a01d6d58a78fe21a))
 * feature flag based new icon and featured styles ([4c594ff](https://github.com/bcc-code/bcc-media-app/commit/4c594ffd01f2180941886e8f4d8c98ffc3baca03))
+* skip to chapter ([0c7c166](https://github.com/bcc-code/bcc-media-app/commit/0c7c166ee4450ad2b9c6b09167ba7a083c6e7021))
 
 
 
