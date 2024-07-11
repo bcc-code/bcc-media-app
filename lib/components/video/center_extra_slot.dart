@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/controls.dart';
@@ -19,7 +21,7 @@ class CenterExtraSlot extends HookConsumerWidget {
     if (skipToChapterEnabled) {
       final timeline = useTimeline(controller.playerController);
       final chapter = episode.skipToChapter;
-      if (chapter != null && timeline.actualTimeMs < 10000) {
+      if (chapter != null && timeline.actualTimeMs < max(20000, (chapter.start * 1000) - 1000)) {
         return SkipButton(
           chapter: chapter,
           onTap: () async {
