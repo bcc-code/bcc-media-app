@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.2+2300162...v) (2024-07-10)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.3+2300163...v) (2024-07-11)
+
+
+### Bug Fixes
+
+* pagecode not included ([458fad7](https://github.com/bcc-code/bcc-media-app/commit/458fad7452bf3ff0cecb7bd97b5722d83a0415d9))
+
+
+### Features
+
+* skip to chapter ([0c7c166](https://github.com/bcc-code/bcc-media-app/commit/0c7c166ee4450ad2b9c6b09167ba7a083c6e7021))
+
+
+
+## [5.6.3+2300163](https://github.com/bcc-code/bcc-media-app/compare/v5.6.2+2300162...v5.6.3+2300163) (2024-07-10)
 
 
 ### Features
