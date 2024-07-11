@@ -21,7 +21,7 @@ class CenterExtraSlot extends HookConsumerWidget {
     if (skipToChapterEnabled) {
       final timeline = useTimeline(controller.playerController);
       final chapter = episode.skipToChapter;
-      if (chapter != null && timeline.actualTimeMs < max(20000, (chapter.start * 1000) - 1000)) {
+      if (chapter != null && timeline.actualTimeMs < min(20000, (chapter.start * 1000) - 1000)) {
         return SkipButton(
           chapter: chapter,
           onTap: () async {
