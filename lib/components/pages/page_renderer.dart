@@ -156,7 +156,7 @@ class _PageRendererImpl extends HookConsumerWidget {
               }
               var s = sectionItems[index];
               return SectionAnalytics(
-                data: SectionAnalyticsData(id: s.id, position: index, type: s.$__typename, name: s.title),
+                data: SectionAnalyticsData(id: s.id, position: index, type: s.$__typename, name: s.title, pageCode: page.code),
                 builder: (context) => SectionUpdateHandler(
                   section: s,
                   extraItems: paginationMap.value[s.id]?.items,

@@ -105,7 +105,7 @@ class HomeScreen extends HookConsumerWidget {
                                 itemCount: page.sections.items.length,
                                 itemBuilder: (context, index) {
                                   final section = page.sections.items[index];
-                                  return SectionRenderer(section: section, index: index);
+                                  return SectionRenderer(section: section, index: index, pageCode: page.code);
                                 },
                               ),
                             const SliverPadding(padding: EdgeInsets.only(right: 60)),

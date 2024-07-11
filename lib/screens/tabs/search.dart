@@ -20,7 +20,7 @@ import '../../components/search/custom_search_bar.dart';
 class SearchScreen extends HookConsumerWidget {
   final String? queryParam;
 
-  const SearchScreen({Key? key, @QueryParam('q') this.queryParam}) : super(key: key);
+  const SearchScreen({super.key, @QueryParam('q') this.queryParam});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

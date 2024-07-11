@@ -7,10 +7,12 @@ class SectionRenderer extends StatelessWidget {
   const SectionRenderer({
     super.key,
     required this.section,
+    required this.pageCode,
     required this.index,
   });
 
   final Fragment$Section section;
+  final String? pageCode;
   final int index;
 
   Widget? getWidget() {
@@ -26,7 +28,7 @@ class SectionRenderer extends StatelessWidget {
     final widget = getWidget();
     if (widget != null) {
       return SectionAnalytics(
-        data: SectionAnalyticsData(id: section.id, position: index, type: section.$__typename, name: section.title),
+        data: SectionAnalyticsData(id: section.id, position: index, type: section.$__typename, name: section.title, pageCode: pageCode),
         builder: (context) => widget,
       );
     }
