@@ -1025,4 +1025,9 @@ class SRo extends S {
   String countItems(int x) {
     return '$x rezultate';
   }
+
+  @override
+  String skipTo(String chapter) {
+    return 'Skip to $chapter';
+  }
 }

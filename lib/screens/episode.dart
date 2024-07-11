@@ -17,6 +17,8 @@ import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/components/episode/episode_share_sheet.dart';
+import 'package:brunstadtv_app/components/video/center_extra_slot.dart';
+import 'package:brunstadtv_app/components/video/right_side_slot.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -277,7 +279,6 @@ class _EpisodeDisplay extends HookConsumerWidget {
     final chromecastEvents = ref.watch(chromecastEventStreamProvider);
     final playerEvents = ref.watch(playerEventStreamProvider(player.playerId));
     final enableAutoplayNext = ref.watch(featureFlagsProvider.select((value) => value.autoplayNext));
-    final enablePlayNextButton = enableAutoplayNext && ref.watch(featureFlagsProvider.select((value) => value.playNextButton));
     final episodeIsCurrentItem = player.currentMediaItem?.metadata?.extras?['id'] == episode.id;
 
     useEffect(() {
@@ -306,18 +307,13 @@ class _EpisodeDisplay extends HookConsumerWidget {
               ];
             },
             topRightNextToSettingsSlot: languages.length < 2 ? null : (context) => const MultiVideoLangNotice(),
-            rightSideSlot: !enablePlayNextButton
-                ? null
-                : (context) => PlayNextButton(
-                      playerController: BccmPlayerController.primary,
-                      onTap: () => _getNextEpisodeAndAutoplayIt(playbackService, player.playerId, context.router),
-                      text: S.of(context).nextEpisode,
-                    ),
+            rightSideSlot: (context) => RightSideSlot(episode: episode),
+            centerExtraSlot: (context) => CenterExtraSlot(episode: episode),
           ),
         ),
       );
       return null;
-    }, [enablePlayNextButton, player.playerId, playbackService, episode]);
+    }, [player.playerId, playbackService, episode]);
 
     useEffect(() => () => viewController.dispose(), []);
 
@@ -363,7 +359,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     useEffect(() {
       final subscription = playerEvents.where((event) => event is PlaybackEndedEvent).cast<PlaybackEndedEvent>().listen((event) async {
         if (enableAutoplayNext) {
-          _getNextEpisodeAndAutoplayIt(playbackService, player.playerId, context.router);
+          playbackService.getNextEpisodeAndAutoplayIt(playbackService, player.playerId, context.router);
           return;
         }
         playbackService.platformApi.exitFullscreen(player.playerId);
@@ -603,34 +599,4 @@ class VideoLanguageSettings extends HookConsumerWidget {
       },
     );
   }
-}
-
-/// A helper function to autoplay and navigate to the next episode, if available
-///
-/// Works even when in background e.g. on iOS, as it doesn't rely on the new episode page to render.
-Future<bool> _getNextEpisodeAndAutoplayIt(PlaybackService playbackService, String playerId, StackRouter router) async {
-  final nextEpisode = await playbackService.getNextEpisodeForPlayer(playerId: playerId);
-  if (nextEpisode == null) {
-    playbackService.platformApi.exitFullscreen(playerId);
-    return false;
-  }
-  // When we are fullscreen on iOS, flutter's lifecyclestate becomes 'paused', and the widget tree won't build e.g. on navigation.
-  // Therefore we can't rely on the routing to autoplay the next episode.
-  // But we still call navigate(), so that it's performed when the user exits fullscreen.
-  // TODO: Navigate upon fullscreen exit instead. Basically: if leaving fullscreen and we're on the wrong page, navigate.
-  playbackService.playEpisode(
-    playerId: playerId,
-    episode: nextEpisode,
-    playbackPositionMs: 0,
-    autoplay: true,
-  );
-  router.navigate(
-    EpisodeScreenRoute(
-      episodeId: nextEpisode.id,
-      collectionId: nextEpisode.context?.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id,
-      autoplay: true,
-      queryParamStartPositionSeconds: 0,
-    ),
-  );
-  return true;
 }

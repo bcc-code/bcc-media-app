@@ -1025,4 +1025,9 @@ class SBg extends S {
   String countItems(int x) {
     return '$x items';
   }
+
+  @override
+  String skipTo(String chapter) {
+    return 'Skip to $chapter';
+  }
 }

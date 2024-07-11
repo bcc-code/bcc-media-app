@@ -1025,4 +1025,9 @@ class STa extends S {
   String countItems(int x) {
     return '$x பொருட்கள்';
   }
+
+  @override
+  String skipTo(String chapter) {
+    return 'Skip to $chapter';
+  }
 }

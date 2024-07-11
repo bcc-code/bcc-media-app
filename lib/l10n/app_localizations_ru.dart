@@ -1025,4 +1025,9 @@ class SRu extends S {
   String countItems(int x) {
     return '$x предметов';
   }
+
+  @override
+  String skipTo(String chapter) {
+    return 'Skip to $chapter';
+  }
 }

@@ -1025,4 +1025,9 @@ class SDa extends S {
   String countItems(int x) {
     return '$x elementer';
   }
+
+  @override
+  String skipTo(String chapter) {
+    return 'Skip to $chapter';
+  }
 }

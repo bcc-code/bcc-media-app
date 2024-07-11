@@ -1025,4 +1025,9 @@ class SEs extends S {
   String countItems(int x) {
     return '$x elementos';
   }
+
+  @override
+  String skipTo(String chapter) {
+    return 'Skip to $chapter';
+  }
 }

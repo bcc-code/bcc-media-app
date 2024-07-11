@@ -2092,6 +2092,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'{x} items'**
   String countItems(int x);
+
+  /// IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip to {chapter}'**
+  String skipTo(String chapter);
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

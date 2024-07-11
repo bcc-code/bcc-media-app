@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/bcc_media.dart';
@@ -7,6 +8,7 @@ import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -207,6 +209,36 @@ class PlaybackService {
   Future<void> playDownload(Download download) async {
     final mediaItem = mapDownload(download);
     platformApi.primaryController.replaceCurrentMediaItem(mediaItem);
+  }
+
+  /// A helper function to autoplay and navigate to the next episode, if available
+  ///
+  /// Works even when in background e.g. on iOS, as it doesn't rely on the new episode page to render.
+  Future<bool> getNextEpisodeAndAutoplayIt(PlaybackService playbackService, String playerId, StackRouter router) async {
+    final nextEpisode = await playbackService.getNextEpisodeForPlayer(playerId: playerId);
+    if (nextEpisode == null) {
+      playbackService.platformApi.exitFullscreen(playerId);
+      return false;
+    }
+    // When we are fullscreen on iOS, flutter's lifecyclestate becomes 'paused', and the widget tree won't build e.g. on navigation.
+    // Therefore we can't rely on the routing to autoplay the next episode.
+    // But we still call navigate(), so that it's performed when the user exits fullscreen.
+    // TODO: Navigate upon fullscreen exit instead. Basically: if leaving fullscreen and we're on the wrong page, navigate.
+    playbackService.playEpisode(
+      playerId: playerId,
+      episode: nextEpisode,
+      playbackPositionMs: 0,
+      autoplay: true,
+    );
+    router.navigate(
+      EpisodeScreenRoute(
+        episodeId: nextEpisode.id,
+        collectionId: nextEpisode.context?.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id,
+        autoplay: true,
+        queryParamStartPositionSeconds: 0,
+      ),
+    );
+    return true;
   }
 }
 

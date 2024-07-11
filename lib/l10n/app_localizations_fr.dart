@@ -1025,4 +1025,9 @@ class SFr extends S {
   String countItems(int x) {
     return '$x éléments';
   }
+
+  @override
+  String skipTo(String chapter) {
+    return 'Skip to $chapter';
+  }
 }
