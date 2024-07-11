@@ -19,52 +19,11 @@ class SkipButton extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: onTap,
-      child: FocusableActionDetector(
-        mouseCursor: WidgetStateMouseCursor.clickable,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: Container(color: design.colors.background1),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(right: 8),
-                      child: SvgPicture.string(
-                        SvgIcons.play,
-                        width: 16,
-                        height: 16,
-                        colorFilter: ColorFilter.mode(Theme.of(context).textTheme.titleMedium?.color ?? Colors.white, BlendMode.srcIn),
-                      ),
-                    ),
-                    Text(
-                      S.of(context).skipTo(chapter.title),
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    )
-                  ],
-                ),
-              ),
-              Positioned.fill(
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+    return design.buttons.small(
+      image: SvgPicture.string(SvgIcons.play, width: 12, height: 12),
+      labelText: S.of(context).skipTo(chapter.title),
+      onPressed: onTap,
+      variant: ButtonVariant.dark,
     );
   }
 }
