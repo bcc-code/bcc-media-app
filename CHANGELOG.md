@@ -1,4 +1,22 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.2+2300162...v) (2024-07-11)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.5+2300165...v) (2024-07-11)
+
+
+
+## [5.6.5+2300165](https://github.com/bcc-code/bcc-media-app/compare/v5.6.3+2300163...v5.6.5+2300165) (2024-07-11)
+
+
+### Bug Fixes
+
+* feature section padding ([76e5c5a](https://github.com/bcc-code/bcc-media-app/commit/76e5c5ab314155f67cece6efbe38308cfb56ed6b))
+
+
+### Features
+
+* show skip for longer ([0750f38](https://github.com/bcc-code/bcc-media-app/commit/0750f387bf09149e5f8d5e316f857a7b97fb9358))
+
+
+
+## [5.6.3+2300163](https://github.com/bcc-code/bcc-media-app/compare/v5.6.2+2300162...v5.6.3+2300163) (2024-07-11)
 
 
 ### Bug Fixes
