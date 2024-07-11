@@ -162,7 +162,11 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
   static FeatureFlags _getCachedFlags(Ref ref) {
     final json = ref.read(sharedPreferencesProvider).getString(PrefKeys.featureFlags);
     if (json == null) return getBaseFeatureFlags();
-    return FeatureFlags.fromJson(jsonDecode(json));
+    try {
+      return FeatureFlags.fromJson(jsonDecode(json));
+    } catch (e) {
+      return getBaseFeatureFlags();
+    }
   }
 }
 
