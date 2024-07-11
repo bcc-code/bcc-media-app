@@ -25,7 +25,9 @@ changelog-commit:
 
 # Release
 release:
+	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	make changelog-commit
+	git tag --delete v${BUILD_NUMBER}${TAG_SUFFIX}
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
 
