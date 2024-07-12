@@ -136,6 +136,7 @@ class _IconSectionButtonV2 extends StatelessWidget {
                           imageUrl: networkImage!,
                           cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
                         ),
+                        filterQuality: FilterQuality.medium,
                         imageErrorBuilder: imageErrorBuilder,
                         fit: BoxFit.fitHeight,
                       ),

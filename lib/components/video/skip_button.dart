@@ -19,11 +19,14 @@ class SkipButton extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
-    return design.buttons.small(
-      image: SvgPicture.string(SvgIcons.play, width: 12, height: 12),
-      labelText: S.of(context).skipTo(chapter.title),
-      onPressed: onTap,
-      variant: ButtonVariant.dark,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 300),
+      child: design.buttons.small(
+        image: SvgPicture.string(SvgIcons.play, width: 12, height: 12),
+        labelText: S.of(context).skipTo(chapter.title),
+        onPressed: onTap,
+        variant: ButtonVariant.dark,
+      ),
     );
   }
 }

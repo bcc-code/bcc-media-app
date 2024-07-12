@@ -118,12 +118,15 @@ class BtvButton extends StatelessWidget {
                     child: SizedBox(width: imageDimension, height: imageDimension, child: image),
                   ),
                 if (labelText?.isNotEmpty == true)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 2),
-                    child: Text(
-                      labelText!,
-                      textAlign: TextAlign.center,
-                      style: safeTextStyle.copyWith(color: disabled ? disabledTextColor : safeTextStyle.color),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: Text(
+                        labelText!,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: safeTextStyle.copyWith(color: disabled ? disabledTextColor : safeTextStyle.color),
+                      ),
                     ),
                   ),
                 if (image != null && imagePosition == ButtonImagePosition.right)
