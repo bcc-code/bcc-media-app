@@ -1,3 +1,4 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 
@@ -75,6 +76,11 @@ class BtvButton extends StatelessWidget {
     final disabledBackgroundColor = design.colors.background1;
     final disabledTextColor = design.colors.label4;
     final safeTextStyle = textStyle ?? design.textStyles.button2;
+
+    onPressed() {
+      this.onPressed();
+      CustomHapticFeedback.lightImpact();
+    }
 
     return IgnorePointer(
       ignoring: disabled,
