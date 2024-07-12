@@ -36,7 +36,7 @@ class FeaturedSectionV2 extends ConsumerWidget {
           behavior: AnyPointerScrollBehavior(),
           child: kIsWeb || ResponsiveBreakpoints.of(context).largerThan(BP.lg)
               ? buildSlider(context, filteredItems, constraints, curLiveEpisode)
-              : buildPageView(context, [...filteredItems, ...filteredItems, ...filteredItems], constraints, curLiveEpisode),
+              : buildPageView(context, filteredItems, constraints, curLiveEpisode),
         ),
       );
     });
