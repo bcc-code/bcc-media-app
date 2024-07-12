@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
 import 'package:http/http.dart';
 import 'package:http/retry.dart';
+import 'package:universal_io/io.dart';
 
 import '../flavors.dart';
 
@@ -61,12 +62,18 @@ class _ApiHttpClient extends BaseClient {
     ];
     final isLoggedIn = ref.read(authStateProvider).isLoggedIn;
     final featureFlagVariants = ref.read(featureFlagVariantListProvider);
+    final os = Platform.isIOS ? 'iOS' : 'Android';
+    final deviceInfo = ref.read(deviceInfoProvider).data;
+    final osVersion = deviceInfo['systemVersion'] ?? deviceInfo['version'];
     final headers = BccmGraphqlHeaders(
       acceptLanguage: [settings.appLanguage.languageCode],
       application: FlavorConfig.current.applicationCode,
       applicationVersion: formatAppVersion(ref.watch(packageInfoProvider)),
       featureFlags: isLoggedIn ? featureFlagVariants : null,
       extraUsergroups: extraUsergroups,
+      os: os,
+      osVersion: osVersion,
+      isTablet: isTablet,
     ).toMap();
     request.headers.addAll(headers);
     return _client.send(request);
