@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:bccm_core/platform.dart';
-import 'package:brunstadtv_app/models/breakpoints.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/providers/todays_calendar_entries.dart';
 
@@ -34,7 +33,7 @@ class FeaturedSectionV2 extends ConsumerWidget {
         padding: const EdgeInsets.only(top: 16),
         child: ScrollConfiguration(
           behavior: AnyPointerScrollBehavior(),
-          child: kIsWeb || ResponsiveBreakpoints.of(context).largerThan(BP.lg)
+          child: kIsWeb || ResponsiveBreakpoints.of(context).largerThan(TABLET)
               ? buildSlider(context, filteredItems, constraints, curLiveEpisode)
               : buildPageView(context, filteredItems, constraints, curLiveEpisode),
         ),
@@ -81,25 +80,17 @@ class FeaturedSectionV2 extends ConsumerWidget {
     BoxConstraints constraints,
     Fragment$CalendarEntryEpisode? curLiveEpisode,
   ) {
-    final numItems = ResponsiveValue(
-      context,
-      defaultValue: 1,
-      conditionalValues: [
-        const Condition.equals(name: BP.xl, value: 2),
-        const Condition.largerThan(name: BP.xl, value: 3),
-      ],
-    ).value;
     const paddingX = kIsWeb ? 80.0 : 16.0;
     const gap = kIsWeb ? 16.0 : 4.0;
     return HorizontalSlider(
-      height: 500,
+      height: 300,
       gap: gap,
       padding: const EdgeInsets.symmetric(horizontal: paddingX),
       itemCount: sectionItems.length,
       itemBuilder: (context, index) {
         final item = sectionItems[index % sectionItems.length];
-        return SizedBox(
-          width: (constraints.maxWidth - (2 * paddingX) - gap) / numItems,
+        return AspectRatio(
+          aspectRatio: 358 / 240,
           child: SectionItemClickWrapper(
             item: item.item,
             collectionId: section.metadata?.useContext == true && section.metadata?.collectionId != null ? section.metadata!.collectionId : null,
