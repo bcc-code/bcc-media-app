@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.5+2300165...v) (2024-07-11)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.6+2300166...v) (2024-07-12)
+
+
+
+## [5.6.6+2300166](https://github.com/bcc-code/bcc-media-app/compare/v5.6.5+2300165...v5.6.6+2300166) (2024-07-12)
+
+
+### Bug Fixes
+
+* correct aspect ratio for new featured section ([cf814b0](https://github.com/bcc-code/bcc-media-app/commit/cf814b085bebd90d9597f1e2ee72961cef8842d5))
+* truncate skip button ([338a1a5](https://github.com/bcc-code/bcc-media-app/commit/338a1a52dce6f84d32540187eac432fee0228577))
 
 
 
