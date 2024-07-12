@@ -50,7 +50,7 @@ class FeaturedSectionV2 extends ConsumerWidget {
   ) {
     final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
     return AspectRatio(
-      aspectRatio: 16 / 9,
+      aspectRatio: 358 / 240,
       child: PageView.builder(
         physics: const _CustomPageViewScrollPhysics(),
         controller: PageController(viewportFraction: viewportFraction),
@@ -62,7 +62,7 @@ class FeaturedSectionV2 extends ConsumerWidget {
             collectionId: section.metadata?.useContext == true && section.metadata?.collectionId != null ? section.metadata!.collectionId : null,
             analytics: SectionItemAnalyticsData(id: item.id, position: index, type: item.$__typename, name: item.title),
             child: AspectRatio(
-              aspectRatio: 16 / 9,
+              aspectRatio: 358 / 240,
               child: _FeaturedItem(
                 sectionItem: item,
                 margin: const EdgeInsets.symmetric(horizontal: marginX),
