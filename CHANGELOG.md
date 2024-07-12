@@ -1,4 +1,20 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.6+2300166...v) (2024-07-12)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.7+2300167...v) (2024-07-12)
+
+
+
+## [5.6.7+2300167](https://github.com/bcc-code/bcc-media-app/compare/v5.6.6+2300166...v5.6.7+2300167) (2024-07-12)
+
+
+### Bug Fixes
+
+* duplicate items in featured section ([0f1da4d](https://github.com/bcc-code/bcc-media-app/commit/0f1da4d372fceb9a820133a307b9b4e9b094dff2))
+* skip button tap issue ([6e78be6](https://github.com/bcc-code/bcc-media-app/commit/6e78be696d49dd080717bf1809d17d8705b7af19))
+
+
+### Features
+
+* featured section aspect ratio on tablets ([2607e3a](https://github.com/bcc-code/bcc-media-app/commit/2607e3a8820d7a14b152b272e548146f61d62a3e))
+* send os, os-version, istablet, to backend ([62b6184](https://github.com/bcc-code/bcc-media-app/commit/62b61848f1bd67b3e5c40985f8880353fef7c9bb))
 
 
 
