@@ -92,12 +92,21 @@ class EpisodeSeason extends HookConsumerWidget {
         else
           SeasonEpisodeList(
             onEpisodeTap: (index, e) {
+              onEpisodeTap(e);
               ref.read(analyticsProvider).sectionItemClicked(
                     context,
                     itemAnalyticsOverride: SectionItemAnalyticsData(position: index, type: 'Episode', id: e),
-                    sectionAnalyticsOverride: SectionAnalyticsData(id: episodeId, position: 0, type: 'SeasonList'),
+                    sectionAnalyticsOverride: SectionAnalyticsData(
+                      id: episodeId,
+                      position: 0,
+                      type: 'SeasonList',
+                      pageCode: 'episode',
+                      meta: {
+                        'seasonId': season.id,
+                        'episodeId': episodeId,
+                      },
+                    ),
                   );
-              onEpisodeTap(e);
             },
             items: episodes
                 .map(
