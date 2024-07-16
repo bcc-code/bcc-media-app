@@ -35,7 +35,23 @@ class EpisodeCollection extends HookConsumerWidget {
       children: [
         if (episodes != null)
           SeasonEpisodeList(
-            onEpisodeTap: onEpisodeTap,
+            onEpisodeTap: (index, e) {
+              onEpisodeTap(index, e);
+              ref.read(analyticsProvider).sectionItemClicked(
+                    context,
+                    itemAnalyticsOverride: SectionItemAnalyticsData(position: index, type: 'Episode', id: e),
+                    sectionAnalyticsOverride: SectionAnalyticsData(
+                      id: episodeId,
+                      position: 0,
+                      type: 'EpisodeCollectionList',
+                      pageCode: 'episode',
+                      meta: {
+                        'collectionId': collection.id,
+                        'episodeId': episodeId,
+                      },
+                    ),
+                  );
+            },
             items: episodes.toList(),
           )
       ],
