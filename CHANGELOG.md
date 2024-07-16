@@ -1,4 +1,23 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.7+2300167...v) (2024-07-12)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.8+2300168...v) (2024-07-16)
+
+
+
+## [5.6.8+2300168](https://github.com/bcc-code/bcc-media-app/compare/v5.6.7+2300167...v5.6.8+2300168) (2024-07-16)
+
+
+### Bug Fixes
+
+* only show play next button in fullscreen ([307e2aa](https://github.com/bcc-code/bcc-media-app/commit/307e2aa39f73f11d879febabed006f4faae04f12))
+* replace flutter_inappwebview with webview_flutter ([d5ce033](https://github.com/bcc-code/bcc-media-app/commit/d5ce033e5252458522d45b4d2e53d836efd705a0))
+
+
+### Features
+
+* **analytics:** add meta to section_clicked for seasons: pagecode, seasonid and episodeid ([c84af8a](https://github.com/bcc-code/bcc-media-app/commit/c84af8a9c65f34ab7dce9ac753ae31b72dc6a628))
+* **analytics:** add section_clicked for SeasonCollectionList on episodes ([1683284](https://github.com/bcc-code/bcc-media-app/commit/1683284df730480633d4293c6f62b9695bc786b3))
+* **analytics:** notification_received and notification_opened ([e661e0c](https://github.com/bcc-code/bcc-media-app/commit/e661e0cf5c979e3fa2cf5b4b8ed5029626f5667e))
+* **analytics:** skip_to_first_relevant_chapter interaction event ([8d8e5fc](https://github.com/bcc-code/bcc-media-app/commit/8d8e5fc2bbeb2a45b36ab24396a6651ceeacc7f6))
+* skip_to_chapter event ([53a5f94](https://github.com/bcc-code/bcc-media-app/commit/53a5f94de81791d952640ac5192bcad1cb8d8ee2))
 
 
 
