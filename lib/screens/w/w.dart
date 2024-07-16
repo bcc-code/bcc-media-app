@@ -2,16 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:bccm_core/platform.dart';
-import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';
+import 'package:brunstadtv_app/helpers/main_js_channel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../components/nav/custom_back_button.dart';
-import '../../helpers/webview/main_js_channel.dart';
 
 @RoutePage<void>()
 class WebviewScreen extends HookConsumerWidget {
@@ -24,9 +23,6 @@ class WebviewScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final webViewController = useState<InAppWebViewController?>(null);
-    final firstLoadDone = useState(false);
-
     getRedirect() async {
       final gqlClient = ref.read(bccmGraphQLProvider);
       final redirect =
@@ -37,11 +33,15 @@ class WebviewScreen extends HookConsumerWidget {
     final redirectFuture = useState(useMemoized(getRedirect));
     final redirectSnapshot = useFuture(redirectFuture.value);
 
-    void onWebViewCreated(InAppWebViewController controller) async {
-      final data = redirectSnapshot.data;
-      MainJsChannel.register(context, controller, enableAuth: data?.requiresAuthentication ?? false);
-      webViewController.value = controller;
-    }
+    final data = redirectSnapshot.data;
+    final uri = useMemoized(() {
+      return data == null ? null : Uri.tryParse(data.url);
+    }, [data]);
+    final manager = useWebView(uri, setup: (m) {
+      MainJsChannel.register(context, m, enableAuth: data?.requiresAuthentication ?? false);
+    });
+
+    final firstLoadDone = useListenableSelector(manager?.navigation.initialLoadDone, () => manager?.navigation.initialLoadDone.value ?? false);
 
     return Scaffold(
       appBar: AppBar(
@@ -57,34 +57,15 @@ class WebviewScreen extends HookConsumerWidget {
               redirectFuture.value = getRedirect();
             })
           else ...[
-            Opacity(
-              opacity: firstLoadDone.value ? 1 : 0,
-              child: InAppWebView(
-                initialUrlRequest: URLRequest(
-                  url: WebUri.uri(Uri.parse(redirectSnapshot.data!.url)),
-                  allowsCellularAccess: true,
-                  allowsConstrainedNetworkAccess: true,
-                  allowsExpensiveNetworkAccess: true,
+            if (manager != null)
+              Opacity(
+                opacity: firstLoadDone ? 1 : 0,
+                child: WebViewWidget(
+                  controller: manager.controller,
+                  gestureRecognizers: {Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())},
                 ),
-                gestureRecognizers: {Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())},
-                initialSettings: InAppWebViewSettings(
-                  useHybridComposition: false,
-                  transparentBackground: true,
-                  verticalScrollBarEnabled: false,
-                  useShouldOverrideUrlLoading: true,
-                  allowsInlineMediaPlayback: true,
-                  mediaPlaybackRequiresUserGesture: false,
-                  isInspectable: kDebugMode,
-                  iframeAllowFullscreen: true,
-                ),
-                onWebViewCreated: onWebViewCreated,
-                onLoadStop: (controller, url) {
-                  firstLoadDone.value = true;
-                },
-                shouldOverrideUrlLoading: shouldOverrideUrlLoading(redirectSnapshot.data!.url),
               ),
-            ),
-            if (!firstLoadDone.value) const LoadingGeneric(),
+            if (!firstLoadDone) const LoadingGeneric(),
           ],
         ],
       ),

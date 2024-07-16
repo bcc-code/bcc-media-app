@@ -5,8 +5,8 @@ import 'package:bccm_core/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
 class ErrorGeneric extends StatelessWidget {
-  const ErrorGeneric({Key? key, required this.onRetry, this.title, this.description, this.retryButtonText, this.details}) : super(key: key);
-  final void Function() onRetry;
+  const ErrorGeneric({super.key, this.onRetry, this.title, this.description, this.retryButtonText, this.details});
+  final void Function()? onRetry;
   final String? details;
   final String? title;
   final String? description;
@@ -38,10 +38,11 @@ class ErrorGeneric extends StatelessWidget {
                         style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
                       ),
                     ),
-                    DesignSystem.of(context).buttons.medium(
-                          labelText: retryButtonText ?? S.of(context).tryAgainButton,
-                          onPressed: () => onRetry(),
-                        ),
+                    if (onRetry != null)
+                      DesignSystem.of(context).buttons.medium(
+                            labelText: retryButtonText ?? S.of(context).tryAgainButton,
+                            onPressed: () => onRetry!(),
+                          ),
                   ],
                 ),
               ),

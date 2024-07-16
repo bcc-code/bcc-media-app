@@ -1,21 +1,22 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/components/achievements/achievement_dialog.dart';
 import 'package:brunstadtv_app/components/misc/dialog_with_image.dart';
+import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';
+import 'package:brunstadtv_app/helpers/main_js_channel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../components/nav/custom_back_button.dart';
 import '../../helpers/svg_icons.dart';
-import '../../helpers/webview/main_js_channel.dart';
 import '../../l10n/app_localizations.dart';
 
 @RoutePage<void>()
@@ -31,9 +32,8 @@ class StudyScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final webViewController = useState<InAppWebViewController?>(null);
-    final firstLoadDone = useState(false);
-    final initialUrl = useState('${getWebUrl(ref)}/embed/episode/$episodeId/lesson/$lessonId');
+    final initialUrl = useState('${getWebUrl(ref)}/embed/episode/$episodeId/lesson/$lessonId?webview_delayed_type=flutter_webview_manager');
+
     Future handleTasksCompleted() async {
       final navigatorContext = Navigator.of(context).context;
       final gqlClient = ref.read(bccmGraphQLProvider);
@@ -74,12 +74,16 @@ class StudyScreen extends HookConsumerWidget {
       }
     }
 
-    void onWebViewCreated(InAppWebViewController controller) async {
-      MainJsChannel.register(context, controller, enableAuth: true);
-      controller.addJavaScriptHandler(handlerName: 'flutter_study', callback: handleMessage);
-      webViewController.value = controller;
-    }
+    final uri = useMemoized(() => Uri.tryParse(initialUrl.value), [initialUrl]);
+    final manager = useState<WebViewManager?>(null);
+    useWebView(uri, setup: (m) {
+      MainJsChannel.register(context, m, enableAuth: true);
+      m.js.registerSimpleHandler('flutter_study', handleMessage);
+    });
 
+    final loading = useListenableSelector(manager.value?.navigation.initialLoadDone, () => manager.value?.navigation.initialLoadDone.value != true);
+    debugPrint('ag loading: $loading');
+    final design = DesignSystem.of(context);
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 92,
@@ -88,33 +92,18 @@ class StudyScreen extends HookConsumerWidget {
       ),
       body: Stack(
         children: [
-          Opacity(
-            opacity: firstLoadDone.value ? 1 : 0,
-            child: InAppWebView(
-              initialUrlRequest: URLRequest(
-                url: WebUri.uri(Uri.parse(initialUrl.value)),
-                allowsCellularAccess: true,
-                allowsConstrainedNetworkAccess: true,
-                allowsExpensiveNetworkAccess: true,
-              ),
+          if (manager.value != null)
+            WebViewWidget(
+              controller: manager.value!.controller,
               gestureRecognizers: {Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())},
-              initialSettings: InAppWebViewSettings(
-                useHybridComposition: false,
-                transparentBackground: true,
-                verticalScrollBarEnabled: false,
-                useShouldOverrideUrlLoading: true,
-                allowsInlineMediaPlayback: true,
-                mediaPlaybackRequiresUserGesture: false,
-                iframeAllowFullscreen: true,
-              ),
-              onWebViewCreated: onWebViewCreated,
-              onLoadStop: (controller, url) {
-                firstLoadDone.value = true;
-              },
-              shouldOverrideUrlLoading: shouldOverrideUrlLoading(initialUrl.value),
+            )
+          else
+            const ErrorGeneric(),
+          if (loading)
+            Container(
+              color: design.colors.background1.withAlpha(100),
+              child: const LoadingGeneric(),
             ),
-          ),
-          if (!firstLoadDone.value) const LoadingGeneric()
         ],
       ),
     );

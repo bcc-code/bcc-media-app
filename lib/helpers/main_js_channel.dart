@@ -1,27 +1,23 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:brunstadtv_app/helpers/share_image.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class MainJsChannel {
+class MainJsChannel implements WebViewJsHandler {
   final ProviderContainer ref;
   final StackRouter router;
   final bool enableAuth;
   const MainJsChannel._({required this.router, required this.ref, required this.enableAuth});
 
-  static void register(BuildContext context, InAppWebViewController controller, {required bool enableAuth}) {
+  static void register(BuildContext context, WebViewManager manager, {required bool enableAuth}) {
     final ref = ProviderScope.containerOf(context, listen: false);
     final channel = MainJsChannel._(router: context.router, ref: ref, enableAuth: enableAuth);
-    controller.addJavaScriptHandler(
-      handlerName: 'flutter_main',
-      callback: channel.handleMessage,
-    );
+    manager.js.registerHandler('main', channel);
   }
 
   get supportedFeatures => {
@@ -37,7 +33,11 @@ class MainJsChannel {
         'get_supported_features': true,
       };
 
+  @override
   Object? handleMessage(List<dynamic> arguments) {
+    if (arguments.isEmpty) {
+      throw Exception('Invalid arguments: $arguments');
+    }
     final command = arguments[0];
     if (command is! String) {
       throw Exception('Invalid command: $command');

@@ -422,7 +422,11 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     ),
                   )
                 else
-                  BccmPlayerView.withViewController(viewController),
+                  MediaQuery.removePadding(
+                    context: context,
+                    removeBottom: true,
+                    child: BccmPlayerView.withViewController(viewController),
+                  ),
                 AnimatedSize(
                   duration: const Duration(milliseconds: 800),
                   alignment: Alignment.topCenter,

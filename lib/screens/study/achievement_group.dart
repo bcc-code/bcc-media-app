@@ -4,7 +4,6 @@ import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/components/achievements/achievement_list.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../components/nav/custom_back_button.dart';
@@ -13,9 +12,9 @@ import '../../l10n/app_localizations.dart';
 @RoutePage<void>()
 class AchievementGroupScreen extends ConsumerStatefulWidget {
   const AchievementGroupScreen({
-    Key? key,
+    super.key,
     @PathParam() required this.groupId,
-  }) : super(key: key);
+  });
 
   final String groupId;
 
@@ -25,8 +24,6 @@ class AchievementGroupScreen extends ConsumerStatefulWidget {
 
 class AchievementGroupState extends ConsumerState<AchievementGroupScreen> {
   String url = '';
-  InAppWebViewController? webViewController;
-  WebResourceError? error;
   bool loading = false;
   double? height;
 

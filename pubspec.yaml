@@ -62,7 +62,6 @@ dependencies:
   rudder_sdk_flutter_platform_interface: ^2.2.0
   share_plus: ^9.0.0
   restart_app: ^1.2.1
-  flutter_inappwebview: ^6.0.0
   app_links: ^6.1.1
   universal_io: ^2.0.4
   jwt_decoder: ^2.0.1
@@ -103,6 +102,9 @@ dependencies:
     path: submodules/bccm_flutter/bccm_core
   auto_size_text: ^3.0.0
   flutter_widget_from_html_core: ^0.15.1
+  webview_flutter: ^4.8.0
+  webview_flutter_android: ^3.16.4
+  webview_flutter_wkwebview: ^3.14.0
 
 dependency_overrides:
   js: ^0.7.1
