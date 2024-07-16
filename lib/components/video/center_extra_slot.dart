@@ -18,12 +18,12 @@ class CenterExtraSlot extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final skipToChapterEnabled = ref.watch(featureFlagsProvider.select((flags) => flags.chapters && flags.skipToChapter));
-    final controller = BccmPlayerViewController.of(context);
+    final viewController = BccmPlayerViewController.of(context);
     final hasShownSkipToChapter = useState(false);
     useValueChangedSimple(hasShownSkipToChapter.value, (old) {
       if (old == false && hasShownSkipToChapter.value) {
         ref.read(analyticsProvider).impression(ImpressionEvent(
-              name: 'skip_to_chapter',
+              name: 'skip_to_first_relevant_chapter',
               pageCode: 'episode',
               contextElementId: episode.id,
               contextElementType: 'episode',
@@ -32,17 +32,13 @@ class CenterExtraSlot extends HookConsumerWidget {
     });
 
     if (skipToChapterEnabled) {
-      final timeline = useTimeline(controller.playerController);
+      final timeline = useTimeline(viewController.playerController);
       final chapter = episode.skipToChapter;
       if (chapter != null && timeline.actualTimeMs < min(20000, (chapter.start * 1000) - 1000)) {
         hasShownSkipToChapter.value = true;
         return SkipButton(
+          controller: viewController.playerController,
           chapter: chapter,
-          onTap: () async {
-            await controller.playerController.seekTo(Duration(seconds: chapter.start));
-            if (!context.mounted) return;
-            return BccmPlayerController.primary.play();
-          },
         );
       }
     }
