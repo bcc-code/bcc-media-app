@@ -37,7 +37,7 @@ class WebviewScreen extends HookConsumerWidget {
     final uri = useMemoized(() {
       return data == null ? null : Uri.tryParse(data.url);
     }, [data]);
-    final manager = useWebView(uri, setup: (m) {
+    final manager = useWebViewManager(uri, setup: (m) {
       MainJsChannel.register(context, m, enableAuth: data?.requiresAuthentication ?? false);
     });
 
@@ -62,7 +62,7 @@ class WebviewScreen extends HookConsumerWidget {
                 opacity: firstLoadDone ? 1 : 0,
                 child: WebViewWidget(
                   controller: manager.controller,
-                  gestureRecognizers: {Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())},
+                  gestureRecognizers: {Factory<EagerGestureRecognizer>(() => EagerGestureRecognizer())},
                 ),
               ),
             if (!firstLoadDone) const LoadingGeneric(),

@@ -32,70 +32,39 @@ class StudyScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final initialUrl = useState('${getWebUrl(ref)}/embed/episode/$episodeId/lesson/$lessonId?webview_delayed_type=flutter_webview_manager');
-
-    Future handleTasksCompleted() async {
-      final navigatorContext = Navigator.of(context).context;
-      final gqlClient = ref.read(bccmGraphQLProvider);
-      final achievements = await gqlClient.query$getPendingAchievements();
-
-      if (achievements.parsedData?.pendingAchievements.isNotEmpty != true && navigatorContext.mounted) {
-        await showDialog(
-          barrierDismissible: false,
-          context: navigatorContext,
-          builder: (context) => DialogWithImage(
-            image: SvgPicture.string(SvgIcons.tasksCompleted),
-            title: S.of(context).wellDone,
-            description: S.of(context).videoCompletedText,
-            dismissButtonText: S.of(context).continueButton,
-          ),
-        );
-      }
-
-      for (final achievement in achievements.parsedData!.pendingAchievements) {
-        // ignore: use_build_context_synchronously
-        if (!navigatorContext.mounted) return;
-        await showDialog(
-          barrierDismissible: false,
-          context: navigatorContext,
-          builder: (context) => AchievementDialog(
-            achievement: achievement,
-            dismissButtonText: S.of(context).continueButton,
-          ),
-        );
-        gqlClient
-            .mutate$confirmAchievement(Options$Mutation$confirmAchievement(variables: Variables$Mutation$confirmAchievement(id: achievement.id)));
-      }
-    }
+    final titleFuture = useMemoized(() {
+      return ref
+          .read(bccmGraphQLProvider)
+          .query$GetLessonTitle(Options$Query$GetLessonTitle(variables: Variables$Query$GetLessonTitle(id: lessonId)));
+    });
+    final titleSnapshot = useFuture(titleFuture);
 
     Future handleMessage(List<dynamic> arguments) async {
       if (arguments[0] == 'tasks_completed') {
-        handleTasksCompleted();
+        _handleTasksCompleted(context, ref);
       }
     }
 
-    final uri = useMemoized(() => Uri.tryParse(initialUrl.value), [initialUrl]);
-    final manager = useState<WebViewManager?>(null);
-    useWebView(uri, setup: (m) {
+    final uri = useMemoized(() => Uri.parse('${getWebUrl(ref)}/embed/episode/$episodeId/lesson/$lessonId'));
+    final manager = useWebViewManager(uri, setup: (m) {
       MainJsChannel.register(context, m, enableAuth: true);
-      m.js.registerSimpleHandler('flutter_study', handleMessage);
+      m.js.registerSimpleHandler('study', handleMessage);
     });
 
-    final loading = useListenableSelector(manager.value?.navigation.initialLoadDone, () => manager.value?.navigation.initialLoadDone.value != true);
-    debugPrint('ag loading: $loading');
+    final loading = useListenableSelector(manager?.navigation.initialLoadDone, () => manager?.navigation.initialLoadDone.value != true);
     final design = DesignSystem.of(context);
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 92,
         leading: const CustomBackButton(),
-        //title: Text(titleSnapshot.valueOrNull),
+        title: Text(titleSnapshot.data?.parsedData?.studyLesson.title ?? ''),
       ),
       body: Stack(
         children: [
-          if (manager.value != null)
+          if (manager != null)
             WebViewWidget(
-              controller: manager.value!.controller,
-              gestureRecognizers: {Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())},
+              controller: manager.controller,
+              gestureRecognizers: {Factory<EagerGestureRecognizer>(() => EagerGestureRecognizer())},
             )
           else
             const ErrorGeneric(),
@@ -107,5 +76,38 @@ class StudyScreen extends HookConsumerWidget {
         ],
       ),
     );
+  }
+}
+
+Future _handleTasksCompleted(BuildContext context, WidgetRef ref) async {
+  final navigatorContext = Navigator.of(context).context;
+  final gqlClient = ref.read(bccmGraphQLProvider);
+  final achievements = await gqlClient.query$getPendingAchievements();
+  final hasPending = achievements.parsedData != null && achievements.parsedData!.pendingAchievements.isNotEmpty;
+  if (!hasPending && navigatorContext.mounted) {
+    await showDialog(
+      barrierDismissible: false,
+      context: navigatorContext,
+      builder: (context) => DialogWithImage(
+        image: SvgPicture.string(SvgIcons.tasksCompleted),
+        title: S.of(context).wellDone,
+        description: S.of(context).videoCompletedText,
+        dismissButtonText: S.of(context).continueButton,
+      ),
+    );
+  }
+
+  for (final achievement in achievements.parsedData!.pendingAchievements) {
+    // ignore: use_build_context_synchronously
+    if (!navigatorContext.mounted) return;
+    await showDialog(
+      barrierDismissible: false,
+      context: navigatorContext,
+      builder: (context) => AchievementDialog(
+        achievement: achievement,
+        dismissButtonText: S.of(context).continueButton,
+      ),
+    );
+    gqlClient.mutate$confirmAchievement(Options$Mutation$confirmAchievement(variables: Variables$Mutation$confirmAchievement(id: achievement.id)));
   }
 }

@@ -18,6 +18,10 @@ class MainJsChannel implements WebViewJsHandler {
     final ref = ProviderScope.containerOf(context, listen: false);
     final channel = MainJsChannel._(router: context.router, ref: ref, enableAuth: enableAuth);
     manager.js.registerHandler('main', channel);
+    manager.initialUri = manager.initialUri.replace(queryParameters: {
+      ...manager.initialUri.queryParameters,
+      'webview_delayed_type': 'flutter_webview_manager',
+    });
   }
 
   get supportedFeatures => {
