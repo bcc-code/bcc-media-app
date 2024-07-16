@@ -7,15 +7,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bccm_core/platform.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../episode/list/episode_list_episode.dart';
 
-class ListSection extends StatelessWidget {
+class ListSection extends HookConsumerWidget {
   final Fragment$Section$$ListSection data;
 
   const ListSection(this.data, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final limit = data.metadata?.limit;
     String? showMorePage;
     if (limit != null && data.items.items.length == limit) {
@@ -53,6 +54,17 @@ class ListSection extends StatelessWidget {
               variant: ButtonVariant.secondary,
               onPressed: () {
                 context.navigateTo(PageScreenRoute(pageCode: showMorePage!));
+                ref.read(analyticsProvider).interaction(
+                      InteractionEvent(
+                        contextElementId: data.id,
+                        contextElementType: 'section',
+                        interaction: 'show_more_clicked',
+                        pageCode: SectionAnalytics.read(context)?.pageCode,
+                        meta: {
+                          'showMorePage': showMorePage,
+                        },
+                      ),
+                    );
               },
             ),
           ),
