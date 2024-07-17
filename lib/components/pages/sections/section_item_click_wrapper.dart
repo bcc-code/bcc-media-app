@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -28,7 +30,8 @@ class SectionItemClickWrapper extends ConsumerWidget {
             if (episode == null) {
               return;
             }
-            showWatchProgressBottomSheet(context, ref, episode.id, episode.progress);
+            context.router.push(TrackScreenRoute());
+            //showWatchProgressBottomSheet(context, ref, episode.id, episode.progress);
           },
           onTap: onPressed,
           child: FocusableActionDetector(

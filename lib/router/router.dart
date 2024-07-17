@@ -200,6 +200,7 @@ class AppRouter extends $AppRouter {
               meta: const {RouteMetaConstants.navTabRoute: true},
             ),
             _episodeScreenRoute,
+            _trackScreenRoute,
             _collectionEpisodeScreenRoute,
             _pageScreenRoute,
           ],
@@ -216,6 +217,7 @@ class AppRouter extends $AppRouter {
               meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
             ),
             _episodeScreenRoute,
+            _trackScreenRoute,
             _collectionEpisodeScreenRoute,
           ],
         ),
@@ -232,6 +234,7 @@ class AppRouter extends $AppRouter {
               meta: const {RouteMetaConstants.navTabRoute: true},
             ),
             _episodeScreenRoute,
+            _trackScreenRoute,
             _collectionEpisodeScreenRoute,
             _shortScreenRoute('shorts/'),
           ],
@@ -248,6 +251,7 @@ class AppRouter extends $AppRouter {
             ),
             _shortScreenRoute('shorts/'),
             _episodeScreenRoute,
+            _trackScreenRoute,
             _collectionEpisodeScreenRoute,
             _contributorScreenRoute,
             _pageScreenRoute,
@@ -262,6 +266,13 @@ final _collectionEpisodeScreenRoute = CupertinoRoute(
   page: CollectionEpisodeScreenRoute.page,
   path: 'episode/:collectionId/:episodeId',
   meta: const {RouteMetaConstants.analyticsName: 'episode'},
+);
+
+final _trackScreenRoute = CustomRoute(
+  page: TrackScreenRoute.page,
+  customRouteBuilder: modalSheetBuilder,
+  path: 'track/:trackId',
+  meta: const {RouteMetaConstants.analyticsName: 'track'},
 );
 
 final _episodeScreenRoute = CupertinoRoute(
