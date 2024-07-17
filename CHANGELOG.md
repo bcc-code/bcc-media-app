@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.8+2300168...v) (2024-07-16)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.9+2300169...v) (2024-07-17)
+
+
+
+## [5.6.9+2300169](https://github.com/bcc-code/bcc-media-app/compare/v5.6.8+2300168...v5.6.9+2300169) (2024-07-17)
+
+
+### Bug Fixes
+
+* **android:** better mime fallback (support mp3 on android) ([b4f28cf](https://github.com/bcc-code/bcc-media-app/commit/b4f28cfaa9a12dc4acb3e07a57f2c649030dd76a))
+
+
+### Features
+
+* **analytics:** show_more_clicked on listsections ([abb0e48](https://github.com/bcc-code/bcc-media-app/commit/abb0e48240fb075b7ade0c184f4319e9a2ed681b))
 
 
 
