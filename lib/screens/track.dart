@@ -9,8 +9,6 @@ import 'package:bccm_player/controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../helpers/insets.dart';
 import 'package:bccm_core/design_system.dart';
 
 @RoutePage<void>()
@@ -35,7 +33,16 @@ class TrackScreen extends HookConsumerWidget {
       );
       vc.playerController.replaceCurrentMediaItem(
         autoplay: true,
-        MediaItem(url: ''),
+        MediaItem(
+          url: '',
+          metadata: MediaMetadata(
+            title: 'Track Title',
+            artist: 'Artist Name',
+            extras: {
+              'audio_only': 'true',
+            },
+          ),
+        ),
       );
       return vc;
     }, []);
@@ -78,6 +85,11 @@ class TrackScreen extends HookConsumerWidget {
                                 ),
                               ),
                             ),
+                            if (vc.playerController.value.currentMediaItem?.metadata?.extras?['audio_only'] != 'true')
+                              VideoPlatformView(
+                                playerController: vc.playerController,
+                                showControls: false,
+                              ),
                             Padding(
                               padding: const EdgeInsets.only(top: 24),
                               child: Column(
