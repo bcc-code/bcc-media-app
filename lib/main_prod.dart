@@ -50,6 +50,10 @@ Future<void> main() async {
           image: const AssetImage('assets/icons/My_List_Default.png'),
           activeImage: const AssetImage('assets/icons/My_List_Selected.png'),
         ),
+        music: StateImageProvider(
+          image: const AssetImage('assets/icons/Live_Default.png'),
+          activeImage: const AssetImage('assets/icons/Live_Selected.png'),
+        ),
         shorts: StateImageProvider(
           image: const AssetImage('assets/icons/Shorts_Default.png'),
           activeImage: const AssetImage('assets/icons/Shorts_Selected.png'),

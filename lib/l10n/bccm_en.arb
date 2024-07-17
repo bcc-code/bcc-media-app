@@ -1420,5 +1420,9 @@
         "type": "String"
       }
     }
+  },
+  "musicTab": "Music",
+  "@musicTab": {
+    "description": "Title of the music tab."
   }
 }

@@ -48,6 +48,10 @@ void main() async {
           activeImage: const AssetImage('assets/icons/Search_Selected.png'),
         ),
         shorts: StateImageProvider(
+          image: const AssetImage('assets/icons/Shorts_Default.png'),
+          activeImage: const AssetImage('assets/icons/Shorts_Selected.png'),
+        ),
+        music: StateImageProvider(
           image: const AssetImage('assets/icons/Live_Default.png'),
           activeImage: const AssetImage('assets/icons/Live_Selected.png'),
         ),

@@ -2098,6 +2098,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Skip to {chapter}'**
   String skipTo(String chapter);
+
+  /// Title of the music tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Music'**
+  String get musicTab;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

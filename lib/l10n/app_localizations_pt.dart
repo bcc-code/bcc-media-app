@@ -1030,4 +1030,7 @@ class SPt extends S {
   String skipTo(String chapter) {
     return 'Skip to $chapter';
   }
+
+  @override
+  String get musicTab => 'Music';
 }

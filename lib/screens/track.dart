@@ -31,19 +31,6 @@ class TrackScreen extends HookConsumerWidget {
       final vc = BccmPlayerViewController(
         playerController: BccmPlayerController.primary,
       );
-      vc.playerController.replaceCurrentMediaItem(
-        autoplay: true,
-        MediaItem(
-          url: '',
-          metadata: MediaMetadata(
-            title: 'Track Title',
-            artist: 'Artist Name',
-            extras: {
-              'audio_only': 'true',
-            },
-          ),
-        ),
-      );
       return vc;
     }, []);
     useOnDispose(() {
@@ -54,6 +41,8 @@ class TrackScreen extends HookConsumerWidget {
 
     final forwardRewindDurationSec = Duration(milliseconds: timeline.duration.toInt()).inMinutes > 60 ? 30 : 15;
     final design = DesignSystem.of(context);
+
+    final artwork = useListenableSelector(vc.playerController, () => vc.playerController.value.currentMediaItem?.metadata?.artworkUri);
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -95,13 +84,18 @@ class TrackScreen extends HookConsumerWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    width: 70,
-                                    height: 70,
-                                    margin: const EdgeInsets.only(bottom: 16),
-                                    decoration: BoxDecoration(
-                                      color: design.colors.tint1,
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 16),
+                                    child: ClipRRect(
                                       borderRadius: BorderRadius.circular(8),
+                                      child: Container(
+                                        width: 70,
+                                        height: 70,
+                                        decoration: BoxDecoration(
+                                          color: design.colors.tint1,
+                                        ),
+                                        child: artwork?.let((url) => simpleFadeInImage(url: url)),
+                                      ),
                                     ),
                                   ),
                                   Row(
@@ -190,6 +184,33 @@ class TrackScreen extends HookConsumerWidget {
                       ),
                     ],
                   ),
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: design.buttons.medium(
+                          labelText: 'Replace Media Item',
+                          onPressed: () {
+                            vc.playerController.replaceCurrentMediaItem(
+                              autoplay: true,
+                              MediaItem(
+                                url: '',
+                                metadata: MediaMetadata(
+                                  title: 'Track Title',
+                                  artist: 'Artist Name',
+                                  extras: {
+                                    'audio_only': 'true',
+                                  },
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),

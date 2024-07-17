@@ -206,6 +206,17 @@ class AppRouter extends $AppRouter {
           ],
         ),
         CustomRoute(
+          page: MusicWrapperScreenRoute.page,
+          children: [
+            _trackScreenRoute,
+            MaterialRoute(
+              page: MusicScreenRoute.page,
+              path: '',
+              meta: const {RouteMetaConstants.navTabRoute: true},
+            ),
+          ],
+        ),
+        CustomRoute(
           page: ShortsWrapperScreenRoute.page,
           path: 'shorts',
           maintainState: true,
@@ -325,6 +336,11 @@ class ProfileWrapperScreen extends AutoRouter {
 @RoutePage<void>()
 class ShortsWrapperScreen extends AutoRouter {
   const ShortsWrapperScreen({super.key});
+}
+
+@RoutePage<void>()
+class MusicWrapperScreen extends AutoRouter {
+  const MusicWrapperScreen({super.key});
 }
 
 Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, AutoRoutePage<T> page) {

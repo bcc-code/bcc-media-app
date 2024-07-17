@@ -14,7 +14,7 @@ import '../../l10n/app_localizations.dart';
 import 'package:bccm_core/design_system.dart';
 
 class BottomSheetMiniPlayer extends ConsumerStatefulWidget {
-  const BottomSheetMiniPlayer({Key? key, required this.hidden}) : super(key: key);
+  const BottomSheetMiniPlayer({super.key, required this.hidden});
 
   final bool hidden;
 
@@ -59,10 +59,13 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
       behavior: HitTestBehavior.opaque,
       onTap: () async {
         final id = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
+        final trackId = player.currentMediaItem?.metadata?.extras?['trackId']?.asOrNull<String>();
         final collectionId = player.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
         final offlineMediaItem = player.currentMediaItem?.isOffline == true;
         if (offlineMediaItem) {
           ref.read(playbackServiceProvider).openFullscreen(context);
+        } else if (trackId != null) {
+          await context.navigateTo(TrackScreenRoute());
         } else if (id != null) {
           try {
             await context.navigateTo(EpisodeScreenRoute(episodeId: id, collectionId: collectionId));

@@ -7,8 +7,10 @@ import 'package:brunstadtv_app/components/player/custom_cast_player.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:bccm_core/platform.dart';
+import 'package:brunstadtv_app/helpers/bmm.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:brunstadtv_app/screens/music/bmm_api.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -239,6 +241,30 @@ class PlaybackService {
       ),
     );
     return true;
+  }
+
+  Future<void> playTrack(BmmTrack track) async {
+    final url = track.media?.firstOrNull?.files?.firstOrNull?.url;
+    if (url == null) {
+      throw Exception('No media url found for track ${track.id}');
+    }
+
+    final cover = coverFromTrack(track);
+    final coverUrl = cover?.let((c) => ref.read(bmmApiProvider).getSignedUrl(c));
+    final mediaItem = MediaItem(
+      url: ref.read(bmmApiProvider).getSignedUrl(url),
+      metadata: MediaMetadata(
+        title: track.title ?? 'BMM',
+        artist: track.contributors?.firstOrNull?.name,
+        artworkUri: coverUrl,
+        extras: {
+          'id': track.id.toString(),
+          'trackId': track.id.toString(),
+          'audio_only': 'true',
+        },
+      ),
+    );
+    platformApi.primaryController.replaceCurrentMediaItem(mediaItem);
   }
 }
 

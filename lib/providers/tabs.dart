@@ -12,6 +12,7 @@ enum TabId {
   home,
   search,
   shorts,
+  music,
   profile,
 }
 
@@ -39,12 +40,14 @@ class TabInfos {
   final TabInfo home;
   final TabInfo search;
   final TabInfo shorts;
+  final TabInfo music;
   final TabInfo profile;
 
   const TabInfos({
     required this.home,
     required this.search,
     required this.shorts,
+    required this.music,
     required this.profile,
   });
 
@@ -52,6 +55,7 @@ class TabInfos {
     return switch (id) {
       TabId.home => home,
       TabId.search => search,
+      TabId.music => music,
       TabId.shorts => shorts,
       TabId.profile => profile,
     };
@@ -91,6 +95,15 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
       iconKey: GlobalKey(),
       scrollController: ref.watch(_scrollControllers('search')),
     ),
+    music: TabInfo(
+      id: TabId.music,
+      route: const MusicWrapperScreenRoute(),
+      title: (BuildContext context) => S.of(context).musicTab,
+      icon: FlavorConfig.current.bccmImages!.music,
+      analyticsName: 'music',
+      iconKey: GlobalKey(),
+      scrollController: ref.watch(_scrollControllers('music')),
+    ),
     shorts: TabInfo(
       id: TabId.shorts,
       route: ShortsWrapperScreenRoute(
@@ -121,6 +134,7 @@ final currentTabIdsProvider = Provider<List<TabId>>((ref) {
   return [
     TabId.home,
     TabId.search,
+    if (bccMember) TabId.music,
     if (bccMember && shorts) TabId.shorts,
     TabId.profile,
   ];
