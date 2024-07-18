@@ -9,16 +9,17 @@ import '../../../l10n/app_localizations.dart';
 import '../../../providers/todays_calendar_entries.dart';
 import '../../thumbnails/episode_thumbnail.dart';
 
-class EpisodeListEpisode extends ConsumerWidget {
-  const EpisodeListEpisode({
+class EpisodeListChapter extends ConsumerWidget {
+  const EpisodeListChapter({
     super.key,
     required this.id,
     required this.title,
     this.image,
+    this.episodeTitle,
+    this.seasonTitle,
     this.showTitle,
     required this.ageRating,
     required this.duration,
-    this.showSecondaryTitle = true,
     this.locked = false,
     this.progress,
     this.publishDate,
@@ -26,10 +27,11 @@ class EpisodeListEpisode extends ConsumerWidget {
   final String id;
   final String title;
   final String? image;
+  final String? episodeTitle;
+  final String? seasonTitle;
   final String? showTitle;
   final String ageRating;
   final int duration;
-  final bool showSecondaryTitle;
   final bool locked;
   final int? progress;
   final String? publishDate;
@@ -37,6 +39,16 @@ class EpisodeListEpisode extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
+
+    var tertiaryText = '${Duration(seconds: duration).inMinutes} ${S.of(context).minutesShort}';
+    if (episodeTitle != null) {
+      tertiaryText += ' - $episodeTitle';
+    }
+
+    var secondaryText = showTitle;
+    if (seasonTitle != null) {
+      secondaryText = secondaryText != null ? '$secondaryText - $seasonTitle' : seasonTitle;
+    }
 
     final design = DesignSystem.of(context);
     return Container(
@@ -47,6 +59,7 @@ class EpisodeListEpisode extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
+            alignment: Alignment.centerLeft,
             margin: const EdgeInsets.only(right: 16),
             child: EpisodeThumbnail.withWidth(
               episode: EpisodeThumbnailData(
@@ -78,11 +91,11 @@ class EpisodeListEpisode extends ConsumerWidget {
                     ),
                   ),
                 ),
-                if (showSecondaryTitle && showTitle != null)
+                if (secondaryText != null)
                   Container(
                     margin: const EdgeInsets.only(bottom: 4),
                     child: Text(
-                      showTitle!,
+                      secondaryText,
                       style: design.textStyles.caption2.copyWith(color: design.colors.tint1),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -95,7 +108,7 @@ class EpisodeListEpisode extends ConsumerWidget {
                       Container(
                         margin: const EdgeInsets.only(right: 6),
                         height: 16,
-                        padding: const EdgeInsets.only(right: 4, left: 4),
+                        padding: const EdgeInsets.only(right: 4, bottom: 2, left: 4),
                         decoration: BoxDecoration(
                           color: design.colors.background2,
                           border: Border.all(
@@ -109,9 +122,12 @@ class EpisodeListEpisode extends ConsumerWidget {
                           style: design.textStyles.caption2.copyWith(color: design.colors.onTint, height: 1.1),
                         ),
                       ),
-                    Text(
-                      '${Duration(seconds: duration).inMinutes} ${S.of(context).minutesShort}',
-                      style: design.textStyles.caption2.copyWith(color: design.colors.label3),
+                    Flexible(
+                      child: Text(
+                        tertiaryText,
+                        style: design.textStyles.caption2.copyWith(color: design.colors.label3),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     )
                   ],
                 )

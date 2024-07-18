@@ -1,4 +1,5 @@
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/components/episode/list/episode_list_chapter.dart';
 import 'package:brunstadtv_app/components/episode/list/episode_list_episode.dart';
 import 'package:brunstadtv_app/components/status/error_adaptive.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
@@ -221,12 +222,13 @@ class _ContributionListItem extends StatelessWidget {
           type: chapter.$__typename,
           name: chapter.title,
         ),
-        child: EpisodeListEpisode(
+        child: EpisodeListChapter(
           id: episode.id,
           ageRating: episode.ageRating,
           duration: chapter.duration,
-          showTitle: episode.title,
-          showSecondaryTitle: true,
+          episodeTitle: episode.title,
+          seasonTitle: episode.season?.title,
+          showTitle: episode.season?.$show.title,
           title: chapter.title,
           image: chapter.image ?? episode.image,
         ),

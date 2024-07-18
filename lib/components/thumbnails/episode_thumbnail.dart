@@ -66,8 +66,7 @@ class EpisodeThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 4),
+    return SizedBox(
       width: imageWidth,
       height: imageHeight,
       child: imageHeight == null
