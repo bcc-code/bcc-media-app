@@ -11,7 +11,7 @@ import '../../../../helpers/router/router_utils.dart';
 import '../../../status/loading_indicator.dart';
 
 class GenericCardMini extends StatefulWidget {
-  final Fragment$Section$$CardSection$items$items item;
+  final Fragment$CardItem item;
   final String? collectionId;
   const GenericCardMini({
     super.key,

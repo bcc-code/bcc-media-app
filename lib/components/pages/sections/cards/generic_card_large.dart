@@ -8,7 +8,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../status/loading_indicator.dart';
 
 class GenericCardLarge extends StatefulWidget {
-  final Fragment$Section$$CardSection$items$items item;
+  final Fragment$CardItem item;
   final String? collectionId;
   const GenericCardLarge({
     super.key,

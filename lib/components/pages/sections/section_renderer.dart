@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/misc/see_more.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/pages/sections/types/avatar_section.dart';
+import 'package:brunstadtv_app/components/pages/sections/types/card_list_section.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 
@@ -108,7 +109,17 @@ class SectionRenderer extends ConsumerWidget {
     }
     final cardSection = section.asOrNull<Fragment$Section$$CardSection>();
     if (cardSection != null && cardSection.items.items.isNotEmpty) {
-      return Padding(padding: const EdgeInsets.only(top: 4), child: SectionWithHeader.fromFragment(cardSection, child: CardSection(cardSection)));
+      return Padding(
+        padding: const EdgeInsets.only(top: 4),
+        child: SectionWithHeader.fromFragment(cardSection, child: CardSection(cardSection)),
+      );
+    }
+    final cardListsection = section.asOrNull<Fragment$Section$$CardListSection>();
+    if (cardListsection != null && cardListsection.items.items.isNotEmpty) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 4),
+        child: SectionWithHeader.fromFragment(cardListsection, child: CardListSection(cardListsection)),
+      );
     }
     final pageDetailsSection = section.asOrNull<Fragment$Section$$PageDetailsSection>();
     if (pageDetailsSection != null) {
