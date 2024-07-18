@@ -9,6 +9,7 @@ import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:brunstadtv_app/providers/notifications.dart';
+import 'package:brunstadtv_app/providers/performance_class_provider.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/firebase.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
@@ -126,6 +127,7 @@ Future<ProviderContainer> initProviderContainer(List<Override> overrides) async 
   providerContainer.read(deepLinkServiceProvider);
   providerContainer.read(notificationServiceProvider);
   providerContainer.read(authFeatureFlagListener);
+  providerContainer.read(androidPerformanceClassProvider);
   await providerContainer.read(playbackServiceProvider).init();
   return providerContainer;
 }

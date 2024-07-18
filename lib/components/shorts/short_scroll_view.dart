@@ -36,13 +36,13 @@ class ShortScrollView extends HookConsumerWidget {
     final currentIndex = useState(0);
     final isMounted = useIsMounted();
     final isFirstOpen = useState(true);
-    final performanceClass = ref.watch(androidPerformanceClassProvider).valueOrNull;
     final playerCount = useMemoized(() {
+      final performanceClass = ref.read(androidPerformanceClassProvider).valueOrNull;
       if (Platform.isAndroid) {
         return performanceClass != null && performanceClass >= 12 ? 4 : 2;
       }
       return 4;
-    }, [performanceClass]);
+    }, []);
 
     fetchMore() async {
       final result = await gqlClient.query$getShorts(
@@ -75,8 +75,16 @@ class ShortScrollView extends HookConsumerWidget {
     final fetchMoreFuture = useState<Future<QueryResult<Query$getShorts>>?>(null);
     final fetchMoreSnapshot = useFuture(fetchMoreFuture.value);
 
-    final shortControllersState =
-        useState<List<ShortController>>(useMemoized(() => List.unmodifiable(List.generate(playerCount, (_) => ShortController(ref)))));
+    final shortControllersState = useState<List<ShortController>>(
+      useMemoized(
+        () => List.unmodifiable(
+          List.generate(
+            playerCount,
+            (_) => ShortController(ref),
+          ),
+        ),
+      ),
+    );
     final shortControllers = shortControllersState.value;
 
     final router = context.watchRouter;
