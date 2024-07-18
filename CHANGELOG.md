@@ -1,4 +1,20 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.9+2300169...v) (2024-07-17)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.10+2300170...v) (2024-07-18)
+
+
+
+## [5.6.10+2300170](https://github.com/bcc-code/bcc-media-app/compare/v5.6.9+2300169...v5.6.10+2300170) (2024-07-18)
+
+
+### Bug Fixes
+
+* **android:** shorts issues (grey screen etc) ([f1ba4ec](https://github.com/bcc-code/bcc-media-app/commit/f1ba4ec51d2c65ac13bc224a646287748e7121ec))
+
+
+### Features
+
+* [#406](https://github.com/bcc-code/bcc-media-app/issues/406) chapter and episode list item tweaks ([5200b82](https://github.com/bcc-code/bcc-media-app/commit/5200b8288396bd6a6ab442c4969eda22cbf237e6))
+* highlight active chapter ([4fa36ba](https://github.com/bcc-code/bcc-media-app/commit/4fa36ba033bab214cc414f0d658ecbadb4e7c205))
+* support card list section but its the same as cardsection.. ([8de1408](https://github.com/bcc-code/bcc-media-app/commit/8de14085df233a915bee9368f9e83b6d997b1037))
 
 
 
