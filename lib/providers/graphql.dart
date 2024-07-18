@@ -1,7 +1,6 @@
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
@@ -78,13 +77,4 @@ class _ApiHttpClient extends BaseClient {
     request.headers.addAll(headers);
     return _client.send(request);
   }
-}
-
-String getOsVersion(BaseDeviceInfo deviceInfo) {
-  if (deviceInfo is IosDeviceInfo) {
-    return deviceInfo.systemVersion;
-  } else if (deviceInfo is AndroidDeviceInfo) {
-    return deviceInfo.version.release;
-  }
-  return '';
 }
