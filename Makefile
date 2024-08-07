@@ -3,6 +3,12 @@
 BUILD_NUMBER=$(shell grep -i -e "version: " pubspec.yaml | cut -d " " -f 2)
 BUILD_NUMBER_KIDS=$(shell grep -i -e "version: " kids/pubspec.yaml | cut -d " " -f 2)
 
+pubgetall:
+	flutter pub get
+	cd kids && flutter pub get
+	cd submodules/bccm_flutter/bccm_core && flutter pub get
+	cd submodules/bccm_player && flutter pub get
+
 rm-locales:
 	for file in $$(find ./lib/l10n/ -name *.arb -mindepth 1 -type f); do sed -i '' '/\@\@locale/d' $$file; done
 
