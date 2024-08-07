@@ -995,6 +995,9 @@ class SRu extends S {
   String get shortsLikedAndSavedDescription => 'Вы можете найти все понравившиеся видео в своем профиле.';
 
   @override
+  String get excerptFrom => 'Excerpt from';
+
+  @override
   String get downloadedVideosGuideDescription => 'Загруженные видео можно найти в разделе Профиль.';
 
   @override

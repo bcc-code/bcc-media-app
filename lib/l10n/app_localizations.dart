@@ -2033,6 +2033,12 @@ abstract class S {
   /// **'You can find all your liked shorts in your profile.'**
   String get shortsLikedAndSavedDescription;
 
+  /// Shown on a 'short' video, indicating that this is an excerpt from a longer video. E.g. Excerpt from 'The Tale of John Doe'.
+  ///
+  /// In en, this message translates to:
+  /// **'Excerpt from'**
+  String get excerptFrom;
+
   /// Shown when you have downloaded a video for the first time.
   ///
   /// In en, this message translates to:

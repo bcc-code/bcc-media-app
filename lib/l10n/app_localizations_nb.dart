@@ -995,6 +995,9 @@ class SNb extends S {
   String get shortsLikedAndSavedDescription => 'Du finner alt du har likt i profilen din.';
 
   @override
+  String get excerptFrom => 'Excerpt from';
+
+  @override
   String get downloadedVideosGuideDescription => 'Du finner dine nedlastede videoer under \"Min profil\".';
 
   @override

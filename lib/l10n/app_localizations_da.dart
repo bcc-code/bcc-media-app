@@ -995,6 +995,9 @@ class SDa extends S {
   String get shortsLikedAndSavedDescription => 'Du kan finde alle dine favoritkortfilm i din profil.';
 
   @override
+  String get excerptFrom => 'Excerpt from';
+
+  @override
   String get downloadedVideosGuideDescription => 'Du kan finde dine downloadede videoer under \"Profil\".';
 
   @override

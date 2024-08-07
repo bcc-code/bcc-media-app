@@ -300,14 +300,9 @@ abstract class $AppRouter extends _i33.RootStackRouter {
       );
     },
     ShortsScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<ShortsScreenRouteArgs>(
-          orElse: () => const ShortsScreenRouteArgs());
       return _i33.AutoRoutePage<void>(
         routeData: routeData,
-        child: _i25.ShortsScreen(
-          key: args.key,
-          preventScroll: args.preventScroll,
-        ),
+        child: const _i25.ShortsScreen(),
       );
     },
     ShortsWrapperScreenRoute.name: (routeData) {
@@ -1062,40 +1057,16 @@ class ShortScreenRouteArgs {
 
 /// generated route for
 /// [_i25.ShortsScreen]
-class ShortsScreenRoute extends _i33.PageRouteInfo<ShortsScreenRouteArgs> {
-  ShortsScreenRoute({
-    _i34.Key? key,
-    bool preventScroll = false,
-    List<_i33.PageRouteInfo>? children,
-  }) : super(
+class ShortsScreenRoute extends _i33.PageRouteInfo<void> {
+  const ShortsScreenRoute({List<_i33.PageRouteInfo>? children})
+      : super(
           ShortsScreenRoute.name,
-          args: ShortsScreenRouteArgs(
-            key: key,
-            preventScroll: preventScroll,
-          ),
           initialChildren: children,
         );
 
   static const String name = 'ShortsScreenRoute';
 
-  static const _i33.PageInfo<ShortsScreenRouteArgs> page =
-      _i33.PageInfo<ShortsScreenRouteArgs>(name);
-}
-
-class ShortsScreenRouteArgs {
-  const ShortsScreenRouteArgs({
-    this.key,
-    this.preventScroll = false,
-  });
-
-  final _i34.Key? key;
-
-  final bool preventScroll;
-
-  @override
-  String toString() {
-    return 'ShortsScreenRouteArgs{key: $key, preventScroll: $preventScroll}';
-  }
+  static const _i33.PageInfo<void> page = _i33.PageInfo<void>(name);
 }
 
 /// generated route for

@@ -235,7 +235,35 @@ class ShortView extends HookConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                if (short != null) ShortInfo(title: short!.title, description: short!.description),
+                                if (short != null)
+                                  ShortInfo(
+                                    title: short!.title,
+                                    description: short!.description,
+                                    sourceTitle: short?.source?.item.asOrNull<Fragment$Short$source$item$$Episode>()?.title,
+                                    onSourceTapped: () async {
+                                      ref.read(analyticsProvider).interaction(InteractionEvent(
+                                            interaction: 'open-source',
+                                            pageCode: 'shorts',
+                                            contextElementType: 'short',
+                                            contextElementId: short?.id,
+                                          ));
+                                      final ep = short?.source?.item.asOrNull<Fragment$Short$source$item$$Episode>();
+                                      if (ep == null) return;
+                                      final sourcePosition = short?.source?.start?.round() ?? 0;
+                                      final shortPosition = (videoController.value.playbackPositionMs ?? 0) ~/ 1000;
+
+                                      videoController.pause();
+                                      await context.router.push(
+                                        EpisodeScreenRoute(
+                                          episodeId: ep.id,
+                                          autoplay: true,
+                                          queryParamStartPositionSeconds: sourcePosition + shortPosition,
+                                        ),
+                                      );
+                                      // after navigating back, we want to stop the "source"
+                                      BccmPlayerController.primary.stop(reset: true);
+                                    },
+                                  ),
                                 const SizedBox(height: 8),
                                 Disclaimers(short: short),
                               ],
@@ -427,19 +455,29 @@ class Disclaimers extends ConsumerWidget {
   }
 }
 
-class ShortInfo extends StatelessWidget {
+class ShortInfo extends ConsumerWidget {
   const ShortInfo({
     super.key,
     this.title,
+    this.sourceTitle,
     this.description,
+    this.onSourceTapped,
   });
 
   final String? title;
+  final String? sourceTitle;
   final String? description;
+  final VoidCallback? onSourceTapped;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
+
+    final sourceTextStyle = title == null || title!.isEmpty
+        ? design.textStyles.body1.copyWith(color: design.colors.label1)
+        : design.textStyles.body2.copyWith(
+            color: design.colors.label3,
+          );
     return Padding(
       padding: const EdgeInsets.only(right: 24),
       child: Column(
@@ -451,6 +489,32 @@ class ShortInfo extends StatelessWidget {
               title!,
               style: design.textStyles.body1.copyWith(color: design.colors.label1),
               textAlign: TextAlign.left,
+            ),
+          if (sourceTitle?.isNotEmpty == true)
+            GestureDetector(
+              onTap: onSourceTapped,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '${S.of(context).excerptFrom} ',
+                    style: sourceTextStyle,
+                  ),
+                  Flexible(
+                    child: Text(
+                      sourceTitle!,
+                      style: sourceTextStyle.copyWith(fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: SvgPicture.string(
+                      SvgIcons.chevronRight,
+                    ),
+                  )
+                ],
+              ),
             ),
           if (description?.isNotEmpty == true)
             CollapsableMarkdown(
@@ -507,8 +571,7 @@ class ShortActions extends HookConsumerWidget {
       inMyList.value = short!.inMyList;
       return;
     }, [short]);
-    final shortsSourceButtonPrimary = ref.watch(featureFlagsProvider.select((f) => f.shortsSourceButtonPrimary));
-    final hasSource = short == null || short?.source?.item != null;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -628,43 +691,6 @@ class ShortActions extends HookConsumerWidget {
             colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
           ),
         ),
-        if (hasSource)
-          Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: design.buttons.large(
-              variant: shortsSourceButtonPrimary ? ButtonVariant.primary : ButtonVariant.secondary,
-              onPressed: () async {
-                ref.read(analyticsProvider).interaction(InteractionEvent(
-                      interaction: 'open-source',
-                      pageCode: 'shorts',
-                      contextElementType: 'short',
-                      contextElementId: short?.id,
-                    ));
-                final ep = short?.source?.item.asOrNull<Fragment$Short$source$item$$Episode>();
-                if (ep == null) return;
-                final sourcePosition = short?.source?.start?.round() ?? 0;
-                final shortPosition = (videoController?.value.playbackPositionMs ?? 0) ~/ 1000;
-
-                videoController?.pause();
-                await context.router.push(
-                  EpisodeScreenRoute(
-                    episodeId: ep.id,
-                    autoplay: true,
-                    queryParamStartPositionSeconds: sourcePosition + shortPosition,
-                  ),
-                );
-                // after navigating back, we want to stop the "source"
-                BccmPlayerController.primary.stop(reset: false);
-              },
-              imagePosition: ButtonImagePosition.right,
-              image: SvgPicture.string(
-                SvgIcons.chevronRight,
-                width: 32,
-                height: 32,
-                colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
-              ),
-            ),
-          ),
       ]), //.animate(interval: 100.ms).slideY(begin: 1, curve: Curves.easeOutExpo, duration: 1000.ms).fadeIn(),
     );
   }

@@ -995,6 +995,9 @@ class SHu extends S {
   String get shortsLikedAndSavedDescription => 'A profilodban megtalálhatod az összes kedvelt shortodat.';
 
   @override
+  String get excerptFrom => 'Excerpt from';
+
+  @override
   String get downloadedVideosGuideDescription => 'A letöltött videókat a \"Profil\" menüpont alatt találod.';
 
   @override

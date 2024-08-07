@@ -20,11 +20,9 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 class ShortScrollView extends HookConsumerWidget {
   const ShortScrollView({
     super.key,
-    this.preventScroll = false,
     this.initialShortId,
   });
 
-  final bool preventScroll;
   final String? initialShortId;
 
   @override
@@ -296,7 +294,6 @@ class ShortScrollView extends HookConsumerWidget {
         setCurrentIndex(index);
       },
       physics: const _CustomPageViewScrollPhysics(),
-      itemCount: preventScroll ? 1 : null,
       itemBuilder: (context, index) {
         if (!isRouteActive) {
           return const SizedBox();
@@ -339,7 +336,7 @@ class ShortScrollView extends HookConsumerWidget {
 }
 
 class _CustomPageViewScrollPhysics extends ScrollPhysics {
-  const _CustomPageViewScrollPhysics({ScrollPhysics? parent}) : super(parent: parent);
+  const _CustomPageViewScrollPhysics({super.parent});
 
   @override
   _CustomPageViewScrollPhysics applyTo(ScrollPhysics? ancestor) {

@@ -8,10 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class ShortsScreen extends HookConsumerWidget {
   const ShortsScreen({
     super.key,
-    this.preventScroll = false,
   });
-
-  final bool preventScroll;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

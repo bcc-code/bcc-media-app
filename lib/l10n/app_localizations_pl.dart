@@ -995,6 +995,9 @@ class SPl extends S {
   String get shortsLikedAndSavedDescription => 'Wszystkie polubione filmy można znaleźć w swoim profilu.';
 
   @override
+  String get excerptFrom => 'Excerpt from';
+
+  @override
   String get downloadedVideosGuideDescription => 'Pobrane filmy można znaleźć w \"Profilu\".';
 
   @override

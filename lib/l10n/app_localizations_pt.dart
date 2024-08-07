@@ -995,6 +995,9 @@ class SPt extends S {
   String get shortsLikedAndSavedDescription => 'Você pode encontrar todos os seus vídeos favoritos em seu perfil.';
 
   @override
+  String get excerptFrom => 'Excerpt from';
+
+  @override
   String get downloadedVideosGuideDescription => 'Você pode encontrar seus vídeos baixados em \"Perfil\".';
 
   @override

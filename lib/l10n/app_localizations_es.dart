@@ -995,6 +995,9 @@ class SEs extends S {
   String get shortsLikedAndSavedDescription => 'Puedes encontrar todos los cortos que te gustan en tu perfil.';
 
   @override
+  String get excerptFrom => 'Excerpt from';
+
+  @override
   String get downloadedVideosGuideDescription => 'Puedes encontrar tus videos descargados en \"Perfil\".';
 
   @override

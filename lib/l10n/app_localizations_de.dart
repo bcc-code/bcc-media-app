@@ -995,6 +995,9 @@ class SDe extends S {
   String get shortsLikedAndSavedDescription => 'Alle Kurzfilme, die dir gefallen, findest du in deinem Profil.';
 
   @override
+  String get excerptFrom => 'Excerpt from';
+
+  @override
   String get downloadedVideosGuideDescription => 'Deine heruntergeladenen Videos findest du unter „Profil“.';
 
   @override

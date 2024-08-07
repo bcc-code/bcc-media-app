@@ -995,6 +995,9 @@ class STa extends S {
   String get shortsLikedAndSavedDescription => 'நீங்கள் விரும்பிய அனைத்து ஷார்ட்ஸ்களையும் உங்கள் சுயவிவரத்தில் காணலாம்.';
 
   @override
+  String get excerptFrom => 'Excerpt from';
+
+  @override
   String get downloadedVideosGuideDescription => 'நீங்கள் பதிவிறக்கிய வீடியோக்களை \"சுயவிவரம்\" என்பதன் கீழ் காணலாம்.';
 
   @override

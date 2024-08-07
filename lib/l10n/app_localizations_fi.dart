@@ -995,6 +995,9 @@ class SFi extends S {
   String get shortsLikedAndSavedDescription => 'Löydät kaikki tykkäämäsi lyhytvideot profiilistasi.';
 
   @override
+  String get excerptFrom => 'Excerpt from';
+
+  @override
   String get downloadedVideosGuideDescription => 'Löydät lataamasi videot kohdasta \"Profiili\".';
 
   @override
