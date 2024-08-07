@@ -1,6 +1,5 @@
 // a class that holds a preset of
 // common route transition builder
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class CustomTransitionsBuilders {
@@ -80,41 +79,6 @@ class CustomTransitionsBuilders {
         },
         child: child,
       ),
-    );
-  }
-
-  static Route<T> slideLeftRouteBuilder<T>(
-    BuildContext context,
-    Widget child,
-    AutoRoutePage<T> page,
-  ) {
-    return PageRouteBuilder(
-      settings: page,
-      pageBuilder: (context, animation, animation2) {
-        CurveTween curveTween;
-        CurveTween curveTweenLeaving;
-        if (animation.status == AnimationStatus.reverse) {
-          curveTween = CurveTween(curve: Curves.easeInQuart);
-          curveTweenLeaving = CurveTween(curve: Curves.easeOutQuart);
-        } else {
-          curveTween = CurveTween(curve: Curves.easeOutQuart);
-          curveTweenLeaving = CurveTween(curve: Curves.easeInQuart);
-        }
-        return SlideTransition(
-          position: Tween(begin: const Offset(1.0, 0.0), end: Offset.zero).animate(
-            CurvedAnimation(parent: animation, curve: curveTween.curve),
-          ),
-          child: SlideTransition(
-            position: Tween(begin: Offset.zero, end: const Offset(-0.5, 0.0)).animate(
-              CurvedAnimation(
-                parent: animation2,
-                curve: curveTweenLeaving.curve,
-              ),
-            ),
-            child: child,
-          ),
-        );
-      },
     );
   }
 }
