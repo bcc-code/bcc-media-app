@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.10+2300170...v) (2024-07-18)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.11+2300171...v) (2024-08-07)
+
+
+
+## [5.6.11+2300171](https://github.com/bcc-code/bcc-media-app/compare/v5.6.10+2300170...v5.6.11+2300171) (2024-08-07)
+
+
+### Features
+
+* **shorts:** show source title excerpt [#369](https://github.com/bcc-code/bcc-media-app/issues/369) ([d414b45](https://github.com/bcc-code/bcc-media-app/commit/d414b45db2b2d66c00b536c9d1239c073b607bb3))
 
 
 
