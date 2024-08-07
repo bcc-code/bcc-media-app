@@ -25,15 +25,16 @@ changelog:
 
 changelog-commit:
 	git diff-index --quiet HEAD -- || (echo "Working tree not clean, continue anyway? y/n" && read ans && [ $$ans == "y" ])
+# temporary tag to include the version in the changelog
+	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	make changelog
 	git add CHANGELOG.md
 	git commit -m "chore: update changelog" || true
+	git tag --delete v${BUILD_NUMBER}${TAG_SUFFIX}
 
 # Release
 release:
-	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	make changelog-commit
-	git tag --delete v${BUILD_NUMBER}${TAG_SUFFIX}
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
 
