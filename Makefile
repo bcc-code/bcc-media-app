@@ -70,7 +70,3 @@ bump:
 	echo "Bumped version to $${NEW_VERSION}"
 	git add pubspec.yaml
 	git commit -m "chore: bump version to $${NEW_VERSION}"
-
-update:
-	flutter pub upgrade bccm_core
-	flutter pub upgrade bccm_player

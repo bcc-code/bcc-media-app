@@ -15,12 +15,6 @@ Recommended editor: VS Code, because we have some default debug options set up i
 4. You can now run the app, e.g. with Run > Start Debugging in VSCode
 5. For development, it's important to read the [Code generation](#code-generation) section below before you begin.
 
-## Updating the core packages
-
-```
-make update
-```
-
 ## Code generation
 
 Some code is generated, for example routing and graphql queries.
