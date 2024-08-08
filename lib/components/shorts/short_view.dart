@@ -474,7 +474,7 @@ class ShortInfo extends ConsumerWidget {
     final design = DesignSystem.of(context);
 
     final sourceTextStyle = title == null || title!.isEmpty
-        ? design.textStyles.body1.copyWith(color: design.colors.label1)
+        ? design.textStyles.body2.copyWith(color: design.colors.label2)
         : design.textStyles.body2.copyWith(
             color: design.colors.label3,
           );
@@ -487,7 +487,7 @@ class ShortInfo extends ConsumerWidget {
           if (title?.isNotEmpty == true)
             Text(
               title!,
-              style: design.textStyles.body1.copyWith(color: design.colors.label1),
+              style: design.textStyles.title3.copyWith(color: design.colors.label1),
               textAlign: TextAlign.left,
             ),
           if (sourceTitle?.isNotEmpty == true)
@@ -496,23 +496,27 @@ class ShortInfo extends ConsumerWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    '${S.of(context).excerptFrom} ',
-                    style: sourceTextStyle,
-                  ),
                   Flexible(
-                    child: Text(
-                      sourceTitle!,
-                      style: sourceTextStyle.copyWith(fontWeight: FontWeight.bold),
+                    child: RichText(
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: '${S.of(context).excerptFrom} ',
+                            style: sourceTextStyle,
+                          ),
+                          TextSpan(
+                            text: sourceTitle,
+                            style: sourceTextStyle.copyWith(
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 6),
-                    child: SvgPicture.string(
-                      SvgIcons.chevronRight,
-                    ),
-                  )
                 ],
               ),
             ),
