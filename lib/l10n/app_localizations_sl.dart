@@ -1031,6 +1031,6 @@ class SSl extends S {
 
   @override
   String skipTo(String chapter) {
-    return 'Skip to $chapter';
+    return 'Preskoči na $chapter';
   }
 }

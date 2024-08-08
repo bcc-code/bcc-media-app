@@ -77,3 +77,9 @@ bump:
 	echo "Bumped version to $${NEW_VERSION}"
 	git add pubspec.yaml
 	git commit -m "chore: bump version to $${NEW_VERSION}"
+
+crowdin-download:
+	crowdin download --token=$$(cat .crowdin-token)
+
+crowdin-upload:
+	crowdin upload --token=$$(cat .crowdin-token)

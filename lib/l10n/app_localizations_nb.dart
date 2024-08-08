@@ -995,7 +995,7 @@ class SNb extends S {
   String get shortsLikedAndSavedDescription => 'Du finner alt du har likt i profilen din.';
 
   @override
-  String get excerptFrom => 'Excerpt from';
+  String get excerptFrom => 'Utdrag fra';
 
   @override
   String get downloadedVideosGuideDescription => 'Du finner dine nedlastede videoer under \"Min profil\".';
@@ -1031,6 +1031,6 @@ class SNb extends S {
 
   @override
   String skipTo(String chapter) {
-    return 'Skip to $chapter';
+    return 'Gå til $chapter';
   }
 }

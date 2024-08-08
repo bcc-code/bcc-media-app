@@ -1031,6 +1031,6 @@ class SDe extends S {
 
   @override
   String skipTo(String chapter) {
-    return 'Skip to $chapter';
+    return 'Weiter zu $chapter';
   }
 }

@@ -1411,5 +1411,14 @@
         "type": "int"
       }
     }
+  },
+  "skipTo": "Ga naar {chapter}",
+  "@skipTo": {
+    "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "chapter": {
+        "type": "String"
+      }
+    }
   }
 }

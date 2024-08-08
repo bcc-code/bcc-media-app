@@ -1363,6 +1363,10 @@
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
+  "excerptFrom": "Utdrag fra",
+  "@excerptFrom": {
+    "description": "Shown on a 'short' video, indicating that this is an excerpt from a longer video. E.g. Excerpt from 'The Tale of John Doe'."
+  },
   "downloadedVideosGuideDescription": "Du finner dine nedlastede videoer under \"Min profil\".",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
@@ -1398,5 +1402,14 @@
   "all": "Alle",
   "@all": {
     "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
+  },
+  "skipTo": "Gå til {chapter}",
+  "@skipTo": {
+    "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "chapter": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -1031,6 +1031,6 @@ class SFr extends S {
 
   @override
   String skipTo(String chapter) {
-    return 'Skip to $chapter';
+    return 'Passer à $chapter';
   }
 }

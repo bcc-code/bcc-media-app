@@ -63,3 +63,5 @@ ios/Runner/GoogleService-Info.plist
 .env.js
 
 **/dgph
+
+.crowdin-token

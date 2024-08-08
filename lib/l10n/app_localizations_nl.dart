@@ -1031,6 +1031,6 @@ class SNl extends S {
 
   @override
   String skipTo(String chapter) {
-    return 'Skip to $chapter';
+    return 'Ga naar $chapter';
   }
 }

@@ -1031,6 +1031,6 @@ class SRo extends S {
 
   @override
   String skipTo(String chapter) {
-    return 'Skip to $chapter';
+    return 'Treceți la $chapter';
   }
 }
