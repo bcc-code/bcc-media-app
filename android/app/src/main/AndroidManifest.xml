@@ -47,7 +47,7 @@
                 <data android:scheme="tv.brunstad.app.main" />
             </intent-filter>
 
-            <!-- Deep linking -->
+            <!-- Disable flutter's built-in deeplinking, because we use a lib (AppLinks) -->
             <meta-data
                 android:name="flutter_deeplinking_enabled"
                 android:value="false" />
