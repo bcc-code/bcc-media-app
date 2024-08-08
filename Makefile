@@ -80,6 +80,7 @@ bump:
 
 crowdin-download:
 	crowdin download --token=$$(cat .crowdin-token)
+	flutter gen-l10n
 
 crowdin-upload:
 	crowdin upload --token=$$(cat .crowdin-token)

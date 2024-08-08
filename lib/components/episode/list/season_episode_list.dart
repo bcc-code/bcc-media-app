@@ -24,7 +24,13 @@ class SeasonEpisodeList extends StatelessWidget {
   final String? selectedId;
   final void Function(int index, String id) onEpisodeTap;
 
-  const SeasonEpisodeList({super.key, this.title, this.selectedId, required this.items, required this.onEpisodeTap});
+  const SeasonEpisodeList({
+    super.key,
+    this.title,
+    this.selectedId,
+    required this.items,
+    required this.onEpisodeTap,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -19,9 +19,9 @@ import 'package:bccm_core/design_system.dart';
 @RoutePage<void>()
 class ContributorScreen extends HookConsumerWidget {
   const ContributorScreen({
-    Key? key,
+    super.key,
     @PathParam() required this.personId,
-  }) : super(key: key);
+  });
 
   final String personId;
 

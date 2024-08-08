@@ -85,7 +85,10 @@ class HorizontalSlider extends HookWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: itemCount,
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(margin: EdgeInsets.only(right: index == itemCount - 1 ? 0 : gap), child: itemBuilder(context, index));
+                  return ConstrainedBox(
+                    constraints: BoxConstraints(minHeight: 0, maxHeight: height),
+                    child: Container(margin: EdgeInsets.only(right: index == itemCount - 1 ? 0 : gap), child: itemBuilder(context, index)),
+                  );
                 },
               ),
             ),

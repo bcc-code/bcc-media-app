@@ -77,14 +77,7 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
     }
     final episode = item.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
     if (episode != null) {
-      return EpisodeThumbnailData(
-        title: item.title,
-        duration: episode.duration,
-        image: item.image,
-        locked: episode.locked,
-        progress: episode.progress,
-        publishDate: episode.publishDate,
-      );
+      return EpisodeThumbnailData.fromFragment(episode);
     }
     return EpisodeThumbnailData(
       title: item.title,
@@ -145,7 +138,7 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
           sectionItemWidget = ThumbnailSliderEpisode(
             episode: episodeThumbnailData,
             imageSize: responsiveSliderSize.imageSize,
-            showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+            showSecondaryTitle: data.metadata?.secondaryTitles ?? false,
             isLive: item.id == curLiveEpisode?.id,
           );
         }

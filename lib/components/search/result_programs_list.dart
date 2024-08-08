@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_core/platform.dart';
@@ -7,7 +9,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:bccm_core/design_system.dart';
 
-import '../../helpers/router/router_utils.dart';
 import '../misc/horizontal_slider.dart';
 import '../thumbnails/misc/bordered_image_container.dart';
 
@@ -73,10 +74,8 @@ class _ProgramState extends ConsumerState<_Program> {
         GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () {
-            setState(() {
-              navigationFuture = navigateToShowWithoutEpisodeId(context, widget._item.id);
-              ref.read(analyticsProvider).searchResultClicked(context);
-            });
+            context.router.push(ShowScreenRoute(showId: widget._item.id));
+            ref.read(analyticsProvider).searchResultClicked(context);
           },
           child: SizedBox(
             width: _slideWidth,

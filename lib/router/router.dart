@@ -202,6 +202,7 @@ class AppRouter extends $AppRouter {
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
             _pageScreenRoute,
+            _showScreenRoute
           ],
         ),
         CustomRoute(
@@ -251,6 +252,7 @@ class AppRouter extends $AppRouter {
             _collectionEpisodeScreenRoute,
             _contributorScreenRoute,
             _pageScreenRoute,
+            _showScreenRoute,
           ],
         ),
       ],
@@ -288,6 +290,12 @@ final _pageScreenRoute = CupertinoRoute(
   page: PageScreenRoute.page,
   path: ':pageCode',
   usesPathAsKey: true,
+);
+
+final _showScreenRoute = CupertinoRoute(
+  page: ShowScreenRoute.page,
+  path: 'show/:showId',
+  meta: const {RouteMetaConstants.analyticsName: 'show'},
 );
 
 // Empty routes
