@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.11+2300171...v) (2024-08-07)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.12+2300172...v) (2024-08-08)
+
+
+
+## [5.6.12+2300172](https://github.com/bcc-code/bcc-media-app/compare/v5.6.11+2300171...v5.6.12+2300172) (2024-08-08)
+
+
+### Bug Fixes
+
+* **shorts:** improve source title styling ([4c7c673](https://github.com/bcc-code/bcc-media-app/commit/4c7c6736baeb6e753fbb54506e6adddea1221b47))
+
+
+### Features
+
+* show page ([ebe04be](https://github.com/bcc-code/bcc-media-app/commit/ebe04be4d0fe2433b7fa842b73f8c9991423b2ff))
 
 
 
