@@ -1,12 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.12+2300172...v) (2024-08-08)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.12+2300172...v) (2024-08-09)
 
 
 
-## [5.6.12+2300172](https://github.com/bcc-code/bcc-media-app/compare/v5.6.11+2300171...v5.6.12+2300172) (2024-08-08)
+## [5.6.12+2300172](https://github.com/bcc-code/bcc-media-app/compare/v5.6.11+2300171...v5.6.12+2300172) (2024-08-09)
 
 
 ### Bug Fixes
 
+* **episode:** make sure error renders inside sliver ([c529caf](https://github.com/bcc-code/bcc-media-app/commit/c529cafec4de1f304c704c49a0af5a4dbecebaff))
 * **shorts:** improve source title styling ([4c7c673](https://github.com/bcc-code/bcc-media-app/commit/4c7c6736baeb6e753fbb54506e6adddea1221b47))
 
 
