@@ -104,6 +104,13 @@ class ShowScreen extends HookConsumerWidget {
                   'https://app.bcc.media/show/$showId',
                   sharePositionOrigin: iPadSharePositionOrigin(context),
                 );
+                ref.read(analyticsProvider).contentShared(
+                      ContentSharedEvent(
+                        pageCode: 'show',
+                        elementType: 'show',
+                        elementId: showId,
+                      ),
+                    );
               },
               behavior: HitTestBehavior.opaque,
               child: Padding(
