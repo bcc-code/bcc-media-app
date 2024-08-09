@@ -4,9 +4,11 @@ import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/episode/list/season_episode_list.dart';
-import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_with_header.dart';
+import 'package:brunstadtv_app/components/status/error_adaptive.dart';
+import 'package:brunstadtv_app/components/status/loading_generic.dart';
+import 'package:brunstadtv_app/components/thumbnails/slider/thumbnail_slider.dart';
 import 'package:brunstadtv_app/components/thumbnails/slider/thumbnail_slider_episode.dart';
 import 'package:brunstadtv_app/helpers/episode_state.dart';
 import 'package:brunstadtv_app/helpers/insets.dart';
@@ -15,7 +17,6 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage<void>()
@@ -39,41 +40,47 @@ class ShowScreen extends HookConsumerWidget {
       final gqlClient = ref.read(bccmGraphQLProvider);
       final show = await gqlClient.query$GetShow(Options$Query$GetShow(variables: Variables$Query$GetShow(id: showId)));
 
-      if (show.parsedData == null) throw Exception('No show data found');
+      final showParsedData = show.parsedData;
+      if (showParsedData == null) throw Exception('No show data found');
 
-      for (final season in show.parsedData!.$show.seasons.items) {
-        if (seasonHasNewEpisodes(season)) {
+      final futures = showParsedData.$show.seasons.items.map((season) async {
+        final List<Fragment$SeasonListEpisode> episodes;
+        final hasNewEpisodes = seasonHasNewEpisodes(season);
+
+        if (hasNewEpisodes) {
           final result = await gqlClient.query$GetSeasonEpisodes(
             Options$Query$GetSeasonEpisodes(
-              variables: Variables$Query$GetSeasonEpisodes(id: season.id, dir: 'desc'),
+              variables: Variables$Query$GetSeasonEpisodes(
+                id: season.id,
+                dir: 'desc',
+              ),
             ),
           );
 
-          final parsedData = result.parsedData;
-          if (parsedData == null) throw Exception('No season data found');
+          final seasonParsedData = result.parsedData;
+          if (seasonParsedData == null) throw Exception('No season data found');
 
-          seasons.value.add(ShowScreenSeason(
-            id: season.id,
-            title: season.title,
-            episodes: parsedData.season.episodes.items,
-            newEpisodes: true,
-          ));
+          episodes = seasonParsedData.season.episodes.items;
         } else {
-          seasons.value.add(ShowScreenSeason(
-            id: season.id,
-            title: season.title,
-            episodes: season.episodes.items,
-            newEpisodes: false,
-          ));
+          episodes = season.episodes.items;
         }
-      }
+
+        return ShowScreenSeason(
+          id: season.id,
+          title: season.title,
+          episodes: episodes,
+          newEpisodes: hasNewEpisodes,
+        );
+      });
+
+      seasons.value = await Future.wait(futures);
 
       return show;
     }
 
     final design = BccMediaDesignSystem();
 
-    final showFuture = useState<Future<QueryResult<Query$GetShow>>>(useMemoized(getShow));
+    final showFuture = useState(useMemoized(getShow));
     final showSnapshot = useFuture(showFuture.value);
     final showSnapshotData = showSnapshot.data?.parsedData?.$show;
 
@@ -95,74 +102,121 @@ class ShowScreen extends HookConsumerWidget {
           ],
         ),
       ),
-      body: SizedBox(
-        height: double.infinity,
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (showSnapshot.connectionState == ConnectionState.waiting)
-                const Center(child: CircularProgressIndicator())
-              else ...[
-                if (showSnapshotData != null && showSnapshotData.image != null)
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(14),
-                    child: AspectRatio(
-                      aspectRatio: 16 / 9,
-                      child: simpleFadeInImage(
-                        url: showSnapshotData.image!,
-                      ),
-                    ),
-                  ),
-                if (showSnapshotData != null)
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(showSnapshotData.title, style: design.textStyles.headline2),
-                        const SizedBox(height: 6),
-                        Text(
-                          showSnapshotData.description,
-                          style: design.textStyles.body2.copyWith(color: design.colors.label3),
-                        ),
-                      ],
-                    ),
-                  ),
-                if (showSnapshotData != null && seasons.value.isNotEmpty)
-                  for (final season in seasons.value)
-                    SectionWithHeader(
-                      title: season.title,
-                      child: season.newEpisodes
-                          ? SeasonEpisodeList(
-                              items: season.episodes.map((episode) => SeasonEpisodeListEpisodeData(episode: episode)).toList(),
-                              onEpisodeTap: (index, id) => {
-                                context.router.push(EpisodeScreenRoute(episodeId: id)),
-                              },
-                            )
-                          : HorizontalSlider(
-                              height: 136,
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                              itemCount: season.episodes.length,
-                              itemBuilder: (context, index) {
-                                final episode = season.episodes[index];
-                                return GestureDetector(
-                                  onTap: () => context.router.push(EpisodeScreenRoute(episodeId: episode.id)),
-                                  child: ThumbnailSliderEpisode(
-                                    episode: EpisodeThumbnailData.fromFragment(episode),
-                                    imageSize: const Size(140, 80),
-                                    showSecondaryTitle: false,
-                                  ),
-                                );
-                              },
+      body: showSnapshot.connectionState == ConnectionState.waiting
+          ? const LoadingGeneric()
+          : SizedBox.expand(
+              child: RefreshIndicator(
+                triggerMode: RefreshIndicatorTriggerMode.anywhere,
+                onRefresh: () async {
+                  showFuture.value = getShow();
+                },
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (showSnapshotData != null) ...[
+                        if (showSnapshotData.image != null)
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(14),
+                            child: AspectRatio(
+                              aspectRatio: 16 / 9,
+                              child: simpleFadeInImage(
+                                url: showSnapshotData.image!,
+                              ),
                             ),
-                    )
-              ]
-            ],
-          ),
-        ),
-      ),
+                          ),
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(showSnapshotData.title, style: design.textStyles.headline2),
+                              const SizedBox(height: 6),
+                              Text(
+                                showSnapshotData.description,
+                                style: design.textStyles.body2.copyWith(color: design.colors.label3),
+                              ),
+                            ],
+                          ),
+                        ),
+                        if (seasons.value.isNotEmpty)
+                          for (final (seasonIndex, season) in seasons.value.indexed)
+                            SectionWithHeader(
+                              title: season.title,
+                              child: season.newEpisodes && seasons.value.where((s) => s.newEpisodes).length == 1
+                                  ? SeasonEpisodeList(
+                                      items: season.episodes.map((episode) => SeasonEpisodeListEpisodeData(episode: episode)).toList(),
+                                      onEpisodeTap: (episodeIndex, episodeId) {
+                                        context.router.push(EpisodeScreenRoute(episodeId: episodeId));
+                                        ref.read(analyticsProvider).sectionItemClicked(
+                                              context,
+                                              sectionAnalyticsOverride: SectionAnalyticsData(
+                                                id: 'ShowSeason-${season.id}',
+                                                type: 'ShowSeasonEpisodeList',
+                                                position: seasonIndex,
+                                                pageCode: 'show',
+                                                meta: {
+                                                  'showId': showId,
+                                                  'seasonId': season.id,
+                                                },
+                                              ),
+                                              itemAnalyticsOverride: SectionItemAnalyticsData(
+                                                position: episodeIndex,
+                                                type: 'Episode',
+                                                id: episodeId,
+                                              ),
+                                            );
+                                      },
+                                    )
+                                  : ThumbnailSlider(
+                                      itemsCount: season.episodes.length,
+                                      imageSize: const Size(140, 80),
+                                      thumbnailBuilder: (context, episodeIndex, responsiveSize) {
+                                        final episode = season.episodes[episodeIndex];
+                                        return GestureDetector(
+                                          onTap: () {
+                                            context.router.push(EpisodeScreenRoute(episodeId: episode.id));
+                                            ref.read(analyticsProvider).sectionItemClicked(
+                                                  context,
+                                                  sectionAnalyticsOverride: SectionAnalyticsData(
+                                                    id: 'ShowSeason-${season.id}',
+                                                    type: 'ShowSeasonEpisodeSlider',
+                                                    position: seasonIndex,
+                                                    pageCode: 'show',
+                                                    meta: {
+                                                      'showId': showId,
+                                                      'seasonId': season.id,
+                                                    },
+                                                  ),
+                                                  itemAnalyticsOverride: SectionItemAnalyticsData(
+                                                    position: episodeIndex,
+                                                    type: 'Episode',
+                                                    id: episode.id,
+                                                  ),
+                                                );
+                                          },
+                                          child: ThumbnailSliderEpisode(
+                                            episode: EpisodeThumbnailData.fromFragment(episode),
+                                            imageSize: responsiveSize,
+                                            showSecondaryTitle: false,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                            )
+                      ] else
+                        ErrorAdaptive(
+                          exception: showSnapshot.data?.exception,
+                          onRetry: () {
+                            showFuture.value = getShow();
+                          },
+                        )
+                    ],
+                  ),
+                ),
+              ),
+            ),
     );
   }
 }

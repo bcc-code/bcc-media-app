@@ -208,7 +208,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                             );
                           },
                         ),
-                        const SizedBox(height: 48),
+                        const SizedBox(height: 24),
                         if (user != null)
                           SettingList(
                             buttons: [
