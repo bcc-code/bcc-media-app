@@ -7,6 +7,7 @@
 
 ### Features
 
+* **show:** add share analytics ([6df7e0e](https://github.com/bcc-code/bcc-media-app/commit/6df7e0e7cea964d10717ea582fd3cfcde49e1ddf))
 * **show:** add tests + share button ([318d0e9](https://github.com/bcc-code/bcc-media-app/commit/318d0e9daeaf6d72e37f7af7cf486468558986ab))
 
 
