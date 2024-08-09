@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.13+2300173...v) (2024-08-09)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.14+2300174...v) (2024-08-09)
+
+
+
+## [5.6.14+2300174](https://github.com/bcc-code/bcc-media-app/compare/v5.6.13+2300173...v5.6.14+2300174) (2024-08-09)
+
+
+### Features
+
+* **show:** add tests + share button ([318d0e9](https://github.com/bcc-code/bcc-media-app/commit/318d0e9daeaf6d72e37f7af7cf486468558986ab))
 
 
 
