@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.12+2300172...v) (2024-08-09)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.13+2300173...v) (2024-08-09)
+
+
+
+## [5.6.13+2300173](https://github.com/bcc-code/bcc-media-app/compare/v5.6.12+2300172...v5.6.13+2300173) (2024-08-09)
+
+
+### Features
+
+* **show:** add animations ([02aa86a](https://github.com/bcc-code/bcc-media-app/commit/02aa86a32794d5313d3f18bbaf080a5808bbb221))
+* **show:** polish page ([ac7586e](https://github.com/bcc-code/bcc-media-app/commit/ac7586e25501f3d0124669b83e236dc8d28c29a2))
 
 
 
