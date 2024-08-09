@@ -131,7 +131,9 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
             ?.graphqlErrors
             .any((err) => err.extensions?['code'] == ApiErrorCodes.noAccess || err.extensions?['code'] == ApiErrorCodes.notPublished);
         if (noAccess == true) {
-          return const ErrorNoAccess();
+          return const SliverFillRemaining(
+            child: ErrorNoAccess(),
+          );
         }
         return SliverFillRemaining(
           child: ErrorGeneric(
