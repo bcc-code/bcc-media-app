@@ -5,10 +5,11 @@ appId: tv.brunstad.app
     clearState: true
 - runScript: scripts/.env.js
 - runFlow: subflows/init.yml
-# Stopped 1
+# Legacy URLs
 - stopApp: tv.brunstad.app
 - openLink: "https://brunstad.tv/series/10"
 - assertVisible: .*Mette.*
+# Stopped 1
 - stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/episode/769"
 - assertVisible: .*Joseph.*
@@ -23,6 +24,10 @@ appId: tv.brunstad.app
     text: Search
     index: 0
 - assertVisible: You can search.*
+# Stopped 4
+- stopApp: tv.brunstad.app
+- openLink: "https://app.bcc.media/show/81"
+- assertVisible: .*Leo.*
 # Backgrounded 1
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/episode/769"
@@ -38,6 +43,10 @@ appId: tv.brunstad.app
     text: Search
     index: 0
 - assertVisible: You can search.*
+# Backgrounded 4
+- runFlow: subflows/home.yml
+- openLink: "https://app.bcc.media/show/81"
+- assertVisible: .*Leo.*
 # Foreground 1
 - openLink: "https://app.bcc.media/episode/769"
 - assertVisible: .*Joseph.*
@@ -50,3 +59,6 @@ appId: tv.brunstad.app
     text: Search
     index: 0
 - assertVisible: You can search.*
+# Foreground 4
+- openLink: "https://app.bcc.media/show/81"
+- assertVisible: .*Leo.*

@@ -4,6 +4,7 @@ import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/episode/list/season_episode_list.dart';
+import 'package:brunstadtv_app/components/misc/collapsable_markdown.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_with_header.dart';
 import 'package:brunstadtv_app/components/status/error_adaptive.dart';
@@ -12,13 +13,17 @@ import 'package:brunstadtv_app/components/thumbnails/slider/thumbnail_slider.dar
 import 'package:brunstadtv_app/components/thumbnails/slider/thumbnail_slider_episode.dart';
 import 'package:brunstadtv_app/helpers/episode_state.dart';
 import 'package:brunstadtv_app/helpers/insets.dart';
+import 'package:brunstadtv_app/helpers/share_extension/share_extension.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/models/episode_thumbnail_data.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 
 @RoutePage<void>()
 class ShowScreen extends HookConsumerWidget {
@@ -91,8 +96,24 @@ class ShowScreen extends HookConsumerWidget {
           scrolledUnderElevation: 0,
           leadingWidth: 92,
           leading: const CustomBackButton(),
-          title: Text(showSnapshotData?.title ?? '').animate().slideX(curve: Curves.easeOutExpo, duration: 1500.ms).flip(duration: 5000.ms),
+          title: Text(showSnapshotData?.title ?? '').animate().slideX(begin: -0.1, curve: Curves.easeOutExpo, duration: 3000.ms).fade(),
           actions: [
+            GestureDetector(
+              onTap: () {
+                Share().shareUrl(
+                  'https://app.bcc.media/show/$showId',
+                  sharePositionOrigin: iPadSharePositionOrigin(context),
+                );
+              },
+              behavior: HitTestBehavior.opaque,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 4),
+                child: SvgPicture.string(
+                  SvgIcons.share,
+                  colorFilter: ColorFilter.mode(design.colors.tint1, BlendMode.srcIn),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16),
               child: SizedBox(
@@ -148,9 +169,9 @@ class ShowScreen extends HookConsumerWidget {
                               children: [
                                 Text(showSnapshotData.title, style: design.textStyles.headline2),
                                 const SizedBox(height: 6),
-                                Text(
-                                  showSnapshotData.description,
-                                  style: design.textStyles.body2.copyWith(color: design.colors.label3),
+                                CollapsableMarkdown(
+                                  text: showSnapshotData.description,
+                                  maxLines: 4,
                                 ),
                               ],
                             ),

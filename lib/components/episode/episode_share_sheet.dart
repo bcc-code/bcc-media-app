@@ -15,10 +15,10 @@ import '../../helpers/share_extension/share_extension.dart';
 
 class EpisodeShareSheet extends ConsumerStatefulWidget {
   const EpisodeShareSheet({
-    Key? key,
+    super.key,
     required this.episode,
     required this.currentPosSeconds,
-  }) : super(key: key);
+  });
 
   final Query$FetchEpisode$episode episode;
   final int currentPosSeconds;

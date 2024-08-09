@@ -78,7 +78,7 @@ class _CollapsableMarkdownState extends State<CollapsableMarkdown> {
         final showMoreMarkdown = '[${S.of(context).showMore}](#toggle-collapsed)';
         final showLessMarkdown = '[${S.of(context).showLess}](#toggle-collapsed)';
         final showMoreSize = getTextSpanSize(
-          TextSpan(text: '$ellipsis ${S.of(context).showMore}', style: markdownStyle.p),
+          TextSpan(text: '$ellipsis ${S.of(context).showMore} ', style: markdownStyle.p),
           constraints.maxWidth,
         );
 

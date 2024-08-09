@@ -31,6 +31,10 @@ appId: tv.brunstad.app
 - openLink: "https://app.bcc.media/shorts/206488a5-f44c-4e11-b746-287d25e8a914"
 - assertVisible: .*Playing..*
 - assertNotVisible: .*Error.*
+# ---
+- stopApp: tv.brunstad.app
+- openLink: "https://app.bcc.media/show/106"
+- assertVisible: .*Summer.*
 
 # BACKGROUND TESTS
 # ---
@@ -60,6 +64,10 @@ appId: tv.brunstad.app
     point: "50%,50%"
 - assertVisible: .*Paused..*
 - assertNotVisible: .*Error.*
+# ---
+- runFlow: subflows/home.yml
+- openLink: "https://app.bcc.media/show/106"
+- assertVisible: .*Summer.*
 
 # FOREGROUND TESTS
 # ---
@@ -82,3 +90,6 @@ appId: tv.brunstad.app
 - openLink: "https://app.bcc.media/shorts/206488a5-f44c-4e11-b746-287d25e8a914"
 - assertVisible: .*Playing..*
 - assertNotVisible: .*Error.*
+# ---
+- openLink: "https://app.bcc.media/show/106"
+- assertVisible: .*Summer.*
