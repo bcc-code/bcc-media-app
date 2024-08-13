@@ -3,17 +3,21 @@
 BUILD_NUMBER=$(shell grep -i -e "version: " pubspec.yaml | cut -d " " -f 2)
 BUILD_NUMBER_KIDS=$(shell grep -i -e "version: " kids/pubspec.yaml | cut -d " " -f 2)
 
-pubgetall:
+# From https://stackoverflow.com/a/64996042
+help:
+	@egrep -h '\s##\s' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m  %-30s\033[0m %s\n", $$1, $$2}'
+
+pubgetall: ## Runs `flutter pub get` dependencies for all the flutter projects
 	flutter pub get
 	cd kids && flutter pub get
 	cd submodules/bccm_flutter/bccm_core && flutter pub get
 	cd submodules/bccm_player && flutter pub get
 
-main-branch:
+main-branch: ## Switches all submodules to the main branch
 	@echo
 	@git submodule foreach 'branch="$$(git config -f $$toplevel/.gitmodules submodule.$$name.branch)"; git switch $$branch; echo'
 
-rm-locales:
+rm-locales: ## Removes the @@locale from all arb files
 	for file in $$(find ./lib/l10n/ -name *.arb -mindepth 1 -type f); do sed -i '' '/\@\@locale/d' $$file; done
 
 web-build:
@@ -24,10 +28,10 @@ web-beta-upload:
 	gsutil -m setmeta -r -h "Cache-control:no-cache, max-age=0" gs://bccm-web-beta/
 
 # See https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/standard-changelog
-changelog:
+changelog: ## Generates a changelog based on the commit messages
 	standard-changelog -f -p conventionalcommits
 
-changelog-commit:
+changelog-commit: ## Generates a changelog and commits it
 	@git diff-index --quiet HEAD -- || (echo "Working tree not clean, continue anyway? y/n" && read ans && [ $$ans == "y" ])
 # temporary tag to include the version in the changelog
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
@@ -37,19 +41,19 @@ changelog-commit:
 	git tag --delete v${BUILD_NUMBER}${TAG_SUFFIX}
 
 # Release
-release:
+release: ## BCCM: Creates a release tag and pushes it
 	make changelog-commit
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
 
-release-kids:
+release-kids: ## KIDS: Creates a release tag and pushes it
 	make changelog-commit
 	git tag v${BUILD_NUMBER_KIDS}-kids
 	git push --tags
 
 # Rerelease (recreate the release tag with a different commit)
 # e.g. because you forgot to sync translations or a ci script needed to be fixed
-rerelease:
+rerelease: ## BCCM: Deletes the release tag and recreates it with the current commit
 	@read -p "delete tag v${BUILD_NUMBER}${TAG_SUFFIX} (local and origin), and recreate it with current commit? (CTRL+C to abort)"
 	git push --delete origin v${BUILD_NUMBER}${TAG_SUFFIX}
 	git tag --delete v${BUILD_NUMBER}${TAG_SUFFIX}
@@ -57,7 +61,7 @@ rerelease:
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
 
-rerelease-kids:
+rerelease-kids: ## KIDS: Deletes the release tag and recreates it with the current commit
 	@read -p "delete tag v${BUILD_NUMBER_KIDS}-kids (local and origin), and recreate it with current commit? (CTRL+C to abort)"
 	git push --delete origin v${BUILD_NUMBER_KIDS}-kids
 	git tag --delete v${BUILD_NUMBER_KIDS}-kids
@@ -65,12 +69,12 @@ rerelease-kids:
 	git tag v${BUILD_NUMBER_KIDS}-kids
 	git push --tags
 
-fix-time:
+fix-time: ## Fixes the time on a connected android device. Useful e.g. if it has drifted and causes ssl errors
 	adb shell "su 0 date `date +%m%d%H%M%Y.%S`"
 
 
 # bumps the minor version in pubspec.yaml e.g. 0.4.5+45 -> 0.4.6+46
-bump:
+bump: ## Bumps the version in pubspec.yaml
 	@VERSION_LINE=$$(grep -i -e "version: " pubspec.yaml); \
 	CURRENT_VERSION=$$(echo $$VERSION_LINE | cut -d " " -f 2); \
 	VERSION_PART=$$(echo $$CURRENT_VERSION | cut -d "+" -f 1); \
@@ -82,9 +86,9 @@ bump:
 	git add pubspec.yaml
 	git commit -m "chore: bump version to $${NEW_VERSION}"
 
-crowdin-download:
+crowdin-download: ## Download translations from crowdin and generate l10n files
 	crowdin download --token=$$(cat .crowdin-token)
 	flutter gen-l10n
 
-crowdin-upload:
+crowdin-upload: ## Upload source strings to crowdin
 	crowdin upload --token=$$(cat .crowdin-token)
