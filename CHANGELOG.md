@@ -1,4 +1,15 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.14+2300174...v) (2024-08-09)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.15+2300175...v) (2024-08-13)
+
+
+
+## [5.6.15+2300175](https://github.com/bcc-code/bcc-media-app/compare/v5.6.14+2300174...v5.6.15+2300175) (2024-08-13)
+
+
+### Bug Fixes
+
+* auth autologin edge case (Bad state: Future already completed) ([4d95ee5](https://github.com/bcc-code/bcc-media-app/commit/4d95ee52c6a80fa57d59f869de737114dc8f72df))
+* OneAsyncAtATime "null check operator used on a null value" ([f74e25e](https://github.com/bcc-code/bcc-media-app/commit/f74e25e14da93051ac06be301fecf29d46976562))
+* prevent accessing unavailable content ([b680a71](https://github.com/bcc-code/bcc-media-app/commit/b680a7129c5024acecf03fdb49f618be8cc78c72))
 
 
 
