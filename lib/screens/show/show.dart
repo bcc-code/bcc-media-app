@@ -219,6 +219,8 @@ class ShowScreen extends HookConsumerWidget {
                                           final episode = season.episodes[episodeIndex];
                                           return GestureDetector(
                                             onTap: () {
+                                              if (episode.locked) return;
+
                                               context.router.push(EpisodeScreenRoute(episodeId: episode.id));
                                               ref.read(analyticsProvider).sectionItemClicked(
                                                     context,

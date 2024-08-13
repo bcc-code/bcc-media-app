@@ -186,7 +186,11 @@ class _Episode extends StatelessWidget {
                                 style: design.textStyles.caption2.copyWith(color: design.colors.onTint, height: 1.1),
                               ),
                             ),
-                          if (data.episode.locked && publishDateTime != null)
+                          if (data.episode.locked &&
+                              publishDateTime != null &&
+                              publishDateTime.isAfter(
+                                DateTime.now(),
+                              ))
                             Expanded(
                               child: Text(
                                 S.of(context).availableFrom(DateFormat(DateFormat.YEAR_MONTH_DAY).format(publishDateTime)),

@@ -418,7 +418,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                   Container(
                     color: DesignSystem.of(context).colors.background2,
                     child: PlayerPoster(
-                      imageUrl: episode.image,
+                      episode: episode,
                       setupPlayer: setupPlayer,
                       loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || viewController.isFullscreen,
                     ),
