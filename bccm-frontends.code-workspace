@@ -28,6 +28,10 @@
       "path": "../bcc-connect-live/web",
       "name": "live: web"
     },
+    {
+      "path": "../bccm-cast-receiver",
+      "name": "bccm: cast receiver"
+    }
   ],
   "settings": {
     "git.autoRepositoryDetection": "subFolders",
