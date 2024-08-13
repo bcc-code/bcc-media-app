@@ -1,4 +1,4 @@
-.PHONY: update-schema git-tag-recreate changelog changelog-commit release release-kids rerelease rerelease-kids pubgetall main-branch rm-locales web-build web-beta-upload fix-time bump crowdin-download crowdin-upload
+.PHONY: update-schema git-tag-recreate changelog changelog-commit release release-kids rerelease rerelease-kids pubgetall main-branch web-build web-beta-upload fix-time bump crowdin-download crowdin-upload
 
 BUILD_NUMBER=$(shell grep -i -e "version: " pubspec.yaml | cut -d " " -f 2)
 BUILD_NUMBER_KIDS=$(shell grep -i -e "version: " kids/pubspec.yaml | cut -d " " -f 2)
@@ -17,13 +17,10 @@ main-branch: ## Switches all submodules to the main branch
 	@echo
 	@git submodule foreach 'branch="$$(git config -f $$toplevel/.gitmodules submodule.$$name.branch)"; git switch $$branch; echo'
 
-rm-locales: ## Removes the @@locale from all arb files
-	for file in $$(find ./lib/l10n/ -name *.arb -mindepth 1 -type f); do sed -i '' '/\@\@locale/d' $$file; done
-
-web-build:
+web-build: ## Builds the web version of the app
 	flutter build web --release -t lib/main_prod.dart --web-renderer canvaskit
 
-web-beta-upload:
+web-beta-upload: ## Uploads the web build to the beta bucket
 	gsutil -m cp -R build/web/* gs://bccm-web-beta
 	gsutil -m setmeta -r -h "Cache-control:no-cache, max-age=0" gs://bccm-web-beta/
 
