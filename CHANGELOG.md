@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.15+2300175...v) (2024-08-13)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.16+2300176...v) (2024-08-15)
+
+
+
+## [5.6.16+2300176](https://github.com/bcc-code/bcc-media-app/compare/v5.6.15+2300175...v5.6.16+2300176) (2024-08-15)
+
+
+### Bug Fixes
+
+* **player:** make sure extras only contains strings ([a4db52f](https://github.com/bcc-code/bcc-media-app/commit/a4db52f1ad4911b104869d243b0a6fa464cb4e25))
+* **player:** show correct selected audio track when casting on iOS [#412](https://github.com/bcc-code/bcc-media-app/issues/412) ([39dfb73](https://github.com/bcc-code/bcc-media-app/commit/39dfb7385386cde0a7797fe7271bd753e424483d))
 
 
 
