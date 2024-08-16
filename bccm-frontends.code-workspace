@@ -29,8 +29,16 @@
       "name": "live: web"
     },
     {
+      "path": "../bcc-connect-live/tvos",
+      "name": "live: tvos"
+    },
+    {
       "path": "../bccm-cast-receiver",
       "name": "bccm: cast receiver"
+    },
+    {
+      "path": "../bcc-media-tvos",
+      "name": "bccm: tvos"
     }
   ],
   "settings": {
