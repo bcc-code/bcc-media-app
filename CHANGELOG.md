@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.16+2300176...v) (2024-08-15)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.17+2300177...v) (2024-08-16)
+
+
+
+## [5.6.17+2300177](https://github.com/bcc-code/bcc-media-app/compare/v5.6.16+2300176...v5.6.17+2300177) (2024-08-16)
+
+
+### Features
+
+* **player:** make sure manually selected audio is prioritized ([0602cb4](https://github.com/bcc-code/bcc-media-app/commit/0602cb4a2d637f196728cd0d4b3c1eba85424780))
 
 
 
