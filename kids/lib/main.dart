@@ -28,6 +28,7 @@ import 'package:kids/router/router.dart';
 
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import './firebase_options.dart';
 import 'package:universal_io/io.dart';
 
@@ -71,50 +72,55 @@ Future<void> main() async {
 Future<void> $main({
   List<Override>? providerOverrides,
 }) async {
-  usePathUrlStrategy();
-  WidgetsFlutterBinding.ensureInitialized();
-  await BccmCore().setup();
+  await Sentry.init((options) {
+    options.dsn = 'https://905cd79d515c1c75c7bfc0dc5e2d83b4@o4507803294892032.ingest.de.sentry.io/4507803304394832';
+    options.tracesSampleRate = 0.5;
+  }, appRunner: () async {
+    usePathUrlStrategy();
+    WidgetsFlutterBinding.ensureInitialized();
+    await BccmCore().setup();
 
-  await setDefaults();
+    await setDefaults();
 
-  if (FlavorConfig.current.firebaseOptions != null) {
-    await initFirebase(FlavorConfig.current.firebaseOptions!);
-  }
+    if (FlavorConfig.current.firebaseOptions != null) {
+      await initFirebase(FlavorConfig.current.firebaseOptions!);
+    }
 
-  // Initialize bccm_player
-  await BccmPlayerInterface.instance.setup();
-  if (Platform.isAndroid) {
-    BccmPlayerController.primary.switchToVideoTexture();
-  }
+    // Initialize bccm_player
+    await BccmPlayerInterface.instance.setup();
+    if (Platform.isAndroid) {
+      BccmPlayerController.primary.switchToVideoTexture();
+    }
 
-  final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
-  final coreOverrides = await BccmCore().setupCoreOverrides(
-    analyticsMetaEnricherProviderOverride: analyticsMetaEnricherProvider.overrideWith((ref) => KidsAnalyticsMetaEnricher()),
-    specialRoutesHandlerProviderOverride: specialRoutesHandlerProvider.overrideWith((ref) => KidsSpecialRoutesHandler(ref)),
-    rootRouterProviderOverride: rootRouterProvider.overrideWithValue(appRouter),
-    commonSettingsProviderOverride: commonSettingsProviderOverride,
-    bccmGraphQLProviderOverride: bccmGraphQLProviderOverride,
-    authStateProviderOverride: authStateProviderOverride,
-    analyticsProviderOverride: analyticsProviderOverride,
-    featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
-    unleashContextProviderOverride: unleashContextProviderOverride,
-    notificationServiceProviderOverride: null,
-  );
-  final providerContainer = await initProviderContainer([
-    ...coreOverrides,
-    if (providerOverrides != null) ...providerOverrides,
-  ]);
+    final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
+    final coreOverrides = await BccmCore().setupCoreOverrides(
+      analyticsMetaEnricherProviderOverride: analyticsMetaEnricherProvider.overrideWith((ref) => KidsAnalyticsMetaEnricher()),
+      specialRoutesHandlerProviderOverride: specialRoutesHandlerProvider.overrideWith((ref) => KidsSpecialRoutesHandler(ref)),
+      rootRouterProviderOverride: rootRouterProvider.overrideWithValue(appRouter),
+      commonSettingsProviderOverride: commonSettingsProviderOverride,
+      bccmGraphQLProviderOverride: bccmGraphQLProviderOverride,
+      authStateProviderOverride: authStateProviderOverride,
+      analyticsProviderOverride: analyticsProviderOverride,
+      featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
+      unleashContextProviderOverride: unleashContextProviderOverride,
+      notificationServiceProviderOverride: null,
+    );
+    final providerContainer = await initProviderContainer([
+      ...coreOverrides,
+      if (providerOverrides != null) ...providerOverrides,
+    ]);
 
-  final app = UncontrolledProviderScope(
-    container: providerContainer,
-    child: AppRoot(appRouter: appRouter, navigatorKey: globalNavigatorKey),
-  );
+    final app = UncontrolledProviderScope(
+      container: providerContainer,
+      child: AppRoot(appRouter: appRouter, navigatorKey: globalNavigatorKey),
+    );
 
-  if (kDebugMode) {
-    Animate.restartOnHotReload = true;
-  }
+    if (kDebugMode) {
+      Animate.restartOnHotReload = true;
+    }
 
-  runApp(kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app);
+    runApp(kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app);
+  });
 }
 
 Future setDefaults() async {
