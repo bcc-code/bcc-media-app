@@ -31,20 +31,22 @@ changelog: ## Generates a changelog based on the commit messages
 changelog-commit: ## Generates a changelog and commits it
 	@git diff-index --quiet HEAD -- || (echo "Working tree not clean, continue anyway? y/n" && read ans && [ $$ans == "y" ])
 # temporary tag to include the version in the changelog
-	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
+	git tag ${TAG}
 	make changelog
 	git add CHANGELOG.md
 	git commit -m "chore: update changelog" || true
-	git tag --delete v${BUILD_NUMBER}${TAG_SUFFIX}
+	git tag --delete ${TAG}
 
 # Release
 release: ## BCCM: Creates a release tag and pushes it
-	make changelog-commit
+	TAG="v${BUILD_NUMBER}${TAG_SUFFIX}" make changelog-commit
 	git tag v${BUILD_NUMBER}${TAG_SUFFIX}
 	git push --tags
 
 release-kids: ## KIDS: Creates a release tag and pushes it
-	TAG_SUFFIX=-kids make release
+	@TAG="v${BUILD_NUMBER_KIDS}-kids" make changelog-commit
+	git tag v${BUILD_NUMBER_KIDS}-kids
+	git push --tags
 
 # Rerelease (recreate the release tag with a different commit)
 # e.g. because you forgot to sync translations or a ci script needed to be fixed
