@@ -1,4 +1,17 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.17+2300177...v) (2024-08-16)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.9+2500019-kids...v) (2024-08-19)
+
+
+
+## [5.1.9+2500019-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.17+2300177-kids...v5.1.9+2500019-kids) (2024-08-19)
+
+
+
+## [5.6.17+2300177-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.17+2300177...v5.6.17+2300177-kids) (2024-08-19)
+
+
+### Bug Fixes
+
+* clear anonymous id ([ad8ad9f](https://github.com/bcc-code/bcc-media-app/commit/ad8ad9fe143d6e5d9b3b0c39945b54fdb4d1c376))
 
 
 
