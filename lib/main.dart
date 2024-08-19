@@ -3,7 +3,6 @@ import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/background_tasks.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/helpers/router/special_routes.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
@@ -36,67 +35,70 @@ const useDevicePreview = false;
 Future<void> $main({
   List<Override>? providerOverrides,
 }) async {
-  TimeMeasurements.mainFunction.start();
-  TimeMeasurements.startupToInitDone.start();
-  TimeMeasurements.startupToHomeLoaded.start();
-  usePathUrlStrategy();
-  WidgetsFlutterBinding.ensureInitialized();
-  await BccmCore().setup();
-  await setDefaults();
-
-  if (FlavorConfig.current.firebaseOptions != null) {
-    await initFirebase(
-      FlavorConfig.current.firebaseOptions!,
-      onFirebaseBackgroundMessage: onFirebaseBackgroundMessage,
-    );
-  }
-
-  // Initialize bccm_player
-  await BccmPlayerInterface.instance.setup();
-
-  final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
-  final coreOverrides = await BccmCore().setupCoreOverrides(
-    analyticsMetaEnricherProviderOverride: analyticsMetaEnricherProvider.overrideWith((ref) => BccmAnalyticsMetaEnricher()),
-    specialRoutesHandlerProviderOverride: specialRoutesHandlerProvider.overrideWith((ref) => BccmSpecialRoutesHandler(ref)),
-    rootRouterProviderOverride: rootRouterProvider.overrideWithValue(appRouter),
-    commonSettingsProviderOverride: commonSettingsProviderOverride,
-    bccmGraphQLProviderOverride: bccmGraphQLProviderOverride,
-    authStateProviderOverride: authStateProviderOverride,
-    analyticsProviderOverride: analyticsProviderOverride,
-    unleashContextProviderOverride: unleashContextProviderOverride,
-    featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
-    notificationServiceProviderOverride: notificationServiceProviderOverride,
-  );
-  final providerContainer = await initProviderContainer([
-    ...coreOverrides,
-    if (providerOverrides != null) ...providerOverrides,
-  ]);
-
-  final app = UncontrolledProviderScope(
-    container: providerContainer,
-    child: AppRoot(
-      appRouter: appRouter,
-    ),
-  );
-  Widget maybeWrappedApp;
-  if (kDebugMode && !kIsWeb) {
-    maybeWrappedApp = InteractiveViewer(maxScale: 10, child: app);
-  } else {
-    maybeWrappedApp = app;
-  }
-
-  if (kDebugMode) {
-    Animate.restartOnHotReload = true;
-  }
-
-  TimeMeasurements.mainFunction.stop();
-  debugPrint('Main function done after ${TimeMeasurements.mainFunction.elapsedMilliseconds}ms');
-
   await SentryFlutter.init(
     (options) {
-      options.dsn = Env.sentryDsn;
+      options.dsn = 'https://905cd79d515c1c75c7bfc0dc5e2d83b4@o4507803294892032.ingest.de.sentry.io/4507803304394832';
+      options.tracesSampleRate = 0.5;
     },
-    appRunner: () => runApp(maybeWrappedApp),
+    appRunner: () async {
+      TimeMeasurements.mainFunction.start();
+      TimeMeasurements.startupToInitDone.start();
+      TimeMeasurements.startupToHomeLoaded.start();
+      usePathUrlStrategy();
+      WidgetsFlutterBinding.ensureInitialized();
+      await BccmCore().setup();
+      await setDefaults();
+
+      if (FlavorConfig.current.firebaseOptions != null) {
+        await initFirebase(
+          FlavorConfig.current.firebaseOptions!,
+          onFirebaseBackgroundMessage: onFirebaseBackgroundMessage,
+        );
+      }
+
+      // Initialize bccm_player
+      await BccmPlayerInterface.instance.setup();
+
+      final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
+      final coreOverrides = await BccmCore().setupCoreOverrides(
+        analyticsMetaEnricherProviderOverride: analyticsMetaEnricherProvider.overrideWith((ref) => BccmAnalyticsMetaEnricher()),
+        specialRoutesHandlerProviderOverride: specialRoutesHandlerProvider.overrideWith((ref) => BccmSpecialRoutesHandler(ref)),
+        rootRouterProviderOverride: rootRouterProvider.overrideWithValue(appRouter),
+        commonSettingsProviderOverride: commonSettingsProviderOverride,
+        bccmGraphQLProviderOverride: bccmGraphQLProviderOverride,
+        authStateProviderOverride: authStateProviderOverride,
+        analyticsProviderOverride: analyticsProviderOverride,
+        unleashContextProviderOverride: unleashContextProviderOverride,
+        featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
+        notificationServiceProviderOverride: notificationServiceProviderOverride,
+      );
+      final providerContainer = await initProviderContainer([
+        ...coreOverrides,
+        if (providerOverrides != null) ...providerOverrides,
+      ]);
+
+      final app = UncontrolledProviderScope(
+        container: providerContainer,
+        child: AppRoot(
+          appRouter: appRouter,
+        ),
+      );
+      Widget maybeWrappedApp;
+      if (kDebugMode && !kIsWeb) {
+        maybeWrappedApp = InteractiveViewer(maxScale: 10, child: app);
+      } else {
+        maybeWrappedApp = app;
+      }
+
+      if (kDebugMode) {
+        Animate.restartOnHotReload = true;
+      }
+
+      TimeMeasurements.mainFunction.stop();
+      debugPrint('Main function done after ${TimeMeasurements.mainFunction.elapsedMilliseconds}ms');
+
+      runApp(maybeWrappedApp);
+    },
   );
 }
 

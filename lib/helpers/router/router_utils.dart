@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:collection/collection.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:bccm_core/platform.dart';
@@ -136,7 +136,7 @@ Future<dynamic>? _navigateToItem(BuildContext context, Object item, {String? col
   if (chapter != null) {
     final episode = chapter.episode;
     if (episode == null) {
-      FirebaseCrashlytics.instance.recordError(ErrorHint('Chapter without episode'), StackTrace.current);
+      Sentry.captureException(ErrorHint('Chapter without episode'), stackTrace: StackTrace.current);
       return null;
     }
     debugPrint('Navigating to chapter ${chapter.id} in episode ${episode.id} at time ${chapter.start}');
