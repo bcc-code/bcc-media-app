@@ -105,6 +105,7 @@ dependencies:
   webview_flutter: ^4.8.0
   webview_flutter_android: ^3.16.4
   webview_flutter_wkwebview: ^3.14.0
+  sentry_flutter: ^8.7.0
 
 dependency_overrides:
   js: ^0.7.1

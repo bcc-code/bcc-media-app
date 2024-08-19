@@ -3,6 +3,7 @@ import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/background_tasks.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/helpers/router/special_routes.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
@@ -22,6 +23,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'app_root.dart';
 import 'flavors.dart';
@@ -86,9 +88,16 @@ Future<void> $main({
   if (kDebugMode) {
     Animate.restartOnHotReload = true;
   }
+
   TimeMeasurements.mainFunction.stop();
   debugPrint('Main function done after ${TimeMeasurements.mainFunction.elapsedMilliseconds}ms');
-  runApp(maybeWrappedApp);
+
+  await SentryFlutter.init(
+    (options) {
+      options.dsn = Env.sentryDsn;
+    },
+    appRunner: () => runApp(maybeWrappedApp),
+  );
 }
 
 Future setDefaults() async {
