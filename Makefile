@@ -44,9 +44,7 @@ release: ## BCCM: Creates a release tag and pushes it
 	git push --tags
 
 release-kids: ## KIDS: Creates a release tag and pushes it
-	make changelog-commit
-	git tag v${BUILD_NUMBER_KIDS}-kids
-	git push --tags
+	TAG_SUFFIX=-kids make release
 
 # Rerelease (recreate the release tag with a different commit)
 # e.g. because you forgot to sync translations or a ci script needed to be fixed
