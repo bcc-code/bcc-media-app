@@ -447,7 +447,7 @@ class PlayerSettingsView extends HookConsumerWidget {
                 tracksFuture.value = playerController.getTracks();
               },
             )
-          else
+          else if (tracksSnapshot.hasData)
             TabBarView(
               controller: tabController,
               children: [

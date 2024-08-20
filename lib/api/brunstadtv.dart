@@ -1,9 +1,9 @@
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class ApiErrorCodes {
   ApiErrorCodes._();
@@ -99,7 +99,7 @@ class Api {
       },
     ).onError(
       (error, stackTrace) {
-        FirebaseCrashlytics.instance.recordError(error, stackTrace, reason: 'a non-fatal error');
+        Sentry.captureException(error, stackTrace: stackTrace);
         var message = error.asOrNull<ErrorDescription>();
         if (message != null) {
           debugPrint(message.value.toString());
@@ -182,13 +182,13 @@ class Api {
     );
     final value = await gqlClient.query$legacyIDLookup(Options$Query$legacyIDLookup(variables: variables));
     if (value.hasException) {
-      FirebaseCrashlytics.instance.recordError(value.exception, StackTrace.current);
+      Sentry.captureException(value.exception, stackTrace: StackTrace.current);
       return null;
     }
     if (value.parsedData == null) {
       final legacyType = legacyEpisodeId != null ? 'episode' : 'program';
       final id = legacyEpisodeId ?? legacyProgramId;
-      FirebaseCrashlytics.instance.recordError(Exception('Could not find new episode id from legacy $legacyType id: "$id"'), StackTrace.current);
+      Sentry.captureException(Exception('Could not find new episode id from legacy $legacyType id: "$id"'), stackTrace: StackTrace.current);
       return null;
     }
     return value.parsedData!.legacyIDLookup.id;

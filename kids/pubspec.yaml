@@ -40,7 +40,6 @@ dependencies:
   graphql_flutter: ^5.2.0-beta.5
   shared_preferences: ^2.0.15
   firebase_core: ^3.1.0
-  firebase_crashlytics: ^4.0.1
   firebase_messaging: ^15.0.1
   cloud_firestore: ^5.0.1
   flutter_secure_storage: ^9.0.0
@@ -102,6 +101,7 @@ dependencies:
   auto_size_text: ^3.0.0
   bccm_core:
     path: ../submodules/bccm_flutter/bccm_core
+  sentry_flutter: ^8.7.0
 
 dependency_overrides:
   js: ^0.7.1

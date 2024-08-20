@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -84,7 +84,7 @@ class MainJsChannel implements WebViewJsHandler {
     if (await canLaunchUrlString(url)) {
       await launchUrlString(url);
     } else {
-      FirebaseCrashlytics.instance.recordError(Exception('Cannot launch url: $url'), StackTrace.current);
+      Sentry.captureException(Exception('Cannot launch url: $url'), stackTrace: StackTrace.current);
     }
   }
 
@@ -141,13 +141,13 @@ class MainJsChannel implements WebViewJsHandler {
     if (arguments[1] is String) {
       final context = router.navigatorKey.currentState?.context;
       if (context == null) {
-        FirebaseCrashlytics.instance.recordError(Exception('shareImage: context is null'), StackTrace.current);
+        Sentry.captureException(Exception('shareImage: context is null'), stackTrace: StackTrace.current);
         return false;
       }
       await downloadAndShareImage(arguments[1], sharePositionOrigin: iPadSharePositionOrigin(context));
       return true;
     }
-    FirebaseCrashlytics.instance.recordError(Exception('shareImage: Invalid argument: ${arguments[1]}'), StackTrace.current);
+    Sentry.captureException(Exception('shareImage: Invalid argument: ${arguments[1]}'), stackTrace: StackTrace.current);
     return false;
   }
 
@@ -156,7 +156,7 @@ class MainJsChannel implements WebViewJsHandler {
     if (text is String) {
       final context = router.navigatorKey.currentState?.context;
       if (context == null) {
-        FirebaseCrashlytics.instance.recordError(Exception('share: context is null'), StackTrace.current);
+        Sentry.captureException(Exception('share: context is null'), stackTrace: StackTrace.current);
         return false;
       }
       String? subject;
@@ -166,7 +166,7 @@ class MainJsChannel implements WebViewJsHandler {
       await Share.share(text, subject: subject, sharePositionOrigin: iPadSharePositionOrigin(context));
       return true;
     }
-    FirebaseCrashlytics.instance.recordError(Exception('share: Invalid argument: ${arguments[1]}'), StackTrace.current);
+    Sentry.captureException(Exception('share: Invalid argument: ${arguments[1]}'), stackTrace: StackTrace.current);
     return false;
   }
 }
