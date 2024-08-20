@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Ensure the URL environment variable is set
+# https://analytics-test-webhook/get_data/prod?api_key=THE_API_KEY
 if [ -z "$ANALYTICS_WEBHOOK_URL" ]; then
   echo "Error: ANALYTICS_WEBHOOK_URL environment variable is not set."
   exit 1
