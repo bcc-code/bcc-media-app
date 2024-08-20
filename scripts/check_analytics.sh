@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Ensure the URL environment variable is set
-if [ -z "$WEBHOOK_URL" ]; then
-  echo "Error: WEBHOOK_URL environment variable is not set."
+if [ -z "$ANALYTICS_WEBHOOK_URL" ]; then
+  echo "Error: ANALYTICS_WEBHOOK_URL environment variable is not set."
   exit 1
 fi
 
 # Fetch data from the provided URL
-RESPONSE=$(curl -s "$WEBHOOK_URL")
+RESPONSE=$(curl -s "$ANALYTICS_WEBHOOK_URL")
 
 # Check if the response is empty
 if [ -z "$RESPONSE" ] || [ "$RESPONSE" = "[]" ]; then
