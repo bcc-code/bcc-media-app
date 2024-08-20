@@ -1,12 +1,25 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.9+2500019-kids...v) (2024-08-19)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.18+2300178...v) (2024-08-20)
 
 
 
-## [5.1.9+2500019-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.17+2300177-kids...v5.1.9+2500019-kids) (2024-08-19)
+## [5.6.18+2300178](https://github.com/bcc-code/bcc-media-app/compare/v5.1.9+2500019-kids...v5.6.18+2300178) (2024-08-20)
+
+
+### Bug Fixes
+
+* **kids:** prevent crash when opening player settings ([c0fbb0b](https://github.com/bcc-code/bcc-media-app/commit/c0fbb0badb585f69afdfa78587bfbb9001d5afb6))
+
+
+### Features
+
+* add sentry ([c8d9f1a](https://github.com/bcc-code/bcc-media-app/commit/c8d9f1a54529d76213f496d68456c7ef0535b10a))
+* **kids:** wrap $main function in Sentry initializer ([cc35307](https://github.com/bcc-code/bcc-media-app/commit/cc35307248a2f112f0710a2656369b18e3bec75e))
+* remove crashlytics + wrap $main function in Sentry initializer ([f9aef6b](https://github.com/bcc-code/bcc-media-app/commit/f9aef6b1f195046b782aa0f2e38b1fee2877fb74))
+* **sentry:** use env variable for dsn ([b711edb](https://github.com/bcc-code/bcc-media-app/commit/b711edb31bb16c3e5af0067e52818667af805b96))
 
 
 
-## [5.6.17+2300177-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.17+2300177...v5.6.17+2300177-kids) (2024-08-19)
+## [5.1.9+2500019-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.17+2300177...v5.1.9+2500019-kids) (2024-08-19)
 
 
 ### Bug Fixes
