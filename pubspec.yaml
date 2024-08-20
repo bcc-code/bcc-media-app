@@ -123,6 +123,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.2.19
   auto_route_generator: ^8.0.0
+  sentry_dart_plugin: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -179,3 +180,16 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+# The SENTRY_AUTH_TOKEN environment variable must be set for this to work.
+# https://docs.sentry.io/platforms/flutter/upload-debug/#configure
+sentry:
+  upload_debug_symbols: true
+  upload_source_maps: true
+  upload_sources: true
+  org: bcc-media-sti
+  project: bcc-media-platform
+  wait_for_processing: false
+  log_level: error
+  commits: auto
+  ignore_missing: true
