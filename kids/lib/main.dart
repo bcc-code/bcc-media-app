@@ -3,6 +3,7 @@ import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
@@ -73,7 +74,7 @@ Future<void> $main({
   List<Override>? providerOverrides,
 }) async {
   await Sentry.init((options) {
-    options.dsn = 'https://905cd79d515c1c75c7bfc0dc5e2d83b4@o4507803294892032.ingest.de.sentry.io/4507803304394832';
+    options.dsn = Env.sentryDsn;
     options.tracesSampleRate = 0.5;
   }, appRunner: () async {
     usePathUrlStrategy();

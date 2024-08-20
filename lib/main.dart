@@ -3,6 +3,7 @@ import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/background_tasks.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/helpers/router/special_routes.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
@@ -37,7 +38,7 @@ Future<void> $main({
 }) async {
   await SentryFlutter.init(
     (options) {
-      options.dsn = 'https://905cd79d515c1c75c7bfc0dc5e2d83b4@o4507803294892032.ingest.de.sentry.io/4507803304394832';
+      options.dsn = Env.sentryDsn;
       options.tracesSampleRate = 0.5;
     },
     appRunner: () async {
