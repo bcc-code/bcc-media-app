@@ -8,5 +8,7 @@ final unleashContextProviderOverride = unleashContextProvider.overrideWith((ref)
     gender: ref.watch(authStateProvider.select((value) => value.user?.gender)),
     birthDate: ref.watch(authStateProvider.select((value) => value.user?.birthdate)),
     isBetaTester: ref.watch(settingsProvider.select((s) => s.isBetaTester)),
+    appVersion: formatAppVersion(ref.watch(packageInfoProvider)),
+    appBuildNumber: ref.watch(packageInfoProvider.select((pi) => pi.buildNumber)),
   );
 });
