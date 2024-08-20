@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.18+2300178...v) (2024-08-20)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.19+2300179...v) (2024-08-20)
+
+
+
+## [5.6.19+2300179](https://github.com/bcc-code/bcc-media-app/compare/v5.6.18+2300178...v5.6.19+2300179) (2024-08-20)
+
+
+### Features
+
+* add more context to unleash - app version and build number, os and os version ([483a18a](https://github.com/bcc-code/bcc-media-app/commit/483a18a1136d7f69f07bcf3ac8e85289d1245df0))
 
 
 
