@@ -19,7 +19,7 @@ fi
 # Check for specific events in the response
 if echo "$RESPONSE" | grep -q "Application Opened" && \
    echo "$RESPONSE" | grep -q "identify" && \
-   echo "$RESPONSE" | grep -q "login"; then
+   echo "$RESPONSE" | grep -q "featureFlags"; then
   echo "Success: Required events found in the response."
   exit 0
 else
