@@ -1,8 +1,8 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.19+2300179...v) (2024-08-20)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.20+2300180...v) (2024-08-21)
 
 
 
-## [5.6.19+2300179](https://github.com/bcc-code/bcc-media-app/compare/v5.6.18+2300178...v5.6.19+2300179) (2024-08-20)
+## [5.6.20+2300180](https://github.com/bcc-code/bcc-media-app/compare/v5.6.18+2300178...v5.6.20+2300180) (2024-08-21)
 
 
 ### Features
