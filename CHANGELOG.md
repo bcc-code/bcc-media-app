@@ -1,4 +1,8 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.21+2300181...v) (2024-08-22)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.22+2300182...v) (2024-08-22)
+
+
+
+## [5.6.22+2300182](https://github.com/bcc-code/bcc-media-app/compare/v5.6.21+2300181...v5.6.22+2300182) (2024-08-22)
 
 
 
