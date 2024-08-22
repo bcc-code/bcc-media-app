@@ -25,6 +25,7 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isOffline = ref.watch(isOfflineProvider);
     if (isOffline) {
+      TimeMeasurements.startupToHomeLoaded.cancel();
       return const OfflineHome();
     }
 
