@@ -262,12 +262,11 @@ class _ContributionListItem extends StatelessWidget {
 
 class _ItemClickWrapper extends ConsumerWidget {
   const _ItemClickWrapper({
-    Key? key,
     required this.personId,
     required this.contribution,
     required this.analytics,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Fragment$Contribution contribution;
   final String personId;

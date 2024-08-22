@@ -14,12 +14,12 @@ class DropDownSelect<T> extends StatelessWidget {
   final dynamic Function(T id) onSelectionChanged;
 
   const DropDownSelect({
-    Key? key,
+    super.key,
     required this.items,
     required this.selectedId,
     required this.onSelectionChanged,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

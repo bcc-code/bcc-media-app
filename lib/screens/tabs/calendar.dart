@@ -422,8 +422,8 @@ class CenterText extends StatelessWidget {
 
 class HighLightOpen extends StatelessWidget {
   const HighLightOpen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -441,8 +441,8 @@ class HighLightOpen extends StatelessWidget {
 
 class HighLightClose extends StatelessWidget {
   const HighLightClose({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -460,8 +460,8 @@ class HighLightClose extends StatelessWidget {
 
 class HighLightMiddle extends StatelessWidget {
   const HighLightMiddle({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -476,8 +476,8 @@ class HighLightMiddle extends StatelessWidget {
 
 class HighLightSingle extends StatelessWidget {
   const HighLightSingle({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -576,7 +576,7 @@ class _EntriesSlot extends StatelessWidget {
                 ),
               ),
             );
-          }).toList(),
+          }),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 23.0),
             child: Row(

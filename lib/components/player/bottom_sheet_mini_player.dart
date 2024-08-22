@@ -14,7 +14,7 @@ import '../../l10n/app_localizations.dart';
 import 'package:bccm_core/design_system.dart';
 
 class BottomSheetMiniPlayer extends ConsumerStatefulWidget {
-  const BottomSheetMiniPlayer({Key? key, required this.hidden}) : super(key: key);
+  const BottomSheetMiniPlayer({super.key, required this.hidden});
 
   final bool hidden;
 

@@ -5,7 +5,7 @@ class AppBarWithScrollToTop extends StatelessWidget implements PreferredSizeWidg
   final AppBar child;
   final ScrollController? scrollController;
 
-  const AppBarWithScrollToTop({Key? key, required this.child, required this.scrollController}) : super(key: key);
+  const AppBarWithScrollToTop({super.key, required this.child, required this.scrollController});
 
   @override
   Widget build(BuildContext context) {

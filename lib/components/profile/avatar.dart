@@ -9,11 +9,11 @@ import 'package:bccm_core/design_system.dart';
 
 class Avatar extends HookConsumerWidget {
   const Avatar({
-    Key? key,
+    super.key,
     required this.imageUrl,
     this.width = 100.0,
     this.backgroundColor,
-  }) : super(key: key);
+  });
 
   final double? width;
   final Color? backgroundColor;

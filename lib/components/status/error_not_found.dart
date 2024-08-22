@@ -7,7 +7,7 @@ import 'package:bccm_core/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
 class ErrorNotFound extends ConsumerWidget {
-  const ErrorNotFound({Key? key}) : super(key: key);
+  const ErrorNotFound({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Center(

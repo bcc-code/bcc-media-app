@@ -22,7 +22,7 @@ class BottomSheetSelect<T> extends StatefulWidget {
   final bool popOnChange;
 
   const BottomSheetSelect({
-    Key? key,
+    super.key,
     required this.title,
     this.description,
     required this.items,
@@ -30,7 +30,7 @@ class BottomSheetSelect<T> extends StatefulWidget {
     this.showSelection = true,
     required this.onSelectionChanged,
     this.popOnChange = true,
-  }) : super(key: key);
+  });
 
   @override
   State<BottomSheetSelect<T>> createState() => _BottomSheetSelectState<T>();

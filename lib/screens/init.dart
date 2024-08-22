@@ -128,7 +128,7 @@ class _LoadingWidget extends StatelessWidget {
 class _ErrorWidget extends HookConsumerWidget {
   final VoidCallback onRetry;
 
-  const _ErrorWidget({Key? key, required this.onRetry}) : super(key: key);
+  const _ErrorWidget({required this.onRetry});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

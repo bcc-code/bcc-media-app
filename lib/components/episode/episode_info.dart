@@ -83,7 +83,7 @@ class EpisodeInfo extends HookConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Animate(
-                        effects: [],
+                        effects: const [],
                         child: Text(
                           key: WidgetKeys.episodePageEpisodeTitle,
                           episode.title,
@@ -92,7 +92,7 @@ class EpisodeInfo extends HookConsumerWidget {
                       ),
                       const SizedBox(height: 4),
                       Animate(
-                        effects: [],
+                        effects: const [],
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [

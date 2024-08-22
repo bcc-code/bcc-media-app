@@ -93,7 +93,7 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
     ),
     shorts: TabInfo(
       id: TabId.shorts,
-      route: ShortsWrapperScreenRoute(
+      route: const ShortsWrapperScreenRoute(
         children: [
           ShortsScreenRoute(),
         ],

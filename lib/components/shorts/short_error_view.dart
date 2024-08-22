@@ -5,8 +5,7 @@ import 'package:bccm_core/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
 class ShortErrorView extends StatelessWidget {
-  const ShortErrorView({Key? key, required this.onRetry, this.title, this.description, this.retryButtonText, this.errorCode, this.errorMessage})
-      : super(key: key);
+  const ShortErrorView({super.key, required this.onRetry, this.title, this.description, this.retryButtonText, this.errorCode, this.errorMessage});
   final void Function() onRetry;
   final String? errorCode;
   final String? errorMessage;

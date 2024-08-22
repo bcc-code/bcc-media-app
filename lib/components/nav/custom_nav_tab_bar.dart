@@ -48,10 +48,10 @@ class BottomNavIcon extends StatelessWidget {
 
 class CustomNavTabBar extends HookConsumerWidget {
   const CustomNavTabBar({
-    Key? key,
+    super.key,
     required this.tabsRouter,
     required this.onTabTap,
-  }) : super(key: key);
+  });
 
   final TabsRouter tabsRouter;
   final void Function(int) onTabTap;

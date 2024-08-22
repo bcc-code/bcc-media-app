@@ -188,50 +188,8 @@ class _FeaturedItem extends StatelessWidget {
   }
 }
 
-class _GradientImage extends StatelessWidget {
-  final String? image;
-
-  const _GradientImage({this.image});
-
-  @override
-  Widget build(BuildContext context) {
-    final design = DesignSystem.of(context);
-    return Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: design.colors.background2,
-        ),
-        child: LayoutBuilder(builder: (context, BoxConstraints constraints) {
-          if (image == null) {
-            return const SizedBox.shrink();
-          }
-          final imageHeight = (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round();
-          final imageUri = image == null ? null : getImageUri(image!, height: imageHeight, cropMode: ImageCropMode.center);
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: Container(
-              height: constraints.maxHeight,
-              padding: const EdgeInsets.only(bottom: 32),
-              child: imageUri == null
-                  ? null
-                  : FadeInImage(
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topCenter,
-                      placeholder: MemoryImage(kTransparentImage),
-                      image: networkImageWithRetryAndResize(imageUrl: imageUri.toString(), cacheHeight: imageHeight),
-                      imageErrorBuilder: imageErrorBuilder,
-                      fadeInDuration: const Duration(milliseconds: 200),
-                    ),
-            ),
-          );
-        }));
-  }
-}
-
 class _CustomPageViewScrollPhysics extends ScrollPhysics {
-  const _CustomPageViewScrollPhysics({ScrollPhysics? parent}) : super(parent: parent);
+  const _CustomPageViewScrollPhysics({super.parent});
 
   @override
   _CustomPageViewScrollPhysics applyTo(ScrollPhysics? ancestor) {

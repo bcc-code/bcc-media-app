@@ -160,11 +160,10 @@ Widget _childWrap({
 
 class _InnerShadow extends SingleChildRenderObjectWidget {
   const _InnerShadow({
-    Key? key,
     required this.color,
     required this.offset,
-    Widget? child,
-  }) : super(key: key, child: child);
+    super.child,
+  });
 
   final Color color;
   final Offset offset;

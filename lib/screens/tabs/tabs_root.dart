@@ -66,7 +66,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
         description: S.of(context).shortsFeatureDescription,
         onContinue: () {
           if (!context.mounted) return;
-          context.navigateTo(ShortsWrapperScreenRoute(
+          context.navigateTo(const ShortsWrapperScreenRoute(
             children: [ShortsScreenRoute()],
           ));
         },

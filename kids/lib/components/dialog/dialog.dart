@@ -5,9 +5,9 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 class PlayfulDialog extends StatelessWidget {
   const PlayfulDialog({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 

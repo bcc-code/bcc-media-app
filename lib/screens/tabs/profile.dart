@@ -45,9 +45,9 @@ const kProfileScrollQueryDownloaded = 'downloaded';
 @RoutePage<void>()
 class ProfileScreen extends HookConsumerWidget {
   const ProfileScreen({
-    Key? key,
+    super.key,
     @QueryParam('scroll') this.scroll,
-  }) : super(key: key);
+  });
 
   final String? scroll;
 

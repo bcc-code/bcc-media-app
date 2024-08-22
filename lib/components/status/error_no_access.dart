@@ -9,8 +9,8 @@ import '../../l10n/app_localizations.dart';
 
 class ErrorNoAccess extends ConsumerWidget {
   const ErrorNoAccess({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Center(

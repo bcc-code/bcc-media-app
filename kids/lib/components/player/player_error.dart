@@ -6,11 +6,11 @@ import 'package:bccm_core/design_system.dart';
 
 class KidsPlayerError extends StatelessWidget {
   const KidsPlayerError({
-    Key? key,
+    super.key,
     required this.onRetry,
     this.code,
     this.message,
-  }) : super(key: key);
+  });
   final void Function() onRetry;
   final String? code;
   final String? message;

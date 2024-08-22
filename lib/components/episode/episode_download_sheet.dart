@@ -28,11 +28,11 @@ import '../status/loading_indicator.dart';
 
 class EpisodeDownloadSheet extends HookConsumerWidget {
   const EpisodeDownloadSheet({
-    Key? key,
+    super.key,
     required this.episode,
     required this.downloadUrl,
     required this.parentContext,
-  }) : super(key: key);
+  });
 
   final Query$FetchEpisode$episode episode;
   final String downloadUrl;

@@ -256,7 +256,7 @@ class _GradientImage extends StatelessWidget {
 }
 
 class _CustomPageViewScrollPhysics extends ScrollPhysics {
-  const _CustomPageViewScrollPhysics({ScrollPhysics? parent}) : super(parent: parent);
+  const _CustomPageViewScrollPhysics({super.parent});
 
   @override
   _CustomPageViewScrollPhysics applyTo(ScrollPhysics? ancestor) {
