@@ -41,6 +41,7 @@ final authStateProviderOverride = authStateProvider.overrideWith((ref) {
         ref.read(featureFlagsProvider.notifier).refresh();
       },
     ),
+    ref,
   );
   debugPrint('authStateProvider: ${notifier.runtimeType}');
   return notifier;
