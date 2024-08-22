@@ -2,6 +2,7 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/models/feature_flags.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -39,6 +40,9 @@ final authStateProviderOverride = authStateProvider.overrideWith((ref) {
         ref.read(settingsProvider.notifier).refreshSessionId();
 
         ref.read(featureFlagsProvider.notifier).refresh();
+      },
+      onSignIn: () {
+        ref.read(sharedPreferencesProvider).setBool(PrefKeys.hasEverLoggedIn, true);
       },
     ),
     ref,

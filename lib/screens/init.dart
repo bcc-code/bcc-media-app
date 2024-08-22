@@ -85,10 +85,20 @@ class _InitScreenState extends ConsumerState<InitScreen> {
     }
     final isLoggedIn = ref.read(authStateProvider).isLoggedIn;
     final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingCompleted) == true;
-    if (!isLoggedIn && !hasCompletedOnboarding) {
+    final hasEverLoggedIn = ref.read(sharedPreferencesProvider).getBool(PrefKeys.hasEverLoggedIn) == true;
+
+    /*
+      Onboarding will be shown the first time for every user, but if the user selects "Explore public content"
+      the onboarding will not be shown again, and the user will be sent directly to the home screen.
+
+      If the user has ever logged in before, and thus is counted as a BCC member, 
+      we will show the onboarding again.
+    */
+    if (!isLoggedIn && (!hasCompletedOnboarding || hasEverLoggedIn)) {
       router.replaceAll([OnboardingScreenRoute()]);
       return;
     }
+
     TimeMeasurements.startupToHomeLoaded.addCheckpoint('init');
     router.replaceAll([const TabsRootScreenRoute()]);
   }
