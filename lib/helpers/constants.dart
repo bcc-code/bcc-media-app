@@ -16,7 +16,7 @@ class PrefKeys {
   static const completedSurveys = 'completed_surveys';
   static const isBetaTester = 'is_beta_tester';
   static const extraUsergroups = 'extra_usergroups';
-  static const onboardingCompleted = 'onboarding_completed';
+  static const onboardingCompleted = 'onboarding_is_completed';
   static const useNativePlayer = 'use_native_player';
   static const shortsFeatureGuideShown = 'shorts_feature_guide_shown';
   static const likedShortsGuideShown = 'liked_shorts_guide_shown2';
