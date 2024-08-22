@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.20+2300180...v) (2024-08-21)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.21+2300181...v) (2024-08-22)
+
+
+
+## [5.6.21+2300181](https://github.com/bcc-code/bcc-media-app/compare/v5.6.20+2300180...v5.6.21+2300181) (2024-08-22)
+
+
+### Bug Fixes
+
+* **auth:** pass in ref to authStateProviderOverride ([b1bb628](https://github.com/bcc-code/bcc-media-app/commit/b1bb6285beec9c7f52cefd7df09253c0a8f5ebf3))
+
+
+### Features
+
+* **auth:** make sure users who has ever logged in lands on onboarding screen on non-authenticated app launch [#409](https://github.com/bcc-code/bcc-media-app/issues/409) ([6460768](https://github.com/bcc-code/bcc-media-app/commit/646076872b4be003acc1d8e628f3eed95f4f0d23))
 
 
 
