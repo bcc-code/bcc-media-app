@@ -995,7 +995,7 @@ class SFr extends S {
   String get shortsLikedAndSavedDescription => 'Vous pouvez trouver tous vos courts métrages préférés dans votre profil.';
 
   @override
-  String get excerptFrom => 'Excerpt from';
+  String get excerptFrom => 'Extrait de';
 
   @override
   String get downloadedVideosGuideDescription => 'Vous pouvez trouver vos vidéos téléchargées sous « Profil ».';

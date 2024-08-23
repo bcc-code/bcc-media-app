@@ -995,7 +995,7 @@ class SSl extends S {
   String get shortsLikedAndSavedDescription => 'Vse priljubljene kratke filme lahko najdeš v svojem profilu.';
 
   @override
-  String get excerptFrom => 'Excerpt from';
+  String get excerptFrom => 'Odlomek iz';
 
   @override
   String get downloadedVideosGuideDescription => 'Prenesene videoposnetke lahko najdeš v razdelku \"Profil\".';

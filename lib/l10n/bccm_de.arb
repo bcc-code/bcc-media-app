@@ -1367,6 +1367,10 @@
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
   },
+  "excerptFrom": "Ausschnitt aus",
+  "@excerptFrom": {
+    "description": "Shown on a 'short' video, indicating that this is an excerpt from a longer video. E.g. Excerpt from 'The Tale of John Doe'."
+  },
   "downloadedVideosGuideDescription": "Deine heruntergeladenen Videos findest du unter „Profil“.",
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
