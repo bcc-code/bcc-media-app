@@ -79,8 +79,8 @@ bump: ## Bumps the version in pubspec.yaml
 	IFS='.' read -r MAJOR MINOR PATCH <<< "$$VERSION_PART"; \
 	NEW_VERSION="$${MAJOR}.$${MINOR}.$$((PATCH + 1))+$$(($$BUILD_NUMBER + 1))"; \
 	sed -i '' "s/version: .*/version: $${NEW_VERSION}/" pubspec.yaml; \
-	echo "Bumped version to $${NEW_VERSION}"
-	git add pubspec.yaml
+	echo "Bumped version to $${NEW_VERSION}"; \
+	git add pubspec.yaml; \
 	git commit -m "chore: bump version to $${NEW_VERSION}"
 
 crowdin-download: ## Download translations from crowdin and generate l10n files
