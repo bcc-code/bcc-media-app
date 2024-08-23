@@ -1,5 +1,7 @@
 import 'app_localizations.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for Romanian Moldavian Moldovan (`ro`).
 class SRo extends S {
   SRo([String locale = 'ro']) : super(locale);

@@ -6,7 +6,6 @@ import 'package:brunstadtv_app/components/guides/tab_feature_guides.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/models/events.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
@@ -23,6 +22,7 @@ import '../../components/prompts/prompts.dart';
 import '../../components/nav/web_app_bar.dart';
 import '../../providers/tabs.dart';
 import 'package:bccm_core/design_system.dart';
+
 
 @RoutePage<void>()
 class TabsRootScreen extends StatefulHookConsumerWidget {
@@ -232,4 +232,9 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       ),
     );
   }
+}
+
+class TabClickedEvent {
+  TabClickedEvent(this.tabId);
+  final TabId tabId;
 }

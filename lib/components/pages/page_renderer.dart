@@ -11,7 +11,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:bccm_core/bccm_core.dart';
 import '../../helpers/sections.dart';
 import '../../models/pagination_status.dart';
-import 'sections/section_update_handler.dart';
 
 /// How close to the bottom of the page do you have to be before we load more items
 const kLoadMoreBottomScrollOffset = 1000;

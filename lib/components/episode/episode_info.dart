@@ -5,7 +5,6 @@ import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
-import 'package:brunstadtv_app/models/events.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

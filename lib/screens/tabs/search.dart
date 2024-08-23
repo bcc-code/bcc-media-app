@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/pages/page_renderer.dart';
-import 'package:brunstadtv_app/models/events.dart';
+import 'package:brunstadtv_app/screens/tabs/tabs_root.dart';
 import 'package:brunstadtv_app/providers/tabs.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

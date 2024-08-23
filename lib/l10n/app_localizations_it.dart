@@ -1,5 +1,7 @@
 import 'app_localizations.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for Italian (`it`).
 class SIt extends S {
   SIt([String locale = 'it']) : super(locale);

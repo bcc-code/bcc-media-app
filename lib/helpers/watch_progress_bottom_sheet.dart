@@ -1,6 +1,6 @@
 import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/models/events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
