@@ -40,6 +40,7 @@ Future<void> $main({
     (options) {
       options.dsn = Env.sentryDsn;
       options.tracesSampleRate = 0.5;
+      options.profilesSampleRate = 0.5;
     },
     appRunner: () async {
       TimeMeasurements.mainFunction.start();
