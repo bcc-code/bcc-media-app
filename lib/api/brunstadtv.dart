@@ -47,10 +47,8 @@ class Api {
     if (result.exception != null) {
       throw result.exception!;
     }
-    var episode = result.parsedData?.episode;
-    if (episode == null) return null;
 
-    return episode;
+    return result.parsedData?.episode;
   }
 
   Future<Query$GetSeasonEpisodes$season?> getSeasonEpisodes(String id) async {
@@ -62,10 +60,8 @@ class Api {
     if (result.hasException) {
       throw ErrorDescription(result.exception.toString());
     }
-    var season = result.parsedData?.season;
-    if (season == null) return null;
 
-    return season;
+    return result.parsedData?.season;
   }
 
   Future<Query$GetEpisodeLessonProgress?> loadLessonProgressForEpisode(String id) async {
