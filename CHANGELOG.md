@@ -1,4 +1,21 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.22+2300182...v) (2024-08-22)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.23+2300183...v) (2024-08-27)
+
+
+
+## [5.6.23+2300183](https://github.com/bcc-code/bcc-media-app/compare/v5.6.22+2300182...v5.6.23+2300183) (2024-08-27)
+
+
+### Bug Fixes
+
+* cancel homeloaded if you are offline ([29bb79e](https://github.com/bcc-code/bcc-media-app/commit/29bb79ee53c50d2d09d8c1a58f5b6b53ab57e244))
+* remove os version from unleash since it was useless ([c4cc670](https://github.com/bcc-code/bcc-media-app/commit/c4cc670fa20bd39e7ff326b391187bbeee52a7b1))
+
+
+### Features
+
+* **feature-flags:** 1s delay on startup ([b3183ee](https://github.com/bcc-code/bcc-media-app/commit/b3183eec09708b82a1e406b0e95a988fdcc7bd8e))
+* **feature-flags:** dont enable the startup-delay yet ([6ad1aec](https://github.com/bcc-code/bcc-media-app/commit/6ad1aec4efc5a7ffd56c5031388db6ae5727c2e6))
+* **sentry:** implement profiling ([2c43cd6](https://github.com/bcc-code/bcc-media-app/commit/2c43cd67d26d130b92fcdbb8871c5537ef6368ea))
 
 
 
