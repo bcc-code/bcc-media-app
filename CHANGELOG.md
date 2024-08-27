@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.23+2300183...v) (2024-08-27)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.24+2300184...v) (2024-08-27)
+
+
+
+## [5.6.24+2300184](https://github.com/bcc-code/bcc-media-app/compare/v5.6.23+2300183...v5.6.24+2300184) (2024-08-27)
+
+
+### Features
+
+* **feature-flags:** get startup-delay time from separate flag ([2887fe8](https://github.com/bcc-code/bcc-media-app/commit/2887fe86a68c55a7cdda0fdfc93afb8c8c7c1e61))
 
 
 
