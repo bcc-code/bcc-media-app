@@ -1,7 +1,5 @@
 import 'app_localizations.dart';
 
-// ignore_for_file: type=lint
-
 /// The translations for Danish (`da`).
 class SDa extends S {
   SDa([String locale = 'da']) : super(locale);
