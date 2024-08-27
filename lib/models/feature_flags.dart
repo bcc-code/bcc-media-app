@@ -30,6 +30,7 @@ sealed class FeatureFlags with _$FeatureFlags {
     String? iconSectionVariant,
     @Default(false) bool skipToChapter,
     @Default(false) bool startupDelay,
+    String? delayTimeInMs,
   }) = _FeatureFlags;
 
   factory FeatureFlags.fromJson(Map<String, dynamic> json) => _$FeatureFlagsFromJson(json);
@@ -61,6 +62,7 @@ sealed class FeatureFlags with _$FeatureFlags {
       iconSectionVariant: newFlags.iconSectionVariant ?? iconSectionVariant,
       skipToChapter: newFlags.skipToChapter || skipToChapter,
       startupDelay: newFlags.startupDelay || startupDelay,
+      delayTimeInMs: newFlags.delayTimeInMs ?? delayTimeInMs,
     );
   }
 }
