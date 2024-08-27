@@ -39,6 +39,7 @@ FeatureFlags getBaseFeatureFlags() {
     featuredSectionVariant: null,
     iconSectionVariant: null,
     skipToChapter: false,
+    startupDelay: false,
   );
 }
 
@@ -78,6 +79,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
       featuredSectionVariant: unleash.getVariant('featured-section-variant').name,
       iconSectionVariant: unleash.getVariant('icon-section-variant').name,
       skipToChapter: _verifyToggle(unleash, 'skip-to-chapter'),
+      startupDelay: _verifyToggle(unleash, 'startup-delay'),
     ));
 
     _saveCache(value);
