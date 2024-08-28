@@ -15,6 +15,14 @@ import UIKit
     {
         FirebaseApp.configure()
         GeneratedPluginRegistrant.register(with: self)
+        
+        do {
+            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try? AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Could not set audioSession")
+        }
+        
         let flutterResult = super.application(application, didFinishLaunchingWithOptions: launchOptions)
         return flutterResult
     }

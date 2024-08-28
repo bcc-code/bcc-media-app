@@ -142,11 +142,11 @@ PODS:
     - Flutter
     - FlutterMacOS
   - PromisesObjC (2.4.0)
-  - Protobuf (3.27.3)
+  - Protobuf (3.27.4)
   - restart_app (0.0.1):
     - Flutter
   - RSCrashReporter (1.0.1)
-  - Rudder (1.27.0):
+  - Rudder (1.28.0):
     - MetricsReporter (= 1.2.1)
   - rudder_plugin_ios (0.0.1):
     - Flutter
@@ -345,10 +345,10 @@ SPEC CHECKSUMS:
   package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
-  Protobuf: c1cbc880ea7c4e9b157e113515c720a22ee7cf50
+  Protobuf: 92f0808ce7e9764e80e19d463fbb4e6dcf3e8aec
   restart_app: 806659942bf932f6ce51c5372f91ce5e81c8c14a
   RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
-  Rudder: 3cfcd9e6c5359cd6d49f411101ed9b894e3b64bd
+  Rudder: 9f1f6fdec5bd0e8845e2ac2d4f7b4584d069bf88
   rudder_plugin_ios: a337ccdc5313621e0b1260551e8ebbc6bb492c36
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
   Sentry: 8560050221424aef0bebc8e31eedf00af80f90a6
