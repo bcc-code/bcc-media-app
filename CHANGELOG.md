@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.24+2300184...v) (2024-08-27)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.25+2300185...v) (2024-08-30)
+
+
+
+## [5.6.25+2300185](https://github.com/bcc-code/bcc-media-app/compare/v5.6.24+2300184...v5.6.25+2300185) (2024-08-30)
+
+
+### Features
+
+* use new sentry projects ([dbdbbdb](https://github.com/bcc-code/bcc-media-app/commit/dbdbbdb95b8e787591eb28e974b59d6c474cee97))
 
 
 
