@@ -188,7 +188,7 @@ sentry:
   upload_source_maps: true
   upload_sources: true
   org: bcc-media-sti
-  project: bcc-media-platform
+  project: bccm-mobile
   wait_for_processing: false
   log_level: error
   commits: auto

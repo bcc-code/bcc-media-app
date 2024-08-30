@@ -20,4 +20,5 @@ class Env {
   static const forceFlutterControls = _Secrets.forceFlutterControls;
   static const forceShorts = _Secrets.forceShorts;
   static const sentryDsn = _Secrets.sentryDsn;
+  static const sentryDsnKids = _Secrets.sentryDsnKids;
 }
