@@ -83,6 +83,19 @@ bump: ## Bumps the version in pubspec.yaml
 	git add pubspec.yaml; \
 	git commit -m "chore: bump version to $${NEW_VERSION}"
 
+# bumps the minor version in kids/pubspec.yaml e.g. 0.4.5+45 -> 0.4.6+46
+bump-kids: ## Bumps the version in kids/pubspec.yaml
+	@VERSION_LINE=$$(grep -i -e "version: " kids/pubspec.yaml); \
+	CURRENT_VERSION=$$(echo $$VERSION_LINE | cut -d " " -f 2); \
+	VERSION_PART=$$(echo $$CURRENT_VERSION | cut -d "+" -f 1); \
+	BUILD_NUMBER=$$(echo $$CURRENT_VERSION | cut -d "+" -f 2); \
+	IFS='.' read -r MAJOR MINOR PATCH <<< "$$VERSION_PART"; \
+	NEW_VERSION="$${MAJOR}.$${MINOR}.$$((PATCH + 1))+$$(($$BUILD_NUMBER + 1))"; \
+	sed -i '' "s/version: .*/version: $${NEW_VERSION}/" kids/pubspec.yaml; \
+	echo "Bumped version to $${NEW_VERSION}"; \
+	git add kids/pubspec.yaml; \
+	git commit -m "chore: bump kids version to $${NEW_VERSION}"
+
 crowdin-download: ## Download translations from crowdin and generate l10n files
 	crowdin download --token=$$(cat .crowdin-token)
 	flutter gen-l10n
