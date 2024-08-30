@@ -19,5 +19,6 @@ class Env {
   static const unleashAppName = _Secrets.unleashAppName;
   static const forceFlutterControls = _Secrets.forceFlutterControls;
   static const forceShorts = _Secrets.forceShorts;
-  static const sentryDsn = _Secrets.sentryDsn;
+  static const sentryDsnMobile = _Secrets.sentryDsnMobile;
+  static const sentryDsnKids = _Secrets.sentryDsnKids;
 }

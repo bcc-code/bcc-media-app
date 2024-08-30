@@ -38,7 +38,7 @@ Future<void> $main({
 }) async {
   await SentryFlutter.init(
     (options) {
-      options.dsn = Env.sentryDsn;
+      options.dsn = Env.sentryDsnMobile;
       options.tracesSampleRate = 0.5;
       options.profilesSampleRate = 0.5;
     },

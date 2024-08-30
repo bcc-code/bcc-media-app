@@ -74,7 +74,7 @@ Future<void> $main({
   List<Override>? providerOverrides,
 }) async {
   await SentryFlutter.init((options) {
-    options.dsn = Env.sentryDsn;
+    options.dsn = Env.sentryDsnKids;
     options.tracesSampleRate = 0.5;
     options.profilesSampleRate = 0.5;
   }, appRunner: () async {
