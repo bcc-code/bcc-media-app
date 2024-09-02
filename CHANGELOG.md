@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.11+2500021-kids...v) (2024-09-02)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.26+2300186...v) (2024-09-02)
+
+
+
+## [5.6.26+2300186](https://github.com/bcc-code/bcc-media-app/compare/v5.1.11+2500021-kids...v5.6.26+2300186) (2024-09-02)
+
+
+### Features
+
+* **analytics:** add ref to meta enrichment so we can track if users have logged in at onboarding tracking ([116e09d](https://github.com/bcc-code/bcc-media-app/commit/116e09dd0d97bb5e096e4b77be27e2dd0b27c3ff))
 
 
 
