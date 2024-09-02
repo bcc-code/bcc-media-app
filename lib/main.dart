@@ -63,7 +63,7 @@ Future<void> $main({
 
       final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
       final coreOverrides = await BccmCore().setupCoreOverrides(
-        analyticsMetaEnricherProviderOverride: analyticsMetaEnricherProvider.overrideWith((ref) => BccmAnalyticsMetaEnricher()),
+        analyticsMetaEnricherProviderOverride: analyticsMetaEnricherProvider.overrideWith((ref) => BccmAnalyticsMetaEnricher(ref)),
         specialRoutesHandlerProviderOverride: specialRoutesHandlerProvider.overrideWith((ref) => BccmSpecialRoutesHandler(ref)),
         rootRouterProviderOverride: rootRouterProvider.overrideWithValue(appRouter),
         commonSettingsProviderOverride: commonSettingsProviderOverride,
