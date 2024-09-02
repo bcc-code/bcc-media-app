@@ -119,6 +119,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.2.19
   #flutter_hooks_lint_plugin: any
+  sentry_dart_plugin: ^2.0.0
 
 flutter:
   uses-material-design: true
@@ -159,3 +160,16 @@ flutter:
   assets:
     - assets/flavors/prod/
     - assets/sounds/
+
+# The SENTRY_AUTH_TOKEN environment variable must be set for this to work.
+# https://docs.sentry.io/platforms/flutter/upload-debug/#configure
+sentry:
+  upload_debug_symbols: true
+  upload_source_maps: true
+  upload_sources: true
+  org: bcc-media-sti
+  project: kids-mobile
+  wait_for_processing: false
+  log_level: error
+  commits: auto
+  ignore_missing: true
