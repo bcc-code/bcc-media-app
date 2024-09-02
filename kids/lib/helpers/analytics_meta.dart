@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:kids/router/router.gr.dart';
 
 class KidsAnalyticsMetaEnricher extends AnalyticsMetaEnricher {
-  KidsAnalyticsMetaEnricher(super.ref);
+  KidsAnalyticsMetaEnricher([super.ref]);
 
   @override
   String? getScreenName(Route route) {

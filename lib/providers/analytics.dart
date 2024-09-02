@@ -55,7 +55,8 @@ class BccmAnalyticsMetaEnricher extends AnalyticsMetaEnricher {
     }
 
     final onboardingRouteArgs = route.settings.arguments.asOrNull<OnboardingScreenRouteArgs>();
-    if (onboardingRouteArgs != null) {
+    final ref = this.ref;
+    if (onboardingRouteArgs != null && ref != null) {
       extraProperties['meta']['hasEverLoggedIn'] = ref.read(sharedPreferencesProvider).getBool(PrefKeys.hasEverLoggedIn);
     }
 
