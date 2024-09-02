@@ -20,6 +20,8 @@ final analyticsProviderOverride = analyticsProvider.overrideWith((ref) {
 });
 
 class BccmAnalyticsMetaEnricher extends AnalyticsMetaEnricher {
+  BccmAnalyticsMetaEnricher(super.ref);
+
   @override
   String? getScreenName(Route<dynamic> route) {
     final pageRouteArgs = route.settings.arguments.asOrNull<PageScreenRouteArgs>();
@@ -50,6 +52,12 @@ class BccmAnalyticsMetaEnricher extends AnalyticsMetaEnricher {
     final routeData = route.data;
     if (routeData != null && routeData.meta.containsKey(RouteMetaConstants.settingsName)) {
       extraProperties['meta']['settings'] = routeData.meta[RouteMetaConstants.settingsName];
+    }
+
+    final onboardingRouteArgs = route.settings.arguments.asOrNull<OnboardingScreenRouteArgs>();
+    final ref = this.ref;
+    if (onboardingRouteArgs != null && ref != null) {
+      extraProperties['meta']['hasEverLoggedIn'] = ref.read(sharedPreferencesProvider).getBool(PrefKeys.hasEverLoggedIn);
     }
 
     return extraProperties;

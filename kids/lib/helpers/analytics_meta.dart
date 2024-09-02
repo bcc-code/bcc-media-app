@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:kids/router/router.gr.dart';
 
 class KidsAnalyticsMetaEnricher extends AnalyticsMetaEnricher {
+  KidsAnalyticsMetaEnricher([super.ref]);
+
   @override
   String? getScreenName(Route route) {
     // Use pageRouteArgs.pageCode if we ever add a dynamic page route.
