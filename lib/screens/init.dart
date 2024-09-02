@@ -67,7 +67,7 @@ class _InitScreenState extends ConsumerState<InitScreen> {
     // Apply artificial delay if startupDelay feature flag is enabled
     final hasStartupDelay = ref.read(featureFlagsProvider).startupDelay;
     final delayTimeInMs = ref.read(featureFlagsProvider).delayTimeInMs;
-    if (hasStartupDelay && delayTimeInMs != null) {
+    if (hasStartupDelay && delayTimeInMs != null && int.parse(delayTimeInMs) > 0) {
       await Future.delayed(Duration(milliseconds: int.parse(delayTimeInMs)));
     }
 
