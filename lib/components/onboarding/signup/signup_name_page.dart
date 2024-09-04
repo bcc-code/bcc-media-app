@@ -1,12 +1,12 @@
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../helpers/analytics.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../screens/onboarding/signup.dart';
-import '../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class SignupNamePage extends HookWidget implements SignupScreenPage {
   @override

@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/buttons/btv_buttons.dart';
@@ -40,6 +40,11 @@ class BccMediaButtons extends DesignSystemButtons {
         return button.copyWith(
           backgroundColor: colors.separatorOnLight,
           border: Border.all(color: colors.separatorOnLight, width: 1),
+        );
+      case ButtonVariant.dark:
+        return button.copyWith(
+          backgroundColor: colors.background2,
+          border: Border.all(color: colors.separatorOnLight.withOpacity(0.1), width: 1),
         );
       case ButtonVariant.green:
         return button.copyWith(backgroundColor: colors.tint3);
@@ -84,6 +89,11 @@ class BccMediaButtons extends DesignSystemButtons {
           backgroundColor: colors.separatorOnLight,
           border: Border.all(color: colors.separatorOnLight.withOpacity(0.1), width: 1),
         );
+      case ButtonVariant.dark:
+        return button.copyWith(
+          backgroundColor: colors.background2,
+          border: Border.all(color: colors.separatorOnLight.withOpacity(0.1), width: 1),
+        );
       case ButtonVariant.green:
         return button.copyWith(backgroundColor: colors.tint3);
       case ButtonVariant.red:
@@ -124,6 +134,11 @@ class BccMediaButtons extends DesignSystemButtons {
       case ButtonVariant.secondary:
         return button.copyWith(
           backgroundColor: colors.separatorOnLight,
+          border: Border.all(color: colors.separatorOnLight.withOpacity(0.1), width: 1),
+        );
+      case ButtonVariant.dark:
+        return button.copyWith(
+          backgroundColor: colors.background2,
           border: Border.all(color: colors.separatorOnLight.withOpacity(0.1), width: 1),
         );
       case ButtonVariant.green:

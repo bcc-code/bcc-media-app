@@ -1,8 +1,7 @@
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/models/analytics/language_changed.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/shared_preferences.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,13 +9,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
 import '../flavors.dart';
-import '../helpers/languages.dart';
 import '../models/offline/download_quality.dart';
 
 part 'settings.freezed.dart';
 
 @freezed
-class Settings with _$Settings {
+class Settings with _$Settings implements CommonSettings {
   const factory Settings({
     required Locale appLanguage,
     @Default([]) List<String> audioLanguages,
@@ -181,3 +179,5 @@ final settingsProvider = StateNotifierProvider<SettingsService, Settings>((ref) 
   });
   return settingsService;
 });
+
+final commonSettingsProviderOverride = commonSettingsProvider.overrideWith((ref) => ref.watch(settingsProvider));

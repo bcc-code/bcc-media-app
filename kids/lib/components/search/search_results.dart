@@ -1,16 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
-import 'package:brunstadtv_app/helpers/debouncer.dart';
-import 'package:brunstadtv_app/helpers/images.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/models/analytics/search_performed.dart';
-import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/inherited_data.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -19,7 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/grid/episode_grid.dart';
 import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class SliverSearchResults extends HookConsumerWidget {
   const SliverSearchResults({
@@ -31,7 +25,7 @@ class SliverSearchResults extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final gqlClient = ref.watch(gqlClientProvider);
+    final gqlClient = ref.watch(bccmGraphQLProvider);
 
     final debouncer = useMemoized(() => AsyncDebouncer<Query$Search$search?>(milliseconds: 150));
 
@@ -100,7 +94,7 @@ class SliverSearchResults extends HookConsumerWidget {
 
     return InheritedData<SearchAnalytics>(
       inheritedData: SearchAnalytics(searchText: searchQuery),
-      child: (context) => SliverToBoxAdapter(
+      builder: (context) => SliverToBoxAdapter(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

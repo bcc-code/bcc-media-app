@@ -1,15 +1,12 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../env/env.dart';
-
-const bundleIdentifier = 'tv.brunstad.app';
-const auth0RedirectUri = '$bundleIdentifier://login-callback';
-const auth0Issuer = 'https://${Env.auth0Domain}';
 
 class PrefKeys {
   PrefKeys._();
   static const envOverride = 'env_override';
-  static const refreshToken = 'refresh_token';
   static const appLanguage = 'app_language';
   static const audioLanguage = 'audio_language';
   static const subtitleLanguage = 'subtitle_language';
@@ -19,49 +16,37 @@ class PrefKeys {
   static const completedSurveys = 'completed_surveys';
   static const isBetaTester = 'is_beta_tester';
   static const extraUsergroups = 'extra_usergroups';
-  static const onboardingCompleted = 'onboarding_completed';
+  static const onboardingCompleted = 'onboarding_is_completed';
   static const useNativePlayer = 'use_native_player';
+  static const shortsFeatureGuideShown = 'shorts_feature_guide_shown';
+  static const likedShortsGuideShown = 'liked_shorts_guide_shown2';
+  static const downloadedVideosGuide = 'downloaded_videos_guide';
+  static const featureFlags = 'feature_flags';
+  static const hasEverLoggedIn = 'has_ever_logged_in';
 }
-
-class SecureStorageKeys {
-  SecureStorageKeys._();
-  static const refreshToken = 'refresh_token';
-  static const idToken = 'id_token';
-  static const accessToken = 'access_token';
-}
-
-const apiEnvUrls = <String, String>{
-  EnvironmentOverride.none: Env.brunstadtvApiEndpoint,
-  EnvironmentOverride.dev: 'https://api.dev.brunstad.tv/query',
-  EnvironmentOverride.sta: 'https://api.sta.brunstad.tv/query',
-  EnvironmentOverride.prod: 'https://api.brunstad.tv/query',
-};
 
 final webEnvUrls = <String, String>{
-  EnvironmentOverride.none: Env.webUrl,
   EnvironmentOverride.dev: 'https://web.dev.brunstad.tv',
   EnvironmentOverride.sta: 'https://web.sta.brunstad.tv',
-  EnvironmentOverride.prod: 'https://app.bcc.media',
+  EnvironmentOverride.prod: Env.webUrl,
 };
 
-Future getWebUrl() async {
-  final sharedPrefs = await SharedPreferences.getInstance();
+String getWebUrl(WidgetRef ref) {
+  final sharedPrefs = ref.read(sharedPreferencesProvider);
   final envOverride = sharedPrefs.getString(PrefKeys.envOverride);
-  final webUrl = webEnvUrls[envOverride] ?? webEnvUrls[EnvironmentOverride.none]!;
+  final webUrl = webEnvUrls[envOverride] ?? webEnvUrls[EnvironmentOverride.prod]!;
   return webUrl;
 }
 
-class EnvironmentOverride {
-  EnvironmentOverride._();
-  static const dev = 'dev';
-  static const sta = 'sta';
-  static const prod = 'prod';
-  static const none = 'none';
+class RouteMetaConstants {
+  RouteMetaConstants._();
+  static const hideMiniPlayer = 'hide_mini_player';
+  static const analyticsName = kRouteMetaAnalyticsName;
+  static const settingsName = kRouteMetaSettingsName;
+  static const navTabRoute = kRouteMetaNavTab;
 }
 
-class RouteMetaConstants {
-  static const hideMiniPlayer = 'hide_mini_player';
-  static const analyticsName = 'analytics_name';
-  static const settingsName = 'settings_name';
-  static const navTabRoute = 'nav_tab_route';
+class MetadataExtraConstants {
+  MetadataExtraConstants._();
+  static const shortId = 'shortId';
 }

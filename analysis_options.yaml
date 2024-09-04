@@ -10,9 +10,10 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude: [lib/**.freezed.dart, lib/**.g.dart, lib/**.graphql.dart]
-  plugins:
-    - flutter_hooks_lint_plugin
+  errors:
+    body_might_complete_normally_nullable: ignore
+  exclude:
+    [lib/**.freezed.dart, lib/**.g.dart, lib/**.graphql.dart, lib/l10n/**.dart]
 
 linter:
   # The lint rules applied to this project can be customized in the

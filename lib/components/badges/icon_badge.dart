@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class IconBadge extends StatelessWidget {
   final String label;
   final Color color;
   final Widget icon;
+  final bool disableIconPadding;
+  final double iconHeight;
 
   const IconBadge({
     super.key,
     required this.icon,
     required this.label,
     required this.color,
+    this.disableIconPadding = false,
+    this.iconHeight = 9,
   });
 
   @override
@@ -30,14 +34,16 @@ class IconBadge extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.only(
-                left: 10,
-                top: 8,
-                right: 5,
-                bottom: 8,
-              ),
+              padding: disableIconPadding
+                  ? const EdgeInsets.all(0)
+                  : const EdgeInsets.only(
+                      left: 10,
+                      top: 8,
+                      right: 5,
+                      bottom: 8,
+                    ),
               child: SizedBox(
-                height: 9,
+                height: iconHeight,
                 child: icon,
               ),
             ),

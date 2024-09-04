@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
@@ -5,17 +6,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
-import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
-import 'package:brunstadtv_app/helpers/images.dart';
-import 'package:brunstadtv_app/helpers/languages.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/models/analytics/sections.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -27,22 +23,23 @@ import 'package:kids/components/buttons/tab_switcher.dart';
 import 'package:kids/components/dialog/dialog.dart';
 import 'package:kids/components/grid/episode_grid.dart';
 import 'package:kids/components/player/controls.dart';
+import 'package:kids/components/player/player_error.dart';
 import 'package:kids/components/settings/option_list.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/helpers/transitions.dart';
 import 'package:kids/router/router.gr.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class PlayerView extends HookConsumerWidget {
   const PlayerView({
     super.key,
     required this.episode,
     required this.playlistId,
-    required this.onReplayRequested,
+    required this.onReloadRequested,
   });
 
   final Query$KidsFetchEpisode$episode? episode;
-  final void Function() onReplayRequested;
+  final Future<void> Function() onReloadRequested;
   final String? playlistId;
 
   @override
@@ -60,6 +57,8 @@ class PlayerView extends HookConsumerWidget {
       reverseCurve: Curves.easeInExpo,
     );
 
+    useWakelockWhilePlaying(viewController.playerController);
+
     void navigateToEpisode(Fragment$KidsEpisodeThumbnail episode) {
       context.replaceRoute(EpisodeScreenRoute(
         id: episode.id,
@@ -69,10 +68,21 @@ class PlayerView extends HookConsumerWidget {
       ));
     }
 
-    final morphTransition = InheritedData.listen<MorphTransitionInfo>(context);
+    final morphTransition = InheritedData.watch<MorphTransitionInfo>(context);
     final currentMediaItem = useState(viewController.playerController.value.currentMediaItem);
 
     final controlsVisible = useState(false);
+    final reloadCompleter = useState<Completer<void>?>(null);
+
+    reload({bool fromStart = false}) async {
+      final currentMs = viewController.playerController.value.playbackPositionMs;
+      reloadCompleter.value = wrapInCompleter(onReloadRequested());
+      if (!fromStart && currentMs != null) {
+        final safeEarly = max(0, currentMs - 5000);
+        await reloadCompleter.value?.future;
+        viewController.playerController.seekTo(Duration(milliseconds: safeEarly));
+      }
+    }
 
     setControlsVisible(bool value) {
       if (controlsVisible.value == value) {
@@ -87,7 +97,7 @@ class PlayerView extends HookConsumerWidget {
         if (viewController.playerController.value.playbackState != PlaybackState.playing && currentMediaItem.value != null) {
           viewController.playerController.play();
         } else if (currentMediaItem.value == null && episode != null) {
-          onReplayRequested();
+          reload(fromStart: true);
         }
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       }
@@ -97,12 +107,21 @@ class PlayerView extends HookConsumerWidget {
       setControlsVisible(!controlsVisible.value);
     }
 
+    final hasStartedProperly = useState(false);
     final buffering = useState(false);
     final last5SecondsHandled = useState(false);
     useEffect(() {
       void listener() {
-        currentMediaItem.value = viewController.playerController.value.currentMediaItem;
+        final changedItem =
+            viewController.playerController.value.currentMediaItem?.metadata?.extras?['id'] != currentMediaItem.value?.metadata?.extras?['id'];
+        if (changedItem) {
+          hasStartedProperly.value = false;
+        }
         buffering.value = viewController.playerController.value.isBuffering;
+        if (viewController.playerController.value.playbackState == PlaybackState.playing && !buffering.value) {
+          hasStartedProperly.value = true;
+        }
+        currentMediaItem.value = viewController.playerController.value.currentMediaItem;
         final duration = viewController.playerController.value.currentMediaItem?.metadata?.durationMs;
         final position = viewController.playerController.value.playbackPositionMs;
         if (duration != null && position != null) {
@@ -126,11 +145,12 @@ class PlayerView extends HookConsumerWidget {
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
     final basePadding = bp.smallerThan(TABLET) ? 20.0 : 40.0;
+    final playerError = useListenableSelector(viewController.playerController, () => viewController.playerController.value.error);
 
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         // Calculate the height of the middle box based on the aspect ratio
-        final sideOpenTargetWidth = 152.0;
+        const sideOpenTargetWidth = 152.0;
         final bottomOpenMinimumHeight = bp.smallerThan(TABLET) ? 170.0 : 300.0;
         final topOpenTargetHeight = bp.smallerThan(TABLET) ? 12.0 : 40.0;
 
@@ -187,12 +207,12 @@ class PlayerView extends HookConsumerWidget {
                               ),
                               IgnorePointer(
                                 ignoring: true,
-                                child: morphTransition?.active == true
+                                child: morphTransition?.active == true || playerError != null || !hasStartedProperly.value
                                     ? const AspectRatio(aspectRatio: 16 / 9)
                                     : BccmPlayerTheme(
                                         playerTheme: BccmPlayerThemeData(
-                                            controls:
-                                                BccmControlsThemeData.defaultTheme(context).copyWith(settingsListBackgroundColor: Colors.black)),
+                                          controls: BccmControlsThemeData.defaultTheme(context).copyWith(settingsListBackgroundColor: Colors.black),
+                                        ),
                                         child: VideoPlatformView(
                                           playerController: viewController.playerController,
                                           showControls: false,
@@ -207,12 +227,12 @@ class PlayerView extends HookConsumerWidget {
                                       : Container()),
                               Positioned.fill(
                                 child: Center(
-                                  child: !buffering.value
-                                      ? const SizedBox(width: 42, height: 429)
-                                      : const LoadingIndicator(
+                                  child: buffering.value || reloadCompleter.value?.isCompleted == false
+                                      ? const LoadingIndicator(
                                           width: 42,
                                           height: 42,
-                                        ),
+                                        )
+                                      : const SizedBox(width: 42, height: 429),
                                 ),
                               ),
                               Positioned.fill(
@@ -220,10 +240,17 @@ class PlayerView extends HookConsumerWidget {
                                   opacity: curvedAnimation.value,
                                   child: PlayerControls(
                                     show: controlsVisible.value,
-                                    onPlayRequestedWithoutVideo: onReplayRequested,
+                                    onPlayRequestedWithoutVideo: reload,
                                   ),
                                 ),
                               ),
+                              if (playerError != null && reloadCompleter.value?.isCompleted != false)
+                                Positioned.fill(
+                                  child: KidsPlayerError.fromPlayerError(
+                                    playerError,
+                                    onRetry: reload,
+                                  ),
+                                ),
                             ],
                           ),
                         ),
@@ -421,7 +448,7 @@ class PlayerSettingsView extends HookConsumerWidget {
                 tracksFuture.value = playerController.getTracks();
               },
             )
-          else
+          else if (tracksSnapshot.hasData)
             TabBarView(
               controller: tabController,
               children: [
@@ -609,12 +636,12 @@ class PlayerEpisodes extends HookConsumerWidget {
 
                   ref.read(analyticsProvider).sectionItemClicked(
                         context,
-                        sectionAnalyticsOverride: SectionAnalytics(
+                        sectionAnalyticsOverride: SectionAnalyticsData(
                           id: 'NextEpisodes-${episode?.id}',
                           position: 0,
                           type: 'NextEpisodesGrid',
                         ),
-                        itemAnalyticsOverride: SectionItemAnalytics(
+                        itemAnalyticsOverride: SectionItemAnalyticsData(
                           id: ep.id,
                           position: i,
                           type: ep.$__typename,

@@ -6,25 +6,29 @@ part of 'survey.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CompletedSurveys _$$_CompletedSurveysFromJson(Map<String, dynamic> json) =>
-    _$_CompletedSurveys(
+_$CompletedSurveysImpl _$$CompletedSurveysImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CompletedSurveysImpl(
       (json['completedSurveys'] as List<dynamic>)
           .map((e) => CompletedSurvey.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_CompletedSurveysToJson(_$_CompletedSurveys instance) =>
+Map<String, dynamic> _$$CompletedSurveysImplToJson(
+        _$CompletedSurveysImpl instance) =>
     <String, dynamic>{
       'completedSurveys': instance.completedSurveys,
     };
 
-_$_CompletedSurvey _$$_CompletedSurveyFromJson(Map<String, dynamic> json) =>
-    _$_CompletedSurvey(
+_$CompletedSurveyImpl _$$CompletedSurveyImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CompletedSurveyImpl(
       id: json['id'] as String,
       expiry: DateTime.parse(json['expiry'] as String),
     );
 
-Map<String, dynamic> _$$_CompletedSurveyToJson(_$_CompletedSurvey instance) =>
+Map<String, dynamic> _$$CompletedSurveyImplToJson(
+        _$CompletedSurveyImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'expiry': instance.expiry.toIso8601String(),

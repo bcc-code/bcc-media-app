@@ -16,6 +16,6 @@ appId: tv.brunstad.app
 - assertVisible: .*Bible.*
 - tapOn:
     point: "50%,20%"
-- tapOn: Calendar.*
+- tapOn: Profile.*
 - assertVisible: .*Bible.*
 - assertVisible: Pause

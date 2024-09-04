@@ -5,31 +5,14 @@ description: The app for browsing content from BCC Media
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-
 # major.minor.patch+xxxxxxx
 # Note: On play store, any dots in the build
 # number (i.e. the number after +) gets removed
-version: 5.0.0+2300100
+version: 5.6.26+2300186
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
-# Dependencies specify other packages that your package needs in order to work.
-# To automatically upgrade your package dependencies to the latest versions
-# consider running `flutter pub upgrade --major-versions`. Alternatively,
-# dependencies can be manually updated by changing the version numbers below to
-# the latest version available on pub.dev. To see which dependencies have newer
-# versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
     sdk: flutter
@@ -42,71 +25,60 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   provider: ^6.0.3
-  js: ^0.6.4
+  js: ^0.7.1
   http: ^1.1.0
   json_annotation: ^4.5.0
   json_serializable: ^6.2.0
   mockito: ^5.2.0
   flutter_svg: ^2.0.2
-  auto_route: ^7.8.3
+  auto_route: ^8.2.0
   build_runner: ^2.2.0
   bccm_player:
     path: submodules/bccm_player
   riverpod: ^2.3.4
   flutter_riverpod: ^2.1.1
   freezed_annotation: ^2.1.0
-  collection: ^1.16.0
-  # package to fetch device info
-  package_info_plus: ^4.0.1
-  # calendar
+  collection: ^1.18.0
+  package_info_plus: ^8.0.0
   table_calendar: ^3.0.7
-  #
   graphql: ^5.1.3
   graphql_flutter: ^5.1.0
   shared_preferences: ^2.0.15
-  hive: ^2.2.3
-  firebase_messaging: ^14.0.3
-  firebase_core: ^2.1.1
-  flutter_secure_storage: ^8.0.0
+  firebase_core: ^3.1.0
+  firebase_messaging: ^15.0.1
+  cloud_firestore: ^5.0.1
+  flutter_secure_storage: ^9.0.0
   visibility_detector: ^0.4.0+2
   pull_to_refresh: ^2.0.0
-  device_info_plus: ^9.0.3
-  firebase_crashlytics: ^3.0.4
+  device_info_plus: ^10.1.0
   flutter_svg_provider: ^1.0.5
   on_screen_ruler: ^0.0.1
   url_launcher: ^6.1.6
   modal_bottom_sheet: ^3.0.0-pre
   #webview_flutter: ^4.0.5
   shimmer: ^3.0.0
-  flutter_markdown: ^0.6.13
+  flutter_markdown: ^0.7.2+1
   rudder_sdk_flutter: ^2.5.0
   rudder_sdk_flutter_platform_interface: ^2.2.0
-  share_plus: ^7.1.0
-  restart_app: 1.1.2
-  flutter_inappwebview: ^6.0.0-beta.20
-  app_links: ^3.3.0
-  auth0_flutter_web: 0.0.1-alpha.6
+  share_plus: ^9.0.0
+  restart_app: ^1.2.1
+  app_links: ^6.1.1
   universal_io: ^2.0.4
-  web_socket_channel: ^2.3.0
   jwt_decoder: ^2.0.1
   flutter_appauth: ^6.0.1
   synchronized: ^3.0.1
   clock: ^1.1.1
-  flutter_hooks: ^0.18.5+1
+  flutter_hooks: ^0.20.5
   hooks_riverpod: ^2.2.0
-  flutter_hooks_lint_plugin: ^0.6.1
   vibration: ^1.7.6
-  email_validator: ^2.1.17
+  email_validator: ^3.0.0
   open_mail_app: ^0.4.5
   unleash_proxy_client_flutter: ^1.4.0
   html: ^0.15.2
-  flutter_html: 3.0.0-alpha.6
-  cloud_firestore: ^4.5.0
   riverpod_annotation: ^2.0.4
   image: ^4.0.15
-  responsive_framework: 1.0.0
-  intl: ^0.18.0
-  device_preview: ^1.1.0
+  responsive_framework: ^1.1.1
+  intl: ^0.19.0
   focusable_control_builder: ^1.0.2+1
   flutter_to_airplay:
     git:
@@ -115,37 +87,43 @@ dependencies:
   flutter_image: ^4.1.8
   qr_flutter: ^4.1.0
   focus_debugger: ^0.0.2
-  connectivity_plus: ^4.0.2
+  connectivity_plus: ^6.0.0
   flutter_cache_manager: ^3.3.1
   cached_network_image: ^3.3.0
   async: ^2.11.0
   markdown: ^7.1.1
-  flutter_layout_grid: ^2.0.5
   flutter_animate: ^4.2.0+1
   simple_shadow: ^0.3.1
-  video_player: ^2.8.1
-  #smooth: any
+  wakelock_plus: ^1.1.4
+  preload_page_view: ^0.2.0
+  tutorial_coach_mark: ^1.2.11
+  bccm_core:
+    path: submodules/bccm_flutter/bccm_core
+  auto_size_text: ^3.0.0
+  flutter_widget_from_html_core: ^0.15.1
+  webview_flutter: ^4.8.0
+  webview_flutter_android: ^3.16.4
+  webview_flutter_wkwebview: ^3.14.0
+  sentry_flutter: ^8.7.0
+
+dependency_overrides:
+  js: ^0.7.1
 
 dev_dependencies:
   integration_test:
     sdk: flutter
   flutter_test:
     sdk: flutter
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
   freezed: ^2.3.4
-  graphql_codegen: ^0.13.5
-  custom_lint: ^0.4.0
-  riverpod_generator: ^2.1.6
-  riverpod_lint: ^1.2.0
+  graphql_codegen: ^0.14.0
+  custom_lint: any
+  riverpod_generator: ^2.3.8
+  riverpod_lint: any
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.2.19
-  auto_route_generator: ^7.3.1
+  auto_route_generator: ^8.0.0
+  sentry_dart_plugin: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -175,7 +153,6 @@ flutter:
   assets:
     - assets/images/
     - assets/flavors/prod/
-    - assets/flavors/kids_prod/
     - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -204,8 +181,15 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 
-dependency_overrides:
-  flutter_inappwebview:
-    git:
-      url: https://github.com/andreasgangso/flutter_inappwebview.git
-      ref: feat/disable-ios-delay
+# The SENTRY_AUTH_TOKEN environment variable must be set for this to work.
+# https://docs.sentry.io/platforms/flutter/upload-debug/#configure
+sentry:
+  upload_debug_symbols: true
+  upload_source_maps: true
+  upload_sources: true
+  org: bcc-media-sti
+  project: bccm-mobile
+  wait_for_processing: false
+  log_level: error
+  commits: auto
+  ignore_missing: true

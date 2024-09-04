@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:brunstadtv_app/helpers/markdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -78,7 +78,7 @@ class _CollapsableMarkdownState extends State<CollapsableMarkdown> {
         final showMoreMarkdown = '[${S.of(context).showMore}](#toggle-collapsed)';
         final showLessMarkdown = '[${S.of(context).showLess}](#toggle-collapsed)';
         final showMoreSize = getTextSpanSize(
-          TextSpan(text: '$ellipsis ${S.of(context).showMore}', style: markdownStyle.p),
+          TextSpan(text: '$ellipsis ${S.of(context).showMore} ', style: markdownStyle.p),
           constraints.maxWidth,
         );
 

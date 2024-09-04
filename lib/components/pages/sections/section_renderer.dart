@@ -1,11 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/misc/see_more.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/components/pages/sections/types/avatar_section.dart';
+import 'package:brunstadtv_app/components/pages/sections/types/card_list_section.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 
-import '../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../router/router.gr.dart';
 import 'types/achievement_section.dart';
+import 'types/featured_section_v2.dart';
 import 'types/icon_section.dart';
 import 'section_with_header.dart';
 import 'types/card_section.dart';
@@ -19,7 +24,7 @@ import 'types/web_section.dart';
 import 'types/item_section_thumbnail_grid.dart';
 import 'types/item_section_thumbnail_slider.dart';
 
-class SectionRenderer extends StatelessWidget {
+class SectionRenderer extends ConsumerWidget {
   const SectionRenderer({
     super.key,
     required this.section,
@@ -30,11 +35,15 @@ class SectionRenderer extends StatelessWidget {
   final List<Fragment$ItemSectionItem>? extraItems;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     if (section.asOrNull<Fragment$ItemSection>()?.items.items.isEmpty == true) {
       return const SizedBox.shrink();
     }
 
+    final avatarSection = section.asOrNull<Fragment$Section$$AvatarSection>();
+    if (avatarSection != null) {
+      return SectionWithHeader.fromFragment(avatarSection, child: AvatarSection(avatarSection));
+    }
     final iconSection = section.asOrNull<Fragment$Section$$IconSection>();
     if (iconSection != null) {
       return SectionWithHeader.fromFragment(iconSection, child: IconSection(iconSection));
@@ -71,6 +80,10 @@ class SectionRenderer extends StatelessWidget {
     }
     final featuredSection = section.asOrNull<Fragment$Section$$FeaturedSection>();
     if (featuredSection != null) {
+      final variant = ref.watch(featureFlagsProvider.select((f) => f.featuredSectionVariant));
+      if (variant == 'v2') {
+        return SectionWithHeader.fromFragment(featuredSection, child: FeaturedSectionV2(featuredSection));
+      }
       return SectionWithHeader.fromFragment(featuredSection, child: FeaturedSection(featuredSection));
     }
     final iconGridSection = section.asOrNull<Fragment$Section$$IconGridSection>();
@@ -86,6 +99,7 @@ class SectionRenderer extends StatelessWidget {
     }
     final webSection = section.asOrNull<Fragment$Section$$WebSection>();
     if (webSection != null) {
+      //if (isTablet) return const SizedBox.shrink();
       return SectionWithHeader.fromFragment(webSection, child: WebSection(webSection));
     }
     final messageSection = section.asOrNull<Fragment$Section$$MessageSection>();
@@ -95,7 +109,17 @@ class SectionRenderer extends StatelessWidget {
     }
     final cardSection = section.asOrNull<Fragment$Section$$CardSection>();
     if (cardSection != null && cardSection.items.items.isNotEmpty) {
-      return Padding(padding: const EdgeInsets.only(top: 4), child: SectionWithHeader.fromFragment(cardSection, child: CardSection(cardSection)));
+      return Padding(
+        padding: const EdgeInsets.only(top: 4),
+        child: SectionWithHeader.fromFragment(cardSection, child: CardSection(cardSection)),
+      );
+    }
+    final cardListsection = section.asOrNull<Fragment$Section$$CardListSection>();
+    if (cardListsection != null && cardListsection.items.items.isNotEmpty) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 4),
+        child: SectionWithHeader.fromFragment(cardListsection, child: CardListSection(cardListsection)),
+      );
     }
     final pageDetailsSection = section.asOrNull<Fragment$Section$$PageDetailsSection>();
     if (pageDetailsSection != null) {

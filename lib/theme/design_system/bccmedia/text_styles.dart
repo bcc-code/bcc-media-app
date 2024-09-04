@@ -1,4 +1,4 @@
-import '../design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 
 /// WARNING: We can only ensure pixel-perfect designs when these constants match figma 1-to-1.

@@ -1,13 +1,13 @@
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:universal_io/io.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../providers/tabs.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 const double _iconSize = 28;
 
@@ -27,7 +27,7 @@ class BottomNavIcon extends StatelessWidget {
       image: image,
       gaplessPlayback: true,
     );
-    final gradient = DesignSystem.of(context).appThemeData.tabTheme?.iconActiveGradient;
+    final gradient = AppTheme.of(context).tabTheme?.iconActiveGradient;
     return Padding(
       padding: EdgeInsets.only(top: 2, bottom: Platform.isAndroid ? 2 : 0),
       child: SizedBox(
@@ -48,10 +48,10 @@ class BottomNavIcon extends StatelessWidget {
 
 class CustomNavTabBar extends HookConsumerWidget {
   const CustomNavTabBar({
-    Key? key,
+    super.key,
     required this.tabsRouter,
     required this.onTabTap,
-  }) : super(key: key);
+  });
 
   final TabsRouter tabsRouter;
   final void Function(int) onTabTap;
@@ -62,18 +62,16 @@ class CustomNavTabBar extends HookConsumerWidget {
     final tabInfos = ref.watch(tabInfosProvider);
     final currentTabIds = ref.watch(currentTabIdsProvider);
 
-    final guestMode = ref.watch(authStateProvider.select((value) => value.guestMode));
     final items = currentTabIds
         .map((tabId) => tabInfos.getFor(tabId))
         .map(
           (tabInfo) => BottomNavigationBarItem(
             label: tabInfo.title(context),
-            icon: BottomNavIcon(tabInfo.icon.image, false),
-            activeIcon: BottomNavIcon(tabInfo.icon.activeImage, true),
+            icon: BottomNavIcon(tabInfo.icon.image, false, key: tabInfo.iconKey),
+            activeIcon: BottomNavIcon(tabInfo.icon.activeImage, true, key: tabInfo.iconKey),
           ),
         )
         .toList();
-    debugPrint('custom_tab_bar rebuild. guestMode: $guestMode');
 
     if (Platform.isAndroid) {
       return Container(
@@ -94,7 +92,7 @@ class CustomNavTabBar extends HookConsumerWidget {
       currentIndex: tabsRouter.activeIndex,
       onTap: onTabTap,
       inactiveColor: design.colors.label3,
-      activeColor: design.appThemeData.tabTheme?.activeColor,
+      activeColor: AppTheme.of(context).tabTheme?.activeColor,
       border: Border(top: BorderSide(width: 1, color: design.colors.separatorOnLight)),
       items: items,
     );

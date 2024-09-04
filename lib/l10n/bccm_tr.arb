@@ -1,0 +1,739 @@
+{
+  "loadingContent": "İçerik yükleniyor",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading."
+  },
+  "signInTooltip": "Daha fazla içerik izlemek için oturum açın",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "skipToPublicContent": "Herkese açık içeriği izlemek için atlayın",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "minutesShort": "dakika",
+  "@minutesShort": {
+    "description": "Text for minutes."
+  },
+  "calendarThisWeek": "Bu hafta",
+  "@calendarThisWeek": {
+    "description": "Text for This week."
+  },
+  "calendarWeek": "hafta",
+  "@calendarWeek": {
+    "description": "Text week."
+  },
+  "close": "Kapat",
+  "@close": {
+    "description": "Text displayed on 'Close' button"
+  },
+  "loading": "Yükleniyor",
+  "@loading": {
+    "description": "Text to indicate loading state."
+  },
+  "loginPageDisplay1": "Dünyadaki en güçlü mesaj",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Hristiyan değerlerine dayalı diziler, şovlar ve filmler izleyin",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay3": "Yapımcı: BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen."
+  },
+  "logOutButton": "Oturumu kapat",
+  "@logOutButton": {
+    "description": "Text displayed on Log out button"
+  },
+  "profileTab": "Profil",
+  "@profileTab": {
+    "description": "Title of the profile page"
+  },
+  "faq": "Sıkça Sorulan Sorular",
+  "@faq": {
+    "description": "Long title of the FAQ page."
+  },
+  "bccMediaCenter": "BCC Media, BCC federasyonunda pozitif ve Hristiyan değerlere sahip içerik üreten ve dağıtan bir medya kuruluşudur.",
+  "@bccMediaCenter": {
+    "description": "Disclaimer on login page"
+  },
+  "signInButton": "Giriş",
+  "@signInButton": {
+    "description": "Text displayed on Sign in button"
+  },
+  "tryAgainButton": "Tekrar dene",
+  "@tryAgainButton": {
+    "description": "Button on error alert that lets user to retry failed action"
+  },
+  "loggedOutTitle": "Oturum Kapatıldı",
+  "@loggedOutTitle": {
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutMessage": "Çıkış yaptınız. Lütfen tekrar giriş yapın.",
+  "@loggedOutMessage": {
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "mostWatched": "En çok izlenen",
+  "@mostWatched": {
+    "description": "Sorting option on audience page"
+  },
+  "mostRecent": "En yeni",
+  "@mostRecent": {
+    "description": "Sorting option on audience page"
+  },
+  "latelyPublished": "Son zamanlarda yayınlanmış",
+  "@latelyPublished": {
+    "description": "Title for the list of videos on login page"
+  },
+  "anErrorOccurred": "Hata Oluştu",
+  "@anErrorOccurred": {
+    "description": "Title in error popup"
+  },
+  "ok": "Tamam",
+  "@ok": {
+    "description": "Popup confirmation button"
+  },
+  "loginFailedCheckNetwork": "Giriş başarısız. Ağ bağlantınızı kontrol edip tekrar deneyin.",
+  "@loginFailedCheckNetwork": {
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Giriş başarısız. Lütfen daha sonra tekrar deneyiniz.",
+  "@loginFailedTryAgain": {
+    "description": "Login error message"
+  },
+  "soundLanguage": "Ses dili",
+  "@soundLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "subtitleLanguage": "Altyazı dili",
+  "@subtitleLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "appLanguage": "App dili",
+  "@appLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "checkNetwork": "Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.",
+  "@checkNetwork": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgain": "Lütfen daha sonra tekrar deneyiniz.",
+  "@tryAgain": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "cantPlayVideo": "Bu videoyu şimdi oynatamazsınız.",
+  "@cantPlayVideo": {
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "about": "Hakkında",
+  "@about": {
+    "description": "Title of About page and item in profile page settings."
+  },
+  "version": "Versiyon",
+  "@version": {
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "contactSupport": "İletişim desteği",
+  "@contactSupport": {
+    "description": "Title for contact support page"
+  },
+  "contactIssueHint": "Sorunu tanımlayın",
+  "@contactIssueHint": {
+    "description": "Hint for the message box for logged in users"
+  },
+  "contactUs": "Bize Ulaşın",
+  "@contactUs": {
+    "description": "Title for contact us page"
+  },
+  "cancel": "İptal",
+  "@cancel": {
+    "description": "General cancel action button"
+  },
+  "done": "Tamam",
+  "@done": {
+    "description": "Generic Done button, for example to dismiss a page after completing an action."
+  },
+  "playerSettings": "Oynatıcı ayarları",
+  "@playerSettings": {
+    "description": "Title of the Player settings activity in Android"
+  },
+  "settings": "Ayarlar",
+  "@settings": {
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "none": "Hiçbiri",
+  "@none": {
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "auto": "Otomatik",
+  "@auto": {
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
+  },
+  "subtitles": "Altyazılar",
+  "@subtitles": {
+    "description": "Generic."
+  },
+  "audio": "Ses",
+  "@audio": {
+    "description": "Generic."
+  },
+  "quality": "Kalite",
+  "@quality": {
+    "description": "Generic."
+  },
+  "seasons": "Sezonlar",
+  "@seasons": {
+    "description": "Followed by number of seasons in given series."
+  },
+  "episodes": "Bölümler",
+  "@episodes": {
+    "description": "Followed by number of episodes in given series."
+  },
+  "search": "Ara",
+  "@search": {
+    "description": "Button to clear cache"
+  },
+  "noResults": "Sonuç bulunamadı",
+  "@noResults": {
+    "description": "No search results."
+  },
+  "doYouWantCast": "Bu videoyu yayınlamak istiyor musunuz?",
+  "@doYouWantCast": {
+    "description": "Prompt displayed to the user"
+  },
+  "play": "Oynat",
+  "@play": {
+    "description": "Option in prompt dialog."
+  },
+  "castQueue": "Yayın sırası",
+  "@castQueue": {
+    "description": "Queue page title"
+  },
+  "options": "Seçenekler",
+  "@options": {
+    "description": "Options dialog title"
+  },
+  "remove": "Kaldır",
+  "@remove": {
+    "description": "Option in options dialog"
+  },
+  "queueLimitTitle": "Limit",
+  "@queueLimitTitle": {
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "queueLimitMessage": "Kuyrukta en fazla {elementCount} öğeniz olabilir.",
+  "@queueLimitMessage": {
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+    "placeholders": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "recentSearches": "Son Aramalar",
+  "@recentSearches": {
+    "description": "Recent searches list title."
+  },
+  "tVLogin": "TV Girişi",
+  "@tVLogin": {
+    "description": "Title of the TV login alert"
+  },
+  "tVLoginSuccessful": "Giriş başarılı, lütfen TV'de onaylayın.",
+  "@tVLoginSuccessful": {
+    "description": "Message of the TV login alert"
+  },
+  "seeMore": "Daha fazla gör",
+  "@seeMore": {
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "seeAll": "Hepsini gör",
+  "@seeAll": {
+    "description": "Button to see all of some collection."
+  },
+  "series": "Diziler",
+  "@series": {
+    "description": "Title of the tab on info page"
+  },
+  "homeTab": "Başlangıç",
+  "@homeTab": {
+    "description": "Title of the home page"
+  },
+  "sortBy": "Sırala",
+  "@sortBy": {
+    "description": "Sorting criteria selector"
+  },
+  "videoQuality": "Video kalitesi",
+  "@videoQuality": {
+    "description": "Settings item in profile page for Android."
+  },
+  "low": "Düşük",
+  "@low": {
+    "description": "Low quality video option"
+  },
+  "medium": "Orta",
+  "@medium": {
+    "description": "Medium quality video option"
+  },
+  "high": "Yüksek",
+  "@high": {
+    "description": "High quality video option"
+  },
+  "emptySearch": "BCC Media'daki tüm içeriği arayabilirsiniz. Diziler, videolar ve bölümler.",
+  "@emptySearch": {
+    "description": "Message on search page when there is no search results."
+  },
+  "back": "Geri",
+  "@back": {
+    "description": "General back button to navigate back"
+  },
+  "seasonLetter": "S",
+  "@seasonLetter": {
+    "description": "Season  letter in label S1E3"
+  },
+  "episodeLetter": "E",
+  "@episodeLetter": {
+    "description": "Episode letter in label S1E3"
+  },
+  "atoZ": "A-Z",
+  "@atoZ": {
+    "description": "Sort order"
+  },
+  "ztoA": "Z-A",
+  "@ztoA": {
+    "description": "Sort order"
+  },
+  "shortFilms": "Kısa filmler",
+  "@shortFilms": {
+    "description": "Title of the films collection."
+  },
+  "videos": "Videolar",
+  "@videos": {
+    "description": "Followed by number of videos"
+  },
+  "moreInfo": "Daha fazla bilgi",
+  "@moreInfo": {
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "info": "Bilgi",
+  "@info": {
+    "description": "Video info page title."
+  },
+  "episode": "Bölüm",
+  "@episode": {
+    "description": "Title of the tab on info page"
+  },
+  "takePhoto": "Fotoğraf çek",
+  "@takePhoto": {
+    "description": "Option in menu"
+  },
+  "pickPhoto": "Galeriden seç",
+  "@pickPhoto": {
+    "description": "Option in menu"
+  },
+  "uploadFileTitle": "Dosya Ekle",
+  "@uploadFileTitle": {
+    "description": "Title of the dialog to confirm upload"
+  },
+  "uploadFileMessage": "Bu dosyayı yüklemek istiyor musunuz?",
+  "@uploadFileMessage": {
+    "description": "Content of the dialog to confirm upload"
+  },
+  "uploading": "Yükleniyor",
+  "@uploading": {
+    "description": "Message during file upload"
+  },
+  "uploadFail": "Yükleme başarısız",
+  "@uploadFail": {
+    "description": "Upload result message"
+  },
+  "charactersLimit": "{charsLeft} / {charsTotal} karakter kaldı",
+  "@charactersLimit": {
+    "description": "Info about limit of characters in a text field",
+    "placeholders": {
+      "charsLeft": {
+        "type": "int"
+      },
+      "charsTotal": {
+        "type": "int"
+      }
+    }
+  },
+  "thankYou": "Teşekkür ederim!",
+  "@thankYou": {
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Katkın için teşekkürler!",
+  "@thankYouForContribution": {
+    "description": "Title in upload success page"
+  },
+  "next": "Sonraki",
+  "@next": {
+    "description": "NEXT program in check in section"
+  },
+  "add": "Ekle",
+  "@add": {
+    "description": "Button text"
+  },
+  "change": "Değiştir",
+  "@change": {
+    "description": "Button text"
+  },
+  "writeHere": "Buraya yaz",
+  "@writeHere": {
+    "description": "New post text field placeholder"
+  },
+  "feed": "Besleme",
+  "@feed": {
+    "description": "Feed page bar title"
+  },
+  "information": "Bilgi",
+  "@information": {
+    "description": "Feed information item title"
+  },
+  "question": "Soru",
+  "@question": {
+    "description": "Title of the question page"
+  },
+  "now": "Şimdi",
+  "@now": {
+    "description": "Tv guide now playing label"
+  },
+  "debugInfoExplanation": "Mesajınız, sorunu daha iyi anlamamıza yardımcı olmak için bu bilgileri içerecektir.",
+  "@debugInfoExplanation": {
+    "description": "Info about debug info usage on contact support page"
+  },
+  "send": "Gönder",
+  "@send": {
+    "description": "General button to send a form"
+  },
+  "sending": "Gönderiliyor",
+  "@sending": {
+    "description": "General sending action indicator"
+  },
+  "thankYouSupportTitle": "Geri bildiriminiz için teşekkür ederiz!",
+  "@thankYouSupportTitle": {
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportDescription": "Tüm geri bildirimleri takdir ediyoruz ve sorunu en kısa sürede ele alacağız.",
+  "@thankYouSupportDescription": {
+    "description": "Text on contact support confirmation page"
+  },
+  "sendFail": "Mesajınız gönderilemedi",
+  "@sendFail": {
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edip tekrar deneyin.",
+  "@sendFailDescription": {
+    "description": "General error message that sending failed"
+  },
+  "sendSuccessDescription": "Geribildirim için teşekkürler.",
+  "@sendSuccessDescription": {
+    "description": "General message when sending is successful"
+  },
+  "today": "Bugün",
+  "@today": {
+    "description": "First category in tv guide"
+  },
+  "expired": "Süresi doldu",
+  "@expired": {
+    "description": "Label that something is no longer available."
+  },
+  "availableFrom": "Uygun {date}",
+  "@availableFrom": {
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "submit": "Gönder",
+  "@submit": {
+    "description": "Submit button."
+  },
+  "wellDone": "Aferin!",
+  "@wellDone": {
+    "description": "Positive message that may be used e.g. after completing some action."
+  },
+  "editPicture": "Resmi düzenle",
+  "@editPicture": {
+    "description": "Button on profile page to edit profile picture."
+  },
+  "profilePicture": "Profil fotoğrafı",
+  "@profilePicture": {
+    "description": "Text on edit profile page."
+  },
+  "timezoneInformation": "Tv rehberi zaman çizelgesi yerel saatinize göredir: {timeZone}",
+  "@timezoneInformation": {
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "share": "Paylaş",
+  "@share": {
+    "description": "Generic."
+  },
+  "comingSoon": "Yakında geliyor",
+  "@comingSoon": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
+  },
+  "newEpisode": "Yeni",
+  "@newEpisode": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
+  },
+  "tomorrow": "Yarın",
+  "@tomorrow": {
+    "description": "Day of transmission in tv guide."
+  },
+  "readBy": "Okuyan",
+  "@readBy": {
+    "description": "Feed verse pre author text."
+  },
+  "broadcasts": "Yayınlar",
+  "@broadcasts": {
+    "description": "Title for live broadcasts."
+  },
+  "calendar": "Takvim",
+  "@calendar": {
+    "description": "Title of calendar page."
+  },
+  "noEvents": "Bugün için planlanmış yayın yok",
+  "@noEvents": {
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
+  "appUpdateTitle": "Güncelleme gerekli",
+  "@appUpdateTitle": {
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
+  "appUpdateRequest": "En yeni özelliklerin ve hata düzeltmelerinin keyfini çıkarmak için lütfen en son uygulamayı indirin.",
+  "@appUpdateRequest": {
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
+  "appUpdateAccepted": "Güncelleme",
+  "@appUpdateAccepted": {
+    "description": "Option that can be chosen by the user to update his application."
+  },
+  "copy": "Kopyala",
+  "@copy": {
+    "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
+  },
+  "reload": "Yeniden yükle",
+  "@reload": {
+    "description": "Label on the button that allows to reload the player after error."
+  },
+  "fAQ": "SSS",
+  "@fAQ": {
+    "description": "Title on FAQ page and item in profile page settings."
+  },
+  "shareStart": "Baştan paylaş",
+  "@shareStart": {
+    "description": "Option on action sheet for sharing from start"
+  },
+  "shareTime": "{time} tarihinden itibaren paylaş",
+  "@shareTime": {
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "loadContentError": "İçerik yüklenemedi",
+  "@loadContentError": {
+    "description": "Error text when content couldn't be loaded."
+  },
+  "privacyPolicy": "Gizlilik Politikası",
+  "@privacyPolicy": {
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
+  "categoriesTab": "Kategoriler",
+  "@categoriesTab": {
+    "description": "Title of the Categories Tab"
+  },
+  "seriesTab": "Diziler",
+  "@seriesTab": {
+    "description": "Series Tab title"
+  },
+  "filmsTab": "Filimler",
+  "@filmsTab": {
+    "description": "Films Tab title"
+  },
+  "eventsTab": "Etkinlikler",
+  "@eventsTab": {
+    "description": "Events Tab title"
+  },
+  "audioLanguage": "Ses dili",
+  "@audioLanguage": {
+    "description": "Label indicating that the Audio Language can be changed here."
+  },
+  "subtitlesLanguage": "Altyazı dili",
+  "@subtitlesLanguage": {
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
+  "removeFromRecentSearches": "Bu öğeyi son aramalardan kaldırmak istiyor musunuz?",
+  "@removeFromRecentSearches": {
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
+  "noTransmissionToday": "Bugün için planlanmış yayın yok",
+  "@noTransmissionToday": {
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
+  "featured": "Öne çıkan",
+  "@featured": {
+    "description": "Featured videos collection header"
+  },
+  "errorTryAgain": "Bir şeyler yanlış oldu. Lütfen sonra tekrar deneyiniz.",
+  "@errorTryAgain": {
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
+  "programsSection": "Programlar",
+  "@programsSection": {
+    "description": "Section in search."
+  },
+  "noPlannedEvents": "Bu gün planlanmış bir etkinlik yok",
+  "@noPlannedEvents": {
+    "description": "Information in tvguide"
+  },
+  "watchNow": "Şimdi izle",
+  "@watchNow": {
+    "description": "Button on featured carousel"
+  },
+  "exploreContent": "İçeriği keşfedin",
+  "@exploreContent": {
+    "description": "A button"
+  },
+  "taskCompleted": "görev tamamlandı",
+  "@taskCompleted": {
+    "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
+  },
+  "tasksCompleted": "görevler tamamlandı",
+  "@tasksCompleted": {
+    "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
+  },
+  "studyCompleteTaskDescription": "Görevleri tamamlayın ve ilgili kaynakları keşfedin",
+  "@studyCompleteTaskDescription": {
+    "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
+  },
+  "discoverMore": "Daha fazlasını keşfet",
+  "@discoverMore": {
+    "description": "Generic button text."
+  },
+  "studyDiscoverMoreDescription": "İlgili kaynaklardan daha fazla ilham ve fikir edinin",
+  "@studyDiscoverMoreDescription": {
+    "description": "Description to open the related resources for this episode."
+  },
+  "watchAgain": "Tekrar izle",
+  "@watchAgain": {
+    "description": "Short button text to watch the video again."
+  },
+  "continueToTaskIn": "Göreve devam et",
+  "@continueToTaskIn": {
+    "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "continueToTasksIn": "Görevlere devam et",
+  "@continueToTasksIn": {
+    "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "studyLessonCompleted": "ders tamamlandı",
+  "@studyLessonCompleted": {
+    "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
+  },
+  "studyLessonsCompleted": "dersler tamamlandı",
+  "@studyLessonsCompleted": {
+    "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
+  },
+  "continueStudy": "Çalışmaya devam et",
+  "@continueStudy": {
+    "description": "Button."
+  },
+  "startStudy": "Çalışmaya başla",
+  "@startStudy": {
+    "description": "Button."
+  },
+  "videoCompletedText": "Videoyu tamamlamada harika bir iş çıkardınız.",
+  "@videoCompletedText": {
+    "description": "Shown after completing tasks related to a video."
+  },
+  "achievementFirstDescription": "Videoyu tamamlama ve ilk ilerleme başarınızı kazanma konusunda harika bir iş çıkardın.",
+  "@achievementFirstDescription": {
+    "description": "Description displayed in a popup when earning the first achievement badge."
+  },
+  "achievementStudyTopic": "{name} çalışma konusunu tamamlama konusunda harika bir iş çıkardın",
+  "@achievementStudyTopic": {
+    "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "videoCount": "{count} video",
+  "@videoCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "taskCount": "{count} görev",
+  "@taskCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "posterCount": "{count} poster",
+  "@posterCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resourceCount": "{count} kaynak",
+  "@resourceCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "continueButton": "Devam et",
+  "@continueButton": {
+    "description": "Generic button text."
+  },
+  "achievements": "Başarılar",
+  "@achievements": {
+    "description": "Generic. Used as page title, etc."
+  },
+  "oops": "Hata!",
+  "@oops": {
+    "description": "An informal title on some error screens."
+  },
+  "mustBeLoggedIn": "Bu içeriği izlemek için giriş yapmalısınız",
+  "@mustBeLoggedIn": {
+    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  },
+  "details": "Detaylar",
+  "@details": {
+    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
+  },
+  "downloadButton": "İndir",
+  "@downloadButton": {
+    "description": "Button text, a button to download the episode to make it available for offline playback."
+  },
+  "contentLanguageShort": "İçerik",
+  "@contentLanguageShort": {
+    "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
+  }
+}

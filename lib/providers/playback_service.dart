@@ -1,16 +1,14 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/player/custom_cast_player.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/androidtv_provider.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,8 +18,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:universal_io/io.dart';
 
 import '../api/brunstadtv.dart';
-import '../graphql/schema/episodes.graphql.dart';
-import '../helpers/version.dart';
 
 final playbackServiceProvider = Provider<PlaybackService>((ref) {
   return PlaybackService(
@@ -45,7 +41,7 @@ class PlaybackService {
   Future init() async {
     var npawAppName = FlavorConfig.current.applicationCode;
     if (FlavorConfig.current.flavor == Flavor.bccmedia) {
-      npawAppName = ref.read(isAndroidTvProvider) ? 'androidtv' : 'mobile';
+      npawAppName = ref.read(isAndroidTvProvider) ? 'androidtv' : 'bccm-mobile';
     }
     BccmPlaybackListener(
       ref: ref,
@@ -93,10 +89,13 @@ class PlaybackService {
     );
   }
 
-  MediaItem mapEpisode(Fragment$PlayableEpisode episode, {String? playlistId}) {
+  MediaItem mapEpisode(Fragment$PlayableMediaItem$$Episode episode, {String? playlistId, String? videoLanguageCode}) {
     final collectionId = episode.context.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id;
+    final stream = episode.streams.getBestStream(videoLanguageCode: videoLanguageCode);
+    final user = ref.read(authStateProvider).user;
+    final ageGroup = user?.let((u) => getAgeGroupFromUser(u));
     return MediaItem(
-      url: episode.streams.getBestStreamUrl(),
+      url: stream.url,
       mimeType: 'application/x-mpegURL',
       metadata: MediaMetadata(
         title: episode.title,
@@ -105,13 +104,15 @@ class PlaybackService {
         durationMs: (episode.duration * 1000).toDouble(),
         extras: {
           'id': episode.id.toString(),
+          if (stream.videoLanguage != null) 'videoLanguage': stream.videoLanguage,
           if (collectionId != null) 'context.collectionId': collectionId,
           if (playlistId != null) 'context.playlistId': playlistId,
           'context.cursor': episode.cursor,
           'npaw.content.id': episode.id,
           'npaw.content.tvShow': episode.season?.$show.id,
-          if (episode.season != null) 'npaw.content.season': '${episode.season!.id} - ${episode.season!.title}',
-          'npaw.content.episodeTitle': episode.title,
+          if (episode.season != null) 'npaw.content.season': episode.season!.id,
+          'npaw.content.title': episode.originalTitle,
+          if (ageGroup != null) 'npaw.content.customDimension2': ageGroup.name,
         },
       ),
     );
@@ -149,7 +150,7 @@ class PlaybackService {
     );
   }
 
-  Future<Fragment$PlayableEpisode?> getNextEpisodeForPlayer({
+  Future<Fragment$PlayableMediaItem$$Episode?> getNextEpisodeForPlayer({
     required String playerId,
   }) async {
     final episodeId = ref.read(playerProviderFor(playerId))?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
@@ -158,7 +159,7 @@ class PlaybackService {
       return null;
     }
     final collectionId = ref.read(playerProviderFor(playerId))?.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
-    final episode = await ref.read(gqlClientProvider).query$getNextEpisodes(
+    final episode = await ref.read(bccmGraphQLProvider).query$getNextEpisodes(
           Options$Query$getNextEpisodes(
             variables: Variables$Query$getNextEpisodes(
               episodeId: episodeId,
@@ -176,12 +177,13 @@ class PlaybackService {
 
   Future playEpisode({
     required String playerId,
-    required Fragment$PlayableEpisode episode,
+    required Fragment$PlayableMediaItem$$Episode episode,
     bool? autoplay,
     int? playbackPositionMs,
     String? playlistId,
+    String? videoLanguageCode,
   }) async {
-    var mediaItem = mapEpisode(episode, playlistId: playlistId);
+    var mediaItem = mapEpisode(episode, playlistId: playlistId, videoLanguageCode: videoLanguageCode);
     mediaItem.playbackStartPositionMs = playbackPositionMs?.toDouble();
     await platformApi.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
   }
@@ -208,19 +210,52 @@ class PlaybackService {
     final mediaItem = mapDownload(download);
     platformApi.primaryController.replaceCurrentMediaItem(mediaItem);
   }
+
+  /// A helper function to autoplay and navigate to the next episode, if available
+  ///
+  /// Works even when in background e.g. on iOS, as it doesn't rely on the new episode page to render.
+  Future<bool> getNextEpisodeAndAutoplayIt(PlaybackService playbackService, String playerId, StackRouter router) async {
+    final nextEpisode = await playbackService.getNextEpisodeForPlayer(playerId: playerId);
+    if (nextEpisode == null) {
+      playbackService.platformApi.exitFullscreen(playerId);
+      return false;
+    }
+    // When we are fullscreen on iOS, flutter's lifecyclestate becomes 'paused', and the widget tree won't build e.g. on navigation.
+    // Therefore we can't rely on the routing to autoplay the next episode.
+    // But we still call navigate(), so that it's performed when the user exits fullscreen.
+    // TODO: Navigate upon fullscreen exit instead. Basically: if leaving fullscreen and we're on the wrong page, navigate.
+    playbackService.playEpisode(
+      playerId: playerId,
+      episode: nextEpisode,
+      playbackPositionMs: 0,
+      autoplay: true,
+    );
+    router.navigate(
+      EpisodeScreenRoute(
+        episodeId: nextEpisode.id,
+        collectionId: nextEpisode.context?.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id,
+        autoplay: true,
+        queryParamStartPositionSeconds: 0,
+      ),
+    );
+    return true;
+  }
 }
 
 extension StreamUrlExtension on List<Fragment$BasicStream> {
   Fragment$BasicStream? getDownloadableStream() {
-    var stream = firstWhereOrNull(
-      (s) => s.downloadable && (s.type == Enum$StreamType.hls_cmaf || s.type == Enum$StreamType.hls_ts),
-    );
+    var stream = firstWhereOrNull((s) => s.downloadable && (s.type == Enum$StreamType.hls_cmaf));
+    stream ??= firstWhereOrNull((s) => s.downloadable && (s.type == Enum$StreamType.hls_ts));
     return stream;
   }
 
-  String getBestStreamUrl() {
-    var streamUrl = firstWhereOrNull((element) => element.type == Enum$StreamType.hls_cmaf || element.type == Enum$StreamType.hls_ts)?.url;
-    streamUrl ??= first.url;
+  Fragment$BasicStream getBestStream({String? videoLanguageCode}) {
+    bool correctLang(Fragment$BasicStream? s) => s == null ? true : s.videoLanguage == videoLanguageCode;
+    var streamUrl = firstWhereOrNull((s) => s.type == Enum$StreamType.hls_cmaf && correctLang(s));
+    streamUrl ??= firstWhereOrNull((s) => s.type == Enum$StreamType.hls_cmaf);
+    streamUrl ??= firstWhereOrNull((s) => s.type == Enum$StreamType.hls_ts && correctLang(s));
+    streamUrl ??= firstWhereOrNull((s) => s.type == Enum$StreamType.hls_ts);
+    streamUrl ??= first;
     return streamUrl;
   }
 }

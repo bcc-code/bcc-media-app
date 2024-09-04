@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +9,12 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../flavors.dart';
-import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/router.gr.dart';
 import '../../components/profile/avatar.dart';
 import '../../components/profile/setting_list.dart';
 
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 @RoutePage<void>()
 class SettingsScreen extends ConsumerStatefulWidget {
@@ -96,6 +95,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                           Padding(
                             padding: const EdgeInsets.all(12),
                             child: Avatar(
+                              imageUrl: user.picture,
                               width: 52,
                               backgroundColor: design.colors.background1,
                             ),
@@ -165,11 +165,11 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                               optionName: S.of(context).contactSupport,
                               onPressed: () {
                                 context.router.push(
-                                  ref.read(authStateProvider).guestMode ? const ContactPublicScreenRoute() : const ContactScreenRoute(),
+                                  !ref.read(authStateProvider).isBccMember ? const ContactPublicScreenRoute() : const ContactScreenRoute(),
                                 );
                               },
                             ),
-                            if (!ref.read(authStateProvider).guestMode) ...[
+                            if (ref.read(authStateProvider).isBccMember) ...[
                               OptionButton(
                                 optionName: S.of(context).userVoice,
                                 onPressed: () {
@@ -208,7 +208,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                             );
                           },
                         ),
-                        const SizedBox(height: 48),
+                        const SizedBox(height: 24),
                         if (user != null)
                           SettingList(
                             buttons: [

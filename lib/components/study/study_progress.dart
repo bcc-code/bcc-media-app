@@ -1,15 +1,14 @@
 import 'dart:math' as math;
 import 'dart:math';
 
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../helpers/svg_icons.dart';
-import '../../theme/design_system/design_system.dart';
 
 enum LessonProgressTreeVariant { border2, border3 }
 
-class LessonProgressTree extends ConsumerWidget {
+class LessonProgressTree extends StatelessWidget {
   final int completed;
   final int total;
   final double innerStrokeWidth;
@@ -37,48 +36,49 @@ class LessonProgressTree extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final design = DesignSystem.of(context);
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Positioned.fill(
-          child: CustomPaint(
-            painter: ArcPainter(
-              gradient: const SweepGradient(
-                startAngle: 3 * math.pi / 2,
-                endAngle: 7 * math.pi / 2,
-                tileMode: TileMode.repeated,
-                colors: [
-                  Color.fromRGBO(255, 255, 255, 0.5),
-                  Color.fromRGBO(255, 255, 255, 0.05),
-                ],
-              ),
-              strokeWidth: innerStrokeWidth,
-            ),
-          ),
-        ),
-        Positioned.fill(
-          child: OverflowBox(
+  Widget build(BuildContext context) {
+    return RepaintBoundary(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Positioned.fill(
             child: CustomPaint(
               painter: ArcPainter(
-                gradient: design.appThemeData.studyGradient,
-                strokeWidth: outerStrokeWidth,
-                progress: completedFraction,
+                gradient: const SweepGradient(
+                  startAngle: 3 * math.pi / 2,
+                  endAngle: 7 * math.pi / 2,
+                  tileMode: TileMode.repeated,
+                  colors: [
+                    Color.fromRGBO(255, 255, 255, 0.5),
+                    Color.fromRGBO(255, 255, 255, 0.05),
+                  ],
+                ),
+                strokeWidth: innerStrokeWidth,
               ),
             ),
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.all(arcToTreePadding),
-          child: ShaderMask(
-              shaderCallback: (bounds) {
-                return design.appThemeData.studyGradient.createShader(bounds);
-              },
-              blendMode: BlendMode.srcATop,
-              child: treeWidget),
-        ),
-      ],
+          Positioned.fill(
+            child: OverflowBox(
+              child: CustomPaint(
+                painter: ArcPainter(
+                  gradient: AppTheme.of(context).studyGradient,
+                  strokeWidth: outerStrokeWidth,
+                  progress: completedFraction,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(arcToTreePadding),
+            child: ShaderMask(
+                shaderCallback: (bounds) {
+                  return AppTheme.of(context).studyGradient.createShader(bounds);
+                },
+                blendMode: BlendMode.srcATop,
+                child: treeWidget),
+          ),
+        ],
+      ),
     );
   }
 }

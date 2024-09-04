@@ -1,11 +1,13 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:brunstadtv_app/router/analytics_observer.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kids/router/router.gr.dart';
 
 class KidsAnalyticsMetaEnricher extends AnalyticsMetaEnricher {
+  KidsAnalyticsMetaEnricher([super.ref]);
+
   @override
   String? getScreenName(Route route) {
     // Use pageRouteArgs.pageCode if we ever add a dynamic page route.

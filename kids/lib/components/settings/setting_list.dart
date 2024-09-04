@@ -1,10 +1,10 @@
 import 'dart:ui';
 
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class SettingList extends StatelessWidget {
   final List<SettingListItem> items;
@@ -71,7 +71,7 @@ class _ItemRenderer extends HookWidget {
         IgnorePointer(
           ignoring: item.disabled,
           child: FocusableActionDetector(
-            mouseCursor: MaterialStateMouseCursor.clickable,
+            mouseCursor: WidgetStateMouseCursor.clickable,
             onShowHoverHighlight: (value) => hovering.value = value,
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,

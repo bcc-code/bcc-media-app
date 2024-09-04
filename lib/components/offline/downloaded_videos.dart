@@ -1,11 +1,9 @@
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/badges/download_status_badge.dart';
 import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
 import 'package:brunstadtv_app/components/menus/option_list.dart';
-import 'package:brunstadtv_app/components/misc/generic_dialog.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_with_header.dart';
 import 'package:brunstadtv_app/components/profile/empty_info.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
@@ -25,15 +23,10 @@ import '../../components/misc/custom_grid_view.dart';
 import '../../components/status/error_generic.dart';
 import '../../components/status/loading_generic.dart';
 import '../../components/thumbnails/grid/thumbnail_grid_episode.dart';
-import '../../helpers/misc.dart';
 import '../../helpers/svg_icons.dart';
-import '../../helpers/time.dart';
-import '../../models/analytics/downloads.dart';
-import '../../models/analytics/sections.dart';
+import 'package:bccm_core/bccm_core.dart';
 import '../../models/episode_thumbnail_data.dart';
-import '../../providers/analytics.dart';
-import '../../providers/inherited_data.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../misc/two_action_generic_dialog.dart';
 import '../thumbnails/misc/bordered_image_container.dart';
 
@@ -91,55 +84,53 @@ class _DownloadedContent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return InheritedData<SectionAnalytics>(
-      inheritedData: const SectionAnalytics(
+    return SectionAnalytics(
+      data: const SectionAnalyticsData(
         id: 'downloaded',
         position: 0,
         type: 'downloaded',
         name: 'Downloaded',
         pageCode: 'profile',
       ),
-      child: (context) {
-        return CustomGridView(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          children: items.mapIndexed((index, item) {
-            if (item.status != DownloadStatus.finished) {
-              return _DownloadingGridItem(item: item);
-            } else {
-              final episodeId = item.config.typedAdditionalData.episodeId;
-              final availableTo = episodeId == null ? null : ref.watch(episodeAvailabilityProvider(episodeId)).valueOrNull?.availableTo;
-              final expiresAt = getEarliestNullableDateTime([
-                item.config.typedAdditionalData.expiresAt,
-                availableTo,
-              ]);
-              return _DownloadSectionItemClickWrapper(
-                download: item,
-                analytics: SectionItemAnalytics(
-                  id: item.config.typedAdditionalData.episodeId ?? index.toString(),
-                  name: item.config.title,
-                  type: 'download',
-                  position: index,
+      builder: (context) => CustomGridView(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        children: items.mapIndexed((index, item) {
+          if (item.status != DownloadStatus.finished) {
+            return _DownloadingGridItem(item: item);
+          } else {
+            final episodeId = item.config.typedAdditionalData.episodeId;
+            final availableTo = episodeId == null ? null : ref.watch(episodeAvailabilityProvider(episodeId)).valueOrNull?.availableTo;
+            final expiresAt = getEarliestNullableDateTime([
+              item.config.typedAdditionalData.expiresAt,
+              availableTo,
+            ]);
+            return _DownloadSectionItemClickWrapper(
+              download: item,
+              analytics: SectionItemAnalyticsData(
+                id: item.config.typedAdditionalData.episodeId ?? index.toString(),
+                name: item.config.title,
+                type: 'download',
+                position: index,
+              ),
+              child: ThumbnailGridEpisode(
+                useCache: true,
+                episode: EpisodeThumbnailData(
+                  title: item.config.title,
+                  duration: ((item.config.typedAdditionalData.durationMs ?? 0) / Duration.millisecondsPerSecond).round(),
+                  image: item.config.typedAdditionalData.artworkUri,
+                  locked: false,
+                  progress: null,
+                  publishDate: null,
                 ),
-                child: ThumbnailGridEpisode(
-                  useCache: true,
-                  episode: EpisodeThumbnailData(
-                    title: item.config.title,
-                    duration: ((item.config.typedAdditionalData.durationMs ?? 0) / Duration.millisecondsPerSecond).round(),
-                    image: item.config.typedAdditionalData.artworkUri,
-                    locked: false,
-                    progress: null,
-                    publishDate: null,
-                  ),
-                  showSecondaryTitle: false,
-                  aspectRatio: 16 / 9,
-                  expiresAt: expiresAt,
-                ),
-              );
-            }
-          }).toList(),
-        );
-      },
+                showSecondaryTitle: false,
+                aspectRatio: 16 / 9,
+                expiresAt: expiresAt,
+              ),
+            );
+          }
+        }).toList(),
+      ),
     );
   }
 }
@@ -224,7 +215,7 @@ class _DownloadSectionItemClickWrapper extends ConsumerWidget {
   const _DownloadSectionItemClickWrapper({required this.download, required this.child, required this.analytics});
 
   final Download download;
-  final SectionItemAnalytics analytics;
+  final SectionItemAnalyticsData analytics;
   final Widget child;
 
   onTap(BuildContext context, WidgetRef ref) {
@@ -246,9 +237,9 @@ class _DownloadSectionItemClickWrapper extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return InheritedData<SectionItemAnalytics>(
-      inheritedData: analytics,
-      child: (context) => GestureDetector(
+    return SectionItemAnalytics(
+      data: analytics,
+      builder: (context) => GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () => onTap(context, ref),
         onLongPress: () async {

@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
-import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +11,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
-import '../../providers/fun.dart';
+import 'package:bccm_core/design_system.dart';
 
 class BottomSheetMiniPlayer extends ConsumerStatefulWidget {
-  const BottomSheetMiniPlayer({Key? key, required this.hidden}) : super(key: key);
+  const BottomSheetMiniPlayer({super.key, required this.hidden});
 
   final bool hidden;
 
@@ -63,12 +61,9 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         final id = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
         final collectionId = player.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
         final offlineMediaItem = player.currentMediaItem?.isOffline == true;
-        if (id == 'livestream') {
-          context.router.navigate(const LiveScreenRoute());
-        } else if (offlineMediaItem) {
+        if (offlineMediaItem) {
           ref.read(playbackServiceProvider).openFullscreen(context);
         } else if (id != null) {
-          ref.read(tempTitleProvider.notifier).state = title;
           try {
             await context.navigateTo(EpisodeScreenRoute(episodeId: id, collectionId: collectionId));
           } catch (_) {

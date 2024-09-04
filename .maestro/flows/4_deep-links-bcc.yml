@@ -5,7 +5,9 @@ appId: tv.brunstad.app
 # Login
 - stopApp: tv.brunstad.app
 - runFlow: subflows/login.yml
-# Stopped 1 - Redirect
+
+# STOPPED TESTS
+# ---
 - stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/r/donation"
 - assertVisible:
@@ -16,19 +18,26 @@ appId: tv.brunstad.app
     stopApp: false
 - assertNotVisible: .*Something went wrong.*
 - assertVisible: .*Home.*
-# Stopped 2
+# ---
 - stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/episode/769"
 - assertVisible: .*Joseph.*
-# Stopped 3
-- stopApp: tv.brunstad.app
-- openLink: "https://app.bcc.media/live"
-- assertVisible: Today,.*
-# Stopped 4
+# ---
 - stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/episode/51/769"
 - assertVisible: .*Joseph.*
-# Backgrounded 1 - Redirect
+# ---
+- stopApp: tv.brunstad.app
+- openLink: "https://app.bcc.media/shorts/206488a5-f44c-4e11-b746-287d25e8a914"
+- assertVisible: .*Playing..*
+- assertNotVisible: .*Error.*
+# ---
+- stopApp: tv.brunstad.app
+- openLink: "https://app.bcc.media/show/106"
+- assertVisible: .*Summer.*
+
+# BACKGROUND TESTS
+# ---
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/r/donation"
 - assertVisible:
@@ -39,19 +48,29 @@ appId: tv.brunstad.app
     stopApp: false
 - assertNotVisible: .*Something went wrong.*
 - assertVisible: .*Home.*
-# Backgrounded 2
+# ---
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/episode/769"
 - assertVisible: .*Joseph.*
-# Backgrounded 3
-- runFlow: subflows/home.yml
-- openLink: "https://app.bcc.media/live"
-- assertVisible: Today,.*
-# Backgrounded 4
+# ---
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/episode/51/769"
 - assertVisible: .*Joseph.*
-# Foreground 1 - Redirect
+# ---
+- runFlow: subflows/home.yml
+- openLink: "https://app.bcc.media/shorts/206488a5-f44c-4e11-b746-287d25e8a914"
+- assertVisible: .*Playing..*
+- tapOn:
+    point: "50%,50%"
+- assertVisible: .*Paused..*
+- assertNotVisible: .*Error.*
+# ---
+- runFlow: subflows/home.yml
+- openLink: "https://app.bcc.media/show/106"
+- assertVisible: .*Summer.*
+
+# FOREGROUND TESTS
+# ---
 - openLink: "https://app.bcc.media/r/donation"
 - assertVisible:
     id: "TabBarItemTitle"
@@ -61,12 +80,16 @@ appId: tv.brunstad.app
     stopApp: false
 - assertNotVisible: .*Something went wrong.*
 - assertVisible: .*Home.*
-# Foreground 2
+# ---
 - openLink: "https://app.bcc.media/episode/769"
 - assertVisible: .*Joseph.*
-# Foreground 3
-- openLink: "https://app.bcc.media/live"
-- assertVisible: Today,.*
-# Foreground 4
+# ---
 - openLink: "https://app.bcc.media/episode/51/769"
 - assertVisible: .*Joseph.*
+# ---
+- openLink: "https://app.bcc.media/shorts/206488a5-f44c-4e11-b746-287d25e8a914"
+- assertVisible: .*Playing..*
+- assertNotVisible: .*Error.*
+# ---
+- openLink: "https://app.bcc.media/show/106"
+- assertVisible: .*Summer.*

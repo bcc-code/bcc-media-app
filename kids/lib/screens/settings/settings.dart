@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -15,13 +15,12 @@ import 'package:kids/components/settings/setting_list.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:brunstadtv_app/components/web/dialog_on_web.dart';
-import 'package:brunstadtv_app/helpers/languages.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 @RoutePage<void>()
 class SettingsScreen extends HookConsumerWidget {
@@ -144,7 +143,7 @@ class SettingsScreen extends HookConsumerWidget {
                                         context.router.push(const ContactScreenRoute());
                                       },
                                     ),
-                                    if (!ref.read(authStateProvider).guestMode) ...[
+                                    if (ref.read(authStateProvider).isBccMember) ...[
                                       SettingListItem(
                                         title: S.of(context).userVoice,
                                         onPressed: () {

@@ -17,18 +17,8 @@ class AppRouter extends $AppRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(
-      page: AutoLoginScreenRoute.page,
-      path: '/auto-login',
-    ),
-    AutoRoute(
-      page: TvLiveScreenRoute.page,
-      path: '/tv/live',
-      meta: const {RouteMetaConstants.analyticsName: 'tv-live'},
-    ),
-    AutoRoute(
-      page: TvLoginScreenRoute.page,
-      path: '/tv/login',
-      meta: const {RouteMetaConstants.analyticsName: 'tv-login'},
+      page: InitScreenRoute.page,
+      path: '/init',
     ),
     CustomRoute(
       page: OnboardingScreenRoute.page,
@@ -162,11 +152,6 @@ class AppRouter extends $AppRouter {
       customRouteBuilder: settingsRouteBuilder,
       meta: const {RouteMetaConstants.analyticsName: 'extra-usergroups'},
     ),
-    CupertinoRoute(
-      page: GameScreenRoute.page,
-      path: '/game/:gameId',
-      maintainState: false,
-    ),
     CustomRoute(
       page: StudyScreenRoute.page,
       path: '/study-lesson',
@@ -174,6 +159,14 @@ class AppRouter extends $AppRouter {
       reverseDurationInMilliseconds: 600,
       transitionsBuilder: CustomTransitionsBuilders.slideUp(),
       meta: const {RouteMetaConstants.analyticsName: 'study-lesson'},
+    ),
+    CustomRoute(
+      page: WebviewScreenRoute.page,
+      path: '/w/:redirectCode',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideUp(),
+      meta: const {RouteMetaConstants.analyticsName: 'webview'},
     ),
     CustomRoute(
       page: AchievementsScreenRoute.page,
@@ -198,15 +191,6 @@ class AppRouter extends $AppRouter {
       path: '/',
       children: [
         MaterialRoute(
-            page: LiveScreenRoute.page,
-            path: 'live',
-            meta: const {
-              RouteMetaConstants.hideMiniPlayer: true,
-              RouteMetaConstants.navTabRoute: true,
-              RouteMetaConstants.analyticsName: 'livestream',
-            },
-            maintainState: true),
-        MaterialRoute(
           page: SearchWrapperScreenRoute.page,
           path: 'search',
           children: [
@@ -218,22 +202,18 @@ class AppRouter extends $AppRouter {
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
             _pageScreenRoute,
+            _showScreenRoute
           ],
-        ),
-        MaterialRoute(
-          page: CalendarScreenRoute.page,
-          path: 'calendar',
-          meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'calendar'},
         ),
         CustomRoute(
           page: ShortsWrapperScreenRoute.page,
           path: 'shorts',
           maintainState: true,
           children: [
-            CustomRoute(
+            CupertinoRoute(
               page: ShortsScreenRoute.page,
               path: '',
-              maintainState: false,
+              maintainState: true,
               meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
             ),
             _episodeScreenRoute,
@@ -248,30 +228,13 @@ class AppRouter extends $AppRouter {
             CustomRoute(
               page: ProfileScreenRoute.page,
               path: '',
-              maintainState: true,
+              maintainState: false,
+              usesPathAsKey: true,
               meta: const {RouteMetaConstants.navTabRoute: true},
             ),
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
-          ],
-        ),
-        CustomRoute(
-          page: GamesWrapperScreenRoute.page,
-          path: 'games',
-          maintainState: true,
-          children: [
-            CupertinoRoute(
-              page: GamesScreenRoute.page,
-              path: '',
-              maintainState: true,
-              meta: const {RouteMetaConstants.navTabRoute: true},
-            ),
-            CupertinoRoute(
-              page: GameScreenRoute.page,
-              path: ':gameId',
-              maintainState: false,
-              meta: const {RouteMetaConstants.analyticsName: 'game'},
-            ),
+            _shortScreenRoute('shorts/'),
           ],
         ),
         CustomRoute(
@@ -284,9 +247,12 @@ class AppRouter extends $AppRouter {
               maintainState: true,
               meta: const {RouteMetaConstants.navTabRoute: true},
             ),
+            _shortScreenRoute('shorts/'),
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
+            _contributorScreenRoute,
             _pageScreenRoute,
+            _showScreenRoute,
           ],
         ),
       ],
@@ -306,10 +272,30 @@ final _episodeScreenRoute = CupertinoRoute(
   meta: const {RouteMetaConstants.analyticsName: 'episode'},
 );
 
+final _contributorScreenRoute = CupertinoRoute(
+  page: ContributorScreenRoute.page,
+  path: 'contributor/:personId',
+  meta: const {RouteMetaConstants.analyticsName: 'contributor'},
+);
+
+_shortScreenRoute(String pathPrefix) => CupertinoRoute(
+      page: ShortScreenRoute.page,
+      path: '$pathPrefix:id',
+      usesPathAsKey: true,
+      maintainState: true,
+      meta: const {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'shorts'},
+    );
+
 final _pageScreenRoute = CupertinoRoute(
   page: PageScreenRoute.page,
   path: ':pageCode',
   usesPathAsKey: true,
+);
+
+final _showScreenRoute = CupertinoRoute(
+  page: ShowScreenRoute.page,
+  path: 'show/:showId',
+  meta: const {RouteMetaConstants.analyticsName: 'show'},
 );
 
 // Empty routes
@@ -321,11 +307,6 @@ class SearchWrapperScreen extends AutoRouter {
 @RoutePage<void>()
 class TabsWrapperScreen extends AutoRouter {
   const TabsWrapperScreen({super.key});
-}
-
-@RoutePage<void>()
-class GamesWrapperScreen extends AutoRouter {
-  const GamesWrapperScreen({super.key});
 }
 
 @RoutePage<void>()

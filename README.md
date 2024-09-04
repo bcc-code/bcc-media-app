@@ -1,7 +1,6 @@
 # BCC Media App
 
 The source code for our video-on-demand app for iOS and Android.
-We would love your help! See https://developer.bcc.no/get-involved.html.
 
 # Development
 
@@ -11,10 +10,13 @@ Recommended editor: VS Code, because we have some default debug options set up i
 
 0. Clone the submodules with `git submodule update --init`.
 1. Install flutter, then run `flutter doctor -v` until it reports everything is OK.
-2. Run in a terminal: `flutter pub get`
+2. Run in a terminal: `make pubgetall`. This runs `flutter pub get` for each package (kids, bccm_core, bccm_player). You may need to install make.
 3. Inside lib/env/, copy the .env.dart.template file to .env.dart, and update the values according to the comments.
-4. You can now run the app, e.g. with `flutter run --flavor prod`
+4. You can now run the app, e.g. with Run > Start Debugging in VSCode
 5. For development, it's important to read the [Code generation](#code-generation) section below before you begin.
+
+> [!TIP]
+> Run `make help` to see some of the util scripts we have.
 
 ## Code generation
 
@@ -40,31 +42,33 @@ Most of the tests run during the release pipeline for the app.
 
 # App architecture details
 
+## Core library
+
+The bccm_core package is located at /submodules/bccm_core as a submodule, and linked in pubspec.yaml to the local path for convenience.
+This is where most of the core functionality is, e.g. graphql, auth, push, many utils, etc.
+Anything that needs to be shared with other apps should be a part of the bccm_core package.
+
 ## Styling
 
 You can find constants for colors, typography, etc. based on our design system under [/lib/theme](./lib/theme).
 
-## Playback library
+## Player library
 
-We are maintaining a standalone playback library to manage the player and chromecast code.
-It's located at /submodules/bccm_player which will be converted to a git submodule or pub.dev package at a later date.
+We are maintaining a standalone player library to manage the native playback and chromecast code.
+It's located at /submodules/bccm_player as a git submodule for convenience.
 
 ## Navigation architecture
 
 We are using auto_route, but for deep linking we are using app_links, as it's less magical and more reliable than flutter's built-in solution for that.
 We have some special routes, e.g. /r/, but these are only handled through a custom `navigateNamedFromRoot()` function.
 
-## GraphQL
-
-Schema files are copied from [the platform repo](https://github.com/bcc-code/brunstadtv).
-To update the files easily, clone the brunstadtv repo so that it's located side-by-side with this repo, then run `make copy-schema` (See the [Makefile](./Makefile)).
-
 ## Translations
 
-We are using Crowdin service for translations.
+We are using Crowdin for translations.
 In order to upload or download translations you need to have a [personal token](https://crowdin.com/settings#api-key) and the [crowdin cli tool](https://developer.crowdin.com/cli-tool/#installation).
 
 You need to put the token into a `CROWDIN_TOKEN` environment variable.
-Then you can run `crowdin upload` or `crowdin download` as needed.
+Then you can run `crowdin upload` or `crowdin download`, e.g `CROWDIN_TOKEN=abc123 crowdin download`.
+The config comes from the [./crowdin.yml](./crowdin.yml) file
 
 After downloading the translations into the project you also need to run `flutter gen-l10n`, which will generate .dart files in the same folder as the .arb files, based on [/l10n.yaml](./l10n.yaml).

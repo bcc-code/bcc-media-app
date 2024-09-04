@@ -1,9 +1,7 @@
-import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../graphql/queries/achievements.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import 'achievement_dialog.dart';
 import 'achievement_list_item.dart';
 import '../misc/custom_grid_view.dart';

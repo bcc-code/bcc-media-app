@@ -1,9 +1,8 @@
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:brunstadtv_app/providers/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,10 +10,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restart_app/restart_app.dart';
 
-import '../../providers/notification_service.dart';
-
 import '../../helpers/constants.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../menus/option_list.dart';
 
 class DeveloperOptionsTrigger extends HookWidget {
@@ -59,9 +56,14 @@ class DeveloperOptions extends ConsumerWidget {
             'Choose environment override',
             style: DesignSystem.of(context).textStyles.title3,
           ),
-          children: [EnvironmentOverride.none, EnvironmentOverride.dev, EnvironmentOverride.sta, EnvironmentOverride.prod]
+          children: ['none', EnvironmentOverride.dev, EnvironmentOverride.sta, EnvironmentOverride.prod]
               .map((env) => SimpleDialogOption(
                     onPressed: () async {
+                      if (env == 'none') {
+                        await ref.read(sharedPreferencesProvider).remove(PrefKeys.envOverride);
+                        Restart.restartApp();
+                        return;
+                      }
                       await ref.read(sharedPreferencesProvider).setString(PrefKeys.envOverride, env);
                       Restart.restartApp();
                     },

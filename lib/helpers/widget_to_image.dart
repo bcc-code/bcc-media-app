@@ -5,6 +5,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+/// Based on https://gist.github.com/AlexV525/612da609aae83cc572d6c051667bf66d
+/// And https://github.com/flutter/flutter/issues/40064#issuecomment-620081426
+///
 /// Creates an image from the given widget by first spinning up a element and render tree,
 /// then waiting for the given [wait] amount of time and then creating an image via a [RepaintBoundary].
 ///
@@ -27,7 +30,7 @@ Future<Uint8List?> createImageFromWidget({
     view: view,
     child: RenderPositionedBox(alignment: Alignment.center, child: repaintBoundary),
     configuration: ViewConfiguration(
-      size: logicalSize,
+      logicalConstraints: BoxConstraints.tight(logicalSize),
       devicePixelRatio: 1.0,
     ),
   );

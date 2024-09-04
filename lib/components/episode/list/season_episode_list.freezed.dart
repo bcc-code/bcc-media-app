@@ -12,7 +12,7 @@ part of 'season_episode_list.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SeasonEpisodeListEpisodeData {
@@ -83,12 +83,12 @@ class _$SeasonEpisodeListEpisodeDataCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_SeasonEpisodeListEpisodeDataCopyWith<$Res>
+abstract class _$$SeasonEpisodeListEpisodeDataImplCopyWith<$Res>
     implements $SeasonEpisodeListEpisodeDataCopyWith<$Res> {
-  factory _$$_SeasonEpisodeListEpisodeDataCopyWith(
-          _$_SeasonEpisodeListEpisodeData value,
-          $Res Function(_$_SeasonEpisodeListEpisodeData) then) =
-      __$$_SeasonEpisodeListEpisodeDataCopyWithImpl<$Res>;
+  factory _$$SeasonEpisodeListEpisodeDataImplCopyWith(
+          _$SeasonEpisodeListEpisodeDataImpl value,
+          $Res Function(_$SeasonEpisodeListEpisodeDataImpl) then) =
+      __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -99,13 +99,13 @@ abstract class _$$_SeasonEpisodeListEpisodeDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SeasonEpisodeListEpisodeDataCopyWithImpl<$Res>
+class __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl<$Res>
     extends _$SeasonEpisodeListEpisodeDataCopyWithImpl<$Res,
-        _$_SeasonEpisodeListEpisodeData>
-    implements _$$_SeasonEpisodeListEpisodeDataCopyWith<$Res> {
-  __$$_SeasonEpisodeListEpisodeDataCopyWithImpl(
-      _$_SeasonEpisodeListEpisodeData _value,
-      $Res Function(_$_SeasonEpisodeListEpisodeData) _then)
+        _$SeasonEpisodeListEpisodeDataImpl>
+    implements _$$SeasonEpisodeListEpisodeDataImplCopyWith<$Res> {
+  __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl(
+      _$SeasonEpisodeListEpisodeDataImpl _value,
+      $Res Function(_$SeasonEpisodeListEpisodeDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -116,7 +116,7 @@ class __$$_SeasonEpisodeListEpisodeDataCopyWithImpl<$Res>
     Object? lessonProgressOverview = freezed,
     Object? highlighted = freezed,
   }) {
-    return _then(_$_SeasonEpisodeListEpisodeData(
+    return _then(_$SeasonEpisodeListEpisodeDataImpl(
       episode: null == episode
           ? _value.episode
           : episode // ignore: cast_nullable_to_non_nullable
@@ -139,8 +139,9 @@ class __$$_SeasonEpisodeListEpisodeDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SeasonEpisodeListEpisodeData implements _SeasonEpisodeListEpisodeData {
-  const _$_SeasonEpisodeListEpisodeData(
+class _$SeasonEpisodeListEpisodeDataImpl
+    implements _SeasonEpisodeListEpisodeData {
+  const _$SeasonEpisodeListEpisodeDataImpl(
       {required this.episode,
       this.seasonNumber,
       this.lessonProgressOverview,
@@ -161,10 +162,10 @@ class _$_SeasonEpisodeListEpisodeData implements _SeasonEpisodeListEpisodeData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SeasonEpisodeListEpisodeData &&
+            other is _$SeasonEpisodeListEpisodeDataImpl &&
             (identical(other.episode, episode) || other.episode == episode) &&
             (identical(other.seasonNumber, seasonNumber) ||
                 other.seasonNumber == seasonNumber) &&
@@ -181,9 +182,10 @@ class _$_SeasonEpisodeListEpisodeData implements _SeasonEpisodeListEpisodeData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SeasonEpisodeListEpisodeDataCopyWith<_$_SeasonEpisodeListEpisodeData>
-      get copyWith => __$$_SeasonEpisodeListEpisodeDataCopyWithImpl<
-          _$_SeasonEpisodeListEpisodeData>(this, _$identity);
+  _$$SeasonEpisodeListEpisodeDataImplCopyWith<
+          _$SeasonEpisodeListEpisodeDataImpl>
+      get copyWith => __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl<
+          _$SeasonEpisodeListEpisodeDataImpl>(this, _$identity);
 }
 
 abstract class _SeasonEpisodeListEpisodeData
@@ -192,7 +194,7 @@ abstract class _SeasonEpisodeListEpisodeData
       {required final Fragment$SeasonListEpisode episode,
       final int? seasonNumber,
       final Fragment$LessonProgressOverview? lessonProgressOverview,
-      final bool? highlighted}) = _$_SeasonEpisodeListEpisodeData;
+      final bool? highlighted}) = _$SeasonEpisodeListEpisodeDataImpl;
 
   @override
   Fragment$SeasonListEpisode get episode;
@@ -204,6 +206,7 @@ abstract class _SeasonEpisodeListEpisodeData
   bool? get highlighted;
   @override
   @JsonKey(ignore: true)
-  _$$_SeasonEpisodeListEpisodeDataCopyWith<_$_SeasonEpisodeListEpisodeData>
+  _$$SeasonEpisodeListEpisodeDataImplCopyWith<
+          _$SeasonEpisodeListEpisodeDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

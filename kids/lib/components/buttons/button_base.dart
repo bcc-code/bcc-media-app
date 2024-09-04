@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:brunstadtv_app/helpers/haptic_feedback.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -123,9 +123,16 @@ class ButtonBase extends HookConsumerWidget {
                       ),
                     ],
             ),
-            child: _InnerShadow(
-              offset: pressed.value ? const Offset(0, 0) : Offset(0, -elevationHeight * transition),
-              color: sideColor != null ? sideColor! : Colors.black.withOpacity(0.1),
+            child: _childWrap(
+              builder: (child) {
+                return Platform.isAndroid
+                    ? child
+                    : _InnerShadow(
+                        offset: pressed.value ? const Offset(0, 0) : Offset(0, -elevationHeight * transition),
+                        color: sideColor != null ? sideColor! : Colors.black.withOpacity(0.1),
+                        child: child,
+                      );
+              },
               child: Container(
                 decoration: BoxDecoration(
                   color: !pressed.value ? color : activeColor,
@@ -144,13 +151,19 @@ class ButtonBase extends HookConsumerWidget {
   }
 }
 
+Widget _childWrap({
+  required Widget Function(Widget child) builder,
+  required Widget child,
+}) {
+  return builder(child);
+}
+
 class _InnerShadow extends SingleChildRenderObjectWidget {
   const _InnerShadow({
-    Key? key,
     required this.color,
     required this.offset,
-    Widget? child,
-  }) : super(key: key, child: child);
+    super.child,
+  });
 
   final Color color;
   final Offset offset;

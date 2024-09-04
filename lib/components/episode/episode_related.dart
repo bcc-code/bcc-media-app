@@ -1,9 +1,7 @@
 import 'package:brunstadtv_app/components/thumbnails/grid/thumbnail_grid.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/router/navigation_override.dart';
 import 'package:flutter/material.dart';
-
-import '../../graphql/schema/sections.graphql.dart';
 
 class EpisodeRelated extends StatelessWidget {
   const EpisodeRelated({
@@ -15,7 +13,6 @@ class EpisodeRelated extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (episode.relatedItems == null) const SizedBox.shrink();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -23,7 +20,10 @@ class EpisodeRelated extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: NavigationOverride(
             pushInsteadOfReplace: true,
-            child: ThumbnailGrid(gridSize: Enum$GridSectionSize.half, sectionItems: episode.relatedItems!.items),
+            child: ThumbnailGrid(
+              gridSize: Enum$GridSectionSize.half,
+              sectionItems: episode.relatedItems?.items ?? [],
+            ),
           ),
         )
       ],

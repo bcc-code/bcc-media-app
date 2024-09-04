@@ -1,3 +1,4 @@
+import 'package:bccm_core/platform.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'episode_thumbnail_data.freezed.dart';
@@ -6,7 +7,7 @@ part 'episode_thumbnail_data.freezed.dart';
 class EpisodeThumbnailData with _$EpisodeThumbnailData {
   const factory EpisodeThumbnailData({
     required String title,
-    required int duration,
+    int? duration,
     String? image,
     required bool locked,
     int? progress,
@@ -15,4 +16,18 @@ class EpisodeThumbnailData with _$EpisodeThumbnailData {
     String? showTitle,
     int? seasonNumber,
   }) = _EpisodeThumbnailData;
+
+  factory EpisodeThumbnailData.fromFragment(Fragment$EpisodeThumbnail e) {
+    return EpisodeThumbnailData(
+      title: e.title,
+      image: e.image,
+      duration: e.duration,
+      locked: e.locked,
+      progress: e.progress,
+      publishDate: e.publishDate,
+      number: e.number,
+      seasonNumber: e.season?.number,
+      showTitle: e.season?.$show.title,
+    );
+  }
 }

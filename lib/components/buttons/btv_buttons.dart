@@ -1,7 +1,8 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class BtvButton extends StatelessWidget {
   final Widget? image;
@@ -76,6 +77,11 @@ class BtvButton extends StatelessWidget {
     final disabledTextColor = design.colors.label4;
     final safeTextStyle = textStyle ?? design.textStyles.button2;
 
+    onPressed() {
+      this.onPressed();
+      CustomHapticFeedback.lightImpact();
+    }
+
     return IgnorePointer(
       ignoring: disabled,
       child: GestureDetector(
@@ -118,12 +124,15 @@ class BtvButton extends StatelessWidget {
                     child: SizedBox(width: imageDimension, height: imageDimension, child: image),
                   ),
                 if (labelText?.isNotEmpty == true)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 2),
-                    child: Text(
-                      labelText!,
-                      textAlign: TextAlign.center,
-                      style: safeTextStyle.copyWith(color: disabled ? disabledTextColor : safeTextStyle.color),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: Text(
+                        labelText!,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: safeTextStyle.copyWith(color: disabled ? disabledTextColor : safeTextStyle.color),
+                      ),
                     ),
                   ),
                 if (image != null && imagePosition == ButtonImagePosition.right)

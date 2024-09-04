@@ -1,18 +1,23 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/thumbnails/misc/bordered_image_container.dart';
 import 'package:brunstadtv_app/components/misc/shiny_clipper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../../../helpers/svg_icons.dart';
-import '../../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import '../../../../helpers/router/router_utils.dart';
-import '../../../../helpers/misc.dart';
 import '../../../status/loading_indicator.dart';
 
 class GenericCardMini extends StatefulWidget {
-  final Fragment$Section$$CardSection$items$items item;
-  const GenericCardMini({super.key, required this.item});
+  final Fragment$CardItem item;
+  final String? collectionId;
+  const GenericCardMini({
+    super.key,
+    required this.item,
+    this.collectionId,
+  });
 
   @override
   State<GenericCardMini> createState() => _GenericCardMiniState();
@@ -36,7 +41,7 @@ class _GenericCardMiniState extends State<GenericCardMini> {
     final design = DesignSystem.of(context);
     return GestureDetector(
       onTap: () => setState(() {
-        navigationFuture = handleSectionItemClick(context, widget.item.item);
+        navigationFuture = handleSectionItemClick(context, widget.item.item, collectionId: widget.collectionId);
       }),
       child: Stack(
         children: [

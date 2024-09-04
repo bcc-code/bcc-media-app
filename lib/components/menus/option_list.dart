@@ -6,7 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../helpers/svg_icons.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
 
@@ -93,7 +93,7 @@ class _OptionListOption<T> extends HookWidget {
         IgnorePointer(
           ignoring: option.disabled,
           child: FocusableActionDetector(
-            mouseCursor: MaterialStateMouseCursor.clickable,
+            mouseCursor: WidgetStateMouseCursor.clickable,
             onShowHoverHighlight: (value) => hovering.value = value,
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,

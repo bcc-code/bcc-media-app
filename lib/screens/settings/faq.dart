@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/helpers/markdown.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -12,9 +12,8 @@ import '../../components/tabs/custom_tab_bar.dart';
 import '../../components/status/error_generic.dart';
 import '../../components/status/loading_generic.dart';
 import '../../components/web/dialog_on_web.dart';
-import '../../helpers/misc.dart';
-import '../../theme/design_system/design_system.dart';
-import '../../graphql/queries/faq.graphql.dart';
+import 'package:bccm_core/design_system.dart';
+import 'package:bccm_core/platform.dart';
 import '../../l10n/app_localizations.dart';
 
 @RoutePage<void>()
@@ -23,10 +22,10 @@ class FAQScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categoriesFuture = useState(useMemoized(() => ref.read(gqlClientProvider).query$FAQ()));
+    final categoriesFuture = useState(useMemoized(() => ref.read(bccmGraphQLProvider).query$FAQ()));
     final categoriesSnapshot = useFuture(categoriesFuture.value);
 
-    void refresh() => categoriesFuture.value = ref.read(gqlClientProvider).query$FAQ();
+    void refresh() => categoriesFuture.value = ref.read(bccmGraphQLProvider).query$FAQ();
 
     Widget? child;
     if (categoriesSnapshot.connectionState == ConnectionState.waiting) {

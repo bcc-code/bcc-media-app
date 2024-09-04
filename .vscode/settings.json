@@ -3,9 +3,11 @@
   "[dart]": {
     "editor.rulers": [150]
   },
-  "git.autoRepositoryDetection": "openEditors",
-  "git.detectSubmodules": false,
+  "git.autoRepositoryDetection": "subFolders",
+  "git.detectSubmodules": true,
   "files.associations": {
-    "*.dart.template": "dart"
-  }
+    ".env.dart": "dart",
+    ".env.dart.template": "dart"
+  },
+  "graphql-config.load.rootDir": "submodules/bccm_flutter/bccm_core"
 }

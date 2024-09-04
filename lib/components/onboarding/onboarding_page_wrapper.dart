@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class OnboardingPageWrapper extends StatelessWidget {
   const OnboardingPageWrapper({super.key, required this.body, this.bottomArea, this.title, this.description});
@@ -24,7 +24,7 @@ class OnboardingPageWrapper extends StatelessWidget {
                     constraints: BoxConstraints(minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
                     child: IntrinsicHeight(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           if (title != null)
                             Padding(

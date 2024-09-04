@@ -1,8 +1,7 @@
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -81,7 +80,7 @@ class _EpisodeDetailsState extends ConsumerState<EpisodeDetails> {
 
   Future<Fragment$EpisodeDetails?> loadEpisode() async {
     final result = await ref
-        .read(gqlClientProvider)
+        .read(bccmGraphQLProvider)
         .query$EpisodeDetails(Options$Query$EpisodeDetails(variables: Variables$Query$EpisodeDetails(id: widget.episodeId)));
     return result.parsedData?.episode;
   }

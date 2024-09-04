@@ -9,8 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
 
-import '../../providers/auth_state/auth_state.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 final logo = Image.asset('assets/flavors/prod/logo.png');
 final icons = {
@@ -45,18 +44,6 @@ class WebAppBar extends ConsumerWidget implements PreferredSizeWidget {
       BottomNavigationBarItem(label: S.of(context).homeTab, icon: icons['home_default']!, activeIcon: icons['home_selected']),
       BottomNavigationBarItem(label: S.of(context).search, icon: icons['search_default']!, activeIcon: icons['search_selected']),
     ];
-    final guestMode = ref.watch(authStateProvider.select((value) => value.guestMode));
-    debugPrint('custom_tab_bar rebuild. guestMode: $guestMode');
-    if (!guestMode) {
-      tabs.addAll([
-        BottomNavigationBarItem(
-          label: S.of(context).liveTab,
-          icon: icons['live_default']!,
-          activeIcon: icons['live_selected'],
-        ),
-        BottomNavigationBarItem(label: S.of(context).calendar, icon: icons['calendar_default']!, activeIcon: icons['calendar_selected']),
-      ]);
-    }
     return AppBar(
       toolbarHeight: 64,
       shadowColor: Colors.black,
@@ -66,7 +53,7 @@ class WebAppBar extends ConsumerWidget implements PreferredSizeWidget {
       title: Padding(
         padding: const EdgeInsets.only(left: 64),
         child: FocusableActionDetector(
-          mouseCursor: MaterialStateMouseCursor.clickable,
+          mouseCursor: WidgetStateMouseCursor.clickable,
           child: GestureDetector(
             onTap: () => onTabTap(0),
             child: logo,
@@ -97,7 +84,7 @@ class WebAppBar extends ConsumerWidget implements PreferredSizeWidget {
         Align(
           alignment: Alignment.centerRight,
           child: FocusableActionDetector(
-            mouseCursor: MaterialStateMouseCursor.clickable,
+            mouseCursor: WidgetStateMouseCursor.clickable,
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () {
@@ -133,7 +120,7 @@ class WebTabButton extends HookWidget {
     final hovering = useState(false);
     final highlighted = hovering.value || active;
     return MouseRegion(
-      cursor: MaterialStateMouseCursor.clickable,
+      cursor: WidgetStateMouseCursor.clickable,
       onEnter: (_) => hovering.value = true,
       onExit: (_) => hovering.value = false,
       child: AnimatedContainer(

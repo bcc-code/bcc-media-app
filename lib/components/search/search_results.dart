@@ -1,22 +1,17 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/debouncer.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../graphql/client.dart';
-import '../../graphql/queries/search.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import '../episode/list/episode_list_episode.dart';
 import 'result_programs_list.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../../models/analytics/search_performed.dart';
-import '../../models/analytics/search_result_clicked.dart';
-import '../../providers/analytics.dart';
-import '../../providers/inherited_data.dart';
 
 class SearchResults extends ConsumerStatefulWidget {
   final String searchInput;
@@ -32,7 +27,8 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
   final AsyncDebouncer<Query$Search$search?> debouncer = AsyncDebouncer(milliseconds: 150);
 
   void setResultFuture() {
-    final client = ref.read(gqlClientProvider);
+    final client = ref.read(bccmGraphQLProvider);
+    final analytics = ref.read(analyticsProvider);
     if (widget.searchInput != '') {
       setState(() {
         _resultFuture = debouncer.run(
@@ -54,7 +50,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
               },
             );
 
-            sendSearchPerformedAnalytics(searchResultFuture);
+            sendSearchPerformedAnalytics(analytics, searchResultFuture);
 
             return searchResultFuture;
           },
@@ -63,15 +59,15 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
     }
   }
 
-  void sendSearchPerformedAnalytics(Future<Query$Search$search?> searchResultFuture) {
+  void sendSearchPerformedAnalytics(Analytics analytics, Future<Query$Search$search?> searchResultFuture) {
     final searchStopwatch = Stopwatch()..start();
     searchResultFuture.then((searchResult) {
       searchStopwatch.stop();
-      ref.read(analyticsProvider).searchPerformed(SearchPerformedEvent(
-            searchText: widget.searchInput,
-            searchLatency: searchStopwatch.elapsedMilliseconds,
-            searchResultCount: searchResult?.hits ?? 0,
-          ));
+      analytics.searchPerformed(SearchPerformedEvent(
+        searchText: widget.searchInput,
+        searchLatency: searchStopwatch.elapsedMilliseconds,
+        searchResultCount: searchResult?.hits ?? 0,
+      ));
     });
   }
 
@@ -93,7 +89,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
   Widget build(BuildContext context) {
     return InheritedData<SearchAnalytics>(
       inheritedData: SearchAnalytics(searchText: widget.searchInput),
-      child: (context) => FutureBuilder<Query$Search$search?>(
+      builder: (context) => FutureBuilder<Query$Search$search?>(
         future: _resultFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -133,7 +129,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
                             .mapIndexed(
                               (index, e) => InheritedData<SearchItemAnalytics>(
                                 inheritedData: SearchItemAnalytics(position: index, type: e.$__typename, id: e.id, group: 'episodes'),
-                                child: (context) => GestureDetector(
+                                builder: (context) => GestureDetector(
                                   behavior: HitTestBehavior.opaque,
                                   onTap: () {
                                     context.navigateTo(EpisodeScreenRoute(episodeId: e.id));

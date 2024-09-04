@@ -1,9 +1,8 @@
 import 'package:brunstadtv_app/components/misc/custom_grid_view.dart';
-import 'package:brunstadtv_app/graphql/queries/kids/show.graphql.dart';
-import 'package:brunstadtv_app/helpers/haptic_feedback.dart';
-import 'package:brunstadtv_app/helpers/images.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -12,7 +11,7 @@ import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button.dart';
 import 'package:kids/helpers/transitions.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:universal_io/io.dart';
 
 class EpisodeGridItem {

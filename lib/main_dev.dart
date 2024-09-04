@@ -1,6 +1,9 @@
+import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/env/dev/firebase_options.dart' as dev_firebase;
 import 'package:brunstadtv_app/flavors.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/main.dart';
+import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +25,16 @@ void main() async {
         contactEmail: 'support@bcc.media',
         contactWebsite: Uri.parse('https://bcc.media'),
       ),
+      appTheme: (context) => AppThemeData(
+        studyGradient: BccmGradients.greenYellow,
+        genericBackgroundGradient: BccmGradients.purpleTransparentTopBottom,
+        achievementBackgroundGradient: BccmGradients.purpleTransparent,
+        appBarTransparent: true,
+        tabTheme: AppTabThemeData(
+          activeColor: DesignSystem.of(context).colors.tint1,
+          iconActiveGradient: BccmGradients.softPurpleBlue,
+        ),
+      ),
       bccmImages: BccmFlavorImages(
         logoHeight: 20,
         logo: const AssetImage('assets/flavors/prod/logo.png'),
@@ -33,14 +46,6 @@ void main() async {
         search: StateImageProvider(
           image: const AssetImage('assets/icons/Search_Default.png'),
           activeImage: const AssetImage('assets/icons/Search_Selected.png'),
-        ),
-        live: StateImageProvider(
-          image: const AssetImage('assets/icons/Live_Default.png'),
-          activeImage: const AssetImage('assets/icons/Live_Selected.png'),
-        ),
-        calendar: StateImageProvider(
-          image: const AssetImage('assets/icons/Calendar_Default.png'),
-          activeImage: const AssetImage('assets/icons/Calendar_Selected.png'),
         ),
         shorts: StateImageProvider(
           image: const AssetImage('assets/icons/Live_Default.png'),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
 import 'option_list.dart';
@@ -22,7 +22,7 @@ class BottomSheetSelect<T> extends StatefulWidget {
   final bool popOnChange;
 
   const BottomSheetSelect({
-    Key? key,
+    super.key,
     required this.title,
     this.description,
     required this.items,
@@ -30,7 +30,7 @@ class BottomSheetSelect<T> extends StatefulWidget {
     this.showSelection = true,
     required this.onSelectionChanged,
     this.popOnChange = true,
-  }) : super(key: key);
+  });
 
   @override
   State<BottomSheetSelect<T>> createState() => _BottomSheetSelectState<T>();
@@ -87,7 +87,7 @@ class _BottomSheetSelectState<T> extends State<BottomSheetSelect<T>> {
                     if (widget.description != null) SliverToBoxAdapter(child: widget.description!),
                     SliverToBoxAdapter(
                       child: OptionList<T>(
-                        optionData: widget.items as List<Option<T>>,
+                        optionData: widget.items,
                         currentSelection: localSelectedId,
                         showSelection: widget.showSelection,
                         onSelectionChange: (val) {

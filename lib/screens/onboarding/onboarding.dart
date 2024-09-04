@@ -2,11 +2,12 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/providers/shared_preferences.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,19 +16,17 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../../components/onboarding/onboarding_buttons_auth_enabled.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../flavors.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
 @RoutePage<void>()
 class OnboardingScreen extends ConsumerStatefulWidget {
   final String? loginError;
-  final void Function(bool)? onResult;
   final bool auto;
 
   const OnboardingScreen({
     super.key,
     this.loginError,
-    this.onResult,
     @QueryParam('auto') this.auto = false,
   });
 
@@ -36,62 +35,47 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 }
 
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
-  bool isProgressing = false;
-  bool isLoggedIn = false;
-  String errorMessage = '';
   bool imagesLoaded = false;
+  bool error = false;
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 200)).then(
-      (_) => setState(() => imagesLoaded = true),
-    );
     if (widget.auto) {
-      loginAction();
+      doLogin();
     }
+    Future.delayed(const Duration(milliseconds: 200)).then((_) {
+      if (!mounted) return;
+      setState(() => imagesLoaded = true);
+    });
   }
 
   @override
   void didUpdateWidget(OnboardingScreen old) {
     super.didUpdateWidget(old);
     if (widget.auto && !old.auto) {
-      loginAction();
+      doLogin();
     }
   }
 
-  handleSuccess() {
+  Future<void> doLogin() async {
     setState(() {
-      isProgressing = false;
-      isLoggedIn = true;
+      error = false;
     });
-    if (widget.onResult != null) {
-      widget.onResult!(true);
-    }
-
-    context.router.replaceAll([const TabsRootScreenRoute()]);
-  }
-
-  handleError(String message) {
-    setState(() {
-      isProgressing = false;
-      errorMessage = message;
-    });
-  }
-
-  Future<void> loginAction() async {
-    final tryAgainMessage = S.of(context).errorTryAgain;
-    setState(() {
-      isProgressing = true;
-      errorMessage = '';
-    });
-
     final success = await ref.read(authStateProvider.notifier).login();
-    if (success) {
-      handleSuccess();
-    } else {
-      handleError(tryAgainMessage);
+    if (!mounted) return;
+    if (!success) {
+      setState(() {
+        error = true;
+      });
+      return;
     }
+    await tryCatchRecordErrorAsync(() {
+      return ref.read(featureFlagsProvider.notifier).refresh().timeout(const Duration(seconds: 2));
+    });
+    ref.invalidate(appConfigFutureProvider);
+    if (!mounted) return;
+    context.router.replaceAll([const TabsRootScreenRoute()]);
   }
 
   @override
@@ -125,7 +109,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                           Padding(padding: const EdgeInsets.all(16), child: Image(image: FlavorConfig.current.bccmImages!.onboarding))
                         else
                           Container(
-                            height: 220 * (MediaQuery.of(context).size.height / 600),
+                            height: min(220 * (MediaQuery.of(context).size.height / 600), MediaQuery.of(context).size.height - 500),
                             margin: const EdgeInsets.only(top: 40, bottom: 30),
                             child: Transform.scale(
                               scale: 1.3 * (MediaQuery.of(context).size.height / 800),
@@ -165,10 +149,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        if (errorMessage != '')
-                          Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(errorMessage, textAlign: TextAlign.center)),
+                        if (error)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: Text(S.of(context).errorTryAgain, textAlign: TextAlign.center),
+                          ),
                         OnboardingButtons(
-                          loginAction: loginAction,
+                          loginAction: doLogin,
                           exploreAction: () {
                             context.router.popUntil((route) => false);
                             context.router.push(const TabsRootScreenRoute());

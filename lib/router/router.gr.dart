@@ -8,57 +8,56 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i35;
-import 'package:brunstadtv_app/router/router.dart' as _i17;
-import 'package:brunstadtv_app/screens/auto_login.dart' as _i7;
-import 'package:brunstadtv_app/screens/episode.dart' as _i9;
-import 'package:brunstadtv_app/screens/games/game.dart' as _i15;
-import 'package:brunstadtv_app/screens/games/games.dart' as _i16;
-import 'package:brunstadtv_app/screens/onboarding/onboarding.dart' as _i20;
+import 'package:auto_route/auto_route.dart' as _i34;
+import 'package:brunstadtv_app/router/router.dart' as _i16;
+import 'package:brunstadtv_app/screens/contributors/contributor.dart' as _i11;
+import 'package:brunstadtv_app/screens/episode.dart' as _i8;
+import 'package:brunstadtv_app/screens/init.dart' as _i17;
+import 'package:brunstadtv_app/screens/onboarding/onboarding.dart' as _i18;
 import 'package:brunstadtv_app/screens/onboarding/signup.dart' as _i27;
-import 'package:brunstadtv_app/screens/page.dart' as _i21;
+import 'package:brunstadtv_app/screens/page.dart' as _i19;
 import 'package:brunstadtv_app/screens/settings/about.dart' as _i1;
 import 'package:brunstadtv_app/screens/settings/account_deletion.dart' as _i2;
 import 'package:brunstadtv_app/screens/settings/app_language.dart' as _i5;
 import 'package:brunstadtv_app/screens/settings/audio_language.dart' as _i6;
-import 'package:brunstadtv_app/screens/settings/contact.dart' as _i11;
-import 'package:brunstadtv_app/screens/settings/contact_public.dart' as _i10;
+import 'package:brunstadtv_app/screens/settings/contact.dart' as _i10;
+import 'package:brunstadtv_app/screens/settings/contact_public.dart' as _i9;
 import 'package:brunstadtv_app/screens/settings/device_info.dart' as _i12;
 import 'package:brunstadtv_app/screens/settings/extra_usergroups.dart' as _i13;
 import 'package:brunstadtv_app/screens/settings/faq.dart' as _i14;
-import 'package:brunstadtv_app/screens/settings/privacy_policy.dart' as _i22;
-import 'package:brunstadtv_app/screens/settings/settings.dart' as _i25;
+import 'package:brunstadtv_app/screens/settings/privacy_policy.dart' as _i20;
+import 'package:brunstadtv_app/screens/settings/settings.dart' as _i23;
 import 'package:brunstadtv_app/screens/settings/subtitle_language.dart' as _i29;
 import 'package:brunstadtv_app/screens/settings/terms_of_use.dart' as _i31;
-import 'package:brunstadtv_app/screens/settings/video_quality.dart' as _i34;
-import 'package:brunstadtv_app/screens/shorts/shorts.dart' as _i26;
+import 'package:brunstadtv_app/screens/settings/video_quality.dart' as _i32;
+import 'package:brunstadtv_app/screens/shorts/short.dart' as _i24;
+import 'package:brunstadtv_app/screens/shorts/shorts.dart' as _i25;
+import 'package:brunstadtv_app/screens/show/show.dart' as _i26;
 import 'package:brunstadtv_app/screens/study/achievement_group.dart' as _i3;
 import 'package:brunstadtv_app/screens/study/achievements.dart' as _i4;
 import 'package:brunstadtv_app/screens/study/study.dart' as _i28;
-import 'package:brunstadtv_app/screens/tabs/calendar.dart' as _i8;
-import 'package:brunstadtv_app/screens/tabs/home.dart' as _i18;
-import 'package:brunstadtv_app/screens/tabs/live.dart' as _i19;
-import 'package:brunstadtv_app/screens/tabs/profile.dart' as _i23;
-import 'package:brunstadtv_app/screens/tabs/search.dart' as _i24;
+import 'package:brunstadtv_app/screens/tabs/calendar.dart' as _i7;
+import 'package:brunstadtv_app/screens/tabs/home.dart' as _i15;
+import 'package:brunstadtv_app/screens/tabs/profile.dart' as _i21;
+import 'package:brunstadtv_app/screens/tabs/search.dart' as _i22;
 import 'package:brunstadtv_app/screens/tabs/tabs_root.dart' as _i30;
-import 'package:brunstadtv_app/screens/tv/tv_live.dart' as _i32;
-import 'package:brunstadtv_app/screens/tv/tv_login.dart' as _i33;
-import 'package:flutter/foundation.dart' as _i37;
-import 'package:flutter/material.dart' as _i36;
+import 'package:brunstadtv_app/screens/w/w.dart' as _i33;
+import 'package:flutter/foundation.dart' as _i36;
+import 'package:flutter/material.dart' as _i35;
 
-abstract class $AppRouter extends _i35.RootStackRouter {
+abstract class $AppRouter extends _i34.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i35.PageFactory> pagesMap = {
+  final Map<String, _i34.PageFactory> pagesMap = {
     AboutScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i1.AboutScreen(),
       );
     },
     AccountDeletionScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i2.AccountDeletionScreen(),
       );
@@ -68,7 +67,7 @@ abstract class $AppRouter extends _i35.RootStackRouter {
       final args = routeData.argsAs<AchievementGroupScreenRouteArgs>(
           orElse: () => AchievementGroupScreenRouteArgs(
               groupId: pathParams.getString('groupId')));
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: _i3.AchievementGroupScreen(
           key: args.key,
@@ -77,33 +76,27 @@ abstract class $AppRouter extends _i35.RootStackRouter {
       );
     },
     AchievementsScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i4.AchievementsScreen(),
       );
     },
     AppLanguageScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i5.AppLanguageScreen(),
       );
     },
     AudioLanguageScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i6.AudioLanguageScreen(),
       );
     },
-    AutoLoginScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i7.AutoLoginScreen(),
-      );
-    },
     CalendarScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i8.CalendarScreen(),
+        child: const _i7.CalendarScreen(),
       );
     },
     CollectionEpisodeScreenRoute.name: (routeData) {
@@ -113,36 +106,49 @@ abstract class $AppRouter extends _i35.RootStackRouter {
           orElse: () => CollectionEpisodeScreenRouteArgs(
                 episodeId: pathParams.getString('episodeId'),
                 autoplay: queryParams.optBool('autoplay'),
-                queryParamStartPosition: queryParams.optInt('t'),
+                queryParamStartPositionSeconds: queryParams.optInt('t'),
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
                 collectionId: pathParams.optString('collectionId'),
               ));
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: _i9.CollectionEpisodeScreen(
+        child: _i8.CollectionEpisodeScreen(
           key: args.key,
           episodeId: args.episodeId,
           autoplay: args.autoplay,
-          queryParamStartPosition: args.queryParamStartPosition,
+          queryParamStartPositionSeconds: args.queryParamStartPositionSeconds,
           hideBottomSection: args.hideBottomSection,
           collectionId: args.collectionId,
         ),
       );
     },
     ContactPublicScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i10.ContactPublicScreen(),
+        child: const _i9.ContactPublicScreen(),
       );
     },
     ContactScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i11.ContactScreen(),
+        child: const _i10.ContactScreen(),
+      );
+    },
+    ContributorScreenRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<ContributorScreenRouteArgs>(
+          orElse: () => ContributorScreenRouteArgs(
+              personId: pathParams.getString('personId')));
+      return _i34.AutoRoutePage<void>(
+        routeData: routeData,
+        child: _i11.ContributorScreen(
+          key: args.key,
+          personId: args.personId,
+        ),
       );
     },
     DeviceInfoScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i12.DeviceInfoScreen(),
       );
@@ -154,77 +160,52 @@ abstract class $AppRouter extends _i35.RootStackRouter {
           orElse: () => EpisodeScreenRouteArgs(
                 episodeId: pathParams.getString('episodeId'),
                 autoplay: queryParams.optBool('autoplay'),
-                queryParamStartPosition: queryParams.optInt('t'),
+                queryParamStartPositionSeconds: queryParams.optInt('t'),
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
                 collectionId: queryParams.optString('collectionId'),
               ));
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: _i9.EpisodeScreen(
+        child: _i8.EpisodeScreen(
           key: args.key,
           episodeId: args.episodeId,
           autoplay: args.autoplay,
-          queryParamStartPosition: args.queryParamStartPosition,
+          queryParamStartPositionSeconds: args.queryParamStartPositionSeconds,
           hideBottomSection: args.hideBottomSection,
           collectionId: args.collectionId,
         ),
       );
     },
     ExtraUsergroupsScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i13.ExtraUsergroupsScreen(),
       );
     },
     FAQScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i14.FAQScreen(),
-      );
-    },
-    GameScreenRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<GameScreenRouteArgs>(
-          orElse: () =>
-              GameScreenRouteArgs(gameId: pathParams.getString('gameId')));
-      return _i35.AutoRoutePage<void>(
-        routeData: routeData,
-        child: _i15.GameScreen(
-          key: args.key,
-          gameId: args.gameId,
-        ),
-      );
-    },
-    GamesScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i16.GamesScreen(),
-      );
-    },
-    GamesWrapperScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i17.GamesWrapperScreen(),
       );
     },
     HomeScreenRoute.name: (routeData) {
       final args = routeData.argsAs<HomeScreenRouteArgs>(
           orElse: () => const HomeScreenRouteArgs());
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: _i18.HomeScreen(key: args.key),
+        child: _i15.HomeScreen(key: args.key),
       );
     },
     HomeWrapperScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i17.HomeWrapperScreen(),
+        child: const _i16.HomeWrapperScreen(),
       );
     },
-    LiveScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+    InitScreenRoute.name: (routeData) {
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i19.LiveScreen(),
+        child: const _i17.InitScreen(),
       );
     },
     OnboardingScreenRoute.name: (routeData) {
@@ -235,12 +216,11 @@ abstract class $AppRouter extends _i35.RootStackRouter {
                 'auto',
                 false,
               )));
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: _i20.OnboardingScreen(
+        child: _i18.OnboardingScreen(
           key: args.key,
           loginError: args.loginError,
-          onResult: args.onResult,
           auto: args.auto,
         ),
       );
@@ -250,78 +230,110 @@ abstract class $AppRouter extends _i35.RootStackRouter {
       final args = routeData.argsAs<PageScreenRouteArgs>(
           orElse: () =>
               PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: _i21.PageScreen(
+        child: _i19.PageScreen(
           key: args.key,
           pageCode: args.pageCode,
         ),
       );
     },
     PrivacyPolicyScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i22.PrivacyPolicyScreen(),
+        child: const _i20.PrivacyPolicyScreen(),
       );
     },
     ProfileScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      final queryParams = routeData.queryParams;
+      final args = routeData.argsAs<ProfileScreenRouteArgs>(
+          orElse: () =>
+              ProfileScreenRouteArgs(scroll: queryParams.optString('scroll')));
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i23.ProfileScreen(),
+        child: _i21.ProfileScreen(
+          key: args.key,
+          scroll: args.scroll,
+        ),
       );
     },
     ProfileWrapperScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i17.ProfileWrapperScreen(),
+        child: const _i16.ProfileWrapperScreen(),
       );
     },
     SearchScreenRoute.name: (routeData) {
       final queryParams = routeData.queryParams;
       final args = routeData.argsAs<SearchScreenRouteArgs>(
           orElse: () =>
-              SearchScreenRouteArgs(query: queryParams.optString('q')));
-      return _i35.AutoRoutePage<void>(
+              SearchScreenRouteArgs(queryParam: queryParams.optString('q')));
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: _i24.SearchScreen(
+        child: _i22.SearchScreen(
           key: args.key,
-          query: args.query,
+          queryParam: args.queryParam,
         ),
       );
     },
     SearchWrapperScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i17.SearchWrapperScreen(),
+        child: const _i16.SearchWrapperScreen(),
       );
     },
     SettingsScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i25.SettingsScreen(),
+        child: const _i23.SettingsScreen(),
+      );
+    },
+    ShortScreenRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<ShortScreenRouteArgs>(
+          orElse: () => ShortScreenRouteArgs(id: pathParams.getString('id')));
+      return _i34.AutoRoutePage<void>(
+        routeData: routeData,
+        child: _i24.ShortScreen(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     ShortsScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i26.ShortsScreen(),
+        child: const _i25.ShortsScreen(),
       );
     },
     ShortsWrapperScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i17.ShortsWrapperScreen(),
+        child: const _i16.ShortsWrapperScreen(),
+      );
+    },
+    ShowScreenRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<ShowScreenRouteArgs>(
+          orElse: () =>
+              ShowScreenRouteArgs(showId: pathParams.getString('showId')));
+      return _i34.AutoRoutePage<void>(
+        routeData: routeData,
+        child: _i26.ShowScreen(
+          key: args.key,
+          showId: args.showId,
+        ),
       );
     },
     SignupScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i27.SignupScreen(),
       );
     },
     StudyScreenRoute.name: (routeData) {
       final args = routeData.argsAs<StudyScreenRouteArgs>();
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: _i28.StudyScreen(
           key: args.key,
@@ -331,45 +343,46 @@ abstract class $AppRouter extends _i35.RootStackRouter {
       );
     },
     SubtitleLanguageScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i29.SubtitleLanguageScreen(),
       );
     },
     TabsRootScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i30.TabsRootScreen(),
       );
     },
     TabsWrapperScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i17.TabsWrapperScreen(),
+        child: const _i16.TabsWrapperScreen(),
       );
     },
     TermsOfUseScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
         child: const _i31.TermsOfUseScreen(),
       );
     },
-    TvLiveScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i32.TvLiveScreen(),
-      );
-    },
-    TvLoginScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i33.TvLoginScreen(),
-      );
-    },
     VideoQualityScreenRoute.name: (routeData) {
-      return _i35.AutoRoutePage<void>(
+      return _i34.AutoRoutePage<void>(
         routeData: routeData,
-        child: const _i34.VideoQualityScreen(),
+        child: const _i32.VideoQualityScreen(),
+      );
+    },
+    WebviewScreenRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<WebviewScreenRouteArgs>(
+          orElse: () => WebviewScreenRouteArgs(
+              redirectCode: pathParams.getString('redirectCode')));
+      return _i34.AutoRoutePage<void>(
+        routeData: routeData,
+        child: _i33.WebviewScreen(
+          key: args.key,
+          redirectCode: args.redirectCode,
+        ),
       );
     },
   };
@@ -377,8 +390,8 @@ abstract class $AppRouter extends _i35.RootStackRouter {
 
 /// generated route for
 /// [_i1.AboutScreen]
-class AboutScreenRoute extends _i35.PageRouteInfo<void> {
-  const AboutScreenRoute({List<_i35.PageRouteInfo>? children})
+class AboutScreenRoute extends _i34.PageRouteInfo<void> {
+  const AboutScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           AboutScreenRoute.name,
           initialChildren: children,
@@ -386,13 +399,13 @@ class AboutScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'AboutScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.AccountDeletionScreen]
-class AccountDeletionScreenRoute extends _i35.PageRouteInfo<void> {
-  const AccountDeletionScreenRoute({List<_i35.PageRouteInfo>? children})
+class AccountDeletionScreenRoute extends _i34.PageRouteInfo<void> {
+  const AccountDeletionScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           AccountDeletionScreenRoute.name,
           initialChildren: children,
@@ -400,17 +413,17 @@ class AccountDeletionScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'AccountDeletionScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i3.AchievementGroupScreen]
 class AchievementGroupScreenRoute
-    extends _i35.PageRouteInfo<AchievementGroupScreenRouteArgs> {
+    extends _i34.PageRouteInfo<AchievementGroupScreenRouteArgs> {
   AchievementGroupScreenRoute({
-    _i36.Key? key,
+    _i35.Key? key,
     required String groupId,
-    List<_i35.PageRouteInfo>? children,
+    List<_i34.PageRouteInfo>? children,
   }) : super(
           AchievementGroupScreenRoute.name,
           args: AchievementGroupScreenRouteArgs(
@@ -423,8 +436,8 @@ class AchievementGroupScreenRoute
 
   static const String name = 'AchievementGroupScreenRoute';
 
-  static const _i35.PageInfo<AchievementGroupScreenRouteArgs> page =
-      _i35.PageInfo<AchievementGroupScreenRouteArgs>(name);
+  static const _i34.PageInfo<AchievementGroupScreenRouteArgs> page =
+      _i34.PageInfo<AchievementGroupScreenRouteArgs>(name);
 }
 
 class AchievementGroupScreenRouteArgs {
@@ -433,7 +446,7 @@ class AchievementGroupScreenRouteArgs {
     required this.groupId,
   });
 
-  final _i36.Key? key;
+  final _i35.Key? key;
 
   final String groupId;
 
@@ -445,8 +458,8 @@ class AchievementGroupScreenRouteArgs {
 
 /// generated route for
 /// [_i4.AchievementsScreen]
-class AchievementsScreenRoute extends _i35.PageRouteInfo<void> {
-  const AchievementsScreenRoute({List<_i35.PageRouteInfo>? children})
+class AchievementsScreenRoute extends _i34.PageRouteInfo<void> {
+  const AchievementsScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           AchievementsScreenRoute.name,
           initialChildren: children,
@@ -454,13 +467,13 @@ class AchievementsScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'AchievementsScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i5.AppLanguageScreen]
-class AppLanguageScreenRoute extends _i35.PageRouteInfo<void> {
-  const AppLanguageScreenRoute({List<_i35.PageRouteInfo>? children})
+class AppLanguageScreenRoute extends _i34.PageRouteInfo<void> {
+  const AppLanguageScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           AppLanguageScreenRoute.name,
           initialChildren: children,
@@ -468,13 +481,13 @@ class AppLanguageScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'AppLanguageScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i6.AudioLanguageScreen]
-class AudioLanguageScreenRoute extends _i35.PageRouteInfo<void> {
-  const AudioLanguageScreenRoute({List<_i35.PageRouteInfo>? children})
+class AudioLanguageScreenRoute extends _i34.PageRouteInfo<void> {
+  const AudioLanguageScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           AudioLanguageScreenRoute.name,
           initialChildren: children,
@@ -482,27 +495,13 @@ class AudioLanguageScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'AudioLanguageScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i7.AutoLoginScreen]
-class AutoLoginScreenRoute extends _i35.PageRouteInfo<void> {
-  const AutoLoginScreenRoute({List<_i35.PageRouteInfo>? children})
-      : super(
-          AutoLoginScreenRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'AutoLoginScreenRoute';
-
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i8.CalendarScreen]
-class CalendarScreenRoute extends _i35.PageRouteInfo<void> {
-  const CalendarScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i7.CalendarScreen]
+class CalendarScreenRoute extends _i34.PageRouteInfo<void> {
+  const CalendarScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           CalendarScreenRoute.name,
           initialChildren: children,
@@ -510,28 +509,28 @@ class CalendarScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'CalendarScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i9.CollectionEpisodeScreen]
+/// [_i8.CollectionEpisodeScreen]
 class CollectionEpisodeScreenRoute
-    extends _i35.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
+    extends _i34.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
   CollectionEpisodeScreenRoute({
-    _i37.Key? key,
+    _i36.Key? key,
     required String episodeId,
     bool? autoplay,
-    int? queryParamStartPosition,
+    int? queryParamStartPositionSeconds,
     bool? hideBottomSection,
     String? collectionId,
-    List<_i35.PageRouteInfo>? children,
+    List<_i34.PageRouteInfo>? children,
   }) : super(
           CollectionEpisodeScreenRoute.name,
           args: CollectionEpisodeScreenRouteArgs(
             key: key,
             episodeId: episodeId,
             autoplay: autoplay,
-            queryParamStartPosition: queryParamStartPosition,
+            queryParamStartPositionSeconds: queryParamStartPositionSeconds,
             hideBottomSection: hideBottomSection,
             collectionId: collectionId,
           ),
@@ -541,7 +540,7 @@ class CollectionEpisodeScreenRoute
           },
           rawQueryParams: {
             'autoplay': autoplay,
-            't': queryParamStartPosition,
+            't': queryParamStartPositionSeconds,
             'hide_bottom_section': hideBottomSection,
           },
           initialChildren: children,
@@ -549,8 +548,8 @@ class CollectionEpisodeScreenRoute
 
   static const String name = 'CollectionEpisodeScreenRoute';
 
-  static const _i35.PageInfo<CollectionEpisodeScreenRouteArgs> page =
-      _i35.PageInfo<CollectionEpisodeScreenRouteArgs>(name);
+  static const _i34.PageInfo<CollectionEpisodeScreenRouteArgs> page =
+      _i34.PageInfo<CollectionEpisodeScreenRouteArgs>(name);
 }
 
 class CollectionEpisodeScreenRouteArgs {
@@ -558,18 +557,18 @@ class CollectionEpisodeScreenRouteArgs {
     this.key,
     required this.episodeId,
     this.autoplay,
-    this.queryParamStartPosition,
+    this.queryParamStartPositionSeconds,
     this.hideBottomSection,
     this.collectionId,
   });
 
-  final _i37.Key? key;
+  final _i36.Key? key;
 
   final String episodeId;
 
   final bool? autoplay;
 
-  final int? queryParamStartPosition;
+  final int? queryParamStartPositionSeconds;
 
   final bool? hideBottomSection;
 
@@ -577,14 +576,14 @@ class CollectionEpisodeScreenRouteArgs {
 
   @override
   String toString() {
-    return 'CollectionEpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
+    return 'CollectionEpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPositionSeconds: $queryParamStartPositionSeconds, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
   }
 }
 
 /// generated route for
-/// [_i10.ContactPublicScreen]
-class ContactPublicScreenRoute extends _i35.PageRouteInfo<void> {
-  const ContactPublicScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i9.ContactPublicScreen]
+class ContactPublicScreenRoute extends _i34.PageRouteInfo<void> {
+  const ContactPublicScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           ContactPublicScreenRoute.name,
           initialChildren: children,
@@ -592,13 +591,13 @@ class ContactPublicScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'ContactPublicScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i11.ContactScreen]
-class ContactScreenRoute extends _i35.PageRouteInfo<void> {
-  const ContactScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i10.ContactScreen]
+class ContactScreenRoute extends _i34.PageRouteInfo<void> {
+  const ContactScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           ContactScreenRoute.name,
           initialChildren: children,
@@ -606,13 +605,53 @@ class ContactScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'ContactScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i11.ContributorScreen]
+class ContributorScreenRoute
+    extends _i34.PageRouteInfo<ContributorScreenRouteArgs> {
+  ContributorScreenRoute({
+    _i35.Key? key,
+    required String personId,
+    List<_i34.PageRouteInfo>? children,
+  }) : super(
+          ContributorScreenRoute.name,
+          args: ContributorScreenRouteArgs(
+            key: key,
+            personId: personId,
+          ),
+          rawPathParams: {'personId': personId},
+          initialChildren: children,
+        );
+
+  static const String name = 'ContributorScreenRoute';
+
+  static const _i34.PageInfo<ContributorScreenRouteArgs> page =
+      _i34.PageInfo<ContributorScreenRouteArgs>(name);
+}
+
+class ContributorScreenRouteArgs {
+  const ContributorScreenRouteArgs({
+    this.key,
+    required this.personId,
+  });
+
+  final _i35.Key? key;
+
+  final String personId;
+
+  @override
+  String toString() {
+    return 'ContributorScreenRouteArgs{key: $key, personId: $personId}';
+  }
 }
 
 /// generated route for
 /// [_i12.DeviceInfoScreen]
-class DeviceInfoScreenRoute extends _i35.PageRouteInfo<void> {
-  const DeviceInfoScreenRoute({List<_i35.PageRouteInfo>? children})
+class DeviceInfoScreenRoute extends _i34.PageRouteInfo<void> {
+  const DeviceInfoScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           DeviceInfoScreenRoute.name,
           initialChildren: children,
@@ -620,34 +659,34 @@ class DeviceInfoScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'DeviceInfoScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i9.EpisodeScreen]
-class EpisodeScreenRoute extends _i35.PageRouteInfo<EpisodeScreenRouteArgs> {
+/// [_i8.EpisodeScreen]
+class EpisodeScreenRoute extends _i34.PageRouteInfo<EpisodeScreenRouteArgs> {
   EpisodeScreenRoute({
-    _i37.Key? key,
+    _i36.Key? key,
     required String episodeId,
     bool? autoplay,
-    int? queryParamStartPosition,
+    int? queryParamStartPositionSeconds,
     bool? hideBottomSection,
     String? collectionId,
-    List<_i35.PageRouteInfo>? children,
+    List<_i34.PageRouteInfo>? children,
   }) : super(
           EpisodeScreenRoute.name,
           args: EpisodeScreenRouteArgs(
             key: key,
             episodeId: episodeId,
             autoplay: autoplay,
-            queryParamStartPosition: queryParamStartPosition,
+            queryParamStartPositionSeconds: queryParamStartPositionSeconds,
             hideBottomSection: hideBottomSection,
             collectionId: collectionId,
           ),
           rawPathParams: {'episodeId': episodeId},
           rawQueryParams: {
             'autoplay': autoplay,
-            't': queryParamStartPosition,
+            't': queryParamStartPositionSeconds,
             'hide_bottom_section': hideBottomSection,
             'collectionId': collectionId,
           },
@@ -656,8 +695,8 @@ class EpisodeScreenRoute extends _i35.PageRouteInfo<EpisodeScreenRouteArgs> {
 
   static const String name = 'EpisodeScreenRoute';
 
-  static const _i35.PageInfo<EpisodeScreenRouteArgs> page =
-      _i35.PageInfo<EpisodeScreenRouteArgs>(name);
+  static const _i34.PageInfo<EpisodeScreenRouteArgs> page =
+      _i34.PageInfo<EpisodeScreenRouteArgs>(name);
 }
 
 class EpisodeScreenRouteArgs {
@@ -665,18 +704,18 @@ class EpisodeScreenRouteArgs {
     this.key,
     required this.episodeId,
     this.autoplay,
-    this.queryParamStartPosition,
+    this.queryParamStartPositionSeconds,
     this.hideBottomSection,
     this.collectionId,
   });
 
-  final _i37.Key? key;
+  final _i36.Key? key;
 
   final String episodeId;
 
   final bool? autoplay;
 
-  final int? queryParamStartPosition;
+  final int? queryParamStartPositionSeconds;
 
   final bool? hideBottomSection;
 
@@ -684,14 +723,14 @@ class EpisodeScreenRouteArgs {
 
   @override
   String toString() {
-    return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
+    return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPositionSeconds: $queryParamStartPositionSeconds, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
   }
 }
 
 /// generated route for
 /// [_i13.ExtraUsergroupsScreen]
-class ExtraUsergroupsScreenRoute extends _i35.PageRouteInfo<void> {
-  const ExtraUsergroupsScreenRoute({List<_i35.PageRouteInfo>? children})
+class ExtraUsergroupsScreenRoute extends _i34.PageRouteInfo<void> {
+  const ExtraUsergroupsScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           ExtraUsergroupsScreenRoute.name,
           initialChildren: children,
@@ -699,13 +738,13 @@ class ExtraUsergroupsScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'ExtraUsergroupsScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i14.FAQScreen]
-class FAQScreenRoute extends _i35.PageRouteInfo<void> {
-  const FAQScreenRoute({List<_i35.PageRouteInfo>? children})
+class FAQScreenRoute extends _i34.PageRouteInfo<void> {
+  const FAQScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           FAQScreenRoute.name,
           initialChildren: children,
@@ -713,82 +752,15 @@ class FAQScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'FAQScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i15.GameScreen]
-class GameScreenRoute extends _i35.PageRouteInfo<GameScreenRouteArgs> {
-  GameScreenRoute({
-    _i37.Key? key,
-    required String gameId,
-    List<_i35.PageRouteInfo>? children,
-  }) : super(
-          GameScreenRoute.name,
-          args: GameScreenRouteArgs(
-            key: key,
-            gameId: gameId,
-          ),
-          rawPathParams: {'gameId': gameId},
-          initialChildren: children,
-        );
-
-  static const String name = 'GameScreenRoute';
-
-  static const _i35.PageInfo<GameScreenRouteArgs> page =
-      _i35.PageInfo<GameScreenRouteArgs>(name);
-}
-
-class GameScreenRouteArgs {
-  const GameScreenRouteArgs({
-    this.key,
-    required this.gameId,
-  });
-
-  final _i37.Key? key;
-
-  final String gameId;
-
-  @override
-  String toString() {
-    return 'GameScreenRouteArgs{key: $key, gameId: $gameId}';
-  }
-}
-
-/// generated route for
-/// [_i16.GamesScreen]
-class GamesScreenRoute extends _i35.PageRouteInfo<void> {
-  const GamesScreenRoute({List<_i35.PageRouteInfo>? children})
-      : super(
-          GamesScreenRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'GamesScreenRoute';
-
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i17.GamesWrapperScreen]
-class GamesWrapperScreenRoute extends _i35.PageRouteInfo<void> {
-  const GamesWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
-      : super(
-          GamesWrapperScreenRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'GamesWrapperScreenRoute';
-
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i18.HomeScreen]
-class HomeScreenRoute extends _i35.PageRouteInfo<HomeScreenRouteArgs> {
+/// [_i15.HomeScreen]
+class HomeScreenRoute extends _i34.PageRouteInfo<HomeScreenRouteArgs> {
   HomeScreenRoute({
-    _i37.Key? key,
-    List<_i35.PageRouteInfo>? children,
+    _i36.Key? key,
+    List<_i34.PageRouteInfo>? children,
   }) : super(
           HomeScreenRoute.name,
           args: HomeScreenRouteArgs(key: key),
@@ -797,14 +769,14 @@ class HomeScreenRoute extends _i35.PageRouteInfo<HomeScreenRouteArgs> {
 
   static const String name = 'HomeScreenRoute';
 
-  static const _i35.PageInfo<HomeScreenRouteArgs> page =
-      _i35.PageInfo<HomeScreenRouteArgs>(name);
+  static const _i34.PageInfo<HomeScreenRouteArgs> page =
+      _i34.PageInfo<HomeScreenRouteArgs>(name);
 }
 
 class HomeScreenRouteArgs {
   const HomeScreenRouteArgs({this.key});
 
-  final _i37.Key? key;
+  final _i36.Key? key;
 
   @override
   String toString() {
@@ -813,9 +785,9 @@ class HomeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i17.HomeWrapperScreen]
-class HomeWrapperScreenRoute extends _i35.PageRouteInfo<void> {
-  const HomeWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i16.HomeWrapperScreen]
+class HomeWrapperScreenRoute extends _i34.PageRouteInfo<void> {
+  const HomeWrapperScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           HomeWrapperScreenRoute.name,
           initialChildren: children,
@@ -823,39 +795,37 @@ class HomeWrapperScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'HomeWrapperScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i19.LiveScreen]
-class LiveScreenRoute extends _i35.PageRouteInfo<void> {
-  const LiveScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i17.InitScreen]
+class InitScreenRoute extends _i34.PageRouteInfo<void> {
+  const InitScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
-          LiveScreenRoute.name,
+          InitScreenRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'LiveScreenRoute';
+  static const String name = 'InitScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i20.OnboardingScreen]
+/// [_i18.OnboardingScreen]
 class OnboardingScreenRoute
-    extends _i35.PageRouteInfo<OnboardingScreenRouteArgs> {
+    extends _i34.PageRouteInfo<OnboardingScreenRouteArgs> {
   OnboardingScreenRoute({
-    _i37.Key? key,
+    _i36.Key? key,
     String? loginError,
-    void Function(bool)? onResult,
     bool auto = false,
-    List<_i35.PageRouteInfo>? children,
+    List<_i34.PageRouteInfo>? children,
   }) : super(
           OnboardingScreenRoute.name,
           args: OnboardingScreenRouteArgs(
             key: key,
             loginError: loginError,
-            onResult: onResult,
             auto: auto,
           ),
           rawQueryParams: {'auto': auto},
@@ -864,39 +834,36 @@ class OnboardingScreenRoute
 
   static const String name = 'OnboardingScreenRoute';
 
-  static const _i35.PageInfo<OnboardingScreenRouteArgs> page =
-      _i35.PageInfo<OnboardingScreenRouteArgs>(name);
+  static const _i34.PageInfo<OnboardingScreenRouteArgs> page =
+      _i34.PageInfo<OnboardingScreenRouteArgs>(name);
 }
 
 class OnboardingScreenRouteArgs {
   const OnboardingScreenRouteArgs({
     this.key,
     this.loginError,
-    this.onResult,
     this.auto = false,
   });
 
-  final _i37.Key? key;
+  final _i36.Key? key;
 
   final String? loginError;
-
-  final void Function(bool)? onResult;
 
   final bool auto;
 
   @override
   String toString() {
-    return 'OnboardingScreenRouteArgs{key: $key, loginError: $loginError, onResult: $onResult, auto: $auto}';
+    return 'OnboardingScreenRouteArgs{key: $key, loginError: $loginError, auto: $auto}';
   }
 }
 
 /// generated route for
-/// [_i21.PageScreen]
-class PageScreenRoute extends _i35.PageRouteInfo<PageScreenRouteArgs> {
+/// [_i19.PageScreen]
+class PageScreenRoute extends _i34.PageRouteInfo<PageScreenRouteArgs> {
   PageScreenRoute({
-    _i37.Key? key,
+    _i36.Key? key,
     required String pageCode,
-    List<_i35.PageRouteInfo>? children,
+    List<_i34.PageRouteInfo>? children,
   }) : super(
           PageScreenRoute.name,
           args: PageScreenRouteArgs(
@@ -909,8 +876,8 @@ class PageScreenRoute extends _i35.PageRouteInfo<PageScreenRouteArgs> {
 
   static const String name = 'PageScreenRoute';
 
-  static const _i35.PageInfo<PageScreenRouteArgs> page =
-      _i35.PageInfo<PageScreenRouteArgs>(name);
+  static const _i34.PageInfo<PageScreenRouteArgs> page =
+      _i34.PageInfo<PageScreenRouteArgs>(name);
 }
 
 class PageScreenRouteArgs {
@@ -919,7 +886,7 @@ class PageScreenRouteArgs {
     required this.pageCode,
   });
 
-  final _i37.Key? key;
+  final _i36.Key? key;
 
   final String pageCode;
 
@@ -930,9 +897,9 @@ class PageScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i22.PrivacyPolicyScreen]
-class PrivacyPolicyScreenRoute extends _i35.PageRouteInfo<void> {
-  const PrivacyPolicyScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i20.PrivacyPolicyScreen]
+class PrivacyPolicyScreenRoute extends _i34.PageRouteInfo<void> {
+  const PrivacyPolicyScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           PrivacyPolicyScreenRoute.name,
           initialChildren: children,
@@ -940,27 +907,52 @@ class PrivacyPolicyScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'PrivacyPolicyScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i23.ProfileScreen]
-class ProfileScreenRoute extends _i35.PageRouteInfo<void> {
-  const ProfileScreenRoute({List<_i35.PageRouteInfo>? children})
-      : super(
+/// [_i21.ProfileScreen]
+class ProfileScreenRoute extends _i34.PageRouteInfo<ProfileScreenRouteArgs> {
+  ProfileScreenRoute({
+    _i35.Key? key,
+    String? scroll,
+    List<_i34.PageRouteInfo>? children,
+  }) : super(
           ProfileScreenRoute.name,
+          args: ProfileScreenRouteArgs(
+            key: key,
+            scroll: scroll,
+          ),
+          rawQueryParams: {'scroll': scroll},
           initialChildren: children,
         );
 
   static const String name = 'ProfileScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<ProfileScreenRouteArgs> page =
+      _i34.PageInfo<ProfileScreenRouteArgs>(name);
+}
+
+class ProfileScreenRouteArgs {
+  const ProfileScreenRouteArgs({
+    this.key,
+    this.scroll,
+  });
+
+  final _i35.Key? key;
+
+  final String? scroll;
+
+  @override
+  String toString() {
+    return 'ProfileScreenRouteArgs{key: $key, scroll: $scroll}';
+  }
 }
 
 /// generated route for
-/// [_i17.ProfileWrapperScreen]
-class ProfileWrapperScreenRoute extends _i35.PageRouteInfo<void> {
-  const ProfileWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i16.ProfileWrapperScreen]
+class ProfileWrapperScreenRoute extends _i34.PageRouteInfo<void> {
+  const ProfileWrapperScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           ProfileWrapperScreenRoute.name,
           initialChildren: children,
@@ -968,52 +960,52 @@ class ProfileWrapperScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'ProfileWrapperScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i24.SearchScreen]
-class SearchScreenRoute extends _i35.PageRouteInfo<SearchScreenRouteArgs> {
+/// [_i22.SearchScreen]
+class SearchScreenRoute extends _i34.PageRouteInfo<SearchScreenRouteArgs> {
   SearchScreenRoute({
-    _i37.Key? key,
-    String? query,
-    List<_i35.PageRouteInfo>? children,
+    _i36.Key? key,
+    String? queryParam,
+    List<_i34.PageRouteInfo>? children,
   }) : super(
           SearchScreenRoute.name,
           args: SearchScreenRouteArgs(
             key: key,
-            query: query,
+            queryParam: queryParam,
           ),
-          rawQueryParams: {'q': query},
+          rawQueryParams: {'q': queryParam},
           initialChildren: children,
         );
 
   static const String name = 'SearchScreenRoute';
 
-  static const _i35.PageInfo<SearchScreenRouteArgs> page =
-      _i35.PageInfo<SearchScreenRouteArgs>(name);
+  static const _i34.PageInfo<SearchScreenRouteArgs> page =
+      _i34.PageInfo<SearchScreenRouteArgs>(name);
 }
 
 class SearchScreenRouteArgs {
   const SearchScreenRouteArgs({
     this.key,
-    this.query,
+    this.queryParam,
   });
 
-  final _i37.Key? key;
+  final _i36.Key? key;
 
-  final String? query;
+  final String? queryParam;
 
   @override
   String toString() {
-    return 'SearchScreenRouteArgs{key: $key, query: $query}';
+    return 'SearchScreenRouteArgs{key: $key, queryParam: $queryParam}';
   }
 }
 
 /// generated route for
-/// [_i17.SearchWrapperScreen]
-class SearchWrapperScreenRoute extends _i35.PageRouteInfo<void> {
-  const SearchWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i16.SearchWrapperScreen]
+class SearchWrapperScreenRoute extends _i34.PageRouteInfo<void> {
+  const SearchWrapperScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           SearchWrapperScreenRoute.name,
           initialChildren: children,
@@ -1021,13 +1013,13 @@ class SearchWrapperScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'SearchWrapperScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i25.SettingsScreen]
-class SettingsScreenRoute extends _i35.PageRouteInfo<void> {
-  const SettingsScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i23.SettingsScreen]
+class SettingsScreenRoute extends _i34.PageRouteInfo<void> {
+  const SettingsScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           SettingsScreenRoute.name,
           initialChildren: children,
@@ -1035,13 +1027,52 @@ class SettingsScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'SettingsScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i26.ShortsScreen]
-class ShortsScreenRoute extends _i35.PageRouteInfo<void> {
-  const ShortsScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i24.ShortScreen]
+class ShortScreenRoute extends _i34.PageRouteInfo<ShortScreenRouteArgs> {
+  ShortScreenRoute({
+    _i35.Key? key,
+    required String id,
+    List<_i34.PageRouteInfo>? children,
+  }) : super(
+          ShortScreenRoute.name,
+          args: ShortScreenRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
+
+  static const String name = 'ShortScreenRoute';
+
+  static const _i34.PageInfo<ShortScreenRouteArgs> page =
+      _i34.PageInfo<ShortScreenRouteArgs>(name);
+}
+
+class ShortScreenRouteArgs {
+  const ShortScreenRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i35.Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'ShortScreenRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
+/// [_i25.ShortsScreen]
+class ShortsScreenRoute extends _i34.PageRouteInfo<void> {
+  const ShortsScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           ShortsScreenRoute.name,
           initialChildren: children,
@@ -1049,13 +1080,13 @@ class ShortsScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'ShortsScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i17.ShortsWrapperScreen]
-class ShortsWrapperScreenRoute extends _i35.PageRouteInfo<void> {
-  const ShortsWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i16.ShortsWrapperScreen]
+class ShortsWrapperScreenRoute extends _i34.PageRouteInfo<void> {
+  const ShortsWrapperScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           ShortsWrapperScreenRoute.name,
           initialChildren: children,
@@ -1063,13 +1094,52 @@ class ShortsWrapperScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'ShortsWrapperScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i26.ShowScreen]
+class ShowScreenRoute extends _i34.PageRouteInfo<ShowScreenRouteArgs> {
+  ShowScreenRoute({
+    _i35.Key? key,
+    required String showId,
+    List<_i34.PageRouteInfo>? children,
+  }) : super(
+          ShowScreenRoute.name,
+          args: ShowScreenRouteArgs(
+            key: key,
+            showId: showId,
+          ),
+          rawPathParams: {'showId': showId},
+          initialChildren: children,
+        );
+
+  static const String name = 'ShowScreenRoute';
+
+  static const _i34.PageInfo<ShowScreenRouteArgs> page =
+      _i34.PageInfo<ShowScreenRouteArgs>(name);
+}
+
+class ShowScreenRouteArgs {
+  const ShowScreenRouteArgs({
+    this.key,
+    required this.showId,
+  });
+
+  final _i35.Key? key;
+
+  final String showId;
+
+  @override
+  String toString() {
+    return 'ShowScreenRouteArgs{key: $key, showId: $showId}';
+  }
 }
 
 /// generated route for
 /// [_i27.SignupScreen]
-class SignupScreenRoute extends _i35.PageRouteInfo<void> {
-  const SignupScreenRoute({List<_i35.PageRouteInfo>? children})
+class SignupScreenRoute extends _i34.PageRouteInfo<void> {
+  const SignupScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           SignupScreenRoute.name,
           initialChildren: children,
@@ -1077,17 +1147,17 @@ class SignupScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'SignupScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i28.StudyScreen]
-class StudyScreenRoute extends _i35.PageRouteInfo<StudyScreenRouteArgs> {
+class StudyScreenRoute extends _i34.PageRouteInfo<StudyScreenRouteArgs> {
   StudyScreenRoute({
-    _i37.Key? key,
+    _i36.Key? key,
     required String episodeId,
     required String lessonId,
-    List<_i35.PageRouteInfo>? children,
+    List<_i34.PageRouteInfo>? children,
   }) : super(
           StudyScreenRoute.name,
           args: StudyScreenRouteArgs(
@@ -1100,8 +1170,8 @@ class StudyScreenRoute extends _i35.PageRouteInfo<StudyScreenRouteArgs> {
 
   static const String name = 'StudyScreenRoute';
 
-  static const _i35.PageInfo<StudyScreenRouteArgs> page =
-      _i35.PageInfo<StudyScreenRouteArgs>(name);
+  static const _i34.PageInfo<StudyScreenRouteArgs> page =
+      _i34.PageInfo<StudyScreenRouteArgs>(name);
 }
 
 class StudyScreenRouteArgs {
@@ -1111,7 +1181,7 @@ class StudyScreenRouteArgs {
     required this.lessonId,
   });
 
-  final _i37.Key? key;
+  final _i36.Key? key;
 
   final String episodeId;
 
@@ -1125,8 +1195,8 @@ class StudyScreenRouteArgs {
 
 /// generated route for
 /// [_i29.SubtitleLanguageScreen]
-class SubtitleLanguageScreenRoute extends _i35.PageRouteInfo<void> {
-  const SubtitleLanguageScreenRoute({List<_i35.PageRouteInfo>? children})
+class SubtitleLanguageScreenRoute extends _i34.PageRouteInfo<void> {
+  const SubtitleLanguageScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           SubtitleLanguageScreenRoute.name,
           initialChildren: children,
@@ -1134,13 +1204,13 @@ class SubtitleLanguageScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'SubtitleLanguageScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i30.TabsRootScreen]
-class TabsRootScreenRoute extends _i35.PageRouteInfo<void> {
-  const TabsRootScreenRoute({List<_i35.PageRouteInfo>? children})
+class TabsRootScreenRoute extends _i34.PageRouteInfo<void> {
+  const TabsRootScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           TabsRootScreenRoute.name,
           initialChildren: children,
@@ -1148,13 +1218,13 @@ class TabsRootScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'TabsRootScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i17.TabsWrapperScreen]
-class TabsWrapperScreenRoute extends _i35.PageRouteInfo<void> {
-  const TabsWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i16.TabsWrapperScreen]
+class TabsWrapperScreenRoute extends _i34.PageRouteInfo<void> {
+  const TabsWrapperScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           TabsWrapperScreenRoute.name,
           initialChildren: children,
@@ -1162,13 +1232,13 @@ class TabsWrapperScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'TabsWrapperScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i31.TermsOfUseScreen]
-class TermsOfUseScreenRoute extends _i35.PageRouteInfo<void> {
-  const TermsOfUseScreenRoute({List<_i35.PageRouteInfo>? children})
+class TermsOfUseScreenRoute extends _i34.PageRouteInfo<void> {
+  const TermsOfUseScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           TermsOfUseScreenRoute.name,
           initialChildren: children,
@@ -1176,41 +1246,13 @@ class TermsOfUseScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'TermsOfUseScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i32.TvLiveScreen]
-class TvLiveScreenRoute extends _i35.PageRouteInfo<void> {
-  const TvLiveScreenRoute({List<_i35.PageRouteInfo>? children})
-      : super(
-          TvLiveScreenRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TvLiveScreenRoute';
-
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i33.TvLoginScreen]
-class TvLoginScreenRoute extends _i35.PageRouteInfo<void> {
-  const TvLoginScreenRoute({List<_i35.PageRouteInfo>? children})
-      : super(
-          TvLoginScreenRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TvLoginScreenRoute';
-
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i34.VideoQualityScreen]
-class VideoQualityScreenRoute extends _i35.PageRouteInfo<void> {
-  const VideoQualityScreenRoute({List<_i35.PageRouteInfo>? children})
+/// [_i32.VideoQualityScreen]
+class VideoQualityScreenRoute extends _i34.PageRouteInfo<void> {
+  const VideoQualityScreenRoute({List<_i34.PageRouteInfo>? children})
       : super(
           VideoQualityScreenRoute.name,
           initialChildren: children,
@@ -1218,5 +1260,44 @@ class VideoQualityScreenRoute extends _i35.PageRouteInfo<void> {
 
   static const String name = 'VideoQualityScreenRoute';
 
-  static const _i35.PageInfo<void> page = _i35.PageInfo<void>(name);
+  static const _i34.PageInfo<void> page = _i34.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i33.WebviewScreen]
+class WebviewScreenRoute extends _i34.PageRouteInfo<WebviewScreenRouteArgs> {
+  WebviewScreenRoute({
+    _i36.Key? key,
+    required String redirectCode,
+    List<_i34.PageRouteInfo>? children,
+  }) : super(
+          WebviewScreenRoute.name,
+          args: WebviewScreenRouteArgs(
+            key: key,
+            redirectCode: redirectCode,
+          ),
+          rawPathParams: {'redirectCode': redirectCode},
+          initialChildren: children,
+        );
+
+  static const String name = 'WebviewScreenRoute';
+
+  static const _i34.PageInfo<WebviewScreenRouteArgs> page =
+      _i34.PageInfo<WebviewScreenRouteArgs>(name);
+}
+
+class WebviewScreenRouteArgs {
+  const WebviewScreenRouteArgs({
+    this.key,
+    required this.redirectCode,
+  });
+
+  final _i36.Key? key;
+
+  final String redirectCode;
+
+  @override
+  String toString() {
+    return 'WebviewScreenRouteArgs{key: $key, redirectCode: $redirectCode}';
+  }
 }

@@ -3,10 +3,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
-    <uses-feature
-        android:name="android.software.leanback"
-        android:required="false" />
+    <queries>
+        <package android:name="connect.bcc.live.main" />
+    </queries>
+
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
@@ -36,9 +38,16 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
-            <!-- Deep linking -->
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tv.brunstad.app.main" />
+            </intent-filter>
+
+            <!-- Disable flutter's built-in deeplinking, because we use a lib (AppLinks) -->
             <meta-data
                 android:name="flutter_deeplinking_enabled"
                 android:value="false" />

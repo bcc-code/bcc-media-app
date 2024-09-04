@@ -6,7 +6,7 @@
 
 - Widget code: flutter_hooks is nice to reduce boilerplate per widget, but it's easy to do mistakes, so I'd stay away from it until you get more experience with how flutter works.
 
-- Routing: We use auto_route because of its strong types, but honestly would try something else as the documentation is lacking and it's changed a lot in v6 so googling things might be even more misleading. Flutter's official package is go_router | Flutter Package (pub.dev).
+- Routing: We use auto_route because of its strong types. It's good, but the documentation is a bit lacking. Flutter's official package is go_router | Flutter Package (pub.dev).
 
 - Native code: If you're going to do any native code, you should quickly consider pigeon | Dart Package (pub.dev). Strongly typed and codegen saves you a lot of time.
 

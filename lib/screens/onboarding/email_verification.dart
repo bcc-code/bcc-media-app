@@ -5,15 +5,14 @@ import 'dart:async';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:brunstadtv_app/components/onboarding/email_verification/email_verification_success_page.dart';
 import 'package:brunstadtv_app/components/onboarding/email_verification/email_verification_prompt_page.dart';
-import 'package:brunstadtv_app/helpers/hooks/use_interval.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../graphql/queries/me.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import '../../l10n/app_localizations.dart';
-import '../../providers/analytics.dart';
 import '../../providers/me_provider.dart';
 
 class EmailVerificationScreen extends HookConsumerWidget {

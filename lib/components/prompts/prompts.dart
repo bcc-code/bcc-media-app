@@ -3,12 +3,11 @@ import 'package:collection/collection.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../helpers/extensions.dart';
-import '../../graphql/queries/prompts.graphql.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import '../../models/survey.dart';
-import '../../providers/prompts.dart';
 import '../../providers/surveys.dart';
-import 'prompt_survey.dart';
+import 'survey_prompt.dart';
 
 class Prompts extends ConsumerStatefulWidget {
   const Prompts({super.key});
@@ -42,7 +41,7 @@ class _PromptsState extends ConsumerState<Prompts> {
             (prompt) {
               final surveyPrompt = prompt.asOrNull<Fragment$Prompt$$SurveyPrompt>();
               if (surveyPrompt != null && completedSurveys != null && !isCompletedSurvey(completedSurveys, surveyPrompt)) {
-                return PromptSurvey(prompt: surveyPrompt, onClose: () => closePrompt(surveyPrompt.id));
+                return SurveyPrompt(prompt: surveyPrompt, onClose: () => closePrompt(surveyPrompt.id));
               }
               return const SizedBox.shrink();
             },

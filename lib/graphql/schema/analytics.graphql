@@ -1,3 +1,0 @@
-type Analytics {
-    anonymousId: String! @goField(forceResolver: true)
-}

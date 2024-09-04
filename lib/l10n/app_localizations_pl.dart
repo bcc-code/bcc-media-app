@@ -44,9 +44,6 @@ class SPl extends S {
   String get loginPageDisplay3 => 'Wyprodukowano przez BCC Media';
 
   @override
-  String get liveTab => 'Na żywo';
-
-  @override
   String get logOutButton => 'Wyloguj się';
 
   @override
@@ -218,9 +215,6 @@ class SPl extends S {
   String get yesCancel => 'Tak, anuluj';
 
   @override
-  String get upNext => 'Następne';
-
-  @override
   String get done => 'Gotowe';
 
   @override
@@ -237,9 +231,6 @@ class SPl extends S {
 
   @override
   String get auto => 'Auto';
-
-  @override
-  String get live => 'Na żywo';
 
   @override
   String get subtitles => 'Napisy';
@@ -475,9 +466,6 @@ class SPl extends S {
   String get showLess => 'Pokaż mniej';
 
   @override
-  String get liveNow => 'Teraz na żywo';
-
-  @override
   String get comingSoon => 'Dostępne wkrótce';
 
   @override
@@ -562,9 +550,6 @@ class SPl extends S {
 
   @override
   String get errorTryAgain => 'Coś się nie udało, proszę spróbuj ponownie później.';
-
-  @override
-  String get liveHeader => 'Na żywo';
 
   @override
   String get programsSection => 'Programy';
@@ -676,6 +661,9 @@ class SPl extends S {
 
   @override
   String get dontHaveAccess => 'Nie masz dostępu do tej zawartości.';
+
+  @override
+  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
 
   @override
   String get mustBeLoggedIn => 'Musisz być zalogowany, by obejrzeć tę zawartość';
@@ -826,150 +814,223 @@ class SPl extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Audio not available in $lang';
+    return 'Dźwięk nie jest dostępny w tym języku ($lang)';
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+  String get notEnoughAvailableSpace => 'Za mało dostępnego miejsca na urządzeniu';
 
   @override
-  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+  String get considerDeletingOtherVideos => 'Rozważ usunięcie innych filmów pobranych w aplikacji.';
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'The video file size is $size.';
+    return 'Rozmiar pliku wideo to $size.';
   }
 
   @override
-  String get gotIt => 'Got it';
+  String get gotIt => 'Rozumiem';
 
   @override
-  String get saveYourFavorites => 'Save your favorite videos';
+  String get saveYourFavorites => 'Zapisz swoje ulubione filmy';
 
   @override
-  String get saveYourFavoritesDescription => 'Tap on the heart icon on a video to save it in your profile.';
+  String get saveYourFavoritesDescription => 'Stuknij ikonę serca na filmie, aby zapisać go w swoim profilu.';
 
   @override
-  String get yourFavorites => 'Your favorites';
+  String get yourFavorites => 'Twoje ulubione';
 
   @override
-  String get downloaded => 'Downloaded';
+  String get downloaded => 'Pobrane';
 
   @override
-  String get saveVideosForOfflineViewing => 'Save videos for offline viewing';
+  String get saveVideosForOfflineViewing => 'Zapisuj filmy do oglądania w trybie offline';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
+  String get tapOnTheDownloadIcon => 'Stuknij ikonę pobierania na filmie, aby go pobrać i odtwarzać w trybie offline.';
 
   @override
-  String get removeOfflineVideo => 'Remove offline video?';
+  String get removeOfflineVideo => 'Usunąć wideo offline?';
 
   @override
-  String get removeOfflineVideoDescription => 'By removing this video it will no longer be available without a network connection.';
+  String get removeOfflineVideoDescription => 'Po usunięciu tego filmu nie będzie on już dostępny bez połączenia z siecią.';
 
   @override
-  String get removeFromDeviceButton => 'Remove from device';
+  String get removeFromDeviceButton => 'Usuń z urządzenia';
 
   @override
-  String get keepVideoButton => 'Keep video';
+  String get keepVideoButton => 'Zachowaj wideo';
 
   @override
-  String get noInternetConnection => 'No internet connection';
+  String get noInternetConnection => 'Brak połączenia z Internetem';
 
   @override
-  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+  String get noInternetConnectionDescription => 'Połącz się z Internetem, aby uzyskać dostęp do wszystkich filmów.';
 
   @override
-  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+  String get noInternetButDontWorry => 'Nie masz połączenia internetowego, ale nie martw się.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
+  String get hereAreAllTheVideosYouDownloaded => 'Oto wszystkie filmy, które pobrałeś na swoje urządzenie.';
 
   @override
-  String get connectToExplore => 'Connect to the internet to explore all videos.';
+  String get connectToExplore => 'Połącz się z internetem, aby przeglądać wszystkie filmy.';
 
   @override
   String get language => 'Język';
 
   @override
   String estimatedFileSize(String size) {
-    return 'Estimated file size: $size';
+    return 'Szacowany rozmiar pliku: $size';
   }
 
   @override
-  String get downloadVideo => 'Download video';
+  String get downloadVideo => 'Pobierz wideo';
 
   @override
-  String get noSubtitles => 'No subtitles';
+  String get noSubtitles => 'Brak napisów';
 
   @override
-  String get subtitlesIncluded => 'Subtitles included';
+  String get subtitlesIncluded => 'Dołączone napisy';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'All subtitles will be available offline';
+  String get allSubtitlesWillBeAvailableOffline => 'Wszystkie napisy będą dostępne w trybie offline';
 
   @override
-  String get downloading => 'Downloading';
+  String get downloading => 'Pobieranie';
 
   @override
-  String get failed => 'Failed';
+  String get failed => 'Niepowodzenie';
 
   @override
-  String get finished => 'Finished';
+  String get finished => 'Zakończono';
 
   @override
-  String get paused => 'Paused';
+  String get paused => 'Wstrzymano';
 
   @override
-  String get queued => 'Queued';
+  String get queued => 'W kolejce';
 
   @override
-  String get removing => 'Removing';
+  String get removing => 'Usuwanie';
 
   @override
   String expiresIn(String time) {
-    return 'Expires in $time';
+    return 'Wygasa za $time';
   }
 
   @override
-  String get availableOffline => 'Available offline';
+  String get availableOffline => 'Dostępne offline';
 
   @override
-  String get technicalDetails => 'Technical details';
+  String get technicalDetails => 'Szczegóły techniczne';
 
   @override
-  String get contentLanguage => 'Content language';
+  String get contentLanguage => 'Język zawartości';
 
   @override
   String get contentLanguageShort => 'Treść';
 
   @override
-  String get appLanguageShort => 'App';
+  String get appLanguageShort => 'Aplikacja';
 
   @override
-  String get playRandom => 'Play random';
+  String get playRandom => 'Odtwarzanie losowe';
 
   @override
-  String get addLanguage => 'Add language';
+  String get addLanguage => 'Dodaj język';
 
   @override
-  String get preferredLanguages => 'Preferred languages';
+  String get preferredLanguages => 'Preferowane języki';
 
   @override
-  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
+  String get contentLanguageExplanation => 'Zmień kolejność języków, aby dopasować język dźwięku i napisów do swoich preferencji.';
 
   @override
-  String get otherLanguages => 'Other languages';
+  String get otherLanguages => 'Inne języki';
 
   @override
-  String get select => 'Select';
+  String get select => 'Wybierz';
 
   @override
-  String get supportBibleKids => 'Support Bible Kids';
+  String get supportBibleKids => 'Wspieraj Bible Kids';
 
   @override
-  String get donateViaPaypal => 'Donate via PayPal';
+  String get donateViaPaypal => 'Przekaż darowiznę przez PayPal';
 
   @override
-  String get shortsTab => 'Shorts';
+  String get shortsTab => 'Krótkie filmiki';
+
+  @override
+  String get autoGenerated => 'Generowane automatycznie';
+
+  @override
+  String get shortsTranscriptionDisclaimer => 'The transcriptions are auto-generated and might contain errors.';
+
+  @override
+  String get beta => 'Beta';
+
+  @override
+  String get betaExplanation => 'Ta funkcja jest w wersji beta i obecnie nie jest dostępna dla wszystkich użytkowników. Prosimy o zgłaszanie wszelkich problemów lub opinii za pomocą przycisku \"Kontakt\" w ustawieniach.';
+
+  @override
+  String get likedShorts => 'Polubione krótkie filmiki';
+
+  @override
+  String get saveYourFavoriteShorts => 'Zapisz swoje ulubione krótkie filmiki';
+
+  @override
+  String get featureNotAvailableYet => 'Ta funkcja nie jest jeszcze dostępna na twoim urządzeniu. Spróbuj ponownie później.';
+
+  @override
+  String get newFeature => 'Nowa funkcja';
+
+  @override
+  String get shortsFeatureDescription => 'Odkrywaj krótkie i mocne fragmenty i przejdź od razu do pełnego odcinka.';
+
+  @override
+  String get likedAndSaved => 'Polubione i zapisane';
+
+  @override
+  String get shortsLikedAndSavedDescription => 'Wszystkie polubione filmy można znaleźć w swoim profilu.';
+
+  @override
+  String get excerptFrom => 'Excerpt from';
+
+  @override
+  String get downloadedVideosGuideDescription => 'Pobrane filmy można znaleźć w \"Profilu\".';
+
+  @override
+  String get openStore => 'Otwórz';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'Tego filmu nie można pobrać.';
+
+  @override
+  String get videoLanguage => 'Język wideo';
+
+  @override
+  String get videoTextLanguage => 'Język tekstu na wideo';
+
+  @override
+  String get original => 'Oryginalny';
+
+  @override
+  String get openSettingsToChangeVideoLang => 'Otwórz ustawienia, aby zmienić język tekstu wideo';
+
+  @override
+  String get somethingWentWrong => 'Coś poszło nie tak';
+
+  @override
+  String get all => 'Wszyscy';
+
+  @override
+  String countItems(int x) {
+    return '$x items';
+  }
+
+  @override
+  String skipTo(String chapter) {
+    return 'Skip to $chapter';
+  }
 }

@@ -1,8 +1,6 @@
-import 'dart:math';
-
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 
-import '../../helpers/time.dart';
 import '../../helpers/episode_state.dart';
 import '../../models/episode_thumbnail_data.dart';
 import '../badges/download_expires_badge.dart';
@@ -68,8 +66,7 @@ class EpisodeThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 4),
+    return SizedBox(
       width: imageWidth,
       height: imageHeight,
       child: imageHeight == null
@@ -105,7 +102,7 @@ class _EpisodeThumbnailStack extends StatelessWidget {
     required this.expiresAt,
   });
 
-  bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
+  bool get watched => episode.progress != null && episode.duration != null && episode.progress! > episode.duration! * 0.9;
 
   @override
   Widget build(BuildContext context) {
@@ -135,12 +132,12 @@ class _EpisodeThumbnailStack extends StatelessWidget {
               ),
             ),
           ),
-        if (episode.progress != null && !watched)
+        if (episode.duration != null && episode.progress != null && !watched)
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
               margin: const EdgeInsets.only(left: 4, bottom: 4, right: 4),
-              child: WatchProgressIndicator(totalDuration: episode.duration, watchedDuration: episode.progress!),
+              child: WatchProgressIndicator(totalDuration: episode.duration!, watchedDuration: episode.progress!),
             ),
           )
         else if (!episode.locked)
@@ -154,7 +151,7 @@ class _EpisodeThumbnailStack extends StatelessWidget {
                   if (watched) const WatchedBadge(),
                   if (expiresAt != null) DownloadExpiresBadge(expiresAt: expiresAt!),
                   const Spacer(),
-                  EpisodeDuration(duration: getFormattedDuration(episode.duration)),
+                  if (episode.duration != null) EpisodeDuration(duration: getFormattedDuration(episode.duration!)),
                 ],
               ),
             ),

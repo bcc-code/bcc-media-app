@@ -1,12 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
+import 'package:universal_io/io.dart';
 
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
@@ -117,7 +118,8 @@ class StudyMoreButton extends HookWidget {
                     padding: const EdgeInsets.only(left: 16),
                     child: Stack(
                       children: [
-                        if (!lesson.locked) const Positioned.fill(child: PulseAnimation()),
+                        if (!lesson.locked && !Platform.isAndroid) // android has some perf issues because of skia
+                          const Positioned.fill(child: PulseAnimation()),
                         Container(
                           decoration: BoxDecoration(
                             color: const Color(0xFF3D4E63),

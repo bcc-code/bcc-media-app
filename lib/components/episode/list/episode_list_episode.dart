@@ -1,10 +1,10 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../graphql/queries/calendar_episode_entries.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import '../../../models/episode_thumbnail_data.dart';
-import '../../../theme/design_system/design_system.dart';
-import '../../../helpers/misc.dart';
+import 'package:bccm_core/design_system.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/todays_calendar_entries.dart';
 import '../../thumbnails/episode_thumbnail.dart';
@@ -44,7 +44,7 @@ class EpisodeListEpisode extends ConsumerWidget {
       margin: const EdgeInsets.only(bottom: 4),
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             margin: const EdgeInsets.only(right: 16),
@@ -64,16 +64,9 @@ class EpisodeListEpisode extends ConsumerWidget {
           ),
           Expanded(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (showSecondaryTitle && showTitle != null)
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 4),
-                    child: Text(
-                      showTitle!,
-                      style: design.textStyles.caption2.copyWith(color: design.colors.tint1),
-                    ),
-                  ),
                 Flexible(
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 6),
@@ -85,6 +78,16 @@ class EpisodeListEpisode extends ConsumerWidget {
                     ),
                   ),
                 ),
+                if (showSecondaryTitle && showTitle != null)
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 4),
+                    child: Text(
+                      showTitle!,
+                      style: design.textStyles.caption2.copyWith(color: design.colors.tint1),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -92,7 +95,7 @@ class EpisodeListEpisode extends ConsumerWidget {
                       Container(
                         margin: const EdgeInsets.only(right: 6),
                         height: 16,
-                        padding: const EdgeInsets.only(right: 4, bottom: 2, left: 4),
+                        padding: const EdgeInsets.only(right: 4, left: 4),
                         decoration: BoxDecoration(
                           color: design.colors.background2,
                           border: Border.all(

@@ -1,23 +1,18 @@
 import 'dart:async';
+import 'package:bccm_core/design_system.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/helpers/languages.dart';
-import 'package:brunstadtv_app/helpers/router/special_routes.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
-import 'package:brunstadtv_app/providers/notification_service.dart';
-import 'package:brunstadtv_app/providers/package_info.dart';
-import 'package:brunstadtv_app/providers/shared_preferences.dart';
-import 'package:brunstadtv_app/providers/androidtv_provider.dart';
-import 'package:brunstadtv_app/providers/unleash.dart';
-import 'package:brunstadtv_app/providers/router_provider.dart';
-import 'package:brunstadtv_app/providers/deeplink_service.dart';
-import 'package:brunstadtv_app/providers/app_config.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/env/env.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
+import 'package:brunstadtv_app/providers/auth.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:brunstadtv_app/helpers/firebase.dart';
-import 'package:brunstadtv_app/router/analytics_observer.dart';
-import 'package:device_info_plus/device_info_plus.dart';
-import 'package:device_preview/device_preview.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:bccm_core/firebase.dart';
+import 'package:brunstadtv_app/providers/unleash.dart';
+import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,30 +20,24 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:kids/app_root.dart';
+import 'package:kids/design_system.dart';
 import 'package:kids/helpers/analytics_meta.dart';
 import 'package:kids/providers/special_routes.dart';
 import 'package:kids/router/router.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_io/io.dart';
-import 'package:brunstadtv_app/providers/global_navigator_key.dart';
 
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:kids/design_system.dart';
-import 'package:brunstadtv_app/env/kids_prod/firebase_options.dart' as kids_prod_firebase;
-
-const useDevicePreview = false;
-bool _isAndroidTv = false;
+import 'package:sentry_flutter/sentry_flutter.dart';
+import './firebase_options.dart';
+import 'package:universal_io/io.dart';
 
 Future<void> main() async {
   FlavorConfig.register(
     FlavorConfig(
       flavor: Flavor.kids,
-      firebaseOptions: kids_prod_firebase.DefaultFirebaseOptions.currentPlatform,
+      firebaseOptions: DefaultFirebaseOptions.currentPlatform,
       enableNotifications: false,
       applicationCode: 'kids',
       strictAnonymousAnalytics: true,
@@ -60,6 +49,20 @@ Future<void> main() async {
         contactEmail: 'hello@biblekids.io',
         contactWebsite: Uri.parse('https://biblekids.io'),
       ),
+      appTheme: (context) => AppThemeData(
+        studyGradient: BccmGradients.greenYellow,
+        genericBackgroundGradient: BccmGradients.purpleTransparentTopBottom,
+        achievementBackgroundGradient: BccmGradients.purpleTransparent,
+        appBarTransparent: false,
+        tabTheme: AppTabThemeData(
+          activeColor: DesignSystem.of(context).colors.tint3,
+          iconActiveGradient: LinearGradient(
+            colors: [DesignSystem.of(context).colors.tint3, DesignSystem.of(context).colors.tint3],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+      ),
     ),
   );
   return $main();
@@ -70,56 +73,56 @@ Future<void> main() async {
 Future<void> $main({
   List<Override>? providerOverrides,
 }) async {
-  usePathUrlStrategy();
-  WidgetsFlutterBinding.ensureInitialized();
-  Paint.enableDithering = true;
-  if (Platform.isAndroid) {
-    AndroidDeviceInfo androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
-    _isAndroidTv = androidDeviceInfo.systemFeatures.contains('android.software.leanback');
-  }
+  await SentryFlutter.init((options) {
+    options.dsn = Env.sentryDsnKids;
+    options.tracesSampleRate = 0.5;
+    options.profilesSampleRate = 0.5;
+  }, appRunner: () async {
+    usePathUrlStrategy();
+    WidgetsFlutterBinding.ensureInitialized();
+    await BccmCore().setup();
 
-  await setDefaults();
+    await setDefaults();
 
-  //FocusDebugger.instance.activate();
+    if (FlavorConfig.current.firebaseOptions != null) {
+      await initFirebase(FlavorConfig.current.firebaseOptions!);
+    }
 
-  if (FlavorConfig.current.firebaseOptions != null) {
-    await initFirebase(FlavorConfig.current.firebaseOptions!);
-  }
+    // Initialize bccm_player
+    await BccmPlayerInterface.instance.setup();
+    if (Platform.isAndroid) {
+      BccmPlayerController.primary.switchToVideoTexture();
+    }
 
-  // Initialize bccm_player
-  await BccmPlayerInterface.instance.setup();
+    final appRouter = AppRouter(navigatorKey: globalNavigatorKey);
+    final coreOverrides = await BccmCore().setupCoreOverrides(
+      analyticsMetaEnricherProviderOverride: analyticsMetaEnricherProvider.overrideWith((ref) => KidsAnalyticsMetaEnricher()),
+      specialRoutesHandlerProviderOverride: specialRoutesHandlerProvider.overrideWith((ref) => KidsSpecialRoutesHandler(ref)),
+      rootRouterProviderOverride: rootRouterProvider.overrideWithValue(appRouter),
+      commonSettingsProviderOverride: commonSettingsProviderOverride,
+      bccmGraphQLProviderOverride: bccmGraphQLProviderOverride,
+      authStateProviderOverride: authStateProviderOverride,
+      analyticsProviderOverride: analyticsProviderOverride,
+      featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
+      unleashContextProviderOverride: unleashContextProviderOverride,
+      notificationServiceProviderOverride: null,
+    );
+    final providerContainer = await initProviderContainer([
+      ...coreOverrides,
+      if (providerOverrides != null) ...providerOverrides,
+    ]);
 
-  final appRouter = AppRouter(navigatorKey: navigatorKey);
-  final sharedPrefs = await SharedPreferences.getInstance();
-  final packageInfo = await PackageInfo.fromPlatform();
-  final providerContainer = await initProviderContainer([
-    analyticsMetaEnricherProvider.overrideWith((ref) => KidsAnalyticsMetaEnricher()),
-    rootRouterProvider.overrideWithValue(appRouter),
-    sharedPreferencesProvider.overrideWith((ref) => sharedPrefs),
-    packageInfoProvider.overrideWith((ref) => packageInfo),
-    isAndroidTvProvider.overrideWithValue(_isAndroidTv),
-    specialRoutesHandlerProvider.overrideWith((ref) => KidsSpecialRoutesHandler(ref)),
-    if (providerOverrides != null) ...providerOverrides,
-  ]);
+    final app = UncontrolledProviderScope(
+      container: providerContainer,
+      child: AppRoot(appRouter: appRouter, navigatorKey: globalNavigatorKey),
+    );
 
-  final app = UncontrolledProviderScope(
-    container: providerContainer,
-    child: AppRoot(appRouter: appRouter, navigatorKey: navigatorKey),
-  );
-  Widget maybeWrappedApp;
-  if (kDebugMode && !kIsWeb) {
-    final interactiveViewer = InteractiveViewer(maxScale: 10, child: app);
-    maybeWrappedApp = useDevicePreview ? DevicePreview(builder: (context) => interactiveViewer) : interactiveViewer;
-  } else {
-    maybeWrappedApp = app;
-  }
+    if (kDebugMode) {
+      Animate.restartOnHotReload = true;
+    }
 
-  if (kDebugMode) {
-    Animate.restartOnHotReload = true;
-    //debugRepaintRainbowEnabled = true;
-  }
-
-  runApp(maybeWrappedApp);
+    runApp(kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app);
+  });
 }
 
 Future setDefaults() async {
@@ -137,34 +140,22 @@ Future setDefaults() async {
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
-  if (!_isAndroidTv) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-    ]);
-  }
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]);
 
   // How much space all bitmaps collectively can take up in memory.
   // The default is 100MiB, as of flutter 3.7. This lowers it to 50MiB.
   // I don't think this was very important, so there is room for increasing it if necessary.
   PaintingBinding.instance.imageCache.maximumSizeBytes = 1024 * 1024 * 50;
 
-  // Locale normally comes from the MaterialApp.locale field.
+// Locale normally comes from the MaterialApp.locale field.
   // This sets the default locale when Intl is used "outside" a MaterialApp-descendant BuildContext.
-  Intl.defaultLocale = await getDefaultLocale();
-}
-
-Future<String> getDefaultLocale() async {
-  final String systemLocale = await findSystemLocale();
-  final verifiedLocale = Intl.verifiedLocale(systemLocale, NumberFormat.localeExists, onFailure: (String _) => FlavorConfig.current.defaultLanguage);
-  if (verifiedLocale == null) {
-    return FlavorConfig.current.defaultLanguage;
-  }
-  final shortLocale = Intl.shortLocale(verifiedLocale);
-  if (!S.supportedLocales.map((l) => l.languageCode).contains(shortLocale)) {
-    return FlavorConfig.current.defaultLanguage;
-  }
-  return normalizeLanguage(shortLocale);
+  Intl.defaultLocale = await getDefaultLocale(
+    fallbackLanguage: FlavorConfig.current.defaultLanguage,
+    supportedLocales: S.supportedLocales.map((l) => l.languageCode).toList(),
+  );
 }
 
 Future<ProviderContainer> initProviderContainer(List<Override> overrides) async {
@@ -176,14 +167,5 @@ Future<ProviderContainer> initProviderContainer(List<Override> overrides) async 
   providerContainer.read(notificationServiceProvider);
   providerContainer.read(authFeatureFlagListener);
   await providerContainer.read(playbackServiceProvider).init();
-  try {
-    await providerContainer.read(unleashProvider.future).timeout(const Duration(milliseconds: 300));
-  } catch (e, st) {
-    if (e is TimeoutException) {
-      debugPrint('Timeout: Unleash not ready, continuing boot.');
-    } else {
-      FirebaseCrashlytics.instance.recordError(e, st);
-    }
-  }
   return providerContainer;
 }

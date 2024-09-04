@@ -1,8 +1,8 @@
 // ignore_for_file: constant_identifier_names
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 enum Flavor {
   bccmedia,
@@ -47,8 +47,6 @@ class BccmFlavorImages extends Iterable<ImageProvider> {
   final ImageProvider onboarding;
   final StateImageProvider home;
   final StateImageProvider search;
-  final StateImageProvider live;
-  final StateImageProvider calendar;
   final StateImageProvider shorts;
   final StateImageProvider myList;
   final StateImageProvider games;
@@ -60,8 +58,6 @@ class BccmFlavorImages extends Iterable<ImageProvider> {
     required this.onboarding,
     required this.home,
     required this.search,
-    required this.live,
-    required this.calendar,
     required this.shorts,
     required this.myList,
     required this.games,
@@ -74,8 +70,6 @@ class BccmFlavorImages extends Iterable<ImageProvider> {
         onboarding,
         ...home,
         ...search,
-        ...live,
-        ...calendar,
         ...shorts,
         ...myList,
         ...games,
@@ -91,6 +85,7 @@ class FlavorConfig {
     required this.strings,
     required this.enableNotifications,
     required this.designSystem,
+    required this.appTheme,
     this.bccmImages,
     this.strictAnonymousAnalytics,
     this.defaultLanguage = 'en',
@@ -101,6 +96,7 @@ class FlavorConfig {
   final FirebaseOptions? firebaseOptions;
   final BccmFlavorImages? bccmImages;
   final DesignSystemData Function() designSystem;
+  final AppThemeData Function(BuildContext context) appTheme;
   final String applicationCode;
   final FlavorStrings Function(BuildContext context) strings;
   final bool enableNotifications;

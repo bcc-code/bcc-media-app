@@ -1,0 +1,7 @@
+root = true
+
+[*.dart]
+max_line_length = 150
+
+[*.kt]
+max_line_length = 150

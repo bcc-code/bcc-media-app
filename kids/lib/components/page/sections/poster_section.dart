@@ -1,15 +1,9 @@
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/graphql/queries/kids/episodes.graphql.dart';
-import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/analytics.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:brunstadtv_app/models/analytics/sections.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/inherited_data.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -40,16 +34,16 @@ class PosterSection extends ConsumerWidget {
               return SizedBox(
                 child: Padding(
                   padding: kv.key == data.items.items.length - 1 ? EdgeInsets.zero : EdgeInsets.only(right: sectionSpacing),
-                  child: InheritedData<SectionItemAnalytics>(
-                    inheritedData: SectionItemAnalytics(position: kv.key, id: item.id, type: item.item.$__typename, name: item.title),
-                    child: (context) {
+                  child: SectionItemAnalytics(
+                    data: SectionItemAnalyticsData(position: kv.key, id: item.id, type: item.item.$__typename, name: item.title),
+                    builder: (context) {
                       final playlistItem = item.item.asOrNull<Fragment$Section$$PosterSection$items$items$item$$Playlist>();
                       if (playlistItem != null) {
                         return PlaylistPosterLarge.fromItem(
                           item: playlistItem,
                           onPressed: () => ref.read(analyticsProvider).sectionItemClicked(context),
                           onPlayPressed: () async {
-                            final episodeIds = await ref.read(gqlClientProvider).query$GetManyEpisodeIdsForPlaylist(
+                            final episodeIds = await ref.read(bccmGraphQLProvider).query$GetManyEpisodeIdsForPlaylist(
                                   Options$Query$GetManyEpisodeIdsForPlaylist(
                                     variables: Variables$Query$GetManyEpisodeIdsForPlaylist(id: item.id),
                                   ),
@@ -75,7 +69,7 @@ class PosterSection extends ConsumerWidget {
                           hasNewEpisodes: publishDate != null ? DateTime.now().difference(publishDate).inDays <= 7 : false,
                           onPressed: () => ref.read(analyticsProvider).sectionItemClicked(context),
                           onPlayPressed: () async {
-                            final result = await ref.read(gqlClientProvider).query$getDefaultEpisodeForShow(
+                            final result = await ref.read(bccmGraphQLProvider).query$getDefaultEpisodeForShow(
                                   Options$Query$getDefaultEpisodeForShow(
                                     variables: Variables$Query$getDefaultEpisodeForShow(showId: item.id),
                                   ),

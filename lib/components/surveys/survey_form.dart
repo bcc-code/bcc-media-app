@@ -1,9 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import '../../../graphql/queries/prompts.graphql.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'survey_question_rating.dart';
 import 'survey_question_text.dart';
 
@@ -21,16 +22,18 @@ class SurveyAnswerText implements SurveyAnswer {
   SurveyAnswerText({required this.id, required this.answer});
 }
 
-class SurveyForm extends StatefulWidget {
-  final List<Fragment$SurveyQuestion> surveyQuestions;
+class SurveyForm extends StatefulHookWidget {
+  final Fragment$Survey survey;
   final Function(List<SurveyAnswer>) onSubmit;
   final VoidCallback onCancel;
+  final ValueNotifier<bool> hasStarted;
 
   const SurveyForm({
     super.key,
-    required this.surveyQuestions,
+    required this.survey,
     required this.onSubmit,
     required this.onCancel,
+    required this.hasStarted,
   });
 
   @override
@@ -40,10 +43,11 @@ class SurveyForm extends StatefulWidget {
 class _SurveyFormState extends State<SurveyForm> {
   final Map<String, SurveyAnswer> surveyAnswers = {};
 
-  bool get ratingFirst => widget.surveyQuestions.firstOrNull is Fragment$SurveyQuestion$$SurveyRatingQuestion;
-  bool get showOnlyFirstQuestion => ratingFirst && !surveyAnswers.containsKey(widget.surveyQuestions.first.id);
+  bool get ratingFirst => widget.survey.questions.items.firstOrNull is Fragment$SurveyQuestion$$SurveyRatingQuestion;
+  bool get showOnlyFirstQuestion => ratingFirst && !surveyAnswers.containsKey(widget.survey.questions.items.first.id);
 
   void updateAnswer(String id, SurveyAnswer? answer) {
+    widget.hasStarted.value = true;
     setState(() {
       if (answer == null) {
         surveyAnswers.remove(id);
@@ -60,68 +64,94 @@ class _SurveyFormState extends State<SurveyForm> {
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Flexible(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.surveyQuestions.mapIndexed(
-                (index, question) {
-                  if (index > 0 && showOnlyFirstQuestion) {
-                    return const SizedBox.shrink();
-                  }
-                  if (question is Fragment$SurveyQuestion$$SurveyRatingQuestion) {
-                    return SurveyQuestionRating(
-                      question: question,
-                      onRatingChanged: (rating) {
-                        updateAnswer(question.id, SurveyAnswerRating(id: question.id, rating: rating));
-                      },
-                    );
-                  } else if (question is Fragment$SurveyQuestion$$SurveyTextQuestion) {
-                    return SurveyQuestionText(
-                      question: question,
-                      onAnswerChanged: (answer) {
-                        updateAnswer(
-                          question.id,
-                          answer.trim().isEmpty ? null : SurveyAnswerText(id: question.id, answer: answer),
+
+    final scrollController = useScrollController();
+    useValueChanged(MediaQuery.viewInsetsOf(context).bottom, (val, void _) {
+      // when the keyboard appears we want to scroll to the bottom of the form
+      if (scrollController.hasClients) {
+        scrollController.jumpTo(
+          scrollController.position.maxScrollExtent,
+        );
+      }
+    });
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Flexible(
+            child: SingleChildScrollView(
+              controller: scrollController,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (widget.survey.description != null)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: Text(
+                        widget.survey.description!,
+                        style: design.textStyles.body3,
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ...widget.survey.questions.items.mapIndexed(
+                    (index, question) {
+                      if (index > 0 && showOnlyFirstQuestion) {
+                        return const SizedBox.shrink();
+                      }
+                      if (question is Fragment$SurveyQuestion$$SurveyRatingQuestion) {
+                        return SurveyQuestionRating(
+                          question: question,
+                          onRatingChanged: (rating) {
+                            updateAnswer(question.id, SurveyAnswerRating(id: question.id, rating: rating));
+                          },
                         );
-                      },
-                      autoFocus: index == 0 || (index == 1 && ratingFirst),
-                    );
-                  }
-                  return const SizedBox.shrink();
-                },
-              ).toList(),
+                      } else if (question is Fragment$SurveyQuestion$$SurveyTextQuestion) {
+                        return SurveyQuestionText(
+                          question: question,
+                          onAnswerChanged: (answer) {
+                            updateAnswer(
+                              question.id,
+                              answer.trim().isEmpty ? null : SurveyAnswerText(id: question.id, answer: answer),
+                            );
+                          },
+                          autoFocus: false,
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-        Container(
-          height: 52,
-          margin: const EdgeInsets.only(top: 16),
-          child: Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(right: 16),
-                child: design.buttons.large(
-                  variant: ButtonVariant.secondary,
-                  labelText: S.of(context).cancel,
-                  onPressed: widget.onCancel,
+          Container(
+            height: 52,
+            margin: const EdgeInsets.only(top: 16),
+            child: Row(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(right: 16),
+                  child: design.buttons.large(
+                    variant: ButtonVariant.secondary,
+                    labelText: S.of(context).cancel,
+                    onPressed: widget.onCancel,
+                  ),
                 ),
-              ),
-              Expanded(
-                child: design.buttons.large(
-                  labelText: S.of(context).sendFeedback,
-                  onPressed: onSendFeedback,
-                  disabled: surveyAnswers.isEmpty,
+                Expanded(
+                  child: design.buttons.large(
+                    labelText: S.of(context).sendFeedback,
+                    onPressed: onSendFeedback,
+                    disabled: surveyAnswers.isEmpty,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

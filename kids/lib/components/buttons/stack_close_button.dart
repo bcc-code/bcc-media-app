@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kids/helpers/svg_icons.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class StackCloseButton extends StatelessWidget {
   const StackCloseButton({

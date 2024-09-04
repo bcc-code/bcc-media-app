@@ -1,13 +1,13 @@
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 
 class EmptyInfo extends StatelessWidget {
   const EmptyInfo({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title,
     required this.details,
-  }) : super(key: key);
+  });
 
   final Widget icon;
   final String title;

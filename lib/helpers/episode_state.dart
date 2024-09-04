@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../components/badges/feature_badge.dart';
 import '../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 bool isUnavailable(String? publishDate) {
   if (publishDate == null) {
@@ -39,7 +39,10 @@ bool isLiveNow(String startTime, String endTime) {
 }
 
 /// True if publishDate > (now - 7 days)
-bool isNewEpisode(String? publishDate) {
+bool isNewEpisode(String? publishDate, bool locked) {
+  if (locked) {
+    return false;
+  }
   if (publishDate == null) {
     return false;
   }
@@ -57,17 +60,12 @@ Widget? getFeatureBadge({
   bool watched = false,
   bool isLive = false,
 }) {
-  if (isLive && locked) {
-    return FeatureBadge(
-      label: S.of(context).liveNow,
-      color: DesignSystem.of(context).colors.tint2,
-    );
-  } else if (isComingSoon(publishDate: publishDate, locked: locked)) {
+  if (isComingSoon(publishDate: publishDate, locked: locked)) {
     return FeatureBadge(
       label: S.of(context).comingSoon,
       color: DesignSystem.of(context).colors.background2,
     );
-  } else if (isNewEpisode(publishDate) && !watched) {
+  } else if (isNewEpisode(publishDate, locked) && !watched) {
     return FeatureBadge(
       label: S.of(context).newEpisode,
       color: DesignSystem.of(context).colors.tint2,

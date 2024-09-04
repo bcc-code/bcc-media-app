@@ -1,11 +1,11 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../helpers/scroll_behaviors.dart';
 import '../../helpers/svg_icons.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'dart:math' as math;
 
 class HorizontalSlider extends HookWidget {
@@ -78,14 +78,17 @@ class HorizontalSlider extends HookWidget {
               child: ListView.builder(
                 controller: actualController,
                 padding: padding,
-                cacheExtent: MediaQuery.of(context).size.width * 2,
+                cacheExtent: 0,
                 addAutomaticKeepAlives: false,
                 clipBehavior: clipBehaviour,
                 physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
                 scrollDirection: Axis.horizontal,
                 itemCount: itemCount,
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(margin: EdgeInsets.only(right: index == itemCount - 1 ? 0 : gap), child: itemBuilder(context, index));
+                  return ConstrainedBox(
+                    constraints: BoxConstraints(minHeight: 0, maxHeight: height),
+                    child: Container(margin: EdgeInsets.only(right: index == itemCount - 1 ? 0 : gap), child: itemBuilder(context, index)),
+                  );
                 },
               ),
             ),
@@ -153,7 +156,7 @@ class SliderNavButton extends HookWidget {
   Widget build(BuildContext context) {
     final hovering = useState(false);
     return FocusableActionDetector(
-      mouseCursor: MaterialStateMouseCursor.clickable,
+      mouseCursor: WidgetStateMouseCursor.clickable,
       onShowHoverHighlight: (value) => hovering.value = value,
       child: AnimatedOpacity(
         duration: const Duration(milliseconds: 100),

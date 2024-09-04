@@ -1,9 +1,9 @@
 import 'dart:ui';
 
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/controls.dart';
-import 'package:brunstadtv_app/helpers/time.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -90,7 +90,8 @@ class PlayerControls extends HookWidget {
                         : design.buttons.small(
                             variant: ButtonVariant.secondary,
                             onPressed: () {
-                              if (viewController.playerController.value.currentMediaItem != null) {
+                              if (viewController.playerController.value.currentMediaItem != null &&
+                                  viewController.playerController.value.error == null) {
                                 viewController.playerController.play();
                               } else {
                                 onPlayRequestedWithoutVideo();
@@ -195,7 +196,7 @@ class Timeline extends HookWidget {
     final timeline = useTimeline(playerController);
 
     void updateProgress(Offset localPosition) {
-      final RenderBox box = context.findRenderObject() as RenderBox;
+      final RenderBox box = context.findRenderObject().as<RenderBox>();
       final double width = box.size.width;
       final double position = localPosition.dx;
 
@@ -234,7 +235,7 @@ class Timeline extends HookWidget {
                 child: Stack(
                   children: [
                     BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 40, sigmaY: 40, tileMode: TileMode.mirror),
+                      filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20, tileMode: TileMode.mirror),
                       child: Container(
                         height: 16.0,
                         decoration: BoxDecoration(
@@ -253,7 +254,7 @@ class Timeline extends HookWidget {
                             Container(
                               height: 16.0,
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF1B826),
+                                color: design.colors.tint1Dark,
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                             ),

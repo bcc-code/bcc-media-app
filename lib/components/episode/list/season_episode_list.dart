@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/components/study/study_progress.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:collection/collection.dart';
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -8,11 +8,10 @@ import 'package:intl/intl.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../../env/env.dart';
-import '../../../helpers/time.dart';
 import '../../../helpers/episode_state.dart';
 import '../../../models/breakpoints.dart';
-import '../../../theme/design_system/design_system.dart';
-import '../../../helpers/misc.dart';
+import 'package:bccm_core/design_system.dart';
+import 'package:bccm_core/bccm_core.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../thumbnails/misc/bordered_image_container.dart';
 import '../../thumbnails/misc/episode_duration.dart';
@@ -23,9 +22,15 @@ class SeasonEpisodeList extends StatelessWidget {
   final String? title;
   final List<SeasonEpisodeListEpisodeData> items;
   final String? selectedId;
-  final void Function(String id) onEpisodeTap;
+  final void Function(int index, String id) onEpisodeTap;
 
-  const SeasonEpisodeList({super.key, this.title, this.selectedId, required this.items, required this.onEpisodeTap});
+  const SeasonEpisodeList({
+    super.key,
+    this.title,
+    this.selectedId,
+    required this.items,
+    required this.onEpisodeTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +46,13 @@ class SeasonEpisodeList extends StatelessWidget {
               style: DesignSystem.of(context).textStyles.title2,
             ),
           ),
-        ...items.map(
-          (ep) => IgnorePointer(
+        ...items.mapIndexed(
+          (index, ep) => IgnorePointer(
             ignoring: ep.episode.locked,
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () {
-                onEpisodeTap(ep.episode.id);
+                onEpisodeTap(index, ep.episode.id);
               },
               child: _Episode(data: ep),
             ),
@@ -91,12 +96,12 @@ class _Episode extends StatelessWidget {
           height: ResponsiveValue(
             context,
             defaultValue: 98.0,
-            conditionalValues: const [
-              Condition.equals(name: BP.md, value: 130.0),
-              Condition.equals(name: BP.lg, value: 160.0),
-              Condition.largerThan(name: BP.lg, value: 180.0),
+            conditionalValues: [
+              const Condition.equals(name: BP.md, value: 130.0),
+              const Condition.equals(name: BP.lg, value: 160.0),
+              const Condition.largerThan(name: BP.lg, value: 180.0),
             ],
-          ).value!,
+          ).value,
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,7 +186,11 @@ class _Episode extends StatelessWidget {
                                 style: design.textStyles.caption2.copyWith(color: design.colors.onTint, height: 1.1),
                               ),
                             ),
-                          if (data.episode.locked && publishDateTime != null)
+                          if (data.episode.locked &&
+                              publishDateTime != null &&
+                              publishDateTime.isAfter(
+                                DateTime.now(),
+                              ))
                             Expanded(
                               child: Text(
                                 S.of(context).availableFrom(DateFormat(DateFormat.YEAR_MONTH_DAY).format(publishDateTime)),

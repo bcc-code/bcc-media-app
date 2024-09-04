@@ -1,0 +1,1428 @@
+{
+  "loadingContent": "Inhoud laden",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading."
+  },
+  "signInTooltip": "Log in om meer te bekijken",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "skipToPublicContent": "Overslaan om openbare inhoud te kijken",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Text for minutes."
+  },
+  "calendarThisWeek": "Deze week",
+  "@calendarThisWeek": {
+    "description": "Text for This week."
+  },
+  "calendarWeek": "week",
+  "@calendarWeek": {
+    "description": "Text week."
+  },
+  "close": "Sluiten",
+  "@close": {
+    "description": "Text displayed on 'Close' button"
+  },
+  "loading": "Laden",
+  "@loading": {
+    "description": "Text to indicate loading state."
+  },
+  "loginPageDisplay1": "De krachtigste \nboodschap in de wereld",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Bekijk series, shows en films gebasseerd op Christelijke waarden",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen."
+  },
+  "kidsOnboardingTitle": "Wij brengen de boodschap uit de Bijbel tot leven!",
+  "@kidsOnboardingTitle": {
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
+  },
+  "kidsOnboardingSecondaryTitle": "Onze visie is dat de kinderen Jezus als hun beste vriend gaan ervaren - voor de rest van hun leven.",
+  "@kidsOnboardingSecondaryTitle": {
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
+  },
+  "loginPageDisplay3": "Geproduceerd door BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen."
+  },
+  "logOutButton": "Log uit",
+  "@logOutButton": {
+    "description": "Text displayed on Log out button"
+  },
+  "profileTab": "Profiel",
+  "@profileTab": {
+    "description": "Title of the profile page"
+  },
+  "faq": "Vaak gestelde vragen",
+  "@faq": {
+    "description": "Long title of the FAQ page."
+  },
+  "bccMediaCenter": "BCC Media is een media-stichting binnen de BCC-federatie, welke content met positieve en christelijke waarden produceert en verspreidt.",
+  "@bccMediaCenter": {
+    "description": "Disclaimer on login page"
+  },
+  "signInButton": "Log in",
+  "@signInButton": {
+    "description": "Text displayed on Sign in button"
+  },
+  "signInOrSignUp": "Registreren / Aanmelden",
+  "@signInOrSignUp": {
+    "description": "Button to go to the onboarding page (short)"
+  },
+  "signUpButton": "Meld je nu aan",
+  "@signUpButton": {
+    "description": "Button to start the sign up process"
+  },
+  "signUpTitle": "Aanmelden",
+  "@signUpTitle": {
+    "description": "Title on the sign up page"
+  },
+  "signUpDescription": "Krijg toegang tot meer content en betere functionaliteit door een account aan te maken.",
+  "@signUpDescription": {
+    "description": "A description on the sign up page explaining why you would want to sign up"
+  },
+  "signUpAgreePrivacyPolicy": "Ik bevestig dat ik 13 jaar of ouder ben, en ik ga akkoord met het  <a>Privacybeleid</a> en de <a>Algemene voorwaarden</a>.",
+  "@signUpAgreePrivacyPolicy": {
+    "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
+  },
+  "setPassword": "Stel een wachtwoord in",
+  "@setPassword": {
+    "description": "Title for the 'Set password' page of the signup process."
+  },
+  "tryAgainButton": "Probeer opnieuw",
+  "@tryAgainButton": {
+    "description": "Button on error alert that lets user to retry failed action"
+  },
+  "loggedOutTitle": "Afgemeld",
+  "@loggedOutTitle": {
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutMessage": "Je bent nu uitgelogd. Log opnieuw in.",
+  "@loggedOutMessage": {
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "makeDonation": "Doneer",
+  "@makeDonation": {
+    "description": "Text for button which opens donation page."
+  },
+  "mostWatched": "Meest bekeken",
+  "@mostWatched": {
+    "description": "Sorting option on audience page"
+  },
+  "mostRecent": "Meest recent",
+  "@mostRecent": {
+    "description": "Sorting option on audience page"
+  },
+  "latelyPublished": "Onlangs verschenen",
+  "@latelyPublished": {
+    "description": "Title for the list of videos on login page"
+  },
+  "anErrorOccurred": "Er is een fout opgetreden",
+  "@anErrorOccurred": {
+    "description": "Title in error popup"
+  },
+  "ok": "Ok",
+  "@ok": {
+    "description": "Popup confirmation button"
+  },
+  "open": "Open",
+  "@open": {
+    "description": "Open button"
+  },
+  "loginFailedCheckNetwork": "Er ging iets mis bij het inloggen. Controleer je netwerkverbinding en probeer het opnieuw.",
+  "@loginFailedCheckNetwork": {
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Er ging iets mis bij het inloggen. Probeer het later opnieuw.",
+  "@loginFailedTryAgain": {
+    "description": "Login error message"
+  },
+  "soundLanguage": "Taal geluid",
+  "@soundLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "subtitleLanguage": "Taal ondertiteling",
+  "@subtitleLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "appLanguage": "Taal app",
+  "@appLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "checkNetwork": "Controleer je netwerkverbinding en probeer opnieuw",
+  "@checkNetwork": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgain": "Probeer het later nog eens",
+  "@tryAgain": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "cantPlayVideo": "Deze video kan momenteel niet worden getoond.",
+  "@cantPlayVideo": {
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "about": "Over",
+  "@about": {
+    "description": "Title of About page and item in profile page settings."
+  },
+  "version": "Versie",
+  "@version": {
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "contactSupport": "Contact support",
+  "@contactSupport": {
+    "description": "Title for contact support page"
+  },
+  "contactIssueHint": "Beschrijf het probleem",
+  "@contactIssueHint": {
+    "description": "Hint for the message box for logged in users"
+  },
+  "contactUs": "Contact",
+  "@contactUs": {
+    "description": "Title for contact us page"
+  },
+  "deviceInfo": "Device info",
+  "@deviceInfo": {
+    "description": "Device info page title"
+  },
+  "contactIncludeDeviceInfo": "Voeg device informatie toe voor betere hulp.",
+  "@contactIncludeDeviceInfo": {
+    "description": "Text for checkbox to include device information"
+  },
+  "contactSeeData": "Klik om de info te zien.",
+  "@contactSeeData": {
+    "description": "Text for link to see device data"
+  },
+  "contactName": "Naam",
+  "@contactName": {
+    "description": "Label for name field in contact support page"
+  },
+  "contactNameHint": "Typ je naam",
+  "@contactNameHint": {
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactEmail": "Je e-mail adres",
+  "@contactEmail": {
+    "description": "Label for email field in contact support page"
+  },
+  "contactEmailHint": "Typ je e-mail adres",
+  "@contactEmailHint": {
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactMessage": "Bericht",
+  "@contactMessage": {
+    "description": "Label for message field in contact support page"
+  },
+  "contactMessageHint": "Voer hier je bericht in",
+  "@contactMessageHint": {
+    "description": "Hint text for message field in contact support page"
+  },
+  "deviceInfoDevice": "Device",
+  "@deviceInfoDevice": {
+    "description": "Label for device"
+  },
+  "deviceInfoEnvOverride": "Environment overschrijven",
+  "@deviceInfoEnvOverride": {
+    "description": "Label for environment override"
+  },
+  "deviceInfoManufacturer": "Fabrikant",
+  "@deviceInfoManufacturer": {
+    "description": "Label for manufacturer"
+  },
+  "deviceInfoOs": "Operating System",
+  "@deviceInfoOs": {
+    "description": "Label for operating system"
+  },
+  "deviceInfoScreenSize": "Scherm afmetingen",
+  "@deviceInfoScreenSize": {
+    "description": "Label for screen size"
+  },
+  "deviceInfoAppVer": "App versie",
+  "@deviceInfoAppVer": {
+    "description": "Label for app Version"
+  },
+  "deviceInfoUserId": "User ID",
+  "@deviceInfoUserId": {
+    "description": "Label for user id"
+  },
+  "deviceInfoPageDesc": "Je bericht zal deze informatie invoegen, zodat we beter hulp kunnen bieden.",
+  "@deviceInfoPageDesc": {
+    "description": "Label for manufacturer"
+  },
+  "userVoice": "Stel een feature voor",
+  "@userVoice": {
+    "description": "Settings item on profile page to navigate to uservoice"
+  },
+  "cancel": "Annuleren",
+  "@cancel": {
+    "description": "General cancel action button"
+  },
+  "cancelConfirmation": "Weet u het zeker dat u wilt annuleren?",
+  "@cancelConfirmation": {
+    "description": "Title text for cancel confirmation dialog."
+  },
+  "cancelConfirmationDescription": "Niet opgeslagen wijzigingen gaan verloren.",
+  "@cancelConfirmationDescription": {
+    "description": "Description for cancel confirmation dialog."
+  },
+  "goBack": "Ga terug",
+  "@goBack": {
+    "description": "Text for back button."
+  },
+  "yesCancel": "Ja, Annuleer",
+  "@yesCancel": {
+    "description": "Confirm cancel."
+  },
+  "done": "Klaar",
+  "@done": {
+    "description": "Generic Done button, for example to dismiss a page after completing an action."
+  },
+  "playerSettings": "Instellingen player",
+  "@playerSettings": {
+    "description": "Title of the Player settings activity in Android"
+  },
+  "settings": "Instellingen",
+  "@settings": {
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "none": "Geen",
+  "@none": {
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "nextEpisode": "Volgende aflevering",
+  "@nextEpisode": {
+    "description": "Button indicating the next video will play soon."
+  },
+  "auto": "Auto",
+  "@auto": {
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
+  },
+  "subtitles": "Ondertitels",
+  "@subtitles": {
+    "description": "Generic."
+  },
+  "audio": "Audio",
+  "@audio": {
+    "description": "Generic."
+  },
+  "quality": "Kwaliteit",
+  "@quality": {
+    "description": "Generic."
+  },
+  "seasons": "Seizoenen",
+  "@seasons": {
+    "description": "Followed by number of seasons in given series."
+  },
+  "episodes": "Afleveringen",
+  "@episodes": {
+    "description": "Followed by number of episodes in given series."
+  },
+  "search": "Zoeken",
+  "@search": {
+    "description": "Button to clear cache"
+  },
+  "sendFeedback": "Geef feedback",
+  "@sendFeedback": {
+    "description": "Button to submit feedback(Survey)"
+  },
+  "noResults": "Geen resultaten",
+  "@noResults": {
+    "description": "No search results."
+  },
+  "doYouWantCast": "Wil je deze video casten?",
+  "@doYouWantCast": {
+    "description": "Prompt displayed to the user"
+  },
+  "play": "Afspelen",
+  "@play": {
+    "description": "Option in prompt dialog."
+  },
+  "pause": "Pauzeer",
+  "@pause": {
+    "description": "A button to pause the video."
+  },
+  "castQueue": "Lijst verwijderen",
+  "@castQueue": {
+    "description": "Queue page title"
+  },
+  "options": "Opties",
+  "@options": {
+    "description": "Options dialog title"
+  },
+  "remove": "Verwijderen",
+  "@remove": {
+    "description": "Option in options dialog"
+  },
+  "queueLimitTitle": "Limiet",
+  "@queueLimitTitle": {
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "queueLimitMessage": "Het is niet mogelijk meer dan {elementCount} elementen in de lijst te hebben.",
+  "@queueLimitMessage": {
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+    "placeholders": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "recentSearches": "Recente zoekopdrachten",
+  "@recentSearches": {
+    "description": "Recent searches list title."
+  },
+  "tVLogin": "TV login",
+  "@tVLogin": {
+    "description": "Title of the TV login alert"
+  },
+  "tVLoginSuccessful": "Login is gelukt, bevestig op TV.",
+  "@tVLoginSuccessful": {
+    "description": "Message of the TV login alert"
+  },
+  "seeMore": "Meer bekijken",
+  "@seeMore": {
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "seeAll": "Toon alles",
+  "@seeAll": {
+    "description": "Button to see all of some collection."
+  },
+  "series": "Series",
+  "@series": {
+    "description": "Title of the tab on info page"
+  },
+  "homeTab": "Home",
+  "@homeTab": {
+    "description": "Title of the home page"
+  },
+  "sortBy": "Sorteren op",
+  "@sortBy": {
+    "description": "Sorting criteria selector"
+  },
+  "videoQuality": "Beeldkwaliteit",
+  "@videoQuality": {
+    "description": "Settings item in profile page for Android."
+  },
+  "low": "Laag",
+  "@low": {
+    "description": "Low quality video option"
+  },
+  "medium": "Medium",
+  "@medium": {
+    "description": "Medium quality video option"
+  },
+  "high": "Hoog",
+  "@high": {
+    "description": "High quality video option"
+  },
+  "emptySearch": "Je kunt zoeken op alle inhoud van BCC Media. TV series, films en afleveringen.",
+  "@emptySearch": {
+    "description": "Message on search page when there is no search results."
+  },
+  "back": "Terug",
+  "@back": {
+    "description": "General back button to navigate back"
+  },
+  "seasonLetter": "Seizoen",
+  "@seasonLetter": {
+    "description": "Season  letter in label S1E3"
+  },
+  "episodeLetter": "Aflevering",
+  "@episodeLetter": {
+    "description": "Episode letter in label S1E3"
+  },
+  "atoZ": "A-Z",
+  "@atoZ": {
+    "description": "Sort order"
+  },
+  "ztoA": "Z-A",
+  "@ztoA": {
+    "description": "Sort order"
+  },
+  "shortFilms": "Korte films",
+  "@shortFilms": {
+    "description": "Title of the films collection."
+  },
+  "videos": "Video's",
+  "@videos": {
+    "description": "Followed by number of videos"
+  },
+  "moreInfo": "Meer informatie",
+  "@moreInfo": {
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "info": "Informatie",
+  "@info": {
+    "description": "Video info page title."
+  },
+  "episode": "Aflevering",
+  "@episode": {
+    "description": "Title of the tab on info page"
+  },
+  "takePhoto": "Maak een foto",
+  "@takePhoto": {
+    "description": "Option in menu"
+  },
+  "pickPhoto": "Kies uit album",
+  "@pickPhoto": {
+    "description": "Option in menu"
+  },
+  "uploadFileTitle": "Upload bestand",
+  "@uploadFileTitle": {
+    "description": "Title of the dialog to confirm upload"
+  },
+  "uploadFileMessage": "Wilt u dit bestand uploaden?",
+  "@uploadFileMessage": {
+    "description": "Content of the dialog to confirm upload"
+  },
+  "uploading": "Aan het uploaden",
+  "@uploading": {
+    "description": "Message during file upload"
+  },
+  "uploadFail": "Upload is mislukt",
+  "@uploadFail": {
+    "description": "Upload result message"
+  },
+  "charactersLimit": "{charsLeft} of {charsTotal} tekens over",
+  "@charactersLimit": {
+    "description": "Info about limit of characters in a text field",
+    "placeholders": {
+      "charsLeft": {
+        "type": "int"
+      },
+      "charsTotal": {
+        "type": "int"
+      }
+    }
+  },
+  "thankYou": "Hartelijk dank!",
+  "@thankYou": {
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Hartelijk dank voor je bijdrage!",
+  "@thankYouForContribution": {
+    "description": "Title in upload success page"
+  },
+  "next": "Volgende",
+  "@next": {
+    "description": "NEXT program in check in section"
+  },
+  "add": "Voeg toe",
+  "@add": {
+    "description": "Button text"
+  },
+  "change": "Wijzig",
+  "@change": {
+    "description": "Button text"
+  },
+  "writeHere": "Schrijf hier",
+  "@writeHere": {
+    "description": "New post text field placeholder"
+  },
+  "feed": "Feed",
+  "@feed": {
+    "description": "Feed page bar title"
+  },
+  "information": "Informatie",
+  "@information": {
+    "description": "Feed information item title"
+  },
+  "question": "Vraag",
+  "@question": {
+    "description": "Title of the question page"
+  },
+  "now": "Nu",
+  "@now": {
+    "description": "Tv guide now playing label"
+  },
+  "debugInfoExplanation": "Je bericht zal deze informatie meenemen, om ons te helpen het probleem beter te begrijpen.",
+  "@debugInfoExplanation": {
+    "description": "Info about debug info usage on contact support page"
+  },
+  "send": "Verzenden",
+  "@send": {
+    "description": "General button to send a form"
+  },
+  "sending": "Verzenden",
+  "@sending": {
+    "description": "General sending action indicator"
+  },
+  "thankYouSupportTitle": "Bedankt voor je feedback!",
+  "@thankYouSupportTitle": {
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportDescription": "We stellen alle feedback op prijs en gaan er zo snel mogelijk mee aan de slag.",
+  "@thankYouSupportDescription": {
+    "description": "Text on contact support confirmation page"
+  },
+  "sendFail": "Je bericht kon niet worden verzonden",
+  "@sendFail": {
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.",
+  "@sendFailDescription": {
+    "description": "General error message that sending failed"
+  },
+  "sendSuccessDescription": "We stellen je feedback op prijs.",
+  "@sendSuccessDescription": {
+    "description": "General message when sending is successful"
+  },
+  "today": "Vandaag",
+  "@today": {
+    "description": "First category in tv guide"
+  },
+  "expired": "Verlopen",
+  "@expired": {
+    "description": "Label that something is no longer available."
+  },
+  "availableFrom": "Beschikbaar {date}",
+  "@availableFrom": {
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "submit": "Invoeren",
+  "@submit": {
+    "description": "Submit button."
+  },
+  "wellDone": "Goed gedaan!",
+  "@wellDone": {
+    "description": "Positive message that may be used e.g. after completing some action."
+  },
+  "editPicture": "Bewerk foto",
+  "@editPicture": {
+    "description": "Button on profile page to edit profile picture."
+  },
+  "profilePicture": "Profielfoto",
+  "@profilePicture": {
+    "description": "Text on edit profile page."
+  },
+  "timezoneInformation": "De tijden in de TV gids worden weergegeven in de lokale tijd: {timeZone}",
+  "@timezoneInformation": {
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "share": "Deel",
+  "@share": {
+    "description": "Generic."
+  },
+  "showMore": "Toon meer",
+  "@showMore": {
+    "description": "Text used on link to expand collapsed text."
+  },
+  "showLess": "Toon minder",
+  "@showLess": {
+    "description": "Text used on link to collapse expanded text."
+  },
+  "comingSoon": "Komt binnenkort",
+  "@comingSoon": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
+  },
+  "newEpisode": "Nieuw",
+  "@newEpisode": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
+  },
+  "tomorrow": "Morgen",
+  "@tomorrow": {
+    "description": "Day of transmission in tv guide."
+  },
+  "readBy": "Gelezen door",
+  "@readBy": {
+    "description": "Feed verse pre author text."
+  },
+  "broadcasts": "Uitzending",
+  "@broadcasts": {
+    "description": "Title for live broadcasts."
+  },
+  "calendar": "Kalender",
+  "@calendar": {
+    "description": "Title of calendar page."
+  },
+  "noEvents": "Geen geplande uitzendingen",
+  "@noEvents": {
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
+  "appUpdateTitle": "Update vereist",
+  "@appUpdateTitle": {
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
+  "appUpdateRequest": "Download de laatste update voor nieuwe functionaliteiten en bugfixes.",
+  "@appUpdateRequest": {
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
+  "appUpdateAccepted": "Update",
+  "@appUpdateAccepted": {
+    "description": "Option that can be chosen by the user to update his application."
+  },
+  "copy": "Kopie",
+  "@copy": {
+    "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
+  },
+  "reload": "Opnieuw laden",
+  "@reload": {
+    "description": "Label on the button that allows to reload the player after error."
+  },
+  "fAQ": "FAQ",
+  "@fAQ": {
+    "description": "Title on FAQ page and item in profile page settings."
+  },
+  "shareStart": "Delen vanaf het begin",
+  "@shareStart": {
+    "description": "Option on action sheet for sharing from start"
+  },
+  "shareTime": "Delen van punt {time}",
+  "@shareTime": {
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "loadContentError": "Kon de inhoud niet laden",
+  "@loadContentError": {
+    "description": "Error text when content couldn't be loaded."
+  },
+  "privacyPolicy": "Privacybeleid",
+  "@privacyPolicy": {
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
+  "termsOfUse": "Gebruiksvoorwaarden",
+  "@termsOfUse": {
+    "description": "Title on the 'Terms of use' page."
+  },
+  "categoriesTab": "Categorieën",
+  "@categoriesTab": {
+    "description": "Title of the Categories Tab"
+  },
+  "seriesTab": "Series",
+  "@seriesTab": {
+    "description": "Series Tab title"
+  },
+  "filmsTab": "Films",
+  "@filmsTab": {
+    "description": "Films Tab title"
+  },
+  "eventsTab": "Evenementen",
+  "@eventsTab": {
+    "description": "Events Tab title"
+  },
+  "audioLanguage": "Taal geluid",
+  "@audioLanguage": {
+    "description": "Label indicating that the Audio Language can be changed here."
+  },
+  "subtitlesLanguage": "Taal ondertiteling",
+  "@subtitlesLanguage": {
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
+  "removeFromRecentSearches": "Wilt u dit element verwijderen uit het overzicht met recente zoekopdrachten?",
+  "@removeFromRecentSearches": {
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
+  "noTransmissionToday": "Geen geplande uitzending voor vandaag",
+  "@noTransmissionToday": {
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
+  "featured": "Aanbevolen",
+  "@featured": {
+    "description": "Featured videos collection header"
+  },
+  "errorTryAgain": "Er is iets mis gegaan, probeer het later nog eens.",
+  "@errorTryAgain": {
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
+  "programsSection": "Programma's",
+  "@programsSection": {
+    "description": "Section in search."
+  },
+  "noPlannedEvents": "Geen evenementen gepland vandaag",
+  "@noPlannedEvents": {
+    "description": "Information in tvguide"
+  },
+  "watchNow": "Nu kijken",
+  "@watchNow": {
+    "description": "Button on featured carousel"
+  },
+  "exploreContent": "Inhoud verkennen",
+  "@exploreContent": {
+    "description": "A button"
+  },
+  "explorePublicContent": "Verken publieke content",
+  "@explorePublicContent": {
+    "description": "A button on the welcome page"
+  },
+  "startExploring": "Begin met onderzoeken",
+  "@startExploring": {
+    "description": "A button on the welcome page"
+  },
+  "taskCompleted": "taak afgerond",
+  "@taskCompleted": {
+    "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
+  },
+  "tasksCompleted": "taken afgerond",
+  "@tasksCompleted": {
+    "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
+  },
+  "studyCompleteTaskDescription": "Rond taken af en ontdek gerelateerde bronnen",
+  "@studyCompleteTaskDescription": {
+    "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
+  },
+  "discoverMore": "Ontdek meer",
+  "@discoverMore": {
+    "description": "Generic button text."
+  },
+  "completePreviousTasks": "Voltooi de vorige taken om deze te kunnen openen",
+  "@completePreviousTasks": {
+    "description": "Shown on a locked button, short explanation why the button is locked."
+  },
+  "studyDiscoverMoreDescription": "Ontdek meer inspiratie en inzicht vanuit gerelateerde bronnen",
+  "@studyDiscoverMoreDescription": {
+    "description": "Description to open the related resources for this episode."
+  },
+  "watchAgain": "Nogmaals kijken",
+  "@watchAgain": {
+    "description": "Short button text to watch the video again."
+  },
+  "continueToTaskIn": "Doorgaan naar de taak in",
+  "@continueToTaskIn": {
+    "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "continueToTasksIn": "Doorgaan naar de taken in",
+  "@continueToTasksIn": {
+    "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "studyLessonCompleted": "les afgerond",
+  "@studyLessonCompleted": {
+    "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
+  },
+  "studyLessonsCompleted": "lessen afgerond",
+  "@studyLessonsCompleted": {
+    "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
+  },
+  "continueStudy": "Doorgaan met studie",
+  "@continueStudy": {
+    "description": "Button."
+  },
+  "startStudy": "Start studie",
+  "@startStudy": {
+    "description": "Button."
+  },
+  "videoCompletedText": "Goed gedaan, video afgerond.",
+  "@videoCompletedText": {
+    "description": "Shown after completing tasks related to a video."
+  },
+  "achievementFirstDescription": "Gefeliciteerd met het afronden van de video en het bereiken van je eerste doel.",
+  "@achievementFirstDescription": {
+    "description": "Description displayed in a popup when earning the first achievement badge."
+  },
+  "achievementStudyTopic": "Goed gedaan, je eerste study topic {name} afgerond",
+  "@achievementStudyTopic": {
+    "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "videoCount": "{count} video's",
+  "@videoCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "taskCount": "{count} taken",
+  "@taskCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "posterCount": "{count} posters",
+  "@posterCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resourceCount": "{count} bronnen",
+  "@resourceCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "continueButton": "Doorgaan",
+  "@continueButton": {
+    "description": "Generic button text."
+  },
+  "registerButton": "Registreer",
+  "@registerButton": {
+    "description": "Generic button text."
+  },
+  "achievements": "Prestaties",
+  "@achievements": {
+    "description": "Generic. Used as page title, etc."
+  },
+  "passwordConditionLength": "Minimaal {n} tekens",
+  "@passwordConditionLength": {
+    "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "passwordConditionComplexity": "Moet kleine letters, hoofdletters en cijfers bevatten.",
+  "@passwordConditionComplexity": {
+    "description": "Password condition, shown when signing up."
+  },
+  "oops": "Oeps!",
+  "@oops": {
+    "description": "An informal title on some error screens."
+  },
+  "dontHaveAccess": "Je hebt geen toegang tot deze content.",
+  "@dontHaveAccess": {
+    "description": "Error message when you open a link to content you dont have access to."
+  },
+  "notFound": "De inhoud die je zoekt lijkt niet te bestaan.",
+  "@notFound": {
+    "description": "Error message when the requested content is not found."
+  },
+  "mustBeLoggedIn": "Je moet ingelogd zijn om dit te kunnen bekijken",
+  "@mustBeLoggedIn": {
+    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  },
+  "plentyOfOtherContent": "Geen zorgen, er is nog steeds veel content om van te genieten!",
+  "@plentyOfOtherContent": {
+    "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
+  },
+  "notAchieved": "Niet gehaald",
+  "@notAchieved": {
+    "description": "A label indicating that this achievement has not been achieved yet."
+  },
+  "details": "Details",
+  "@details": {
+    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
+  },
+  "myList": "Mijn lijst",
+  "@myList": {
+    "description": "My list tab name"
+  },
+  "didYouKnowTitle": "Wist je dat?",
+  "@didYouKnowTitle": {
+    "description": "Title for info displayed on 'My list' page."
+  },
+  "didYouKnowContent": "Je kunt je favoriete shows toevoegen aan \"Mijn lijst\" door op het hart te klikken.",
+  "@didYouKnowContent": {
+    "description": "Content for info displayed on 'My list' page."
+  },
+  "selectSeason": "Selecteer een seizoen",
+  "@selectSeason": {
+    "description": "A title prompting to select a season from the list."
+  },
+  "deleteMyAccount": "mijn account verwijderen",
+  "@deleteMyAccount": {
+    "description": "Button to request to delete your account"
+  },
+  "iAmSureIWantToDelete": "Ik weet zeker dat ik mijn account en mijn gegevens met betrekking tot de BCC Media app wil verwijderen.",
+  "@iAmSureIWantToDelete": {
+    "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
+  },
+  "areYouSure": "Weet je het zeker?",
+  "@areYouSure": {
+    "description": "Generic text. Used at least as a title on the account deletion page."
+  },
+  "youCanContactUsAt": "Neem contact op via",
+  "@youCanContactUsAt": {
+    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
+  },
+  "biblekidsAbout": "Bible Kids is een initiatief van BCC Media, een mediastichting binnen de BCC Federatie die inhoud met positieve en christelijke waarden produceert en verspreidt.",
+  "@biblekidsAbout": {
+    "description": "Shown on about page"
+  },
+  "askYourParents": "Vraag je ouders",
+  "@askYourParents": {
+    "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
+  },
+  "whatIsMath": "Wat is",
+  "@whatIsMath": {
+    "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
+  },
+  "answerLabel": "Antwoord",
+  "@answerLabel": {
+    "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
+  },
+  "checkAnswerButton": "Controleer antwoord",
+  "@checkAnswerButton": {
+    "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
+  },
+  "videoOnlyAccessibleToLoggedIn": "Deze video is alleen beschikbaar voor ingelogde gebruikers.",
+  "@videoOnlyAccessibleToLoggedIn": {
+    "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
+  },
+  "verifyYourAccount": "Verifieer je account",
+  "@verifyYourAccount": {
+    "description": "Title of the page where you can verify your email/account."
+  },
+  "weHaveSentAnEmailTo": "We hebben een email gestuurd naar",
+  "@weHaveSentAnEmailTo": {
+    "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
+  },
+  "clickTheLinkToVerify": "Klik op de link in de e-mail om je account te verifiëren.",
+  "@clickTheLinkToVerify": {
+    "description": "Shown on the verify account page."
+  },
+  "openEmailApp": "Open e-mail app",
+  "@openEmailApp": {
+    "description": "Shown on the verify account page. Button to open your email app."
+  },
+  "resendEmail": "E-mail opnieuw verzenden",
+  "@resendEmail": {
+    "description": "Shown on the verify account page. Button to resend the verification email."
+  },
+  "noMailAppsDescription": "Geen mail-apps geïnstalleerd",
+  "@noMailAppsDescription": {
+    "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
+  },
+  "verificationEmailSent": "E-mail ter verificatie verzonden",
+  "@verificationEmailSent": {
+    "description": "Shown when the user has requested a new verification email."
+  },
+  "ifYouDidntReceiveVerificationEmail": "Als je nog steeds geen e-mail hebt ontvangen, neem dan contact op via",
+  "@ifYouDidntReceiveVerificationEmail": {
+    "description": "Shown when the user has requested a new verification email."
+  },
+  "accountCreated": "Account aangemaakt",
+  "@accountCreated": {
+    "description": "Shown when the user has successfully created an account."
+  },
+  "youCanNowUseYourAccount": "Je kunt nu je account gebruiken en een heleboel opbouwende onderwerpen ontdekken.",
+  "@youCanNowUseYourAccount": {
+    "description": "Shown when the user has successfully completed account setup."
+  },
+  "youCanNowLogInToYourAccount": "Je kunt nu je account gebruiken en een heleboel opbouwende onderwerpen ontdekken.",
+  "@youCanNowLogInToYourAccount": {
+    "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
+  },
+  "accountDeletionExplanation": "Je staat op het punt een verzoek in te dienen om je account bij BCC Media en al je gegevens met betrekking tot deze app te verwijderen.",
+  "@accountDeletionExplanation": {
+    "description": "Shown on the account deletion page."
+  },
+  "accountDeletionWarning": "Dit is een actie die niet ongedaan kan worden gemaakt.",
+  "@accountDeletionWarning": {
+    "description": "Shown on the account deletion page."
+  },
+  "accountDeletionTimeframe": "Accounts worden gewoonlijk binnen {x} werkdagen verwijderd.",
+  "@accountDeletionTimeframe": {
+    "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
+  },
+  "accountDeletionTitle": "mijn account verwijderen",
+  "@accountDeletionTitle": {
+    "description": "Title of the account deletion page."
+  },
+  "accountDeletionSuccess": "Account verwijderen succesvol aangevraagd. Je ontvangt een e-mail op {email}. Om je identiteit te bevestigen, hebben we je antwoord op die e-mail nodig om verder te gaan met de verwijdering.",
+  "@accountDeletionSuccess": {
+    "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "gamesTab": "Games",
+  "@gamesTab": {
+    "description": "Title of the games page"
+  },
+  "playGame": "Speel game",
+  "@playGame": {
+    "description": "Title on a game"
+  },
+  "tvScanQr": "Scan de code en login met je telefoon",
+  "@tvScanQr": {
+    "description": "Title on the login screen for TVs"
+  },
+  "tvEnterCode": "Of ga naar {url} en vul de code in: {code}",
+  "@tvEnterCode": {
+    "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "chapters": "Hoofdstukken",
+  "@chapters": {
+    "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
+  },
+  "removeWatchProgress": "Verwijder vooruitgang bekijken",
+  "@removeWatchProgress": {
+    "description": "Shown when holding on an episode in the 'continue watching' section."
+  },
+  "showDescription": "Toon beschrijving",
+  "@showDescription": {
+    "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
+  },
+  "releaseDate": "Publicatiedatum",
+  "@releaseDate": {
+    "description": "Release date of the episode, shown in the 'details' tab under an episode."
+  },
+  "availableTo": "Beschikbaar voor",
+  "@availableTo": {
+    "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
+  },
+  "ageRating": "Leeftijd certificering",
+  "@ageRating": {
+    "description": "Age rating for the episode, shown in the 'details' tab under an episode."
+  },
+  "ageRatingAll": "Alle",
+  "@ageRatingAll": {
+    "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
+  },
+  "offline": "Offline",
+  "@offline": {
+    "description": "Status indicator, indicating that you are offline; not connected to the internet."
+  },
+  "downloadButton": "Downloaden",
+  "@downloadButton": {
+    "description": "Button text, a button to download the episode to make it available for offline playback."
+  },
+  "audioNotAvailableInLanguage": "Audio niet beschikbaar in {lang}",
+  "@audioNotAvailableInLanguage": {
+    "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
+  },
+  "notEnoughAvailableSpace": "Onvoldoende beschikbare ruimte op uw apparaat",
+  "@notEnoughAvailableSpace": {
+    "description": "Shown when you try to download an episode, but there is not enough space on your device."
+  },
+  "considerDeletingOtherVideos": "Overweeg om andere video's die je in de app hebt gedownload te verwijderen.",
+  "@considerDeletingOtherVideos": {
+    "description": "Shown when you try to download an episode, but there is not enough space on your device."
+  },
+  "theVideoFileSizeIs": "De bestandsgrootte van de video is {size}.",
+  "@theVideoFileSizeIs": {
+    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "gotIt": "Begrepen",
+  "@gotIt": {
+    "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
+  },
+  "saveYourFavorites": "Je favoriete video's bewaren",
+  "@saveYourFavorites": {
+    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
+  },
+  "saveYourFavoritesDescription": "Tik op het hartpictogram op een video om deze op te slaan in je profiel.",
+  "@saveYourFavoritesDescription": {
+    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
+  },
+  "yourFavorites": "Jouw favorieten",
+  "@yourFavorites": {
+    "description": "Shown as a title for the 'favorites' section in the profile tab."
+  },
+  "downloaded": "Gedownload",
+  "@downloaded": {
+    "description": "Shown as a title for the 'downloaded' section in the profile tab."
+  },
+  "saveVideosForOfflineViewing": "Video's opslaan om offline te bekijken",
+  "@saveVideosForOfflineViewing": {
+    "description": "Shown when the 'downloaded' section is empty."
+  },
+  "tapOnTheDownloadIcon": "Tik op het downloadpictogram op een video om deze te downloaden en offline af te spelen.",
+  "@tapOnTheDownloadIcon": {
+    "description": "Shown when the 'downloaded' section is empty."
+  },
+  "removeOfflineVideo": "Offline video verwijderen?",
+  "@removeOfflineVideo": {
+    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
+  },
+  "removeOfflineVideoDescription": "Door deze video te verwijderen zal hij niet langer beschikbaar zijn zonder netwerkverbinding.",
+  "@removeOfflineVideoDescription": {
+    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
+  },
+  "removeFromDeviceButton": "Verwijderen van apparaat",
+  "@removeFromDeviceButton": {
+    "description": "Button text, to remove a downloaded video from the device."
+  },
+  "keepVideoButton": "Video bewaren",
+  "@keepVideoButton": {
+    "description": "Button when asking to remove a downloaded video. This button cancels."
+  },
+  "noInternetConnection": "Geen internetverbinding",
+  "@noInternetConnection": {
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "noInternetConnectionDescription": "Maak verbinding met internet om alle video's te bekijken.",
+  "@noInternetConnectionDescription": {
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "noInternetButDontWorry": "Geen internetverbinding,\nmaar maak je geen zorgen.",
+  "@noInternetButDontWorry": {
+    "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
+  },
+  "hereAreAllTheVideosYouDownloaded": "Hier zijn alle video's die je naar je apparaat hebt gedownload.",
+  "@hereAreAllTheVideosYouDownloaded": {
+    "description": "Shown when you are offline, but you have downloaded some videos."
+  },
+  "connectToExplore": "Maak verbinding met internet om alle video's te bekijken.",
+  "@connectToExplore": {
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "language": "Taal",
+  "@language": {
+    "description": "A label when selecting a language to download."
+  },
+  "estimatedFileSize": "Geschatte bestandsgrootte: {size}",
+  "@estimatedFileSize": {
+    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "downloadVideo": "Download video",
+  "@downloadVideo": {
+    "description": "Title on the download video form."
+  },
+  "noSubtitles": "Geen ondertiteling",
+  "@noSubtitles": {
+    "description": "Shown in the download form, indicating that there are no subtitles available for the video."
+  },
+  "subtitlesIncluded": "Inclusief ondertiteling",
+  "@subtitlesIncluded": {
+    "description": "Shown in the download form, indicating that all subtitles are included in the video."
+  },
+  "allSubtitlesWillBeAvailableOffline": "De ondertiteling zal offline beschikbaar zijn",
+  "@allSubtitlesWillBeAvailableOffline": {
+    "description": "Shown in the download form, indicating that all subtitles will be available offline."
+  },
+  "downloading": "Aan het downloaden",
+  "@downloading": {
+    "description": "Download status, indicating that the video is currently downloading."
+  },
+  "failed": "Mislukt",
+  "@failed": {
+    "description": "Generic status label. Used e.g. for downloads that failed."
+  },
+  "finished": "Afgerond",
+  "@finished": {
+    "description": "Generic status label. Used e.g. for downloads that finished."
+  },
+  "paused": "Gepauzeerd",
+  "@paused": {
+    "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
+  },
+  "queued": "In de wachtrij",
+  "@queued": {
+    "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
+  },
+  "removing": "Aan het verwijderen",
+  "@removing": {
+    "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
+  },
+  "expiresIn": "Verloopt op {time}",
+  "@expiresIn": {
+    "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "availableOffline": "Offline beschikbaar",
+  "@availableOffline": {
+    "description": "Label indicating that the video is available offline."
+  },
+  "technicalDetails": "Technische details",
+  "@technicalDetails": {
+    "description": "Shown when errors occur, and you want to see more technical details about the error."
+  },
+  "contentLanguage": "Taal content",
+  "@contentLanguage": {
+    "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
+  },
+  "contentLanguageShort": "Inhoud",
+  "@contentLanguageShort": {
+    "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
+  },
+  "appLanguageShort": "App",
+  "@appLanguageShort": {
+    "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
+  },
+  "playRandom": "Willekeurig afspelen",
+  "@playRandom": {
+    "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
+  },
+  "addLanguage": "Taal toevoegen",
+  "@addLanguage": {
+    "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
+  },
+  "preferredLanguages": "Voorkeurstalen",
+  "@preferredLanguages": {
+    "description": "Shown when you are selecting preferred content languages. Title."
+  },
+  "contentLanguageExplanation": "Wijzig de volgorde van de talen naar je voorkeur voor geluid en ondertiteling.",
+  "@contentLanguageExplanation": {
+    "description": "Shown when you are selecting preferred content languages."
+  },
+  "otherLanguages": "Andere talen",
+  "@otherLanguages": {
+    "description": "Languages that are available but in your list of preferred languages."
+  },
+  "select": "Maak een keuze",
+  "@select": {
+    "description": "Prompt. Shown at the top of a list of options."
+  },
+  "supportBibleKids": "Support Bible Kids",
+  "@supportBibleKids": {
+    "description": "Shown on the settings page."
+  },
+  "donateViaPaypal": "Doneer via PayPal",
+  "@donateViaPaypal": {
+    "description": "Shown on the settings page."
+  },
+  "shortsTab": "Korte films",
+  "@shortsTab": {
+    "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
+  },
+  "autoGenerated": "Automatisch gegenereerd",
+  "@autoGenerated": {
+    "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
+  },
+  "shortsTranscriptionDisclaimer": "Transcripties zijn automatisch gegenereerd en kunnen daardoor fouten bevatten.",
+  "@shortsTranscriptionDisclaimer": {
+    "description": "Disclaimer shown on the shorts page."
+  },
+  "beta": "Bèta",
+  "@beta": {
+    "description": "'Beta' features are only available to a selection of users."
+  },
+  "betaExplanation": "Deze functie bevindt zich in de bètafase en is momenteel niet beschikbaar voor alle gebruikers. Rapporteer eventuele problemen of feedback via de knop 'Contact' in de instellingen.",
+  "@betaExplanation": {
+    "description": "Shown in a popup on beta features."
+  },
+  "likedShorts": "Korte films die ik leuk vind",
+  "@likedShorts": {
+    "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
+  },
+  "saveYourFavoriteShorts": "Bewaar je favoriete korte films",
+  "@saveYourFavoriteShorts": {
+    "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
+  },
+  "featureNotAvailableYet": "Deze functie is nog niet beschikbaar op uw apparaat. Probeer het later opnieuw.",
+  "@featureNotAvailableYet": {
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
+  },
+  "newFeature": "Nieuwe functie",
+  "@newFeature": {
+    "description": "Shown the first time you open the app after a new feature is available."
+  },
+  "shortsFeatureDescription": "Ontdek korte en krachtige fragmenten en spring meteen naar de volledige aflevering.",
+  "@shortsFeatureDescription": {
+    "description": "Shown the first time you open the app after 'shorts' is enabled."
+  },
+  "likedAndSaved": "Geliked en opgeslagen",
+  "@likedAndSaved": {
+    "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "shortsLikedAndSavedDescription": "Je kunt al je favoriete shorts vinden in je profiel.",
+  "@shortsLikedAndSavedDescription": {
+    "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "excerptFrom": "Uittreksel uit",
+  "@excerptFrom": {
+    "description": "Shown on a 'short' video, indicating that this is an excerpt from a longer video. E.g. Excerpt from 'The Tale of John Doe'."
+  },
+  "downloadedVideosGuideDescription": "Je gedownloade video's vind je onder \"Profiel\".",
+  "@downloadedVideosGuideDescription": {
+    "description": "Shown when you have downloaded a video for the first time."
+  },
+  "openStore": "Open store",
+  "@openStore": {
+    "description": "A button to open play store / app store."
+  },
+  "thisVideoCantBeDownloaded": "Deze video kan niet worden gedownload.",
+  "@thisVideoCantBeDownloaded": {
+    "description": "Shown when you try to download a video that cannot be downloaded."
+  },
+  "videoLanguage": "Videotaal",
+  "@videoLanguage": {
+    "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
+  },
+  "videoTextLanguage": "Taal van videocontent",
+  "@videoTextLanguage": {
+    "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
+  },
+  "original": "Origineel",
+  "@original": {
+    "description": "E.g. original language."
+  },
+  "openSettingsToChangeVideoLang": "Open instellingen om de taal van de videocontent te wijzigen",
+  "@openSettingsToChangeVideoLang": {
+    "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
+  },
+  "somethingWentWrong": "Er ging iets fout",
+  "@somethingWentWrong": {
+    "description": "Generic error title/message."
+  },
+  "all": "Alle",
+  "@all": {
+    "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
+  },
+  "countItems": "{x} items",
+  "@countItems": {
+    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
+  },
+  "skipTo": "Ga naar {chapter}",
+  "@skipTo": {
+    "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "chapter": {
+        "type": "String"
+      }
+    }
+  }
+}

@@ -2,11 +2,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../graphql/queries/calendar_episode_entries.graphql.dart';
-import '../../../graphql/queries/page.graphql.dart';
-import '../../../graphql/schema/sections.graphql.dart';
-import '../../../helpers/extensions.dart';
-import '../../../models/analytics/sections.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:bccm_core/bccm_core.dart';
 import '../../../models/episode_thumbnail_data.dart';
 import '../../../providers/todays_calendar_entries.dart';
 import '../../misc/custom_grid_view.dart';
@@ -95,7 +92,7 @@ class ThumbnailGrid extends ConsumerWidget {
         return SectionItemClickWrapper(
           item: item.item,
           collectionId: collectionId,
-          analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+          analytics: SectionItemAnalyticsData(id: item.id, position: index, type: item.$__typename, name: item.title),
           child: getItemWidget(item, curLiveEpisode),
         );
       }).toList(),

@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/components/episode/list/season_episode_list.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,7 +17,7 @@ class EpisodeCollection extends HookConsumerWidget {
 
   final String episodeId;
   final Fragment$EpisodeContext$$ContextCollection collection;
-  final void Function(String id) onEpisodeTap;
+  final void Function(int index, String id) onEpisodeTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -35,7 +35,23 @@ class EpisodeCollection extends HookConsumerWidget {
       children: [
         if (episodes != null)
           SeasonEpisodeList(
-            onEpisodeTap: onEpisodeTap,
+            onEpisodeTap: (index, e) {
+              onEpisodeTap(index, e);
+              ref.read(analyticsProvider).sectionItemClicked(
+                    context,
+                    itemAnalyticsOverride: SectionItemAnalyticsData(position: index, type: 'Episode', id: e),
+                    sectionAnalyticsOverride: SectionAnalyticsData(
+                      id: episodeId,
+                      position: 0,
+                      type: 'EpisodeCollectionList',
+                      pageCode: 'episode',
+                      meta: {
+                        'collectionId': collection.id,
+                        'episodeId': episodeId,
+                      },
+                    ),
+                  );
+            },
             items: episodes.toList(),
           )
       ],

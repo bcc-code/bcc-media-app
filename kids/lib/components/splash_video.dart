@@ -2,7 +2,7 @@ import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 
 class SplashVideo extends StatefulWidget {
-  const SplashVideo({Key? key, required this.child}) : super(key: key);
+  const SplashVideo({super.key, required this.child});
 
   final Widget child;
 

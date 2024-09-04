@@ -1,0 +1,1428 @@
+{
+  "loadingContent": "Nalagam vsebino",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading."
+  },
+  "signInTooltip": "Za ogled ostalih vsebin se prijavi",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "skipToPublicContent": "Nadaljuj z ogledom javno dostopne vsebine",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Text for minutes."
+  },
+  "calendarThisWeek": "Ta teden",
+  "@calendarThisWeek": {
+    "description": "Text for This week."
+  },
+  "calendarWeek": "teden",
+  "@calendarWeek": {
+    "description": "Text week."
+  },
+  "close": "Zapri",
+  "@close": {
+    "description": "Text displayed on 'Close' button"
+  },
+  "loading": "Nalaganje",
+  "@loading": {
+    "description": "Text to indicate loading state."
+  },
+  "loginPageDisplay1": "Najmočnejše \nsporočilo na svetu",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Oglej si serije in filme, narejene na podlagi krščanskih vrednot",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen."
+  },
+  "kidsOnboardingTitle": "Oznanilo Svetega pisma oživimo!",
+  "@kidsOnboardingTitle": {
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
+  },
+  "kidsOnboardingSecondaryTitle": "Naša vizija je, da otroci doživijo Jezusa kot najboljšega prijatelja - do konca življenja.",
+  "@kidsOnboardingSecondaryTitle": {
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
+  },
+  "loginPageDisplay3": "Produkcija: BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen."
+  },
+  "logOutButton": "Odjava",
+  "@logOutButton": {
+    "description": "Text displayed on Log out button"
+  },
+  "profileTab": "Profil",
+  "@profileTab": {
+    "description": "Title of the profile page"
+  },
+  "faq": "Pogosta vprašanja",
+  "@faq": {
+    "description": "Long title of the FAQ page."
+  },
+  "bccMediaCenter": "BCC Media je medijska fundacija v BCC zvezi, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.",
+  "@bccMediaCenter": {
+    "description": "Disclaimer on login page"
+  },
+  "signInButton": "Vpis",
+  "@signInButton": {
+    "description": "Text displayed on Sign in button"
+  },
+  "signInOrSignUp": "Registracija / Prijava",
+  "@signInOrSignUp": {
+    "description": "Button to go to the onboarding page (short)"
+  },
+  "signUpButton": "Prijavi se zdaj",
+  "@signUpButton": {
+    "description": "Button to start the sign up process"
+  },
+  "signUpTitle": "Prijavi se",
+  "@signUpTitle": {
+    "description": "Title on the sign up page"
+  },
+  "signUpDescription": "Z ustvarjenim računom dobiš dostop do več vsebin in boljših funkcij.",
+  "@signUpDescription": {
+    "description": "A description on the sign up page explaining why you would want to sign up"
+  },
+  "signUpAgreePrivacyPolicy": "Potrjujem, da sem star 13 let ali več, in se strinjam s <a>Pravili zasebnosti</a> in <a>Pogoji uporabe</a>.",
+  "@signUpAgreePrivacyPolicy": {
+    "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
+  },
+  "setPassword": "Nastavi geslo",
+  "@setPassword": {
+    "description": "Title for the 'Set password' page of the signup process."
+  },
+  "tryAgainButton": "Poskusite znova",
+  "@tryAgainButton": {
+    "description": "Button on error alert that lets user to retry failed action"
+  },
+  "loggedOutTitle": "Odjavljen",
+  "@loggedOutTitle": {
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutMessage": "Odjavili ste se. Prosim, ponovno se prijavite.",
+  "@loggedOutMessage": {
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "makeDonation": "Doniraj",
+  "@makeDonation": {
+    "description": "Text for button which opens donation page."
+  },
+  "mostWatched": "Najbolj gledano",
+  "@mostWatched": {
+    "description": "Sorting option on audience page"
+  },
+  "mostRecent": "Najnovejše",
+  "@mostRecent": {
+    "description": "Sorting option on audience page"
+  },
+  "latelyPublished": "Nedavno objavljeno",
+  "@latelyPublished": {
+    "description": "Title for the list of videos on login page"
+  },
+  "anErrorOccurred": "Prišlo je do napake",
+  "@anErrorOccurred": {
+    "description": "Title in error popup"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "Popup confirmation button"
+  },
+  "open": "Odpri",
+  "@open": {
+    "description": "Open button"
+  },
+  "loginFailedCheckNetwork": "Napaka pri prijavi. Preverite internetno povezavo in poskusite znova.",
+  "@loginFailedCheckNetwork": {
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Napaka pri prijavi. Prosim, poskusite znova kasneje.",
+  "@loginFailedTryAgain": {
+    "description": "Login error message"
+  },
+  "soundLanguage": "Jezik zvoka",
+  "@soundLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "subtitleLanguage": "Jezik podnapisov",
+  "@subtitleLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "appLanguage": "Jezik aplikacije",
+  "@appLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "checkNetwork": "Preverite svojo internetno povezavo in poskusite znova.",
+  "@checkNetwork": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgain": "Prosim, poskusite znova kasneje.",
+  "@tryAgain": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "cantPlayVideo": "Ta videoposnetek trenutno ni na voljo.",
+  "@cantPlayVideo": {
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "about": "O aplikaciji",
+  "@about": {
+    "description": "Title of About page and item in profile page settings."
+  },
+  "version": "Verzija",
+  "@version": {
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "contactSupport": "Podpora",
+  "@contactSupport": {
+    "description": "Title for contact support page"
+  },
+  "contactIssueHint": "Opiši težavo",
+  "@contactIssueHint": {
+    "description": "Hint for the message box for logged in users"
+  },
+  "contactUs": "Kontaktiraj nas",
+  "@contactUs": {
+    "description": "Title for contact us page"
+  },
+  "deviceInfo": "Informacije o napravi",
+  "@deviceInfo": {
+    "description": "Device info page title"
+  },
+  "contactIncludeDeviceInfo": "Za boljšo podporo vključi informacije o napravi.",
+  "@contactIncludeDeviceInfo": {
+    "description": "Text for checkbox to include device information"
+  },
+  "contactSeeData": "Klikni za ogled podatkov.",
+  "@contactSeeData": {
+    "description": "Text for link to see device data"
+  },
+  "contactName": "Ime",
+  "@contactName": {
+    "description": "Label for name field in contact support page"
+  },
+  "contactNameHint": "Vpiši svoje ime",
+  "@contactNameHint": {
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactEmail": "Tvoj elektronski naslov",
+  "@contactEmail": {
+    "description": "Label for email field in contact support page"
+  },
+  "contactEmailHint": "Vpiši svoj elektronski naslov",
+  "@contactEmailHint": {
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactMessage": "Sporočilo",
+  "@contactMessage": {
+    "description": "Label for message field in contact support page"
+  },
+  "contactMessageHint": "Tukaj vpiši svoje sporočilo",
+  "@contactMessageHint": {
+    "description": "Hint text for message field in contact support page"
+  },
+  "deviceInfoDevice": "Naprava",
+  "@deviceInfoDevice": {
+    "description": "Label for device"
+  },
+  "deviceInfoEnvOverride": "Preglasitev okolja",
+  "@deviceInfoEnvOverride": {
+    "description": "Label for environment override"
+  },
+  "deviceInfoManufacturer": "Proizvajalec",
+  "@deviceInfoManufacturer": {
+    "description": "Label for manufacturer"
+  },
+  "deviceInfoOs": "Operacijski sistem",
+  "@deviceInfoOs": {
+    "description": "Label for operating system"
+  },
+  "deviceInfoScreenSize": "Velikost zaslona",
+  "@deviceInfoScreenSize": {
+    "description": "Label for screen size"
+  },
+  "deviceInfoAppVer": "Različica aplikacije",
+  "@deviceInfoAppVer": {
+    "description": "Label for app Version"
+  },
+  "deviceInfoUserId": "User ID",
+  "@deviceInfoUserId": {
+    "description": "Label for user id"
+  },
+  "deviceInfoPageDesc": "Tvoje sporočilo bo vsebovalo to informacijo. To nam bo omogočilo lažjo pomoč.",
+  "@deviceInfoPageDesc": {
+    "description": "Label for manufacturer"
+  },
+  "userVoice": "Predlagaj funkcijo",
+  "@userVoice": {
+    "description": "Settings item on profile page to navigate to uservoice"
+  },
+  "cancel": "Prekliči",
+  "@cancel": {
+    "description": "General cancel action button"
+  },
+  "cancelConfirmation": "Ali si prepričan, da želiš preklicati?",
+  "@cancelConfirmation": {
+    "description": "Title text for cancel confirmation dialog."
+  },
+  "cancelConfirmationDescription": "Neshranjene spremembe bodo izgubljene.",
+  "@cancelConfirmationDescription": {
+    "description": "Description for cancel confirmation dialog."
+  },
+  "goBack": "Nazaj",
+  "@goBack": {
+    "description": "Text for back button."
+  },
+  "yesCancel": "Ja, prekliči",
+  "@yesCancel": {
+    "description": "Confirm cancel."
+  },
+  "done": "Končano",
+  "@done": {
+    "description": "Generic Done button, for example to dismiss a page after completing an action."
+  },
+  "playerSettings": "Nastavitve predvajalnika",
+  "@playerSettings": {
+    "description": "Title of the Player settings activity in Android"
+  },
+  "settings": "Nastavitve",
+  "@settings": {
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "none": "Brez",
+  "@none": {
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "nextEpisode": "Naslednji del",
+  "@nextEpisode": {
+    "description": "Button indicating the next video will play soon."
+  },
+  "auto": "Samodejno",
+  "@auto": {
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
+  },
+  "subtitles": "Podnapisi",
+  "@subtitles": {
+    "description": "Generic."
+  },
+  "audio": "Zvok",
+  "@audio": {
+    "description": "Generic."
+  },
+  "quality": "Kakovost",
+  "@quality": {
+    "description": "Generic."
+  },
+  "seasons": "Sezone",
+  "@seasons": {
+    "description": "Followed by number of seasons in given series."
+  },
+  "episodes": "Deli",
+  "@episodes": {
+    "description": "Followed by number of episodes in given series."
+  },
+  "search": "Išči",
+  "@search": {
+    "description": "Button to clear cache"
+  },
+  "sendFeedback": "Povratne informacije",
+  "@sendFeedback": {
+    "description": "Button to submit feedback(Survey)"
+  },
+  "noResults": "Ni najdenih rezultatov",
+  "@noResults": {
+    "description": "No search results."
+  },
+  "doYouWantCast": "Ali hočete predvajati ta video?",
+  "@doYouWantCast": {
+    "description": "Prompt displayed to the user"
+  },
+  "play": "Predvajaj",
+  "@play": {
+    "description": "Option in prompt dialog."
+  },
+  "pause": "Premor",
+  "@pause": {
+    "description": "A button to pause the video."
+  },
+  "castQueue": "Predvajaj čakalno vrsto",
+  "@castQueue": {
+    "description": "Queue page title"
+  },
+  "options": "Možnosti",
+  "@options": {
+    "description": "Options dialog title"
+  },
+  "remove": "Odstrani",
+  "@remove": {
+    "description": "Option in options dialog"
+  },
+  "queueLimitTitle": "Limit",
+  "@queueLimitTitle": {
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "queueLimitMessage": "V čakalni vrsti ne more biti več kot {elementCount} elementov.",
+  "@queueLimitMessage": {
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+    "placeholders": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "recentSearches": "Nedavna iskanja",
+  "@recentSearches": {
+    "description": "Recent searches list title."
+  },
+  "tVLogin": "TV prijava",
+  "@tVLogin": {
+    "description": "Title of the TV login alert"
+  },
+  "tVLoginSuccessful": "Prijava je bila uspešna, prosim potrdite jo na TV.",
+  "@tVLoginSuccessful": {
+    "description": "Message of the TV login alert"
+  },
+  "seeMore": "Več",
+  "@seeMore": {
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "seeAll": "Poglej vse",
+  "@seeAll": {
+    "description": "Button to see all of some collection."
+  },
+  "series": "Serije",
+  "@series": {
+    "description": "Title of the tab on info page"
+  },
+  "homeTab": "Domov",
+  "@homeTab": {
+    "description": "Title of the home page"
+  },
+  "sortBy": "Razvrsti",
+  "@sortBy": {
+    "description": "Sorting criteria selector"
+  },
+  "videoQuality": "Kakovost videoposnetka",
+  "@videoQuality": {
+    "description": "Settings item in profile page for Android."
+  },
+  "low": "Nizka",
+  "@low": {
+    "description": "Low quality video option"
+  },
+  "medium": "Srednja",
+  "@medium": {
+    "description": "Medium quality video option"
+  },
+  "high": "Visoka",
+  "@high": {
+    "description": "High quality video option"
+  },
+  "emptySearch": "Iščeš lahko po vsej vsebini od BCC Media. Serije, filmi in deli.",
+  "@emptySearch": {
+    "description": "Message on search page when there is no search results."
+  },
+  "back": "Nazaj",
+  "@back": {
+    "description": "General back button to navigate back"
+  },
+  "seasonLetter": "S",
+  "@seasonLetter": {
+    "description": "Season  letter in label S1E3"
+  },
+  "episodeLetter": "E",
+  "@episodeLetter": {
+    "description": "Episode letter in label S1E3"
+  },
+  "atoZ": "A-Z",
+  "@atoZ": {
+    "description": "Sort order"
+  },
+  "ztoA": "Z-A",
+  "@ztoA": {
+    "description": "Sort order"
+  },
+  "shortFilms": "Kratki filmi",
+  "@shortFilms": {
+    "description": "Title of the films collection."
+  },
+  "videos": "Videoposnetki",
+  "@videos": {
+    "description": "Followed by number of videos"
+  },
+  "moreInfo": "Več informacij",
+  "@moreInfo": {
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "info": "Informacije",
+  "@info": {
+    "description": "Video info page title."
+  },
+  "episode": "Del",
+  "@episode": {
+    "description": "Title of the tab on info page"
+  },
+  "takePhoto": "Slikaj",
+  "@takePhoto": {
+    "description": "Option in menu"
+  },
+  "pickPhoto": "Izberi iz galerije",
+  "@pickPhoto": {
+    "description": "Option in menu"
+  },
+  "uploadFileTitle": "Naloži datoteko",
+  "@uploadFileTitle": {
+    "description": "Title of the dialog to confirm upload"
+  },
+  "uploadFileMessage": "Ali hočete naložiti to datoteko?",
+  "@uploadFileMessage": {
+    "description": "Content of the dialog to confirm upload"
+  },
+  "uploading": "Nalaganje",
+  "@uploading": {
+    "description": "Message during file upload"
+  },
+  "uploadFail": "Nalaganje ni uspelo",
+  "@uploadFail": {
+    "description": "Upload result message"
+  },
+  "charactersLimit": "{charsLeft} od {charsTotal} znakov",
+  "@charactersLimit": {
+    "description": "Info about limit of characters in a text field",
+    "placeholders": {
+      "charsLeft": {
+        "type": "int"
+      },
+      "charsTotal": {
+        "type": "int"
+      }
+    }
+  },
+  "thankYou": "Hvala!",
+  "@thankYou": {
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Hvala za tvoj prispevek!",
+  "@thankYouForContribution": {
+    "description": "Title in upload success page"
+  },
+  "next": "Sledi",
+  "@next": {
+    "description": "NEXT program in check in section"
+  },
+  "add": "Dodaj",
+  "@add": {
+    "description": "Button text"
+  },
+  "change": "Spremeni",
+  "@change": {
+    "description": "Button text"
+  },
+  "writeHere": "Napiši tukaj",
+  "@writeHere": {
+    "description": "New post text field placeholder"
+  },
+  "feed": "Prispevki",
+  "@feed": {
+    "description": "Feed page bar title"
+  },
+  "information": "Informacije",
+  "@information": {
+    "description": "Feed information item title"
+  },
+  "question": "Vprašanje",
+  "@question": {
+    "description": "Title of the question page"
+  },
+  "now": "Zdaj",
+  "@now": {
+    "description": "Tv guide now playing label"
+  },
+  "debugInfoExplanation": "Tvoje sporočilo bo vsebovalo to informacijo. To nam bo pomagalo, da bomo bolje razumeli težavo.",
+  "@debugInfoExplanation": {
+    "description": "Info about debug info usage on contact support page"
+  },
+  "send": "Pošlji",
+  "@send": {
+    "description": "General button to send a form"
+  },
+  "sending": "Pošiljam",
+  "@sending": {
+    "description": "General sending action indicator"
+  },
+  "thankYouSupportTitle": "Hvala za povratno sporočilo!",
+  "@thankYouSupportTitle": {
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportDescription": "Cenimo vsa povratna sporočila in težave bomo rešili v najkrajšem možnem času.",
+  "@thankYouSupportDescription": {
+    "description": "Text on contact support confirmation page"
+  },
+  "sendFail": "Sporočila ni bilo mogoče poslati",
+  "@sendFail": {
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Nekaj je šlo narobe. Preveri svojo internetno povezavo in poskusi znova.",
+  "@sendFailDescription": {
+    "description": "General error message that sending failed"
+  },
+  "sendSuccessDescription": "Cenimo tvojo povratno informacijo.",
+  "@sendSuccessDescription": {
+    "description": "General message when sending is successful"
+  },
+  "today": "Danes",
+  "@today": {
+    "description": "First category in tv guide"
+  },
+  "expired": "Preteklo",
+  "@expired": {
+    "description": "Label that something is no longer available."
+  },
+  "availableFrom": "Na voljo {date}",
+  "@availableFrom": {
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "submit": "Oddaj",
+  "@submit": {
+    "description": "Submit button."
+  },
+  "wellDone": "Bravo!",
+  "@wellDone": {
+    "description": "Positive message that may be used e.g. after completing some action."
+  },
+  "editPicture": "Uredi sliko",
+  "@editPicture": {
+    "description": "Button on profile page to edit profile picture."
+  },
+  "profilePicture": "Profilna slika",
+  "@profilePicture": {
+    "description": "Text on edit profile page."
+  },
+  "timezoneInformation": "Tv spored je v tvojem lokalnem času: {timeZone}",
+  "@timezoneInformation": {
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "share": "Deli",
+  "@share": {
+    "description": "Generic."
+  },
+  "showMore": "Pokaži več",
+  "@showMore": {
+    "description": "Text used on link to expand collapsed text."
+  },
+  "showLess": "Pokaži manj",
+  "@showLess": {
+    "description": "Text used on link to collapse expanded text."
+  },
+  "comingSoon": "Pride kmalu",
+  "@comingSoon": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
+  },
+  "newEpisode": "Novo",
+  "@newEpisode": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
+  },
+  "tomorrow": "Jutri",
+  "@tomorrow": {
+    "description": "Day of transmission in tv guide."
+  },
+  "readBy": "Prebral",
+  "@readBy": {
+    "description": "Feed verse pre author text."
+  },
+  "broadcasts": "Oddaje",
+  "@broadcasts": {
+    "description": "Title for live broadcasts."
+  },
+  "calendar": "Koledar",
+  "@calendar": {
+    "description": "Title of calendar page."
+  },
+  "noEvents": "Ni načrtovanih prenosov",
+  "@noEvents": {
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
+  "appUpdateTitle": "Potrebna posodobitev",
+  "@appUpdateTitle": {
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
+  "appUpdateRequest": "Prosim prenesi zadnjo verzijo aplikacije, da dobiš najnovejše dodatke in izboljšave.",
+  "@appUpdateRequest": {
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
+  "appUpdateAccepted": "Posodobitev",
+  "@appUpdateAccepted": {
+    "description": "Option that can be chosen by the user to update his application."
+  },
+  "copy": "Kopiraj",
+  "@copy": {
+    "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
+  },
+  "reload": "Ponovno naloži",
+  "@reload": {
+    "description": "Label on the button that allows to reload the player after error."
+  },
+  "fAQ": "FAQ",
+  "@fAQ": {
+    "description": "Title on FAQ page and item in profile page settings."
+  },
+  "shareStart": "Deli od začetka",
+  "@shareStart": {
+    "description": "Option on action sheet for sharing from start"
+  },
+  "shareTime": "Deli od {time}",
+  "@shareTime": {
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "loadContentError": "Nalaganje vsebine ni uspelo",
+  "@loadContentError": {
+    "description": "Error text when content couldn't be loaded."
+  },
+  "privacyPolicy": "Pravilnik o zasebnosti",
+  "@privacyPolicy": {
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
+  "termsOfUse": "Pogoji uporabe",
+  "@termsOfUse": {
+    "description": "Title on the 'Terms of use' page."
+  },
+  "categoriesTab": "Kategorije",
+  "@categoriesTab": {
+    "description": "Title of the Categories Tab"
+  },
+  "seriesTab": "Serije",
+  "@seriesTab": {
+    "description": "Series Tab title"
+  },
+  "filmsTab": "Filmi",
+  "@filmsTab": {
+    "description": "Films Tab title"
+  },
+  "eventsTab": "Dogodki",
+  "@eventsTab": {
+    "description": "Events Tab title"
+  },
+  "audioLanguage": "Jezik zvoka",
+  "@audioLanguage": {
+    "description": "Label indicating that the Audio Language can be changed here."
+  },
+  "subtitlesLanguage": "Jezik podnapisov",
+  "@subtitlesLanguage": {
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
+  "removeFromRecentSearches": "Ali želite odstraniti ta element iz nedavnih iskanj?",
+  "@removeFromRecentSearches": {
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
+  "noTransmissionToday": "Danes ni načrtovanih prenosov",
+  "@noTransmissionToday": {
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
+  "featured": "Priporočamo",
+  "@featured": {
+    "description": "Featured videos collection header"
+  },
+  "errorTryAgain": "Prišlo je do napake, prosim poskusi znova.",
+  "@errorTryAgain": {
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
+  "programsSection": "Programi",
+  "@programsSection": {
+    "description": "Section in search."
+  },
+  "noPlannedEvents": "Za ta dan ni načrtovanih dogodkov",
+  "@noPlannedEvents": {
+    "description": "Information in tvguide"
+  },
+  "watchNow": "Glej zdaj",
+  "@watchNow": {
+    "description": "Button on featured carousel"
+  },
+  "exploreContent": "Razišči vsebino",
+  "@exploreContent": {
+    "description": "A button"
+  },
+  "explorePublicContent": "Razišči javno vsebino",
+  "@explorePublicContent": {
+    "description": "A button on the welcome page"
+  },
+  "startExploring": "Začni raziskovati",
+  "@startExploring": {
+    "description": "A button on the welcome page"
+  },
+  "taskCompleted": "naloga opravljena",
+  "@taskCompleted": {
+    "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
+  },
+  "tasksCompleted": "naloge opravljene",
+  "@tasksCompleted": {
+    "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
+  },
+  "studyCompleteTaskDescription": "Dokončaj naloge in odkrij s tem povezane vire",
+  "@studyCompleteTaskDescription": {
+    "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
+  },
+  "discoverMore": "Odkrij več",
+  "@discoverMore": {
+    "description": "Generic button text."
+  },
+  "completePreviousTasks": "Da odkleneš, moraš dokončati prejšnje naloge",
+  "@completePreviousTasks": {
+    "description": "Shown on a locked button, short explanation why the button is locked."
+  },
+  "studyDiscoverMoreDescription": "Najdi več navdiha in vpogleda iz povezanih virov",
+  "@studyDiscoverMoreDescription": {
+    "description": "Description to open the related resources for this episode."
+  },
+  "watchAgain": "Poglej znova",
+  "@watchAgain": {
+    "description": "Short button text to watch the video again."
+  },
+  "continueToTaskIn": "Nadaljuj na nalogo v",
+  "@continueToTaskIn": {
+    "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "continueToTasksIn": "Nadaljuj na naloge v",
+  "@continueToTasksIn": {
+    "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "studyLessonCompleted": "lekcija dokončana",
+  "@studyLessonCompleted": {
+    "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
+  },
+  "studyLessonsCompleted": "lekcije dokončane",
+  "@studyLessonsCompleted": {
+    "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
+  },
+  "continueStudy": "Nadaljuj preučevanje",
+  "@continueStudy": {
+    "description": "Button."
+  },
+  "startStudy": "Začni preučevanje",
+  "@startStudy": {
+    "description": "Button."
+  },
+  "videoCompletedText": "Bravo! Prišel si do konca videoposnetka.",
+  "@videoCompletedText": {
+    "description": "Shown after completing tasks related to a video."
+  },
+  "achievementFirstDescription": "Bravo! Prišel si do konca videoposnetka in zaslužil svoj prvi dosežek.",
+  "@achievementFirstDescription": {
+    "description": "Description displayed in a popup when earning the first achievement badge."
+  },
+  "achievementStudyTopic": "Bravo! Dokončal si temo {name}",
+  "@achievementStudyTopic": {
+    "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "videoCount": "{count} videoposnetki",
+  "@videoCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "taskCount": "{count} naloge",
+  "@taskCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "posterCount": "{count} posterji",
+  "@posterCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resourceCount": "{count} viri",
+  "@resourceCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "continueButton": "Nadaljuj",
+  "@continueButton": {
+    "description": "Generic button text."
+  },
+  "registerButton": "Registracija",
+  "@registerButton": {
+    "description": "Generic button text."
+  },
+  "achievements": "Dosežki",
+  "@achievements": {
+    "description": "Generic. Used as page title, etc."
+  },
+  "passwordConditionLength": "Najmanj {n} znakov",
+  "@passwordConditionLength": {
+    "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "passwordConditionComplexity": "Vsebovati mora male in velike črke ter številke.",
+  "@passwordConditionComplexity": {
+    "description": "Password condition, shown when signing up."
+  },
+  "oops": "Oops!",
+  "@oops": {
+    "description": "An informal title on some error screens."
+  },
+  "dontHaveAccess": "Do te vsebina nimaš dostopa.",
+  "@dontHaveAccess": {
+    "description": "Error message when you open a link to content you dont have access to."
+  },
+  "notFound": "Vsebina, ki jo iščeš, ne obstaja.",
+  "@notFound": {
+    "description": "Error message when the requested content is not found."
+  },
+  "mustBeLoggedIn": "Za ogled te vsebine moraš biti prijavljen",
+  "@mustBeLoggedIn": {
+    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  },
+  "plentyOfOtherContent": "Brez skrbi, na voljo je dovolj druge vsebine!",
+  "@plentyOfOtherContent": {
+    "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
+  },
+  "notAchieved": "Ni dosežen",
+  "@notAchieved": {
+    "description": "A label indicating that this achievement has not been achieved yet."
+  },
+  "details": "Podrobnosti",
+  "@details": {
+    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
+  },
+  "myList": "Moj seznam",
+  "@myList": {
+    "description": "My list tab name"
+  },
+  "didYouKnowTitle": "Ali si vedel?",
+  "@didYouKnowTitle": {
+    "description": "Title for info displayed on 'My list' page."
+  },
+  "didYouKnowContent": "S klikom na srce lahko dodaš svoje najljubše serije na \"Moj seznam\".",
+  "@didYouKnowContent": {
+    "description": "Content for info displayed on 'My list' page."
+  },
+  "selectSeason": "Izberi sezono",
+  "@selectSeason": {
+    "description": "A title prompting to select a season from the list."
+  },
+  "deleteMyAccount": "Izbriši moj račun",
+  "@deleteMyAccount": {
+    "description": "Button to request to delete your account"
+  },
+  "iAmSureIWantToDelete": "Prepričan sem, da želim izbrisati svoj račun in podatke, povezane z aplikacijo BCC Media.",
+  "@iAmSureIWantToDelete": {
+    "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
+  },
+  "areYouSure": "Si prepričan?",
+  "@areYouSure": {
+    "description": "Generic text. Used at least as a title on the account deletion page."
+  },
+  "youCanContactUsAt": "Z nami lahko vzpostaviš stik na",
+  "@youCanContactUsAt": {
+    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
+  },
+  "biblekidsAbout": "BCC Media je iniciativa BCC zveze, medijske fundacije, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.",
+  "@biblekidsAbout": {
+    "description": "Shown on about page"
+  },
+  "askYourParents": "Vprašaj starše",
+  "@askYourParents": {
+    "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
+  },
+  "whatIsMath": "Kaj je",
+  "@whatIsMath": {
+    "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
+  },
+  "answerLabel": "Odgovor",
+  "@answerLabel": {
+    "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
+  },
+  "checkAnswerButton": "Preveri odgovor",
+  "@checkAnswerButton": {
+    "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
+  },
+  "videoOnlyAccessibleToLoggedIn": "Ta video je na voljo samo prijavljenim uporabnikom.",
+  "@videoOnlyAccessibleToLoggedIn": {
+    "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
+  },
+  "verifyYourAccount": "Potrdi svoj račun",
+  "@verifyYourAccount": {
+    "description": "Title of the page where you can verify your email/account."
+  },
+  "weHaveSentAnEmailTo": "Pošto smo poslali na",
+  "@weHaveSentAnEmailTo": {
+    "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
+  },
+  "clickTheLinkToVerify": "Klikni na povezavo v elektronski pošti, da potrdiš svoj račun.",
+  "@clickTheLinkToVerify": {
+    "description": "Shown on the verify account page."
+  },
+  "openEmailApp": "Odpri pošto",
+  "@openEmailApp": {
+    "description": "Shown on the verify account page. Button to open your email app."
+  },
+  "resendEmail": "Ponovno pošlji pošto",
+  "@resendEmail": {
+    "description": "Shown on the verify account page. Button to resend the verification email."
+  },
+  "noMailAppsDescription": "Ni naloženih aplikacij za pošto",
+  "@noMailAppsDescription": {
+    "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
+  },
+  "verificationEmailSent": "Poslana pošta za potrditev",
+  "@verificationEmailSent": {
+    "description": "Shown when the user has requested a new verification email."
+  },
+  "ifYouDidntReceiveVerificationEmail": "Če še vedno nisi prejel pošte, kontaktiraj podporo na",
+  "@ifYouDidntReceiveVerificationEmail": {
+    "description": "Shown when the user has requested a new verification email."
+  },
+  "accountCreated": "Račun je ustvarjen",
+  "@accountCreated": {
+    "description": "Shown when the user has successfully created an account."
+  },
+  "youCanNowUseYourAccount": "Sedaj lahko uporabiš svoj račun in raziščeš različne izgrajujoče vsebine.",
+  "@youCanNowUseYourAccount": {
+    "description": "Shown when the user has successfully completed account setup."
+  },
+  "youCanNowLogInToYourAccount": "Sedaj se lahko vpišeš v svoj račun in raziščeš različne izgrajujoče vsebine.",
+  "@youCanNowLogInToYourAccount": {
+    "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
+  },
+  "accountDeletionExplanation": "Zaprosil boš za izbris svojega računa v BCC Media in vseh povezanih podatkov.",
+  "@accountDeletionExplanation": {
+    "description": "Shown on the account deletion page."
+  },
+  "accountDeletionWarning": "To dejanje ne more biti razveljavljeno.",
+  "@accountDeletionWarning": {
+    "description": "Shown on the account deletion page."
+  },
+  "accountDeletionTimeframe": "Izbris računa bo izveden v roku {x} delovnih dni.",
+  "@accountDeletionTimeframe": {
+    "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
+  },
+  "accountDeletionTitle": "Izbriši moj račun",
+  "@accountDeletionTitle": {
+    "description": "Title of the account deletion page."
+  },
+  "accountDeletionSuccess": "Izbris računa je bil potrjen. Prejel boš sporočilo na {email}. Za potrditev identitete, moraš odgovoriti na sporočilo, da se bo račun izbrisal.",
+  "@accountDeletionSuccess": {
+    "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "gamesTab": "Igre",
+  "@gamesTab": {
+    "description": "Title of the games page"
+  },
+  "playGame": "Igraj igre",
+  "@playGame": {
+    "description": "Title on a game"
+  },
+  "tvScanQr": "Skeniraj kodo in se vpiši s svojim telefonom",
+  "@tvScanQr": {
+    "description": "Title on the login screen for TVs"
+  },
+  "tvEnterCode": "Ali pojdi na {url} in vpiši kodo: {code}",
+  "@tvEnterCode": {
+    "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "chapters": "Poglavja",
+  "@chapters": {
+    "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
+  },
+  "removeWatchProgress": "Začni od začetka",
+  "@removeWatchProgress": {
+    "description": "Shown when holding on an episode in the 'continue watching' section."
+  },
+  "showDescription": "Opis oddaje",
+  "@showDescription": {
+    "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
+  },
+  "releaseDate": "Datum izida",
+  "@releaseDate": {
+    "description": "Release date of the episode, shown in the 'details' tab under an episode."
+  },
+  "availableTo": "Na voljo do",
+  "@availableTo": {
+    "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
+  },
+  "ageRating": "Starostna kategorija",
+  "@ageRating": {
+    "description": "Age rating for the episode, shown in the 'details' tab under an episode."
+  },
+  "ageRatingAll": "Vse",
+  "@ageRatingAll": {
+    "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
+  },
+  "offline": "Brez povezave",
+  "@offline": {
+    "description": "Status indicator, indicating that you are offline; not connected to the internet."
+  },
+  "downloadButton": "Prenesi",
+  "@downloadButton": {
+    "description": "Button text, a button to download the episode to make it available for offline playback."
+  },
+  "audioNotAvailableInLanguage": "Zvok ni na voljo za jezik: {lang}",
+  "@audioNotAvailableInLanguage": {
+    "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
+  },
+  "notEnoughAvailableSpace": "Ni dovolj prostora na tvoji napravi",
+  "@notEnoughAvailableSpace": {
+    "description": "Shown when you try to download an episode, but there is not enough space on your device."
+  },
+  "considerDeletingOtherVideos": "Razmisli o izbrisu drugih videoposnetkov, ki si jih prenesel iz aplikacije.",
+  "@considerDeletingOtherVideos": {
+    "description": "Shown when you try to download an episode, but there is not enough space on your device."
+  },
+  "theVideoFileSizeIs": "Velikost videa je {size}.",
+  "@theVideoFileSizeIs": {
+    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "gotIt": "Razumem",
+  "@gotIt": {
+    "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
+  },
+  "saveYourFavorites": "Shrani svoje priljubljene videe",
+  "@saveYourFavorites": {
+    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
+  },
+  "saveYourFavoritesDescription": "Pritisni ikono srca, da shraniš video v svoj profil.",
+  "@saveYourFavoritesDescription": {
+    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
+  },
+  "yourFavorites": "Tvoje priljubljene",
+  "@yourFavorites": {
+    "description": "Shown as a title for the 'favorites' section in the profile tab."
+  },
+  "downloaded": "Preneseno",
+  "@downloaded": {
+    "description": "Shown as a title for the 'downloaded' section in the profile tab."
+  },
+  "saveVideosForOfflineViewing": "Shrani videe za ogled brez povezave",
+  "@saveVideosForOfflineViewing": {
+    "description": "Shown when the 'downloaded' section is empty."
+  },
+  "tapOnTheDownloadIcon": "Tapni ikono za prenos na videoposnetku, da ga preneseš in predvajaš brez povezave.",
+  "@tapOnTheDownloadIcon": {
+    "description": "Shown when the 'downloaded' section is empty."
+  },
+  "removeOfflineVideo": "Odstrani videoposnetek brez povezave?",
+  "@removeOfflineVideo": {
+    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
+  },
+  "removeOfflineVideoDescription": "Če odstraniš ta videoposnetek ne bo več na voljo brez omrežne povezave.",
+  "@removeOfflineVideoDescription": {
+    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
+  },
+  "removeFromDeviceButton": "Odstrani iz naprave",
+  "@removeFromDeviceButton": {
+    "description": "Button text, to remove a downloaded video from the device."
+  },
+  "keepVideoButton": "Obdrži videoposnetek",
+  "@keepVideoButton": {
+    "description": "Button when asking to remove a downloaded video. This button cancels."
+  },
+  "noInternetConnection": "Brez internetne povezave",
+  "@noInternetConnection": {
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "noInternetConnectionDescription": "Za dostop do vseh videoposnetkov se poveži z internetom.",
+  "@noInternetConnectionDescription": {
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "noInternetButDontWorry": "Ni povezave,\nampak ne skrbi.",
+  "@noInternetButDontWorry": {
+    "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
+  },
+  "hereAreAllTheVideosYouDownloaded": "Tukaj so vsi videi, ki si jih prenesel na svojo napravo.",
+  "@hereAreAllTheVideosYouDownloaded": {
+    "description": "Shown when you are offline, but you have downloaded some videos."
+  },
+  "connectToExplore": "Poveži se z internetom, da raziščeš vse videe.",
+  "@connectToExplore": {
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "language": "Jezik",
+  "@language": {
+    "description": "A label when selecting a language to download."
+  },
+  "estimatedFileSize": "Ocenjena velikost datoteke: {size}",
+  "@estimatedFileSize": {
+    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "downloadVideo": "Prenesi video",
+  "@downloadVideo": {
+    "description": "Title on the download video form."
+  },
+  "noSubtitles": "Ni podnapisov",
+  "@noSubtitles": {
+    "description": "Shown in the download form, indicating that there are no subtitles available for the video."
+  },
+  "subtitlesIncluded": "Podnapisi so vključeni",
+  "@subtitlesIncluded": {
+    "description": "Shown in the download form, indicating that all subtitles are included in the video."
+  },
+  "allSubtitlesWillBeAvailableOffline": "Vsi podnapisi bodo na voljo brez povezave",
+  "@allSubtitlesWillBeAvailableOffline": {
+    "description": "Shown in the download form, indicating that all subtitles will be available offline."
+  },
+  "downloading": "Prenašam",
+  "@downloading": {
+    "description": "Download status, indicating that the video is currently downloading."
+  },
+  "failed": "Neuspešno",
+  "@failed": {
+    "description": "Generic status label. Used e.g. for downloads that failed."
+  },
+  "finished": "Dokončano",
+  "@finished": {
+    "description": "Generic status label. Used e.g. for downloads that finished."
+  },
+  "paused": "Ustavljeno",
+  "@paused": {
+    "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
+  },
+  "queued": "V vrsti",
+  "@queued": {
+    "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
+  },
+  "removing": "Odstranjujem",
+  "@removing": {
+    "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
+  },
+  "expiresIn": "Poteče čez {time}",
+  "@expiresIn": {
+    "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "availableOffline": "Na voljo brez povezave",
+  "@availableOffline": {
+    "description": "Label indicating that the video is available offline."
+  },
+  "technicalDetails": "Tehnične podrobnosti",
+  "@technicalDetails": {
+    "description": "Shown when errors occur, and you want to see more technical details about the error."
+  },
+  "contentLanguage": "Jezik vsebine",
+  "@contentLanguage": {
+    "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
+  },
+  "contentLanguageShort": "Vsebina",
+  "@contentLanguageShort": {
+    "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
+  },
+  "appLanguageShort": "Aplikacija",
+  "@appLanguageShort": {
+    "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
+  },
+  "playRandom": "Naključno predvajanje",
+  "@playRandom": {
+    "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
+  },
+  "addLanguage": "Dodaj jezik",
+  "@addLanguage": {
+    "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
+  },
+  "preferredLanguages": "Izbran jezik",
+  "@preferredLanguages": {
+    "description": "Shown when you are selecting preferred content languages. Title."
+  },
+  "contentLanguageExplanation": "Spremeni vrstni red jezikov tako, da bo ustrezal tvojim željam glede jezika zvoka in podnapisov.",
+  "@contentLanguageExplanation": {
+    "description": "Shown when you are selecting preferred content languages."
+  },
+  "otherLanguages": "Drugi jeziki",
+  "@otherLanguages": {
+    "description": "Languages that are available but in your list of preferred languages."
+  },
+  "select": "Izberi",
+  "@select": {
+    "description": "Prompt. Shown at the top of a list of options."
+  },
+  "supportBibleKids": "Podpri Bible Kids",
+  "@supportBibleKids": {
+    "description": "Shown on the settings page."
+  },
+  "donateViaPaypal": "Donacija prek PayPala",
+  "@donateViaPaypal": {
+    "description": "Shown on the settings page."
+  },
+  "shortsTab": "Kratki filmi",
+  "@shortsTab": {
+    "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
+  },
+  "autoGenerated": "Samodejno ustvarjeno",
+  "@autoGenerated": {
+    "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
+  },
+  "shortsTranscriptionDisclaimer": "Prepisi so ustvarjeni samodejno in lahko vsebujejo napake.",
+  "@shortsTranscriptionDisclaimer": {
+    "description": "Disclaimer shown on the shorts page."
+  },
+  "beta": "Beta",
+  "@beta": {
+    "description": "'Beta' features are only available to a selection of users."
+  },
+  "betaExplanation": "Ta funkcija je v beta različici in trenutno ni na voljo vsem uporabnikom. Morebitne težave ali povratne informacije sporočite prek gumba \"Kontakt\" v nastavitvah.",
+  "@betaExplanation": {
+    "description": "Shown in a popup on beta features."
+  },
+  "likedShorts": "Priljubljeni kratki filmi",
+  "@likedShorts": {
+    "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
+  },
+  "saveYourFavoriteShorts": "Shrani svoje priljubljene kratke filme",
+  "@saveYourFavoriteShorts": {
+    "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
+  },
+  "featureNotAvailableYet": "Ta funkcija še ni na voljo na tvoji napravi. Prosim poskusi kasneje.",
+  "@featureNotAvailableYet": {
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
+  },
+  "newFeature": "Nova funkcija",
+  "@newFeature": {
+    "description": "Shown the first time you open the app after a new feature is available."
+  },
+  "shortsFeatureDescription": "Odkrij kratke in močne izseke ter skoči v celotno epizodo.",
+  "@shortsFeatureDescription": {
+    "description": "Shown the first time you open the app after 'shorts' is enabled."
+  },
+  "likedAndSaved": "Všečkano in shranjeno",
+  "@likedAndSaved": {
+    "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "shortsLikedAndSavedDescription": "Vse priljubljene kratke filme lahko najdeš v svojem profilu.",
+  "@shortsLikedAndSavedDescription": {
+    "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "excerptFrom": "Odlomek iz",
+  "@excerptFrom": {
+    "description": "Shown on a 'short' video, indicating that this is an excerpt from a longer video. E.g. Excerpt from 'The Tale of John Doe'."
+  },
+  "downloadedVideosGuideDescription": "Prenesene videoposnetke lahko najdeš v razdelku \"Profil\".",
+  "@downloadedVideosGuideDescription": {
+    "description": "Shown when you have downloaded a video for the first time."
+  },
+  "openStore": "Odpri trgovino",
+  "@openStore": {
+    "description": "A button to open play store / app store."
+  },
+  "thisVideoCantBeDownloaded": "Tega videoposnetka ni mogoče prenesti.",
+  "@thisVideoCantBeDownloaded": {
+    "description": "Shown when you try to download a video that cannot be downloaded."
+  },
+  "videoLanguage": "Jezik videoposnetka",
+  "@videoLanguage": {
+    "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
+  },
+  "videoTextLanguage": "Jezik besedila videoposnetka",
+  "@videoTextLanguage": {
+    "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
+  },
+  "original": "Izvirnik",
+  "@original": {
+    "description": "E.g. original language."
+  },
+  "openSettingsToChangeVideoLang": "Odpri nastavitve in spremeni jezik besedila videoposnetka",
+  "@openSettingsToChangeVideoLang": {
+    "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
+  },
+  "somethingWentWrong": "Nekaj je šlo narobe",
+  "@somethingWentWrong": {
+    "description": "Generic error title/message."
+  },
+  "all": "Vse",
+  "@all": {
+    "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
+  },
+  "countItems": "{x} stvari",
+  "@countItems": {
+    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
+  },
+  "skipTo": "Preskoči na {chapter}",
+  "@skipTo": {
+    "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "chapter": {
+        "type": "String"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "submodules/bccm_player"
+    },
+    {
+      "path": "submodules/bccm_flutter"
+    }
+  ],
+  "settings": {
+    "git.autoRepositoryDetection": "subFolders",
+    "files.associations": {
+      ".env.dart": "dart",
+      ".env.dart.template": "dart"
+    },
+    "graphql-config.load.rootDir": "submodules/bccm_flutter/bccm_core",
+    "dart.lineLength": 150,
+    "[dart]": {
+      "editor.rulers": [150]
+    }
+  }
+}

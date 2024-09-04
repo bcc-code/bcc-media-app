@@ -1,21 +1,19 @@
-import 'package:brunstadtv_app/models/analytics/achievement_shared.dart';
-import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/design_system.dart';
+import 'package:brunstadtv_app/flavors.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../graphql/queries/achievements.graphql.dart';
-import '../../theme/design_system/design_system.dart';
-import '../../helpers/images.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
-import '../../providers/analytics.dart';
-import '../../helpers/share_image.dart';
-import '../../helpers/misc.dart';
 import '../../helpers/widget_to_image.dart';
 import '../misc/dialog_with_image.dart';
 import '../status/loading_indicator.dart';
@@ -57,7 +55,7 @@ class _AchievementDialogState extends ConsumerState<AchievementDialog> {
                       try {
                         ref.read(analyticsProvider).achievementShared(AchievementSharedEvent(elementTitle: widget.achievement.title));
                       } catch (e) {
-                        FirebaseCrashlytics.instance.recordError(e, StackTrace.current);
+                        Sentry.captureException(e, stackTrace: StackTrace.current);
                       }
                       final sharePositionOrigin = iPadSharePositionOrigin(context);
                       setState(() {
@@ -110,49 +108,52 @@ class AchievementShareRender extends StatelessWidget {
     final design = BccMediaDesignSystem();
     return DesignSystem(
       designSystem: design,
-      child: (context) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: Container(
-            width: 400,
-            height: 350,
-            color: design.colors.background2,
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: Container(
-                    decoration: BoxDecoration(gradient: design.appThemeData.achievementBackgroundGradient),
+      builder: (context) => AppTheme(
+        theme: FlavorConfig.current.appTheme(context),
+        builder: (context) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
+            body: Container(
+              width: 400,
+              height: 350,
+              color: design.colors.background2,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(gradient: AppTheme.of(context).achievementBackgroundGradient),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      if (achievement.image != null)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 24),
-                          child: SizedBox(height: 160, child: Image.memory(imageBytes)),
-                        ),
-                      if (formattedAchievedAt != null)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 4),
-                          child: Text(
-                            formattedAchievedAt!,
-                            style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label3),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if (achievement.image != null)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 24),
+                            child: SizedBox(height: 160, child: Image.memory(imageBytes)),
                           ),
+                        if (formattedAchievedAt != null)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 4),
+                            child: Text(
+                              formattedAchievedAt!,
+                              style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label3),
+                            ),
+                          ),
+                        Text(
+                          achievement.title,
+                          style: DesignSystem.of(context).textStyles.headline2,
+                          textAlign: TextAlign.center,
                         ),
-                      Text(
-                        achievement.title,
-                        style: DesignSystem.of(context).textStyles.headline2,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

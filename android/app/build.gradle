@@ -1,14 +1,16 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id "dev.flutter.flutter-gradle-plugin"
+    id 'com.google.gms.google-services'
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
         localProperties.load(reader)
     }
-}
-
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    throw new GradleException('Flutter SDK not found. Define location with flutter.sdk in the local.properties file.')
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -21,13 +23,6 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-apply plugin: 'com.android.application'
-// START: FlutterFire Configuration
-apply plugin: 'com.google.gms.google-services'
-// END: FlutterFire Configuration
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
 def keystoreProperties = new Properties()
 def keystorePropertiesFile = rootProject.file('key.properties')
 if (keystorePropertiesFile.exists()) {
@@ -35,7 +30,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -53,7 +48,7 @@ android {
 
     defaultConfig {
         applicationId 'tv.brunstad.app'
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -86,16 +81,6 @@ android {
                     appAuthRedirectScheme: 'tv.brunstad.app.dev',
             ]
         }
-        kids_prod {
-            dimension 'env'
-            applicationIdSuffix ''
-            applicationId 'media.bcc.kids'
-            flutter.target 'lib/main_kids_prod.dart'
-            manifestPlaceholders += [
-                    applicationLabel     : 'Bible Kids',
-                    appAuthRedirectScheme: 'media.bcc.kids',
-            ]
-        }
         prod {
             getIsDefault().set(true)
             dimension 'env'
@@ -126,4 +111,3 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 }
 
-apply plugin: 'com.google.firebase.crashlytics'

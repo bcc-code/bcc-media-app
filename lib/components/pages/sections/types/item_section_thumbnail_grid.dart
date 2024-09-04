@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import '../../../thumbnails/grid/thumbnail_grid.dart';
 
 class ItemSectionThumbnailGrid extends StatelessWidget {
@@ -23,7 +23,7 @@ class ItemSectionThumbnailGrid extends StatelessWidget {
       data: data,
       showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
       aspectRatio: 16 / 9,
-      collectionId: data.metadata?.collectionId,
+      collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
     );
   }
 
@@ -32,7 +32,7 @@ class ItemSectionThumbnailGrid extends StatelessWidget {
       data: data,
       showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
       aspectRatio: 0.67,
-      collectionId: data.metadata?.collectionId,
+      collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
     );
   }
 

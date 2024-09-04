@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
+import 'package:bccm_core/platform.dart';
 
 bool sectionIsVertical(element) =>
     element is Fragment$Section$$ListSection ||

@@ -5,9 +5,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:kids/components/buttons/button.dart';
 import 'package:kids/components/buttons/button_base.dart';
 import 'package:kids/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 TextPainter _useTextPainter(TextDirection textDirection) {
   final textPainter = useState<TextPainter?>(null);

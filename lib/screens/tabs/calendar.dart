@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:collection';
 import 'dart:math';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/calendar.graphql.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
@@ -13,15 +12,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
-import '../../helpers/time.dart';
 import '../../helpers/episode_state.dart';
 import '../../helpers/insets.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../../helpers/constants.dart';
 import '../../l10n/app_localizations.dart';
-import '../../models/analytics/calendar_day_clicked.dart';
-import '../../providers/analytics.dart';
 
 @RoutePage<void>()
 class CalendarScreen extends ConsumerStatefulWidget {
@@ -162,7 +158,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   loadInputPeriodData() async {
     var from = getFormattedDateTime(_focusedDay.subtract(const Duration(days: 40)));
     var to = getFormattedDateTime(_focusedDay.add(const Duration(days: 40)));
-    final client = ref.read(gqlClientProvider);
+    final client = ref.read(bccmGraphQLProvider);
 
     _calendarPeriodFuture = client
         .query$CalendarPeriod(Options$Query$CalendarPeriod(
@@ -192,7 +188,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   }
 
   loadSelectedDay() {
-    final client = ref.read(gqlClientProvider);
+    final client = ref.read(bccmGraphQLProvider);
     _selectedDayFuture = client
         .query$CalendarDay(Options$Query$CalendarDay(variables: Variables$Query$CalendarDay(date: getFormattedDateTime(_selectedDay!))))
         .onError((error, stackTrace) {
@@ -242,7 +238,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
             availableGestures: AvailableGestures.horizontalSwipe,
             rangeSelectionMode: RangeSelectionMode.disabled,
             calendarStyle: CalendarStyle(
-              tableBorder: TableBorder.symmetric(),
+              tableBorder: const TableBorder.symmetric(),
               canMarkersOverflow: true,
               defaultTextStyle: design.textStyles.title3,
               todayTextStyle: design.textStyles.title3.copyWith(color: design.colors.tint2),
@@ -426,8 +422,8 @@ class CenterText extends StatelessWidget {
 
 class HighLightOpen extends StatelessWidget {
   const HighLightOpen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -445,8 +441,8 @@ class HighLightOpen extends StatelessWidget {
 
 class HighLightClose extends StatelessWidget {
   const HighLightClose({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -464,8 +460,8 @@ class HighLightClose extends StatelessWidget {
 
 class HighLightMiddle extends StatelessWidget {
   const HighLightMiddle({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -480,8 +476,8 @@ class HighLightMiddle extends StatelessWidget {
 
 class HighLightSingle extends StatelessWidget {
   const HighLightSingle({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -513,7 +509,7 @@ class _EntriesSlot extends StatelessWidget {
       children: <Widget>[
         if (entriesList != null && entriesList.isNotEmpty) ...[
           ...entriesList.map((entry) {
-            final episode = entry.asOrNull<Fragment$CalendarDay$entries$$EpisodeCalendarEntry>();
+            final episode = entry.asOrNull<Fragment$CalendarEntry$$EpisodeCalendarEntry>();
             return GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTapUp: (details) {
@@ -580,7 +576,7 @@ class _EntriesSlot extends StatelessWidget {
                 ),
               ),
             );
-          }).toList(),
+          }),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 23.0),
             child: Row(

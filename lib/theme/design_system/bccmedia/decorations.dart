@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class BccMediaInputDecorations extends DesignSystemInputDecorations {
   BccMediaInputDecorations({

@@ -1,154 +1,113 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/components/achievements/achievement_dialog.dart';
 import 'package:brunstadtv_app/components/misc/dialog_with_image.dart';
+import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_generic.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';
+import 'package:brunstadtv_app/helpers/main_js_channel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../components/nav/custom_back_button.dart';
-import '../../graphql/queries/studies.graphql.dart';
 import '../../helpers/svg_icons.dart';
-import '../../helpers/misc.dart';
-import '../../helpers/webview/main_js_channel.dart';
 import '../../l10n/app_localizations.dart';
 
 @RoutePage<void>()
-class StudyScreen extends ConsumerStatefulWidget {
+class StudyScreen extends HookConsumerWidget {
   final String episodeId;
   final String lessonId;
 
-  StudyScreen({
-    Key? key,
+  const StudyScreen({
+    super.key,
     required this.episodeId,
     required this.lessonId,
-  }) : super(key: key ?? GlobalKey<StudyScreenState>());
+  });
 
   @override
-  ConsumerState<StudyScreen> createState() => StudyScreenState();
-}
-
-class StudyScreenState extends ConsumerState<StudyScreen> {
-  String pageTitle = '';
-  InAppWebViewController? webViewController;
-  WebResourceError? error;
-  bool firstLoadDone = false;
-  double? height;
-  Future<String>? initialUrlFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    getTitle();
-    initialUrlFuture = getWebUrl().then((webHost) => '$webHost/embed/episode/${widget.episodeId}/lesson/${widget.lessonId}');
-  }
-
-  Future getTitle() async {
-    final value = await ref
-        .read(gqlClientProvider)
-        .query$GetLessonTitle(Options$Query$GetLessonTitle(variables: Variables$Query$GetLessonTitle(id: widget.lessonId)));
-    setState(() {
-      pageTitle = value.parsedData?.studyLesson.title ?? '';
+  Widget build(BuildContext context, WidgetRef ref) {
+    final titleFuture = useMemoized(() {
+      return ref
+          .read(bccmGraphQLProvider)
+          .query$GetLessonTitle(Options$Query$GetLessonTitle(variables: Variables$Query$GetLessonTitle(id: lessonId)));
     });
-  }
+    final titleSnapshot = useFuture(titleFuture);
 
-  void onWebViewCreated(InAppWebViewController controller) async {
-    MainJsChannel.register(context, controller);
-    controller.addJavaScriptHandler(handlerName: 'flutter_study', callback: handleMessage);
-    setState(() {
-      webViewController = controller;
+    Future handleMessage(List<dynamic> arguments) async {
+      if (arguments[0] == 'tasks_completed') {
+        _handleTasksCompleted(context, ref);
+      }
+    }
+
+    final uri = useMemoized(() => Uri.parse('${getWebUrl(ref)}/embed/episode/$episodeId/lesson/$lessonId'));
+    final manager = useWebViewManager(uri, setup: (m) {
+      MainJsChannel.register(context, m, enableAuth: true);
+      m.js.registerSimpleHandler('study', handleMessage);
     });
-  }
 
-  @override
-  Widget build(BuildContext context) {
+    final loading = useListenableSelector(manager?.navigation.initialLoadDone, () => manager?.navigation.initialLoadDone.value != true);
+    final design = DesignSystem.of(context);
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 92,
         leading: const CustomBackButton(),
-        //title: Text(pageTitle),
+        title: Text(titleSnapshot.data?.parsedData?.studyLesson.title ?? ''),
       ),
       body: Stack(
         children: [
-          Opacity(
-            opacity: firstLoadDone ? 1 : 0,
-            child: simpleFutureBuilder<String>(
-              future: initialUrlFuture,
-              loading: () => const SizedBox.expand(),
-              ready: (initialUrl) => InAppWebView(
-                initialUrlRequest: URLRequest(
-                  url: WebUri.uri(Uri.parse(initialUrl)),
-                  allowsCellularAccess: true,
-                  allowsConstrainedNetworkAccess: true,
-                  allowsExpensiveNetworkAccess: true,
-                ),
-                gestureRecognizers: {Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())},
-                initialSettings: InAppWebViewSettings(
-                  useHybridComposition: false,
-                  transparentBackground: true,
-                  verticalScrollBarEnabled: false,
-                  useShouldOverrideUrlLoading: true,
-                  allowsInlineMediaPlayback: true,
-                  mediaPlaybackRequiresUserGesture: false,
-                  iframeAllowFullscreen: true,
-                ),
-                onWebViewCreated: onWebViewCreated,
-                onLoadStop: (controller, url) {
-                  setState(() => firstLoadDone = true);
-                },
-                shouldOverrideUrlLoading: shouldOverrideUrlLoading(initialUrl),
-              ),
+          if (manager != null)
+            WebViewWidget(
+              controller: manager.controller,
+              gestureRecognizers: {Factory<EagerGestureRecognizer>(() => EagerGestureRecognizer())},
+            )
+          else
+            const ErrorGeneric(),
+          if (loading)
+            Container(
+              color: design.colors.background1.withAlpha(100),
+              child: const LoadingGeneric(),
             ),
-          ),
-          if (!firstLoadDone) const LoadingGeneric()
         ],
       ),
     );
   }
+}
 
-  Future handleMessage(List<dynamic> arguments) async {
-    if (arguments[0] == 'tasks_completed') {
-      handleTasksCompleted();
-    }
+Future _handleTasksCompleted(BuildContext context, WidgetRef ref) async {
+  final navigatorContext = Navigator.of(context).context;
+  final gqlClient = ref.read(bccmGraphQLProvider);
+  final achievements = await gqlClient.query$getPendingAchievements();
+  final hasPending = achievements.parsedData != null && achievements.parsedData!.pendingAchievements.isNotEmpty;
+  if (!hasPending && navigatorContext.mounted) {
+    await showDialog(
+      barrierDismissible: false,
+      context: navigatorContext,
+      builder: (context) => DialogWithImage(
+        image: SvgPicture.string(SvgIcons.tasksCompleted),
+        title: S.of(context).wellDone,
+        description: S.of(context).videoCompletedText,
+        dismissButtonText: S.of(context).continueButton,
+      ),
+    );
   }
 
-  Future handleTasksCompleted() async {
-    final navigatorContext = Navigator.of(context).context;
-    final gqlClient = ref.read(gqlClientProvider);
-    final achievements = await gqlClient.query$getPendingAchievements();
-
-    if (achievements.parsedData?.pendingAchievements.isNotEmpty != true && navigatorContext.mounted) {
-      await showDialog(
-        barrierDismissible: false,
-        context: navigatorContext,
-        builder: (context) => DialogWithImage(
-          image: SvgPicture.string(SvgIcons.tasksCompleted),
-          title: S.of(context).wellDone,
-          description: S.of(context).videoCompletedText,
-          dismissButtonText: S.of(context).continueButton,
-        ),
-      );
-    }
-
-    for (final achievement in achievements.parsedData!.pendingAchievements) {
-      // ignore: use_build_context_synchronously
-      if (!navigatorContext.mounted) return;
-      await showDialog(
-        barrierDismissible: false,
-        context: navigatorContext,
-        builder: (context) => AchievementDialog(
-          achievement: achievement,
-          dismissButtonText: S.of(context).continueButton,
-        ),
-      );
-      gqlClient.mutate$confirmAchievement(Options$Mutation$confirmAchievement(variables: Variables$Mutation$confirmAchievement(id: achievement.id)));
-    }
+  for (final achievement in achievements.parsedData!.pendingAchievements) {
+    // ignore: use_build_context_synchronously
+    if (!navigatorContext.mounted) return;
+    await showDialog(
+      barrierDismissible: false,
+      context: navigatorContext,
+      builder: (context) => AchievementDialog(
+        achievement: achievement,
+        dismissButtonText: S.of(context).continueButton,
+      ),
+    );
+    gqlClient.mutate$confirmAchievement(Options$Mutation$confirmAchievement(variables: Variables$Mutation$confirmAchievement(id: achievement.id)));
   }
 }

@@ -1,3 +1,0 @@
-mutation sendSupportEmail($title: String!, $content: String!, $html: String!, $options: EmailOptions) {
-  sendSupportEmail(title: $title, content: $content, html: $html, options: $options)
-}

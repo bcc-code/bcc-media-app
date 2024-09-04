@@ -1,7 +1,7 @@
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/components/menus/option_list.dart';
 import 'package:brunstadtv_app/components/episode/list/season_episode_list.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
@@ -28,12 +28,11 @@ class EpisodeSeason extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedSeasonId = useState(season.id);
     final episodesCache = useState<Map<String, List<SeasonEpisodeListEpisodeData>?>>({});
-    final isMounted = useIsMounted();
 
     Future onSeasonSelected(String id) async {
       selectedSeasonId.value = id;
       var season = await ref.read(apiProvider).getSeasonEpisodes(id);
-      if (!isMounted() || season == null) return;
+      if (!context.mounted || season == null) return;
       if (season.episodes.items.any((element) => element.lessons.total > 0)) {
         ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForSeason(season.id);
       }
@@ -63,7 +62,6 @@ class EpisodeSeason extends HookConsumerWidget {
         ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForSeason(season.id);
       }
       return null;
-      // ignore: exhaustive_keys
     }, [season]);
 
     final episodes = episodesCache.value[selectedSeasonId.value];
@@ -93,7 +91,23 @@ class EpisodeSeason extends HookConsumerWidget {
           )
         else
           SeasonEpisodeList(
-            onEpisodeTap: onEpisodeTap,
+            onEpisodeTap: (index, e) {
+              onEpisodeTap(e);
+              ref.read(analyticsProvider).sectionItemClicked(
+                    context,
+                    itemAnalyticsOverride: SectionItemAnalyticsData(position: index, type: 'Episode', id: e),
+                    sectionAnalyticsOverride: SectionAnalyticsData(
+                      id: episodeId,
+                      position: 0,
+                      type: 'SeasonList',
+                      pageCode: 'episode',
+                      meta: {
+                        'seasonId': season.id,
+                        'episodeId': episodeId,
+                      },
+                    ),
+                  );
+            },
             items: episodes
                 .map(
                   (e) => e.copyWith(

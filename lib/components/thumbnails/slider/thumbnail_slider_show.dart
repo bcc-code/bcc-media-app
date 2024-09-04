@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import '../../../l10n/app_localizations.dart';
 
-import '../../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 import '../show_thumbnail.dart';
 
@@ -12,9 +12,6 @@ class ThumbnailSliderShow extends StatelessWidget {
   final Fragment$ItemSectionItem$item$$Show show;
   final Size imageSize;
   final bool showSeasonEpisodeCounts;
-
-  // TODO: Remove this
-  final bool hasNewEpisodes = false;
 
   const ThumbnailSliderShow({
     super.key,
@@ -35,7 +32,6 @@ class ThumbnailSliderShow extends StatelessWidget {
           ShowThumbnail.withSize(
             imageSize: imageSize,
             sectionItem: sectionItem,
-            hasNewEpisodes: hasNewEpisodes,
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 2),

@@ -1,13 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/api/auth0_api.dart';
 import 'package:brunstadtv_app/components/onboarding/signup/signup_birthdate_page.dart';
 import 'package:brunstadtv_app/components/onboarding/signup/signup_done_page.dart';
 import 'package:brunstadtv_app/components/onboarding/signup/signup_name_page.dart';
 import 'package:brunstadtv_app/env/env.dart';
-import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
-import 'package:brunstadtv_app/graphql/schema/mutations.graphql.dart';
-import 'package:brunstadtv_app/models/auth0/auth0_api.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -18,7 +15,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../components/onboarding/signup/signup_initial_page.dart';
 import '../../components/onboarding/signup/signup_password_page.dart';
 import '../../l10n/app_localizations.dart';
-import '../../providers/analytics.dart';
 
 abstract class SignupScreenPage implements Widget {
   abstract final String analyticsPageCode;
@@ -66,21 +62,22 @@ class SignupScreen extends HookConsumerWidget {
       );
       return registerFuture.value = () async {
         if (user == null) {
-          await ref.read(auth0ApiProvider).signup(
-                Auth0SignupRequestBody(
-                    clientId: Env.auth0ClientId,
-                    email: emailTextController.value.text,
-                    password: passwordTextController.value.text,
-                    name: '${firstNameController.value.text} ${lastNameController.value.text}',
-                    nickname: firstNameController.value.text,
-                    givenName: firstNameController.value.text,
-                    familyName: lastNameController.value.text,
-                    connection: Env.auth0SignupConnection,
-                    userMetadata: {
-                      'birth_year': yearController.value.toString(),
-                      'media_subscriber': true.toString(),
-                    }),
-              );
+          await Auth0Api(audience: Env.auth0Audience, clientId: Env.auth0ClientId, domain: Env.auth0Domain).signup(
+            Auth0SignupRequestBody(
+              clientId: Env.auth0ClientId,
+              email: emailTextController.value.text,
+              password: passwordTextController.value.text,
+              name: '${firstNameController.value.text} ${lastNameController.value.text}',
+              nickname: firstNameController.value.text,
+              givenName: firstNameController.value.text,
+              familyName: lastNameController.value.text,
+              connection: Env.auth0SignupConnection,
+              userMetadata: {
+                'birth_year': yearController.value.toString(),
+                'media_subscriber': true.toString(),
+              },
+            ),
+          );
         } else {
           final result = await updateUserMetadataMutation
               .runMutation(

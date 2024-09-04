@@ -1,26 +1,26 @@
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class Avatar extends HookConsumerWidget {
   const Avatar({
-    Key? key,
+    super.key,
+    required this.imageUrl,
     this.width = 100.0,
     this.backgroundColor,
-  }) : super(key: key);
+  });
 
   final double? width;
   final Color? backgroundColor;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final imageUrl = ref.watch(authStateProvider.select((value) => value.user?.picture));
     final design = DesignSystem.of(context);
     return kIsWeb
         ? Container(

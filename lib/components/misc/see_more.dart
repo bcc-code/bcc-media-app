@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
 class SeeMoreSlot extends StatelessWidget {
   const SeeMoreSlot({super.key, required this.onTap});

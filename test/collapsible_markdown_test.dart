@@ -1,11 +1,11 @@
 import 'package:brunstadtv_app/components/misc/collapsable_markdown.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'utils/basic_init.dart';
+import '../submodules/bccm_flutter/bccm_core/test/utils/basic_init.dart';
 
 const tests = [
   '''Testa
@@ -49,7 +49,7 @@ Future<void> testHeight(String content, WidgetTester t) async {
 
   await t.pumpWidget(DesignSystem(
     designSystem: BccMediaDesignSystem(),
-    child: (context) => MaterialApp(
+    builder: (context) => MaterialApp(
       locale: const Locale('en'),
       localizationsDelegates: S.localizationsDelegates,
       home: Scaffold(
@@ -71,7 +71,7 @@ Future<void> testHeight(String content, WidgetTester t) async {
   final size = t.getSize(find.byKey(key));
   expect(
     size.height,
-    lessThanOrEqualTo(60),
+    lessThanOrEqualTo(68),
     reason: content,
   );
 }

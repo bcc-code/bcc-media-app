@@ -2,13 +2,11 @@ import 'dart:async';
 
 import 'package:animations/animations.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/analytics.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:brunstadtv_app/helpers/images.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -17,7 +15,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:kids/screens/playlist.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class PlaylistPosterLarge extends HookConsumerWidget {
   const PlaylistPosterLarge({

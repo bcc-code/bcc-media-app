@@ -3,11 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import '../../../../models/analytics/sections.dart';
 import '../../../../models/breakpoints.dart';
 import '../icons/icon_section_button.dart';
 import '../../../misc/horizontal_slider.dart';
-import '../../../../graphql/queries/page.graphql.dart';
+import 'package:bccm_core/platform.dart';
 
 class IconSection extends StatelessWidget {
   final Fragment$Section$$IconSection data;
@@ -24,7 +23,8 @@ class IconSection extends StatelessWidget {
         var item = data.items.items[index];
         return SectionItemClickWrapper(
           item: item.item,
-          analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+          collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
+          analytics: SectionItemAnalyticsData(id: item.id, position: index, type: item.$__typename, name: item.title),
           child: IconSectionButton(
             label: item.title,
             networkImage: item.image,

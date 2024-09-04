@@ -1,16 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
-import 'package:brunstadtv_app/helpers/misc.dart';
-import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../theme/design_system/design_system.dart';
+import 'package:bccm_core/design_system.dart';
 
-import '../../helpers/router/router_utils.dart';
-import '../../providers/inherited_data.dart';
 import '../misc/horizontal_slider.dart';
 import '../thumbnails/misc/bordered_image_container.dart';
 
@@ -47,7 +45,7 @@ class _ResultProgramsListState extends ConsumerState<ResultProgramsList> {
             var item = widget.items[index];
             return InheritedData<SearchItemAnalytics>(
               inheritedData: SearchItemAnalytics(position: index, type: item.$__typename, id: item.id, group: 'shows'),
-              child: (context) => _Program(item),
+              builder: (context) => _Program(item),
             );
           },
         ),
@@ -76,10 +74,8 @@ class _ProgramState extends ConsumerState<_Program> {
         GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () {
-            setState(() {
-              navigationFuture = navigateToShowWithoutEpisodeId(context, widget._item.id);
-              ref.read(analyticsProvider).searchResultClicked(context);
-            });
+            context.router.push(ShowScreenRoute(showId: widget._item.id));
+            ref.read(analyticsProvider).searchResultClicked(context);
           },
           child: SizedBox(
             width: _slideWidth,

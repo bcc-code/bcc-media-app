@@ -1,9 +1,7 @@
-import 'package:brunstadtv_app/theme/design_system/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../bccm_gradients.dart';
-import '../design_system.dart';
+import 'package:bccm_core/design_system.dart';
 import 'buttons.dart';
 import 'decorations.dart';
 import 'text_styles.dart';
@@ -16,7 +14,6 @@ class BccMediaDesignSystem extends DesignSystemData {
     required super.materialThemeData,
     required super.buttons,
     required super.inputDecorations,
-    required super.appThemeData,
   });
   factory BccMediaDesignSystem() {
     final colors = BccMediaColors();
@@ -26,16 +23,6 @@ class BccMediaDesignSystem extends DesignSystemData {
       textStyles: textStyles,
       buttons: BccMediaButtons(colors: colors, textStyles: textStyles),
       inputDecorations: BccMediaInputDecorations(colors: colors, textStyles: textStyles),
-      appThemeData: AppThemeData(
-        studyGradient: BccmGradients.greenYellow,
-        genericBackgroundGradient: BccmGradients.purpleTransparentTopBottom,
-        achievementBackgroundGradient: BccmGradients.purpleTransparent,
-        appBarTransparent: true,
-        tabTheme: AppTabThemeData(
-          activeColor: colors.tint1,
-          iconActiveGradient: BccmGradients.softPurpleBlue,
-        ),
-      ),
       materialThemeData: ThemeData(
         useMaterial3: true,
         cupertinoOverrideTheme: CupertinoThemeData(
@@ -48,7 +35,7 @@ class BccMediaDesignSystem extends DesignSystemData {
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,
           seedColor: colors.tint1,
-          background: colors.background2,
+          surface: colors.background2,
         ),
         fontFamily: 'Barlow',
         canvasColor: colors.background1,
@@ -59,8 +46,8 @@ class BccMediaDesignSystem extends DesignSystemData {
           color: colors.tint1,
         ),
         switchTheme: SwitchThemeData(
-          trackColor: MaterialStateProperty.resolveWith((state) => state.contains(MaterialState.selected) ? colors.tint1 : colors.separatorOnLight),
-          thumbColor: MaterialStateProperty.resolveWith((state) => colors.onTint),
+          trackColor: WidgetStateProperty.resolveWith((state) => state.contains(WidgetState.selected) ? colors.tint1 : colors.separatorOnLight),
+          thumbColor: WidgetStateProperty.resolveWith((state) => colors.onTint),
         ),
         appBarTheme: AppBarTheme(
           titleTextStyle: textStyles.title3.copyWith(height: 1),
@@ -68,6 +55,7 @@ class BccMediaDesignSystem extends DesignSystemData {
           centerTitle: true,
           elevation: 0,
           toolbarHeight: 44,
+          scrolledUnderElevation: 0,
           iconTheme: IconThemeData(color: colors.tint1),
           backgroundColor: colors.background1,
         ),
@@ -80,6 +68,10 @@ class BccMediaDesignSystem extends DesignSystemData {
           ),
         ),
         scaffoldBackgroundColor: colors.background1,
+        bottomSheetTheme: const BottomSheetThemeData(
+          constraints: BoxConstraints(maxWidth: double.infinity),
+          backgroundColor: Colors.transparent,
+        ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           selectedItemColor: colors.tint1,
           elevation: 0,

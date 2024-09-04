@@ -1,10 +1,9 @@
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
 
-import '../../../theme/design_system/design_system.dart';
-import '../../../helpers/images.dart';
+import 'package:bccm_core/design_system.dart';
 
 class BorderedImageContainer extends StatelessWidget {
   final String? imageUrl;

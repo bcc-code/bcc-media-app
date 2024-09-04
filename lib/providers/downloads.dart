@@ -5,16 +5,14 @@ import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/availability.dart';
-import 'package:brunstadtv_app/providers/connectivity.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../helpers/time.dart';
 import 'feature_flags.dart';
 
 final downloadsEnabledProvider = Provider<bool>((ref) {
-  return ref.watch(featureFlagsProvider.select((value) => value.download)) && ref.watch(authStateProvider.select((value) => !value.guestMode));
+  return ref.watch(featureFlagsProvider.select((value) => value.download)) && ref.watch(authStateProvider.select((value) => value.isLoggedIn));
 });
 
 final downloadsProvider = AsyncNotifierProvider<DownloadsNotifier, List<Download>>(() {
@@ -61,7 +59,7 @@ class DownloadsNotifier extends AsyncNotifier<List<Download>> {
 
   void expiryCheck() {
     for (final Download download in state.valueOrNull ?? []) {
-      final skipAvailabilityCheck = ref.read(isOfflineProvider) || ref.read(authStateProvider).guestMode;
+      final skipAvailabilityCheck = ref.read(isOfflineProvider) || !ref.read(authStateProvider).isLoggedIn;
       final episodeId = download.config.typedAdditionalData.episodeId;
       final availability = episodeId == null || skipAvailabilityCheck ? null : ref.read(episodeAvailabilityProvider(episodeId)).valueOrNull;
       final expiresAt = getEarliestNullableDateTime([
@@ -88,7 +86,7 @@ class DownloadsNotifier extends AsyncNotifier<List<Download>> {
 
   @override
   Future<List<Download>> build() async {
-    if (ref.watch(authStateProvider.select((value) => value.guestMode))) {
+    if (ref.watch(authStateProvider.select((value) => !value.isLoggedIn))) {
       return [];
     }
     final statusSub = DownloaderInterface.instance.events.statusChanged.listen(_onStatusChanged);

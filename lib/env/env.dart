@@ -8,16 +8,17 @@ class Env {
   static const enableStudy = _Secrets.enableStudy;
   static const auth0ClientId = 'CU6aNYSKaD6vpgFZvLJ9gvGAFnKRlpir';
   static const auth0Domain = 'login.bcc.no';
+  static const auth0Scopes = ['openid', 'profile', 'offline_access', 'church', 'country', 'email'];
   static const auth0Audience = 'api.bcc.no';
   static const auth0SignupConnection = 'BCC-Members';
-  static const brunstadtvApiEndpoint = 'https://api.brunstad.tv/query';
   static const npawAccountCode = _Secrets.npawAccountCode;
   static const rudderstackWriteKey = _Secrets.rudderstackWriteKey;
   static final webUrl = _Secrets.webUrl.isNotEmpty ? _Secrets.webUrl : 'https://app.bcc.media';
   static const unleashClientKey = _Secrets.unleashClientKey;
-  static const unleashClientKeyBetaTester = _Secrets.unleashClientKeyBetaTester;
   static const unleashProxyUrl = _Secrets.unleashProxyUrl;
   static const unleashAppName = _Secrets.unleashAppName;
   static const forceFlutterControls = _Secrets.forceFlutterControls;
   static const forceShorts = _Secrets.forceShorts;
+  static const sentryDsn = _Secrets.sentryDsn;
+  static const sentryDsnKids = _Secrets.sentryDsnKids;
 }

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_item_click_wrapper.dart';
 import 'package:flutter/foundation.dart';
@@ -7,19 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import '../../../../graphql/queries/calendar_episode_entries.graphql.dart';
+import 'package:bccm_core/platform.dart';
 import '../../../../helpers/router/router_utils.dart';
-import '../../../../helpers/scroll_behaviors.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../../models/analytics/sections.dart';
 
-import '../../../../graphql/queries/page.graphql.dart';
 import '../../../../models/breakpoints.dart';
-import '../../../../theme/design_system/design_system.dart';
-import '../../../../helpers/extensions.dart';
+import 'package:bccm_core/design_system.dart';
 
-import '../../../../helpers/images.dart';
-import '../../../../helpers/transparent_image.dart';
 import '../../../../providers/todays_calendar_entries.dart';
 
 const marginX = 2.0;
@@ -28,36 +23,6 @@ class FeaturedSection extends ConsumerWidget {
   final Fragment$Section$$FeaturedSection data;
 
   const FeaturedSection(this.data, {super.key});
-
-  List<Fragment$Section$$FeaturedSection$items$items> getItemsWithLiveItem(
-    List<Fragment$Section$$FeaturedSection$items$items> items,
-    Fragment$CalendarEntryEpisode? curLiveEpisode,
-  ) {
-    if (data.metadata == null || curLiveEpisode == null || !curLiveEpisode.locked) {
-      return items;
-    }
-    if (data.metadata!.prependLiveElement) {
-      return [
-        Fragment$Section$$FeaturedSection$items$items(
-          id: curLiveEpisode.id,
-          title: curLiveEpisode.title,
-          image: curLiveEpisode.image,
-          description: curLiveEpisode.description,
-          $__typename: 'SectionItem',
-          item: Fragment$Section$$FeaturedSection$items$items$item$$Episode(
-            id: curLiveEpisode.id,
-            duration: 0,
-            progress: 0,
-            publishDate: '',
-            $__typename: 'Episode',
-            locked: curLiveEpisode.locked,
-          ),
-        ),
-        ...items.where((item) => item.id != curLiveEpisode.id)
-      ];
-    }
-    return items;
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -68,15 +33,14 @@ class FeaturedSection extends ConsumerWidget {
         final episode = e.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
         return episode == null || !episode.locked;
       }).toList();
-      final sectionItems = getItemsWithLiveItem(filteredItems, curLiveEpisode);
 
       return Padding(
         padding: const EdgeInsets.only(top: 16),
         child: ScrollConfiguration(
           behavior: AnyPointerScrollBehavior(),
           child: kIsWeb || ResponsiveBreakpoints.of(context).largerThan(BP.lg)
-              ? buildSlider(context, sectionItems, constraints, curLiveEpisode)
-              : buildPageView(context, sectionItems, constraints, curLiveEpisode),
+              ? buildSlider(context, filteredItems, constraints, curLiveEpisode)
+              : buildPageView(context, filteredItems, constraints, curLiveEpisode),
         ),
       );
     });
@@ -106,7 +70,8 @@ class FeaturedSection extends ConsumerWidget {
           final item = sectionItems[index % sectionItems.length];
           return SectionItemClickWrapper(
             item: item.item,
-            analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+            collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
+            analytics: SectionItemAnalyticsData(id: item.id, position: index, type: item.$__typename, name: item.title),
             child: _FeaturedItem(
               sectionItem: item,
               margin: const EdgeInsets.symmetric(horizontal: marginX),
@@ -131,7 +96,7 @@ class FeaturedSection extends ConsumerWidget {
         const Condition.equals(name: BP.xl, value: 2),
         const Condition.largerThan(name: BP.xl, value: 3),
       ],
-    ).value!;
+    ).value;
     const paddingX = kIsWeb ? 80.0 : 16.0;
     const gap = kIsWeb ? 16.0 : 4.0;
     return HorizontalSlider(
@@ -145,11 +110,13 @@ class FeaturedSection extends ConsumerWidget {
           width: (constraints.maxWidth - (2 * paddingX) - gap) / numItems,
           child: SectionItemClickWrapper(
             item: item.item,
-            analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+            collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
+            analytics: SectionItemAnalyticsData(id: item.id, position: index, type: item.$__typename, name: item.title),
             child: _FeaturedItem(
               sectionItem: item,
               margin: const EdgeInsets.symmetric(horizontal: marginX),
               isLive: item.id == curLiveEpisode?.id,
+              collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
             ),
           ),
         );
@@ -162,11 +129,13 @@ class _FeaturedItem extends StatelessWidget {
   final Fragment$Section$$FeaturedSection$items$items sectionItem;
   final EdgeInsetsGeometry? margin;
   final bool isLive;
+  final String? collectionId;
 
   const _FeaturedItem({
     required this.sectionItem,
     this.margin = const EdgeInsets.all(0),
     this.isLive = false,
+    this.collectionId,
   });
 
   @override
@@ -215,23 +184,14 @@ class _FeaturedItem extends StatelessWidget {
                     style: design.textStyles.body2.copyWith(color: design.colors.label2),
                   ),
                 ),
-                isLive
-                    ? design.buttons.small(
-                        variant: ButtonVariant.red,
-                        image: Image.asset('assets/icons/Play.png'),
-                        labelText: S.of(context).liveNow,
-                        onPressed: () {
-                          handleSectionItemClick(context, sectionItem.item);
-                        },
-                      )
-                    : design.buttons.small(
-                        variant: ButtonVariant.secondary,
-                        image: Image.asset('assets/icons/Play.png'),
-                        labelText: S.of(context).watchNow,
-                        onPressed: () {
-                          handleSectionItemClick(context, sectionItem.item);
-                        },
-                      ),
+                design.buttons.small(
+                  variant: ButtonVariant.secondary,
+                  image: Image.asset('assets/icons/Play.png'),
+                  labelText: S.of(context).watchNow,
+                  onPressed: () {
+                    handleSectionItemClick(context, sectionItem.item, collectionId: collectionId);
+                  },
+                ),
               ],
             ),
           ),
@@ -296,7 +256,7 @@ class _GradientImage extends StatelessWidget {
 }
 
 class _CustomPageViewScrollPhysics extends ScrollPhysics {
-  const _CustomPageViewScrollPhysics({ScrollPhysics? parent}) : super(parent: parent);
+  const _CustomPageViewScrollPhysics({super.parent});
 
   @override
   _CustomPageViewScrollPhysics applyTo(ScrollPhysics? ancestor) {

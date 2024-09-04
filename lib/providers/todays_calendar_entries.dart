@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:bccm_core/platform.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/episode_state.dart';

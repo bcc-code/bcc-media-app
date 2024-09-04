@@ -44,9 +44,6 @@ class SSl extends S {
   String get loginPageDisplay3 => 'Produkcija: BCC Media';
 
   @override
-  String get liveTab => 'V živo';
-
-  @override
   String get logOutButton => 'Odjava';
 
   @override
@@ -179,7 +176,7 @@ class SSl extends S {
   String get deviceInfoDevice => 'Naprava';
 
   @override
-  String get deviceInfoEnvOverride => 'Environment override';
+  String get deviceInfoEnvOverride => 'Preglasitev okolja';
 
   @override
   String get deviceInfoManufacturer => 'Proizvajalec';
@@ -218,9 +215,6 @@ class SSl extends S {
   String get yesCancel => 'Ja, prekliči';
 
   @override
-  String get upNext => 'Sledi';
-
-  @override
   String get done => 'Končano';
 
   @override
@@ -237,9 +231,6 @@ class SSl extends S {
 
   @override
   String get auto => 'Samodejno';
-
-  @override
-  String get live => 'V živo';
 
   @override
   String get subtitles => 'Podnapisi';
@@ -475,9 +466,6 @@ class SSl extends S {
   String get showLess => 'Pokaži manj';
 
   @override
-  String get liveNow => 'V živo';
-
-  @override
   String get comingSoon => 'Pride kmalu';
 
   @override
@@ -562,9 +550,6 @@ class SSl extends S {
 
   @override
   String get errorTryAgain => 'Prišlo je do napake, prosim poskusi znova.';
-
-  @override
-  String get liveHeader => 'V živo';
 
   @override
   String get programsSection => 'Programi';
@@ -678,6 +663,9 @@ class SSl extends S {
   String get dontHaveAccess => 'Do te vsebina nimaš dostopa.';
 
   @override
+  String get notFound => 'Vsebina, ki jo iščeš, ne obstaja.';
+
+  @override
   String get mustBeLoggedIn => 'Za ogled te vsebine moraš biti prijavljen';
 
   @override
@@ -765,7 +753,7 @@ class SSl extends S {
   String get youCanNowLogInToYourAccount => 'Sedaj se lahko vpišeš v svoj račun in raziščeš različne izgrajujoče vsebine.';
 
   @override
-  String get accountDeletionExplanation => 'Zaprosil boš za izbris tvojega računa v BCC Media in vseh povezanih podatkov.';
+  String get accountDeletionExplanation => 'Zaprosil boš za izbris svojega računa v BCC Media in vseh povezanih podatkov.';
 
   @override
   String get accountDeletionWarning => 'To dejanje ne more biti razveljavljeno.';
@@ -801,7 +789,7 @@ class SSl extends S {
   String get chapters => 'Poglavja';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'Začni od začetka';
 
   @override
   String get showDescription => 'Opis oddaje';
@@ -810,13 +798,13 @@ class SSl extends S {
   String get releaseDate => 'Datum izida';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Na voljo do';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Starostna kategorija';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Vse';
 
   @override
   String get offline => 'Brez povezave';
@@ -826,14 +814,14 @@ class SSl extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Audio not available in $lang';
+    return 'Zvok ni na voljo za jezik: $lang';
   }
 
   @override
   String get notEnoughAvailableSpace => 'Ni dovolj prostora na tvoji napravi';
 
   @override
-  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+  String get considerDeletingOtherVideos => 'Razmisli o izbrisu drugih videoposnetkov, ki si jih prenesel iz aplikacije.';
 
   @override
   String theVideoFileSizeIs(String size) {
@@ -859,25 +847,25 @@ class SSl extends S {
   String get saveVideosForOfflineViewing => 'Shrani videe za ogled brez povezave';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
+  String get tapOnTheDownloadIcon => 'Tapni ikono za prenos na videoposnetku, da ga preneseš in predvajaš brez povezave.';
 
   @override
-  String get removeOfflineVideo => 'Remove offline video?';
+  String get removeOfflineVideo => 'Odstrani videoposnetek brez povezave?';
 
   @override
-  String get removeOfflineVideoDescription => 'By removing this video it will no longer be available without a network connection.';
+  String get removeOfflineVideoDescription => 'Če odstraniš ta videoposnetek ne bo več na voljo brez omrežne povezave.';
 
   @override
-  String get removeFromDeviceButton => 'Remove from device';
+  String get removeFromDeviceButton => 'Odstrani iz naprave';
 
   @override
-  String get keepVideoButton => 'Keep video';
+  String get keepVideoButton => 'Obdrži videoposnetek';
 
   @override
-  String get noInternetConnection => 'No internet connection';
+  String get noInternetConnection => 'Brez internetne povezave';
 
   @override
-  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+  String get noInternetConnectionDescription => 'Za dostop do vseh videoposnetkov se poveži z internetom.';
 
   @override
   String get noInternetButDontWorry => 'Ni povezave,\nampak ne skrbi.';
@@ -928,7 +916,7 @@ class SSl extends S {
 
   @override
   String expiresIn(String time) {
-    return 'Expires in $time';
+    return 'Poteče čez $time';
   }
 
   @override
@@ -953,23 +941,96 @@ class SSl extends S {
   String get addLanguage => 'Dodaj jezik';
 
   @override
-  String get preferredLanguages => 'Preferred languages';
+  String get preferredLanguages => 'Izbran jezik';
 
   @override
   String get contentLanguageExplanation => 'Spremeni vrstni red jezikov tako, da bo ustrezal tvojim željam glede jezika zvoka in podnapisov.';
 
   @override
-  String get otherLanguages => 'Other languages';
+  String get otherLanguages => 'Drugi jeziki';
 
   @override
-  String get select => 'Select';
+  String get select => 'Izberi';
 
   @override
-  String get supportBibleKids => 'Support Bible Kids';
+  String get supportBibleKids => 'Podpri Bible Kids';
 
   @override
-  String get donateViaPaypal => 'Donate via PayPal';
+  String get donateViaPaypal => 'Donacija prek PayPala';
 
   @override
-  String get shortsTab => 'Shorts';
+  String get shortsTab => 'Kratki filmi';
+
+  @override
+  String get autoGenerated => 'Samodejno ustvarjeno';
+
+  @override
+  String get shortsTranscriptionDisclaimer => 'Prepisi so ustvarjeni samodejno in lahko vsebujejo napake.';
+
+  @override
+  String get beta => 'Beta';
+
+  @override
+  String get betaExplanation => 'Ta funkcija je v beta različici in trenutno ni na voljo vsem uporabnikom. Morebitne težave ali povratne informacije sporočite prek gumba \"Kontakt\" v nastavitvah.';
+
+  @override
+  String get likedShorts => 'Priljubljeni kratki filmi';
+
+  @override
+  String get saveYourFavoriteShorts => 'Shrani svoje priljubljene kratke filme';
+
+  @override
+  String get featureNotAvailableYet => 'Ta funkcija še ni na voljo na tvoji napravi. Prosim poskusi kasneje.';
+
+  @override
+  String get newFeature => 'Nova funkcija';
+
+  @override
+  String get shortsFeatureDescription => 'Odkrij kratke in močne izseke ter skoči v celotno epizodo.';
+
+  @override
+  String get likedAndSaved => 'Všečkano in shranjeno';
+
+  @override
+  String get shortsLikedAndSavedDescription => 'Vse priljubljene kratke filme lahko najdeš v svojem profilu.';
+
+  @override
+  String get excerptFrom => 'Odlomek iz';
+
+  @override
+  String get downloadedVideosGuideDescription => 'Prenesene videoposnetke lahko najdeš v razdelku \"Profil\".';
+
+  @override
+  String get openStore => 'Odpri trgovino';
+
+  @override
+  String get thisVideoCantBeDownloaded => 'Tega videoposnetka ni mogoče prenesti.';
+
+  @override
+  String get videoLanguage => 'Jezik videoposnetka';
+
+  @override
+  String get videoTextLanguage => 'Jezik besedila videoposnetka';
+
+  @override
+  String get original => 'Izvirnik';
+
+  @override
+  String get openSettingsToChangeVideoLang => 'Odpri nastavitve in spremeni jezik besedila videoposnetka';
+
+  @override
+  String get somethingWentWrong => 'Nekaj je šlo narobe';
+
+  @override
+  String get all => 'Vse';
+
+  @override
+  String countItems(int x) {
+    return '$x stvari';
+  }
+
+  @override
+  String skipTo(String chapter) {
+    return 'Preskoči na $chapter';
+  }
 }
