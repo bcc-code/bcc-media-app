@@ -8,7 +8,6 @@ import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:unleash_proxy_client_flutter/toggle_config.dart';
-import 'package:unleash_proxy_client_flutter/unleash_context.dart';
 import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
 
 import '../models/feature_flags.dart';
