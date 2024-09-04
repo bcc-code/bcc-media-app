@@ -1,3 +1,4 @@
+import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/misc/custom_grid_view.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button.dart';
+import 'package:kids/components/countdown_circle.dart';
 import 'package:kids/helpers/transitions.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:universal_io/io.dart';
@@ -70,11 +72,13 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
     super.key,
     required this.onPressed,
     this.hideTitle = false,
+    this.playerController,
   });
 
   final EpisodeGridItem item;
   final void Function(GlobalKey) onPressed;
   final bool hideTitle;
+  final BccmPlayerController? playerController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -124,6 +128,25 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
                               ),
                             ),
                             simpleFadeInImage(url: item.image!),
+                            if (autoPlayCountdown != null)
+                              Positioned.fill(
+                                child: Stack(
+                                  children: [
+                                    Container(color: design.colors.label2).animate().fadeIn(
+                                          duration: 500.ms,
+                                          curve: Curves.easeOutExpo,
+                                        ),
+                                    CountdownCircle(duration: autoPlayCountdown!)
+                                        .animate()
+                                        .scale(
+                                          duration: 1000.ms,
+                                          curve: Curves.easeOutExpo,
+                                        )
+                                        .rotate(begin: -0.25, end: 0)
+                                        .moveY(begin: 32, end: 0),
+                                  ],
+                                ),
+                              ),
                           ],
                         )
                       else

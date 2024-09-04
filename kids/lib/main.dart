@@ -121,6 +121,10 @@ Future<void> $main({
       Animate.restartOnHotReload = true;
     }
 
+    await tryCatchRecordErrorAsync(() async {
+      await providerContainer.read(featureFlagsProvider.notifier).activateFeatureFlags().timeout(const Duration(seconds: 2));
+    });
+
     runApp(kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app);
   });
 }

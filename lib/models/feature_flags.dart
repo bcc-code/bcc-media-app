@@ -31,6 +31,7 @@ sealed class FeatureFlags with _$FeatureFlags {
     @Default(false) bool skipToChapter,
     @Default(false) bool startupDelay,
     String? delayTimeInMs,
+    @Default(false) bool kidsAutoplayNext,
   }) = _FeatureFlags;
 
   factory FeatureFlags.fromJson(Map<String, dynamic> json) => _$FeatureFlagsFromJson(json);
@@ -63,6 +64,7 @@ sealed class FeatureFlags with _$FeatureFlags {
       skipToChapter: newFlags.skipToChapter || skipToChapter,
       startupDelay: newFlags.startupDelay || startupDelay,
       delayTimeInMs: newFlags.delayTimeInMs ?? delayTimeInMs,
+      kidsAutoplayNext: newFlags.kidsAutoplayNext || kidsAutoplayNext,
     );
   }
 }

@@ -41,6 +41,7 @@ FeatureFlags getBaseFeatureFlags() {
     skipToChapter: false,
     startupDelay: false,
     delayTimeInMs: null,
+    kidsAutoplayNext: false,
   );
 }
 
@@ -53,7 +54,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     if (unleash == null || unleash.clientState != ClientState.ready) return _getCachedFlags(ref);
     ref.listen(
       unleashContextProvider,
-      (UnleashContext? previous, UnleashContext next) {
+      (previous, next) {
         unleash.updateContext(next);
       },
     );
@@ -83,6 +84,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         skipToChapter: _verifyToggle(unleash, 'skip-to-chapter'),
         startupDelay: _verifyToggle(unleash, 'startup-delay'),
         delayTimeInMs: unleash.getVariant('delay-time-in-ms').payload?.value,
+        kidsAutoplayNext: _verifyToggle(unleash, 'kids-autoplay-next'),
       ),
     );
 
@@ -99,7 +101,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
   }
 
   @override
-  Future<void> start() {
+  Future<void> activateFeatureFlags() {
     return _createUnleashClient();
   }
 
@@ -196,13 +198,13 @@ final featureFlagVariantListProviderOverride = featureFlagVariantListProvider.ov
 });
 
 abstract class FeatureFlagsNotifierBase extends Notifier<FeatureFlags> {
-  Future<void> start();
+  Future<void> activateFeatureFlags();
   Future<void> refresh();
 }
 
 class FeatureFlagsDisabledNotifier extends FeatureFlagsNotifierBase {
   @override
-  Future<void> start() async {}
+  Future<void> activateFeatureFlags() async {}
   @override
   Future<void> refresh() async {}
   @override

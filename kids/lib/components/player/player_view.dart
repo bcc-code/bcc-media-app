@@ -9,6 +9,7 @@ import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
@@ -108,7 +109,8 @@ class PlayerView extends HookConsumerWidget {
 
     final hasStartedProperly = useState(false);
     final buffering = useState(false);
-    final last5SecondsHandled = useState(false);
+    final last10SecondsHandled = useState(false);
+
     useEffect(() {
       void listener() {
         final changedItem =
@@ -125,12 +127,12 @@ class PlayerView extends HookConsumerWidget {
         final position = viewController.playerController.value.playbackPositionMs;
         if (duration != null && position != null) {
           if (duration > 0 && duration - position < 10000) {
-            if (!last5SecondsHandled.value) {
+            if (!last10SecondsHandled.value) {
               setControlsVisible(true);
-              last5SecondsHandled.value = true;
+              last10SecondsHandled.value = true;
             }
           } else {
-            last5SecondsHandled.value = false;
+            last10SecondsHandled.value = false;
           }
         }
       }
@@ -145,6 +147,16 @@ class PlayerView extends HookConsumerWidget {
     final bp = ResponsiveBreakpoints.of(context);
     final basePadding = bp.smallerThan(TABLET) ? 20.0 : 40.0;
     final playerError = useListenableSelector(viewController.playerController, () => viewController.playerController.value.error);
+
+    final hasAutoplayNext = ref.watch(featureFlagsProvider.select((value) => value.kidsAutoplayNext));
+    final ff = ref.watch(featureFlagsProvider.select((value) => value.variants));
+
+    useEffect(() {
+      debugPrint('hasAutoplayNext: $hasAutoplayNext');
+    }, [hasAutoplayNext]);
+    useEffect(() {
+      debugPrint('ff: $ff');
+    }, [ff]);
 
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
@@ -169,6 +181,7 @@ class PlayerView extends HookConsumerWidget {
         final bottomOpenTargetHeight = remainingHeightWhenOpen - topOpenTargetHeight;
         final bottomOpenHeight = max(remainingHeight / 2, bottomOpenTargetHeight);
         final bottomHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeight / 2, end: bottomOpenHeight));
+
         return Stack(
           alignment: Alignment.center,
           children: [
@@ -286,6 +299,7 @@ class PlayerView extends HookConsumerWidget {
                                       navigateToEpisode(ep);
                                       setControlsVisible(false);
                                     },
+                                    autoPlayCountdown: hasAutoplayNext && last10SecondsHandled.value ? 10 : null,
                                   ),
                           ),
                         ),
@@ -585,11 +599,13 @@ class PlayerEpisodes extends HookConsumerWidget {
     required this.episode,
     required this.onEpisodeTap,
     this.padding,
+    this.autoPlayCountdown,
   });
 
   final Query$KidsFetchEpisode$episode? episode;
   final void Function(Fragment$KidsEpisodeThumbnail) onEpisodeTap;
   final EdgeInsets? padding;
+  final int? autoPlayCountdown;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
