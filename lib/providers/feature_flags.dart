@@ -41,6 +41,7 @@ FeatureFlags getBaseFeatureFlags() {
     skipToChapter: false,
     startupDelay: false,
     delayTimeInMs: null,
+    bccmAudioTest: false,
   );
 }
 
@@ -83,6 +84,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         skipToChapter: _verifyToggle(unleash, 'skip-to-chapter'),
         startupDelay: _verifyToggle(unleash, 'startup-delay'),
         delayTimeInMs: unleash.getVariant('delay-time-in-ms').payload?.value,
+        bccmAudioTest: _verifyToggle(unleash, 'bccm-audio-test'),
       ),
     );
 
@@ -95,6 +97,9 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     final enabled = unleash.isEnabled(toggleName);
     final variant = unleash.getVariant(toggleName);
     final hasVariant = variant.enabled;
+    if (toggleName == 'bccm-audio-test') {
+      debugPrint('bccm-audio-test: $enabled $hasVariant ${variant.name}');
+    }
     return enabled && (!hasVariant || variant.name != 'disabled');
   }
 

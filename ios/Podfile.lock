@@ -124,7 +124,7 @@ PODS:
   - integration_test (0.0.1):
     - Flutter
   - leveldb-library (1.22.5)
-  - MetricsReporter (1.2.1):
+  - MetricsReporter (2.0.0):
     - RSCrashReporter (= 1.0.1)
     - RudderKit (= 1.4.0)
   - nanopb (3.30910.0):
@@ -144,8 +144,8 @@ PODS:
   - restart_app (0.0.1):
     - Flutter
   - RSCrashReporter (1.0.1)
-  - Rudder (1.28.1):
-    - MetricsReporter (= 1.2.1)
+  - Rudder (1.29.0):
+    - MetricsReporter (= 2.0.0)
   - rudder_plugin_ios (0.0.1):
     - Flutter
     - Rudder (< 2.0.0, >= 1.26.3)
@@ -335,9 +335,9 @@ SPEC CHECKSUMS:
   google-cast-sdk-dynamic-xcframework-no-bluetooth: 1fa9e267df3fd6f8a1c6e3345142ca5286297968
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
-  integration_test: ce0a3ffa1de96d1a89ca0ac26fca7ea18a749ef4
+  integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
   leveldb-library: e8eadf9008a61f9e1dde3978c086d2b6d9b9dc28
-  MetricsReporter: 99596ee5003c69949ed2f50acc34aee83c42f843
+  MetricsReporter: 364b98791e868b10e9d512eb50af28d8c11e5cdb
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   open_mail_app: 794172f6a22cd16319d3ddaf45e945b2f74952b0
   package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
@@ -346,7 +346,7 @@ SPEC CHECKSUMS:
   Protobuf: 9f10df3b9b31e47a98789ea4d2f12bb9f84de2ad
   restart_app: 806659942bf932f6ce51c5372f91ce5e81c8c14a
   RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
-  Rudder: a06e21877cc07c27fe83153c6e335969efdae66e
+  Rudder: 7031e52a04312cbc7a70713cac25528a89e63408
   rudder_plugin_ios: a337ccdc5313621e0b1260551e8ebbc6bb492c36
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
   Sentry: 1fe34e9c2cbba1e347623610d26db121dcb569f1
