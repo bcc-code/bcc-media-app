@@ -282,7 +282,7 @@ final _contributorScreenRoute = CupertinoRoute(
 
 final _audioScreenRoute = CustomRoute(
   page: AudioScreenRoute.page,
-  path: '/audio-test',
+  path: 'audio-test',
   durationInMilliseconds: 300,
   reverseDurationInMilliseconds: 300,
   transitionsBuilder: CustomTransitionsBuilders.slideLeft,
@@ -292,7 +292,7 @@ final _audioScreenRoute = CustomRoute(
 final _playerScreenRoute = CustomRoute(
   customRouteBuilder: modalSheetBuilder,
   page: SignupScreenRoute.page,
-  path: '/player',
+  path: 'player',
   meta: const {RouteMetaConstants.analyticsName: 'player'},
 );
 
