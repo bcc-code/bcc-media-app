@@ -116,6 +116,10 @@ class PlayerView extends HookConsumerWidget {
     final hasAutoplayNext = ref.watch(featureFlagsProvider.select((value) => value.kidsAutoplayNext));
     final isAutoplayNextCancelled = useState(false);
 
+    useEffect(() {
+      isAutoplayNextCancelled.value = false;
+    }, [episode]);
+
     void cancelAutoplayNext() {
       if (isAutoplayNextCancelled.value) return;
 
@@ -326,7 +330,10 @@ class PlayerView extends HookConsumerWidget {
                                       navigateToEpisode(ep);
                                       setControlsVisible(false);
                                     },
-                                    onScroll: cancelAutoplayNext,
+                                    onScroll: () {
+                                      if (last10SecondsHandled.value == false) return;
+                                      cancelAutoplayNext();
+                                    },
                                     playerController: viewController.playerController,
                                     isAutoplayEnabled: !isAutoplayNextCancelled.value,
                                   ),
