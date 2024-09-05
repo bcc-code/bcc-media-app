@@ -1,5 +1,7 @@
 import 'app_localizations.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for Dutch Flemish (`nl`).
 class SNl extends S {
   SNl([String locale = 'nl']) : super(locale);
