@@ -114,6 +114,18 @@ class PlayerView extends HookConsumerWidget {
     final last10SecondsHandled = useState(false);
 
     final hasAutoplayNext = ref.watch(featureFlagsProvider.select((value) => value.kidsAutoplayNext));
+    final isAutoplayNextCancelled = useState(false);
+
+    void cancelAutoplayNext() {
+      if (isAutoplayNextCancelled.value) return;
+
+      isAutoplayNextCancelled.value = true;
+      ref.read(analyticsProvider).interaction(InteractionEvent(
+            interaction: 'cancel-autoplay-next',
+            contextElementId: episode?.id,
+            contextElementType: 'episode',
+          ));
+    }
 
     useEffect(() {
       void listener() {
@@ -150,9 +162,14 @@ class PlayerView extends HookConsumerWidget {
     // Autoplay
     useEffect(() {
       void onEnded(PlaybackEndedEvent event) {
-        if (hasAutoplayNext && episode != null) {
+        if (hasAutoplayNext && !isAutoplayNextCancelled.value && episode != null) {
           navigateToEpisode(episode!.next.first);
           setControlsVisible(false);
+          ref.read(analyticsProvider).impression(ImpressionEvent(
+                name: 'did-autoplay-next',
+                contextElementId: episode?.id,
+                contextElementType: 'episode',
+              ));
         }
       }
 
@@ -309,7 +326,9 @@ class PlayerView extends HookConsumerWidget {
                                       navigateToEpisode(ep);
                                       setControlsVisible(false);
                                     },
+                                    onScroll: cancelAutoplayNext,
                                     playerController: viewController.playerController,
+                                    isAutoplayEnabled: !isAutoplayNextCancelled.value,
                                   ),
                           ),
                         ),
@@ -611,6 +630,8 @@ class PlayerEpisodes extends HookConsumerWidget {
     required this.onEpisodeTap,
     this.padding,
     required this.playerController,
+    this.isAutoplayEnabled,
+    this.onScroll,
   });
 
   final Query$KidsFetchEpisode$episode? episode;
@@ -618,6 +639,8 @@ class PlayerEpisodes extends HookConsumerWidget {
   final void Function(Fragment$KidsEpisodeThumbnail) onEpisodeTap;
   final EdgeInsets? padding;
   final BccmPlayerController playerController;
+  final bool? isAutoplayEnabled;
+  final void Function()? onScroll;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -644,10 +667,16 @@ class PlayerEpisodes extends HookConsumerWidget {
       ));
     }
 
+    final scrollController = useScrollController();
+    scrollController.addListener(() {
+      onScroll?.call();
+    });
+
     final hideTitle = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
     return SingleChildScrollView(
       padding: padding,
       scrollDirection: Axis.horizontal,
+      controller: scrollController,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
@@ -686,6 +715,8 @@ class PlayerEpisodes extends HookConsumerWidget {
                       );
                 },
                 overlayBuilder: (context) {
+                  if (ref.read(featureFlagsProvider).kidsAutoplayNext != true) return Container();
+                  if (isAutoplayEnabled != true) return Container();
                   if (episode?.next.first.id != ep.id) return Container();
 
                   return SmoothVideoProgress(
