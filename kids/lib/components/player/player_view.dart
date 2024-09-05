@@ -121,6 +121,7 @@ class PlayerView extends HookConsumerWidget {
     }, [episode]);
 
     void cancelAutoplayNext() {
+      if (!hasAutoplayNext) return;
       if (isAutoplayNextCancelled.value) return;
 
       isAutoplayNextCancelled.value = true;
