@@ -11,7 +11,6 @@ import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/firebase.dart';
-import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +24,7 @@ import 'package:kids/app_root.dart';
 import 'package:kids/design_system.dart';
 import 'package:kids/helpers/analytics_meta.dart';
 import 'package:kids/providers/special_routes.dart';
+import 'package:kids/providers/unleash.dart';
 import 'package:kids/router/router.dart';
 
 import 'package:brunstadtv_app/flavors.dart';

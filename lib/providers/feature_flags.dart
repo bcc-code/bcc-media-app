@@ -47,14 +47,19 @@ FeatureFlags getBaseFeatureFlags() {
 class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
   UnleashClient? unleash;
 
+  static final variantsProvider = StateProvider<List<String>>((ref) {
+    return [];
+  });
+
   @override
   FeatureFlags build() {
     final unleash = this.unleash;
     if (unleash == null || unleash.clientState != ClientState.ready) return _getCachedFlags(ref);
     ref.listen(
       unleashContextProvider,
-      (previous, next) {
-        unleash.updateContext(next);
+      (previous, next) async {
+        final context = await next;
+        unleash.updateContext(context);
       },
     );
 
@@ -88,6 +93,9 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     );
 
     _saveCache(value);
+    Future.delayed(const Duration(milliseconds: 0), () {
+      ref.read(variantsProvider.notifier).state = value.variants;
+    });
     return value;
   }
 
@@ -115,7 +123,8 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
       },
     );
     final c = ref.read(unleashContextProvider);
-    unleash.updateContext(c);
+    final context = await c;
+    unleash.updateContext(context);
     unleash.on(
       'error',
       (err) => FlutterError.reportError(
@@ -138,7 +147,8 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
   @override
   Future<void> refresh() async {
     unleash?.stop();
-    unleash?.updateContext(ref.read(unleashContextProvider));
+    final c = await ref.read(unleashContextProvider);
+    unleash?.updateContext(c);
     await unleash?.start();
   }
 
@@ -193,7 +203,7 @@ final featureFlagsProvider = NotifierProvider<FeatureFlagsNotifierBase, FeatureF
 });
 
 final featureFlagVariantListProviderOverride = featureFlagVariantListProvider.overrideWith((ref) {
-  return ref.watch(featureFlagsProvider).variants;
+  return ref.watch(FeatureFlagsNotifier.variantsProvider);
 });
 
 abstract class FeatureFlagsNotifierBase extends Notifier<FeatureFlags> {
