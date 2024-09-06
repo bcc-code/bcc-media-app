@@ -175,23 +175,6 @@ class BmmDocumentRenderer extends HookConsumerWidget {
   }
 }
 
-class PodcastRenderer extends HookConsumerWidget {
-  const PodcastRenderer(
-    this.podcast, {
-    super.key,
-  });
-
-  final PodcastModel podcast;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return GestureDetector(
-      onTap: () async {},
-      child: CoverRenderer(title: podcast.title, coverUrl: podcast.cover),
-    );
-  }
-}
-
 class PlaylistRenderer extends HookConsumerWidget {
   const PlaylistRenderer(
     this.playlist, {
