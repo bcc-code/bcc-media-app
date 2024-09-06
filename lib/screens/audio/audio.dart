@@ -3,10 +3,12 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/bmm.dart';
+import 'package:brunstadtv_app/components/buttons/btv_buttons.dart';
 import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
+import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
+import 'package:brunstadtv_app/components/nav/general_app_bar.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +26,18 @@ class AudioScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final discover = ref.watch(bmmDiscoverProvider);
+    ref.read(bmmDefaultPlaylistProvider);
 
     useOnInit(() {
       ref.invalidate(bmmDiscoverProvider);
     });
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: const CustomBackButton(),
+        leadingWidth: 92,
+      ),
       body: discover.when(
         data: (data) {
           return RefreshIndicator(

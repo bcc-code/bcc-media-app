@@ -9,5 +9,6 @@
     ".env.dart": "dart",
     ".env.dart.template": "dart"
   },
+  "editor.formatOnSave": true,
   "graphql-config.load.rootDir": "submodules/bccm_flutter/bccm_core"
 }

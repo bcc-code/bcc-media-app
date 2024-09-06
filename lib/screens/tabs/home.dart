@@ -98,7 +98,7 @@ class HomeScreen extends HookConsumerWidget {
           ? FloatingActionButton(
               child: const Icon(Icons.audiotrack),
               onPressed: () {
-                context.router.navigate(const AudioScreenRoute());
+                context.router.push(const AudioScreenRoute());
               },
             )
           : null,

@@ -1,4 +1,5 @@
 import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:dio/dio.dart';
@@ -21,7 +22,6 @@ final bmmApiProvider = Provider<BmmApiWrapper>((ref) {
 
 final bmmDiscoverProvider = FutureProvider((ref) {
   return ref.watch(bmmApiProvider).getDiscoverApi().discoverGet(
-        age: 24,
         lang: LanguageEnum.en,
       );
 });

@@ -65,7 +65,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         if (offlineMediaItem) {
           ref.read(playbackServiceProvider).openFullscreen(context);
         } else if (type == 'track') {
-          await context.navigateTo(const PlayerScreenRoute());
+          await context.router.root.push(const PlayerScreenRoute());
         } else if (id != null) {
           try {
             await context.navigateTo(EpisodeScreenRoute(episodeId: id, collectionId: collectionId));
