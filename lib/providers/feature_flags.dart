@@ -97,9 +97,6 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     final enabled = unleash.isEnabled(toggleName);
     final variant = unleash.getVariant(toggleName);
     final hasVariant = variant.enabled;
-    if (toggleName == 'bccm-audio-test') {
-      debugPrint('bccm-audio-test: $enabled $hasVariant ${variant.name}');
-    }
     return enabled && (!hasVariant || variant.name != 'disabled');
   }
 
