@@ -3,15 +3,14 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/bmm.dart';
-import 'package:brunstadtv_app/components/buttons/btv_buttons.dart';
 import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
-import 'package:brunstadtv_app/components/nav/general_app_bar.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -98,9 +97,8 @@ class BmmDiscoveryRenderer extends HookConsumerWidget {
       DiscoverGroupType currentType = DiscoverGroupType.unknown;
       for (var document in documents) {
         final isTile = document.oneOf.isType(TileModel);
-        final isPodcast = document.oneOf.isType(PodcastModel);
         final isPlaylist = document.oneOf.isType(PlaylistModel);
-        if (isTile || isPodcast || isPlaylist) {
+        if (isTile || isPlaylist) {
           if (currentType != DiscoverGroupType.horizontal) {
             // End of previous group
             if (currentGroup.isNotEmpty) {
@@ -167,17 +165,77 @@ class BmmDocumentRenderer extends HookConsumerWidget {
     if (tile != null) {
       return TileRenderer(tile);
     }
-    final podcast = document.oneOf.value.asOrNull<PodcastModel>();
-    if (podcast != null) {
-      return CoverRenderer(title: podcast.title, coverUrl: podcast.cover);
-    }
 
     final playlist = document.oneOf.value.asOrNull<PlaylistModel>();
     if (playlist != null) {
-      return CoverRenderer(title: playlist.title, coverUrl: playlist.cover);
+      return PlaylistRenderer(playlist);
     }
 
     return const SizedBox.shrink();
+  }
+}
+
+class PodcastRenderer extends HookConsumerWidget {
+  const PodcastRenderer(
+    this.podcast, {
+    super.key,
+  });
+
+  final PodcastModel podcast;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return GestureDetector(
+      onTap: () async {},
+      child: CoverRenderer(title: podcast.title, coverUrl: podcast.cover),
+    );
+  }
+}
+
+class PlaylistRenderer extends HookConsumerWidget {
+  const PlaylistRenderer(
+    this.playlist, {
+    super.key,
+  });
+
+  final PlaylistModel playlist;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentPlaylistId = useListenableSelector(BccmPlayerController.primary, () {
+      return BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['playlist.id'];
+    });
+    return GestureDetector(
+      onTap: () async {
+        final bmmApi = ref.read(bmmApiProvider);
+        final res = await bmmApi.getPlaylistApi().playlistIdTrackGet(id: playlist.id);
+        final tracks = res.data;
+        if (tracks != null) {
+          setTracksAsNextUp(BccmPlayerController.primary, bmmApi, tracks, extras: {
+            'playlist.id': playlist.id.toString(),
+          });
+          BccmPlayerController.primary.queue.skipToNext();
+        }
+      },
+      child: Stack(
+        children: [
+          CoverRenderer(
+            title: playlist.title,
+            coverUrl: playlist.cover,
+          ),
+          Positioned.fill(
+            child: AnimatedSwitcher(
+              duration: 500.ms,
+              child: currentPlaylistId == playlist.id.toString()
+                  ? Container(
+                      color: Colors.white.withOpacity(0.1),
+                    )
+                  : null,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -199,73 +257,79 @@ class TileRenderer extends HookConsumerWidget {
     final bmmApi = ref.read(bmmApiProvider);
     final coverUrl = bmmApi.protectedUrl(tile.coverUrl);
     final design = DesignSystem.of(context);
-    return Container(
-      width: 200,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        color: tile.backgroundColor != null ? getColorFromHex(tile.backgroundColor!) : design.colors.onTint,
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: FractionallySizedBox(
-              widthFactor: 0.5,
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: coverUrl != null ? simpleFadeInImage(url: coverUrl) : null,
-              ),
-            ),
-          ),
-          const Spacer(),
-          if (tile.title != null)
-            Text(
-              tile.title!,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: design.textStyles.caption1.copyWith(
-                color: const Color.fromARGB(255, 52, 52, 52),
-              ),
-            ),
-          if (tile.label != null)
-            Text(
-              tile.label!,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: design.textStyles.button2.copyWith(
-                color: const Color.fromARGB(255, 52, 52, 52),
-              ),
-            ),
-          GestureDetector(
-            onTap: () {
-              final mediaItem = toMediaItem(track, bmmApi);
-              if (mediaItem == null) {
-                throw Exception('Media item is null');
-              }
-              BccmPlayerController.primary.replaceCurrentMediaItem(mediaItem);
-              final playlistTracks = ref.read(bmmDefaultPlaylistProvider).asData?.valueOrNull;
-              if (playlistTracks != null) {
-                BccmPlayerController.primary.queue.setNextUp(playlistTracks.map((e) => toMediaItem(e, bmmApi)).whereNotNull().toList());
-              }
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: design.colors.background1,
-                  shape: BoxShape.circle,
-                ),
-                padding: const EdgeInsets.all(2),
-                child: SvgPicture.string(
-                  height: 24,
-                  SvgIcons.playSmall,
+
+    play() {
+      final mediaItem = toMediaItem(track, bmmApi);
+      if (mediaItem == null) {
+        throw Exception('Media item is null');
+      }
+      BccmPlayerController.primary.replaceCurrentMediaItem(mediaItem);
+      final playlistTracks = ref.read(bmmDefaultPlaylistProvider).asData?.valueOrNull;
+      if (playlistTracks != null) {
+        BccmPlayerController.primary.queue.setNextUp(playlistTracks.map((e) => toMediaItem(e, bmmApi)).whereNotNull().toList());
+      }
+    }
+
+    return GestureDetector(
+      onTap: () => play(),
+      child: Container(
+        width: 200,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24),
+          color: tile.backgroundColor != null ? getColorFromHex(tile.backgroundColor!) : design.colors.onTint,
+        ),
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: FractionallySizedBox(
+                widthFactor: 0.5,
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: coverUrl != null ? simpleFadeInImage(url: coverUrl) : null,
                 ),
               ),
             ),
-          )
-        ],
+            const Spacer(),
+            if (tile.title != null)
+              Text(
+                tile.title!,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: design.textStyles.caption1.copyWith(
+                  color: const Color.fromARGB(255, 52, 52, 52),
+                ),
+              ),
+            if (tile.label != null)
+              Text(
+                tile.label!,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: design.textStyles.button2.copyWith(
+                  color: const Color.fromARGB(255, 52, 52, 52),
+                ),
+              ),
+            GestureDetector(
+              onTap: play,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: design.colors.background1,
+                    shape: BoxShape.circle,
+                  ),
+                  padding: const EdgeInsets.all(2),
+                  child: SvgPicture.string(
+                    height: 24,
+                    SvgIcons.playSmall,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -316,7 +380,11 @@ class CoverRenderer extends HookConsumerWidget {
   }
 }
 
-MediaItem? toMediaItem(TrackModel track, BmmApiWrapper bmmApi) {
+MediaItem? toMediaItem(
+  TrackModel track,
+  BmmApiWrapper bmmApi, {
+  Map<String, String>? extras = const {},
+}) {
   final file = track.media?.firstOrNull?.files?.firstOrNull;
   if (file == null) {
     return null;
@@ -334,7 +402,14 @@ MediaItem? toMediaItem(TrackModel track, BmmApiWrapper bmmApi) {
         'type': track.type.name,
         'npaw.content.type': 'audio',
         'npaw.content.id': track.id.toString(),
+        ...?extras,
       },
     ),
+  );
+}
+
+void setTracksAsNextUp(BccmPlayerController player, BmmApiWrapper bmmApi, BuiltList<TrackModel> tracks, {Map<String, String>? extras}) {
+  player.queue.setNextUp(
+    tracks.map((e) => toMediaItem(e, bmmApi, extras: extras)).whereNotNull().toList(),
   );
 }
