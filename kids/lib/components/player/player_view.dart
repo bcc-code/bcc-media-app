@@ -167,7 +167,7 @@ class PlayerView extends HookConsumerWidget {
     // Autoplay
     useEffect(() {
       void onEnded(PlaybackEndedEvent event) {
-        if (hasAutoplayNext && !isAutoplayNextCancelled.value && episode != null) {
+        if (hasAutoplayNext && !isAutoplayNextCancelled.value && episode != null && episode?.next.isNotEmpty == true) {
           navigateToEpisode(episode!.next.first);
           setControlsVisible(false);
           ref.read(analyticsProvider).impression(ImpressionEvent(
