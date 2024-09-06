@@ -36,6 +36,7 @@ _$FeatureFlagsImpl _$$FeatureFlagsImplFromJson(Map<String, dynamic> json) =>
       skipToChapter: json['skipToChapter'] as bool? ?? false,
       startupDelay: json['startupDelay'] as bool? ?? false,
       delayTimeInMs: json['delayTimeInMs'] as String?,
+      kidsAutoplayNext: json['kidsAutoplayNext'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
@@ -63,4 +64,5 @@ Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
       'skipToChapter': instance.skipToChapter,
       'startupDelay': instance.startupDelay,
       'delayTimeInMs': instance.delayTimeInMs,
+      'kidsAutoplayNext': instance.kidsAutoplayNext,
     };

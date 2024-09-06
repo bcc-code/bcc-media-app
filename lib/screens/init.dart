@@ -60,7 +60,7 @@ class _InitScreenState extends ConsumerState<InitScreen> {
     });
     await authFuture;
     await tryCatchRecordErrorAsync(() async {
-      await ref.read(featureFlagsProvider.notifier).start().timeout(const Duration(seconds: 2));
+      await ref.read(featureFlagsProvider.notifier).activateFeatureFlags().timeout(const Duration(seconds: 2));
     });
     ref.invalidate(appConfigFutureProvider);
 

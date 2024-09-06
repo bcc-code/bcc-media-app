@@ -3,12 +3,14 @@ import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/controls.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/appbar_close_button.dart';
 import 'package:kids/components/buttons/tab_switcher.dart';
+import 'package:kids/components/countdown_circle.dart';
 import 'package:kids/components/dialog/dialog.dart';
 import 'package:kids/components/grid/episode_grid.dart';
 import 'package:kids/components/player/controls.dart';
@@ -108,7 +111,27 @@ class PlayerView extends HookConsumerWidget {
 
     final hasStartedProperly = useState(false);
     final buffering = useState(false);
-    final last5SecondsHandled = useState(false);
+    final last10SecondsHandled = useState(false);
+
+    final hasAutoplayNext = ref.watch(featureFlagsProvider.select((value) => value.kidsAutoplayNext));
+    final isAutoplayNextCancelled = useState(false);
+
+    useEffect(() {
+      isAutoplayNextCancelled.value = false;
+    }, [episode]);
+
+    void cancelAutoplayNext() {
+      if (!hasAutoplayNext) return;
+      if (isAutoplayNextCancelled.value) return;
+
+      isAutoplayNextCancelled.value = true;
+      ref.read(analyticsProvider).interaction(InteractionEvent(
+            interaction: 'cancel-autoplay-next',
+            contextElementId: episode?.id,
+            contextElementType: 'episode',
+          ));
+    }
+
     useEffect(() {
       void listener() {
         final changedItem =
@@ -125,12 +148,12 @@ class PlayerView extends HookConsumerWidget {
         final position = viewController.playerController.value.playbackPositionMs;
         if (duration != null && position != null) {
           if (duration > 0 && duration - position < 10000) {
-            if (!last5SecondsHandled.value) {
+            if (!last10SecondsHandled.value) {
               setControlsVisible(true);
-              last5SecondsHandled.value = true;
+              last10SecondsHandled.value = true;
             }
           } else {
-            last5SecondsHandled.value = false;
+            last10SecondsHandled.value = false;
           }
         }
       }
@@ -140,6 +163,26 @@ class PlayerView extends HookConsumerWidget {
         viewController.playerController.removeListener(listener);
       };
     });
+
+    // Autoplay
+    useEffect(() {
+      void onEnded(PlaybackEndedEvent event) {
+        if (hasAutoplayNext && !isAutoplayNextCancelled.value && episode != null && episode?.next.isNotEmpty == true) {
+          navigateToEpisode(episode!.next.first);
+          setControlsVisible(false);
+          ref.read(analyticsProvider).impression(ImpressionEvent(
+                name: 'did-autoplay-next',
+                contextElementId: episode?.id,
+                contextElementType: 'episode',
+              ));
+        }
+      }
+
+      final endedSubscription =
+          viewController.playerController.events.where((event) => event is PlaybackEndedEvent).cast<PlaybackEndedEvent>().listen(onEnded);
+
+      return endedSubscription.cancel;
+    }, [hasAutoplayNext, viewController.playerController, episode]);
 
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
@@ -169,6 +212,7 @@ class PlayerView extends HookConsumerWidget {
         final bottomOpenTargetHeight = remainingHeightWhenOpen - topOpenTargetHeight;
         final bottomOpenHeight = max(remainingHeight / 2, bottomOpenTargetHeight);
         final bottomHeightTweened = curvedAnimation.drive(Tween(begin: remainingHeight / 2, end: bottomOpenHeight));
+
         return Stack(
           alignment: Alignment.center,
           children: [
@@ -282,10 +326,17 @@ class PlayerView extends HookConsumerWidget {
                                 : PlayerEpisodes(
                                     padding: EdgeInsets.symmetric(horizontal: basePadding).copyWith(bottom: MediaQuery.paddingOf(context).bottom),
                                     episode: episode,
+                                    playlistId: playlistId,
                                     onEpisodeTap: (ep) {
                                       navigateToEpisode(ep);
                                       setControlsVisible(false);
                                     },
+                                    onScroll: () {
+                                      if (last10SecondsHandled.value == false) return;
+                                      cancelAutoplayNext();
+                                    },
+                                    playerController: viewController.playerController,
+                                    isAutoplayEnabled: !isAutoplayNextCancelled.value,
                                   ),
                           ),
                         ),
@@ -583,13 +634,21 @@ class PlayerEpisodes extends HookConsumerWidget {
   const PlayerEpisodes({
     super.key,
     required this.episode,
+    this.playlistId,
     required this.onEpisodeTap,
     this.padding,
+    required this.playerController,
+    this.isAutoplayEnabled,
+    this.onScroll,
   });
 
   final Query$KidsFetchEpisode$episode? episode;
+  final String? playlistId;
   final void Function(Fragment$KidsEpisodeThumbnail) onEpisodeTap;
   final EdgeInsets? padding;
+  final BccmPlayerController playerController;
+  final bool? isAutoplayEnabled;
+  final void Function()? onScroll;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -607,10 +666,25 @@ class PlayerEpisodes extends HookConsumerWidget {
       );
     }
 
+    void navigateToEpisode(Fragment$KidsEpisodeThumbnail episode) {
+      context.replaceRoute(EpisodeScreenRoute(
+        id: episode.id,
+        shuffle: false,
+        playlistId: playlistId,
+        cursor: episode.cursor,
+      ));
+    }
+
+    final scrollController = useScrollController();
+    scrollController.addListener(() {
+      onScroll?.call();
+    });
+
     final hideTitle = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
     return SingleChildScrollView(
       padding: padding,
       scrollDirection: Axis.horizontal,
+      controller: scrollController,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
@@ -647,6 +721,43 @@ class PlayerEpisodes extends HookConsumerWidget {
                           name: ep.title,
                         ),
                       );
+                },
+                overlayBuilder: (context) {
+                  if (ref.read(featureFlagsProvider).kidsAutoplayNext != true) return Container();
+                  if (isAutoplayEnabled != true) return Container();
+                  if (episode?.next.first.id != ep.id) return Container();
+
+                  return SmoothVideoProgress(
+                    controller: playerController,
+                    builder: (context, progress, duration, child) {
+                      if (duration.inMilliseconds - progress.inMilliseconds > 9000) {
+                        return Container();
+                      }
+
+                      return Stack(
+                        children: [
+                          Container(color: design.colors.label2).animate().fadeIn(
+                                duration: 500.ms,
+                                curve: Curves.easeOutExpo,
+                              ),
+                          CountdownCircle(
+                            total: 10000,
+                            value: duration.inMilliseconds - progress.inMilliseconds,
+                            onPressed: () {
+                              navigateToEpisode(ep);
+                            },
+                          )
+                              .animate()
+                              .scale(
+                                duration: 1000.ms,
+                                curve: Curves.easeOutExpo,
+                              )
+                              .rotate(begin: -0.25, end: 0)
+                              .moveY(begin: 32, end: 0),
+                        ],
+                      );
+                    },
+                  );
                 },
               ),
             ),
