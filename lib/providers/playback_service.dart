@@ -188,11 +188,6 @@ class PlaybackService {
     await platformApi.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
   }
 
-  Future queueEpisode({required String playerId, required Query$FetchEpisode$episode episode}) async {
-    var mediaItem = mapEpisode(episode);
-    platformApi.queueMediaItem(playerId, mediaItem);
-  }
-
   Future<void> openFullscreen(BuildContext context, {BccmPlayerViewConfig? config}) async {
     config ??= getDefaultViewConfig();
     final viewController = BccmPlayerViewController(
