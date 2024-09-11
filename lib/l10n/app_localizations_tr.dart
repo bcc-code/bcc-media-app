@@ -1,7 +1,5 @@
 import 'app_localizations.dart';
 
-// ignore_for_file: type=lint
-
 /// The translations for Turkish (`tr`).
 class STr extends S {
   STr([String locale = 'tr']) : super(locale);
