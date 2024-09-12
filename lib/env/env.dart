@@ -21,5 +21,4 @@ class Env {
   static const forceShorts = _Secrets.forceShorts;
   static const sentryDsn = _Secrets.sentryDsn;
   static const sentryDsnKids = _Secrets.sentryDsnKids;
-  static const bmmAuthToken = _Secrets.bmmAuthToken;
 }

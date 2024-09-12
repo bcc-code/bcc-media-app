@@ -1,6 +1,4 @@
 import 'package:bccm_core/bccm_core.dart';
-import 'package:bccm_core/platform.dart';
-import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,9 +7,10 @@ import 'package:openapi/openapi.dart';
 final bmmApiProvider = Provider<BmmApiWrapper>((ref) {
   return BmmApiWrapper(
     basePathOverride: 'https://bmm-api.brunstad.org',
+    getAuthToken: () => ref.read(authStateProvider).auth0AccessToken,
     interceptors: [
       InterceptorsWrapper(onRequest: (options, handler) {
-        options.headers['Authorization'] = 'Bearer ${Env.bmmAuthToken}';
+        options.headers['Authorization'] = ref.read(authStateProvider).auth0AccessToken;
         options.headers['Accept-Language'] = [ref.read(settingsProvider).appLanguage.languageCode];
         options.headers['BMM-Version'] = '1.101.0';
         return handler.next(options);
@@ -49,14 +48,19 @@ class BmmApiWrapper extends Openapi {
   BmmApiWrapper({
     super.basePathOverride,
     super.interceptors,
+    required this.getAuthToken,
   });
+
+  final String? Function() getAuthToken;
 
   String? protectedUrl(String? url) {
     if (url == null) return null;
+    final token = getAuthToken();
+    if (token == null) return null;
     final uri = Uri.tryParse(url);
     return uri?.replace(queryParameters: {
       ...uri.queryParameters,
-      'auth': 'Bearer ${Env.bmmAuthToken}',
+      'auth': 'Bearer ${getAuthToken()}',
     }).toString();
   }
 }
