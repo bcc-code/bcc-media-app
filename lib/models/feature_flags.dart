@@ -32,6 +32,7 @@ sealed class FeatureFlags with _$FeatureFlags {
     @Default(false) bool startupDelay,
     String? delayTimeInMs,
     @Default(false) bool bccmAudioTest,
+    @Default(false) bool kidsAutoplayNext,
   }) = _FeatureFlags;
 
   factory FeatureFlags.fromJson(Map<String, dynamic> json) => _$FeatureFlagsFromJson(json);
@@ -65,6 +66,7 @@ sealed class FeatureFlags with _$FeatureFlags {
       startupDelay: newFlags.startupDelay || startupDelay,
       delayTimeInMs: newFlags.delayTimeInMs ?? delayTimeInMs,
       bccmAudioTest: newFlags.bccmAudioTest || bccmAudioTest,
+      kidsAutoplayNext: newFlags.kidsAutoplayNext || kidsAutoplayNext,
     );
   }
 }

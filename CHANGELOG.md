@@ -1,4 +1,20 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.26+2300186...v) (2024-09-02)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.12+2500022-kids...v) (2024-09-06)
+
+
+
+## [5.1.12+2500022-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.26+2300186...v5.1.12+2500022-kids) (2024-09-06)
+
+
+### Bug Fixes
+
+* reset cancelled autoplay state when episode changes + only cancel autoplay if scrolling the last 10 seconds ([dd18ff6](https://github.com/bcc-code/bcc-media-app/commit/dd18ff6461169b62624064a8a1b8b105125b60cd))
+
+
+### Features
+
+* cancel autoplay + add analytics ([4fdcd9f](https://github.com/bcc-code/bcc-media-app/commit/4fdcd9f15b146415ad8cb9aba603876825771aac))
+* **kids:** send anonymousId to unleash ([4cb21f4](https://github.com/bcc-code/bcc-media-app/commit/4cb21f46423f13c8eb5c33120c0409efa252a6f9))
+* make autoplay work correctly ([be189fd](https://github.com/bcc-code/bcc-media-app/commit/be189fd59143fb85c6e9600268c48dd19fe4ece1))
 
 
 

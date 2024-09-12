@@ -70,11 +70,13 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
     super.key,
     required this.onPressed,
     this.hideTitle = false,
+    this.overlayBuilder,
   });
 
   final EpisodeGridItem item;
   final void Function(GlobalKey) onPressed;
   final bool hideTitle;
+  final WidgetBuilder? overlayBuilder;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -124,6 +126,7 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
                               ),
                             ),
                             simpleFadeInImage(url: item.image!),
+                            if (overlayBuilder != null) Positioned.fill(child: overlayBuilder!(context)),
                           ],
                         )
                       else

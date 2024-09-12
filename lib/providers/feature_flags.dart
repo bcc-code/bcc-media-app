@@ -8,7 +8,6 @@ import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:unleash_proxy_client_flutter/toggle_config.dart';
-import 'package:unleash_proxy_client_flutter/unleash_context.dart';
 import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
 
 import '../models/feature_flags.dart';
@@ -42,11 +41,16 @@ FeatureFlags getBaseFeatureFlags() {
     startupDelay: false,
     delayTimeInMs: null,
     bccmAudioTest: false,
+    kidsAutoplayNext: false,
   );
 }
 
 class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
   UnleashClient? unleash;
+
+  static final variantsProvider = StateProvider<List<String>>((ref) {
+    return [];
+  });
 
   @override
   FeatureFlags build() {
@@ -54,8 +58,9 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     if (unleash == null || unleash.clientState != ClientState.ready) return _getCachedFlags(ref);
     ref.listen(
       unleashContextProvider,
-      (UnleashContext? previous, UnleashContext next) {
-        unleash.updateContext(next);
+      (previous, next) async {
+        final context = await next;
+        unleash.updateContext(context);
       },
     );
 
@@ -85,10 +90,14 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         startupDelay: _verifyToggle(unleash, 'startup-delay'),
         delayTimeInMs: unleash.getVariant('delay-time-in-ms').payload?.value,
         bccmAudioTest: _verifyToggle(unleash, 'bccm-audio-test'),
+        kidsAutoplayNext: _verifyToggle(unleash, 'kids-autoplay-next'),
       ),
     );
 
     _saveCache(value);
+    Future.delayed(const Duration(milliseconds: 0), () {
+      ref.read(variantsProvider.notifier).state = value.variants;
+    });
     return value;
   }
 
@@ -101,7 +110,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
   }
 
   @override
-  Future<void> start() {
+  Future<void> activateFeatureFlags() {
     return _createUnleashClient();
   }
 
@@ -116,7 +125,8 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
       },
     );
     final c = ref.read(unleashContextProvider);
-    unleash.updateContext(c);
+    final context = await c;
+    unleash.updateContext(context);
     unleash.on(
       'error',
       (err) => FlutterError.reportError(
@@ -139,7 +149,8 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
   @override
   Future<void> refresh() async {
     unleash?.stop();
-    unleash?.updateContext(ref.read(unleashContextProvider));
+    final c = await ref.read(unleashContextProvider);
+    unleash?.updateContext(c);
     await unleash?.start();
   }
 
@@ -194,17 +205,17 @@ final featureFlagsProvider = NotifierProvider<FeatureFlagsNotifierBase, FeatureF
 });
 
 final featureFlagVariantListProviderOverride = featureFlagVariantListProvider.overrideWith((ref) {
-  return ref.watch(featureFlagsProvider).variants;
+  return ref.watch(FeatureFlagsNotifier.variantsProvider);
 });
 
 abstract class FeatureFlagsNotifierBase extends Notifier<FeatureFlags> {
-  Future<void> start();
+  Future<void> activateFeatureFlags();
   Future<void> refresh();
 }
 
 class FeatureFlagsDisabledNotifier extends FeatureFlagsNotifierBase {
   @override
-  Future<void> start() async {}
+  Future<void> activateFeatureFlags() async {}
   @override
   Future<void> refresh() async {}
   @override

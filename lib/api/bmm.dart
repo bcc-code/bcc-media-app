@@ -44,7 +44,7 @@ final bmmDefaultPlaylistProvider = FutureProvider((ref) async {
   return res.data;
 });
 
-class BmmApiWrapper extends Openapi {
+class BmmApiWrapper extends BmmApi {
   BmmApiWrapper({
     super.basePathOverride,
     super.interceptors,

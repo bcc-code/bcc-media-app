@@ -37,6 +37,7 @@ _$FeatureFlagsImpl _$$FeatureFlagsImplFromJson(Map<String, dynamic> json) =>
       startupDelay: json['startupDelay'] as bool? ?? false,
       delayTimeInMs: json['delayTimeInMs'] as String?,
       bccmAudioTest: json['bccmAudioTest'] as bool? ?? false,
+      kidsAutoplayNext: json['kidsAutoplayNext'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
@@ -65,4 +66,5 @@ Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
       'startupDelay': instance.startupDelay,
       'delayTimeInMs': instance.delayTimeInMs,
       'bccmAudioTest': instance.bccmAudioTest,
+      'kidsAutoplayNext': instance.kidsAutoplayNext,
     };
