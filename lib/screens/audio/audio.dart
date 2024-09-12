@@ -91,7 +91,6 @@ class BmmDiscoveryRenderer extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final groups = useMemoized(() {
-      // list of (bool isTileGroup, BuiltList<IAllDocumentModels> documents)
       var groups = <DiscoverGroup>[];
       var currentGroup = <IAllDocumentModels>[];
       DiscoverGroupType currentType = DiscoverGroupType.unknown;
@@ -100,7 +99,6 @@ class BmmDiscoveryRenderer extends HookConsumerWidget {
         final isPlaylist = document.oneOf.isType(PlaylistModel);
         if (isTile || isPlaylist) {
           if (currentType != DiscoverGroupType.horizontal) {
-            // End of previous group
             if (currentGroup.isNotEmpty) {
               groups.add(DiscoverGroup(currentType, currentGroup));
               currentGroup = [];
@@ -110,7 +108,6 @@ class BmmDiscoveryRenderer extends HookConsumerWidget {
           currentGroup.add(document);
         } else {
           if (currentType != DiscoverGroupType.unknown) {
-            // End of previous group
             if (currentGroup.isNotEmpty) {
               groups.add(DiscoverGroup(currentType, currentGroup));
               currentGroup = [];
