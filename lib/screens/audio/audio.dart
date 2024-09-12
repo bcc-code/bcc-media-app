@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bmm_api/bmm_api.dart';
 import 'package:brunstadtv_app/api/bmm.dart';
 import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
@@ -14,7 +15,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:openapi/openapi.dart';
 
 @RoutePage<void>()
 class AudioScreen extends HookConsumerWidget {
@@ -249,7 +249,7 @@ class TileRenderer extends HookConsumerWidget {
       BccmPlayerController.primary.replaceCurrentMediaItem(mediaItem);
       final playlistTracks = ref.read(bmmDefaultPlaylistProvider).asData?.valueOrNull;
       if (playlistTracks != null) {
-        BccmPlayerController.primary.queue.setNextUp(playlistTracks.map((e) => toMediaItem(e, bmmApi)).whereNotNull().toList());
+        setTracksAsNextUp(BccmPlayerController.primary, bmmApi, playlistTracks);
       }
     }
 
@@ -392,6 +392,7 @@ MediaItem? toMediaItem(
 }
 
 void setTracksAsNextUp(BccmPlayerController player, BmmApiWrapper bmmApi, BuiltList<TrackModel> tracks, {Map<String, String>? extras}) {
+  player.queue.setShuffleEnabled(true);
   player.queue.setNextUp(
     tracks.map((e) => toMediaItem(e, bmmApi, extras: extras)).whereNotNull().toList(),
   );

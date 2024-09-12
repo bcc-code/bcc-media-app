@@ -2,7 +2,7 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:openapi/openapi.dart';
+import 'package:bmm_api/bmm_api.dart';
 
 final bmmApiProvider = Provider<BmmApiWrapper>((ref) {
   return BmmApiWrapper(
@@ -10,7 +10,7 @@ final bmmApiProvider = Provider<BmmApiWrapper>((ref) {
     getAuthToken: () => ref.read(authStateProvider).auth0AccessToken,
     interceptors: [
       InterceptorsWrapper(onRequest: (options, handler) {
-        options.headers['Authorization'] = ref.read(authStateProvider).auth0AccessToken;
+        options.headers['Authorization'] = 'Bearer ${ref.read(authStateProvider).auth0AccessToken}';
         options.headers['Accept-Language'] = [ref.read(settingsProvider).appLanguage.languageCode];
         options.headers['BMM-Version'] = '1.101.0';
         return handler.next(options);
