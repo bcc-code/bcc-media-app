@@ -1,7 +1,5 @@
 import 'app_localizations.dart';
 
-// ignore_for_file: type=lint
-
 /// The translations for German (`de`).
 class SDe extends S {
   SDe([String locale = 'de']) : super(locale);
