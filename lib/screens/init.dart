@@ -64,6 +64,12 @@ class _InitScreenState extends ConsumerState<InitScreen> {
     });
     ref.invalidate(appConfigFutureProvider);
 
+    // Set "hasEverLoggedIn" in SharedPreferences to false initially.
+    final hasEverLoggedIn = ref.read(sharedPreferencesProvider).getBool(PrefKeys.hasEverLoggedIn);
+    if (hasEverLoggedIn == null) {
+      ref.read(sharedPreferencesProvider).setBool(PrefKeys.hasEverLoggedIn, false);
+    }
+
     // Apply artificial delay if startupDelay feature flag is enabled
     final hasStartupDelay = ref.read(featureFlagsProvider).startupDelay;
     final delayTimeInMs = ref.read(featureFlagsProvider).delayTimeInMs;
