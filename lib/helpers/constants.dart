@@ -50,3 +50,9 @@ class MetadataExtraConstants {
   MetadataExtraConstants._();
   static const shortId = 'shortId';
 }
+
+class AppNames {
+  static const androidTv = 'androidtv';
+  static const mobile = 'bccm-mobile';
+  static const web = 'bccm-web';
+}
