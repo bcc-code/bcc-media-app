@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.27+2300187...v) (2024-09-12)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.28+2300188...v) (2024-09-13)
+
+
+
+## [5.6.28+2300188](https://github.com/bcc-code/bcc-media-app/compare/v5.6.27+2300187...v5.6.28+2300188) (2024-09-13)
+
+
+### Bug Fixes
+
+* make sure every user has either false or true value for hasEverLoggedIn ([bc6a609](https://github.com/bcc-code/bcc-media-app/commit/bc6a6093d43bdcb71d6d3cec47de6cf0f2d88bbf))
+* **thumbnail:** prevent title overflowing ([89d2a8c](https://github.com/bcc-code/bcc-media-app/commit/89d2a8cf550e9ba459b00e5a00992dc2e7152716))
 
 
 

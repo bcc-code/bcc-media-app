@@ -1,5 +1,7 @@
 import 'app_localizations.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for Slovenian (`sl`).
 class SSl extends S {
   SSl([String locale = 'sl']) : super(locale);

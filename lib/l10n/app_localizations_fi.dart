@@ -1,5 +1,7 @@
 import 'app_localizations.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for Finnish (`fi`).
 class SFi extends S {
   SFi([String locale = 'fi']) : super(locale);
