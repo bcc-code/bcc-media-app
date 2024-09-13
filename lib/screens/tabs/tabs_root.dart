@@ -23,7 +23,6 @@ import '../../components/nav/web_app_bar.dart';
 import '../../providers/tabs.dart';
 import 'package:bccm_core/design_system.dart';
 
-
 @RoutePage<void>()
 class TabsRootScreen extends StatefulHookConsumerWidget {
   static const route = '/';
@@ -151,7 +150,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       ),
     );
 
-    if (currentMediaItemEpisodeId == null) {
+    if (ref.watch(primaryPlayerProvider)?.currentMediaItem == null) {
       return true;
     }
     if (currentRouteMatch.meta.containsKey('hide_mini_player')) {

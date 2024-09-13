@@ -40,6 +40,7 @@ FeatureFlags getBaseFeatureFlags() {
     skipToChapter: false,
     startupDelay: false,
     delayTimeInMs: null,
+    bccmAudioTest: false,
     kidsAutoplayNext: false,
   );
 }
@@ -88,6 +89,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         skipToChapter: _verifyToggle(unleash, 'skip-to-chapter'),
         startupDelay: _verifyToggle(unleash, 'startup-delay'),
         delayTimeInMs: unleash.getVariant('delay-time-in-ms').payload?.value,
+        bccmAudioTest: _verifyToggle(unleash, 'bccm-audio-test'),
         kidsAutoplayNext: _verifyToggle(unleash, 'kids-autoplay-next'),
       ),
     );

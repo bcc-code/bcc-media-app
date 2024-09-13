@@ -187,6 +187,12 @@ class AppRouter extends $AppRouter {
       },
     ),
     CustomRoute(
+      customRouteBuilder: modalSheetBuilder,
+      page: PlayerScreenRoute.page,
+      path: '/player',
+      meta: const {RouteMetaConstants.analyticsName: 'player'},
+    ),
+    CustomRoute(
       page: TabsRootScreenRoute.page,
       path: '/',
       children: [
@@ -202,7 +208,7 @@ class AppRouter extends $AppRouter {
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
             _pageScreenRoute,
-            _showScreenRoute
+            _showScreenRoute,
           ],
         ),
         CustomRoute(
@@ -253,6 +259,7 @@ class AppRouter extends $AppRouter {
             _contributorScreenRoute,
             _pageScreenRoute,
             _showScreenRoute,
+            _audioScreenRoute,
           ],
         ),
       ],
@@ -276,6 +283,15 @@ final _contributorScreenRoute = CupertinoRoute(
   page: ContributorScreenRoute.page,
   path: 'contributor/:personId',
   meta: const {RouteMetaConstants.analyticsName: 'contributor'},
+);
+
+final _audioScreenRoute = CustomRoute(
+  page: AudioScreenRoute.page,
+  path: 'audio-test',
+  durationInMilliseconds: 300,
+  reverseDurationInMilliseconds: 300,
+  transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+  meta: const {RouteMetaConstants.analyticsName: 'audio-test'},
 );
 
 _shortScreenRoute(String pathPrefix) => CupertinoRoute(

@@ -59,10 +59,13 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
       behavior: HitTestBehavior.opaque,
       onTap: () async {
         final id = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
+        final type = player.currentMediaItem?.metadata?.extras?['type']?.asOrNull<String>();
         final collectionId = player.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
         final offlineMediaItem = player.currentMediaItem?.isOffline == true;
         if (offlineMediaItem) {
           ref.read(playbackServiceProvider).openFullscreen(context);
+        } else if (type == 'track') {
+          await context.router.root.push(const PlayerScreenRoute());
         } else if (id != null) {
           try {
             await context.navigateTo(EpisodeScreenRoute(episodeId: id, collectionId: collectionId));
