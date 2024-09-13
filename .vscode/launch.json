@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "prod: debug",
+      "name": "bccm-mobile: debug",
       "request": "launch",
       "type": "dart",
       "cwd": "${workspaceFolder}",
@@ -20,7 +20,7 @@
       "program": "lib/main_prod.dart"
     },
     {
-      "name": "prod: attach",
+      "name": "bccm-mobile: attach",
       "request": "attach",
       "type": "dart",
       "cwd": "${workspaceFolder}",
@@ -35,7 +35,7 @@
       "program": "lib/main_prod.dart"
     },
     {
-      "name": "prod: profile",
+      "name": "bccm-mobile: profile",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile",
@@ -51,7 +51,7 @@
       "program": "lib/main_prod.dart"
     },
     {
-      "name": "prod: release",
+      "name": "bccm-mobile: release",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release",
@@ -72,18 +72,27 @@
       "request": "launch",
       "program": ".dart_tool/build/entrypoint/build.dart",
       "type": "dart",
-      "args": ["build", "--delete-conflicting-outputs", "--verbose"]
+      "args": [
+        "build",
+        "--delete-conflicting-outputs",
+        "--verbose"
+      ]
     },
     {
-      "name": "Kids: debug",
+      "name": "kids-mobile: debug",
       "request": "launch",
       "type": "dart",
       "cwd": "${workspaceFolder}/kids",
-      "args": ["--web-port", "3001", "--web-renderer", "canvaskit"],
+      "args": [
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit"
+      ],
       "program": "lib/main.dart"
     },
     {
-      "name": "Kids: profile",
+      "name": "kids-mobile: profile",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile",
@@ -98,29 +107,43 @@
       "program": "lib/main.dart"
     },
     {
-      "name": "Kids: release",
+      "name": "kids-mobile: release",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release",
       "cwd": "${workspaceFolder}/kids",
-      "args": ["--web-port", "3001", "--web-renderer", "canvaskit"],
+      "args": [
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit"
+      ],
       "program": "lib/main.dart"
     },
     {
-      "name": "Kids: attach",
+      "name": "kids-mobile: attach",
       "request": "attach",
       "type": "dart",
       "cwd": "${workspaceFolder}/kids",
-      "args": ["--web-port", "3001", "--web-renderer", "canvaskit"],
+      "args": [
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit"
+      ],
       "program": "lib/main.dart"
     },
     {
-      "name": "Kids: Debug build_runner",
+      "name": "kids-mobile: Debug build_runner",
       "cwd": "${workspaceFolder}/kids",
       "request": "launch",
       "program": ".dart_tool/build/entrypoint/build.dart",
       "type": "dart",
-      "args": ["build", "--delete-conflicting-outputs", "--verbose"]
+      "args": [
+        "build",
+        "--delete-conflicting-outputs",
+        "--verbose"
+      ]
     }
   ]
 }
