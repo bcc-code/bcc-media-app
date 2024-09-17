@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.28+2300188...v) (2024-09-13)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.29+2300189...v) (2024-09-17)
+
+
+
+## [5.6.29+2300189](https://github.com/bcc-code/bcc-media-app/compare/v5.6.28+2300188...v5.6.29+2300189) (2024-09-17)
+
+
+### Features
+
+* minimal setup to play frakaare and autoplay music ([d7a7ef6](https://github.com/bcc-code/bcc-media-app/commit/d7a7ef6a395cbeb3e0a9d3343aa773c269711c11))
 
 
 
