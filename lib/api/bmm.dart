@@ -4,6 +4,14 @@ import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:bmm_api/bmm_api.dart';
 
+String _mapLanguage(String bccmLang) {
+  if (bccmLang == 'no') {
+    return 'nb';
+  }
+
+  return bccmLang;
+}
+
 final bmmApiProvider = Provider<BmmApiWrapper>((ref) {
   return BmmApiWrapper(
     basePathOverride: 'https://bmm-api.brunstad.org',
@@ -11,7 +19,7 @@ final bmmApiProvider = Provider<BmmApiWrapper>((ref) {
     interceptors: [
       InterceptorsWrapper(onRequest: (options, handler) {
         options.headers['Authorization'] = 'Bearer ${ref.read(authStateProvider).auth0AccessToken}';
-        options.headers['Accept-Language'] = [ref.read(settingsProvider).appLanguage.languageCode];
+        options.headers['Accept-Language'] = [_mapLanguage(ref.read(settingsProvider).appLanguage.languageCode)];
         options.headers['BMM-Version'] = '1.101.0';
         return handler.next(options);
       }),
