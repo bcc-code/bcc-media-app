@@ -26,7 +26,9 @@ mixin _$EpisodeThumbnailData {
   String? get showTitle => throw _privateConstructorUsedError;
   int? get seasonNumber => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EpisodeThumbnailData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EpisodeThumbnailDataCopyWith<EpisodeThumbnailData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +62,8 @@ class _$EpisodeThumbnailDataCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EpisodeThumbnailData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -142,6 +146,8 @@ class __$$EpisodeThumbnailDataImplCopyWithImpl<$Res>
       $Res Function(_$EpisodeThumbnailDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EpisodeThumbnailData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -259,7 +265,9 @@ class _$EpisodeThumbnailDataImpl implements _EpisodeThumbnailData {
   int get hashCode => Object.hash(runtimeType, title, duration, image, locked,
       progress, publishDate, number, showTitle, seasonNumber);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EpisodeThumbnailData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EpisodeThumbnailDataImplCopyWith<_$EpisodeThumbnailDataImpl>
@@ -298,8 +306,11 @@ abstract class _EpisodeThumbnailData implements EpisodeThumbnailData {
   String? get showTitle;
   @override
   int? get seasonNumber;
+
+  /// Create a copy of EpisodeThumbnailData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EpisodeThumbnailDataImplCopyWith<_$EpisodeThumbnailDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

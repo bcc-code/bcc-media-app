@@ -7,6 +7,7 @@ import 'package:brunstadtv_app/components/player/custom_cast_player.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:bccm_core/platform.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
@@ -41,7 +42,7 @@ class PlaybackService {
   Future init() async {
     var npawAppName = FlavorConfig.current.applicationCode;
     if (FlavorConfig.current.flavor == Flavor.bccmedia) {
-      npawAppName = ref.read(isAndroidTvProvider) ? 'androidtv' : 'bccm-mobile';
+      npawAppName = ref.read(isAndroidTvProvider) ? AppNames.androidTv : AppNames.mobile;
     }
     BccmPlaybackListener(
       ref: ref,

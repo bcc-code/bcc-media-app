@@ -38,7 +38,7 @@ class ThumbnailSlider extends ConsumerWidget {
     final responsiveSize = imageSize * factor;
 
     const verticalPaddingForThumbnail = 12.0;
-    const paddingForTitle = 38;
+    const paddingForTitle = 52;
 
     return HorizontalSlider(
       height: responsiveSize.height + (verticalPaddingForThumbnail * 2) + (hideThumbnailTitles ? 0 : paddingForTitle),

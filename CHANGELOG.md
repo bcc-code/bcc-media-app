@@ -1,4 +1,27 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.12+2500022-kids...v) (2024-09-06)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.29+2300189...v) (2024-09-17)
+
+
+
+## [5.6.29+2300189](https://github.com/bcc-code/bcc-media-app/compare/v5.6.28+2300188...v5.6.29+2300189) (2024-09-17)
+
+
+### Features
+
+* minimal setup to play frakaare and autoplay music ([d7a7ef6](https://github.com/bcc-code/bcc-media-app/commit/d7a7ef6a395cbeb3e0a9d3343aa773c269711c11))
+
+
+
+## [5.6.28+2300188](https://github.com/bcc-code/bcc-media-app/compare/v5.6.27+2300187...v5.6.28+2300188) (2024-09-13)
+
+
+### Bug Fixes
+
+* make sure every user has either false or true value for hasEverLoggedIn ([bc6a609](https://github.com/bcc-code/bcc-media-app/commit/bc6a6093d43bdcb71d6d3cec47de6cf0f2d88bbf))
+* **thumbnail:** prevent title overflowing ([89d2a8c](https://github.com/bcc-code/bcc-media-app/commit/89d2a8cf550e9ba459b00e5a00992dc2e7152716))
+
+
+
+## [5.6.27+2300187](https://github.com/bcc-code/bcc-media-app/compare/v5.1.12+2500022-kids...v5.6.27+2300187) (2024-09-12)
 
 
 

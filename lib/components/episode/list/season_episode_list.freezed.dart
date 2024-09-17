@@ -22,7 +22,9 @@ mixin _$SeasonEpisodeListEpisodeData {
       throw _privateConstructorUsedError;
   bool? get highlighted => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SeasonEpisodeListEpisodeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SeasonEpisodeListEpisodeDataCopyWith<SeasonEpisodeListEpisodeData>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -53,6 +55,8 @@ class _$SeasonEpisodeListEpisodeDataCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SeasonEpisodeListEpisodeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -108,6 +112,8 @@ class __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl<$Res>
       $Res Function(_$SeasonEpisodeListEpisodeDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SeasonEpisodeListEpisodeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -179,7 +185,9 @@ class _$SeasonEpisodeListEpisodeDataImpl
   int get hashCode => Object.hash(
       runtimeType, episode, seasonNumber, lessonProgressOverview, highlighted);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SeasonEpisodeListEpisodeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SeasonEpisodeListEpisodeDataImplCopyWith<
@@ -204,8 +212,11 @@ abstract class _SeasonEpisodeListEpisodeData
   Fragment$LessonProgressOverview? get lessonProgressOverview;
   @override
   bool? get highlighted;
+
+  /// Create a copy of SeasonEpisodeListEpisodeData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SeasonEpisodeListEpisodeDataImplCopyWith<
           _$SeasonEpisodeListEpisodeDataImpl>
       get copyWith => throw _privateConstructorUsedError;

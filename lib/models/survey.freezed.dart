@@ -23,8 +23,12 @@ mixin _$CompletedSurveys {
   List<CompletedSurvey> get completedSurveys =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this CompletedSurveys to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CompletedSurveys
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CompletedSurveysCopyWith<CompletedSurveys> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$CompletedSurveysCopyWithImpl<$Res, $Val extends CompletedSurveys>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CompletedSurveys
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +87,8 @@ class __$$CompletedSurveysImplCopyWithImpl<$Res>
       $Res Function(_$CompletedSurveysImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CompletedSurveys
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -127,12 +135,14 @@ class _$CompletedSurveysImpl implements _CompletedSurveys {
                 .equals(other._completedSurveys, _completedSurveys));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_completedSurveys));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CompletedSurveys
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CompletedSurveysImplCopyWith<_$CompletedSurveysImpl> get copyWith =>
@@ -156,8 +166,11 @@ abstract class _CompletedSurveys implements CompletedSurveys {
 
   @override
   List<CompletedSurvey> get completedSurveys;
+
+  /// Create a copy of CompletedSurveys
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CompletedSurveysImplCopyWith<_$CompletedSurveysImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -171,8 +184,12 @@ mixin _$CompletedSurvey {
   String get id => throw _privateConstructorUsedError;
   DateTime get expiry => throw _privateConstructorUsedError;
 
+  /// Serializes this CompletedSurvey to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CompletedSurvey
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CompletedSurveyCopyWith<CompletedSurvey> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -196,6 +213,8 @@ class _$CompletedSurveyCopyWithImpl<$Res, $Val extends CompletedSurvey>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CompletedSurvey
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -234,6 +253,8 @@ class __$$CompletedSurveyImplCopyWithImpl<$Res>
       _$CompletedSurveyImpl _value, $Res Function(_$CompletedSurveyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CompletedSurvey
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -280,11 +301,13 @@ class _$CompletedSurveyImpl implements _CompletedSurvey {
             (identical(other.expiry, expiry) || other.expiry == expiry));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, expiry);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CompletedSurvey
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CompletedSurveyImplCopyWith<_$CompletedSurveyImpl> get copyWith =>
@@ -311,8 +334,11 @@ abstract class _CompletedSurvey implements CompletedSurvey {
   String get id;
   @override
   DateTime get expiry;
+
+  /// Create a copy of CompletedSurvey
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CompletedSurveyImplCopyWith<_$CompletedSurveyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
