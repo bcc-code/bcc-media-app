@@ -42,7 +42,10 @@ class PlaybackService {
   Future init() async {
     var npawAppName = FlavorConfig.current.applicationCode;
     if (FlavorConfig.current.flavor == Flavor.bccmedia) {
-      npawAppName = ref.read(isAndroidTvProvider) ? AppNames.androidTv : AppNames.mobile;
+      npawAppName = ref.read(isAndroidTvProvider) ? AppNames.bccmAndroidTv : AppNames.bccmMobile;
+    }
+    if (FlavorConfig.current.flavor == Flavor.kids) {
+      npawAppName = AppNames.kidsMobile;
     }
     BccmPlaybackListener(
       ref: ref,
