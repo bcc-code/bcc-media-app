@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.29+2300189...v) (2024-09-17)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.30+2300190...v) (2024-09-25)
+
+
+
+## [5.6.30+2300190](https://github.com/bcc-code/bcc-media-app/compare/v5.6.29+2300189...v5.6.30+2300190) (2024-09-25)
+
+
+### Bug Fixes
+
+* lang ([4546048](https://github.com/bcc-code/bcc-media-app/commit/454604806d46c6ddd58f20c2c2907b70a14d560e))
 
 
 
