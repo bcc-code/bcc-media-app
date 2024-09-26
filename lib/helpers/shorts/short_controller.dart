@@ -32,7 +32,6 @@ class ShortController {
 
   ShortController(this.ref) {
     final disableNpaw = ref.read(featureFlagsProvider).disableNpawShorts;
-    debugPrint('SHRT: disableNpaw: $disableNpaw');
     player = BccmPlayerController.empty(bufferMode: BufferMode.fastStartShortForm, disableNpaw: disableNpaw);
     playerInitFuture = player.initialize();
     playerInitFuture.then((_) {
@@ -59,16 +58,12 @@ class ShortController {
     final expiresAt = player.value.currentMediaItem?.metadata?.extras?['expires_at'];
     if (newShort.id == _short?.id && currentSetupCompleter != null) {
       if ((forceReload == true || expired(expiresAt)) && currentSetupCompleter!.isCompleted) {
-        debugPrint('SHRT: forcing reload of ${newShort.id}');
         currentSetupCompleter = wrapInCompleter(_setupShort(newShort, forceNewFromBackend: true));
       }
-      debugPrint('SHRT: stream already initialized for ${newShort.id}');
       return currentSetupCompleter!.future;
     } else if (newShort.id != _short?.id) {
-      debugPrint('SHRT: resetting retries for ${newShort.id}');
       retries = 0;
     }
-    debugPrint('SHRT: setting up for ${newShort.id}');
     _short = newShort;
     currentSetupCompleter = wrapInCompleter(_setupShort(newShort));
     return currentSetupCompleter!.future;
@@ -76,11 +71,9 @@ class ShortController {
 
   Future<void> _setupShort(Fragment$Short newShort, {bool? forceNewFromBackend}) async {
     await playerInitFuture;
-    debugPrint('SHRT: setting up for ${newShort.id}');
 
     final stream = await getFreshStream(newShort, forceNewFromBackend: forceNewFromBackend);
     if (stream == null) {
-      debugPrint('SHRT: failed to get stream for ${newShort.id}');
       return;
     }
 
@@ -106,7 +99,6 @@ class ShortController {
       ),
       autoplay: false,
     );
-    debugPrint('${player.value.playerId} done with replaceCurrentMediaItem');
     if (_disposed) return;
     player.setVolume(muted ? 0 : 1);
   }
@@ -115,7 +107,6 @@ class ShortController {
     final stream = streams.getBestStream();
     final uri = Uri.tryParse(stream.url);
     if (uri == null) {
-      debugPrint('SHRT: invalid url: ${stream.url}');
       return null;
     }
     return stream;
@@ -145,7 +136,6 @@ class ShortController {
     final progressSeconds = (player.value.playbackPositionMs ?? 0) ~/ 1000;
     if (progressSeconds != previousSeconds && progressSeconds > 0) {
       _progressDebouncer.run(() {
-        debugPrint('SHRT: setting progress: ${progressSeconds}s for ${s.id}');
         gql.mutate$setShortProgress(
           Options$Mutation$setShortProgress(
             variables: Variables$Mutation$setShortProgress(
@@ -161,9 +151,7 @@ class ShortController {
     previousSeconds = progressSeconds;
 
     if (player.value.error != null && (currentSetupCompleter == null || currentSetupCompleter!.isCompleted)) {
-      debugPrint('SHRT: player error: ${player.value.error}, retries: $retries');
       if (retries > 3) {
-        debugPrint('SHRT: failed to play short ${s.id} after 3 retries. Player error: ${player.value.error}');
         return;
       }
       final currentMs = player.value.playbackPositionMs;

@@ -58,7 +58,6 @@ class ShortScrollView extends HookConsumerWidget {
       nextCursor.value = result.parsedData?.shorts.nextCursor;
       final fetchedShorts = result.parsedData?.shorts.shorts;
       if (fetchedShorts == null) {
-        debugPrint('SHRT: fetchMore: no shorts');
         return result;
       }
 
@@ -89,7 +88,6 @@ class ShortScrollView extends HookConsumerWidget {
 
     useOnAppLifecycleStateChange((previous, current) {
       if (current == AppLifecycleState.inactive) {
-        debugPrint('SHRT: app inactive: pausing controllers');
         for (final c in shortControllers) {
           c.player.pause();
         }
@@ -167,33 +165,26 @@ class ShortScrollView extends HookConsumerWidget {
       shortControllers[previousIndex].player.pause();
       shortControllers[nextIndex].player.pause();
 
-      debugPrint('SHRT: setupCurrentController index: $index');
       var currentShort = shorts.value.elementAtOrNull(index);
       if (currentShort == null) {
-        debugPrint('SHRT: no short for index $index, waiting for fetchMoreFuture');
         await fetchMoreFuture.value;
         if (!context.mounted) return;
         currentShort = shorts.value.elementAtOrNull(index);
       }
       if (currentShort == null) {
-        debugPrint('SHRT: no short for index $index');
         return;
       }
 
-      debugPrint('SHRT: setting progress: ${0}s for ${currentShort.id}');
-      gqlClient
-          .mutate$setShortProgress(
-            Options$Mutation$setShortProgress(
-              variables: Variables$Mutation$setShortProgress(
-                id: currentShort.id,
-                progress: 0,
-              ),
-            ),
-          )
-          .then((_) => debugPrint('SHRT: short set progress to 0'));
+      gqlClient.mutate$setShortProgress(
+        Options$Mutation$setShortProgress(
+          variables: Variables$Mutation$setShortProgress(
+            id: currentShort.id,
+            progress: 0,
+          ),
+        ),
+      );
 
       if (currentIndex.value != index) {
-        debugPrint('SHRT: setupCurrentController index: $index: index changed, aborting');
         return;
       }
       final controllerIndex = index % playerCount;
@@ -206,7 +197,6 @@ class ShortScrollView extends HookConsumerWidget {
         Future.delayed(500.ms, () {
           if (!isMounted()) return;
           if (currentIndex.value != index) {
-            debugPrint('SHRT: setupCurrentController index: $index: index changed, aborting');
             return;
           }
           preloadNextAndPreviousFor(index);
@@ -218,7 +208,6 @@ class ShortScrollView extends HookConsumerWidget {
       }
       if (!okToAutoplay() || currentIndex.value != index) return;
       await controller.player.play();
-      debugPrint('SHRT: short started playing in ${controller.player.value.playerId}');
       if (currentIndex.value != index) return;
     }
 
@@ -228,16 +217,13 @@ class ShortScrollView extends HookConsumerWidget {
       for (var i = 0; i < shortControllers.length; i++) {
         shortControllers[i].isCurrent = i == index % shortControllers.length;
       }
-      debugPrint('SHRT: setCurrentIndex: $index');
       Future.delayed(300.ms, () {
         if (currentIndex.value != index) {
-          debugPrint('SHRT: setCurrentIndex: $index: index changed, aborting');
           return;
         }
         setupCurrentController(index, preloadNext: preloadNext);
       });
       if (currentIndex.value + 4 == shorts.value.length) {
-        debugPrint('SHRT: fetching more: close to end');
         fetchMoreFuture.value = fetchMore();
       }
     }
@@ -248,11 +234,9 @@ class ShortScrollView extends HookConsumerWidget {
         shortControllersState.value = List.unmodifiable(List.generate(playerCount, (_) => ShortController(ref)));
       }
       currentIndex.value = 0;
-      debugPrint('SHRT: fetching more: init');
       fetchMoreFuture.value = fetchMore();
       await fetchMoreFuture.value;
       setCurrentIndex(0, preloadNext: false);
-      debugPrint('SHRT: shorts initialized');
     }
 
     dispose() {
