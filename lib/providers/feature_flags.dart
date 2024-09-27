@@ -118,7 +118,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     final unleash = this.unleash = UnleashClient(
       url: Uri.parse(Env.unleashProxyUrl),
       clientKey: Env.unleashClientKey,
-      appName: FlavorConfig.current.applicationCode == 'kids' ? AppNames.kidsMobile : FlavorConfig.current.applicationCode,
+      appName: FlavorConfig.current.applicationCode,
       refreshInterval: 60,
       customHeaders: {
         'UNLEASH-APPNAME': Env.unleashAppName,
