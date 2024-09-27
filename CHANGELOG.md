@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.30+2300190...v) (2024-09-25)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.31+2300191...v) (2024-09-27)
+
+
+
+## [5.6.31+2300191](https://github.com/bcc-code/bcc-media-app/compare/v5.6.30+2300190...v5.6.31+2300191) (2024-09-27)
+
+
+### Bug Fixes
+
+* **sentry:** filter out socket related errors ([996b2ca](https://github.com/bcc-code/bcc-media-app/commit/996b2caa9cb514af11c8cdcf12eb17a3fa2a6714))
 
 
 
