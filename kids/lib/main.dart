@@ -77,6 +77,15 @@ Future<void> $main({
     options.dsn = Env.sentryDsnKids;
     options.tracesSampleRate = 0.5;
     options.profilesSampleRate = 0.5;
+    options.beforeSend = (event, hint) {
+      // Filter out network related errors to prevent noise in Sentry
+      if (event.throwable is SocketException ||
+          event.throwable.toString().contains('Connection closed') ||
+          event.throwable.toString().contains('SocketException')) {
+        return null;
+      }
+      return event;
+    };
   }, appRunner: () async {
     usePathUrlStrategy();
     WidgetsFlutterBinding.ensureInitialized();
