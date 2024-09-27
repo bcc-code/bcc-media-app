@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/background_tasks.dart';
@@ -41,6 +42,15 @@ Future<void> $main({
       options.dsn = Env.sentryDsn;
       options.tracesSampleRate = 0.5;
       options.profilesSampleRate = 0.5;
+      options.beforeSend = (event, hint) {
+        // Filter out network related errors to prevent noise in Sentry
+        if (event.throwable is SocketException ||
+            event.throwable.toString().contains('Connection closed') ||
+            event.throwable.toString().contains('SocketException')) {
+          return null;
+        }
+        return event;
+      };
     },
     appRunner: () async {
       TimeMeasurements.mainFunction.start();
