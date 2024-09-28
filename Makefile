@@ -13,9 +13,10 @@ pubgetall: ## Runs `flutter pub get` dependencies for all the flutter projects
 	cd submodules/bccm_flutter/bccm_core && flutter pub get
 	cd submodules/bccm_player && flutter pub get
 
-main-branch: ## Switches all submodules to the main branch
+main-branch: ## Switches all submodules to its default branch (i.e. main/master) and pulls latest
 	@echo
 	@git submodule foreach 'branch="$$(git config -f $$toplevel/.gitmodules submodule.$$name.branch)"; git switch $$branch; echo'
+	@git submodule foreach 'branch="$$(git config -f $$toplevel/.gitmodules submodule.$$name.branch)"; git pull; echo'
 
 web-build: ## Builds the web version of the app
 	flutter build web --release -t lib/main_prod.dart --web-renderer canvaskit
