@@ -65,7 +65,6 @@ class ShortAnalyticsListener {
 
     final durationMs = controller.player.value.currentMediaItem?.metadata?.durationMs ?? 0;
     if (_previousState == PlaybackState.playing && isPausedOrStopped) {
-      // paused
       ref.read(analyticsProvider).shortStopped(ShortStoppedEvent(
             shortId: short.id,
             shortTitle: short.title,
