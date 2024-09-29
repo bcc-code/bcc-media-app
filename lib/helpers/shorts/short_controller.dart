@@ -151,7 +151,9 @@ class ShortController {
     previousSeconds = progressSeconds;
 
     if (player.value.error != null && (currentSetupCompleter == null || currentSetupCompleter!.isCompleted)) {
+      debugPrint('SHRT: player error: ${player.value.error}, retries: $retries');
       if (retries > 3) {
+        debugPrint('SHRT: failed to play short ${s.id} after 3 retries. Player error: ${player.value.error}');
         return;
       }
       final currentMs = player.value.playbackPositionMs;
