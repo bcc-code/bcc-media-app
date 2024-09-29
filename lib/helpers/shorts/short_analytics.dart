@@ -74,7 +74,6 @@ class ShortAnalyticsListener {
             replayCount: _replayCount.value,
           ));
     } else if (wasPausedOrStopped && event.playbackState == PlaybackState.playing) {
-      // resumed
       ref.read(analyticsProvider).shortStarted(
             ShortStartedEvent(
               shortId: short.id,
