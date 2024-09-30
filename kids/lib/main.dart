@@ -39,7 +39,7 @@ Future<void> main() async {
       flavor: Flavor.kids,
       firebaseOptions: DefaultFirebaseOptions.currentPlatform,
       enableNotifications: false,
-      applicationCode: 'kids',
+      applicationCode: 'kids-mobile',
       strictAnonymousAnalytics: true,
       designSystem: () => BibleKidsDesignSystem(),
       strings: (context) => FlavorStrings(
