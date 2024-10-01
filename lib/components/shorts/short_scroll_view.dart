@@ -221,8 +221,8 @@ class ShortScrollView extends HookConsumerWidget {
         if (currentIndex.value != index) {
           return;
         }
+        setupCurrentController(index, preloadNext: preloadNext);
       });
-      setupCurrentController(index, preloadNext: preloadNext);
       if (currentIndex.value + 4 == shorts.value.length) {
         fetchMoreFuture.value = fetchMore();
       }
