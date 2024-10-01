@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.32+2300192...v) (2024-09-29)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.33+2300193...v) (2024-10-01)
+
+
+
+## [5.6.33+2300193](https://github.com/bcc-code/bcc-media-app/compare/v5.6.32+2300192...v5.6.33+2300193) (2024-10-01)
+
+
+### Bug Fixes
+
+* **shorts:** include setupCurrentController ([b406c89](https://github.com/bcc-code/bcc-media-app/commit/b406c891e47b83548bf2a2b4b3958a0b6ae11efd))
+* **shorts:** re-add hardcoded delay ([2361e17](https://github.com/bcc-code/bcc-media-app/commit/2361e17f2eef711ff0d993d078c807eaf3c76648))
 
 
 
