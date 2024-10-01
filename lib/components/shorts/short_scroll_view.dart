@@ -194,11 +194,13 @@ class ShortScrollView extends HookConsumerWidget {
       if (currentIndex.value != index || !context.mounted) return;
 
       if (preloadNext) {
-        if (!isMounted()) return;
-        if (currentIndex.value != index) {
-          return;
-        }
-        preloadNextAndPreviousFor(index);
+        Future.delayed(500.ms, () {
+          if (!isMounted()) return;
+          if (currentIndex.value != index) {
+            return;
+          }
+          preloadNextAndPreviousFor(index);
+        });
       }
 
       if ((controller.player.value.playbackPositionMs ?? 0) > 0) {
@@ -215,9 +217,11 @@ class ShortScrollView extends HookConsumerWidget {
       for (var i = 0; i < shortControllers.length; i++) {
         shortControllers[i].isCurrent = i == index % shortControllers.length;
       }
-      if (currentIndex.value != index) {
-        return;
-      }
+      Future.delayed(300.ms, () {
+        if (currentIndex.value != index) {
+          return;
+        }
+      });
       setupCurrentController(index, preloadNext: preloadNext);
       if (currentIndex.value + 4 == shorts.value.length) {
         fetchMoreFuture.value = fetchMore();
