@@ -26,8 +26,8 @@ GuideController createTabFeaturePopover(
   final size = rb.size;
 
   final position = rb.localToGlobal(Offset.zero);
-  final positionFromBottom = MediaQuery.of(context).size.height - position.dy + 12;
-  final positionFromRight = MediaQuery.of(context).size.width - position.dx - size.width;
+  final positionFromBottom = MediaQuery.sizeOf(context).height - position.dy + 12;
+  final positionFromRight = MediaQuery.sizeOf(context).width - position.dx - size.width;
   final width = (positionFromRight - 16) * 2;
 
   final controller = GuideController();

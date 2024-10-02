@@ -82,7 +82,7 @@ class ProfileScreen extends HookConsumerWidget {
       if (offset == null) {
         return;
       }
-      offset = offset - MediaQuery.of(context).padding.top - 100;
+      offset = offset - MediaQuery.paddingOf(context).top - 100;
       final currentOffset = scrollController.offset;
       var targetOffset = currentOffset + offset;
       targetOffset = targetOffset.clamp(0, scrollController.position.maxScrollExtent);

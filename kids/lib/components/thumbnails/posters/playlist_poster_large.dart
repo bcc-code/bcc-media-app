@@ -210,7 +210,7 @@ class _PlaylistInnerGrid extends HookWidget {
                       },
                       image: networkImageWithRetryAndResize(
                         imageUrl: getImageUri(url, height: constraints.maxHeight.round()).toString(),
-                        cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                        cacheHeight: (constraints.maxHeight * MediaQuery.devicePixelRatioOf(context)).round(),
                       ),
                       errorBuilder: imageErrorBuilder,
                     ),

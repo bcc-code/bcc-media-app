@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 EdgeInsets screenInsets(BuildContext context) => !kIsWeb
     ? EdgeInsets.zero
-    : MediaQuery.of(context).size.width > 2200
+    : MediaQuery.sizeOf(context).width > 2200
         ? const EdgeInsets.symmetric(horizontal: 800)
-        : MediaQuery.of(context).size.width > 1800
+        : MediaQuery.sizeOf(context).width > 1800
             ? const EdgeInsets.symmetric(horizontal: 500)
-            : MediaQuery.of(context).size.width > 1200
+            : MediaQuery.sizeOf(context).width > 1200
                 ? const EdgeInsets.symmetric(horizontal: 300)
-                : MediaQuery.of(context).size.width > 900
+                : MediaQuery.sizeOf(context).width > 900
                     ? const EdgeInsets.symmetric(horizontal: 150)
                     : const EdgeInsets.symmetric(horizontal: 80);
 

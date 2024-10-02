@@ -109,10 +109,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                           Padding(padding: const EdgeInsets.all(16), child: Image(image: FlavorConfig.current.bccmImages!.onboarding))
                         else
                           Container(
-                            height: min(220 * (MediaQuery.of(context).size.height / 600), MediaQuery.of(context).size.height - 500),
+                            height: min(220 * (MediaQuery.sizeOf(context).height / 600), MediaQuery.sizeOf(context).height - 500),
                             margin: const EdgeInsets.only(top: 40, bottom: 30),
                             child: Transform.scale(
-                              scale: 1.3 * (MediaQuery.of(context).size.height / 800),
+                              scale: 1.3 * (MediaQuery.sizeOf(context).height / 800),
                               child: Image(image: FlavorConfig.current.bccmImages!.onboarding),
                             ),
                           ),
@@ -144,7 +144,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: max(36, MediaQuery.of(context).padding.bottom)),
+                    padding: EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: max(36, MediaQuery.paddingOf(context).bottom)),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,

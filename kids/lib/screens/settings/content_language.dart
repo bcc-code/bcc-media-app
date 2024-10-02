@@ -271,7 +271,7 @@ class _CustomReorderableItem extends StatelessWidget {
                   },
                   resizeDuration: Duration.zero,
                 ),
-                extentRatio: bp.smallerThan(TABLET) ? 99 / (MediaQuery.of(context).size.width - 40) : 99 / 544,
+                extentRatio: bp.smallerThan(TABLET) ? 99 / (MediaQuery.sizeOf(context).width - 40) : 99 / 544,
                 motion: const ScrollMotion(),
                 children: [
                   CustomSlidableAction(

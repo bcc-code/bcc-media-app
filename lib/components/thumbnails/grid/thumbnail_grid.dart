@@ -28,7 +28,7 @@ class ThumbnailGrid extends ConsumerWidget {
   final String? collectionId;
 
   int getColumnCount(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size.width;
+    final screenSize = MediaQuery.sizeOf(context).width;
     switch (gridSize) {
       case Enum$GridSectionSize.half:
       default:

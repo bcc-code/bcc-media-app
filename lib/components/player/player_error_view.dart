@@ -36,7 +36,7 @@ class PlayerErrorView extends StatelessWidget {
                             placeholder: MemoryImage(kTransparentImage),
                             image: networkImageWithRetryAndResize(
                               imageUrl: imageUrl!,
-                              cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                              cacheHeight: (constraints.maxHeight * MediaQuery.devicePixelRatioOf(context)).round(),
                             ),
                             imageErrorBuilder: imageErrorBuilder,
                             fadeInDuration: const Duration(milliseconds: 150),

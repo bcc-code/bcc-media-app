@@ -116,7 +116,7 @@ class _PageRendererImpl extends HookConsumerWidget {
     return MediaQuery(
       data: mediaQueryData.copyWith(padding: mediaQueryData.padding.copyWith(bottom: mediaQueryData.padding.bottom + 32)),
       child: RefreshIndicator(
-        edgeOffset: MediaQuery.of(context).padding.top,
+        edgeOffset: MediaQuery.paddingOf(context).top,
         triggerMode: RefreshIndicatorTriggerMode.anywhere,
         displacement: 40,
         onRefresh: () {

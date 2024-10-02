@@ -117,7 +117,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     }
     return Container(
       height: kMiniPlayerHeight,
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.sizeOf(context).width,
       color: DesignSystem.of(context).colors.background2,
       padding: const EdgeInsets.symmetric(
         horizontal: 16,

@@ -45,7 +45,7 @@ class BorderedImageContainer extends StatelessWidget {
           if (imageUrl == null) {
             return const SizedBox.shrink();
           }
-          final imageHeight = (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round();
+          final imageHeight = (constraints.maxHeight * MediaQuery.devicePixelRatioOf(context)).round();
           final imageUri = imageUrl == null ? null : getImageUri(imageUrl!, height: imageHeight);
           return ClipRRect(
             borderRadius: borderRadius ?? BorderRadius.circular(6),
@@ -60,7 +60,7 @@ class BorderedImageContainer extends StatelessWidget {
                           ? CachedNetworkImageProvider(imageUri.toString(), cacheManager: PermanentCacheManager())
                           : networkImageWithRetryAndResize(
                               imageUrl: imageUri.toString(),
-                              cacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                              cacheHeight: (constraints.maxHeight * MediaQuery.devicePixelRatioOf(context)).round(),
                             ),
                       imageErrorBuilder: imageErrorBuilder,
                       fadeInDuration: const Duration(milliseconds: 400),
