@@ -16,7 +16,7 @@ class AppBarCloseButton extends StatelessWidget {
     final design = DesignSystem.of(context);
     return FocusableControlBuilder(
       onPressed: () {
-        context.router.pop();
+        context.router.maybePop();
       },
       builder: (context, control) => Container(
         padding: const EdgeInsets.only(left: 20),
@@ -26,7 +26,7 @@ class AppBarCloseButton extends StatelessWidget {
           labelText: '',
           image: SvgPicture.string(SvgIcons.close),
           onPressed: () {
-            context.router.pop();
+            context.router.maybePop();
           },
         ),
       ),

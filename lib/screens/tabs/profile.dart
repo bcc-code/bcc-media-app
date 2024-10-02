@@ -41,7 +41,7 @@ import 'package:bccm_core/design_system.dart';
 const kProfileScrollQueryLikedShorts = 'liked_shorts';
 const kProfileScrollQueryDownloaded = 'downloaded';
 
-@RoutePage<void>()
+@RoutePage()
 class ProfileScreen extends HookConsumerWidget {
   const ProfileScreen({
     super.key,

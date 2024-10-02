@@ -20,7 +20,7 @@ import '../../flavors.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../components/pages/page_renderer.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class HomeScreen extends HookConsumerWidget {
   HomeScreen({Key? key}) : super(key: key ?? GlobalKey());
 

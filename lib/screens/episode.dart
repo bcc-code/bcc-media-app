@@ -45,7 +45,7 @@ import 'package:bccm_core/design_system.dart';
 
 import '../l10n/app_localizations.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class EpisodeScreen extends _EpisodeScreenImplementation {
   const EpisodeScreen({
     super.key,
@@ -57,7 +57,7 @@ class EpisodeScreen extends _EpisodeScreenImplementation {
   });
 }
 
-@RoutePage<void>()
+@RoutePage()
 class CollectionEpisodeScreen extends _EpisodeScreenImplementation {
   const CollectionEpisodeScreen({
     super.key,

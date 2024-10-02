@@ -4,7 +4,7 @@ import 'package:bccm_player/controls.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class PlayerScreen extends HookConsumerWidget {
   const PlayerScreen({
     super.key,

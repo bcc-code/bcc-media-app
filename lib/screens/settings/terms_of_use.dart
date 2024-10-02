@@ -9,7 +9,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../../components/nav/custom_back_button.dart';
 import '../../l10n/app_localizations.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class TermsOfUseScreen extends HookConsumerWidget {
   const TermsOfUseScreen({super.key});
 

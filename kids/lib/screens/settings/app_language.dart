@@ -10,7 +10,7 @@ import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:kids/components/settings/option_list.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class AppLanguageScreen extends ConsumerWidget {
   const AppLanguageScreen({super.key});
 

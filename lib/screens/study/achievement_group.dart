@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/nav/custom_back_button.dart';
 import '../../l10n/app_localizations.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class AchievementGroupScreen extends ConsumerStatefulWidget {
   const AchievementGroupScreen({
     super.key,

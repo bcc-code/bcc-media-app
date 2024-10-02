@@ -17,7 +17,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class ContentLanguageScreen extends HookConsumerWidget {
   const ContentLanguageScreen({super.key});
 

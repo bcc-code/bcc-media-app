@@ -19,7 +19,7 @@ import '../../components/nav/custom_back_button.dart';
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class StudyScreen extends HookConsumerWidget {
   final String episodeId;
   final String lessonId;

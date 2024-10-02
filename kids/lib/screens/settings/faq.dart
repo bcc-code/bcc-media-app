@@ -15,7 +15,7 @@ import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class FAQScreen extends HookConsumerWidget {
   const FAQScreen({super.key});
 

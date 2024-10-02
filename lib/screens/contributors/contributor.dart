@@ -16,7 +16,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../components/status/error_generic.dart';
 import 'package:bccm_core/design_system.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class ContributorScreen extends HookConsumerWidget {
   const ContributorScreen({
     super.key,

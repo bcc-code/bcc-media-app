@@ -8,7 +8,7 @@ import '../helpers/router/custom_transitions.dart';
 import 'router.gr.dart';
 
 @AutoRouterConfig(deferredLoading: false, replaceInRouteName: 'Screen,ScreenRoute')
-class AppRouter extends $AppRouter {
+class AppRouter extends RootStackRouter {
   AppRouter({super.navigatorKey});
 
   @override
@@ -315,27 +315,27 @@ final _showScreenRoute = CupertinoRoute(
 );
 
 // Empty routes
-@RoutePage<void>()
+@RoutePage()
 class SearchWrapperScreen extends AutoRouter {
   const SearchWrapperScreen({super.key});
 }
 
-@RoutePage<void>()
+@RoutePage()
 class TabsWrapperScreen extends AutoRouter {
   const TabsWrapperScreen({super.key});
 }
 
-@RoutePage<void>()
+@RoutePage()
 class HomeWrapperScreen extends AutoRouter {
   const HomeWrapperScreen({super.key});
 }
 
-@RoutePage<void>()
+@RoutePage()
 class ProfileWrapperScreen extends AutoRouter {
   const ProfileWrapperScreen({super.key});
 }
 
-@RoutePage<void>()
+@RoutePage()
 class ShortsWrapperScreen extends AutoRouter {
   const ShortsWrapperScreen({super.key});
 }

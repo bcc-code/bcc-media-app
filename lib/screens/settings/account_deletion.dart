@@ -12,7 +12,7 @@ import 'package:bccm_core/bccm_core.dart';
 
 import 'package:bccm_core/design_system.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class AccountDeletionScreen extends HookConsumerWidget {
   const AccountDeletionScreen({super.key});
 

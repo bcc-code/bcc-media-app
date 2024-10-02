@@ -22,7 +22,7 @@ import 'package:brunstadtv_app/l10n/app_localizations.dart';
 
 import 'package:bccm_core/design_system.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class SettingsScreen extends HookConsumerWidget {
   const SettingsScreen({super.key});
 

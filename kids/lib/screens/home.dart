@@ -15,7 +15,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids/components/page/section_renderer.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
 

@@ -22,7 +22,7 @@ class LanguageListDialog extends HookConsumerWidget {
                 title: languages[code]!.nativeName,
                 onPressed: () {
                   ref.read(settingsProvider.notifier).setAudioLanguages([...selected, code]);
-                  context.router.pop();
+                  context.router.maybePop();
                 },
               ))
           .sortedBy((item) => item.title)

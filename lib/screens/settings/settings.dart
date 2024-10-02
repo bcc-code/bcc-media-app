@@ -16,7 +16,7 @@ import '../../components/profile/setting_list.dart';
 
 import 'package:bccm_core/design_system.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
 
@@ -50,7 +50,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
             leadingWidth: 92,
             leading: FocusableControlBuilder(
               onPressed: () {
-                context.router.pop();
+                context.router.maybePop();
               },
               builder: (context, control) => Container(
                 padding: const EdgeInsets.only(left: 16),

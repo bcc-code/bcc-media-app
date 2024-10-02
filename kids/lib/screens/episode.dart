@@ -13,7 +13,7 @@ import 'package:kids/components/player/player_view.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/helpers/transitions.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class EpisodeScreen extends HookConsumerWidget {
   const EpisodeScreen({
     super.key,

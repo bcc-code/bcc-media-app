@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../providers/settings.dart';
 import 'package:bccm_core/design_system.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class ExtraUsergroupsScreen extends HookConsumerWidget {
   const ExtraUsergroupsScreen({super.key});
 

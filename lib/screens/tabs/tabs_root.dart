@@ -23,7 +23,7 @@ import '../../components/nav/web_app_bar.dart';
 import '../../providers/tabs.dart';
 import 'package:bccm_core/design_system.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class TabsRootScreen extends StatefulHookConsumerWidget {
   static const route = '/';
 

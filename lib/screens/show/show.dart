@@ -25,7 +25,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class ShowScreen extends HookConsumerWidget {
   const ShowScreen({
     super.key,

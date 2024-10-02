@@ -19,7 +19,7 @@ import '../../flavors.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class OnboardingScreen extends ConsumerStatefulWidget {
   final String? loginError;
   final bool auto;

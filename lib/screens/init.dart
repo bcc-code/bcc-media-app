@@ -31,7 +31,7 @@ import '../router/router.gr.dart';
 /// - We could use a Stack with a loading spinner on top of the navigator, but we would anyways need to render an initial route.
 /// - PS #1: MaterialApp has a builder((child) => ...), but that 'child' is the navigator, so we can't replace it with eg. a loading spinner otherwise we can't navigate.
 /// - PS #2: Optimal solution: If you can somehow set the initial route AFTER MaterialApp and BEFORE rendering the navigator, that would be cleaner.
-@RoutePage<void>()
+@RoutePage()
 class InitScreen extends ConsumerStatefulWidget {
   const InitScreen({super.key});
 

@@ -19,7 +19,7 @@ import 'package:bccm_core/design_system.dart';
 import '../../helpers/constants.dart';
 import '../../l10n/app_localizations.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class CalendarScreen extends ConsumerStatefulWidget {
   const CalendarScreen({super.key});
 

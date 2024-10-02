@@ -22,7 +22,7 @@ Route<T> settingsRouteBuilder<T>(BuildContext context, Widget child, AutoRoutePa
 }
 
 @AutoRouterConfig(replaceInRouteName: 'Screen,ScreenRoute')
-class AppRouter extends $AppRouter {
+class AppRouter extends RootStackRouter {
   AppRouter({super.navigatorKey});
 
   @override

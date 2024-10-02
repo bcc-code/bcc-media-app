@@ -8,7 +8,7 @@ import '../../components/web/dialog_on_web.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/settings.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class AudioLanguageScreen extends ConsumerWidget {
   const AudioLanguageScreen({super.key});
 

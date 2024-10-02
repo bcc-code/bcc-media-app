@@ -4,7 +4,7 @@ import 'package:brunstadtv_app/components/shorts/short_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class ShortsScreen extends HookConsumerWidget {
   const ShortsScreen({
     super.key,

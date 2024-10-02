@@ -18,7 +18,7 @@ import 'package:bccm_core/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class ContactScreen extends HookConsumerWidget {
   const ContactScreen({super.key});
 
@@ -81,7 +81,7 @@ class ContactScreen extends HookConsumerWidget {
             leftActions: [
               BtvButton(
                 labelText: S.of(context).cancel,
-                onPressed: context.router.pop,
+                onPressed: context.router.maybePop,
               )
             ],
             rightActions: [

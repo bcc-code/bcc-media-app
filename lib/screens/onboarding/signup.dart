@@ -20,7 +20,7 @@ abstract class SignupScreenPage implements Widget {
   abstract final String analyticsPageCode;
 }
 
-@RoutePage<void>()
+@RoutePage()
 class SignupScreen extends HookConsumerWidget {
   const SignupScreen({super.key});
 

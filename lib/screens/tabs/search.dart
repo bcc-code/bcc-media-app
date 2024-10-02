@@ -16,7 +16,7 @@ import '../../l10n/app_localizations.dart';
 import '../../components/search/search_results.dart';
 import '../../components/search/custom_search_bar.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class SearchScreen extends HookConsumerWidget {
   final String? queryParam;
 

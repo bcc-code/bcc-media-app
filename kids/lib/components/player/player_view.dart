@@ -356,7 +356,7 @@ class PlayerView extends HookConsumerWidget {
                   padding: EdgeInsets.all(basePadding),
                   child: design.buttons.responsive(
                     labelText: '',
-                    onPressed: () => context.router.pop(),
+                    onPressed: () => context.router.maybePop(),
                     image: SvgPicture.string(SvgIcons.close),
                   ),
                 ),
@@ -539,7 +539,7 @@ class PlayerSettingsView extends HookConsumerWidget {
                     child: design.buttons.responsive(
                       variant: ButtonVariant.secondary,
                       labelText: 'Back to video',
-                      onPressed: () => context.router.pop(),
+                      onPressed: () => context.router.maybePop(),
                     ),
                   ),
                 ),

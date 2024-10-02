@@ -51,7 +51,7 @@ class ErrorNoAccess extends ConsumerWidget {
                     child: DesignSystem.of(context).buttons.large(
                           labelText: S.of(context).exploreContent,
                           onPressed: () {
-                            context.router.pop();
+                            context.router.maybePop();
                           },
                         ),
                   ),

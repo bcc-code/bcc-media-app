@@ -12,7 +12,7 @@ import '../../components/misc/see_more.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/router.gr.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class AchievementsScreen extends ConsumerStatefulWidget {
   const AchievementsScreen({
     super.key,

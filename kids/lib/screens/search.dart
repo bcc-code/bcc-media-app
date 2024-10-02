@@ -11,7 +11,7 @@ import 'package:bccm_core/design_system.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class SearchScreen extends HookWidget {
   const SearchScreen({super.key});
 
@@ -104,7 +104,7 @@ class SearchAppBar extends HookWidget {
                 minimum: EdgeInsets.only(left: basePadding),
                 child: design.buttons.responsive(
                   labelText: '',
-                  onPressed: () => context.router.pop(),
+                  onPressed: () => context.router.maybePop(),
                   image: SvgPicture.string(SvgIcons.close),
                 ),
               ),

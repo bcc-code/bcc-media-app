@@ -8,7 +8,7 @@ import '../../l10n/app_localizations.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../components/nav/general_app_bar.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class DeviceInfoScreen extends StatelessWidget {
   const DeviceInfoScreen({super.key});
 
@@ -21,7 +21,7 @@ class DeviceInfoScreen extends StatelessWidget {
           leftActions: [
             BtvButton(
               labelText: S.of(context).close,
-              onPressed: () => context.router.pop(),
+              onPressed: () => context.router.maybePop(),
             )
           ],
         ),

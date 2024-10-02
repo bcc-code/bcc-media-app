@@ -7,7 +7,7 @@ import '../../components/menus/option_list.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../l10n/app_localizations.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class AppLanguageScreen extends ConsumerWidget {
   const AppLanguageScreen({super.key});
 

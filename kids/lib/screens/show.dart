@@ -17,7 +17,7 @@ import 'package:kids/router/router.gr.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class ShowScreen extends HookConsumerWidget {
   const ShowScreen({
     super.key,

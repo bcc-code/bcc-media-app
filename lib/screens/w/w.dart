@@ -12,7 +12,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../components/nav/custom_back_button.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class WebviewScreen extends HookConsumerWidget {
   final String redirectCode;
 

@@ -22,7 +22,7 @@ class StackCloseButton extends StatelessWidget {
           padding: EdgeInsets.all(bp.smallerThan(TABLET) ? 20 : 40),
           child: design.buttons.responsive(
             labelText: '',
-            onPressed: () => context.router.pop(),
+            onPressed: () => context.router.maybePop(),
             image: SvgPicture.string(SvgIcons.close),
           ),
         ),

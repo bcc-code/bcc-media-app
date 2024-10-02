@@ -26,125 +26,6 @@ import 'package:kids/screens/settings/settings.dart' as _i13;
 import 'package:kids/screens/settings/terms_of_use.dart' as _i15;
 import 'package:kids/screens/show.dart' as _i14;
 
-abstract class $AppRouter extends _i16.RootStackRouter {
-  $AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, _i16.PageFactory> pagesMap = {
-    AboutScreenRoute.name: (routeData) {
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i1.AboutScreen(),
-      );
-    },
-    AppLanguageScreenRoute.name: (routeData) {
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i2.AppLanguageScreen(),
-      );
-    },
-    ContactScreenRoute.name: (routeData) {
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i3.ContactScreen(),
-      );
-    },
-    ContentLanguageScreenRoute.name: (routeData) {
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i4.ContentLanguageScreen(),
-      );
-    },
-    DeviceInfoScreenRoute.name: (routeData) {
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i5.DeviceInfoScreen(),
-      );
-    },
-    EpisodeScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<EpisodeScreenRouteArgs>();
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: _i6.EpisodeScreen(
-          key: args.key,
-          id: args.id,
-          shuffle: args.shuffle,
-          playlistId: args.playlistId,
-          cursor: args.cursor,
-        ),
-      );
-    },
-    ExtraUsergroupsScreenRoute.name: (routeData) {
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i7.ExtraUsergroupsScreen(),
-      );
-    },
-    FAQScreenRoute.name: (routeData) {
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i8.FAQScreen(),
-      );
-    },
-    HomeScreenRoute.name: (routeData) {
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i9.HomeScreen(),
-      );
-    },
-    PlaylistScreenRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<PlaylistScreenRouteArgs>(
-          orElse: () =>
-              PlaylistScreenRouteArgs(id: pathParams.getString('id')));
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: _i10.PlaylistScreen(
-          key: args.key,
-          id: args.id,
-        ),
-      );
-    },
-    PrivacyPolicyScreenRoute.name: (routeData) {
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i11.PrivacyPolicyScreen(),
-      );
-    },
-    SearchScreenRoute.name: (routeData) {
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i12.SearchScreen(),
-      );
-    },
-    SettingsScreenRoute.name: (routeData) {
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i13.SettingsScreen(),
-      );
-    },
-    ShowScreenRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<ShowScreenRouteArgs>(
-          orElse: () =>
-              ShowScreenRouteArgs(showId: pathParams.getString('showId')));
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: _i14.ShowScreen(
-          key: args.key,
-          showId: args.showId,
-        ),
-      );
-    },
-    TermsOfUseScreenRoute.name: (routeData) {
-      return _i16.AutoRoutePage<void>(
-        routeData: routeData,
-        child: const _i15.TermsOfUseScreen(),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [_i1.AboutScreen]
 class AboutScreenRoute extends _i16.PageRouteInfo<void> {
@@ -156,7 +37,12 @@ class AboutScreenRoute extends _i16.PageRouteInfo<void> {
 
   static const String name = 'AboutScreenRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i1.AboutScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -170,7 +56,12 @@ class AppLanguageScreenRoute extends _i16.PageRouteInfo<void> {
 
   static const String name = 'AppLanguageScreenRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i2.AppLanguageScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -184,7 +75,12 @@ class ContactScreenRoute extends _i16.PageRouteInfo<void> {
 
   static const String name = 'ContactScreenRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i3.ContactScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -198,7 +94,12 @@ class ContentLanguageScreenRoute extends _i16.PageRouteInfo<void> {
 
   static const String name = 'ContentLanguageScreenRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i4.ContentLanguageScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -212,7 +113,12 @@ class DeviceInfoScreenRoute extends _i16.PageRouteInfo<void> {
 
   static const String name = 'DeviceInfoScreenRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i5.DeviceInfoScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -244,8 +150,19 @@ class EpisodeScreenRoute extends _i16.PageRouteInfo<EpisodeScreenRouteArgs> {
 
   static const String name = 'EpisodeScreenRoute';
 
-  static const _i16.PageInfo<EpisodeScreenRouteArgs> page =
-      _i16.PageInfo<EpisodeScreenRouteArgs>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<EpisodeScreenRouteArgs>();
+      return _i6.EpisodeScreen(
+        key: args.key,
+        id: args.id,
+        shuffle: args.shuffle,
+        playlistId: args.playlistId,
+        cursor: args.cursor,
+      );
+    },
+  );
 }
 
 class EpisodeScreenRouteArgs {
@@ -284,7 +201,12 @@ class ExtraUsergroupsScreenRoute extends _i16.PageRouteInfo<void> {
 
   static const String name = 'ExtraUsergroupsScreenRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i7.ExtraUsergroupsScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -298,7 +220,12 @@ class FAQScreenRoute extends _i16.PageRouteInfo<void> {
 
   static const String name = 'FAQScreenRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i8.FAQScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -312,7 +239,12 @@ class HomeScreenRoute extends _i16.PageRouteInfo<void> {
 
   static const String name = 'HomeScreenRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i9.HomeScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -334,8 +266,19 @@ class PlaylistScreenRoute extends _i16.PageRouteInfo<PlaylistScreenRouteArgs> {
 
   static const String name = 'PlaylistScreenRoute';
 
-  static const _i16.PageInfo<PlaylistScreenRouteArgs> page =
-      _i16.PageInfo<PlaylistScreenRouteArgs>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<PlaylistScreenRouteArgs>(
+          orElse: () =>
+              PlaylistScreenRouteArgs(id: pathParams.getString('id')));
+      return _i10.PlaylistScreen(
+        key: args.key,
+        id: args.id,
+      );
+    },
+  );
 }
 
 class PlaylistScreenRouteArgs {
@@ -365,7 +308,12 @@ class PrivacyPolicyScreenRoute extends _i16.PageRouteInfo<void> {
 
   static const String name = 'PrivacyPolicyScreenRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i11.PrivacyPolicyScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -379,7 +327,12 @@ class SearchScreenRoute extends _i16.PageRouteInfo<void> {
 
   static const String name = 'SearchScreenRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i12.SearchScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -393,7 +346,12 @@ class SettingsScreenRoute extends _i16.PageRouteInfo<void> {
 
   static const String name = 'SettingsScreenRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i13.SettingsScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -415,8 +373,19 @@ class ShowScreenRoute extends _i16.PageRouteInfo<ShowScreenRouteArgs> {
 
   static const String name = 'ShowScreenRoute';
 
-  static const _i16.PageInfo<ShowScreenRouteArgs> page =
-      _i16.PageInfo<ShowScreenRouteArgs>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<ShowScreenRouteArgs>(
+          orElse: () =>
+              ShowScreenRouteArgs(showId: pathParams.getString('showId')));
+      return _i14.ShowScreen(
+        key: args.key,
+        showId: args.showId,
+      );
+    },
+  );
 }
 
 class ShowScreenRouteArgs {
@@ -446,5 +415,10 @@ class TermsOfUseScreenRoute extends _i16.PageRouteInfo<void> {
 
   static const String name = 'TermsOfUseScreenRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i15.TermsOfUseScreen();
+    },
+  );
 }

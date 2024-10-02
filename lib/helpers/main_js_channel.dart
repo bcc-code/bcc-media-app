@@ -103,7 +103,7 @@ class MainJsChannel implements WebViewJsHandler {
   }
 
   Future _exit(List<dynamic> arguments) async {
-    return router.pop();
+    return router.maybePop();
   }
 
   String? _getAccessToken(List<dynamic> arguments) {

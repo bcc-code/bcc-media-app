@@ -5,7 +5,7 @@ import '../../components/web/dialog_on_web.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class VideoQualityScreen extends StatefulWidget {
   const VideoQualityScreen({super.key});
 

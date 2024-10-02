@@ -10,7 +10,7 @@ import '../../flavors.dart';
 import '../../l10n/app_localizations.dart';
 import 'package:bccm_core/design_system.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 

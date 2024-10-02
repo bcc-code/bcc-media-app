@@ -11,7 +11,7 @@ import '../components/nav/custom_back_button.dart';
 import '../components/pages/page_renderer.dart';
 import 'package:bccm_core/platform.dart';
 
-@RoutePage<void>()
+@RoutePage()
 class PageScreen extends HookConsumerWidget {
   final String pageCode;
 
