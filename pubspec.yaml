@@ -118,13 +118,13 @@ dev_dependencies:
     sdk: flutter
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
   freezed: ^2.3.4
-  graphql_codegen: ^0.14.0
+  graphql_codegen: ^1.0.1
   custom_lint: any
   riverpod_generator: ^2.3.8
   riverpod_lint: any
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.14.1
   flutter_native_splash: ^2.2.19
   auto_route_generator: ^8.0.0
   sentry_dart_plugin: ^2.0.0
