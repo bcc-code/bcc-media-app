@@ -135,6 +135,17 @@ class ShortScrollView extends HookConsumerWidget {
 
     final isRouteActive = useIsRouteActive();
     final isRouteActiveRef = useRef(isRouteActive);
+
+    useEffect(() {
+      if (isRouteActive) {
+        debugPrint('SHRT: enabling wakelock');
+        WakelockPlus.enable();
+      } else {
+        debugPrint('SHRT: disabling wakelock');
+        WakelockPlus.disable();
+      }
+    }, [isRouteActive]);
+
     useValueChangedSimple(isRouteActive, (wasActive) {
       isRouteActiveRef.value = isRouteActive;
       if (isRouteActive) {
