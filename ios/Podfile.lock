@@ -13,7 +13,7 @@ PODS:
     - Protobuf (~> 3.13)
     - YouboraAVPlayerAdapter (= 6.6.8)
     - YouboraLib (= 6.6.22)
-  - cloud_firestore (5.4.0):
+  - cloud_firestore (5.4.4):
     - Firebase/Firestore (= 11.2.0)
     - firebase_core
     - Flutter
@@ -33,7 +33,7 @@ PODS:
   - firebase_core (3.6.0):
     - Firebase/CoreOnly (= 11.2.0)
     - Flutter
-  - firebase_messaging (15.1.0):
+  - firebase_messaging (15.1.3):
     - Firebase/Messaging (= 11.2.0)
     - firebase_core
     - Flutter
@@ -310,12 +310,12 @@ SPEC CHECKSUMS:
   app_links: e7a6750a915a9e161c58d91bc610e8cd1d4d0ad0
   AppAuth: 182c5b88630569df5acb672720534756c29b3358
   bccm_player: 508fbd6f79e90a6d834da4d2fde56058d9060742
-  cloud_firestore: e16eb136b9211d489b90dfedbaeddb10ff307e6a
+  cloud_firestore: 5cb927f1a8c9d748d6fdbf16c6b267956cb82c53
   connectivity_plus: ddd7f30999e1faaef5967c23d5b6d503d10434db
   device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
   Firebase: 98e6bf5278170668a7983e12971a66b2cd57fc8c
   firebase_core: 2bedc3136ec7c7b8561c6123ed0239387b53f2af
-  firebase_messaging: 142bd697a86df7d33c36f7db283ed1d26a6b3129
+  firebase_messaging: 15d114e1a41fc31e4fbabcd48d765a19eec94a38
   FirebaseCore: a282032ae9295c795714ded2ec9c522fc237f8da
   FirebaseCoreExtension: cda74ddfb001224bd8fd1d6e74698b4ed07803de
   FirebaseCoreInternal: ac26d09a70c730e497936430af4e60fb0c68ec4e
