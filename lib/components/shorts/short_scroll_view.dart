@@ -33,7 +33,6 @@ class ShortScrollView extends HookConsumerWidget {
     final muted = useState(false);
     final currentIndex = useState(0);
     final isMounted = useIsMounted();
-    final isFirstOpen = useState(true);
     final playerCount = useMemoized(() {
       final performanceClass = ref.read(androidPerformanceClassProvider).valueOrNull;
       if (Platform.isAndroid) {
@@ -135,18 +134,9 @@ class ShortScrollView extends HookConsumerWidget {
 
     final isRouteActive = useIsRouteActive();
     final isRouteActiveRef = useRef(isRouteActive);
+    final wasActive = useRef(false);
 
     useEffect(() {
-      if (isRouteActive) {
-        debugPrint('SHRT: enabling wakelock');
-        WakelockPlus.enable();
-      } else {
-        debugPrint('SHRT: disabling wakelock');
-        WakelockPlus.disable();
-      }
-    }, [isRouteActive]);
-
-    useValueChangedSimple(isRouteActive, (wasActive) {
       isRouteActiveRef.value = isRouteActive;
       if (isRouteActive) {
         debugPrint('SHRT: shorts view became active, playing');
@@ -156,16 +146,16 @@ class ShortScrollView extends HookConsumerWidget {
         }
         preloadNextAndPreviousFor(currentIndex.value);
         tabOpenAnimation.forward();
-        isFirstOpen.value = false;
         WakelockPlus.enable();
-      } else if (wasActive) {
+      } else if (wasActive.value) {
         debugPrint('SHRT: shorts view no longer active: pausing controllers');
         for (final c in shortControllers) {
           c.player.pause();
         }
         WakelockPlus.disable();
       }
-    });
+      wasActive.value = isRouteActive;
+    }, [isRouteActive]);
 
     bool okToAutoplay() => isMounted() && isRouteActiveRef.value && router.topMatch == context.routeData.route;
 
