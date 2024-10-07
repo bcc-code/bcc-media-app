@@ -1,4 +1,19 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.33+2300193...v) (2024-10-01)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.34+2300194...v) (2024-10-07)
+
+
+
+## [5.6.34+2300194](https://github.com/bcc-code/bcc-media-app/compare/v5.6.33+2300193...v5.6.34+2300194) (2024-10-07)
+
+
+### Bug Fixes
+
+* **shorts:** enable wakelock when opening shorts from home ([697d4a6](https://github.com/bcc-code/bcc-media-app/commit/697d4a668491acb498c24f7b308f55f3f5aa6328))
+* **shorts:** use useEffect for wakelock ([753e0aa](https://github.com/bcc-code/bcc-media-app/commit/753e0aacceca1936a30e2036315753009a443a4f))
+
+
+### Features
+
+* **deps:** switch to googles official (and maintained) cast sdk ([494c2e3](https://github.com/bcc-code/bcc-media-app/commit/494c2e35b7b7a9c44e5a78b16a5b588f904f66f5))
 
 
 
