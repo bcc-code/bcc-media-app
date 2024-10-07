@@ -9,7 +9,7 @@ PODS:
     - AppAuth/Core
   - bccm_player (0.0.1):
     - Flutter
-    - google-cast-sdk-dynamic-xcframework-no-bluetooth (= 4.7.1)
+    - google-cast-sdk (= 4.8.3)
     - Protobuf (~> 3.13)
     - YouboraAVPlayerAdapter (= 6.6.8)
     - YouboraLib (= 6.6.22)
@@ -93,7 +93,8 @@ PODS:
     - Flutter
   - flutter_to_airplay (0.0.1):
     - Flutter
-  - google-cast-sdk-dynamic-xcframework-no-bluetooth (4.7.1)
+  - google-cast-sdk (4.8.3):
+    - Protobuf (~> 3.13)
   - GoogleDataTransport (10.1.0):
     - nanopb (~> 3.30910.0)
     - PromisesObjC (~> 2.4)
@@ -194,6 +195,7 @@ DEPENDENCIES:
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_to_airplay (from `.symlinks/plugins/flutter_to_airplay/ios`)
+  - google-cast-sdk (= 4.8.3)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - open_mail_app (from `.symlinks/plugins/open_mail_app/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
@@ -225,7 +227,7 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseMessaging
     - FirebaseSharedSwift
-    - google-cast-sdk-dynamic-xcframework-no-bluetooth
+    - google-cast-sdk
     - GoogleDataTransport
     - GoogleUtilities
     - leveldb-library
@@ -307,7 +309,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   app_links: e7a6750a915a9e161c58d91bc610e8cd1d4d0ad0
   AppAuth: 182c5b88630569df5acb672720534756c29b3358
-  bccm_player: 604487689efbc99aeb2093d900785b7e36fd43a7
+  bccm_player: 508fbd6f79e90a6d834da4d2fde56058d9060742
   cloud_firestore: e16eb136b9211d489b90dfedbaeddb10ff307e6a
   connectivity_plus: ddd7f30999e1faaef5967c23d5b6d503d10434db
   device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
@@ -333,7 +335,7 @@ SPEC CHECKSUMS:
   flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
   flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12
   flutter_to_airplay: 519d8d83d7d8fd1c97a557b98195c4e6396eeb8f
-  google-cast-sdk-dynamic-xcframework-no-bluetooth: 1fa9e267df3fd6f8a1c6e3345142ca5286297968
+  google-cast-sdk: 1fb6724e94cc5ff23b359176e0cf6360586bb97a
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
@@ -362,6 +364,6 @@ SPEC CHECKSUMS:
   YouboraAVPlayerAdapter: bc898a61e09c667202a77491b677a42dfa0adc04
   YouboraLib: fc65b030ac93499f8beb3f5daa10deb3879fb2d2
 
-PODFILE CHECKSUM: 80ff0adf9dfef12225eadf03b6b0738f88bc0688
+PODFILE CHECKSUM: c6b64febcb9ce7fed6141a2a405e2e971424d6c2
 
 COCOAPODS: 1.15.2

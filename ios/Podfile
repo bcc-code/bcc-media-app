@@ -38,6 +38,7 @@ target 'Runner' do
   end
 
   pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '11.2.0'
+  pod 'google-cast-sdk', '4.8.3'
 end
 
 post_install do |installer|
