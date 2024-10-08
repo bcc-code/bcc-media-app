@@ -20,6 +20,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_image/network.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:intl/intl.dart';
@@ -46,7 +47,9 @@ Future<void> $main({
         // Filter out network related errors to prevent noise in Sentry
         if (event.throwable is SocketException ||
             event.throwable.toString().contains('Connection closed') ||
-            event.throwable.toString().contains('SocketException')) {
+            event.throwable.toString().contains('SocketException') ||
+            event.throwable is FetchFailure ||
+            event.throwable.toString().contains('FetchFailure')) {
           return null;
         }
         return event;
