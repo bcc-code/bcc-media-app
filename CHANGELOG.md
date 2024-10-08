@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.34+2300194...v) (2024-10-07)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.35+2300195...v) (2024-10-08)
+
+
+
+## [5.6.35+2300195](https://github.com/bcc-code/bcc-media-app/compare/v5.6.34+2300194...v5.6.35+2300195) (2024-10-08)
+
+
+### Bug Fixes
+
+* **sentry:** try filtering out fetch failures ([0b9a9db](https://github.com/bcc-code/bcc-media-app/commit/0b9a9dbfc7c78bded90d218e0977a278d4db805e))
 
 
 
