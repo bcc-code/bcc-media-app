@@ -14,7 +14,6 @@ import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import '../../helpers/svg_icons.dart';
 import '../../l10n/app_localizations.dart';
-import '../../helpers/widget_to_image.dart';
 import '../misc/dialog_with_image.dart';
 import '../status/loading_indicator.dart';
 
