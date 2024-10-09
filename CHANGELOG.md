@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.14+2500024-kids...v) (2024-10-08)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.36+2300196...v) (2024-10-09)
+
+
+
+## [5.6.36+2300196](https://github.com/bcc-code/bcc-media-app/compare/v5.1.14+2500024-kids...v5.6.36+2300196) (2024-10-09)
+
+
+### Features
+
+* **analytics:** log logout events ([1a06bcb](https://github.com/bcc-code/bcc-media-app/commit/1a06bcb57174587688301d4bedceb6c0440fc507))
 
 
 
