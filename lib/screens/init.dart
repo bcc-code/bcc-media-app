@@ -175,7 +175,15 @@ class _ErrorWidget extends HookConsumerWidget {
                           child: FocusableActionDetector(
                             actions: {
                               ActivateIntent: CallbackAction<Intent>(
-                                onInvoke: (Intent intent) => ref.read(authStateProvider.notifier).logout(),
+                                onInvoke: (Intent intent) {
+                                  ref.read(authStateProvider.notifier).logout();
+                                  ref.read(analyticsProvider).log(LogEvent(
+                                        name: 'logout',
+                                        message: 'error widget',
+                                        pageCode: 'init',
+                                        meta: {'manual': true},
+                                      ));
+                                },
                               ),
                             },
                             onFocusChange: (value) => focusingLogout.value = value,
@@ -183,6 +191,12 @@ class _ErrorWidget extends HookConsumerWidget {
                               behavior: HitTestBehavior.opaque,
                               onTap: () {
                                 ref.read(authStateProvider.notifier).logout();
+                                ref.read(analyticsProvider).log(LogEvent(
+                                      name: 'logout',
+                                      message: 'error widget',
+                                      pageCode: 'init',
+                                      meta: {'manual': true},
+                                    ));
                               },
                               child: SizedBox(
                                 height: 24,

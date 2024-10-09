@@ -93,7 +93,13 @@ class _AppRootState extends ConsumerState<AppRoot> {
     ref.invalidate(meProvider);
     final me = await ref.read(meProvider.future);
     if (mounted && me?.me.completedRegistration == false) {
-      ref.read(authStateProvider.notifier).logout(manual: true);
+      ref.read(authStateProvider.notifier).logout();
+      ref.read(analyticsProvider).log(LogEvent(
+            name: 'logout',
+            pageCode: 'app root',
+            message: 'continueSignup()',
+            meta: {'manual': true},
+          ));
     }
   }
 
@@ -107,7 +113,13 @@ class _AppRootState extends ConsumerState<AppRoot> {
       },
     );
     if (mounted && ref.read(meProvider).valueOrNull?.me.emailVerified != true) {
-      ref.read(authStateProvider.notifier).logout(manual: true);
+      ref.read(authStateProvider.notifier).logout();
+      ref.read(analyticsProvider).log(LogEvent(
+            name: 'logout',
+            pageCode: 'app root',
+            message: 'showVerifyEmail()',
+            meta: {'manual': true},
+          ));
     }
   }
 

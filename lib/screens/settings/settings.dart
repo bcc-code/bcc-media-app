@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
@@ -220,6 +221,12 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                                 optionName: S.of(context).logOutButton,
                                 onPressed: () {
                                   ref.read(authStateProvider.notifier).logout();
+                                  ref.read(analyticsProvider).log(LogEvent(
+                                        name: 'logout',
+                                        message: 'logout button',
+                                        pageCode: 'settings',
+                                        meta: {'manual': true},
+                                      ));
                                 },
                               ),
                             ],
