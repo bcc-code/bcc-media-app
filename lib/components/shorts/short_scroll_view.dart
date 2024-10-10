@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/shorts/short_view.dart';
+import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
+import 'package:brunstadtv_app/components/shorts/short_view.dart';
 import 'package:brunstadtv_app/components/status/error_adaptive.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/shorts/short_controller.dart';
 import 'package:brunstadtv_app/providers/performance_class_provider.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +32,6 @@ class ShortScrollView extends HookConsumerWidget {
     final nextCursor = useState<String?>(null);
     final muted = useState(false);
     final currentIndex = useState(0);
-    final isMounted = useIsMounted();
     final playerCount = useMemoized(() {
       final performanceClass = ref.read(androidPerformanceClassProvider).valueOrNull;
       if (Platform.isAndroid) {
@@ -52,7 +51,7 @@ class ShortScrollView extends HookConsumerWidget {
           errorPolicy: initialShortId != null ? ErrorPolicy.none : ErrorPolicy.all,
         ),
       );
-      if (!isMounted()) return result;
+      if (!context.mounted) return result;
 
       nextCursor.value = result.parsedData?.shorts.nextCursor;
       final fetchedShorts = result.parsedData?.shorts.shorts;
@@ -97,7 +96,7 @@ class ShortScrollView extends HookConsumerWidget {
     });
 
     preloadNextAndPreviousFor(int index) async {
-      if (!isMounted()) return;
+      if (!context.mounted) return;
       if (playerCount == 1) {
         debugPrint('SHRT: Player count is 1, not preloading next+previous');
         return;
@@ -157,10 +156,10 @@ class ShortScrollView extends HookConsumerWidget {
       wasActive.value = isRouteActive;
     }, [isRouteActive]);
 
-    bool okToAutoplay() => isMounted() && isRouteActiveRef.value && router.topMatch == context.routeData.route;
+    bool okToAutoplay() => context.mounted && isRouteActiveRef.value && router.topMatch == context.routeData.route;
 
     setupCurrentController(int index, {required bool preloadNext}) async {
-      if (!isMounted()) return;
+      if (!context.mounted) return;
       final previousIndex = (index - 1) % playerCount;
       final nextIndex = (index + 1) % playerCount;
       shortControllers[previousIndex].player.pause();
@@ -196,7 +195,7 @@ class ShortScrollView extends HookConsumerWidget {
 
       if (preloadNext) {
         Future.delayed(500.ms, () {
-          if (!isMounted()) return;
+          if (!context.mounted) return;
           if (currentIndex.value != index) {
             return;
           }
@@ -213,7 +212,7 @@ class ShortScrollView extends HookConsumerWidget {
     }
 
     setCurrentIndex(int index, {bool preloadNext = true}) {
-      if (!isMounted()) return;
+      if (!context.mounted) return;
       currentIndex.value = index;
       for (var i = 0; i < shortControllers.length; i++) {
         shortControllers[i].isCurrent = i == index % shortControllers.length;
@@ -230,7 +229,7 @@ class ShortScrollView extends HookConsumerWidget {
     }
 
     init() async {
-      if (!isMounted()) return;
+      if (!context.mounted) return;
       if (shortControllersState.value.isEmpty) {
         shortControllersState.value = List.unmodifiable(List.generate(playerCount, (_) => ShortController(ref)));
       }

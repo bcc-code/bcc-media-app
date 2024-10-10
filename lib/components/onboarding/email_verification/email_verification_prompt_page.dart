@@ -1,15 +1,16 @@
 import 'dart:async';
-import 'package:brunstadtv_app/components/status/loading_indicator.dart';
+
+import 'package:bccm_core/design_system.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
+import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
-import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:open_mail_app/open_mail_app.dart';
-import 'package:bccm_core/platform.dart';
+
 import '../../../l10n/app_localizations.dart';
 
 class EmailVerificationPromptPage extends HookConsumerWidget {
@@ -17,7 +18,6 @@ class EmailVerificationPromptPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMounted = useIsMounted();
     final sendVerificationEmail = useMutation$sendVerificationEmail(
         WidgetOptions$Mutation$sendVerificationEmail(cacheRereadPolicy: CacheRereadPolicy.ignoreAll, fetchPolicy: FetchPolicy.networkOnly));
     final meAsync = ref.watch(meProvider);
@@ -35,7 +35,7 @@ class EmailVerificationPromptPage extends HookConsumerWidget {
           ),
         );
       }
-      if (!isMounted()) return;
+      if (!context.mounted) return;
       // ignore: use_build_context_synchronously
       showDialog(
         context: context,
@@ -98,7 +98,7 @@ class EmailVerificationPromptPage extends HookConsumerWidget {
                   // iOS: Will open mail app if single mail app found.
                   var result = await OpenMailApp.openMailApp();
 
-                  if (!isMounted()) return;
+                  if (!context.mounted) return;
 
                   if (!result.didOpen && !result.canOpen) {
                     // ignore: use_build_context_synchronously

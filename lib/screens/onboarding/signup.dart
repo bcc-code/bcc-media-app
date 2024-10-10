@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/components/onboarding/signup/signup_birthdate_page.dart';
 import 'package:brunstadtv_app/components/onboarding/signup/signup_done_page.dart';
 import 'package:brunstadtv_app/components/onboarding/signup/signup_name_page.dart';
 import 'package:brunstadtv_app/env/env.dart';
-import 'package:bccm_core/platform.dart';
-import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -37,7 +37,6 @@ class SignupScreen extends HookConsumerWidget {
     final lastNameFocusNode = useFocusNode();
     final yearController = useState<int?>(null);
     final yearFocusNode = useFocusNode();
-    final isMounted = useIsMounted();
     final registerFuture = useState<Future?>(null);
     final user = ref.watch(authStateProvider.select((value) => value.user));
     useListenable(emailFocusNode);
@@ -90,7 +89,7 @@ class SignupScreen extends HookConsumerWidget {
           if (result?.exception != null) {
             throw result!.exception!;
           }
-          if (!isMounted()) return;
+          if (!context.mounted) return;
         }
       }();
     }
