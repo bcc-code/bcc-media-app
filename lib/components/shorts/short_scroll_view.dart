@@ -14,8 +14,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:preload_page_view/preload_page_view.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:universal_io/io.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+
+part 'short_scroll_view.g.dart';
 
 class ShortScrollView extends HookConsumerWidget {
   const ShortScrollView({
@@ -145,16 +148,32 @@ class ShortScrollView extends HookConsumerWidget {
         }
         preloadNextAndPreviousFor(currentIndex.value);
         tabOpenAnimation.forward();
-        WakelockPlus.enable();
+        Future(() {
+          ref.read(wakeLockCountProvider.notifier).increment();
+        });
       } else if (wasActive.value) {
         debugPrint('SHRT: shorts view no longer active: pausing controllers');
         for (final c in shortControllers) {
           c.player.pause();
         }
-        WakelockPlus.disable();
+        Future(() {
+          ref.read(wakeLockCountProvider.notifier).decrement();
+        });
       }
       wasActive.value = isRouteActive;
     }, [isRouteActive]);
+
+    // We need to do this to prevent race conditions when
+    // multiple shorts screens are active at the same time
+    ref.listen(wakeLockCountProvider, (prev, next) {
+      if (next >= 1) {
+        debugPrint('SHRT: wakelockCount is $next, enabling wakelock');
+        WakelockPlus.enable();
+      } else {
+        debugPrint('SHRT: wakelockCount is $next, disabling wakelock');
+        WakelockPlus.disable();
+      }
+    });
 
     bool okToAutoplay() => context.mounted && isRouteActiveRef.value && router.topMatch == context.routeData.route;
 
@@ -333,4 +352,13 @@ class _CustomPageViewScrollPhysics extends ScrollPhysics {
         stiffness: 1,
         damping: 1,
       );
+}
+
+@riverpod
+class WakeLockCount extends _$WakeLockCount {
+  @override
+  int build() => 0;
+
+  void increment() => state++;
+  void decrement() => state--;
 }
