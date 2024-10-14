@@ -207,7 +207,7 @@
   "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
-  "contactEmail": "Din e-post kontakt",
+  "contactEmail": "Din kontakt e-post",
   "@contactEmail": {
     "description": "Label for email field in contact support page"
   },
@@ -699,7 +699,7 @@
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "termsOfUse": "Vilkår for bruk",
+  "termsOfUse": "Bruksvilkår",
   "@termsOfUse": {
     "description": "Title on the 'Terms of use' page."
   },
@@ -876,7 +876,7 @@
   "@continueButton": {
     "description": "Generic button text."
   },
-  "registerButton": "Meld på",
+  "registerButton": "Registrer",
   "@registerButton": {
     "description": "Generic button text."
   },
@@ -904,6 +904,10 @@
   "dontHaveAccess": "Du har ikke tilgang til dette innholdet.",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
+  },
+  "notFound": "Innholdet du leter etter ser ikke ut til å eksistere.",
+  "@notFound": {
+    "description": "Error message when the requested content is not found."
   },
   "mustBeLoggedIn": "Du må være logget inn for å se dette innholdet",
   "@mustBeLoggedIn": {
@@ -1025,11 +1029,11 @@
   "@accountDeletionExplanation": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionWarning": "Dette er en hendelse som ikke kan gjøres om.",
+  "accountDeletionWarning": "Dette er en handling som ikke kan gjøres om.",
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Sletting av konto vil vanligvis være ferdig innen {x} arbeidsdager.",
+  "accountDeletionTimeframe": "Sletting av konto vil vanligvis gjøres innen {x} arbeidsdager.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1189,7 +1193,7 @@
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "Ingen internettforbindelse, men ta det rolig ...",
+  "noInternetButDontWorry": "Ingen internettforbindelse, men ta det rolig...",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
@@ -1403,7 +1407,16 @@
   "@all": {
     "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
   },
-  "skipTo": "Gå til {chapter}",
+  "countItems": "{x} elementer",
+  "@countItems": {
+    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
+  },
+  "skipTo": "Hopp til {chapter}",
   "@skipTo": {
     "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {

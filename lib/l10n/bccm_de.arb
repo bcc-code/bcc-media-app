@@ -540,7 +540,7 @@
   "@now": {
     "description": "Tv guide now playing label"
   },
-  "debugInfoExplanation": "Deine Nachricht wird diese Information enthalten, damit wir die Sache besser verstehen können.",
+  "debugInfoExplanation": "Deine Nachricht wird diese Information enthalten, damit wir das Anliegen besser verstehen können.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
@@ -564,7 +564,7 @@
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Etwas lief schief. Bitte überprüfe deine Internetverbindung und versuche es noch einmal.",
+  "sendFailDescription": "Etwas ist schiefgelaufen. Bitte überprüfe deine Internetverbindung und versuche es erneut.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
@@ -605,7 +605,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Das Tv Programm ist deiner Ortszeit angepasst: {timeZone}",
+  "timezoneInformation": "Der TV Programmplan ist deiner Ortszeit angepasst: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -618,11 +618,11 @@
   "@share": {
     "description": "Generic."
   },
-  "showMore": "Zeige mehr",
+  "showMore": "Mehr anzeigen",
   "@showMore": {
     "description": "Text used on link to expand collapsed text."
   },
-  "showLess": "Zeige weniger",
+  "showLess": "Weniger anzeigen",
   "@showLess": {
     "description": "Text used on link to collapse expanded text."
   },
@@ -658,7 +658,7 @@
   "@appUpdateTitle": {
     "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateRequest": "Bitte lade die neuste App herunter, um alle neuen Features und Verbesserungen zu genießen. ",
+  "appUpdateRequest": "Bitte lade die neuste App herunter, um alle neuen Features und Verbesserungen zu nutzen.",
   "@appUpdateRequest": {
     "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
   },
@@ -670,7 +670,7 @@
   "@copy": {
     "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
-  "reload": "Nochmals laden",
+  "reload": "Neu laden",
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
   },
@@ -678,11 +678,11 @@
   "@fAQ": {
     "description": "Title on FAQ page and item in profile page settings."
   },
-  "shareStart": "Teile von Anfang",
+  "shareStart": "Von Anfang an teilen",
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Teile von {time}",
+  "shareTime": "Teilen von {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -695,7 +695,7 @@
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "privacyPolicy": "Datenschutz",
+  "privacyPolicy": "Datenschutzrichtlinie",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
@@ -715,11 +715,11 @@
   "@filmsTab": {
     "description": "Films Tab title"
   },
-  "eventsTab": "Ereignisse",
+  "eventsTab": "Veranstaltungen",
   "@eventsTab": {
     "description": "Events Tab title"
   },
-  "audioLanguage": "Tonsprache",
+  "audioLanguage": "Audiosprache",
   "@audioLanguage": {
     "description": "Label indicating that the Audio Language can be changed here."
   },
@@ -727,7 +727,7 @@
   "@subtitlesLanguage": {
     "description": "Label indicating that the Subtitles Language can be changed here."
   },
-  "removeFromRecentSearches": "Möchtest du dieses Element von den letzten Suchanfragen löschen?",
+  "removeFromRecentSearches": "Möchtest du dieses Element aus den letzten Suchen entfernen?",
   "@removeFromRecentSearches": {
     "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
   },
@@ -751,7 +751,7 @@
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
-  "watchNow": "Schaue es jetzt",
+  "watchNow": "Jetzt ansehen",
   "@watchNow": {
     "description": "Button on featured carousel"
   },
@@ -1295,7 +1295,7 @@
   "@addLanguage": {
     "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
   },
-  "preferredLanguages": "Bevorzugte Sprache",
+  "preferredLanguages": "Bevorzugte Sprachen",
   "@preferredLanguages": {
     "description": "Shown when you are selecting preferred content languages. Title."
   },
@@ -1303,11 +1303,11 @@
   "@contentLanguageExplanation": {
     "description": "Shown when you are selecting preferred content languages."
   },
-  "otherLanguages": "Andere Sprachen",
+  "otherLanguages": "Weitere Sprachen",
   "@otherLanguages": {
     "description": "Languages that are available but in your list of preferred languages."
   },
-  "select": "Wähle",
+  "select": "Auswählen",
   "@select": {
     "description": "Prompt. Shown at the top of a list of options."
   },
@@ -1327,7 +1327,7 @@
   "@autoGenerated": {
     "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
   },
-  "shortsTranscriptionDisclaimer": "Transkripte werden automatisch generiert und können Fehler enthalten.",
+  "shortsTranscriptionDisclaimer": "Die Transkriptionen werden automatisch generiert und können Fehler enthalten.",
   "@shortsTranscriptionDisclaimer": {
     "description": "Disclaimer shown on the shorts page."
   },

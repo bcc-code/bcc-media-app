@@ -163,7 +163,7 @@ class SNb extends S {
   String get contactNameHint => 'Skriv inn ditt navn';
 
   @override
-  String get contactEmail => 'Din e-post kontakt';
+  String get contactEmail => 'Din kontakt e-post';
 
   @override
   String get contactEmailHint => 'Skriv inn din e-postadresse';
@@ -521,7 +521,7 @@ class SNb extends S {
   String get privacyPolicy => 'Personvernerklæring';
 
   @override
-  String get termsOfUse => 'Vilkår for bruk';
+  String get termsOfUse => 'Bruksvilkår';
 
   @override
   String get categoriesTab => 'Kategorier';
@@ -645,7 +645,7 @@ class SNb extends S {
   String get continueButton => 'Fortsett';
 
   @override
-  String get registerButton => 'Meld på';
+  String get registerButton => 'Registrer';
 
   @override
   String get achievements => 'Prestasjoner';
@@ -665,7 +665,7 @@ class SNb extends S {
   String get dontHaveAccess => 'Du har ikke tilgang til dette innholdet.';
 
   @override
-  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+  String get notFound => 'Innholdet du leter etter ser ikke ut til å eksistere.';
 
   @override
   String get mustBeLoggedIn => 'Du må være logget inn for å se dette innholdet';
@@ -758,11 +758,11 @@ class SNb extends S {
   String get accountDeletionExplanation => 'Du er i ferd med å be om å slette din konto hos BCC Media og alle dine data knyttet til denne appen.';
 
   @override
-  String get accountDeletionWarning => 'Dette er en hendelse som ikke kan gjøres om.';
+  String get accountDeletionWarning => 'Dette er en handling som ikke kan gjøres om.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Sletting av konto vil vanligvis være ferdig innen $x arbeidsdager.';
+    return 'Sletting av konto vil vanligvis gjøres innen $x arbeidsdager.';
   }
 
   @override
@@ -870,7 +870,7 @@ class SNb extends S {
   String get noInternetConnectionDescription => 'Koble til internett for å få tilgang til alle videoer.';
 
   @override
-  String get noInternetButDontWorry => 'Ingen internettforbindelse, men ta det rolig ...';
+  String get noInternetButDontWorry => 'Ingen internettforbindelse, men ta det rolig...';
 
   @override
   String get hereAreAllTheVideosYouDownloaded => 'Her er alle videoene du har lastet ned til enheten din.';
@@ -1028,11 +1028,11 @@ class SNb extends S {
 
   @override
   String countItems(int x) {
-    return '$x items';
+    return '$x elementer';
   }
 
   @override
   String skipTo(String chapter) {
-    return 'Gå til $chapter';
+    return 'Hopp til $chapter';
   }
 }
