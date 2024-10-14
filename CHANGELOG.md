@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.36+2300196...v) (2024-10-09)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.37+2300197...v) (2024-10-14)
+
+
+
+## [5.6.37+2300197](https://github.com/bcc-code/bcc-media-app/compare/v5.6.36+2300196...v5.6.37+2300197) (2024-10-14)
+
+
+### Bug Fixes
+
+* **shorts:** prevent wakelock race conditions ([96c8df9](https://github.com/bcc-code/bcc-media-app/commit/96c8df98f916bfa2c14a8d899b136c83d2fea97b))
 
 
 
