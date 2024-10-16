@@ -38,9 +38,9 @@ class ShortScrollView extends HookConsumerWidget {
     final playerCount = useMemoized(() {
       final performanceClass = ref.read(androidPerformanceClassProvider).valueOrNull;
       if (Platform.isAndroid) {
-        return performanceClass != null && performanceClass >= 12 ? 4 : 2;
+        return performanceClass != null && performanceClass >= 12 ? ShortConstants.maxPlayers : ShortConstants.minPlayers;
       }
-      return 4;
+      return ShortConstants.maxPlayers;
     }, []);
 
     fetchMore() async {
@@ -105,8 +105,8 @@ class ShortScrollView extends HookConsumerWidget {
         return;
       }
 
-      final ignorePrevious = playerCount == 2;
-      final nextPlayers = ignorePrevious ? 2 : playerCount - 1;
+      final ignorePrevious = playerCount == ShortConstants.minPlayers;
+      final nextPlayers = ignorePrevious ? ShortConstants.minPlayers : playerCount - 1;
       for (var i = 1; i < nextPlayers; i++) {
         final next = index == shorts.value.length - 1 ? null : shorts.value.elementAtOrNull(index + i);
         if (next != null) {
@@ -242,7 +242,7 @@ class ShortScrollView extends HookConsumerWidget {
         }
         setupCurrentController(index, preloadNext: preloadNext);
       });
-      if (currentIndex.value + 4 == shorts.value.length) {
+      if (currentIndex.value + ShortConstants.maxPlayers == shorts.value.length) {
         fetchMoreFuture.value = fetchMore();
       }
     }

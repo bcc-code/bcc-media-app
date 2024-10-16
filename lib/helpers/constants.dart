@@ -57,3 +57,9 @@ class AppNames {
   static const bccmWeb = 'bccm-web';
   static const kidsMobile = 'kids-mobile';
 }
+
+class ShortConstants {
+  ShortConstants._();
+  static const minPlayers = 2;
+  static const maxPlayers = 4;
+}
