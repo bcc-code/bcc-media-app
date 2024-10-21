@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.37+2300197...v) (2024-10-14)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.38+2300198...v) (2024-10-21)
+
+
+
+## [5.6.38+2300198](https://github.com/bcc-code/bcc-media-app/compare/v5.6.37+2300197...v5.6.38+2300198) (2024-10-21)
+
+
+### Bug Fixes
+
+* **cast:** make csting work on android again ([2875e0b](https://github.com/bcc-code/bcc-media-app/commit/2875e0b44e1c329331339d1c81b81a49dbdfebe7))
+* **shorts:** use 9/16 aspect ratio by default + slightly better icon for sharing ([4b3af3f](https://github.com/bcc-code/bcc-media-app/commit/4b3af3f081b8dc2d0d165e90e4d778c9051b4ddf))
 
 
 
