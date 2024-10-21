@@ -56,9 +56,8 @@ class SvgIcons {
 </svg>
 ''';
 
-  static const share = '''<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M3 13L3 18C3 19.6569 4.34315 21 6 21L18 21C19.6569 21 21 19.6569 21 18L21 13L19 13L19 18C19 18.5523 18.5523 19 18 19L6 19C5.44772 19 5 18.5523 5 18L5 13L3 13Z" fill="#B4C0D2"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M16.9246 7.92463L13.407 4.40704L12 3L10.5786 4.42139L7.02515 7.97486L8.43218 9.3819L11 6.81408V15H13V6.84278L15.5033 9.34602L16.9246 7.92463Z" fill="#B4C0D2"/>
+  static const share = '''<svg width="24" height="24"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path fill="currentColor" d="M13 14h-2a9 9 0 0 0-7.968 4.81A10 10 0 0 1 3 18C3 12.477 7.477 8 13 8V2.5L23.5 11L13 19.5zm-2-2h4v3.308L20.321 11L15 6.692V10h-2a7.98 7.98 0 0 0-6.057 2.774A11 11 0 0 1 11 12"/>
 </svg>
 ''';
 

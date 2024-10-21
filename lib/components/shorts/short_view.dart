@@ -695,7 +695,14 @@ class ShortActions extends HookConsumerWidget {
             colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
           ),
         ),
-      ]), //.animate(interval: 100.ms).slideY(begin: 1, curve: Curves.easeOutExpo, duration: 1000.ms).fadeIn(),
+      ])
+          .animate(interval: 100.ms)
+          .slideY(
+            begin: 1,
+            curve: Curves.easeOutExpo,
+            duration: 1000.ms,
+          )
+          .fadeIn(),
     );
   }
 }
@@ -727,6 +734,7 @@ class VideoView extends HookWidget {
                   useSurfaceView: false,
                   useStandardAndroidView: true,
                   allowSystemGestures: true,
+                  aspectRatioOverride: 9 / 16,
                 ),
               ),
             ],
