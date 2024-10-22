@@ -16,14 +16,13 @@ tags:
 - assertVisible:
     id: "TabBarItemTitle"
 - assertVisible: "Email"
-# deep_link_live
+# deep_link_shorts
 - runFlow: subflows/home.yml
 - runFlow:
     file: subflows/notification.yml
     env:
       CONTAINING: deep_link_shorts
-- assertVisible: Today,.*
-# deep_link_live
+# deep_link_episode
 - runFlow: subflows/home.yml
 - runFlow:
     file: subflows/notification.yml
