@@ -1,8 +1,8 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.38+2300198...v) (2024-10-21)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.38+2300198...v) (2024-10-22)
 
 
 
-## [5.6.38+2300198](https://github.com/bcc-code/bcc-media-app/compare/v5.6.37+2300197...v5.6.38+2300198) (2024-10-21)
+## [5.6.38+2300198](https://github.com/bcc-code/bcc-media-app/compare/v5.6.37+2300197...v5.6.38+2300198) (2024-10-22)
 
 
 ### Bug Fixes
