@@ -1,5 +1,4 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:enableOnBackInvokedCallback="true"
     package="tv.brunstad.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,7 +8,8 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="${applicationLabel}">
+        android:label="${applicationLabel}"
+        android:enableOnBackInvokedCallback="true">
 
         <activity
             android:name=".MainActivity"

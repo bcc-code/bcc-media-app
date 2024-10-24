@@ -108,7 +108,7 @@ class PlaybackService {
         durationMs: (episode.duration * 1000).toDouble(),
         extras: {
           'id': episode.id.toString(),
-          if (stream.videoLanguage != null) 'videoLanguage': stream.videoLanguage,
+          if (stream.videoLanguage != null) 'videoLanguage': toThreeLetterLanguageCode(stream.videoLanguage!),
           if (collectionId != null) 'context.collectionId': collectionId,
           if (playlistId != null) 'context.playlistId': playlistId,
           'context.cursor': episode.cursor,
