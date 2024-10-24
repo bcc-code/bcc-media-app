@@ -102,6 +102,9 @@ dependencies:
 
 dependency_overrides:
   js: ^0.7.1
+  # Impeller crashes the splash screen video on some Android devices,
+  # so we have to downgrade it to 2.7.1.
+  video_player_android: 2.7.1
 
 dev_dependencies:
   flutter_test:
