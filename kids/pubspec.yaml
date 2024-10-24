@@ -5,7 +5,7 @@ publish_to: "none" # prevent pub.dev
 # major.minor.patch+xxxxxxx
 # Note: On play store, any dots in the build
 # number (i.e. the number after +) gets removed
-version: 5.1.14+2500024
+version: 5.1.15+2500025
 
 environment:
   sdk: ">=3.1.0 <4.0.0"
@@ -102,6 +102,9 @@ dependencies:
 
 dependency_overrides:
   js: ^0.7.1
+  # Impeller crashes the splash screen video on some Android devices,
+  # so we have to downgrade it to 2.7.1.
+  video_player_android: 2.7.1
 
 dev_dependencies:
   flutter_test:

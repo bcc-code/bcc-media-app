@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.38+2300198...v) (2024-10-22)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.15+2500025-kids...v) (2024-10-24)
+
+
+
+## [5.1.15+2500025-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.38+2300198...v5.1.15+2500025-kids) (2024-10-24)
+
+
+### Bug Fixes
+
+* **kids:** make splash screen not crash the app ([04f27ba](https://github.com/bcc-code/bcc-media-app/commit/04f27ba00a80c0b697290d6d94527452cfc5a99a))
 
 
 
