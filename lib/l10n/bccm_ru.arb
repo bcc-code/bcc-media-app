@@ -1,495 +1,288 @@
 {
-  "loadingContent": "Загрузка контента",
-  "@loadingContent": {
-    "description": "Text displayed when page content is loading."
-  },
-  "signInTooltip": "Войдите, чтобы смотреть больше контента",
-  "@signInTooltip": {
-    "description": "Text for tooltip displayed when a non-member user opens the home page."
-  },
-  "skipToPublicContent": "Перейти к просмотру общедоступного контента",
-  "@skipToPublicContent": {
-    "description": "Text for button displayed on login screen to skip sign in and watch public content."
-  },
-  "minutesShort": "мин",
-  "@minutesShort": {
-    "description": "Text for minutes."
-  },
-  "calendarThisWeek": "На этой неделе",
-  "@calendarThisWeek": {
-    "description": "Text for This week."
-  },
-  "calendarWeek": "неделя",
-  "@calendarWeek": {
-    "description": "Text week."
-  },
-  "close": "Закрыть",
-  "@close": {
-    "description": "Text displayed on 'Close' button"
-  },
-  "loading": "Загрузка",
-  "@loading": {
-    "description": "Text to indicate loading state."
-  },
-  "loginPageDisplay1": "Самое мощное послание в мире",
-  "@loginPageDisplay1": {
-    "description": "Text displayed on login screen."
-  },
-  "loginPageDisplay2": "Смотрите сериалы, шоу и фильмы, основанные на христианских ценностях",
-  "@loginPageDisplay2": {
-    "description": "Text displayed on login screen."
-  },
-  "kidsOnboardingTitle": "Мы воплощаем Библейское послание в жизнь!",
-  "@kidsOnboardingTitle": {
-    "description": "Text displayed on onboarding screen for the Bible Kids app."
-  },
-  "kidsOnboardingSecondaryTitle": "Мы хотим, чтобы дети узнали Иисуса как своего лучшего друга - на всю оставшуюся жизнь.",
-  "@kidsOnboardingSecondaryTitle": {
-    "description": "Text displayed on onboarding screen for the Bible Kids app."
-  },
-  "loginPageDisplay3": "Произведено BCC Media",
-  "@loginPageDisplay3": {
-    "description": "Text displayed on login screen."
-  },
-  "logOutButton": "Выйти",
-  "@logOutButton": {
-    "description": "Text displayed on Log out button"
-  },
-  "profileTab": "Профиль",
-  "@profileTab": {
-    "description": "Title of the profile page"
-  },
-  "faq": "Часто задаваемые вопросы",
-  "@faq": {
-    "description": "Long title of the FAQ page."
-  },
-  "bccMediaCenter": "BCC Media — это медиа-фонд в организации BCC, который производит и распространяет контент с позитивными и христианскими ценностями.",
-  "@bccMediaCenter": {
-    "description": "Disclaimer on login page"
-  },
-  "signInButton": "Войти",
-  "@signInButton": {
-    "description": "Text displayed on Sign in button"
-  },
-  "signInOrSignUp": "Зарегистрироваться / Войти",
-  "@signInOrSignUp": {
-    "description": "Button to go to the onboarding page (short)"
-  },
-  "signUpButton": "Зарегистрироваться сейчас",
-  "@signUpButton": {
-    "description": "Button to start the sign up process"
-  },
-  "signUpTitle": "Зарегистрироваться",
-  "@signUpTitle": {
-    "description": "Title on the sign up page"
-  },
-  "signUpDescription": "Получите доступ к большему количеству контента и расширенным возможностям, создав учетную запись.",
-  "@signUpDescription": {
-    "description": "A description on the sign up page explaining why you would want to sign up"
-  },
-  "signUpAgreePrivacyPolicy": "Я подтверждаю, что мне исполнилось 13 лет, и я принимаю <a>Политику конфиденциальности</a> и <a>Условия использования</a>.",
-  "@signUpAgreePrivacyPolicy": {
-    "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
-  },
-  "setPassword": "Задать пароль",
-  "@setPassword": {
-    "description": "Title for the 'Set password' page of the signup process."
-  },
-  "tryAgainButton": "Попробовать еще раз",
-  "@tryAgainButton": {
-    "description": "Button on error alert that lets user to retry failed action"
-  },
-  "loggedOutTitle": "Вы вышли из аккаунта",
-  "@loggedOutTitle": {
-    "description": "Title of the alert message that is shown when user is logged out automatically."
-  },
-  "loggedOutMessage": "Вы вышли из аккаунта. Пожалуйста, войдите снова.",
-  "@loggedOutMessage": {
-    "description": "Text of the alert message that is shown when user is logged out automatically."
-  },
-  "makeDonation": "Сделать пожертвование",
-  "@makeDonation": {
-    "description": "Text for button which opens donation page."
-  },
-  "mostWatched": "Самое просматриваемое",
-  "@mostWatched": {
-    "description": "Sorting option on audience page"
-  },
-  "mostRecent": "Самое последнее",
-  "@mostRecent": {
-    "description": "Sorting option on audience page"
-  },
-  "latelyPublished": "Недавно опубликовано",
-  "@latelyPublished": {
-    "description": "Title for the list of videos on login page"
-  },
-  "anErrorOccurred": "Возникла ошибка",
-  "@anErrorOccurred": {
-    "description": "Title in error popup"
-  },
-  "ok": "ОК",
-  "@ok": {
-    "description": "Popup confirmation button"
-  },
-  "open": "Открыть",
-  "@open": {
-    "description": "Open button"
-  },
-  "loginFailedCheckNetwork": "Ошибка входа. Проверьте подключение к сети и попробуйте снова.",
-  "@loginFailedCheckNetwork": {
-    "description": "Login error message"
-  },
-  "loginFailedTryAgain": "Ошибка входа. Пожалуйста, попробуйте позже.",
-  "@loginFailedTryAgain": {
-    "description": "Login error message"
-  },
-  "soundLanguage": "Язык воспроизведения",
-  "@soundLanguage": {
-    "description": "Settings item on profile page"
-  },
-  "subtitleLanguage": "Язык субтитров",
-  "@subtitleLanguage": {
-    "description": "Settings item on profile page"
-  },
-  "appLanguage": "Язык приложения",
-  "@appLanguage": {
-    "description": "Settings item on profile page"
-  },
-  "checkNetwork": "Проверьте подключение к сети и попробуйте снова.",
-  "@checkNetwork": {
-    "description": "Error message for the user displayed in many contexts."
-  },
-  "tryAgain": "Пожалуйста, попробуйте позже.",
-  "@tryAgain": {
-    "description": "Error message for the user displayed in many contexts."
-  },
-  "cantPlayVideo": "Вы не можете воспроизводить это видео сейчас.",
-  "@cantPlayVideo": {
-    "description": "Error message for the user displayed when video playback attempt failed."
-  },
+  "@@locale": "ru",
   "about": "Инфо",
   "@about": {
+    "type": "text",
     "description": "Title of About page and item in profile page settings."
   },
-  "version": "Версия",
-  "@version": {
-    "description": "Version ot the application on About page; followed by version number"
+  "accountCreated": "Учетная запись создана",
+  "@accountCreated": {
+    "type": "text",
+    "description": "Shown when the user has successfully created an account."
   },
-  "contactSupport": "Связаться с поддержкой",
-  "@contactSupport": {
-    "description": "Title for contact support page"
+  "accountDeletionExplanation": "Вы собираетесь запросить удаление вашей учетной записи в BCC Media и всех ваших данных, связанных с этим приложением.",
+  "@accountDeletionExplanation": {
+    "type": "text",
+    "description": "Shown on the account deletion page."
   },
-  "contactIssueHint": "Опишите проблему",
-  "@contactIssueHint": {
-    "description": "Hint for the message box for logged in users"
-  },
-  "contactUs": "Свяжитесь с нами",
-  "@contactUs": {
-    "description": "Title for contact us page"
-  },
-  "deviceInfo": "Информация об устройстве",
-  "@deviceInfo": {
-    "description": "Device info page title"
-  },
-  "contactIncludeDeviceInfo": "Включить информацию об устройстве для улучшения поддержки.",
-  "@contactIncludeDeviceInfo": {
-    "description": "Text for checkbox to include device information"
-  },
-  "contactSeeData": "Нажмите для просмотра данных.",
-  "@contactSeeData": {
-    "description": "Text for link to see device data"
-  },
-  "contactName": "Имя",
-  "@contactName": {
-    "description": "Label for name field in contact support page"
-  },
-  "contactNameHint": "Введите свое имя",
-  "@contactNameHint": {
-    "description": "Hint text for name field in contact support page"
-  },
-  "contactEmail": "Ваш контактный адрес электронной почты",
-  "@contactEmail": {
-    "description": "Label for email field in contact support page"
-  },
-  "contactEmailHint": "Введите адрес электронной почты",
-  "@contactEmailHint": {
-    "description": "Hint text for name field in contact support page"
-  },
-  "contactMessage": "Сообщение\n",
-  "@contactMessage": {
-    "description": "Label for message field in contact support page"
-  },
-  "contactMessageHint": "Введите ваше сообщение здесь",
-  "@contactMessageHint": {
-    "description": "Hint text for message field in contact support page"
-  },
-  "deviceInfoDevice": "Устройство",
-  "@deviceInfoDevice": {
-    "description": "Label for device"
-  },
-  "deviceInfoEnvOverride": "Переопределение среды",
-  "@deviceInfoEnvOverride": {
-    "description": "Label for environment override"
-  },
-  "deviceInfoManufacturer": "Производитель",
-  "@deviceInfoManufacturer": {
-    "description": "Label for manufacturer"
-  },
-  "deviceInfoOs": "Операционная система",
-  "@deviceInfoOs": {
-    "description": "Label for operating system"
-  },
-  "deviceInfoScreenSize": "Размер экрана",
-  "@deviceInfoScreenSize": {
-    "description": "Label for screen size"
-  },
-  "deviceInfoAppVer": "Версия приложения",
-  "@deviceInfoAppVer": {
-    "description": "Label for app Version"
-  },
-  "deviceInfoUserId": "Идентификатор пользователя",
-  "@deviceInfoUserId": {
-    "description": "Label for user id"
-  },
-  "deviceInfoPageDesc": "Ваше сообщение будет содержать эту информацию, чтобы помочь нам обеспечить лучшую поддержку.",
-  "@deviceInfoPageDesc": {
-    "description": "Label for manufacturer"
-  },
-  "userVoice": "Предложить функцию",
-  "@userVoice": {
-    "description": "Settings item on profile page to navigate to uservoice"
-  },
-  "cancel": "Отмена",
-  "@cancel": {
-    "description": "General cancel action button"
-  },
-  "cancelConfirmation": "Вы уверены, что хотите отменить?",
-  "@cancelConfirmation": {
-    "description": "Title text for cancel confirmation dialog."
-  },
-  "cancelConfirmationDescription": "Любые несохраненные изменения будут потеряны.",
-  "@cancelConfirmationDescription": {
-    "description": "Description for cancel confirmation dialog."
-  },
-  "goBack": "Назад",
-  "@goBack": {
-    "description": "Text for back button."
-  },
-  "yesCancel": "Да, отменить",
-  "@yesCancel": {
-    "description": "Confirm cancel."
-  },
-  "done": "Готово",
-  "@done": {
-    "description": "Generic Done button, for example to dismiss a page after completing an action."
-  },
-  "playerSettings": "Настройки плеера",
-  "@playerSettings": {
-    "description": "Title of the Player settings activity in Android"
-  },
-  "settings": "Настройки",
-  "@settings": {
-    "description": "Label of the button to go to Android/iOS settings"
-  },
-  "none": "Нет",
-  "@none": {
-    "description": "Indicator on profile page that subtitles are disabled."
-  },
-  "nextEpisode": "Следующая серия",
-  "@nextEpisode": {
-    "description": "Button indicating the next video will play soon."
-  },
-  "auto": "Авто",
-  "@auto": {
-    "description": "Indicator on profile page that audio and app language are chosen automatically."
-  },
-  "subtitles": "Субтитры",
-  "@subtitles": {
-    "description": "Generic."
-  },
-  "audio": "Аудио",
-  "@audio": {
-    "description": "Generic."
-  },
-  "quality": "Качество",
-  "@quality": {
-    "description": "Generic."
-  },
-  "seasons": "Сезоны",
-  "@seasons": {
-    "description": "Followed by number of seasons in given series."
-  },
-  "episodes": "Эпизоды",
-  "@episodes": {
-    "description": "Followed by number of episodes in given series."
-  },
-  "search": "Поиск",
-  "@search": {
-    "description": "Button to clear cache"
-  },
-  "sendFeedback": "Отправить отзыв",
-  "@sendFeedback": {
-    "description": "Button to submit feedback(Survey)"
-  },
-  "noResults": "Результатов не найдено",
-  "@noResults": {
-    "description": "No search results."
-  },
-  "doYouWantCast": "Хотите показать это видео?",
-  "@doYouWantCast": {
-    "description": "Prompt displayed to the user"
-  },
-  "play": "Играть",
-  "@play": {
-    "description": "Option in prompt dialog."
-  },
-  "pause": "Пауза",
-  "@pause": {
-    "description": "A button to pause the video."
-  },
-  "castQueue": "Показывать очередь",
-  "@castQueue": {
-    "description": "Queue page title"
-  },
-  "options": "Опции",
-  "@options": {
-    "description": "Options dialog title"
-  },
-  "remove": "Удалить",
-  "@remove": {
-    "description": "Option in options dialog"
-  },
-  "queueLimitTitle": "Лимит",
-  "@queueLimitTitle": {
-    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
-  },
-  "queueLimitMessage": "В очереди не может быть больше элементов, чем {elementCount}.",
-  "@queueLimitMessage": {
-    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+  "accountDeletionSuccess": "Запрос на удаление учетной записи успешно выполнен. Вы получите письмо по адресу {email}. Для подтверждения вашей личности нам необходимо, чтобы вы ответили на это письмо, чтобы приступить к удалению.",
+  "@accountDeletionSuccess": {
+    "type": "text",
+    "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
-      "elementCount": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "accountDeletionTimeframe": "Удаление учетной записи обычно производится в течение {x} рабочих дней.",
+  "@accountDeletionTimeframe": {
+    "type": "text",
+    "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
+    "placeholders": {
+      "x": {
         "type": "int"
       }
     }
   },
-  "recentSearches": "Недавние запросы",
-  "@recentSearches": {
-    "description": "Recent searches list title."
+  "accountDeletionTitle": "Удалить мой аккаунт",
+  "@accountDeletionTitle": {
+    "type": "text",
+    "description": "Title of the account deletion page."
   },
-  "tVLogin": "ТВ Логин",
-  "@tVLogin": {
-    "description": "Title of the TV login alert"
+  "accountDeletionWarning": "Это действие нельзя отменить.",
+  "@accountDeletionWarning": {
+    "type": "text",
+    "description": "Shown on the account deletion page."
   },
-  "tVLoginSuccessful": "Успешный вход, пожалуйста, подтвердите на телевизоре.",
-  "@tVLoginSuccessful": {
-    "description": "Message of the TV login alert"
+  "achievementFirstDescription": "Отличная работа, вы завершили видео и получили первое достижение.",
+  "@achievementFirstDescription": {
+    "type": "text",
+    "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "seeMore": "Смотреть больше",
-  "@seeMore": {
-    "description": "Button on featured item to navigete to page with player"
+  "achievements": "Достижения",
+  "@achievements": {
+    "type": "text",
+    "description": "Generic. Used as page title, etc."
   },
-  "seeAll": "Посмотреть все",
-  "@seeAll": {
-    "description": "Button to see all of some collection."
+  "achievementStudyTopic": "Отличная работа по завершению темы изучения {name}",
+  "@achievementStudyTopic": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   },
-  "series": "Передачи",
-  "@series": {
-    "description": "Title of the tab on info page"
+  "add": "Добавить",
+  "@add": {
+    "type": "text",
+    "description": "Button text"
   },
-  "homeTab": "Главная",
-  "@homeTab": {
-    "description": "Title of the home page"
+  "addLanguage": "Добавить язык",
+  "@addLanguage": {
+    "type": "text",
+    "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
   },
-  "sortBy": "Сортировать по",
-  "@sortBy": {
-    "description": "Sorting criteria selector"
+  "ageRating": "Возрастная категория",
+  "@ageRating": {
+    "type": "text",
+    "description": "Age rating for the episode, shown in the 'details' tab under an episode."
   },
-  "videoQuality": "Качество видео",
-  "@videoQuality": {
-    "description": "Settings item in profile page for Android."
+  "ageRatingAll": "Все",
+  "@ageRatingAll": {
+    "type": "text",
+    "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
-  "low": "Низкое",
-  "@low": {
-    "description": "Low quality video option"
+  "all": "Все",
+  "@all": {
+    "type": "text",
+    "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
   },
-  "medium": "Среднее",
-  "@medium": {
-    "description": "Medium quality video option"
+  "allSubtitlesWillBeAvailableOffline": "Все субтитры будут доступны в офлайн режиме",
+  "@allSubtitlesWillBeAvailableOffline": {
+    "type": "text",
+    "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "high": "Высокое",
-  "@high": {
-    "description": "High quality video option"
+  "anErrorOccurred": "Возникла ошибка",
+  "@anErrorOccurred": {
+    "type": "text",
+    "description": "Title in error popup"
   },
-  "emptySearch": "Вы можете выполнять поиск по всему контенту от BCC Media. Передачи, фильмы и эпизоды.",
-  "@emptySearch": {
-    "description": "Message on search page when there is no search results."
+  "answerLabel": "Ответ",
+  "@answerLabel": {
+    "type": "text",
+    "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
   },
-  "back": "Назад",
-  "@back": {
-    "description": "General back button to navigate back"
+  "appLanguage": "Язык приложения",
+  "@appLanguage": {
+    "type": "text",
+    "description": "Settings item on profile page"
   },
-  "seasonLetter": "С",
-  "@seasonLetter": {
-    "description": "Season  letter in label S1E3"
+  "appLanguageShort": "Приложение",
+  "@appLanguageShort": {
+    "type": "text",
+    "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
   },
-  "episodeLetter": "Э",
-  "@episodeLetter": {
-    "description": "Episode letter in label S1E3"
+  "appUpdateAccepted": "Обновление",
+  "@appUpdateAccepted": {
+    "type": "text",
+    "description": "Option that can be chosen by the user to update his application."
+  },
+  "appUpdateRequest": "Пожалуйста, загрузите последнюю версию приложения, чтобы пользоваться всеми последними функциями и исправлениями ошибок.",
+  "@appUpdateRequest": {
+    "type": "text",
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
+  "appUpdateTitle": "Требуется обновление",
+  "@appUpdateTitle": {
+    "type": "text",
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
+  "areYouSure": "Ты уверен(а)?",
+  "@areYouSure": {
+    "type": "text",
+    "description": "Generic text. Used at least as a title on the account deletion page."
+  },
+  "askYourParents": "Спросите своих родителей",
+  "@askYourParents": {
+    "type": "text",
+    "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
   },
   "atoZ": "А-Я",
   "@atoZ": {
+    "type": "text",
     "description": "Sort order"
   },
-  "ztoA": "Я-А",
-  "@ztoA": {
-    "description": "Sort order"
+  "audio": "Аудио",
+  "@audio": {
+    "type": "text",
+    "description": "Generic."
   },
-  "shortFilms": "Короткие фильмы",
-  "@shortFilms": {
-    "description": "Title of the films collection."
+  "audioLanguage": "Язык воспроизведения",
+  "@audioLanguage": {
+    "type": "text",
+    "description": "Label indicating that the Audio Language can be changed here."
   },
-  "videos": "Видео",
-  "@videos": {
-    "description": "Followed by number of videos"
+  "audioNotAvailableInLanguage": "Аудио недоступно на {lang}",
+  "@audioNotAvailableInLanguage": {
+    "type": "text",
+    "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
   },
-  "moreInfo": "Дополнительная информация",
-  "@moreInfo": {
-    "description": "Option in action sheet for the video that triggers info page for the video."
+  "auto": "Авто",
+  "@auto": {
+    "type": "text",
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
   },
-  "info": "Информация",
-  "@info": {
-    "description": "Video info page title."
+  "autoGenerated": "Автоматически сгенерировано",
+  "@autoGenerated": {
+    "type": "text",
+    "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
   },
-  "episode": "Эпизод",
-  "@episode": {
-    "description": "Title of the tab on info page"
+  "availableFrom": "Доступно {date}",
+  "@availableFrom": {
+    "type": "text",
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
   },
-  "takePhoto": "Сделать фото",
-  "@takePhoto": {
-    "description": "Option in menu"
+  "availableOffline": "Доступно в офлайн-режиме",
+  "@availableOffline": {
+    "type": "text",
+    "description": "Label indicating that the video is available offline."
   },
-  "pickPhoto": "Выбрать из галереи",
-  "@pickPhoto": {
-    "description": "Option in menu"
+  "availableTo": "Доступно до",
+  "@availableTo": {
+    "type": "text",
+    "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
   },
-  "uploadFileTitle": "Загрузить файл",
-  "@uploadFileTitle": {
-    "description": "Title of the dialog to confirm upload"
+  "back": "Назад",
+  "@back": {
+    "type": "text",
+    "description": "General back button to navigate back"
   },
-  "uploadFileMessage": "Вы хотите загрузить этот файл?",
-  "@uploadFileMessage": {
-    "description": "Content of the dialog to confirm upload"
+  "bccMediaCenter": "BCC Media — это медиа-фонд в организации BCC, который производит и распространяет контент с позитивными и христианскими ценностями.",
+  "@bccMediaCenter": {
+    "type": "text",
+    "description": "Disclaimer on login page"
   },
-  "uploading": "Загрузка",
-  "@uploading": {
-    "description": "Message during file upload"
+  "beta": "Бета",
+  "@beta": {
+    "type": "text",
+    "description": "'Beta' features are only available to a selection of users."
   },
-  "uploadFail": "Загрузка не удалась",
-  "@uploadFail": {
-    "description": "Upload result message"
+  "betaExplanation": "Эта функция находится в стадии бета-тестирования и в настоящее время доступна не всем пользователям. Пожалуйста, сообщайте о любых проблемах или отзывах через кнопку \"Связаться\" в настройках.",
+  "@betaExplanation": {
+    "type": "text",
+    "description": "Shown in a popup on beta features."
+  },
+  "biblekidsAbout": "Bible Kids - инициатива BCC Media, медиа-фонда в составе Ассоциации BCC, который производит и распространяет контент с позитивными христианскими ценностями.",
+  "@biblekidsAbout": {
+    "type": "text",
+    "description": "Shown on about page"
+  },
+  "broadcasts": "Трансляции",
+  "@broadcasts": {
+    "type": "text",
+    "description": "Title for live broadcasts."
+  },
+  "calendar": "Календарь",
+  "@calendar": {
+    "type": "text",
+    "description": "Title of calendar page."
+  },
+  "calendarThisWeek": "На этой неделе",
+  "@calendarThisWeek": {
+    "type": "text",
+    "description": "Text for This week."
+  },
+  "calendarWeek": "неделя",
+  "@calendarWeek": {
+    "type": "text",
+    "description": "Text week."
+  },
+  "cancel": "Отмена",
+  "@cancel": {
+    "type": "text",
+    "description": "General cancel action button"
+  },
+  "cancelConfirmation": "Вы уверены, что хотите отменить?",
+  "@cancelConfirmation": {
+    "type": "text",
+    "description": "Title text for cancel confirmation dialog."
+  },
+  "cancelConfirmationDescription": "Любые несохраненные изменения будут потеряны.",
+  "@cancelConfirmationDescription": {
+    "type": "text",
+    "description": "Description for cancel confirmation dialog."
+  },
+  "cantPlayVideo": "Вы не можете воспроизводить это видео сейчас.",
+  "@cantPlayVideo": {
+    "type": "text",
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "castQueue": "Показывать очередь",
+  "@castQueue": {
+    "type": "text",
+    "description": "Queue page title"
+  },
+  "categoriesTab": "Категории",
+  "@categoriesTab": {
+    "type": "text",
+    "description": "Title of the Categories Tab"
+  },
+  "change": "Изменить",
+  "@change": {
+    "type": "text",
+    "description": "Button text"
+  },
+  "chapters": "Главы",
+  "@chapters": {
+    "type": "text",
+    "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
   },
   "charactersLimit": "Осталось {charsLeft} из {charsTotal} символов",
   "@charactersLimit": {
+    "type": "text",
     "description": "Info about limit of characters in a text field",
     "placeholders": {
       "charsLeft": {
@@ -500,392 +293,714 @@
       }
     }
   },
-  "thankYou": "Спасибо!",
-  "@thankYou": {
-    "description": "Title in upload success page"
+  "checkAnswerButton": "Проверить ответ",
+  "@checkAnswerButton": {
+    "type": "text",
+    "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
   },
-  "thankYouForContribution": "Спасибо за ваш вклад!",
-  "@thankYouForContribution": {
-    "description": "Title in upload success page"
+  "checkNetwork": "Проверьте подключение к сети и попробуйте снова.",
+  "@checkNetwork": {
+    "type": "text",
+    "description": "Error message for the user displayed in many contexts."
   },
-  "next": "Дальше",
-  "@next": {
-    "description": "NEXT program in check in section"
+  "clickTheLinkToVerify": "Нажмите на ссылку в письме, чтобы подтвердить свою учетную запись.",
+  "@clickTheLinkToVerify": {
+    "type": "text",
+    "description": "Shown on the verify account page."
   },
-  "add": "Добавить",
-  "@add": {
-    "description": "Button text"
-  },
-  "change": "Изменить",
-  "@change": {
-    "description": "Button text"
-  },
-  "writeHere": "Пишите здесь",
-  "@writeHere": {
-    "description": "New post text field placeholder"
-  },
-  "feed": "Лента",
-  "@feed": {
-    "description": "Feed page bar title"
-  },
-  "information": "Информация",
-  "@information": {
-    "description": "Feed information item title"
-  },
-  "question": "Вопросы",
-  "@question": {
-    "description": "Title of the question page"
-  },
-  "now": "Сейчас",
-  "@now": {
-    "description": "Tv guide now playing label"
-  },
-  "debugInfoExplanation": "Ваше сообщение будет содержать эту информацию, чтобы помочь нам лучше понять проблему.",
-  "@debugInfoExplanation": {
-    "description": "Info about debug info usage on contact support page"
-  },
-  "send": "Отправить",
-  "@send": {
-    "description": "General button to send a form"
-  },
-  "sending": "Отправка",
-  "@sending": {
-    "description": "General sending action indicator"
-  },
-  "thankYouSupportTitle": "Спасибо за ваш отзыв!",
-  "@thankYouSupportTitle": {
-    "description": "Text on contact support confirmation page"
-  },
-  "thankYouSupportDescription": "Мы ценим все отзывы и постараемся решить эту проблему как можно скорее.",
-  "@thankYouSupportDescription": {
-    "description": "Text on contact support confirmation page"
-  },
-  "sendFail": "Не удалось отправить ваше сообщение",
-  "@sendFail": {
-    "description": "General error message that sending failed"
-  },
-  "sendFailDescription": "Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.",
-  "@sendFailDescription": {
-    "description": "General error message that sending failed"
-  },
-  "sendSuccessDescription": "Мы ценим Ваш отзыв.",
-  "@sendSuccessDescription": {
-    "description": "General message when sending is successful"
-  },
-  "today": "Сегодня",
-  "@today": {
-    "description": "First category in tv guide"
-  },
-  "expired": "Прошёл",
-  "@expired": {
-    "description": "Label that something is no longer available."
-  },
-  "availableFrom": "Доступно {date}",
-  "@availableFrom": {
-    "description": "Info that episode will be released at certain date.",
-    "placeholders": {
-      "date": {
-        "type": "String"
-      }
-    }
-  },
-  "submit": "Отправить",
-  "@submit": {
-    "description": "Submit button."
-  },
-  "wellDone": "Отлично сработано!",
-  "@wellDone": {
-    "description": "Positive message that may be used e.g. after completing some action."
-  },
-  "editPicture": "Редактировать изображение",
-  "@editPicture": {
-    "description": "Button on profile page to edit profile picture."
-  },
-  "profilePicture": "Фотография профиля",
-  "@profilePicture": {
-    "description": "Text on edit profile page."
-  },
-  "timezoneInformation": "Расписание телепрограммы указано по вашему местному времени: {timeZone}",
-  "@timezoneInformation": {
-    "description": "TV guide footer info text.",
-    "placeholders": {
-      "timeZone": {
-        "type": "String"
-      }
-    }
-  },
-  "share": "Поделиться",
-  "@share": {
-    "description": "Generic."
-  },
-  "showMore": "Показать ещё",
-  "@showMore": {
-    "description": "Text used on link to expand collapsed text."
-  },
-  "showLess": "Показать меньше",
-  "@showLess": {
-    "description": "Text used on link to collapse expanded text."
+  "close": "Закрыть",
+  "@close": {
+    "type": "text",
+    "description": "Text displayed on 'Close' button"
   },
   "comingSoon": "Скоро выйдут",
   "@comingSoon": {
+    "type": "text",
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
   },
-  "newEpisode": "Новое",
-  "@newEpisode": {
-    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
+  "completePreviousTasks": "Выполните предыдущие задания, чтобы разблокировать",
+  "@completePreviousTasks": {
+    "type": "text",
+    "description": "Shown on a locked button, short explanation why the button is locked."
   },
-  "tomorrow": "Завтра",
-  "@tomorrow": {
-    "description": "Day of transmission in tv guide."
+  "connectToExplore": "Для просмотра всех видеозаписей подключитесь к интернету.",
+  "@connectToExplore": {
+    "type": "text",
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "readBy": "Прочитано",
-  "@readBy": {
-    "description": "Feed verse pre author text."
+  "considerDeletingOtherVideos": "Рассмотрите возможность удаления других видеозаписей, загруженных в приложении.",
+  "@considerDeletingOtherVideos": {
+    "type": "text",
+    "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "broadcasts": "Трансляции",
-  "@broadcasts": {
-    "description": "Title for live broadcasts."
+  "contactEmail": "Ваш контактный адрес электронной почты",
+  "@contactEmail": {
+    "type": "text",
+    "description": "Label for email field in contact support page"
   },
-  "calendar": "Календарь",
-  "@calendar": {
-    "description": "Title of calendar page."
+  "contactEmailHint": "Введите адрес электронной почты",
+  "@contactEmailHint": {
+    "type": "text",
+    "description": "Hint text for name field in contact support page"
   },
-  "noEvents": "Нет запланированных трансляций",
-  "@noEvents": {
-    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  "contactIncludeDeviceInfo": "Включить информацию об устройстве для улучшения поддержки.",
+  "@contactIncludeDeviceInfo": {
+    "type": "text",
+    "description": "Text for checkbox to include device information"
   },
-  "appUpdateTitle": "Требуется обновление",
-  "@appUpdateTitle": {
-    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  "contactIssueHint": "Опишите проблему",
+  "@contactIssueHint": {
+    "type": "text",
+    "description": "Hint for the message box for logged in users"
   },
-  "appUpdateRequest": "Пожалуйста, загрузите последнюю версию приложения, чтобы пользоваться всеми последними функциями и исправлениями ошибок.",
-  "@appUpdateRequest": {
-    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  "contactMessage": "Сообщение\n",
+  "@contactMessage": {
+    "type": "text",
+    "description": "Label for message field in contact support page"
   },
-  "appUpdateAccepted": "Обновление",
-  "@appUpdateAccepted": {
-    "description": "Option that can be chosen by the user to update his application."
+  "contactMessageHint": "Введите ваше сообщение здесь",
+  "@contactMessageHint": {
+    "type": "text",
+    "description": "Hint text for message field in contact support page"
+  },
+  "contactName": "Имя",
+  "@contactName": {
+    "type": "text",
+    "description": "Label for name field in contact support page"
+  },
+  "contactNameHint": "Введите свое имя",
+  "@contactNameHint": {
+    "type": "text",
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactSeeData": "Нажмите для просмотра данных.",
+  "@contactSeeData": {
+    "type": "text",
+    "description": "Text for link to see device data"
+  },
+  "contactSupport": "Связаться с поддержкой",
+  "@contactSupport": {
+    "type": "text",
+    "description": "Title for contact support page"
+  },
+  "contactUs": "Свяжитесь с нами",
+  "@contactUs": {
+    "type": "text",
+    "description": "Title for contact us page"
+  },
+  "contentLanguage": "Язык содержания",
+  "@contentLanguage": {
+    "type": "text",
+    "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
+  },
+  "contentLanguageExplanation": "Измените порядок языков согласно предпочтениями языка аудио и субтитров.",
+  "@contentLanguageExplanation": {
+    "type": "text",
+    "description": "Shown when you are selecting preferred content languages."
+  },
+  "contentLanguageShort": "Содержание",
+  "@contentLanguageShort": {
+    "type": "text",
+    "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
+  },
+  "continueButton": "Продолжить",
+  "@continueButton": {
+    "type": "text",
+    "description": "Generic button text."
+  },
+  "continueStudy": "Продолжить изучение",
+  "@continueStudy": {
+    "type": "text",
+    "description": "Button."
+  },
+  "continueToTaskIn": "Продолжить задание в",
+  "@continueToTaskIn": {
+    "type": "text",
+    "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "continueToTasksIn": "Продолжайте выполнять задания в",
+  "@continueToTasksIn": {
+    "type": "text",
+    "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
   "copy": "Копировать",
   "@copy": {
+    "type": "text",
     "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
-  "reload": "Перезагрузить",
-  "@reload": {
-    "description": "Label on the button that allows to reload the player after error."
+  "countItems": "{x} предметов",
+  "@countItems": {
+    "type": "text",
+    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
   },
-  "fAQ": "ЧАВО",
-  "@fAQ": {
-    "description": "Title on FAQ page and item in profile page settings."
+  "debugInfoExplanation": "Ваше сообщение будет содержать эту информацию, чтобы помочь нам лучше понять проблему.",
+  "@debugInfoExplanation": {
+    "type": "text",
+    "description": "Info about debug info usage on contact support page"
   },
-  "shareStart": "Поделиться с начала",
-  "@shareStart": {
-    "description": "Option on action sheet for sharing from start"
+  "deleteMyAccount": "Удалить мой аккаунт",
+  "@deleteMyAccount": {
+    "type": "text",
+    "description": "Button to request to delete your account"
   },
-  "shareTime": "Поделиться с времени {time}",
-  "@shareTime": {
-    "description": "Option on action sheet for sharing from time",
+  "details": "Подробности",
+  "@details": {
+    "type": "text",
+    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
+  },
+  "deviceInfo": "Информация об устройстве",
+  "@deviceInfo": {
+    "type": "text",
+    "description": "Device info page title"
+  },
+  "deviceInfoAppVer": "Версия приложения",
+  "@deviceInfoAppVer": {
+    "type": "text",
+    "description": "Label for app Version"
+  },
+  "deviceInfoDevice": "Устройство",
+  "@deviceInfoDevice": {
+    "type": "text",
+    "description": "Label for device"
+  },
+  "deviceInfoEnvOverride": "Переопределение среды",
+  "@deviceInfoEnvOverride": {
+    "type": "text",
+    "description": "Label for environment override"
+  },
+  "deviceInfoManufacturer": "Производитель",
+  "@deviceInfoManufacturer": {
+    "type": "text",
+    "description": "Label for manufacturer"
+  },
+  "deviceInfoOs": "Операционная система",
+  "@deviceInfoOs": {
+    "type": "text",
+    "description": "Label for operating system"
+  },
+  "deviceInfoPageDesc": "Ваше сообщение будет содержать эту информацию, чтобы помочь нам обеспечить лучшую поддержку.",
+  "@deviceInfoPageDesc": {
+    "type": "text",
+    "description": "Label for manufacturer"
+  },
+  "deviceInfoScreenSize": "Размер экрана",
+  "@deviceInfoScreenSize": {
+    "type": "text",
+    "description": "Label for screen size"
+  },
+  "deviceInfoUserId": "Идентификатор пользователя",
+  "@deviceInfoUserId": {
+    "type": "text",
+    "description": "Label for user id"
+  },
+  "didYouKnowContent": "Вы можете добавить свои любимые передачи в \"Мой список\", нажав на сердечко.",
+  "@didYouKnowContent": {
+    "type": "text",
+    "description": "Content for info displayed on 'My list' page."
+  },
+  "didYouKnowTitle": "Знаете ли вы?",
+  "@didYouKnowTitle": {
+    "type": "text",
+    "description": "Title for info displayed on 'My list' page."
+  },
+  "discoverMore": "Узнать больше",
+  "@discoverMore": {
+    "type": "text",
+    "description": "Generic button text."
+  },
+  "donateViaPaypal": "Пожертвовать через PayPal",
+  "@donateViaPaypal": {
+    "type": "text",
+    "description": "Shown on the settings page."
+  },
+  "done": "Готово",
+  "@done": {
+    "type": "text",
+    "description": "Generic Done button, for example to dismiss a page after completing an action."
+  },
+  "dontHaveAccess": "У вас нет доступа к этому контенту.",
+  "@dontHaveAccess": {
+    "type": "text",
+    "description": "Error message when you open a link to content you dont have access to."
+  },
+  "downloadButton": "Скачать",
+  "@downloadButton": {
+    "type": "text",
+    "description": "Button text, a button to download the episode to make it available for offline playback."
+  },
+  "downloaded": "Загружено",
+  "@downloaded": {
+    "type": "text",
+    "description": "Shown as a title for the 'downloaded' section in the profile tab."
+  },
+  "downloadedVideosGuideDescription": "Загруженные видео можно найти в разделе Профиль.",
+  "@downloadedVideosGuideDescription": {
+    "type": "text",
+    "description": "Shown when you have downloaded a video for the first time."
+  },
+  "downloading": "Загрузка",
+  "@downloading": {
+    "type": "text",
+    "description": "Download status, indicating that the video is currently downloading."
+  },
+  "downloadVideo": "Скачать видео",
+  "@downloadVideo": {
+    "type": "text",
+    "description": "Title on the download video form."
+  },
+  "doYouWantCast": "Хотите показать это видео?",
+  "@doYouWantCast": {
+    "type": "text",
+    "description": "Prompt displayed to the user"
+  },
+  "editPicture": "Редактировать изображение",
+  "@editPicture": {
+    "type": "text",
+    "description": "Button on profile page to edit profile picture."
+  },
+  "emptySearch": "Вы можете выполнять поиск по всему контенту от BCC Media. Передачи, фильмы и эпизоды.",
+  "@emptySearch": {
+    "type": "text",
+    "description": "Message on search page when there is no search results."
+  },
+  "episode": "Эпизод",
+  "@episode": {
+    "type": "text",
+    "description": "Title of the tab on info page"
+  },
+  "episodeLetter": "Э",
+  "@episodeLetter": {
+    "type": "text",
+    "description": "Episode letter in label S1E3"
+  },
+  "episodes": "Эпизоды",
+  "@episodes": {
+    "type": "text",
+    "description": "Followed by number of episodes in given series."
+  },
+  "errorTryAgain": "Что-то пошло не так. Пожалуйста, повторите попытку позже.",
+  "@errorTryAgain": {
+    "type": "text",
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
+  "estimatedFileSize": "Предполагаемый размер файла: {size}",
+  "@estimatedFileSize": {
+    "type": "text",
+    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "eventsTab": "События",
+  "@eventsTab": {
+    "type": "text",
+    "description": "Events Tab title"
+  },
+  "expired": "Прошёл",
+  "@expired": {
+    "type": "text",
+    "description": "Label that something is no longer available."
+  },
+  "expiresIn": "Истекает в {time}",
+  "@expiresIn": {
+    "type": "text",
+    "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
     "placeholders": {
       "time": {
         "type": "String"
       }
     }
   },
-  "loadContentError": "Не удалось загрузить контент",
-  "@loadContentError": {
-    "description": "Error text when content couldn't be loaded."
-  },
-  "privacyPolicy": "Политика конфиденциальности",
-  "@privacyPolicy": {
-    "description": "Title on Privacy Policy page and item in profile page settings."
-  },
-  "termsOfUse": "Условия использования",
-  "@termsOfUse": {
-    "description": "Title on the 'Terms of use' page."
-  },
-  "categoriesTab": "Категории",
-  "@categoriesTab": {
-    "description": "Title of the Categories Tab"
-  },
-  "seriesTab": "Передачи",
-  "@seriesTab": {
-    "description": "Series Tab title"
-  },
-  "filmsTab": "Фильмы",
-  "@filmsTab": {
-    "description": "Films Tab title"
-  },
-  "eventsTab": "События",
-  "@eventsTab": {
-    "description": "Events Tab title"
-  },
-  "audioLanguage": "Язык воспроизведения",
-  "@audioLanguage": {
-    "description": "Label indicating that the Audio Language can be changed here."
-  },
-  "subtitlesLanguage": "Язык субтитров",
-  "@subtitlesLanguage": {
-    "description": "Label indicating that the Subtitles Language can be changed here."
-  },
-  "removeFromRecentSearches": "Желаете удалить этот элемент из последних запросов?",
-  "@removeFromRecentSearches": {
-    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
-  },
-  "noTransmissionToday": "Нет запланированной трансляции на сегодня",
-  "@noTransmissionToday": {
-    "description": "Messages that informs the user, that there are no schedules transmission for today."
-  },
-  "featured": "Рекомендуемое",
-  "@featured": {
-    "description": "Featured videos collection header"
-  },
-  "errorTryAgain": "Что-то пошло не так. Пожалуйста, повторите попытку позже.",
-  "@errorTryAgain": {
-    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
-  },
-  "programsSection": "Передачи",
-  "@programsSection": {
-    "description": "Section in search."
-  },
-  "noPlannedEvents": "В этот день мероприятий не запланировано",
-  "@noPlannedEvents": {
-    "description": "Information in tvguide"
-  },
-  "watchNow": "Смотреть сейчас",
-  "@watchNow": {
-    "description": "Button on featured carousel"
-  },
   "exploreContent": "Исследуйте контент",
   "@exploreContent": {
+    "type": "text",
     "description": "A button"
   },
   "explorePublicContent": "Исследовать открытый контент",
   "@explorePublicContent": {
+    "type": "text",
     "description": "A button on the welcome page"
   },
-  "startExploring": "Начать исследовать",
-  "@startExploring": {
-    "description": "A button on the welcome page"
+  "failed": "Ошибка",
+  "@failed": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that failed."
   },
-  "taskCompleted": "задание выполнено",
-  "@taskCompleted": {
-    "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
+  "faq": "Часто задаваемые вопросы",
+  "@faq": {
+    "type": "text",
+    "description": "Long title of the FAQ page."
   },
-  "tasksCompleted": "заданий выполнено",
-  "@tasksCompleted": {
-    "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
+  "fAQ": "ЧАВО",
+  "@fAQ": {
+    "type": "text",
+    "description": "Title on FAQ page and item in profile page settings."
   },
-  "studyCompleteTaskDescription": "Выполняйте задания и открывайте соответствующие ресурсы",
-  "@studyCompleteTaskDescription": {
-    "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
+  "featured": "Рекомендуемое",
+  "@featured": {
+    "type": "text",
+    "description": "Featured videos collection header"
   },
-  "discoverMore": "Узнать больше",
-  "@discoverMore": {
-    "description": "Generic button text."
+  "featureNotAvailableYet": "Эта функция пока недоступна. Пожалуйста, повторите попытку позже.",
+  "@featureNotAvailableYet": {
+    "type": "text",
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
-  "completePreviousTasks": "Выполните предыдущие задания, чтобы разблокировать",
-  "@completePreviousTasks": {
-    "description": "Shown on a locked button, short explanation why the button is locked."
+  "feed": "Лента",
+  "@feed": {
+    "type": "text",
+    "description": "Feed page bar title"
   },
-  "studyDiscoverMoreDescription": "Получите больше вдохновения и информации из соответствующих ресурсов",
-  "@studyDiscoverMoreDescription": {
-    "description": "Description to open the related resources for this episode."
+  "filmsTab": "Фильмы",
+  "@filmsTab": {
+    "type": "text",
+    "description": "Films Tab title"
   },
-  "watchAgain": "Посмотрите еще раз",
-  "@watchAgain": {
-    "description": "Short button text to watch the video again."
+  "finished": "Готово",
+  "@finished": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that finished."
   },
-  "continueToTaskIn": "Продолжить задание в",
-  "@continueToTaskIn": {
-    "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  "gamesTab": "Игры",
+  "@gamesTab": {
+    "type": "text",
+    "description": "Title of the games page"
   },
-  "continueToTasksIn": "Продолжайте выполнять задания в",
-  "@continueToTasksIn": {
-    "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  "goBack": "Назад",
+  "@goBack": {
+    "type": "text",
+    "description": "Text for back button."
   },
-  "studyLessonCompleted": "урок завершен",
-  "@studyLessonCompleted": {
-    "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
+  "gotIt": "Понятно",
+  "@gotIt": {
+    "type": "text",
+    "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
   },
-  "studyLessonsCompleted": "уроки завершены",
-  "@studyLessonsCompleted": {
-    "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
+  "hereAreAllTheVideosYouDownloaded": "Здесь отображаются все видеоролики, загруженные на устройство.",
+  "@hereAreAllTheVideosYouDownloaded": {
+    "type": "text",
+    "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "continueStudy": "Продолжить изучение",
-  "@continueStudy": {
-    "description": "Button."
+  "high": "Высокое",
+  "@high": {
+    "type": "text",
+    "description": "High quality video option"
   },
-  "startStudy": "Начать изучение",
-  "@startStudy": {
-    "description": "Button."
+  "homeTab": "Главная",
+  "@homeTab": {
+    "type": "text",
+    "description": "Title of the home page"
   },
-  "videoCompletedText": "Отличная работа, просмотр видео завершен.",
-  "@videoCompletedText": {
-    "description": "Shown after completing tasks related to a video."
+  "iAmSureIWantToDelete": "Я уверен, что хочу удалить свою учетную запись и данные, связанные с приложением BCC Media.",
+  "@iAmSureIWantToDelete": {
+    "type": "text",
+    "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
   },
-  "achievementFirstDescription": "Отличная работа, вы завершили видео и получили первое достижение.",
-  "@achievementFirstDescription": {
-    "description": "Description displayed in a popup when earning the first achievement badge."
+  "ifYouDidntReceiveVerificationEmail": "Если вы все еще не получили письмо, обратитесь в службу поддержки по адресу",
+  "@ifYouDidntReceiveVerificationEmail": {
+    "type": "text",
+    "description": "Shown when the user has requested a new verification email."
   },
-  "achievementStudyTopic": "Отличная работа по завершению темы изучения {name}",
-  "@achievementStudyTopic": {
-    "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
+  "info": "Информация",
+  "@info": {
+    "type": "text",
+    "description": "Video info page title."
   },
-  "videoCount": "{count} видео",
-  "@videoCount": {
-    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
+  "information": "Информация",
+  "@information": {
+    "type": "text",
+    "description": "Feed information item title"
   },
-  "taskCount": "{count} заданий",
-  "@taskCount": {
-    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
+  "keepVideoButton": "Оставить видео",
+  "@keepVideoButton": {
+    "type": "text",
+    "description": "Button when asking to remove a downloaded video. This button cancels."
   },
-  "posterCount": "{count} постер(ов)\n",
-  "@posterCount": {
-    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
+  "kidsOnboardingSecondaryTitle": "Мы хотим, чтобы дети узнали Иисуса как своего лучшего друга - на всю оставшуюся жизнь.",
+  "@kidsOnboardingSecondaryTitle": {
+    "type": "text",
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "resourceCount": "{count} ресурсов",
-  "@resourceCount": {
-    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
+  "kidsOnboardingTitle": "Мы воплощаем Библейское послание в жизнь!",
+  "@kidsOnboardingTitle": {
+    "type": "text",
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "continueButton": "Продолжить",
-  "@continueButton": {
-    "description": "Generic button text."
+  "language": "Язык",
+  "@language": {
+    "type": "text",
+    "description": "A label when selecting a language to download."
   },
-  "registerButton": "Регистрация",
-  "@registerButton": {
-    "description": "Generic button text."
+  "latelyPublished": "Недавно опубликовано",
+  "@latelyPublished": {
+    "type": "text",
+    "description": "Title for the list of videos on login page"
   },
-  "achievements": "Достижения",
-  "@achievements": {
-    "description": "Generic. Used as page title, etc."
+  "likedAndSaved": "Понравившиеся и сохраненные",
+  "@likedAndSaved": {
+    "type": "text",
+    "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "likedShorts": "Понравившиеся видео",
+  "@likedShorts": {
+    "type": "text",
+    "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
+  },
+  "loadContentError": "Не удалось загрузить контент",
+  "@loadContentError": {
+    "type": "text",
+    "description": "Error text when content couldn't be loaded."
+  },
+  "loading": "Загрузка",
+  "@loading": {
+    "type": "text",
+    "description": "Text to indicate loading state."
+  },
+  "loadingContent": "Загрузка контента",
+  "@loadingContent": {
+    "type": "text",
+    "description": "Text displayed when page content is loading."
+  },
+  "loggedOutMessage": "Вы вышли из аккаунта. Пожалуйста, войдите снова.",
+  "@loggedOutMessage": {
+    "type": "text",
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutTitle": "Вы вышли из аккаунта",
+  "@loggedOutTitle": {
+    "type": "text",
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loginFailedCheckNetwork": "Ошибка входа. Проверьте подключение к сети и попробуйте снова.",
+  "@loginFailedCheckNetwork": {
+    "type": "text",
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Ошибка входа. Пожалуйста, попробуйте позже.",
+  "@loginFailedTryAgain": {
+    "type": "text",
+    "description": "Login error message"
+  },
+  "loginPageDisplay1": "Самое мощное послание в мире",
+  "@loginPageDisplay1": {
+    "type": "text",
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Смотрите сериалы, шоу и фильмы, основанные на христианских ценностях",
+  "@loginPageDisplay2": {
+    "type": "text",
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay3": "Произведено BCC Media",
+  "@loginPageDisplay3": {
+    "type": "text",
+    "description": "Text displayed on login screen."
+  },
+  "logOutButton": "Выйти",
+  "@logOutButton": {
+    "type": "text",
+    "description": "Text displayed on Log out button"
+  },
+  "low": "Низкое",
+  "@low": {
+    "type": "text",
+    "description": "Low quality video option"
+  },
+  "makeDonation": "Сделать пожертвование",
+  "@makeDonation": {
+    "type": "text",
+    "description": "Text for button which opens donation page."
+  },
+  "medium": "Среднее",
+  "@medium": {
+    "type": "text",
+    "description": "Medium quality video option"
+  },
+  "minutesShort": "мин",
+  "@minutesShort": {
+    "type": "text",
+    "description": "Text for minutes."
+  },
+  "moreInfo": "Дополнительная информация",
+  "@moreInfo": {
+    "type": "text",
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "mostRecent": "Самое последнее",
+  "@mostRecent": {
+    "type": "text",
+    "description": "Sorting option on audience page"
+  },
+  "mostWatched": "Самое просматриваемое",
+  "@mostWatched": {
+    "type": "text",
+    "description": "Sorting option on audience page"
+  },
+  "mustBeLoggedIn": "Вы должны войти в систему, чтобы смотреть этот контент",
+  "@mustBeLoggedIn": {
+    "type": "text",
+    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  },
+  "myList": "Мой список",
+  "@myList": {
+    "type": "text",
+    "description": "My list tab name"
+  },
+  "newEpisode": "Новое",
+  "@newEpisode": {
+    "type": "text",
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
+  },
+  "newFeature": "Новая функция",
+  "@newFeature": {
+    "type": "text",
+    "description": "Shown the first time you open the app after a new feature is available."
+  },
+  "next": "Дальше",
+  "@next": {
+    "type": "text",
+    "description": "NEXT program in check in section"
+  },
+  "nextEpisode": "Следующая серия",
+  "@nextEpisode": {
+    "type": "text",
+    "description": "Button indicating the next video will play soon."
+  },
+  "noEvents": "Нет запланированных трансляций",
+  "@noEvents": {
+    "type": "text",
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
+  "noInternetButDontWorry": "Нет подключения к интернету,\nно не волнуйтесь.",
+  "@noInternetButDontWorry": {
+    "type": "text",
+    "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
+  },
+  "noInternetConnection": "Отсутствие подключения к интернету",
+  "@noInternetConnection": {
+    "type": "text",
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "noInternetConnectionDescription": "Для доступа ко всем видеоматериалам подключитесь к интернету.",
+  "@noInternetConnectionDescription": {
+    "type": "text",
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "noMailAppsDescription": "Не установлены почтовые приложения",
+  "@noMailAppsDescription": {
+    "type": "text",
+    "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
+  },
+  "none": "Нет",
+  "@none": {
+    "type": "text",
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "noPlannedEvents": "В этот день мероприятий не запланировано",
+  "@noPlannedEvents": {
+    "type": "text",
+    "description": "Information in tvguide"
+  },
+  "noResults": "Результатов не найдено",
+  "@noResults": {
+    "type": "text",
+    "description": "No search results."
+  },
+  "noSubtitles": "Без субтитров",
+  "@noSubtitles": {
+    "type": "text",
+    "description": "Shown in the download form, indicating that there are no subtitles available for the video."
+  },
+  "notAchieved": "Не достигнуто",
+  "@notAchieved": {
+    "type": "text",
+    "description": "A label indicating that this achievement has not been achieved yet."
+  },
+  "notEnoughAvailableSpace": "Недостаточно свободного места на устройстве",
+  "@notEnoughAvailableSpace": {
+    "type": "text",
+    "description": "Shown when you try to download an episode, but there is not enough space on your device."
+  },
+  "notFound": "Судя по всему, искомый контент не существует.",
+  "@notFound": {
+    "type": "text",
+    "description": "Error message when the requested content is not found."
+  },
+  "noTransmissionToday": "Нет запланированной трансляции на сегодня",
+  "@noTransmissionToday": {
+    "type": "text",
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
+  "now": "Сейчас",
+  "@now": {
+    "type": "text",
+    "description": "Tv guide now playing label"
+  },
+  "offline": "Офлайн",
+  "@offline": {
+    "type": "text",
+    "description": "Status indicator, indicating that you are offline; not connected to the internet."
+  },
+  "ok": "ОК",
+  "@ok": {
+    "type": "text",
+    "description": "Popup confirmation button"
+  },
+  "oops": "Ой!",
+  "@oops": {
+    "type": "text",
+    "description": "An informal title on some error screens."
+  },
+  "open": "Открыть",
+  "@open": {
+    "type": "text",
+    "description": "Open button"
+  },
+  "openEmailApp": "Откройте приложение электронной почты",
+  "@openEmailApp": {
+    "type": "text",
+    "description": "Shown on the verify account page. Button to open your email app."
+  },
+  "openSettingsToChangeVideoLang": "Откройте настройки, чтобы изменить язык текста видео",
+  "@openSettingsToChangeVideoLang": {
+    "type": "text",
+    "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
+  },
+  "openStore": "Открыть магазин",
+  "@openStore": {
+    "type": "text",
+    "description": "A button to open play store / app store."
+  },
+  "options": "Опции",
+  "@options": {
+    "type": "text",
+    "description": "Options dialog title"
+  },
+  "original": "Оригинал",
+  "@original": {
+    "type": "text",
+    "description": "E.g. original language."
+  },
+  "otherLanguages": "Другие языки",
+  "@otherLanguages": {
+    "type": "text",
+    "description": "Languages that are available but in your list of preferred languages."
+  },
+  "passwordConditionComplexity": "Должен содержать строчные, прописные и цифры.",
+  "@passwordConditionComplexity": {
+    "type": "text",
+    "description": "Password condition, shown when signing up."
   },
   "passwordConditionLength": "Минимум {n} символов",
   "@passwordConditionLength": {
+    "type": "text",
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
       "n": {
@@ -893,182 +1008,569 @@
       }
     }
   },
-  "passwordConditionComplexity": "Должен содержать строчные, прописные и цифры.",
-  "@passwordConditionComplexity": {
-    "description": "Password condition, shown when signing up."
+  "pause": "Пауза",
+  "@pause": {
+    "type": "text",
+    "description": "A button to pause the video."
   },
-  "oops": "Ой!",
-  "@oops": {
-    "description": "An informal title on some error screens."
+  "paused": "Остановлено",
+  "@paused": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
   },
-  "dontHaveAccess": "У вас нет доступа к этому контенту.",
-  "@dontHaveAccess": {
-    "description": "Error message when you open a link to content you dont have access to."
+  "pickPhoto": "Выбрать из галереи",
+  "@pickPhoto": {
+    "type": "text",
+    "description": "Option in menu"
   },
-  "notFound": "Судя по всему, искомый контент не существует.",
-  "@notFound": {
-    "description": "Error message when the requested content is not found."
+  "play": "Играть",
+  "@play": {
+    "type": "text",
+    "description": "Option in prompt dialog."
   },
-  "mustBeLoggedIn": "Вы должны войти в систему, чтобы смотреть этот контент",
-  "@mustBeLoggedIn": {
-    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  "playerSettings": "Настройки плеера",
+  "@playerSettings": {
+    "type": "text",
+    "description": "Title of the Player settings activity in Android"
+  },
+  "playGame": "Играть",
+  "@playGame": {
+    "type": "text",
+    "description": "Title on a game"
+  },
+  "playRandom": "Играть в случайном порядке",
+  "@playRandom": {
+    "type": "text",
+    "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
   },
   "plentyOfOtherContent": "Не волнуйтесь, впереди еще много интересного!",
   "@plentyOfOtherContent": {
+    "type": "text",
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   },
-  "notAchieved": "Не достигнуто",
-  "@notAchieved": {
-    "description": "A label indicating that this achievement has not been achieved yet."
-  },
-  "details": "Подробности",
-  "@details": {
-    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
-  },
-  "myList": "Мой список",
-  "@myList": {
-    "description": "My list tab name"
-  },
-  "didYouKnowTitle": "Знаете ли вы?",
-  "@didYouKnowTitle": {
-    "description": "Title for info displayed on 'My list' page."
-  },
-  "didYouKnowContent": "Вы можете добавить свои любимые передачи в \"Мой список\", нажав на сердечко.",
-  "@didYouKnowContent": {
-    "description": "Content for info displayed on 'My list' page."
-  },
-  "selectSeason": "Выбрать сезон",
-  "@selectSeason": {
-    "description": "A title prompting to select a season from the list."
-  },
-  "deleteMyAccount": "Удалить мой аккаунт",
-  "@deleteMyAccount": {
-    "description": "Button to request to delete your account"
-  },
-  "iAmSureIWantToDelete": "Я уверен, что хочу удалить свою учетную запись и данные, связанные с приложением BCC Media.",
-  "@iAmSureIWantToDelete": {
-    "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
-  },
-  "areYouSure": "Ты уверен(а)?",
-  "@areYouSure": {
-    "description": "Generic text. Used at least as a title on the account deletion page."
-  },
-  "youCanContactUsAt": "Вы можете связаться с нами по адресу",
-  "@youCanContactUsAt": {
-    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
-  },
-  "biblekidsAbout": "Bible Kids - инициатива BCC Media, медиа-фонда в составе Ассоциации BCC, который производит и распространяет контент с позитивными христианскими ценностями.",
-  "@biblekidsAbout": {
-    "description": "Shown on about page"
-  },
-  "askYourParents": "Спросите своих родителей",
-  "@askYourParents": {
-    "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
-  },
-  "whatIsMath": "Что такое",
-  "@whatIsMath": {
-    "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
-  },
-  "answerLabel": "Ответ",
-  "@answerLabel": {
-    "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
-  },
-  "checkAnswerButton": "Проверить ответ",
-  "@checkAnswerButton": {
-    "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
-  },
-  "videoOnlyAccessibleToLoggedIn": "Видео доступно только авторизованным пользователям.",
-  "@videoOnlyAccessibleToLoggedIn": {
-    "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
-  },
-  "verifyYourAccount": "Подтвердите свою учетную запись",
-  "@verifyYourAccount": {
-    "description": "Title of the page where you can verify your email/account."
-  },
-  "weHaveSentAnEmailTo": "Мы отправили письмо на адрес",
-  "@weHaveSentAnEmailTo": {
-    "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
-  },
-  "clickTheLinkToVerify": "Нажмите на ссылку в письме, чтобы подтвердить свою учетную запись.",
-  "@clickTheLinkToVerify": {
-    "description": "Shown on the verify account page."
-  },
-  "openEmailApp": "Откройте приложение электронной почты",
-  "@openEmailApp": {
-    "description": "Shown on the verify account page. Button to open your email app."
-  },
-  "resendEmail": "Повторная отправка письма",
-  "@resendEmail": {
-    "description": "Shown on the verify account page. Button to resend the verification email."
-  },
-  "noMailAppsDescription": "Не установлены почтовые приложения",
-  "@noMailAppsDescription": {
-    "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
-  },
-  "verificationEmailSent": "Отправлено письмо с подтверждением",
-  "@verificationEmailSent": {
-    "description": "Shown when the user has requested a new verification email."
-  },
-  "ifYouDidntReceiveVerificationEmail": "Если вы все еще не получили письмо, обратитесь в службу поддержки по адресу",
-  "@ifYouDidntReceiveVerificationEmail": {
-    "description": "Shown when the user has requested a new verification email."
-  },
-  "accountCreated": "Учетная запись создана",
-  "@accountCreated": {
-    "description": "Shown when the user has successfully created an account."
-  },
-  "youCanNowUseYourAccount": "Теперь вы можете воспользоваться своей учетной записью и ознакомиться с различным познавательным контентом.",
-  "@youCanNowUseYourAccount": {
-    "description": "Shown when the user has successfully completed account setup."
-  },
-  "youCanNowLogInToYourAccount": "Теперь вы можете войти в свою учетную запись и ознакомиться с различными материалами назидательного характера.",
-  "@youCanNowLogInToYourAccount": {
-    "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
-  },
-  "accountDeletionExplanation": "Вы собираетесь запросить удаление вашей учетной записи в BCC Media и всех ваших данных, связанных с этим приложением.",
-  "@accountDeletionExplanation": {
-    "description": "Shown on the account deletion page."
-  },
-  "accountDeletionWarning": "Это действие нельзя отменить.",
-  "@accountDeletionWarning": {
-    "description": "Shown on the account deletion page."
-  },
-  "accountDeletionTimeframe": "Удаление учетной записи обычно производится в течение {x} рабочих дней.",
-  "@accountDeletionTimeframe": {
-    "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
+  "posterCount": "{count} постер(ов)\n",
+  "@posterCount": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
-      "x": {
+      "count": {
         "type": "int"
       }
     }
   },
-  "accountDeletionTitle": "Удалить мой аккаунт",
-  "@accountDeletionTitle": {
-    "description": "Title of the account deletion page."
+  "preferredLanguages": "Предпочитаемые языки",
+  "@preferredLanguages": {
+    "type": "text",
+    "description": "Shown when you are selecting preferred content languages. Title."
   },
-  "accountDeletionSuccess": "Запрос на удаление учетной записи успешно выполнен. Вы получите письмо по адресу {email}. Для подтверждения вашей личности нам необходимо, чтобы вы ответили на это письмо, чтобы приступить к удалению.",
-  "@accountDeletionSuccess": {
-    "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
+  "privacyPolicy": "Политика конфиденциальности",
+  "@privacyPolicy": {
+    "type": "text",
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
+  "profilePicture": "Фотография профиля",
+  "@profilePicture": {
+    "type": "text",
+    "description": "Text on edit profile page."
+  },
+  "profileTab": "Профиль",
+  "@profileTab": {
+    "type": "text",
+    "description": "Title of the profile page"
+  },
+  "programsSection": "Передачи",
+  "@programsSection": {
+    "type": "text",
+    "description": "Section in search."
+  },
+  "quality": "Качество",
+  "@quality": {
+    "type": "text",
+    "description": "Generic."
+  },
+  "question": "Вопросы",
+  "@question": {
+    "type": "text",
+    "description": "Title of the question page"
+  },
+  "queued": "В очереди",
+  "@queued": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
+  },
+  "queueLimitMessage": "В очереди не может быть больше элементов, чем {elementCount}.",
+  "@queueLimitMessage": {
+    "type": "text",
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
-      "email": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "queueLimitTitle": "Лимит",
+  "@queueLimitTitle": {
+    "type": "text",
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "readBy": "Прочитано",
+  "@readBy": {
+    "type": "text",
+    "description": "Feed verse pre author text."
+  },
+  "recentSearches": "Недавние запросы",
+  "@recentSearches": {
+    "type": "text",
+    "description": "Recent searches list title."
+  },
+  "registerButton": "Регистрация",
+  "@registerButton": {
+    "type": "text",
+    "description": "Generic button text."
+  },
+  "releaseDate": "Дата релиза",
+  "@releaseDate": {
+    "type": "text",
+    "description": "Release date of the episode, shown in the 'details' tab under an episode."
+  },
+  "reload": "Перезагрузить",
+  "@reload": {
+    "type": "text",
+    "description": "Label on the button that allows to reload the player after error."
+  },
+  "remove": "Удалить",
+  "@remove": {
+    "type": "text",
+    "description": "Option in options dialog"
+  },
+  "removeFromDeviceButton": "Удалить из устройства",
+  "@removeFromDeviceButton": {
+    "type": "text",
+    "description": "Button text, to remove a downloaded video from the device."
+  },
+  "removeFromRecentSearches": "Желаете удалить этот элемент из последних запросов?",
+  "@removeFromRecentSearches": {
+    "type": "text",
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
+  "removeOfflineVideo": "Удалить офлайн видео?",
+  "@removeOfflineVideo": {
+    "type": "text",
+    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
+  },
+  "removeOfflineVideoDescription": "Если удалить это видео, оно перестанет быть доступным без подключения к интернету.",
+  "@removeOfflineVideoDescription": {
+    "type": "text",
+    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
+  },
+  "removeWatchProgress": "Очистить прогресс просмотра",
+  "@removeWatchProgress": {
+    "type": "text",
+    "description": "Shown when holding on an episode in the 'continue watching' section."
+  },
+  "removing": "Удаляется",
+  "@removing": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
+  },
+  "resendEmail": "Повторная отправка письма",
+  "@resendEmail": {
+    "type": "text",
+    "description": "Shown on the verify account page. Button to resend the verification email."
+  },
+  "resourceCount": "{count} ресурсов",
+  "@resourceCount": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "saveVideosForOfflineViewing": "Сохраните видео для просмотра в офлайн режиме",
+  "@saveVideosForOfflineViewing": {
+    "type": "text",
+    "description": "Shown when the 'downloaded' section is empty."
+  },
+  "saveYourFavorites": "Сохраните любимые видеозаписи",
+  "@saveYourFavorites": {
+    "type": "text",
+    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
+  },
+  "saveYourFavoritesDescription": "Нажмите на значок сердечка на видео, чтобы сохранить его в своем профиле.",
+  "@saveYourFavoritesDescription": {
+    "type": "text",
+    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
+  },
+  "saveYourFavoriteShorts": "Сохраните любимые видео",
+  "@saveYourFavoriteShorts": {
+    "type": "text",
+    "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
+  },
+  "search": "Поиск",
+  "@search": {
+    "type": "text",
+    "description": "Button to clear cache"
+  },
+  "seasonLetter": "С",
+  "@seasonLetter": {
+    "type": "text",
+    "description": "Season  letter in label S1E3"
+  },
+  "seasons": "Сезоны",
+  "@seasons": {
+    "type": "text",
+    "description": "Followed by number of seasons in given series."
+  },
+  "seeAll": "Посмотреть все",
+  "@seeAll": {
+    "type": "text",
+    "description": "Button to see all of some collection."
+  },
+  "seeMore": "Смотреть больше",
+  "@seeMore": {
+    "type": "text",
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "select": "Выбрать",
+  "@select": {
+    "type": "text",
+    "description": "Prompt. Shown at the top of a list of options."
+  },
+  "selectSeason": "Выбрать сезон",
+  "@selectSeason": {
+    "type": "text",
+    "description": "A title prompting to select a season from the list."
+  },
+  "send": "Отправить",
+  "@send": {
+    "type": "text",
+    "description": "General button to send a form"
+  },
+  "sendFail": "Не удалось отправить ваше сообщение",
+  "@sendFail": {
+    "type": "text",
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.",
+  "@sendFailDescription": {
+    "type": "text",
+    "description": "General error message that sending failed"
+  },
+  "sendFeedback": "Отправить отзыв",
+  "@sendFeedback": {
+    "type": "text",
+    "description": "Button to submit feedback(Survey)"
+  },
+  "sending": "Отправка",
+  "@sending": {
+    "type": "text",
+    "description": "General sending action indicator"
+  },
+  "sendSuccessDescription": "Мы ценим Ваш отзыв.",
+  "@sendSuccessDescription": {
+    "type": "text",
+    "description": "General message when sending is successful"
+  },
+  "series": "Передачи",
+  "@series": {
+    "type": "text",
+    "description": "Title of the tab on info page"
+  },
+  "seriesTab": "Передачи",
+  "@seriesTab": {
+    "type": "text",
+    "description": "Series Tab title"
+  },
+  "setPassword": "Задать пароль",
+  "@setPassword": {
+    "type": "text",
+    "description": "Title for the 'Set password' page of the signup process."
+  },
+  "settings": "Настройки",
+  "@settings": {
+    "type": "text",
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "share": "Поделиться",
+  "@share": {
+    "type": "text",
+    "description": "Generic."
+  },
+  "shareStart": "Поделиться с начала",
+  "@shareStart": {
+    "type": "text",
+    "description": "Option on action sheet for sharing from start"
+  },
+  "shareTime": "Поделиться с времени {time}",
+  "@shareTime": {
+    "type": "text",
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
         "type": "String"
       }
     }
   },
-  "gamesTab": "Игры",
-  "@gamesTab": {
-    "description": "Title of the games page"
+  "shortFilms": "Короткие фильмы",
+  "@shortFilms": {
+    "type": "text",
+    "description": "Title of the films collection."
   },
-  "playGame": "Играть",
-  "@playGame": {
-    "description": "Title on a game"
+  "shortsFeatureDescription": "Смотрите короткие и содержательные отрывки и переходите к полному эпизоду.",
+  "@shortsFeatureDescription": {
+    "type": "text",
+    "description": "Shown the first time you open the app after 'shorts' is enabled."
   },
-  "tvScanQr": "Сканируйте код и войдите в систему с помощью телефона",
-  "@tvScanQr": {
-    "description": "Title on the login screen for TVs"
+  "shortsLikedAndSavedDescription": "Вы можете найти все понравившиеся видео в своем профиле.",
+  "@shortsLikedAndSavedDescription": {
+    "type": "text",
+    "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "shortsTab": "Видео",
+  "@shortsTab": {
+    "type": "text",
+    "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
+  },
+  "showDescription": "Описание передач",
+  "@showDescription": {
+    "type": "text",
+    "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
+  },
+  "showLess": "Показать меньше",
+  "@showLess": {
+    "type": "text",
+    "description": "Text used on link to collapse expanded text."
+  },
+  "showMore": "Показать ещё",
+  "@showMore": {
+    "type": "text",
+    "description": "Text used on link to expand collapsed text."
+  },
+  "signInButton": "Войти",
+  "@signInButton": {
+    "type": "text",
+    "description": "Text displayed on Sign in button"
+  },
+  "signInOrSignUp": "Зарегистрироваться / Войти",
+  "@signInOrSignUp": {
+    "type": "text",
+    "description": "Button to go to the onboarding page (short)"
+  },
+  "signInTooltip": "Войдите, чтобы смотреть больше контента",
+  "@signInTooltip": {
+    "type": "text",
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "signUpAgreePrivacyPolicy": "Я подтверждаю, что мне исполнилось 13 лет, и я принимаю <a>Политику конфиденциальности</a> и <a>Условия использования</a>.",
+  "@signUpAgreePrivacyPolicy": {
+    "type": "text",
+    "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
+  },
+  "signUpButton": "Зарегистрироваться сейчас",
+  "@signUpButton": {
+    "type": "text",
+    "description": "Button to start the sign up process"
+  },
+  "signUpDescription": "Получите доступ к большему количеству контента и расширенным возможностям, создав учетную запись.",
+  "@signUpDescription": {
+    "type": "text",
+    "description": "A description on the sign up page explaining why you would want to sign up"
+  },
+  "signUpTitle": "Зарегистрироваться",
+  "@signUpTitle": {
+    "type": "text",
+    "description": "Title on the sign up page"
+  },
+  "skipToPublicContent": "Перейти к просмотру общедоступного контента",
+  "@skipToPublicContent": {
+    "type": "text",
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "somethingWentWrong": "Что-то пошло не так",
+  "@somethingWentWrong": {
+    "type": "text",
+    "description": "Generic error title/message."
+  },
+  "sortBy": "Сортировать по",
+  "@sortBy": {
+    "type": "text",
+    "description": "Sorting criteria selector"
+  },
+  "soundLanguage": "Язык воспроизведения",
+  "@soundLanguage": {
+    "type": "text",
+    "description": "Settings item on profile page"
+  },
+  "startExploring": "Начать исследовать",
+  "@startExploring": {
+    "type": "text",
+    "description": "A button on the welcome page"
+  },
+  "startStudy": "Начать изучение",
+  "@startStudy": {
+    "type": "text",
+    "description": "Button."
+  },
+  "studyCompleteTaskDescription": "Выполняйте задания и открывайте соответствующие ресурсы",
+  "@studyCompleteTaskDescription": {
+    "type": "text",
+    "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
+  },
+  "studyDiscoverMoreDescription": "Получите больше вдохновения и информации из соответствующих ресурсов",
+  "@studyDiscoverMoreDescription": {
+    "type": "text",
+    "description": "Description to open the related resources for this episode."
+  },
+  "studyLessonCompleted": "урок завершен",
+  "@studyLessonCompleted": {
+    "type": "text",
+    "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
+  },
+  "studyLessonsCompleted": "уроки завершены",
+  "@studyLessonsCompleted": {
+    "type": "text",
+    "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
+  },
+  "submit": "Отправить",
+  "@submit": {
+    "type": "text",
+    "description": "Submit button."
+  },
+  "subtitleLanguage": "Язык субтитров",
+  "@subtitleLanguage": {
+    "type": "text",
+    "description": "Settings item on profile page"
+  },
+  "subtitles": "Субтитры",
+  "@subtitles": {
+    "type": "text",
+    "description": "Generic."
+  },
+  "subtitlesIncluded": "Добавлены субтитры",
+  "@subtitlesIncluded": {
+    "type": "text",
+    "description": "Shown in the download form, indicating that all subtitles are included in the video."
+  },
+  "subtitlesLanguage": "Язык субтитров",
+  "@subtitlesLanguage": {
+    "type": "text",
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
+  "supportBibleKids": "Поддержите Bible Kids",
+  "@supportBibleKids": {
+    "type": "text",
+    "description": "Shown on the settings page."
+  },
+  "takePhoto": "Сделать фото",
+  "@takePhoto": {
+    "type": "text",
+    "description": "Option in menu"
+  },
+  "tapOnTheDownloadIcon": "Нажмите на значок загрузки на видео, чтобы загрузить его и проигрывать в офлайн-режиме.",
+  "@tapOnTheDownloadIcon": {
+    "type": "text",
+    "description": "Shown when the 'downloaded' section is empty."
+  },
+  "taskCompleted": "задание выполнено",
+  "@taskCompleted": {
+    "type": "text",
+    "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
+  },
+  "taskCount": "{count} заданий",
+  "@taskCount": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tasksCompleted": "заданий выполнено",
+  "@tasksCompleted": {
+    "type": "text",
+    "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
+  },
+  "technicalDetails": "Технические детали",
+  "@technicalDetails": {
+    "type": "text",
+    "description": "Shown when errors occur, and you want to see more technical details about the error."
+  },
+  "termsOfUse": "Условия использования",
+  "@termsOfUse": {
+    "type": "text",
+    "description": "Title on the 'Terms of use' page."
+  },
+  "thankYou": "Спасибо!",
+  "@thankYou": {
+    "type": "text",
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Спасибо за ваш вклад!",
+  "@thankYouForContribution": {
+    "type": "text",
+    "description": "Title in upload success page"
+  },
+  "thankYouSupportDescription": "Мы ценим все отзывы и постараемся решить эту проблему как можно скорее.",
+  "@thankYouSupportDescription": {
+    "type": "text",
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportTitle": "Спасибо за ваш отзыв!",
+  "@thankYouSupportTitle": {
+    "type": "text",
+    "description": "Text on contact support confirmation page"
+  },
+  "theVideoFileSizeIs": "Размер видеофайла {size}.",
+  "@theVideoFileSizeIs": {
+    "type": "text",
+    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "thisVideoCantBeDownloaded": "Это видео нельзя скачать.",
+  "@thisVideoCantBeDownloaded": {
+    "type": "text",
+    "description": "Shown when you try to download a video that cannot be downloaded."
+  },
+  "timezoneInformation": "Расписание телепрограммы указано по вашему местному времени: {timeZone}",
+  "@timezoneInformation": {
+    "type": "text",
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "Сегодня",
+  "@today": {
+    "type": "text",
+    "description": "First category in tv guide"
+  },
+  "tomorrow": "Завтра",
+  "@tomorrow": {
+    "type": "text",
+    "description": "Day of transmission in tv guide."
+  },
+  "tryAgain": "Пожалуйста, попробуйте позже.",
+  "@tryAgain": {
+    "type": "text",
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgainButton": "Попробовать еще раз",
+  "@tryAgainButton": {
+    "type": "text",
+    "description": "Button on error alert that lets user to retry failed action"
   },
   "tvEnterCode": "Или перейдите по ссылке {url} и введите код: {code}",
   "@tvEnterCode": {
+    "type": "text",
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
       "url": {
@@ -1079,333 +1581,159 @@
       }
     }
   },
-  "chapters": "Главы",
-  "@chapters": {
-    "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
+  "tVLogin": "ТВ Логин",
+  "@tVLogin": {
+    "type": "text",
+    "description": "Title of the TV login alert"
   },
-  "removeWatchProgress": "Очистить прогресс просмотра",
-  "@removeWatchProgress": {
-    "description": "Shown when holding on an episode in the 'continue watching' section."
+  "tVLoginSuccessful": "Успешный вход, пожалуйста, подтвердите на телевизоре.",
+  "@tVLoginSuccessful": {
+    "type": "text",
+    "description": "Message of the TV login alert"
   },
-  "showDescription": "Описание передач",
-  "@showDescription": {
-    "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
+  "tvScanQr": "Сканируйте код и войдите в систему с помощью телефона",
+  "@tvScanQr": {
+    "type": "text",
+    "description": "Title on the login screen for TVs"
   },
-  "releaseDate": "Дата релиза",
-  "@releaseDate": {
-    "description": "Release date of the episode, shown in the 'details' tab under an episode."
+  "uploadFail": "Загрузка не удалась",
+  "@uploadFail": {
+    "type": "text",
+    "description": "Upload result message"
   },
-  "availableTo": "Доступно до",
-  "@availableTo": {
-    "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
+  "uploadFileMessage": "Вы хотите загрузить этот файл?",
+  "@uploadFileMessage": {
+    "type": "text",
+    "description": "Content of the dialog to confirm upload"
   },
-  "ageRating": "Возрастная категория",
-  "@ageRating": {
-    "description": "Age rating for the episode, shown in the 'details' tab under an episode."
+  "uploadFileTitle": "Загрузить файл",
+  "@uploadFileTitle": {
+    "type": "text",
+    "description": "Title of the dialog to confirm upload"
   },
-  "ageRatingAll": "Все",
-  "@ageRatingAll": {
-    "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
+  "uploading": "Загрузка",
+  "@uploading": {
+    "type": "text",
+    "description": "Message during file upload"
   },
-  "offline": "Офлайн",
-  "@offline": {
-    "description": "Status indicator, indicating that you are offline; not connected to the internet."
+  "userVoice": "Предложить функцию",
+  "@userVoice": {
+    "type": "text",
+    "description": "Settings item on profile page to navigate to uservoice"
   },
-  "downloadButton": "Скачать",
-  "@downloadButton": {
-    "description": "Button text, a button to download the episode to make it available for offline playback."
+  "verificationEmailSent": "Отправлено письмо с подтверждением",
+  "@verificationEmailSent": {
+    "type": "text",
+    "description": "Shown when the user has requested a new verification email."
   },
-  "audioNotAvailableInLanguage": "Аудио недоступно на {lang}",
-  "@audioNotAvailableInLanguage": {
-    "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
+  "verifyYourAccount": "Подтвердите свою учетную запись",
+  "@verifyYourAccount": {
+    "type": "text",
+    "description": "Title of the page where you can verify your email/account."
+  },
+  "version": "Версия",
+  "@version": {
+    "type": "text",
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "videoCompletedText": "Отличная работа, просмотр видео завершен.",
+  "@videoCompletedText": {
+    "type": "text",
+    "description": "Shown after completing tasks related to a video."
+  },
+  "videoCount": "{count} видео",
+  "@videoCount": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
-      "lang": {
-        "type": "String"
-      }
-    }
-  },
-  "notEnoughAvailableSpace": "Недостаточно свободного места на устройстве",
-  "@notEnoughAvailableSpace": {
-    "description": "Shown when you try to download an episode, but there is not enough space on your device."
-  },
-  "considerDeletingOtherVideos": "Рассмотрите возможность удаления других видеозаписей, загруженных в приложении.",
-  "@considerDeletingOtherVideos": {
-    "description": "Shown when you try to download an episode, but there is not enough space on your device."
-  },
-  "theVideoFileSizeIs": "Размер видеофайла {size}.",
-  "@theVideoFileSizeIs": {
-    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
-    "placeholders": {
-      "size": {
-        "type": "String"
-      }
-    }
-  },
-  "gotIt": "Понятно",
-  "@gotIt": {
-    "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
-  },
-  "saveYourFavorites": "Сохраните любимые видеозаписи",
-  "@saveYourFavorites": {
-    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
-  },
-  "saveYourFavoritesDescription": "Нажмите на значок сердечка на видео, чтобы сохранить его в своем профиле.",
-  "@saveYourFavoritesDescription": {
-    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
-  },
-  "yourFavorites": "Ваше избранное",
-  "@yourFavorites": {
-    "description": "Shown as a title for the 'favorites' section in the profile tab."
-  },
-  "downloaded": "Загружено",
-  "@downloaded": {
-    "description": "Shown as a title for the 'downloaded' section in the profile tab."
-  },
-  "saveVideosForOfflineViewing": "Сохраните видео для просмотра в офлайн режиме",
-  "@saveVideosForOfflineViewing": {
-    "description": "Shown when the 'downloaded' section is empty."
-  },
-  "tapOnTheDownloadIcon": "Нажмите на значок загрузки на видео, чтобы загрузить его и проигрывать в офлайн-режиме.",
-  "@tapOnTheDownloadIcon": {
-    "description": "Shown when the 'downloaded' section is empty."
-  },
-  "removeOfflineVideo": "Удалить офлайн видео?",
-  "@removeOfflineVideo": {
-    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
-  },
-  "removeOfflineVideoDescription": "Если удалить это видео, оно перестанет быть доступным без подключения к интернету.",
-  "@removeOfflineVideoDescription": {
-    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
-  },
-  "removeFromDeviceButton": "Удалить из устройства",
-  "@removeFromDeviceButton": {
-    "description": "Button text, to remove a downloaded video from the device."
-  },
-  "keepVideoButton": "Оставить видео",
-  "@keepVideoButton": {
-    "description": "Button when asking to remove a downloaded video. This button cancels."
-  },
-  "noInternetConnection": "Отсутствие подключения к интернету",
-  "@noInternetConnection": {
-    "description": "Shown when you are offline, and the app cannot connect to the internet."
-  },
-  "noInternetConnectionDescription": "Для доступа ко всем видеоматериалам подключитесь к интернету.",
-  "@noInternetConnectionDescription": {
-    "description": "Shown when you are offline, and the app cannot connect to the internet."
-  },
-  "noInternetButDontWorry": "Нет подключения к интернету,\nно не волнуйтесь.",
-  "@noInternetButDontWorry": {
-    "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
-  },
-  "hereAreAllTheVideosYouDownloaded": "Здесь отображаются все видеоролики, загруженные на устройство.",
-  "@hereAreAllTheVideosYouDownloaded": {
-    "description": "Shown when you are offline, but you have downloaded some videos."
-  },
-  "connectToExplore": "Для просмотра всех видеозаписей подключитесь к интернету.",
-  "@connectToExplore": {
-    "description": "Shown when you are offline, and the app cannot connect to the internet."
-  },
-  "language": "Язык",
-  "@language": {
-    "description": "A label when selecting a language to download."
-  },
-  "estimatedFileSize": "Предполагаемый размер файла: {size}",
-  "@estimatedFileSize": {
-    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
-    "placeholders": {
-      "size": {
-        "type": "String"
-      }
-    }
-  },
-  "downloadVideo": "Скачать видео",
-  "@downloadVideo": {
-    "description": "Title on the download video form."
-  },
-  "noSubtitles": "Без субтитров",
-  "@noSubtitles": {
-    "description": "Shown in the download form, indicating that there are no subtitles available for the video."
-  },
-  "subtitlesIncluded": "Добавлены субтитры",
-  "@subtitlesIncluded": {
-    "description": "Shown in the download form, indicating that all subtitles are included in the video."
-  },
-  "allSubtitlesWillBeAvailableOffline": "Все субтитры будут доступны в офлайн режиме",
-  "@allSubtitlesWillBeAvailableOffline": {
-    "description": "Shown in the download form, indicating that all subtitles will be available offline."
-  },
-  "downloading": "Загрузка",
-  "@downloading": {
-    "description": "Download status, indicating that the video is currently downloading."
-  },
-  "failed": "Ошибка",
-  "@failed": {
-    "description": "Generic status label. Used e.g. for downloads that failed."
-  },
-  "finished": "Готово",
-  "@finished": {
-    "description": "Generic status label. Used e.g. for downloads that finished."
-  },
-  "paused": "Остановлено",
-  "@paused": {
-    "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
-  },
-  "queued": "В очереди",
-  "@queued": {
-    "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
-  },
-  "removing": "Удаляется",
-  "@removing": {
-    "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
-  },
-  "expiresIn": "Истекает в {time}",
-  "@expiresIn": {
-    "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
-  "availableOffline": "Доступно в офлайн-режиме",
-  "@availableOffline": {
-    "description": "Label indicating that the video is available offline."
-  },
-  "technicalDetails": "Технические детали",
-  "@technicalDetails": {
-    "description": "Shown when errors occur, and you want to see more technical details about the error."
-  },
-  "contentLanguage": "Язык содержания",
-  "@contentLanguage": {
-    "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
-  },
-  "contentLanguageShort": "Содержание",
-  "@contentLanguageShort": {
-    "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
-  },
-  "appLanguageShort": "Приложение",
-  "@appLanguageShort": {
-    "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
-  },
-  "playRandom": "Играть в случайном порядке",
-  "@playRandom": {
-    "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
-  },
-  "addLanguage": "Добавить язык",
-  "@addLanguage": {
-    "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
-  },
-  "preferredLanguages": "Предпочитаемые языки",
-  "@preferredLanguages": {
-    "description": "Shown when you are selecting preferred content languages. Title."
-  },
-  "contentLanguageExplanation": "Измените порядок языков согласно предпочтениями языка аудио и субтитров.",
-  "@contentLanguageExplanation": {
-    "description": "Shown when you are selecting preferred content languages."
-  },
-  "otherLanguages": "Другие языки",
-  "@otherLanguages": {
-    "description": "Languages that are available but in your list of preferred languages."
-  },
-  "select": "Выбрать",
-  "@select": {
-    "description": "Prompt. Shown at the top of a list of options."
-  },
-  "supportBibleKids": "Поддержите Bible Kids",
-  "@supportBibleKids": {
-    "description": "Shown on the settings page."
-  },
-  "donateViaPaypal": "Пожертвовать через PayPal",
-  "@donateViaPaypal": {
-    "description": "Shown on the settings page."
-  },
-  "shortsTab": "Видео",
-  "@shortsTab": {
-    "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
-  },
-  "autoGenerated": "Автоматически сгенерировано",
-  "@autoGenerated": {
-    "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
-  },
-  "beta": "Бета",
-  "@beta": {
-    "description": "'Beta' features are only available to a selection of users."
-  },
-  "betaExplanation": "Эта функция находится в стадии бета-тестирования и в настоящее время доступна не всем пользователям. Пожалуйста, сообщайте о любых проблемах или отзывах через кнопку \"Связаться\" в настройках.",
-  "@betaExplanation": {
-    "description": "Shown in a popup on beta features."
-  },
-  "likedShorts": "Понравившиеся видео",
-  "@likedShorts": {
-    "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
-  },
-  "saveYourFavoriteShorts": "Сохраните любимые видео",
-  "@saveYourFavoriteShorts": {
-    "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
-  },
-  "featureNotAvailableYet": "Эта функция пока недоступна. Пожалуйста, повторите попытку позже.",
-  "@featureNotAvailableYet": {
-    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
-  },
-  "newFeature": "Новая функция",
-  "@newFeature": {
-    "description": "Shown the first time you open the app after a new feature is available."
-  },
-  "shortsFeatureDescription": "Смотрите короткие и содержательные отрывки и переходите к полному эпизоду.",
-  "@shortsFeatureDescription": {
-    "description": "Shown the first time you open the app after 'shorts' is enabled."
-  },
-  "likedAndSaved": "Понравившиеся и сохраненные",
-  "@likedAndSaved": {
-    "description": "Shown when you have liked and saved a 'short' for the first time."
-  },
-  "shortsLikedAndSavedDescription": "Вы можете найти все понравившиеся видео в своем профиле.",
-  "@shortsLikedAndSavedDescription": {
-    "description": "Shown when you have liked and saved a 'short' for the first time."
-  },
-  "downloadedVideosGuideDescription": "Загруженные видео можно найти в разделе Профиль.",
-  "@downloadedVideosGuideDescription": {
-    "description": "Shown when you have downloaded a video for the first time."
-  },
-  "openStore": "Открыть магазин",
-  "@openStore": {
-    "description": "A button to open play store / app store."
-  },
-  "thisVideoCantBeDownloaded": "Это видео нельзя скачать.",
-  "@thisVideoCantBeDownloaded": {
-    "description": "Shown when you try to download a video that cannot be downloaded."
-  },
-  "videoLanguage": "Язык видео",
-  "@videoLanguage": {
-    "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
-  },
-  "videoTextLanguage": "Язык текста видео",
-  "@videoTextLanguage": {
-    "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
-  },
-  "original": "Оригинал",
-  "@original": {
-    "description": "E.g. original language."
-  },
-  "openSettingsToChangeVideoLang": "Откройте настройки, чтобы изменить язык текста видео",
-  "@openSettingsToChangeVideoLang": {
-    "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
-  },
-  "somethingWentWrong": "Что-то пошло не так",
-  "@somethingWentWrong": {
-    "description": "Generic error title/message."
-  },
-  "all": "Все",
-  "@all": {
-    "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
-  },
-  "countItems": "{x} предметов",
-  "@countItems": {
-    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
-    "placeholders": {
-      "x": {
+      "count": {
         "type": "int"
       }
     }
+  },
+  "videoLanguage": "Язык видео",
+  "@videoLanguage": {
+    "type": "text",
+    "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
+  },
+  "videoOnlyAccessibleToLoggedIn": "Видео доступно только авторизованным пользователям.",
+  "@videoOnlyAccessibleToLoggedIn": {
+    "type": "text",
+    "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
+  },
+  "videoQuality": "Качество видео",
+  "@videoQuality": {
+    "type": "text",
+    "description": "Settings item in profile page for Android."
+  },
+  "videos": "Видео",
+  "@videos": {
+    "type": "text",
+    "description": "Followed by number of videos"
+  },
+  "videoTextLanguage": "Язык текста видео",
+  "@videoTextLanguage": {
+    "type": "text",
+    "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
+  },
+  "watchAgain": "Посмотрите еще раз",
+  "@watchAgain": {
+    "type": "text",
+    "description": "Short button text to watch the video again."
+  },
+  "watchNow": "Смотреть сейчас",
+  "@watchNow": {
+    "type": "text",
+    "description": "Button on featured carousel"
+  },
+  "weHaveSentAnEmailTo": "Мы отправили письмо на адрес",
+  "@weHaveSentAnEmailTo": {
+    "type": "text",
+    "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
+  },
+  "wellDone": "Отлично сработано!",
+  "@wellDone": {
+    "type": "text",
+    "description": "Positive message that may be used e.g. after completing some action."
+  },
+  "whatIsMath": "Что такое",
+  "@whatIsMath": {
+    "type": "text",
+    "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
+  },
+  "writeHere": "Пишите здесь",
+  "@writeHere": {
+    "type": "text",
+    "description": "New post text field placeholder"
+  },
+  "yesCancel": "Да, отменить",
+  "@yesCancel": {
+    "type": "text",
+    "description": "Confirm cancel."
+  },
+  "youCanContactUsAt": "Вы можете связаться с нами по адресу",
+  "@youCanContactUsAt": {
+    "type": "text",
+    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
+  },
+  "youCanNowLogInToYourAccount": "Теперь вы можете войти в свою учетную запись и ознакомиться с различными материалами назидательного характера.",
+  "@youCanNowLogInToYourAccount": {
+    "type": "text",
+    "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
+  },
+  "youCanNowUseYourAccount": "Теперь вы можете воспользоваться своей учетной записью и ознакомиться с различным познавательным контентом.",
+  "@youCanNowUseYourAccount": {
+    "type": "text",
+    "description": "Shown when the user has successfully completed account setup."
+  },
+  "yourFavorites": "Ваше избранное",
+  "@yourFavorites": {
+    "type": "text",
+    "description": "Shown as a title for the 'favorites' section in the profile tab."
+  },
+  "ztoA": "Я-А",
+  "@ztoA": {
+    "type": "text",
+    "description": "Sort order"
   }
 }

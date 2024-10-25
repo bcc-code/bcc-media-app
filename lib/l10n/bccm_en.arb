@@ -1,495 +1,288 @@
 {
-  "loadingContent": "Loading content",
-  "@loadingContent": {
-    "description": "Text displayed when page content is loading."
-  },
-  "signInTooltip": "Sign in to watch more content",
-  "@signInTooltip": {
-    "description": "Text for tooltip displayed when a non-member user opens the home page."
-  },
-  "skipToPublicContent": "Skip to watch public content",
-  "@skipToPublicContent": {
-    "description": "Text for button displayed on login screen to skip sign in and watch public content."
-  },
-  "minutesShort": "min",
-  "@minutesShort": {
-    "description": "Text for minutes."
-  },
-  "calendarThisWeek": "This week",
-  "@calendarThisWeek": {
-    "description": "Text for This week."
-  },
-  "calendarWeek": "week",
-  "@calendarWeek": {
-    "description": "Text week."
-  },
-  "close": "Close",
-  "@close": {
-    "description": "Text displayed on 'Close' button"
-  },
-  "loading": "Loading",
-  "@loading": {
-    "description": "Text to indicate loading state."
-  },
-  "loginPageDisplay1": "The most powerful\n message in the world",
-  "@loginPageDisplay1": {
-    "description": "Text displayed on login screen."
-  },
-  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
-  "@loginPageDisplay2": {
-    "description": "Text displayed on login screen."
-  },
-  "kidsOnboardingTitle": "We bring the message of the Bible to life!",
-  "@kidsOnboardingTitle": {
-    "description": "Text displayed on onboarding screen for the Bible Kids app."
-  },
-  "kidsOnboardingSecondaryTitle": "Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.",
-  "@kidsOnboardingSecondaryTitle": {
-    "description": "Text displayed on onboarding screen for the Bible Kids app."
-  },
-  "loginPageDisplay3": "Produced by BCC Media",
-  "@loginPageDisplay3": {
-    "description": "Text displayed on login screen."
-  },
-  "logOutButton": "Log out",
-  "@logOutButton": {
-    "description": "Text displayed on Log out button"
-  },
-  "profileTab": "Profile",
-  "@profileTab": {
-    "description": "Title of the profile page"
-  },
-  "faq": "Frequently asked questions",
-  "@faq": {
-    "description": "Long title of the FAQ page."
-  },
-  "bccMediaCenter": "BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.",
-  "@bccMediaCenter": {
-    "description": "Disclaimer on login page"
-  },
-  "signInButton": "Sign in",
-  "@signInButton": {
-    "description": "Text displayed on Sign in button"
-  },
-  "signInOrSignUp": "Sign up / Sign in",
-  "@signInOrSignUp": {
-    "description": "Button to go to the onboarding page (short)"
-  },
-  "signUpButton": "Sign up now",
-  "@signUpButton": {
-    "description": "Button to start the sign up process"
-  },
-  "signUpTitle": "Sign up",
-  "@signUpTitle": {
-    "description": "Title on the sign up page"
-  },
-  "signUpDescription": "Get access to more content and better features by creating an account.",
-  "@signUpDescription": {
-    "description": "A description on the sign up page explaining why you would want to sign up"
-  },
-  "signUpAgreePrivacyPolicy": "I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.",
-  "@signUpAgreePrivacyPolicy": {
-    "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
-  },
-  "setPassword": "Set password",
-  "@setPassword": {
-    "description": "Title for the 'Set password' page of the signup process."
-  },
-  "tryAgainButton": "Try again",
-  "@tryAgainButton": {
-    "description": "Button on error alert that lets user to retry failed action"
-  },
-  "loggedOutTitle": "Logged out",
-  "@loggedOutTitle": {
-    "description": "Title of the alert message that is shown when user is logged out automatically."
-  },
-  "loggedOutMessage": "You have been logged out. Please log in again.",
-  "@loggedOutMessage": {
-    "description": "Text of the alert message that is shown when user is logged out automatically."
-  },
-  "makeDonation": "Make a donation",
-  "@makeDonation": {
-    "description": "Text for button which opens donation page."
-  },
-  "mostWatched": "Most watched",
-  "@mostWatched": {
-    "description": "Sorting option on audience page"
-  },
-  "mostRecent": "Most recent",
-  "@mostRecent": {
-    "description": "Sorting option on audience page"
-  },
-  "latelyPublished": "Lately published",
-  "@latelyPublished": {
-    "description": "Title for the list of videos on login page"
-  },
-  "anErrorOccurred": "An error occurred",
-  "@anErrorOccurred": {
-    "description": "Title in error popup"
-  },
-  "ok": "OK",
-  "@ok": {
-    "description": "Popup confirmation button"
-  },
-  "open": "Open",
-  "@open": {
-    "description": "Open button"
-  },
-  "loginFailedCheckNetwork": "Login failed. Check your network connection and try again.",
-  "@loginFailedCheckNetwork": {
-    "description": "Login error message"
-  },
-  "loginFailedTryAgain": "Login failed. Please try again later.",
-  "@loginFailedTryAgain": {
-    "description": "Login error message"
-  },
-  "soundLanguage": "Sound language",
-  "@soundLanguage": {
-    "description": "Settings item on profile page"
-  },
-  "subtitleLanguage": "Subtitle language",
-  "@subtitleLanguage": {
-    "description": "Settings item on profile page"
-  },
-  "appLanguage": "App language",
-  "@appLanguage": {
-    "description": "Settings item on profile page"
-  },
-  "checkNetwork": "Check your network connection and try again.",
-  "@checkNetwork": {
-    "description": "Error message for the user displayed in many contexts."
-  },
-  "tryAgain": "Please try again later.",
-  "@tryAgain": {
-    "description": "Error message for the user displayed in many contexts."
-  },
-  "cantPlayVideo": "You can't play this video now.",
-  "@cantPlayVideo": {
-    "description": "Error message for the user displayed when video playback attempt failed."
-  },
+  "@@locale": "en",
   "about": "About",
   "@about": {
+    "type": "text",
     "description": "Title of About page and item in profile page settings."
   },
-  "version": "Version",
-  "@version": {
-    "description": "Version ot the application on About page; followed by version number"
+  "accountCreated": "Account created",
+  "@accountCreated": {
+    "type": "text",
+    "description": "Shown when the user has successfully created an account."
   },
-  "contactSupport": "Contact support",
-  "@contactSupport": {
-    "description": "Title for contact support page"
+  "accountDeletionExplanation": "You are about to request to delete your account with BCC Media and all your data related to this app.",
+  "@accountDeletionExplanation": {
+    "type": "text",
+    "description": "Shown on the account deletion page."
   },
-  "contactIssueHint": "Describe the issue",
-  "@contactIssueHint": {
-    "description": "Hint for the message box for logged in users"
-  },
-  "contactUs": "Contact us",
-  "@contactUs": {
-    "description": "Title for contact us page"
-  },
-  "deviceInfo": "Device info",
-  "@deviceInfo": {
-    "description": "Device info page title"
-  },
-  "contactIncludeDeviceInfo": "Include device information for better support.",
-  "@contactIncludeDeviceInfo": {
-    "description": "Text for checkbox to include device information"
-  },
-  "contactSeeData": "Click to see data.",
-  "@contactSeeData": {
-    "description": "Text for link to see device data"
-  },
-  "contactName": "Name",
-  "@contactName": {
-    "description": "Label for name field in contact support page"
-  },
-  "contactNameHint": "Type in your name",
-  "@contactNameHint": {
-    "description": "Hint text for name field in contact support page"
-  },
-  "contactEmail": "Your contact email",
-  "@contactEmail": {
-    "description": "Label for email field in contact support page"
-  },
-  "contactEmailHint": "Type in your email address",
-  "@contactEmailHint": {
-    "description": "Hint text for name field in contact support page"
-  },
-  "contactMessage": "Message",
-  "@contactMessage": {
-    "description": "Label for message field in contact support page"
-  },
-  "contactMessageHint": "Enter your message here",
-  "@contactMessageHint": {
-    "description": "Hint text for message field in contact support page"
-  },
-  "deviceInfoDevice": "Device",
-  "@deviceInfoDevice": {
-    "description": "Label for device"
-  },
-  "deviceInfoEnvOverride": "Environment override",
-  "@deviceInfoEnvOverride": {
-    "description": "Label for environment override"
-  },
-  "deviceInfoManufacturer": "Manufacturer",
-  "@deviceInfoManufacturer": {
-    "description": "Label for manufacturer"
-  },
-  "deviceInfoOs": "Operating System",
-  "@deviceInfoOs": {
-    "description": "Label for operating system"
-  },
-  "deviceInfoScreenSize": "Screen Size",
-  "@deviceInfoScreenSize": {
-    "description": "Label for screen size"
-  },
-  "deviceInfoAppVer": "App Version",
-  "@deviceInfoAppVer": {
-    "description": "Label for app Version"
-  },
-  "deviceInfoUserId": "User ID",
-  "@deviceInfoUserId": {
-    "description": "Label for user id"
-  },
-  "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
-  "@deviceInfoPageDesc": {
-    "description": "Label for manufacturer"
-  },
-  "userVoice": "Suggest a feature",
-  "@userVoice": {
-    "description": "Settings item on profile page to navigate to uservoice"
-  },
-  "cancel": "Cancel",
-  "@cancel": {
-    "description": "General cancel action button"
-  },
-  "cancelConfirmation": "Are you sure you want to cancel?",
-  "@cancelConfirmation": {
-    "description": "Title text for cancel confirmation dialog."
-  },
-  "cancelConfirmationDescription": "Any unsaved changes will be lost.",
-  "@cancelConfirmationDescription": {
-    "description": "Description for cancel confirmation dialog."
-  },
-  "goBack": "Go back",
-  "@goBack": {
-    "description": "Text for back button."
-  },
-  "yesCancel": "Yes, Cancel",
-  "@yesCancel": {
-    "description": "Confirm cancel."
-  },
-  "done": "Done",
-  "@done": {
-    "description": "Generic Done button, for example to dismiss a page after completing an action."
-  },
-  "playerSettings": "Player settings",
-  "@playerSettings": {
-    "description": "Title of the Player settings activity in Android"
-  },
-  "settings": "Settings",
-  "@settings": {
-    "description": "Label of the button to go to Android/iOS settings"
-  },
-  "none": "None",
-  "@none": {
-    "description": "Indicator on profile page that subtitles are disabled."
-  },
-  "nextEpisode": "Next Episode",
-  "@nextEpisode": {
-    "description": "Button indicating the next video will play soon."
-  },
-  "auto": "Auto",
-  "@auto": {
-    "description": "Indicator on profile page that audio and app language are chosen automatically."
-  },
-  "subtitles": "Subtitles",
-  "@subtitles": {
-    "description": "Generic."
-  },
-  "audio": "Audio",
-  "@audio": {
-    "description": "Generic."
-  },
-  "quality": "Quality",
-  "@quality": {
-    "description": "Generic."
-  },
-  "seasons": "Seasons",
-  "@seasons": {
-    "description": "Followed by number of seasons in given series."
-  },
-  "episodes": "Episodes",
-  "@episodes": {
-    "description": "Followed by number of episodes in given series."
-  },
-  "search": "Search",
-  "@search": {
-    "description": "Button to clear cache"
-  },
-  "sendFeedback": "Send Feedback",
-  "@sendFeedback": {
-    "description": "Button to submit feedback(Survey)"
-  },
-  "noResults": "No results found",
-  "@noResults": {
-    "description": "No search results."
-  },
-  "doYouWantCast": "Do you want to cast this video?",
-  "@doYouWantCast": {
-    "description": "Prompt displayed to the user"
-  },
-  "play": "Play",
-  "@play": {
-    "description": "Option in prompt dialog."
-  },
-  "pause": "Pause",
-  "@pause": {
-    "description": "A button to pause the video."
-  },
-  "castQueue": "Cast queue",
-  "@castQueue": {
-    "description": "Queue page title"
-  },
-  "options": "Options",
-  "@options": {
-    "description": "Options dialog title"
-  },
-  "remove": "Remove",
-  "@remove": {
-    "description": "Option in options dialog"
-  },
-  "queueLimitTitle": "Limit",
-  "@queueLimitTitle": {
-    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
-  },
-  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
-  "@queueLimitMessage": {
-    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+  "accountDeletionSuccess": "Account deletion successfully requested. You will receive an email at {email}. To confirm your identity, we need you reply to that email to proceed with the deletion.",
+  "@accountDeletionSuccess": {
+    "type": "text",
+    "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
-      "elementCount": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "accountDeletionTimeframe": "Account deletion will usually be done within {x} business days.",
+  "@accountDeletionTimeframe": {
+    "type": "text",
+    "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
+    "placeholders": {
+      "x": {
         "type": "int"
       }
     }
   },
-  "recentSearches": "Recent Searches",
-  "@recentSearches": {
-    "description": "Recent searches list title."
+  "accountDeletionTitle": "Delete my account",
+  "@accountDeletionTitle": {
+    "type": "text",
+    "description": "Title of the account deletion page."
   },
-  "tVLogin": "TV Login",
-  "@tVLogin": {
-    "description": "Title of the TV login alert"
+  "accountDeletionWarning": "This is an action that cannot be undone.",
+  "@accountDeletionWarning": {
+    "type": "text",
+    "description": "Shown on the account deletion page."
   },
-  "tVLoginSuccessful": "Log in successful, please confirm on TV.",
-  "@tVLoginSuccessful": {
-    "description": "Message of the TV login alert"
+  "achievementFirstDescription": "Great job on completing the video and earning your first progress achievement.",
+  "@achievementFirstDescription": {
+    "type": "text",
+    "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "seeMore": "See more",
-  "@seeMore": {
-    "description": "Button on featured item to navigete to page with player"
+  "achievements": "Achievements",
+  "@achievements": {
+    "type": "text",
+    "description": "Generic. Used as page title, etc."
   },
-  "seeAll": "See all",
-  "@seeAll": {
-    "description": "Button to see all of some collection."
+  "achievementStudyTopic": "Great job on completing the study topic {name}",
+  "@achievementStudyTopic": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   },
-  "series": "Series",
-  "@series": {
-    "description": "Title of the tab on info page"
+  "add": "Add",
+  "@add": {
+    "type": "text",
+    "description": "Button text"
   },
-  "homeTab": "Home",
-  "@homeTab": {
-    "description": "Title of the home page"
+  "addLanguage": "Add language",
+  "@addLanguage": {
+    "type": "text",
+    "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
   },
-  "sortBy": "Sort by",
-  "@sortBy": {
-    "description": "Sorting criteria selector"
+  "ageRating": "Age rating",
+  "@ageRating": {
+    "type": "text",
+    "description": "Age rating for the episode, shown in the 'details' tab under an episode."
   },
-  "videoQuality": "Video quality",
-  "@videoQuality": {
-    "description": "Settings item in profile page for Android."
+  "ageRatingAll": "All",
+  "@ageRatingAll": {
+    "type": "text",
+    "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
-  "low": "Low",
-  "@low": {
-    "description": "Low quality video option"
+  "all": "All",
+  "@all": {
+    "type": "text",
+    "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
   },
-  "medium": "Medium",
-  "@medium": {
-    "description": "Medium quality video option"
+  "allSubtitlesWillBeAvailableOffline": "All subtitles will be available offline",
+  "@allSubtitlesWillBeAvailableOffline": {
+    "type": "text",
+    "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "high": "High",
-  "@high": {
-    "description": "High quality video option"
+  "anErrorOccurred": "An error occurred",
+  "@anErrorOccurred": {
+    "type": "text",
+    "description": "Title in error popup"
   },
-  "emptySearch": "You can search all content from BCC Media. Series, videos and episodes.",
-  "@emptySearch": {
-    "description": "Message on search page when there is no search results."
+  "answerLabel": "Answer",
+  "@answerLabel": {
+    "type": "text",
+    "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
   },
-  "back": "Back",
-  "@back": {
-    "description": "General back button to navigate back"
+  "appLanguage": "App language",
+  "@appLanguage": {
+    "type": "text",
+    "description": "Settings item on profile page"
   },
-  "seasonLetter": "S",
-  "@seasonLetter": {
-    "description": "Season  letter in label S1E3"
+  "appLanguageShort": "App",
+  "@appLanguageShort": {
+    "type": "text",
+    "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
   },
-  "episodeLetter": "E",
-  "@episodeLetter": {
-    "description": "Episode letter in label S1E3"
+  "appUpdateAccepted": "Update",
+  "@appUpdateAccepted": {
+    "type": "text",
+    "description": "Option that can be chosen by the user to update his application."
+  },
+  "appUpdateRequest": "Please download the latest app to enjoy all the latest features and bug fixes.",
+  "@appUpdateRequest": {
+    "type": "text",
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
+  "appUpdateTitle": "Update required",
+  "@appUpdateTitle": {
+    "type": "text",
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
+  "areYouSure": "Are you sure?",
+  "@areYouSure": {
+    "type": "text",
+    "description": "Generic text. Used at least as a title on the account deletion page."
+  },
+  "askYourParents": "Ask your parents",
+  "@askYourParents": {
+    "type": "text",
+    "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
   },
   "atoZ": "A-Z",
   "@atoZ": {
+    "type": "text",
     "description": "Sort order"
   },
-  "ztoA": "Z-A",
-  "@ztoA": {
-    "description": "Sort order"
+  "audio": "Audio",
+  "@audio": {
+    "type": "text",
+    "description": "Generic."
   },
-  "shortFilms": "Short films",
-  "@shortFilms": {
-    "description": "Title of the films collection."
+  "audioLanguage": "Audio language",
+  "@audioLanguage": {
+    "type": "text",
+    "description": "Label indicating that the Audio Language can be changed here."
   },
-  "videos": "Videos",
-  "@videos": {
-    "description": "Followed by number of videos"
+  "audioNotAvailableInLanguage": "Audio not available in {lang}",
+  "@audioNotAvailableInLanguage": {
+    "type": "text",
+    "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
   },
-  "moreInfo": "More information",
-  "@moreInfo": {
-    "description": "Option in action sheet for the video that triggers info page for the video."
+  "auto": "Auto",
+  "@auto": {
+    "type": "text",
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
   },
-  "info": "Information",
-  "@info": {
-    "description": "Video info page title."
+  "autoGenerated": "Auto-generated",
+  "@autoGenerated": {
+    "type": "text",
+    "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
   },
-  "episode": "Episode",
-  "@episode": {
-    "description": "Title of the tab on info page"
+  "availableFrom": "Available {date}",
+  "@availableFrom": {
+    "type": "text",
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
   },
-  "takePhoto": "Take a photo",
-  "@takePhoto": {
-    "description": "Option in menu"
+  "availableOffline": "Available offline",
+  "@availableOffline": {
+    "type": "text",
+    "description": "Label indicating that the video is available offline."
   },
-  "pickPhoto": "Pick from gallery",
-  "@pickPhoto": {
-    "description": "Option in menu"
+  "availableTo": "Available to",
+  "@availableTo": {
+    "type": "text",
+    "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
   },
-  "uploadFileTitle": "Upload file",
-  "@uploadFileTitle": {
-    "description": "Title of the dialog to confirm upload"
+  "back": "Back",
+  "@back": {
+    "type": "text",
+    "description": "General back button to navigate back"
   },
-  "uploadFileMessage": "Do you want to upload this file?",
-  "@uploadFileMessage": {
-    "description": "Content of the dialog to confirm upload"
+  "bccMediaCenter": "BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.",
+  "@bccMediaCenter": {
+    "type": "text",
+    "description": "Disclaimer on login page"
   },
-  "uploading": "Uploading",
-  "@uploading": {
-    "description": "Message during file upload"
+  "beta": "Beta",
+  "@beta": {
+    "type": "text",
+    "description": "'Beta' features are only available to a selection of users."
   },
-  "uploadFail": "Upload failed",
-  "@uploadFail": {
-    "description": "Upload result message"
+  "betaExplanation": "This feature is in beta and is currently not released to all users. Please report any issues or feedback via the 'Contact' button in settings.",
+  "@betaExplanation": {
+    "type": "text",
+    "description": "Shown in a popup on beta features."
+  },
+  "biblekidsAbout": "Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.",
+  "@biblekidsAbout": {
+    "type": "text",
+    "description": "Shown on about page"
+  },
+  "broadcasts": "Broadcasts",
+  "@broadcasts": {
+    "type": "text",
+    "description": "Title for live broadcasts."
+  },
+  "calendar": "Calendar",
+  "@calendar": {
+    "type": "text",
+    "description": "Title of calendar page."
+  },
+  "calendarThisWeek": "This week",
+  "@calendarThisWeek": {
+    "type": "text",
+    "description": "Text for This week."
+  },
+  "calendarWeek": "week",
+  "@calendarWeek": {
+    "type": "text",
+    "description": "Text week."
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "type": "text",
+    "description": "General cancel action button"
+  },
+  "cancelConfirmation": "Are you sure you want to cancel?",
+  "@cancelConfirmation": {
+    "type": "text",
+    "description": "Title text for cancel confirmation dialog."
+  },
+  "cancelConfirmationDescription": "Any unsaved changes will be lost.",
+  "@cancelConfirmationDescription": {
+    "type": "text",
+    "description": "Description for cancel confirmation dialog."
+  },
+  "cantPlayVideo": "You can't play this video now.",
+  "@cantPlayVideo": {
+    "type": "text",
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "castQueue": "Cast queue",
+  "@castQueue": {
+    "type": "text",
+    "description": "Queue page title"
+  },
+  "categoriesTab": "Categories",
+  "@categoriesTab": {
+    "type": "text",
+    "description": "Title of the Categories Tab"
+  },
+  "change": "Change",
+  "@change": {
+    "type": "text",
+    "description": "Button text"
+  },
+  "chapters": "Chapters",
+  "@chapters": {
+    "type": "text",
+    "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
   },
   "charactersLimit": "{charsLeft} of {charsTotal} characters left",
   "@charactersLimit": {
+    "type": "text",
     "description": "Info about limit of characters in a text field",
     "placeholders": {
       "charsLeft": {
@@ -500,392 +293,719 @@
       }
     }
   },
-  "thankYou": "Thank you!",
-  "@thankYou": {
-    "description": "Title in upload success page"
+  "checkAnswerButton": "Check answer",
+  "@checkAnswerButton": {
+    "type": "text",
+    "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
   },
-  "thankYouForContribution": "Thank you for your contribution!",
-  "@thankYouForContribution": {
-    "description": "Title in upload success page"
+  "checkNetwork": "Check your network connection and try again.",
+  "@checkNetwork": {
+    "type": "text",
+    "description": "Error message for the user displayed in many contexts."
   },
-  "next": "Next",
-  "@next": {
-    "description": "NEXT program in check in section"
+  "clickTheLinkToVerify": "Click the link in the email to verify your account.",
+  "@clickTheLinkToVerify": {
+    "type": "text",
+    "description": "Shown on the verify account page."
   },
-  "add": "Add",
-  "@add": {
-    "description": "Button text"
-  },
-  "change": "Change",
-  "@change": {
-    "description": "Button text"
-  },
-  "writeHere": "Write here",
-  "@writeHere": {
-    "description": "New post text field placeholder"
-  },
-  "feed": "Feed",
-  "@feed": {
-    "description": "Feed page bar title"
-  },
-  "information": "Information",
-  "@information": {
-    "description": "Feed information item title"
-  },
-  "question": "Question",
-  "@question": {
-    "description": "Title of the question page"
-  },
-  "now": "Now",
-  "@now": {
-    "description": "Tv guide now playing label"
-  },
-  "debugInfoExplanation": "Your message will include this information, to help us better understand the issue.",
-  "@debugInfoExplanation": {
-    "description": "Info about debug info usage on contact support page"
-  },
-  "send": "Send",
-  "@send": {
-    "description": "General button to send a form"
-  },
-  "sending": "Sending",
-  "@sending": {
-    "description": "General sending action indicator"
-  },
-  "thankYouSupportTitle": "Thank you for your feedback!",
-  "@thankYouSupportTitle": {
-    "description": "Text on contact support confirmation page"
-  },
-  "thankYouSupportDescription": "We appreciate all feedback and we will address the issue as soon as possible.",
-  "@thankYouSupportDescription": {
-    "description": "Text on contact support confirmation page"
-  },
-  "sendFail": "Couldn't send your message",
-  "@sendFail": {
-    "description": "General error message that sending failed"
-  },
-  "sendFailDescription": "Something went wrong. Check your internet connection and try again.",
-  "@sendFailDescription": {
-    "description": "General error message that sending failed"
-  },
-  "sendSuccessDescription": "We appreciate your feedback.",
-  "@sendSuccessDescription": {
-    "description": "General message when sending is successful"
-  },
-  "today": "Today",
-  "@today": {
-    "description": "First category in tv guide"
-  },
-  "expired": "Expired",
-  "@expired": {
-    "description": "Label that something is no longer available."
-  },
-  "availableFrom": "Available {date}",
-  "@availableFrom": {
-    "description": "Info that episode will be released at certain date.",
-    "placeholders": {
-      "date": {
-        "type": "String"
-      }
-    }
-  },
-  "submit": "Submit",
-  "@submit": {
-    "description": "Submit button."
-  },
-  "wellDone": "Well done!",
-  "@wellDone": {
-    "description": "Positive message that may be used e.g. after completing some action."
-  },
-  "editPicture": "Edit picture",
-  "@editPicture": {
-    "description": "Button on profile page to edit profile picture."
-  },
-  "profilePicture": "Profile picture",
-  "@profilePicture": {
-    "description": "Text on edit profile page."
-  },
-  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
-  "@timezoneInformation": {
-    "description": "TV guide footer info text.",
-    "placeholders": {
-      "timeZone": {
-        "type": "String"
-      }
-    }
-  },
-  "share": "Share",
-  "@share": {
-    "description": "Generic."
-  },
-  "showMore": "Show more",
-  "@showMore": {
-    "description": "Text used on link to expand collapsed text."
-  },
-  "showLess": "Show less",
-  "@showLess": {
-    "description": "Text used on link to collapse expanded text."
+  "close": "Close",
+  "@close": {
+    "type": "text",
+    "description": "Text displayed on 'Close' button"
   },
   "comingSoon": "Coming soon",
   "@comingSoon": {
+    "type": "text",
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
   },
-  "newEpisode": "New",
-  "@newEpisode": {
-    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
+  "completePreviousTasks": "Complete previous tasks to unlock",
+  "@completePreviousTasks": {
+    "type": "text",
+    "description": "Shown on a locked button, short explanation why the button is locked."
   },
-  "tomorrow": "Tomorrow",
-  "@tomorrow": {
-    "description": "Day of transmission in tv guide."
+  "connectToExplore": "Connect to the internet to explore all videos.",
+  "@connectToExplore": {
+    "type": "text",
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "readBy": "Read by",
-  "@readBy": {
-    "description": "Feed verse pre author text."
+  "considerDeletingOtherVideos": "Consider deleting other videos you downloaded in the app.",
+  "@considerDeletingOtherVideos": {
+    "type": "text",
+    "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "broadcasts": "Broadcasts",
-  "@broadcasts": {
-    "description": "Title for live broadcasts."
+  "contactEmail": "Your contact email",
+  "@contactEmail": {
+    "type": "text",
+    "description": "Label for email field in contact support page"
   },
-  "calendar": "Calendar",
-  "@calendar": {
-    "description": "Title of calendar page."
+  "contactEmailHint": "Type in your email address",
+  "@contactEmailHint": {
+    "type": "text",
+    "description": "Hint text for name field in contact support page"
   },
-  "noEvents": "No scheduled transmissions",
-  "@noEvents": {
-    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  "contactIncludeDeviceInfo": "Include device information for better support.",
+  "@contactIncludeDeviceInfo": {
+    "type": "text",
+    "description": "Text for checkbox to include device information"
   },
-  "appUpdateTitle": "Update required",
-  "@appUpdateTitle": {
-    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  "contactIssueHint": "Describe the issue",
+  "@contactIssueHint": {
+    "type": "text",
+    "description": "Hint for the message box for logged in users"
   },
-  "appUpdateRequest": "Please download the latest app to enjoy all the latest features and bug fixes.",
-  "@appUpdateRequest": {
-    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  "contactMessage": "Message",
+  "@contactMessage": {
+    "type": "text",
+    "description": "Label for message field in contact support page"
   },
-  "appUpdateAccepted": "Update",
-  "@appUpdateAccepted": {
-    "description": "Option that can be chosen by the user to update his application."
+  "contactMessageHint": "Enter your message here",
+  "@contactMessageHint": {
+    "type": "text",
+    "description": "Hint text for message field in contact support page"
+  },
+  "contactName": "Name",
+  "@contactName": {
+    "type": "text",
+    "description": "Label for name field in contact support page"
+  },
+  "contactNameHint": "Type in your name",
+  "@contactNameHint": {
+    "type": "text",
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactSeeData": "Click to see data.",
+  "@contactSeeData": {
+    "type": "text",
+    "description": "Text for link to see device data"
+  },
+  "contactSupport": "Contact support",
+  "@contactSupport": {
+    "type": "text",
+    "description": "Title for contact support page"
+  },
+  "contactUs": "Contact us",
+  "@contactUs": {
+    "type": "text",
+    "description": "Title for contact us page"
+  },
+  "contentLanguage": "Content language",
+  "@contentLanguage": {
+    "type": "text",
+    "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
+  },
+  "contentLanguageExplanation": "Reorder the languages to match your preference for audio & subtitle language.",
+  "@contentLanguageExplanation": {
+    "type": "text",
+    "description": "Shown when you are selecting preferred content languages."
+  },
+  "contentLanguageShort": "Content",
+  "@contentLanguageShort": {
+    "type": "text",
+    "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
+  },
+  "continueButton": "Continue",
+  "@continueButton": {
+    "type": "text",
+    "description": "Generic button text."
+  },
+  "continueStudy": "Continue study",
+  "@continueStudy": {
+    "type": "text",
+    "description": "Button."
+  },
+  "continueToTaskIn": "Continue to task in",
+  "@continueToTaskIn": {
+    "type": "text",
+    "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "continueToTasksIn": "Continue to tasks in",
+  "@continueToTasksIn": {
+    "type": "text",
+    "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
   "copy": "Copy",
   "@copy": {
+    "type": "text",
     "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
-  "reload": "Reload",
-  "@reload": {
-    "description": "Label on the button that allows to reload the player after error."
+  "countItems": "{x} items",
+  "@countItems": {
+    "type": "text",
+    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
   },
-  "fAQ": "FAQ",
-  "@fAQ": {
-    "description": "Title on FAQ page and item in profile page settings."
+  "debugInfoExplanation": "Your message will include this information, to help us better understand the issue.",
+  "@debugInfoExplanation": {
+    "type": "text",
+    "description": "Info about debug info usage on contact support page"
   },
-  "shareStart": "Share from start",
-  "@shareStart": {
-    "description": "Option on action sheet for sharing from start"
+  "deleteMyAccount": "Delete my account",
+  "@deleteMyAccount": {
+    "type": "text",
+    "description": "Button to request to delete your account"
   },
-  "shareTime": "Share from {time}",
-  "@shareTime": {
-    "description": "Option on action sheet for sharing from time",
+  "details": "Details",
+  "@details": {
+    "type": "text",
+    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
+  },
+  "deviceInfo": "Device info",
+  "@deviceInfo": {
+    "type": "text",
+    "description": "Device info page title"
+  },
+  "deviceInfoAppVer": "App Version",
+  "@deviceInfoAppVer": {
+    "type": "text",
+    "description": "Label for app Version"
+  },
+  "deviceInfoDevice": "Device",
+  "@deviceInfoDevice": {
+    "type": "text",
+    "description": "Label for device"
+  },
+  "deviceInfoEnvOverride": "Environment override",
+  "@deviceInfoEnvOverride": {
+    "type": "text",
+    "description": "Label for environment override"
+  },
+  "deviceInfoManufacturer": "Manufacturer",
+  "@deviceInfoManufacturer": {
+    "type": "text",
+    "description": "Label for manufacturer"
+  },
+  "deviceInfoOs": "Operating System",
+  "@deviceInfoOs": {
+    "type": "text",
+    "description": "Label for operating system"
+  },
+  "deviceInfoPageDesc": "Your message will include this information, to help us provide better support.",
+  "@deviceInfoPageDesc": {
+    "type": "text",
+    "description": "Label for manufacturer"
+  },
+  "deviceInfoScreenSize": "Screen Size",
+  "@deviceInfoScreenSize": {
+    "type": "text",
+    "description": "Label for screen size"
+  },
+  "deviceInfoUserId": "User ID",
+  "@deviceInfoUserId": {
+    "type": "text",
+    "description": "Label for user id"
+  },
+  "didYouKnowContent": "You can add your favorite shows to \"My List\" by tapping the heart.",
+  "@didYouKnowContent": {
+    "type": "text",
+    "description": "Content for info displayed on 'My list' page."
+  },
+  "didYouKnowTitle": "Did you know?",
+  "@didYouKnowTitle": {
+    "type": "text",
+    "description": "Title for info displayed on 'My list' page."
+  },
+  "discoverMore": "Discover more",
+  "@discoverMore": {
+    "type": "text",
+    "description": "Generic button text."
+  },
+  "donateViaPaypal": "Donate via PayPal",
+  "@donateViaPaypal": {
+    "type": "text",
+    "description": "Shown on the settings page."
+  },
+  "done": "Done",
+  "@done": {
+    "type": "text",
+    "description": "Generic Done button, for example to dismiss a page after completing an action."
+  },
+  "dontHaveAccess": "You do not have access to this content.",
+  "@dontHaveAccess": {
+    "type": "text",
+    "description": "Error message when you open a link to content you dont have access to."
+  },
+  "downloadButton": "Download",
+  "@downloadButton": {
+    "type": "text",
+    "description": "Button text, a button to download the episode to make it available for offline playback."
+  },
+  "downloaded": "Downloaded",
+  "@downloaded": {
+    "type": "text",
+    "description": "Shown as a title for the 'downloaded' section in the profile tab."
+  },
+  "downloadedVideosGuideDescription": "You can find your downloaded videos under \"Profile\".",
+  "@downloadedVideosGuideDescription": {
+    "type": "text",
+    "description": "Shown when you have downloaded a video for the first time."
+  },
+  "downloading": "Downloading",
+  "@downloading": {
+    "type": "text",
+    "description": "Download status, indicating that the video is currently downloading."
+  },
+  "downloadVideo": "Download video",
+  "@downloadVideo": {
+    "type": "text",
+    "description": "Title on the download video form."
+  },
+  "doYouWantCast": "Do you want to cast this video?",
+  "@doYouWantCast": {
+    "type": "text",
+    "description": "Prompt displayed to the user"
+  },
+  "editPicture": "Edit picture",
+  "@editPicture": {
+    "type": "text",
+    "description": "Button on profile page to edit profile picture."
+  },
+  "emptySearch": "You can search all content from BCC Media. Series, videos and episodes.",
+  "@emptySearch": {
+    "type": "text",
+    "description": "Message on search page when there is no search results."
+  },
+  "episode": "Episode",
+  "@episode": {
+    "type": "text",
+    "description": "Title of the tab on info page"
+  },
+  "episodeLetter": "E",
+  "@episodeLetter": {
+    "type": "text",
+    "description": "Episode letter in label S1E3"
+  },
+  "episodes": "Episodes",
+  "@episodes": {
+    "type": "text",
+    "description": "Followed by number of episodes in given series."
+  },
+  "errorTryAgain": "Something went wrong, please try again later.",
+  "@errorTryAgain": {
+    "type": "text",
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
+  "estimatedFileSize": "Estimated file size: {size}",
+  "@estimatedFileSize": {
+    "type": "text",
+    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "eventsTab": "Events",
+  "@eventsTab": {
+    "type": "text",
+    "description": "Events Tab title"
+  },
+  "excerptFrom": "Excerpt from",
+  "@excerptFrom": {
+    "type": "text",
+    "description": "Shown on a 'short' video, indicating that this is an excerpt from a longer video. E.g. Excerpt from 'The Tale of John Doe'."
+  },
+  "expired": "Expired",
+  "@expired": {
+    "type": "text",
+    "description": "Label that something is no longer available."
+  },
+  "expiresIn": "Expires in {time}",
+  "@expiresIn": {
+    "type": "text",
+    "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
     "placeholders": {
       "time": {
         "type": "String"
       }
     }
   },
-  "loadContentError": "Couldn't load content",
-  "@loadContentError": {
-    "description": "Error text when content couldn't be loaded."
-  },
-  "privacyPolicy": "Privacy Policy",
-  "@privacyPolicy": {
-    "description": "Title on Privacy Policy page and item in profile page settings."
-  },
-  "termsOfUse": "Terms of use",
-  "@termsOfUse": {
-    "description": "Title on the 'Terms of use' page."
-  },
-  "categoriesTab": "Categories",
-  "@categoriesTab": {
-    "description": "Title of the Categories Tab"
-  },
-  "seriesTab": "Series",
-  "@seriesTab": {
-    "description": "Series Tab title"
-  },
-  "filmsTab": "Films",
-  "@filmsTab": {
-    "description": "Films Tab title"
-  },
-  "eventsTab": "Events",
-  "@eventsTab": {
-    "description": "Events Tab title"
-  },
-  "audioLanguage": "Audio language",
-  "@audioLanguage": {
-    "description": "Label indicating that the Audio Language can be changed here."
-  },
-  "subtitlesLanguage": "Subtitles language",
-  "@subtitlesLanguage": {
-    "description": "Label indicating that the Subtitles Language can be changed here."
-  },
-  "removeFromRecentSearches": "Do you want to remove this element from recent searches?",
-  "@removeFromRecentSearches": {
-    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
-  },
-  "noTransmissionToday": "No scheduled transmission for today",
-  "@noTransmissionToday": {
-    "description": "Messages that informs the user, that there are no schedules transmission for today."
-  },
-  "featured": "Featured",
-  "@featured": {
-    "description": "Featured videos collection header"
-  },
-  "errorTryAgain": "Something went wrong, please try again later.",
-  "@errorTryAgain": {
-    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
-  },
-  "programsSection": "Programs",
-  "@programsSection": {
-    "description": "Section in search."
-  },
-  "noPlannedEvents": "No events planned this day",
-  "@noPlannedEvents": {
-    "description": "Information in tvguide"
-  },
-  "watchNow": "Watch now",
-  "@watchNow": {
-    "description": "Button on featured carousel"
-  },
   "exploreContent": "Explore content",
   "@exploreContent": {
+    "type": "text",
     "description": "A button"
   },
   "explorePublicContent": "Explore public content",
   "@explorePublicContent": {
+    "type": "text",
     "description": "A button on the welcome page"
   },
-  "startExploring": "Start exploring",
-  "@startExploring": {
-    "description": "A button on the welcome page"
+  "failed": "Failed",
+  "@failed": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that failed."
   },
-  "taskCompleted": "task completed",
-  "@taskCompleted": {
-    "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
+  "faq": "Frequently asked questions",
+  "@faq": {
+    "type": "text",
+    "description": "Long title of the FAQ page."
   },
-  "tasksCompleted": "tasks completed",
-  "@tasksCompleted": {
-    "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
+  "fAQ": "FAQ",
+  "@fAQ": {
+    "type": "text",
+    "description": "Title on FAQ page and item in profile page settings."
   },
-  "studyCompleteTaskDescription": "Complete tasks and discover related resources",
-  "@studyCompleteTaskDescription": {
-    "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
+  "featured": "Featured",
+  "@featured": {
+    "type": "text",
+    "description": "Featured videos collection header"
   },
-  "discoverMore": "Discover more",
-  "@discoverMore": {
-    "description": "Generic button text."
+  "featureNotAvailableYet": "This feature is not available on your device yet. Please try again later.",
+  "@featureNotAvailableYet": {
+    "type": "text",
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
-  "completePreviousTasks": "Complete previous tasks to unlock",
-  "@completePreviousTasks": {
-    "description": "Shown on a locked button, short explanation why the button is locked."
+  "feed": "Feed",
+  "@feed": {
+    "type": "text",
+    "description": "Feed page bar title"
   },
-  "studyDiscoverMoreDescription": "Find more inspiration and insight from related resources",
-  "@studyDiscoverMoreDescription": {
-    "description": "Description to open the related resources for this episode."
+  "filmsTab": "Films",
+  "@filmsTab": {
+    "type": "text",
+    "description": "Films Tab title"
   },
-  "watchAgain": "Watch again",
-  "@watchAgain": {
-    "description": "Short button text to watch the video again."
+  "finished": "Finished",
+  "@finished": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that finished."
   },
-  "continueToTaskIn": "Continue to task in",
-  "@continueToTaskIn": {
-    "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  "gamesTab": "Games",
+  "@gamesTab": {
+    "type": "text",
+    "description": "Title of the games page"
   },
-  "continueToTasksIn": "Continue to tasks in",
-  "@continueToTasksIn": {
-    "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  "goBack": "Go back",
+  "@goBack": {
+    "type": "text",
+    "description": "Text for back button."
   },
-  "studyLessonCompleted": "lesson completed",
-  "@studyLessonCompleted": {
-    "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
+  "gotIt": "Got it",
+  "@gotIt": {
+    "type": "text",
+    "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
   },
-  "studyLessonsCompleted": "lessons completed",
-  "@studyLessonsCompleted": {
-    "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
+  "hereAreAllTheVideosYouDownloaded": "Here are all the videos you have downloaded to your device.",
+  "@hereAreAllTheVideosYouDownloaded": {
+    "type": "text",
+    "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "continueStudy": "Continue study",
-  "@continueStudy": {
-    "description": "Button."
+  "high": "High",
+  "@high": {
+    "type": "text",
+    "description": "High quality video option"
   },
-  "startStudy": "Start study",
-  "@startStudy": {
-    "description": "Button."
+  "homeTab": "Home",
+  "@homeTab": {
+    "type": "text",
+    "description": "Title of the home page"
   },
-  "videoCompletedText": "Great job on completing the video.",
-  "@videoCompletedText": {
-    "description": "Shown after completing tasks related to a video."
+  "iAmSureIWantToDelete": "I am sure I want to delete my account and my data related to the BCC Media app.",
+  "@iAmSureIWantToDelete": {
+    "type": "text",
+    "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
   },
-  "achievementFirstDescription": "Great job on completing the video and earning your first progress achievement.",
-  "@achievementFirstDescription": {
-    "description": "Description displayed in a popup when earning the first achievement badge."
+  "ifYouDidntReceiveVerificationEmail": "If you still did not receive an email, please contact support at",
+  "@ifYouDidntReceiveVerificationEmail": {
+    "type": "text",
+    "description": "Shown when the user has requested a new verification email."
   },
-  "achievementStudyTopic": "Great job on completing the study topic {name}",
-  "@achievementStudyTopic": {
-    "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
+  "info": "Information",
+  "@info": {
+    "type": "text",
+    "description": "Video info page title."
   },
-  "videoCount": "{count} videos",
-  "@videoCount": {
-    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
+  "information": "Information",
+  "@information": {
+    "type": "text",
+    "description": "Feed information item title"
   },
-  "taskCount": "{count} tasks",
-  "@taskCount": {
-    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
+  "keepVideoButton": "Keep video",
+  "@keepVideoButton": {
+    "type": "text",
+    "description": "Button when asking to remove a downloaded video. This button cancels."
   },
-  "posterCount": "{count} posters",
-  "@posterCount": {
-    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
+  "kidsOnboardingSecondaryTitle": "Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.",
+  "@kidsOnboardingSecondaryTitle": {
+    "type": "text",
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "resourceCount": "{count} resources",
-  "@resourceCount": {
-    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
+  "kidsOnboardingTitle": "We bring the message of the Bible to life!",
+  "@kidsOnboardingTitle": {
+    "type": "text",
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "continueButton": "Continue",
-  "@continueButton": {
-    "description": "Generic button text."
+  "language": "Language",
+  "@language": {
+    "type": "text",
+    "description": "A label when selecting a language to download."
   },
-  "registerButton": "Register",
-  "@registerButton": {
-    "description": "Generic button text."
+  "latelyPublished": "Lately published",
+  "@latelyPublished": {
+    "type": "text",
+    "description": "Title for the list of videos on login page"
   },
-  "achievements": "Achievements",
-  "@achievements": {
-    "description": "Generic. Used as page title, etc."
+  "likedAndSaved": "Liked and saved",
+  "@likedAndSaved": {
+    "type": "text",
+    "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "likedShorts": "Liked shorts",
+  "@likedShorts": {
+    "type": "text",
+    "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
+  },
+  "loadContentError": "Couldn't load content",
+  "@loadContentError": {
+    "type": "text",
+    "description": "Error text when content couldn't be loaded."
+  },
+  "loading": "Loading",
+  "@loading": {
+    "type": "text",
+    "description": "Text to indicate loading state."
+  },
+  "loadingContent": "Loading content",
+  "@loadingContent": {
+    "type": "text",
+    "description": "Text displayed when page content is loading."
+  },
+  "loggedOutMessage": "You have been logged out. Please log in again.",
+  "@loggedOutMessage": {
+    "type": "text",
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutTitle": "Logged out",
+  "@loggedOutTitle": {
+    "type": "text",
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loginFailedCheckNetwork": "Login failed. Check your network connection and try again.",
+  "@loginFailedCheckNetwork": {
+    "type": "text",
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Login failed. Please try again later.",
+  "@loginFailedTryAgain": {
+    "type": "text",
+    "description": "Login error message"
+  },
+  "loginPageDisplay1": "The most powerful\n message in the world",
+  "@loginPageDisplay1": {
+    "type": "text",
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "@loginPageDisplay2": {
+    "type": "text",
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay3": "Produced by BCC Media",
+  "@loginPageDisplay3": {
+    "type": "text",
+    "description": "Text displayed on login screen."
+  },
+  "logOutButton": "Log out",
+  "@logOutButton": {
+    "type": "text",
+    "description": "Text displayed on Log out button"
+  },
+  "low": "Low",
+  "@low": {
+    "type": "text",
+    "description": "Low quality video option"
+  },
+  "makeDonation": "Make a donation",
+  "@makeDonation": {
+    "type": "text",
+    "description": "Text for button which opens donation page."
+  },
+  "medium": "Medium",
+  "@medium": {
+    "type": "text",
+    "description": "Medium quality video option"
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "type": "text",
+    "description": "Text for minutes."
+  },
+  "moreInfo": "More information",
+  "@moreInfo": {
+    "type": "text",
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "mostRecent": "Most recent",
+  "@mostRecent": {
+    "type": "text",
+    "description": "Sorting option on audience page"
+  },
+  "mostWatched": "Most watched",
+  "@mostWatched": {
+    "type": "text",
+    "description": "Sorting option on audience page"
+  },
+  "mustBeLoggedIn": "You need to be logged in to watch this content",
+  "@mustBeLoggedIn": {
+    "type": "text",
+    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  },
+  "myList": "My list",
+  "@myList": {
+    "type": "text",
+    "description": "My list tab name"
+  },
+  "newEpisode": "New",
+  "@newEpisode": {
+    "type": "text",
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
+  },
+  "newFeature": "New feature",
+  "@newFeature": {
+    "type": "text",
+    "description": "Shown the first time you open the app after a new feature is available."
+  },
+  "next": "Next",
+  "@next": {
+    "type": "text",
+    "description": "NEXT program in check in section"
+  },
+  "nextEpisode": "Next Episode",
+  "@nextEpisode": {
+    "type": "text",
+    "description": "Button indicating the next video will play soon."
+  },
+  "noEvents": "No scheduled transmissions",
+  "@noEvents": {
+    "type": "text",
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
+  "noInternetButDontWorry": "No internet connection,\nbut don't worry.",
+  "@noInternetButDontWorry": {
+    "type": "text",
+    "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
+  },
+  "noInternetConnection": "No internet connection",
+  "@noInternetConnection": {
+    "type": "text",
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "noInternetConnectionDescription": "Connect to the internet to access all videos.",
+  "@noInternetConnectionDescription": {
+    "type": "text",
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "noMailAppsDescription": "No mail apps installed",
+  "@noMailAppsDescription": {
+    "type": "text",
+    "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
+  },
+  "none": "None",
+  "@none": {
+    "type": "text",
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "noPlannedEvents": "No events planned this day",
+  "@noPlannedEvents": {
+    "type": "text",
+    "description": "Information in tvguide"
+  },
+  "noResults": "No results found",
+  "@noResults": {
+    "type": "text",
+    "description": "No search results."
+  },
+  "noSubtitles": "No subtitles",
+  "@noSubtitles": {
+    "type": "text",
+    "description": "Shown in the download form, indicating that there are no subtitles available for the video."
+  },
+  "notAchieved": "Not achieved",
+  "@notAchieved": {
+    "type": "text",
+    "description": "A label indicating that this achievement has not been achieved yet."
+  },
+  "notEnoughAvailableSpace": "Not enough available space on your device",
+  "@notEnoughAvailableSpace": {
+    "type": "text",
+    "description": "Shown when you try to download an episode, but there is not enough space on your device."
+  },
+  "notFound": "The content you are looking for doesn't seem to exist.",
+  "@notFound": {
+    "type": "text",
+    "description": "Error message when the requested content is not found."
+  },
+  "noTransmissionToday": "No scheduled transmission for today",
+  "@noTransmissionToday": {
+    "type": "text",
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
+  "now": "Now",
+  "@now": {
+    "type": "text",
+    "description": "Tv guide now playing label"
+  },
+  "offline": "Offline",
+  "@offline": {
+    "type": "text",
+    "description": "Status indicator, indicating that you are offline; not connected to the internet."
+  },
+  "ok": "OK",
+  "@ok": {
+    "type": "text",
+    "description": "Popup confirmation button"
+  },
+  "oops": "Oops!",
+  "@oops": {
+    "type": "text",
+    "description": "An informal title on some error screens."
+  },
+  "open": "Open",
+  "@open": {
+    "type": "text",
+    "description": "Open button"
+  },
+  "openEmailApp": "Open email app",
+  "@openEmailApp": {
+    "type": "text",
+    "description": "Shown on the verify account page. Button to open your email app."
+  },
+  "openSettingsToChangeVideoLang": "Open settings to change the video text language",
+  "@openSettingsToChangeVideoLang": {
+    "type": "text",
+    "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
+  },
+  "openStore": "Open store",
+  "@openStore": {
+    "type": "text",
+    "description": "A button to open play store / app store."
+  },
+  "options": "Options",
+  "@options": {
+    "type": "text",
+    "description": "Options dialog title"
+  },
+  "original": "Original",
+  "@original": {
+    "type": "text",
+    "description": "E.g. original language."
+  },
+  "otherLanguages": "Other languages",
+  "@otherLanguages": {
+    "type": "text",
+    "description": "Languages that are available but in your list of preferred languages."
+  },
+  "passwordConditionComplexity": "Must contain lower case, uppercase and numbers.",
+  "@passwordConditionComplexity": {
+    "type": "text",
+    "description": "Password condition, shown when signing up."
   },
   "passwordConditionLength": "Minimum {n} characters",
   "@passwordConditionLength": {
+    "type": "text",
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
       "n": {
@@ -893,182 +1013,584 @@
       }
     }
   },
-  "passwordConditionComplexity": "Must contain lower case, uppercase and numbers.",
-  "@passwordConditionComplexity": {
-    "description": "Password condition, shown when signing up."
+  "pause": "Pause",
+  "@pause": {
+    "type": "text",
+    "description": "A button to pause the video."
   },
-  "oops": "Oops!",
-  "@oops": {
-    "description": "An informal title on some error screens."
+  "paused": "Paused",
+  "@paused": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
   },
-  "dontHaveAccess": "You do not have access to this content.",
-  "@dontHaveAccess": {
-    "description": "Error message when you open a link to content you dont have access to."
+  "pickPhoto": "Pick from gallery",
+  "@pickPhoto": {
+    "type": "text",
+    "description": "Option in menu"
   },
-  "notFound": "The content you are looking for doesn't seem to exist.",
-  "@notFound": {
-    "description": "Error message when the requested content is not found."
+  "play": "Play",
+  "@play": {
+    "type": "text",
+    "description": "Option in prompt dialog."
   },
-  "mustBeLoggedIn": "You need to be logged in to watch this content",
-  "@mustBeLoggedIn": {
-    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  "playerSettings": "Player settings",
+  "@playerSettings": {
+    "type": "text",
+    "description": "Title of the Player settings activity in Android"
+  },
+  "playGame": "Play Game",
+  "@playGame": {
+    "type": "text",
+    "description": "Title on a game"
+  },
+  "playRandom": "Play random",
+  "@playRandom": {
+    "type": "text",
+    "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
   },
   "plentyOfOtherContent": "Don't worry, there's still plenty of content to enjoy!",
   "@plentyOfOtherContent": {
+    "type": "text",
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   },
-  "notAchieved": "Not achieved",
-  "@notAchieved": {
-    "description": "A label indicating that this achievement has not been achieved yet."
-  },
-  "details": "Details",
-  "@details": {
-    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
-  },
-  "myList": "My list",
-  "@myList": {
-    "description": "My list tab name"
-  },
-  "didYouKnowTitle": "Did you know?",
-  "@didYouKnowTitle": {
-    "description": "Title for info displayed on 'My list' page."
-  },
-  "didYouKnowContent": "You can add your favorite shows to \"My List\" by tapping the heart.",
-  "@didYouKnowContent": {
-    "description": "Content for info displayed on 'My list' page."
-  },
-  "selectSeason": "Select season",
-  "@selectSeason": {
-    "description": "A title prompting to select a season from the list."
-  },
-  "deleteMyAccount": "Delete my account",
-  "@deleteMyAccount": {
-    "description": "Button to request to delete your account"
-  },
-  "iAmSureIWantToDelete": "I am sure I want to delete my account and my data related to the BCC Media app.",
-  "@iAmSureIWantToDelete": {
-    "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
-  },
-  "areYouSure": "Are you sure?",
-  "@areYouSure": {
-    "description": "Generic text. Used at least as a title on the account deletion page."
-  },
-  "youCanContactUsAt": "You can contact us at",
-  "@youCanContactUsAt": {
-    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
-  },
-  "biblekidsAbout": "Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.",
-  "@biblekidsAbout": {
-    "description": "Shown on about page"
-  },
-  "askYourParents": "Ask your parents",
-  "@askYourParents": {
-    "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
-  },
-  "whatIsMath": "What is",
-  "@whatIsMath": {
-    "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
-  },
-  "answerLabel": "Answer",
-  "@answerLabel": {
-    "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
-  },
-  "checkAnswerButton": "Check answer",
-  "@checkAnswerButton": {
-    "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
-  },
-  "videoOnlyAccessibleToLoggedIn": "This video is only accessible to users that are logged in to the app.",
-  "@videoOnlyAccessibleToLoggedIn": {
-    "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
-  },
-  "verifyYourAccount": "Verify your account",
-  "@verifyYourAccount": {
-    "description": "Title of the page where you can verify your email/account."
-  },
-  "weHaveSentAnEmailTo": "We have sent an email to",
-  "@weHaveSentAnEmailTo": {
-    "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
-  },
-  "clickTheLinkToVerify": "Click the link in the email to verify your account.",
-  "@clickTheLinkToVerify": {
-    "description": "Shown on the verify account page."
-  },
-  "openEmailApp": "Open email app",
-  "@openEmailApp": {
-    "description": "Shown on the verify account page. Button to open your email app."
-  },
-  "resendEmail": "Resend email",
-  "@resendEmail": {
-    "description": "Shown on the verify account page. Button to resend the verification email."
-  },
-  "noMailAppsDescription": "No mail apps installed",
-  "@noMailAppsDescription": {
-    "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
-  },
-  "verificationEmailSent": "Verification email sent",
-  "@verificationEmailSent": {
-    "description": "Shown when the user has requested a new verification email."
-  },
-  "ifYouDidntReceiveVerificationEmail": "If you still did not receive an email, please contact support at",
-  "@ifYouDidntReceiveVerificationEmail": {
-    "description": "Shown when the user has requested a new verification email."
-  },
-  "accountCreated": "Account created",
-  "@accountCreated": {
-    "description": "Shown when the user has successfully created an account."
-  },
-  "youCanNowUseYourAccount": "You can now use your account and explore a variety of edifying content.",
-  "@youCanNowUseYourAccount": {
-    "description": "Shown when the user has successfully completed account setup."
-  },
-  "youCanNowLogInToYourAccount": "You can now log in to your account and explore a variety of edifying content.",
-  "@youCanNowLogInToYourAccount": {
-    "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
-  },
-  "accountDeletionExplanation": "You are about to request to delete your account with BCC Media and all your data related to this app.",
-  "@accountDeletionExplanation": {
-    "description": "Shown on the account deletion page."
-  },
-  "accountDeletionWarning": "This is an action that cannot be undone.",
-  "@accountDeletionWarning": {
-    "description": "Shown on the account deletion page."
-  },
-  "accountDeletionTimeframe": "Account deletion will usually be done within {x} business days.",
-  "@accountDeletionTimeframe": {
-    "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
+  "posterCount": "{count} posters",
+  "@posterCount": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
-      "x": {
+      "count": {
         "type": "int"
       }
     }
   },
-  "accountDeletionTitle": "Delete my account",
-  "@accountDeletionTitle": {
-    "description": "Title of the account deletion page."
+  "preferredLanguages": "Preferred languages",
+  "@preferredLanguages": {
+    "type": "text",
+    "description": "Shown when you are selecting preferred content languages. Title."
   },
-  "accountDeletionSuccess": "Account deletion successfully requested. You will receive an email at {email}. To confirm your identity, we need you reply to that email to proceed with the deletion.",
-  "@accountDeletionSuccess": {
-    "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
+  "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "type": "text",
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
+  "profilePicture": "Profile picture",
+  "@profilePicture": {
+    "type": "text",
+    "description": "Text on edit profile page."
+  },
+  "profileTab": "Profile",
+  "@profileTab": {
+    "type": "text",
+    "description": "Title of the profile page"
+  },
+  "programsSection": "Programs",
+  "@programsSection": {
+    "type": "text",
+    "description": "Section in search."
+  },
+  "quality": "Quality",
+  "@quality": {
+    "type": "text",
+    "description": "Generic."
+  },
+  "question": "Question",
+  "@question": {
+    "type": "text",
+    "description": "Title of the question page"
+  },
+  "queued": "Queued",
+  "@queued": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
+  },
+  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "@queueLimitMessage": {
+    "type": "text",
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
-      "email": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "queueLimitTitle": "Limit",
+  "@queueLimitTitle": {
+    "type": "text",
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "readBy": "Read by",
+  "@readBy": {
+    "type": "text",
+    "description": "Feed verse pre author text."
+  },
+  "recentSearches": "Recent Searches",
+  "@recentSearches": {
+    "type": "text",
+    "description": "Recent searches list title."
+  },
+  "registerButton": "Register",
+  "@registerButton": {
+    "type": "text",
+    "description": "Generic button text."
+  },
+  "releaseDate": "Release date",
+  "@releaseDate": {
+    "type": "text",
+    "description": "Release date of the episode, shown in the 'details' tab under an episode."
+  },
+  "reload": "Reload",
+  "@reload": {
+    "type": "text",
+    "description": "Label on the button that allows to reload the player after error."
+  },
+  "remove": "Remove",
+  "@remove": {
+    "type": "text",
+    "description": "Option in options dialog"
+  },
+  "removeFromDeviceButton": "Remove from device",
+  "@removeFromDeviceButton": {
+    "type": "text",
+    "description": "Button text, to remove a downloaded video from the device."
+  },
+  "removeFromRecentSearches": "Do you want to remove this element from recent searches?",
+  "@removeFromRecentSearches": {
+    "type": "text",
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
+  "removeOfflineVideo": "Remove offline video?",
+  "@removeOfflineVideo": {
+    "type": "text",
+    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
+  },
+  "removeOfflineVideoDescription": "By removing this video it will no longer be available without a network connection.",
+  "@removeOfflineVideoDescription": {
+    "type": "text",
+    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
+  },
+  "removeWatchProgress": "Remove watch progress",
+  "@removeWatchProgress": {
+    "type": "text",
+    "description": "Shown when holding on an episode in the 'continue watching' section."
+  },
+  "removing": "Removing",
+  "@removing": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
+  },
+  "resendEmail": "Resend email",
+  "@resendEmail": {
+    "type": "text",
+    "description": "Shown on the verify account page. Button to resend the verification email."
+  },
+  "resourceCount": "{count} resources",
+  "@resourceCount": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "saveVideosForOfflineViewing": "Save videos for offline viewing",
+  "@saveVideosForOfflineViewing": {
+    "type": "text",
+    "description": "Shown when the 'downloaded' section is empty."
+  },
+  "saveYourFavorites": "Save your favorite videos",
+  "@saveYourFavorites": {
+    "type": "text",
+    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
+  },
+  "saveYourFavoritesDescription": "Tap on the heart icon on a video to save it in your profile.",
+  "@saveYourFavoritesDescription": {
+    "type": "text",
+    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
+  },
+  "saveYourFavoriteShorts": "Save your favorite shorts",
+  "@saveYourFavoriteShorts": {
+    "type": "text",
+    "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
+  },
+  "search": "Search",
+  "@search": {
+    "type": "text",
+    "description": "Button to clear cache"
+  },
+  "seasonLetter": "S",
+  "@seasonLetter": {
+    "type": "text",
+    "description": "Season  letter in label S1E3"
+  },
+  "seasons": "Seasons",
+  "@seasons": {
+    "type": "text",
+    "description": "Followed by number of seasons in given series."
+  },
+  "seeAll": "See all",
+  "@seeAll": {
+    "type": "text",
+    "description": "Button to see all of some collection."
+  },
+  "seeMore": "See more",
+  "@seeMore": {
+    "type": "text",
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "select": "Select",
+  "@select": {
+    "type": "text",
+    "description": "Prompt. Shown at the top of a list of options."
+  },
+  "selectSeason": "Select season",
+  "@selectSeason": {
+    "type": "text",
+    "description": "A title prompting to select a season from the list."
+  },
+  "send": "Send",
+  "@send": {
+    "type": "text",
+    "description": "General button to send a form"
+  },
+  "sendFail": "Couldn't send your message",
+  "@sendFail": {
+    "type": "text",
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Something went wrong. Check your internet connection and try again.",
+  "@sendFailDescription": {
+    "type": "text",
+    "description": "General error message that sending failed"
+  },
+  "sendFeedback": "Send Feedback",
+  "@sendFeedback": {
+    "type": "text",
+    "description": "Button to submit feedback(Survey)"
+  },
+  "sending": "Sending",
+  "@sending": {
+    "type": "text",
+    "description": "General sending action indicator"
+  },
+  "sendSuccessDescription": "We appreciate your feedback.",
+  "@sendSuccessDescription": {
+    "type": "text",
+    "description": "General message when sending is successful"
+  },
+  "series": "Series",
+  "@series": {
+    "type": "text",
+    "description": "Title of the tab on info page"
+  },
+  "seriesTab": "Series",
+  "@seriesTab": {
+    "type": "text",
+    "description": "Series Tab title"
+  },
+  "setPassword": "Set password",
+  "@setPassword": {
+    "type": "text",
+    "description": "Title for the 'Set password' page of the signup process."
+  },
+  "settings": "Settings",
+  "@settings": {
+    "type": "text",
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "share": "Share",
+  "@share": {
+    "type": "text",
+    "description": "Generic."
+  },
+  "shareStart": "Share from start",
+  "@shareStart": {
+    "type": "text",
+    "description": "Option on action sheet for sharing from start"
+  },
+  "shareTime": "Share from {time}",
+  "@shareTime": {
+    "type": "text",
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
         "type": "String"
       }
     }
   },
-  "gamesTab": "Games",
-  "@gamesTab": {
-    "description": "Title of the games page"
+  "shortFilms": "Short films",
+  "@shortFilms": {
+    "type": "text",
+    "description": "Title of the films collection."
   },
-  "playGame": "Play Game",
-  "@playGame": {
-    "description": "Title on a game"
+  "shortsFeatureDescription": "Discover short and powerful excerpts, and jump right into its full episode.",
+  "@shortsFeatureDescription": {
+    "type": "text",
+    "description": "Shown the first time you open the app after 'shorts' is enabled."
   },
-  "tvScanQr": "Scan the code and sign in with your phone",
-  "@tvScanQr": {
-    "description": "Title on the login screen for TVs"
+  "shortsLikedAndSavedDescription": "You can find all your liked shorts in your profile.",
+  "@shortsLikedAndSavedDescription": {
+    "type": "text",
+    "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "shortsTab": "Shorts",
+  "@shortsTab": {
+    "type": "text",
+    "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
+  },
+  "shortsTranscriptionDisclaimer": "The transcriptions are auto-generated and might contain errors.",
+  "@shortsTranscriptionDisclaimer": {
+    "type": "text",
+    "description": "Disclaimer shown on the shorts page."
+  },
+  "showDescription": "Show description",
+  "@showDescription": {
+    "type": "text",
+    "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
+  },
+  "showLess": "Show less",
+  "@showLess": {
+    "type": "text",
+    "description": "Text used on link to collapse expanded text."
+  },
+  "showMore": "Show more",
+  "@showMore": {
+    "type": "text",
+    "description": "Text used on link to expand collapsed text."
+  },
+  "signInButton": "Sign in",
+  "@signInButton": {
+    "type": "text",
+    "description": "Text displayed on Sign in button"
+  },
+  "signInOrSignUp": "Sign up / Sign in",
+  "@signInOrSignUp": {
+    "type": "text",
+    "description": "Button to go to the onboarding page (short)"
+  },
+  "signInTooltip": "Sign in to watch more content",
+  "@signInTooltip": {
+    "type": "text",
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "signUpAgreePrivacyPolicy": "I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.",
+  "@signUpAgreePrivacyPolicy": {
+    "type": "text",
+    "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
+  },
+  "signUpButton": "Sign up now",
+  "@signUpButton": {
+    "type": "text",
+    "description": "Button to start the sign up process"
+  },
+  "signUpDescription": "Get access to more content and better features by creating an account.",
+  "@signUpDescription": {
+    "type": "text",
+    "description": "A description on the sign up page explaining why you would want to sign up"
+  },
+  "signUpTitle": "Sign up",
+  "@signUpTitle": {
+    "type": "text",
+    "description": "Title on the sign up page"
+  },
+  "skipTo": "Skip to {chapter}",
+  "@skipTo": {
+    "type": "text",
+    "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "chapter": {
+        "type": "String"
+      }
+    }
+  },
+  "skipToPublicContent": "Skip to watch public content",
+  "@skipToPublicContent": {
+    "type": "text",
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "somethingWentWrong": "Something went wrong",
+  "@somethingWentWrong": {
+    "type": "text",
+    "description": "Generic error title/message."
+  },
+  "sortBy": "Sort by",
+  "@sortBy": {
+    "type": "text",
+    "description": "Sorting criteria selector"
+  },
+  "soundLanguage": "Sound language",
+  "@soundLanguage": {
+    "type": "text",
+    "description": "Settings item on profile page"
+  },
+  "startExploring": "Start exploring",
+  "@startExploring": {
+    "type": "text",
+    "description": "A button on the welcome page"
+  },
+  "startStudy": "Start study",
+  "@startStudy": {
+    "type": "text",
+    "description": "Button."
+  },
+  "studyCompleteTaskDescription": "Complete tasks and discover related resources",
+  "@studyCompleteTaskDescription": {
+    "type": "text",
+    "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
+  },
+  "studyDiscoverMoreDescription": "Find more inspiration and insight from related resources",
+  "@studyDiscoverMoreDescription": {
+    "type": "text",
+    "description": "Description to open the related resources for this episode."
+  },
+  "studyLessonCompleted": "lesson completed",
+  "@studyLessonCompleted": {
+    "type": "text",
+    "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
+  },
+  "studyLessonsCompleted": "lessons completed",
+  "@studyLessonsCompleted": {
+    "type": "text",
+    "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
+  },
+  "submit": "Submit",
+  "@submit": {
+    "type": "text",
+    "description": "Submit button."
+  },
+  "subtitleLanguage": "Subtitle language",
+  "@subtitleLanguage": {
+    "type": "text",
+    "description": "Settings item on profile page"
+  },
+  "subtitles": "Subtitles",
+  "@subtitles": {
+    "type": "text",
+    "description": "Generic."
+  },
+  "subtitlesIncluded": "Subtitles included",
+  "@subtitlesIncluded": {
+    "type": "text",
+    "description": "Shown in the download form, indicating that all subtitles are included in the video."
+  },
+  "subtitlesLanguage": "Subtitles language",
+  "@subtitlesLanguage": {
+    "type": "text",
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
+  "supportBibleKids": "Support Bible Kids",
+  "@supportBibleKids": {
+    "type": "text",
+    "description": "Shown on the settings page."
+  },
+  "takePhoto": "Take a photo",
+  "@takePhoto": {
+    "type": "text",
+    "description": "Option in menu"
+  },
+  "tapOnTheDownloadIcon": "Tap on the download icon on a video, to download and play while offline.",
+  "@tapOnTheDownloadIcon": {
+    "type": "text",
+    "description": "Shown when the 'downloaded' section is empty."
+  },
+  "taskCompleted": "task completed",
+  "@taskCompleted": {
+    "type": "text",
+    "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
+  },
+  "taskCount": "{count} tasks",
+  "@taskCount": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tasksCompleted": "tasks completed",
+  "@tasksCompleted": {
+    "type": "text",
+    "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
+  },
+  "technicalDetails": "Technical details",
+  "@technicalDetails": {
+    "type": "text",
+    "description": "Shown when errors occur, and you want to see more technical details about the error."
+  },
+  "termsOfUse": "Terms of use",
+  "@termsOfUse": {
+    "type": "text",
+    "description": "Title on the 'Terms of use' page."
+  },
+  "thankYou": "Thank you!",
+  "@thankYou": {
+    "type": "text",
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Thank you for your contribution!",
+  "@thankYouForContribution": {
+    "type": "text",
+    "description": "Title in upload success page"
+  },
+  "thankYouSupportDescription": "We appreciate all feedback and we will address the issue as soon as possible.",
+  "@thankYouSupportDescription": {
+    "type": "text",
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportTitle": "Thank you for your feedback!",
+  "@thankYouSupportTitle": {
+    "type": "text",
+    "description": "Text on contact support confirmation page"
+  },
+  "theVideoFileSizeIs": "The video file size is {size}.",
+  "@theVideoFileSizeIs": {
+    "type": "text",
+    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "thisVideoCantBeDownloaded": "This video can't be downloaded.",
+  "@thisVideoCantBeDownloaded": {
+    "type": "text",
+    "description": "Shown when you try to download a video that cannot be downloaded."
+  },
+  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "@timezoneInformation": {
+    "type": "text",
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "Today",
+  "@today": {
+    "type": "text",
+    "description": "First category in tv guide"
+  },
+  "tomorrow": "Tomorrow",
+  "@tomorrow": {
+    "type": "text",
+    "description": "Day of transmission in tv guide."
+  },
+  "tryAgain": "Please try again later.",
+  "@tryAgain": {
+    "type": "text",
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgainButton": "Try again",
+  "@tryAgainButton": {
+    "type": "text",
+    "description": "Button on error alert that lets user to retry failed action"
   },
   "tvEnterCode": "Or go to {url} and enter the code: {code}",
   "@tvEnterCode": {
+    "type": "text",
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
       "url": {
@@ -1079,350 +1601,159 @@
       }
     }
   },
-  "chapters": "Chapters",
-  "@chapters": {
-    "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
+  "tVLogin": "TV Login",
+  "@tVLogin": {
+    "type": "text",
+    "description": "Title of the TV login alert"
   },
-  "removeWatchProgress": "Remove watch progress",
-  "@removeWatchProgress": {
-    "description": "Shown when holding on an episode in the 'continue watching' section."
+  "tVLoginSuccessful": "Log in successful, please confirm on TV.",
+  "@tVLoginSuccessful": {
+    "type": "text",
+    "description": "Message of the TV login alert"
   },
-  "showDescription": "Show description",
-  "@showDescription": {
-    "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
+  "tvScanQr": "Scan the code and sign in with your phone",
+  "@tvScanQr": {
+    "type": "text",
+    "description": "Title on the login screen for TVs"
   },
-  "releaseDate": "Release date",
-  "@releaseDate": {
-    "description": "Release date of the episode, shown in the 'details' tab under an episode."
+  "uploadFail": "Upload failed",
+  "@uploadFail": {
+    "type": "text",
+    "description": "Upload result message"
   },
-  "availableTo": "Available to",
-  "@availableTo": {
-    "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
+  "uploadFileMessage": "Do you want to upload this file?",
+  "@uploadFileMessage": {
+    "type": "text",
+    "description": "Content of the dialog to confirm upload"
   },
-  "ageRating": "Age rating",
-  "@ageRating": {
-    "description": "Age rating for the episode, shown in the 'details' tab under an episode."
+  "uploadFileTitle": "Upload file",
+  "@uploadFileTitle": {
+    "type": "text",
+    "description": "Title of the dialog to confirm upload"
   },
-  "ageRatingAll": "All",
-  "@ageRatingAll": {
-    "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
+  "uploading": "Uploading",
+  "@uploading": {
+    "type": "text",
+    "description": "Message during file upload"
   },
-  "offline": "Offline",
-  "@offline": {
-    "description": "Status indicator, indicating that you are offline; not connected to the internet."
+  "userVoice": "Suggest a feature",
+  "@userVoice": {
+    "type": "text",
+    "description": "Settings item on profile page to navigate to uservoice"
   },
-  "downloadButton": "Download",
-  "@downloadButton": {
-    "description": "Button text, a button to download the episode to make it available for offline playback."
+  "verificationEmailSent": "Verification email sent",
+  "@verificationEmailSent": {
+    "type": "text",
+    "description": "Shown when the user has requested a new verification email."
   },
-  "audioNotAvailableInLanguage": "Audio not available in {lang}",
-  "@audioNotAvailableInLanguage": {
-    "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
+  "verifyYourAccount": "Verify your account",
+  "@verifyYourAccount": {
+    "type": "text",
+    "description": "Title of the page where you can verify your email/account."
+  },
+  "version": "Version",
+  "@version": {
+    "type": "text",
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "videoCompletedText": "Great job on completing the video.",
+  "@videoCompletedText": {
+    "type": "text",
+    "description": "Shown after completing tasks related to a video."
+  },
+  "videoCount": "{count} videos",
+  "@videoCount": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
-      "lang": {
-        "type": "String"
-      }
-    }
-  },
-  "notEnoughAvailableSpace": "Not enough available space on your device",
-  "@notEnoughAvailableSpace": {
-    "description": "Shown when you try to download an episode, but there is not enough space on your device."
-  },
-  "considerDeletingOtherVideos": "Consider deleting other videos you downloaded in the app.",
-  "@considerDeletingOtherVideos": {
-    "description": "Shown when you try to download an episode, but there is not enough space on your device."
-  },
-  "theVideoFileSizeIs": "The video file size is {size}.",
-  "@theVideoFileSizeIs": {
-    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
-    "placeholders": {
-      "size": {
-        "type": "String"
-      }
-    }
-  },
-  "gotIt": "Got it",
-  "@gotIt": {
-    "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
-  },
-  "saveYourFavorites": "Save your favorite videos",
-  "@saveYourFavorites": {
-    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
-  },
-  "saveYourFavoritesDescription": "Tap on the heart icon on a video to save it in your profile.",
-  "@saveYourFavoritesDescription": {
-    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
-  },
-  "yourFavorites": "Your favorites",
-  "@yourFavorites": {
-    "description": "Shown as a title for the 'favorites' section in the profile tab."
-  },
-  "downloaded": "Downloaded",
-  "@downloaded": {
-    "description": "Shown as a title for the 'downloaded' section in the profile tab."
-  },
-  "saveVideosForOfflineViewing": "Save videos for offline viewing",
-  "@saveVideosForOfflineViewing": {
-    "description": "Shown when the 'downloaded' section is empty."
-  },
-  "tapOnTheDownloadIcon": "Tap on the download icon on a video, to download and play while offline.",
-  "@tapOnTheDownloadIcon": {
-    "description": "Shown when the 'downloaded' section is empty."
-  },
-  "removeOfflineVideo": "Remove offline video?",
-  "@removeOfflineVideo": {
-    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
-  },
-  "removeOfflineVideoDescription": "By removing this video it will no longer be available without a network connection.",
-  "@removeOfflineVideoDescription": {
-    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
-  },
-  "removeFromDeviceButton": "Remove from device",
-  "@removeFromDeviceButton": {
-    "description": "Button text, to remove a downloaded video from the device."
-  },
-  "keepVideoButton": "Keep video",
-  "@keepVideoButton": {
-    "description": "Button when asking to remove a downloaded video. This button cancels."
-  },
-  "noInternetConnection": "No internet connection",
-  "@noInternetConnection": {
-    "description": "Shown when you are offline, and the app cannot connect to the internet."
-  },
-  "noInternetConnectionDescription": "Connect to the internet to access all videos.",
-  "@noInternetConnectionDescription": {
-    "description": "Shown when you are offline, and the app cannot connect to the internet."
-  },
-  "noInternetButDontWorry": "No internet connection,\nbut don't worry.",
-  "@noInternetButDontWorry": {
-    "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
-  },
-  "hereAreAllTheVideosYouDownloaded": "Here are all the videos you have downloaded to your device.",
-  "@hereAreAllTheVideosYouDownloaded": {
-    "description": "Shown when you are offline, but you have downloaded some videos."
-  },
-  "connectToExplore": "Connect to the internet to explore all videos.",
-  "@connectToExplore": {
-    "description": "Shown when you are offline, and the app cannot connect to the internet."
-  },
-  "language": "Language",
-  "@language": {
-    "description": "A label when selecting a language to download."
-  },
-  "estimatedFileSize": "Estimated file size: {size}",
-  "@estimatedFileSize": {
-    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
-    "placeholders": {
-      "size": {
-        "type": "String"
-      }
-    }
-  },
-  "downloadVideo": "Download video",
-  "@downloadVideo": {
-    "description": "Title on the download video form."
-  },
-  "noSubtitles": "No subtitles",
-  "@noSubtitles": {
-    "description": "Shown in the download form, indicating that there are no subtitles available for the video."
-  },
-  "subtitlesIncluded": "Subtitles included",
-  "@subtitlesIncluded": {
-    "description": "Shown in the download form, indicating that all subtitles are included in the video."
-  },
-  "allSubtitlesWillBeAvailableOffline": "All subtitles will be available offline",
-  "@allSubtitlesWillBeAvailableOffline": {
-    "description": "Shown in the download form, indicating that all subtitles will be available offline."
-  },
-  "downloading": "Downloading",
-  "@downloading": {
-    "description": "Download status, indicating that the video is currently downloading."
-  },
-  "failed": "Failed",
-  "@failed": {
-    "description": "Generic status label. Used e.g. for downloads that failed."
-  },
-  "finished": "Finished",
-  "@finished": {
-    "description": "Generic status label. Used e.g. for downloads that finished."
-  },
-  "paused": "Paused",
-  "@paused": {
-    "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
-  },
-  "queued": "Queued",
-  "@queued": {
-    "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
-  },
-  "removing": "Removing",
-  "@removing": {
-    "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
-  },
-  "expiresIn": "Expires in {time}",
-  "@expiresIn": {
-    "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
-  "availableOffline": "Available offline",
-  "@availableOffline": {
-    "description": "Label indicating that the video is available offline."
-  },
-  "technicalDetails": "Technical details",
-  "@technicalDetails": {
-    "description": "Shown when errors occur, and you want to see more technical details about the error."
-  },
-  "contentLanguage": "Content language",
-  "@contentLanguage": {
-    "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
-  },
-  "contentLanguageShort": "Content",
-  "@contentLanguageShort": {
-    "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
-  },
-  "appLanguageShort": "App",
-  "@appLanguageShort": {
-    "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
-  },
-  "playRandom": "Play random",
-  "@playRandom": {
-    "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
-  },
-  "addLanguage": "Add language",
-  "@addLanguage": {
-    "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
-  },
-  "preferredLanguages": "Preferred languages",
-  "@preferredLanguages": {
-    "description": "Shown when you are selecting preferred content languages. Title."
-  },
-  "contentLanguageExplanation": "Reorder the languages to match your preference for audio & subtitle language.",
-  "@contentLanguageExplanation": {
-    "description": "Shown when you are selecting preferred content languages."
-  },
-  "otherLanguages": "Other languages",
-  "@otherLanguages": {
-    "description": "Languages that are available but in your list of preferred languages."
-  },
-  "select": "Select",
-  "@select": {
-    "description": "Prompt. Shown at the top of a list of options."
-  },
-  "supportBibleKids": "Support Bible Kids",
-  "@supportBibleKids": {
-    "description": "Shown on the settings page."
-  },
-  "donateViaPaypal": "Donate via PayPal",
-  "@donateViaPaypal": {
-    "description": "Shown on the settings page."
-  },
-  "shortsTab": "Shorts",
-  "@shortsTab": {
-    "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
-  },
-  "autoGenerated": "Auto-generated",
-  "@autoGenerated": {
-    "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
-  },
-  "shortsTranscriptionDisclaimer": "The transcriptions are auto-generated and might contain errors.",
-  "@shortsTranscriptionDisclaimer": {
-    "description": "Disclaimer shown on the shorts page."
-  },
-  "beta": "Beta",
-  "@beta": {
-    "description": "'Beta' features are only available to a selection of users."
-  },
-  "betaExplanation": "This feature is in beta and is currently not released to all users. Please report any issues or feedback via the 'Contact' button in settings.",
-  "@betaExplanation": {
-    "description": "Shown in a popup on beta features."
-  },
-  "likedShorts": "Liked shorts",
-  "@likedShorts": {
-    "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
-  },
-  "saveYourFavoriteShorts": "Save your favorite shorts",
-  "@saveYourFavoriteShorts": {
-    "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
-  },
-  "featureNotAvailableYet": "This feature is not available on your device yet. Please try again later.",
-  "@featureNotAvailableYet": {
-    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
-  },
-  "newFeature": "New feature",
-  "@newFeature": {
-    "description": "Shown the first time you open the app after a new feature is available."
-  },
-  "shortsFeatureDescription": "Discover short and powerful excerpts, and jump right into its full episode.",
-  "@shortsFeatureDescription": {
-    "description": "Shown the first time you open the app after 'shorts' is enabled."
-  },
-  "likedAndSaved": "Liked and saved",
-  "@likedAndSaved": {
-    "description": "Shown when you have liked and saved a 'short' for the first time."
-  },
-  "shortsLikedAndSavedDescription": "You can find all your liked shorts in your profile.",
-  "@shortsLikedAndSavedDescription": {
-    "description": "Shown when you have liked and saved a 'short' for the first time."
-  },
-  "excerptFrom": "Excerpt from",
-  "@excerptFrom": {
-    "description": "Shown on a 'short' video, indicating that this is an excerpt from a longer video. E.g. Excerpt from 'The Tale of John Doe'."
-  },
-  "downloadedVideosGuideDescription": "You can find your downloaded videos under \"Profile\".",
-  "@downloadedVideosGuideDescription": {
-    "description": "Shown when you have downloaded a video for the first time."
-  },
-  "openStore": "Open store",
-  "@openStore": {
-    "description": "A button to open play store / app store."
-  },
-  "thisVideoCantBeDownloaded": "This video can't be downloaded.",
-  "@thisVideoCantBeDownloaded": {
-    "description": "Shown when you try to download a video that cannot be downloaded."
-  },
-  "videoLanguage": "Video language",
-  "@videoLanguage": {
-    "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
-  },
-  "videoTextLanguage": "Video text language",
-  "@videoTextLanguage": {
-    "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
-  },
-  "original": "Original",
-  "@original": {
-    "description": "E.g. original language."
-  },
-  "openSettingsToChangeVideoLang": "Open settings to change the video text language",
-  "@openSettingsToChangeVideoLang": {
-    "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
-  },
-  "somethingWentWrong": "Something went wrong",
-  "@somethingWentWrong": {
-    "description": "Generic error title/message."
-  },
-  "all": "All",
-  "@all": {
-    "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
-  },
-  "countItems": "{x} items",
-  "@countItems": {
-    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
-    "placeholders": {
-      "x": {
+      "count": {
         "type": "int"
       }
     }
   },
-  "skipTo": "Skip to {chapter}",
-  "@skipTo": {
-    "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
-    "placeholders": {
-      "chapter": {
-        "type": "String"
-      }
-    }
+  "videoLanguage": "Video language",
+  "@videoLanguage": {
+    "type": "text",
+    "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
+  },
+  "videoOnlyAccessibleToLoggedIn": "This video is only accessible to users that are logged in to the app.",
+  "@videoOnlyAccessibleToLoggedIn": {
+    "type": "text",
+    "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
+  },
+  "videoQuality": "Video quality",
+  "@videoQuality": {
+    "type": "text",
+    "description": "Settings item in profile page for Android."
+  },
+  "videos": "Videos",
+  "@videos": {
+    "type": "text",
+    "description": "Followed by number of videos"
+  },
+  "videoTextLanguage": "Video text language",
+  "@videoTextLanguage": {
+    "type": "text",
+    "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
+  },
+  "watchAgain": "Watch again",
+  "@watchAgain": {
+    "type": "text",
+    "description": "Short button text to watch the video again."
+  },
+  "watchNow": "Watch now",
+  "@watchNow": {
+    "type": "text",
+    "description": "Button on featured carousel"
+  },
+  "weHaveSentAnEmailTo": "We have sent an email to",
+  "@weHaveSentAnEmailTo": {
+    "type": "text",
+    "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
+  },
+  "wellDone": "Well done!",
+  "@wellDone": {
+    "type": "text",
+    "description": "Positive message that may be used e.g. after completing some action."
+  },
+  "whatIsMath": "What is",
+  "@whatIsMath": {
+    "type": "text",
+    "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
+  },
+  "writeHere": "Write here",
+  "@writeHere": {
+    "type": "text",
+    "description": "New post text field placeholder"
+  },
+  "yesCancel": "Yes, Cancel",
+  "@yesCancel": {
+    "type": "text",
+    "description": "Confirm cancel."
+  },
+  "youCanContactUsAt": "You can contact us at",
+  "@youCanContactUsAt": {
+    "type": "text",
+    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
+  },
+  "youCanNowLogInToYourAccount": "You can now log in to your account and explore a variety of edifying content.",
+  "@youCanNowLogInToYourAccount": {
+    "type": "text",
+    "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
+  },
+  "youCanNowUseYourAccount": "You can now use your account and explore a variety of edifying content.",
+  "@youCanNowUseYourAccount": {
+    "type": "text",
+    "description": "Shown when the user has successfully completed account setup."
+  },
+  "yourFavorites": "Your favorites",
+  "@yourFavorites": {
+    "type": "text",
+    "description": "Shown as a title for the 'favorites' section in the profile tab."
+  },
+  "ztoA": "Z-A",
+  "@ztoA": {
+    "type": "text",
+    "description": "Sort order"
   }
 }

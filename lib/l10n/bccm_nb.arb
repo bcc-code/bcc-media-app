@@ -1,495 +1,288 @@
 {
-  "loadingContent": "Laster innhold",
-  "@loadingContent": {
-    "description": "Text displayed when page content is loading."
-  },
-  "signInTooltip": "Logg inn for å se mer innhold",
-  "@signInTooltip": {
-    "description": "Text for tooltip displayed when a non-member user opens the home page."
-  },
-  "skipToPublicContent": "Hopp over for å se offentlig innhold",
-  "@skipToPublicContent": {
-    "description": "Text for button displayed on login screen to skip sign in and watch public content."
-  },
-  "minutesShort": "min",
-  "@minutesShort": {
-    "description": "Text for minutes."
-  },
-  "calendarThisWeek": "Denne uken",
-  "@calendarThisWeek": {
-    "description": "Text for This week."
-  },
-  "calendarWeek": "uke",
-  "@calendarWeek": {
-    "description": "Text week."
-  },
-  "close": "Lukk",
-  "@close": {
-    "description": "Text displayed on 'Close' button"
-  },
-  "loading": "Laster",
-  "@loading": {
-    "description": "Text to indicate loading state."
-  },
-  "loginPageDisplay1": "Det kraftigste\nbudskapet i verden",
-  "@loginPageDisplay1": {
-    "description": "Text displayed on login screen."
-  },
-  "loginPageDisplay2": "Se serier, programmer og filmer basert på kristne verdier",
-  "@loginPageDisplay2": {
-    "description": "Text displayed on login screen."
-  },
-  "kidsOnboardingTitle": "Vi gjør Bibelens budskap levende!",
-  "@kidsOnboardingTitle": {
-    "description": "Text displayed on onboarding screen for the Bible Kids app."
-  },
-  "kidsOnboardingSecondaryTitle": "Vår visjon er at barna skal oppleve Jesus som sin aller beste venn - resten av livet.",
-  "@kidsOnboardingSecondaryTitle": {
-    "description": "Text displayed on onboarding screen for the Bible Kids app."
-  },
-  "loginPageDisplay3": "Produsert av BCC Media",
-  "@loginPageDisplay3": {
-    "description": "Text displayed on login screen."
-  },
-  "logOutButton": "Logg ut",
-  "@logOutButton": {
-    "description": "Text displayed on Log out button"
-  },
-  "profileTab": "Min profil",
-  "@profileTab": {
-    "description": "Title of the profile page"
-  },
-  "faq": "Ofte stilte spørsmål",
-  "@faq": {
-    "description": "Long title of the FAQ page."
-  },
-  "bccMediaCenter": "BCC Media er en mediestiftelse i BCC-forbundet som produserer og distribuerer innhold med positive og kristne verdier.",
-  "@bccMediaCenter": {
-    "description": "Disclaimer on login page"
-  },
-  "signInButton": "Logg inn",
-  "@signInButton": {
-    "description": "Text displayed on Sign in button"
-  },
-  "signInOrSignUp": "Registrer deg / Logg inn",
-  "@signInOrSignUp": {
-    "description": "Button to go to the onboarding page (short)"
-  },
-  "signUpButton": "Registrer deg nå",
-  "@signUpButton": {
-    "description": "Button to start the sign up process"
-  },
-  "signUpTitle": "Registrer deg",
-  "@signUpTitle": {
-    "description": "Title on the sign up page"
-  },
-  "signUpDescription": "Få tilgang til mer innhold og bedre funksjoner ved å opprette en konto.",
-  "@signUpDescription": {
-    "description": "A description on the sign up page explaining why you would want to sign up"
-  },
-  "signUpAgreePrivacyPolicy": "Jeg bekrefter at jeg er 13 år eller eldre, og jeg er enig i <a>Personvernreglene</a>og <a>Vilkår for bruk</a>.",
-  "@signUpAgreePrivacyPolicy": {
-    "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
-  },
-  "setPassword": "Nytt passord",
-  "@setPassword": {
-    "description": "Title for the 'Set password' page of the signup process."
-  },
-  "tryAgainButton": "Prøv igjen",
-  "@tryAgainButton": {
-    "description": "Button on error alert that lets user to retry failed action"
-  },
-  "loggedOutTitle": "Logget ut",
-  "@loggedOutTitle": {
-    "description": "Title of the alert message that is shown when user is logged out automatically."
-  },
-  "loggedOutMessage": "Du har blitt logget ut. Vennligst logg inn igjen.",
-  "@loggedOutMessage": {
-    "description": "Text of the alert message that is shown when user is logged out automatically."
-  },
-  "makeDonation": "Gi en donasjon",
-  "@makeDonation": {
-    "description": "Text for button which opens donation page."
-  },
-  "mostWatched": "Mest sett",
-  "@mostWatched": {
-    "description": "Sorting option on audience page"
-  },
-  "mostRecent": "Sist publisert",
-  "@mostRecent": {
-    "description": "Sorting option on audience page"
-  },
-  "latelyPublished": "Sist publisert",
-  "@latelyPublished": {
-    "description": "Title for the list of videos on login page"
-  },
-  "anErrorOccurred": "Det har oppstått en feil",
-  "@anErrorOccurred": {
-    "description": "Title in error popup"
-  },
-  "ok": "OK",
-  "@ok": {
-    "description": "Popup confirmation button"
-  },
-  "open": "Åpne",
-  "@open": {
-    "description": "Open button"
-  },
-  "loginFailedCheckNetwork": "Det har oppstått en feil. Sjekk nettverksforbindelsen og prøv en gang til.",
-  "@loginFailedCheckNetwork": {
-    "description": "Login error message"
-  },
-  "loginFailedTryAgain": "Det har oppstått en feil. Prøv igjen senere.",
-  "@loginFailedTryAgain": {
-    "description": "Login error message"
-  },
-  "soundLanguage": "Lydspråk",
-  "@soundLanguage": {
-    "description": "Settings item on profile page"
-  },
-  "subtitleLanguage": "Språk for undertekster",
-  "@subtitleLanguage": {
-    "description": "Settings item on profile page"
-  },
-  "appLanguage": "App-språk",
-  "@appLanguage": {
-    "description": "Settings item on profile page"
-  },
-  "checkNetwork": "Sjekk nettverksforbindelsen og prøv igjen.",
-  "@checkNetwork": {
-    "description": "Error message for the user displayed in many contexts."
-  },
-  "tryAgain": "Prøv igjen senere.",
-  "@tryAgain": {
-    "description": "Error message for the user displayed in many contexts."
-  },
-  "cantPlayVideo": "Kan ikke spille av denne videoen nå.",
-  "@cantPlayVideo": {
-    "description": "Error message for the user displayed when video playback attempt failed."
-  },
+  "@@locale": "nb",
   "about": "Om",
   "@about": {
+    "type": "text",
     "description": "Title of About page and item in profile page settings."
   },
-  "version": "Versjon",
-  "@version": {
-    "description": "Version ot the application on About page; followed by version number"
+  "accountCreated": "Konto oprettet",
+  "@accountCreated": {
+    "type": "text",
+    "description": "Shown when the user has successfully created an account."
   },
-  "contactSupport": "Kontakt support",
-  "@contactSupport": {
-    "description": "Title for contact support page"
+  "accountDeletionExplanation": "Du er i ferd med å be om å slette din konto hos BCC Media og alle dine data knyttet til denne appen.",
+  "@accountDeletionExplanation": {
+    "type": "text",
+    "description": "Shown on the account deletion page."
   },
-  "contactIssueHint": "Beskriv problemet",
-  "@contactIssueHint": {
-    "description": "Hint for the message box for logged in users"
-  },
-  "contactUs": "Kontakt oss",
-  "@contactUs": {
-    "description": "Title for contact us page"
-  },
-  "deviceInfo": "Enhetsinformasjon",
-  "@deviceInfo": {
-    "description": "Device info page title"
-  },
-  "contactIncludeDeviceInfo": "Inkluder enhetsinformasjon for bedre støtte.",
-  "@contactIncludeDeviceInfo": {
-    "description": "Text for checkbox to include device information"
-  },
-  "contactSeeData": "Klikk for å se data.",
-  "@contactSeeData": {
-    "description": "Text for link to see device data"
-  },
-  "contactName": "Navn",
-  "@contactName": {
-    "description": "Label for name field in contact support page"
-  },
-  "contactNameHint": "Skriv inn ditt navn",
-  "@contactNameHint": {
-    "description": "Hint text for name field in contact support page"
-  },
-  "contactEmail": "Din kontakt e-post",
-  "@contactEmail": {
-    "description": "Label for email field in contact support page"
-  },
-  "contactEmailHint": "Skriv inn din e-postadresse",
-  "@contactEmailHint": {
-    "description": "Hint text for name field in contact support page"
-  },
-  "contactMessage": "Melding",
-  "@contactMessage": {
-    "description": "Label for message field in contact support page"
-  },
-  "contactMessageHint": "Skriv inn din melding her",
-  "@contactMessageHint": {
-    "description": "Hint text for message field in contact support page"
-  },
-  "deviceInfoDevice": "Enhet",
-  "@deviceInfoDevice": {
-    "description": "Label for device"
-  },
-  "deviceInfoEnvOverride": "Miljøoverstyring",
-  "@deviceInfoEnvOverride": {
-    "description": "Label for environment override"
-  },
-  "deviceInfoManufacturer": "Produsent",
-  "@deviceInfoManufacturer": {
-    "description": "Label for manufacturer"
-  },
-  "deviceInfoOs": "Operativsystem",
-  "@deviceInfoOs": {
-    "description": "Label for operating system"
-  },
-  "deviceInfoScreenSize": "Skjermstørrelse",
-  "@deviceInfoScreenSize": {
-    "description": "Label for screen size"
-  },
-  "deviceInfoAppVer": "App-versjon",
-  "@deviceInfoAppVer": {
-    "description": "Label for app Version"
-  },
-  "deviceInfoUserId": "Bruker-ID",
-  "@deviceInfoUserId": {
-    "description": "Label for user id"
-  },
-  "deviceInfoPageDesc": "Meldingen din vil inneholde denne informasjonen for å hjelpe oss å gi bedre støtte.",
-  "@deviceInfoPageDesc": {
-    "description": "Label for manufacturer"
-  },
-  "userVoice": "Foreslå en funksjon",
-  "@userVoice": {
-    "description": "Settings item on profile page to navigate to uservoice"
-  },
-  "cancel": "Avbryt",
-  "@cancel": {
-    "description": "General cancel action button"
-  },
-  "cancelConfirmation": "Er du sikker på at du vil avslutte?",
-  "@cancelConfirmation": {
-    "description": "Title text for cancel confirmation dialog."
-  },
-  "cancelConfirmationDescription": "Alle ulagrede endringer vil gå tapt.",
-  "@cancelConfirmationDescription": {
-    "description": "Description for cancel confirmation dialog."
-  },
-  "goBack": "Gå tilbake",
-  "@goBack": {
-    "description": "Text for back button."
-  },
-  "yesCancel": "Ja, avbryt",
-  "@yesCancel": {
-    "description": "Confirm cancel."
-  },
-  "done": "Ferdig",
-  "@done": {
-    "description": "Generic Done button, for example to dismiss a page after completing an action."
-  },
-  "playerSettings": "Innstilling for videoavspiller",
-  "@playerSettings": {
-    "description": "Title of the Player settings activity in Android"
-  },
-  "settings": "Innstillinger",
-  "@settings": {
-    "description": "Label of the button to go to Android/iOS settings"
-  },
-  "none": "Ingen",
-  "@none": {
-    "description": "Indicator on profile page that subtitles are disabled."
-  },
-  "nextEpisode": "Neste episode",
-  "@nextEpisode": {
-    "description": "Button indicating the next video will play soon."
-  },
-  "auto": "Auto",
-  "@auto": {
-    "description": "Indicator on profile page that audio and app language are chosen automatically."
-  },
-  "subtitles": "Undertekster",
-  "@subtitles": {
-    "description": "Generic."
-  },
-  "audio": "Lyd",
-  "@audio": {
-    "description": "Generic."
-  },
-  "quality": "Kvalitet",
-  "@quality": {
-    "description": "Generic."
-  },
-  "seasons": "Sesonger",
-  "@seasons": {
-    "description": "Followed by number of seasons in given series."
-  },
-  "episodes": "Episoder",
-  "@episodes": {
-    "description": "Followed by number of episodes in given series."
-  },
-  "search": "Søk",
-  "@search": {
-    "description": "Button to clear cache"
-  },
-  "sendFeedback": "Send tilbakemelding",
-  "@sendFeedback": {
-    "description": "Button to submit feedback(Survey)"
-  },
-  "noResults": "Ingen resultater funnet",
-  "@noResults": {
-    "description": "No search results."
-  },
-  "doYouWantCast": "Vil du sende denne videoen til Chromecast?",
-  "@doYouWantCast": {
-    "description": "Prompt displayed to the user"
-  },
-  "play": "Spill av",
-  "@play": {
-    "description": "Option in prompt dialog."
-  },
-  "pause": "Pause",
-  "@pause": {
-    "description": "A button to pause the video."
-  },
-  "castQueue": "Legg til i kø",
-  "@castQueue": {
-    "description": "Queue page title"
-  },
-  "options": "Alternativer",
-  "@options": {
-    "description": "Options dialog title"
-  },
-  "remove": "Fjern",
-  "@remove": {
-    "description": "Option in options dialog"
-  },
-  "queueLimitTitle": "Købegrensing",
-  "@queueLimitTitle": {
-    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
-  },
-  "queueLimitMessage": "Du kan ikke ha mer enn {elementCount} elementer i køen.",
-  "@queueLimitMessage": {
-    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+  "accountDeletionSuccess": "Forespørsel om sletting av konto vellykket. Du vil motta en e-post på {email}. For å bekrefte din identitet trenger vi at du svarer på den e-posten for å kunne gå videre med slettingen.",
+  "@accountDeletionSuccess": {
+    "type": "text",
+    "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
-      "elementCount": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "accountDeletionTimeframe": "Sletting av konto vil vanligvis gjøres innen {x} arbeidsdager.",
+  "@accountDeletionTimeframe": {
+    "type": "text",
+    "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
+    "placeholders": {
+      "x": {
         "type": "int"
       }
     }
   },
-  "recentSearches": "Nylige søk",
-  "@recentSearches": {
-    "description": "Recent searches list title."
+  "accountDeletionTitle": "Slett min konto",
+  "@accountDeletionTitle": {
+    "type": "text",
+    "description": "Title of the account deletion page."
   },
-  "tVLogin": "TV-innlogging",
-  "@tVLogin": {
-    "description": "Title of the TV login alert"
+  "accountDeletionWarning": "Dette er en handling som ikke kan gjøres om.",
+  "@accountDeletionWarning": {
+    "type": "text",
+    "description": "Shown on the account deletion page."
   },
-  "tVLoginSuccessful": "Du er nå logget inn, vennligst bekreft på TV-en",
-  "@tVLoginSuccessful": {
-    "description": "Message of the TV login alert"
+  "achievementFirstDescription": "Gratulerer med å ha fullført videoen og fått ditt første prestasjonsmerke.",
+  "@achievementFirstDescription": {
+    "type": "text",
+    "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "seeMore": "Se mer",
-  "@seeMore": {
-    "description": "Button on featured item to navigete to page with player"
+  "achievements": "Prestasjoner",
+  "@achievements": {
+    "type": "text",
+    "description": "Generic. Used as page title, etc."
   },
-  "seeAll": "Se alt",
-  "@seeAll": {
-    "description": "Button to see all of some collection."
+  "achievementStudyTopic": "Gratulerer med å ha fullført bibelstudiet {name}",
+  "@achievementStudyTopic": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   },
-  "series": "Serier",
-  "@series": {
-    "description": "Title of the tab on info page"
+  "add": "Legg til",
+  "@add": {
+    "type": "text",
+    "description": "Button text"
   },
-  "homeTab": "Hjem",
-  "@homeTab": {
-    "description": "Title of the home page"
+  "addLanguage": "Legg til språk",
+  "@addLanguage": {
+    "type": "text",
+    "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
   },
-  "sortBy": "Sorter etter",
-  "@sortBy": {
-    "description": "Sorting criteria selector"
+  "ageRating": "Aldersgrense",
+  "@ageRating": {
+    "type": "text",
+    "description": "Age rating for the episode, shown in the 'details' tab under an episode."
   },
-  "videoQuality": "Videokvalitet",
-  "@videoQuality": {
-    "description": "Settings item in profile page for Android."
+  "ageRatingAll": "Alle",
+  "@ageRatingAll": {
+    "type": "text",
+    "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
-  "low": "Lav",
-  "@low": {
-    "description": "Low quality video option"
+  "all": "Alle",
+  "@all": {
+    "type": "text",
+    "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
   },
-  "medium": "Medium",
-  "@medium": {
-    "description": "Medium quality video option"
+  "allSubtitlesWillBeAvailableOffline": "Alle undertekster vil være tilgjengelig offline",
+  "@allSubtitlesWillBeAvailableOffline": {
+    "type": "text",
+    "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "high": "Høy",
-  "@high": {
-    "description": "High quality video option"
+  "anErrorOccurred": "Det har oppstått en feil",
+  "@anErrorOccurred": {
+    "type": "text",
+    "description": "Title in error popup"
   },
-  "emptySearch": "Du kan søke på alt innhold fra BCC Media. Serier, filmer og episoder.",
-  "@emptySearch": {
-    "description": "Message on search page when there is no search results."
+  "answerLabel": "Svar",
+  "@answerLabel": {
+    "type": "text",
+    "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
   },
-  "back": "Tilbake",
-  "@back": {
-    "description": "General back button to navigate back"
+  "appLanguage": "App-språk",
+  "@appLanguage": {
+    "type": "text",
+    "description": "Settings item on profile page"
   },
-  "seasonLetter": "S",
-  "@seasonLetter": {
-    "description": "Season  letter in label S1E3"
+  "appLanguageShort": "App",
+  "@appLanguageShort": {
+    "type": "text",
+    "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
   },
-  "episodeLetter": "E",
-  "@episodeLetter": {
-    "description": "Episode letter in label S1E3"
+  "appUpdateAccepted": "Oppdater",
+  "@appUpdateAccepted": {
+    "type": "text",
+    "description": "Option that can be chosen by the user to update his application."
+  },
+  "appUpdateRequest": "Vennligst last ned den siste versjonen av appen for å få gleden av de siste funksjonene og feilrettingene.",
+  "@appUpdateRequest": {
+    "type": "text",
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
+  "appUpdateTitle": "Krever oppdatering",
+  "@appUpdateTitle": {
+    "type": "text",
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
+  "areYouSure": "Er du sikker?",
+  "@areYouSure": {
+    "type": "text",
+    "description": "Generic text. Used at least as a title on the account deletion page."
+  },
+  "askYourParents": "Spør dine foresatte",
+  "@askYourParents": {
+    "type": "text",
+    "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
   },
   "atoZ": "A-Å",
   "@atoZ": {
+    "type": "text",
     "description": "Sort order"
   },
-  "ztoA": "Å-A",
-  "@ztoA": {
-    "description": "Sort order"
+  "audio": "Lyd",
+  "@audio": {
+    "type": "text",
+    "description": "Generic."
   },
-  "shortFilms": "Kortfilmer",
-  "@shortFilms": {
-    "description": "Title of the films collection."
+  "audioLanguage": "Lydspråk",
+  "@audioLanguage": {
+    "type": "text",
+    "description": "Label indicating that the Audio Language can be changed here."
   },
-  "videos": "Videoer",
-  "@videos": {
-    "description": "Followed by number of videos"
+  "audioNotAvailableInLanguage": "Språk er ikke tilgjengelig på {lang}",
+  "@audioNotAvailableInLanguage": {
+    "type": "text",
+    "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
   },
-  "moreInfo": "Mer informasjon",
-  "@moreInfo": {
-    "description": "Option in action sheet for the video that triggers info page for the video."
+  "auto": "Auto",
+  "@auto": {
+    "type": "text",
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
   },
-  "info": "Informasjon",
-  "@info": {
-    "description": "Video info page title."
+  "autoGenerated": "Autogenerert",
+  "@autoGenerated": {
+    "type": "text",
+    "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
   },
-  "episode": "Episode",
-  "@episode": {
-    "description": "Title of the tab on info page"
+  "availableFrom": "Tilgjengelig {date}",
+  "@availableFrom": {
+    "type": "text",
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
   },
-  "takePhoto": "Ta et bilde",
-  "@takePhoto": {
-    "description": "Option in menu"
+  "availableOffline": "Tilgjengelig offline",
+  "@availableOffline": {
+    "type": "text",
+    "description": "Label indicating that the video is available offline."
   },
-  "pickPhoto": "Velg fra galleri",
-  "@pickPhoto": {
-    "description": "Option in menu"
+  "availableTo": "Tilgjengelig til",
+  "@availableTo": {
+    "type": "text",
+    "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
   },
-  "uploadFileTitle": "Last opp fil",
-  "@uploadFileTitle": {
-    "description": "Title of the dialog to confirm upload"
+  "back": "Tilbake",
+  "@back": {
+    "type": "text",
+    "description": "General back button to navigate back"
   },
-  "uploadFileMessage": "Vil du laste opp denne filen?",
-  "@uploadFileMessage": {
-    "description": "Content of the dialog to confirm upload"
+  "bccMediaCenter": "BCC Media er en mediestiftelse i BCC-forbundet som produserer og distribuerer innhold med positive og kristne verdier.",
+  "@bccMediaCenter": {
+    "type": "text",
+    "description": "Disclaimer on login page"
   },
-  "uploading": "Opplasting",
-  "@uploading": {
-    "description": "Message during file upload"
+  "beta": "Beta",
+  "@beta": {
+    "type": "text",
+    "description": "'Beta' features are only available to a selection of users."
   },
-  "uploadFail": "Opplasting feilet",
-  "@uploadFail": {
-    "description": "Upload result message"
+  "betaExplanation": "Denne funksjonen er i betaversjon og er foreløpig ikke utgitt for alle brukere. Vennligst rapporter eventuelle problemer eller tilbakemeldinger via \"Kontakt\"-knappen i innstillingene.",
+  "@betaExplanation": {
+    "type": "text",
+    "description": "Shown in a popup on beta features."
+  },
+  "biblekidsAbout": "Bible Kids er et initiativ av BCC Media, en mediestiftelse i BCC-forbundet som produserer og distribuerer innhold med positive og kristne verdier.",
+  "@biblekidsAbout": {
+    "type": "text",
+    "description": "Shown on about page"
+  },
+  "broadcasts": "Sendinger",
+  "@broadcasts": {
+    "type": "text",
+    "description": "Title for live broadcasts."
+  },
+  "calendar": "Kalender",
+  "@calendar": {
+    "type": "text",
+    "description": "Title of calendar page."
+  },
+  "calendarThisWeek": "Denne uken",
+  "@calendarThisWeek": {
+    "type": "text",
+    "description": "Text for This week."
+  },
+  "calendarWeek": "uke",
+  "@calendarWeek": {
+    "type": "text",
+    "description": "Text week."
+  },
+  "cancel": "Avbryt",
+  "@cancel": {
+    "type": "text",
+    "description": "General cancel action button"
+  },
+  "cancelConfirmation": "Er du sikker på at du vil avslutte?",
+  "@cancelConfirmation": {
+    "type": "text",
+    "description": "Title text for cancel confirmation dialog."
+  },
+  "cancelConfirmationDescription": "Alle ulagrede endringer vil gå tapt.",
+  "@cancelConfirmationDescription": {
+    "type": "text",
+    "description": "Description for cancel confirmation dialog."
+  },
+  "cantPlayVideo": "Kan ikke spille av denne videoen nå.",
+  "@cantPlayVideo": {
+    "type": "text",
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "castQueue": "Legg til i kø",
+  "@castQueue": {
+    "type": "text",
+    "description": "Queue page title"
+  },
+  "categoriesTab": "Kategorier",
+  "@categoriesTab": {
+    "type": "text",
+    "description": "Title of the Categories Tab"
+  },
+  "change": "Endre",
+  "@change": {
+    "type": "text",
+    "description": "Button text"
+  },
+  "chapters": "Kapitler",
+  "@chapters": {
+    "type": "text",
+    "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
   },
   "charactersLimit": "{charsLeft} av {charsTotal} tegn igjen",
   "@charactersLimit": {
+    "type": "text",
     "description": "Info about limit of characters in a text field",
     "placeholders": {
       "charsLeft": {
@@ -500,392 +293,719 @@
       }
     }
   },
-  "thankYou": "Tusen takk!",
-  "@thankYou": {
-    "description": "Title in upload success page"
+  "checkAnswerButton": "Sjekk svar",
+  "@checkAnswerButton": {
+    "type": "text",
+    "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
   },
-  "thankYouForContribution": "Takk for ditt bidrag!",
-  "@thankYouForContribution": {
-    "description": "Title in upload success page"
+  "checkNetwork": "Sjekk nettverksforbindelsen og prøv igjen.",
+  "@checkNetwork": {
+    "type": "text",
+    "description": "Error message for the user displayed in many contexts."
   },
-  "next": "Neste",
-  "@next": {
-    "description": "NEXT program in check in section"
+  "clickTheLinkToVerify": "Klikk på linken i e-posten for å bekrefte din konto.",
+  "@clickTheLinkToVerify": {
+    "type": "text",
+    "description": "Shown on the verify account page."
   },
-  "add": "Legg til",
-  "@add": {
-    "description": "Button text"
-  },
-  "change": "Endre",
-  "@change": {
-    "description": "Button text"
-  },
-  "writeHere": "Skriv her",
-  "@writeHere": {
-    "description": "New post text field placeholder"
-  },
-  "feed": "Feed",
-  "@feed": {
-    "description": "Feed page bar title"
-  },
-  "information": "Informasjon",
-  "@information": {
-    "description": "Feed information item title"
-  },
-  "question": "Spørsmål",
-  "@question": {
-    "description": "Title of the question page"
-  },
-  "now": "Nå",
-  "@now": {
-    "description": "Tv guide now playing label"
-  },
-  "debugInfoExplanation": "Meldingen din vil inneholde denne informasjonen for å hjelpe oss å forstå problemet bedre.",
-  "@debugInfoExplanation": {
-    "description": "Info about debug info usage on contact support page"
-  },
-  "send": "Send",
-  "@send": {
-    "description": "General button to send a form"
-  },
-  "sending": "Sender",
-  "@sending": {
-    "description": "General sending action indicator"
-  },
-  "thankYouSupportTitle": "Takk for din tilbakemelding!",
-  "@thankYouSupportTitle": {
-    "description": "Text on contact support confirmation page"
-  },
-  "thankYouSupportDescription": "Vi setter pris på alle tilbakemeldinger og vi vil se på problemet så snart som mulig.",
-  "@thankYouSupportDescription": {
-    "description": "Text on contact support confirmation page"
-  },
-  "sendFail": "Kunne ikke sende din melding",
-  "@sendFail": {
-    "description": "General error message that sending failed"
-  },
-  "sendFailDescription": "Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.",
-  "@sendFailDescription": {
-    "description": "General error message that sending failed"
-  },
-  "sendSuccessDescription": "Vi setter pris på din tilbakemelding.",
-  "@sendSuccessDescription": {
-    "description": "General message when sending is successful"
-  },
-  "today": "I dag",
-  "@today": {
-    "description": "First category in tv guide"
-  },
-  "expired": "Utgått",
-  "@expired": {
-    "description": "Label that something is no longer available."
-  },
-  "availableFrom": "Tilgjengelig {date}",
-  "@availableFrom": {
-    "description": "Info that episode will be released at certain date.",
-    "placeholders": {
-      "date": {
-        "type": "String"
-      }
-    }
-  },
-  "submit": "Send inn",
-  "@submit": {
-    "description": "Submit button."
-  },
-  "wellDone": "Bra gjort!",
-  "@wellDone": {
-    "description": "Positive message that may be used e.g. after completing some action."
-  },
-  "editPicture": "Rediger bilde",
-  "@editPicture": {
-    "description": "Button on profile page to edit profile picture."
-  },
-  "profilePicture": "Profilbilde",
-  "@profilePicture": {
-    "description": "Text on edit profile page."
-  },
-  "timezoneInformation": "Tidspunkter er oppgitt i din lokaltid: {timeZone}",
-  "@timezoneInformation": {
-    "description": "TV guide footer info text.",
-    "placeholders": {
-      "timeZone": {
-        "type": "String"
-      }
-    }
-  },
-  "share": "Del",
-  "@share": {
-    "description": "Generic."
-  },
-  "showMore": "Vis mer",
-  "@showMore": {
-    "description": "Text used on link to expand collapsed text."
-  },
-  "showLess": "Vis mindre",
-  "@showLess": {
-    "description": "Text used on link to collapse expanded text."
+  "close": "Lukk",
+  "@close": {
+    "type": "text",
+    "description": "Text displayed on 'Close' button"
   },
   "comingSoon": "Kommer snart",
   "@comingSoon": {
+    "type": "text",
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
   },
-  "newEpisode": "Ny",
-  "@newEpisode": {
-    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
+  "completePreviousTasks": "Fullfør tidligere oppgaver for å låse opp",
+  "@completePreviousTasks": {
+    "type": "text",
+    "description": "Shown on a locked button, short explanation why the button is locked."
   },
-  "tomorrow": "I morgen",
-  "@tomorrow": {
-    "description": "Day of transmission in tv guide."
+  "connectToExplore": "Koble til internett for å få tilgang til alle videoer.",
+  "@connectToExplore": {
+    "type": "text",
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "readBy": "Lest av",
-  "@readBy": {
-    "description": "Feed verse pre author text."
+  "considerDeletingOtherVideos": "Vurder å slette andre videoer du har lastet ned i appen.",
+  "@considerDeletingOtherVideos": {
+    "type": "text",
+    "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "broadcasts": "Sendinger",
-  "@broadcasts": {
-    "description": "Title for live broadcasts."
+  "contactEmail": "Din kontakt e-post",
+  "@contactEmail": {
+    "type": "text",
+    "description": "Label for email field in contact support page"
   },
-  "calendar": "Kalender",
-  "@calendar": {
-    "description": "Title of calendar page."
+  "contactEmailHint": "Skriv inn din e-postadresse",
+  "@contactEmailHint": {
+    "type": "text",
+    "description": "Hint text for name field in contact support page"
   },
-  "noEvents": "Ingen planlagte sendinger",
-  "@noEvents": {
-    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  "contactIncludeDeviceInfo": "Inkluder enhetsinformasjon for bedre støtte.",
+  "@contactIncludeDeviceInfo": {
+    "type": "text",
+    "description": "Text for checkbox to include device information"
   },
-  "appUpdateTitle": "Krever oppdatering",
-  "@appUpdateTitle": {
-    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  "contactIssueHint": "Beskriv problemet",
+  "@contactIssueHint": {
+    "type": "text",
+    "description": "Hint for the message box for logged in users"
   },
-  "appUpdateRequest": "Vennligst last ned den siste versjonen av appen for å få gleden av de siste funksjonene og feilrettingene.",
-  "@appUpdateRequest": {
-    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  "contactMessage": "Melding",
+  "@contactMessage": {
+    "type": "text",
+    "description": "Label for message field in contact support page"
   },
-  "appUpdateAccepted": "Oppdater",
-  "@appUpdateAccepted": {
-    "description": "Option that can be chosen by the user to update his application."
+  "contactMessageHint": "Skriv inn din melding her",
+  "@contactMessageHint": {
+    "type": "text",
+    "description": "Hint text for message field in contact support page"
+  },
+  "contactName": "Navn",
+  "@contactName": {
+    "type": "text",
+    "description": "Label for name field in contact support page"
+  },
+  "contactNameHint": "Skriv inn ditt navn",
+  "@contactNameHint": {
+    "type": "text",
+    "description": "Hint text for name field in contact support page"
+  },
+  "contactSeeData": "Klikk for å se data.",
+  "@contactSeeData": {
+    "type": "text",
+    "description": "Text for link to see device data"
+  },
+  "contactSupport": "Kontakt support",
+  "@contactSupport": {
+    "type": "text",
+    "description": "Title for contact support page"
+  },
+  "contactUs": "Kontakt oss",
+  "@contactUs": {
+    "type": "text",
+    "description": "Title for contact us page"
+  },
+  "contentLanguage": "Innholdsspråk",
+  "@contentLanguage": {
+    "type": "text",
+    "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
+  },
+  "contentLanguageExplanation": "Endre rekkefølgen på språkene så de samsvarer med dine språkpreferanser for lyd og undertekst.",
+  "@contentLanguageExplanation": {
+    "type": "text",
+    "description": "Shown when you are selecting preferred content languages."
+  },
+  "contentLanguageShort": "Innhold",
+  "@contentLanguageShort": {
+    "type": "text",
+    "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
+  },
+  "continueButton": "Fortsett",
+  "@continueButton": {
+    "type": "text",
+    "description": "Generic button text."
+  },
+  "continueStudy": "Fortsett studie",
+  "@continueStudy": {
+    "type": "text",
+    "description": "Button."
+  },
+  "continueToTaskIn": "Fortsett å jobbe i",
+  "@continueToTaskIn": {
+    "type": "text",
+    "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "continueToTasksIn": "Fortsett med oppgaver i",
+  "@continueToTasksIn": {
+    "type": "text",
+    "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
   "copy": "Kopier",
   "@copy": {
+    "type": "text",
     "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
-  "reload": "Last inn på nytt",
-  "@reload": {
-    "description": "Label on the button that allows to reload the player after error."
+  "countItems": "{x} elementer",
+  "@countItems": {
+    "type": "text",
+    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
   },
-  "fAQ": "FAQ",
-  "@fAQ": {
-    "description": "Title on FAQ page and item in profile page settings."
+  "debugInfoExplanation": "Meldingen din vil inneholde denne informasjonen for å hjelpe oss å forstå problemet bedre.",
+  "@debugInfoExplanation": {
+    "type": "text",
+    "description": "Info about debug info usage on contact support page"
   },
-  "shareStart": "Del fra start",
-  "@shareStart": {
-    "description": "Option on action sheet for sharing from start"
+  "deleteMyAccount": "Slett min konto",
+  "@deleteMyAccount": {
+    "type": "text",
+    "description": "Button to request to delete your account"
   },
-  "shareTime": "Del fra {time}",
-  "@shareTime": {
-    "description": "Option on action sheet for sharing from time",
+  "details": "Detaljer",
+  "@details": {
+    "type": "text",
+    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
+  },
+  "deviceInfo": "Enhetsinformasjon",
+  "@deviceInfo": {
+    "type": "text",
+    "description": "Device info page title"
+  },
+  "deviceInfoAppVer": "App-versjon",
+  "@deviceInfoAppVer": {
+    "type": "text",
+    "description": "Label for app Version"
+  },
+  "deviceInfoDevice": "Enhet",
+  "@deviceInfoDevice": {
+    "type": "text",
+    "description": "Label for device"
+  },
+  "deviceInfoEnvOverride": "Miljøoverstyring",
+  "@deviceInfoEnvOverride": {
+    "type": "text",
+    "description": "Label for environment override"
+  },
+  "deviceInfoManufacturer": "Produsent",
+  "@deviceInfoManufacturer": {
+    "type": "text",
+    "description": "Label for manufacturer"
+  },
+  "deviceInfoOs": "Operativsystem",
+  "@deviceInfoOs": {
+    "type": "text",
+    "description": "Label for operating system"
+  },
+  "deviceInfoPageDesc": "Meldingen din vil inneholde denne informasjonen for å hjelpe oss å gi bedre støtte.",
+  "@deviceInfoPageDesc": {
+    "type": "text",
+    "description": "Label for manufacturer"
+  },
+  "deviceInfoScreenSize": "Skjermstørrelse",
+  "@deviceInfoScreenSize": {
+    "type": "text",
+    "description": "Label for screen size"
+  },
+  "deviceInfoUserId": "Bruker-ID",
+  "@deviceInfoUserId": {
+    "type": "text",
+    "description": "Label for user id"
+  },
+  "didYouKnowContent": "Du kan legge til favorittprogrammene dine i «Min liste» ved å trykke på hjertet.",
+  "@didYouKnowContent": {
+    "type": "text",
+    "description": "Content for info displayed on 'My list' page."
+  },
+  "didYouKnowTitle": "Visste du?",
+  "@didYouKnowTitle": {
+    "type": "text",
+    "description": "Title for info displayed on 'My list' page."
+  },
+  "discoverMore": "Oppdag mer",
+  "@discoverMore": {
+    "type": "text",
+    "description": "Generic button text."
+  },
+  "donateViaPaypal": "Doner via PayPal",
+  "@donateViaPaypal": {
+    "type": "text",
+    "description": "Shown on the settings page."
+  },
+  "done": "Ferdig",
+  "@done": {
+    "type": "text",
+    "description": "Generic Done button, for example to dismiss a page after completing an action."
+  },
+  "dontHaveAccess": "Du har ikke tilgang til dette innholdet.",
+  "@dontHaveAccess": {
+    "type": "text",
+    "description": "Error message when you open a link to content you dont have access to."
+  },
+  "downloadButton": "Last ned",
+  "@downloadButton": {
+    "type": "text",
+    "description": "Button text, a button to download the episode to make it available for offline playback."
+  },
+  "downloaded": "Nedlastet",
+  "@downloaded": {
+    "type": "text",
+    "description": "Shown as a title for the 'downloaded' section in the profile tab."
+  },
+  "downloadedVideosGuideDescription": "Du finner dine nedlastede videoer under \"Min profil\".",
+  "@downloadedVideosGuideDescription": {
+    "type": "text",
+    "description": "Shown when you have downloaded a video for the first time."
+  },
+  "downloading": "Laster ned",
+  "@downloading": {
+    "type": "text",
+    "description": "Download status, indicating that the video is currently downloading."
+  },
+  "downloadVideo": "Last ned video",
+  "@downloadVideo": {
+    "type": "text",
+    "description": "Title on the download video form."
+  },
+  "doYouWantCast": "Vil du sende denne videoen til Chromecast?",
+  "@doYouWantCast": {
+    "type": "text",
+    "description": "Prompt displayed to the user"
+  },
+  "editPicture": "Rediger bilde",
+  "@editPicture": {
+    "type": "text",
+    "description": "Button on profile page to edit profile picture."
+  },
+  "emptySearch": "Du kan søke på alt innhold fra BCC Media. Serier, filmer og episoder.",
+  "@emptySearch": {
+    "type": "text",
+    "description": "Message on search page when there is no search results."
+  },
+  "episode": "Episode",
+  "@episode": {
+    "type": "text",
+    "description": "Title of the tab on info page"
+  },
+  "episodeLetter": "E",
+  "@episodeLetter": {
+    "type": "text",
+    "description": "Episode letter in label S1E3"
+  },
+  "episodes": "Episoder",
+  "@episodes": {
+    "type": "text",
+    "description": "Followed by number of episodes in given series."
+  },
+  "errorTryAgain": "Noe gikk galt, vennligst prøv igjen senere.",
+  "@errorTryAgain": {
+    "type": "text",
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
+  "estimatedFileSize": "Estimert filstørrelse: {size}",
+  "@estimatedFileSize": {
+    "type": "text",
+    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "eventsTab": "Eventer",
+  "@eventsTab": {
+    "type": "text",
+    "description": "Events Tab title"
+  },
+  "excerptFrom": "Utdrag fra",
+  "@excerptFrom": {
+    "type": "text",
+    "description": "Shown on a 'short' video, indicating that this is an excerpt from a longer video. E.g. Excerpt from 'The Tale of John Doe'."
+  },
+  "expired": "Utgått",
+  "@expired": {
+    "type": "text",
+    "description": "Label that something is no longer available."
+  },
+  "expiresIn": "Utløper om {time}",
+  "@expiresIn": {
+    "type": "text",
+    "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
     "placeholders": {
       "time": {
         "type": "String"
       }
     }
   },
-  "loadContentError": "Kunne ikke laste innhold",
-  "@loadContentError": {
-    "description": "Error text when content couldn't be loaded."
-  },
-  "privacyPolicy": "Personvernerklæring",
-  "@privacyPolicy": {
-    "description": "Title on Privacy Policy page and item in profile page settings."
-  },
-  "termsOfUse": "Bruksvilkår",
-  "@termsOfUse": {
-    "description": "Title on the 'Terms of use' page."
-  },
-  "categoriesTab": "Kategorier",
-  "@categoriesTab": {
-    "description": "Title of the Categories Tab"
-  },
-  "seriesTab": "Serier",
-  "@seriesTab": {
-    "description": "Series Tab title"
-  },
-  "filmsTab": "Filmer",
-  "@filmsTab": {
-    "description": "Films Tab title"
-  },
-  "eventsTab": "Eventer",
-  "@eventsTab": {
-    "description": "Events Tab title"
-  },
-  "audioLanguage": "Lydspråk",
-  "@audioLanguage": {
-    "description": "Label indicating that the Audio Language can be changed here."
-  },
-  "subtitlesLanguage": "Språk for undertekster",
-  "@subtitlesLanguage": {
-    "description": "Label indicating that the Subtitles Language can be changed here."
-  },
-  "removeFromRecentSearches": "Vil du fjerne dette elementet fra siste søk?",
-  "@removeFromRecentSearches": {
-    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
-  },
-  "noTransmissionToday": "Ingen planlagte sendinger i dag",
-  "@noTransmissionToday": {
-    "description": "Messages that informs the user, that there are no schedules transmission for today."
-  },
-  "featured": "Anbefalt",
-  "@featured": {
-    "description": "Featured videos collection header"
-  },
-  "errorTryAgain": "Noe gikk galt, vennligst prøv igjen senere.",
-  "@errorTryAgain": {
-    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
-  },
-  "programsSection": "Programmer",
-  "@programsSection": {
-    "description": "Section in search."
-  },
-  "noPlannedEvents": "Ingen planlagte hendelser denne dagen",
-  "@noPlannedEvents": {
-    "description": "Information in tvguide"
-  },
-  "watchNow": "Se nå",
-  "@watchNow": {
-    "description": "Button on featured carousel"
-  },
   "exploreContent": "Utforsk innhold",
   "@exploreContent": {
+    "type": "text",
     "description": "A button"
   },
   "explorePublicContent": "Utforsk offentlig innhold",
   "@explorePublicContent": {
+    "type": "text",
     "description": "A button on the welcome page"
   },
-  "startExploring": "Begynn å utforske",
-  "@startExploring": {
-    "description": "A button on the welcome page"
+  "failed": "Mislyktes",
+  "@failed": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that failed."
   },
-  "taskCompleted": "oppgave fullført",
-  "@taskCompleted": {
-    "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
+  "faq": "Ofte stilte spørsmål",
+  "@faq": {
+    "type": "text",
+    "description": "Long title of the FAQ page."
   },
-  "tasksCompleted": "oppgaver fullført",
-  "@tasksCompleted": {
-    "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
+  "fAQ": "FAQ",
+  "@fAQ": {
+    "type": "text",
+    "description": "Title on FAQ page and item in profile page settings."
   },
-  "studyCompleteTaskDescription": "Fullfør oppgaver og få tilgang til relatert innhold",
-  "@studyCompleteTaskDescription": {
-    "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
+  "featured": "Anbefalt",
+  "@featured": {
+    "type": "text",
+    "description": "Featured videos collection header"
   },
-  "discoverMore": "Oppdag mer",
-  "@discoverMore": {
-    "description": "Generic button text."
+  "featureNotAvailableYet": "Denne funksjonen er ikke tilgjengelig på din enhet ennå. Prøv igjen senere.",
+  "@featureNotAvailableYet": {
+    "type": "text",
+    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
-  "completePreviousTasks": "Fullfør tidligere oppgaver for å låse opp",
-  "@completePreviousTasks": {
-    "description": "Shown on a locked button, short explanation why the button is locked."
+  "feed": "Feed",
+  "@feed": {
+    "type": "text",
+    "description": "Feed page bar title"
   },
-  "studyDiscoverMoreDescription": "Finn mer inspirasjon og innsikt fra relatert innhold",
-  "@studyDiscoverMoreDescription": {
-    "description": "Description to open the related resources for this episode."
+  "filmsTab": "Filmer",
+  "@filmsTab": {
+    "type": "text",
+    "description": "Films Tab title"
   },
-  "watchAgain": "Se igjen",
-  "@watchAgain": {
-    "description": "Short button text to watch the video again."
+  "finished": "Ferdig",
+  "@finished": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that finished."
   },
-  "continueToTaskIn": "Fortsett å jobbe i",
-  "@continueToTaskIn": {
-    "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  "gamesTab": "Spill",
+  "@gamesTab": {
+    "type": "text",
+    "description": "Title of the games page"
   },
-  "continueToTasksIn": "Fortsett med oppgaver i",
-  "@continueToTasksIn": {
-    "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  "goBack": "Gå tilbake",
+  "@goBack": {
+    "type": "text",
+    "description": "Text for back button."
   },
-  "studyLessonCompleted": "leksjon fullført",
-  "@studyLessonCompleted": {
-    "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
+  "gotIt": "Skjønner",
+  "@gotIt": {
+    "type": "text",
+    "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
   },
-  "studyLessonsCompleted": "leksjoner fullført",
-  "@studyLessonsCompleted": {
-    "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
+  "hereAreAllTheVideosYouDownloaded": "Her er alle videoene du har lastet ned til enheten din.",
+  "@hereAreAllTheVideosYouDownloaded": {
+    "type": "text",
+    "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "continueStudy": "Fortsett studie",
-  "@continueStudy": {
-    "description": "Button."
+  "high": "Høy",
+  "@high": {
+    "type": "text",
+    "description": "High quality video option"
   },
-  "startStudy": "Start studie",
-  "@startStudy": {
-    "description": "Button."
+  "homeTab": "Hjem",
+  "@homeTab": {
+    "type": "text",
+    "description": "Title of the home page"
   },
-  "videoCompletedText": "Gratulerer med å ha fullført videoen.",
-  "@videoCompletedText": {
-    "description": "Shown after completing tasks related to a video."
+  "iAmSureIWantToDelete": "Jeg er sikker på at jeg vil slette min konto og mine data relatert til BCC Media appen.",
+  "@iAmSureIWantToDelete": {
+    "type": "text",
+    "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
   },
-  "achievementFirstDescription": "Gratulerer med å ha fullført videoen og fått ditt første prestasjonsmerke.",
-  "@achievementFirstDescription": {
-    "description": "Description displayed in a popup when earning the first achievement badge."
+  "ifYouDidntReceiveVerificationEmail": "Hvis du fortsatt ikke har mottatt en e-post, vennligst kontakt støtte på",
+  "@ifYouDidntReceiveVerificationEmail": {
+    "type": "text",
+    "description": "Shown when the user has requested a new verification email."
   },
-  "achievementStudyTopic": "Gratulerer med å ha fullført bibelstudiet {name}",
-  "@achievementStudyTopic": {
-    "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
+  "info": "Informasjon",
+  "@info": {
+    "type": "text",
+    "description": "Video info page title."
   },
-  "videoCount": "{count} videoer",
-  "@videoCount": {
-    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
+  "information": "Informasjon",
+  "@information": {
+    "type": "text",
+    "description": "Feed information item title"
   },
-  "taskCount": "{count} oppgaver",
-  "@taskCount": {
-    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
+  "keepVideoButton": "Behold video",
+  "@keepVideoButton": {
+    "type": "text",
+    "description": "Button when asking to remove a downloaded video. This button cancels."
   },
-  "posterCount": "{count} plakater",
-  "@posterCount": {
-    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
+  "kidsOnboardingSecondaryTitle": "Vår visjon er at barna skal oppleve Jesus som sin aller beste venn - resten av livet.",
+  "@kidsOnboardingSecondaryTitle": {
+    "type": "text",
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "resourceCount": "{count} innholdsressurser",
-  "@resourceCount": {
-    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
+  "kidsOnboardingTitle": "Vi gjør Bibelens budskap levende!",
+  "@kidsOnboardingTitle": {
+    "type": "text",
+    "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "continueButton": "Fortsett",
-  "@continueButton": {
-    "description": "Generic button text."
+  "language": "Språk",
+  "@language": {
+    "type": "text",
+    "description": "A label when selecting a language to download."
   },
-  "registerButton": "Registrer",
-  "@registerButton": {
-    "description": "Generic button text."
+  "latelyPublished": "Sist publisert",
+  "@latelyPublished": {
+    "type": "text",
+    "description": "Title for the list of videos on login page"
   },
-  "achievements": "Prestasjoner",
-  "@achievements": {
-    "description": "Generic. Used as page title, etc."
+  "likedAndSaved": "Likt og lagret",
+  "@likedAndSaved": {
+    "type": "text",
+    "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "likedShorts": "Likte shorts",
+  "@likedShorts": {
+    "type": "text",
+    "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
+  },
+  "loadContentError": "Kunne ikke laste innhold",
+  "@loadContentError": {
+    "type": "text",
+    "description": "Error text when content couldn't be loaded."
+  },
+  "loading": "Laster",
+  "@loading": {
+    "type": "text",
+    "description": "Text to indicate loading state."
+  },
+  "loadingContent": "Laster innhold",
+  "@loadingContent": {
+    "type": "text",
+    "description": "Text displayed when page content is loading."
+  },
+  "loggedOutMessage": "Du har blitt logget ut. Vennligst logg inn igjen.",
+  "@loggedOutMessage": {
+    "type": "text",
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutTitle": "Logget ut",
+  "@loggedOutTitle": {
+    "type": "text",
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loginFailedCheckNetwork": "Det har oppstått en feil. Sjekk nettverksforbindelsen og prøv en gang til.",
+  "@loginFailedCheckNetwork": {
+    "type": "text",
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Det har oppstått en feil. Prøv igjen senere.",
+  "@loginFailedTryAgain": {
+    "type": "text",
+    "description": "Login error message"
+  },
+  "loginPageDisplay1": "Det kraftigste\nbudskapet i verden",
+  "@loginPageDisplay1": {
+    "type": "text",
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Se serier, programmer og filmer basert på kristne verdier",
+  "@loginPageDisplay2": {
+    "type": "text",
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay3": "Produsert av BCC Media",
+  "@loginPageDisplay3": {
+    "type": "text",
+    "description": "Text displayed on login screen."
+  },
+  "logOutButton": "Logg ut",
+  "@logOutButton": {
+    "type": "text",
+    "description": "Text displayed on Log out button"
+  },
+  "low": "Lav",
+  "@low": {
+    "type": "text",
+    "description": "Low quality video option"
+  },
+  "makeDonation": "Gi en donasjon",
+  "@makeDonation": {
+    "type": "text",
+    "description": "Text for button which opens donation page."
+  },
+  "medium": "Medium",
+  "@medium": {
+    "type": "text",
+    "description": "Medium quality video option"
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "type": "text",
+    "description": "Text for minutes."
+  },
+  "moreInfo": "Mer informasjon",
+  "@moreInfo": {
+    "type": "text",
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "mostRecent": "Sist publisert",
+  "@mostRecent": {
+    "type": "text",
+    "description": "Sorting option on audience page"
+  },
+  "mostWatched": "Mest sett",
+  "@mostWatched": {
+    "type": "text",
+    "description": "Sorting option on audience page"
+  },
+  "mustBeLoggedIn": "Du må være logget inn for å se dette innholdet",
+  "@mustBeLoggedIn": {
+    "type": "text",
+    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  },
+  "myList": "Min liste",
+  "@myList": {
+    "type": "text",
+    "description": "My list tab name"
+  },
+  "newEpisode": "Ny",
+  "@newEpisode": {
+    "type": "text",
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
+  },
+  "newFeature": "Ny funksjon",
+  "@newFeature": {
+    "type": "text",
+    "description": "Shown the first time you open the app after a new feature is available."
+  },
+  "next": "Neste",
+  "@next": {
+    "type": "text",
+    "description": "NEXT program in check in section"
+  },
+  "nextEpisode": "Neste episode",
+  "@nextEpisode": {
+    "type": "text",
+    "description": "Button indicating the next video will play soon."
+  },
+  "noEvents": "Ingen planlagte sendinger",
+  "@noEvents": {
+    "type": "text",
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
+  "noInternetButDontWorry": "Ingen internettforbindelse, men ta det rolig...",
+  "@noInternetButDontWorry": {
+    "type": "text",
+    "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
+  },
+  "noInternetConnection": "Ingen internettforbindelse",
+  "@noInternetConnection": {
+    "type": "text",
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "noInternetConnectionDescription": "Koble til internett for å få tilgang til alle videoer.",
+  "@noInternetConnectionDescription": {
+    "type": "text",
+    "description": "Shown when you are offline, and the app cannot connect to the internet."
+  },
+  "noMailAppsDescription": "Ingen e-post apper innstallert",
+  "@noMailAppsDescription": {
+    "type": "text",
+    "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
+  },
+  "none": "Ingen",
+  "@none": {
+    "type": "text",
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "noPlannedEvents": "Ingen planlagte hendelser denne dagen",
+  "@noPlannedEvents": {
+    "type": "text",
+    "description": "Information in tvguide"
+  },
+  "noResults": "Ingen resultater funnet",
+  "@noResults": {
+    "type": "text",
+    "description": "No search results."
+  },
+  "noSubtitles": "Ingen undertekster",
+  "@noSubtitles": {
+    "type": "text",
+    "description": "Shown in the download form, indicating that there are no subtitles available for the video."
+  },
+  "notAchieved": "Ikke oppnådd ennå",
+  "@notAchieved": {
+    "type": "text",
+    "description": "A label indicating that this achievement has not been achieved yet."
+  },
+  "notEnoughAvailableSpace": "Det er ikke nok ledig plass på enheten din",
+  "@notEnoughAvailableSpace": {
+    "type": "text",
+    "description": "Shown when you try to download an episode, but there is not enough space on your device."
+  },
+  "notFound": "Innholdet du leter etter ser ikke ut til å eksistere.",
+  "@notFound": {
+    "type": "text",
+    "description": "Error message when the requested content is not found."
+  },
+  "noTransmissionToday": "Ingen planlagte sendinger i dag",
+  "@noTransmissionToday": {
+    "type": "text",
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
+  "now": "Nå",
+  "@now": {
+    "type": "text",
+    "description": "Tv guide now playing label"
+  },
+  "offline": "Offline",
+  "@offline": {
+    "type": "text",
+    "description": "Status indicator, indicating that you are offline; not connected to the internet."
+  },
+  "ok": "OK",
+  "@ok": {
+    "type": "text",
+    "description": "Popup confirmation button"
+  },
+  "oops": "Uups!",
+  "@oops": {
+    "type": "text",
+    "description": "An informal title on some error screens."
+  },
+  "open": "Åpne",
+  "@open": {
+    "type": "text",
+    "description": "Open button"
+  },
+  "openEmailApp": "Åpne e-post appen",
+  "@openEmailApp": {
+    "type": "text",
+    "description": "Shown on the verify account page. Button to open your email app."
+  },
+  "openSettingsToChangeVideoLang": "Åpne innstillinger for å endre tekstspråk",
+  "@openSettingsToChangeVideoLang": {
+    "type": "text",
+    "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
+  },
+  "openStore": "Åpne",
+  "@openStore": {
+    "type": "text",
+    "description": "A button to open play store / app store."
+  },
+  "options": "Alternativer",
+  "@options": {
+    "type": "text",
+    "description": "Options dialog title"
+  },
+  "original": "Original",
+  "@original": {
+    "type": "text",
+    "description": "E.g. original language."
+  },
+  "otherLanguages": "Andre språk",
+  "@otherLanguages": {
+    "type": "text",
+    "description": "Languages that are available but in your list of preferred languages."
+  },
+  "passwordConditionComplexity": "Må inneholde små bokstaver, store bokstaver og tall.",
+  "@passwordConditionComplexity": {
+    "type": "text",
+    "description": "Password condition, shown when signing up."
   },
   "passwordConditionLength": "Minimum {n} tegn",
   "@passwordConditionLength": {
+    "type": "text",
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
       "n": {
@@ -893,182 +1013,584 @@
       }
     }
   },
-  "passwordConditionComplexity": "Må inneholde små bokstaver, store bokstaver og tall.",
-  "@passwordConditionComplexity": {
-    "description": "Password condition, shown when signing up."
+  "pause": "Pause",
+  "@pause": {
+    "type": "text",
+    "description": "A button to pause the video."
   },
-  "oops": "Uups!",
-  "@oops": {
-    "description": "An informal title on some error screens."
+  "paused": "Satt på pause",
+  "@paused": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
   },
-  "dontHaveAccess": "Du har ikke tilgang til dette innholdet.",
-  "@dontHaveAccess": {
-    "description": "Error message when you open a link to content you dont have access to."
+  "pickPhoto": "Velg fra galleri",
+  "@pickPhoto": {
+    "type": "text",
+    "description": "Option in menu"
   },
-  "notFound": "Innholdet du leter etter ser ikke ut til å eksistere.",
-  "@notFound": {
-    "description": "Error message when the requested content is not found."
+  "play": "Spill av",
+  "@play": {
+    "type": "text",
+    "description": "Option in prompt dialog."
   },
-  "mustBeLoggedIn": "Du må være logget inn for å se dette innholdet",
-  "@mustBeLoggedIn": {
-    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  "playerSettings": "Innstilling for videoavspiller",
+  "@playerSettings": {
+    "type": "text",
+    "description": "Title of the Player settings activity in Android"
+  },
+  "playGame": "Spille spill",
+  "@playGame": {
+    "type": "text",
+    "description": "Title on a game"
+  },
+  "playRandom": "Spill tilfeldig",
+  "@playRandom": {
+    "type": "text",
+    "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
   },
   "plentyOfOtherContent": "Fortvil ikke, det er fortsatt mye innhold du kan se!",
   "@plentyOfOtherContent": {
+    "type": "text",
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   },
-  "notAchieved": "Ikke oppnådd ennå",
-  "@notAchieved": {
-    "description": "A label indicating that this achievement has not been achieved yet."
-  },
-  "details": "Detaljer",
-  "@details": {
-    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
-  },
-  "myList": "Min liste",
-  "@myList": {
-    "description": "My list tab name"
-  },
-  "didYouKnowTitle": "Visste du?",
-  "@didYouKnowTitle": {
-    "description": "Title for info displayed on 'My list' page."
-  },
-  "didYouKnowContent": "Du kan legge til favorittprogrammene dine i «Min liste» ved å trykke på hjertet.",
-  "@didYouKnowContent": {
-    "description": "Content for info displayed on 'My list' page."
-  },
-  "selectSeason": "Velg sesong",
-  "@selectSeason": {
-    "description": "A title prompting to select a season from the list."
-  },
-  "deleteMyAccount": "Slett min konto",
-  "@deleteMyAccount": {
-    "description": "Button to request to delete your account"
-  },
-  "iAmSureIWantToDelete": "Jeg er sikker på at jeg vil slette min konto og mine data relatert til BCC Media appen.",
-  "@iAmSureIWantToDelete": {
-    "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
-  },
-  "areYouSure": "Er du sikker?",
-  "@areYouSure": {
-    "description": "Generic text. Used at least as a title on the account deletion page."
-  },
-  "youCanContactUsAt": "Du kan kontakte oss på",
-  "@youCanContactUsAt": {
-    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
-  },
-  "biblekidsAbout": "Bible Kids er et initiativ av BCC Media, en mediestiftelse i BCC-forbundet som produserer og distribuerer innhold med positive og kristne verdier.",
-  "@biblekidsAbout": {
-    "description": "Shown on about page"
-  },
-  "askYourParents": "Spør dine foresatte",
-  "@askYourParents": {
-    "description": "Shown on the 'parental gate' for bible kids, where a parent needs to solve a puzzle to continue."
-  },
-  "whatIsMath": "Hva er",
-  "@whatIsMath": {
-    "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
-  },
-  "answerLabel": "Svar",
-  "@answerLabel": {
-    "description": "Shown on the 'parental gate'. Hint label for the input field where you enter the answer to the puzzle or question."
-  },
-  "checkAnswerButton": "Sjekk svar",
-  "@checkAnswerButton": {
-    "description": "Shown on the 'parental gate'. Short label on the button to check if your answer to the puzzle/question is correct."
-  },
-  "videoOnlyAccessibleToLoggedIn": "Denne videoen er kun tilgjengelig for brukere som er logget inn.",
-  "@videoOnlyAccessibleToLoggedIn": {
-    "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
-  },
-  "verifyYourAccount": "Bekreft din konto",
-  "@verifyYourAccount": {
-    "description": "Title of the page where you can verify your email/account."
-  },
-  "weHaveSentAnEmailTo": "Vi har sendt en e-post til",
-  "@weHaveSentAnEmailTo": {
-    "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
-  },
-  "clickTheLinkToVerify": "Klikk på linken i e-posten for å bekrefte din konto.",
-  "@clickTheLinkToVerify": {
-    "description": "Shown on the verify account page."
-  },
-  "openEmailApp": "Åpne e-post appen",
-  "@openEmailApp": {
-    "description": "Shown on the verify account page. Button to open your email app."
-  },
-  "resendEmail": "Send e-post på nytt",
-  "@resendEmail": {
-    "description": "Shown on the verify account page. Button to resend the verification email."
-  },
-  "noMailAppsDescription": "Ingen e-post apper innstallert",
-  "@noMailAppsDescription": {
-    "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
-  },
-  "verificationEmailSent": "Bekreftelses e-post sendt",
-  "@verificationEmailSent": {
-    "description": "Shown when the user has requested a new verification email."
-  },
-  "ifYouDidntReceiveVerificationEmail": "Hvis du fortsatt ikke har mottatt en e-post, vennligst kontakt støtte på",
-  "@ifYouDidntReceiveVerificationEmail": {
-    "description": "Shown when the user has requested a new verification email."
-  },
-  "accountCreated": "Konto oprettet",
-  "@accountCreated": {
-    "description": "Shown when the user has successfully created an account."
-  },
-  "youCanNowUseYourAccount": "Du kan nå bruke din konto og utforske et utvalg av oppbyggelig innhold.",
-  "@youCanNowUseYourAccount": {
-    "description": "Shown when the user has successfully completed account setup."
-  },
-  "youCanNowLogInToYourAccount": "Du kan nå logge inn på din konto og utforske et utvalg av oppbyggelig innhold.",
-  "@youCanNowLogInToYourAccount": {
-    "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
-  },
-  "accountDeletionExplanation": "Du er i ferd med å be om å slette din konto hos BCC Media og alle dine data knyttet til denne appen.",
-  "@accountDeletionExplanation": {
-    "description": "Shown on the account deletion page."
-  },
-  "accountDeletionWarning": "Dette er en handling som ikke kan gjøres om.",
-  "@accountDeletionWarning": {
-    "description": "Shown on the account deletion page."
-  },
-  "accountDeletionTimeframe": "Sletting av konto vil vanligvis gjøres innen {x} arbeidsdager.",
-  "@accountDeletionTimeframe": {
-    "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
+  "posterCount": "{count} plakater",
+  "@posterCount": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
-      "x": {
+      "count": {
         "type": "int"
       }
     }
   },
-  "accountDeletionTitle": "Slett min konto",
-  "@accountDeletionTitle": {
-    "description": "Title of the account deletion page."
+  "preferredLanguages": "Foretrukne språk",
+  "@preferredLanguages": {
+    "type": "text",
+    "description": "Shown when you are selecting preferred content languages. Title."
   },
-  "accountDeletionSuccess": "Forespørsel om sletting av konto vellykket. Du vil motta en e-post på {email}. For å bekrefte din identitet trenger vi at du svarer på den e-posten for å kunne gå videre med slettingen.",
-  "@accountDeletionSuccess": {
-    "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
+  "privacyPolicy": "Personvernerklæring",
+  "@privacyPolicy": {
+    "type": "text",
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
+  "profilePicture": "Profilbilde",
+  "@profilePicture": {
+    "type": "text",
+    "description": "Text on edit profile page."
+  },
+  "profileTab": "Min profil",
+  "@profileTab": {
+    "type": "text",
+    "description": "Title of the profile page"
+  },
+  "programsSection": "Programmer",
+  "@programsSection": {
+    "type": "text",
+    "description": "Section in search."
+  },
+  "quality": "Kvalitet",
+  "@quality": {
+    "type": "text",
+    "description": "Generic."
+  },
+  "question": "Spørsmål",
+  "@question": {
+    "type": "text",
+    "description": "Title of the question page"
+  },
+  "queued": "I kø",
+  "@queued": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
+  },
+  "queueLimitMessage": "Du kan ikke ha mer enn {elementCount} elementer i køen.",
+  "@queueLimitMessage": {
+    "type": "text",
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
-      "email": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "queueLimitTitle": "Købegrensing",
+  "@queueLimitTitle": {
+    "type": "text",
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "readBy": "Lest av",
+  "@readBy": {
+    "type": "text",
+    "description": "Feed verse pre author text."
+  },
+  "recentSearches": "Nylige søk",
+  "@recentSearches": {
+    "type": "text",
+    "description": "Recent searches list title."
+  },
+  "registerButton": "Registrer",
+  "@registerButton": {
+    "type": "text",
+    "description": "Generic button text."
+  },
+  "releaseDate": "Utgivelsesdato",
+  "@releaseDate": {
+    "type": "text",
+    "description": "Release date of the episode, shown in the 'details' tab under an episode."
+  },
+  "reload": "Last inn på nytt",
+  "@reload": {
+    "type": "text",
+    "description": "Label on the button that allows to reload the player after error."
+  },
+  "remove": "Fjern",
+  "@remove": {
+    "type": "text",
+    "description": "Option in options dialog"
+  },
+  "removeFromDeviceButton": "Fjern fra enhet",
+  "@removeFromDeviceButton": {
+    "type": "text",
+    "description": "Button text, to remove a downloaded video from the device."
+  },
+  "removeFromRecentSearches": "Vil du fjerne dette elementet fra siste søk?",
+  "@removeFromRecentSearches": {
+    "type": "text",
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
+  "removeOfflineVideo": "Vil du fjerne offline video?",
+  "@removeOfflineVideo": {
+    "type": "text",
+    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
+  },
+  "removeOfflineVideoDescription": "Ved å fjerne denne videoen vil den ikke lenger være tilgjengelig uten en nettverkstilkobling.",
+  "@removeOfflineVideoDescription": {
+    "type": "text",
+    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
+  },
+  "removeWatchProgress": "Start episoden på nytt",
+  "@removeWatchProgress": {
+    "type": "text",
+    "description": "Shown when holding on an episode in the 'continue watching' section."
+  },
+  "removing": "Sletter",
+  "@removing": {
+    "type": "text",
+    "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
+  },
+  "resendEmail": "Send e-post på nytt",
+  "@resendEmail": {
+    "type": "text",
+    "description": "Shown on the verify account page. Button to resend the verification email."
+  },
+  "resourceCount": "{count} innholdsressurser",
+  "@resourceCount": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "saveVideosForOfflineViewing": "Lagre videoer for offline visning",
+  "@saveVideosForOfflineViewing": {
+    "type": "text",
+    "description": "Shown when the 'downloaded' section is empty."
+  },
+  "saveYourFavorites": "Lagre favorittvideoene dine",
+  "@saveYourFavorites": {
+    "type": "text",
+    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
+  },
+  "saveYourFavoritesDescription": "Trykk på hjerteikonet på en video for å lagre den i profilen din.",
+  "@saveYourFavoritesDescription": {
+    "type": "text",
+    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
+  },
+  "saveYourFavoriteShorts": "Lagre favorittvideoene dine",
+  "@saveYourFavoriteShorts": {
+    "type": "text",
+    "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
+  },
+  "search": "Søk",
+  "@search": {
+    "type": "text",
+    "description": "Button to clear cache"
+  },
+  "seasonLetter": "S",
+  "@seasonLetter": {
+    "type": "text",
+    "description": "Season  letter in label S1E3"
+  },
+  "seasons": "Sesonger",
+  "@seasons": {
+    "type": "text",
+    "description": "Followed by number of seasons in given series."
+  },
+  "seeAll": "Se alt",
+  "@seeAll": {
+    "type": "text",
+    "description": "Button to see all of some collection."
+  },
+  "seeMore": "Se mer",
+  "@seeMore": {
+    "type": "text",
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "select": "Velg",
+  "@select": {
+    "type": "text",
+    "description": "Prompt. Shown at the top of a list of options."
+  },
+  "selectSeason": "Velg sesong",
+  "@selectSeason": {
+    "type": "text",
+    "description": "A title prompting to select a season from the list."
+  },
+  "send": "Send",
+  "@send": {
+    "type": "text",
+    "description": "General button to send a form"
+  },
+  "sendFail": "Kunne ikke sende din melding",
+  "@sendFail": {
+    "type": "text",
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.",
+  "@sendFailDescription": {
+    "type": "text",
+    "description": "General error message that sending failed"
+  },
+  "sendFeedback": "Send tilbakemelding",
+  "@sendFeedback": {
+    "type": "text",
+    "description": "Button to submit feedback(Survey)"
+  },
+  "sending": "Sender",
+  "@sending": {
+    "type": "text",
+    "description": "General sending action indicator"
+  },
+  "sendSuccessDescription": "Vi setter pris på din tilbakemelding.",
+  "@sendSuccessDescription": {
+    "type": "text",
+    "description": "General message when sending is successful"
+  },
+  "series": "Serier",
+  "@series": {
+    "type": "text",
+    "description": "Title of the tab on info page"
+  },
+  "seriesTab": "Serier",
+  "@seriesTab": {
+    "type": "text",
+    "description": "Series Tab title"
+  },
+  "setPassword": "Nytt passord",
+  "@setPassword": {
+    "type": "text",
+    "description": "Title for the 'Set password' page of the signup process."
+  },
+  "settings": "Innstillinger",
+  "@settings": {
+    "type": "text",
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "share": "Del",
+  "@share": {
+    "type": "text",
+    "description": "Generic."
+  },
+  "shareStart": "Del fra start",
+  "@shareStart": {
+    "type": "text",
+    "description": "Option on action sheet for sharing from start"
+  },
+  "shareTime": "Del fra {time}",
+  "@shareTime": {
+    "type": "text",
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
         "type": "String"
       }
     }
   },
-  "gamesTab": "Spill",
-  "@gamesTab": {
-    "description": "Title of the games page"
+  "shortFilms": "Kortfilmer",
+  "@shortFilms": {
+    "type": "text",
+    "description": "Title of the films collection."
   },
-  "playGame": "Spille spill",
-  "@playGame": {
-    "description": "Title on a game"
+  "shortsFeatureDescription": "Oppdag korte og kraftige utdrag, og hopp rett inn i hele episoden.",
+  "@shortsFeatureDescription": {
+    "type": "text",
+    "description": "Shown the first time you open the app after 'shorts' is enabled."
   },
-  "tvScanQr": "Skann koden og logg inn med telefonen",
-  "@tvScanQr": {
-    "description": "Title on the login screen for TVs"
+  "shortsLikedAndSavedDescription": "Du finner alt du har likt i profilen din.",
+  "@shortsLikedAndSavedDescription": {
+    "type": "text",
+    "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "shortsTab": "Shorts",
+  "@shortsTab": {
+    "type": "text",
+    "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
+  },
+  "shortsTranscriptionDisclaimer": "Transkripsjonene er automatisk generert og kan inneholde feil.",
+  "@shortsTranscriptionDisclaimer": {
+    "type": "text",
+    "description": "Disclaimer shown on the shorts page."
+  },
+  "showDescription": "Seriebeskrivelse",
+  "@showDescription": {
+    "type": "text",
+    "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
+  },
+  "showLess": "Vis mindre",
+  "@showLess": {
+    "type": "text",
+    "description": "Text used on link to collapse expanded text."
+  },
+  "showMore": "Vis mer",
+  "@showMore": {
+    "type": "text",
+    "description": "Text used on link to expand collapsed text."
+  },
+  "signInButton": "Logg inn",
+  "@signInButton": {
+    "type": "text",
+    "description": "Text displayed on Sign in button"
+  },
+  "signInOrSignUp": "Registrer deg / Logg inn",
+  "@signInOrSignUp": {
+    "type": "text",
+    "description": "Button to go to the onboarding page (short)"
+  },
+  "signInTooltip": "Logg inn for å se mer innhold",
+  "@signInTooltip": {
+    "type": "text",
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "signUpAgreePrivacyPolicy": "Jeg bekrefter at jeg er 13 år eller eldre, og jeg er enig i <a>Personvernreglene</a>og <a>Vilkår for bruk</a>.",
+  "@signUpAgreePrivacyPolicy": {
+    "type": "text",
+    "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
+  },
+  "signUpButton": "Registrer deg nå",
+  "@signUpButton": {
+    "type": "text",
+    "description": "Button to start the sign up process"
+  },
+  "signUpDescription": "Få tilgang til mer innhold og bedre funksjoner ved å opprette en konto.",
+  "@signUpDescription": {
+    "type": "text",
+    "description": "A description on the sign up page explaining why you would want to sign up"
+  },
+  "signUpTitle": "Registrer deg",
+  "@signUpTitle": {
+    "type": "text",
+    "description": "Title on the sign up page"
+  },
+  "skipTo": "Hopp til {chapter}",
+  "@skipTo": {
+    "type": "text",
+    "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "chapter": {
+        "type": "String"
+      }
+    }
+  },
+  "skipToPublicContent": "Hopp over for å se offentlig innhold",
+  "@skipToPublicContent": {
+    "type": "text",
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "somethingWentWrong": "Noe gikk galt",
+  "@somethingWentWrong": {
+    "type": "text",
+    "description": "Generic error title/message."
+  },
+  "sortBy": "Sorter etter",
+  "@sortBy": {
+    "type": "text",
+    "description": "Sorting criteria selector"
+  },
+  "soundLanguage": "Lydspråk",
+  "@soundLanguage": {
+    "type": "text",
+    "description": "Settings item on profile page"
+  },
+  "startExploring": "Begynn å utforske",
+  "@startExploring": {
+    "type": "text",
+    "description": "A button on the welcome page"
+  },
+  "startStudy": "Start studie",
+  "@startStudy": {
+    "type": "text",
+    "description": "Button."
+  },
+  "studyCompleteTaskDescription": "Fullfør oppgaver og få tilgang til relatert innhold",
+  "@studyCompleteTaskDescription": {
+    "type": "text",
+    "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
+  },
+  "studyDiscoverMoreDescription": "Finn mer inspirasjon og innsikt fra relatert innhold",
+  "@studyDiscoverMoreDescription": {
+    "type": "text",
+    "description": "Description to open the related resources for this episode."
+  },
+  "studyLessonCompleted": "leksjon fullført",
+  "@studyLessonCompleted": {
+    "type": "text",
+    "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
+  },
+  "studyLessonsCompleted": "leksjoner fullført",
+  "@studyLessonsCompleted": {
+    "type": "text",
+    "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
+  },
+  "submit": "Send inn",
+  "@submit": {
+    "type": "text",
+    "description": "Submit button."
+  },
+  "subtitleLanguage": "Språk for undertekster",
+  "@subtitleLanguage": {
+    "type": "text",
+    "description": "Settings item on profile page"
+  },
+  "subtitles": "Undertekster",
+  "@subtitles": {
+    "type": "text",
+    "description": "Generic."
+  },
+  "subtitlesIncluded": "Inkludert undertekster",
+  "@subtitlesIncluded": {
+    "type": "text",
+    "description": "Shown in the download form, indicating that all subtitles are included in the video."
+  },
+  "subtitlesLanguage": "Språk for undertekster",
+  "@subtitlesLanguage": {
+    "type": "text",
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
+  "supportBibleKids": "Støtt Bible Kids",
+  "@supportBibleKids": {
+    "type": "text",
+    "description": "Shown on the settings page."
+  },
+  "takePhoto": "Ta et bilde",
+  "@takePhoto": {
+    "type": "text",
+    "description": "Option in menu"
+  },
+  "tapOnTheDownloadIcon": "Trykk på nedlastingsikonet på en video for å laste ned og spille av uten internett.",
+  "@tapOnTheDownloadIcon": {
+    "type": "text",
+    "description": "Shown when the 'downloaded' section is empty."
+  },
+  "taskCompleted": "oppgave fullført",
+  "@taskCompleted": {
+    "type": "text",
+    "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
+  },
+  "taskCount": "{count} oppgaver",
+  "@taskCount": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tasksCompleted": "oppgaver fullført",
+  "@tasksCompleted": {
+    "type": "text",
+    "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
+  },
+  "technicalDetails": "Tekniske detaljer",
+  "@technicalDetails": {
+    "type": "text",
+    "description": "Shown when errors occur, and you want to see more technical details about the error."
+  },
+  "termsOfUse": "Bruksvilkår",
+  "@termsOfUse": {
+    "type": "text",
+    "description": "Title on the 'Terms of use' page."
+  },
+  "thankYou": "Tusen takk!",
+  "@thankYou": {
+    "type": "text",
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Takk for ditt bidrag!",
+  "@thankYouForContribution": {
+    "type": "text",
+    "description": "Title in upload success page"
+  },
+  "thankYouSupportDescription": "Vi setter pris på alle tilbakemeldinger og vi vil se på problemet så snart som mulig.",
+  "@thankYouSupportDescription": {
+    "type": "text",
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportTitle": "Takk for din tilbakemelding!",
+  "@thankYouSupportTitle": {
+    "type": "text",
+    "description": "Text on contact support confirmation page"
+  },
+  "theVideoFileSizeIs": "Videofilens størrelse er {size}.",
+  "@theVideoFileSizeIs": {
+    "type": "text",
+    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "thisVideoCantBeDownloaded": "Denne videoen kan ikke lastes ned.",
+  "@thisVideoCantBeDownloaded": {
+    "type": "text",
+    "description": "Shown when you try to download a video that cannot be downloaded."
+  },
+  "timezoneInformation": "Tidspunkter er oppgitt i din lokaltid: {timeZone}",
+  "@timezoneInformation": {
+    "type": "text",
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "I dag",
+  "@today": {
+    "type": "text",
+    "description": "First category in tv guide"
+  },
+  "tomorrow": "I morgen",
+  "@tomorrow": {
+    "type": "text",
+    "description": "Day of transmission in tv guide."
+  },
+  "tryAgain": "Prøv igjen senere.",
+  "@tryAgain": {
+    "type": "text",
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgainButton": "Prøv igjen",
+  "@tryAgainButton": {
+    "type": "text",
+    "description": "Button on error alert that lets user to retry failed action"
   },
   "tvEnterCode": "Eller gå til {url} og skriv inn koden: {code}",
   "@tvEnterCode": {
+    "type": "text",
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
       "url": {
@@ -1079,350 +1601,159 @@
       }
     }
   },
-  "chapters": "Kapitler",
-  "@chapters": {
-    "description": "A tab on the episode page. Video chapters, e.g. 'Tale - John Doe', etc."
+  "tVLogin": "TV-innlogging",
+  "@tVLogin": {
+    "type": "text",
+    "description": "Title of the TV login alert"
   },
-  "removeWatchProgress": "Start episoden på nytt",
-  "@removeWatchProgress": {
-    "description": "Shown when holding on an episode in the 'continue watching' section."
+  "tVLoginSuccessful": "Du er nå logget inn, vennligst bekreft på TV-en",
+  "@tVLoginSuccessful": {
+    "type": "text",
+    "description": "Message of the TV login alert"
   },
-  "showDescription": "Seriebeskrivelse",
-  "@showDescription": {
-    "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
+  "tvScanQr": "Skann koden og logg inn med telefonen",
+  "@tvScanQr": {
+    "type": "text",
+    "description": "Title on the login screen for TVs"
   },
-  "releaseDate": "Utgivelsesdato",
-  "@releaseDate": {
-    "description": "Release date of the episode, shown in the 'details' tab under an episode."
+  "uploadFail": "Opplasting feilet",
+  "@uploadFail": {
+    "type": "text",
+    "description": "Upload result message"
   },
-  "availableTo": "Tilgjengelig til",
-  "@availableTo": {
-    "description": "The date which the episode will available to. Shown in the 'details' tab under an episode."
+  "uploadFileMessage": "Vil du laste opp denne filen?",
+  "@uploadFileMessage": {
+    "type": "text",
+    "description": "Content of the dialog to confirm upload"
   },
-  "ageRating": "Aldersgrense",
-  "@ageRating": {
-    "description": "Age rating for the episode, shown in the 'details' tab under an episode."
+  "uploadFileTitle": "Last opp fil",
+  "@uploadFileTitle": {
+    "type": "text",
+    "description": "Title of the dialog to confirm upload"
   },
-  "ageRatingAll": "Alle",
-  "@ageRatingAll": {
-    "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
+  "uploading": "Opplasting",
+  "@uploading": {
+    "type": "text",
+    "description": "Message during file upload"
   },
-  "offline": "Offline",
-  "@offline": {
-    "description": "Status indicator, indicating that you are offline; not connected to the internet."
+  "userVoice": "Foreslå en funksjon",
+  "@userVoice": {
+    "type": "text",
+    "description": "Settings item on profile page to navigate to uservoice"
   },
-  "downloadButton": "Last ned",
-  "@downloadButton": {
-    "description": "Button text, a button to download the episode to make it available for offline playback."
+  "verificationEmailSent": "Bekreftelses e-post sendt",
+  "@verificationEmailSent": {
+    "type": "text",
+    "description": "Shown when the user has requested a new verification email."
   },
-  "audioNotAvailableInLanguage": "Språk er ikke tilgjengelig på {lang}",
-  "@audioNotAvailableInLanguage": {
-    "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
+  "verifyYourAccount": "Bekreft din konto",
+  "@verifyYourAccount": {
+    "type": "text",
+    "description": "Title of the page where you can verify your email/account."
+  },
+  "version": "Versjon",
+  "@version": {
+    "type": "text",
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "videoCompletedText": "Gratulerer med å ha fullført videoen.",
+  "@videoCompletedText": {
+    "type": "text",
+    "description": "Shown after completing tasks related to a video."
+  },
+  "videoCount": "{count} videoer",
+  "@videoCount": {
+    "type": "text",
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
-      "lang": {
-        "type": "String"
-      }
-    }
-  },
-  "notEnoughAvailableSpace": "Det er ikke nok ledig plass på enheten din",
-  "@notEnoughAvailableSpace": {
-    "description": "Shown when you try to download an episode, but there is not enough space on your device."
-  },
-  "considerDeletingOtherVideos": "Vurder å slette andre videoer du har lastet ned i appen.",
-  "@considerDeletingOtherVideos": {
-    "description": "Shown when you try to download an episode, but there is not enough space on your device."
-  },
-  "theVideoFileSizeIs": "Videofilens størrelse er {size}.",
-  "@theVideoFileSizeIs": {
-    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
-    "placeholders": {
-      "size": {
-        "type": "String"
-      }
-    }
-  },
-  "gotIt": "Skjønner",
-  "@gotIt": {
-    "description": "A button to confirm that you have read some information. Synonymous to 'ok', 'understood', etc."
-  },
-  "saveYourFavorites": "Lagre favorittvideoene dine",
-  "@saveYourFavorites": {
-    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
-  },
-  "saveYourFavoritesDescription": "Trykk på hjerteikonet på en video for å lagre den i profilen din.",
-  "@saveYourFavoritesDescription": {
-    "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
-  },
-  "yourFavorites": "Dine favoritter",
-  "@yourFavorites": {
-    "description": "Shown as a title for the 'favorites' section in the profile tab."
-  },
-  "downloaded": "Nedlastet",
-  "@downloaded": {
-    "description": "Shown as a title for the 'downloaded' section in the profile tab."
-  },
-  "saveVideosForOfflineViewing": "Lagre videoer for offline visning",
-  "@saveVideosForOfflineViewing": {
-    "description": "Shown when the 'downloaded' section is empty."
-  },
-  "tapOnTheDownloadIcon": "Trykk på nedlastingsikonet på en video for å laste ned og spille av uten internett.",
-  "@tapOnTheDownloadIcon": {
-    "description": "Shown when the 'downloaded' section is empty."
-  },
-  "removeOfflineVideo": "Vil du fjerne offline video?",
-  "@removeOfflineVideo": {
-    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
-  },
-  "removeOfflineVideoDescription": "Ved å fjerne denne videoen vil den ikke lenger være tilgjengelig uten en nettverkstilkobling.",
-  "@removeOfflineVideoDescription": {
-    "description": "Shown when holding on a downloaded video in the 'downloaded' section."
-  },
-  "removeFromDeviceButton": "Fjern fra enhet",
-  "@removeFromDeviceButton": {
-    "description": "Button text, to remove a downloaded video from the device."
-  },
-  "keepVideoButton": "Behold video",
-  "@keepVideoButton": {
-    "description": "Button when asking to remove a downloaded video. This button cancels."
-  },
-  "noInternetConnection": "Ingen internettforbindelse",
-  "@noInternetConnection": {
-    "description": "Shown when you are offline, and the app cannot connect to the internet."
-  },
-  "noInternetConnectionDescription": "Koble til internett for å få tilgang til alle videoer.",
-  "@noInternetConnectionDescription": {
-    "description": "Shown when you are offline, and the app cannot connect to the internet."
-  },
-  "noInternetButDontWorry": "Ingen internettforbindelse, men ta det rolig...",
-  "@noInternetButDontWorry": {
-    "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
-  },
-  "hereAreAllTheVideosYouDownloaded": "Her er alle videoene du har lastet ned til enheten din.",
-  "@hereAreAllTheVideosYouDownloaded": {
-    "description": "Shown when you are offline, but you have downloaded some videos."
-  },
-  "connectToExplore": "Koble til internett for å få tilgang til alle videoer.",
-  "@connectToExplore": {
-    "description": "Shown when you are offline, and the app cannot connect to the internet."
-  },
-  "language": "Språk",
-  "@language": {
-    "description": "A label when selecting a language to download."
-  },
-  "estimatedFileSize": "Estimert filstørrelse: {size}",
-  "@estimatedFileSize": {
-    "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
-    "placeholders": {
-      "size": {
-        "type": "String"
-      }
-    }
-  },
-  "downloadVideo": "Last ned video",
-  "@downloadVideo": {
-    "description": "Title on the download video form."
-  },
-  "noSubtitles": "Ingen undertekster",
-  "@noSubtitles": {
-    "description": "Shown in the download form, indicating that there are no subtitles available for the video."
-  },
-  "subtitlesIncluded": "Inkludert undertekster",
-  "@subtitlesIncluded": {
-    "description": "Shown in the download form, indicating that all subtitles are included in the video."
-  },
-  "allSubtitlesWillBeAvailableOffline": "Alle undertekster vil være tilgjengelig offline",
-  "@allSubtitlesWillBeAvailableOffline": {
-    "description": "Shown in the download form, indicating that all subtitles will be available offline."
-  },
-  "downloading": "Laster ned",
-  "@downloading": {
-    "description": "Download status, indicating that the video is currently downloading."
-  },
-  "failed": "Mislyktes",
-  "@failed": {
-    "description": "Generic status label. Used e.g. for downloads that failed."
-  },
-  "finished": "Ferdig",
-  "@finished": {
-    "description": "Generic status label. Used e.g. for downloads that finished."
-  },
-  "paused": "Satt på pause",
-  "@paused": {
-    "description": "Generic status label. Used e.g. for downloads that are paused. Can also be used for paused videos."
-  },
-  "queued": "I kø",
-  "@queued": {
-    "description": "Generic status label. Used e.g. for downloads that are queued. Can also be used for videos that are queued."
-  },
-  "removing": "Sletter",
-  "@removing": {
-    "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
-  },
-  "expiresIn": "Utløper om {time}",
-  "@expiresIn": {
-    "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
-  "availableOffline": "Tilgjengelig offline",
-  "@availableOffline": {
-    "description": "Label indicating that the video is available offline."
-  },
-  "technicalDetails": "Tekniske detaljer",
-  "@technicalDetails": {
-    "description": "Shown when errors occur, and you want to see more technical details about the error."
-  },
-  "contentLanguage": "Innholdsspråk",
-  "@contentLanguage": {
-    "description": "Instead of seperate settings for audio and subtitle language, 'Content language' will be used for both audio and subtitles."
-  },
-  "contentLanguageShort": "Innhold",
-  "@contentLanguageShort": {
-    "description": "IMPORTANT: This is a short version of 'Content language'. Used on small screens."
-  },
-  "appLanguageShort": "App",
-  "@appLanguageShort": {
-    "description": "IMPORTANT: This is a short version of 'App language'. Used on small screens."
-  },
-  "playRandom": "Spill tilfeldig",
-  "@playRandom": {
-    "description": "Keep it short. Button text in the top right of a show overview. Clicking it plays a random video."
-  },
-  "addLanguage": "Legg til språk",
-  "@addLanguage": {
-    "description": "Shown when you are selecting preferred content languages, and you want to add a language that is not in the list. Button and title."
-  },
-  "preferredLanguages": "Foretrukne språk",
-  "@preferredLanguages": {
-    "description": "Shown when you are selecting preferred content languages. Title."
-  },
-  "contentLanguageExplanation": "Endre rekkefølgen på språkene så de samsvarer med dine språkpreferanser for lyd og undertekst.",
-  "@contentLanguageExplanation": {
-    "description": "Shown when you are selecting preferred content languages."
-  },
-  "otherLanguages": "Andre språk",
-  "@otherLanguages": {
-    "description": "Languages that are available but in your list of preferred languages."
-  },
-  "select": "Velg",
-  "@select": {
-    "description": "Prompt. Shown at the top of a list of options."
-  },
-  "supportBibleKids": "Støtt Bible Kids",
-  "@supportBibleKids": {
-    "description": "Shown on the settings page."
-  },
-  "donateViaPaypal": "Doner via PayPal",
-  "@donateViaPaypal": {
-    "description": "Shown on the settings page."
-  },
-  "shortsTab": "Shorts",
-  "@shortsTab": {
-    "description": "Title of the 'shorts' tab. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
-  },
-  "autoGenerated": "Autogenerert",
-  "@autoGenerated": {
-    "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
-  },
-  "shortsTranscriptionDisclaimer": "Transkripsjonene er automatisk generert og kan inneholde feil.",
-  "@shortsTranscriptionDisclaimer": {
-    "description": "Disclaimer shown on the shorts page."
-  },
-  "beta": "Beta",
-  "@beta": {
-    "description": "'Beta' features are only available to a selection of users."
-  },
-  "betaExplanation": "Denne funksjonen er i betaversjon og er foreløpig ikke utgitt for alle brukere. Vennligst rapporter eventuelle problemer eller tilbakemeldinger via \"Kontakt\"-knappen i innstillingene.",
-  "@betaExplanation": {
-    "description": "Shown in a popup on beta features."
-  },
-  "likedShorts": "Likte shorts",
-  "@likedShorts": {
-    "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
-  },
-  "saveYourFavoriteShorts": "Lagre favorittvideoene dine",
-  "@saveYourFavoriteShorts": {
-    "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
-  },
-  "featureNotAvailableYet": "Denne funksjonen er ikke tilgjengelig på din enhet ennå. Prøv igjen senere.",
-  "@featureNotAvailableYet": {
-    "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
-  },
-  "newFeature": "Ny funksjon",
-  "@newFeature": {
-    "description": "Shown the first time you open the app after a new feature is available."
-  },
-  "shortsFeatureDescription": "Oppdag korte og kraftige utdrag, og hopp rett inn i hele episoden.",
-  "@shortsFeatureDescription": {
-    "description": "Shown the first time you open the app after 'shorts' is enabled."
-  },
-  "likedAndSaved": "Likt og lagret",
-  "@likedAndSaved": {
-    "description": "Shown when you have liked and saved a 'short' for the first time."
-  },
-  "shortsLikedAndSavedDescription": "Du finner alt du har likt i profilen din.",
-  "@shortsLikedAndSavedDescription": {
-    "description": "Shown when you have liked and saved a 'short' for the first time."
-  },
-  "excerptFrom": "Utdrag fra",
-  "@excerptFrom": {
-    "description": "Shown on a 'short' video, indicating that this is an excerpt from a longer video. E.g. Excerpt from 'The Tale of John Doe'."
-  },
-  "downloadedVideosGuideDescription": "Du finner dine nedlastede videoer under \"Min profil\".",
-  "@downloadedVideosGuideDescription": {
-    "description": "Shown when you have downloaded a video for the first time."
-  },
-  "openStore": "Åpne",
-  "@openStore": {
-    "description": "A button to open play store / app store."
-  },
-  "thisVideoCantBeDownloaded": "Denne videoen kan ikke lastes ned.",
-  "@thisVideoCantBeDownloaded": {
-    "description": "Shown when you try to download a video that cannot be downloaded."
-  },
-  "videoLanguage": "Videospråk",
-  "@videoLanguage": {
-    "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
-  },
-  "videoTextLanguage": "Språk for tekst i video",
-  "@videoTextLanguage": {
-    "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
-  },
-  "original": "Original",
-  "@original": {
-    "description": "E.g. original language."
-  },
-  "openSettingsToChangeVideoLang": "Åpne innstillinger for å endre tekstspråk",
-  "@openSettingsToChangeVideoLang": {
-    "description": "Short text overlayed on the video when there are multiple 'text-in-video' languages available. I.e. not subtitles, but the actual text inside the video. For bible analysis videos."
-  },
-  "somethingWentWrong": "Noe gikk galt",
-  "@somethingWentWrong": {
-    "description": "Generic error title/message."
-  },
-  "all": "Alle",
-  "@all": {
-    "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
-  },
-  "countItems": "{x} elementer",
-  "@countItems": {
-    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
-    "placeholders": {
-      "x": {
+      "count": {
         "type": "int"
       }
     }
   },
-  "skipTo": "Hopp til {chapter}",
-  "@skipTo": {
-    "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
-    "placeholders": {
-      "chapter": {
-        "type": "String"
-      }
-    }
+  "videoLanguage": "Videospråk",
+  "@videoLanguage": {
+    "type": "text",
+    "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
+  },
+  "videoOnlyAccessibleToLoggedIn": "Denne videoen er kun tilgjengelig for brukere som er logget inn.",
+  "@videoOnlyAccessibleToLoggedIn": {
+    "type": "text",
+    "description": "Shown when sharing a video, to make it clear which video is public and which isn't."
+  },
+  "videoQuality": "Videokvalitet",
+  "@videoQuality": {
+    "type": "text",
+    "description": "Settings item in profile page for Android."
+  },
+  "videos": "Videoer",
+  "@videos": {
+    "type": "text",
+    "description": "Followed by number of videos"
+  },
+  "videoTextLanguage": "Språk for tekst i video",
+  "@videoTextLanguage": {
+    "type": "text",
+    "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
+  },
+  "watchAgain": "Se igjen",
+  "@watchAgain": {
+    "type": "text",
+    "description": "Short button text to watch the video again."
+  },
+  "watchNow": "Se nå",
+  "@watchNow": {
+    "type": "text",
+    "description": "Button on featured carousel"
+  },
+  "weHaveSentAnEmailTo": "Vi har sendt en e-post til",
+  "@weHaveSentAnEmailTo": {
+    "type": "text",
+    "description": "Shown on the verify account page, followed by the email address that the verification email was sent to."
+  },
+  "wellDone": "Bra gjort!",
+  "@wellDone": {
+    "type": "text",
+    "description": "Positive message that may be used e.g. after completing some action."
+  },
+  "whatIsMath": "Hva er",
+  "@whatIsMath": {
+    "type": "text",
+    "description": "Shown on the 'parental gate'. Is followed by a math question, for example: 'What is 1 x 1?'"
+  },
+  "writeHere": "Skriv her",
+  "@writeHere": {
+    "type": "text",
+    "description": "New post text field placeholder"
+  },
+  "yesCancel": "Ja, avbryt",
+  "@yesCancel": {
+    "type": "text",
+    "description": "Confirm cancel."
+  },
+  "youCanContactUsAt": "Du kan kontakte oss på",
+  "@youCanContactUsAt": {
+    "type": "text",
+    "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
+  },
+  "youCanNowLogInToYourAccount": "Du kan nå logge inn på din konto og utforske et utvalg av oppbyggelig innhold.",
+  "@youCanNowLogInToYourAccount": {
+    "type": "text",
+    "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
+  },
+  "youCanNowUseYourAccount": "Du kan nå bruke din konto og utforske et utvalg av oppbyggelig innhold.",
+  "@youCanNowUseYourAccount": {
+    "type": "text",
+    "description": "Shown when the user has successfully completed account setup."
+  },
+  "yourFavorites": "Dine favoritter",
+  "@yourFavorites": {
+    "type": "text",
+    "description": "Shown as a title for the 'favorites' section in the profile tab."
+  },
+  "ztoA": "Å-A",
+  "@ztoA": {
+    "type": "text",
+    "description": "Sort order"
   }
 }
