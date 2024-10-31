@@ -54,6 +54,15 @@ class PlaybackService {
             progress: progressSeconds,
           ),
     );
+    BccmNpawListener(
+      ref: ref,
+      onVideoStart: (event) => print(event.data),
+      onVideoStop: (event) => print(event.data),
+      onVideoPause: (event) => print(event.data),
+      onVideoResume: (event) => print(event.data),
+      onVideoPing: (event) => print(event.data),
+      onVideoSeek: (event) => print(event.data),
+    );
 
     // Keep the analytics session alive while playing stuff.
     ref.listen<PlayerState?>(primaryPlayerProvider, (_, next) {
