@@ -53,7 +53,10 @@ class PlaybackService {
             episodeId: episodeId,
             progress: progressSeconds,
           ),
-      onAnalyticsEvent: (event) => print(event.data),
+      onAnalyticsEvent: (event) {
+        final data = event.data?.cast<String, dynamic>();
+        ref.read(analyticsProvider).videoPlayed(VideoPlayedEvent(data: data));
+      },
     );
 
     // Keep the analytics session alive while playing stuff.
