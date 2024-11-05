@@ -1,4 +1,12 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.16+2500026-kids...v) (2024-10-29)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.41+2300201...v) (2024-11-05)
+
+
+
+## [5.6.41+2300201](https://github.com/bcc-code/bcc-media-app/compare/v5.6.40+2300200...v5.6.41+2300201) (2024-11-05)
+
+
+
+## [5.6.40+2300200](https://github.com/bcc-code/bcc-media-app/compare/v5.1.16+2500026-kids...v5.6.40+2300200) (2024-10-29)
 
 
 
