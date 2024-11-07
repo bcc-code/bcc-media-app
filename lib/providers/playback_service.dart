@@ -17,6 +17,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_to_airplay/flutter_to_airplay.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:universal_io/io.dart';
+import 'package:unleash_proxy_client_flutter/event_id_generator.dart';
 
 import '../api/brunstadtv.dart';
 
@@ -53,6 +54,19 @@ class PlaybackService {
             episodeId: episodeId,
             progress: progressSeconds,
           ),
+      onMediaItemTransition: (event) {
+        if (event.mediaItem != null) {
+          final videoId = event.mediaItem!.metadata?.extras?['npaw.content.id'];
+          final referenceId = event.mediaItem!.metadata?.extras?['npaw.content.transactionCode'];
+          ref.read(analyticsProvider).videoPlayed(VideoPlayedEvent(
+                videoId: videoId,
+                referenceId: referenceId,
+                data: {
+                  // Whatever data we want to pass to the analytics event
+                },
+              ));
+        }
+      },
     );
 
     // Keep the analytics session alive while playing stuff.
@@ -98,6 +112,7 @@ class PlaybackService {
     final stream = episode.streams.getBestStream(videoLanguageCode: videoLanguageCode);
     final user = ref.read(authStateProvider).user;
     final ageGroup = user?.let((u) => getAgeGroupFromUser(u));
+    final transactionCode = generateEventId();
     return MediaItem(
       url: stream.url,
       mimeType: 'application/x-mpegURL',
@@ -117,6 +132,7 @@ class PlaybackService {
           if (episode.season != null) 'npaw.content.season': episode.season!.id,
           'npaw.content.title': episode.originalTitle,
           if (ageGroup != null) 'npaw.content.customDimension2': ageGroup.name,
+          'npaw.content.transactionCode': transactionCode,
         },
       ),
     );

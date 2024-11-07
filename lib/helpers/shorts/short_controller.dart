@@ -12,6 +12,7 @@ import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:universal_io/io.dart';
+import 'package:unleash_proxy_client_flutter/event_id_generator.dart';
 
 class ShortController {
   late final BccmPlayerController player;
@@ -81,6 +82,7 @@ class ShortController {
     if (!context.mounted) return;
     final user = ref.read(authStateProvider).user;
     final ageGroup = user?.let((u) => getAgeGroupFromUser(u));
+    final transactionCode = generateEventId();
     await player.replaceCurrentMediaItem(
       MediaItem(
         url: stream.url,
@@ -92,6 +94,7 @@ class ShortController {
             'npaw.content.id': newShort.id,
             'npaw.content.title': newShort.title.isNotEmpty ? newShort.title : 'Short',
             'npaw.content.type': 'short',
+            'npaw.content.transactionCode': transactionCode,
             'expires_at': stream.expiresAt,
             if (ageGroup != null) 'npaw.content.customDimension2': ageGroup.name,
           },
