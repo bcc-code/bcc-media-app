@@ -1,4 +1,5 @@
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/components/surveys/survey_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -67,7 +68,7 @@ class BottomSheetSurvey extends HookWidget {
 
     return PopScope(
       canPop: false,
-      onPopInvoked: (v) async {
+      onPopInvokedWithResult: (v, r) {
         if (v) return;
         onCancel();
       },
@@ -190,6 +191,12 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
   @override
   Widget build(BuildContext context) {
     if (surveySubmissionFuture == null) {
+      return SurveyLink(
+        onCancel: widget.onCancel,
+        description: "We would love to know what you think of the platform, and how you use it.",
+        url: "https://bcc.media",
+        buttonLabel: "Schedule Interview",
+      );
       return SurveyForm(
         survey: widget.survey,
         onSubmit: onSubmitSurvey,
