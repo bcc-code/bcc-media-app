@@ -44,19 +44,12 @@ class SurveyLink extends StatelessWidget {
             ),
           ),
           Container(
-            height: 52,
+            height: 116,
             margin: const EdgeInsets.only(top: 16),
-            child: Row(
+            child: Column(
               children: [
-                Container(
-                  margin: const EdgeInsets.only(right: 16),
-                  child: design.buttons.large(
-                    variant: ButtonVariant.secondary,
-                    labelText: S.of(context).cancel,
-                    onPressed: onCancel,
-                  ),
-                ),
-                Expanded(
+                SizedBox(
+                  width: double.infinity,
                   child: design.buttons.large(
                     labelText: buttonLabel ?? S.of(context).open,
                     onPressed: () async {
@@ -68,6 +61,15 @@ class SurveyLink extends StatelessWidget {
                         );
                       }
                     },
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 12),
+                  width: double.infinity,
+                  child: design.buttons.large(
+                    variant: ButtonVariant.secondary,
+                    labelText: S.of(context).cancel,
+                    onPressed: onCancel,
                   ),
                 ),
               ],

@@ -73,6 +73,7 @@ class BottomSheetSurvey extends HookWidget {
         onCancel();
       },
       child: SafeArea(
+        bottom: false,
         child: Padding(
           padding: MediaQuery.viewInsetsOf(context),
           child: Container(
