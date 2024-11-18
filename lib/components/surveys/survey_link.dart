@@ -5,16 +5,20 @@ import 'package:url_launcher/url_launcher.dart';
 
 class SurveyLink extends StatelessWidget {
   final VoidCallback onCancel;
-  final String description;
   final String url;
-  final String? buttonLabel;
+  final String title;
+  final String? description;
+  final String actionButtonText;
+  final String? cancelButtonText;
 
   const SurveyLink({
     super.key,
     required this.onCancel,
-    required this.description,
     required this.url,
-    this.buttonLabel,
+    required this.actionButtonText,
+    required this.title,
+    this.description,
+    this.cancelButtonText,
   });
 
   @override
@@ -33,13 +37,22 @@ class SurveyLink extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.only(bottom: 4),
                   child: Text(
-                    description,
-                    style: design.textStyles.body3,
+                    title,
+                    style: design.textStyles.title2,
                     textAlign: TextAlign.center,
                   ),
                 ),
+                if (description != null)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: Text(
+                      description!,
+                      style: design.textStyles.body3,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
               ],
             ),
           ),
@@ -51,7 +64,7 @@ class SurveyLink extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: design.buttons.large(
-                    labelText: buttonLabel ?? S.of(context).open,
+                    labelText: actionButtonText,
                     onPressed: () async {
                       final uri = Uri.parse(url);
                       if (await canLaunchUrl(uri)) {
@@ -68,7 +81,7 @@ class SurveyLink extends StatelessWidget {
                   width: double.infinity,
                   child: design.buttons.large(
                     variant: ButtonVariant.secondary,
-                    labelText: S.of(context).cancel,
+                    labelText: cancelButtonText ?? S.of(context).cancel,
                     onPressed: onCancel,
                   ),
                 ),

@@ -191,13 +191,20 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
 
   @override
   Widget build(BuildContext context) {
-    if (surveySubmissionFuture == null) {
+    final linkSurvey = widget.survey.questions.items.firstWhere((question) {
+      return question.$__typename == 'SurveyLinkQuestion';
+    }).asOrNull<Fragment$SurveyQuestion$$SurveyLinkQuestion>();
+    if (linkSurvey != null) {
       return SurveyLink(
-        onCancel: widget.onCancel,
-        description: "We would love to know what you think of the platform, and how you use it.",
-        url: "https://bcc.media",
-        buttonLabel: "Schedule Interview",
+        title: linkSurvey.title,
+        description: linkSurvey.description,
+        url: linkSurvey.url,
+        actionButtonText: linkSurvey.actionButtonText,
+        cancelButtonText: linkSurvey.cancelButtonText,
+        onCancel: widget.onClose,
       );
+    }
+    if (surveySubmissionFuture == null) {
       return SurveyForm(
         survey: widget.survey,
         onSubmit: onSubmitSurvey,
