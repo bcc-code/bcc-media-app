@@ -1,4 +1,23 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.41+2300201...v) (2024-11-05)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.42+2300202...v) (2024-11-19)
+
+
+
+## [5.6.42+2300202](https://github.com/bcc-code/bcc-media-app/compare/v5.6.41+2300201...v5.6.42+2300202) (2024-11-19)
+
+
+### Bug Fixes
+
+* remove bottom safe area + use vertical button layout ([178f545](https://github.com/bcc-code/bcc-media-app/commit/178f5455fe1d0835a4cc517238583e66b4a60b1e))
+
+
+### Features
+
+* add npaw event listener ([6fbe5d0](https://github.com/bcc-code/bcc-media-app/commit/6fbe5d005e4c99404afc04403e4ccd9fc00da289))
+* **analytics:** send video_played event on npaw start event ([e4e6509](https://github.com/bcc-code/bcc-media-app/commit/e4e6509d98c05f0ddca29392fe74ca10361affae))
+* android implementation ([a1b66cb](https://github.com/bcc-code/bcc-media-app/commit/a1b66cb1ab2612da8892abc2d17a5b5f05a45e43))
+* **survey:** close link survey when done ([a50996a](https://github.com/bcc-code/bcc-media-app/commit/a50996aca146e6da1ad5582bef9b3946f1bc40b4))
+* **survey:** implement link question ([b108a29](https://github.com/bcc-code/bcc-media-app/commit/b108a290dacba134ca5381a1fb134a27b2d823f7))
+* **surveys:** wip add link survey ui ([7b0130a](https://github.com/bcc-code/bcc-media-app/commit/7b0130a9e1f29e5ceeddb3f782813b1d19876146))
 
 
 
