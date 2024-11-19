@@ -68,7 +68,7 @@ class BottomSheetSurvey extends HookWidget {
 
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (v, r) {
+      onPopInvokedWithResult: (v, r) async {
         if (v) return;
         onCancel();
       },
