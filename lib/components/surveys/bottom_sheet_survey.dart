@@ -1,4 +1,5 @@
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/components/surveys/survey_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -67,11 +68,12 @@ class BottomSheetSurvey extends HookWidget {
 
     return PopScope(
       canPop: false,
-      onPopInvoked: (v) async {
+      onPopInvokedWithResult: (v, r) async {
         if (v) return;
         onCancel();
       },
       child: SafeArea(
+        bottom: false,
         child: Padding(
           padding: MediaQuery.viewInsetsOf(context),
           child: Container(
@@ -189,6 +191,20 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
 
   @override
   Widget build(BuildContext context) {
+    final linkSurvey = widget.survey.questions.items.firstWhere((question) {
+      return question.$__typename == 'SurveyLinkQuestion';
+    }).asOrNull<Fragment$SurveyQuestion$$SurveyLinkQuestion>();
+    if (linkSurvey != null) {
+      return SurveyLink(
+        title: linkSurvey.title,
+        description: linkSurvey.description,
+        url: linkSurvey.url,
+        actionButtonText: linkSurvey.actionButtonText,
+        cancelButtonText: linkSurvey.cancelButtonText,
+        onCancel: widget.onCancel,
+        onClose: widget.onClose,
+      );
+    }
     if (surveySubmissionFuture == null) {
       return SurveyForm(
         survey: widget.survey,
