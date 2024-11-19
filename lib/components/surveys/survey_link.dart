@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class SurveyLink extends StatelessWidget {
   final VoidCallback onCancel;
+  final VoidCallback onClose;
   final String url;
   final String title;
   final String? description;
@@ -14,6 +15,7 @@ class SurveyLink extends StatelessWidget {
   const SurveyLink({
     super.key,
     required this.onCancel,
+    required this.onClose,
     required this.url,
     required this.actionButtonText,
     required this.title,
@@ -24,6 +26,18 @@ class SurveyLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
+    final link = Uri.parse(url);
+
+    onLinkPressed() async {
+      if (await canLaunchUrl(link)) {
+        await launchUrl(
+          link,
+          mode: LaunchMode.platformDefault,
+        ).whenComplete(() {
+          onClose();
+        });
+      }
+    }
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -65,15 +79,7 @@ class SurveyLink extends StatelessWidget {
                   width: double.infinity,
                   child: design.buttons.large(
                     labelText: actionButtonText,
-                    onPressed: () async {
-                      final uri = Uri.parse(url);
-                      if (await canLaunchUrl(uri)) {
-                        await launchUrl(
-                          uri,
-                          mode: LaunchMode.externalApplication,
-                        );
-                      }
-                    },
+                    onPressed: onLinkPressed,
                   ),
                 ),
                 Container(

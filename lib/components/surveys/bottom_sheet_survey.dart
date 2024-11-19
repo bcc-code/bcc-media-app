@@ -201,7 +201,8 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
         url: linkSurvey.url,
         actionButtonText: linkSurvey.actionButtonText,
         cancelButtonText: linkSurvey.cancelButtonText,
-        onCancel: widget.onClose,
+        onCancel: widget.onCancel,
+        onClose: widget.onClose,
       );
     }
     if (surveySubmissionFuture == null) {
