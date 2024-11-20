@@ -110,6 +110,10 @@ class _InitScreenState extends ConsumerState<InitScreen> {
     */
     if (!isLoggedIn && (!hasCompletedOnboarding || hasEverLoggedIn)) {
       router.replaceAll([OnboardingScreenRoute()]);
+      ref.read(analyticsProvider).log(LogEvent(
+            name: 'sent to login screen',
+            message: 'user was sent to login screen from the init screen continueNavigation method.',
+          ));
       return;
     }
 

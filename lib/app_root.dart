@@ -56,6 +56,10 @@ class _AppRootState extends ConsumerState<AppRoot> {
     if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
       final rootRouter = globalNavigatorKey.currentContext?.router.root;
       rootRouter?.navigate(OnboardingScreenRoute());
+      ref.read(analyticsProvider).log(LogEvent(
+            name: 'sent to login screen',
+            message: 'user was sent to login screen from the AppRoot widgets onAuthChanged method.',
+          ));
       return;
     }
     if (next.auth0AccessToken == null || next.user == null) return;
