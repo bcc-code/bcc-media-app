@@ -33,6 +33,9 @@ sealed class FeatureFlags with _$FeatureFlags {
     String? delayTimeInMs,
     @Default(false) bool bccmAudioTest,
     @Default(false) bool kidsAutoplayNext,
+    @Default(false) bool shortsWithScores,
+    @Default(false) bool elasticSearch,
+    @Default(false) bool chapterSlider,
   }) = _FeatureFlags;
 
   factory FeatureFlags.fromJson(Map<String, dynamic> json) => _$FeatureFlagsFromJson(json);
@@ -67,6 +70,9 @@ sealed class FeatureFlags with _$FeatureFlags {
       delayTimeInMs: newFlags.delayTimeInMs ?? delayTimeInMs,
       bccmAudioTest: newFlags.bccmAudioTest || bccmAudioTest,
       kidsAutoplayNext: newFlags.kidsAutoplayNext || kidsAutoplayNext,
+      shortsWithScores: newFlags.shortsWithScores || shortsWithScores,
+      elasticSearch: newFlags.elasticSearch || elasticSearch,
+      chapterSlider: newFlags.chapterSlider || chapterSlider,
     );
   }
 }

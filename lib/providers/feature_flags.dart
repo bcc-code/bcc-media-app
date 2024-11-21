@@ -42,6 +42,9 @@ FeatureFlags getBaseFeatureFlags() {
     delayTimeInMs: null,
     bccmAudioTest: false,
     kidsAutoplayNext: false,
+    shortsWithScores: false,
+    elasticSearch: false,
+    chapterSlider: false,
   );
 }
 
@@ -91,6 +94,9 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         delayTimeInMs: unleash.getVariant('delay-time-in-ms').payload?.value,
         bccmAudioTest: _verifyToggle(unleash, 'bccm-audio-test'),
         kidsAutoplayNext: _verifyToggle(unleash, 'kids-autoplay-next'),
+        shortsWithScores: _verifyToggle(unleash, 'shorts-with-scores3'),
+        elasticSearch: _verifyToggle(unleash, 'elastic-search'),
+        chapterSlider: _verifyToggle(unleash, 'chapter-slider'),
       ),
     );
 
