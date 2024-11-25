@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.44+2300204...v) (2024-11-21)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.45+2300205...v) (2024-11-25)
+
+
+
+## [5.6.45+2300205](https://github.com/bcc-code/bcc-media-app/compare/v5.6.44+2300204...v5.6.45+2300205) (2024-11-25)
+
+
+### Features
+
+* add sentry replay functionality ([783a0c7](https://github.com/bcc-code/bcc-media-app/commit/783a0c78047aa71f4463afd2e1e1fd5752c557d8))
 
 
 
