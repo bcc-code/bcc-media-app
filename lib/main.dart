@@ -43,6 +43,8 @@ Future<void> $main({
       options.dsn = Env.sentryDsn;
       options.tracesSampleRate = 0.5;
       options.profilesSampleRate = 0.5;
+      options.experimental.replay.sessionSampleRate = 0.5;
+      options.experimental.replay.onErrorSampleRate = 1.0;
       options.beforeSend = (event, hint) {
         // Filter out network related errors to prevent noise in Sentry
         if (event.throwable is SocketException ||

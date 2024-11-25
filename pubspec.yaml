@@ -100,7 +100,7 @@ dependencies:
   webview_flutter: ^4.10.0
   webview_flutter_android: ^4.0.0
   webview_flutter_wkwebview: ^3.16.0
-  sentry_flutter: ^8.9.0
+  sentry_flutter: ^8.10.1
   bmm_api:
     path: submodules/bccm_flutter/bmm_api/src
   built_collection: ^5.1.1
