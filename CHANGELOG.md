@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.47+2300207...v) (2024-11-28)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.48+2300208...v) (2024-11-29)
+
+
+
+## [5.6.48+2300208](https://github.com/bcc-code/bcc-media-app/compare/v5.6.47+2300207...v5.6.48+2300208) (2024-11-29)
+
+
+### Bug Fixes
+
+* **player:** update player to prevent app from crashing when transactionCode is null ([371182c](https://github.com/bcc-code/bcc-media-app/commit/371182cf3c2afa0ab3e630424a7650d59a20c834))
 
 
 
