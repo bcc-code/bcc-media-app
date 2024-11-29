@@ -1,4 +1,17 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.48+2300208...v) (2024-11-29)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.49+2300209...v) (2024-11-29)
+
+
+
+## [5.6.49+2300209](https://github.com/bcc-code/bcc-media-app/compare/v5.1.19+2500029-kids...v5.6.49+2300209) (2024-11-29)
+
+
+### Bug Fixes
+
+* **deps:** update bccm_player to prevent collapsing after pip ([5d7020e](https://github.com/bcc-code/bcc-media-app/commit/5d7020e8e7d063030d95cde7aad41071c6400cb6))
+
+
+
+## [5.1.19+2500029-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.48+2300208...v5.1.19+2500029-kids) (2024-11-29)
 
 
 
