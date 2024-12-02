@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.49+2300209...v) (2024-11-29)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.50+2300210...v) (2024-12-02)
+
+
+
+## [5.6.50+2300210](https://github.com/bcc-code/bcc-media-app/compare/v5.6.49+2300209...v5.6.50+2300210) (2024-12-02)
+
+
+### Bug Fixes
+
+* **deps:** try fixing pip bug ([317ecc3](https://github.com/bcc-code/bcc-media-app/commit/317ecc37b587115ba5dcfed6af4dddd3805b1117))
+* **deps:** undo player change ([0e94cee](https://github.com/bcc-code/bcc-media-app/commit/0e94ceeed0795d2fc4e401cc876d430cd17cb542))
 
 
 
