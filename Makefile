@@ -70,9 +70,7 @@ rerelease-kids: ## KIDS: Deletes the release tag and recreates it with the curre
 fix-time: ## Fixes the time on a connected android device. Useful e.g. if it has drifted and causes ssl errors
 	adb shell "su 0 date `date +%m%d%H%M%Y.%S`"
 
-
-# bumps the minor version in pubspec.yaml e.g. 0.4.5+45 -> 0.4.6+46
-bump: ## Bumps the version in pubspec.yaml
+bump: ## Bumps the minor version in pubspec.yaml e.g. 0.4.5+45 -> 0.4.6+46
 	@VERSION_LINE=$$(grep -i -e "version: " pubspec.yaml); \
 	CURRENT_VERSION=$$(echo $$VERSION_LINE | cut -d " " -f 2); \
 	VERSION_PART=$$(echo $$CURRENT_VERSION | cut -d "+" -f 1); \
@@ -84,8 +82,7 @@ bump: ## Bumps the version in pubspec.yaml
 	git add pubspec.yaml; \
 	git commit -m "chore: bump version to $${NEW_VERSION}"
 
-# bumps the minor version in kids/pubspec.yaml e.g. 0.4.5+45 -> 0.4.6+46
-bump-kids: ## Bumps the version in kids/pubspec.yaml
+bump-kids: ## Bumps the minor version in kids/pubspec.yaml e.g. 0.4.5+45 -> 0.4.6+46
 	@VERSION_LINE=$$(grep -i -e "version: " kids/pubspec.yaml); \
 	CURRENT_VERSION=$$(echo $$VERSION_LINE | cut -d " " -f 2); \
 	VERSION_PART=$$(echo $$CURRENT_VERSION | cut -d "+" -f 1); \
@@ -97,9 +94,8 @@ bump-kids: ## Bumps the version in kids/pubspec.yaml
 	git add kids/pubspec.yaml; \
 	git commit -m "chore: bump kids version to $${NEW_VERSION}"
 
-crowdin-download: ## Download translations from crowdin and generate l10n files
-	crowdin download --token=$$(cat .crowdin-token)
-	flutter gen-l10n
+phrase-download: ## Download translations from Phrase and generate l10n files
+	phrase pull --access_token=$$(cat .phrase-token)
 
-crowdin-upload: ## Upload source strings to crowdin
-	crowdin upload --token=$$(cat .crowdin-token)
+phrase-upload: ## Upload source strings to Phrase
+	phrase push --access_token=$$(cat .phrase-token)

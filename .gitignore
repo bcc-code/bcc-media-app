@@ -65,3 +65,4 @@ ios/Runner/GoogleService-Info.plist
 **/dgph
 
 .crowdin-token
+.phrase-token

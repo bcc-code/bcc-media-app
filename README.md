@@ -64,8 +64,8 @@ We have some special routes, e.g. /r/, but these are only handled through a cust
 
 ## Translations
 
-We are using Crowdin for translations.
-In order to upload or download translations you need to have a [personal token](https://crowdin.com/settings#api-key) and the [crowdin cli tool](https://developer.crowdin.com/cli-tool/#installation).
+We are using Phrase for translations.
+In order to upload or download translations you need to have a [personal token](https://crowdin.com/settings#api-key) and the [phrase cli tool](https://support.phrase.com/hc/en-us/articles/5784093863964-CLI-Installation-Strings).
 
 You need to put the token into a `CROWDIN_TOKEN` environment variable.
 Then you can run `crowdin upload` or `crowdin download`, e.g `CROWDIN_TOKEN=abc123 crowdin download`.

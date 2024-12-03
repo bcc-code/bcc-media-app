@@ -2,11 +2,11 @@ phrase:
   project_id: e80c88866348a37f2bbfdd986b48762f
   push:
     sources:
-    - file: ./lib/l10n/bccm_<locale_name>.arb
-      params:
-        file_format: arb
+      - file: ./lib/l10n/bccm_<locale_name>.arb
+        params:
+          file_format: arb
   pull:
     targets:
-    - file: ./lib/l10n/bccm_<locale_name>.arb
-      params:
-        file_format: arb
+      - file: ./lib/l10n/bccm_<locale_name>.arb
+        params:
+          file_format: arb
