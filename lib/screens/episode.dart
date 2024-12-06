@@ -18,7 +18,6 @@ import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/components/episode/episode_share_sheet.dart';
 import 'package:brunstadtv_app/components/video/center_extra_slot.dart';
-import 'package:brunstadtv_app/components/video/right_side_slot.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -280,7 +279,6 @@ class _EpisodeDisplay extends HookConsumerWidget {
     final playbackService = ref.watch(playbackServiceProvider);
     final chromecastEvents = ref.watch(chromecastEventStreamProvider);
     final playerEvents = ref.watch(playerEventStreamProvider(player.playerId));
-    final enableAutoplayNext = ref.watch(featureFlagsProvider.select((value) => value.autoplayNext));
     final episodeIsCurrentItem = player.currentMediaItem?.metadata?.extras?['id'] == episode.id;
 
     useEffect(() {
@@ -309,7 +307,6 @@ class _EpisodeDisplay extends HookConsumerWidget {
               ];
             },
             topRightNextToSettingsSlot: languages.length < 2 ? null : (context) => const MultiVideoLangNotice(),
-            rightSideSlot: (context) => RightSideSlot(episode: episode),
             centerExtraSlot: (context) => CenterExtraSlot(episode: episode),
           ),
         ),
@@ -357,17 +354,13 @@ class _EpisodeDisplay extends HookConsumerWidget {
       return () => subscription.cancel();
     }, [player.playerId, episode, chromecastEvents, playbackService]);
 
-    // Handle playback ended events, including autoplaying next
+    // Handle playback ended events
     useEffect(() {
       final subscription = playerEvents.where((event) => event is PlaybackEndedEvent).cast<PlaybackEndedEvent>().listen((event) async {
-        if (enableAutoplayNext) {
-          playbackService.getNextEpisodeAndAutoplayIt(playbackService, player.playerId, context.router);
-          return;
-        }
         playbackService.platformApi.exitFullscreen(player.playerId);
       });
       return () => subscription.cancel();
-    }, [ref, playerEvents, playbackService, enableAutoplayNext, player.playerId]);
+    }, [ref, playerEvents, playbackService, player.playerId]);
 
     final showLoadingOverlay = loading;
     final showChapters = episode.chapters.isNotEmpty && ref.watch(featureFlagsProvider.select((value) => value.chapters));

@@ -24,10 +24,8 @@ mixin _$FeatureFlags {
   bool get auth => throw _privateConstructorUsedError;
   bool get publicSignup => throw _privateConstructorUsedError;
   bool get socialSignup => throw _privateConstructorUsedError;
-  bool get autoplayNext => throw _privateConstructorUsedError;
   bool get shareVideoButton => throw _privateConstructorUsedError;
   bool get flutterPlayerControls => throw _privateConstructorUsedError;
-  bool get playNextButton => throw _privateConstructorUsedError;
   bool get chapters => throw _privateConstructorUsedError;
   bool get chaptersFirstTab => throw _privateConstructorUsedError;
   bool get download => throw _privateConstructorUsedError;
@@ -41,8 +39,6 @@ mixin _$FeatureFlags {
   String? get featuredSectionVariant => throw _privateConstructorUsedError;
   String? get iconSectionVariant => throw _privateConstructorUsedError;
   bool get skipToChapter => throw _privateConstructorUsedError;
-  bool get startupDelay => throw _privateConstructorUsedError;
-  String? get delayTimeInMs => throw _privateConstructorUsedError;
   bool get bccmAudioTest => throw _privateConstructorUsedError;
   bool get kidsAutoplayNext => throw _privateConstructorUsedError;
   bool get shortsWithScores => throw _privateConstructorUsedError;
@@ -70,10 +66,8 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       bool auth,
       bool publicSignup,
       bool socialSignup,
-      bool autoplayNext,
       bool shareVideoButton,
       bool flutterPlayerControls,
-      bool playNextButton,
       bool chapters,
       bool chaptersFirstTab,
       bool download,
@@ -87,8 +81,6 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       String? featuredSectionVariant,
       String? iconSectionVariant,
       bool skipToChapter,
-      bool startupDelay,
-      String? delayTimeInMs,
       bool bccmAudioTest,
       bool kidsAutoplayNext,
       bool shortsWithScores,
@@ -115,10 +107,8 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? auth = null,
     Object? publicSignup = null,
     Object? socialSignup = null,
-    Object? autoplayNext = null,
     Object? shareVideoButton = null,
     Object? flutterPlayerControls = null,
-    Object? playNextButton = null,
     Object? chapters = null,
     Object? chaptersFirstTab = null,
     Object? download = null,
@@ -132,8 +122,6 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? featuredSectionVariant = freezed,
     Object? iconSectionVariant = freezed,
     Object? skipToChapter = null,
-    Object? startupDelay = null,
-    Object? delayTimeInMs = freezed,
     Object? bccmAudioTest = null,
     Object? kidsAutoplayNext = null,
     Object? shortsWithScores = null,
@@ -157,10 +145,6 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
           ? _value.socialSignup
           : socialSignup // ignore: cast_nullable_to_non_nullable
               as bool,
-      autoplayNext: null == autoplayNext
-          ? _value.autoplayNext
-          : autoplayNext // ignore: cast_nullable_to_non_nullable
-              as bool,
       shareVideoButton: null == shareVideoButton
           ? _value.shareVideoButton
           : shareVideoButton // ignore: cast_nullable_to_non_nullable
@@ -168,10 +152,6 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
       flutterPlayerControls: null == flutterPlayerControls
           ? _value.flutterPlayerControls
           : flutterPlayerControls // ignore: cast_nullable_to_non_nullable
-              as bool,
-      playNextButton: null == playNextButton
-          ? _value.playNextButton
-          : playNextButton // ignore: cast_nullable_to_non_nullable
               as bool,
       chapters: null == chapters
           ? _value.chapters
@@ -225,14 +205,6 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
           ? _value.skipToChapter
           : skipToChapter // ignore: cast_nullable_to_non_nullable
               as bool,
-      startupDelay: null == startupDelay
-          ? _value.startupDelay
-          : startupDelay // ignore: cast_nullable_to_non_nullable
-              as bool,
-      delayTimeInMs: freezed == delayTimeInMs
-          ? _value.delayTimeInMs
-          : delayTimeInMs // ignore: cast_nullable_to_non_nullable
-              as String?,
       bccmAudioTest: null == bccmAudioTest
           ? _value.bccmAudioTest
           : bccmAudioTest // ignore: cast_nullable_to_non_nullable
@@ -270,10 +242,8 @@ abstract class _$$FeatureFlagsImplCopyWith<$Res>
       bool auth,
       bool publicSignup,
       bool socialSignup,
-      bool autoplayNext,
       bool shareVideoButton,
       bool flutterPlayerControls,
-      bool playNextButton,
       bool chapters,
       bool chaptersFirstTab,
       bool download,
@@ -287,8 +257,6 @@ abstract class _$$FeatureFlagsImplCopyWith<$Res>
       String? featuredSectionVariant,
       String? iconSectionVariant,
       bool skipToChapter,
-      bool startupDelay,
-      String? delayTimeInMs,
       bool bccmAudioTest,
       bool kidsAutoplayNext,
       bool shortsWithScores,
@@ -313,10 +281,8 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
     Object? auth = null,
     Object? publicSignup = null,
     Object? socialSignup = null,
-    Object? autoplayNext = null,
     Object? shareVideoButton = null,
     Object? flutterPlayerControls = null,
-    Object? playNextButton = null,
     Object? chapters = null,
     Object? chaptersFirstTab = null,
     Object? download = null,
@@ -330,8 +296,6 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
     Object? featuredSectionVariant = freezed,
     Object? iconSectionVariant = freezed,
     Object? skipToChapter = null,
-    Object? startupDelay = null,
-    Object? delayTimeInMs = freezed,
     Object? bccmAudioTest = null,
     Object? kidsAutoplayNext = null,
     Object? shortsWithScores = null,
@@ -355,10 +319,6 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
           ? _value.socialSignup
           : socialSignup // ignore: cast_nullable_to_non_nullable
               as bool,
-      autoplayNext: null == autoplayNext
-          ? _value.autoplayNext
-          : autoplayNext // ignore: cast_nullable_to_non_nullable
-              as bool,
       shareVideoButton: null == shareVideoButton
           ? _value.shareVideoButton
           : shareVideoButton // ignore: cast_nullable_to_non_nullable
@@ -366,10 +326,6 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
       flutterPlayerControls: null == flutterPlayerControls
           ? _value.flutterPlayerControls
           : flutterPlayerControls // ignore: cast_nullable_to_non_nullable
-              as bool,
-      playNextButton: null == playNextButton
-          ? _value.playNextButton
-          : playNextButton // ignore: cast_nullable_to_non_nullable
               as bool,
       chapters: null == chapters
           ? _value.chapters
@@ -423,14 +379,6 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
           ? _value.skipToChapter
           : skipToChapter // ignore: cast_nullable_to_non_nullable
               as bool,
-      startupDelay: null == startupDelay
-          ? _value.startupDelay
-          : startupDelay // ignore: cast_nullable_to_non_nullable
-              as bool,
-      delayTimeInMs: freezed == delayTimeInMs
-          ? _value.delayTimeInMs
-          : delayTimeInMs // ignore: cast_nullable_to_non_nullable
-              as String?,
       bccmAudioTest: null == bccmAudioTest
           ? _value.bccmAudioTest
           : bccmAudioTest // ignore: cast_nullable_to_non_nullable
@@ -463,10 +411,8 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
       this.auth = false,
       this.publicSignup = false,
       this.socialSignup = false,
-      this.autoplayNext = false,
       this.shareVideoButton = false,
       this.flutterPlayerControls = false,
-      this.playNextButton = false,
       this.chapters = true,
       this.chaptersFirstTab = false,
       this.download = false,
@@ -480,8 +426,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
       this.featuredSectionVariant,
       this.iconSectionVariant,
       this.skipToChapter = false,
-      this.startupDelay = false,
-      this.delayTimeInMs,
       this.bccmAudioTest = false,
       this.kidsAutoplayNext = false,
       this.shortsWithScores = false,
@@ -513,16 +457,10 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   final bool socialSignup;
   @override
   @JsonKey()
-  final bool autoplayNext;
-  @override
-  @JsonKey()
   final bool shareVideoButton;
   @override
   @JsonKey()
   final bool flutterPlayerControls;
-  @override
-  @JsonKey()
-  final bool playNextButton;
   @override
   @JsonKey()
   final bool chapters;
@@ -562,11 +500,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   final bool skipToChapter;
   @override
   @JsonKey()
-  final bool startupDelay;
-  @override
-  final String? delayTimeInMs;
-  @override
-  @JsonKey()
   final bool bccmAudioTest;
   @override
   @JsonKey()
@@ -583,7 +516,7 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
 
   @override
   String toString() {
-    return 'FeatureFlags(variants: $variants, auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, autoplayNext: $autoplayNext, shareVideoButton: $shareVideoButton, flutterPlayerControls: $flutterPlayerControls, playNextButton: $playNextButton, chapters: $chapters, chaptersFirstTab: $chaptersFirstTab, download: $download, shorts: $shorts, shortsSourceButtonPrimary: $shortsSourceButtonPrimary, shortsSharing: $shortsSharing, shortsHideAutoGenerated: $shortsHideAutoGenerated, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, featuredSectionVariant: $featuredSectionVariant, iconSectionVariant: $iconSectionVariant, skipToChapter: $skipToChapter, startupDelay: $startupDelay, delayTimeInMs: $delayTimeInMs, bccmAudioTest: $bccmAudioTest, kidsAutoplayNext: $kidsAutoplayNext, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider)';
+    return 'FeatureFlags(variants: $variants, auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup, shareVideoButton: $shareVideoButton, flutterPlayerControls: $flutterPlayerControls, chapters: $chapters, chaptersFirstTab: $chaptersFirstTab, download: $download, shorts: $shorts, shortsSourceButtonPrimary: $shortsSourceButtonPrimary, shortsSharing: $shortsSharing, shortsHideAutoGenerated: $shortsHideAutoGenerated, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, featuredSectionVariant: $featuredSectionVariant, iconSectionVariant: $iconSectionVariant, skipToChapter: $skipToChapter, bccmAudioTest: $bccmAudioTest, kidsAutoplayNext: $kidsAutoplayNext, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider)';
   }
 
   @override
@@ -597,14 +530,10 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
                 other.publicSignup == publicSignup) &&
             (identical(other.socialSignup, socialSignup) ||
                 other.socialSignup == socialSignup) &&
-            (identical(other.autoplayNext, autoplayNext) ||
-                other.autoplayNext == autoplayNext) &&
             (identical(other.shareVideoButton, shareVideoButton) ||
                 other.shareVideoButton == shareVideoButton) &&
             (identical(other.flutterPlayerControls, flutterPlayerControls) ||
                 other.flutterPlayerControls == flutterPlayerControls) &&
-            (identical(other.playNextButton, playNextButton) ||
-                other.playNextButton == playNextButton) &&
             (identical(other.chapters, chapters) ||
                 other.chapters == chapters) &&
             (identical(other.chaptersFirstTab, chaptersFirstTab) ||
@@ -632,10 +561,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
                 other.iconSectionVariant == iconSectionVariant) &&
             (identical(other.skipToChapter, skipToChapter) ||
                 other.skipToChapter == skipToChapter) &&
-            (identical(other.startupDelay, startupDelay) ||
-                other.startupDelay == startupDelay) &&
-            (identical(other.delayTimeInMs, delayTimeInMs) ||
-                other.delayTimeInMs == delayTimeInMs) &&
             (identical(other.bccmAudioTest, bccmAudioTest) ||
                 other.bccmAudioTest == bccmAudioTest) &&
             (identical(other.kidsAutoplayNext, kidsAutoplayNext) ||
@@ -656,10 +581,8 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
         auth,
         publicSignup,
         socialSignup,
-        autoplayNext,
         shareVideoButton,
         flutterPlayerControls,
-        playNextButton,
         chapters,
         chaptersFirstTab,
         download,
@@ -673,8 +596,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
         featuredSectionVariant,
         iconSectionVariant,
         skipToChapter,
-        startupDelay,
-        delayTimeInMs,
         bccmAudioTest,
         kidsAutoplayNext,
         shortsWithScores,
@@ -704,10 +625,8 @@ abstract class _FeatureFlags extends FeatureFlags {
       final bool auth,
       final bool publicSignup,
       final bool socialSignup,
-      final bool autoplayNext,
       final bool shareVideoButton,
       final bool flutterPlayerControls,
-      final bool playNextButton,
       final bool chapters,
       final bool chaptersFirstTab,
       final bool download,
@@ -721,8 +640,6 @@ abstract class _FeatureFlags extends FeatureFlags {
       final String? featuredSectionVariant,
       final String? iconSectionVariant,
       final bool skipToChapter,
-      final bool startupDelay,
-      final String? delayTimeInMs,
       final bool bccmAudioTest,
       final bool kidsAutoplayNext,
       final bool shortsWithScores,
@@ -742,13 +659,9 @@ abstract class _FeatureFlags extends FeatureFlags {
   @override
   bool get socialSignup;
   @override
-  bool get autoplayNext;
-  @override
   bool get shareVideoButton;
   @override
   bool get flutterPlayerControls;
-  @override
-  bool get playNextButton;
   @override
   bool get chapters;
   @override
@@ -775,10 +688,6 @@ abstract class _FeatureFlags extends FeatureFlags {
   String? get iconSectionVariant;
   @override
   bool get skipToChapter;
-  @override
-  bool get startupDelay;
-  @override
-  String? get delayTimeInMs;
   @override
   bool get bccmAudioTest;
   @override

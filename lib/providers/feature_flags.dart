@@ -21,10 +21,8 @@ FeatureFlags getBaseFeatureFlags() {
     auth: FlavorConfig.current.flavor != Flavor.kids,
     publicSignup: false,
     socialSignup: false,
-    autoplayNext: FlavorConfig.current.flavor == Flavor.kids,
     shareVideoButton: FlavorConfig.current.flavor != Flavor.kids,
     flutterPlayerControls: Env.forceFlutterControls,
-    playNextButton: false,
     chapters: false,
     chaptersFirstTab: false,
     download: false,
@@ -38,8 +36,6 @@ FeatureFlags getBaseFeatureFlags() {
     featuredSectionVariant: null,
     iconSectionVariant: null,
     skipToChapter: false,
-    startupDelay: false,
-    delayTimeInMs: null,
     bccmAudioTest: false,
     kidsAutoplayNext: false,
     shortsWithScores: false,
@@ -73,10 +69,8 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         auth: _verifyToggle(unleash, 'kids-auth'),
         publicSignup: _verifyToggle(unleash, 'public-signup'),
         socialSignup: _verifyToggle(unleash, 'social-signup'),
-        autoplayNext: _verifyToggle(unleash, 'autoplay-next'),
         shareVideoButton: false,
         flutterPlayerControls: _verifyToggle(unleash, 'flutter-player-controls'),
-        playNextButton: _verifyToggle(unleash, 'play-next-button'),
         chapters: _verifyToggle(unleash, 'chapters'),
         chaptersFirstTab: _verifyToggle(unleash, 'chapters-first-tab'),
         download: _verifyToggle(unleash, 'download'),
@@ -90,8 +84,6 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         featuredSectionVariant: unleash.getVariant('featured-section-variant').name,
         iconSectionVariant: unleash.getVariant('icon-section-variant').name,
         skipToChapter: _verifyToggle(unleash, 'skip-to-chapter'),
-        startupDelay: _verifyToggle(unleash, 'startup-delay'),
-        delayTimeInMs: unleash.getVariant('delay-time-in-ms').payload?.value,
         bccmAudioTest: _verifyToggle(unleash, 'bccm-audio-test'),
         kidsAutoplayNext: _verifyToggle(unleash, 'kids-autoplay-next'),
         shortsWithScores: _verifyToggle(unleash, 'shorts-with-scores3'),
@@ -130,8 +122,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         'UNLEASH-APPNAME': Env.unleashAppName,
       },
     );
-    final c = ref.read(unleashContextProvider);
-    final context = await c;
+    final context = await ref.read(unleashContextProvider);
     unleash.updateContext(context);
     unleash.on(
       'error',
