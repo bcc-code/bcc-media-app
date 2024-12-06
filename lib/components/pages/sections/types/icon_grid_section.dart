@@ -1,7 +1,6 @@
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_item_click_wrapper.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:bccm_core/platform.dart';
 import '../../../../models/breakpoints.dart';
 import '../../../misc/custom_grid_view.dart';
-import '../icons/icon_section_button.dart';
 
 const Map<Enum$GridSectionSize, int> _columnSize = {
   Enum$GridSectionSize.half: 2,
@@ -59,8 +57,6 @@ class _IconGridSectionList extends ConsumerWidget {
       defaultValue: _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!,
     ).value;
 
-    final iconSectionVariant = ref.watch(featureFlagsProvider.select((s) => s.iconSectionVariant));
-
     return CustomGridView(
       verticalSpacing: 12,
       padding: null,
@@ -71,21 +67,13 @@ class _IconGridSectionList extends ConsumerWidget {
               item: item.item,
               collectionId: collectionId,
               analytics: SectionItemAnalyticsData(id: item.id, position: index, type: item.$__typename, name: item.title),
-              child: iconSectionVariant == 'v2'
-                  ? _IconSectionButtonV2(
-                      label: item.title,
-                      networkImage: item.image,
-                      width: 80,
-                      aspectRatio: 175 / 48,
-                      padding: const EdgeInsets.all(8),
-                    )
-                  : IconSectionButton(
-                      label: item.title,
-                      networkImage: item.image,
-                      width: 80,
-                      aspectRatio: 16 / 9,
-                      padding: const EdgeInsets.all(8),
-                    ),
+              child: _IconSectionButtonV2(
+                label: item.title,
+                networkImage: item.image,
+                width: 80,
+                aspectRatio: 175 / 48,
+                padding: const EdgeInsets.all(8),
+              ),
             ),
           )
           .toList(),

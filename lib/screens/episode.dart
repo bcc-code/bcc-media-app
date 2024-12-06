@@ -18,7 +18,6 @@ import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/components/episode/episode_share_sheet.dart';
 import 'package:brunstadtv_app/components/video/center_extra_slot.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
@@ -363,8 +362,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     }, [ref, playerEvents, playbackService, player.playerId]);
 
     final showLoadingOverlay = loading;
-    final showChapters = episode.chapters.isNotEmpty && ref.watch(featureFlagsProvider.select((value) => value.chapters));
-    final chaptersFirstTab = ref.watch(featureFlagsProvider.select((value) => value.chaptersFirstTab));
+    final showChapters = episode.chapters.isNotEmpty;
 
     final chaptersWidget = EpisodeChapters(
       episode: episode,
@@ -479,13 +477,12 @@ class _EpisodeDisplay extends HookConsumerWidget {
             ],
             child: CustomTabBar(
               tabs: [
-                if (showChapters && chaptersFirstTab) S.of(context).chapters,
+                if (showChapters) S.of(context).chapters,
                 episode.context is Fragment$EpisodeContext$$Season ? S.of(context).episodes.toUpperCase() : S.of(context).videos.toUpperCase(),
-                if (showChapters && !chaptersFirstTab) S.of(context).chapters,
                 S.of(context).details.toUpperCase()
               ],
               children: [
-                if (showChapters && chaptersFirstTab) chaptersWidget,
+                if (showChapters) chaptersWidget,
                 if (episode.context is Fragment$EpisodeContext$$Season)
                   EpisodeSeason(
                     episodeId: screenParams.episodeId,
@@ -514,7 +511,6 @@ class _EpisodeDisplay extends HookConsumerWidget {
                   )
                 else
                   EpisodeRelated(episode: episode),
-                if (showChapters && !chaptersFirstTab) chaptersWidget,
                 EpisodeDetails(episode.id)
               ],
             ),

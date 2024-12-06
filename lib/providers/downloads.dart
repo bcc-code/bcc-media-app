@@ -9,10 +9,8 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/availability.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'feature_flags.dart';
-
 final downloadsEnabledProvider = Provider<bool>((ref) {
-  return ref.watch(featureFlagsProvider.select((value) => value.download)) && ref.watch(authStateProvider.select((value) => value.isLoggedIn));
+  return ref.watch(authStateProvider.select((value) => value.isLoggedIn));
 });
 
 final downloadsProvider = AsyncNotifierProvider<DownloadsNotifier, List<Download>>(() {

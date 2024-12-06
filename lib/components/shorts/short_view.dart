@@ -641,41 +641,40 @@ class ShortActions extends HookConsumerWidget {
                   ),
           ),
         ),
-        if (ref.watch(featureFlagsProvider.select((value) => value.shortsSharing)))
-          Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: design.buttons.large(
-              variant: ButtonVariant.secondary,
-              onPressed: () async {
-                ref.read(analyticsProvider).interaction(InteractionEvent(
-                      interaction: 'share',
-                      pageCode: 'shorts',
-                      contextElementType: 'short',
-                      contextElementId: short?.id,
-                    ));
-                if (short == null) return;
-                final shortUrl = 'https://app.bcc.media/shorts/${short!.id}';
-                await Share().shareUrl(
-                  shortUrl,
-                  title: short!.title,
-                  sharePositionOrigin: iPadSharePositionOrigin(context),
-                );
-                ref.read(analyticsProvider).contentShared(ContentSharedEvent(
-                      elementId: short!.id,
-                      elementType: 'short',
-                      pageCode: 'shorts',
-                      position: null,
-                    ));
-              },
-              imagePosition: ButtonImagePosition.right,
-              image: SvgPicture.string(
-                SvgIcons.share,
-                width: 32,
-                height: 32,
-                colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
-              ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: design.buttons.large(
+            variant: ButtonVariant.secondary,
+            onPressed: () async {
+              ref.read(analyticsProvider).interaction(InteractionEvent(
+                    interaction: 'share',
+                    pageCode: 'shorts',
+                    contextElementType: 'short',
+                    contextElementId: short?.id,
+                  ));
+              if (short == null) return;
+              final shortUrl = 'https://app.bcc.media/shorts/${short!.id}';
+              await Share().shareUrl(
+                shortUrl,
+                title: short!.title,
+                sharePositionOrigin: iPadSharePositionOrigin(context),
+              );
+              ref.read(analyticsProvider).contentShared(ContentSharedEvent(
+                    elementId: short!.id,
+                    elementType: 'short',
+                    pageCode: 'shorts',
+                    position: null,
+                  ));
+            },
+            imagePosition: ButtonImagePosition.right,
+            image: SvgPicture.string(
+              SvgIcons.share,
+              width: 32,
+              height: 32,
+              colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
             ),
           ),
+        ),
         design.buttons.large(
           variant: ButtonVariant.secondary,
           onPressed: () {

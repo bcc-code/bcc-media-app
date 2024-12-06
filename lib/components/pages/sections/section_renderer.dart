@@ -3,7 +3,6 @@ import 'package:brunstadtv_app/components/misc/see_more.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/pages/sections/types/avatar_section.dart';
 import 'package:brunstadtv_app/components/pages/sections/types/card_list_section.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bccm_core/platform.dart';
@@ -14,7 +13,6 @@ import 'types/featured_section_v2.dart';
 import 'types/icon_section.dart';
 import 'section_with_header.dart';
 import 'types/card_section.dart';
-import 'types/featured_section.dart';
 import 'types/message_section.dart';
 import 'types/page_details_section.dart';
 import 'types/label_section.dart';
@@ -80,11 +78,7 @@ class SectionRenderer extends ConsumerWidget {
     }
     final featuredSection = section.asOrNull<Fragment$Section$$FeaturedSection>();
     if (featuredSection != null) {
-      final variant = ref.watch(featureFlagsProvider.select((f) => f.featuredSectionVariant));
-      if (variant == 'v2') {
-        return SectionWithHeader.fromFragment(featuredSection, child: FeaturedSectionV2(featuredSection));
-      }
-      return SectionWithHeader.fromFragment(featuredSection, child: FeaturedSection(featuredSection));
+      return SectionWithHeader.fromFragment(featuredSection, child: FeaturedSectionV2(featuredSection));
     }
     final iconGridSection = section.asOrNull<Fragment$Section$$IconGridSection>();
     if (iconGridSection != null) {
