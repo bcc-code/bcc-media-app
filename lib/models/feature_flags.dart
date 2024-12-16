@@ -9,7 +9,7 @@ sealed class FeatureFlags with _$FeatureFlags {
 
   const factory FeatureFlags({
     @Default([]) List<String> variants,
-    @Default(false) bool auth,
+    @Default(false) bool kidsAuth,
     @Default(false) bool publicSignup,
     @Default(false) bool socialSignup,
     @Default(false) bool shorts,
@@ -32,7 +32,7 @@ sealed class FeatureFlags with _$FeatureFlags {
   FeatureFlags mergeWithTrueAlwaysWins(FeatureFlags newFlags) {
     return FeatureFlags(
       variants: newFlags.variants,
-      auth: newFlags.auth || auth,
+      kidsAuth: newFlags.kidsAuth || kidsAuth,
       publicSignup: newFlags.publicSignup || publicSignup,
       socialSignup: newFlags.socialSignup || socialSignup,
       shorts: newFlags.shorts || shorts,

@@ -22,7 +22,7 @@ class OnboardingButtons extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authEnabled = ref.watch(featureFlagsProvider.select((value) => value.auth));
+    final authEnabled = ref.watch(featureFlagsProvider.select((value) => value.kidsAuth));
     final signupEnabled = ref.watch(featureFlagsProvider.select((value) => value.publicSignup));
     final loginFuture = useState<Future?>(null);
     final loginSnapshot = useFuture(loginFuture.value);

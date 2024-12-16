@@ -38,7 +38,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authEnabled = ref.watch(featureFlagsProvider.select((value) => value.auth));
+    final authEnabled = ref.watch(featureFlagsProvider.select((value) => value.kidsAuth));
     final user = ref.read(authStateProvider.select((value) => value.user));
     final settings = ref.watch(settingsProvider);
     final design = DesignSystem.of(context);

@@ -18,7 +18,7 @@ import '../models/feature_flags.dart';
 FeatureFlags getBaseFeatureFlags() {
   return FeatureFlags(
     variants: [],
-    auth: FlavorConfig.current.flavor != Flavor.kids,
+    kidsAuth: FlavorConfig.current.flavor != Flavor.kids,
     publicSignup: false,
     socialSignup: false,
     shorts: false,
@@ -56,7 +56,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     final value = getBaseFeatureFlags().mergeWithTrueAlwaysWins(
       FeatureFlags(
         variants: _mapVariants(unleash.toggles),
-        auth: _verifyToggle(unleash, 'kids-auth'),
+        kidsAuth: _verifyToggle(unleash, 'kids-auth'),
         publicSignup: _verifyToggle(unleash, 'public-signup'),
         socialSignup: _verifyToggle(unleash, 'social-signup'),
         shorts: _verifyToggle(unleash, 'shorts'),

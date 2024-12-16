@@ -12,7 +12,7 @@ _$FeatureFlagsImpl _$$FeatureFlagsImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      auth: json['auth'] as bool? ?? false,
+      kidsAuth: json['kidsAuth'] as bool? ?? false,
       publicSignup: json['publicSignup'] as bool? ?? false,
       socialSignup: json['socialSignup'] as bool? ?? false,
       shorts: json['shorts'] as bool? ?? false,
@@ -31,7 +31,7 @@ _$FeatureFlagsImpl _$$FeatureFlagsImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
     <String, dynamic>{
       'variants': instance.variants,
-      'auth': instance.auth,
+      'kidsAuth': instance.kidsAuth,
       'publicSignup': instance.publicSignup,
       'socialSignup': instance.socialSignup,
       'shorts': instance.shorts,
