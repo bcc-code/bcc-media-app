@@ -9,7 +9,7 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final authFeatureFlagListener = Provider<void>((ref) {
+final kidsAuthFeatureFlagListener = Provider<void>((ref) {
   ref.listen<FeatureFlags>(featureFlagsProvider, (previous, next) {
     ref.read(authEnabledProvider.notifier).state = next.kidsAuth;
   });

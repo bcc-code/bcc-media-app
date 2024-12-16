@@ -22,20 +22,9 @@ class OnboardingButtons extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authEnabled = ref.watch(featureFlagsProvider.select((value) => value.kidsAuth));
     final signupEnabled = ref.watch(featureFlagsProvider.select((value) => value.publicSignup));
     final loginFuture = useState<Future?>(null);
     final loginSnapshot = useFuture(loginFuture.value);
-    if (!authEnabled) {
-      return Padding(
-        padding: const EdgeInsets.only(bottom: 24),
-        child: DesignSystem.of(context).buttons.large(
-              key: WidgetKeys.exploreButton,
-              labelText: S.of(context).exploreContent,
-              onPressed: exploreAction,
-            ),
-      );
-    }
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
