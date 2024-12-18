@@ -70,13 +70,6 @@ class _InitScreenState extends ConsumerState<InitScreen> {
       ref.read(sharedPreferencesProvider).setBool(PrefKeys.hasEverLoggedIn, false);
     }
 
-    // Apply artificial delay if startupDelay feature flag is enabled
-    final hasStartupDelay = ref.read(featureFlagsProvider).startupDelay;
-    final delayTimeInMs = ref.read(featureFlagsProvider).delayTimeInMs;
-    if (hasStartupDelay && delayTimeInMs != null && int.parse(delayTimeInMs) > 0) {
-      await Future.delayed(Duration(milliseconds: int.parse(delayTimeInMs)));
-    }
-
     continueNavigation();
     globalEventBus.fire(AppReadyEvent());
     TimeMeasurements.startupToInitDone.track(ref.read(analyticsProvider));

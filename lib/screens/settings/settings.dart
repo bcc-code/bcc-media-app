@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,7 +37,6 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authEnabled = ref.watch(featureFlagsProvider.select((value) => value.auth));
     final user = ref.read(authStateProvider.select((value) => value.user));
     final settings = ref.watch(settingsProvider);
     final design = DesignSystem.of(context);
@@ -81,7 +79,7 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    if (authEnabled && user != null)
+                    if (user != null)
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                         decoration: BoxDecoration(
@@ -103,15 +101,6 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                           ),
                           Text(user.name, style: design.textStyles.title3.copyWith(color: design.colors.label1))
                         ]),
-                      )
-                    else if (!authEnabled)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 48),
-                        child: Image(
-                          image: FlavorConfig.current.bccmImages!.logo,
-                          height: 25,
-                          gaplessPlayback: true,
-                        ),
                       )
                     else
                       Padding(

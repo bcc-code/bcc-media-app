@@ -156,21 +156,6 @@ class EpisodeInfo extends HookConsumerWidget {
                                 ),
                               ),
                             ),
-                          if (ref.read(featureFlagsProvider).shareVideoButton)
-                            GestureDetector(
-                              onTap: onShareVideoTapped,
-                              behavior: HitTestBehavior.opaque,
-                              child: FocusableActionDetector(
-                                mouseCursor: WidgetStateMouseCursor.clickable,
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 4, left: showMyListButton ? 12 : 0, right: 12),
-                                  child: SvgPicture.string(
-                                    SvgIcons.share,
-                                    colorFilter: ColorFilter.mode(design.colors.tint1, BlendMode.srcIn),
-                                  ),
-                                ),
-                              ),
-                            ),
                           const Spacer(),
                           if (ref.watch(downloadsEnabledProvider) && episode.streams.any((element) => element.downloadable))
                             EpisodeDownloadButton(episode: episode),

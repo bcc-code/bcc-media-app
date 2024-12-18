@@ -10,7 +10,6 @@ import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/router/custom_transitions.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
@@ -113,7 +112,6 @@ class PlayerView extends HookConsumerWidget {
     final buffering = useState(false);
     final last10SecondsHandled = useState(false);
 
-    final hasAutoplayNext = ref.watch(featureFlagsProvider.select((value) => value.kidsAutoplayNext));
     final isAutoplayNextCancelled = useState(false);
 
     useEffect(() {
@@ -121,7 +119,6 @@ class PlayerView extends HookConsumerWidget {
     }, [episode]);
 
     void cancelAutoplayNext() {
-      if (!hasAutoplayNext) return;
       if (isAutoplayNextCancelled.value) return;
 
       isAutoplayNextCancelled.value = true;
@@ -167,7 +164,7 @@ class PlayerView extends HookConsumerWidget {
     // Autoplay
     useEffect(() {
       void onEnded(PlaybackEndedEvent event) {
-        if (hasAutoplayNext && !isAutoplayNextCancelled.value && episode != null && episode?.next.isNotEmpty == true) {
+        if (!isAutoplayNextCancelled.value && episode != null && episode?.next.isNotEmpty == true) {
           navigateToEpisode(episode!.next.first);
           setControlsVisible(false);
           ref.read(analyticsProvider).impression(ImpressionEvent(
@@ -182,7 +179,7 @@ class PlayerView extends HookConsumerWidget {
           viewController.playerController.events.where((event) => event is PlaybackEndedEvent).cast<PlaybackEndedEvent>().listen(onEnded);
 
       return endedSubscription.cancel;
-    }, [hasAutoplayNext, viewController.playerController, episode]);
+    }, [viewController.playerController, episode]);
 
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
@@ -723,7 +720,6 @@ class PlayerEpisodes extends HookConsumerWidget {
                       );
                 },
                 overlayBuilder: (context) {
-                  if (ref.read(featureFlagsProvider).kidsAutoplayNext != true) return Container();
                   if (isAutoplayEnabled != true) return Container();
                   if (episode?.next.first.id != ep.id) return Container();
 

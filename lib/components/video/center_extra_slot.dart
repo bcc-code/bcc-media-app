@@ -17,7 +17,7 @@ class CenterExtraSlot extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final skipToChapterEnabled = ref.watch(featureFlagsProvider.select((flags) => flags.chapters && flags.skipToChapter));
+    final skipToChapterEnabled = ref.watch(featureFlagsProvider.select((flags) => flags.skipToChapter));
     final viewController = BccmPlayerViewController.of(context);
     final hasShownSkipToChapter = useState(false);
     useValueChangedSimple(hasShownSkipToChapter.value, (old) {
