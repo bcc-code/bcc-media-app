@@ -53,6 +53,10 @@ Future<void> $main({
             event.throwable.toString().contains('FetchFailure')) {
           return null;
         }
+        // Filter out RenderBox issue
+        if (event.throwable.toString().contains('RenderBox was not laid out')) {
+          return null;
+        }
         return event;
       };
     },
