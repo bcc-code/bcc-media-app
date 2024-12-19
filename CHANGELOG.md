@@ -1,4 +1,22 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.50+2300210...v) (2024-12-02)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.51+2300211...v) (2024-12-19)
+
+
+
+## [5.6.51+2300211](https://github.com/bcc-code/bcc-media-app/compare/v5.6.50+2300210...v5.6.51+2300211) (2024-12-19)
+
+
+### Bug Fixes
+
+* **feature-flags:** remove kids auth feature flag from bccm-mobile + rename flag ([5a4c74c](https://github.com/bcc-code/bcc-media-app/commit/5a4c74c88640ca933c1cf0bec9bfd0b12dd9dafa))
+* **feature-flags:** remove stale flag ([9d85b2a](https://github.com/bcc-code/bcc-media-app/commit/9d85b2a5305e3edd79ada4ee17af0363bae3930e))
+* **feature-flags:** rename kids-auth flag ([7cbf1f7](https://github.com/bcc-code/bcc-media-app/commit/7cbf1f7735aa6ebc441650f7125a01ee4023db13))
+* remove unused import ([3b847ff](https://github.com/bcc-code/bcc-media-app/commit/3b847ff5f7994518447c41f2f24f20aa9e0bce8e))
+
+
+### Features
+
+* **feature-flags:** remove flags for features to keep ([baa1d06](https://github.com/bcc-code/bcc-media-app/commit/baa1d063efc2c4f23f54623207937527c9658bc0))
+* **feature-flags:** remove unused flags ([4394066](https://github.com/bcc-code/bcc-media-app/commit/43940660a5ea2621ca2df3288b97f168fa66c052))
 
 
 
