@@ -1,4 +1,15 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.21+2500031-kids...v) (2024-12-19)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.52+2300212...v) (2024-12-19)
+
+
+
+## [5.6.52+2300212](https://github.com/bcc-code/bcc-media-app/compare/v5.1.21+2500031-kids...v5.6.52+2300212) (2024-12-19)
+
+
+### Bug Fixes
+
+* **ci:** maestro downgrade slightly ([9207afa](https://github.com/bcc-code/bcc-media-app/commit/9207afa4a056d3261bbeb9e09e0e14b9075f6674))
+* **ci:** update maestro version ([b7e2f46](https://github.com/bcc-code/bcc-media-app/commit/b7e2f467142d7393a0df32be7fe3d5db76e20a8d))
+* ignore renderbox errors in sentry ([da83c47](https://github.com/bcc-code/bcc-media-app/commit/da83c47253d4384a0c775b509600c94da5a61491))
 
 
 
