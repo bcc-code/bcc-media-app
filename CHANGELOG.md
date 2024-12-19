@@ -1,4 +1,17 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.51+2300211...v) (2024-12-19)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.21+2500031-kids...v) (2024-12-19)
+
+
+
+## [5.1.21+2500031-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.20+2500030-kids...v5.1.21+2500031-kids) (2024-12-19)
+
+
+### Bug Fixes
+
+* **kids:** update package that prevents build ([77931d7](https://github.com/bcc-code/bcc-media-app/commit/77931d7be737e0e13b6959feba858522540802cd))
+
+
+
+## [5.1.20+2500030-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.51+2300211...v5.1.20+2500030-kids) (2024-12-19)
 
 
 
