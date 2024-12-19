@@ -31,7 +31,7 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "Le message le plus\n puissant au monde",
+  "loginPageDisplay1": "Le message le plus puissant au monde",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -43,7 +43,7 @@
   "@kidsOnboardingTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "kidsOnboardingSecondaryTitle": "Notre vision est que les enfants fassent l'expérience de Jésus comme leur meilleur ami - pour le reste de leur vie.",
+  "kidsOnboardingSecondaryTitle": "Notre vision est que les enfants connaissent Jésus comme leur meilleur ami - pour le reste de leur vie.",
   "@kidsOnboardingSecondaryTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
@@ -87,7 +87,7 @@
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Je certifie que j'ai 13 ans ou plus, et j'accepte la <a>Politique de confidentialité</a> et <a>les conditions d'utilisation</a>.",
+  "signUpAgreePrivacyPolicy": "Je certifie que j'ai 13 ans ou plus, et j'accepte la <a>Politique de confidentialité</a> et les <a>Conditions d'utilisation</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
@@ -103,7 +103,7 @@
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Tu as été déconnecté. Merci de te connecter à nouveau.",
+  "loggedOutMessage": "Tu as été déconnecté. Merci de te reconnecter.",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
@@ -135,11 +135,11 @@
   "@open": {
     "description": "Open button"
   },
-  "loginFailedCheckNetwork": "Échec de la connexion. Vérifie ta connexion internet et retente à nouveau.",
+  "loginFailedCheckNetwork": "Échec de la connexion Vérifie ta connexion internet et retente à nouveau.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "Échec de la connexion. Merci de retenter plus tard.",
+  "loginFailedTryAgain": "Échec de la connexion Merci de retenter plus tard.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
@@ -420,7 +420,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Tu peux faire une recherche sur tout le contenu de BCC Media. Séries, vidéos et épisodes.",
+  "emptySearch": "Tu peux rechercher dans tous les contenus de BCC Media. Séries, vidéos et épisodes.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -484,11 +484,11 @@
   "@uploading": {
     "description": "Message during file upload"
   },
-  "uploadFail": "Echec du téléchargement",
+  "uploadFail": "Échec du téléchargement",
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{charsLeft} sur {charsTotal} caractères restants",
+  "charactersLimit": "{charsLeft} de {charsTotal} caractères restants",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -564,7 +564,7 @@
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Une erreur est survenue. Vérifie ta connexion internet et réessaye.",
+  "sendFailDescription": "Il y a eu un problème. Vérifie ta connexion internet et tente à nouveau.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
@@ -580,7 +580,7 @@
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Disponible {date}",
+  "availableFrom": "Disponible '{'0'}'",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -605,7 +605,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Le calendrier du guide TV s'affiche selon l'heure locale : {timeZone}",
+  "timezoneInformation": "Le calendrier du guide Tv s'affiche selon l'heure locale : '{'0'}'",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -1046,7 +1046,7 @@
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "La suppression du compte a été demandée avec succès. Vous recevrez un courriel à l'adresse {email}. Pour confirmer votre identité, nous avons besoin que vous répondiez à cet e-mail pour procéder à la suppression.",
+  "accountDeletionSuccess": "La suppression du compte a bien été demandée. Vous allez recevoir un mail à l'adresse {email}. Pour confirmer votre identité, vous devez répondre à ce mail pour procéder à la suppression du compte.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1067,7 +1067,7 @@
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Ou va sur {url} et entre le code : {code}",
+  "tvEnterCode": "Ou allez sur %@\net entrez le code : %@",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1193,7 +1193,7 @@
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "Pas de connexion internet,\nmais pas d'inquiétude.",
+  "noInternetButDontWorry": "Pas de connexion internet, mais pas d'inquiétude.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
@@ -1335,7 +1335,7 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Cette fonctionnalité est en version bêta et n'est actuellement pas disponible pour tous les utilisateurs. Veuillez signaler tout problème ou commentaire via le bouton « Contact » dans les paramètres.",
+  "betaExplanation": "Cette fonction est en version bêta, et n'est actuellement pas mise à disposition de tous les utilisateurs. Merci de signaler tout problème ou retour d'expérience par le bouton \"Contact\" dans les paramètres.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
@@ -1347,7 +1347,7 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Cette fonction n'est pas encore disponible sur votre appareil. Veuillez réessayer plus tard.",
+  "featureNotAvailableYet": "Cette fonction n'est pas encore disponible sur ton appareil. Merci de retenter plus tard.",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
