@@ -43,7 +43,14 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
   @override
   FeatureFlags build() {
     final unleash = this.unleash;
-    if (unleash == null || unleash.clientState != ClientState.ready) return _getCachedFlags(ref);
+    if (unleash == null || unleash.clientState != ClientState.ready) {
+      final flags = _getCachedFlags(ref);
+      // TODO: make variantsProvider a real reactive provider
+      Future.delayed(const Duration(milliseconds: 0), () {
+        ref.read(variantsProvider.notifier).state = flags.variants;
+      });
+      return flags;
+    }
     ref.listen(
       unleashContextProvider,
       (previous, next) async {
@@ -71,6 +78,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     );
 
     _saveCache(value);
+    // TODO: make variantsProvider a real reactive provider
     Future.delayed(const Duration(milliseconds: 0), () {
       ref.read(variantsProvider.notifier).state = value.variants;
     });
