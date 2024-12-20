@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.52+2300212...v) (2024-12-19)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.53+2300213...v) (2024-12-20)
+
+
+
+## [5.6.53+2300213](https://github.com/bcc-code/bcc-media-app/compare/v5.6.52+2300212...v5.6.53+2300213) (2024-12-20)
+
+
+### Bug Fixes
+
+* **graphql:** make sure updated feature flags are sent in headers ([0068b19](https://github.com/bcc-code/bcc-media-app/commit/0068b19f6d9e808497b3eedc2ddeee9dacb06ec8))
 
 
 
