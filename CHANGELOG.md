@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.53+2300213...v) (2024-12-20)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.54+2300214...v) (2024-12-20)
+
+
+
+## [5.6.54+2300214](https://github.com/bcc-code/bcc-media-app/compare/v5.6.53+2300213...v5.6.54+2300214) (2024-12-20)
+
+
+### Bug Fixes
+
+* make sure to update feature flags variants provider ([8dfee3b](https://github.com/bcc-code/bcc-media-app/commit/8dfee3b5e8759e1f4092b58cb291afc0eeb0de4f))
 
 
 
