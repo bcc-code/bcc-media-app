@@ -61,7 +61,7 @@ class _ApiHttpClient extends BaseClient {
       ...settings.extraUsergroups,
     ];
     final isLoggedIn = ref.read(authStateProvider).isLoggedIn;
-    final featureFlagVariants = ref.read(featureFlagVariantListProvider);
+    final featureFlagVariants = ref.watch(featureFlagVariantListProvider);
     final os = Platform.isIOS ? 'iOS' : 'Android';
     final osVersion = getOsVersion(ref.read(deviceInfoProvider));
     final headers = BccmGraphqlHeaders(
