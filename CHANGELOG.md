@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.54+2300214...v) (2024-12-20)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.55+2300215...v) (2025-01-03)
+
+
+
+## [5.6.55+2300215](https://github.com/bcc-code/bcc-media-app/compare/v5.6.54+2300214...v5.6.55+2300215) (2025-01-03)
+
+
+### Bug Fixes
+
+* **deps:** update sentry ([4adcea5](https://github.com/bcc-code/bcc-media-app/commit/4adcea58cea96c833a5cb8162888994934134146))
+* **episode:** add share button back ([10e99b2](https://github.com/bcc-code/bcc-media-app/commit/10e99b25ecd5882d7e3fa252afbe64b55e9c26d4))
 
 
 
