@@ -5,6 +5,10 @@
       "name": "bccm_core"
     },
     {
+      "path": "submodules/bccm_flutter/bmm_api",
+      "name": "bmm_api"
+    },
+    {
       "path": "submodules/bccm_player",
       "name": "bccm_player"
     },
