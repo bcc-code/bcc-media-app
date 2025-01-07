@@ -31,7 +31,7 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "Самое мощное послание в мире",
+  "loginPageDisplay1": "Самая могущественная весть в мире",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -87,7 +87,7 @@
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Я подтверждаю, что мне исполнилось 13 лет, и я принимаю <a>Политику конфиденциальности</a> и <a>Условия использования</a>.",
+  "signUpAgreePrivacyPolicy": "",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
@@ -103,7 +103,7 @@
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Вы вышли из аккаунта. Пожалуйста, войдите снова.",
+  "loggedOutMessage": " ",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
@@ -135,11 +135,11 @@
   "@open": {
     "description": "Open button"
   },
-  "loginFailedCheckNetwork": "Ошибка входа. Проверьте подключение к сети и попробуйте снова.",
+  "loginFailedCheckNetwork": " Проверьте подключение к сети и попробуйте снова.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "Ошибка входа. Пожалуйста, попробуйте позже.",
+  "loginFailedTryAgain": " Пожалуйста, попробуйте позже.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
@@ -251,7 +251,7 @@
   "@deviceInfoUserId": {
     "description": "Label for user id"
   },
-  "deviceInfoPageDesc": "Ваше сообщение будет содержать эту информацию, чтобы помочь нам обеспечить лучшую поддержку.",
+  "deviceInfoPageDesc": "Ваше сообщение будет содержать эту информацию, чтобы обеспечить более качественную поддержку.",
   "@deviceInfoPageDesc": {
     "description": "Label for manufacturer"
   },
@@ -339,7 +339,7 @@
   "@doYouWantCast": {
     "description": "Prompt displayed to the user"
   },
-  "play": "Играть",
+  "play": "Воспроизвести",
   "@play": {
     "description": "Option in prompt dialog."
   },
@@ -363,7 +363,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "В очереди не может быть больше элементов, чем {elementCount}.",
+  "queueLimitMessage": "",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -420,7 +420,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Вы можете выполнять поиск по всему контенту от BCC Media. Передачи, фильмы и эпизоды.",
+  "emptySearch": " ",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -488,7 +488,7 @@
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "Осталось {charsLeft} из {charsTotal} символов",
+  "charactersLimit": "",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -532,7 +532,7 @@
   "@information": {
     "description": "Feed information item title"
   },
-  "question": "Вопросы",
+  "question": "Вопрос",
   "@question": {
     "description": "Title of the question page"
   },
@@ -564,7 +564,7 @@
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.",
+  "sendFailDescription": "Что-то пошло не так. Проверьте подключение к Интернету и повторите попытку.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
@@ -580,7 +580,7 @@
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Доступно {date}",
+  "availableFrom": "Доступно '{'0'}'",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -593,7 +593,7 @@
   "@submit": {
     "description": "Submit button."
   },
-  "wellDone": "Отлично сработано!",
+  "wellDone": "Отличная работа!",
   "@wellDone": {
     "description": "Positive message that may be used e.g. after completing some action."
   },
@@ -605,7 +605,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Расписание телепрограммы указано по вашему местному времени: {timeZone}",
+  "timezoneInformation": "Расписание телепрограммы указано по вашему местному времени: '{'0'}'",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -674,7 +674,7 @@
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
   },
-  "fAQ": "ЧАВО",
+  "fAQ": "Часто задаваемые вопросы",
   "@fAQ": {
     "description": "Title on FAQ page and item in profile page settings."
   },
@@ -682,7 +682,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Поделиться с времени {time}",
+  "shareTime": "",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -791,7 +791,7 @@
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },
-  "watchAgain": "Посмотрите еще раз",
+  "watchAgain": "Посмотреть снова",
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
@@ -827,7 +827,7 @@
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Отличная работа по завершению темы изучения {name}",
+  "achievementStudyTopic": "",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -836,7 +836,7 @@
       }
     }
   },
-  "videoCount": "{count} видео",
+  "videoCount": "Видео",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -845,7 +845,7 @@
       }
     }
   },
-  "taskCount": "{count} заданий",
+  "taskCount": "",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -854,7 +854,7 @@
       }
     }
   },
-  "posterCount": "{count} постер(ов)\n",
+  "posterCount": "",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -863,7 +863,7 @@
       }
     }
   },
-  "resourceCount": "{count} ресурсов",
+  "resourceCount": "",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -884,7 +884,7 @@
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "passwordConditionLength": "Минимум {n} символов",
+  "passwordConditionLength": "",
   "@passwordConditionLength": {
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
@@ -1033,7 +1033,7 @@
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Удаление учетной записи обычно производится в течение {x} рабочих дней.",
+  "accountDeletionTimeframe": "",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1046,7 +1046,7 @@
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Запрос на удаление учетной записи успешно выполнен. Вы получите письмо по адресу {email}. Для подтверждения вашей личности нам необходимо, чтобы вы ответили на это письмо, чтобы приступить к удалению.",
+  "accountDeletionSuccess": "  ",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1067,7 +1067,7 @@
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Или перейдите по ссылке {url} и введите код: {code}",
+  "tvEnterCode": "Или перейдите к %@\nи введите код: %@",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1115,7 +1115,7 @@
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Аудио недоступно на {lang}",
+  "audioNotAvailableInLanguage": "",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1132,7 +1132,7 @@
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "Размер видеофайла {size}.",
+  "theVideoFileSizeIs": "",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1209,7 +1209,7 @@
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Предполагаемый размер файла: {size}",
+  "estimatedFileSize": "",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1258,7 +1258,7 @@
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "expiresIn": "Истекает в {time}",
+  "expiresIn": "",
   "@expiresIn": {
     "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
     "placeholders": {
@@ -1327,11 +1327,15 @@
   "@autoGenerated": {
     "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
   },
+  "shortsTranscriptionDisclaimer": "",
+  "@shortsTranscriptionDisclaimer": {
+    "description": "Disclaimer shown on the shorts page."
+  },
   "beta": "Бета",
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Эта функция находится в стадии бета-тестирования и в настоящее время доступна не всем пользователям. Пожалуйста, сообщайте о любых проблемах или отзывах через кнопку \"Связаться\" в настройках.",
+  "betaExplanation": " ",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
@@ -1343,7 +1347,7 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Эта функция пока недоступна. Пожалуйста, повторите попытку позже.",
+  "featureNotAvailableYet": " Пожалуйста, попробуйте позже.",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
@@ -1362,6 +1366,10 @@
   "shortsLikedAndSavedDescription": "Вы можете найти все понравившиеся видео в своем профиле.",
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "excerptFrom": "",
+  "@excerptFrom": {
+    "description": "Shown on a 'short' video, indicating that this is an excerpt from a longer video. E.g. Excerpt from 'The Tale of John Doe'."
   },
   "downloadedVideosGuideDescription": "Загруженные видео можно найти в разделе Профиль.",
   "@downloadedVideosGuideDescription": {
@@ -1399,12 +1407,21 @@
   "@all": {
     "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
   },
-  "countItems": "{x} предметов",
+  "countItems": "",
   "@countItems": {
     "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
       "x": {
         "type": "int"
+      }
+    }
+  },
+  "skipTo": "",
+  "@skipTo": {
+    "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "chapter": {
+        "type": "String"
       }
     }
   }
