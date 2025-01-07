@@ -55,7 +55,7 @@
   "@logOutButton": {
     "description": "Text displayed on Log out button"
   },
-  "profileTab": "Profil ",
+  "profileTab": "Profil",
   "@profileTab": {
     "description": "Title of the profile page"
   },
@@ -87,7 +87,7 @@
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Ich bestätige, dass ich mindestens 13 Jahre alt bin und stimme den <a>Datenschutzbestimmungen</a> und <a>Nutzungsbedingungen</a>zu.",
+  "signUpAgreePrivacyPolicy": "",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
@@ -103,7 +103,7 @@
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Du wurdest ausgeloggt. Bitte logge dich wieder ein.",
+  "loggedOutMessage": " ",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
@@ -135,15 +135,15 @@
   "@open": {
     "description": "Open button"
   },
-  "loginFailedCheckNetwork": "Anmeldung fehlgeschlagen. Überprüfe deine Netzwerkverbindung und versuche es erneut.",
+  "loginFailedCheckNetwork": " Überprüfe deine Netzwerkverbindung und versuche es erneut.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "Anmeldung fehlgeschlagen. Bitte versuche es später noch einmal.",
+  "loginFailedTryAgain": " Bitte versuche es später noch einmal.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
-  "soundLanguage": "Tonsprache",
+  "soundLanguage": "Ton-Sprache",
   "@soundLanguage": {
     "description": "Settings item on profile page"
   },
@@ -363,7 +363,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "Du kannst nicht mehr als {elementCount} Videos in der Warteschlange haben.",
+  "queueLimitMessage": "",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -380,7 +380,7 @@
   "@tVLogin": {
     "description": "Title of the TV login alert"
   },
-  "tVLoginSuccessful": "Login erfolgreich, bitte auf Fernseher bestätigen.",
+  "tVLoginSuccessful": "Login erfolgreich, bitte auf dem Fernseher bestätigen.",
   "@tVLoginSuccessful": {
     "description": "Message of the TV login alert"
   },
@@ -420,7 +420,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Hier kannst nach allen Inhalten von BCC Media suchen. Serien, Filme und Folgen.",
+  "emptySearch": " ",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -488,7 +488,7 @@
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{charsLeft} von {charsTotal} Zeichen übrig",
+  "charactersLimit": "",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -556,7 +556,7 @@
   "@thankYouSupportTitle": {
     "description": "Text on contact support confirmation page"
   },
-  "thankYouSupportDescription": "Wir sind dankbar für jedes Feedback und wir werden uns so schnell wie möglich um das Anliegen kümmern.",
+  "thankYouSupportDescription": "Wir freuen uns über jedes Feedback und werden uns so schnell wie möglich um das Problem kümmern.",
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
@@ -564,7 +564,7 @@
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Etwas ist schiefgelaufen. Bitte überprüfe deine Internetverbindung und versuche es erneut.",
+  "sendFailDescription": "Etwas ist schief gelaufen. Überprüfe deine Internetverbindung und versuche es noch einmal.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
@@ -580,7 +580,7 @@
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Verfügbar {date}",
+  "availableFrom": "Verfügbar '{'0'}'",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -605,7 +605,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Der TV Programmplan ist deiner Ortszeit angepasst: {timeZone}",
+  "timezoneInformation": "Der Zeitplan des Fernsehprogramms wird in deiner Ortszeit angezeigt: '{'0'}'",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -682,7 +682,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Teilen von {time}",
+  "shareTime": "",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -827,7 +827,7 @@
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Gut gemacht, du hast das erste Thema {name} abgeschlossen",
+  "achievementStudyTopic": "",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -836,7 +836,7 @@
       }
     }
   },
-  "videoCount": "{count} Filme",
+  "videoCount": "Videos",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -845,7 +845,7 @@
       }
     }
   },
-  "taskCount": "{count} Aufgaben",
+  "taskCount": "",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -854,7 +854,7 @@
       }
     }
   },
-  "posterCount": "{count} Poster",
+  "posterCount": "",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -863,7 +863,7 @@
       }
     }
   },
-  "resourceCount": "{count} Inhalt",
+  "resourceCount": "",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -884,7 +884,7 @@
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "passwordConditionLength": "Mindestens {n} Zeichen",
+  "passwordConditionLength": "",
   "@passwordConditionLength": {
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
@@ -1033,7 +1033,7 @@
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Die Kontolöschung erfolgt in der Regel innerhalb von {x} Werktagen.",
+  "accountDeletionTimeframe": "",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1046,7 +1046,7 @@
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Kontolöschung erfolgreich beantragt. Sie erhalten eine E-Mail unter {email}. Um Ihre Identität zu bestätigen, müssen Sie auf diese E-Mail antworten, um mit der Löschung fortfahren zu können.",
+  "accountDeletionSuccess": "  ",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1063,11 +1063,11 @@
   "@playGame": {
     "description": "Title on a game"
   },
-  "tvScanQr": "Scannen Sie den Code und melden Sie sich mit Ihrem Telefon an",
+  "tvScanQr": "Scanne den Code und melde dich mit deinem Handy an",
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Oder gehen Sie zu {url} und geben Sie den Code ein: {code}",
+  "tvEnterCode": "Oder gehe auf %@ und gib folgenden Code ein: %@",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1115,7 +1115,7 @@
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Audio in {lang} nicht verfügbar",
+  "audioNotAvailableInLanguage": "",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1132,7 +1132,7 @@
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "Die Videodateigröße beträgt {size}.",
+  "theVideoFileSizeIs": "",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1193,7 +1193,7 @@
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "Keine Internetverbindung, aber keine Sorge.",
+  "noInternetButDontWorry": "Keine Internetverbindung, \naber keine Sorge.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
@@ -1209,7 +1209,7 @@
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Geschätzte Dateigröße: {size}",
+  "estimatedFileSize": "",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1234,7 +1234,7 @@
   "@allSubtitlesWillBeAvailableOffline": {
     "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "downloading": " wird heruntergeladen",
+  "downloading": "wird heruntergeladen",
   "@downloading": {
     "description": "Download status, indicating that the video is currently downloading."
   },
@@ -1258,7 +1258,7 @@
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "expiresIn": "Läuft in {time} ab",
+  "expiresIn": "",
   "@expiresIn": {
     "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
     "placeholders": {
@@ -1335,11 +1335,11 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Diese Funktion befindet sich in der Betaphase und ist derzeit nicht für alle Benutzer verfügbar. Bitte melden Sie etwaige Probleme oder Rückmeldungen über die Schaltfläche „Kontakt“ in den Einstellungen.",
+  "betaExplanation": " ",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
-  "likedShorts": "Kurzfilme, die mir gefallen",
+  "likedShorts": "Shorts, die mir gefallen",
   "@likedShorts": {
     "description": "Title of the 'liked shorts' section. Shorts is a scrolling collection of short vertical videos. Similar to Youtube Shorts / Instagram Reels."
   },
@@ -1347,7 +1347,7 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Diese Funktion ist auf deinem Endgerät noch nicht verfügbar. Bitte versuche es später noch einmal.",
+  "featureNotAvailableYet": " Bitte versuche es später noch einmal.",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
@@ -1407,7 +1407,7 @@
   "@all": {
     "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
   },
-  "countItems": "{x} items",
+  "countItems": "",
   "@countItems": {
     "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1416,7 +1416,7 @@
       }
     }
   },
-  "skipTo": "Weiter zu {chapter}",
+  "skipTo": "",
   "@skipTo": {
     "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
