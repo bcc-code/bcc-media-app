@@ -106,6 +106,10 @@ class _InitScreenState extends ConsumerState<InitScreen> {
       ref.read(analyticsProvider).log(LogEvent(
             name: 'sent to login screen',
             message: 'user was sent to login screen from the init screen continueNavigation method.',
+            meta: {
+              'userIsDefined': ref.read(authStateProvider).user != null,
+              'accessTokenIsDefined': ref.read(authStateProvider).auth0AccessToken != null,
+            },
           ));
       return;
     }
