@@ -128,15 +128,14 @@ class BmmDiscoveryRenderer extends HookConsumerWidget {
         (context, index) {
           final group = groups[index];
           if (group.type == DiscoverGroupType.horizontal) {
-            return Padding(
-              padding: const EdgeInsets.all(16),
-              child: HorizontalSlider(
-                height: group.documents.any((e) => e.oneOf.isType(TileModel)) ? 230 : 200,
-                itemCount: group.documents.length,
-                itemBuilder: (context, index) {
-                  return BmmDocumentRenderer(group.documents[index]);
-                },
-              ),
+            return HorizontalSlider(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              height: group.documents.any((e) => e.oneOf.isType(TileModel)) ? 250 : 200,
+              gap: 8,
+              itemCount: group.documents.length,
+              itemBuilder: (context, index) {
+                return BmmDocumentRenderer(group.documents[index]);
+              },
             );
           }
           return Column(
@@ -158,6 +157,16 @@ class BmmDocumentRenderer extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final streak = document.oneOf.value.asOrNull<CurrentWeeksStreakVm>();
+    if (streak != null) {
+      return StreakRenderer(streak);
+    }
+
+    final sectionHeader = document.oneOf.value.asOrNull<SectionHeaderModel>();
+    if (sectionHeader != null) {
+      return SectionHeaderRenderer(sectionHeader);
+    }
+
     final tile = document.oneOf.value.asOrNull<TileModel>();
     if (tile != null) {
       return TileRenderer(tile);
@@ -168,7 +177,27 @@ class BmmDocumentRenderer extends HookConsumerWidget {
       return PlaylistRenderer(playlist);
     }
 
-    return const SizedBox.shrink();
+    final album = document.oneOf.value.asOrNull<AlbumModel>();
+    if (album != null) {
+      return AlbumRenderer(album);
+    }
+
+    final track = document.oneOf.value.asOrNull<TrackModel>();
+    if (track != null) {
+      return TrackRenderer(track);
+    }
+
+    final podcast = document.oneOf.value.asOrNull<PodcastModel>();
+    if (podcast != null) {
+      return PodcastRenderer(podcast);
+    }
+
+    final contributor = document.oneOf.value.asOrNull<ContributorModel>();
+    if (contributor != null) {
+      return ContributorRenderer(contributor);
+    }
+
+    return Text(document.oneOf.value.toString());
   }
 }
 
@@ -219,6 +248,43 @@ class PlaylistRenderer extends HookConsumerWidget {
   }
 }
 
+class AlbumRenderer extends HookConsumerWidget {
+  const AlbumRenderer(
+    this.album, {
+    super.key,
+  });
+
+  final AlbumModel album;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentAlbumId = useListenableSelector(BccmPlayerController.primary, () {
+      return BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['album.id'];
+    });
+    return GestureDetector(
+      onTap: () async {},
+      child: Stack(
+        children: [
+          CoverRenderer(
+            title: album.title,
+            coverUrl: album.cover,
+          ),
+          Positioned.fill(
+            child: AnimatedSwitcher(
+              duration: 500.ms,
+              child: currentAlbumId == album.id.toString()
+                  ? Container(
+                      color: Colors.white.withOpacity(0.1),
+                    )
+                  : null,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class TileRenderer extends HookConsumerWidget {
   const TileRenderer(
     this.tile, {
@@ -255,17 +321,17 @@ class TileRenderer extends HookConsumerWidget {
       child: Container(
         width: 200,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(32),
           color: tile.backgroundColor != null ? getColorFromHex(tile.backgroundColor!) : design.colors.onTint,
         ),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: FractionallySizedBox(
-                widthFactor: 0.5,
+                widthFactor: 0.6,
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: coverUrl != null ? simpleFadeInImage(url: coverUrl) : null,
@@ -287,22 +353,22 @@ class TileRenderer extends HookConsumerWidget {
                 tile.label!,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: design.textStyles.button2.copyWith(
+                style: design.textStyles.title3.copyWith(
                   color: const Color.fromARGB(255, 52, 52, 52),
                 ),
               ),
             GestureDetector(
               onTap: play,
               child: Padding(
-                padding: const EdgeInsets.only(top: 8),
+                padding: const EdgeInsets.only(top: 16),
                 child: Container(
                   decoration: BoxDecoration(
                     color: design.colors.background1,
                     shape: BoxShape.circle,
                   ),
-                  padding: const EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(8),
                   child: SvgPicture.string(
-                    height: 24,
+                    height: 20,
                     SvgIcons.playSmall,
                   ),
                 ),
@@ -330,9 +396,8 @@ class CoverRenderer extends HookConsumerWidget {
     final bmmApi = ref.read(bmmApiProvider);
     final coverUrl = bmmApi.protectedUrl(this.coverUrl);
     final design = DesignSystem.of(context);
-    return Container(
+    return SizedBox(
       width: 150,
-      padding: const EdgeInsets.all(8),
       child: Column(
         children: [
           if (coverUrl != null)
@@ -351,9 +416,214 @@ class CoverRenderer extends HookConsumerWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
-                style: design.textStyles.body2.copyWith(color: design.colors.onTint),
+                style: design.textStyles.caption1.copyWith(color: design.colors.onTint),
               ),
             ),
+        ],
+      ),
+    );
+  }
+}
+
+final List<DayOfWeek> weekDays = [
+  DayOfWeek.monday,
+  DayOfWeek.tuesday,
+  DayOfWeek.wednesday,
+  DayOfWeek.thursday,
+  DayOfWeek.friday,
+];
+
+class StreakRenderer extends HookConsumerWidget {
+  const StreakRenderer(
+    this.streak, {
+    super.key,
+  });
+
+  final CurrentWeeksStreakVm streak;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
+
+    return Container(
+      padding: EdgeInsets.all(16),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Your streak this week', style: design.textStyles.title3),
+              Text('${streak.daysInARow} days in a row'),
+            ],
+          ),
+          Expanded(
+            child: Wrap(
+              spacing: 20,
+              alignment: WrapAlignment.end,
+              children: weekDays
+                  .mapIndexed(
+                    (index, day) => Container(
+                      width: 12,
+                      height: 12,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: colorForStreakDay(streak, day),
+                        border: Border.all(color: design.colors.separator2, width: 2),
+                        boxShadow: [
+                          if (streak.dayOfTheWeek == day)
+                            BoxShadow(
+                              color: design.colors.separator2.withAlpha(40),
+                              offset: const Offset(0, 0),
+                              spreadRadius: 6,
+                              blurRadius: 0,
+                              blurStyle: BlurStyle.outer,
+                            ),
+                        ],
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class SectionHeaderRenderer extends HookConsumerWidget {
+  const SectionHeaderRenderer(
+    this.sectionHeader, {
+    super.key,
+  });
+
+  final SectionHeaderModel sectionHeader;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
+    return Container(
+      alignment: Alignment.centerLeft,
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 24),
+      child: Text(sectionHeader.title!, style: design.textStyles.headline2),
+    );
+  }
+}
+
+class TrackRenderer extends HookConsumerWidget {
+  const TrackRenderer(
+    this.track, {
+    super.key,
+  });
+
+  final TrackModel track;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
+    final bmmApi = ref.read(bmmApiProvider);
+    final coverUrl = bmmApi.protectedUrl(track.meta.attachedPicture);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          if (coverUrl != null)
+            SizedBox(
+              height: 40,
+              width: 40,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: simpleFadeInImage(url: coverUrl),
+                ),
+              ),
+            ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  track.title != '' ? track.title! : track.meta.artist!,
+                  style: design.textStyles.title3,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                if (track.title != '') Text(track.meta.artist ?? '', style: design.textStyles.body2),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ContributorRenderer extends HookConsumerWidget {
+  const ContributorRenderer(
+    this.contributor, {
+    super.key,
+  });
+
+  final ContributorModel contributor;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
+    final bmmApi = ref.read(bmmApiProvider);
+    final coverUrl = bmmApi.protectedUrl(contributor.cover);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          if (coverUrl != null)
+            SizedBox(
+              height: 40,
+              width: 40,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(99),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: simpleFadeInImage(url: coverUrl),
+                ),
+              ),
+            ),
+          const SizedBox(width: 16),
+          Text(
+            contributor.name ?? '',
+            style: design.textStyles.title3,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class PodcastRenderer extends HookConsumerWidget {
+  const PodcastRenderer(
+    this.podcast, {
+    super.key,
+  });
+
+  final PodcastModel podcast;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return GestureDetector(
+      onTap: () async {},
+      child: Stack(
+        children: [
+          CoverRenderer(
+            title: podcast.title,
+            coverUrl: podcast.cover,
+          ),
         ],
       ),
     );
@@ -393,4 +663,25 @@ void setTracksAsNextUp(BccmPlayerController player, BmmApiWrapper bmmApi, BuiltL
   player.queue.setNextUp(
     tracks.map((e) => toMediaItem(e, bmmApi, extras: extras)).whereNotNull().toList(),
   );
+}
+
+Color colorForStreakDay(CurrentWeeksStreakVm streak, DayOfWeek day) {
+  final days = [
+    streak.monday,
+    streak.tuesday,
+    streak.wednesday,
+    streak.thursday,
+    streak.friday,
+  ];
+
+  if (streak.dayOfTheWeek == day) {
+    return Colors.white;
+  }
+
+  final index = weekDays.indexOf(day);
+  if (days[index] != null && days[index]! == true) {
+    return Colors.white30;
+  }
+
+  return Colors.transparent;
 }
