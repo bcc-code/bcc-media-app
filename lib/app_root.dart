@@ -17,6 +17,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'l10n/app_localizations.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'models/breakpoints.dart';
@@ -174,7 +175,11 @@ class _AppRootState extends ConsumerState<AppRoot> {
                   title: 'BCC Media',
                   routerDelegate: widget.appRouter.delegate(
                     deepLinkBuilder: (_) => const DeepLink.path('/init'),
-                    navigatorObservers: () => [AnalyticsNavigatorObserver(), AutoRouteObserver()],
+                    navigatorObservers: () => [
+                      AnalyticsNavigatorObserver(),
+                      AutoRouteObserver(),
+                      SentryNavigatorObserver(),
+                    ],
                   ),
                   routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
                   builder: (BuildContext context, Widget? child) {
