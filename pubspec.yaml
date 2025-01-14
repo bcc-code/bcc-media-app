@@ -72,7 +72,6 @@ dependencies:
   unleash_proxy_client_flutter: ^1.5.3
   html: ^0.15.4
   riverpod_annotation: ^2.5.3
-  image: ^4.2.0
   responsive_framework: ^1.5.1
   intl: ^0.19.0
   focusable_control_builder: ^1.0.2+1
@@ -80,12 +79,11 @@ dependencies:
     git:
       url: https://github.com/andreasgangso/flutter_to_airplay.git
       ref: fix/remove-unused-mux
-  flutter_image: ^4.1.11
   qr_flutter: ^4.1.0
   focus_debugger: ^0.0.2
   connectivity_plus: ^6.0.5
   flutter_cache_manager: ^3.4.1
-  cached_network_image: ^3.4.1
+  extended_image: ^9.1.0
   async: ^2.11.0
   markdown: ^7.2.2
   flutter_animate: ^4.5.0

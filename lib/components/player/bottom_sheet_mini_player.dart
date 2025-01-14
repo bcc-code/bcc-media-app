@@ -5,7 +5,7 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -82,7 +82,12 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         secondaryTitle: artist,
         title: title ?? '',
         artwork: artworkUri != null && (ref.watch(isOfflineProvider) || offlineVideo == true)
-            ? CachedNetworkImageProvider(artworkUri, cacheManager: PermanentCacheManager())
+            ? ExtendedNetworkImageProvider(
+                artworkUri,
+                cache: true,
+                cacheKey: PermanentCacheManager().config.cacheKey,
+                cacheMaxAge: PermanentCacheManager().config.stalePeriod,
+              )
             : null,
         artworkUri: artworkUri ?? '',
         playSemanticLabel: S.of(context).play,
