@@ -97,7 +97,9 @@ class BmmDiscoveryRenderer extends HookConsumerWidget {
       for (var document in documents) {
         final isTile = document.oneOf.isType(TileModel);
         final isPlaylist = document.oneOf.isType(PlaylistModel);
-        if (isTile || isPlaylist) {
+        final isAlbum = document.oneOf.isType(AlbumModel);
+        final isPodcast = document.oneOf.isType(PodcastModel);
+        if (isTile || isPlaylist || isAlbum || isPodcast) {
           if (currentType != DiscoverGroupType.horizontal) {
             if (currentGroup.isNotEmpty) {
               groups.add(DiscoverGroup(currentType, currentGroup));
@@ -130,7 +132,7 @@ class BmmDiscoveryRenderer extends HookConsumerWidget {
           if (group.type == DiscoverGroupType.horizontal) {
             return HorizontalSlider(
               padding: const EdgeInsets.only(left: 16, right: 16),
-              height: group.documents.any((e) => e.oneOf.isType(TileModel)) ? 250 : 200,
+              height: group.documents.any((e) => e.oneOf.isType(TileModel)) ? 260 : 200,
               gap: 8,
               itemCount: group.documents.length,
               itemBuilder: (context, index) {
