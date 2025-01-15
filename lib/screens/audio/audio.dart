@@ -15,6 +15,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 @RoutePage()
 class AudioScreen extends HookConsumerWidget {
@@ -95,11 +96,9 @@ class BmmDiscoveryRenderer extends HookConsumerWidget {
       var currentGroup = <IAllDocumentModels>[];
       DiscoverGroupType currentType = DiscoverGroupType.unknown;
       for (var document in documents) {
-        final isTile = document.oneOf.isType(TileModel);
-        final isPlaylist = document.oneOf.isType(PlaylistModel);
-        final isAlbum = document.oneOf.isType(AlbumModel);
-        final isPodcast = document.oneOf.isType(PodcastModel);
-        if (isTile || isPlaylist || isAlbum || isPodcast) {
+        final horizontalModels = [TileModel, PlaylistModel, AlbumModel, PodcastModel];
+        final isHorizontal = horizontalModels.any((e) => document.oneOf.isType(e));
+        if (isHorizontal) {
           if (currentType != DiscoverGroupType.horizontal) {
             if (currentGroup.isNotEmpty) {
               groups.add(DiscoverGroup(currentType, currentGroup));
@@ -132,7 +131,7 @@ class BmmDiscoveryRenderer extends HookConsumerWidget {
           if (group.type == DiscoverGroupType.horizontal) {
             return HorizontalSlider(
               padding: const EdgeInsets.only(left: 16, right: 16),
-              height: group.documents.any((e) => e.oneOf.isType(TileModel)) ? 260 : 200,
+              height: group.documents.any((e) => e.oneOf.isType(TileModel)) ? 275 : 200,
               gap: 8,
               itemCount: group.documents.length,
               itemBuilder: (context, index) {
@@ -333,7 +332,7 @@ class TileRenderer extends HookConsumerWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: FractionallySizedBox(
-                widthFactor: 0.6,
+                widthFactor: 0.65,
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: coverUrl != null ? simpleFadeInImage(url: coverUrl) : null,
@@ -341,23 +340,26 @@ class TileRenderer extends HookConsumerWidget {
               ),
             ),
             const Spacer(),
-            if (tile.title != null)
-              Text(
-                tile.title!,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: design.textStyles.caption1.copyWith(
-                  color: const Color.fromARGB(255, 52, 52, 52),
-                ),
-              ),
             if (tile.label != null)
               Text(
                 tile.label!,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: design.textStyles.title3.copyWith(
-                  color: const Color.fromARGB(255, 52, 52, 52),
-                ),
+                style: design.textStyles.title3.copyWith(color: Colors.black),
+              ),
+            if (tile.date != null)
+              Wrap(
+                spacing: 4,
+                children: [
+                  Text(
+                    DateFormat.EEEE().format(tile.date!),
+                    style: design.textStyles.caption1.copyWith(color: Colors.black87),
+                  ),
+                  Text(
+                    DateFormat.yMMMd().format(tile.date!),
+                    style: design.textStyles.caption1.copyWith(color: Colors.black54),
+                  ),
+                ],
               ),
             GestureDetector(
               onTap: play,
