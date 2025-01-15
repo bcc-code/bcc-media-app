@@ -31,7 +31,11 @@ import 'app_root.dart';
 import 'flavors.dart';
 import 'l10n/app_localizations.dart';
 
-const useDevicePreview = false;
+String getSentryEnvironment() {
+  final platform = Platform.isIOS ? 'ios' : 'android';
+  final environment = FlavorConfig.current.environment;
+  return '${platform}_$environment';
+}
 
 /// This function is called from the flavor-specific entrypoints
 /// E.g. main_dev.dart, main_prod.dart
@@ -41,6 +45,7 @@ Future<void> $main({
   await SentryFlutter.init(
     (options) {
       options.dsn = Env.sentryDsn;
+      options.environment = getSentryEnvironment();
       options.tracesSampleRate = 0.5;
       options.profilesSampleRate = 0.5;
       options.experimental.replay.onErrorSampleRate = 1.0;

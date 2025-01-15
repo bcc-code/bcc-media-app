@@ -86,6 +86,7 @@ class FlavorConfig {
     required this.enableNotifications,
     required this.designSystem,
     required this.appTheme,
+    required this.environment,
     this.bccmImages,
     this.strictAnonymousAnalytics,
     this.defaultLanguage = 'en',
@@ -102,6 +103,7 @@ class FlavorConfig {
   final bool enableNotifications;
   final String defaultLanguage;
   final bool? strictAnonymousAnalytics;
+  final String environment;
 
   // Static stuff for setting the flavor on startup
   static FlavorConfig? _current;

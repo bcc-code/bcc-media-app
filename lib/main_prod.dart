@@ -1,4 +1,5 @@
 import 'package:bccm_core/design_system.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/main.dart';
 import 'package:brunstadtv_app/env/prod/firebase_options.dart' as prod_firebase;
@@ -13,6 +14,7 @@ Future<void> main() async {
     FlavorConfig(
       applicationCode: 'btv',
       flavor: Flavor.bccmedia,
+      environment: EnvironmentOverride.prod,
       firebaseOptions: prod_firebase.DefaultFirebaseOptions.currentPlatform,
       enableNotifications: true,
       defaultLanguage: 'no',

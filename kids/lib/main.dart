@@ -38,6 +38,7 @@ Future<void> main() async {
   FlavorConfig.register(
     FlavorConfig(
       flavor: Flavor.kids,
+      environment: EnvironmentOverride.prod,
       firebaseOptions: DefaultFirebaseOptions.currentPlatform,
       enableNotifications: false,
       applicationCode: 'kids-mobile',
