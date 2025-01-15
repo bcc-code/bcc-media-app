@@ -91,7 +91,6 @@ class ProfileScreen extends HookConsumerWidget {
     }
 
     useEffect(() {
-      debugPrint('guide: scroll: $scroll');
       if (scroll != null && scroll!.isNotEmpty) {
         SchedulerBinding.instance.addPostFrameCallback((_) {
           if (scroll == kProfileScrollQueryLikedShorts) {
