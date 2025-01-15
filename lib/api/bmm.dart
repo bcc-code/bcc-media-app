@@ -28,8 +28,15 @@ final bmmApiProvider = Provider<BmmApiWrapper>((ref) {
 });
 
 final bmmDiscoverProvider = FutureProvider((ref) {
+  final lang = _mapLanguage(ref.watch(settingsProvider.select((s) => s.appLanguage.languageCode)));
+  final birthDate = ref.read(authStateProvider).user?.birthdate;
+  final birthDay = birthDate != null ? DateTime.tryParse(birthDate) : null;
+  final age = birthDay != null ? (DateTime.now().difference(birthDay).inDays / 365).floor() : null;
+
   return ref.watch(bmmApiProvider).getDiscoverApi().discoverGet(
-        lang: LanguageEnum.en,
+        lang: LanguageEnum.valueOf(lang),
+        theme: 'dark',
+        age: age,
       );
 });
 
