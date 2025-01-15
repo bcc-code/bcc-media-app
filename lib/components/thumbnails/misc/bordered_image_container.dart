@@ -1,6 +1,6 @@
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/permanent_cache_manager.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bccm_core/design_system.dart';
@@ -57,7 +57,12 @@ class BorderedImageContainer extends StatelessWidget {
                       fit: BoxFit.cover,
                       placeholder: MemoryImage(kTransparentImage),
                       image: useCache == true
-                          ? CachedNetworkImageProvider(imageUri.toString(), cacheManager: PermanentCacheManager())
+                          ? ExtendedNetworkImageProvider(
+                              imageUri.toString(),
+                              cache: true,
+                              cacheKey: PermanentCacheManager().config.cacheKey,
+                              cacheMaxAge: PermanentCacheManager().config.stalePeriod,
+                            )
                           : networkImageWithRetryAndResize(
                               imageUrl: imageUri.toString(),
                               cacheHeight: (constraints.maxHeight * MediaQuery.devicePixelRatioOf(context)).round(),
