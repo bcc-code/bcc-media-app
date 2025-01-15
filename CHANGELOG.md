@@ -1,4 +1,25 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.55+2300215...v) (2025-01-03)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.56+2300216...v) (2025-01-15)
+
+
+
+## [5.6.56+2300216](https://github.com/bcc-code/bcc-media-app/compare/v5.6.55+2300215...v5.6.56+2300216) (2025-01-15)
+
+
+### Bug Fixes
+
+* add some relevant metadata to auth logging ([9dc49d7](https://github.com/bcc-code/bcc-media-app/commit/9dc49d789a32c27d6dea16a06dff199495af960b))
+* **audio-page:** align tiles more to bmm app ([aba1e1e](https://github.com/bcc-code/bcc-media-app/commit/aba1e1ee6b78a6a3b8306c57483a502d05947f25))
+* **cleanup:** remove debugprint ([0689cb7](https://github.com/bcc-code/bcc-media-app/commit/0689cb7ea8fa630cff5f48b761cf574b723b6b23))
+* **deps:** roll submodule ([68297b1](https://github.com/bcc-code/bcc-media-app/commit/68297b1120e2031f3c4699b6a9f63796636f15d9))
+* **sentry:** observe navigations with Sentry ([794eeef](https://github.com/bcc-code/bcc-media-app/commit/794eeef3a80d780a65be90c9cac8815c59ce96dc))
+* use main bccm_core ([66a5e60](https://github.com/bcc-code/bcc-media-app/commit/66a5e6009b5f7ec0094e52a4f297ee40d6a7b03d))
+
+
+### Features
+
+* **audio-page:** implement more section types ([faa49f4](https://github.com/bcc-code/bcc-media-app/commit/faa49f4745fed79b6278ddca535d3c9b91fc59ef))
+* **audio-page:** render all sections correctly ([769e11a](https://github.com/bcc-code/bcc-media-app/commit/769e11add20ea01b73ad1959f5daa73fa20058b5))
+* **sentry:** make separate environments for android and ios ([af2dd23](https://github.com/bcc-code/bcc-media-app/commit/af2dd232d21d42599d1b77d8de9f80304eb494d8))
 
 
 
