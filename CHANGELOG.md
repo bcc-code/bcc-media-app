@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.56+2300216...v) (2025-01-15)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.57+2300217...v) (2025-01-15)
+
+
+
+## [5.6.57+2300217](https://github.com/bcc-code/bcc-media-app/compare/v5.6.56+2300216...v5.6.57+2300217) (2025-01-15)
+
+
+### Bug Fixes
+
+* **deps:** roll submodules ([a4bc694](https://github.com/bcc-code/bcc-media-app/commit/a4bc6941dc6677f7c602d7ea35ca8707de625ee5))
+* **images:** replace image packages ([c336464](https://github.com/bcc-code/bcc-media-app/commit/c336464ea5f1e080e7fe2f8d5a4140d4a86d20b7))
 
 
 
