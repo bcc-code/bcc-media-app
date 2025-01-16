@@ -16,7 +16,18 @@ class BmmAchievementSection extends StatelessWidget {
     super.key,
   });
 
-  onAchievementTapped(BuildContext context, AchievementModel item) {}
+  onAchievementTapped(BuildContext context, AchievementModel item) async {
+    final id = item.id;
+    if (id != null) {
+      // TODO: go to achievement page in BMM
+      openBmmPage('/');
+    }
+  }
+
+  onButtonTapped(ForbildePoints? data) {
+    // TODO: go to standings page in BMM
+    openBmmPage('/');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +75,7 @@ class BmmAchievementSection extends StatelessWidget {
                 ),
                 design.buttons.small(
                   onPressed: () {
-                    openBmmPage('/');
+                    onButtonTapped(data);
                   },
                   variant: ButtonVariant.secondary,
                   labelText: 'Standings',
