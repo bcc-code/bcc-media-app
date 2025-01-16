@@ -2106,6 +2106,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Skip to {chapter}'**
   String skipTo(String chapter);
+
+  /// The title shown on the Bible Study widget.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Bible Study'**
+  String get bmmBibleStudyTitle;
+
+  /// The users total points in the Bible Study widget. It is shown underneath the title in the widget.
+  ///
+  /// In en, this message translates to:
+  /// **'{points} points'**
+  String bmmBibleStudyPoints(int points);
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

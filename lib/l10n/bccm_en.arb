@@ -1424,5 +1424,18 @@
         "type": "String"
       }
     }
+  },
+  "bmmBibleStudyTitle": "Your Bible Study",
+  "@bmmBibleStudyTitle": {
+    "description": "The title shown on the Bible Study widget."
+  },
+  "bmmBibleStudyPoints": "{points} points",
+  "@bmmBibleStudyPoints": {
+    "description": "The users total points in the Bible Study widget. It is shown underneath the title in the widget.",
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
   }
 }

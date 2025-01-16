@@ -1035,4 +1035,12 @@ class SFr extends S {
   String skipTo(String chapter) {
     return 'Passer à $chapter';
   }
+
+  @override
+  String get bmmBibleStudyTitle => 'Your Bible Study';
+
+  @override
+  String bmmBibleStudyPoints(int points) {
+    return '$points points';
+  }
 }

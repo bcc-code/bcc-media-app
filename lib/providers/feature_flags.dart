@@ -30,6 +30,7 @@ FeatureFlags getBaseFeatureFlags() {
     shortsWithScores: false,
     elasticSearch: false,
     chapterSlider: false,
+    showBmmStreak: false,
   );
 }
 
@@ -74,6 +75,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         shortsWithScores: _verifyToggle(unleash, 'shorts-with-scores3'),
         elasticSearch: _verifyToggle(unleash, 'elastic-search'),
         chapterSlider: _verifyToggle(unleash, 'chapter-slider'),
+        showBmmStreak: _verifyToggle(unleash, 'show-bmm-streak'),
       ),
     );
 

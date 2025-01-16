@@ -24,6 +24,7 @@ _$FeatureFlagsImpl _$$FeatureFlagsImplFromJson(Map<String, dynamic> json) =>
       shortsWithScores: json['shortsWithScores'] as bool? ?? false,
       elasticSearch: json['elasticSearch'] as bool? ?? false,
       chapterSlider: json['chapterSlider'] as bool? ?? false,
+      showBmmStreak: json['showBmmStreak'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
@@ -41,4 +42,5 @@ Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
       'shortsWithScores': instance.shortsWithScores,
       'elasticSearch': instance.elasticSearch,
       'chapterSlider': instance.chapterSlider,
+      'showBmmStreak': instance.showBmmStreak,
     };
