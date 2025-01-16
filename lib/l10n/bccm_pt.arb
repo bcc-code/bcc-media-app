@@ -31,7 +31,7 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "A mensagem mais poderosa do mundo ",
+  "loginPageDisplay1": "A mensagem mais poderosa do mundo",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -87,7 +87,7 @@
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Certifico que tenho 13 anos ou mais e concordo com a <a>Política de Privacidade</a> e os <a>Termos de uso</a>.",
+  "signUpAgreePrivacyPolicy": "Certifico que tenho 13 anos de idade ou mais e que concordo com a <a>Política de Privacidade</a> e os <a>Termos de uso</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
@@ -103,7 +103,7 @@
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Você foi desconectado. Por favor faça login novamente.",
+  "loggedOutMessage": "Você foi deslogado. Por favor, faça o login novamente.",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
@@ -135,11 +135,11 @@
   "@open": {
     "description": "Open button"
   },
-  "loginFailedCheckNetwork": "Falha na autenticação. Verifique sua conexão de rede e tente novamente.",
+  "loginFailedCheckNetwork": "Falha no login Verifique sua conexão de rede e tente novamente.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "Falha na autêntica. Por favor, tente mais tarde.",
+  "loginFailedTryAgain": "Falha no login Por favor tente novamente mais tarde.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
@@ -363,7 +363,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "Você não pode ter mais de {elementCount} elementos na fila.",
+  "queueLimitMessage": "Não pode ter mais do que {elementCount} elementos na fila de espera.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -420,7 +420,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Você pode pesquisar todo o conteúdo da BCC Media. Séries, vídeos e episódios.",
+  "emptySearch": "Você pode pesquisar todos os conteúdos de BCC Media. Séries, vídeos e episódios.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -488,7 +488,7 @@
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{charsLeft} De {charsTotal} caracteres restantes",
+  "charactersLimit": "{charsLeft} de {charsTotal} caracteres restantes",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -564,7 +564,7 @@
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Algo deu errado. Verifique sua conexão com a internet e tente novamente.",
+  "sendFailDescription": "Algo deu errado. Verifique a sua conexão com a Internet e tente novamente.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
@@ -580,7 +580,7 @@
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Disponível {date}",
+  "availableFrom": "Disponível",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -593,7 +593,7 @@
   "@submit": {
     "description": "Submit button."
   },
-  "wellDone": "Bem feito!",
+  "wellDone": "Muito bem!",
   "@wellDone": {
     "description": "Positive message that may be used e.g. after completing some action."
   },
@@ -605,7 +605,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "O horário do guia de Tv está no seu horário local: {timeZone}",
+  "timezoneInformation": "O horário do guia de Tv está no seu horário local: '{'0'}'",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -682,7 +682,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Compartilhar de {time}",
+  "shareTime": "Compartilhar de '{'time'}'",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -811,7 +811,7 @@
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Continuar estudo ",
+  "continueStudy": "Continuar estudo",
   "@continueStudy": {
     "description": "Button."
   },
@@ -827,7 +827,7 @@
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Ótimo trabalho ao concluir o tópico de estudo {name}",
+  "achievementStudyTopic": "Bom trabalho ao completares o tema de estudo {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -884,7 +884,7 @@
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "passwordConditionLength": "Mínimo de {n} caracteres",
+  "passwordConditionLength": "Mínimo {n} caracteres",
   "@passwordConditionLength": {
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
@@ -904,6 +904,10 @@
   "dontHaveAccess": "Você não tem acesso a esse conteúdo.",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
+  },
+  "notFound": "O conteúdo que você procura parece não existir.",
+  "@notFound": {
+    "description": "Error message when the requested content is not found."
   },
   "mustBeLoggedIn": "Você precisa estar logado para assistir a este conteúdo",
   "@mustBeLoggedIn": {
@@ -1029,7 +1033,7 @@
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "A exclusão da conta geralmente será feita em {x} dias úteis.",
+  "accountDeletionTimeframe": "A exclusão da conta será normalmente efectuada no prazo de {x} dias úteis.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1042,7 +1046,7 @@
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Exclusão de conta solicitada com sucesso. Você receberá um e-mail em {email}. Para confirmar sua identidade, precisamos que você responda a esse e-mail para prosseguir com a exclusão.",
+  "accountDeletionSuccess": "Solicitação de exclusão da conta feita com sucesso. Receberá um e-mail em {email}. Para confirmar a sua identidade, precisamos que responda essa mensagem de email para procedermos à exclusão.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1063,7 +1067,7 @@
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Ou vá para {url} e digite o código: {code}",
+  "tvEnterCode": "Ou vá a {url} e insira o código: {code}",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1111,7 +1115,7 @@
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Áudio indisponível em {lang}",
+  "audioNotAvailableInLanguage": "Áudio não disponível em {lang}",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1128,7 +1132,7 @@
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "O tamanho do arquivo de vídeo é {size}.",
+  "theVideoFileSizeIs": "O tamanho do ficheiro de vídeo é {size}.",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1189,7 +1193,7 @@
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "Sem conexão com a internet,\nmas não se preocupe.",
+  "noInternetButDontWorry": "Sem conexão com a internet, mas não se preocupe.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
@@ -1205,7 +1209,7 @@
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Tamanho estimado do arquivo: {size}",
+  "estimatedFileSize": "Tamanho estimado do ficheiro: {size}",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1214,7 +1218,7 @@
       }
     }
   },
-  "downloadVideo": "Baixar video",
+  "downloadVideo": "Baixar vídeo",
   "@downloadVideo": {
     "description": "Title on the download video form."
   },
@@ -1323,11 +1327,15 @@
   "@autoGenerated": {
     "description": "Shown as a label with a ✨ in front. On places where something is auto-generated in any way, e.g. transcriptions/subtitles/captions/excerpts."
   },
+  "shortsTranscriptionDisclaimer": "As transcrições são geradas automaticamente e podem conter erros.",
+  "@shortsTranscriptionDisclaimer": {
+    "description": "Disclaimer shown on the shorts page."
+  },
   "beta": "Beta",
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Este recurso está em versão beta e atualmente não está liberado para todos os usuários. Por favor, relate quaisquer problemas ou comentários através do botão 'Contato' nas configurações.",
+  "betaExplanation": "Esta funcionalidade está em versão beta e não está atualmente disponível para todos os usuários. Comunique quaisquer problemas ou comentários através do botão \"Contacto\" nas configurações.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
@@ -1339,7 +1347,7 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Este recurso ainda não está disponível no seu dispositivo. Por favor, tente novamente mais tarde.",
+  "featureNotAvailableYet": "Esta funcionalidade ainda não está disponível no seu dispositivo. Por favor tente novamente mais tarde.",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
@@ -1358,6 +1366,10 @@
   "shortsLikedAndSavedDescription": "Você pode encontrar todos os seus vídeos favoritos em seu perfil.",
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "excerptFrom": "Excerto de",
+  "@excerptFrom": {
+    "description": "Shown on a 'short' video, indicating that this is an excerpt from a longer video. E.g. Excerpt from 'The Tale of John Doe'."
   },
   "downloadedVideosGuideDescription": "Você pode encontrar seus vídeos baixados em \"Perfil\".",
   "@downloadedVideosGuideDescription": {
@@ -1394,5 +1406,23 @@
   "all": "Todos",
   "@all": {
     "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
+  },
+  "countItems": "{x} artigos",
+  "@countItems": {
+    "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "x": {
+        "type": "int"
+      }
+    }
+  },
+  "skipTo": "Saltar para {chapter}",
+  "@skipTo": {
+    "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "chapter": {
+        "type": "String"
+      }
+    }
   }
 }
