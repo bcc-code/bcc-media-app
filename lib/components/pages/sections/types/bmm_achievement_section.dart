@@ -74,7 +74,7 @@ class BmmAchievementSection extends StatelessWidget {
           ),
           achievements != null
               ? HorizontalSlider(
-                  height: 72,
+                  height: 64,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   itemCount: achievements.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -85,7 +85,7 @@ class BmmAchievementSection extends StatelessWidget {
                     );
                   },
                 )
-              : const SizedBox(height: 72),
+              : const SizedBox(height: 64),
         ],
       ),
     );
