@@ -1,4 +1,24 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.57+2300217...v) (2025-01-15)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.58+2300218...v) (2025-01-17)
+
+
+
+## [5.6.58+2300218](https://github.com/bcc-code/bcc-media-app/compare/v5.6.57+2300217...v5.6.58+2300218) (2025-01-17)
+
+
+### Bug Fixes
+
+* **audio-page:** send language and age with discover call ([f6b0d56](https://github.com/bcc-code/bcc-media-app/commit/f6b0d5668892104afd39de53e7feea79cf701578))
+* **bmm-achievement:** show streak for test version ([7f90ca1](https://github.com/bcc-code/bcc-media-app/commit/7f90ca1e47900410ffe3cf8f26e50a000f3a6cc7))
+* **bmm-study:** achievement height ([d8676a4](https://github.com/bcc-code/bcc-media-app/commit/d8676a48f9b46fea9b913947e5f84d5eb7f07f0b))
+* **l10n:** correct string interpolation ([c0f44cf](https://github.com/bcc-code/bcc-media-app/commit/c0f44cfc44ac6ce9678ca4fbcfda7d0462c3b53a))
+* **l10n:** remove crowdin and phrase files + update docs ([6f1ad07](https://github.com/bcc-code/bcc-media-app/commit/6f1ad077cf065221f028305975a7e9d00eb0a9b9))
+* show episodes in slider section even when image is null ([f127fb4](https://github.com/bcc-code/bcc-media-app/commit/f127fb4d5674dbf93df37aa8e754bf31452a1ae6))
+
+
+### Features
+
+* **bible-study:** add bmm bible study achievements section ([f638dbd](https://github.com/bcc-code/bcc-media-app/commit/f638dbd534a249d51fd57f0d8008c8bf901b12e2))
+* **bmm-achievement:** go to bmm on click ([437b1f2](https://github.com/bcc-code/bcc-media-app/commit/437b1f2e57b5b52188bd605e2399e0727303856f))
 
 
 
