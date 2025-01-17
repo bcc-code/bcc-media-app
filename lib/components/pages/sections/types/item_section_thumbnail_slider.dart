@@ -60,9 +60,6 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
   }
 
   EpisodeThumbnailData? getEpisodeThumbnailData(Fragment$ItemSectionItem item) {
-    if (item.image == null) {
-      return null;
-    }
     final episode = item.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
     if (episode != null) {
       return EpisodeThumbnailData.fromFragment(episode);

@@ -35,6 +35,7 @@ mixin _$FeatureFlags {
   bool get shortsWithScores => throw _privateConstructorUsedError;
   bool get elasticSearch => throw _privateConstructorUsedError;
   bool get chapterSlider => throw _privateConstructorUsedError;
+  bool get showBmmStreak => throw _privateConstructorUsedError;
 
   /// Serializes this FeatureFlags to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -65,7 +66,8 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       bool bccmAudioTest,
       bool shortsWithScores,
       bool elasticSearch,
-      bool chapterSlider});
+      bool chapterSlider,
+      bool showBmmStreak});
 }
 
 /// @nodoc
@@ -96,6 +98,7 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? shortsWithScores = null,
     Object? elasticSearch = null,
     Object? chapterSlider = null,
+    Object? showBmmStreak = null,
   }) {
     return _then(_value.copyWith(
       variants: null == variants
@@ -150,6 +153,10 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
           ? _value.chapterSlider
           : chapterSlider // ignore: cast_nullable_to_non_nullable
               as bool,
+      showBmmStreak: null == showBmmStreak
+          ? _value.showBmmStreak
+          : showBmmStreak // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -175,7 +182,8 @@ abstract class _$$FeatureFlagsImplCopyWith<$Res>
       bool bccmAudioTest,
       bool shortsWithScores,
       bool elasticSearch,
-      bool chapterSlider});
+      bool chapterSlider,
+      bool showBmmStreak});
 }
 
 /// @nodoc
@@ -204,6 +212,7 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
     Object? shortsWithScores = null,
     Object? elasticSearch = null,
     Object? chapterSlider = null,
+    Object? showBmmStreak = null,
   }) {
     return _then(_$FeatureFlagsImpl(
       variants: null == variants
@@ -258,6 +267,10 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
           ? _value.chapterSlider
           : chapterSlider // ignore: cast_nullable_to_non_nullable
               as bool,
+      showBmmStreak: null == showBmmStreak
+          ? _value.showBmmStreak
+          : showBmmStreak // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -278,7 +291,8 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
       this.bccmAudioTest = false,
       this.shortsWithScores = false,
       this.elasticSearch = false,
-      this.chapterSlider = false})
+      this.chapterSlider = false,
+      this.showBmmStreak = false})
       : _variants = variants,
         super._();
 
@@ -332,10 +346,13 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   @override
   @JsonKey()
   final bool chapterSlider;
+  @override
+  @JsonKey()
+  final bool showBmmStreak;
 
   @override
   String toString() {
-    return 'FeatureFlags(variants: $variants, kidsAuth: $kidsAuth, publicSignup: $publicSignup, socialSignup: $socialSignup, shorts: $shorts, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, skipToChapter: $skipToChapter, bccmAudioTest: $bccmAudioTest, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider)';
+    return 'FeatureFlags(variants: $variants, kidsAuth: $kidsAuth, publicSignup: $publicSignup, socialSignup: $socialSignup, shorts: $shorts, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, skipToChapter: $skipToChapter, bccmAudioTest: $bccmAudioTest, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider, showBmmStreak: $showBmmStreak)';
   }
 
   @override
@@ -366,7 +383,9 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
             (identical(other.elasticSearch, elasticSearch) ||
                 other.elasticSearch == elasticSearch) &&
             (identical(other.chapterSlider, chapterSlider) ||
-                other.chapterSlider == chapterSlider));
+                other.chapterSlider == chapterSlider) &&
+            (identical(other.showBmmStreak, showBmmStreak) ||
+                other.showBmmStreak == showBmmStreak));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -385,7 +404,8 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
       bccmAudioTest,
       shortsWithScores,
       elasticSearch,
-      chapterSlider);
+      chapterSlider,
+      showBmmStreak);
 
   /// Create a copy of FeatureFlags
   /// with the given fields replaced by the non-null parameter values.
@@ -417,7 +437,8 @@ abstract class _FeatureFlags extends FeatureFlags {
       final bool bccmAudioTest,
       final bool shortsWithScores,
       final bool elasticSearch,
-      final bool chapterSlider}) = _$FeatureFlagsImpl;
+      final bool chapterSlider,
+      final bool showBmmStreak}) = _$FeatureFlagsImpl;
   const _FeatureFlags._() : super._();
 
   factory _FeatureFlags.fromJson(Map<String, dynamic> json) =
@@ -449,6 +470,8 @@ abstract class _FeatureFlags extends FeatureFlags {
   bool get elasticSearch;
   @override
   bool get chapterSlider;
+  @override
+  bool get showBmmStreak;
 
   /// Create a copy of FeatureFlags
   /// with the given fields replaced by the non-null parameter values.

@@ -31,7 +31,7 @@ import 'flavors.dart';
 import 'l10n/app_localizations.dart';
 
 String getSentryEnvironment() {
-  final platform = Platform.isIOS ? 'ios' : 'android';
+  final platform = Platform.operatingSystem;
   final environment = FlavorConfig.current.environment;
   return '${platform}_$environment';
 }

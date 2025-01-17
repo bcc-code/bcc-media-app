@@ -1035,4 +1035,12 @@ class SDe extends S {
   String skipTo(String chapter) {
     return 'Weiter zu $chapter';
   }
+
+  @override
+  String get bmmBibleStudyTitle => 'Your Bible Study';
+
+  @override
+  String bmmBibleStudyPoints(int points) {
+    return '$points points';
+  }
 }

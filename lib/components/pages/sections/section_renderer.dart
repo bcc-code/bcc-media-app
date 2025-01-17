@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/api/bmm.dart';
 import 'package:brunstadtv_app/components/misc/see_more.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/components/pages/sections/types/avatar_section.dart';
+import 'package:brunstadtv_app/components/pages/sections/types/bmm_achievement_section.dart';
 import 'package:brunstadtv_app/components/pages/sections/types/card_list_section.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bccm_core/platform.dart';
@@ -120,7 +123,20 @@ class SectionRenderer extends ConsumerWidget {
       return Padding(padding: const EdgeInsets.only(top: 4), child: PageDetailsSection(pageDetailsSection));
     }
     final achievementsSection = section.asOrNull<Fragment$Section$$AchievementSection>();
+    final showBmmStreak = ref.watch(featureFlagsProvider).showBmmStreak;
     if (achievementsSection != null) {
+      if (achievementsSection.source == Enum$AchievementsSource.bmm) {
+        if (!showBmmStreak) {
+          return const SizedBox.shrink();
+        }
+
+        final projectProgress = ref.watch(bmmProjectProgressProvider).valueOrNull?.data;
+        return Padding(
+          padding: const EdgeInsets.all(16),
+          child: BmmAchievementSection(projectProgress),
+        );
+      }
+
       return Padding(
         padding: const EdgeInsets.only(top: 4),
         child: SectionWithHeader(

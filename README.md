@@ -64,11 +64,10 @@ We have some special routes, e.g. /r/, but these are only handled through a cust
 
 ## Translations
 
-We are using Crowdin for translations.
-In order to upload or download translations you need to have a [personal token](https://crowdin.com/settings#api-key) and the [crowdin cli tool](https://developer.crowdin.com/cli-tool/#installation).
+We are using Phrase for translations.
 
-You need to put the token into a `CROWDIN_TOKEN` environment variable.
-Then you can run `crowdin upload` or `crowdin download`, e.g `CROWDIN_TOKEN=abc123 crowdin download`.
-The config comes from the [./crowdin.yml](./crowdin.yml) file
+In order to add new strings, simply update the `lib/l10n/bccm_en.arb` file. When they are pushed to master, Phrase will automatically distribute translation jobs for translators.
 
-After downloading the translations into the project you also need to run `flutter gen-l10n`, which will generate .dart files in the same folder as the .arb files, based on [/l10n.yaml](./l10n.yaml).
+When new translations are finished and available, Phrase will automatically open pull requests to the repository with the changes.
+
+After any new translations are added to the project you'll need to run `flutter gen-l10n`, which will generate .dart files in the same folder as the .arb files, based on [/l10n.yaml](./l10n.yaml).

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:dio/dio.dart';
@@ -37,6 +39,15 @@ final bmmDiscoverProvider = FutureProvider((ref) {
         lang: LanguageEnum.valueOf(lang),
         theme: 'dark',
         age: age,
+      );
+});
+
+final bmmProjectProgressProvider = FutureProvider((ref) {
+  final lang = _mapLanguage(ref.watch(settingsProvider.select((s) => s.appLanguage.languageCode)));
+  return ref.watch(bmmApiProvider).getStatisticsApi().statisticsProjectProgressGet(
+        lang: LanguageEnum.valueOf(lang),
+        os: Platform.operatingSystem,
+        theme: 'dark',
       );
 });
 
