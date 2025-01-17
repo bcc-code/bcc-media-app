@@ -2,6 +2,7 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bmm_api/bmm_api.dart';
 import 'package:brunstadtv_app/helpers/bmm/bmm_navigation.dart';
+import 'package:brunstadtv_app/screens/audio/audio.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../l10n/app_localizations.dart';
@@ -34,9 +35,11 @@ class BmmAchievementSection extends StatelessWidget {
     final design = DesignSystem.of(context);
     final achievements = data?.achievements;
     final points = data?.points;
+    final streak = data?.streak;
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16),
+      // padding: const EdgeInsets.symmetric(vertical: 16),
+      padding: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         color: design.colors.background2,
         borderRadius: BorderRadius.circular(24),
@@ -44,45 +47,46 @@ class BmmAchievementSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16).copyWith(top: 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      S.of(context).bmmBibleStudyTitle,
-                      style: design.textStyles.title3,
-                    ),
-                    points != null
-                        ? Text(
-                            S.of(context).bmmBibleStudyPoints(points),
-                            style: design.textStyles.body2,
-                          )
-                        : Container(
-                            height: 16,
-                            width: 64,
-                            margin: const EdgeInsets.only(top: 6),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: design.colors.separator2,
-                            ),
-                          ),
-                  ],
-                ),
-                design.buttons.small(
-                  onPressed: () {
-                    onButtonTapped(data);
-                  },
-                  variant: ButtonVariant.secondary,
-                  labelText: 'Standings',
-                )
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(16).copyWith(top: 0),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       Column(
+          //         crossAxisAlignment: CrossAxisAlignment.start,
+          //         children: [
+          //           Text(
+          //             S.of(context).bmmBibleStudyTitle,
+          //             style: design.textStyles.title3,
+          //           ),
+          //           points != null
+          //               ? Text(
+          //                   S.of(context).bmmBibleStudyPoints(points),
+          //                   style: design.textStyles.body2,
+          //                 )
+          //               : Container(
+          //                   height: 16,
+          //                   width: 64,
+          //                   margin: const EdgeInsets.only(top: 6),
+          //                   decoration: BoxDecoration(
+          //                     borderRadius: BorderRadius.circular(4),
+          //                     color: design.colors.separator2,
+          //                   ),
+          //                 ),
+          //         ],
+          //       ),
+          //       design.buttons.small(
+          //         onPressed: () {
+          //           onButtonTapped(data);
+          //         },
+          //         variant: ButtonVariant.secondary,
+          //         labelText: 'Standings',
+          //       )
+          //     ],
+          //   ),
+          // ),
+          if (streak != null) StreakRenderer(streak),
           achievements != null
               ? HorizontalSlider(
                   height: 64,
