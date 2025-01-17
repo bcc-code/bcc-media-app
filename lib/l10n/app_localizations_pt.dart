@@ -31,7 +31,7 @@ class SPt extends S {
   String get loading => 'Carregando';
 
   @override
-  String get loginPageDisplay1 => 'A mensagem mais poderosa do mundo ';
+  String get loginPageDisplay1 => 'A mensagem mais poderosa do mundo';
 
   @override
   String get loginPageDisplay2 => 'Assistir séries, programas e filmes baseados nos valores cristãos';
@@ -73,7 +73,7 @@ class SPt extends S {
   String get signUpDescription => 'Obtenha acesso a mais conteúdo e melhores recursos criando uma conta.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Certifico que tenho 13 anos ou mais e concordo com a <a>Política de Privacidade</a> e os <a>Termos de uso</a>.';
+  String get signUpAgreePrivacyPolicy => 'Certifico que tenho 13 anos de idade ou mais e que concordo com a <a>Política de Privacidade</a> e os <a>Termos de uso</a>.';
 
   @override
   String get setPassword => 'Configurar senha';
@@ -85,7 +85,7 @@ class SPt extends S {
   String get loggedOutTitle => 'Desconectado';
 
   @override
-  String get loggedOutMessage => 'Você foi desconectado. Por favor faça login novamente.';
+  String get loggedOutMessage => 'Você foi deslogado. Por favor, faça o login novamente.';
 
   @override
   String get makeDonation => 'Faça uma doação';
@@ -109,10 +109,10 @@ class SPt extends S {
   String get open => 'Abrir';
 
   @override
-  String get loginFailedCheckNetwork => 'Falha na autenticação. Verifique sua conexão de rede e tente novamente.';
+  String get loginFailedCheckNetwork => 'Falha no login Verifique sua conexão de rede e tente novamente.';
 
   @override
-  String get loginFailedTryAgain => 'Falha na autêntica. Por favor, tente mais tarde.';
+  String get loginFailedTryAgain => 'Falha no login Por favor tente novamente mais tarde.';
 
   @override
   String get soundLanguage => 'Linguagem sonora';
@@ -281,7 +281,7 @@ class SPt extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Você não pode ter mais de $elementCount elementos na fila.';
+    return 'Não pode ter mais do que $elementCount elementos na fila de espera.';
   }
 
   @override
@@ -321,7 +321,7 @@ class SPt extends S {
   String get high => 'Alto';
 
   @override
-  String get emptySearch => 'Você pode pesquisar todo o conteúdo da BCC Media. Séries, vídeos e episódios.';
+  String get emptySearch => 'Você pode pesquisar todos os conteúdos de BCC Media. Séries, vídeos e episódios.';
 
   @override
   String get back => 'Voltar';
@@ -373,7 +373,7 @@ class SPt extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft De $charsTotal caracteres restantes';
+    return '$charsLeft de $charsTotal caracteres restantes';
   }
 
   @override
@@ -425,7 +425,7 @@ class SPt extends S {
   String get sendFail => 'Não foi possível enviar sua mensagem';
 
   @override
-  String get sendFailDescription => 'Algo deu errado. Verifique sua conexão com a internet e tente novamente.';
+  String get sendFailDescription => 'Algo deu errado. Verifique a sua conexão com a Internet e tente novamente.';
 
   @override
   String get sendSuccessDescription => 'Agradecemos seus comentários.';
@@ -438,14 +438,14 @@ class SPt extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponível $date';
+    return 'Disponível';
   }
 
   @override
   String get submit => 'Enviar';
 
   @override
-  String get wellDone => 'Bem feito!';
+  String get wellDone => 'Muito bem!';
 
   @override
   String get editPicture => 'Editar imagem';
@@ -605,7 +605,7 @@ class SPt extends S {
   String get studyLessonsCompleted => 'lições concluídas';
 
   @override
-  String get continueStudy => 'Continuar estudo ';
+  String get continueStudy => 'Continuar estudo';
 
   @override
   String get startStudy => 'Começar estudo';
@@ -618,7 +618,7 @@ class SPt extends S {
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Ótimo trabalho ao concluir o tópico de estudo $name';
+    return 'Bom trabalho ao completares o tema de estudo $name';
   }
 
   @override
@@ -652,7 +652,7 @@ class SPt extends S {
 
   @override
   String passwordConditionLength(int n) {
-    return 'Mínimo de $n caracteres';
+    return 'Mínimo $n caracteres';
   }
 
   @override
@@ -665,7 +665,7 @@ class SPt extends S {
   String get dontHaveAccess => 'Você não tem acesso a esse conteúdo.';
 
   @override
-  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+  String get notFound => 'O conteúdo que você procura parece não existir.';
 
   @override
   String get mustBeLoggedIn => 'Você precisa estar logado para assistir a este conteúdo';
@@ -762,7 +762,7 @@ class SPt extends S {
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'A exclusão da conta geralmente será feita em $x dias úteis.';
+    return 'A exclusão da conta será normalmente efectuada no prazo de $x dias úteis.';
   }
 
   @override
@@ -770,7 +770,7 @@ class SPt extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Exclusão de conta solicitada com sucesso. Você receberá um e-mail em $email. Para confirmar sua identidade, precisamos que você responda a esse e-mail para prosseguir com a exclusão.';
+    return 'Solicitação de exclusão da conta feita com sucesso. Receberá um e-mail em $email. Para confirmar a sua identidade, precisamos que responda essa mensagem de email para procedermos à exclusão.';
   }
 
   @override
@@ -784,7 +784,7 @@ class SPt extends S {
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Ou vá para $url e digite o código: $code';
+    return 'Ou vá a $url e insira o código: $code';
   }
 
   @override
@@ -816,7 +816,7 @@ class SPt extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Áudio indisponível em $lang';
+    return 'Áudio não disponível em $lang';
   }
 
   @override
@@ -827,7 +827,7 @@ class SPt extends S {
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'O tamanho do arquivo de vídeo é $size.';
+    return 'O tamanho do ficheiro de vídeo é $size.';
   }
 
   @override
@@ -870,7 +870,7 @@ class SPt extends S {
   String get noInternetConnectionDescription => 'Conecte-se à internet para acessar todos os vídeos.';
 
   @override
-  String get noInternetButDontWorry => 'Sem conexão com a internet,\nmas não se preocupe.';
+  String get noInternetButDontWorry => 'Sem conexão com a internet, mas não se preocupe.';
 
   @override
   String get hereAreAllTheVideosYouDownloaded => 'Aqui estão todos os vídeos que você baixou para o seu dispositivo.';
@@ -883,11 +883,11 @@ class SPt extends S {
 
   @override
   String estimatedFileSize(String size) {
-    return 'Tamanho estimado do arquivo: $size';
+    return 'Tamanho estimado do ficheiro: $size';
   }
 
   @override
-  String get downloadVideo => 'Baixar video';
+  String get downloadVideo => 'Baixar vídeo';
 
   @override
   String get noSubtitles => 'Sem legendas';
@@ -967,13 +967,13 @@ class SPt extends S {
   String get autoGenerated => 'Gerado automaticamente';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'The transcriptions are auto-generated and might contain errors.';
+  String get shortsTranscriptionDisclaimer => 'As transcrições são geradas automaticamente e podem conter erros.';
 
   @override
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'Este recurso está em versão beta e atualmente não está liberado para todos os usuários. Por favor, relate quaisquer problemas ou comentários através do botão \'Contato\' nas configurações.';
+  String get betaExplanation => 'Esta funcionalidade está em versão beta e não está atualmente disponível para todos os usuários. Comunique quaisquer problemas ou comentários através do botão \"Contacto\" nas configurações.';
 
   @override
   String get likedShorts => 'Gostou dos vídeos';
@@ -982,7 +982,7 @@ class SPt extends S {
   String get saveYourFavoriteShorts => 'Salve os seus vídeos favoritos';
 
   @override
-  String get featureNotAvailableYet => 'Este recurso ainda não está disponível no seu dispositivo. Por favor, tente novamente mais tarde.';
+  String get featureNotAvailableYet => 'Esta funcionalidade ainda não está disponível no seu dispositivo. Por favor tente novamente mais tarde.';
 
   @override
   String get newFeature => 'Nova funcionalidade';
@@ -997,7 +997,7 @@ class SPt extends S {
   String get shortsLikedAndSavedDescription => 'Você pode encontrar todos os seus vídeos favoritos em seu perfil.';
 
   @override
-  String get excerptFrom => 'Excerpt from';
+  String get excerptFrom => 'Excerto de';
 
   @override
   String get downloadedVideosGuideDescription => 'Você pode encontrar seus vídeos baixados em \"Perfil\".';
@@ -1028,12 +1028,12 @@ class SPt extends S {
 
   @override
   String countItems(int x) {
-    return '$x items';
+    return '$x artigos';
   }
 
   @override
   String skipTo(String chapter) {
-    return 'Skip to $chapter';
+    return 'Saltar para $chapter';
   }
 
   @override
