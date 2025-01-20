@@ -605,7 +605,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "O horário do guia de Tv está no seu horário local: {timeZone}",
+  "timezoneInformation": "O horário do guia de Tv está no seu horário local: '{'0'}'",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -682,7 +682,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Compartilhar de {time}",
+  "shareTime": "Compartilhar de '{'time'}'",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -1422,6 +1422,19 @@
     "placeholders": {
       "chapter": {
         "type": "String"
+      }
+    }
+  },
+  "bmmBibleStudyTitle": "Seu estudo bíblico",
+  "@bmmBibleStudyTitle": {
+    "description": "The title shown on the Bible Study widget."
+  },
+  "bmmBibleStudyPoints": "{points} pontos",
+  "@bmmBibleStudyPoints": {
+    "description": "The users total points in the Bible Study widget. It is shown underneath the title in the widget.",
+    "placeholders": {
+      "points": {
+        "type": "int"
       }
     }
   }
