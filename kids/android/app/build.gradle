@@ -30,7 +30,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "media.bcc.kids"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
