@@ -13,8 +13,8 @@ PODS:
     - Protobuf (~> 3.13)
     - YouboraAVPlayerAdapter (= 6.6.8)
     - YouboraLib (= 6.6.22)
-  - cloud_firestore (5.4.4):
-    - Firebase/Firestore (= 11.2.0)
+  - cloud_firestore (5.6.1):
+    - Firebase/Firestore (= 11.6.0)
     - firebase_core
     - Flutter
   - connectivity_plus (0.0.1):
@@ -22,37 +22,37 @@ PODS:
     - FlutterMacOS
   - device_info_plus (0.0.1):
     - Flutter
-  - Firebase/CoreOnly (11.2.0):
-    - FirebaseCore (= 11.2.0)
-  - Firebase/Firestore (11.2.0):
+  - Firebase/CoreOnly (11.6.0):
+    - FirebaseCore (~> 11.6.0)
+  - Firebase/Firestore (11.6.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (~> 11.2.0)
-  - Firebase/Messaging (11.2.0):
+    - FirebaseFirestore (~> 11.6.0)
+  - Firebase/Messaging (11.6.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 11.2.0)
-  - firebase_core (3.6.0):
-    - Firebase/CoreOnly (= 11.2.0)
+    - FirebaseMessaging (~> 11.6.0)
+  - firebase_core (3.10.0):
+    - Firebase/CoreOnly (= 11.6.0)
     - Flutter
-  - firebase_messaging (15.1.3):
-    - Firebase/Messaging (= 11.2.0)
+  - firebase_messaging (15.2.0):
+    - Firebase/Messaging (= 11.6.0)
     - firebase_core
     - Flutter
-  - FirebaseCore (11.2.0):
-    - FirebaseCoreInternal (~> 11.0)
+  - FirebaseCore (11.6.0):
+    - FirebaseCoreInternal (~> 11.6.0)
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/Logger (~> 8.0)
-  - FirebaseCoreExtension (11.2.0):
-    - FirebaseCore (~> 11.0)
+  - FirebaseCoreExtension (11.6.0):
+    - FirebaseCore (~> 11.6.0)
   - FirebaseCoreInternal (11.6.0):
     - "GoogleUtilities/NSData+zlib (~> 8.0)"
-  - FirebaseFirestore (11.2.0):
-    - FirebaseFirestoreBinary (= 11.2.0)
+  - FirebaseFirestore (11.6.0):
+    - FirebaseFirestoreBinary (= 11.6.0)
   - FirebaseFirestoreAbseilBinary (1.2024011602.0)
-  - FirebaseFirestoreBinary (11.2.0):
-    - FirebaseCore (= 11.2.0)
-    - FirebaseCoreExtension (= 11.2.0)
-    - FirebaseFirestoreInternalBinary (= 11.2.0)
-    - FirebaseSharedSwift (= 11.2.0)
+  - FirebaseFirestoreBinary (11.6.0):
+    - FirebaseCore (= 11.6.0)
+    - FirebaseCoreExtension (= 11.6.0)
+    - FirebaseFirestoreInternalBinary (= 11.6.0)
+    - FirebaseSharedSwift (= 11.6.0)
   - FirebaseFirestoreGRPCBoringSSLBinary (1.65.1)
   - FirebaseFirestoreGRPCCoreBinary (1.65.1):
     - FirebaseFirestoreAbseilBinary (= 1.2024011602.0)
@@ -60,19 +60,19 @@ PODS:
   - FirebaseFirestoreGRPCCPPBinary (1.65.1):
     - FirebaseFirestoreAbseilBinary (= 1.2024011602.0)
     - FirebaseFirestoreGRPCCoreBinary (= 1.65.1)
-  - FirebaseFirestoreInternalBinary (11.2.0):
-    - FirebaseCore (= 11.2.0)
+  - FirebaseFirestoreInternalBinary (11.6.0):
+    - FirebaseCore (= 11.6.0)
     - FirebaseFirestoreAbseilBinary (= 1.2024011602.0)
     - FirebaseFirestoreGRPCCPPBinary (= 1.65.1)
     - leveldb-library (~> 1.22)
     - nanopb (~> 3.30910.0)
-  - FirebaseInstallations (11.4.0):
-    - FirebaseCore (~> 11.0)
+  - FirebaseInstallations (11.6.0):
+    - FirebaseCore (~> 11.6.0)
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/UserDefaults (~> 8.0)
     - PromisesObjC (~> 2.4)
-  - FirebaseMessaging (11.2.0):
-    - FirebaseCore (~> 11.0)
+  - FirebaseMessaging (11.6.0):
+    - FirebaseCore (~> 11.6.0)
     - FirebaseInstallations (~> 11.0)
     - GoogleDataTransport (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
@@ -80,14 +80,14 @@ PODS:
     - GoogleUtilities/Reachability (~> 8.0)
     - GoogleUtilities/UserDefaults (~> 8.0)
     - nanopb (~> 3.30910.0)
-  - FirebaseSharedSwift (11.2.0)
+  - FirebaseSharedSwift (11.6.0)
   - Flutter (1.0.0)
   - flutter_appauth (0.0.1):
     - AppAuth (= 1.7.5)
     - Flutter
   - flutter_local_notifications (0.0.1):
     - Flutter
-  - flutter_native_splash (0.0.1):
+  - flutter_native_splash (2.4.3):
     - Flutter
   - flutter_secure_storage (6.0.0):
     - Flutter
@@ -141,7 +141,7 @@ PODS:
     - Flutter
     - FlutterMacOS
   - PromisesObjC (2.4.0)
-  - Protobuf (3.29.2)
+  - Protobuf (3.29.3)
   - restart_app (0.0.1):
     - Flutter
   - RSCrashReporter (1.0.1)
@@ -188,7 +188,7 @@ DEPENDENCIES:
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
-  - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `11.2.0`)
+  - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `11.6.0`)
   - Flutter (from `Flutter`)
   - flutter_appauth (from `.symlinks/plugins/flutter_appauth/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
@@ -259,7 +259,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_messaging/ios"
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 11.2.0
+    :tag: 11.6.0
   Flutter:
     :path: Flutter
   flutter_appauth:
@@ -304,35 +304,35 @@ EXTERNAL SOURCES:
 CHECKOUT OPTIONS:
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 11.2.0
+    :tag: 11.6.0
 
 SPEC CHECKSUMS:
   app_links: e7a6750a915a9e161c58d91bc610e8cd1d4d0ad0
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   bccm_player: 508fbd6f79e90a6d834da4d2fde56058d9060742
-  cloud_firestore: 5cb927f1a8c9d748d6fdbf16c6b267956cb82c53
-  connectivity_plus: ddd7f30999e1faaef5967c23d5b6d503d10434db
-  device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
-  Firebase: 98e6bf5278170668a7983e12971a66b2cd57fc8c
-  firebase_core: 2bedc3136ec7c7b8561c6123ed0239387b53f2af
-  firebase_messaging: 15d114e1a41fc31e4fbabcd48d765a19eec94a38
-  FirebaseCore: a282032ae9295c795714ded2ec9c522fc237f8da
-  FirebaseCoreExtension: cda74ddfb001224bd8fd1d6e74698b4ed07803de
+  cloud_firestore: f02547e5b28138821eb44a48e3c5f034ebb5411b
+  connectivity_plus: 18382e7311ba19efcaee94442b23b32507b20695
+  device_info_plus: bf2e3232933866d73fe290f2942f2156cdd10342
+  Firebase: 374a441a91ead896215703a674d58cdb3e9d772b
+  firebase_core: feb37e79f775c2bd08dd35e02d83678291317e10
+  firebase_messaging: e2f0ba891b1509668c07f5099761518a5af8fe3c
+  FirebaseCore: 48b0dd707581cf9c1a1220da68223fb0a562afaa
+  FirebaseCoreExtension: 2d77d6430c16cf43ca2b04608302ed02b3598361
   FirebaseCoreInternal: d98ab91e2d80a56d7b246856a8885443b302c0c2
-  FirebaseFirestore: bce39d24776dad48f7fad4ac42a9e805971a71b2
+  FirebaseFirestore: 524de94a005218eba5ab0a4dd5edef926db79be5
   FirebaseFirestoreAbseilBinary: fa2ebd2ed02cadef5382e4f7c93f1b265c812c85
-  FirebaseFirestoreBinary: 819db6b2586c6f974c7a1f9d8c870609edbf6e5a
+  FirebaseFirestoreBinary: 96ce9b31bec022bb3c2523a50960b1c3c45300dd
   FirebaseFirestoreGRPCBoringSSLBinary: d86ebbe2adc8d15d7ebf305fff7d6358385327f8
   FirebaseFirestoreGRPCCoreBinary: 472bd808e1886a5efb2fd03dd09b98d34641a335
   FirebaseFirestoreGRPCCPPBinary: db76d83d2b7517623f8426ed7f7a17bad2478084
-  FirebaseFirestoreInternalBinary: 4cf8180574159f20a2861a6e5c7e86745e4626d8
-  FirebaseInstallations: 6ef4a1c7eb2a61ee1f74727d7f6ce2e72acf1414
-  FirebaseMessaging: c9ec7b90c399c7a6100297e9d16f8a27fc7f7152
-  FirebaseSharedSwift: 7a0d78d155ede78407f0fdc89fbc914014c7c540
+  FirebaseFirestoreInternalBinary: 47b74704c71a5d37226709f70931c4f189a413d1
+  FirebaseInstallations: efc0946fc756e4d22d8113f7c761948120322e8c
+  FirebaseMessaging: e1aca1fcc23e8b9eddb0e33f375ff90944623021
+  FirebaseSharedSwift: a4e5dfca3e210633bb3a3dfb94176c019211948b
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_appauth: aef998cfbcc307dff7f2fbe1f59a50323748dc25
   flutter_local_notifications: 4cde75091f6327eb8517fa068a0a5950212d2086
-  flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
+  flutter_native_splash: f71420956eb811e6d310720fee915f1d42852e7a
   flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12
   flutter_to_airplay: 519d8d83d7d8fd1c97a557b98195c4e6396eeb8f
   google-cast-sdk: 1fb6724e94cc5ff23b359176e0cf6360586bb97a
@@ -343,10 +343,10 @@ SPEC CHECKSUMS:
   MetricsReporter: 364b98791e868b10e9d512eb50af28d8c11e5cdb
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   open_mail_app: 794172f6a22cd16319d3ddaf45e945b2f74952b0
-  package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
+  package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
-  Protobuf: ba5d83b2201386fec27d484c099cac510ea5c169
+  Protobuf: e2de96d939c642ce8da186343ff8929b35223212
   restart_app: 806659942bf932f6ce51c5372f91ce5e81c8c14a
   RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
   Rudder: 04713668b0b7d46f214e6b7b46b60134849661aa
@@ -354,16 +354,16 @@ SPEC CHECKSUMS:
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
   Sentry: 38ed8bf38eab5812787274bf591e528074c19e02
   sentry_flutter: 7d1f1df30f3768c411603ed449519bbb90a7d87b
-  share_plus: 8875f4f2500512ea181eef553c3e27dba5135aad
+  share_plus: 8b6f8b3447e494cca5317c8c3073de39b3600d1f
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
-  sqflite_darwin: a553b1fd6fe66f53bbb0fe5b4f5bab93f08d7a13
+  sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
   vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
-  wakelock_plus: 78ec7c5b202cab7761af8e2b2b3d0671be6c4ae1
+  wakelock_plus: 373cfe59b235a6dd5837d0fb88791d2f13a90d56
   webview_flutter_wkwebview: 0982481e3d9c78fd5c6f62a002fcd24fc791f1e4
   YouboraAVPlayerAdapter: bc898a61e09c667202a77491b677a42dfa0adc04
   YouboraLib: fc65b030ac93499f8beb3f5daa10deb3879fb2d2
 
-PODFILE CHECKSUM: c6b64febcb9ce7fed6141a2a405e2e971424d6c2
+PODFILE CHECKSUM: 47fee756e81104b18078da47df9713161c7db0d1
 
 COCOAPODS: 1.15.2
