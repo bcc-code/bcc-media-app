@@ -1,4 +1,15 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.58+2300218...v) (2025-01-17)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.59+2300219...v) (2025-01-21)
+
+
+
+## [5.6.59+2300219](https://github.com/bcc-code/bcc-media-app/compare/v5.6.58+2300218...v5.6.59+2300219) (2025-01-21)
+
+
+### Bug Fixes
+
+* **auth:** add logging to check if data from secure storage is null at the moment of checking auth ([8df7df4](https://github.com/bcc-code/bcc-media-app/commit/8df7df41a287aa8650ce169e0388bb02a459f765))
+* **kids:** disable impeller + hard-code comilerSdk ([275b958](https://github.com/bcc-code/bcc-media-app/commit/275b95880fa316a43978d6b36c8bb8410a15ae0a))
+* **rendering:** disable impeller on android + use video textures for episode player ([bb7e83d](https://github.com/bcc-code/bcc-media-app/commit/bb7e83d25d7442ded40849b47f00d8d0b9ba2ac5))
 
 
 
