@@ -17,7 +17,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_to_airplay/flutter_to_airplay.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:universal_io/io.dart';
-import 'package:unleash_proxy_client_flutter/event_id_generator.dart';
+import 'package:unleash_proxy_client_flutter/id_generator.dart';
 
 import '../api/brunstadtv.dart';
 
@@ -112,7 +112,7 @@ class PlaybackService {
     final stream = episode.streams.getBestStream(videoLanguageCode: videoLanguageCode);
     final user = ref.read(authStateProvider).user;
     final ageGroup = user?.let((u) => getAgeGroupFromUser(u));
-    final transactionCode = generateEventId();
+    final transactionCode = generateId();
     return MediaItem(
       url: stream.url,
       mimeType: 'application/x-mpegURL',

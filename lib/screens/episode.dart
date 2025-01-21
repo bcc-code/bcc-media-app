@@ -1,6 +1,7 @@
 // ignore_for_file: exhaustive_keys
 import 'dart:async';
 import 'dart:collection';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
@@ -310,6 +311,14 @@ class _EpisodeDisplay extends HookConsumerWidget {
           ),
         ),
       );
+
+      // The native video player on some older android devices
+      // freezes when the player leaves the screen, so we just
+      // won't use the native player for now.
+      if (Platform.isAndroid) {
+        viewController.playerController.switchToVideoTexture();
+      }
+
       return null;
     }, [player.playerId, playbackService, episode]);
 
