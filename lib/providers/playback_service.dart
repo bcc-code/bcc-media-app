@@ -57,7 +57,10 @@ class PlaybackService {
             );
 
         // BMM streak tracking
-        debugPrint('updateProgress($episodeId, $progressSeconds, $durationSeconds)');
+        if (durationSeconds != null) {
+          final percentage = (progressSeconds / durationSeconds * 100).floor();
+          debugPrint('progress: $episodeId, $percentage%');
+        }
       },
       onMediaItemTransition: (event) {
         if (event.mediaItem != null) {
