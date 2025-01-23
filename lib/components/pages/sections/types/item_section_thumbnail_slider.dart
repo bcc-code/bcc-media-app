@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../models/episode_thumbnail_data.dart';
-import '../../../../providers/todays_calendar_entries.dart';
 import '../../../thumbnails/slider/thumbnail_slider_episode.dart';
 import '../../../thumbnails/slider/thumbnail_slider_show.dart';
 import '../section_item_click_wrapper.dart';
@@ -73,8 +72,6 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
-
     final items = data.items.items.toList();
     final hideTitle = items.every((item) => item.item is Fragment$ItemSectionItem$item$$Short);
 
@@ -106,7 +103,6 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
             episode: episodeThumbnailData,
             imageSize: responsiveSize,
             showSecondaryTitle: data.metadata?.secondaryTitles ?? false,
-            isLive: item.id == curLiveEpisode?.id,
           );
         }
         if (sectionItemWidget == null) {

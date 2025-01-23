@@ -14,7 +14,6 @@ class EpisodeThumbnail extends StatelessWidget {
   final double imageWidth;
   final double? imageHeight;
   final double aspectRatio;
-  final bool isLive;
   final bool? useCache;
   final DateTime? expiresAt;
 
@@ -24,7 +23,6 @@ class EpisodeThumbnail extends StatelessWidget {
     required this.imageWidth,
     this.imageHeight,
     this.aspectRatio = 16 / 9,
-    this.isLive = false,
     this.useCache,
     this.expiresAt,
   });
@@ -32,7 +30,6 @@ class EpisodeThumbnail extends StatelessWidget {
   factory EpisodeThumbnail.withSize({
     required EpisodeThumbnailData episode,
     required Size imageSize,
-    bool isLive = false,
     bool? useCache,
     DateTime? expiresAt,
   }) {
@@ -40,7 +37,6 @@ class EpisodeThumbnail extends StatelessWidget {
       episode: episode,
       imageWidth: imageSize.width,
       imageHeight: imageSize.height,
-      isLive: isLive,
       useCache: useCache,
       expiresAt: expiresAt,
     );
@@ -50,14 +46,12 @@ class EpisodeThumbnail extends StatelessWidget {
     required EpisodeThumbnailData episode,
     required double imageWidth,
     required double aspectRatio,
-    bool isLive = false,
     bool? useCache,
     DateTime? expiresAt,
   }) {
     return EpisodeThumbnail(
       imageWidth: imageWidth,
       aspectRatio: aspectRatio,
-      isLive: isLive,
       episode: episode,
       useCache: useCache,
       expiresAt: expiresAt,
@@ -74,14 +68,12 @@ class EpisodeThumbnail extends StatelessWidget {
               aspectRatio: aspectRatio,
               child: _EpisodeThumbnailStack(
                 episode: episode,
-                isLive: isLive,
                 useCache: useCache,
                 expiresAt: expiresAt,
               ),
             )
           : _EpisodeThumbnailStack(
               episode: episode,
-              isLive: isLive,
               useCache: useCache,
               expiresAt: expiresAt,
             ),
@@ -91,13 +83,11 @@ class EpisodeThumbnail extends StatelessWidget {
 
 class _EpisodeThumbnailStack extends StatelessWidget {
   final EpisodeThumbnailData episode;
-  final bool isLive;
   final bool? useCache;
   final DateTime? expiresAt;
 
   const _EpisodeThumbnailStack({
     required this.episode,
-    required this.isLive,
     required this.useCache,
     required this.expiresAt,
   });
@@ -110,19 +100,18 @@ class _EpisodeThumbnailStack extends StatelessWidget {
       context: context,
       publishDate: episode.publishDate,
       locked: episode.locked,
-      isLive: isLive,
       watched: watched,
     );
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        episode.locked && !isLive
+        episode.locked
             ? Opacity(
                 opacity: 0.5,
                 child: BorderedImageContainer(imageUrl: episode.image, useCache: useCache),
               )
             : BorderedImageContainer(imageUrl: episode.image, useCache: useCache),
-        if (episode.locked && !isLive)
+        if (episode.locked)
           Container(
             width: double.infinity,
             height: double.infinity,

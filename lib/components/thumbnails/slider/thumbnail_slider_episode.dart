@@ -9,14 +9,12 @@ class ThumbnailSliderEpisode extends StatelessWidget {
   final EpisodeThumbnailData episode;
   final bool showSecondaryTitle;
   final Size imageSize;
-  final bool isLive;
 
   const ThumbnailSliderEpisode({
     super.key,
     required this.episode,
     required this.imageSize,
     required this.showSecondaryTitle,
-    this.isLive = false,
   });
 
   @override
@@ -31,7 +29,6 @@ class ThumbnailSliderEpisode extends StatelessWidget {
           EpisodeThumbnail.withSize(
             episode: episode,
             imageSize: imageSize,
-            isLive: isLive,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 4),
