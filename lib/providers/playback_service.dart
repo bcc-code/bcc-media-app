@@ -50,10 +50,15 @@ class PlaybackService {
     }
     BccmPlaybackListener(
       ref: ref,
-      updateProgress: (episodeId, progressSeconds) => ref.read(apiProvider).updateProgress(
-            episodeId: episodeId,
-            progress: progressSeconds,
-          ),
+      updateProgress: (episodeId, progressSeconds, durationSeconds) {
+        ref.read(apiProvider).updateProgress(
+              episodeId: episodeId,
+              progress: progressSeconds,
+            );
+
+        // BMM streak tracking
+        debugPrint('updateProgress($episodeId, $progressSeconds, $durationSeconds)');
+      },
       onMediaItemTransition: (event) {
         if (event.mediaItem != null) {
           final videoId = event.mediaItem!.metadata?.extras?['npaw.content.id'];
