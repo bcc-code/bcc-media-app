@@ -10,7 +10,6 @@ class ThumbnailGridEpisode extends StatelessWidget {
   final EpisodeThumbnailData episode;
   final double aspectRatio;
   final bool showSecondaryTitle;
-  final bool isLive;
   final bool? useCache;
   final DateTime? expiresAt;
 
@@ -18,7 +17,6 @@ class ThumbnailGridEpisode extends StatelessWidget {
     super.key,
     required this.episode,
     required this.showSecondaryTitle,
-    this.isLive = false,
     required this.aspectRatio,
     this.useCache,
     this.expiresAt,

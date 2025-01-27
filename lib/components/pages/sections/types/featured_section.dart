@@ -15,8 +15,6 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../models/breakpoints.dart';
 import 'package:bccm_core/design_system.dart';
 
-import '../../../../providers/todays_calendar_entries.dart';
-
 const marginX = 2.0;
 
 class FeaturedSection extends ConsumerWidget {
@@ -26,8 +24,6 @@ class FeaturedSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
-
     return LayoutBuilder(builder: (context, constraints) {
       final filteredItems = data.items.items.where((e) {
         final episode = e.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
@@ -39,8 +35,8 @@ class FeaturedSection extends ConsumerWidget {
         child: ScrollConfiguration(
           behavior: AnyPointerScrollBehavior(),
           child: kIsWeb || ResponsiveBreakpoints.of(context).largerThan(BP.lg)
-              ? buildSlider(context, filteredItems, constraints, curLiveEpisode)
-              : buildPageView(context, filteredItems, constraints, curLiveEpisode),
+              ? buildSlider(context, filteredItems, constraints)
+              : buildPageView(context, filteredItems, constraints),
         ),
       );
     });
@@ -50,7 +46,6 @@ class FeaturedSection extends ConsumerWidget {
     BuildContext context,
     List<Fragment$Section$$FeaturedSection$items$items> sectionItems,
     BoxConstraints constraints,
-    Fragment$CalendarEntryEpisode? curLiveEpisode,
   ) {
     final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
     return SizedBox(
@@ -75,7 +70,6 @@ class FeaturedSection extends ConsumerWidget {
             child: _FeaturedItem(
               sectionItem: item,
               margin: const EdgeInsets.symmetric(horizontal: marginX),
-              isLive: item.id == curLiveEpisode?.id,
             ),
           );
         },
@@ -87,7 +81,6 @@ class FeaturedSection extends ConsumerWidget {
     context,
     List<Fragment$Section$$FeaturedSection$items$items> sectionItems,
     BoxConstraints constraints,
-    Fragment$CalendarEntryEpisode? curLiveEpisode,
   ) {
     final numItems = ResponsiveValue(
       context,
@@ -115,7 +108,6 @@ class FeaturedSection extends ConsumerWidget {
             child: _FeaturedItem(
               sectionItem: item,
               margin: const EdgeInsets.symmetric(horizontal: marginX),
-              isLive: item.id == curLiveEpisode?.id,
               collectionId: data.metadata?.useContext == true && data.metadata?.collectionId != null ? data.metadata!.collectionId : null,
             ),
           ),
@@ -128,13 +120,11 @@ class FeaturedSection extends ConsumerWidget {
 class _FeaturedItem extends StatelessWidget {
   final Fragment$Section$$FeaturedSection$items$items sectionItem;
   final EdgeInsetsGeometry? margin;
-  final bool isLive;
   final String? collectionId;
 
   const _FeaturedItem({
     required this.sectionItem,
     this.margin = const EdgeInsets.all(0),
-    this.isLive = false,
     this.collectionId,
   });
 
@@ -156,7 +146,7 @@ class _FeaturedItem extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  design.colors.background1.withOpacity(0),
+                  design.colors.background1.withAlpha(0),
                   design.colors.background1,
                 ],
                 stops: const [0, 0.36],
@@ -221,7 +211,7 @@ class _GradientImage extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              design.colors.background1.withOpacity(0.23),
+              design.colors.background1.withAlpha(58),
               const Color.fromRGBO(26, 37, 53, 0),
               design.colors.background1,
             ],

@@ -2,11 +2,9 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:bccm_core/platform.dart';
 import '../../../models/episode_thumbnail_data.dart';
 import 'package:bccm_core/design_system.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../providers/todays_calendar_entries.dart';
 import '../../thumbnails/episode_thumbnail.dart';
 
 class EpisodeListEpisode extends ConsumerWidget {
@@ -36,8 +34,6 @@ class EpisodeListEpisode extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
-
     final design = DesignSystem.of(context);
     return Container(
       height: 98,
@@ -59,7 +55,6 @@ class EpisodeListEpisode extends ConsumerWidget {
               ),
               imageWidth: 128,
               aspectRatio: 16 / 9,
-              isLive: curLiveEpisode?.id == id,
             ),
           ),
           Expanded(

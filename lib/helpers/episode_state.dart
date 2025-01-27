@@ -27,17 +27,6 @@ bool isComingSoon({required String? publishDate, required bool locked}) {
   return locked && DateTime.now().add(const Duration(days: 2)).isAfter(publishDateTime);
 }
 
-/// True if startTime < now < endTime
-bool isLiveNow(String startTime, String endTime) {
-  final now = DateTime.now();
-  final end = DateTime.tryParse(endTime)?.toLocal();
-  final start = DateTime.tryParse(startTime)?.toLocal();
-  if (start == null || end == null) {
-    return false;
-  }
-  return end.isAfter(now) && start.isBefore(now);
-}
-
 /// True if publishDate > (now - 7 days)
 bool isNewEpisode(String? publishDate, bool locked) {
   if (locked) {
@@ -58,7 +47,6 @@ Widget? getFeatureBadge({
   required String? publishDate,
   required bool locked,
   bool watched = false,
-  bool isLive = false,
 }) {
   if (isComingSoon(publishDate: publishDate, locked: locked)) {
     return FeatureBadge(
