@@ -2118,6 +2118,54 @@ abstract class S {
   /// In en, this message translates to:
   /// **'{points} points'**
   String bmmBibleStudyPoints(int points);
+
+  /// Button text on the Bible Study quiz button.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer the quiz'**
+  String get answerTheQuiz;
+
+  /// Description shown on the Bible Study quiz button.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn points by answering correctly'**
+  String get studyAnswerTheQuizDescription;
+
+  /// Title shown on the Bible Study quiz button after quiz is done.
+  ///
+  /// In en, this message translates to:
+  /// **'You got {correct} of {total} answers correct'**
+  String studySomeAnswersCorrect(int correct, int total);
+
+  /// Title shown on the Bible Study quiz button after quiz is done and all answers were correct.
+  ///
+  /// In en, this message translates to:
+  /// **'You got all answers correct'**
+  String get studyAllAnswersCorrect;
+
+  /// Title shown on the Bible Study quiz button after quiz is done and no answers were correct.
+  ///
+  /// In en, this message translates to:
+  /// **'You got no answers correct'**
+  String get studyNoAnswersCorrect;
+
+  /// Description shown on the Bible Study quiz button after quiz is done and all answers were correct.
+  ///
+  /// In en, this message translates to:
+  /// **'Well done!'**
+  String get studyAllAnswersCorrectDescription;
+
+  /// Description shown on the Bible Study quiz button after quiz is done and no answers were correct.
+  ///
+  /// In en, this message translates to:
+  /// **'Better listen a bit closer next time!'**
+  String get studyNoAnswersCorrectDescription;
+
+  /// Description shown on the Bible Study quiz button after quiz is done and some answers were correct.
+  ///
+  /// In en, this message translates to:
+  /// **'Well done! But still room for improvement.'**
+  String get studySomeAnswersCorrectDescription;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

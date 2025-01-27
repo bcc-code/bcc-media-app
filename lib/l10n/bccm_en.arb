@@ -1437,5 +1437,45 @@
         "type": "int"
       }
     }
+  },
+  "answerTheQuiz": "Answer the quiz",
+  "@answerTheQuiz": {
+    "description": "Button text on the Bible Study quiz button."
+  },
+  "studyAnswerTheQuizDescription": "Earn points by answering correctly",
+  "@studyAnswerTheQuizDescription": {
+    "description": "Description shown on the Bible Study quiz button."
+  },
+  "studySomeAnswersCorrect": "You got {correct} of {total} answers correct",
+  "@studySomeAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done.",
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "studyAllAnswersCorrect": "You got all answers correct",
+  "@studyAllAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done and all answers were correct."
+  },
+  "studyNoAnswersCorrect": "You got no answers correct",
+  "@studyNoAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done and no answers were correct."
+  },
+  "studyAllAnswersCorrectDescription": "Well done!",
+  "@studyAllAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and all answers were correct."
+  },
+  "studyNoAnswersCorrectDescription": "Better listen a bit closer next time!",
+  "@studyNoAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and no answers were correct."
+  },
+  "studySomeAnswersCorrectDescription": "Well done! But still room for improvement.",
+  "@studySomeAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and some answers were correct."
   }
 }
