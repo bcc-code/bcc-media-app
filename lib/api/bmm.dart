@@ -16,7 +16,8 @@ String _mapLanguage(String bccmLang) {
 
 final bmmApiProvider = Provider<BmmApiWrapper>((ref) {
   return BmmApiWrapper(
-    basePathOverride: 'https://bmm-api.brunstad.org',
+    // TODO: use prod bmm api
+    basePathOverride: 'https://int-bmm-api.brunstad.org',
     getAuthToken: () => ref.read(authStateProvider).auth0AccessToken,
     interceptors: [
       InterceptorsWrapper(onRequest: (options, handler) {
@@ -69,6 +70,18 @@ final bmmDefaultPlaylistProvider = FutureProvider((ref) async {
       );
   return res.data;
 });
+
+class BmmVideoWatchedCache {
+  final Map<String, StatisticsControllerWatchedEvent> _cache = {};
+
+  StatisticsControllerWatchedEvent? get(String id) => _cache[id];
+
+  void set(String id, StatisticsControllerWatchedEvent event) {
+    _cache[id] = event;
+  }
+}
+
+final bmmVideoWatchedCacheProvider = Provider<BmmVideoWatchedCache>((ref) => BmmVideoWatchedCache());
 
 class BmmApiWrapper extends BmmApi {
   BmmApiWrapper({
