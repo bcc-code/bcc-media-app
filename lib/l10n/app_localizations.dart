@@ -2166,6 +2166,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Well done! But still room for improvement.'**
   String get studySomeAnswersCorrectDescription;
+
+  /// Title shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct.
+  ///
+  /// In en, this message translates to:
+  /// **'You answered all questions'**
+  String get studyAllQuestionsAnswered;
+
+  /// Description shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct.
+  ///
+  /// In en, this message translates to:
+  /// **'Well done!'**
+  String get studyAllQuestionsAnsweredDescription;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

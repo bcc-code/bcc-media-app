@@ -441,8 +441,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                       if (Env.enableStudy && hasStudy && lessonProgressFuture.value != null)
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
-                          // TODO: choose widget based on if discover page is disabled
-                          child: StudyQuizButton(
+                          child: StudyButton(
                             lessonProgressFuture: lessonProgressFuture.value!,
                             onNavigateBack: () {
                               if (!context.mounted) return;

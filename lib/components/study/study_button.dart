@@ -15,9 +15,36 @@ import 'pulse_animation.dart';
 import '../misc/shiny_clipper.dart';
 import 'study_progress.dart';
 
-class StudyMoreButton extends HookWidget {
-  const StudyMoreButton({super.key, required this.lessonProgressFuture, required this.onNavigateBack});
+class StudyButton extends HookWidget {
+  const StudyButton({super.key, required this.lessonProgressFuture, required this.onNavigateBack});
   final Future<Query$GetEpisodeLessonProgress?> lessonProgressFuture;
+  final void Function() onNavigateBack;
+
+  @override
+  Widget build(BuildContext context) {
+    final delayedFuture = useMemoized(
+      () => Future.delayed(const Duration(milliseconds: 300), () async => await lessonProgressFuture),
+      [lessonProgressFuture],
+    );
+    final future = useFuture(delayedFuture);
+
+    if (future.connectionState == ConnectionState.waiting) {
+      return const _LoadingWidget();
+    } else if (future.hasError || future.data == null) {
+      return const SizedBox.shrink();
+    }
+
+    final lesson = future.data?.episode.lessons.items[0];
+
+    return lesson?.showDiscoverPage != false
+        ? StudyMoreButton(lessonProgress: future.data!, onNavigateBack: onNavigateBack)
+        : StudyQuizButton(lessonProgress: future.data!, onNavigateBack: onNavigateBack);
+  }
+}
+
+class StudyMoreButton extends HookWidget {
+  const StudyMoreButton({super.key, required this.lessonProgress, required this.onNavigateBack});
+  final Query$GetEpisodeLessonProgress lessonProgress;
   final void Function() onNavigateBack;
 
   String title(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
@@ -42,21 +69,10 @@ class StudyMoreButton extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final delayedFuture = useMemoized(
-      () => Future.delayed(const Duration(milliseconds: 300), () async => await lessonProgressFuture),
-      [lessonProgressFuture],
-    );
-    final future = useFuture(delayedFuture);
-
-    if (future.connectionState == ConnectionState.waiting) {
-      return const _LoadingWidget();
-    } else if (future.hasError || future.data == null) {
-      return const SizedBox.shrink();
-    }
-
-    final episode = future.data!.episode;
-    final lesson = episode.lessons.items[0];
     final design = DesignSystem.of(context);
+    final episode = lessonProgress.episode;
+    final lesson = episode.lessons.items[0];
+
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () async {
@@ -174,41 +190,49 @@ class StudyMoreButton extends HookWidget {
 }
 
 class StudyQuizButton extends HookWidget {
-  const StudyQuizButton({super.key, required this.lessonProgressFuture, required this.onNavigateBack});
-  final Future<Query$GetEpisodeLessonProgress?> lessonProgressFuture;
+  const StudyQuizButton({super.key, required this.lessonProgress, required this.onNavigateBack});
+  final Query$GetEpisodeLessonProgress lessonProgress;
   final void Function() onNavigateBack;
 
-  // TODO: get from progress overview
-  final correctAnswers = 2;
-  final maxCorrectAnswers = 3;
-
   String title(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
+    final alternativesCorrectAnswers = progressOverview.progress.alternativesTasksCorrect;
+    final alternativesTotal = progressOverview.progress.alternativesTasksTotal;
+
     if (!progressOverview.completed) {
       return S.of(context).answerTheQuiz;
     }
-    if (correctAnswers == 0) {
+    if (alternativesTotal == 0) {
+      return S.of(context).studyAllQuestionsAnswered;
+    }
+    if (alternativesCorrectAnswers == 0) {
       return S.of(context).studyNoAnswersCorrect;
     }
-    if (correctAnswers == maxCorrectAnswers) {
+    if (alternativesCorrectAnswers == alternativesTotal) {
       return S.of(context).studyAllAnswersCorrect;
     }
-    if (correctAnswers > 0) {
-      return S.of(context).studySomeAnswersCorrect(correctAnswers, maxCorrectAnswers);
+    if (alternativesCorrectAnswers > 0) {
+      return S.of(context).studySomeAnswersCorrect(alternativesCorrectAnswers, alternativesTotal);
     }
     return S.of(context).answerTheQuiz;
   }
 
   String secondaryTitle(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
+    final alternativesCorrectAnswers = progressOverview.progress.alternativesTasksCorrect;
+    final alternativesTotal = progressOverview.progress.alternativesTasksTotal;
+
     if (!progressOverview.completed) {
       return S.of(context).studyAnswerTheQuizDescription;
     }
-    if (correctAnswers == 0) {
+    if (alternativesTotal == 0) {
+      return S.of(context).studyAllQuestionsAnsweredDescription;
+    }
+    if (alternativesCorrectAnswers == 0) {
       return S.of(context).studyNoAnswersCorrectDescription;
     }
-    if (correctAnswers == maxCorrectAnswers) {
+    if (alternativesCorrectAnswers == alternativesTotal) {
       return S.of(context).studyAllAnswersCorrectDescription;
     }
-    if (correctAnswers > 0) {
+    if (alternativesCorrectAnswers > 0) {
       return S.of(context).studySomeAnswersCorrectDescription;
     }
     return S.of(context).studyAnswerTheQuizDescription;
@@ -216,13 +240,19 @@ class StudyQuizButton extends HookWidget {
 
   Color color(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
     final design = DesignSystem.of(context);
+    final alternativesCorrectAnswers = progressOverview.progress.alternativesTasksCorrect;
+    final alternativesTotal = progressOverview.progress.alternativesTasksTotal;
+
     if (!progressOverview.completed) {
       return design.colors.separatorOnLight;
     }
-    if (correctAnswers == 0) {
+    if (alternativesTotal == 0) {
+      return design.colors.tint1;
+    }
+    if (alternativesCorrectAnswers == 0) {
       return design.colors.tint2;
     }
-    if (correctAnswers > 0) {
+    if (alternativesCorrectAnswers > 0) {
       return design.colors.tint1;
     }
     return design.colors.separatorOnLight;
@@ -244,20 +274,7 @@ class StudyQuizButton extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
-
-    final delayedFuture = useMemoized(
-      () => Future.delayed(const Duration(milliseconds: 300), () async => await lessonProgressFuture),
-      [lessonProgressFuture],
-    );
-    final future = useFuture(delayedFuture);
-
-    if (future.connectionState == ConnectionState.waiting) {
-      return const _LoadingWidget();
-    } else if (future.hasError || future.data == null) {
-      return const SizedBox.shrink();
-    }
-
-    final episode = future.data!.episode;
+    final episode = lessonProgress.episode;
     final lesson = episode.lessons.items[0];
 
     return GestureDetector(

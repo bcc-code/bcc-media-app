@@ -1069,4 +1069,10 @@ class STr extends S {
 
   @override
   String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+
+  @override
+  String get studyAllQuestionsAnswered => 'You answered all questions';
+
+  @override
+  String get studyAllQuestionsAnsweredDescription => 'Well done!';
 }

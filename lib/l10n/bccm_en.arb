@@ -1477,5 +1477,13 @@
   "studySomeAnswersCorrectDescription": "Well done! But still room for improvement.",
   "@studySomeAnswersCorrectDescription": {
     "description": "Description shown on the Bible Study quiz button after quiz is done and some answers were correct."
+  },
+  "studyAllQuestionsAnswered": "You answered all questions",
+  "@studyAllQuestionsAnswered": {
+    "description": "Title shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct."
+  },
+  "studyAllQuestionsAnsweredDescription": "Well done!",
+  "@studyAllQuestionsAnsweredDescription": {
+    "description": "Description shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct."
   }
 }
