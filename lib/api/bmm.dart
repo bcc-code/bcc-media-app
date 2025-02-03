@@ -45,9 +45,8 @@ final bmmDiscoverProvider = FutureProvider((ref) {
 
 final bmmProjectProgressProvider = FutureProvider((ref) {
   final lang = _mapLanguage(ref.watch(settingsProvider.select((s) => s.appLanguage.languageCode)));
-  return ref.watch(bmmApiProvider).getStatisticsApi().statisticsProjectProgressGet(
+  return ref.watch(bmmApiProvider).getStatisticsApi().statisticsV2ProjectProgressGet(
         lang: LanguageEnum.valueOf(lang),
-        os: Platform.operatingSystem,
         theme: 'dark',
       );
 });
