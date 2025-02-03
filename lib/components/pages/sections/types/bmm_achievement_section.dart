@@ -74,38 +74,37 @@ class BmmAchievementSection extends StatelessWidget {
                           ),
                   ],
                 ),
-                // design.buttons.small(
-                //   onPressed: () {
-                //     onButtonTapped(data);
-                //   },
-                //   variant: ButtonVariant.secondary,
-                //   labelText: 'Standings',
-                // ),
                 if (boysPoints != null && girlsPoints != null)
-                  Container(
-                    clipBehavior: Clip.hardEdge,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          color: Color.fromRGBO(103, 145, 203, 1),
-                          child: Text(
-                            '$boysPoints',
-                            style: design.textStyles.body2.copyWith(color: Colors.white),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
+                      onButtonTapped(data);
+                    },
+                    child: Container(
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(99),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            color: Color.fromRGBO(103, 145, 203, 1),
+                            child: Text(
+                              '$boysPoints',
+                              style: design.textStyles.title3.copyWith(color: Colors.white),
+                            ),
                           ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          color: Color.fromRGBO(239, 73, 35, 1),
-                          child: Text(
-                            '$girlsPoints',
-                            style: design.textStyles.body2.copyWith(color: Colors.white),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            color: Color.fromRGBO(239, 73, 35, 1),
+                            child: Text(
+                              '$girlsPoints',
+                              style: design.textStyles.title3.copyWith(color: Colors.white),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
               ],
