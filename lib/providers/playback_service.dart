@@ -68,7 +68,7 @@ class PlaybackService {
           final cachedEvent = cache.get(episodeId);
           if (cachedEvent != null) return;
 
-          final event = StatisticsControllerWatchedEvent((b) {
+          final event = ProcessWatchedCommandEvent((b) {
             b.episodeId = episodeId;
             b.adjustedPlaybackSpeed = ref.read(primaryPlayerProvider)?.playbackSpeed;
             b.lastPosition = progressSeconds * 1000;
@@ -78,7 +78,7 @@ class PlaybackService {
           });
           cache.set(episodeId, event);
           await ref.read(bmmApiProvider).getStatisticsApi().statisticsWatchedPost(
-                statisticsControllerWatchedEvent: BuiltList.from([event]),
+                processWatchedCommandEvent: BuiltList.from([event]),
               );
         }
       },
@@ -92,7 +92,7 @@ class PlaybackService {
           if (cachedEvent == null) return;
 
           await ref.read(bmmApiProvider).getStatisticsApi().statisticsWatchedPost(
-                statisticsControllerWatchedEvent: BuiltList.from([
+                processWatchedCommandEvent: BuiltList.from([
                   cachedEvent.rebuild((b) {
                     b.lastPosition = event.mediaItem?.metadata?.durationMs?.floor();
                   })

@@ -71,12 +71,16 @@ final bmmDefaultPlaylistProvider = FutureProvider((ref) async {
   return res.data;
 });
 
+final bmmProjectStandingsProvider = FutureProvider((ref) {
+  return ref.read(bmmApiProvider).getStatisticsApi().statisticsProjectStandingsGet();
+});
+
 class BmmVideoWatchedCache {
-  final Map<String, StatisticsControllerWatchedEvent> _cache = {};
+  final Map<String, ProcessWatchedCommandEvent> _cache = {};
 
-  StatisticsControllerWatchedEvent? get(String id) => _cache[id];
+  ProcessWatchedCommandEvent? get(String id) => _cache[id];
 
-  void set(String id, StatisticsControllerWatchedEvent event) {
+  void set(String id, ProcessWatchedCommandEvent event) {
     _cache[id] = event;
   }
 }
