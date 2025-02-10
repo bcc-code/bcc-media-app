@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
 import '../../../models/episode_thumbnail_data.dart';
-import '../../../providers/todays_calendar_entries.dart';
 import '../../misc/custom_grid_view.dart';
 import '../../pages/sections/section_item_click_wrapper.dart';
 import 'thumbnail_grid_episode.dart';
@@ -56,14 +55,13 @@ class ThumbnailGrid extends ConsumerWidget {
     );
   }
 
-  Widget getItemWidget(Fragment$GridSectionItem sectionItem, Fragment$CalendarEntryEpisode? curLiveEpisode) {
+  Widget getItemWidget(Fragment$GridSectionItem sectionItem) {
     final episodeThumbnailData = getEpisodeThumbnailData(sectionItem);
     if (episodeThumbnailData != null) {
       return ThumbnailGridEpisode(
         episode: getEpisodeThumbnailData(sectionItem)!,
         showSecondaryTitle: showSecondaryTitle,
         aspectRatio: aspectRatio,
-        isLive: sectionItem.id == curLiveEpisode?.id,
       );
     }
     var show = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Show>();
@@ -79,8 +77,6 @@ class ThumbnailGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
-
     final items = sectionItems
         .where((element) => element.item is Fragment$GridSectionItem$item$$Episode || element.item is Fragment$GridSectionItem$item$$Show)
         .toList();
@@ -93,7 +89,7 @@ class ThumbnailGrid extends ConsumerWidget {
           item: item.item,
           collectionId: collectionId,
           analytics: SectionItemAnalyticsData(id: item.id, position: index, type: item.$__typename, name: item.title),
-          child: getItemWidget(item, curLiveEpisode),
+          child: getItemWidget(item),
         );
       }).toList(),
     );
