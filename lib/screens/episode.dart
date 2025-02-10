@@ -441,7 +441,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                       if (Env.enableStudy && hasStudy && lessonProgressFuture.value != null)
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
-                          child: StudyMoreButton(
+                          child: StudyButton(
                             lessonProgressFuture: lessonProgressFuture.value!,
                             onNavigateBack: () {
                               if (!context.mounted) return;

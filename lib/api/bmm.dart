@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,7 +15,7 @@ String _mapLanguage(String bccmLang) {
 
 final bmmApiProvider = Provider<BmmApiWrapper>((ref) {
   return BmmApiWrapper(
-    basePathOverride: 'https://bmm-api.brunstad.org',
+    basePathOverride: Env.bmmApiUrl,
     getAuthToken: () => ref.read(authStateProvider).auth0AccessToken,
     interceptors: [
       InterceptorsWrapper(onRequest: (options, handler) {
@@ -44,9 +43,8 @@ final bmmDiscoverProvider = FutureProvider((ref) {
 
 final bmmProjectProgressProvider = FutureProvider((ref) {
   final lang = _mapLanguage(ref.watch(settingsProvider.select((s) => s.appLanguage.languageCode)));
-  return ref.watch(bmmApiProvider).getStatisticsApi().statisticsProjectProgressGet(
+  return ref.watch(bmmApiProvider).getStatisticsApi().statisticsV2ProjectProgressGet(
         lang: LanguageEnum.valueOf(lang),
-        os: Platform.operatingSystem,
         theme: 'dark',
       );
 });
@@ -69,6 +67,22 @@ final bmmDefaultPlaylistProvider = FutureProvider((ref) async {
       );
   return res.data;
 });
+
+final bmmProjectStandingsProvider = FutureProvider((ref) {
+  return ref.read(bmmApiProvider).getStatisticsApi().statisticsProjectStandingsGet();
+});
+
+class BmmVideoWatchedCache {
+  final Map<String, ProcessWatchedCommandEvent> _cache = {};
+
+  ProcessWatchedCommandEvent? get(String id) => _cache[id];
+
+  void set(String id, ProcessWatchedCommandEvent event) {
+    _cache[id] = event;
+  }
+}
+
+final bmmVideoWatchedCacheProvider = Provider<BmmVideoWatchedCache>((ref) => BmmVideoWatchedCache());
 
 class BmmApiWrapper extends BmmApi {
   BmmApiWrapper({

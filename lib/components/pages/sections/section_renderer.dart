@@ -131,9 +131,10 @@ class SectionRenderer extends ConsumerWidget {
         }
 
         final projectProgress = ref.watch(bmmProjectProgressProvider).valueOrNull?.data;
+        final projectStandings = ref.watch(bmmProjectStandingsProvider).valueOrNull?.data;
         return Padding(
           padding: const EdgeInsets.all(16),
-          child: BmmAchievementSection(projectProgress),
+          child: BmmAchievementSection(projectProgress, projectStandings),
         );
       }
 

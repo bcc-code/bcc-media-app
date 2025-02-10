@@ -3,6 +3,8 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
+import 'package:bmm_api/bmm_api.dart';
+import 'package:brunstadtv_app/api/bmm.dart';
 import 'package:brunstadtv_app/components/player/custom_cast_player.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
@@ -10,6 +12,7 @@ import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -50,10 +53,53 @@ class PlaybackService {
     }
     BccmPlaybackListener(
       ref: ref,
-      updateProgress: (episodeId, progressSeconds) => ref.read(apiProvider).updateProgress(
-            episodeId: episodeId,
-            progress: progressSeconds,
-          ),
+      updateProgress: (episodeId, progressSeconds, durationSeconds) async {
+        ref.read(apiProvider).updateProgress(
+              episodeId: episodeId,
+              progress: progressSeconds,
+            );
+
+        // BMM streak tracking
+        if (durationSeconds != null) {
+          final percentageWatched = (progressSeconds / durationSeconds * 100).floor();
+          if (percentageWatched < 50) return;
+
+          final cache = ref.read(bmmVideoWatchedCacheProvider);
+          final cachedEvent = cache.get(episodeId);
+          if (cachedEvent != null) return;
+
+          final event = ProcessWatchedCommandEvent((b) {
+            b.episodeId = episodeId;
+            b.adjustedPlaybackSpeed = ref.read(primaryPlayerProvider)?.playbackSpeed;
+            b.lastPosition = progressSeconds * 1000;
+            b.language = ref.read(primaryPlayerProvider)?.currentMediaItem?.lastKnownAudioLanguage;
+            b.os = Platform.operatingSystem;
+            b.timestampStart = DateTime.now().toUtc();
+          });
+          cache.set(episodeId, event);
+          await ref.read(bmmApiProvider).getStatisticsApi().statisticsWatchedPost(
+                processWatchedCommandEvent: BuiltList.from([event]),
+              );
+        }
+      },
+      onPlaybackEnded: (event) async {
+        if (event.mediaItem != null) {
+          final videoId = event.mediaItem!.metadata?.extras?['npaw.content.id'];
+          if (videoId == null) return;
+
+          final cache = ref.read(bmmVideoWatchedCacheProvider);
+          final cachedEvent = cache.get(videoId);
+          if (cachedEvent == null) return;
+
+          await ref.read(bmmApiProvider).getStatisticsApi().statisticsWatchedPost(
+                processWatchedCommandEvent: BuiltList.from([
+                  cachedEvent.rebuild((b) {
+                    b.lastPosition = event.mediaItem?.metadata?.durationMs?.floor();
+                  })
+                ]),
+              );
+        }
+      },
       onMediaItemTransition: (event) {
         if (event.mediaItem != null) {
           final videoId = event.mediaItem!.metadata?.extras?['npaw.content.id'];

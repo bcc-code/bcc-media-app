@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/design_system.dart';
+import 'package:bmm_api/bmm_api.dart';
+import 'package:brunstadtv_app/api/bmm.dart';
 import 'package:brunstadtv_app/components/achievements/achievement_dialog.dart';
 import 'package:brunstadtv_app/components/misc/dialog_with_image.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
@@ -7,6 +9,7 @@ import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/main_js_channel.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +44,11 @@ class StudyScreen extends HookConsumerWidget {
 
     Future handleMessage(List<dynamic> arguments) async {
       if (arguments[0] == 'tasks_completed') {
-        _handleTasksCompleted(context, ref);
+        _handleTasksCompleted(
+          context,
+          ref,
+          answers: arguments[1],
+        );
       }
     }
 
@@ -79,7 +86,11 @@ class StudyScreen extends HookConsumerWidget {
   }
 }
 
-Future _handleTasksCompleted(BuildContext context, WidgetRef ref) async {
+Future _handleTasksCompleted(
+  BuildContext context,
+  WidgetRef ref, {
+  List<dynamic>? answers,
+}) async {
   final navigatorContext = Navigator.of(context).context;
   final gqlClient = ref.read(bccmGraphQLProvider);
   final achievements = await gqlClient.query$getPendingAchievements();
@@ -109,5 +120,20 @@ Future _handleTasksCompleted(BuildContext context, WidgetRef ref) async {
       ),
     );
     gqlClient.mutate$confirmAchievement(Options$Mutation$confirmAchievement(variables: Variables$Mutation$confirmAchievement(id: achievement.id)));
+  }
+
+  debugPrint('answers: $answers');
+  if (answers != null && answers.isNotEmpty) {
+    final bmmApi = ref.read(bmmApiProvider).getQuestionApi();
+    bmmApi.questionAnswersPost(
+        handleBccmAnswerCommandBccmAnswer: answers
+            .map(
+              (answer) => HandleBccmAnswerCommandBccmAnswer((b) {
+                b.questionId = answer['questionId'];
+                b.selectedAnswerId = answer['answerId'];
+                b.answeredCorrectly = answer['answeredCorrectly'];
+              }),
+            )
+            .toBuiltList());
   }
 }

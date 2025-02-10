@@ -15,9 +15,36 @@ import 'pulse_animation.dart';
 import '../misc/shiny_clipper.dart';
 import 'study_progress.dart';
 
-class StudyMoreButton extends HookWidget {
-  const StudyMoreButton({super.key, required this.lessonProgressFuture, required this.onNavigateBack});
+class StudyButton extends HookWidget {
+  const StudyButton({super.key, required this.lessonProgressFuture, required this.onNavigateBack});
   final Future<Query$GetEpisodeLessonProgress?> lessonProgressFuture;
+  final void Function() onNavigateBack;
+
+  @override
+  Widget build(BuildContext context) {
+    final delayedFuture = useMemoized(
+      () => Future.delayed(const Duration(milliseconds: 300), () async => await lessonProgressFuture),
+      [lessonProgressFuture],
+    );
+    final future = useFuture(delayedFuture);
+
+    if (future.connectionState == ConnectionState.waiting) {
+      return const _LoadingWidget();
+    } else if (future.hasError || future.data == null) {
+      return const SizedBox.shrink();
+    }
+
+    final lesson = future.data?.episode.lessons.items[0];
+
+    return lesson?.showDiscoverPage != false
+        ? StudyMoreButton(lessonProgress: future.data!, onNavigateBack: onNavigateBack)
+        : StudyQuizButton(lessonProgress: future.data!, onNavigateBack: onNavigateBack);
+  }
+}
+
+class StudyMoreButton extends HookWidget {
+  const StudyMoreButton({super.key, required this.lessonProgress, required this.onNavigateBack});
+  final Query$GetEpisodeLessonProgress lessonProgress;
   final void Function() onNavigateBack;
 
   String title(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
@@ -42,21 +69,10 @@ class StudyMoreButton extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final delayedFuture = useMemoized(
-      () => Future.delayed(const Duration(milliseconds: 300), () async => await lessonProgressFuture),
-      [lessonProgressFuture],
-    );
-    final future = useFuture(delayedFuture);
-
-    if (future.connectionState == ConnectionState.waiting) {
-      return const _LoadingWidget();
-    } else if (future.hasError || future.data == null) {
-      return const SizedBox.shrink();
-    }
-
-    final episode = future.data!.episode;
-    final lesson = episode.lessons.items[0];
     final design = DesignSystem.of(context);
+    final episode = lessonProgress.episode;
+    final lesson = episode.lessons.items[0];
+
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () async {
@@ -168,6 +184,164 @@ class StudyMoreButton extends HookWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class StudyQuizButton extends HookWidget {
+  const StudyQuizButton({super.key, required this.lessonProgress, required this.onNavigateBack});
+  final Query$GetEpisodeLessonProgress lessonProgress;
+  final void Function() onNavigateBack;
+
+  String title(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
+    final alternativesCorrectAnswers = progressOverview.progress.alternativesTasksCorrect;
+    final alternativesTotal = progressOverview.progress.alternativesTasksTotal;
+
+    if (!progressOverview.completed) {
+      return S.of(context).answerTheQuiz;
+    }
+    if (alternativesTotal == 0) {
+      return S.of(context).studyAllQuestionsAnswered;
+    }
+    if (alternativesCorrectAnswers == 0) {
+      return S.of(context).studyNoAnswersCorrect;
+    }
+    if (alternativesCorrectAnswers == alternativesTotal) {
+      return S.of(context).studyAllAnswersCorrect;
+    }
+    if (alternativesCorrectAnswers > 0) {
+      return S.of(context).studySomeAnswersCorrect(alternativesCorrectAnswers, alternativesTotal);
+    }
+    return S.of(context).answerTheQuiz;
+  }
+
+  String secondaryTitle(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
+    final alternativesCorrectAnswers = progressOverview.progress.alternativesTasksCorrect;
+    final alternativesTotal = progressOverview.progress.alternativesTasksTotal;
+
+    if (!progressOverview.completed) {
+      return S.of(context).studyAnswerTheQuizDescription;
+    }
+    if (alternativesTotal == 0) {
+      return S.of(context).studyAllQuestionsAnsweredDescription;
+    }
+    if (alternativesCorrectAnswers == 0) {
+      return S.of(context).studyNoAnswersCorrectDescription;
+    }
+    if (alternativesCorrectAnswers == alternativesTotal) {
+      return S.of(context).studyAllAnswersCorrectDescription;
+    }
+    if (alternativesCorrectAnswers > 0) {
+      return S.of(context).studySomeAnswersCorrectDescription;
+    }
+    return S.of(context).studyAnswerTheQuizDescription;
+  }
+
+  Color color(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
+    final design = DesignSystem.of(context);
+    final alternativesCorrectAnswers = progressOverview.progress.alternativesTasksCorrect;
+    final alternativesTotal = progressOverview.progress.alternativesTasksTotal;
+
+    if (!progressOverview.completed) {
+      return design.colors.separatorOnLight;
+    }
+    if (alternativesTotal == 0) {
+      return design.colors.tint1;
+    }
+    if (alternativesCorrectAnswers == 0) {
+      return design.colors.tint2;
+    }
+    if (alternativesCorrectAnswers > 0) {
+      return design.colors.tint1;
+    }
+    return design.colors.separatorOnLight;
+  }
+
+  SvgPicture icon(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
+    if (progressOverview.completed) {
+      return SvgPicture.string(
+        SvgIcons.check,
+        height: 24,
+      );
+    }
+    return SvgPicture.string(
+      SvgIcons.chevronRight,
+      height: 11,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+    final episode = lessonProgress.episode;
+    final lesson = episode.lessons.items[0];
+
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () async {
+        await context.router.root.push(StudyScreenRoute(episodeId: episode.id, lessonId: lesson.id));
+        onNavigateBack();
+      },
+      child: Stack(
+        children: [
+          Container(
+            clipBehavior: Clip.antiAlias,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: color(lesson, context),
+            ),
+            foregroundDecoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: design.colors.separatorOnLight, width: 1),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title(lesson, context),
+                        style: design.textStyles.title3.copyWith(color: design.colors.label1),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 3),
+                        child: Text(
+                          secondaryTitle(lesson, context),
+                          overflow: TextOverflow.fade,
+                          style: design.textStyles.caption1.copyWith(color: design.colors.onTint),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: design.colors.separatorOnLight,
+                      borderRadius: BorderRadius.circular(45),
+                    ),
+                    foregroundDecoration: BoxDecoration(
+                      border: Border.all(color: design.colors.separatorOnLight, width: 1),
+                      borderRadius: BorderRadius.circular(45),
+                    ),
+                    width: 38,
+                    height: 38,
+                    child: Center(
+                      child: icon(lesson, context),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

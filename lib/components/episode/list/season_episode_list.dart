@@ -83,6 +83,7 @@ class _Episode extends StatelessWidget {
   Widget build(BuildContext context) {
     final publishDateTime = DateTime.tryParse(data.episode.publishDate);
     final design = DesignSystem.of(context);
+
     return Stack(
       children: [
         if (data.highlighted == true)
@@ -204,7 +205,10 @@ class _Episode extends StatelessWidget {
                   ),
                 ),
               ),
-              if (Env.enableStudy && data.lessonProgressOverview != null && !data.episode.locked)
+              if (Env.enableStudy &&
+                  data.lessonProgressOverview != null &&
+                  data.lessonProgressOverview!.showDiscoverPage != false &&
+                  !data.episode.locked)
                 Opacity(
                   opacity: data.lessonProgressOverview!.locked ? 0.2 : 1,
                   child: Container(

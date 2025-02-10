@@ -1043,4 +1043,36 @@ class SEn extends S {
   String bmmBibleStudyPoints(int points) {
     return '$points points';
   }
+
+  @override
+  String get answerTheQuiz => 'Answer the quiz';
+
+  @override
+  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+
+  @override
+  String studySomeAnswersCorrect(int correct, int total) {
+    return 'You got $correct of $total answers correct';
+  }
+
+  @override
+  String get studyAllAnswersCorrect => 'You got all answers correct';
+
+  @override
+  String get studyNoAnswersCorrect => 'You got no answers correct';
+
+  @override
+  String get studyAllAnswersCorrectDescription => 'Well done!';
+
+  @override
+  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+
+  @override
+  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+
+  @override
+  String get studyAllQuestionsAnswered => 'You answered all questions';
+
+  @override
+  String get studyAllQuestionsAnsweredDescription => 'Well done!';
 }
