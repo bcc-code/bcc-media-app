@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,8 +15,7 @@ String _mapLanguage(String bccmLang) {
 
 final bmmApiProvider = Provider<BmmApiWrapper>((ref) {
   return BmmApiWrapper(
-    // TODO: use prod bmm api
-    basePathOverride: 'https://int-bmm-api.brunstad.org',
+    basePathOverride: Env.bmmApiUrl,
     getAuthToken: () => ref.read(authStateProvider).auth0AccessToken,
     interceptors: [
       InterceptorsWrapper(onRequest: (options, handler) {
