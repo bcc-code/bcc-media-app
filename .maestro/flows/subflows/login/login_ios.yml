@@ -4,9 +4,9 @@ appId: tv.brunstad.app
 ---
 - launchApp:
     appId: com.apple.mobilesafari
-    clearState: true
-    clearKeychain: true # optional: clear *entire* iOS keychain
-    stopApp: true # optional (true by default): stop the app before launching it
+    clearState: false # we cannot clear state for Safari, as that causes Maestro to reinstall the app (which doesn't work for Safari)
+    clearKeychain: true
+    stopApp: true
 - launchApp: tv.brunstad.app
 - tapOn:
     text: Allow
