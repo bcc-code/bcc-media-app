@@ -1,12 +1,9 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.60+2300220...v) (2025-02-10)
-
-
-
-## [5.6.60+2300220](https://github.com/bcc-code/bcc-media-app/compare/v5.6.59+2300219...v5.6.60+2300220) (2025-02-10)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.59+2300219...v) (2025-02-10)
 
 
 ### Bug Fixes
 
+* **build:** properly install node ([1db996e](https://github.com/bcc-code/bcc-media-app/commit/1db996ee5497f307daadbc056ffb4a64a7b4847b))
 * **deps:** roll bccm_flutter ([c5e05e6](https://github.com/bcc-code/bcc-media-app/commit/c5e05e614a1968862bdbad0252aec151ef113901))
 * **deps:** roll submodules ([c5f5943](https://github.com/bcc-code/bcc-media-app/commit/c5f59431714a3687e1055077203a4bda2baad636))
 * make sure duration exists when calculating percentage ([f512da0](https://github.com/bcc-code/bcc-media-app/commit/f512da053c8a96d245898285521a08d4c9dc3696))
