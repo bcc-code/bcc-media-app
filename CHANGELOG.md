@@ -4,6 +4,7 @@
 ### Bug Fixes
 
 * **build:** properly install node ([1db996e](https://github.com/bcc-code/bcc-media-app/commit/1db996ee5497f307daadbc056ffb4a64a7b4847b))
+* **build:** try fixing maestro flow ([55db5fc](https://github.com/bcc-code/bcc-media-app/commit/55db5fc3181b3621ed5a481f55484df854710f1f))
 * **build:** try fixing npm installation in maestro ci ([9e51b5b](https://github.com/bcc-code/bcc-media-app/commit/9e51b5bc71353f2ecd51d077f2feca237ca2e3fc))
 * **deps:** roll bccm_flutter ([c5e05e6](https://github.com/bcc-code/bcc-media-app/commit/c5e05e614a1968862bdbad0252aec151ef113901))
 * **deps:** roll submodules ([c5f5943](https://github.com/bcc-code/bcc-media-app/commit/c5f59431714a3687e1055077203a4bda2baad636))
