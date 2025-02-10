@@ -1,4 +1,36 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.58+2300218...v) (2025-01-21)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.60+2300220...v) (2025-02-10)
+
+
+
+## [5.6.60+2300220](https://github.com/bcc-code/bcc-media-app/compare/v5.6.59+2300219...v5.6.60+2300220) (2025-02-10)
+
+
+### Bug Fixes
+
+* **deps:** roll bccm_flutter ([c5e05e6](https://github.com/bcc-code/bcc-media-app/commit/c5e05e614a1968862bdbad0252aec151ef113901))
+* **deps:** roll submodules ([c5f5943](https://github.com/bcc-code/bcc-media-app/commit/c5f59431714a3687e1055077203a4bda2baad636))
+* make sure duration exists when calculating percentage ([f512da0](https://github.com/bcc-code/bcc-media-app/commit/f512da053c8a96d245898285521a08d4c9dc3696))
+* roll submodule ([c152ad6](https://github.com/bcc-code/bcc-media-app/commit/c152ad62786de3faf6204651a25b4f1dc2117ecd))
+* roll submodule ([1ad6327](https://github.com/bcc-code/bcc-media-app/commit/1ad6327235aa6f2d26c71374c26609c9896adf6f))
+* **study:** use project progress v2 endpoint ([6239741](https://github.com/bcc-code/bcc-media-app/commit/62397412032ee467dfcc43d698e95dac770df558))
+
+
+### Features
+
+* **bible-study:** post video watched events to BMM endpoint ([f6be39a](https://github.com/bcc-code/bcc-media-app/commit/f6be39a3234155002794a57cbbc2c09c5b0b52be))
+* **bmm:** use env vars for api url ([70a42a7](https://github.com/bcc-code/bcc-media-app/commit/70a42a78382263d5d5295d28a79fc626e54b3cbe))
+* **placyback-service:** start work on bmm streak tracking ([6d54a75](https://github.com/bcc-code/bcc-media-app/commit/6d54a7577de7445ae21a3fcf7e84da3713835961))
+* remove all live features ([36731e5](https://github.com/bcc-code/bcc-media-app/commit/36731e5ea31f340fb70daf54040257ad8b236d2a))
+* replace maestro cloud with devicecloud ([876713f](https://github.com/bcc-code/bcc-media-app/commit/876713f439dbfd2c5f8901769e41f80910f887ac))
+* **study:** bmm project standings ([f052376](https://github.com/bcc-code/bcc-media-app/commit/f052376665af40fc728fc3a714051e365d7bce55))
+* **study:** bmm standings button ([69e31fb](https://github.com/bcc-code/bcc-media-app/commit/69e31fb494dffe30cef43adfbfb2488c4882c56a))
+* **study:** conditional study button + hide study progress circle in season episode list ([de71630](https://github.com/bcc-code/bcc-media-app/commit/de716309f7ae0e3252ede8a510f7f1efceee5d4b))
+* **study:** send selected answers to bmm ([2fd5271](https://github.com/bcc-code/bcc-media-app/commit/2fd5271959a380e7d3abfa9cacaae24f927f129f))
+* **study:** wip episode page study button design update ([07a460f](https://github.com/bcc-code/bcc-media-app/commit/07a460ffed6b796e9dac70cfba0ef4311144c3c6))
+
+
+
+## [5.6.59+2300219](https://github.com/bcc-code/bcc-media-app/compare/v5.6.58+2300218...v5.6.59+2300219) (2025-01-21)
 
 
 ### Bug Fixes
