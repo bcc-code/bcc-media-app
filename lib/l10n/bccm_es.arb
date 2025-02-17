@@ -31,7 +31,7 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "El mensaje más \npoderoso del mundo",
+  "loginPageDisplay1": "El mensaje más poderoso del mundo",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -71,7 +71,7 @@
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
-  "signInOrSignUp": "Registrarse/ ingresar",
+  "signInOrSignUp": "Registrarte/ ingresar",
   "@signInOrSignUp": {
     "description": "Button to go to the onboarding page (short)"
   },
@@ -79,7 +79,7 @@
   "@signUpButton": {
     "description": "Button to start the sign up process"
   },
-  "signUpTitle": "Regístrarse",
+  "signUpTitle": "Regístrate",
   "@signUpTitle": {
     "description": "Title on the sign up page"
   },
@@ -87,7 +87,7 @@
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Certifico que tengo 13 años o más y acepto la <a>Política de privacidad</a> y los <a>Términos de uso</a>.",
+  "signUpAgreePrivacyPolicy": "Certifico que tengo 13 años o más y acepto la <a>Política de privacidad</a> y las <a>Condiciones de uso</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
@@ -103,7 +103,7 @@
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Tu sesión ha sido cerrada. Por favor inicia sesión nuevamente.",
+  "loggedOutMessage": "Se ha cerrado tu sesión. Por favor, conéctate de nuevo.",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
@@ -135,11 +135,11 @@
   "@open": {
     "description": "Open button"
   },
-  "loginFailedCheckNetwork": "La conexión ha fallado, revise su conexión a internet e inténtelo una vez más.",
+  "loginFailedCheckNetwork": "Inicio de Sesión fallido Revise su conexión a internet e inténtelo más tarde.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "La conexión ha fallado. Por favor inténtelo más tarde.",
+  "loginFailedTryAgain": "Inicio de Sesión fallido Por favor inténtelo de nuevo más tarde.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
@@ -363,7 +363,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "No puede tener más de {elementCount} elementos en cola.",
+  "queueLimitMessage": "No puedes tener más de {elementCount} elementos en cola.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -420,7 +420,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Puedes buscar todo el contenido de BCC Media, series, películas y episodios.",
+  "emptySearch": "Puedes buscar todo el contenido de BCC Media. Series, vídeos y episodios.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -488,7 +488,7 @@
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "Quedan {charsLeft} de {charsTotal} caracteres",
+  "charactersLimit": "{charsLeft} de {charsTotal} caracteres restantes",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -564,7 +564,7 @@
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Algo salió mal. Verifique su conexión a Internet e intente nuevamente.",
+  "sendFailDescription": "Algo salió mal. Comprueba tu conexión a Internet e inténtalo de nuevo.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
@@ -580,7 +580,7 @@
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Disponible{date}",
+  "availableFrom": "Disponible/s '{'0'}'",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -605,7 +605,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "El horario de la guía de televisión está en su hora local: {timeZone}",
+  "timezoneInformation": "El horario de la guía de televisión está en su hora local '{'0'}'",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -827,7 +827,7 @@
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Buen trabajo completando el tema de estudio {name}",
+  "achievementStudyTopic": "Buen trabajo completando el tema de estudio '{'name'}'",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -836,7 +836,7 @@
       }
     }
   },
-  "videoCount": "{count} videos",
+  "videoCount": "Videos",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -854,7 +854,7 @@
       }
     }
   },
-  "posterCount": "{count} posters",
+  "posterCount": "{count} carteles",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -872,7 +872,7 @@
       }
     }
   },
-  "continueButton": "Continúe",
+  "continueButton": "Continuar",
   "@continueButton": {
     "description": "Generic button text."
   },
@@ -1033,7 +1033,7 @@
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Por lo general, la eliminación de la cuenta se realizará en un plazo de {x} días laborables.",
+  "accountDeletionTimeframe": "La eliminación de la cuenta se realizará normalmente en un plazo de {x} días laborables.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1046,7 +1046,7 @@
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Eliminación de cuenta solicitada con éxito. Recibirás un correo electrónico en la dirección {email}. Para confirmar su identidad, necesitamos que responda a ese correo electrónico para proceder a la eliminación.",
+  "accountDeletionSuccess": "Eliminación de cuenta solicitada con éxito. Recibirás un correo electrónico en {email}. Para confirmar tu identidad, necesitamos que respondas a ese correo electrónico para proceder a la eliminación.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1067,7 +1067,7 @@
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "O vaya a {url} e introduzca el código: {code}",
+  "tvEnterCode": "O ve a %@\ne introduce el código: %@",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1335,7 +1335,7 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Esta función está en versión beta y actualmente no está disponible para todos los usuarios. Informe cualquier problema o comentario a través del botón \"Contacto\" en la configuración.",
+  "betaExplanation": "Esta función está en fase beta y actualmente no está disponible para todos los usuarios. Por favor, informa de cualquier problema o comentario a través del botón \"Contacto\" de la configuración.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
@@ -1347,7 +1347,7 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Esta función aún no está disponible en tu dispositivo. Por favor, inténtalo de nuevo más tarde.",
+  "featureNotAvailableYet": "Esta función aún no está disponible en tu dispositivo. Por favor inténtelo de nuevo más tarde.",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
@@ -1366,6 +1366,10 @@
   "shortsLikedAndSavedDescription": "Puedes encontrar todos los cortos que te gustan en tu perfil.",
   "@shortsLikedAndSavedDescription": {
     "description": "Shown when you have liked and saved a 'short' for the first time."
+  },
+  "excerptFrom": "Extracto de",
+  "@excerptFrom": {
+    "description": "Shown on a 'short' video, indicating that this is an excerpt from a longer video. E.g. Excerpt from 'The Tale of John Doe'."
   },
   "downloadedVideosGuideDescription": "Puedes encontrar tus videos descargados en \"Perfil\".",
   "@downloadedVideosGuideDescription": {
@@ -1403,7 +1407,7 @@
   "@all": {
     "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
   },
-  "countItems": "{x} elementos",
+  "countItems": "objetos",
   "@countItems": {
     "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1411,5 +1415,75 @@
         "type": "int"
       }
     }
+  },
+  "skipTo": "Saltar a {chapter}",
+  "@skipTo": {
+    "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
+    "placeholders": {
+      "chapter": {
+        "type": "String"
+      }
+    }
+  },
+  "bmmBibleStudyTitle": "Tu estudio bíblico",
+  "@bmmBibleStudyTitle": {
+    "description": "The title shown on the Bible Study widget."
+  },
+  "bmmBibleStudyPoints": "'{'0'}' puntos",
+  "@bmmBibleStudyPoints": {
+    "description": "The users total points in the Bible Study widget. It is shown underneath the title in the widget.",
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "answerTheQuiz": "Responde el Cuestionario",
+  "@answerTheQuiz": {
+    "description": "Button text on the Bible Study quiz button."
+  },
+  "studyAnswerTheQuizDescription": "Gana puntos respondiendo correctamente",
+  "@studyAnswerTheQuizDescription": {
+    "description": "Description shown on the Bible Study quiz button."
+  },
+  "studySomeAnswersCorrect": "Has acertado {correct} de {total} respuestas",
+  "@studySomeAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done.",
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "studyAllAnswersCorrect": "Has acertado todas las respuestas",
+  "@studyAllAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done and all answers were correct."
+  },
+  "studyNoAnswersCorrect": "No has acertado ninguna respuesta",
+  "@studyNoAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done and no answers were correct."
+  },
+  "studyAllAnswersCorrectDescription": "¡Bien hecho!",
+  "@studyAllAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and all answers were correct."
+  },
+  "studyNoAnswersCorrectDescription": "Será mejor que la próxima vez escuches con más atención.",
+  "@studyNoAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and no answers were correct."
+  },
+  "studySomeAnswersCorrectDescription": "¡Bien hecho! Pero aún se puede mejorar.",
+  "@studySomeAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and some answers were correct."
+  },
+  "studyAllQuestionsAnswered": "Has respondido a todas las preguntas",
+  "@studyAllQuestionsAnswered": {
+    "description": "Title shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct."
+  },
+  "studyAllQuestionsAnsweredDescription": "¡Bien hecho!",
+  "@studyAllQuestionsAnsweredDescription": {
+    "description": "Description shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct."
   }
 }
