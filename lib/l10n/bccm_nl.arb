@@ -31,11 +31,11 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "De krachtigste \nboodschap in de wereld",
+  "loginPageDisplay1": "De krachtigste boodschap in de wereld",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Bekijk series, shows en films gebasseerd op Christelijke waarden",
+  "loginPageDisplay2": "Bekijk series, shows en films gebaseerd op Christelijke waarden",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
@@ -87,7 +87,7 @@
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Ik bevestig dat ik 13 jaar of ouder ben, en ik ga akkoord met het  <a>Privacybeleid</a> en de <a>Algemene voorwaarden</a>.",
+  "signUpAgreePrivacyPolicy": "Ik verklaar dat ik 13 jaar of ouder ben en dat ik akkoord ga met het <a>privacybeleid</a> en <a>de gebruiksvoorwaarden</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
@@ -99,11 +99,11 @@
   "@tryAgainButton": {
     "description": "Button on error alert that lets user to retry failed action"
   },
-  "loggedOutTitle": "Afgemeld",
+  "loggedOutTitle": "Uitgelogd",
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Je bent nu uitgelogd. Log opnieuw in.",
+  "loggedOutMessage": "Je bent uitgelogd. Log opnieuw in.",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
@@ -135,23 +135,23 @@
   "@open": {
     "description": "Open button"
   },
-  "loginFailedCheckNetwork": "Er ging iets mis bij het inloggen. Controleer je netwerkverbinding en probeer het opnieuw.",
+  "loginFailedCheckNetwork": "Inloggen mislukt Controleer je netwerkverbinding en probeer opnieuw",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "Er ging iets mis bij het inloggen. Probeer het later opnieuw.",
+  "loginFailedTryAgain": "Inloggen mislukt Probeer het later nog eens",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
-  "soundLanguage": "Taal geluid",
+  "soundLanguage": "Geluid taal",
   "@soundLanguage": {
     "description": "Settings item on profile page"
   },
-  "subtitleLanguage": "Taal ondertiteling",
+  "subtitleLanguage": "Ondertiteling taal",
   "@subtitleLanguage": {
     "description": "Settings item on profile page"
   },
-  "appLanguage": "Taal app",
+  "appLanguage": "App taal",
   "@appLanguage": {
     "description": "Settings item on profile page"
   },
@@ -303,7 +303,7 @@
   "@auto": {
     "description": "Indicator on profile page that audio and app language are chosen automatically."
   },
-  "subtitles": "Ondertitels",
+  "subtitles": "Ondertiteling",
   "@subtitles": {
     "description": "Generic."
   },
@@ -347,7 +347,7 @@
   "@pause": {
     "description": "A button to pause the video."
   },
-  "castQueue": "Lijst verwijderen",
+  "castQueue": "Lijst casten",
   "@castQueue": {
     "description": "Queue page title"
   },
@@ -363,7 +363,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "Het is niet mogelijk meer dan {elementCount} elementen in de lijst te hebben.",
+  "queueLimitMessage": "Je kunt niet meer dan {elementCount} elementen in de wachtrij hebben.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -420,7 +420,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Je kunt zoeken op alle inhoud van BCC Media. TV series, films en afleveringen.",
+  "emptySearch": "Je kunt zoeken in alle content van BCC Media. Series, video's en afleveringen.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -428,11 +428,11 @@
   "@back": {
     "description": "General back button to navigate back"
   },
-  "seasonLetter": "Seizoen",
+  "seasonLetter": "S",
   "@seasonLetter": {
     "description": "Season  letter in label S1E3"
   },
-  "episodeLetter": "Aflevering",
+  "episodeLetter": "E",
   "@episodeLetter": {
     "description": "Episode letter in label S1E3"
   },
@@ -476,7 +476,7 @@
   "@uploadFileTitle": {
     "description": "Title of the dialog to confirm upload"
   },
-  "uploadFileMessage": "Wilt u dit bestand uploaden?",
+  "uploadFileMessage": "Wil je dit bestand uploaden?",
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
@@ -488,7 +488,7 @@
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{charsLeft} of {charsTotal} tekens over",
+  "charactersLimit": "{charsLeft} van {charsTotal} tekens over",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -540,7 +540,7 @@
   "@now": {
     "description": "Tv guide now playing label"
   },
-  "debugInfoExplanation": "Je bericht zal deze informatie meenemen, om ons te helpen het probleem beter te begrijpen.",
+  "debugInfoExplanation": "Je bericht zal deze informatie bevatten, om ons te helpen het probleem beter te begrijpen.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
@@ -548,7 +548,7 @@
   "@send": {
     "description": "General button to send a form"
   },
-  "sending": "Verzenden",
+  "sending": "Aan het verzenden",
   "@sending": {
     "description": "General sending action indicator"
   },
@@ -564,7 +564,7 @@
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.",
+  "sendFailDescription": "Er ging iets fout. Controleer je internet verbinding en probeer opnieuw.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
@@ -589,7 +589,7 @@
       }
     }
   },
-  "submit": "Invoeren",
+  "submit": "Indienen",
   "@submit": {
     "description": "Submit button."
   },
@@ -605,7 +605,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "De tijden in de TV gids worden weergegeven in de lokale tijd: {timeZone}",
+  "timezoneInformation": "Het tijdschema van de tv-gids is in je lokale tijd: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -642,7 +642,7 @@
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "broadcasts": "Uitzending",
+  "broadcasts": "Uitzendingen",
   "@broadcasts": {
     "description": "Title for live broadcasts."
   },
@@ -682,7 +682,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Delen van punt {time}",
+  "shareTime": "Deel van {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -719,7 +719,7 @@
   "@eventsTab": {
     "description": "Events Tab title"
   },
-  "audioLanguage": "Taal geluid",
+  "audioLanguage": "Taal audio",
   "@audioLanguage": {
     "description": "Label indicating that the Audio Language can be changed here."
   },
@@ -727,7 +727,7 @@
   "@subtitlesLanguage": {
     "description": "Label indicating that the Subtitles Language can be changed here."
   },
-  "removeFromRecentSearches": "Wilt u dit element verwijderen uit het overzicht met recente zoekopdrachten?",
+  "removeFromRecentSearches": "Wil je dit onderdeel verwijderen uit het overzicht met recente zoekopdrachten?",
   "@removeFromRecentSearches": {
     "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
   },
@@ -827,7 +827,7 @@
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Goed gedaan, je eerste study topic {name} afgerond",
+  "achievementStudyTopic": "Goed gedaan, je hebt het study topic {name} afgerond",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -836,7 +836,7 @@
       }
     }
   },
-  "videoCount": "{count} video's",
+  "videoCount": "{count}Video's",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -863,7 +863,7 @@
       }
     }
   },
-  "resourceCount": "{count} bronnen",
+  "resourceCount": "{count} middelen",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -957,7 +957,7 @@
   "@youCanContactUsAt": {
     "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
   },
-  "biblekidsAbout": "Bible Kids is een initiatief van BCC Media, een mediastichting binnen de BCC Federatie die inhoud met positieve en christelijke waarden produceert en verspreidt.",
+  "biblekidsAbout": "Bible Kids is een initiatief van BCC Media, een media stichting binnen de BCC Federatie die inhoud met positieve en christelijke waarden produceert en verspreidt.",
   "@biblekidsAbout": {
     "description": "Shown on about page"
   },
@@ -1021,7 +1021,7 @@
   "@youCanNowUseYourAccount": {
     "description": "Shown when the user has successfully completed account setup."
   },
-  "youCanNowLogInToYourAccount": "Je kunt nu je account gebruiken en een heleboel opbouwende onderwerpen ontdekken.",
+  "youCanNowLogInToYourAccount": "Je kunt nu inloggen met je account en opbouwende onderwerpen ontdekken.",
   "@youCanNowLogInToYourAccount": {
     "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
   },
@@ -1033,7 +1033,7 @@
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Accounts worden gewoonlijk binnen {x} werkdagen verwijderd.",
+  "accountDeletionTimeframe": "Accounts worden meestal binnen {x} werkdagen verwijderd.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1067,7 +1067,7 @@
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Of ga naar {url} en vul de code in: {code}",
+  "tvEnterCode": "Of ga naar {url} en voer de code in: {code}",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1189,11 +1189,11 @@
   "@noInternetConnection": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetConnectionDescription": "Maak verbinding met internet om alle video's te bekijken.",
+  "noInternetConnectionDescription": "Maak verbinding met internet om toegang te krijgen tot alle video's.",
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "Geen internetverbinding,\nmaar maak je geen zorgen.",
+  "noInternetButDontWorry": "Geen internetverbinding, maar maak je geen zorgen.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
@@ -1258,7 +1258,7 @@
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "expiresIn": "Verloopt op {time}",
+  "expiresIn": "Verloopt in {time}",
   "@expiresIn": {
     "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
     "placeholders": {
@@ -1335,7 +1335,7 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Deze functie bevindt zich in de bètafase en is momenteel niet beschikbaar voor alle gebruikers. Rapporteer eventuele problemen of feedback via de knop 'Contact' in de instellingen.",
+  "betaExplanation": "Deze functie is in bèta en is momenteel nog niet beschikbaar voor alle gebruikers. Meld problemen of feedback via de knop 'Contact' in de instellingen.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
@@ -1347,7 +1347,7 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Deze functie is nog niet beschikbaar op uw apparaat. Probeer het later opnieuw.",
+  "featureNotAvailableYet": "Deze functie is nog niet beschikbaar op je apparaat. Probeer het later nog eens",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
@@ -1383,11 +1383,11 @@
   "@thisVideoCantBeDownloaded": {
     "description": "Shown when you try to download a video that cannot be downloaded."
   },
-  "videoLanguage": "Videotaal",
+  "videoLanguage": "Taal van de video",
   "@videoLanguage": {
     "description": "Changing the video language means changing the actual text inside the videos. E.g. for bible analysis videos."
   },
-  "videoTextLanguage": "Taal van videocontent",
+  "videoTextLanguage": "Taal van de tekst in de video",
   "@videoTextLanguage": {
     "description": "Changing the video text language means changing the text that is shown inside the video. Same as 'video language'. i.e. not subtitles. E.g. for bible analysis videos."
   },
@@ -1416,7 +1416,7 @@
       }
     }
   },
-  "skipTo": "Ga naar {chapter}",
+  "skipTo": "Overslaan naar {chapter}",
   "@skipTo": {
     "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1424,5 +1424,66 @@
         "type": "String"
       }
     }
+  },
+  "bmmBibleStudyTitle": "Jouw Bijbelstudie",
+  "@bmmBibleStudyTitle": {
+    "description": "The title shown on the Bible Study widget."
+  },
+  "bmmBibleStudyPoints": "{points} punten",
+  "@bmmBibleStudyPoints": {
+    "description": "The users total points in the Bible Study widget. It is shown underneath the title in the widget.",
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "answerTheQuiz": "Beantwoord de quiz",
+  "@answerTheQuiz": {
+    "description": "Button text on the Bible Study quiz button."
+  },
+  "studyAnswerTheQuizDescription": "Verdien punten door correct te antwoorden",
+  "@studyAnswerTheQuizDescription": {
+    "description": "Description shown on the Bible Study quiz button."
+  },
+  "studySomeAnswersCorrect": "Je hebt {correct} van {total} antwoorden goed",
+  "@studySomeAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done.",
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "studyAllAnswersCorrect": "Je hebt alle antwoorden goed",
+  "@studyAllAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done and all answers were correct."
+  },
+  "studyNoAnswersCorrect": "Je hebt geen antwoorden goed",
+  "@studyNoAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done and no answers were correct."
+  },
+  "studyAllAnswersCorrectDescription": "Goed gedaan!",
+  "@studyAllAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and all answers were correct."
+  },
+  "studyNoAnswersCorrectDescription": "Volgende keer beter luisteren!",
+  "@studyNoAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and no answers were correct."
+  },
+  "studySomeAnswersCorrectDescription": "Goed gedaan! Maar nog steeds ruimte voor verbetering.",
+  "@studySomeAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and some answers were correct."
+  },
+  "studyAllQuestionsAnswered": "Je hebt alle vragen beantwoord",
+  "@studyAllQuestionsAnswered": {
+    "description": "Title shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct."
+  },
+  "studyAllQuestionsAnsweredDescription": "Goed gedaan!",
+  "@studyAllQuestionsAnsweredDescription": {
+    "description": "Description shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct."
   }
 }
