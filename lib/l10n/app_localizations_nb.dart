@@ -31,7 +31,7 @@ class SNb extends S {
   String get loading => 'Laster';
 
   @override
-  String get loginPageDisplay1 => 'Det kraftigste\nbudskapet i verden';
+  String get loginPageDisplay1 => 'Det kraftigste budskapet i verden';
 
   @override
   String get loginPageDisplay2 => 'Se serier, programmer og filmer basert på kristne verdier';
@@ -40,7 +40,7 @@ class SNb extends S {
   String get kidsOnboardingTitle => 'Vi gjør Bibelens budskap levende!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Vår visjon er at barna skal oppleve Jesus som sin aller beste venn - resten av livet.';
+  String get kidsOnboardingSecondaryTitle => 'Vår visjon er at barna skal oppleve Jesus som sin aller beste venn – resten av livet.';
 
   @override
   String get loginPageDisplay3 => 'Produsert av BCC Media';
@@ -73,7 +73,7 @@ class SNb extends S {
   String get signUpDescription => 'Få tilgang til mer innhold og bedre funksjoner ved å opprette en konto.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Jeg bekrefter at jeg er 13 år eller eldre, og jeg er enig i <a>Personvernreglene</a>og <a>Vilkår for bruk</a>.';
+  String get signUpAgreePrivacyPolicy => 'Jeg bekrefter at jeg er 13 år eller eldre, og jeg godtar <a>Personvernerklæringen</a> og <a>Vilkår for bruk</a>.';
 
   @override
   String get setPassword => 'Nytt passord';
@@ -85,10 +85,10 @@ class SNb extends S {
   String get loggedOutTitle => 'Logget ut';
 
   @override
-  String get loggedOutMessage => 'Du har blitt logget ut. Vennligst logg inn igjen.';
+  String get loggedOutMessage => 'Du har blitt logget ut. Vennligst logg inn på nytt.';
 
   @override
-  String get makeDonation => 'Gi en donasjon';
+  String get makeDonation => 'Gi en gave';
 
   @override
   String get mostWatched => 'Mest sett';
@@ -109,10 +109,10 @@ class SNb extends S {
   String get open => 'Åpne';
 
   @override
-  String get loginFailedCheckNetwork => 'Det har oppstått en feil. Sjekk nettverksforbindelsen og prøv en gang til.';
+  String get loginFailedCheckNetwork => 'Innlogging mislyktes. Sjekk nettverksforbindelsen og prøv igjen.';
 
   @override
-  String get loginFailedTryAgain => 'Det har oppstått en feil. Prøv igjen senere.';
+  String get loginFailedTryAgain => 'Innlogging mislyktes. Prøv igjen senere.';
 
   @override
   String get soundLanguage => 'Lydspråk';
@@ -121,7 +121,7 @@ class SNb extends S {
   String get subtitleLanguage => 'Språk for undertekster';
 
   @override
-  String get appLanguage => 'App-språk';
+  String get appLanguage => 'Appspråk';
 
   @override
   String get checkNetwork => 'Sjekk nettverksforbindelsen og prøv igjen.';
@@ -259,7 +259,7 @@ class SNb extends S {
   String get noResults => 'Ingen resultater funnet';
 
   @override
-  String get doYouWantCast => 'Vil du sende denne videoen til Chromecast?';
+  String get doYouWantCast => 'Vil du caste denne videoen?';
 
   @override
   String get play => 'Spill av';
@@ -268,7 +268,7 @@ class SNb extends S {
   String get pause => 'Pause';
 
   @override
-  String get castQueue => 'Legg til i kø';
+  String get castQueue => 'Strøm kø';
 
   @override
   String get options => 'Alternativer';
@@ -277,7 +277,7 @@ class SNb extends S {
   String get remove => 'Fjern';
 
   @override
-  String get queueLimitTitle => 'Købegrensing';
+  String get queueLimitTitle => 'Købegrensning';
 
   @override
   String queueLimitMessage(int elementCount) {
@@ -288,10 +288,10 @@ class SNb extends S {
   String get recentSearches => 'Nylige søk';
 
   @override
-  String get tVLogin => 'TV-innlogging';
+  String get tVLogin => 'TV Login';
 
   @override
-  String get tVLoginSuccessful => 'Du er nå logget inn, vennligst bekreft på TV-en';
+  String get tVLoginSuccessful => 'Du er nå logget inn, vennligst bekreft på TVen';
 
   @override
   String get seeMore => 'Se mer';
@@ -309,7 +309,7 @@ class SNb extends S {
   String get sortBy => 'Sorter etter';
 
   @override
-  String get videoQuality => 'Videokvalitet';
+  String get videoQuality => 'Video kvalitet';
 
   @override
   String get low => 'Lav';
@@ -321,7 +321,7 @@ class SNb extends S {
   String get high => 'Høy';
 
   @override
-  String get emptySearch => 'Du kan søke på alt innhold fra BCC Media. Serier, filmer og episoder.';
+  String get emptySearch => 'Du kan søke i alt innhold fra BCC Media. Serier, filmer og episoder.';
 
   @override
   String get back => 'Tilbake';
@@ -422,10 +422,10 @@ class SNb extends S {
   String get thankYouSupportDescription => 'Vi setter pris på alle tilbakemeldinger og vi vil se på problemet så snart som mulig.';
 
   @override
-  String get sendFail => 'Kunne ikke sende din melding';
+  String get sendFail => 'Kunne ikke sende meldingen din';
 
   @override
-  String get sendFailDescription => 'Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.';
+  String get sendFailDescription => 'Noe gikk galt. Sjekk internettforbindelsen din og prøv igjen.';
 
   @override
   String get sendSuccessDescription => 'Vi setter pris på din tilbakemelding.';
@@ -445,7 +445,7 @@ class SNb extends S {
   String get submit => 'Send inn';
 
   @override
-  String get wellDone => 'Bra gjort!';
+  String get wellDone => 'Bra jobbet!';
 
   @override
   String get editPicture => 'Rediger bilde';
@@ -542,7 +542,7 @@ class SNb extends S {
   String get subtitlesLanguage => 'Språk for undertekster';
 
   @override
-  String get removeFromRecentSearches => 'Vil du fjerne dette elementet fra siste søk?';
+  String get removeFromRecentSearches => 'Vil du fjerne dette elementet fra nylige søk?';
 
   @override
   String get noTransmissionToday => 'Ingen planlagte sendinger i dag';
@@ -623,7 +623,7 @@ class SNb extends S {
 
   @override
   String videoCount(int count) {
-    return '$count videoer';
+    return '$count filmer';
   }
 
   @override
@@ -638,7 +638,7 @@ class SNb extends S {
 
   @override
   String resourceCount(int count) {
-    return '$count innholdsressurser';
+    return '$count ressurser';
   }
 
   @override
@@ -659,7 +659,7 @@ class SNb extends S {
   String get passwordConditionComplexity => 'Må inneholde små bokstaver, store bokstaver og tall.';
 
   @override
-  String get oops => 'Uups!';
+  String get oops => 'Ups!';
 
   @override
   String get dontHaveAccess => 'Du har ikke tilgang til dette innholdet.';
@@ -762,7 +762,7 @@ class SNb extends S {
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Sletting av konto vil vanligvis gjøres innen $x arbeidsdager.';
+    return 'Sletting av konto vil vanligvis skje innen $x virkedager.';
   }
 
   @override
@@ -770,7 +770,7 @@ class SNb extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Forespørsel om sletting av konto vellykket. Du vil motta en e-post på $email. For å bekrefte din identitet trenger vi at du svarer på den e-posten for å kunne gå videre med slettingen.';
+    return 'Forespørsel om sletting av konto vellykket. Du vil motta en e-post på $email. For å bekrefte identiteten din, må du svare på e-posten for at vi skal kunne gå videre med slettingen.';
   }
 
   @override
@@ -816,7 +816,7 @@ class SNb extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Språk er ikke tilgjengelig på $lang';
+    return 'Lyd ikke tilgjengelig på $lang';
   }
 
   @override
@@ -870,7 +870,7 @@ class SNb extends S {
   String get noInternetConnectionDescription => 'Koble til internett for å få tilgang til alle videoer.';
 
   @override
-  String get noInternetButDontWorry => 'Ingen internettforbindelse, men ta det rolig...';
+  String get noInternetButDontWorry => 'Ingen internettforbindelse, men ta det rolig.';
 
   @override
   String get hereAreAllTheVideosYouDownloaded => 'Her er alle videoene du har lastet ned til enheten din.';
@@ -883,7 +883,7 @@ class SNb extends S {
 
   @override
   String estimatedFileSize(String size) {
-    return 'Estimert filstørrelse: $size';
+    return 'Anslått filstørrelse: $size';
   }
 
   @override
@@ -973,7 +973,7 @@ class SNb extends S {
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'Denne funksjonen er i betaversjon og er foreløpig ikke utgitt for alle brukere. Vennligst rapporter eventuelle problemer eller tilbakemeldinger via \"Kontakt\"-knappen i innstillingene.';
+  String get betaExplanation => 'Denne funksjonen er i betaversjon og er foreløpig ikke tilgjengelig for alle brukere. Rapporter eventuelle problemer eller tilbakemeldinger via «Kontakt»-knappen i innstillingene.';
 
   @override
   String get likedShorts => 'Likte shorts';
@@ -982,7 +982,7 @@ class SNb extends S {
   String get saveYourFavoriteShorts => 'Lagre favorittvideoene dine';
 
   @override
-  String get featureNotAvailableYet => 'Denne funksjonen er ikke tilgjengelig på din enhet ennå. Prøv igjen senere.';
+  String get featureNotAvailableYet => 'Denne funksjonen er ikke tilgjengelig på enheten din ennå. Prøv igjen senere.';
 
   @override
   String get newFeature => 'Ny funksjon';
@@ -1000,7 +1000,7 @@ class SNb extends S {
   String get excerptFrom => 'Utdrag fra';
 
   @override
-  String get downloadedVideosGuideDescription => 'Du finner dine nedlastede videoer under \"Min profil\".';
+  String get downloadedVideosGuideDescription => 'Du finner dine nedlastede videoer under «Min profil».';
 
   @override
   String get openStore => 'Åpne';
@@ -1028,7 +1028,7 @@ class SNb extends S {
 
   @override
   String countItems(int x) {
-    return '$x elementer';
+    return '$x gjenstander';
   }
 
   @override
@@ -1037,42 +1037,42 @@ class SNb extends S {
   }
 
   @override
-  String get bmmBibleStudyTitle => 'Your Bible Study';
+  String get bmmBibleStudyTitle => 'Ditt bibelstudie';
 
   @override
   String bmmBibleStudyPoints(int points) {
-    return '$points points';
+    return '$points poeng';
   }
 
   @override
-  String get answerTheQuiz => 'Answer the quiz';
+  String get answerTheQuiz => 'Svar på quizen';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription => 'Tjen poeng ved å svare riktig';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
-    return 'You got $correct of $total answers correct';
+    return 'Du fikk $correct av $total riktige svar';
   }
 
   @override
-  String get studyAllAnswersCorrect => 'You got all answers correct';
+  String get studyAllAnswersCorrect => 'Du fikk alle svarene riktig';
 
   @override
-  String get studyNoAnswersCorrect => 'You got no answers correct';
+  String get studyNoAnswersCorrect => 'Du fikk ingen riktige svar';
 
   @override
-  String get studyAllAnswersCorrectDescription => 'Well done!';
+  String get studyAllAnswersCorrectDescription => 'Bra jobbet!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription => 'Du bør kanskje lytte litt nøyere neste gang!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription => 'Bra jobbet! Men det er fortsatt rom for forbedringer.';
 
   @override
-  String get studyAllQuestionsAnswered => 'You answered all questions';
+  String get studyAllQuestionsAnswered => 'Du svarte på alle spørsmålene';
 
   @override
-  String get studyAllQuestionsAnsweredDescription => 'Well done!';
+  String get studyAllQuestionsAnsweredDescription => 'Bra jobbet!';
 }

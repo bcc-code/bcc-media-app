@@ -31,10 +31,10 @@ class SNl extends S {
   String get loading => 'Laden';
 
   @override
-  String get loginPageDisplay1 => 'De krachtigste \nboodschap in de wereld';
+  String get loginPageDisplay1 => 'De krachtigste boodschap in de wereld';
 
   @override
-  String get loginPageDisplay2 => 'Bekijk series, shows en films gebasseerd op Christelijke waarden';
+  String get loginPageDisplay2 => 'Bekijk series, shows en films gebaseerd op Christelijke waarden';
 
   @override
   String get kidsOnboardingTitle => 'Wij brengen de boodschap uit de Bijbel tot leven!';
@@ -73,7 +73,7 @@ class SNl extends S {
   String get signUpDescription => 'Krijg toegang tot meer content en betere functionaliteit door een account aan te maken.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Ik bevestig dat ik 13 jaar of ouder ben, en ik ga akkoord met het  <a>Privacybeleid</a> en de <a>Algemene voorwaarden</a>.';
+  String get signUpAgreePrivacyPolicy => 'Ik verklaar dat ik 13 jaar of ouder ben en dat ik akkoord ga met het <a>privacybeleid</a> en <a>de gebruiksvoorwaarden</a>.';
 
   @override
   String get setPassword => 'Stel een wachtwoord in';
@@ -82,10 +82,10 @@ class SNl extends S {
   String get tryAgainButton => 'Probeer opnieuw';
 
   @override
-  String get loggedOutTitle => 'Afgemeld';
+  String get loggedOutTitle => 'Uitgelogd';
 
   @override
-  String get loggedOutMessage => 'Je bent nu uitgelogd. Log opnieuw in.';
+  String get loggedOutMessage => 'Je bent uitgelogd. Log opnieuw in.';
 
   @override
   String get makeDonation => 'Doneer';
@@ -109,19 +109,19 @@ class SNl extends S {
   String get open => 'Open';
 
   @override
-  String get loginFailedCheckNetwork => 'Er ging iets mis bij het inloggen. Controleer je netwerkverbinding en probeer het opnieuw.';
+  String get loginFailedCheckNetwork => 'Inloggen mislukt Controleer je netwerkverbinding en probeer opnieuw';
 
   @override
-  String get loginFailedTryAgain => 'Er ging iets mis bij het inloggen. Probeer het later opnieuw.';
+  String get loginFailedTryAgain => 'Inloggen mislukt Probeer het later nog eens';
 
   @override
-  String get soundLanguage => 'Taal geluid';
+  String get soundLanguage => 'Geluid taal';
 
   @override
-  String get subtitleLanguage => 'Taal ondertiteling';
+  String get subtitleLanguage => 'Ondertiteling taal';
 
   @override
-  String get appLanguage => 'Taal app';
+  String get appLanguage => 'App taal';
 
   @override
   String get checkNetwork => 'Controleer je netwerkverbinding en probeer opnieuw';
@@ -235,7 +235,7 @@ class SNl extends S {
   String get auto => 'Auto';
 
   @override
-  String get subtitles => 'Ondertitels';
+  String get subtitles => 'Ondertiteling';
 
   @override
   String get audio => 'Audio';
@@ -268,7 +268,7 @@ class SNl extends S {
   String get pause => 'Pauzeer';
 
   @override
-  String get castQueue => 'Lijst verwijderen';
+  String get castQueue => 'Lijst casten';
 
   @override
   String get options => 'Opties';
@@ -281,7 +281,7 @@ class SNl extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Het is niet mogelijk meer dan $elementCount elementen in de lijst te hebben.';
+    return 'Je kunt niet meer dan $elementCount elementen in de wachtrij hebben.';
   }
 
   @override
@@ -321,16 +321,16 @@ class SNl extends S {
   String get high => 'Hoog';
 
   @override
-  String get emptySearch => 'Je kunt zoeken op alle inhoud van BCC Media. TV series, films en afleveringen.';
+  String get emptySearch => 'Je kunt zoeken in alle content van BCC Media. Series, video\'s en afleveringen.';
 
   @override
   String get back => 'Terug';
 
   @override
-  String get seasonLetter => 'Seizoen';
+  String get seasonLetter => 'S';
 
   @override
-  String get episodeLetter => 'Aflevering';
+  String get episodeLetter => 'E';
 
   @override
   String get atoZ => 'A-Z';
@@ -363,7 +363,7 @@ class SNl extends S {
   String get uploadFileTitle => 'Upload bestand';
 
   @override
-  String get uploadFileMessage => 'Wilt u dit bestand uploaden?';
+  String get uploadFileMessage => 'Wil je dit bestand uploaden?';
 
   @override
   String get uploading => 'Aan het uploaden';
@@ -373,7 +373,7 @@ class SNl extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft of $charsTotal tekens over';
+    return '$charsLeft van $charsTotal tekens over';
   }
 
   @override
@@ -407,13 +407,13 @@ class SNl extends S {
   String get now => 'Nu';
 
   @override
-  String get debugInfoExplanation => 'Je bericht zal deze informatie meenemen, om ons te helpen het probleem beter te begrijpen.';
+  String get debugInfoExplanation => 'Je bericht zal deze informatie bevatten, om ons te helpen het probleem beter te begrijpen.';
 
   @override
   String get send => 'Verzenden';
 
   @override
-  String get sending => 'Verzenden';
+  String get sending => 'Aan het verzenden';
 
   @override
   String get thankYouSupportTitle => 'Bedankt voor je feedback!';
@@ -425,7 +425,7 @@ class SNl extends S {
   String get sendFail => 'Je bericht kon niet worden verzonden';
 
   @override
-  String get sendFailDescription => 'Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.';
+  String get sendFailDescription => 'Er ging iets fout. Controleer je internet verbinding en probeer opnieuw.';
 
   @override
   String get sendSuccessDescription => 'We stellen je feedback op prijs.';
@@ -442,7 +442,7 @@ class SNl extends S {
   }
 
   @override
-  String get submit => 'Invoeren';
+  String get submit => 'Indienen';
 
   @override
   String get wellDone => 'Goed gedaan!';
@@ -455,7 +455,7 @@ class SNl extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'De tijden in de TV gids worden weergegeven in de lokale tijd: $timeZone';
+    return 'Het tijdschema van de tv-gids is in je lokale tijd: $timeZone';
   }
 
   @override
@@ -480,7 +480,7 @@ class SNl extends S {
   String get readBy => 'Gelezen door';
 
   @override
-  String get broadcasts => 'Uitzending';
+  String get broadcasts => 'Uitzendingen';
 
   @override
   String get calendar => 'Kalender';
@@ -511,7 +511,7 @@ class SNl extends S {
 
   @override
   String shareTime(String time) {
-    return 'Delen van punt $time';
+    return 'Deel van $time';
   }
 
   @override
@@ -536,13 +536,13 @@ class SNl extends S {
   String get eventsTab => 'Evenementen';
 
   @override
-  String get audioLanguage => 'Taal geluid';
+  String get audioLanguage => 'Taal audio';
 
   @override
   String get subtitlesLanguage => 'Taal ondertiteling';
 
   @override
-  String get removeFromRecentSearches => 'Wilt u dit element verwijderen uit het overzicht met recente zoekopdrachten?';
+  String get removeFromRecentSearches => 'Wil je dit onderdeel verwijderen uit het overzicht met recente zoekopdrachten?';
 
   @override
   String get noTransmissionToday => 'Geen geplande uitzending voor vandaag';
@@ -618,12 +618,12 @@ class SNl extends S {
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Goed gedaan, je eerste study topic $name afgerond';
+    return 'Goed gedaan, je hebt het study topic $name afgerond';
   }
 
   @override
   String videoCount(int count) {
-    return '$count video\'s';
+    return '${count}Video\'s';
   }
 
   @override
@@ -638,7 +638,7 @@ class SNl extends S {
 
   @override
   String resourceCount(int count) {
-    return '$count bronnen';
+    return '$count middelen';
   }
 
   @override
@@ -704,7 +704,7 @@ class SNl extends S {
   String get youCanContactUsAt => 'Neem contact op via';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is een initiatief van BCC Media, een mediastichting binnen de BCC Federatie die inhoud met positieve en christelijke waarden produceert en verspreidt.';
+  String get biblekidsAbout => 'Bible Kids is een initiatief van BCC Media, een media stichting binnen de BCC Federatie die inhoud met positieve en christelijke waarden produceert en verspreidt.';
 
   @override
   String get askYourParents => 'Vraag je ouders';
@@ -752,7 +752,7 @@ class SNl extends S {
   String get youCanNowUseYourAccount => 'Je kunt nu je account gebruiken en een heleboel opbouwende onderwerpen ontdekken.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'Je kunt nu je account gebruiken en een heleboel opbouwende onderwerpen ontdekken.';
+  String get youCanNowLogInToYourAccount => 'Je kunt nu inloggen met je account en opbouwende onderwerpen ontdekken.';
 
   @override
   String get accountDeletionExplanation => 'Je staat op het punt een verzoek in te dienen om je account bij BCC Media en al je gegevens met betrekking tot deze app te verwijderen.';
@@ -762,7 +762,7 @@ class SNl extends S {
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Accounts worden gewoonlijk binnen $x werkdagen verwijderd.';
+    return 'Accounts worden meestal binnen $x werkdagen verwijderd.';
   }
 
   @override
@@ -784,7 +784,7 @@ class SNl extends S {
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Of ga naar $url en vul de code in: $code';
+    return 'Of ga naar $url en voer de code in: $code';
   }
 
   @override
@@ -867,10 +867,10 @@ class SNl extends S {
   String get noInternetConnection => 'Geen internetverbinding';
 
   @override
-  String get noInternetConnectionDescription => 'Maak verbinding met internet om alle video\'s te bekijken.';
+  String get noInternetConnectionDescription => 'Maak verbinding met internet om toegang te krijgen tot alle video\'s.';
 
   @override
-  String get noInternetButDontWorry => 'Geen internetverbinding,\nmaar maak je geen zorgen.';
+  String get noInternetButDontWorry => 'Geen internetverbinding, maar maak je geen zorgen.';
 
   @override
   String get hereAreAllTheVideosYouDownloaded => 'Hier zijn alle video\'s die je naar je apparaat hebt gedownload.';
@@ -918,7 +918,7 @@ class SNl extends S {
 
   @override
   String expiresIn(String time) {
-    return 'Verloopt op $time';
+    return 'Verloopt in $time';
   }
 
   @override
@@ -973,7 +973,7 @@ class SNl extends S {
   String get beta => 'Bèta';
 
   @override
-  String get betaExplanation => 'Deze functie bevindt zich in de bètafase en is momenteel niet beschikbaar voor alle gebruikers. Rapporteer eventuele problemen of feedback via de knop \'Contact\' in de instellingen.';
+  String get betaExplanation => 'Deze functie is in bèta en is momenteel nog niet beschikbaar voor alle gebruikers. Meld problemen of feedback via de knop \'Contact\' in de instellingen.';
 
   @override
   String get likedShorts => 'Korte films die ik leuk vind';
@@ -982,7 +982,7 @@ class SNl extends S {
   String get saveYourFavoriteShorts => 'Bewaar je favoriete korte films';
 
   @override
-  String get featureNotAvailableYet => 'Deze functie is nog niet beschikbaar op uw apparaat. Probeer het later opnieuw.';
+  String get featureNotAvailableYet => 'Deze functie is nog niet beschikbaar op je apparaat. Probeer het later nog eens';
 
   @override
   String get newFeature => 'Nieuwe functie';
@@ -1009,10 +1009,10 @@ class SNl extends S {
   String get thisVideoCantBeDownloaded => 'Deze video kan niet worden gedownload.';
 
   @override
-  String get videoLanguage => 'Videotaal';
+  String get videoLanguage => 'Taal van de video';
 
   @override
-  String get videoTextLanguage => 'Taal van videocontent';
+  String get videoTextLanguage => 'Taal van de tekst in de video';
 
   @override
   String get original => 'Origineel';
@@ -1033,46 +1033,46 @@ class SNl extends S {
 
   @override
   String skipTo(String chapter) {
-    return 'Ga naar $chapter';
+    return 'Overslaan naar $chapter';
   }
 
   @override
-  String get bmmBibleStudyTitle => 'Your Bible Study';
+  String get bmmBibleStudyTitle => 'Jouw Bijbelstudie';
 
   @override
   String bmmBibleStudyPoints(int points) {
-    return '$points points';
+    return '$points punten';
   }
 
   @override
-  String get answerTheQuiz => 'Answer the quiz';
+  String get answerTheQuiz => 'Beantwoord de quiz';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription => 'Verdien punten door correct te antwoorden';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
-    return 'You got $correct of $total answers correct';
+    return 'Je hebt $correct van $total antwoorden goed';
   }
 
   @override
-  String get studyAllAnswersCorrect => 'You got all answers correct';
+  String get studyAllAnswersCorrect => 'Je hebt alle antwoorden goed';
 
   @override
-  String get studyNoAnswersCorrect => 'You got no answers correct';
+  String get studyNoAnswersCorrect => 'Je hebt geen antwoorden goed';
 
   @override
-  String get studyAllAnswersCorrectDescription => 'Well done!';
+  String get studyAllAnswersCorrectDescription => 'Goed gedaan!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription => 'Volgende keer beter luisteren!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription => 'Goed gedaan! Maar nog steeds ruimte voor verbetering.';
 
   @override
-  String get studyAllQuestionsAnswered => 'You answered all questions';
+  String get studyAllQuestionsAnswered => 'Je hebt alle vragen beantwoord';
 
   @override
-  String get studyAllQuestionsAnsweredDescription => 'Well done!';
+  String get studyAllQuestionsAnsweredDescription => 'Goed gedaan!';
 }

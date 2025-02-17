@@ -49,7 +49,7 @@ class SDe extends S {
   String get logOutButton => 'Abmelden';
 
   @override
-  String get profileTab => 'Profil ';
+  String get profileTab => 'Profil';
 
   @override
   String get faq => 'Häufig gestellte Fragen';
@@ -61,7 +61,7 @@ class SDe extends S {
   String get signInButton => 'Einloggen';
 
   @override
-  String get signInOrSignUp => 'Registrieren / anmelden';
+  String get signInOrSignUp => 'Registrieren / Einloggen';
 
   @override
   String get signUpButton => 'Jetzt registrieren';
@@ -73,7 +73,7 @@ class SDe extends S {
   String get signUpDescription => 'Erhalten Sie Zugriff auf mehr Inhalte und bessere Funktionen, indem Sie ein Konto erstellen.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Ich bestätige, dass ich mindestens 13 Jahre alt bin und stimme den <a>Datenschutzbestimmungen</a> und <a>Nutzungsbedingungen</a>zu.';
+  String get signUpAgreePrivacyPolicy => 'Ich bestätige, dass ich mindestens 13 Jahre alt bin und stimme den <a>Datenschutzbestimmungen</a> und <a>Nutzungsbedingungen</a> zu.';
 
   @override
   String get setPassword => 'Neues Passwort';
@@ -85,7 +85,7 @@ class SDe extends S {
   String get loggedOutTitle => 'Ausgeloggt';
 
   @override
-  String get loggedOutMessage => 'Du wurdest ausgeloggt. Bitte logge dich wieder ein.';
+  String get loggedOutMessage => 'Du wurdest ausgeloggt. Bitte logge dich erneut ein.';
 
   @override
   String get makeDonation => 'Spenden';
@@ -109,13 +109,13 @@ class SDe extends S {
   String get open => 'Öffnen';
 
   @override
-  String get loginFailedCheckNetwork => 'Anmeldung fehlgeschlagen. Überprüfe deine Netzwerkverbindung und versuche es erneut.';
+  String get loginFailedCheckNetwork => 'Login fehlgeschlagen. Überprüfe deine Netzwerkverbindung und versuche es erneut.';
 
   @override
-  String get loginFailedTryAgain => 'Anmeldung fehlgeschlagen. Bitte versuche es später noch einmal.';
+  String get loginFailedTryAgain => 'Login fehlgeschlagen. Bitte versuche es später noch einmal.';
 
   @override
-  String get soundLanguage => 'Tonsprache';
+  String get soundLanguage => 'Ton-Sprache';
 
   @override
   String get subtitleLanguage => 'Untertitelsprache';
@@ -281,7 +281,7 @@ class SDe extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Du kannst nicht mehr als $elementCount Videos in der Warteschlange haben.';
+    return 'Du kannst nicht mehr als $elementCount Elemente in der Warteschlange haben.';
   }
 
   @override
@@ -291,7 +291,7 @@ class SDe extends S {
   String get tVLogin => 'Fernseher Login';
 
   @override
-  String get tVLoginSuccessful => 'Login erfolgreich, bitte auf Fernseher bestätigen.';
+  String get tVLoginSuccessful => 'Login erfolgreich, bitte auf dem Fernseher bestätigen.';
 
   @override
   String get seeMore => 'Mehr';
@@ -419,13 +419,13 @@ class SDe extends S {
   String get thankYouSupportTitle => 'Danke für dein Feedback!';
 
   @override
-  String get thankYouSupportDescription => 'Wir sind dankbar für jedes Feedback und wir werden uns so schnell wie möglich um das Anliegen kümmern.';
+  String get thankYouSupportDescription => 'Wir freuen uns über jedes Feedback und werden uns so schnell wie möglich um das Problem kümmern.';
 
   @override
   String get sendFail => 'Deine Nachricht konnte nicht gesendet werden';
 
   @override
-  String get sendFailDescription => 'Etwas ist schiefgelaufen. Bitte überprüfe deine Internetverbindung und versuche es erneut.';
+  String get sendFailDescription => 'Etwas ist schief gelaufen. Überprüfe deine Internetverbindung und versuche es noch einmal.';
 
   @override
   String get sendSuccessDescription => 'Wir schätzen dein Feedback.';
@@ -455,7 +455,7 @@ class SDe extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Der TV Programmplan ist deiner Ortszeit angepasst: $timeZone';
+    return 'Der Zeitplan des Fernsehprogramms wird in deiner Ortszeit angezeigt: $timeZone';
   }
 
   @override
@@ -618,12 +618,12 @@ class SDe extends S {
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Gut gemacht, du hast das erste Thema $name abgeschlossen';
+    return 'Gut gemacht, du hast die Studie $name abgeschlossen';
   }
 
   @override
   String videoCount(int count) {
-    return '$count Filme';
+    return '$count Videos';
   }
 
   @override
@@ -638,7 +638,7 @@ class SDe extends S {
 
   @override
   String resourceCount(int count) {
-    return '$count Inhalt';
+    return '$count Ressourcen';
   }
 
   @override
@@ -652,7 +652,7 @@ class SDe extends S {
 
   @override
   String passwordConditionLength(int n) {
-    return 'Mindestens $n Zeichen';
+    return 'Minimum $n Zeichen';
   }
 
   @override
@@ -762,7 +762,7 @@ class SDe extends S {
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Die Kontolöschung erfolgt in der Regel innerhalb von $x Werktagen.';
+    return 'Die Löschung des Kontos erfolgt in der Regel innerhalb von $x Werktagen.';
   }
 
   @override
@@ -770,7 +770,7 @@ class SDe extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Kontolöschung erfolgreich beantragt. Sie erhalten eine E-Mail unter $email. Um Ihre Identität zu bestätigen, müssen Sie auf diese E-Mail antworten, um mit der Löschung fortfahren zu können.';
+    return 'Kontolöschung erfolgreich beantragt. Du wirst eine E-Mail an $email erhalten. Um deine Identität zu bestätigen, musst du auf diese E-Mail antworten, damit wir mit der Löschung fortfahren können.';
   }
 
   @override
@@ -780,11 +780,11 @@ class SDe extends S {
   String get playGame => 'Spiel spielen';
 
   @override
-  String get tvScanQr => 'Scannen Sie den Code und melden Sie sich mit Ihrem Telefon an';
+  String get tvScanQr => 'Scanne den Code und melde dich mit deinem Handy an';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Oder gehen Sie zu $url und geben Sie den Code ein: $code';
+    return 'Oder gehe auf $url und gib folgenden Code ein: $code';
   }
 
   @override
@@ -816,7 +816,7 @@ class SDe extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Audio in $lang nicht verfügbar';
+    return 'Audio nicht verfügbar in $lang';
   }
 
   @override
@@ -827,7 +827,7 @@ class SDe extends S {
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'Die Videodateigröße beträgt $size.';
+    return 'Die Größe der Videodatei ist $size.';
   }
 
   @override
@@ -870,7 +870,7 @@ class SDe extends S {
   String get noInternetConnectionDescription => 'Stelle eine Verbindung zum Internet her, um auf alle Videos zuzugreifen.';
 
   @override
-  String get noInternetButDontWorry => 'Keine Internetverbindung, aber keine Sorge.';
+  String get noInternetButDontWorry => 'Keine Internetverbindung, \naber keine Sorge.';
 
   @override
   String get hereAreAllTheVideosYouDownloaded => 'Hier findest du alle Videos, die du auf dein Gerät heruntergeladen hast.';
@@ -899,7 +899,7 @@ class SDe extends S {
   String get allSubtitlesWillBeAvailableOffline => 'Alle Untertitel werden offline verfügbar sein';
 
   @override
-  String get downloading => ' wird heruntergeladen';
+  String get downloading => 'wird heruntergeladen';
 
   @override
   String get failed => 'Fehlgeschlagen';
@@ -918,7 +918,7 @@ class SDe extends S {
 
   @override
   String expiresIn(String time) {
-    return 'Läuft in $time ab';
+    return 'Läuft ab in $time';
   }
 
   @override
@@ -973,16 +973,16 @@ class SDe extends S {
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'Diese Funktion befindet sich in der Betaphase und ist derzeit nicht für alle Benutzer verfügbar. Bitte melden Sie etwaige Probleme oder Rückmeldungen über die Schaltfläche „Kontakt“ in den Einstellungen.';
+  String get betaExplanation => 'Diese Funktion befindet sich in der Beta-Phase und ist derzeit nicht für alle Nutzer freigegeben. Bitte melde alle Probleme oder Rückmeldungen über die Schaltfläche \"Kontakt\" in den Einstellungen.';
 
   @override
-  String get likedShorts => 'Kurzfilme, die mir gefallen';
+  String get likedShorts => 'Shorts, die mir gefallen';
 
   @override
   String get saveYourFavoriteShorts => 'Speichere deine Lieblingskurzfilme';
 
   @override
-  String get featureNotAvailableYet => 'Diese Funktion ist auf deinem Endgerät noch nicht verfügbar. Bitte versuche es später noch einmal.';
+  String get featureNotAvailableYet => 'Diese Funktion ist auf deinem Gerät noch nicht verfügbar. Bitte versuche es später noch einmal.';
 
   @override
   String get newFeature => 'Neue Funktion';
@@ -1028,51 +1028,51 @@ class SDe extends S {
 
   @override
   String countItems(int x) {
-    return '$x items';
+    return '$x Objekte';
   }
 
   @override
   String skipTo(String chapter) {
-    return 'Weiter zu $chapter';
+    return 'Zu $chapter überspringen';
   }
 
   @override
-  String get bmmBibleStudyTitle => 'Your Bible Study';
+  String get bmmBibleStudyTitle => 'Dein Bibelstudium';
 
   @override
   String bmmBibleStudyPoints(int points) {
-    return '$points points';
+    return '$points Punkte';
   }
 
   @override
-  String get answerTheQuiz => 'Answer the quiz';
+  String get answerTheQuiz => 'Beantworte das Quiz';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription => 'Verdiene Punkte, indem du richtig antwortest';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
-    return 'You got $correct of $total answers correct';
+    return 'Du hast $correct von $total richtig beantwortet.';
   }
 
   @override
-  String get studyAllAnswersCorrect => 'You got all answers correct';
+  String get studyAllAnswersCorrect => 'Du hast alle Antworten richtig';
 
   @override
-  String get studyNoAnswersCorrect => 'You got no answers correct';
+  String get studyNoAnswersCorrect => 'Du hast keine richtigen Antworten';
 
   @override
-  String get studyAllAnswersCorrectDescription => 'Well done!';
+  String get studyAllAnswersCorrectDescription => 'Gut gemacht!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription => 'Hör das nächste Mal lieber etwas genauer hin!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription => 'Gut gemacht! Aber es gibt noch Raum für Verbesserungen.';
 
   @override
-  String get studyAllQuestionsAnswered => 'You answered all questions';
+  String get studyAllQuestionsAnswered => 'Du hast alle Fragen beantwortet';
 
   @override
-  String get studyAllQuestionsAnsweredDescription => 'Well done!';
+  String get studyAllQuestionsAnsweredDescription => 'Gut gemacht!';
 }
