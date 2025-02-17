@@ -1,4 +1,17 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.59+2300219...v) (2025-02-10)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.61+2300221...v) (2025-02-17)
+
+
+
+## [5.6.61+2300221](https://github.com/bcc-code/bcc-media-app/compare/v5.6.60+2300220...v5.6.61+2300221) (2025-02-17)
+
+
+### Features
+
+* **pc25:** translations ([3ade4c4](https://github.com/bcc-code/bcc-media-app/commit/3ade4c40c2166715885360c2c9a33e161c17f346))
+
+
+
+## [5.6.60+2300220](https://github.com/bcc-code/bcc-media-app/compare/v5.6.59+2300219...v5.6.60+2300220) (2025-02-10)
 
 
 ### Bug Fixes
