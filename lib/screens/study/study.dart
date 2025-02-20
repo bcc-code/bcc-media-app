@@ -122,18 +122,26 @@ Future _handleTasksCompleted(
     gqlClient.mutate$confirmAchievement(Options$Mutation$confirmAchievement(variables: Variables$Mutation$confirmAchievement(id: achievement.id)));
   }
 
-  debugPrint('answers: $answers');
   if (answers != null && answers.isNotEmpty) {
     final bmmApi = ref.read(bmmApiProvider).getQuestionApi();
-    bmmApi.questionAnswersPost(
-        handleBccmAnswerCommandBccmAnswer: answers
-            .map(
-              (answer) => HandleBccmAnswerCommandBccmAnswer((b) {
-                b.questionId = answer['questionId'];
-                b.selectedAnswerId = answer['answerId'];
-                b.answeredCorrectly = answer['answeredCorrectly'];
-              }),
-            )
-            .toBuiltList());
+    try {
+      bmmApi.questionAnswersPost(
+          handleBccmAnswerCommandBccmAnswer: answers
+              .map(
+                (answer) => HandleBccmAnswerCommandBccmAnswer((b) {
+                  b.questionId = answer['questionId'];
+                  b.selectedAnswerId = answer['answerId'];
+                  b.answeredCorrectly = answer['answeredCorrectly'];
+                }),
+              )
+              .toBuiltList());
+    } catch (err) {
+      ref.read(analyticsProvider).log(LogEvent(
+            name: 'could not post study answers to BMM',
+            message: err.toString(),
+            meta: {'answers': answers},
+            pageCode: 'study',
+          ));
+    }
   }
 }
