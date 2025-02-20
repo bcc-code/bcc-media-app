@@ -455,7 +455,7 @@ class SEs extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'El horario de la guía de televisión está en su hora local $timeZone';
+    return 'El horario de la guía de televisión está en su hora local: $timeZone';
   }
 
   @override
@@ -623,7 +623,7 @@ class SEs extends S {
 
   @override
   String videoCount(int count) {
-    return 'Videos';
+    return '$count Videos';
   }
 
   @override
@@ -784,7 +784,7 @@ class SEs extends S {
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'O ve a %@\ne introduce el código: %@';
+    return 'O ve a $url e introduce el código: $code';
   }
 
   @override
@@ -1028,7 +1028,7 @@ class SEs extends S {
 
   @override
   String countItems(int x) {
-    return 'objetos';
+    return '$x objetos';
   }
 
   @override

@@ -373,7 +373,7 @@ class STr extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft / $charsTotal karakter kaldı';
+    return '$charsLeft/$charsTotal karakter kaldı';
   }
 
   @override
@@ -623,7 +623,7 @@ class STr extends S {
 
   @override
   String videoCount(int count) {
-    return 'Videolar';
+    return '$count Videolar';
   }
 
   @override
@@ -816,7 +816,7 @@ class STr extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Konum mevcut değil';
+    return 'Konum mevcut değil $lang';
   }
 
   @override
@@ -1041,7 +1041,7 @@ class STr extends S {
 
   @override
   String bmmBibleStudyPoints(int points) {
-    return '100 Puan';
+    return '$points Puan';
   }
 
   @override
