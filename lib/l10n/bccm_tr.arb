@@ -488,7 +488,7 @@
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{charsLeft} / {charsTotal} karakter kaldı",
+  "charactersLimit": "{charsLeft}/{charsTotal} karakter kaldı",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -836,7 +836,7 @@
       }
     }
   },
-  "videoCount": "Videolar",
+  "videoCount": "{count} Videolar",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -1115,7 +1115,7 @@
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Konum mevcut değil",
+  "audioNotAvailableInLanguage": "Konum mevcut değil {lang}",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1429,7 +1429,7 @@
   "@bmmBibleStudyTitle": {
     "description": "The title shown on the Bible Study widget."
   },
-  "bmmBibleStudyPoints": "100 Puan",
+  "bmmBibleStudyPoints": "{points} Puan",
   "@bmmBibleStudyPoints": {
     "description": "The users total points in the Bible Study widget. It is shown underneath the title in the widget.",
     "placeholders": {
