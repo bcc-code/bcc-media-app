@@ -1,4 +1,20 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.61+2300221...v) (2025-02-17)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.62+2300222...v) (2025-02-20)
+
+
+
+## [5.6.62+2300222](https://github.com/bcc-code/bcc-media-app/compare/v5.6.61+2300221...v5.6.62+2300222) (2025-02-20)
+
+
+### Bug Fixes
+
+* **l10n:** update translations ([5eb00d1](https://github.com/bcc-code/bcc-media-app/commit/5eb00d1ec4e78cea3cd1be51107235187d67b6a3))
+* **study:** log if error on bmm answer post ([5ab2ae7](https://github.com/bcc-code/bcc-media-app/commit/5ab2ae74fd85ff3b68210d8fe86275508f185a61))
+* **study:** log video watched event errors ([2d604b5](https://github.com/bcc-code/bcc-media-app/commit/2d604b55df0d8f757859042f4697d8bedf16a5e3))
+
+
+### Features
+
+* **l10n:** update translations ([9fd46dc](https://github.com/bcc-code/bcc-media-app/commit/9fd46dce05d354a0deab7851e172ac59d88cf9ec))
 
 
 
