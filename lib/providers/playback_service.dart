@@ -77,9 +77,17 @@ class PlaybackService {
             b.timestampStart = DateTime.now().toUtc();
           });
           cache.set(episodeId, event);
-          await ref.read(bmmApiProvider).getStatisticsApi().statisticsWatchedPost(
-                processWatchedCommandEvent: BuiltList.from([event]),
-              );
+          try {
+            await ref.read(bmmApiProvider).getStatisticsApi().statisticsWatchedPost(
+                  processWatchedCommandEvent: BuiltList.from([event]),
+                );
+          } catch (err) {
+            ref.read(analyticsProvider).log(LogEvent(
+                  name: 'could not send video watched event to BMM',
+                  message: err.toString(),
+                  meta: {'event': event},
+                ));
+          }
         }
       },
       onPlaybackEnded: (event) async {
