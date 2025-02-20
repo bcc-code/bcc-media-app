@@ -31,7 +31,7 @@ class SEs extends S {
   String get loading => 'Cargando';
 
   @override
-  String get loginPageDisplay1 => 'El mensaje más \npoderoso del mundo';
+  String get loginPageDisplay1 => 'El mensaje más poderoso del mundo';
 
   @override
   String get loginPageDisplay2 => 'Ver series, espectáculos y películas basadas en Valores cristianos';
@@ -61,19 +61,19 @@ class SEs extends S {
   String get signInButton => 'Iniciar Sesión';
 
   @override
-  String get signInOrSignUp => 'Registrarse/ ingresar';
+  String get signInOrSignUp => 'Registrarte/ ingresar';
 
   @override
   String get signUpButton => 'Regístrate ahora';
 
   @override
-  String get signUpTitle => 'Regístrarse';
+  String get signUpTitle => 'Regístrate';
 
   @override
   String get signUpDescription => 'Obtenga acceso a más contenido y mejores funciones creando una cuenta.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Certifico que tengo 13 años o más y acepto la <a>Política de privacidad</a> y los <a>Términos de uso</a>.';
+  String get signUpAgreePrivacyPolicy => 'Certifico que tengo 13 años o más y acepto la <a>Política de privacidad</a> y las <a>Condiciones de uso</a>.';
 
   @override
   String get setPassword => 'Configurar la clave';
@@ -85,7 +85,7 @@ class SEs extends S {
   String get loggedOutTitle => 'Sesión cerrada';
 
   @override
-  String get loggedOutMessage => 'Tu sesión ha sido cerrada. Por favor inicia sesión nuevamente.';
+  String get loggedOutMessage => 'Se ha cerrado tu sesión. Por favor, conéctate de nuevo.';
 
   @override
   String get makeDonation => 'Haz una donación';
@@ -109,10 +109,10 @@ class SEs extends S {
   String get open => 'Abierta';
 
   @override
-  String get loginFailedCheckNetwork => 'La conexión ha fallado, revise su conexión a internet e inténtelo una vez más.';
+  String get loginFailedCheckNetwork => 'Inicio de Sesión fallido Revise su conexión a internet e inténtelo más tarde.';
 
   @override
-  String get loginFailedTryAgain => 'La conexión ha fallado. Por favor inténtelo más tarde.';
+  String get loginFailedTryAgain => 'Inicio de Sesión fallido Por favor inténtelo de nuevo más tarde.';
 
   @override
   String get soundLanguage => 'Lenguaje del audio';
@@ -281,7 +281,7 @@ class SEs extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'No puede tener más de $elementCount elementos en cola.';
+    return 'No puedes tener más de $elementCount elementos en cola.';
   }
 
   @override
@@ -321,7 +321,7 @@ class SEs extends S {
   String get high => 'Alta';
 
   @override
-  String get emptySearch => 'Puedes buscar todo el contenido de BCC Media, series, películas y episodios.';
+  String get emptySearch => 'Puedes buscar todo el contenido de BCC Media. Series, vídeos y episodios.';
 
   @override
   String get back => 'Atrás';
@@ -373,7 +373,7 @@ class SEs extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return 'Quedan $charsLeft de $charsTotal caracteres';
+    return '$charsLeft de $charsTotal caracteres restantes';
   }
 
   @override
@@ -425,7 +425,7 @@ class SEs extends S {
   String get sendFail => 'Tu mensaje no pudo ser enviado';
 
   @override
-  String get sendFailDescription => 'Algo salió mal. Verifique su conexión a Internet e intente nuevamente.';
+  String get sendFailDescription => 'Algo salió mal. Comprueba tu conexión a Internet e inténtalo de nuevo.';
 
   @override
   String get sendSuccessDescription => 'Agradecemos sus comentarios.';
@@ -438,7 +438,7 @@ class SEs extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponible$date';
+    return 'Disponible/s $date';
   }
 
   @override
@@ -455,7 +455,7 @@ class SEs extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'El horario de la guía de televisión está en su hora local: $timeZone';
+    return 'El horario de la guía de televisión está en su hora local $timeZone';
   }
 
   @override
@@ -623,7 +623,7 @@ class SEs extends S {
 
   @override
   String videoCount(int count) {
-    return '$count videos';
+    return 'Videos';
   }
 
   @override
@@ -633,7 +633,7 @@ class SEs extends S {
 
   @override
   String posterCount(int count) {
-    return '$count posters';
+    return '$count carteles';
   }
 
   @override
@@ -642,7 +642,7 @@ class SEs extends S {
   }
 
   @override
-  String get continueButton => 'Continúe';
+  String get continueButton => 'Continuar';
 
   @override
   String get registerButton => 'Registro';
@@ -762,7 +762,7 @@ class SEs extends S {
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Por lo general, la eliminación de la cuenta se realizará en un plazo de $x días laborables.';
+    return 'La eliminación de la cuenta se realizará normalmente en un plazo de $x días laborables.';
   }
 
   @override
@@ -770,7 +770,7 @@ class SEs extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Eliminación de cuenta solicitada con éxito. Recibirás un correo electrónico en la dirección $email. Para confirmar su identidad, necesitamos que responda a ese correo electrónico para proceder a la eliminación.';
+    return 'Eliminación de cuenta solicitada con éxito. Recibirás un correo electrónico en $email. Para confirmar tu identidad, necesitamos que respondas a ese correo electrónico para proceder a la eliminación.';
   }
 
   @override
@@ -784,7 +784,7 @@ class SEs extends S {
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'O vaya a $url e introduzca el código: $code';
+    return 'O ve a %@\ne introduce el código: %@';
   }
 
   @override
@@ -973,7 +973,7 @@ class SEs extends S {
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'Esta función está en versión beta y actualmente no está disponible para todos los usuarios. Informe cualquier problema o comentario a través del botón \"Contacto\" en la configuración.';
+  String get betaExplanation => 'Esta función está en fase beta y actualmente no está disponible para todos los usuarios. Por favor, informa de cualquier problema o comentario a través del botón \"Contacto\" de la configuración.';
 
   @override
   String get likedShorts => 'Cortos que gustaron';
@@ -982,7 +982,7 @@ class SEs extends S {
   String get saveYourFavoriteShorts => 'Guarda tus cortos favoritos';
 
   @override
-  String get featureNotAvailableYet => 'Esta función aún no está disponible en tu dispositivo. Por favor, inténtalo de nuevo más tarde.';
+  String get featureNotAvailableYet => 'Esta función aún no está disponible en tu dispositivo. Por favor inténtelo de nuevo más tarde.';
 
   @override
   String get newFeature => 'Nueva caracteristica';
@@ -997,7 +997,7 @@ class SEs extends S {
   String get shortsLikedAndSavedDescription => 'Puedes encontrar todos los cortos que te gustan en tu perfil.';
 
   @override
-  String get excerptFrom => 'Excerpt from';
+  String get excerptFrom => 'Extracto de';
 
   @override
   String get downloadedVideosGuideDescription => 'Puedes encontrar tus videos descargados en \"Perfil\".';
@@ -1028,51 +1028,51 @@ class SEs extends S {
 
   @override
   String countItems(int x) {
-    return '$x elementos';
+    return 'objetos';
   }
 
   @override
   String skipTo(String chapter) {
-    return 'Skip to $chapter';
+    return 'Saltar a $chapter';
   }
 
   @override
-  String get bmmBibleStudyTitle => 'Your Bible Study';
+  String get bmmBibleStudyTitle => 'Tu estudio bíblico';
 
   @override
   String bmmBibleStudyPoints(int points) {
-    return '$points points';
+    return '$points puntos';
   }
 
   @override
-  String get answerTheQuiz => 'Answer the quiz';
+  String get answerTheQuiz => 'Responde el Cuestionario';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription => 'Gana puntos respondiendo correctamente';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
-    return 'You got $correct of $total answers correct';
+    return 'Has acertado $correct de $total respuestas';
   }
 
   @override
-  String get studyAllAnswersCorrect => 'You got all answers correct';
+  String get studyAllAnswersCorrect => 'Has acertado todas las respuestas';
 
   @override
-  String get studyNoAnswersCorrect => 'You got no answers correct';
+  String get studyNoAnswersCorrect => 'No has acertado ninguna respuesta';
 
   @override
-  String get studyAllAnswersCorrectDescription => 'Well done!';
+  String get studyAllAnswersCorrectDescription => '¡Bien hecho!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription => 'Será mejor que la próxima vez escuches con más atención.';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription => '¡Bien hecho! Pero aún se puede mejorar.';
 
   @override
-  String get studyAllQuestionsAnswered => 'You answered all questions';
+  String get studyAllQuestionsAnswered => 'Has respondido a todas las preguntas';
 
   @override
-  String get studyAllQuestionsAnsweredDescription => 'Well done!';
+  String get studyAllQuestionsAnsweredDescription => '¡Bien hecho!';
 }

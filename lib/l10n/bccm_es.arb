@@ -580,7 +580,7 @@
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Disponible/s '{'0'}'",
+  "availableFrom": "Disponible/s {date}",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -605,7 +605,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "El horario de la guía de televisión está en su hora local '{'0'}'",
+  "timezoneInformation": "El horario de la guía de televisión está en su hora local {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -827,7 +827,7 @@
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Buen trabajo completando el tema de estudio '{'name'}'",
+  "achievementStudyTopic": "Buen trabajo completando el tema de estudio {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -1429,7 +1429,7 @@
   "@bmmBibleStudyTitle": {
     "description": "The title shown on the Bible Study widget."
   },
-  "bmmBibleStudyPoints": "'{'0'}' puntos",
+  "bmmBibleStudyPoints": "{points} puntos",
   "@bmmBibleStudyPoints": {
     "description": "The users total points in the Bible Study widget. It is shown underneath the title in the widget.",
     "placeholders": {

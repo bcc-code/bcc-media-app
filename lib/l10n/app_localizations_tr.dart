@@ -37,10 +37,10 @@ class STr extends S {
   String get loginPageDisplay2 => 'Hristiyan değerlerine dayalı diziler, şovlar ve filmler izleyin';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Kutsal Kitap\'ın mesajını hayata geçiriyoruz!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'Vizyonumuz, çocukların İsa\'yı hayatlarının geri kalanı boyunca en iyi arkadaşları olarak deneyimlemeleridir.';
 
   @override
   String get loginPageDisplay3 => 'Yapımcı: BCC Media';
@@ -61,22 +61,22 @@ class STr extends S {
   String get signInButton => 'Giriş';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'Kaydolun / Giriş yapın';
 
   @override
-  String get signUpButton => 'Sign up now';
+  String get signUpButton => 'Şimdi kaydolun';
 
   @override
-  String get signUpTitle => 'Sign up';
+  String get signUpTitle => 'Kaydolun';
 
   @override
-  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+  String get signUpDescription => 'Bir hesap oluşturarak daha fazla içeriğe ve daha iyi özelliklere erişin.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => '13 yaşında veya daha büyük olduğumu ve <a>Gizlilik Politikası</a> ile <a>Kullanım Koşullarını</a> kabul ettiğimi onaylıyorum.';
 
   @override
-  String get setPassword => 'Set password';
+  String get setPassword => 'Şifre belirleme';
 
   @override
   String get tryAgainButton => 'Tekrar dene';
@@ -88,7 +88,7 @@ class STr extends S {
   String get loggedOutMessage => 'Çıkış yaptınız. Lütfen tekrar giriş yapın.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Bağış Yapın';
 
   @override
   String get mostWatched => 'En çok izlenen';
@@ -106,13 +106,13 @@ class STr extends S {
   String get ok => 'Tamam';
 
   @override
-  String get open => 'Open';
+  String get open => 'Aç';
 
   @override
-  String get loginFailedCheckNetwork => 'Giriş başarısız. Ağ bağlantınızı kontrol edip tekrar deneyin.';
+  String get loginFailedCheckNetwork => 'Giriş Hatası Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.';
 
   @override
-  String get loginFailedTryAgain => 'Giriş başarısız. Lütfen daha sonra tekrar deneyiniz.';
+  String get loginFailedTryAgain => 'Giriş Hatası Lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get soundLanguage => 'Ses dili';
@@ -148,73 +148,73 @@ class STr extends S {
   String get contactUs => 'Bize Ulaşın';
 
   @override
-  String get deviceInfo => 'Device info';
+  String get deviceInfo => 'Cihaz bilgisi';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Daha iyi destek için cihaz bilgilerini ekleyin.';
 
   @override
-  String get contactSeeData => 'Click to see data.';
+  String get contactSeeData => 'Verileri görmek için tıklayın.';
 
   @override
-  String get contactName => 'Name';
+  String get contactName => 'İsim';
 
   @override
-  String get contactNameHint => 'Type in your name';
+  String get contactNameHint => 'Adınızı yazın';
 
   @override
-  String get contactEmail => 'Your contact email';
+  String get contactEmail => 'İletişim e-postanız';
 
   @override
-  String get contactEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'E-posta adresinizi yazın';
 
   @override
-  String get contactMessage => 'Message';
+  String get contactMessage => 'Mesaj';
 
   @override
-  String get contactMessageHint => 'Enter your message here';
+  String get contactMessageHint => 'Mesajınızı buraya girin';
 
   @override
-  String get deviceInfoDevice => 'Device';
+  String get deviceInfoDevice => 'Cihaz';
 
   @override
-  String get deviceInfoEnvOverride => 'Environment override';
+  String get deviceInfoEnvOverride => 'Ortam geçersiz kılma';
 
   @override
-  String get deviceInfoManufacturer => 'Manufacturer';
+  String get deviceInfoManufacturer => 'Üretici firma:';
 
   @override
-  String get deviceInfoOs => 'Operating System';
+  String get deviceInfoOs => 'İşletim Sistemi';
 
   @override
-  String get deviceInfoScreenSize => 'Screen Size';
+  String get deviceInfoScreenSize => 'Ekran Boyutu';
 
   @override
-  String get deviceInfoAppVer => 'App Version';
+  String get deviceInfoAppVer => 'Uygulama Sürümü';
 
   @override
-  String get deviceInfoUserId => 'User ID';
+  String get deviceInfoUserId => 'Kullanıcı Kimliği';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc => 'Mesajınız, daha iyi destek sağlamamıza yardımcı olmak için bu bilgileri içerecektir.';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Bir özellik önerin';
 
   @override
   String get cancel => 'İptal';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'İptal etmek istediğinize emin misiniz?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Kaydedilmemiş tüm değişiklikler kaybolacaktır.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Geri';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Evet, İptal';
 
   @override
   String get done => 'Tamam';
@@ -229,7 +229,7 @@ class STr extends S {
   String get none => 'Hiçbiri';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Sonraki Bölüm';
 
   @override
   String get auto => 'Otomatik';
@@ -253,7 +253,7 @@ class STr extends S {
   String get search => 'Ara';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Geri Bildirim Gönder';
 
   @override
   String get noResults => 'Sonuç bulunamadı';
@@ -265,7 +265,7 @@ class STr extends S {
   String get play => 'Oynat';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Dur';
 
   @override
   String get castQueue => 'Yayın sırası';
@@ -281,7 +281,7 @@ class STr extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Kuyrukta en fazla $elementCount öğeniz olabilir.';
+    return 'Sırada $elementCount öğeden fazla öğe olamaz.';
   }
 
   @override
@@ -321,7 +321,7 @@ class STr extends S {
   String get high => 'Yüksek';
 
   @override
-  String get emptySearch => 'BCC Media\'daki tüm içeriği arayabilirsiniz. Diziler, videolar ve bölümler.';
+  String get emptySearch => 'BCC Media\'daki tüm içerikleri arayabilirsiniz. Diziler, videolar ve bölümler.';
 
   @override
   String get back => 'Geri';
@@ -425,7 +425,7 @@ class STr extends S {
   String get sendFail => 'Mesajınız gönderilemedi';
 
   @override
-  String get sendFailDescription => 'Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edip tekrar deneyin.';
+  String get sendFailDescription => 'Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edin ve tekrar deneyin.';
 
   @override
   String get sendSuccessDescription => 'Geribildirim için teşekkürler.';
@@ -455,17 +455,17 @@ class STr extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Tv rehberi zaman çizelgesi yerel saatinize göredir: $timeZone';
+    return 'Tv rehberi zaman çizelgesi yerel saatinizde: $timeZone';
   }
 
   @override
   String get share => 'Paylaş';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Daha fazla göster';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Daha az göster';
 
   @override
   String get comingSoon => 'Yakında geliyor';
@@ -521,7 +521,7 @@ class STr extends S {
   String get privacyPolicy => 'Gizlilik Politikası';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Kullanım Koşulları';
 
   @override
   String get categoriesTab => 'Kategoriler';
@@ -566,10 +566,10 @@ class STr extends S {
   String get exploreContent => 'İçeriği keşfedin';
 
   @override
-  String get explorePublicContent => 'Explore public content';
+  String get explorePublicContent => 'Herkese açık içeriği keşfedin';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Keşfetmeye başlayın';
 
   @override
   String get taskCompleted => 'görev tamamlandı';
@@ -584,7 +584,7 @@ class STr extends S {
   String get discoverMore => 'Daha fazlasını keşfet';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Kilidi açmak için önceki görevleri tamamlayın';
 
   @override
   String get studyDiscoverMoreDescription => 'İlgili kaynaklardan daha fazla ilham ve fikir edinin';
@@ -623,17 +623,17 @@ class STr extends S {
 
   @override
   String videoCount(int count) {
-    return '$count video';
+    return 'Videolar';
   }
 
   @override
   String taskCount(int count) {
-    return '$count görev';
+    return '$count görevler';
   }
 
   @override
   String posterCount(int count) {
-    return '$count poster';
+    return '$count posterler';
   }
 
   @override
@@ -645,434 +645,434 @@ class STr extends S {
   String get continueButton => 'Devam et';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Kayıt Olun';
 
   @override
   String get achievements => 'Başarılar';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Minimum $n karakter';
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Küçük harf, büyük harf ve rakam içermelidir.';
 
   @override
   String get oops => 'Hata!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Bu içeriğe erişiminiz yok.';
 
   @override
-  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+  String get notFound => 'Aradığınız içerik mevcut görünmüyor.';
 
   @override
   String get mustBeLoggedIn => 'Bu içeriği izlemek için giriş yapmalısınız';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Endişelenmeyin, hala tadını çıkarabileceğiniz çok sayıda içerik var!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Ulaşılamadı';
 
   @override
   String get details => 'Detaylar';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'Benim listem';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Biliyor muydunuz?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Kalbe dokunarak favori programlarınızı \"Listem \"e ekleyebilirsiniz.';
 
   @override
-  String get selectSeason => 'Select season';
+  String get selectSeason => 'Sezon seçin';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'Hesabımı sil';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Hesabımı ve BCC Media uygulamasıyla ilgili verilerimi silmek istediğimden eminim.';
 
   @override
-  String get areYouSure => 'Are you sure?';
+  String get areYouSure => 'Emin misin?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Bizimle şu adresten iletişime geçebilirsiniz';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'BCC Media, BCC federasyonunda pozitif ve Hristiyan değerlere sahip içerik üreten ve dağıtan bir medya kuruluşudur.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Ailenize sorun';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'Nedir bu?';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Cevap';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Cevabı kontrol edin';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Bu videoya yalnızca uygulamaya giriş yapmış kullanıcılar erişebilir.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Hesabınızı doğrulayın';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'Aşağıdakilere bir e-posta gönderdik';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Hesabınızı doğrulamak için e-postadaki bağlantıya tıklayın.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'E-posta uygulamasını açın';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'E-postayı yeniden gönder';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Yüklü posta uygulaması yok';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'Doğrulama e-postası gönderildi';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Hala bir e-posta almadıysanız, lütfen şu adresten destek ekibiyle iletişime geçin';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Hesap oluşturuldu';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Artık hesabınızı kullanabilir ve çeşitli eğitici içerikleri keşfedebilirsiniz.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Artık hesabınıza giriş yapabilir ve çeşitli eğitici içerikleri keşfedebilirsiniz.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'BCC Media\'daki hesabınızı ve bu uygulamayla ilgili tüm verilerinizi silmeyi talep etmek üzeresiniz.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'Bu geri alınamayacak bir eylemdir.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'Hesap silme işlemi genellikle $x iş günü içinde yapılacaktır.';
   }
 
   @override
-  String get accountDeletionTitle => 'Delete my account';
+  String get accountDeletionTitle => 'Hesabımı sil';
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'Hesap silme işlemi başarıyla talep edildi. $email adresinden bir e-posta alacaksınız. Kimliğinizi doğrulamak için, silme işlemine devam etmek üzere bu e-postayı yanıtlamanız gerekmektedir.';
   }
 
   @override
-  String get gamesTab => 'Games';
+  String get gamesTab => 'Oyunlar';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'Oyun Oyna';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Kodu tarayın ve telefonunuzla oturum açın';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Ya da $url adresine gidin ve kodu girin: $code';
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Bölümler';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'İzleme ilerlemesini kaldır';
 
   @override
-  String get showDescription => 'Show description';
+  String get showDescription => 'Açıklamayı göster';
 
   @override
-  String get releaseDate => 'Release date';
+  String get releaseDate => 'Yayın tarihi';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Geçerli';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Yaş derecelendirmesi';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Hepsi';
 
   @override
-  String get offline => 'Offline';
+  String get offline => 'Çevrimdışı';
 
   @override
   String get downloadButton => 'İndir';
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Audio not available in $lang';
+    return 'Konum mevcut değil';
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+  String get notEnoughAvailableSpace => 'Cihazınızda yeterli kullanılabilir alan yok';
 
   @override
-  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+  String get considerDeletingOtherVideos => 'Uygulamada indirdiğiniz diğer videoları silmeyi düşünün.';
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'The video file size is $size.';
+    return 'Video dosyası boyutu $size.';
   }
 
   @override
-  String get gotIt => 'Got it';
+  String get gotIt => 'Anladım';
 
   @override
-  String get saveYourFavorites => 'Save your favorite videos';
+  String get saveYourFavorites => 'Favori videolarınızı kaydedin';
 
   @override
-  String get saveYourFavoritesDescription => 'Tap on the heart icon on a video to save it in your profile.';
+  String get saveYourFavoritesDescription => 'Profilinize kaydetmek için bir videonun üzerindeki kalp simgesine dokunun.';
 
   @override
-  String get yourFavorites => 'Your favorites';
+  String get yourFavorites => 'Favorileriniz';
 
   @override
-  String get downloaded => 'Downloaded';
+  String get downloaded => 'İndirildi';
 
   @override
-  String get saveVideosForOfflineViewing => 'Save videos for offline viewing';
+  String get saveVideosForOfflineViewing => 'Çevrimdışı görüntüleme için videoları kaydedin';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
+  String get tapOnTheDownloadIcon => 'İndirmek ve çevrimdışıyken oynatmak için bir videonun üzerindeki indirme simgesine dokunun.';
 
   @override
-  String get removeOfflineVideo => 'Remove offline video?';
+  String get removeOfflineVideo => 'Çevrimdışı videoyu kaldırın?';
 
   @override
-  String get removeOfflineVideoDescription => 'By removing this video it will no longer be available without a network connection.';
+  String get removeOfflineVideoDescription => 'Bu videoyu kaldırdığınızda artık bir ağ bağlantısı olmadan kullanılamayacaktır.';
 
   @override
-  String get removeFromDeviceButton => 'Remove from device';
+  String get removeFromDeviceButton => 'Cihazdan çıkarın';
 
   @override
-  String get keepVideoButton => 'Keep video';
+  String get keepVideoButton => 'Videoyu sakla';
 
   @override
-  String get noInternetConnection => 'No internet connection';
+  String get noInternetConnection => 'İnternet bağlantısı yok';
 
   @override
-  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+  String get noInternetConnectionDescription => 'Tüm videolara erişmek için internete bağlanın.';
 
   @override
-  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+  String get noInternetButDontWorry => 'İnternet bağlantısı yok, ama endişelenmeyin.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
+  String get hereAreAllTheVideosYouDownloaded => 'İşte cihazınıza indirdiğiniz tüm videolar.';
 
   @override
-  String get connectToExplore => 'Connect to the internet to explore all videos.';
+  String get connectToExplore => 'Tüm videoları keşfetmek için internete bağlanın.';
 
   @override
-  String get language => 'Language';
+  String get language => 'Dil';
 
   @override
   String estimatedFileSize(String size) {
-    return 'Estimated file size: $size';
+    return 'Tahmini dosya boyutu: $size';
   }
 
   @override
-  String get downloadVideo => 'Download video';
+  String get downloadVideo => 'Video indir';
 
   @override
-  String get noSubtitles => 'No subtitles';
+  String get noSubtitles => 'Altyazı yok';
 
   @override
-  String get subtitlesIncluded => 'Subtitles included';
+  String get subtitlesIncluded => 'Altyazılar dahil';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'All subtitles will be available offline';
+  String get allSubtitlesWillBeAvailableOffline => 'Tüm altyazılar çevrimdışı olarak kullanılabilir';
 
   @override
-  String get downloading => 'Downloading';
+  String get downloading => 'İndiriliyor';
 
   @override
-  String get failed => 'Failed';
+  String get failed => 'Başarısız';
 
   @override
-  String get finished => 'Finished';
+  String get finished => 'Bitti';
 
   @override
-  String get paused => 'Paused';
+  String get paused => 'Duraklatıldı';
 
   @override
-  String get queued => 'Queued';
+  String get queued => 'Sırada';
 
   @override
-  String get removing => 'Removing';
+  String get removing => 'Kaldırma';
 
   @override
   String expiresIn(String time) {
-    return 'Expires in $time';
+    return 'Son kullanma tarihi $time';
   }
 
   @override
-  String get availableOffline => 'Available offline';
+  String get availableOffline => 'Çevrimdışı musait';
 
   @override
-  String get technicalDetails => 'Technical details';
+  String get technicalDetails => 'Teknik ayrıntılar';
 
   @override
-  String get contentLanguage => 'Content language';
+  String get contentLanguage => 'İçerik Dili';
 
   @override
   String get contentLanguageShort => 'İçerik';
 
   @override
-  String get appLanguageShort => 'App';
+  String get appLanguageShort => 'Uygulama';
 
   @override
-  String get playRandom => 'Play random';
+  String get playRandom => 'Rastgele oynat';
 
   @override
-  String get addLanguage => 'Add language';
+  String get addLanguage => 'Dil ekleyin';
 
   @override
-  String get preferredLanguages => 'Preferred languages';
+  String get preferredLanguages => 'Seçilen Dil';
 
   @override
-  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
+  String get contentLanguageExplanation => 'Ses ve altyazı dili tercihinize uyması için dilleri yeniden sıralayın.';
 
   @override
-  String get otherLanguages => 'Other languages';
+  String get otherLanguages => 'Diğer diller';
 
   @override
-  String get select => 'Select';
+  String get select => 'Seç';
 
   @override
-  String get supportBibleKids => 'Support Bible Kids';
+  String get supportBibleKids => 'Kutsal Kitap Çocuklarını Destekleyin';
 
   @override
-  String get donateViaPaypal => 'Donate via PayPal';
+  String get donateViaPaypal => 'PayPal ile bağış yapın';
 
   @override
   String get shortsTab => 'Shorts';
 
   @override
-  String get autoGenerated => 'Auto-generated';
+  String get autoGenerated => 'Otomatik oluşturulan';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'The transcriptions are auto-generated and might contain errors.';
+  String get shortsTranscriptionDisclaimer => 'Transkripsiyonlar otomatik olarak oluşturulmuştur ve hatalar içerebilir.';
 
   @override
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'This feature is in beta and is currently not released to all users. Please report any issues or feedback via the \'Contact\' button in settings.';
+  String get betaExplanation => 'Bu özellik beta aşamasındadır ve şu anda tüm kullanıcılar için yayınlanmamıştır. Lütfen herhangi bir sorunu veya geri bildirimi ayarlardaki \'İletişim\' düğmesi aracılığıyla bildirin.';
 
   @override
-  String get likedShorts => 'Liked shorts';
+  String get likedShorts => 'Beğenilen shortlar';
 
   @override
-  String get saveYourFavoriteShorts => 'Save your favorite shorts';
+  String get saveYourFavoriteShorts => 'En sevdiğiniz şortları kaydedin';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Bu özellik henüz cihazınızda mevcut değil. Lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get newFeature => 'New feature';
+  String get newFeature => 'Yeni özellik';
 
   @override
-  String get shortsFeatureDescription => 'Discover short and powerful excerpts, and jump right into its full episode.';
+  String get shortsFeatureDescription => 'Kısa ve güçlü alıntıları keşfedin ve doğrudan tam bölümüne atlayın.';
 
   @override
-  String get likedAndSaved => 'Liked and saved';
+  String get likedAndSaved => 'Beğenildi ve kaydedildi';
 
   @override
-  String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
+  String get shortsLikedAndSavedDescription => 'Beğendiğiniz tüm şortları profilinizde bulabilirsiniz.';
 
   @override
-  String get excerptFrom => 'Excerpt from';
+  String get excerptFrom => 'Alıntı';
 
   @override
-  String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
+  String get downloadedVideosGuideDescription => 'İndirdiğiniz videoları \"Profil\" altında bulabilirsiniz.';
 
   @override
-  String get openStore => 'Open store';
+  String get openStore => 'Açık mağaza';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Bu video indirilemiyor.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Video dili';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Video metin dili';
 
   @override
-  String get original => 'Original';
+  String get original => 'Orijinal';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Video metin dilini değiştirmek için ayarları açın';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'Bir şeyler yanlış gitti.';
 
   @override
-  String get all => 'All';
+  String get all => 'Hepsi';
 
   @override
   String countItems(int x) {
-    return '$x items';
+    return '$x öğeler';
   }
 
   @override
   String skipTo(String chapter) {
-    return 'Skip to $chapter';
+    return 'Şuraya atla $chapter';
   }
 
   @override
-  String get bmmBibleStudyTitle => 'Your Bible Study';
+  String get bmmBibleStudyTitle => 'İncil çalışmanız';
 
   @override
   String bmmBibleStudyPoints(int points) {
-    return '$points points';
+    return '100 Puan';
   }
 
   @override
-  String get answerTheQuiz => 'Answer the quiz';
+  String get answerTheQuiz => 'Testi cevaplayın';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription => 'Doğru cevap vererek puan kazanın';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
-    return 'You got $correct of $total answers correct';
+    return '$total adresinden $correct adresini doğru cevapladınız';
   }
 
   @override
-  String get studyAllAnswersCorrect => 'You got all answers correct';
+  String get studyAllAnswersCorrect => 'Tüm cevapları doğru yaptınız';
 
   @override
-  String get studyNoAnswersCorrect => 'You got no answers correct';
+  String get studyNoAnswersCorrect => 'Hiçbir doğru cevabın yok.';
 
   @override
-  String get studyAllAnswersCorrectDescription => 'Well done!';
+  String get studyAllAnswersCorrectDescription => 'Aferin!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription => 'Bir dahaki sefere biraz daha yakından dinleseniz iyi olur!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription => 'Aferin! Ancak yine de iyileştirme için yer var.';
 
   @override
-  String get studyAllQuestionsAnswered => 'You answered all questions';
+  String get studyAllQuestionsAnswered => 'Tüm soruları yanıtladınız';
 
   @override
-  String get studyAllQuestionsAnsweredDescription => 'Well done!';
+  String get studyAllQuestionsAnsweredDescription => 'Aferin!';
 }
