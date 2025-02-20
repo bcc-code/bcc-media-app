@@ -488,7 +488,7 @@
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{charsLeft} / {charsTotal} karakter kaldı",
+  "charactersLimit": "{charsLeft}/{charsTotal} karakter kaldı",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -1234,7 +1234,7 @@
   "@allSubtitlesWillBeAvailableOffline": {
     "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "downloading": "İndiriliyor",
+  "downloading": "{0} İndiriliyor",
   "@downloading": {
     "description": "Download status, indicating that the video is currently downloading."
   },
@@ -1429,7 +1429,7 @@
   "@bmmBibleStudyTitle": {
     "description": "The title shown on the Bible Study widget."
   },
-  "bmmBibleStudyPoints": "100 Puan",
+  "bmmBibleStudyPoints": "{points} Puan",
   "@bmmBibleStudyPoints": {
     "description": "The users total points in the Bible Study widget. It is shown underneath the title in the widget.",
     "placeholders": {
