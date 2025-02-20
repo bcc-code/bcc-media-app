@@ -605,7 +605,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "El horario de la guía de televisión está en su hora local {timeZone}",
+  "timezoneInformation": "El horario de la guía de televisión está en su hora local '{'0'}'",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -827,7 +827,7 @@
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Buen trabajo completando el tema de estudio {name}",
+  "achievementStudyTopic": "Buen trabajo completando el tema de estudio '{'name'}'",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -836,7 +836,7 @@
       }
     }
   },
-  "videoCount": "Videos",
+  "videoCount": "{count} Videos",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -1067,7 +1067,7 @@
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "O ve a %@\ne introduce el código: %@",
+  "tvEnterCode": "O ve a {url} e introduce el código: {code}",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1407,7 +1407,7 @@
   "@all": {
     "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
   },
-  "countItems": "objetos",
+  "countItems": "{x} objetos",
   "@countItems": {
     "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
