@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.62+2300222...v) (2025-02-20)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.63+2300223...v) (2025-02-21)
+
+
+
+## [5.6.63+2300223](https://github.com/bcc-code/bcc-media-app/compare/v5.6.62+2300222...v5.6.63+2300223) (2025-02-21)
+
+
+### Features
+
+* **study:** use final hvhe endpoints ([ac54e75](https://github.com/bcc-code/bcc-media-app/commit/ac54e75c108542b5bacc736d2ccb1661cf0ce866))
 
 
 
