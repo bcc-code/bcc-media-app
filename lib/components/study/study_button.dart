@@ -196,9 +196,10 @@ class StudyQuizButton extends HookWidget {
 
   String title(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
     final alternativesCorrectAnswers = progressOverview.progress.alternativesTasksCorrect;
+    final alternativesCompletedAnswers = progressOverview.progress.alternativesTasksCompleted;
     final alternativesTotal = progressOverview.progress.alternativesTasksTotal;
 
-    if (!progressOverview.completed) {
+    if (!progressOverview.completed || alternativesCompletedAnswers != alternativesTotal) {
       return S.of(context).answerTheQuiz;
     }
     if (alternativesTotal == 0) {
@@ -218,9 +219,10 @@ class StudyQuizButton extends HookWidget {
 
   String secondaryTitle(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
     final alternativesCorrectAnswers = progressOverview.progress.alternativesTasksCorrect;
+    final alternativesCompletedAnswers = progressOverview.progress.alternativesTasksCompleted;
     final alternativesTotal = progressOverview.progress.alternativesTasksTotal;
 
-    if (!progressOverview.completed) {
+    if (!progressOverview.completed || alternativesCompletedAnswers != alternativesTotal) {
       return S.of(context).studyAnswerTheQuizDescription;
     }
     if (alternativesTotal == 0) {
@@ -241,9 +243,10 @@ class StudyQuizButton extends HookWidget {
   Color color(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
     final design = DesignSystem.of(context);
     final alternativesCorrectAnswers = progressOverview.progress.alternativesTasksCorrect;
+    final alternativesCompletedAnswers = progressOverview.progress.alternativesTasksCompleted;
     final alternativesTotal = progressOverview.progress.alternativesTasksTotal;
 
-    if (!progressOverview.completed) {
+    if (!progressOverview.completed || alternativesCompletedAnswers != alternativesTotal) {
       return design.colors.separatorOnLight;
     }
     if (alternativesTotal == 0) {
@@ -259,7 +262,7 @@ class StudyQuizButton extends HookWidget {
   }
 
   SvgPicture icon(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
-    if (progressOverview.completed) {
+    if (progressOverview.completed && progressOverview.progress.alternativesTasksCompleted == progressOverview.progress.alternativesTasksTotal) {
       return SvgPicture.string(
         SvgIcons.check,
         height: 24,
