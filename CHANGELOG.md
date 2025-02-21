@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.63+2300223...v) (2025-02-21)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.64+2300224...v) (2025-02-21)
+
+
+
+## [5.6.64+2300224](https://github.com/bcc-code/bcc-media-app/compare/v5.6.63+2300223...v5.6.64+2300224) (2025-02-21)
+
+
+### Bug Fixes
+
+* **study:** show default study button if alternatives not yet calculated ([88190e5](https://github.com/bcc-code/bcc-media-app/commit/88190e5a1b63cae3c5fa792e6d20d80f09ac43fa))
 
 
 
