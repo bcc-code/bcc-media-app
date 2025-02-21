@@ -9,22 +9,19 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../misc/horizontal_slider.dart';
 
 class BmmAchievementSection extends StatelessWidget {
-  final ForbildePoints? data;
-  final GetProjectStandingsProjectStandings? projectStandings;
+  final HvheProjectBox? data;
 
-  const BmmAchievementSection(this.data, this.projectStandings, {super.key});
+  const BmmAchievementSection(this.data, {super.key});
 
   onAchievementTapped(BuildContext context, AchievementModel item) async {
     final id = item.id;
     if (id != null) {
-      // TODO: go to achievement page in BMM
-      openBmmPage('/');
+      openBmmPage('/achievement/$id');
     }
   }
 
-  onButtonTapped(ForbildePoints? data) {
-    // TODO: go to standings page in BMM
-    openBmmPage('/');
+  onButtonTapped(HvheProjectBox? data) {
+    openBmmPage('/hvhe-standings');
   }
 
   @override
@@ -32,8 +29,8 @@ class BmmAchievementSection extends StatelessWidget {
     final design = DesignSystem.of(context);
     final achievements = data?.achievements;
     final points = data?.points;
-    final boysPoints = projectStandings?.boysPoints;
-    final girlsPoints = projectStandings?.girlsPoints;
+    final boysPoints = data?.boysPoints;
+    final girlsPoints = data?.girlsPoints;
 
     return Container(
       // padding: const EdgeInsets.symmetric(vertical: 16),
