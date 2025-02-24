@@ -37,10 +37,10 @@ class SIt extends S {
   String get loginPageDisplay2 => 'Guarda serie, spettacoli e film basati sui valori cristiani';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle => 'Diamo vita al messaggio della Bibbia!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle => 'La nostra visione è che i bambini sperimentino Gesù come il loro migliore amico, per il resto della loro vita.';
 
   @override
   String get loginPageDisplay3 => 'Prodotto da BCC Media';
@@ -58,22 +58,22 @@ class SIt extends S {
   String get bccMediaCenter => 'BCC Media è una fondazione mediatica della federazione BCC che produce e distribuisce contenuti con valori positivi e cristiani.';
 
   @override
-  String get signInButton => '7 / 5000\nRegistrati';
+  String get signInButton => 'Accedi';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'Iscriviti / Accedi';
 
   @override
   String get signUpButton => 'Registrati ora';
 
   @override
-  String get signUpTitle => '7 / 5000\nRegistrati';
+  String get signUpTitle => 'Registrati';
 
   @override
   String get signUpDescription => 'Ottieni l\'accesso a più contenuti e funzioni migliori creando un account.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Dichiaro di avere almeno 13 anni e di accettare l\'<a>Informativa sulla privacy</a> e le <a>Condizioni d\'uso</a>.';
 
   @override
   String get setPassword => 'Imposta la password';
@@ -85,10 +85,10 @@ class SIt extends S {
   String get loggedOutTitle => 'Disconnesso';
 
   @override
-  String get loggedOutMessage => 'Sei stato disconnesso. Per favore esegui nuovamente l\'accesso.';
+  String get loggedOutMessage => 'Sei stato disconnesso. Effettua nuovamente il login.';
 
   @override
-  String get makeDonation => 'Make a donation';
+  String get makeDonation => 'Fai una donazione';
 
   @override
   String get mostWatched => 'I più visti';
@@ -106,13 +106,13 @@ class SIt extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Open';
+  String get open => 'Apri';
 
   @override
-  String get loginFailedCheckNetwork => 'Accesso fallito. Controlla la tua connessione di rete e riprova.';
+  String get loginFailedCheckNetwork => 'Accesso non riuscito Controlla la tua connessione di rete e riprova.';
 
   @override
-  String get loginFailedTryAgain => 'Accesso fallito. Per favore riprova più tardi.';
+  String get loginFailedTryAgain => 'Accesso non riuscito Per favore riprova più tardi.';
 
   @override
   String get soundLanguage => 'Linguaggio del suono';
@@ -148,73 +148,73 @@ class SIt extends S {
   String get contactUs => 'Contattaci';
 
   @override
-  String get deviceInfo => 'Device info';
+  String get deviceInfo => 'Info sul dispositivo';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo => 'Includi le informazioni sul dispositivo per un supporto migliore.';
 
   @override
-  String get contactSeeData => 'Click to see data.';
+  String get contactSeeData => 'Clicca per vedere i dati.';
 
   @override
-  String get contactName => 'Name';
+  String get contactName => 'Nome';
 
   @override
-  String get contactNameHint => 'Type in your name';
+  String get contactNameHint => 'Digita il tuo nome';
 
   @override
-  String get contactEmail => 'Your contact email';
+  String get contactEmail => 'La tua email di contatto';
 
   @override
-  String get contactEmailHint => 'Type in your email address';
+  String get contactEmailHint => 'Inserisci il tuo indirizzo e-mail';
 
   @override
-  String get contactMessage => 'Message';
+  String get contactMessage => 'Messaggio';
 
   @override
-  String get contactMessageHint => 'Enter your message here';
+  String get contactMessageHint => 'Inserisci il tuo messaggio qui';
 
   @override
-  String get deviceInfoDevice => 'Device';
+  String get deviceInfoDevice => 'Dispositivo';
 
   @override
-  String get deviceInfoEnvOverride => 'Environment override';
+  String get deviceInfoEnvOverride => 'Sovrascrittura dell\'ambiente';
 
   @override
-  String get deviceInfoManufacturer => 'Manufacturer';
+  String get deviceInfoManufacturer => 'Produttore';
 
   @override
-  String get deviceInfoOs => 'Operating System';
+  String get deviceInfoOs => 'Sistema operativo';
 
   @override
-  String get deviceInfoScreenSize => 'Screen Size';
+  String get deviceInfoScreenSize => 'Dimensioni dello schermo';
 
   @override
-  String get deviceInfoAppVer => 'App Version';
+  String get deviceInfoAppVer => 'Versione dell\'applicazione:';
 
   @override
-  String get deviceInfoUserId => 'User ID';
+  String get deviceInfoUserId => 'ID utente';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc => 'Il tuo messaggio includerà queste informazioni, per aiutarci a fornire un\'assistenza migliore.';
 
   @override
-  String get userVoice => 'Suggest a feature';
+  String get userVoice => 'Suggerisci una funzione';
 
   @override
   String get cancel => 'Annulla';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Sei sicuro di voler cancellare?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Tutte le modifiche non salvate andranno perse.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Indietro';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Sì, Annulla';
 
   @override
   String get done => 'Fatto';
@@ -229,7 +229,7 @@ class SIt extends S {
   String get none => 'Nessuno';
 
   @override
-  String get nextEpisode => 'Next Episode';
+  String get nextEpisode => 'Prossimo episodio';
 
   @override
   String get auto => 'Auto';
@@ -253,7 +253,7 @@ class SIt extends S {
   String get search => 'Cerca';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Invia un feedback';
 
   @override
   String get noResults => 'Nessun risultato';
@@ -262,7 +262,7 @@ class SIt extends S {
   String get doYouWantCast => 'Vuoi lanciare questo video?';
 
   @override
-  String get play => 'Play';
+  String get play => 'Riproduci';
 
   @override
   String get pause => 'Pausa';
@@ -321,7 +321,7 @@ class SIt extends S {
   String get high => 'Alta';
 
   @override
-  String get emptySearch => 'Puoi cercare tutti i contenuti in BCC Media. Serie, video ed episodi.';
+  String get emptySearch => 'Puoi cercare tutti i contenuti di BCC Media. Serie, video ed episodi.';
 
   @override
   String get back => 'Indietro';
@@ -425,7 +425,7 @@ class SIt extends S {
   String get sendFail => 'Impossibile inviare il messaggio';
 
   @override
-  String get sendFailDescription => 'Qualcosa è andato storto. Controlla la tua connessione Internet e riprova.';
+  String get sendFailDescription => 'Qualcosa è andato storto. Controlla la connessione a internet e riprova.';
 
   @override
   String get sendSuccessDescription => 'Apprezziamo il tuo feedback.';
@@ -438,7 +438,7 @@ class SIt extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponibile$date';
+    return 'Disponibile $date';
   }
 
   @override
@@ -462,10 +462,10 @@ class SIt extends S {
   String get share => 'Condividi';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Mostra di più';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Mostra meno';
 
   @override
   String get comingSoon => 'Prossimamente';
@@ -511,7 +511,7 @@ class SIt extends S {
 
   @override
   String shareTime(String time) {
-    return 'Condividi dall\'ora $time';
+    return 'Condividi da $time';
   }
 
   @override
@@ -521,7 +521,7 @@ class SIt extends S {
   String get privacyPolicy => 'Informativa sulla privacy';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get termsOfUse => 'Condizioni d\'uso';
 
   @override
   String get categoriesTab => 'Categorie';
@@ -569,7 +569,7 @@ class SIt extends S {
   String get explorePublicContent => 'Esplora i contenuti pubblici';
 
   @override
-  String get startExploring => 'Start exploring';
+  String get startExploring => 'Inizia ad esplorare';
 
   @override
   String get taskCompleted => 'compito completato';
@@ -645,18 +645,18 @@ class SIt extends S {
   String get continueButton => 'Continua';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Registro';
 
   @override
   String get achievements => 'Risultati';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Minimo $n caratteri';
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Deve contenere lettere minuscole, maiuscole e numeri.';
 
   @override
   String get oops => 'Oops!';
@@ -665,7 +665,7 @@ class SIt extends S {
   String get dontHaveAccess => 'Non hai accesso a questo contenuto';
 
   @override
-  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+  String get notFound => 'Il contenuto che stai cercando non sembra esistere.';
 
   @override
   String get mustBeLoggedIn => 'Devi essere loggato per guardare questo contenuto';
@@ -680,133 +680,133 @@ class SIt extends S {
   String get details => 'Dettagli';
 
   @override
-  String get myList => 'My list';
+  String get myList => 'La mia lista';
 
   @override
-  String get didYouKnowTitle => 'Did you know?';
+  String get didYouKnowTitle => 'Lo sapevi?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent => 'Puoi aggiungere i tuoi programmi preferiti a \"La mia lista\" toccando il cuore.';
 
   @override
   String get selectSeason => 'Seleziona la stagione';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'Elimina il mio account';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Sono sicuro di voler cancellare il mio account e i miei dati relativi all\'applicazione BCC Media.';
 
   @override
   String get areYouSure => 'Sei sicuro?';
 
   @override
-  String get youCanContactUsAt => 'You can contact us at';
+  String get youCanContactUsAt => 'Puoi contattarci all\'indirizzo';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout => 'Bible Kids è un\'iniziativa di BCC Media, una fondazione mediatica della Federazione BCC che produce e distribuisce contenuti con valori positivi e cristiani.';
 
   @override
-  String get askYourParents => 'Ask your parents';
+  String get askYourParents => 'Chiedi ai tuoi genitori';
 
   @override
-  String get whatIsMath => 'What is';
+  String get whatIsMath => 'Che cos\'è';
 
   @override
-  String get answerLabel => 'Answer';
+  String get answerLabel => 'Risposta';
 
   @override
-  String get checkAnswerButton => 'Check answer';
+  String get checkAnswerButton => 'Controlla la risposta';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn => 'Questo video è accessibile solo agli utenti che hanno effettuato l\'accesso all\'applicazione.';
 
   @override
-  String get verifyYourAccount => 'Verify your account';
+  String get verifyYourAccount => 'Verifica il tuo account';
 
   @override
-  String get weHaveSentAnEmailTo => 'We have sent an email to';
+  String get weHaveSentAnEmailTo => 'Abbiamo inviato un\'e-mail a';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify => 'Clicca sul link contenuto nell\'e-mail per verificare il tuo account.';
 
   @override
-  String get openEmailApp => 'Open email app';
+  String get openEmailApp => 'Apri l\'applicazione e-mail';
 
   @override
-  String get resendEmail => 'Resend email';
+  String get resendEmail => 'Reinvia l\'email';
 
   @override
-  String get noMailAppsDescription => 'No mail apps installed';
+  String get noMailAppsDescription => 'Nessuna app di posta installata';
 
   @override
-  String get verificationEmailSent => 'Verification email sent';
+  String get verificationEmailSent => 'Email di verifica inviata';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail => 'Se non hai ancora ricevuto l\'e-mail, contatta l\'assistenza all\'indirizzo';
 
   @override
-  String get accountCreated => 'Account created';
+  String get accountCreated => 'Account creato';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount => 'Ora puoi utilizzare il tuo account ed esplorare una serie di contenuti edificanti.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount => 'Ora puoi accedere al tuo account ed esplorare una serie di contenuti edificanti.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation => 'Stai per richiedere la cancellazione del tuo account con BCC Media e di tutti i tuoi dati relativi a questa applicazione.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning => 'Si tratta di un\'azione che non può essere annullata.';
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Account deletion will usually be done within $x business days.';
+    return 'L\'eliminazione dell\'account avverrà solitamente entro $x giorni lavorativi.';
   }
 
   @override
-  String get accountDeletionTitle => 'Delete my account';
+  String get accountDeletionTitle => 'Elimina il mio account';
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Account deletion successfully requested. You will receive an email at $email. To confirm your identity, we need you reply to that email to proceed with the deletion.';
+    return 'L\'eliminazione dell\'account è stata richiesta con successo. Riceverai un\'e-mail all\'indirizzo $email. Per confermare la tua identità, abbiamo bisogno che tu risponda a questa e-mail per procedere con la cancellazione.';
   }
 
   @override
-  String get gamesTab => 'Games';
+  String get gamesTab => 'Giochi';
 
   @override
-  String get playGame => 'Play Game';
+  String get playGame => 'Gioca';
 
   @override
-  String get tvScanQr => 'Scan the code and sign in with your phone';
+  String get tvScanQr => 'Scansiona il codice e accedi con il tuo telefono';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Or go to $url and enter the code: $code';
+    return 'Oppure vai su $url e inserisci il codice: $code';
   }
 
   @override
-  String get chapters => 'Chapters';
+  String get chapters => 'Capitoli';
 
   @override
-  String get removeWatchProgress => 'Remove watch progress';
+  String get removeWatchProgress => 'Rimuovi l\'avanzamento dell\'orologio';
 
   @override
-  String get showDescription => 'Show description';
+  String get showDescription => 'Mostra la descrizione';
 
   @override
-  String get releaseDate => 'Release date';
+  String get releaseDate => 'Data di rilascio';
 
   @override
-  String get availableTo => 'Available to';
+  String get availableTo => 'Disponibile a';
 
   @override
-  String get ageRating => 'Age rating';
+  String get ageRating => 'Valutazione dell\'età';
 
   @override
-  String get ageRatingAll => 'All';
+  String get ageRatingAll => 'Tutto';
 
   @override
   String get offline => 'Offline';
@@ -816,119 +816,119 @@ class SIt extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Audio not available in $lang';
+    return 'L\'audio non è disponibile in $lang';
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+  String get notEnoughAvailableSpace => 'Lo spazio disponibile sul tuo dispositivo non è sufficiente';
 
   @override
-  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+  String get considerDeletingOtherVideos => 'Considera di eliminare altri video che hai scaricato nell\'app.';
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'The video file size is $size.';
+    return 'La dimensione del file video è $size.';
   }
 
   @override
-  String get gotIt => 'Got it';
+  String get gotIt => 'Capito!';
 
   @override
-  String get saveYourFavorites => 'Save your favorite videos';
+  String get saveYourFavorites => 'Salva i tuoi video preferiti';
 
   @override
-  String get saveYourFavoritesDescription => 'Tap on the heart icon on a video to save it in your profile.';
+  String get saveYourFavoritesDescription => 'Tocca l\'icona del cuore su un video per salvarlo nel tuo profilo.';
 
   @override
-  String get yourFavorites => 'Your favorites';
+  String get yourFavorites => 'I tuoi preferiti';
 
   @override
-  String get downloaded => 'Downloaded';
+  String get downloaded => 'Scaricato';
 
   @override
-  String get saveVideosForOfflineViewing => 'Save videos for offline viewing';
+  String get saveVideosForOfflineViewing => 'Salva i video per la visione offline';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
+  String get tapOnTheDownloadIcon => 'Tocca l\'icona di download di un video per scaricarlo e riprodurlo offline.';
 
   @override
-  String get removeOfflineVideo => 'Remove offline video?';
+  String get removeOfflineVideo => 'Rimuovere i video offline?';
 
   @override
-  String get removeOfflineVideoDescription => 'By removing this video it will no longer be available without a network connection.';
+  String get removeOfflineVideoDescription => 'Rimuovendo questo video, non sarà più disponibile senza una connessione di rete.';
 
   @override
-  String get removeFromDeviceButton => 'Remove from device';
+  String get removeFromDeviceButton => 'Rimuovi dal dispositivo';
 
   @override
-  String get keepVideoButton => 'Keep video';
+  String get keepVideoButton => 'Conserva il video';
 
   @override
-  String get noInternetConnection => 'No internet connection';
+  String get noInternetConnection => 'Nessuna connessione a Internet';
 
   @override
-  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+  String get noInternetConnectionDescription => 'Collegati a internet per accedere a tutti i video.';
 
   @override
-  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+  String get noInternetButDontWorry => 'Non c\'è connessione a internet, ma non preoccuparti.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
+  String get hereAreAllTheVideosYouDownloaded => 'Ecco tutti i video che hai scaricato sul tuo dispositivo.';
 
   @override
-  String get connectToExplore => 'Connect to the internet to explore all videos.';
+  String get connectToExplore => 'Collegati a internet per esplorare tutti i video.';
 
   @override
-  String get language => 'Language';
+  String get language => 'Lingua';
 
   @override
   String estimatedFileSize(String size) {
-    return 'Estimated file size: $size';
+    return 'Dimensione stimata del file: $size';
   }
 
   @override
-  String get downloadVideo => 'Download video';
+  String get downloadVideo => 'Scarica il video';
 
   @override
-  String get noSubtitles => 'No subtitles';
+  String get noSubtitles => 'Nessun sottotitolo';
 
   @override
-  String get subtitlesIncluded => 'Subtitles included';
+  String get subtitlesIncluded => 'Sottotitoli inclusi';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'All subtitles will be available offline';
+  String get allSubtitlesWillBeAvailableOffline => 'Tutti i sottotitoli saranno disponibili offline';
 
   @override
-  String get downloading => 'Downloading';
+  String get downloading => 'Sta scaricando';
 
   @override
-  String get failed => 'Failed';
+  String get failed => 'Fallito';
 
   @override
-  String get finished => 'Finished';
+  String get finished => 'Finito';
 
   @override
-  String get paused => 'Paused';
+  String get paused => 'In pausa';
 
   @override
-  String get queued => 'Queued';
+  String get queued => 'In coda';
 
   @override
-  String get removing => 'Removing';
+  String get removing => 'Rimozione';
 
   @override
   String expiresIn(String time) {
-    return 'Expires in $time';
+    return 'Scade il $time';
   }
 
   @override
-  String get availableOffline => 'Available offline';
+  String get availableOffline => 'Disponibile offline';
 
   @override
-  String get technicalDetails => 'Technical details';
+  String get technicalDetails => 'Dettagli tecnici';
 
   @override
-  String get contentLanguage => 'Content language';
+  String get contentLanguage => 'Lingua dei contenuti';
 
   @override
   String get contentLanguageShort => 'Contenuto';
@@ -937,142 +937,142 @@ class SIt extends S {
   String get appLanguageShort => 'App';
 
   @override
-  String get playRandom => 'Play random';
+  String get playRandom => 'Riproduzione casuale';
 
   @override
-  String get addLanguage => 'Add language';
+  String get addLanguage => 'Aggiungi la lingua';
 
   @override
-  String get preferredLanguages => 'Preferred languages';
+  String get preferredLanguages => 'Lingua preferita';
 
   @override
-  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
+  String get contentLanguageExplanation => 'Riordina le lingue in base alle tue preferenze per quanto riguarda la lingua dell\'audio e dei sottotitoli.';
 
   @override
-  String get otherLanguages => 'Other languages';
+  String get otherLanguages => 'Altre lingue';
 
   @override
-  String get select => 'Select';
+  String get select => 'Seleziona';
 
   @override
-  String get supportBibleKids => 'Support Bible Kids';
+  String get supportBibleKids => 'Sostieni i Bambini della Bibbia';
 
   @override
-  String get donateViaPaypal => 'Donate via PayPal';
+  String get donateViaPaypal => 'Donazioni con PayPal';
 
   @override
-  String get shortsTab => 'Shorts';
+  String get shortsTab => 'Pantaloncini';
 
   @override
-  String get autoGenerated => 'Auto-generated';
+  String get autoGenerated => 'Generato automaticamente';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'The transcriptions are auto-generated and might contain errors.';
+  String get shortsTranscriptionDisclaimer => 'Le trascrizioni sono generate automaticamente e potrebbero contenere errori.';
 
   @override
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'This feature is in beta and is currently not released to all users. Please report any issues or feedback via the \'Contact\' button in settings.';
+  String get betaExplanation => 'Questa funzione è in fase beta e al momento non è stata rilasciata a tutti gli utenti. Ti invitiamo a segnalare qualsiasi problema o feedback tramite il pulsante \"Contatta\" nelle impostazioni.';
 
   @override
-  String get likedShorts => 'Liked shorts';
+  String get likedShorts => 'Pantaloncini piaciuti';
 
   @override
-  String get saveYourFavoriteShorts => 'Save your favorite shorts';
+  String get saveYourFavoriteShorts => 'Salva i tuoi pantaloncini preferiti';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet => 'Questa funzione non è ancora disponibile sul tuo dispositivo. Per favore riprova più tardi.';
 
   @override
-  String get newFeature => 'New feature';
+  String get newFeature => 'Nuova funzione';
 
   @override
-  String get shortsFeatureDescription => 'Discover short and powerful excerpts, and jump right into its full episode.';
+  String get shortsFeatureDescription => 'Scopri estratti brevi e incisivi e guarda subito l\'episodio completo.';
 
   @override
-  String get likedAndSaved => 'Liked and saved';
+  String get likedAndSaved => 'Piaciuti e salvati';
 
   @override
-  String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
+  String get shortsLikedAndSavedDescription => 'Puoi trovare tutti i tuoi pantaloncini preferiti nel tuo profilo.';
 
   @override
-  String get excerptFrom => 'Excerpt from';
+  String get excerptFrom => 'Estratto da';
 
   @override
-  String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
+  String get downloadedVideosGuideDescription => 'Puoi trovare i tuoi video scaricati sotto la voce \"Profilo\".';
 
   @override
-  String get openStore => 'Open store';
+  String get openStore => 'Negozio aperto';
 
   @override
-  String get thisVideoCantBeDownloaded => 'This video can\'t be downloaded.';
+  String get thisVideoCantBeDownloaded => 'Questo video non può essere scaricato.';
 
   @override
-  String get videoLanguage => 'Video language';
+  String get videoLanguage => 'Lingua video';
 
   @override
-  String get videoTextLanguage => 'Video text language';
+  String get videoTextLanguage => 'Lingua del testo del video';
 
   @override
-  String get original => 'Original';
+  String get original => 'Originale';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang => 'Apri le impostazioni per cambiare la lingua del testo del video';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'Qualcosa è andato storto.';
 
   @override
-  String get all => 'All';
+  String get all => 'Tutto';
 
   @override
   String countItems(int x) {
-    return '$x items';
+    return '$x articoli';
   }
 
   @override
   String skipTo(String chapter) {
-    return 'Skip to $chapter';
+    return 'Passa a $chapter';
   }
 
   @override
-  String get bmmBibleStudyTitle => 'Your Bible Study';
+  String get bmmBibleStudyTitle => 'Il tuo studio biblico';
 
   @override
   String bmmBibleStudyPoints(int points) {
-    return '$points points';
+    return '$points punti';
   }
 
   @override
-  String get answerTheQuiz => 'Answer the quiz';
+  String get answerTheQuiz => 'Rispondi al quiz';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription => 'Guadagna punti rispondendo correttamente';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
-    return 'You got $correct of $total answers correct';
+    return 'Hai ottenuto $correct di $total risposte corrette';
   }
 
   @override
-  String get studyAllAnswersCorrect => 'You got all answers correct';
+  String get studyAllAnswersCorrect => 'Hai azzeccato tutte le risposte';
 
   @override
-  String get studyNoAnswersCorrect => 'You got no answers correct';
+  String get studyNoAnswersCorrect => 'Non hai ottenuto risposte corrette';
 
   @override
-  String get studyAllAnswersCorrectDescription => 'Well done!';
+  String get studyAllAnswersCorrectDescription => 'Ben fatto!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription => 'La prossima volta sarà meglio ascoltare più attentamente!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription => 'Ben fatto! Ma c\'è ancora margine di miglioramento.';
 
   @override
-  String get studyAllQuestionsAnswered => 'You answered all questions';
+  String get studyAllQuestionsAnswered => 'Hai risposto a tutte le domande';
 
   @override
-  String get studyAllQuestionsAnsweredDescription => 'Well done!';
+  String get studyAllQuestionsAnsweredDescription => 'Ben fatto!';
 }

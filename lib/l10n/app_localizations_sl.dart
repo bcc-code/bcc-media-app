@@ -31,7 +31,7 @@ class SSl extends S {
   String get loading => 'Nalaganje';
 
   @override
-  String get loginPageDisplay1 => 'Najmočnejše \nsporočilo na svetu';
+  String get loginPageDisplay1 => 'Najmočnejše sporočilo na svetu';
 
   @override
   String get loginPageDisplay2 => 'Oglej si serije in filme, narejene na podlagi krščanskih vrednot';
@@ -73,7 +73,7 @@ class SSl extends S {
   String get signUpDescription => 'Z ustvarjenim računom dobiš dostop do več vsebin in boljših funkcij.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Potrjujem, da sem star 13 let ali več, in se strinjam s <a>Pravili zasebnosti</a> in <a>Pogoji uporabe</a>.';
+  String get signUpAgreePrivacyPolicy => 'Potrjujem, da sem star 13 let ali več ter da se strinjam s <a>pravilnikom o zasebnosti</a> in <a>pogoji uporabe</a>.';
 
   @override
   String get setPassword => 'Nastavi geslo';
@@ -85,7 +85,7 @@ class SSl extends S {
   String get loggedOutTitle => 'Odjavljen';
 
   @override
-  String get loggedOutMessage => 'Odjavili ste se. Prosim, ponovno se prijavite.';
+  String get loggedOutMessage => 'Bili ste odjavljeni. Ponovno se prijavite.';
 
   @override
   String get makeDonation => 'Doniraj';
@@ -109,10 +109,10 @@ class SSl extends S {
   String get open => 'Odpri';
 
   @override
-  String get loginFailedCheckNetwork => 'Napaka pri prijavi. Preverite internetno povezavo in poskusite znova.';
+  String get loginFailedCheckNetwork => 'Prijava ni uspela. Preverite svojo internetno povezavo in poskusite znova.';
 
   @override
-  String get loginFailedTryAgain => 'Napaka pri prijavi. Prosim, poskusite znova kasneje.';
+  String get loginFailedTryAgain => 'Prijava ni uspela. Prosim, poskusite znova kasneje.';
 
   @override
   String get soundLanguage => 'Jezik zvoka';
@@ -321,7 +321,7 @@ class SSl extends S {
   String get high => 'Visoka';
 
   @override
-  String get emptySearch => 'Iščeš lahko po vsej vsebini od BCC Media. Serije, filmi in deli.';
+  String get emptySearch => 'Iščeš lahko po vsej vsebini BCC Media. Serije, filme in dele.';
 
   @override
   String get back => 'Nazaj';
@@ -623,17 +623,17 @@ class SSl extends S {
 
   @override
   String videoCount(int count) {
-    return '$count videoposnetki';
+    return '$count Videoposnetkov';
   }
 
   @override
   String taskCount(int count) {
-    return '$count naloge';
+    return '$count nalog';
   }
 
   @override
   String posterCount(int count) {
-    return '$count posterji';
+    return '$count plakatov';
   }
 
   @override
@@ -770,7 +770,7 @@ class SSl extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Izbris računa je bil potrjen. Prejel boš sporočilo na $email. Za potrditev identitete, moraš odgovoriti na sporočilo, da se bo račun izbrisal.';
+    return 'Uspešno zahtevano brisanje računa. Na naslov $email boste prejeli e-poštno sporočilo. Za potrditev vaše identitete prosimo odgovorite na e-poštno sporočilo, da lahko nadaljujemo z izbrisom.';
   }
 
   @override
@@ -870,7 +870,7 @@ class SSl extends S {
   String get noInternetConnectionDescription => 'Za dostop do vseh videoposnetkov se poveži z internetom.';
 
   @override
-  String get noInternetButDontWorry => 'Ni povezave,\nampak ne skrbi.';
+  String get noInternetButDontWorry => 'Ni povezave, ampak ne skrbi.';
 
   @override
   String get hereAreAllTheVideosYouDownloaded => 'Tukaj so vsi videi, ki si jih prenesel na svojo napravo.';
@@ -883,7 +883,7 @@ class SSl extends S {
 
   @override
   String estimatedFileSize(String size) {
-    return 'Ocenjena velikost datoteke: $size';
+    return 'Velikost datoteke: $size';
   }
 
   @override
@@ -982,7 +982,7 @@ class SSl extends S {
   String get saveYourFavoriteShorts => 'Shrani svoje priljubljene kratke filme';
 
   @override
-  String get featureNotAvailableYet => 'Ta funkcija še ni na voljo na tvoji napravi. Prosim poskusi kasneje.';
+  String get featureNotAvailableYet => 'Ta funkcija v vaši napravi še ni na voljo. Prosim, poskusite znova kasneje.';
 
   @override
   String get newFeature => 'Nova funkcija';
@@ -1037,42 +1037,42 @@ class SSl extends S {
   }
 
   @override
-  String get bmmBibleStudyTitle => 'Your Bible Study';
+  String get bmmBibleStudyTitle => 'Tvoje biblijsko gradivo';
 
   @override
   String bmmBibleStudyPoints(int points) {
-    return '$points points';
+    return '$points točk';
   }
 
   @override
-  String get answerTheQuiz => 'Answer the quiz';
+  String get answerTheQuiz => 'Odgovori na kviz';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription => 'S pravilnim odgovorom dobiš točke';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
-    return 'You got $correct of $total answers correct';
+    return 'Pravilni odgovori: $correct od $total';
   }
 
   @override
-  String get studyAllAnswersCorrect => 'You got all answers correct';
+  String get studyAllAnswersCorrect => 'Vsi odgovori so pravilni';
 
   @override
-  String get studyNoAnswersCorrect => 'You got no answers correct';
+  String get studyNoAnswersCorrect => 'Noben odgovor ni pravilen';
 
   @override
-  String get studyAllAnswersCorrectDescription => 'Well done!';
+  String get studyAllAnswersCorrectDescription => 'Odlično!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription => 'Naslednjič raje prisluhni malo bolj pozorno!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription => 'Odlično! A lahko si še boljši.';
 
   @override
-  String get studyAllQuestionsAnswered => 'You answered all questions';
+  String get studyAllQuestionsAnswered => 'Odgovoril si na vsa vprašanja';
 
   @override
-  String get studyAllQuestionsAnsweredDescription => 'Well done!';
+  String get studyAllQuestionsAnsweredDescription => 'Odlično!';
 }
