@@ -1234,7 +1234,7 @@
   "@allSubtitlesWillBeAvailableOffline": {
     "description": "Shown in the download form, indicating that all subtitles will be available offline."
   },
-  "downloading": "Sta scaricando {0}",
+  "downloading": "Sta scaricando",
   "@downloading": {
     "description": "Download status, indicating that the video is currently downloading."
   },
