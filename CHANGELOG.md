@@ -1,4 +1,21 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.64+2300224...v) (2025-02-21)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.65+2300225...v) (2025-02-25)
+
+
+
+## [5.6.65+2300225](https://github.com/bcc-code/bcc-media-app/compare/v5.6.64+2300224...v5.6.65+2300225) (2025-02-25)
+
+
+### Bug Fixes
+
+* fix failing tests ([181575b](https://github.com/bcc-code/bcc-media-app/commit/181575b05ac654d86f07b7d3fad009546b6ff858))
+* make tests not fail ([aefa2a4](https://github.com/bcc-code/bcc-media-app/commit/aefa2a4ec6fd11e63a451dd2bb8a1e993d743940))
+
+
+### Features
+
+* **l10n:** update translations ([b6cae0d](https://github.com/bcc-code/bcc-media-app/commit/b6cae0d7c83163511652e9f744d51c267f1f433b))
+* **l10n:** update translations ([a6179b5](https://github.com/bcc-code/bcc-media-app/commit/a6179b5f7982c2c4bfc2846cad8fd73e46786049))
+* update locales ([ab2b239](https://github.com/bcc-code/bcc-media-app/commit/ab2b239899608db2d1d7d3d59af2f4d36817459b))
 
 
 
