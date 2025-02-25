@@ -104,9 +104,8 @@ class SearchScreen extends HookConsumerWidget {
                     if (!val) {
                       focusing.value = false;
                     } else {
-                      // This is just to avoid some visual glitches with the _noInputInfoWidget.
-                      await Future.delayed(const Duration(milliseconds: 100));
                       if (context.mounted) {
+                        searchText.value = '';
                         focusing.value = true;
                       }
                     }

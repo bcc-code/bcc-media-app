@@ -20,6 +20,10 @@ appId: tv.brunstad.app
 # Stopped 3
 - stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/search"
+- assertVisible: Search
+- tapOn:
+    text: Search
+    index: 0
 - tapOn:
     text: Search
     index: 0
@@ -39,6 +43,10 @@ appId: tv.brunstad.app
 # Backgrounded 3
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/search"
+- assertVisible: Search
+- tapOn:
+    text: Search
+    index: 0
 - tapOn:
     text: Search
     index: 0
@@ -55,6 +63,10 @@ appId: tv.brunstad.app
 - assertVisible: .*Joseph.*
 # Foreground 3
 - openLink: "https://app.bcc.media/search"
+- assertVisible: Search
+- tapOn:
+    text: Search
+    index: 0
 - tapOn:
     text: Search
     index: 0

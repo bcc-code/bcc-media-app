@@ -77,7 +77,7 @@ class _InitScreenState extends ConsumerState<InitScreen> {
   }
 
   Future<void> continueNavigation({Uri? deepLinkUri}) async {
-    final deepLinkUri = await tryCatchRecordErrorAsync(() => AppLinks().getInitialLink());
+    final deepLinkUri = await tryCatchRecordErrorAsync(() => AppLinks().getLatestLink());
     if (!mounted) return;
     final router = context.router;
     if (deepLinkUri != null && !deepLinkUri.path.contains('init')) {
