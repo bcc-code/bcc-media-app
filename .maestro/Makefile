@@ -32,7 +32,7 @@ notifications:
 test:
 	mkdir -p reports
 	make notifications
-	maestro test --format junit --output reports/$(current_time).xml -e PLATFORM=${PLATFORM} flows/${flow}
+	maestro test --format junit --output reports/$(current_time).xml -e PLATFORM=${platform} flows/${flow}
 
 debug:
 	maestro test -c -e PLATFORM=${platform} ${flow}
