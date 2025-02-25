@@ -31,11 +31,11 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "Najpotężniejsza wiadomość na świecie",
+  "loginPageDisplay1": "Najpotężniejsze poselstwo na świecie",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Oglądaj seriale, produkcje i filmy bazujące na chrześcijańskich wartościach",
+  "loginPageDisplay2": "Oglądaj seriale, produkcje i filmy oparte na chrześcijańskich wartościach",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
@@ -43,11 +43,11 @@
   "@kidsOnboardingTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "kidsOnboardingSecondaryTitle": "Naszą wizją jest, aby dzieci doświadczyły Jezusa jako swojego najlepszego przyjaciela - do końca życia.",
+  "kidsOnboardingSecondaryTitle": "Naszą wizją jest, aby dzieci miały Jezusa za swojego najlepszego przyjaciela – do końca życia!",
   "@kidsOnboardingSecondaryTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "loginPageDisplay3": "Wyprodukowano przez BCC Media",
+  "loginPageDisplay3": "Wyprodukowane przez BCC Media",
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
@@ -147,7 +147,7 @@
   "@soundLanguage": {
     "description": "Settings item on profile page"
   },
-  "subtitleLanguage": "Jezyk napisów",
+  "subtitleLanguage": "Język napisów",
   "@subtitleLanguage": {
     "description": "Settings item on profile page"
   },
@@ -167,7 +167,7 @@
   "@cantPlayVideo": {
     "description": "Error message for the user displayed when video playback attempt failed."
   },
-  "about": "O aplikacji",
+  "about": "O nas",
   "@about": {
     "description": "Title of About page and item in profile page settings."
   },
@@ -392,7 +392,7 @@
   "@seeAll": {
     "description": "Button to see all of some collection."
   },
-  "series": "Serial",
+  "series": "Serie",
   "@series": {
     "description": "Title of the tab on info page"
   },
@@ -412,7 +412,7 @@
   "@low": {
     "description": "Low quality video option"
   },
-  "medium": "Przeciętna",
+  "medium": "Średnia",
   "@medium": {
     "description": "Medium quality video option"
   },
@@ -432,7 +432,7 @@
   "@seasonLetter": {
     "description": "Season  letter in label S1E3"
   },
-  "episodeLetter": "E",
+  "episodeLetter": "O",
   "@episodeLetter": {
     "description": "Episode letter in label S1E3"
   },
@@ -448,7 +448,7 @@
   "@shortFilms": {
     "description": "Title of the films collection."
   },
-  "videos": "Video",
+  "videos": "Filmy",
   "@videos": {
     "description": "Followed by number of videos"
   },
@@ -576,7 +576,7 @@
   "@today": {
     "description": "First category in tv guide"
   },
-  "expired": "Wygasły",
+  "expired": "Wygasło",
   "@expired": {
     "description": "Label that something is no longer available."
   },
@@ -662,7 +662,7 @@
   "@appUpdateRequest": {
     "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateAccepted": "Uaktualnij",
+  "appUpdateAccepted": "Zaktualizuj",
   "@appUpdateAccepted": {
     "description": "Option that can be chosen by the user to update his application."
   },
@@ -670,7 +670,7 @@
   "@copy": {
     "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
-  "reload": "Przeładuj",
+  "reload": "Załaduj ponownie",
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
   },
@@ -707,7 +707,7 @@
   "@categoriesTab": {
     "description": "Title of the Categories Tab"
   },
-  "seriesTab": "Serial",
+  "seriesTab": "Serie",
   "@seriesTab": {
     "description": "Series Tab title"
   },
@@ -715,7 +715,7 @@
   "@filmsTab": {
     "description": "Films Tab title"
   },
-  "eventsTab": "Eventy",
+  "eventsTab": "Wydarzenia",
   "@eventsTab": {
     "description": "Events Tab title"
   },
@@ -723,7 +723,7 @@
   "@audioLanguage": {
     "description": "Label indicating that the Audio Language can be changed here."
   },
-  "subtitlesLanguage": "Jezyk napisów",
+  "subtitlesLanguage": "Język napisów",
   "@subtitlesLanguage": {
     "description": "Label indicating that the Subtitles Language can be changed here."
   },
@@ -739,7 +739,7 @@
   "@featured": {
     "description": "Featured videos collection header"
   },
-  "errorTryAgain": "Coś się nie udało, proszę spróbuj ponownie później.",
+  "errorTryAgain": "Coś poszło nie tak, spróbuj ponownie później.",
   "@errorTryAgain": {
     "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
   },
@@ -767,15 +767,15 @@
   "@startExploring": {
     "description": "A button on the welcome page"
   },
-  "taskCompleted": "ukończono zadanie",
+  "taskCompleted": "ukończone zadanie",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "ukończono zadania",
+  "tasksCompleted": "ukończonych zadań",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
-  "studyCompleteTaskDescription": "Ukończ zadania i odkryj powiązane materiały",
+  "studyCompleteTaskDescription": "Wykonuj zadania i odkryj powiązane materiały",
   "@studyCompleteTaskDescription": {
     "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
   },
@@ -795,11 +795,11 @@
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
-  "continueToTaskIn": "Przejdź do zadania",
+  "continueToTaskIn": "Przejdź do zadania za",
   "@continueToTaskIn": {
     "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "continueToTasksIn": "Przejdź do zadań",
+  "continueToTasksIn": "Przejdź do zadań za",
   "@continueToTasksIn": {
     "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
@@ -807,7 +807,7 @@
   "@studyLessonCompleted": {
     "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
   },
-  "studyLessonsCompleted": "lekcje ukończone",
+  "studyLessonsCompleted": "lekcji ukończonych",
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
@@ -1226,7 +1226,7 @@
   "@noSubtitles": {
     "description": "Shown in the download form, indicating that there are no subtitles available for the video."
   },
-  "subtitlesIncluded": "Dołączone napisy",
+  "subtitlesIncluded": "Dostępne napisy",
   "@subtitlesIncluded": {
     "description": "Shown in the download form, indicating that all subtitles are included in the video."
   },
@@ -1403,7 +1403,7 @@
   "@somethingWentWrong": {
     "description": "Generic error title/message."
   },
-  "all": "Wszyscy",
+  "all": "Wszystkie",
   "@all": {
     "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
   },
