@@ -1,13 +1,10 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.65+2300225...v) (2025-02-25)
-
-
-
-## [5.6.65+2300225](https://github.com/bcc-code/bcc-media-app/compare/v5.6.64+2300224...v5.6.65+2300225) (2025-02-25)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.64+2300224...v) (2025-02-25)
 
 
 ### Bug Fixes
 
 * fix failing tests ([181575b](https://github.com/bcc-code/bcc-media-app/commit/181575b05ac654d86f07b7d3fad009546b6ff858))
+* fix login test ([99f9ced](https://github.com/bcc-code/bcc-media-app/commit/99f9ced1f6ff8e2e36e4ee1f162c6a365afb6a40))
 * make tests not fail ([aefa2a4](https://github.com/bcc-code/bcc-media-app/commit/aefa2a4ec6fd11e63a451dd2bb8a1e993d743940))
 
 
