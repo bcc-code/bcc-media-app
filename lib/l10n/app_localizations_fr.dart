@@ -31,16 +31,16 @@ class SFr extends S {
   String get loading => 'Chargement';
 
   @override
-  String get loginPageDisplay1 => 'Le message le plus\n puissant au monde';
+  String get loginPageDisplay1 => 'Le message le plus puissant au monde';
 
   @override
-  String get loginPageDisplay2 => 'Regarde des séries, des émissions et des films basés sur les valeurs chrétiennes';
+  String get loginPageDisplay2 => 'Regarder des séries, des émissions et des films basés sur les valeurs chrétiennes';
 
   @override
   String get kidsOnboardingTitle => 'Nous donnons vie au message de la Bible !';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Notre vision est que les enfants fassent l\'expérience de Jésus comme leur meilleur ami - pour le reste de leur vie.';
+  String get kidsOnboardingSecondaryTitle => 'Notre vision est que les enfants connaissent Jésus comme leur meilleur ami - pour le reste de leur vie.';
 
   @override
   String get loginPageDisplay3 => 'Produit par BCC Media';
@@ -70,10 +70,10 @@ class SFr extends S {
   String get signUpTitle => 'S\'inscrire';
 
   @override
-  String get signUpDescription => 'Accédez à plus de contenu et à de meilleures fonctionnalités en créant un compte.';
+  String get signUpDescription => 'Accéder à plus de contenu et à de meilleures fonctionnalités en créant un compte.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Je certifie que j\'ai 13 ans ou plus, et j\'accepte la <a>Politique de confidentialité</a> et <a>les conditions d\'utilisation</a>.';
+  String get signUpAgreePrivacyPolicy => 'Je certifie que j\'ai 13 ans ou plus, et j\'accepte la <a>Politique de confidentialité</a> et les <a>Conditions d\'utilisation</a>.';
 
   @override
   String get setPassword => 'Définir le mot de passe';
@@ -85,7 +85,7 @@ class SFr extends S {
   String get loggedOutTitle => 'Déconnecté';
 
   @override
-  String get loggedOutMessage => 'Tu as été déconnecté. Merci de te connecter à nouveau.';
+  String get loggedOutMessage => 'Vous avez été déconnecté. Merci de vous reconnecter.';
 
   @override
   String get makeDonation => 'Faire un don';
@@ -109,10 +109,10 @@ class SFr extends S {
   String get open => 'Ouvrir';
 
   @override
-  String get loginFailedCheckNetwork => 'Échec de la connexion. Vérifie ta connexion internet et retente à nouveau.';
+  String get loginFailedCheckNetwork => 'Échec de la connexion Vérifiez votre connexion internet et retentez à nouveau.';
 
   @override
-  String get loginFailedTryAgain => 'Échec de la connexion. Merci de retenter plus tard.';
+  String get loginFailedTryAgain => 'Échec de la connexion Merci de retenter plus tard.';
 
   @override
   String get soundLanguage => 'Langage audio';
@@ -124,13 +124,13 @@ class SFr extends S {
   String get appLanguage => 'Langue de l\'application';
 
   @override
-  String get checkNetwork => 'Vérifie ta connexion internet et retente à nouveau.';
+  String get checkNetwork => 'Vérifiez votre connexion internet et retentez à nouveau.';
 
   @override
   String get tryAgain => 'Merci de retenter plus tard.';
 
   @override
-  String get cantPlayVideo => 'Tu ne peux pas lire cette vidéo maintenant.';
+  String get cantPlayVideo => 'Vous ne pouvez pas lire cette vidéo maintenant.';
 
   @override
   String get about => 'À propos';
@@ -205,7 +205,7 @@ class SFr extends S {
   String get cancel => 'Annuler';
 
   @override
-  String get cancelConfirmation => 'Es-tu sûr de vouloir annuler ?';
+  String get cancelConfirmation => 'Êtes-vous sûr de vouloir annuler ?';
 
   @override
   String get cancelConfirmationDescription => 'Toute modification non enregistrée sera perdue.';
@@ -259,7 +259,7 @@ class SFr extends S {
   String get noResults => 'Aucun résultat trouvé';
 
   @override
-  String get doYouWantCast => 'Veux-tu caster cette vidéo ?';
+  String get doYouWantCast => 'Voulez-vous caster cette vidéo ?';
 
   @override
   String get play => 'Lire';
@@ -281,7 +281,7 @@ class SFr extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Tu ne peux pas avoir plus de $elementCount éléments dans la file d\'attente.';
+    return 'Vous ne pouvez pas avoir plus de $elementCount éléments dans la file d\'attente.';
   }
 
   @override
@@ -321,7 +321,7 @@ class SFr extends S {
   String get high => 'Haute';
 
   @override
-  String get emptySearch => 'Tu peux faire une recherche sur tout le contenu de BCC Media. Séries, vidéos et épisodes.';
+  String get emptySearch => 'Vous pouvez rechercher dans tous les contenus de BCC Media. Séries, vidéos et épisodes.';
 
   @override
   String get back => 'Retour';
@@ -363,24 +363,24 @@ class SFr extends S {
   String get uploadFileTitle => 'Télécharger un fichier';
 
   @override
-  String get uploadFileMessage => 'Veux-tu télécharger ce fichier ?';
+  String get uploadFileMessage => 'Voulez-vous télécharger ce fichier ?';
 
   @override
   String get uploading => 'Téléchargement';
 
   @override
-  String get uploadFail => 'Echec du téléchargement';
+  String get uploadFail => 'Échec du téléchargement';
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft sur $charsTotal caractères restants';
+    return '$charsLeft de $charsTotal caractères restants';
   }
 
   @override
   String get thankYou => 'Merci beaucoup !';
 
   @override
-  String get thankYouForContribution => 'Merci pour ta contribution !';
+  String get thankYouForContribution => 'Merci pour votre contribution !';
 
   @override
   String get next => 'Suivant';
@@ -407,7 +407,7 @@ class SFr extends S {
   String get now => 'Maintenant';
 
   @override
-  String get debugInfoExplanation => 'Ton message inclura cette information, pour nous aider à mieux comprendre le problème.';
+  String get debugInfoExplanation => 'Votre message inclura cette information, pour nous aider à mieux comprendre le problème.';
 
   @override
   String get send => 'Envoyer';
@@ -416,19 +416,19 @@ class SFr extends S {
   String get sending => 'Envoi en cours';
 
   @override
-  String get thankYouSupportTitle => 'Merci pour ton commentaire !';
+  String get thankYouSupportTitle => 'Merci pour votre commentaire !';
 
   @override
   String get thankYouSupportDescription => 'Nous apprécions tous les commentaires et nous nous pencherons sur ce problème dès que possible.';
 
   @override
-  String get sendFail => 'Ton message n\'a pas pu être envoyé';
+  String get sendFail => 'Votre message n\'a pas pu être envoyé';
 
   @override
-  String get sendFailDescription => 'Une erreur est survenue. Vérifie ta connexion internet et réessaye.';
+  String get sendFailDescription => 'Il y a eu un problème. Vérifiez votre connexion internet et tentez à nouveau.';
 
   @override
-  String get sendSuccessDescription => 'Nous apprécions tes commentaires.';
+  String get sendSuccessDescription => 'Nous apprécions vos commentaires.';
 
   @override
   String get today => 'Aujourd\'hui';
@@ -455,7 +455,7 @@ class SFr extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Le calendrier du guide TV s\'affiche selon l\'heure locale : $timeZone';
+    return 'Le calendrier du guide Tv s\'affiche selon l\'heure locale : $timeZone';
   }
 
   @override
@@ -542,7 +542,7 @@ class SFr extends S {
   String get subtitlesLanguage => 'Langue des sous-titres';
 
   @override
-  String get removeFromRecentSearches => 'Veux-tu supprimer cet élément des recherches récentes ?';
+  String get removeFromRecentSearches => 'Voulez-vous supprimer cet élément des recherches récentes ?';
 
   @override
   String get noTransmissionToday => 'Aucune transmission prévue aujourd\'hui';
@@ -611,14 +611,14 @@ class SFr extends S {
   String get startStudy => 'Commencer l\'étude';
 
   @override
-  String get videoCompletedText => 'Bravo ! Tu as regardé toute la vidéo.';
+  String get videoCompletedText => 'Bravo ! Vous avez regardé toute la vidéo.';
 
   @override
-  String get achievementFirstDescription => 'Bravo ! Tu as terminé la vidéo et obtenu ton premier progrès.';
+  String get achievementFirstDescription => 'Bravo ! Vous avez terminé la vidéo et obtenu votre premier succès.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Bravo ! Tu as terminé le sujet d\'étude $name';
+    return 'Bravo ! Vous avez terminé le sujet d\'étude $name';
   }
 
   @override
@@ -662,13 +662,13 @@ class SFr extends S {
   String get oops => 'Oups !';
 
   @override
-  String get dontHaveAccess => 'Tu n\'as pas accès à ce contenu.';
+  String get dontHaveAccess => 'Vous n’avez pas accès à ce contenu.';
 
   @override
   String get notFound => 'Le contenu que vous recherchez ne semble pas exister.';
 
   @override
-  String get mustBeLoggedIn => 'Tu dois être connecté pour regarder ce contenu';
+  String get mustBeLoggedIn => 'Vous devez être connecté pour regarder ce contenu';
 
   @override
   String get plentyOfOtherContent => 'Pas d\'inquiétude ! Il reste beaucoup de contenus à apprécier !';
@@ -683,10 +683,10 @@ class SFr extends S {
   String get myList => 'Ma liste';
 
   @override
-  String get didYouKnowTitle => 'Le savais-tu ?';
+  String get didYouKnowTitle => 'Le saviez-vous ?';
 
   @override
-  String get didYouKnowContent => 'Tu peux ajouter tes programmes préférés à \"Ma liste\" en touchant le cœur.';
+  String get didYouKnowContent => 'Vous pouvez ajouter vos programmes préférés à \"Ma liste\" en touchant le cœur.';
 
   @override
   String get selectSeason => 'Sélectionner une saison';
@@ -698,7 +698,7 @@ class SFr extends S {
   String get iAmSureIWantToDelete => 'Je suis sûr de vouloir supprimer mon compte et mes données liées à l\'application BCC Media.';
 
   @override
-  String get areYouSure => 'Es-tu sûr ?';
+  String get areYouSure => 'Êtes-vous sûr ?';
 
   @override
   String get youCanContactUsAt => 'Vous pouvez nous contacter à';
@@ -770,7 +770,7 @@ class SFr extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'La suppression du compte a été demandée avec succès. Vous recevrez un courriel à l\'adresse $email. Pour confirmer votre identité, nous avons besoin que vous répondiez à cet e-mail pour procéder à la suppression.';
+    return 'La suppression du compte a bien été demandée. Vous allez recevoir un mail à l\'adresse $email. Pour confirmer votre identité, vous devez répondre à ce mail pour procéder à la suppression du compte.';
   }
 
   @override
@@ -780,11 +780,11 @@ class SFr extends S {
   String get playGame => 'Jouer au jeu';
 
   @override
-  String get tvScanQr => 'Scanne le code et connecte-toi avec ton téléphone';
+  String get tvScanQr => 'Scannez le code et connectez-vous avec votre téléphone';
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Ou va sur $url et entre le code : $code';
+    return 'Ou allez sur $url et entrez le code : $code';
   }
 
   @override
@@ -837,10 +837,10 @@ class SFr extends S {
   String get saveYourFavorites => 'Sauvegarder tes vidéos préférées';
 
   @override
-  String get saveYourFavoritesDescription => 'Clique sur l\'icône en forme de cœur d\'une vidéo pour l\'enregistrer dans ton profil.';
+  String get saveYourFavoritesDescription => 'Cliquez sur l\'icône en forme de cœur d\'une vidéo pour l\'enregistrer dans ton profil.';
 
   @override
-  String get yourFavorites => 'Tes favoris';
+  String get yourFavorites => 'Vos favoris';
 
   @override
   String get downloaded => 'Téléchargé';
@@ -849,7 +849,7 @@ class SFr extends S {
   String get saveVideosForOfflineViewing => 'Enregistrer les vidéos pour les visionner hors ligne';
 
   @override
-  String get tapOnTheDownloadIcon => 'Clique sur l\'icône de téléchargement d\'une vidéo pour la télécharger et la lire hors ligne.';
+  String get tapOnTheDownloadIcon => 'Cliquez sur l\'icône de téléchargement d\'une vidéo pour la télécharger et la lire hors ligne.';
 
   @override
   String get removeOfflineVideo => 'Supprimer la vidéo hors ligne ?';
@@ -867,10 +867,10 @@ class SFr extends S {
   String get noInternetConnection => 'Pas de connexion internet';
 
   @override
-  String get noInternetConnectionDescription => 'Connecte-toi à l\'internet pour accéder à toutes les vidéos.';
+  String get noInternetConnectionDescription => 'Connectez-vous à l\'internet pour accéder à toutes les vidéos.';
 
   @override
-  String get noInternetButDontWorry => 'Pas de connexion internet,\nmais pas d\'inquiétude.';
+  String get noInternetButDontWorry => 'Pas de connexion internet, mais pas d\'inquiétude.';
 
   @override
   String get hereAreAllTheVideosYouDownloaded => 'Voici toutes les vidéos téléchargées sur ton appareil.';
@@ -973,7 +973,7 @@ class SFr extends S {
   String get beta => 'Bêta';
 
   @override
-  String get betaExplanation => 'Cette fonctionnalité est en version bêta et n\'est actuellement pas disponible pour tous les utilisateurs. Veuillez signaler tout problème ou commentaire via le bouton « Contact » dans les paramètres.';
+  String get betaExplanation => 'Cette fonction est en version bêta, et n\'est actuellement pas mise à disposition de tous les utilisateurs. Merci de signaler tout problème ou retour d\'expérience par le bouton \"Contact\" dans les paramètres.';
 
   @override
   String get likedShorts => 'Courts métrages appréciés';
@@ -982,7 +982,7 @@ class SFr extends S {
   String get saveYourFavoriteShorts => 'Sauvegarder tes courts métrages préférés';
 
   @override
-  String get featureNotAvailableYet => 'Cette fonction n\'est pas encore disponible sur votre appareil. Veuillez réessayer plus tard.';
+  String get featureNotAvailableYet => 'Cette fonction n\'est pas encore disponible sur ton appareil. Merci de retenter plus tard.';
 
   @override
   String get newFeature => 'Nouvelle fonctionnalité';
@@ -1037,7 +1037,7 @@ class SFr extends S {
   }
 
   @override
-  String get bmmBibleStudyTitle => 'Your Bible Study';
+  String get bmmBibleStudyTitle => 'Votre étude biblique';
 
   @override
   String bmmBibleStudyPoints(int points) {
@@ -1045,34 +1045,34 @@ class SFr extends S {
   }
 
   @override
-  String get answerTheQuiz => 'Answer the quiz';
+  String get answerTheQuiz => 'Répondre au quiz';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription => 'Gagnez des points en répondant correctement';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
-    return 'You got $correct of $total answers correct';
+    return 'Vous avez obtenu $correct de $total réponses correctes';
   }
 
   @override
-  String get studyAllAnswersCorrect => 'You got all answers correct';
+  String get studyAllAnswersCorrect => 'Toutes vos réponses sont correctes';
 
   @override
-  String get studyNoAnswersCorrect => 'You got no answers correct';
+  String get studyNoAnswersCorrect => 'Vous n’avez aucune réponse correcte';
 
   @override
-  String get studyAllAnswersCorrectDescription => 'Well done!';
+  String get studyAllAnswersCorrectDescription => 'Bien joué !';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription => 'Soyez plus attentifs la prochaine fois !';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription => 'Bien joué ! Il reste une marge de progression.';
 
   @override
-  String get studyAllQuestionsAnswered => 'You answered all questions';
+  String get studyAllQuestionsAnswered => 'Vous avez répondu à toutes les questions';
 
   @override
-  String get studyAllQuestionsAnsweredDescription => 'Well done!';
+  String get studyAllQuestionsAnsweredDescription => 'Bien joué !';
 }

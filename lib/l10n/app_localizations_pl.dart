@@ -31,7 +31,7 @@ class SPl extends S {
   String get loading => 'Ładuję';
 
   @override
-  String get loginPageDisplay1 => 'Najmocniejszy przekaz na świecie';
+  String get loginPageDisplay1 => 'Najpotężniejsza wiadomość na świecie';
 
   @override
   String get loginPageDisplay2 => 'Oglądaj seriale, produkcje i filmy bazujące na chrześcijańskich wartościach';
@@ -85,7 +85,7 @@ class SPl extends S {
   String get loggedOutTitle => 'Wylogowany';
 
   @override
-  String get loggedOutMessage => 'Zostałeś wylogowany, prosimy o ponowne zalogowanie.';
+  String get loggedOutMessage => 'Zostałeś wylogowany. Zaloguj się ponownie.';
 
   @override
   String get makeDonation => 'Przekaż darowiznę';
@@ -109,10 +109,10 @@ class SPl extends S {
   String get open => 'Otwórz';
 
   @override
-  String get loginFailedCheckNetwork => 'Logowanie nie powiodło się. Sprawdź połączenie z Internetem i spróbuj ponownie.';
+  String get loginFailedCheckNetwork => 'Logowanie nie powiodło się Sprawdź połączenie z Internetem i spróbuj ponownie.';
 
   @override
-  String get loginFailedTryAgain => 'Logowanie nie powiodło się. Spróbuj ponownie później.';
+  String get loginFailedTryAgain => 'Logowanie nie powiodło się Spróbuj ponownie później.';
 
   @override
   String get soundLanguage => 'Język video';
@@ -321,7 +321,7 @@ class SPl extends S {
   String get high => 'Wysoka';
 
   @override
-  String get emptySearch => 'Możesz przeszukać wszystkie treści z BCC Media. Seriale, filmiki oraz odcinki.';
+  String get emptySearch => 'Możesz przeszukiwać całą zawartość BCC Media. Serie, filmy i odcinki.';
 
   @override
   String get back => 'Wstecz';
@@ -373,7 +373,7 @@ class SPl extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return 'Pozostało $charsLeft z $charsTotal liter';
+    return 'Pozostało $charsLeft z $charsTotal znaków';
   }
 
   @override
@@ -425,7 +425,7 @@ class SPl extends S {
   String get sendFail => 'Nie udało się wysłać wiadomości';
 
   @override
-  String get sendFailDescription => 'Coś poszło nie tak. Sprawdź swoje połączenie internetowe i spróbuj jeszcze raz.';
+  String get sendFailDescription => 'Coś poszło nie tak. Sprawdź połączenie internetowe i spróbuj ponownie.';
 
   @override
   String get sendSuccessDescription => 'Doceniamy twój feedback.';
@@ -438,7 +438,7 @@ class SPl extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Dostępne od $date';
+    return 'Dostępny $date';
   }
 
   @override
@@ -455,7 +455,7 @@ class SPl extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Czasy w programie TV są przedstawione w twojej strefie czasowej: $timeZone';
+    return 'Godziny w programie TV są przedstawione w twojej strefie czasowej: $timeZone';
   }
 
   @override
@@ -611,34 +611,34 @@ class SPl extends S {
   String get startStudy => 'Rozpocznij naukę';
 
   @override
-  String get videoCompletedText => 'Gratulacje! Skończyłeś wideo.';
+  String get videoCompletedText => 'Gratulacje! Obejrzałeś filmik.';
 
   @override
-  String get achievementFirstDescription => 'Gratulacje obejrzenia wideo oraz zdobycia pierwszej nagrody progresu.';
+  String get achievementFirstDescription => 'Gratulacje! Obejrzałeś filmik i zdobyłeś pierwszą nagrodę za postęp w projekcie.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Gratulacje ukończenia lekcji w temacie $name';
+    return 'Gratulacje! Ukończyłeś lekcję w temacie $name';
   }
 
   @override
   String videoCount(int count) {
-    return '$count filmów/y';
+    return '$count filmy/-ów';
   }
 
   @override
   String taskCount(int count) {
-    return '$count zadania/ń';
+    return '$count zadań/-nia';
   }
 
   @override
   String posterCount(int count) {
-    return '$count plakaty/ów';
+    return '$count plakaty/-ów';
   }
 
   @override
   String resourceCount(int count) {
-    return '$count materiały/ów';
+    return '$count materiały/-ów';
   }
 
   @override
@@ -665,7 +665,7 @@ class SPl extends S {
   String get dontHaveAccess => 'Nie masz dostępu do tej zawartości.';
 
   @override
-  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+  String get notFound => 'Wygląda na to, że zawartość, której szukasz, nie istnieje.';
 
   @override
   String get mustBeLoggedIn => 'Musisz być zalogowany, by obejrzeć tę zawartość';
@@ -770,7 +770,7 @@ class SPl extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Prośba o usunięcie konta została wysłana. Otrzymasz wiadomość e-mail na adres $email. Aby kontynuować usunięcie konta, musisz potwierdzić swoją tożsamość, odpowiadając na tę wiadomość e-mail.';
+    return 'Pomyślnie zażądano usunięcia konta. Otrzymasz wiadomość e-mail na adres $email. Aby potwierdzić swoją tożsamość, odpowiedz na tę wiadomość e-mail, aby kontynuować usunięcie konta.';
   }
 
   @override
@@ -816,7 +816,7 @@ class SPl extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Dźwięk nie jest dostępny w tym języku ($lang)';
+    return 'Dźwięk niedostępny po $lang';
   }
 
   @override
@@ -961,28 +961,28 @@ class SPl extends S {
   String get donateViaPaypal => 'Przekaż darowiznę przez PayPal';
 
   @override
-  String get shortsTab => 'Krótkie filmiki';
+  String get shortsTab => 'Shorts';
 
   @override
   String get autoGenerated => 'Generowane automatycznie';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'The transcriptions are auto-generated and might contain errors.';
+  String get shortsTranscriptionDisclaimer => 'Transkrypcje są generowane automatycznie i mogą zawierać błędy.';
 
   @override
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'Ta funkcja jest w wersji beta i obecnie nie jest dostępna dla wszystkich użytkowników. Prosimy o zgłaszanie wszelkich problemów lub opinii za pomocą przycisku \"Kontakt\" w ustawieniach.';
+  String get betaExplanation => 'Ta funkcja dostępna jest w wersji beta i obecnie nie jest dostępna dla wszystkich użytkowników. Zgłoś wszelkie problemy lub opinie za pomocą przycisku \"Kontakt\" w ustawieniach.';
 
   @override
-  String get likedShorts => 'Polubione krótkie filmiki';
+  String get likedShorts => 'Polubione shortsy';
 
   @override
-  String get saveYourFavoriteShorts => 'Zapisz swoje ulubione krótkie filmiki';
+  String get saveYourFavoriteShorts => 'Zapisz swoje ulubione shortsy';
 
   @override
-  String get featureNotAvailableYet => 'Ta funkcja nie jest jeszcze dostępna na twoim urządzeniu. Spróbuj ponownie później.';
+  String get featureNotAvailableYet => 'Ta funkcja nie jest jeszcze dostępna na Twoim urządzeniu. Spróbuj ponownie później.';
 
   @override
   String get newFeature => 'Nowa funkcja';
@@ -997,7 +997,7 @@ class SPl extends S {
   String get shortsLikedAndSavedDescription => 'Wszystkie polubione filmy można znaleźć w swoim profilu.';
 
   @override
-  String get excerptFrom => 'Excerpt from';
+  String get excerptFrom => 'Fragment z';
 
   @override
   String get downloadedVideosGuideDescription => 'Pobrane filmy można znaleźć w \"Profilu\".';
@@ -1028,51 +1028,51 @@ class SPl extends S {
 
   @override
   String countItems(int x) {
-    return '$x items';
+    return '$x pozycji';
   }
 
   @override
   String skipTo(String chapter) {
-    return 'Skip to $chapter';
+    return 'Przejdź do $chapter';
   }
 
   @override
-  String get bmmBibleStudyTitle => 'Your Bible Study';
+  String get bmmBibleStudyTitle => 'Twoje studium Biblii';
 
   @override
   String bmmBibleStudyPoints(int points) {
-    return '$points points';
+    return '$points punktów';
   }
 
   @override
-  String get answerTheQuiz => 'Answer the quiz';
+  String get answerTheQuiz => 'Odpowiedz na quiz';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription => 'Zdobywaj punkty, udzielając poprawnych odpowiedzi';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
-    return 'You got $correct of $total answers correct';
+    return 'Masz $correct na $total poprawnych odpowiedzi';
   }
 
   @override
-  String get studyAllAnswersCorrect => 'You got all answers correct';
+  String get studyAllAnswersCorrect => 'Wszystkie odpowiedzi są poprawne';
 
   @override
-  String get studyNoAnswersCorrect => 'You got no answers correct';
+  String get studyNoAnswersCorrect => 'Żadna odpowiedź nie jest poprawna';
 
   @override
-  String get studyAllAnswersCorrectDescription => 'Well done!';
+  String get studyAllAnswersCorrectDescription => 'Dobra robota!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription => 'Następnym razem słuchaj uważniej!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription => 'Dobra robota! Ale wciąż masz pole do poprawy.';
 
   @override
-  String get studyAllQuestionsAnswered => 'You answered all questions';
+  String get studyAllQuestionsAnswered => 'Odpowiedziałeś na wszystkie pytania';
 
   @override
-  String get studyAllQuestionsAnsweredDescription => 'Well done!';
+  String get studyAllQuestionsAnsweredDescription => 'Dobra robota!';
 }
