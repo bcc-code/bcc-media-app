@@ -16,6 +16,9 @@ appId: tv.brunstad.app
     text: Continue
     optional: true
 - tapOn:
+    text: Accept
+    optional: true
+- tapOn:
     text: Email
     optional: true
 - inputText: ${output.env.LOGIN_EMAIL}
