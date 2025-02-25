@@ -16,15 +16,15 @@ appId: tv.brunstad.app
     text: Continue
     optional: true
 - tapOn:
-    text: Accept
-    optional: true
-- tapOn:
     text: Email
     optional: true
 - inputText: ${output.env.LOGIN_EMAIL}
 - pressKey: Enter
 - inputText: ${output.env.LOGIN_PASSWORD}
 - pressKey: Enter
+- tapOn:
+    text: Accept
+    optional: true
 - assertVisible: "Home"
 - assertVisible: "Search"
 - assertVisible: "Signed in"
