@@ -31,11 +31,11 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "Le message le plus\n puissant au monde",
+  "loginPageDisplay1": "Le message le plus puissant au monde",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Regarde des séries, des émissions et des films basés sur les valeurs chrétiennes",
+  "loginPageDisplay2": "Regarder des séries, des émissions et des films basés sur les valeurs chrétiennes",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
@@ -43,7 +43,7 @@
   "@kidsOnboardingTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
-  "kidsOnboardingSecondaryTitle": "Notre vision est que les enfants fassent l'expérience de Jésus comme leur meilleur ami - pour le reste de leur vie.",
+  "kidsOnboardingSecondaryTitle": "Notre vision est que les enfants connaissent Jésus comme leur meilleur ami - pour le reste de leur vie.",
   "@kidsOnboardingSecondaryTitle": {
     "description": "Text displayed on onboarding screen for the Bible Kids app."
   },
@@ -83,11 +83,11 @@
   "@signUpTitle": {
     "description": "Title on the sign up page"
   },
-  "signUpDescription": "Accédez à plus de contenu et à de meilleures fonctionnalités en créant un compte.",
+  "signUpDescription": "Accéder à plus de contenu et à de meilleures fonctionnalités en créant un compte.",
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Je certifie que j'ai 13 ans ou plus, et j'accepte la <a>Politique de confidentialité</a> et <a>les conditions d'utilisation</a>.",
+  "signUpAgreePrivacyPolicy": "Je certifie que j'ai 13 ans ou plus, et j'accepte la <a>Politique de confidentialité</a> et les <a>Conditions d'utilisation</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
@@ -103,7 +103,7 @@
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Tu as été déconnecté. Merci de te connecter à nouveau.",
+  "loggedOutMessage": "Vous avez été déconnecté. Merci de vous reconnecter.",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
@@ -135,11 +135,11 @@
   "@open": {
     "description": "Open button"
   },
-  "loginFailedCheckNetwork": "Échec de la connexion. Vérifie ta connexion internet et retente à nouveau.",
+  "loginFailedCheckNetwork": "Échec de la connexion Vérifiez votre connexion internet et retentez à nouveau.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "Échec de la connexion. Merci de retenter plus tard.",
+  "loginFailedTryAgain": "Échec de la connexion Merci de retenter plus tard.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
@@ -155,7 +155,7 @@
   "@appLanguage": {
     "description": "Settings item on profile page"
   },
-  "checkNetwork": "Vérifie ta connexion internet et retente à nouveau.",
+  "checkNetwork": "Vérifiez votre connexion internet et retentez à nouveau.",
   "@checkNetwork": {
     "description": "Error message for the user displayed in many contexts."
   },
@@ -163,7 +163,7 @@
   "@tryAgain": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "cantPlayVideo": "Tu ne peux pas lire cette vidéo maintenant.",
+  "cantPlayVideo": "Vous ne pouvez pas lire cette vidéo maintenant.",
   "@cantPlayVideo": {
     "description": "Error message for the user displayed when video playback attempt failed."
   },
@@ -263,7 +263,7 @@
   "@cancel": {
     "description": "General cancel action button"
   },
-  "cancelConfirmation": "Es-tu sûr de vouloir annuler ?",
+  "cancelConfirmation": "Êtes-vous sûr de vouloir annuler ?",
   "@cancelConfirmation": {
     "description": "Title text for cancel confirmation dialog."
   },
@@ -335,7 +335,7 @@
   "@noResults": {
     "description": "No search results."
   },
-  "doYouWantCast": "Veux-tu caster cette vidéo ?",
+  "doYouWantCast": "Voulez-vous caster cette vidéo ?",
   "@doYouWantCast": {
     "description": "Prompt displayed to the user"
   },
@@ -363,7 +363,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "Tu ne peux pas avoir plus de {elementCount} éléments dans la file d'attente.",
+  "queueLimitMessage": "Vous ne pouvez pas avoir plus de {elementCount} éléments dans la file d'attente.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -420,7 +420,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Tu peux faire une recherche sur tout le contenu de BCC Media. Séries, vidéos et épisodes.",
+  "emptySearch": "Vous pouvez rechercher dans tous les contenus de BCC Media. Séries, vidéos et épisodes.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -476,7 +476,7 @@
   "@uploadFileTitle": {
     "description": "Title of the dialog to confirm upload"
   },
-  "uploadFileMessage": "Veux-tu télécharger ce fichier ?",
+  "uploadFileMessage": "Voulez-vous télécharger ce fichier ?",
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
@@ -484,11 +484,11 @@
   "@uploading": {
     "description": "Message during file upload"
   },
-  "uploadFail": "Echec du téléchargement",
+  "uploadFail": "Échec du téléchargement",
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{charsLeft} sur {charsTotal} caractères restants",
+  "charactersLimit": "{charsLeft} de {charsTotal} caractères restants",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -504,7 +504,7 @@
   "@thankYou": {
     "description": "Title in upload success page"
   },
-  "thankYouForContribution": "Merci pour ta contribution !",
+  "thankYouForContribution": "Merci pour votre contribution !",
   "@thankYouForContribution": {
     "description": "Title in upload success page"
   },
@@ -540,7 +540,7 @@
   "@now": {
     "description": "Tv guide now playing label"
   },
-  "debugInfoExplanation": "Ton message inclura cette information, pour nous aider à mieux comprendre le problème.",
+  "debugInfoExplanation": "Votre message inclura cette information, pour nous aider à mieux comprendre le problème.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
@@ -552,7 +552,7 @@
   "@sending": {
     "description": "General sending action indicator"
   },
-  "thankYouSupportTitle": "Merci pour ton commentaire !",
+  "thankYouSupportTitle": "Merci pour votre commentaire !",
   "@thankYouSupportTitle": {
     "description": "Text on contact support confirmation page"
   },
@@ -560,15 +560,15 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Ton message n'a pas pu être envoyé",
+  "sendFail": "Votre message n'a pas pu être envoyé",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Une erreur est survenue. Vérifie ta connexion internet et réessaye.",
+  "sendFailDescription": "Il y a eu un problème. Vérifiez votre connexion internet et tentez à nouveau.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
-  "sendSuccessDescription": "Nous apprécions tes commentaires.",
+  "sendSuccessDescription": "Nous apprécions vos commentaires.",
   "@sendSuccessDescription": {
     "description": "General message when sending is successful"
   },
@@ -580,7 +580,7 @@
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Disponible {date}",
+  "availableFrom": "Disponible '{'0'}'",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -605,7 +605,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Le calendrier du guide TV s'affiche selon l'heure locale : {timeZone}",
+  "timezoneInformation": "Le calendrier du guide Tv s'affiche selon l'heure locale : '{'0'}'",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -727,7 +727,7 @@
   "@subtitlesLanguage": {
     "description": "Label indicating that the Subtitles Language can be changed here."
   },
-  "removeFromRecentSearches": "Veux-tu supprimer cet élément des recherches récentes ?",
+  "removeFromRecentSearches": "Voulez-vous supprimer cet élément des recherches récentes ?",
   "@removeFromRecentSearches": {
     "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
   },
@@ -819,15 +819,15 @@
   "@startStudy": {
     "description": "Button."
   },
-  "videoCompletedText": "Bravo ! Tu as regardé toute la vidéo.",
+  "videoCompletedText": "Bravo ! Vous avez regardé toute la vidéo.",
   "@videoCompletedText": {
     "description": "Shown after completing tasks related to a video."
   },
-  "achievementFirstDescription": "Bravo ! Tu as terminé la vidéo et obtenu ton premier progrès.",
+  "achievementFirstDescription": "Bravo ! Vous avez terminé la vidéo et obtenu votre premier succès.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Bravo ! Tu as terminé le sujet d'étude {name}",
+  "achievementStudyTopic": "Bravo ! Vous avez terminé le sujet d'étude {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -901,7 +901,7 @@
   "@oops": {
     "description": "An informal title on some error screens."
   },
-  "dontHaveAccess": "Tu n'as pas accès à ce contenu.",
+  "dontHaveAccess": "Vous n’avez pas accès à ce contenu.",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
@@ -909,7 +909,7 @@
   "@notFound": {
     "description": "Error message when the requested content is not found."
   },
-  "mustBeLoggedIn": "Tu dois être connecté pour regarder ce contenu",
+  "mustBeLoggedIn": "Vous devez être connecté pour regarder ce contenu",
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
   },
@@ -929,11 +929,11 @@
   "@myList": {
     "description": "My list tab name"
   },
-  "didYouKnowTitle": "Le savais-tu ?",
+  "didYouKnowTitle": "Le saviez-vous ?",
   "@didYouKnowTitle": {
     "description": "Title for info displayed on 'My list' page."
   },
-  "didYouKnowContent": "Tu peux ajouter tes programmes préférés à \"Ma liste\" en touchant le cœur.",
+  "didYouKnowContent": "Vous pouvez ajouter vos programmes préférés à \"Ma liste\" en touchant le cœur.",
   "@didYouKnowContent": {
     "description": "Content for info displayed on 'My list' page."
   },
@@ -949,7 +949,7 @@
   "@iAmSureIWantToDelete": {
     "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
   },
-  "areYouSure": "Es-tu sûr ?",
+  "areYouSure": "Êtes-vous sûr ?",
   "@areYouSure": {
     "description": "Generic text. Used at least as a title on the account deletion page."
   },
@@ -1046,7 +1046,7 @@
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "La suppression du compte a été demandée avec succès. Vous recevrez un courriel à l'adresse {email}. Pour confirmer votre identité, nous avons besoin que vous répondiez à cet e-mail pour procéder à la suppression.",
+  "accountDeletionSuccess": "La suppression du compte a bien été demandée. Vous allez recevoir un mail à l'adresse {email}. Pour confirmer votre identité, vous devez répondre à ce mail pour procéder à la suppression du compte.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1063,11 +1063,11 @@
   "@playGame": {
     "description": "Title on a game"
   },
-  "tvScanQr": "Scanne le code et connecte-toi avec ton téléphone",
+  "tvScanQr": "Scannez le code et connectez-vous avec votre téléphone",
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Ou va sur {url} et entre le code : {code}",
+  "tvEnterCode": "Ou allez sur %@\net entrez le code : %@",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1149,11 +1149,11 @@
   "@saveYourFavorites": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "saveYourFavoritesDescription": "Clique sur l'icône en forme de cœur d'une vidéo pour l'enregistrer dans ton profil.",
+  "saveYourFavoritesDescription": "Cliquez sur l'icône en forme de cœur d'une vidéo pour l'enregistrer dans ton profil.",
   "@saveYourFavoritesDescription": {
     "description": "Shown in the 'favorites' box when you dont have any favorites saved yet."
   },
-  "yourFavorites": "Tes favoris",
+  "yourFavorites": "Vos favoris",
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
@@ -1165,7 +1165,7 @@
   "@saveVideosForOfflineViewing": {
     "description": "Shown when the 'downloaded' section is empty."
   },
-  "tapOnTheDownloadIcon": "Clique sur l'icône de téléchargement d'une vidéo pour la télécharger et la lire hors ligne.",
+  "tapOnTheDownloadIcon": "Cliquez sur l'icône de téléchargement d'une vidéo pour la télécharger et la lire hors ligne.",
   "@tapOnTheDownloadIcon": {
     "description": "Shown when the 'downloaded' section is empty."
   },
@@ -1189,11 +1189,11 @@
   "@noInternetConnection": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetConnectionDescription": "Connecte-toi à l'internet pour accéder à toutes les vidéos.",
+  "noInternetConnectionDescription": "Connectez-vous à l'internet pour accéder à toutes les vidéos.",
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "Pas de connexion internet,\nmais pas d'inquiétude.",
+  "noInternetButDontWorry": "Pas de connexion internet, mais pas d'inquiétude.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
@@ -1335,7 +1335,7 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Cette fonctionnalité est en version bêta et n'est actuellement pas disponible pour tous les utilisateurs. Veuillez signaler tout problème ou commentaire via le bouton « Contact » dans les paramètres.",
+  "betaExplanation": "Cette fonction est en version bêta, et n'est actuellement pas mise à disposition de tous les utilisateurs. Merci de signaler tout problème ou retour d'expérience par le bouton \"Contact\" dans les paramètres.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
@@ -1347,7 +1347,7 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Cette fonction n'est pas encore disponible sur votre appareil. Veuillez réessayer plus tard.",
+  "featureNotAvailableYet": "Cette fonction n'est pas encore disponible sur ton appareil. Merci de retenter plus tard.",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
@@ -1424,5 +1424,66 @@
         "type": "String"
       }
     }
+  },
+  "bmmBibleStudyTitle": "Votre étude biblique",
+  "@bmmBibleStudyTitle": {
+    "description": "The title shown on the Bible Study widget."
+  },
+  "bmmBibleStudyPoints": "{points} points",
+  "@bmmBibleStudyPoints": {
+    "description": "The users total points in the Bible Study widget. It is shown underneath the title in the widget.",
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "answerTheQuiz": "Répondre au quiz",
+  "@answerTheQuiz": {
+    "description": "Button text on the Bible Study quiz button."
+  },
+  "studyAnswerTheQuizDescription": "Gagnez des points en répondant correctement",
+  "@studyAnswerTheQuizDescription": {
+    "description": "Description shown on the Bible Study quiz button."
+  },
+  "studySomeAnswersCorrect": "Vous avez obtenu {correct} de {total} réponses correctes",
+  "@studySomeAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done.",
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "studyAllAnswersCorrect": "Toutes vos réponses sont correctes",
+  "@studyAllAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done and all answers were correct."
+  },
+  "studyNoAnswersCorrect": "Vous n’avez aucune réponse correcte",
+  "@studyNoAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done and no answers were correct."
+  },
+  "studyAllAnswersCorrectDescription": "Bien joué !",
+  "@studyAllAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and all answers were correct."
+  },
+  "studyNoAnswersCorrectDescription": "Soyez plus attentifs la prochaine fois !",
+  "@studyNoAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and no answers were correct."
+  },
+  "studySomeAnswersCorrectDescription": "Bien joué ! Il reste une marge de progression.",
+  "@studySomeAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and some answers were correct."
+  },
+  "studyAllQuestionsAnswered": "Vous avez répondu à toutes les questions",
+  "@studyAllQuestionsAnswered": {
+    "description": "Title shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct."
+  },
+  "studyAllQuestionsAnsweredDescription": "Bien joué !",
+  "@studyAllQuestionsAnsweredDescription": {
+    "description": "Description shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct."
   }
 }
