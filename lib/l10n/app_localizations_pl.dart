@@ -31,19 +31,19 @@ class SPl extends S {
   String get loading => 'Ładuję';
 
   @override
-  String get loginPageDisplay1 => 'Najpotężniejsza wiadomość na świecie';
+  String get loginPageDisplay1 => 'Najpotężniejsze poselstwo na świecie';
 
   @override
-  String get loginPageDisplay2 => 'Oglądaj seriale, produkcje i filmy bazujące na chrześcijańskich wartościach';
+  String get loginPageDisplay2 => 'Oglądaj seriale, produkcje i filmy oparte na chrześcijańskich wartościach';
 
   @override
   String get kidsOnboardingTitle => 'Sprawiamy, że przesłanie Biblii staje się żywe!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Naszą wizją jest, aby dzieci doświadczyły Jezusa jako swojego najlepszego przyjaciela - do końca życia.';
+  String get kidsOnboardingSecondaryTitle => 'Naszą wizją jest, aby dzieci miały Jezusa za swojego najlepszego przyjaciela – do końca życia!';
 
   @override
-  String get loginPageDisplay3 => 'Wyprodukowano przez BCC Media';
+  String get loginPageDisplay3 => 'Wyprodukowane przez BCC Media';
 
   @override
   String get logOutButton => 'Wyloguj się';
@@ -118,7 +118,7 @@ class SPl extends S {
   String get soundLanguage => 'Język video';
 
   @override
-  String get subtitleLanguage => 'Jezyk napisów';
+  String get subtitleLanguage => 'Język napisów';
 
   @override
   String get appLanguage => 'Język aplikacji';
@@ -133,7 +133,7 @@ class SPl extends S {
   String get cantPlayVideo => 'Nie możemy teraz odtworzyć tego video.';
 
   @override
-  String get about => 'O aplikacji';
+  String get about => 'O nas';
 
   @override
   String get version => 'Wersja';
@@ -300,7 +300,7 @@ class SPl extends S {
   String get seeAll => 'Wszystkie';
 
   @override
-  String get series => 'Serial';
+  String get series => 'Serie';
 
   @override
   String get homeTab => 'Odkrywaj';
@@ -315,7 +315,7 @@ class SPl extends S {
   String get low => 'Niska';
 
   @override
-  String get medium => 'Przeciętna';
+  String get medium => 'Średnia';
 
   @override
   String get high => 'Wysoka';
@@ -330,7 +330,7 @@ class SPl extends S {
   String get seasonLetter => 'S';
 
   @override
-  String get episodeLetter => 'E';
+  String get episodeLetter => 'O';
 
   @override
   String get atoZ => 'A-Z';
@@ -342,7 +342,7 @@ class SPl extends S {
   String get shortFilms => 'Krótkie filmy';
 
   @override
-  String get videos => 'Video';
+  String get videos => 'Filmy';
 
   @override
   String get moreInfo => 'Więcej informacji';
@@ -434,7 +434,7 @@ class SPl extends S {
   String get today => 'Dzisiaj';
 
   @override
-  String get expired => 'Wygasły';
+  String get expired => 'Wygasło';
 
   @override
   String availableFrom(String date) {
@@ -495,13 +495,13 @@ class SPl extends S {
   String get appUpdateRequest => 'Zainstaluj najnowszą wersję aplikacji by korzystać z najnowszych funkcjonalności i poprawek.';
 
   @override
-  String get appUpdateAccepted => 'Uaktualnij';
+  String get appUpdateAccepted => 'Zaktualizuj';
 
   @override
   String get copy => 'Kopiuj';
 
   @override
-  String get reload => 'Przeładuj';
+  String get reload => 'Załaduj ponownie';
 
   @override
   String get fAQ => 'FAQ';
@@ -527,19 +527,19 @@ class SPl extends S {
   String get categoriesTab => 'Kategorie';
 
   @override
-  String get seriesTab => 'Serial';
+  String get seriesTab => 'Serie';
 
   @override
   String get filmsTab => 'Filmy';
 
   @override
-  String get eventsTab => 'Eventy';
+  String get eventsTab => 'Wydarzenia';
 
   @override
   String get audioLanguage => 'Język dźwięku';
 
   @override
-  String get subtitlesLanguage => 'Jezyk napisów';
+  String get subtitlesLanguage => 'Język napisów';
 
   @override
   String get removeFromRecentSearches => 'Czy chcesz usunąć ten element z ostatnio wyszukanych?';
@@ -551,7 +551,7 @@ class SPl extends S {
   String get featured => 'Polecane';
 
   @override
-  String get errorTryAgain => 'Coś się nie udało, proszę spróbuj ponownie później.';
+  String get errorTryAgain => 'Coś poszło nie tak, spróbuj ponownie później.';
 
   @override
   String get programsSection => 'Programy';
@@ -572,13 +572,13 @@ class SPl extends S {
   String get startExploring => 'Rozpocznij odkrywanie';
 
   @override
-  String get taskCompleted => 'ukończono zadanie';
+  String get taskCompleted => 'ukończone zadanie';
 
   @override
-  String get tasksCompleted => 'ukończono zadania';
+  String get tasksCompleted => 'ukończonych zadań';
 
   @override
-  String get studyCompleteTaskDescription => 'Ukończ zadania i odkryj powiązane materiały';
+  String get studyCompleteTaskDescription => 'Wykonuj zadania i odkryj powiązane materiały';
 
   @override
   String get discoverMore => 'Odkryj więcej';
@@ -593,16 +593,16 @@ class SPl extends S {
   String get watchAgain => 'Obejrzyj ponownie';
 
   @override
-  String get continueToTaskIn => 'Przejdź do zadania';
+  String get continueToTaskIn => 'Przejdź do zadania za';
 
   @override
-  String get continueToTasksIn => 'Przejdź do zadań';
+  String get continueToTasksIn => 'Przejdź do zadań za';
 
   @override
   String get studyLessonCompleted => 'lekcja ukończona';
 
   @override
-  String get studyLessonsCompleted => 'lekcje ukończone';
+  String get studyLessonsCompleted => 'lekcji ukończonych';
 
   @override
   String get continueStudy => 'Kontynuuj naukę';
@@ -893,7 +893,7 @@ class SPl extends S {
   String get noSubtitles => 'Brak napisów';
 
   @override
-  String get subtitlesIncluded => 'Dołączone napisy';
+  String get subtitlesIncluded => 'Dostępne napisy';
 
   @override
   String get allSubtitlesWillBeAvailableOffline => 'Wszystkie napisy będą dostępne w trybie offline';
@@ -1024,7 +1024,7 @@ class SPl extends S {
   String get somethingWentWrong => 'Coś poszło nie tak';
 
   @override
-  String get all => 'Wszyscy';
+  String get all => 'Wszystkie';
 
   @override
   String countItems(int x) {
