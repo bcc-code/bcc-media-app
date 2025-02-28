@@ -1,4 +1,17 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.64+2300224...v) (2025-02-25)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.66+2300226...v) (2025-02-28)
+
+
+
+## [5.6.66+2300226](https://github.com/bcc-code/bcc-media-app/compare/v5.6.65+2300225...v5.6.66+2300226) (2025-02-28)
+
+
+### Features
+
+* autoplay episode when entering episode page ([3a547e2](https://github.com/bcc-code/bcc-media-app/commit/3a547e23d50402bc9b37577c44b7722d7164fd92))
+
+
+
+## [5.6.65+2300225](https://github.com/bcc-code/bcc-media-app/compare/v5.6.64+2300224...v5.6.65+2300225) (2025-02-25)
 
 
 ### Bug Fixes
