@@ -90,7 +90,14 @@ Future<dynamic>? _navigateToItem(BuildContext context, Object item, {String? col
       debugPrint('bccm: warning, tried to navigate to locked episode ${episodeItem.id} ${StackTrace.current}');
       return null;
     }
-    return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeItem.id, collectionId: collectionId));
+    return overrideAwareNavigation(
+        navigationOverride,
+        router,
+        EpisodeScreenRoute(
+          episodeId: episodeItem.id,
+          collectionId: collectionId,
+          autoplay: true,
+        ));
   }
 
   final personItem = item.asOrNull<Fragment$NavigatablePerson>();
