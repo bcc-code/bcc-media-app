@@ -15,10 +15,13 @@ class AppRootInner extends HookConsumerWidget {
       if (next == null) return;
       final packageInfo = ref.read(packageInfoProvider);
       if (isOldAppVersion(current: packageInfo.version, minimum: next.application.clientVersion)) {
-        showDialog(
-          context: context,
-          builder: (context) => const AppUpdateDialog(),
-        );
+        final navigatorContext = globalNavigatorKey.currentState?.overlay?.context;
+        if (navigatorContext != null) {
+          showDialog(
+            context: navigatorContext,
+            builder: (context) => const AppUpdateDialog(),
+          );
+        }
       }
     });
     return child;
