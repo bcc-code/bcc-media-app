@@ -198,6 +198,11 @@ class BmmDocumentRenderer extends HookConsumerWidget {
       return ContributorRenderer(contributor);
     }
 
+    final infoMessage = document.oneOf.value.asOrNull<InfoMessageModel>();
+    if (infoMessage != null) {
+      return InfoMessageRenderer(infoMessage);
+    }
+
     return Text(document.oneOf.value.toString());
   }
 }
@@ -629,6 +634,29 @@ class PodcastRenderer extends HookConsumerWidget {
             coverUrl: podcast.cover,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class InfoMessageRenderer extends HookConsumerWidget {
+  const InfoMessageRenderer(this.infoMessage, {super.key});
+  final InfoMessageModel? infoMessage;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
+    return Container(
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        color: design.colors.background2,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: design.colors.separatorOnLight, width: 1),
+      ),
+      child: Text(
+        infoMessage?.translatedMessage ?? '',
+        style: design.textStyles.body2.copyWith(color: design.colors.label3),
       ),
     );
   }
