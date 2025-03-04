@@ -1,4 +1,5 @@
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/api/bmm.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +49,8 @@ class PageScreen extends HookConsumerWidget {
         onRefresh: ({bool? retry}) async {
           pageFuture.value = ref.read(apiProvider).getPage(pageCode);
           await pageFuture.value;
+          // Force a refresh of the BMM API
+          ref.invalidate(bmmApiProvider);
         },
       ),
     );
