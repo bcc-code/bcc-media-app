@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10,10 +12,10 @@ class SRo extends S {
   String get loadingContent => 'Conținutul se încarcă';
 
   @override
-  String get signInTooltip => 'Autentificați-vă pentru a viziona mai mult conținut';
+  String get signInTooltip => 'Autentifică-te pentru a viziona mai mult conținut';
 
   @override
-  String get skipToPublicContent => 'Sări peste pentru a viziona conținut public';
+  String get skipToPublicContent => 'Sari peste pentru a viziona conținut public';
 
   @override
   String get minutesShort => 'min';
@@ -31,10 +33,10 @@ class SRo extends S {
   String get loading => 'Se încarcă';
 
   @override
-  String get loginPageDisplay1 => 'Cel mai puternic \nmesaj din lume';
+  String get loginPageDisplay1 => 'Cel mai puternic mesaj din lume';
 
   @override
-  String get loginPageDisplay2 => 'Vezi seriale, emisiuni și filme bazate pe valori Creștine';
+  String get loginPageDisplay2 => 'Vezi seriale, emisiuni și filme bazate pe valori creștine';
 
   @override
   String get kidsOnboardingTitle => 'Aducem mesajul Bibliei la viață!';
@@ -73,7 +75,7 @@ class SRo extends S {
   String get signUpDescription => 'Obține acces la mai mult conținut și funcții mai bune prin crearea unui cont.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Confirm faptul că am 13 ani sau mai mult, și sunt de acord cu <a>Politica de confidențialitate</a> și <a>Termenii de utilizare</a>.';
+  String get signUpAgreePrivacyPolicy => 'Certific că am vârsta de 13 ani sau mai mult și sunt de acord cu <a>Politica de confidențialitate</a> și <a>Termenii de utilizare</a>.';
 
   @override
   String get setPassword => 'Setează-ți parola';
@@ -85,10 +87,10 @@ class SRo extends S {
   String get loggedOutTitle => 'Deconectat';
 
   @override
-  String get loggedOutMessage => 'Ai fost deconectat. Te rugăm să te conectezi din nou.';
+  String get loggedOutMessage => 'Ai fost deconectat. Te rugăm să te autentifici din nou.';
 
   @override
-  String get makeDonation => 'Depune o donație';
+  String get makeDonation => 'Fă o donație';
 
   @override
   String get mostWatched => 'Cele mai vizionate';
@@ -103,16 +105,16 @@ class SRo extends S {
   String get anErrorOccurred => 'A apărut o eroare';
 
   @override
-  String get ok => 'Bine';
+  String get ok => 'OK';
 
   @override
   String get open => 'Deschide';
 
   @override
-  String get loginFailedCheckNetwork => 'Conectarea a eșuat. Verifică conexiunea la internet și încearcă din nou.';
+  String get loginFailedCheckNetwork => 'Autentificare eșuată Verifică conexiunea la internet și încearcă din nou.';
 
   @override
-  String get loginFailedTryAgain => 'Conectare eșuată. Te rog să încerci din nou mai târziu.';
+  String get loginFailedTryAgain => 'Autentificare eșuată Te rog să încerci din nou mai târziu.';
 
   @override
   String get soundLanguage => 'Limba sunetului';
@@ -133,7 +135,7 @@ class SRo extends S {
   String get cantPlayVideo => 'Nu se poate reda acest video acum.';
 
   @override
-  String get about => 'Detalii aplicație';
+  String get about => 'Despre';
 
   @override
   String get version => 'Versiune';
@@ -214,7 +216,7 @@ class SRo extends S {
   String get goBack => 'Mergi înapoi';
 
   @override
-  String get yesCancel => 'Da, Anulează';
+  String get yesCancel => 'Da, anulează';
 
   @override
   String get done => 'Efectuat';
@@ -253,13 +255,13 @@ class SRo extends S {
   String get search => 'Căutare';
 
   @override
-  String get sendFeedback => 'Trimite Feedback';
+  String get sendFeedback => 'Trimite feedback';
 
   @override
-  String get noResults => 'Nici un rezultat gasit';
+  String get noResults => 'Nici un rezultat găsit';
 
   @override
-  String get doYouWantCast => 'Vrei să trimiți acest video prin Cast?';
+  String get doYouWantCast => 'Vrei să trimiți acest video prin cast?';
 
   @override
   String get play => 'Redare';
@@ -281,7 +283,7 @@ class SRo extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Nu poți avea mai mult de $elementCount elemente în coadă.';
+    return 'Nu poți avea mai mult de $elementCount element în coadă.';
   }
 
   @override
@@ -309,19 +311,19 @@ class SRo extends S {
   String get sortBy => 'Sortare după';
 
   @override
-  String get videoQuality => 'Calitatea video';
+  String get videoQuality => 'Calitate video';
 
   @override
   String get low => 'Redusă';
 
   @override
-  String get medium => 'Mediu';
+  String get medium => 'Medie';
 
   @override
   String get high => 'Înaltă';
 
   @override
-  String get emptySearch => 'Poți căuta tot conținutul de la BCC Media. Serii, videouri și episoade.';
+  String get emptySearch => 'Poți căuta tot conținutul de la BCC Media. Seriale, videoclipuri și episoade.';
 
   @override
   String get back => 'Înapoi';
@@ -373,7 +375,7 @@ class SRo extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return 'Au rămas $charsLeft din $charsTotal caractere';
+    return '$charsLeft de $charsTotal caractere rămase';
   }
 
   @override
@@ -383,7 +385,7 @@ class SRo extends S {
   String get thankYouForContribution => 'Mulțumim pentru contribuție!';
 
   @override
-  String get next => 'Urmează';
+  String get next => 'Următorul';
 
   @override
   String get add => 'Adaugă';
@@ -422,10 +424,10 @@ class SRo extends S {
   String get thankYouSupportDescription => 'Apreciem toate feedback-urile și vom aborda problema cât de curând posibil.';
 
   @override
-  String get sendFail => 'Nu am putut trimite mesajul dvs';
+  String get sendFail => 'Nu am putut trimite mesajul';
 
   @override
-  String get sendFailDescription => 'Ceva n-a mers bine. Verifică conexiunea la internet și încearcă din nou.';
+  String get sendFailDescription => 'Ceva a mers greșit. Verifică conexiunea la internet și încearcă din nou.';
 
   @override
   String get sendSuccessDescription => 'Apreciem feedbackul tău.';
@@ -438,14 +440,14 @@ class SRo extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponibil de pe $date';
+    return 'Disponibil $date';
   }
 
   @override
   String get submit => 'Trimite';
 
   @override
-  String get wellDone => 'Bună treabă!';
+  String get wellDone => 'Bravo!';
 
   @override
   String get editPicture => 'Editează poza';
@@ -455,7 +457,7 @@ class SRo extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Programul ghidului Tv este afișat în ora ta locală: $timeZone';
+    return 'Programul ghidului TV este afișat în ora ta locală: $timeZone';
   }
 
   @override
@@ -611,19 +613,19 @@ class SRo extends S {
   String get startStudy => 'Începe studiul';
 
   @override
-  String get videoCompletedText => 'Foarte bine! Ai finalizat videoul.';
+  String get videoCompletedText => 'Bravo! Ai finalizat videoul.';
 
   @override
-  String get achievementFirstDescription => 'Foarte bine! Ai finalizat videoul și ai obținut primul progres.';
+  String get achievementFirstDescription => 'Bravo! Ai finalizat videoul și ai obținut primul progres.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Foarte bine! Ai finalizat subiectului de studiu $name';
+    return 'Bravo! Ai finalizat subiectului de studiu $name';
   }
 
   @override
   String videoCount(int count) {
-    return '$count videouri';
+    return '$count videoclipuri';
   }
 
   @override
@@ -633,7 +635,7 @@ class SRo extends S {
 
   @override
   String posterCount(int count) {
-    return '$count postere';
+    return '$count afișe';
   }
 
   @override
@@ -652,14 +654,14 @@ class SRo extends S {
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n caractere';
+    return 'Minim $n caractere';
   }
 
   @override
   String get passwordConditionComplexity => 'Trebuie să conțină litere mici, majuscule și numere.';
 
   @override
-  String get oops => 'Oops!';
+  String get oops => 'Ups!';
 
   @override
   String get dontHaveAccess => 'Nu ai acces la acest conținut.';
@@ -710,7 +712,7 @@ class SRo extends S {
   String get askYourParents => 'Întreabă părinții tăi';
 
   @override
-  String get whatIsMath => 'Cât este';
+  String get whatIsMath => 'Ce este';
 
   @override
   String get answerLabel => 'Răspuns';
@@ -743,7 +745,7 @@ class SRo extends S {
   String get verificationEmailSent => 'E-mail de verificare trimis';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'Dacă tot nu ați primit un e-mail, te rugăm să contactezi serviciul de asistență la adresa';
+  String get ifYouDidntReceiveVerificationEmail => 'Dacă tot nu ai primit un e-mail, te rugăm să contactezi serviciul de asistență la adresa';
 
   @override
   String get accountCreated => 'Cont creat';
@@ -770,7 +772,7 @@ class SRo extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Ștergerea contului a fost solicitată cu succes. Vei primi un e-mail pe $email. Pentru a confirma identitatea trebuie să ne răspunzi la acel e-mail pentru a continua ștergerea.';
+    return 'Ștergerea contului a fost solicitată cu succes. Veți primi un e-mail la $email. Pentru a vă confirma identitatea, avem nevoie să răspundeți la e-mailul respectiv pentru a continua cu ștergerea.';
   }
 
   @override
@@ -784,7 +786,7 @@ class SRo extends S {
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Sau accesează $url și introdu codul: $code';
+    return 'Sau accesează la $url și introdu codul: $code';
   }
 
   @override
@@ -809,7 +811,7 @@ class SRo extends S {
   String get ageRatingAll => 'Tot';
 
   @override
-  String get offline => 'Fără internet';
+  String get offline => 'Offline';
 
   @override
   String get downloadButton => 'Descarcă';
@@ -934,7 +936,7 @@ class SRo extends S {
   String get contentLanguageShort => 'Conţinut';
 
   @override
-  String get appLanguageShort => 'App';
+  String get appLanguageShort => 'Aplicație';
 
   @override
   String get playRandom => 'Redare aleatorie';
@@ -961,7 +963,7 @@ class SRo extends S {
   String get donateViaPaypal => 'Donează prin PayPal';
 
   @override
-  String get shortsTab => 'Scurtmetraje';
+  String get shortsTab => 'Shorts';
 
   @override
   String get autoGenerated => 'Generată automat';
@@ -973,28 +975,28 @@ class SRo extends S {
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'Această funcție este în versiune beta și nu este momentan disponibilă pentru toți utilizatorii. Vă rugăm să raportați orice problemă sau feedback prin intermediul butonului „Contact\" din setări.';
+  String get betaExplanation => 'Această caracteristică este în versiune beta și nu este disponibilă în prezent pentru toți utilizatorii. Vă rugăm să raportați orice problemă sau feedback prin intermediul butonului „Contact” din setări.';
 
   @override
-  String get likedShorts => 'Scurtmetraje preferate';
+  String get likedShorts => 'Short-uri preferate ';
 
   @override
   String get saveYourFavoriteShorts => 'Salvează-ți videourile preferate';
 
   @override
-  String get featureNotAvailableYet => 'Această funcție nu este încă disponibilă pe acest dispozitiv. Te rugăm să încerci din nou mai târziu.';
+  String get featureNotAvailableYet => 'Această caracteristică nu este încă disponibilă pe dispozitivul tău. Te rog să încerci din nou mai târziu.';
 
   @override
-  String get newFeature => 'Funcții noi';
+  String get newFeature => 'Funcțiuni noi';
 
   @override
-  String get shortsFeatureDescription => 'Descoperă fragmente scurte și puternice, și sări direct la episodul complet.';
+  String get shortsFeatureDescription => 'Descoperă fragmente scurte și puternice, și sari direct la episodul complet.';
 
   @override
   String get likedAndSaved => 'Apreciat și salvat';
 
   @override
-  String get shortsLikedAndSavedDescription => 'Poți găsi în profilul tău toate scurtmetrajele care ți-au plăcut.';
+  String get shortsLikedAndSavedDescription => 'Poți găsi în profilul tău toate short-urile care ți-au plăcut.';
 
   @override
   String get excerptFrom => 'Extras din';
@@ -1028,51 +1030,51 @@ class SRo extends S {
 
   @override
   String countItems(int x) {
-    return '$x rezultate';
+    return '$x elemente';
   }
 
   @override
   String skipTo(String chapter) {
-    return 'Treceți la $chapter';
+    return 'Sari la $chapter';
   }
 
   @override
-  String get bmmBibleStudyTitle => 'Your Bible Study';
+  String get bmmBibleStudyTitle => 'Studiul tău Biblic';
 
   @override
   String bmmBibleStudyPoints(int points) {
-    return '$points points';
+    return '$points puncte';
   }
 
   @override
-  String get answerTheQuiz => 'Answer the quiz';
+  String get answerTheQuiz => 'Răspunde la chestionar';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription => 'Câștigă puncte răspunzând corect';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
-    return 'You got $correct of $total answers correct';
+    return 'Ai primit $correct din $total răspunsuri corecte';
   }
 
   @override
-  String get studyAllAnswersCorrect => 'You got all answers correct';
+  String get studyAllAnswersCorrect => 'Ai toate răspunsurile corecte';
 
   @override
-  String get studyNoAnswersCorrect => 'You got no answers correct';
+  String get studyNoAnswersCorrect => 'Nu ai niciun răspuns corect';
 
   @override
-  String get studyAllAnswersCorrectDescription => 'Well done!';
+  String get studyAllAnswersCorrectDescription => 'Bravo!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription => 'Ar fi bine să asculți mai atent data viitoare!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription => 'Bravo! Dar încă este loc de îmbunătățire.';
 
   @override
-  String get studyAllQuestionsAnswered => 'You answered all questions';
+  String get studyAllQuestionsAnswered => 'Ai răspuns la toate întrebările';
 
   @override
-  String get studyAllQuestionsAnsweredDescription => 'Well done!';
+  String get studyAllQuestionsAnsweredDescription => 'Bravo!';
 }
