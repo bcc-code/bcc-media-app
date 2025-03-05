@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.67+2300227...v) (2025-03-05)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.68+2300228...v) (2025-03-05)
+
+
+
+## [5.6.68+2300228](https://github.com/bcc-code/bcc-media-app/compare/v5.6.67+2300227...v5.6.68+2300228) (2025-03-05)
+
+
+### Bug Fixes
+
+* **quiz:** log error if status code is >= 400 ([41118c3](https://github.com/bcc-code/bcc-media-app/commit/41118c35c014a3139c5580bd2d10f82d72c47829))
 
 
 
