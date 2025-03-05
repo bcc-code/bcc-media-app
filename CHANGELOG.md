@@ -1,4 +1,20 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.66+2300226...v) (2025-02-28)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.67+2300227...v) (2025-03-05)
+
+
+
+## [5.6.67+2300227](https://github.com/bcc-code/bcc-media-app/compare/v5.6.66+2300226...v5.6.67+2300227) (2025-03-05)
+
+
+### Bug Fixes
+
+* **bmm:** invalidate api when refresh ([cf7da4c](https://github.com/bcc-code/bcc-media-app/commit/cf7da4ce81b8306d6d81590de322e76d1a3250bf))
+* downgrade flutter ([cd4c7f8](https://github.com/bcc-code/bcc-media-app/commit/cd4c7f814f0be691a0d8bf13aa1a7216888db443))
+* make update dialog work again ([43d142e](https://github.com/bcc-code/bcc-media-app/commit/43d142e0e916f79591d5dc23c100fd9239e6e8d1))
+
+
+### Features
+
+* add info message to audio page ([5c44d6b](https://github.com/bcc-code/bcc-media-app/commit/5c44d6b78a7b8ab2bb0d394c92933f5cbb761e21))
 
 
 
