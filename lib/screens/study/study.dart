@@ -125,7 +125,7 @@ Future _handleTasksCompleted(
   if (answers != null && answers.isNotEmpty) {
     final bmmApi = ref.read(bmmApiProvider).getQuestionApi();
     try {
-      bmmApi.questionAnswersPost(
+      final response = await bmmApi.questionAnswersPost(
           handleBccmAnswerCommandBccmAnswer: answers
               .map(
                 (answer) => HandleBccmAnswerCommandBccmAnswer((b) {
@@ -135,6 +135,15 @@ Future _handleTasksCompleted(
                 }),
               )
               .toBuiltList());
+
+      if (response.statusCode != null && response.statusCode! >= 400) {
+        ref.read(analyticsProvider).log(LogEvent(
+              name: 'could not post study answers to BMM',
+              message: response.statusMessage,
+              meta: {'answers': answers, 'statusCode': response.statusCode},
+              pageCode: 'study',
+            ));
+      }
     } catch (err) {
       ref.read(analyticsProvider).log(LogEvent(
             name: 'could not post study answers to BMM',
