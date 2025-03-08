@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.68+2300228...v) (2025-03-05)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.69+2300229...v) (2025-03-08)
+
+
+
+## [5.6.69+2300229](https://github.com/bcc-code/bcc-media-app/compare/v5.6.68+2300228...v5.6.69+2300229) (2025-03-08)
+
+
+### Bug Fixes
+
+* **js:** make sure messages are awaited ([5b59666](https://github.com/bcc-code/bcc-media-app/commit/5b5966692de6169b93b7d291b505f12a33c54899))
 
 
 
