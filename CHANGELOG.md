@@ -1,8 +1,4 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.69+2300229...v) (2025-03-08)
-
-
-
-## [5.6.69+2300229](https://github.com/bcc-code/bcc-media-app/compare/v5.6.68+2300228...v5.6.69+2300229) (2025-03-08)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.68+2300228...v) (2025-03-08)
 
 
 ### Bug Fixes
