@@ -1,4 +1,17 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.68+2300228...v) (2025-03-08)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.70+2300230...v) (2025-03-10)
+
+
+
+## [5.6.70+2300230](https://github.com/bcc-code/bcc-media-app/compare/v5.6.69+2300229...v5.6.70+2300230) (2025-03-10)
+
+
+### Features
+
+* update player to maybe fix pip issue ([a45fd04](https://github.com/bcc-code/bcc-media-app/commit/a45fd0401ec9bb432c031b89f6f9100c12e4b000))
+
+
+
+## [5.6.69+2300229](https://github.com/bcc-code/bcc-media-app/compare/v5.6.68+2300228...v5.6.69+2300229) (2025-03-08)
 
 
 ### Bug Fixes
