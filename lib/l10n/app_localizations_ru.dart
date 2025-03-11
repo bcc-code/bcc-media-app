@@ -10,16 +10,16 @@ class SRu extends S {
   String get loadingContent => 'Загрузка контента';
 
   @override
-  String get signInTooltip => 'Войдите, чтобы смотреть больше контента';
+  String get signInTooltip => 'Войдите, чтобы увидеть больше';
 
   @override
-  String get skipToPublicContent => 'Перейти к просмотру общедоступного контента';
+  String get skipToPublicContent => 'Просмотреть общедоступный контент';
 
   @override
   String get minutesShort => 'мин';
 
   @override
-  String get calendarThisWeek => 'На этой неделе';
+  String get calendarThisWeek => 'Эта неделя';
 
   @override
   String get calendarWeek => 'неделя';
@@ -31,16 +31,16 @@ class SRu extends S {
   String get loading => 'Загрузка';
 
   @override
-  String get loginPageDisplay1 => 'Самое мощное послание в мире';
+  String get loginPageDisplay1 => 'Самая могущественная весть в мире';
 
   @override
-  String get loginPageDisplay2 => 'Смотрите сериалы, шоу и фильмы, основанные на христианских ценностях';
+  String get loginPageDisplay2 => 'Смотрите передачи, шоу и фильмы, основанные на христианских ценностях';
 
   @override
   String get kidsOnboardingTitle => 'Мы воплощаем Библейское послание в жизнь!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Мы хотим, чтобы дети узнали Иисуса как своего лучшего друга - на всю оставшуюся жизнь.';
+  String get kidsOnboardingSecondaryTitle => 'Наша цель, чтобы дети обрели Иисуса как своего лучшего друга – на всю оставшуюся жизнь.';
 
   @override
   String get loginPageDisplay3 => 'Произведено BCC Media';
@@ -55,7 +55,7 @@ class SRu extends S {
   String get faq => 'Часто задаваемые вопросы';
 
   @override
-  String get bccMediaCenter => 'BCC Media — это медиа-фонд в организации BCC, который производит и распространяет контент с позитивными и христианскими ценностями.';
+  String get bccMediaCenter => 'BCC Media — это медиа-фонд в организации BCC, который производит и распространяет контент с позитивными христианскими ценностями.';
 
   @override
   String get signInButton => 'Войти';
@@ -70,10 +70,10 @@ class SRu extends S {
   String get signUpTitle => 'Зарегистрироваться';
 
   @override
-  String get signUpDescription => 'Получите доступ к большему количеству контента и расширенным возможностям, создав учетную запись.';
+  String get signUpDescription => 'Создайте аккаунт, чтобы получить доступ к дополнительному контенту и расширенным функциям.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Я подтверждаю, что мне исполнилось 13 лет, и я принимаю <a>Политику конфиденциальности</a> и <a>Условия использования</a>.';
+  String get signUpAgreePrivacyPolicy => 'Я подтверждаю, что мне 13 лет или больше, и я согласен/согласна с <a>политикой конфиденциальности</a> и <a>условиями использования</a>.';
 
   @override
   String get setPassword => 'Задать пароль';
@@ -85,16 +85,16 @@ class SRu extends S {
   String get loggedOutTitle => 'Вы вышли из аккаунта';
 
   @override
-  String get loggedOutMessage => 'Вы вышли из аккаунта. Пожалуйста, войдите снова.';
+  String get loggedOutMessage => 'Вы вышли из системы. Пожалуйста, войдите в систему снова.';
 
   @override
   String get makeDonation => 'Сделать пожертвование';
 
   @override
-  String get mostWatched => 'Самое просматриваемое';
+  String get mostWatched => 'Самое популярное';
 
   @override
-  String get mostRecent => 'Самое последнее';
+  String get mostRecent => 'Последнее';
 
   @override
   String get latelyPublished => 'Недавно опубликовано';
@@ -109,10 +109,10 @@ class SRu extends S {
   String get open => 'Открыть';
 
   @override
-  String get loginFailedCheckNetwork => 'Ошибка входа. Проверьте подключение к сети и попробуйте снова.';
+  String get loginFailedCheckNetwork => 'Вход не удался Проверьте подключение к сети и попробуйте снова.';
 
   @override
-  String get loginFailedTryAgain => 'Ошибка входа. Пожалуйста, попробуйте позже.';
+  String get loginFailedTryAgain => 'Вход не удался Пожалуйста, попробуйте позже.';
 
   @override
   String get soundLanguage => 'Язык воспроизведения';
@@ -130,7 +130,7 @@ class SRu extends S {
   String get tryAgain => 'Пожалуйста, попробуйте позже.';
 
   @override
-  String get cantPlayVideo => 'Вы не можете воспроизводить это видео сейчас.';
+  String get cantPlayVideo => 'Невозможно воспроизвести это видео сейчас.';
 
   @override
   String get about => 'Инфо';
@@ -151,7 +151,7 @@ class SRu extends S {
   String get deviceInfo => 'Информация об устройстве';
 
   @override
-  String get contactIncludeDeviceInfo => 'Включить информацию об устройстве для улучшения поддержки.';
+  String get contactIncludeDeviceInfo => 'Включить информацию об устройстве, чтобы получить качественную поддержку.';
 
   @override
   String get contactSeeData => 'Нажмите для просмотра данных.';
@@ -163,10 +163,10 @@ class SRu extends S {
   String get contactNameHint => 'Введите свое имя';
 
   @override
-  String get contactEmail => 'Ваш контактный адрес электронной почты';
+  String get contactEmail => 'Ваш адрес эл. почты';
 
   @override
-  String get contactEmailHint => 'Введите адрес электронной почты';
+  String get contactEmailHint => 'Введите адрес эл. почты';
 
   @override
   String get contactMessage => 'Сообщение\n';
@@ -193,10 +193,10 @@ class SRu extends S {
   String get deviceInfoAppVer => 'Версия приложения';
 
   @override
-  String get deviceInfoUserId => 'Идентификатор пользователя';
+  String get deviceInfoUserId => 'ID пользователя';
 
   @override
-  String get deviceInfoPageDesc => 'Ваше сообщение будет содержать эту информацию, чтобы помочь нам обеспечить лучшую поддержку.';
+  String get deviceInfoPageDesc => 'Ваше сообщение будет содержать эту информацию, чтобы обеспечить более качественную поддержку.';
 
   @override
   String get userVoice => 'Предложить функцию';
@@ -229,7 +229,7 @@ class SRu extends S {
   String get none => 'Нет';
 
   @override
-  String get nextEpisode => 'Следующая серия';
+  String get nextEpisode => 'Следующий эпизод';
 
   @override
   String get auto => 'Авто';
@@ -259,16 +259,16 @@ class SRu extends S {
   String get noResults => 'Результатов не найдено';
 
   @override
-  String get doYouWantCast => 'Хотите показать это видео?';
+  String get doYouWantCast => 'Хотите транслировать это видео?';
 
   @override
-  String get play => 'Играть';
+  String get play => 'Воспроизвести';
 
   @override
   String get pause => 'Пауза';
 
   @override
-  String get castQueue => 'Показывать очередь';
+  String get castQueue => 'Очередь для трансляции';
 
   @override
   String get options => 'Опции';
@@ -281,7 +281,7 @@ class SRu extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'В очереди не может быть больше элементов, чем $elementCount.';
+    return 'В очереди не может быть более $elementCount элементов.';
   }
 
   @override
@@ -291,13 +291,13 @@ class SRu extends S {
   String get tVLogin => 'ТВ Логин';
 
   @override
-  String get tVLoginSuccessful => 'Успешный вход, пожалуйста, подтвердите на телевизоре.';
+  String get tVLoginSuccessful => 'Вход выполнен, подтвердите вход на телевизоре.';
 
   @override
   String get seeMore => 'Смотреть больше';
 
   @override
-  String get seeAll => 'Посмотреть все';
+  String get seeAll => 'Смотреть все';
 
   @override
   String get series => 'Передачи';
@@ -321,7 +321,7 @@ class SRu extends S {
   String get high => 'Высокое';
 
   @override
-  String get emptySearch => 'Вы можете выполнять поиск по всему контенту от BCC Media. Передачи, фильмы и эпизоды.';
+  String get emptySearch => 'Вы можете искать по всему содержимому BCC Media. Передачи, видео и эпизоды.';
 
   @override
   String get back => 'Назад';
@@ -373,7 +373,7 @@ class SRu extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return 'Осталось $charsLeft из $charsTotal символов';
+    return 'Осталось$charsLeft символов из $charsTotal';
   }
 
   @override
@@ -401,7 +401,7 @@ class SRu extends S {
   String get information => 'Информация';
 
   @override
-  String get question => 'Вопросы';
+  String get question => 'Вопрос';
 
   @override
   String get now => 'Сейчас';
@@ -425,7 +425,7 @@ class SRu extends S {
   String get sendFail => 'Не удалось отправить ваше сообщение';
 
   @override
-  String get sendFailDescription => 'Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.';
+  String get sendFailDescription => 'Что-то пошло не так. Проверьте подключение к Интернету и повторите попытку.';
 
   @override
   String get sendSuccessDescription => 'Мы ценим Ваш отзыв.';
@@ -434,7 +434,7 @@ class SRu extends S {
   String get today => 'Сегодня';
 
   @override
-  String get expired => 'Прошёл';
+  String get expired => 'Уже не доступно';
 
   @override
   String availableFrom(String date) {
@@ -445,7 +445,7 @@ class SRu extends S {
   String get submit => 'Отправить';
 
   @override
-  String get wellDone => 'Отлично сработано!';
+  String get wellDone => 'Отличная работа!';
 
   @override
   String get editPicture => 'Редактировать изображение';
@@ -455,7 +455,7 @@ class SRu extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Расписание телепрограммы указано по вашему местному времени: $timeZone';
+    return 'Программа передач указан по вашему местному времени: $timeZone';
   }
 
   @override
@@ -465,10 +465,10 @@ class SRu extends S {
   String get showMore => 'Показать ещё';
 
   @override
-  String get showLess => 'Показать меньше';
+  String get showLess => 'Скрыть';
 
   @override
-  String get comingSoon => 'Скоро выйдут';
+  String get comingSoon => 'Уже скоро';
 
   @override
   String get newEpisode => 'Новое';
@@ -492,7 +492,7 @@ class SRu extends S {
   String get appUpdateTitle => 'Требуется обновление';
 
   @override
-  String get appUpdateRequest => 'Пожалуйста, загрузите последнюю версию приложения, чтобы пользоваться всеми последними функциями и исправлениями ошибок.';
+  String get appUpdateRequest => 'Загрузите последнее приложение, чтобы получить доступ ко всем новым функциям и исправлениям.';
 
   @override
   String get appUpdateAccepted => 'Обновление';
@@ -504,14 +504,14 @@ class SRu extends S {
   String get reload => 'Перезагрузить';
 
   @override
-  String get fAQ => 'ЧАВО';
+  String get fAQ => 'Часто задаваемые вопросы';
 
   @override
   String get shareStart => 'Поделиться с начала';
 
   @override
   String shareTime(String time) {
-    return 'Поделиться с времени $time';
+    return 'Поделиться с $time';
   }
 
   @override
@@ -536,7 +536,7 @@ class SRu extends S {
   String get eventsTab => 'События';
 
   @override
-  String get audioLanguage => 'Язык воспроизведения';
+  String get audioLanguage => 'Язык аудио';
 
   @override
   String get subtitlesLanguage => 'Язык субтитров';
@@ -545,7 +545,7 @@ class SRu extends S {
   String get removeFromRecentSearches => 'Желаете удалить этот элемент из последних запросов?';
 
   @override
-  String get noTransmissionToday => 'Нет запланированной трансляции на сегодня';
+  String get noTransmissionToday => 'Нет запланированных трансляции на сегодня';
 
   @override
   String get featured => 'Рекомендуемое';
@@ -566,7 +566,7 @@ class SRu extends S {
   String get exploreContent => 'Исследуйте контент';
 
   @override
-  String get explorePublicContent => 'Исследовать открытый контент';
+  String get explorePublicContent => 'Исследовать общедоступный контент';
 
   @override
   String get startExploring => 'Начать исследовать';
@@ -587,16 +587,16 @@ class SRu extends S {
   String get completePreviousTasks => 'Выполните предыдущие задания, чтобы разблокировать';
 
   @override
-  String get studyDiscoverMoreDescription => 'Получите больше вдохновения и информации из соответствующих ресурсов';
+  String get studyDiscoverMoreDescription => 'Получите больше вдохновения и знаний из связанных источников.';
 
   @override
-  String get watchAgain => 'Посмотрите еще раз';
+  String get watchAgain => 'Посмотреть снова';
 
   @override
   String get continueToTaskIn => 'Продолжить задание в';
 
   @override
-  String get continueToTasksIn => 'Продолжайте выполнять задания в';
+  String get continueToTasksIn => 'Продолжать выполнять задания в';
 
   @override
   String get studyLessonCompleted => 'урок завершен';
@@ -614,31 +614,31 @@ class SRu extends S {
   String get videoCompletedText => 'Отличная работа, просмотр видео завершен.';
 
   @override
-  String get achievementFirstDescription => 'Отличная работа, вы завершили видео и получили первое достижение.';
+  String get achievementFirstDescription => 'Отличная работа, вы завершили просмотр видео и получили первое достижение.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Отличная работа по завершению темы изучения $name';
+    return 'Отличная работа, вы завершили изучение темы $name';
   }
 
   @override
   String videoCount(int count) {
-    return '$count видео';
+    return 'Видео';
   }
 
   @override
   String taskCount(int count) {
-    return '$count заданий';
+    return '$count задания';
   }
 
   @override
   String posterCount(int count) {
-    return '$count постер(ов)\n';
+    return '$count плакаты';
   }
 
   @override
   String resourceCount(int count) {
-    return '$count ресурсов';
+    return '$count ресурсы';
   }
 
   @override
@@ -656,10 +656,10 @@ class SRu extends S {
   }
 
   @override
-  String get passwordConditionComplexity => 'Должен содержать строчные, прописные и цифры.';
+  String get passwordConditionComplexity => 'Должен содержать цифры, строчные и заглавные буквы.';
 
   @override
-  String get oops => 'Ой!';
+  String get oops => 'Упс!';
 
   @override
   String get dontHaveAccess => 'У вас нет доступа к этому контенту.';
@@ -686,7 +686,7 @@ class SRu extends S {
   String get didYouKnowTitle => 'Знаете ли вы?';
 
   @override
-  String get didYouKnowContent => 'Вы можете добавить свои любимые передачи в \"Мой список\", нажав на сердечко.';
+  String get didYouKnowContent => 'Вы можете добавить свои любимые передачи в «Мой список», нажав на сердечко.';
 
   @override
   String get selectSeason => 'Выбрать сезон';
@@ -695,7 +695,7 @@ class SRu extends S {
   String get deleteMyAccount => 'Удалить мой аккаунт';
 
   @override
-  String get iAmSureIWantToDelete => 'Я уверен, что хочу удалить свою учетную запись и данные, связанные с приложением BCC Media.';
+  String get iAmSureIWantToDelete => 'Я уверен(а), что хочу удалить свою учетную запись и данные, связанные с приложением BCC Media.';
 
   @override
   String get areYouSure => 'Ты уверен(а)?';
@@ -731,13 +731,13 @@ class SRu extends S {
   String get clickTheLinkToVerify => 'Нажмите на ссылку в письме, чтобы подтвердить свою учетную запись.';
 
   @override
-  String get openEmailApp => 'Откройте приложение электронной почты';
+  String get openEmailApp => 'Откройте эл. почту';
 
   @override
-  String get resendEmail => 'Повторная отправка письма';
+  String get resendEmail => 'Отправить повторно';
 
   @override
-  String get noMailAppsDescription => 'Не установлены почтовые приложения';
+  String get noMailAppsDescription => 'Не установлено приложение для эл. почты';
 
   @override
   String get verificationEmailSent => 'Отправлено письмо с подтверждением';
@@ -762,7 +762,7 @@ class SRu extends S {
 
   @override
   String accountDeletionTimeframe(int x) {
-    return 'Удаление учетной записи обычно производится в течение $x рабочих дней.';
+    return 'Удаление аккаунта обычно происходит в течение $x рабочих дней.';
   }
 
   @override
@@ -770,7 +770,7 @@ class SRu extends S {
 
   @override
   String accountDeletionSuccess(String email) {
-    return 'Запрос на удаление учетной записи успешно выполнен. Вы получите письмо по адресу $email. Для подтверждения вашей личности нам необходимо, чтобы вы ответили на это письмо, чтобы приступить к удалению.';
+    return 'Удаление аккаунта успешно запрошено. Вы получите письмо по адресу $email. Для подтверждения вашей личности, пожалуйста, ответьте на это письмо для продолжения удаления.';
   }
 
   @override
@@ -784,17 +784,17 @@ class SRu extends S {
 
   @override
   String tvEnterCode(String url, String code) {
-    return 'Или перейдите по ссылке $url и введите код: $code';
+    return 'Или перейдите сюда$url и введите код: $code';
   }
 
   @override
   String get chapters => 'Главы';
 
   @override
-  String get removeWatchProgress => 'Очистить прогресс просмотра';
+  String get removeWatchProgress => 'Очистить прогресс';
 
   @override
-  String get showDescription => 'Описание передач';
+  String get showDescription => 'Показать описание';
 
   @override
   String get releaseDate => 'Дата релиза';
@@ -816,31 +816,31 @@ class SRu extends S {
 
   @override
   String audioNotAvailableInLanguage(String lang) {
-    return 'Аудио недоступно на $lang';
+    return 'Аудио недоступно в $lang';
   }
 
   @override
   String get notEnoughAvailableSpace => 'Недостаточно свободного места на устройстве';
 
   @override
-  String get considerDeletingOtherVideos => 'Рассмотрите возможность удаления других видеозаписей, загруженных в приложении.';
+  String get considerDeletingOtherVideos => 'Рассмотрите возможность удаления других видео, загруженных в приложении.';
 
   @override
   String theVideoFileSizeIs(String size) {
-    return 'Размер видеофайла $size.';
+    return 'Размер видеофайла - $size.';
   }
 
   @override
   String get gotIt => 'Понятно';
 
   @override
-  String get saveYourFavorites => 'Сохраните любимые видеозаписи';
+  String get saveYourFavorites => 'Сохраните любимые видео';
 
   @override
-  String get saveYourFavoritesDescription => 'Нажмите на значок сердечка на видео, чтобы сохранить его в своем профиле.';
+  String get saveYourFavoritesDescription => 'Нажмите на сердце на видео, чтобы сохранить его в своем профиле.';
 
   @override
-  String get yourFavorites => 'Ваше избранное';
+  String get yourFavorites => 'Избранное';
 
   @override
   String get downloaded => 'Загружено';
@@ -858,32 +858,32 @@ class SRu extends S {
   String get removeOfflineVideoDescription => 'Если удалить это видео, оно перестанет быть доступным без подключения к интернету.';
 
   @override
-  String get removeFromDeviceButton => 'Удалить из устройства';
+  String get removeFromDeviceButton => 'Удалить с устройства';
 
   @override
   String get keepVideoButton => 'Оставить видео';
 
   @override
-  String get noInternetConnection => 'Отсутствие подключения к интернету';
+  String get noInternetConnection => 'Отсутствует подключение к интернету';
 
   @override
-  String get noInternetConnectionDescription => 'Для доступа ко всем видеоматериалам подключитесь к интернету.';
+  String get noInternetConnectionDescription => 'Для доступа ко всем видео подключитесь к интернету.';
 
   @override
   String get noInternetButDontWorry => 'Нет подключения к интернету,\nно не волнуйтесь.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Здесь отображаются все видеоролики, загруженные на устройство.';
+  String get hereAreAllTheVideosYouDownloaded => 'Здесь отображаются все видео, загруженные на устройство.';
 
   @override
-  String get connectToExplore => 'Для просмотра всех видеозаписей подключитесь к интернету.';
+  String get connectToExplore => 'Для просмотра всех видео подключитесь к интернету.';
 
   @override
   String get language => 'Язык';
 
   @override
   String estimatedFileSize(String size) {
-    return 'Предполагаемый размер файла: $size';
+    return 'Примерный размер файла: $size';
   }
 
   @override
@@ -893,7 +893,7 @@ class SRu extends S {
   String get noSubtitles => 'Без субтитров';
 
   @override
-  String get subtitlesIncluded => 'Добавлены субтитры';
+  String get subtitlesIncluded => 'Субтитры включены';
 
   @override
   String get allSubtitlesWillBeAvailableOffline => 'Все субтитры будут доступны в офлайн режиме';
@@ -918,7 +918,7 @@ class SRu extends S {
 
   @override
   String expiresIn(String time) {
-    return 'Истекает в $time';
+    return 'Истекает через $time';
   }
 
   @override
@@ -937,7 +937,7 @@ class SRu extends S {
   String get appLanguageShort => 'Приложение';
 
   @override
-  String get playRandom => 'Играть в случайном порядке';
+  String get playRandom => 'Воспроизвести в случайном порядке';
 
   @override
   String get addLanguage => 'Добавить язык';
@@ -946,7 +946,7 @@ class SRu extends S {
   String get preferredLanguages => 'Предпочитаемые языки';
 
   @override
-  String get contentLanguageExplanation => 'Измените порядок языков согласно предпочтениями языка аудио и субтитров.';
+  String get contentLanguageExplanation => 'Измените порядок согласно предпочтениями языка аудио и субтитров.';
 
   @override
   String get otherLanguages => 'Другие языки';
@@ -967,22 +967,22 @@ class SRu extends S {
   String get autoGenerated => 'Автоматически сгенерировано';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'The transcriptions are auto-generated and might contain errors.';
+  String get shortsTranscriptionDisclaimer => 'Расшифровки создаются автоматически и могут содержать ошибки.';
 
   @override
   String get beta => 'Бета';
 
   @override
-  String get betaExplanation => 'Эта функция находится в стадии бета-тестирования и в настоящее время доступна не всем пользователям. Пожалуйста, сообщайте о любых проблемах или отзывах через кнопку \"Связаться\" в настройках.';
+  String get betaExplanation => 'Эта функция находится в стадии бета-тестирования и на данный момент доступна не всем пользователям. Пожалуйста, сообщай о любых проблемах или отзывах через кнопку «Связаться» в настройках.';
 
   @override
-  String get likedShorts => 'Понравившиеся видео';
+  String get likedShorts => 'Понравившиеся шортсы';
 
   @override
   String get saveYourFavoriteShorts => 'Сохраните любимые видео';
 
   @override
-  String get featureNotAvailableYet => 'Эта функция пока недоступна. Пожалуйста, повторите попытку позже.';
+  String get featureNotAvailableYet => 'Эта функция пока недоступна на вашем устройстве. Пожалуйста, попробуйте позже.';
 
   @override
   String get newFeature => 'Новая функция';
@@ -997,7 +997,7 @@ class SRu extends S {
   String get shortsLikedAndSavedDescription => 'Вы можете найти все понравившиеся видео в своем профиле.';
 
   @override
-  String get excerptFrom => 'Excerpt from';
+  String get excerptFrom => 'Отрывок из';
 
   @override
   String get downloadedVideosGuideDescription => 'Загруженные видео можно найти в разделе Профиль.';
@@ -1033,46 +1033,46 @@ class SRu extends S {
 
   @override
   String skipTo(String chapter) {
-    return 'Skip to $chapter';
+    return 'Перейти к $chapter';
   }
 
   @override
-  String get bmmBibleStudyTitle => 'Your Bible Study';
+  String get bmmBibleStudyTitle => 'Изучение Библии';
 
   @override
   String bmmBibleStudyPoints(int points) {
-    return '$points points';
+    return '$points баллов';
   }
 
   @override
-  String get answerTheQuiz => 'Answer the quiz';
+  String get answerTheQuiz => 'Ответьте на вопросы викторины';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription => 'Зарабатывайте очки, отвечая правильно';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
-    return 'You got $correct of $total answers correct';
+    return 'Вы правильно ответили на $correct из $total.';
   }
 
   @override
-  String get studyAllAnswersCorrect => 'You got all answers correct';
+  String get studyAllAnswersCorrect => 'Вы ответили правильно на все вопросы';
 
   @override
-  String get studyNoAnswersCorrect => 'You got no answers correct';
+  String get studyNoAnswersCorrect => 'У вас нет правильных ответов';
 
   @override
-  String get studyAllAnswersCorrectDescription => 'Well done!';
+  String get studyAllAnswersCorrectDescription => 'Отличная работа!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription => 'В следующий раз слушайте внимательнее!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription => 'Отличная работа! Но все еще можно улучшить свой результат.';
 
   @override
-  String get studyAllQuestionsAnswered => 'You answered all questions';
+  String get studyAllQuestionsAnswered => 'Вы ответили на все вопросы';
 
   @override
-  String get studyAllQuestionsAnsweredDescription => 'Well done!';
+  String get studyAllQuestionsAnsweredDescription => 'Отличная работа!';
 }
