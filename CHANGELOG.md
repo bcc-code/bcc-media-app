@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.70+2300230...v) (2025-03-10)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.72+2300232...v) (2025-03-11)
+
+
+
+## [5.6.72+2300232](https://github.com/bcc-code/bcc-media-app/compare/v5.6.70+2300230...v5.6.72+2300232) (2025-03-11)
+
+
+### Bug Fixes
+
+* update player library ([f7645e1](https://github.com/bcc-code/bcc-media-app/commit/f7645e11251bc5e6b2ccff66727c0968d33d7afa))
 
 
 
