@@ -1,12 +1,16 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
+import 'package:brunstadtv_app/providers/performance_class_provider.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final analyticsProviderOverride = analyticsProvider.overrideWith((ref) {
   return RudderAnalytics(
@@ -58,6 +62,10 @@ class BccmAnalyticsMetaEnricher extends AnalyticsMetaEnricher {
     final ref = this.ref;
     if (onboardingRouteArgs != null && ref != null) {
       extraProperties['meta']['hasEverLoggedIn'] = ref.read(sharedPreferencesProvider).getBool(PrefKeys.hasEverLoggedIn);
+    }
+
+    if (ref != null && Platform.isAndroid) {
+      extraProperties['meta']['performanceClass'] = ref.read(androidPerformanceClassProvider).valueOrNull;
     }
 
     return extraProperties;
