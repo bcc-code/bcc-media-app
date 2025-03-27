@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.72+2300232...v) (2025-03-11)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.73+2300233...v) (2025-03-27)
+
+
+
+## [5.6.73+2300233](https://github.com/bcc-code/bcc-media-app/compare/v5.6.72+2300232...v5.6.73+2300233) (2025-03-27)
+
+
+### Features
+
+* add android performance class to page analytics ([c192e48](https://github.com/bcc-code/bcc-media-app/commit/c192e48000ebee035d4eea4db28d46a32264b8b6))
 
 
 
