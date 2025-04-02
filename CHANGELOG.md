@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.73+2300233...v) (2025-03-27)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.22+2500032-kids...v) (2025-04-02)
+
+
+
+## [5.1.22+2500032-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.73+2300233...v5.1.22+2500032-kids) (2025-04-02)
+
+
+### Bug Fixes
+
+* update kids lockfile + submodule ([23a88a8](https://github.com/bcc-code/bcc-media-app/commit/23a88a8abd9a72dd804f9a30c60a3807ec87cfa8))
 
 
 
