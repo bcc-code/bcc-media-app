@@ -10,5 +10,6 @@ final unleashContextProviderOverride = unleashContextProvider.overrideWith((ref)
     isBetaTester: ref.watch(settingsProvider.select((s) => s.isBetaTester)),
     appVersion: formatAppVersion(ref.watch(packageInfoProvider)),
     appBuildNumber: ref.watch(packageInfoProvider.select((pi) => pi.buildNumber)),
+    appLanguage: ref.watch(settingsProvider.select((value) => value.appLanguage.languageCode)),
   );
 });
