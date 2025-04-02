@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.22+2500032-kids...v) (2025-04-02)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.23+2500033-kids...v) (2025-04-02)
+
+
+
+## [5.1.23+2500033-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.22+2500032-kids...v5.1.23+2500033-kids) (2025-04-02)
+
+
+### Features
+
+* **unleash:** add app language as context field ([4f7e9bb](https://github.com/bcc-code/bcc-media-app/commit/4f7e9bb3be78a7406406021e217c9a4bedf054f6))
 
 
 
