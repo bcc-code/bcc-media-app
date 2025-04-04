@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.23+2500033-kids...v) (2025-04-02)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.24+2500034-kids...v) (2025-04-04)
+
+
+
+## [5.1.24+2500034-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.23+2500033-kids...v5.1.24+2500034-kids) (2025-04-04)
+
+
+### Features
+
+* correctly pass context fields to unleash ([516de42](https://github.com/bcc-code/bcc-media-app/commit/516de42d0629840fc4e54f742746516d0683fe79))
 
 
 
