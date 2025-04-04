@@ -31,6 +31,7 @@ FeatureFlags getBaseFeatureFlags() {
     elasticSearch: false,
     chapterSlider: false,
     showBmmStreak: false,
+    kidsMoreNorwegianContent: false,
   );
 }
 
@@ -56,6 +57,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
       unleashContextProvider,
       (previous, next) async {
         final context = await next;
+        print('unleash context: ${context.toMap()}');
         unleash.updateContext(context);
       },
     );
@@ -76,6 +78,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         elasticSearch: _verifyToggle(unleash, 'elastic-search'),
         chapterSlider: _verifyToggle(unleash, 'chapter-slider'),
         showBmmStreak: _verifyToggle(unleash, 'show-bmm-streak'),
+        kidsMoreNorwegianContent: _verifyToggle(unleash, 'kids-more-norwegian-content'),
       ),
     );
 

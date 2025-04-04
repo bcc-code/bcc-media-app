@@ -24,6 +24,7 @@ sealed class FeatureFlags with _$FeatureFlags {
     @Default(false) bool elasticSearch,
     @Default(false) bool chapterSlider,
     @Default(false) bool showBmmStreak,
+    @Default(false) bool kidsMoreNorwegianContent,
   }) = _FeatureFlags;
 
   factory FeatureFlags.fromJson(Map<String, dynamic> json) => _$FeatureFlagsFromJson(json);
@@ -47,6 +48,7 @@ sealed class FeatureFlags with _$FeatureFlags {
       elasticSearch: newFlags.elasticSearch || elasticSearch,
       chapterSlider: newFlags.chapterSlider || chapterSlider,
       showBmmStreak: newFlags.showBmmStreak || showBmmStreak,
+      kidsMoreNorwegianContent: newFlags.kidsMoreNorwegianContent || kidsMoreNorwegianContent,
     );
   }
 }

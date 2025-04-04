@@ -116,8 +116,8 @@ Future<void> $main({
       bccmGraphQLProviderOverride: bccmGraphQLProviderOverride,
       authStateProviderOverride: authStateProviderOverride,
       analyticsProviderOverride: analyticsProviderOverride,
-      featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
       unleashContextProviderOverride: unleashContextProviderOverride,
+      featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
       notificationServiceProviderOverride: null,
     );
     final providerContainer = await initProviderContainer([
@@ -136,6 +136,7 @@ Future<void> $main({
 
     await tryCatchRecordErrorAsync(() async {
       await providerContainer.read(featureFlagsProvider.notifier).activateFeatureFlags().timeout(const Duration(seconds: 2));
+      await providerContainer.read(featureFlagsProvider.notifier).refresh().timeout(const Duration(seconds: 2));
     });
 
     runApp(kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app);
