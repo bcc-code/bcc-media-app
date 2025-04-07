@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.24+2500034-kids...v) (2025-04-04)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.25+2500035-kids...v) (2025-04-07)
+
+
+
+## [5.1.25+2500035-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.24+2500034-kids...v5.1.25+2500035-kids) (2025-04-07)
+
+
+### Features
+
+* **gql:** send feature flags in headers even when not authenticated ([0efad7f](https://github.com/bcc-code/bcc-media-app/commit/0efad7fda10229fedd54d6d6d04c505d835d9391))
 
 
 
