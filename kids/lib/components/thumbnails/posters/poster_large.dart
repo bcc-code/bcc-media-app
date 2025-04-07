@@ -102,6 +102,7 @@ class PosterLarge extends HookWidget {
                                               borderRadius: BorderRadius.circular(30),
                                               child: SizedBox(
                                                 height: double.infinity,
+                                                width: double.infinity,
                                                 child: simpleFadeInImage(url: image!),
                                               ),
                                             ),
@@ -112,6 +113,7 @@ class PosterLarge extends HookWidget {
                                   ))
                               : SizedBox(
                                   height: double.infinity,
+                                  width: double.infinity,
                                   child: simpleFadeInImage(url: image!),
                                 ),
                         ],

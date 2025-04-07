@@ -60,7 +60,6 @@ class _ApiHttpClient extends BaseClient {
       if (settings.isBetaTester == true) '${FlavorConfig.current.applicationCode}-betatesters',
       ...settings.extraUsergroups,
     ];
-    final isLoggedIn = ref.read(authStateProvider).isLoggedIn;
     final featureFlagVariants = ref.read(featureFlagVariantListProvider);
     final os = Platform.isIOS ? 'iOS' : 'Android';
     final osVersion = getOsVersion(ref.read(deviceInfoProvider));
@@ -68,7 +67,7 @@ class _ApiHttpClient extends BaseClient {
       acceptLanguage: [settings.appLanguage.languageCode],
       application: FlavorConfig.current.applicationCode,
       applicationVersion: formatAppVersion(ref.watch(packageInfoProvider)),
-      featureFlags: isLoggedIn ? featureFlagVariants : null,
+      featureFlags: featureFlagVariants,
       extraUsergroups: extraUsergroups,
       os: os,
       osVersion: osVersion,
