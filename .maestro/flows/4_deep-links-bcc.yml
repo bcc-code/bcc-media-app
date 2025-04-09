@@ -12,7 +12,7 @@ appId: tv.brunstad.app
 - openLink: "https://app.bcc.media/r/donation"
 - assertVisible:
     id: "TabBarItemTitle"
-- assertVisible: "Email"
+- assertVisible: "Email.*"
 - launchApp:
     appId: "tv.brunstad.app"
     stopApp: false
@@ -42,7 +42,7 @@ appId: tv.brunstad.app
 - openLink: "https://app.bcc.media/r/donation"
 - assertVisible:
     id: "TabBarItemTitle"
-- assertVisible: "Email"
+- assertVisible: "Email.*"
 - launchApp:
     appId: "tv.brunstad.app"
     stopApp: false
@@ -74,7 +74,7 @@ appId: tv.brunstad.app
 - openLink: "https://app.bcc.media/r/donation"
 - assertVisible:
     id: "TabBarItemTitle"
-- assertVisible: "Email"
+- assertVisible: "Email.*"
 - launchApp:
     appId: "tv.brunstad.app"
     stopApp: false

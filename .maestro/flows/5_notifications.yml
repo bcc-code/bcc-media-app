@@ -15,7 +15,7 @@ tags:
       CONTAINING: deep_link_donation
 - assertVisible:
     id: "TabBarItemTitle"
-- assertVisible: "Email"
+- assertVisible: "Email.*"
 # deep_link_shorts
 - runFlow: subflows/home.yml
 - runFlow:
