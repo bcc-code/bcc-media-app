@@ -1,12 +1,9 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.74+2300234...v) (2025-04-09)
-
-
-
-## [5.6.74+2300234](https://github.com/bcc-code/bcc-media-app/compare/v5.1.25+2500035-kids...v5.6.74+2300234) (2025-04-09)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.25+2500035-kids...v) (2025-04-09)
 
 
 ### Bug Fixes
 
+* try to fix e2e tests ([a899ef6](https://github.com/bcc-code/bcc-media-app/commit/a899ef6853515084bd6fc53ef18e196888209369))
 * undo android player freeze fix to re-enable subtitles ([e3cfd60](https://github.com/bcc-code/bcc-media-app/commit/e3cfd60f1bf04bdee906842ebf3d8c648a814caa))
 
 
