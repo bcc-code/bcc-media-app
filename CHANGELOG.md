@@ -1,4 +1,17 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.25+2500035-kids...v) (2025-04-09)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.75+2300235...v) (2025-04-11)
+
+
+
+## [5.6.75+2300235](https://github.com/bcc-code/bcc-media-app/compare/v5.6.74+2300234...v5.6.75+2300235) (2025-04-11)
+
+
+### Bug Fixes
+
+* disable "allowBackup" on android to prevent secure storage key corruption ([ddda768](https://github.com/bcc-code/bcc-media-app/commit/ddda768f5c13c943ab631d3084ed7ae8b6f8e1f6))
+
+
+
+## [5.6.74+2300234](https://github.com/bcc-code/bcc-media-app/compare/v5.1.25+2500035-kids...v5.6.74+2300234) (2025-04-09)
 
 
 ### Bug Fixes
