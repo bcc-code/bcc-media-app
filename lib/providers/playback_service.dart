@@ -11,6 +11,7 @@ import 'package:brunstadtv_app/flavors.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
@@ -116,7 +117,9 @@ class PlaybackService {
                 videoId: videoId,
                 referenceId: referenceId,
                 data: {
-                  // Whatever data we want to pass to the analytics event
+                  'appLanguage': ref.read(settingsProvider).appLanguage.languageCode,
+                  'subtitleLanguage': ref.read(settingsProvider).subtitleLanguages.firstOrNull,
+                  'audioLanguage': ref.read(settingsProvider).audioLanguages.firstOrNull,
                 },
               ));
         }
