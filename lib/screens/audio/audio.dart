@@ -58,7 +58,7 @@ class AudioScreen extends HookConsumerWidget {
           leadingWidth: 100,
           actions: [
             Padding(
-              padding: const EdgeInsets.only(right: 16.0),
+              padding: const EdgeInsets.only(right: 16),
               child: ConstrainedBox(
                 constraints: BoxConstraints.loose(const Size(24, 24)),
                 child: CastButton(color: DesignSystem.of(context).colors.tint1),
@@ -71,6 +71,7 @@ class AudioScreen extends HookConsumerWidget {
       body: discover.when(
         data: (data) {
           return RefreshIndicator(
+            edgeOffset: 100,
             onRefresh: () async {
               ref.invalidate(bmmDiscoverProvider);
             },
