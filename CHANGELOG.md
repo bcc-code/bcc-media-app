@@ -1,4 +1,23 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.75+2300235...v) (2025-04-11)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.76+2300236...v) (2025-04-22)
+
+
+
+## [5.6.76+2300236](https://github.com/bcc-code/bcc-media-app/compare/v5.6.75+2300235...v5.6.76+2300236) (2025-04-22)
+
+
+### Bug Fixes
+
+* **audio:** refresh offset ([b52479a](https://github.com/bcc-code/bcc-media-app/commit/b52479a0ad678f720ebe9cd39112561e206115c4))
+* **audio:** show song number ([d2a9591](https://github.com/bcc-code/bcc-media-app/commit/d2a959113cd4ec99903a49e53278e6babbff5039))
+
+
+### Features
+
+* add languages to VideoPlayed events ([6316bc8](https://github.com/bcc-code/bcc-media-app/commit/6316bc8b8ce8a2944ec13c2a9a60d93cbe408595))
+* **audio:** move audio screen into tabs ([28a71c8](https://github.com/bcc-code/bcc-media-app/commit/28a71c848cde34089c4cfb45b81d625934fc7852))
+* **audio:** show duration and current playback position ([209bd16](https://github.com/bcc-code/bcc-media-app/commit/209bd164eddb9a9dc6e6b4f0b93f00583c0d2b73))
+* mini player progress indicator ([cfad4e4](https://github.com/bcc-code/bcc-media-app/commit/cfad4e4bb7ea4b583ba8767ad39e05fcc6199076))
+* update audio player ([09b312b](https://github.com/bcc-code/bcc-media-app/commit/09b312be94ba44f9c39198686e975fd15364ffab))
 
 
 
