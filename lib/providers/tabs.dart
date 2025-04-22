@@ -10,6 +10,7 @@ import 'feature_flags.dart';
 
 enum TabId {
   home,
+  audio,
   search,
   shorts,
   profile,
@@ -37,12 +38,14 @@ class TabInfo {
 
 class TabInfos {
   final TabInfo home;
+  final TabInfo audio;
   final TabInfo search;
   final TabInfo shorts;
   final TabInfo profile;
 
   const TabInfos({
     required this.home,
+    required this.audio,
     required this.search,
     required this.shorts,
     required this.profile,
@@ -51,6 +54,7 @@ class TabInfos {
   TabInfo getFor(TabId id) {
     return switch (id) {
       TabId.home => home,
+      TabId.audio => audio,
       TabId.search => search,
       TabId.shorts => shorts,
       TabId.profile => profile,
@@ -77,6 +81,19 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
       analyticsName: 'home',
       iconKey: GlobalKey(),
       scrollController: ref.watch(_scrollControllers('home')),
+    ),
+    audio: TabInfo(
+      id: TabId.audio,
+      route: AudioWrapperScreenRoute(
+        children: [
+          AudioScreenRoute(),
+        ],
+      ),
+      title: (BuildContext context) => S.of(context).audio,
+      icon: FlavorConfig.current.bccmImages!.audio,
+      analyticsName: 'audio-test',
+      iconKey: GlobalKey(),
+      scrollController: ref.watch(_scrollControllers('audio-test')),
     ),
     search: TabInfo(
       id: TabId.search,
@@ -118,8 +135,10 @@ final tabInfosProvider = Provider<TabInfos>((ref) {
 final currentTabIdsProvider = Provider<List<TabId>>((ref) {
   final bccMember = ref.watch(authStateProvider).isBccMember;
   final shorts = ref.watch(featureFlagsProvider.select((value) => value.shorts));
+  final audioTest = ref.watch(featureFlagsProvider.select((value) => value.bccmAudioTest));
   return [
     TabId.home,
+    if (bccMember && audioTest) TabId.audio,
     TabId.search,
     if (bccMember && shorts) TabId.shorts,
     TabId.profile,

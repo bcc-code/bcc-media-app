@@ -44,6 +44,10 @@ Future<void> main() async {
           image: const AssetImage('assets/icons/Home_Default.png'),
           activeImage: const AssetImage('assets/icons/Home_Selected.png'),
         ),
+        audio: StateImageProvider(
+          image: const AssetImage('assets/icons/Audio_Default.png'),
+          activeImage: const AssetImage('assets/icons/Audio_Default.png'),
+        ),
         search: StateImageProvider(
           image: const AssetImage('assets/icons/Search_Default.png'),
           activeImage: const AssetImage('assets/icons/Search_Selected.png'),

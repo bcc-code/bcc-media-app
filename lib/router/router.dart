@@ -244,6 +244,18 @@ class AppRouter extends RootStackRouter {
           ],
         ),
         CustomRoute(
+          page: AudioWrapperScreenRoute.page,
+          path: 'audio-test',
+          maintainState: true,
+          children: [
+            CupertinoRoute(
+              page: AudioScreenRoute.page,
+              path: '',
+              meta: const {RouteMetaConstants.navTabRoute: true},
+            ),
+          ],
+        ),
+        CustomRoute(
           page: HomeWrapperScreenRoute.page,
           path: '',
           children: [
@@ -259,7 +271,6 @@ class AppRouter extends RootStackRouter {
             _contributorScreenRoute,
             _pageScreenRoute,
             _showScreenRoute,
-            _audioScreenRoute,
           ],
         ),
       ],
@@ -283,15 +294,6 @@ final _contributorScreenRoute = CupertinoRoute(
   page: ContributorScreenRoute.page,
   path: 'contributor/:personId',
   meta: const {RouteMetaConstants.analyticsName: 'contributor'},
-);
-
-final _audioScreenRoute = CustomRoute(
-  page: AudioScreenRoute.page,
-  path: 'audio-test',
-  durationInMilliseconds: 300,
-  reverseDurationInMilliseconds: 300,
-  transitionsBuilder: CustomTransitionsBuilders.slideLeft,
-  meta: const {RouteMetaConstants.analyticsName: 'audio-test'},
 );
 
 _shortScreenRoute(String pathPrefix) => CupertinoRoute(
@@ -328,6 +330,11 @@ class TabsWrapperScreen extends AutoRouter {
 @RoutePage()
 class HomeWrapperScreen extends AutoRouter {
   const HomeWrapperScreen({super.key});
+}
+
+@RoutePage()
+class AudioWrapperScreen extends AutoRouter {
+  const AudioWrapperScreen({super.key});
 }
 
 @RoutePage()

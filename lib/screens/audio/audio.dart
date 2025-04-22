@@ -4,10 +4,15 @@ import 'package:bccm_core/design_system.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bmm_api/bmm_api.dart';
 import 'package:brunstadtv_app/api/bmm.dart';
+import 'package:brunstadtv_app/app_bar_with_scroll_to_top.dart';
 import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
 import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
+import 'package:brunstadtv_app/flavors.dart';
+import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/providers/tabs.dart';
+import 'package:brunstadtv_app/screens/tabs/home.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -32,11 +37,36 @@ class AudioScreen extends HookConsumerWidget {
       ref.invalidate(bmmDiscoverProvider);
     });
 
+    final design = DesignSystem.of(context);
+    final scrollController = ref.watch(tabInfosProvider.select((tabInfos) => tabInfos.audio.scrollController));
+
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: const CustomBackButton(),
-        leadingWidth: 92,
+      extendBodyBehindAppBar: true,
+      appBar: AppBarWithScrollToTop(
+        scrollController: scrollController,
+        child: AppBar(
+          toolbarHeight: 44,
+          shadowColor: Colors.black,
+          backgroundColor: AppTheme.of(context).appBarTransparent ? Colors.transparent : design.colors.background1,
+          elevation: 0,
+          centerTitle: true,
+          title: Image(
+            image: FlavorConfig.current.bccmImages!.logo,
+            height: FlavorConfig.current.bccmImages!.logoHeight,
+            gaplessPlayback: true,
+          ),
+          leadingWidth: 100,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: ConstrainedBox(
+                constraints: BoxConstraints.loose(const Size(24, 24)),
+                child: CastButton(color: DesignSystem.of(context).colors.tint1),
+              ),
+            ),
+          ],
+          flexibleSpace: AppTheme.of(context).appBarTransparent ? const BlurredAppBarBackground() : null,
+        ),
       ),
       body: discover.when(
         data: (data) {

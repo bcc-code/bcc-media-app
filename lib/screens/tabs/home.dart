@@ -4,9 +4,7 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/app_bar_with_scroll_to_top.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/tabs.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:ui';
 
@@ -90,17 +88,9 @@ class HomeScreen extends HookConsumerWidget {
                     ),
                   ),
                 ],
-                flexibleSpace: AppTheme.of(context).appBarTransparent ? const _BlurredAppBarBackground() : null,
+                flexibleSpace: AppTheme.of(context).appBarTransparent ? const BlurredAppBarBackground() : null,
               ),
             ),
-      floatingActionButton: ref.watch(featureFlagsProvider.select((f) => f.bccmAudioTest))
-          ? FloatingActionButton(
-              child: const Icon(Icons.audiotrack),
-              onPressed: () {
-                context.router.push(const AudioScreenRoute());
-              },
-            )
-          : null,
       body: SafeArea(
         top: false,
         child: PageRenderer(
@@ -115,8 +105,8 @@ class HomeScreen extends HookConsumerWidget {
   }
 }
 
-class _BlurredAppBarBackground extends StatelessWidget {
-  const _BlurredAppBarBackground();
+class BlurredAppBarBackground extends StatelessWidget {
+  const BlurredAppBarBackground({super.key});
 
   @override
   Widget build(BuildContext context) {

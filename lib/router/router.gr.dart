@@ -9,10 +9,10 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i35;
-import 'package:brunstadtv_app/router/router.dart' as _i16;
+import 'package:brunstadtv_app/router/router.dart' as _i8;
 import 'package:brunstadtv_app/screens/audio/audio.dart' as _i7;
-import 'package:brunstadtv_app/screens/contributors/contributor.dart' as _i11;
-import 'package:brunstadtv_app/screens/episode.dart' as _i8;
+import 'package:brunstadtv_app/screens/contributors/contributor.dart' as _i12;
+import 'package:brunstadtv_app/screens/episode.dart' as _i9;
 import 'package:brunstadtv_app/screens/init.dart' as _i17;
 import 'package:brunstadtv_app/screens/onboarding/onboarding.dart' as _i18;
 import 'package:brunstadtv_app/screens/onboarding/signup.dart' as _i28;
@@ -22,11 +22,11 @@ import 'package:brunstadtv_app/screens/settings/about.dart' as _i1;
 import 'package:brunstadtv_app/screens/settings/account_deletion.dart' as _i2;
 import 'package:brunstadtv_app/screens/settings/app_language.dart' as _i5;
 import 'package:brunstadtv_app/screens/settings/audio_language.dart' as _i6;
-import 'package:brunstadtv_app/screens/settings/contact.dart' as _i10;
-import 'package:brunstadtv_app/screens/settings/contact_public.dart' as _i9;
-import 'package:brunstadtv_app/screens/settings/device_info.dart' as _i12;
-import 'package:brunstadtv_app/screens/settings/extra_usergroups.dart' as _i13;
-import 'package:brunstadtv_app/screens/settings/faq.dart' as _i14;
+import 'package:brunstadtv_app/screens/settings/contact.dart' as _i11;
+import 'package:brunstadtv_app/screens/settings/contact_public.dart' as _i10;
+import 'package:brunstadtv_app/screens/settings/device_info.dart' as _i13;
+import 'package:brunstadtv_app/screens/settings/extra_usergroups.dart' as _i14;
+import 'package:brunstadtv_app/screens/settings/faq.dart' as _i15;
 import 'package:brunstadtv_app/screens/settings/privacy_policy.dart' as _i21;
 import 'package:brunstadtv_app/screens/settings/settings.dart' as _i24;
 import 'package:brunstadtv_app/screens/settings/subtitle_language.dart' as _i30;
@@ -38,7 +38,7 @@ import 'package:brunstadtv_app/screens/show/show.dart' as _i27;
 import 'package:brunstadtv_app/screens/study/achievement_group.dart' as _i3;
 import 'package:brunstadtv_app/screens/study/achievements.dart' as _i4;
 import 'package:brunstadtv_app/screens/study/study.dart' as _i29;
-import 'package:brunstadtv_app/screens/tabs/home.dart' as _i15;
+import 'package:brunstadtv_app/screens/tabs/home.dart' as _i16;
 import 'package:brunstadtv_app/screens/tabs/profile.dart' as _i22;
 import 'package:brunstadtv_app/screens/tabs/search.dart' as _i23;
 import 'package:brunstadtv_app/screens/tabs/tabs_root.dart' as _i31;
@@ -212,7 +212,26 @@ class AudioScreenRoute extends _i35.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.CollectionEpisodeScreen]
+/// [_i8.AudioWrapperScreen]
+class AudioWrapperScreenRoute extends _i35.PageRouteInfo<void> {
+  const AudioWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
+      : super(
+          AudioWrapperScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AudioWrapperScreenRoute';
+
+  static _i35.PageInfo page = _i35.PageInfo(
+    name,
+    builder: (data) {
+      return const _i8.AudioWrapperScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i9.CollectionEpisodeScreen]
 class CollectionEpisodeScreenRoute
     extends _i35.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
   CollectionEpisodeScreenRoute({
@@ -260,7 +279,7 @@ class CollectionEpisodeScreenRoute
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
                 collectionId: pathParams.optString('collectionId'),
               ));
-      return _i8.CollectionEpisodeScreen(
+      return _i9.CollectionEpisodeScreen(
         key: args.key,
         episodeId: args.episodeId,
         autoplay: args.autoplay,
@@ -301,7 +320,7 @@ class CollectionEpisodeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i9.ContactPublicScreen]
+/// [_i10.ContactPublicScreen]
 class ContactPublicScreenRoute extends _i35.PageRouteInfo<void> {
   const ContactPublicScreenRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -314,13 +333,13 @@ class ContactPublicScreenRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i9.ContactPublicScreen();
+      return const _i10.ContactPublicScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i10.ContactScreen]
+/// [_i11.ContactScreen]
 class ContactScreenRoute extends _i35.PageRouteInfo<void> {
   const ContactScreenRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -333,13 +352,13 @@ class ContactScreenRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i10.ContactScreen();
+      return const _i11.ContactScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i11.ContributorScreen]
+/// [_i12.ContributorScreen]
 class ContributorScreenRoute
     extends _i35.PageRouteInfo<ContributorScreenRouteArgs> {
   ContributorScreenRoute({
@@ -365,7 +384,7 @@ class ContributorScreenRoute
       final args = data.argsAs<ContributorScreenRouteArgs>(
           orElse: () => ContributorScreenRouteArgs(
               personId: pathParams.getString('personId')));
-      return _i11.ContributorScreen(
+      return _i12.ContributorScreen(
         key: args.key,
         personId: args.personId,
       );
@@ -390,7 +409,7 @@ class ContributorScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i12.DeviceInfoScreen]
+/// [_i13.DeviceInfoScreen]
 class DeviceInfoScreenRoute extends _i35.PageRouteInfo<void> {
   const DeviceInfoScreenRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -403,13 +422,13 @@ class DeviceInfoScreenRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i12.DeviceInfoScreen();
+      return const _i13.DeviceInfoScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i8.EpisodeScreen]
+/// [_i9.EpisodeScreen]
 class EpisodeScreenRoute extends _i35.PageRouteInfo<EpisodeScreenRouteArgs> {
   EpisodeScreenRoute({
     _i37.Key? key,
@@ -454,7 +473,7 @@ class EpisodeScreenRoute extends _i35.PageRouteInfo<EpisodeScreenRouteArgs> {
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
                 collectionId: queryParams.optString('collectionId'),
               ));
-      return _i8.EpisodeScreen(
+      return _i9.EpisodeScreen(
         key: args.key,
         episodeId: args.episodeId,
         autoplay: args.autoplay,
@@ -495,7 +514,7 @@ class EpisodeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i13.ExtraUsergroupsScreen]
+/// [_i14.ExtraUsergroupsScreen]
 class ExtraUsergroupsScreenRoute extends _i35.PageRouteInfo<void> {
   const ExtraUsergroupsScreenRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -508,13 +527,13 @@ class ExtraUsergroupsScreenRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i13.ExtraUsergroupsScreen();
+      return const _i14.ExtraUsergroupsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i14.FAQScreen]
+/// [_i15.FAQScreen]
 class FAQScreenRoute extends _i35.PageRouteInfo<void> {
   const FAQScreenRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -527,13 +546,13 @@ class FAQScreenRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i14.FAQScreen();
+      return const _i15.FAQScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i15.HomeScreen]
+/// [_i16.HomeScreen]
 class HomeScreenRoute extends _i35.PageRouteInfo<HomeScreenRouteArgs> {
   HomeScreenRoute({
     _i37.Key? key,
@@ -551,7 +570,7 @@ class HomeScreenRoute extends _i35.PageRouteInfo<HomeScreenRouteArgs> {
     builder: (data) {
       final args = data.argsAs<HomeScreenRouteArgs>(
           orElse: () => const HomeScreenRouteArgs());
-      return _i15.HomeScreen(key: args.key);
+      return _i16.HomeScreen(key: args.key);
     },
   );
 }
@@ -568,7 +587,7 @@ class HomeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i16.HomeWrapperScreen]
+/// [_i8.HomeWrapperScreen]
 class HomeWrapperScreenRoute extends _i35.PageRouteInfo<void> {
   const HomeWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -581,7 +600,7 @@ class HomeWrapperScreenRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i16.HomeWrapperScreen();
+      return const _i8.HomeWrapperScreen();
     },
   );
 }
@@ -804,7 +823,7 @@ class ProfileScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i16.ProfileWrapperScreen]
+/// [_i8.ProfileWrapperScreen]
 class ProfileWrapperScreenRoute extends _i35.PageRouteInfo<void> {
   const ProfileWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -817,7 +836,7 @@ class ProfileWrapperScreenRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i16.ProfileWrapperScreen();
+      return const _i8.ProfileWrapperScreen();
     },
   );
 }
@@ -873,7 +892,7 @@ class SearchScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i16.SearchWrapperScreen]
+/// [_i8.SearchWrapperScreen]
 class SearchWrapperScreenRoute extends _i35.PageRouteInfo<void> {
   const SearchWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -886,7 +905,7 @@ class SearchWrapperScreenRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i16.SearchWrapperScreen();
+      return const _i8.SearchWrapperScreen();
     },
   );
 }
@@ -979,7 +998,7 @@ class ShortsScreenRoute extends _i35.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i16.ShortsWrapperScreen]
+/// [_i8.ShortsWrapperScreen]
 class ShortsWrapperScreenRoute extends _i35.PageRouteInfo<void> {
   const ShortsWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -992,7 +1011,7 @@ class ShortsWrapperScreenRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i16.ShortsWrapperScreen();
+      return const _i8.ShortsWrapperScreen();
     },
   );
 }
@@ -1157,7 +1176,7 @@ class TabsRootScreenRoute extends _i35.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i16.TabsWrapperScreen]
+/// [_i8.TabsWrapperScreen]
 class TabsWrapperScreenRoute extends _i35.PageRouteInfo<void> {
   const TabsWrapperScreenRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -1170,7 +1189,7 @@ class TabsWrapperScreenRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i16.TabsWrapperScreen();
+      return const _i8.TabsWrapperScreen();
     },
   );
 }
