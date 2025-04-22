@@ -592,7 +592,21 @@ class TrackRenderer extends HookConsumerWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                if (track.title != '') Text(track.meta.artist ?? '', style: design.textStyles.body2),
+                if (track.title != '')
+                  Row(
+                    spacing: 8,
+                    children: [
+                      if (track.songbookRelations?.firstOrNull != null)
+                        Text(
+                          '${getSongbookShortName(track.songbookRelations!.first.name)} ${track.songbookRelations!.first.id}',
+                          style: design.textStyles.caption1.copyWith(color: design.colors.label3),
+                        ),
+                      Text(
+                        track.meta.artist ?? '',
+                        style: design.textStyles.caption1,
+                      ),
+                    ],
+                  ),
               ],
             ),
           )
@@ -747,4 +761,15 @@ Color colorForStreakDay(CurrentWeeksStreakVm streak, DayOfWeek day) {
   }
 
   return Colors.transparent;
+}
+
+String getSongbookShortName(String? songbook) {
+  if (songbook == 'herrens_veier') {
+    return 'HV';
+  }
+  if (songbook == 'mandelblomsten') {
+    return 'FMB';
+  }
+
+  return songbook ?? '';
 }
