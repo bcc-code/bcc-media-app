@@ -78,6 +78,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
       },
       child: MiniPlayer(
         key: WidgetKeys.bottomSheetMiniPlayer,
+        playerController: BccmPlayerInterface.instance.primaryController,
         titleKey: WidgetKeys.miniPlayerTitle,
         secondaryTitle: artist,
         title: title ?? '',
@@ -113,6 +114,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     if (metadata != null) {
       return MiniPlayer(
         titleKey: WidgetKeys.miniPlayerTitle,
+        playerController: BccmPlayerInterface.instance.primaryController,
         secondaryTitle: metadata.artist,
         title: metadata.title ?? '',
         artworkUri: metadata.artworkUri ?? '',

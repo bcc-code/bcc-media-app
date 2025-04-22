@@ -34,8 +34,8 @@ class PlayerScreen extends HookConsumerWidget {
               child: Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(16),
-                child: AspectRatio(
-                  aspectRatio: 1,
+                child: SizedBox.square(
+                  dimension: 250,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: LayoutBuilder(
@@ -59,6 +59,7 @@ class PlayerScreen extends HookConsumerWidget {
             ),
             Expanded(
               child: Column(
+                spacing: 8,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 16, left: 24, right: 24),
@@ -80,8 +81,30 @@ class PlayerScreen extends HookConsumerWidget {
                       ],
                     ),
                   ),
+                  SmoothVideoProgress(
+                    controller: player,
+                    builder: (context, position, duration, widget) {
+                      return SliderTheme(
+                        data: SliderThemeData(
+                          thumbColor: design.colors.onTint,
+                          activeTrackColor: design.colors.onTint,
+                          inactiveTrackColor: design.colors.background2,
+                          thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+                        ),
+                        child: Slider(
+                          value: position.inMilliseconds.toDouble(),
+                          min: 0,
+                          max: duration.inMilliseconds.toDouble(),
+                          onChanged: (value) {
+                            player.seekTo(Duration(milliseconds: value.toInt()));
+                          },
+                        ),
+                      );
+                    },
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 16,
                     children: [
                       IconButton(
                         onPressed: () {
