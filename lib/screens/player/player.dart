@@ -91,13 +91,34 @@ class PlayerScreen extends HookConsumerWidget {
                           inactiveTrackColor: design.colors.background2,
                           thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
                         ),
-                        child: Slider(
-                          value: position.inMilliseconds.toDouble(),
-                          min: 0,
-                          max: duration.inMilliseconds.toDouble(),
-                          onChanged: (value) {
-                            player.seekTo(Duration(milliseconds: value.toInt()));
-                          },
+                        child: Column(
+                          children: [
+                            Slider(
+                              value: position.inMilliseconds.toDouble(),
+                              min: 0,
+                              max: duration.inMilliseconds.toDouble(),
+                              onChanged: (value) {
+                                player.seekTo(Duration(milliseconds: value.toInt()));
+                              },
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 24),
+                              child: Row(
+                                spacing: 16,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    getFormattedDuration(position.inSeconds),
+                                    style: design.textStyles.body3,
+                                  ),
+                                  Text(
+                                    getFormattedDuration(duration.inSeconds),
+                                    style: design.textStyles.body3,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       );
                     },
