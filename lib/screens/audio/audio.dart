@@ -6,7 +6,6 @@ import 'package:bmm_api/bmm_api.dart';
 import 'package:brunstadtv_app/api/bmm.dart';
 import 'package:brunstadtv_app/app_bar_with_scroll_to_top.dart';
 import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
-import 'package:brunstadtv_app/components/nav/custom_back_button.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
@@ -232,6 +231,11 @@ class BmmDocumentRenderer extends HookConsumerWidget {
     final infoMessage = document.oneOf.value.asOrNull<InfoMessageModel>();
     if (infoMessage != null) {
       return InfoMessageRenderer(infoMessage);
+    }
+
+    final recommendation = document.oneOf.value.asOrNull<RecommendationModel>();
+    if (recommendation != null) {
+      return RecommendationRenderer(recommendation);
     }
 
     return Text(document.oneOf.value.toString());
@@ -702,6 +706,72 @@ class InfoMessageRenderer extends HookConsumerWidget {
       child: Text(
         infoMessage?.translatedMessage ?? '',
         style: design.textStyles.body2.copyWith(color: design.colors.label3),
+      ),
+    );
+  }
+}
+
+class RecommendationRenderer extends HookConsumerWidget {
+  const RecommendationRenderer(this.recommendation, {super.key});
+  final RecommendationModel recommendation;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
+    final bmmApi = ref.read(bmmApiProvider);
+    final cover = bmmApi.protectedUrl(
+        recommendation.album?.cover ?? recommendation.playlist?.cover ?? recommendation.track?.cover ?? recommendation.contributor?.cover);
+    final title = recommendation.album?.title ?? recommendation.playlist?.title ?? recommendation.track?.title ?? recommendation.contributor?.name;
+
+    return Container(
+      padding: const EdgeInsets.all(4),
+      margin: const EdgeInsets.only(top: 24, left: 16, right: 16),
+      decoration: BoxDecoration(
+        color: design.colors.background2,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 8,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
+            child: Text(
+              'Recommended',
+              style: design.textStyles.title3,
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: design.colors.background1,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              spacing: 12,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: SizedBox(
+                    width: 36,
+                    height: 36,
+                    child: simpleFadeInImage(
+                      url: cover ?? '',
+                      duration: const Duration(milliseconds: 200),
+                    ),
+                  ),
+                ),
+                Text(title ?? '', style: design.textStyles.title3),
+                const Spacer(),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  color: design.colors.label4,
+                  size: 36,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
