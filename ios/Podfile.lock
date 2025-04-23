@@ -141,21 +141,21 @@ PODS:
     - Flutter
     - FlutterMacOS
   - PromisesObjC (2.4.0)
-  - Protobuf (3.29.3)
+  - Protobuf (3.29.4)
   - restart_app (0.0.1):
     - Flutter
   - RSCrashReporter (1.0.1)
-  - Rudder (1.31.0):
+  - Rudder (1.31.1):
     - MetricsReporter (= 2.0.0)
   - rudder_plugin_ios (0.0.1):
     - Flutter
     - Rudder (< 2.0.0, >= 1.26.3)
   - RudderKit (1.4.0)
-  - Sentry/HybridSDK (8.42.0)
-  - sentry_flutter (8.12.0):
+  - Sentry/HybridSDK (8.46.0)
+  - sentry_flutter (8.14.2):
     - Flutter
     - FlutterMacOS
-    - Sentry/HybridSDK (= 8.42.0)
+    - Sentry/HybridSDK (= 8.46.0)
   - share_plus (0.0.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
@@ -346,14 +346,14 @@ SPEC CHECKSUMS:
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
-  Protobuf: e2de96d939c642ce8da186343ff8929b35223212
+  Protobuf: 2e6de032ba12b9efb390ae550d1a243a5b19ddfc
   restart_app: 9cda5378aacc5000e3f66ee76a9201534e7d3ecf
   RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
-  Rudder: 04713668b0b7d46f214e6b7b46b60134849661aa
+  Rudder: 352cb3417238fb84cc083826d9a5a7cc91efaa69
   rudder_plugin_ios: 4361db2778b3dea839bf508ec6674fc09c5256a7
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
-  Sentry: 38ed8bf38eab5812787274bf591e528074c19e02
-  sentry_flutter: a72ca0eb6e78335db7c4ddcddd1b9f6c8ed5b764
+  Sentry: da60d980b197a46db0b35ea12cb8f39af48d8854
+  sentry_flutter: 27892878729f42701297c628eb90e7c6529f3684
   share_plus: 50da8cb520a8f0f65671c6c6a99b3617ed10a58a
   shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
   sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
