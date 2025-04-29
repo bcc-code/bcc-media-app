@@ -253,6 +253,7 @@ class AppRouter extends RootStackRouter {
               path: '',
               meta: const {RouteMetaConstants.navTabRoute: true},
             ),
+            _audioPlaylistRoute,
           ],
         ),
         CustomRoute(
@@ -314,6 +315,12 @@ final _showScreenRoute = CupertinoRoute(
   page: ShowScreenRoute.page,
   path: 'show/:showId',
   meta: const {RouteMetaConstants.analyticsName: 'show'},
+);
+
+final _audioPlaylistRoute = CupertinoRoute(
+  page: AudioPlaylistScreenRoute.page,
+  path: 'playlist/:playlistId',
+  meta: const {RouteMetaConstants.analyticsName: 'audio-playlist'},
 );
 
 // Empty routes

@@ -11,6 +11,7 @@ import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/tabs.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/screens/tabs/home.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
@@ -252,38 +253,13 @@ class PlaylistRenderer extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentPlaylistId = useListenableSelector(BccmPlayerController.primary, () {
-      return BccmPlayerController.primary.value.currentMediaItem?.metadata?.extras?['playlist.id'];
-    });
     return GestureDetector(
       onTap: () async {
-        final bmmApi = ref.read(bmmApiProvider);
-        final res = await bmmApi.getPlaylistApi().playlistIdTrackGet(id: playlist.id);
-        final tracks = res.data;
-        if (tracks != null) {
-          setTracksAsNextUp(BccmPlayerController.primary, bmmApi, tracks, extras: {
-            'playlist.id': playlist.id.toString(),
-          });
-          BccmPlayerController.primary.queue.skipToNext();
-        }
+        context.router.push(AudioPlaylistScreenRoute(playlistId: playlist.id));
       },
-      child: Stack(
-        children: [
-          CoverRenderer(
-            title: playlist.title,
-            coverUrl: playlist.cover,
-          ),
-          Positioned.fill(
-            child: AnimatedSwitcher(
-              duration: 500.ms,
-              child: currentPlaylistId == playlist.id.toString()
-                  ? Container(
-                      color: Colors.white.withOpacity(0.1),
-                    )
-                  : null,
-            ),
-          ),
-        ],
+      child: CoverRenderer(
+        title: playlist.title,
+        coverUrl: playlist.cover,
       ),
     );
   }
@@ -559,9 +535,11 @@ class TrackRenderer extends HookConsumerWidget {
   const TrackRenderer(
     this.track, {
     super.key,
+    this.showCover = true,
   });
 
   final TrackModel track;
+  final bool? showCover;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -573,19 +551,21 @@ class TrackRenderer extends HookConsumerWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          if (coverUrl != null)
-            SizedBox(
-              height: 40,
-              width: 40,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: simpleFadeInImage(url: coverUrl),
+          if (showCover == true && coverUrl != null)
+            Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: SizedBox(
+                height: 40,
+                width: 40,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: simpleFadeInImage(url: coverUrl),
+                  ),
                 ),
               ),
             ),
-          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -607,7 +587,7 @@ class TrackRenderer extends HookConsumerWidget {
                         ),
                       Text(
                         track.meta.artist ?? '',
-                        style: design.textStyles.caption1,
+                        style: design.textStyles.caption1.copyWith(overflow: TextOverflow.ellipsis),
                       ),
                     ],
                   ),
@@ -808,7 +788,7 @@ MediaItem? toMediaItem(
 void setTracksAsNextUp(BccmPlayerController player, BmmApiWrapper bmmApi, BuiltList<TrackModel> tracks, {Map<String, String>? extras}) {
   player.queue.setShuffleEnabled(true);
   player.queue.setNextUp(
-    tracks.map((e) => toMediaItem(e, bmmApi, extras: extras)).whereNotNull().toList(),
+    tracks.map((e) => toMediaItem(e, bmmApi, extras: extras)).nonNulls.toList(),
   );
 }
 
