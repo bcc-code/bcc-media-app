@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.75+2300235...v) (2025-04-23)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.77+2300237...v) (2025-04-29)
+
+
+
+## [5.6.77+2300237](https://github.com/bcc-code/bcc-media-app/compare/v5.6.76+2300236...v5.6.77+2300237) (2025-04-29)
+
+
+### Features
+
+* **audio:** add playlist route ([6b1a3a4](https://github.com/bcc-code/bcc-media-app/commit/6b1a3a4be3f60fec64c3bc0418a145d20fdd84b4))
+* update when notification events are sent ([156960f](https://github.com/bcc-code/bcc-media-app/commit/156960faa412fb22efa57d90e2ea9db2205e8097))
+
+
+
+## [5.6.76+2300236](https://github.com/bcc-code/bcc-media-app/compare/v5.6.75+2300235...v5.6.76+2300236) (2025-04-23)
 
 
 ### Bug Fixes
