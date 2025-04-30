@@ -38,15 +38,22 @@ class HomeScreen extends HookConsumerWidget {
       return api.getPage(pageCode);
     }
 
-    final pageFuture = useState<Future<Query$Page$page>?>(useMemoized(() => getPage(false)));
-    final pageResult = useFuture(pageFuture.value);
+    final reloadKey = useState(UniqueKey());
+    final reloadAppConfig = useState(false);
+    final pageFuture = useMemoized(() => getPage(reloadAppConfig.value), [reloadKey.value]);
+    final pageResult = useFuture(pageFuture);
     final page = pageResult.data;
+
+    ref.listen(featureFlagVariantListProvider, (_, __) {
+      reloadKey.value = UniqueKey();
+    });
 
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
     final double basePadding = bp.smallerThan(TABLET) ? 20 : 48;
     final scrollController = useScrollController();
     final isCasting = useListenableSelector(BccmPlayerController.primary, () => BccmPlayerController.primary.isChromecast);
+
     return OrientationBuilder(
       builder: (context, orientation) => Scaffold(
         resizeToAvoidBottomInset: false,
@@ -96,7 +103,8 @@ class HomeScreen extends HookConsumerWidget {
                                 hasScrollBody: true,
                                 child: ErrorGeneric(
                                   onRetry: () async {
-                                    pageFuture.value = getPage(true);
+                                    reloadAppConfig.value = true;
+                                    reloadKey.value = UniqueKey();
                                   },
                                 ),
                               )
