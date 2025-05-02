@@ -98,7 +98,7 @@ dependencies:
   auto_size_text: ^3.0.0
   bccm_core:
     path: ../submodules/bccm_flutter/bccm_core
-  sentry_flutter: ^8.9.0
+  sentry_flutter: ^8.14.0
 
 dependency_overrides:
   js: ^0.7.1
