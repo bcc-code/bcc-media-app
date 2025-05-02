@@ -5,7 +5,7 @@ publish_to: "none" # prevent pub.dev
 # major.minor.patch+xxxxxxx
 # Note: On play store, any dots in the build
 # number (i.e. the number after +) gets removed
-version: 5.1.25+2500035
+version: 5.1.26+2500036
 
 environment:
   sdk: ">=3.1.0 <4.0.0"
