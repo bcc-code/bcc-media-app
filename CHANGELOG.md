@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.77+2300237...v) (2025-04-29)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.26+2500036-kids...v) (2025-05-02)
+
+
+
+## [5.1.26+2500036-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.77+2300237...v5.1.26+2500036-kids) (2025-05-02)
+
+
+### Bug Fixes
+
+* **kids:** refetch content after language has changed ([299533c](https://github.com/bcc-code/bcc-media-app/commit/299533ca0495ae73ac57c9a1c3bc32483f1c2c20))
 
 
 
