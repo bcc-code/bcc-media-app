@@ -27,6 +27,9 @@ _$FeatureFlagsImpl _$$FeatureFlagsImplFromJson(Map<String, dynamic> json) =>
       showBmmStreak: json['showBmmStreak'] as bool? ?? false,
       kidsMoreNorwegianContent:
           json['kidsMoreNorwegianContent'] as bool? ?? false,
+      kidsNotificationPrompt: json['kidsNotificationPrompt'] as bool? ?? false,
+      kidsNotificationPromptPosition:
+          (json['kidsNotificationPromptPosition'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
@@ -46,4 +49,6 @@ Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
       'chapterSlider': instance.chapterSlider,
       'showBmmStreak': instance.showBmmStreak,
       'kidsMoreNorwegianContent': instance.kidsMoreNorwegianContent,
+      'kidsNotificationPrompt': instance.kidsNotificationPrompt,
+      'kidsNotificationPromptPosition': instance.kidsNotificationPromptPosition,
     };

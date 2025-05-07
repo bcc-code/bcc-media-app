@@ -25,6 +25,8 @@ sealed class FeatureFlags with _$FeatureFlags {
     @Default(false) bool chapterSlider,
     @Default(false) bool showBmmStreak,
     @Default(false) bool kidsMoreNorwegianContent,
+    @Default(false) bool kidsNotificationPrompt,
+    int? kidsNotificationPromptPosition,
   }) = _FeatureFlags;
 
   factory FeatureFlags.fromJson(Map<String, dynamic> json) => _$FeatureFlagsFromJson(json);
@@ -49,6 +51,8 @@ sealed class FeatureFlags with _$FeatureFlags {
       chapterSlider: newFlags.chapterSlider || chapterSlider,
       showBmmStreak: newFlags.showBmmStreak || showBmmStreak,
       kidsMoreNorwegianContent: newFlags.kidsMoreNorwegianContent || kidsMoreNorwegianContent,
+      kidsNotificationPrompt: newFlags.kidsNotificationPrompt || kidsNotificationPrompt,
+      kidsNotificationPromptPosition: newFlags.kidsNotificationPromptPosition ?? kidsNotificationPromptPosition,
     );
   }
 }

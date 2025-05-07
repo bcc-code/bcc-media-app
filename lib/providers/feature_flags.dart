@@ -79,6 +79,8 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         chapterSlider: _verifyToggle(unleash, 'chapter-slider'),
         showBmmStreak: _verifyToggle(unleash, 'show-bmm-streak'),
         kidsMoreNorwegianContent: _verifyToggle(unleash, 'kids-more-norwegian-content'),
+        kidsNotificationPrompt: _verifyToggle(unleash, 'kids-notification-prompt'),
+        kidsNotificationPromptPosition: int.tryParse(unleash.getVariant('kids-notification-prompt').payload?.value ?? ''),
       ),
     );
 
