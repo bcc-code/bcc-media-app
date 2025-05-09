@@ -4,10 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-class NotificationPromtCloseButton extends StatelessWidget {
+class NotificationPromtDismissButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
-  const NotificationPromtCloseButton({
+  const NotificationPromtDismissButton({
     super.key,
     this.onPressed,
   });

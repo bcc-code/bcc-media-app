@@ -23,6 +23,8 @@ class PrefKeys {
   static const downloadedVideosGuide = 'downloaded_videos_guide';
   static const featureFlags = 'feature_flags';
   static const hasEverLoggedIn = 'has_ever_logged_in';
+  static const notificationPromptDismissedCount = 'notification_prompt_dismissed_count';
+  static const notificationPromptLastDismissedAt = 'notification_prompt_last_dismissed_at';
 }
 
 final webEnvUrls = <String, String>{

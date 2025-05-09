@@ -1,5 +1,9 @@
+import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/design_system.dart';
-import 'package:kids/components/buttons/notification_promt_close_button.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
+import 'package:firebase_messaging_platform_interface/src/types.dart';
+import 'package:kids/components/buttons/notification_promt_dismiss_button.dart';
 import 'package:kids/helpers/svg_icons.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -50,7 +54,28 @@ class NotificationPrompt extends HookConsumerWidget {
                 design.buttons.responsive(
                   variant: ButtonVariant.primary,
                   labelText: isSmall ? S.of(context).kidsNotificationReminderCtaShort : S.of(context).kidsNotificationReminderCtaLong,
-                  onPressed: () {},
+                  onPressed: () async {
+                    final analytics = ref.read(analyticsProvider);
+                    analytics.notificationPromptClicked(NotificationPromptClickedEvent());
+                    final permissions = await ref.read(notificationServiceProvider).requestPermissionAndSetup();
+                    if (permissions == null) {
+                      debugPrint('notification permission null');
+                      return;
+                    }
+
+                    switch (permissions.authorizationStatus) {
+                      case AuthorizationStatus.authorized:
+                        debugPrint('notification permission status: accepted');
+                        analytics.notificationPromptAccepted(NotificationPromptAcceptedEvent());
+                      case AuthorizationStatus.denied:
+                        debugPrint('notification permission status: denied');
+                        analytics.notificationPromptDenied(NotificationPromptDeniedEvent());
+                      case AuthorizationStatus.notDetermined:
+                        debugPrint('notification permission status: not determined');
+                      case AuthorizationStatus.provisional:
+                        debugPrint('notification permission status: provisional');
+                    }
+                  },
                 ),
               ],
             ),
@@ -58,9 +83,20 @@ class NotificationPrompt extends HookConsumerWidget {
           Positioned(
             top: 0,
             right: 0,
-            child: NotificationPromtCloseButton(
+            child: NotificationPromtDismissButton(
               onPressed: () {
-                debugPrint('close');
+                final sharedPrefs = ref.read(sharedPreferencesProvider);
+                final analytics = ref.read(analyticsProvider);
+                try {
+                  final dismissedCount = sharedPrefs.getInt(PrefKeys.notificationPromptDismissedCount) ?? 0;
+                  final newDismissedCount = dismissedCount + 1;
+
+                  sharedPrefs.setInt(PrefKeys.notificationPromptDismissedCount, newDismissedCount);
+                  analytics.notificationPromptDismissed(NotificationPromptDismissedEvent(timesDismissed: newDismissedCount));
+                } catch (e) {
+                  debugPrint(e.toString());
+                  analytics.log(LogEvent(name: 'notification prompt dismiss error', message: e.toString()));
+                }
               },
             ),
           ),

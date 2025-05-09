@@ -10,6 +10,7 @@ import 'package:brunstadtv_app/providers/auth.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/graphql.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:brunstadtv_app/providers/notifications.dart';
 import 'package:bccm_core/firebase.dart';
 import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:flutter/foundation.dart';
@@ -40,7 +41,7 @@ Future<void> main() async {
       flavor: Flavor.kids,
       environment: EnvironmentOverride.prod,
       firebaseOptions: DefaultFirebaseOptions.currentPlatform,
-      enableNotifications: false,
+      enableNotifications: true,
       applicationCode: 'kids-mobile',
       strictAnonymousAnalytics: true,
       designSystem: () => BibleKidsDesignSystem(),
@@ -118,7 +119,7 @@ Future<void> $main({
       analyticsProviderOverride: analyticsProviderOverride,
       unleashContextProviderOverride: unleashContextProviderOverride,
       featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
-      notificationServiceProviderOverride: null,
+      notificationServiceProviderOverride: notificationServiceProviderOverride,
     );
     final providerContainer = await initProviderContainer([
       ...coreOverrides,

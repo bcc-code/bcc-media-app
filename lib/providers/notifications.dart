@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/flavors.dart';
@@ -12,7 +14,7 @@ final notificationServiceProviderOverride = notificationServiceProvider.override
   }
   final service = FcmNotificationService(
     onAppOpenWhenNotificationReceived: null,
-    localNotificationService: ref.read(localNotificationServiceProvider),
+    localNotificationService: Platform.isAndroid ? ref.read(localNotificationServiceProvider) : null,
     refRead: ref.read,
     onCacheClearRequested: null,
     onShowInAppRequested: (message) {
