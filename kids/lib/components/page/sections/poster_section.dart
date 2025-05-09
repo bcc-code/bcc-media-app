@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/analytics.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -111,18 +112,43 @@ class PosterSection extends HookConsumerWidget {
       final prevPos = previousNotificationPromptPosition.value;
       if (prevPos != notificationPromptPosition) {
         if (prevPos != null) {
-          widgets.value.removeAt(prevPos);
+          widgets.value = List.from(widgets.value)..removeAt(prevPos);
         }
-        widgets.value.insert(notificationPromptPosition, const SizedBox(child: NotificationPrompt()));
+
+        final lastDismissedAt = ref.read(sharedPreferencesProvider).getInt(PrefKeys.notificationPromptLastDismissedAt);
+        if (lastDismissedAt != null) {
+          if (DateTime.now().millisecondsSinceEpoch - lastDismissedAt > 60 * 1000) {
+            widgets.value = List.from(widgets.value)
+              ..insert(notificationPromptPosition, SizedBox(
+                child: NotificationPrompt(
+                  onDismiss: () {
+                    widgets.value = List.from(widgets.value)..removeAt(notificationPromptPosition);
+                  },
+                ),
+              ));
+          }
+          return;
+        }
+
+        widgets.value = List.from(widgets.value)
+          ..insert(notificationPromptPosition, SizedBox(
+            child: NotificationPrompt(
+              onDismiss: () {
+                widgets.value = List.from(widgets.value)..removeAt(notificationPromptPosition);
+              },
+            ),
+          ));
       }
 
       previousNotificationPromptPosition.value = notificationPromptPosition;
     }, [notificationPromptEnabled, notificationPromptPosition]);
 
+    final items = useValueListenable(widgets);
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       spacing: sectionSpacing,
-      children: widgets.value
+      children: items
           .animate(interval: 50.ms)
           .slideX(begin: 1, curve: Curves.easeOutExpo, duration: 2000.ms)
           .scale(begin: const Offset(0.8, 0.8))

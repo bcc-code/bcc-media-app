@@ -12,7 +12,9 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 
 class NotificationPrompt extends HookConsumerWidget {
-  const NotificationPrompt({super.key});
+  const NotificationPrompt({super.key, this.onDismiss});
+
+  final Function? onDismiss;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -93,10 +95,13 @@ class NotificationPrompt extends HookConsumerWidget {
 
                   sharedPrefs.setInt(PrefKeys.notificationPromptDismissedCount, newDismissedCount);
                   analytics.notificationPromptDismissed(NotificationPromptDismissedEvent(timesDismissed: newDismissedCount));
+                  sharedPrefs.setInt(PrefKeys.notificationPromptLastDismissedAt, DateTime.now().millisecondsSinceEpoch);
                 } catch (e) {
                   debugPrint(e.toString());
                   analytics.log(LogEvent(name: 'notification prompt dismiss error', message: e.toString()));
                 }
+
+                onDismiss?.call();
               },
             ),
           ),
