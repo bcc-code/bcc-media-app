@@ -54,11 +54,6 @@ class ToggleSwitch extends StatelessWidget {
                   color: Color.fromRGBO(4, 18, 52, 0.2),
                   offset: const Offset(0, 2),
                 ),
-                BoxShadow(
-                  color: Color.fromRGBO(4, 18, 52, 0.1),
-                  blurRadius: 12,
-                  offset: const Offset(0, 4),
-                ),
               ],
               borderRadius: BorderRadius.circular(100),
             ),
