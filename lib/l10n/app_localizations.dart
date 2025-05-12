@@ -2196,6 +2196,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Watch a video every day!'**
   String get kidsNotificationReminderTitle;
+
+  /// Shown alongside a toggle switch in the Bible Kids settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

@@ -25,6 +25,7 @@ class PrefKeys {
   static const hasEverLoggedIn = 'has_ever_logged_in';
   static const notificationPromptDismissedCount = 'notification_prompt_dismissed_count';
   static const notificationPromptLastDismissedAt = 'notification_prompt_last_dismissed_at';
+  static const notificationsEnabled = 'notifications_enabled';
 }
 
 final webEnvUrls = <String, String>{

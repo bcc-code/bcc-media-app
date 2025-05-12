@@ -1084,4 +1084,7 @@ class SPl extends S {
 
   @override
   String get kidsNotificationReminderTitle => 'Watch a video every day!';
+
+  @override
+  String get notifications => 'Notifications';
 }

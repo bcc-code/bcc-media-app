@@ -1497,5 +1497,9 @@
   "kidsNotificationReminderTitle": "Watch a video every day!",
   "@kidsNotificationReminderTitle": {
     "description": "Title shown on the notification reminder widget in the Bible Kids app."
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Shown alongside a toggle switch in the Bible Kids settings."
   }
 }
