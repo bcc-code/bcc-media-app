@@ -6,6 +6,7 @@ import 'package:brunstadtv_app/helpers/analytics.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -37,6 +38,7 @@ class PosterSection extends HookConsumerWidget {
     }, [data.items.items]);
 
     // Handle notification prompt
+    final notificationsEnabledSetting = ref.watch(settingsProvider.select((s) => s.notificationsEnabled));
     final notificationPromptEnabled = ref.watch(featureFlagsProvider.select((flags) => flags.kidsNotificationPrompt));
     final notificationPromptPosition = ref.watch(featureFlagsProvider.select((flags) => flags.kidsNotificationPromptPosition));
 
@@ -45,7 +47,7 @@ class PosterSection extends HookConsumerWidget {
 
     // Check if prompt should be shown on first render and when configuration changes
     useEffect(() {
-      if (!notificationPromptEnabled || notificationPromptPosition == null) {
+      if (!notificationPromptEnabled || notificationsEnabledSetting == true || notificationPromptPosition == null) {
         shouldShowPrompt.value = false;
         return;
       }

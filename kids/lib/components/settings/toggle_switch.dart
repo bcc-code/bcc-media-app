@@ -23,8 +23,6 @@ class ToggleSwitch extends StatelessWidget {
     final bp = ResponsiveBreakpoints.of(context);
     final isSmall = bp.smallerThan(TABLET);
 
-    debugPrint('notification: ${controller.value}');
-
     return AdvancedSwitch(
       controller: controller,
       initialValue: controller.value,
