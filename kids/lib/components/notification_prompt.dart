@@ -2,6 +2,7 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_messaging_platform_interface/src/types.dart';
 import 'package:kids/components/buttons/notification_promt_dismiss_button.dart';
 import 'package:kids/helpers/svg_icons.dart';
@@ -58,6 +59,7 @@ class NotificationPrompt extends HookConsumerWidget {
                   labelText: isSmall ? S.of(context).kidsNotificationReminderCtaShort : S.of(context).kidsNotificationReminderCtaLong,
                   onPressed: () async {
                     final analytics = ref.read(analyticsProvider);
+                    final settings = ref.read(settingsProvider.notifier);
                     analytics.notificationPromptClicked(NotificationPromptClickedEvent());
                     final permissions = await ref.read(notificationServiceProvider).requestPermissionAndSetup();
                     if (permissions == null) {
@@ -69,11 +71,14 @@ class NotificationPrompt extends HookConsumerWidget {
                       case AuthorizationStatus.authorized:
                         debugPrint('notification permission status: accepted');
                         analytics.notificationPromptAccepted(NotificationPromptAcceptedEvent());
+                        settings.setNotificationsEnabled(true);
                       case AuthorizationStatus.denied:
                         debugPrint('notification permission status: denied');
                         analytics.notificationPromptDenied(NotificationPromptDeniedEvent());
+                        settings.setNotificationsEnabled(false);
                       case AuthorizationStatus.notDetermined:
                         debugPrint('notification permission status: not determined');
+                        settings.setNotificationsEnabled(null);
                       case AuthorizationStatus.provisional:
                         debugPrint('notification permission status: provisional');
                     }
