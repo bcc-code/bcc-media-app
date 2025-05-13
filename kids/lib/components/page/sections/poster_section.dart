@@ -67,7 +67,13 @@ class PosterSection extends HookConsumerWidget {
         final twoWeeks = 14 * 24 * 60 * 60 * 1000;
         shouldShowPrompt.value = DateTime.now().millisecondsSinceEpoch - lastDismissedAt >= twoWeeks;
       }
-    }, [notificationPromptEnabled, notificationPromptPosition, showAfterDismissal, showAfterDismissalCount, notificationsEnabledSetting]);
+    }, [
+      notificationPromptEnabled,
+      notificationPromptPosition,
+      showAfterDismissal,
+      showAfterDismissalCount,
+      notificationsEnabledSetting,
+    ]);
 
     final List<Widget> finalItems = useMemoized(() {
       final items = List<Widget>.from(posterItems);
