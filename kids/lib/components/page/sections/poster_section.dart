@@ -53,11 +53,20 @@ class PosterSection extends HookConsumerWidget {
       }
 
       final lastDismissedAt = ref.read(sharedPreferencesProvider).getInt(PrefKeys.notificationPromptLastDismissedAt);
+      final dismissedCount = ref.read(sharedPreferencesProvider).getInt(PrefKeys.notificationPromptDismissedCount);
 
+      // We don't want to show the prompt more than three times, to avoid annoying the user
+      if (dismissedCount != null && dismissedCount >= 3) {
+        shouldShowPrompt.value = false;
+        return;
+      }
+
+      // Show the prompt every two weeks
       if (lastDismissedAt == null) {
         shouldShowPrompt.value = true;
       } else {
-        shouldShowPrompt.value = DateTime.now().millisecondsSinceEpoch - lastDismissedAt > 60 * 1000;
+        final twoWeeks = 14 * 24 * 60 * 60 * 1000;
+        shouldShowPrompt.value = DateTime.now().millisecondsSinceEpoch - lastDismissedAt > twoWeeks;
       }
     }, [notificationPromptEnabled, notificationPromptPosition]);
 
