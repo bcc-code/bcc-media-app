@@ -39,6 +39,10 @@ mixin _$FeatureFlags {
   bool get kidsMoreNorwegianContent => throw _privateConstructorUsedError;
   bool get kidsNotificationPrompt => throw _privateConstructorUsedError;
   int? get kidsNotificationPromptPosition => throw _privateConstructorUsedError;
+  bool get kidsNotificationPromptAfterDismissal =>
+      throw _privateConstructorUsedError;
+  int? get kidsNotificationPromptAfterDismissalCount =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this FeatureFlags to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -73,7 +77,9 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       bool showBmmStreak,
       bool kidsMoreNorwegianContent,
       bool kidsNotificationPrompt,
-      int? kidsNotificationPromptPosition});
+      int? kidsNotificationPromptPosition,
+      bool kidsNotificationPromptAfterDismissal,
+      int? kidsNotificationPromptAfterDismissalCount});
 }
 
 /// @nodoc
@@ -108,6 +114,8 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? kidsMoreNorwegianContent = null,
     Object? kidsNotificationPrompt = null,
     Object? kidsNotificationPromptPosition = freezed,
+    Object? kidsNotificationPromptAfterDismissal = null,
+    Object? kidsNotificationPromptAfterDismissalCount = freezed,
   }) {
     return _then(_value.copyWith(
       variants: null == variants
@@ -178,6 +186,16 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
           ? _value.kidsNotificationPromptPosition
           : kidsNotificationPromptPosition // ignore: cast_nullable_to_non_nullable
               as int?,
+      kidsNotificationPromptAfterDismissal: null ==
+              kidsNotificationPromptAfterDismissal
+          ? _value.kidsNotificationPromptAfterDismissal
+          : kidsNotificationPromptAfterDismissal // ignore: cast_nullable_to_non_nullable
+              as bool,
+      kidsNotificationPromptAfterDismissalCount: freezed ==
+              kidsNotificationPromptAfterDismissalCount
+          ? _value.kidsNotificationPromptAfterDismissalCount
+          : kidsNotificationPromptAfterDismissalCount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -207,7 +225,9 @@ abstract class _$$FeatureFlagsImplCopyWith<$Res>
       bool showBmmStreak,
       bool kidsMoreNorwegianContent,
       bool kidsNotificationPrompt,
-      int? kidsNotificationPromptPosition});
+      int? kidsNotificationPromptPosition,
+      bool kidsNotificationPromptAfterDismissal,
+      int? kidsNotificationPromptAfterDismissalCount});
 }
 
 /// @nodoc
@@ -240,6 +260,8 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
     Object? kidsMoreNorwegianContent = null,
     Object? kidsNotificationPrompt = null,
     Object? kidsNotificationPromptPosition = freezed,
+    Object? kidsNotificationPromptAfterDismissal = null,
+    Object? kidsNotificationPromptAfterDismissalCount = freezed,
   }) {
     return _then(_$FeatureFlagsImpl(
       variants: null == variants
@@ -310,6 +332,16 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
           ? _value.kidsNotificationPromptPosition
           : kidsNotificationPromptPosition // ignore: cast_nullable_to_non_nullable
               as int?,
+      kidsNotificationPromptAfterDismissal: null ==
+              kidsNotificationPromptAfterDismissal
+          ? _value.kidsNotificationPromptAfterDismissal
+          : kidsNotificationPromptAfterDismissal // ignore: cast_nullable_to_non_nullable
+              as bool,
+      kidsNotificationPromptAfterDismissalCount: freezed ==
+              kidsNotificationPromptAfterDismissalCount
+          ? _value.kidsNotificationPromptAfterDismissalCount
+          : kidsNotificationPromptAfterDismissalCount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -334,7 +366,9 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
       this.showBmmStreak = false,
       this.kidsMoreNorwegianContent = false,
       this.kidsNotificationPrompt = false,
-      this.kidsNotificationPromptPosition})
+      this.kidsNotificationPromptPosition,
+      this.kidsNotificationPromptAfterDismissal = false,
+      this.kidsNotificationPromptAfterDismissalCount})
       : _variants = variants,
         super._();
 
@@ -399,10 +433,15 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   final bool kidsNotificationPrompt;
   @override
   final int? kidsNotificationPromptPosition;
+  @override
+  @JsonKey()
+  final bool kidsNotificationPromptAfterDismissal;
+  @override
+  final int? kidsNotificationPromptAfterDismissalCount;
 
   @override
   String toString() {
-    return 'FeatureFlags(variants: $variants, kidsAuth: $kidsAuth, publicSignup: $publicSignup, socialSignup: $socialSignup, shorts: $shorts, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, skipToChapter: $skipToChapter, bccmAudioTest: $bccmAudioTest, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider, showBmmStreak: $showBmmStreak, kidsMoreNorwegianContent: $kidsMoreNorwegianContent, kidsNotificationPrompt: $kidsNotificationPrompt, kidsNotificationPromptPosition: $kidsNotificationPromptPosition)';
+    return 'FeatureFlags(variants: $variants, kidsAuth: $kidsAuth, publicSignup: $publicSignup, socialSignup: $socialSignup, shorts: $shorts, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, skipToChapter: $skipToChapter, bccmAudioTest: $bccmAudioTest, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider, showBmmStreak: $showBmmStreak, kidsMoreNorwegianContent: $kidsMoreNorwegianContent, kidsNotificationPrompt: $kidsNotificationPrompt, kidsNotificationPromptPosition: $kidsNotificationPromptPosition, kidsNotificationPromptAfterDismissal: $kidsNotificationPromptAfterDismissal, kidsNotificationPromptAfterDismissalCount: $kidsNotificationPromptAfterDismissalCount)';
   }
 
   @override
@@ -444,30 +483,41 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
             (identical(other.kidsNotificationPromptPosition,
                     kidsNotificationPromptPosition) ||
                 other.kidsNotificationPromptPosition ==
-                    kidsNotificationPromptPosition));
+                    kidsNotificationPromptPosition) &&
+            (identical(other.kidsNotificationPromptAfterDismissal,
+                    kidsNotificationPromptAfterDismissal) ||
+                other.kidsNotificationPromptAfterDismissal ==
+                    kidsNotificationPromptAfterDismissal) &&
+            (identical(other.kidsNotificationPromptAfterDismissalCount,
+                    kidsNotificationPromptAfterDismissalCount) ||
+                other.kidsNotificationPromptAfterDismissalCount ==
+                    kidsNotificationPromptAfterDismissalCount));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_variants),
-      kidsAuth,
-      publicSignup,
-      socialSignup,
-      shorts,
-      shortsHideBeta,
-      shortsGuide,
-      disableNpawShorts,
-      skipToChapter,
-      bccmAudioTest,
-      shortsWithScores,
-      elasticSearch,
-      chapterSlider,
-      showBmmStreak,
-      kidsMoreNorwegianContent,
-      kidsNotificationPrompt,
-      kidsNotificationPromptPosition);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(_variants),
+        kidsAuth,
+        publicSignup,
+        socialSignup,
+        shorts,
+        shortsHideBeta,
+        shortsGuide,
+        disableNpawShorts,
+        skipToChapter,
+        bccmAudioTest,
+        shortsWithScores,
+        elasticSearch,
+        chapterSlider,
+        showBmmStreak,
+        kidsMoreNorwegianContent,
+        kidsNotificationPrompt,
+        kidsNotificationPromptPosition,
+        kidsNotificationPromptAfterDismissal,
+        kidsNotificationPromptAfterDismissalCount
+      ]);
 
   /// Create a copy of FeatureFlags
   /// with the given fields replaced by the non-null parameter values.
@@ -487,23 +537,26 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
 
 abstract class _FeatureFlags extends FeatureFlags {
   const factory _FeatureFlags(
-      {final List<String> variants,
-      final bool kidsAuth,
-      final bool publicSignup,
-      final bool socialSignup,
-      final bool shorts,
-      final bool shortsHideBeta,
-      final bool shortsGuide,
-      final bool disableNpawShorts,
-      final bool skipToChapter,
-      final bool bccmAudioTest,
-      final bool shortsWithScores,
-      final bool elasticSearch,
-      final bool chapterSlider,
-      final bool showBmmStreak,
-      final bool kidsMoreNorwegianContent,
-      final bool kidsNotificationPrompt,
-      final int? kidsNotificationPromptPosition}) = _$FeatureFlagsImpl;
+          {final List<String> variants,
+          final bool kidsAuth,
+          final bool publicSignup,
+          final bool socialSignup,
+          final bool shorts,
+          final bool shortsHideBeta,
+          final bool shortsGuide,
+          final bool disableNpawShorts,
+          final bool skipToChapter,
+          final bool bccmAudioTest,
+          final bool shortsWithScores,
+          final bool elasticSearch,
+          final bool chapterSlider,
+          final bool showBmmStreak,
+          final bool kidsMoreNorwegianContent,
+          final bool kidsNotificationPrompt,
+          final int? kidsNotificationPromptPosition,
+          final bool kidsNotificationPromptAfterDismissal,
+          final int? kidsNotificationPromptAfterDismissalCount}) =
+      _$FeatureFlagsImpl;
   const _FeatureFlags._() : super._();
 
   factory _FeatureFlags.fromJson(Map<String, dynamic> json) =
@@ -543,6 +596,10 @@ abstract class _FeatureFlags extends FeatureFlags {
   bool get kidsNotificationPrompt;
   @override
   int? get kidsNotificationPromptPosition;
+  @override
+  bool get kidsNotificationPromptAfterDismissal;
+  @override
+  int? get kidsNotificationPromptAfterDismissalCount;
 
   /// Create a copy of FeatureFlags
   /// with the given fields replaced by the non-null parameter values.

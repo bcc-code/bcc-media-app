@@ -41,6 +41,8 @@ class PosterSection extends HookConsumerWidget {
     final notificationsEnabledSetting = ref.watch(settingsProvider.select((s) => s.notificationsEnabled));
     final notificationPromptEnabled = ref.watch(featureFlagsProvider.select((flags) => flags.kidsNotificationPrompt));
     final notificationPromptPosition = ref.watch(featureFlagsProvider.select((flags) => flags.kidsNotificationPromptPosition));
+    final showAfterDismissal = ref.watch(featureFlagsProvider.select((flags) => flags.kidsNotificationPromptAfterDismissal));
+    final showAfterDismissalCount = ref.watch(featureFlagsProvider.select((flags) => flags.kidsNotificationPromptAfterDismissalCount)) ?? 3;
 
     // Track if notification prompt should be shown
     final shouldShowPrompt = useState<bool>(false);
@@ -56,7 +58,7 @@ class PosterSection extends HookConsumerWidget {
       final dismissedCount = ref.read(sharedPreferencesProvider).getInt(PrefKeys.notificationPromptDismissedCount);
 
       // We don't want to show the prompt more than three times, to avoid annoying the user
-      if (dismissedCount != null && dismissedCount >= 3) {
+      if (showAfterDismissal && dismissedCount != null && dismissedCount >= showAfterDismissalCount) {
         shouldShowPrompt.value = false;
         return;
       }
@@ -66,9 +68,9 @@ class PosterSection extends HookConsumerWidget {
         shouldShowPrompt.value = true;
       } else {
         final twoWeeks = 14 * 24 * 60 * 60 * 1000;
-        shouldShowPrompt.value = DateTime.now().millisecondsSinceEpoch - lastDismissedAt > twoWeeks;
+        shouldShowPrompt.value = DateTime.now().millisecondsSinceEpoch - lastDismissedAt >= twoWeeks;
       }
-    }, [notificationPromptEnabled, notificationPromptPosition]);
+    }, [notificationPromptEnabled, notificationPromptPosition, showAfterDismissal, showAfterDismissalCount, notificationsEnabledSetting]);
 
     // Build final list of items including notification prompt if needed
     final List<Widget> finalItems = useMemoized(() {
