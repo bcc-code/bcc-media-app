@@ -29,7 +29,6 @@ class PosterSection extends HookConsumerWidget {
     final bp = ResponsiveBreakpoints.of(context);
     final double sectionSpacing = bp.smallerThan(TABLET) ? 20 : 28;
 
-    // Create poster items from section data
     final posterItems = useMemoized(() {
       return data.items.items.asMap().entries.map((kv) {
         final item = kv.value;
@@ -37,14 +36,12 @@ class PosterSection extends HookConsumerWidget {
       }).toList();
     }, [data.items.items]);
 
-    // Handle notification prompt
     final notificationsEnabledSetting = ref.watch(settingsProvider.select((s) => s.notificationsEnabled));
     final notificationPromptEnabled = ref.watch(featureFlagsProvider.select((flags) => flags.kidsNotificationPrompt));
     final notificationPromptPosition = ref.watch(featureFlagsProvider.select((flags) => flags.kidsNotificationPromptPosition));
     final showAfterDismissal = ref.watch(featureFlagsProvider.select((flags) => flags.kidsNotificationPromptAfterDismissal));
     final showAfterDismissalCount = ref.watch(featureFlagsProvider.select((flags) => flags.kidsNotificationPromptAfterDismissalCount)) ?? 3;
 
-    // Track if notification prompt should be shown
     final shouldShowPrompt = useState<bool>(false);
 
     // Check if prompt should be shown on first render and when configuration changes
@@ -72,7 +69,6 @@ class PosterSection extends HookConsumerWidget {
       }
     }, [notificationPromptEnabled, notificationPromptPosition, showAfterDismissal, showAfterDismissalCount, notificationsEnabledSetting]);
 
-    // Build final list of items including notification prompt if needed
     final List<Widget> finalItems = useMemoized(() {
       final items = List<Widget>.from(posterItems);
 
@@ -87,9 +83,13 @@ class PosterSection extends HookConsumerWidget {
       }
 
       return items;
-    }, [posterItems, shouldShowPrompt.value, notificationPromptEnabled, notificationPromptPosition]);
+    }, [
+      posterItems,
+      shouldShowPrompt.value,
+      notificationPromptEnabled,
+      notificationPromptPosition,
+    ]);
 
-    // Apply animations to items
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: finalItems.mapIndexed((index, child) {
