@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.78+2300238...v) (2025-05-15)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.79+2300239...v) (2025-05-15)
+
+
+
+## [5.6.79+2300239](https://github.com/bcc-code/bcc-media-app/compare/v5.6.78+2300238...v5.6.79+2300239) (2025-05-15)
+
+
+### Features
+
+* **shorts:** add back source button ([f37122b](https://github.com/bcc-code/bcc-media-app/commit/f37122bb14491076918fc0bb8e8845650da3c380))
 
 
 
