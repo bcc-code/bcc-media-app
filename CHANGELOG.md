@@ -1,4 +1,28 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.79+2300239...v) (2025-05-15)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.80+2300240...v) (2025-05-15)
+
+
+
+## [5.6.80+2300240](https://github.com/bcc-code/bcc-media-app/compare/v5.6.79+2300239...v5.6.80+2300240) (2025-05-15)
+
+
+### Bug Fixes
+
+* **kids:** update lockfile ([c220a6c](https://github.com/bcc-code/bcc-media-app/commit/c220a6c9d43157014ba5ad385de52019ef21b143))
+* **notifications:** remove prompt when dismissing ([579e0e5](https://github.com/bcc-code/bcc-media-app/commit/579e0e5ec3330f1ab2f3ed46677bfd55ead2e4dd))
+* **notifications:** remove shadow from toggle switch ([fdad579](https://github.com/bcc-code/bcc-media-app/commit/fdad579f118984da0b45a0dcd3fb788a9ef7eb7b))
+* roll submodule ([11412c3](https://github.com/bcc-code/bcc-media-app/commit/11412c3b24f22b718e5387d14263c4626bf44d99))
+* roll submodule ([66aea44](https://github.com/bcc-code/bcc-media-app/commit/66aea44805b6aa8b2367cfd18bbe5ac375afbfc4))
+
+
+### Features
+
+* **kids:** add notification prompt widget ([eaaf8fa](https://github.com/bcc-code/bcc-media-app/commit/eaaf8fa4e02709c3950f45eddea4c8d9bc19af20))
+* **kids:** notificaion setting ([a2e933b](https://github.com/bcc-code/bcc-media-app/commit/a2e933b8604c58fb9ff92c5c45a13611e9e1c707))
+* **notifications:** enable notifications + add some statistics ([14d12c2](https://github.com/bcc-code/bcc-media-app/commit/14d12c28b93dad6d48a01b0e501a0166da25e041))
+* **notifications:** hide prompt if notifications is enabled ([862b87d](https://github.com/bcc-code/bcc-media-app/commit/862b87d2befb80d3eeb136a294c4c445b93600ac))
+* **notifications:** set notification setting when accepting/denying prompt ([62921da](https://github.com/bcc-code/bcc-media-app/commit/62921da09947e70f4e5c62a307b756fe8860e0f9))
+* **notifications:** show prompt every two weeks ([8eecdc4](https://github.com/bcc-code/bcc-media-app/commit/8eecdc4cb2db24ab8f678929cf2ef41d6162688a))
+* **notifications:** use correct time interval + don't show after 3 dismissals ([fabc288](https://github.com/bcc-code/bcc-media-app/commit/fabc288b11d3f99587d207e944b45d308c9c9c54))
 
 
 
