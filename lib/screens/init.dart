@@ -62,6 +62,7 @@ class _InitScreenState extends ConsumerState<InitScreen> {
     await tryCatchRecordErrorAsync(() async {
       await ref.read(featureFlagsProvider.notifier).activateFeatureFlags().timeout(const Duration(seconds: 2));
     });
+    if (!mounted) return;
     ref.invalidate(appConfigFutureProvider);
 
     // Set "hasEverLoggedIn" in SharedPreferences to false initially.

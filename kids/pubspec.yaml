@@ -99,6 +99,7 @@ dependencies:
   bccm_core:
     path: ../submodules/bccm_flutter/bccm_core
   sentry_flutter: ^8.14.0
+  flutter_advanced_switch: ^3.1.0
 
 dependency_overrides:
   js: ^0.7.1

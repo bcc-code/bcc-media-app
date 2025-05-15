@@ -1075,4 +1075,16 @@ class SBg extends S {
 
   @override
   String get studyAllQuestionsAnsweredDescription => 'Well done!';
+
+  @override
+  String get kidsNotificationReminderCtaShort => 'Turn on';
+
+  @override
+  String get kidsNotificationReminderCtaLong => 'Turn on reminders';
+
+  @override
+  String get kidsNotificationReminderTitle => 'Watch a video every day!';
+
+  @override
+  String get notifications => 'Notifications';
 }

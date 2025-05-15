@@ -25,6 +25,10 @@ sealed class FeatureFlags with _$FeatureFlags {
     @Default(false) bool chapterSlider,
     @Default(false) bool showBmmStreak,
     @Default(false) bool kidsMoreNorwegianContent,
+    @Default(false) bool kidsNotificationPrompt,
+    int? kidsNotificationPromptPosition,
+    @Default(false) bool kidsNotificationPromptAfterDismissal,
+    int? kidsNotificationPromptAfterDismissalCount,
   }) = _FeatureFlags;
 
   factory FeatureFlags.fromJson(Map<String, dynamic> json) => _$FeatureFlagsFromJson(json);
@@ -34,21 +38,24 @@ sealed class FeatureFlags with _$FeatureFlags {
   /// Basically just a bunch of || operators
   FeatureFlags mergeWithTrueAlwaysWins(FeatureFlags newFlags) {
     return FeatureFlags(
-      variants: newFlags.variants,
-      kidsAuth: newFlags.kidsAuth || kidsAuth,
-      publicSignup: newFlags.publicSignup || publicSignup,
-      socialSignup: newFlags.socialSignup || socialSignup,
-      shorts: newFlags.shorts || shorts,
-      shortsHideBeta: newFlags.shortsHideBeta || shortsHideBeta,
-      shortsGuide: newFlags.shortsGuide || shortsGuide,
-      disableNpawShorts: newFlags.disableNpawShorts || disableNpawShorts,
-      skipToChapter: newFlags.skipToChapter || skipToChapter,
-      bccmAudioTest: newFlags.bccmAudioTest || bccmAudioTest,
-      shortsWithScores: newFlags.shortsWithScores || shortsWithScores,
-      elasticSearch: newFlags.elasticSearch || elasticSearch,
-      chapterSlider: newFlags.chapterSlider || chapterSlider,
-      showBmmStreak: newFlags.showBmmStreak || showBmmStreak,
-      kidsMoreNorwegianContent: newFlags.kidsMoreNorwegianContent || kidsMoreNorwegianContent,
-    );
+        variants: newFlags.variants,
+        kidsAuth: newFlags.kidsAuth || kidsAuth,
+        publicSignup: newFlags.publicSignup || publicSignup,
+        socialSignup: newFlags.socialSignup || socialSignup,
+        shorts: newFlags.shorts || shorts,
+        shortsHideBeta: newFlags.shortsHideBeta || shortsHideBeta,
+        shortsGuide: newFlags.shortsGuide || shortsGuide,
+        disableNpawShorts: newFlags.disableNpawShorts || disableNpawShorts,
+        skipToChapter: newFlags.skipToChapter || skipToChapter,
+        bccmAudioTest: newFlags.bccmAudioTest || bccmAudioTest,
+        shortsWithScores: newFlags.shortsWithScores || shortsWithScores,
+        elasticSearch: newFlags.elasticSearch || elasticSearch,
+        chapterSlider: newFlags.chapterSlider || chapterSlider,
+        showBmmStreak: newFlags.showBmmStreak || showBmmStreak,
+        kidsMoreNorwegianContent: newFlags.kidsMoreNorwegianContent || kidsMoreNorwegianContent,
+        kidsNotificationPrompt: newFlags.kidsNotificationPrompt || kidsNotificationPrompt,
+        kidsNotificationPromptPosition: newFlags.kidsNotificationPromptPosition ?? kidsNotificationPromptPosition,
+        kidsNotificationPromptAfterDismissal: newFlags.kidsNotificationPromptAfterDismissal || kidsNotificationPromptAfterDismissal,
+        kidsNotificationPromptAfterDismissalCount: newFlags.kidsNotificationPromptAfterDismissalCount ?? kidsNotificationPromptAfterDismissalCount);
   }
 }

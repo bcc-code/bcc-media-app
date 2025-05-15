@@ -27,6 +27,7 @@ class Settings with _$Settings implements CommonSettings {
     bool? isBetaTester,
     bool? useNativePlayer,
     @Default([]) List<String> extraUsergroups,
+    bool? notificationsEnabled,
   }) = _Settings;
 }
 
@@ -61,6 +62,7 @@ class SettingsService extends StateNotifier<Settings> {
       useNativePlayer: prefs.getBool(PrefKeys.useNativePlayer),
       sessionId: (DateTime.now().millisecondsSinceEpoch / 1000).round(),
       extraUsergroups: prefs.getStringList(PrefKeys.extraUsergroups) ?? [],
+      notificationsEnabled: prefs.getBool(PrefKeys.notificationsEnabled),
     );
   }
 
@@ -166,6 +168,16 @@ class SettingsService extends StateNotifier<Settings> {
       prefs.setInt(PrefKeys.downloadQuality, quality.index);
     }
     state = state.copyWith(downloadQuality: quality);
+  }
+
+  Future<void> setNotificationsEnabled(bool? value) async {
+    var prefs = ref.read(sharedPreferencesProvider);
+    if (value == null) {
+      prefs.remove(PrefKeys.notificationsEnabled);
+    } else {
+      prefs.setBool(PrefKeys.notificationsEnabled, value);
+    }
+    state = state.copyWith(notificationsEnabled: value);
   }
 }
 

@@ -111,7 +111,7 @@ class _ItemRenderer extends HookWidget {
                         ),
                         // Flex 2, for the right text. Which means 2/3 of the remaining space.
                         // This is to make the text stop in the middle-ish when the text is short.
-                        if (item.rightText != null)
+                        if (item.rightText != null && item.rightWidget == null)
                           Expanded(
                             flex: 2,
                             child: SizedBox(
@@ -121,6 +121,17 @@ class _ItemRenderer extends HookWidget {
                                 textAlign: TextAlign.right,
                                 overflow: TextOverflow.ellipsis,
                                 style: (small ? design.textStyles.body2 : design.textStyles.body1).copyWith(color: design.colors.label1),
+                              ),
+                            ),
+                          ),
+                        if (item.rightWidget != null)
+                          Expanded(
+                            flex: 2,
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Container(
+                                alignment: Alignment.centerRight,
+                                child: item.rightWidget!,
                               ),
                             ),
                           ),
@@ -142,11 +153,13 @@ class SettingListItem {
   final VoidCallback onPressed;
   final String? rightText;
   bool disabled;
+  final Widget? rightWidget;
 
   SettingListItem({
     required this.title,
     required this.onPressed,
     this.disabled = false,
     this.rightText,
+    this.rightWidget,
   });
 }

@@ -2178,6 +2178,30 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Well done!'**
   String get studyAllQuestionsAnsweredDescription;
+
+  /// Short button text on the notification reminder widget in the Bible Kids app.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on'**
+  String get kidsNotificationReminderCtaShort;
+
+  /// Long button text on the notification reminder widget in the Bible Kids app.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on reminders'**
+  String get kidsNotificationReminderCtaLong;
+
+  /// Title shown on the notification reminder widget in the Bible Kids app.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch a video every day!'**
+  String get kidsNotificationReminderTitle;
+
+  /// Shown alongside a toggle switch in the Bible Kids settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

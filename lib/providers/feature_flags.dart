@@ -32,6 +32,8 @@ FeatureFlags getBaseFeatureFlags() {
     chapterSlider: false,
     showBmmStreak: false,
     kidsMoreNorwegianContent: false,
+    kidsNotificationPrompt: false,
+    kidsNotificationPromptAfterDismissal: false,
   );
 }
 
@@ -79,6 +81,11 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         chapterSlider: _verifyToggle(unleash, 'chapter-slider'),
         showBmmStreak: _verifyToggle(unleash, 'show-bmm-streak'),
         kidsMoreNorwegianContent: _verifyToggle(unleash, 'kids-more-norwegian-content'),
+        kidsNotificationPrompt: _verifyToggle(unleash, 'kids-notification-prompt'),
+        kidsNotificationPromptPosition: int.tryParse(unleash.getVariant('kids-notification-prompt').payload?.value ?? ''),
+        kidsNotificationPromptAfterDismissal: _verifyToggle(unleash, 'kids-notification-prompt-reminders-after-dismissal'),
+        kidsNotificationPromptAfterDismissalCount:
+            int.tryParse(unleash.getVariant('kids-notification-prompt-reminders-after-dismissal').payload?.value ?? ''),
       ),
     );
 

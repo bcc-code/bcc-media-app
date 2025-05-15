@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button_base.dart';
 import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:kids/components/settings/setting_list.dart';
+import 'package:kids/components/settings/toggle_switch.dart';
 import 'package:kids/helpers/svg_icons.dart';
+import 'package:kids/providers/sound_effects.dart';
 import 'package:kids/router/router.gr.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -71,6 +74,12 @@ class SettingsScreen extends HookConsumerWidget {
 
     final double spacingBetweenSections = bp.smallerThan(TABLET) ? 24 : 20;
 
+    final isNotificationEnabled = settings.notificationsEnabled ?? false;
+    final notificationEnabledController = useState(false);
+    useEffect(() {
+      notificationEnabledController.value = isNotificationEnabled;
+    }, [isNotificationEnabled]);
+
     return DialogOnWeb(
       child: CupertinoScaffold(
         body: !readyToDisplay.value
@@ -125,6 +134,30 @@ class SettingsScreen extends HookConsumerWidget {
                                       onPressed: () {
                                         context.router.push(const ContentLanguageScreenRoute());
                                       },
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: spacingBetweenSections),
+                                SettingList(
+                                  items: [
+                                    SettingListItem(
+                                      title: S.of(context).notifications,
+                                      onPressed: () {
+                                        final value = isNotificationEnabled;
+                                        notificationEnabledController.value = !value;
+                                      },
+                                      rightWidget: ToggleSwitch(
+                                        controller: notificationEnabledController,
+                                        onChanged: (value) {
+                                          ref.read(settingsProvider.notifier).setNotificationsEnabled(value);
+                                          ref.read(analyticsProvider).notificationsSettingToggled(
+                                                NotificationsSettingToggledEvent(enabled: value),
+                                              );
+
+                                          ref.read(soundEffectsProvider).queue(SoundEffects.buttonPush);
+                                          CustomHapticFeedback.selectionClick();
+                                        },
+                                      ),
                                     ),
                                   ],
                                 ),
