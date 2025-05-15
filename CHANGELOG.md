@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.26+2500036-kids...v) (2025-05-02)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.78+2300238...v) (2025-05-15)
+
+
+
+## [5.6.78+2300238](https://github.com/bcc-code/bcc-media-app/compare/v5.1.26+2500036-kids...v5.6.78+2300238) (2025-05-15)
+
+
+### Bug Fixes
+
+* **bmm:** make bmm achievements section generic ([e60fb21](https://github.com/bcc-code/bcc-media-app/commit/e60fb2136e81e7d5d35dba475d6ab8c889f3e1a2))
 
 
 
