@@ -1485,5 +1485,21 @@
   "studyAllQuestionsAnsweredDescription": "Gut gemacht!",
   "@studyAllQuestionsAnsweredDescription": {
     "description": "Description shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct."
+  },
+  "kidsNotificationReminderCtaShort": "Einschalten",
+  "@kidsNotificationReminderCtaShort": {
+    "description": "Short button text on the notification reminder widget in the Bible Kids app."
+  },
+  "kidsNotificationReminderCtaLong": "Erinnerungen einschalten",
+  "@kidsNotificationReminderCtaLong": {
+    "description": "Long button text on the notification reminder widget in the Bible Kids app."
+  },
+  "kidsNotificationReminderTitle": "Schau dir jeden Tag ein Video an!",
+  "@kidsNotificationReminderTitle": {
+    "description": "Title shown on the notification reminder widget in the Bible Kids app."
+  },
+  "notifications": "Benachrichtigungen",
+  "@notifications": {
+    "description": "Shown alongside a toggle switch in the Bible Kids settings."
   }
 }
