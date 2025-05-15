@@ -80,6 +80,30 @@ class ShortView extends HookConsumerWidget {
       return parts.map((p) => '$p.').join(' ');
     }
 
+    Future<void> onSourceTapped() async {
+      ref.read(analyticsProvider).interaction(InteractionEvent(
+            interaction: 'open-source',
+            pageCode: 'shorts',
+            contextElementType: 'short',
+            contextElementId: short?.id,
+          ));
+      final ep = short?.source?.item.asOrNull<Fragment$Short$source$item$$Episode>();
+      if (ep == null) return;
+      final sourcePosition = short?.source?.start?.round() ?? 0;
+      final shortPosition = (videoController.value.playbackPositionMs ?? 0) ~/ 1000;
+
+      videoController.pause();
+      await context.router.push(
+        EpisodeScreenRoute(
+          episodeId: ep.id,
+          autoplay: true,
+          queryParamStartPositionSeconds: sourcePosition + shortPosition,
+        ),
+      );
+      // after navigating back, we want to stop the "source"
+      BccmPlayerController.primary.stop(reset: true);
+    }
+
     return GestureDetector(
       onLongPress: () {
         debugPrint('SHRT: longpress');
@@ -240,29 +264,7 @@ class ShortView extends HookConsumerWidget {
                                     title: short!.title,
                                     description: short!.description,
                                     sourceTitle: short?.source?.item.asOrNull<Fragment$Short$source$item$$Episode>()?.title,
-                                    onSourceTapped: () async {
-                                      ref.read(analyticsProvider).interaction(InteractionEvent(
-                                            interaction: 'open-source',
-                                            pageCode: 'shorts',
-                                            contextElementType: 'short',
-                                            contextElementId: short?.id,
-                                          ));
-                                      final ep = short?.source?.item.asOrNull<Fragment$Short$source$item$$Episode>();
-                                      if (ep == null) return;
-                                      final sourcePosition = short?.source?.start?.round() ?? 0;
-                                      final shortPosition = (videoController.value.playbackPositionMs ?? 0) ~/ 1000;
-
-                                      videoController.pause();
-                                      await context.router.push(
-                                        EpisodeScreenRoute(
-                                          episodeId: ep.id,
-                                          autoplay: true,
-                                          queryParamStartPositionSeconds: sourcePosition + shortPosition,
-                                        ),
-                                      );
-                                      // after navigating back, we want to stop the "source"
-                                      BccmPlayerController.primary.stop(reset: true);
-                                    },
+                                    onSourceTapped: onSourceTapped,
                                   ),
                                 const SizedBox(height: 8),
                                 Disclaimers(short: short),
@@ -277,6 +279,7 @@ class ShortView extends HookConsumerWidget {
                               muted: muted,
                               videoController: videoController,
                               tabOpenAnimation: tabOpenAnimation,
+                              onSourceTapped: onSourceTapped,
                             ),
                           ),
                         ],
@@ -494,10 +497,12 @@ class ShortActions extends HookConsumerWidget {
     required this.muted,
     required this.videoController,
     required this.tabOpenAnimation,
+    required this.onSourceTapped,
   });
 
   final Fragment$Short? short;
   final void Function(bool p1) onMuteRequested;
+  final void Function() onSourceTapped;
   final bool muted;
   final BccmPlayerController? videoController;
   final Animation<double>? tabOpenAnimation;
@@ -529,6 +534,8 @@ class ShortActions extends HookConsumerWidget {
       inMyList.value = short!.inMyList;
       return;
     }, [short]);
+
+    final hasSource = short == null || short?.source?.item != null;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -648,6 +655,21 @@ class ShortActions extends HookConsumerWidget {
             colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
           ),
         ),
+        if (hasSource)
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: design.buttons.large(
+              variant: ButtonVariant.secondary,
+              onPressed: onSourceTapped,
+              imagePosition: ButtonImagePosition.right,
+              image: SvgPicture.string(
+                SvgIcons.chevronRight,
+                width: 32,
+                height: 32,
+                colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
+              ),
+            ),
+          ),
       ])
           .animate(interval: 100.ms)
           .slideY(

@@ -9,7 +9,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../misc/horizontal_slider.dart';
 
 class BmmAchievementSection extends StatelessWidget {
-  final HvheProjectBox? data;
+  final ProjectBoxV2? data;
 
   const BmmAchievementSection(this.data, {super.key});
 
@@ -20,17 +20,11 @@ class BmmAchievementSection extends StatelessWidget {
     }
   }
 
-  onButtonTapped(HvheProjectBox? data) {
-    openBmmPage('/hvhe-standings');
-  }
-
   @override
   Widget build(BuildContext context) {
     final design = DesignSystem.of(context);
     final achievements = data?.achievements;
     final points = data?.points;
-    final boysPoints = data?.boysPoints;
-    final girlsPoints = data?.girlsPoints;
 
     return Container(
       // padding: const EdgeInsets.symmetric(vertical: 16),
@@ -71,39 +65,6 @@ class BmmAchievementSection extends StatelessWidget {
                           ),
                   ],
                 ),
-                if (boysPoints != null && girlsPoints != null)
-                  GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: () {
-                      onButtonTapped(data);
-                    },
-                    child: Container(
-                      clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(99),
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                            color: Color.fromRGBO(103, 145, 203, 1),
-                            child: Text(
-                              '$boysPoints',
-                              style: design.textStyles.title3.copyWith(color: Colors.white),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                            color: Color.fromRGBO(239, 73, 35, 1),
-                            child: Text(
-                              '$girlsPoints',
-                              style: design.textStyles.title3.copyWith(color: Colors.white),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
               ],
             ),
           ),
