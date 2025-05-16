@@ -1,4 +1,19 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.80+2300240...v) (2025-05-15)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.27+2500037-kids...v) (2025-05-16)
+
+
+
+## [5.1.27+2500037-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.80+2300240...v5.1.27+2500037-kids) (2025-05-16)
+
+
+### Bug Fixes
+
+* **kids:** disable sending events to bmm ([f02ac07](https://github.com/bcc-code/bcc-media-app/commit/f02ac07cc4207163bf82fa92991f6856e9fbd558))
+* **kids:** update lockfile ([03d2a1c](https://github.com/bcc-code/bcc-media-app/commit/03d2a1c936ae1f922e934077bfb49a14dd078e0e))
+
+
+### Features
+
+* **player:** remove unnecessary onMediaItemTransition calls ([b4d889c](https://github.com/bcc-code/bcc-media-app/commit/b4d889c572a6fbdb322e06000a175d29a3cc936e))
 
 
 
