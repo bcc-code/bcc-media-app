@@ -92,6 +92,7 @@ class FlavorConfig {
     this.bccmImages,
     this.strictAnonymousAnalytics,
     this.defaultLanguage = 'en',
+    this.sendEventsToBMM = true,
   });
 
   // Config
@@ -106,6 +107,7 @@ class FlavorConfig {
   final String defaultLanguage;
   final bool? strictAnonymousAnalytics;
   final String environment;
+  final bool sendEventsToBMM;
 
   // Static stuff for setting the flavor on startup
   static FlavorConfig? _current;

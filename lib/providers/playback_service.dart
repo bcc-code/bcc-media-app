@@ -61,6 +61,9 @@ class PlaybackService {
             );
 
         // BMM streak tracking
+        if (!FlavorConfig.current.sendEventsToBMM) {
+          return;
+        }
         if (durationSeconds != null) {
           final percentageWatched = (progressSeconds / durationSeconds * 100).floor();
           if (percentageWatched < 50) return;
@@ -86,12 +89,15 @@ class PlaybackService {
             ref.read(analyticsProvider).log(LogEvent(
                   name: 'could not send video watched event to BMM',
                   message: err.toString(),
-                  meta: {'event': event},
+                  meta: {'event': event.toString()},
                 ));
           }
         }
       },
       onPlaybackEnded: (event) async {
+        if (!FlavorConfig.current.sendEventsToBMM) {
+          return;
+        }
         if (event.mediaItem != null) {
           final videoId = event.mediaItem!.metadata?.extras?['npaw.content.id'];
           if (videoId == null) return;

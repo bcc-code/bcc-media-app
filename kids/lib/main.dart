@@ -44,6 +44,7 @@ Future<void> main() async {
       enableNotifications: true,
       applicationCode: 'kids-mobile',
       strictAnonymousAnalytics: true,
+      sendEventsToBMM: false,
       designSystem: () => BibleKidsDesignSystem(),
       strings: (context) => FlavorStrings(
         onboardingTitle: S.of(context).kidsOnboardingTitle,
