@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.27+2500037-kids...v) (2025-05-16)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.81+2300241...v) (2025-05-19)
+
+
+
+## [5.6.81+2300241](https://github.com/bcc-code/bcc-media-app/compare/v5.1.27+2500037-kids...v5.6.81+2300241) (2025-05-19)
+
+
+### Features
+
+* **notifications:** use new device token mutation ([48e3396](https://github.com/bcc-code/bcc-media-app/commit/48e3396898ec3fac90fcbc238479560609da9230))
+* update l10n ([5954ee7](https://github.com/bcc-code/bcc-media-app/commit/5954ee7eddd954dcf0824ce6c0b1757d59fe26c1))
 
 
 
