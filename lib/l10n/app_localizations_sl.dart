@@ -1077,14 +1077,14 @@ class SSl extends S {
   String get studyAllQuestionsAnsweredDescription => 'Odlično!';
 
   @override
-  String get kidsNotificationReminderCtaShort => 'Turn on';
+  String get kidsNotificationReminderCtaShort => 'Vklop';
 
   @override
-  String get kidsNotificationReminderCtaLong => 'Turn on reminders';
+  String get kidsNotificationReminderCtaLong => 'Vklop opomnikov';
 
   @override
-  String get kidsNotificationReminderTitle => 'Watch a video every day!';
+  String get kidsNotificationReminderTitle => 'Vsak dan si oglej videoposnetek!';
 
   @override
-  String get notifications => 'Notifications';
+  String get notifications => 'Obvestila';
 }

@@ -1077,14 +1077,14 @@ class SPt extends S {
   String get studyAllQuestionsAnsweredDescription => 'Muito bem!';
 
   @override
-  String get kidsNotificationReminderCtaShort => 'Turn on';
+  String get kidsNotificationReminderCtaShort => 'Ligue';
 
   @override
-  String get kidsNotificationReminderCtaLong => 'Turn on reminders';
+  String get kidsNotificationReminderCtaLong => 'Ativar os lembretes';
 
   @override
-  String get kidsNotificationReminderTitle => 'Watch a video every day!';
+  String get kidsNotificationReminderTitle => 'Assista um vídeo todos os dias!';
 
   @override
-  String get notifications => 'Notifications';
+  String get notifications => 'Notificações';
 }
