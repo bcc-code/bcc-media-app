@@ -28,6 +28,8 @@ mixin _$Settings {
   bool? get useNativePlayer => throw _privateConstructorUsedError;
   List<String> get extraUsergroups => throw _privateConstructorUsedError;
   bool? get notificationsEnabled => throw _privateConstructorUsedError;
+  bool? get onlyPreferredLanguagesContentEnabled =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of Settings
   /// with the given fields replaced by the non-null parameter values.
@@ -53,7 +55,8 @@ abstract class $SettingsCopyWith<$Res> {
       bool? isBetaTester,
       bool? useNativePlayer,
       List<String> extraUsergroups,
-      bool? notificationsEnabled});
+      bool? notificationsEnabled,
+      bool? onlyPreferredLanguagesContentEnabled});
 }
 
 /// @nodoc
@@ -83,6 +86,7 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
     Object? useNativePlayer = freezed,
     Object? extraUsergroups = null,
     Object? notificationsEnabled = freezed,
+    Object? onlyPreferredLanguagesContentEnabled = freezed,
   }) {
     return _then(_value.copyWith(
       appLanguage: null == appLanguage
@@ -133,6 +137,11 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
           ? _value.notificationsEnabled
           : notificationsEnabled // ignore: cast_nullable_to_non_nullable
               as bool?,
+      onlyPreferredLanguagesContentEnabled: freezed ==
+              onlyPreferredLanguagesContentEnabled
+          ? _value.onlyPreferredLanguagesContentEnabled
+          : onlyPreferredLanguagesContentEnabled // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -157,7 +166,8 @@ abstract class _$$SettingsImplCopyWith<$Res>
       bool? isBetaTester,
       bool? useNativePlayer,
       List<String> extraUsergroups,
-      bool? notificationsEnabled});
+      bool? notificationsEnabled,
+      bool? onlyPreferredLanguagesContentEnabled});
 }
 
 /// @nodoc
@@ -185,6 +195,7 @@ class __$$SettingsImplCopyWithImpl<$Res>
     Object? useNativePlayer = freezed,
     Object? extraUsergroups = null,
     Object? notificationsEnabled = freezed,
+    Object? onlyPreferredLanguagesContentEnabled = freezed,
   }) {
     return _then(_$SettingsImpl(
       appLanguage: null == appLanguage
@@ -235,6 +246,11 @@ class __$$SettingsImplCopyWithImpl<$Res>
           ? _value.notificationsEnabled
           : notificationsEnabled // ignore: cast_nullable_to_non_nullable
               as bool?,
+      onlyPreferredLanguagesContentEnabled: freezed ==
+              onlyPreferredLanguagesContentEnabled
+          ? _value.onlyPreferredLanguagesContentEnabled
+          : onlyPreferredLanguagesContentEnabled // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -254,7 +270,8 @@ class _$SettingsImpl implements _Settings {
       this.isBetaTester,
       this.useNativePlayer,
       final List<String> extraUsergroups = const [],
-      this.notificationsEnabled})
+      this.notificationsEnabled,
+      this.onlyPreferredLanguagesContentEnabled})
       : _audioLanguages = audioLanguages,
         _subtitleLanguages = subtitleLanguages,
         _extraUsergroups = extraUsergroups;
@@ -305,10 +322,12 @@ class _$SettingsImpl implements _Settings {
 
   @override
   final bool? notificationsEnabled;
+  @override
+  final bool? onlyPreferredLanguagesContentEnabled;
 
   @override
   String toString() {
-    return 'Settings(appLanguage: $appLanguage, audioLanguages: $audioLanguages, subtitleLanguages: $subtitleLanguages, downloadAudioLanguage: $downloadAudioLanguage, downloadQuality: $downloadQuality, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride, isBetaTester: $isBetaTester, useNativePlayer: $useNativePlayer, extraUsergroups: $extraUsergroups, notificationsEnabled: $notificationsEnabled)';
+    return 'Settings(appLanguage: $appLanguage, audioLanguages: $audioLanguages, subtitleLanguages: $subtitleLanguages, downloadAudioLanguage: $downloadAudioLanguage, downloadQuality: $downloadQuality, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride, isBetaTester: $isBetaTester, useNativePlayer: $useNativePlayer, extraUsergroups: $extraUsergroups, notificationsEnabled: $notificationsEnabled, onlyPreferredLanguagesContentEnabled: $onlyPreferredLanguagesContentEnabled)';
   }
 
   @override
@@ -339,7 +358,11 @@ class _$SettingsImpl implements _Settings {
             const DeepCollectionEquality()
                 .equals(other._extraUsergroups, _extraUsergroups) &&
             (identical(other.notificationsEnabled, notificationsEnabled) ||
-                other.notificationsEnabled == notificationsEnabled));
+                other.notificationsEnabled == notificationsEnabled) &&
+            (identical(other.onlyPreferredLanguagesContentEnabled,
+                    onlyPreferredLanguagesContentEnabled) ||
+                other.onlyPreferredLanguagesContentEnabled ==
+                    onlyPreferredLanguagesContentEnabled));
   }
 
   @override
@@ -356,7 +379,8 @@ class _$SettingsImpl implements _Settings {
       isBetaTester,
       useNativePlayer,
       const DeepCollectionEquality().hash(_extraUsergroups),
-      notificationsEnabled);
+      notificationsEnabled,
+      onlyPreferredLanguagesContentEnabled);
 
   /// Create a copy of Settings
   /// with the given fields replaced by the non-null parameter values.
@@ -380,7 +404,8 @@ abstract class _Settings implements Settings {
       final bool? isBetaTester,
       final bool? useNativePlayer,
       final List<String> extraUsergroups,
-      final bool? notificationsEnabled}) = _$SettingsImpl;
+      final bool? notificationsEnabled,
+      final bool? onlyPreferredLanguagesContentEnabled}) = _$SettingsImpl;
 
   @override
   Locale get appLanguage;
@@ -406,6 +431,8 @@ abstract class _Settings implements Settings {
   List<String> get extraUsergroups;
   @override
   bool? get notificationsEnabled;
+  @override
+  bool? get onlyPreferredLanguagesContentEnabled;
 
   /// Create a copy of Settings
   /// with the given fields replaced by the non-null parameter values.
