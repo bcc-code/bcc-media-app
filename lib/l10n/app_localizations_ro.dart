@@ -1087,4 +1087,7 @@ class SRo extends S {
 
   @override
   String get notifications => 'Notifications';
+
+  @override
+  String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
 }

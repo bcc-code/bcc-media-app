@@ -28,6 +28,7 @@ class Settings with _$Settings implements CommonSettings {
     bool? useNativePlayer,
     @Default([]) List<String> extraUsergroups,
     bool? notificationsEnabled,
+    bool? onlyPreferredLanguagesContentEnabled,
   }) = _Settings;
 }
 
@@ -63,6 +64,7 @@ class SettingsService extends StateNotifier<Settings> {
       sessionId: (DateTime.now().millisecondsSinceEpoch / 1000).round(),
       extraUsergroups: prefs.getStringList(PrefKeys.extraUsergroups) ?? [],
       notificationsEnabled: prefs.getBool(PrefKeys.notificationsEnabled),
+      onlyPreferredLanguagesContentEnabled: prefs.getBool(PrefKeys.onlyPreferredLanguagesContentEnabled),
     );
   }
 
@@ -178,6 +180,16 @@ class SettingsService extends StateNotifier<Settings> {
       prefs.setBool(PrefKeys.notificationsEnabled, value);
     }
     state = state.copyWith(notificationsEnabled: value);
+  }
+
+  Future<void> setOnlyPreferredLanguagesContentEnabled(bool? value) async {
+    var prefs = ref.read(sharedPreferencesProvider);
+    if (value == null) {
+      prefs.remove(PrefKeys.onlyPreferredLanguagesContentEnabled);
+    } else {
+      prefs.setBool(PrefKeys.onlyPreferredLanguagesContentEnabled, value);
+    }
+    state = state.copyWith(onlyPreferredLanguagesContentEnabled: value);
   }
 }
 

@@ -98,22 +98,20 @@ class _ItemRenderer extends HookWidget {
                     builder: (context, constraints) => Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        // We want this to always be fully visible, so this is not "flexible".
-                        Text(
-                          item.title,
-                          maxLines: 1,
-                          style: small ? design.textStyles.title2 : design.textStyles.title1,
+                        // If there is a right widget, make the text 2/3 of the row, otherwise 1/2
+                        Expanded(
+                          flex: item.rightWidget != null ? 2 : 1,
+                          child: Text(
+                            item.title,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            style: small ? design.textStyles.title2 : design.textStyles.title1,
+                          ),
                         ),
-                        // Flex: 1, meaning 1/3 of the remaining space
-                        const Expanded(
-                          flex: 1,
-                          child: SizedBox(width: 12),
-                        ),
-                        // Flex 2, for the right text. Which means 2/3 of the remaining space.
-                        // This is to make the text stop in the middle-ish when the text is short.
+                        // If there is a right widget, make it 1/3 of the row, otherwise 1/2
                         if (item.rightText != null && item.rightWidget == null)
                           Expanded(
-                            flex: 2,
+                            flex: 1,
                             child: SizedBox(
                               width: double.infinity,
                               child: Text(
@@ -126,7 +124,7 @@ class _ItemRenderer extends HookWidget {
                           ),
                         if (item.rightWidget != null)
                           Expanded(
-                            flex: 2,
+                            flex: 1,
                             child: SizedBox(
                               width: double.infinity,
                               child: Container(

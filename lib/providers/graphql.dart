@@ -65,6 +65,8 @@ class _ApiHttpClient extends BaseClient {
     final osVersion = getOsVersion(ref.read(deviceInfoProvider));
     final headers = BccmGraphqlHeaders(
       acceptLanguage: [settings.appLanguage.languageCode],
+      acceptAudioLanguage: settings.audioLanguages,
+      acceptSubtitleLanguage: settings.subtitleLanguages,
       application: FlavorConfig.current.applicationCode,
       applicationVersion: formatAppVersion(ref.watch(packageInfoProvider)),
       featureFlags: featureFlagVariants,
@@ -72,6 +74,7 @@ class _ApiHttpClient extends BaseClient {
       os: os,
       osVersion: osVersion,
       isTablet: isTablet,
+      onlyPreferredLanguagesContent: settings.onlyPreferredLanguagesContentEnabled,
     ).toMap();
     request.headers.addAll(headers);
     return _client.send(request);

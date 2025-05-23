@@ -2202,6 +2202,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Notifications'**
   String get notifications;
+
+  /// Shown alongside a toggle switch in settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Only show content with my preferred languages'**
+  String get onlyShowContentWithPreferredLanguages;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

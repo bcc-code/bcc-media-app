@@ -80,6 +80,12 @@ class SettingsScreen extends HookConsumerWidget {
       notificationEnabledController.value = isNotificationEnabled;
     }, [isNotificationEnabled]);
 
+    final isOnlyPreferredLanguagesContentEnabled = settings.onlyPreferredLanguagesContentEnabled ?? true;
+    final onlyPreferredLanguagesContentController = useState(false);
+    useEffect(() {
+      onlyPreferredLanguagesContentController.value = isOnlyPreferredLanguagesContentEnabled;
+    }, [isOnlyPreferredLanguagesContentEnabled]);
+
     return DialogOnWeb(
       child: CupertinoScaffold(
         body: !readyToDisplay.value
@@ -134,6 +140,26 @@ class SettingsScreen extends HookConsumerWidget {
                                       onPressed: () {
                                         context.router.push(const ContentLanguageScreenRoute());
                                       },
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: spacingBetweenSections),
+                                SettingList(
+                                  items: [
+                                    SettingListItem(
+                                      title: S.of(context).onlyShowContentWithPreferredLanguages,
+                                      onPressed: () {
+                                        final value = isOnlyPreferredLanguagesContentEnabled;
+                                        onlyPreferredLanguagesContentController.value = !value;
+                                      },
+                                      rightWidget: ToggleSwitch(
+                                        controller: onlyPreferredLanguagesContentController,
+                                        onChanged: (value) {
+                                          ref.read(settingsProvider.notifier).setOnlyPreferredLanguagesContentEnabled(value);
+                                          ref.read(soundEffectsProvider).queue(SoundEffects.buttonPush);
+                                          CustomHapticFeedback.selectionClick();
+                                        },
+                                      ),
                                     ),
                                   ],
                                 ),

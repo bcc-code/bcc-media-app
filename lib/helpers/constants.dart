@@ -26,6 +26,7 @@ class PrefKeys {
   static const notificationPromptDismissedCount = 'notification_prompt_dismissed_count';
   static const notificationPromptLastDismissedAt = 'notification_prompt_last_dismissed_at';
   static const notificationsEnabled = 'notifications_enabled';
+  static const onlyPreferredLanguagesContentEnabled = 'only_preferred_languages_content_enabled';
 }
 
 final webEnvUrls = <String, String>{

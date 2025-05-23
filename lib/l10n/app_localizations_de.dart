@@ -1087,4 +1087,7 @@ class SDe extends S {
 
   @override
   String get notifications => 'Benachrichtigungen';
+
+  @override
+  String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
 }
