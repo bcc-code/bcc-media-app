@@ -22,6 +22,7 @@ class LanguageListDialog extends HookConsumerWidget {
                 title: languages[code]!.nativeName,
                 onPressed: () {
                   ref.read(settingsProvider.notifier).setAudioLanguages([...selected, code]);
+                  ref.read(settingsProvider.notifier).setSubtitleLanguages([...selected, code]);
                   context.router.maybePop();
                 },
               ))

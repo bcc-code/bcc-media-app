@@ -139,6 +139,18 @@ Future<void> $main({
     await tryCatchRecordErrorAsync(() async {
       await providerContainer.read(featureFlagsProvider.notifier).activateFeatureFlags().timeout(const Duration(seconds: 2));
       await providerContainer.read(featureFlagsProvider.notifier).refresh().timeout(const Duration(seconds: 2));
+
+      // Sync audio and subtitle languages
+      final settings = providerContainer.read(settingsProvider);
+      final subtitleLangs = settings.subtitleLanguages;
+      if (subtitleLangs.isEmpty) {
+        await providerContainer.read(settingsProvider.notifier).setSubtitleLanguages(settings.audioLanguages).timeout(const Duration(seconds: 2));
+      }
+
+      // Enable getting content only in preferred languages by default
+      if (settings.onlyPreferredLanguagesContentEnabled == null) {
+        await providerContainer.read(settingsProvider.notifier).setOnlyPreferredLanguagesContentEnabled(true).timeout(const Duration(seconds: 2));
+      }
     });
 
     runApp(kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app);

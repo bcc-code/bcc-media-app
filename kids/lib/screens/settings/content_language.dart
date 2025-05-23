@@ -123,6 +123,11 @@ class ContentLanguageList extends HookConsumerWidget {
     final selected = List<String>.from(ref.watch(settingsProvider).audioLanguages);
     final dontAnimate = useState(selected);
 
+    setLanguages(List<String> languages) {
+      ref.read(settingsProvider.notifier).setAudioLanguages(selected);
+      ref.read(settingsProvider.notifier).setSubtitleLanguages(selected);
+    }
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(24),
       child: Container(
@@ -139,12 +144,9 @@ class ContentLanguageList extends HookConsumerWidget {
                   return LayoutBuilder(
                     builder: (context, constraints) => AnimatedBuilder(
                       animation: curvedAnimation,
-                      builder: (context, _) => OverflowBox(
-                        minHeight: 53 + 2 * curvedAnimation.value,
-                        maxHeight: 53 + 2 * curvedAnimation.value,
-                        minWidth: constraints.maxWidth,
-                        maxWidth: constraints.maxWidth,
-                        alignment: Alignment.bottomCenter,
+                      builder: (context, _) => SizedBox(
+                        height: 53 + 2 * curvedAnimation.value,
+                        width: constraints.maxWidth,
                         child: ButtonBase(
                           height: 53,
                           transition: curvedAnimation.value,
@@ -174,7 +176,7 @@ class ContentLanguageList extends HookConsumerWidget {
                       enableDrag: selected.length > 1,
                       onDelete: () {
                         selected.removeAt(index);
-                        ref.read(settingsProvider.notifier).setAudioLanguages(selected);
+                        setLanguages(selected);
                         dontAnimate.value = [];
                       },
                     ),
@@ -191,7 +193,7 @@ class ContentLanguageList extends HookConsumerWidget {
                   }
                   final String item = selected.removeAt(oldIndex);
                   selected.insert(newIndex, item);
-                  ref.read(settingsProvider.notifier).setAudioLanguages(selected);
+                  setLanguages(selected);
                 },
               ),
             ),
