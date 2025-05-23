@@ -1077,16 +1077,16 @@ class SNl extends S {
   String get studyAllQuestionsAnsweredDescription => 'Goed gedaan!';
 
   @override
-  String get kidsNotificationReminderCtaShort => 'Turn on';
+  String get kidsNotificationReminderCtaShort => 'Zet aan';
 
   @override
-  String get kidsNotificationReminderCtaLong => 'Turn on reminders';
+  String get kidsNotificationReminderCtaLong => 'Herinneringen inschakelen';
 
   @override
-  String get kidsNotificationReminderTitle => 'Watch a video every day!';
+  String get kidsNotificationReminderTitle => 'Bekijk elke dag een video!';
 
   @override
-  String get notifications => 'Notifications';
+  String get notifications => 'Meldingen';
 
   @override
   String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';

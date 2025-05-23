@@ -1077,16 +1077,16 @@ class SRo extends S {
   String get studyAllQuestionsAnsweredDescription => 'Bravo!';
 
   @override
-  String get kidsNotificationReminderCtaShort => 'Turn on';
+  String get kidsNotificationReminderCtaShort => 'Activează';
 
   @override
-  String get kidsNotificationReminderCtaLong => 'Turn on reminders';
+  String get kidsNotificationReminderCtaLong => 'Activează reminder';
 
   @override
-  String get kidsNotificationReminderTitle => 'Watch a video every day!';
+  String get kidsNotificationReminderTitle => 'Vizualizează un videoclip în fiecare zi!';
 
   @override
-  String get notifications => 'Notifications';
+  String get notifications => 'Notificări';
 
   @override
   String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
