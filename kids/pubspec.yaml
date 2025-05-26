@@ -19,56 +19,56 @@ dependencies:
     sdk: flutter
   brunstadtv_app:
     path: ../
-  provider: ^6.1.2
+  provider: ^6.1.5
   js: ^0.7.1
-  http: ^1.2.2
+  http: ^1.4.0
   json_annotation: ^4.9.0
-  json_serializable: ^6.8.0
-  mockito: ^5.4.4
-  flutter_svg: ^2.0.10+1
-  auto_route: ^9.2.2
+  json_serializable: ^6.9.5
+  mockito: ^5.4.6
+  flutter_svg: ^2.1.0
+  auto_route: ^9.3.0+1
   bccm_player:
     path: ../submodules/bccm_player
-  riverpod: ^2.5.3
-  flutter_riverpod: ^2.5.3
+  riverpod: ^2.6.1
+  flutter_riverpod: ^2.6.1
   freezed_annotation: ^2.4.4
-  collection: ^1.18.0
-  package_info_plus: ^8.0.3
-  table_calendar: ^3.1.2
-  graphql: ^5.1.3
-  graphql_flutter: ^5.1.3
-  shared_preferences: ^2.3.2
-  firebase_core: ^3.6.0
-  firebase_messaging: ^15.1.3
-  cloud_firestore: ^5.4.4
-  flutter_secure_storage: ^9.2.2
+  collection: ^1.19.1
+  package_info_plus: ^8.3.0
+  table_calendar: ^3.2.0
+  graphql: ^5.2.1
+  graphql_flutter: ^5.2.0
+  shared_preferences: ^2.5.3
+  firebase_core: ^3.13.1
+  firebase_messaging: ^15.2.6
+  cloud_firestore: ^5.6.8
+  flutter_secure_storage: ^9.2.4
   visibility_detector: ^0.4.0+2
   pull_to_refresh: ^2.0.0
-  device_info_plus: ^11.0.0
+  device_info_plus: ^11.4.0
   flutter_svg_provider: ^1.0.7
   url_launcher: ^6.3.1
   modal_bottom_sheet: ^3.0.0
   shimmer: ^3.0.0
-  flutter_markdown: ^0.7.4
-  rudder_sdk_flutter: ^3.0.0
-  rudder_sdk_flutter_platform_interface: ^3.0.0
-  share_plus: ^10.0.3
+  flutter_markdown: ^0.7.7+1
+  rudder_sdk_flutter: ^3.1.0
+  rudder_sdk_flutter_platform_interface: ^3.1.0
+  share_plus: ^10.1.4
   restart_app: ^1.3.2
   flutter_inappwebview: ^6.1.5
-  app_links: ^6.3.2
+  app_links: ^6.4.0
   universal_io: ^2.2.2
   jwt_decoder: ^2.0.1
   flutter_appauth: ^7.0.1
-  synchronized: ^3.3.0+3
-  clock: ^1.1.1
+  synchronized: ^3.3.1
+  clock: ^1.1.2
   flutter_hooks: ^0.20.5
-  hooks_riverpod: ^2.5.4
-  vibration: ^2.0.1
-  unleash_proxy_client_flutter: ^1.5.3
-  html: ^0.15.4
-  flutter_html: ^3.0.0-beta.2
-  riverpod_annotation: ^2.5.3
-  image: ^4.2.0
+  hooks_riverpod: ^2.6.1
+  vibration: ^2.1.0
+  unleash_proxy_client_flutter: ^1.9.6
+  html: ^0.15.6
+  flutter_html: ^3.0.0
+  riverpod_annotation: ^2.6.1
+  image: ^4.5.4
   responsive_framework: ^1.5.1
   intl: ^0.20.2
   focusable_control_builder: ^1.0.2+1
@@ -76,27 +76,27 @@ dependencies:
     git:
       url: https://github.com/andreasgangso/flutter_to_airplay.git
       ref: fix/remove-unused-mux
-  flutter_image: ^4.1.11
+  flutter_image: ^4.1.13
   qr_flutter: ^4.1.0
   focus_debugger: ^0.0.2
-  connectivity_plus: ^6.0.5
+  connectivity_plus: ^6.1.4
   flutter_cache_manager: ^3.4.1
   cached_network_image: ^3.4.1
-  async: ^2.11.0
-  markdown: ^7.2.2
-  flutter_animate: ^4.5.0
+  async: ^2.13.0
+  markdown: ^7.3.0
+  flutter_animate: ^4.5.2
   skeletonizer: ^2.0.1
   soundpool:
     git:
       url: https://github.com/hohoins/soundpool.git
       ref: test
       path: soundpool
-  flutter_layout_grid: ^2.0.7
+  flutter_layout_grid: ^2.0.8
   animations: ^2.0.11
   simple_shadow: ^0.3.1
-  wakelock_plus: ^1.2.8
+  wakelock_plus: ^1.3.2
   flutter_reorderable_list: ^1.3.1
-  flutter_slidable: ^3.1.2
+  flutter_slidable: ^4.0.0
   video_player: ^2.9.5
   auto_size_text: ^3.0.0
   bccm_core:
@@ -110,16 +110,16 @@ dependency_overrides:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.4.13
+  build_runner: ^2.4.15
   flutter_lints: ^5.0.0
-  auto_route_generator: ^9.0.0
-  freezed: ^2.5.7
+  auto_route_generator: ^9.3.1
+  freezed: ^2.5.8
   custom_lint: any
-  riverpod_generator: ^2.4.2
+  riverpod_generator: ^2.6.4
   riverpod_lint: any
-  flutter_launcher_icons: ^0.14.1
-  flutter_native_splash: ^2.4.1
-  sentry_dart_plugin: ^2.1.0
+  flutter_launcher_icons: ^0.14.3
+  flutter_native_splash: ^2.4.6
+  sentry_dart_plugin: ^2.4.1
 
 flutter:
   uses-material-design: true
