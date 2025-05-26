@@ -1,13 +1,10 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.29+2500039-kids...v) (2025-05-26)
-
-
-
-## [5.1.29+2500039-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.28+2500038-kids...v5.1.29+2500039-kids) (2025-05-26)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.28+2500038-kids...v) (2025-05-26)
 
 
 ### Bug Fixes
 
 * **kids:** prevent startup freeze ([e1cce23](https://github.com/bcc-code/bcc-media-app/commit/e1cce2383c07f767e72e47fd080cf194cfc0a10c))
+* **kids:** try to fix R8 build issues ([8fa6781](https://github.com/bcc-code/bcc-media-app/commit/8fa67811bad6162b45f4fa4e1c0aaf7f5cc07b7e))
 * **kids:** update app for flutter 3.32 ([af4c22f](https://github.com/bcc-code/bcc-media-app/commit/af4c22fcfad2ceac807db1185c8f109b3bab6660))
 * **l10n:** gen locaizations ([75a92a5](https://github.com/bcc-code/bcc-media-app/commit/75a92a5574fac750f8c24477a45fc4f36650b491))
 * updating packages for flutter 3.32 ([2fb4218](https://github.com/bcc-code/bcc-media-app/commit/2fb4218beb56da40ca61079f2006712d2ff8d995))
