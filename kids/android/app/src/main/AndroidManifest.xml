@@ -10,6 +10,11 @@
         android:label="${applicationLabel}"
         android:enableOnBackInvokedCallback="true">
 
+        <!-- Prevents the app from completely freezing on startup for older devices.
+             The tradeoff is that the app might start 10-30% slower, but that
+             is better than not starting at all. -->
+        <profileable android:shell="false" />
+
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
