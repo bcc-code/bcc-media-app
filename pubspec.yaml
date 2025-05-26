@@ -68,12 +68,12 @@ dependencies:
   hooks_riverpod: ^2.5.4
   vibration: ^2.0.1
   email_validator: ^3.0.0
-  open_mail_app: ^0.4.5
+  open_mail_app_plus: ^0.0.2
   unleash_proxy_client_flutter: ^1.5.3
   html: ^0.15.4
   riverpod_annotation: ^2.5.3
   responsive_framework: ^1.5.1
-  intl: ^0.19.0
+  intl: ^0.20.2
   focusable_control_builder: ^1.0.2+1
   flutter_to_airplay:
     git:

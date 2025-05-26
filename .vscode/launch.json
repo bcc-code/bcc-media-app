@@ -13,9 +13,7 @@
         "--flavor",
         "prod",
         "--web-port",
-        "3001",
-        "--web-renderer",
-        "canvaskit"
+        "3001"
       ], // Remember to change the "program" property too
       "program": "lib/main_prod.dart"
     },
@@ -28,9 +26,7 @@
         "--flavor",
         "prod",
         "--web-port",
-        "3001",
-        "--web-renderer",
-        "canvaskit"
+        "3001"
       ], // Remember to change the "program" property too
       "program": "lib/main_prod.dart"
     },
@@ -43,9 +39,7 @@
         "--flavor",
         "prod",
         "--web-port",
-        "3001",
-        "--web-renderer",
-        "canvaskit"
+        "3001"
       ], // Remember to change the "program" property too
       "cwd": "${workspaceFolder}",
       "program": "lib/main_prod.dart"
@@ -59,9 +53,7 @@
         "--flavor",
         "prod",
         "--web-port",
-        "3001",
-        "--web-renderer",
-        "canvaskit"
+        "3001"
       ], // Remember to change the "program" property too
       "cwd": "${workspaceFolder}",
       "program": "lib/main_prod.dart"
@@ -85,9 +77,7 @@
       "cwd": "${workspaceFolder}/kids",
       "args": [
         "--web-port",
-        "3001",
-        "--web-renderer",
-        "canvaskit"
+        "3001"
       ],
       "program": "lib/main.dart"
     },
@@ -100,8 +90,6 @@
       "args": [
         "--web-port",
         "3001",
-        "--web-renderer",
-        "canvaskit",
         "--trace-skia"
       ],
       "program": "lib/main.dart"
@@ -114,9 +102,7 @@
       "cwd": "${workspaceFolder}/kids",
       "args": [
         "--web-port",
-        "3001",
-        "--web-renderer",
-        "canvaskit"
+        "3001"
       ],
       "program": "lib/main.dart"
     },
@@ -127,9 +113,7 @@
       "cwd": "${workspaceFolder}/kids",
       "args": [
         "--web-port",
-        "3001",
-        "--web-renderer",
-        "canvaskit"
+        "3001"
       ],
       "program": "lib/main.dart"
     },

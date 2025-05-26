@@ -9,7 +9,7 @@ import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:open_mail_app/open_mail_app.dart';
+import 'package:open_mail_app_plus/open_mail_app_plus.dart';
 
 import '../../../l10n/app_localizations.dart';
 
@@ -96,7 +96,7 @@ class EmailVerificationPromptPage extends HookConsumerWidget {
                 onPressed: () async {
                   // Android: Will open mail app or show native picker.
                   // iOS: Will open mail app if single mail app found.
-                  var result = await OpenMailApp.openMailApp();
+                  var result = await OpenMailAppPlus.openMailApp();
 
                   if (!context.mounted) return;
 

@@ -59,7 +59,7 @@ class BccMediaDesignSystem extends DesignSystemData {
           iconTheme: IconThemeData(color: colors.tint1),
           backgroundColor: colors.background1,
         ),
-        dialogTheme: DialogTheme(
+        dialogTheme: DialogThemeData(
           backgroundColor: colors.background2,
           contentTextStyle: textStyles.body1,
           titleTextStyle: textStyles.title3,
