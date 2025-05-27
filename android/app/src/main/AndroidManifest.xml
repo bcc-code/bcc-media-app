@@ -56,11 +56,6 @@
 
         </activity>
 
-        <!-- Impeller causes some rendering issues for bccm_player -->
-        <meta-data
-            android:name="io.flutter.embedding.android.EnableImpeller"
-            android:value="false" />
-
         <meta-data
             android:name="cast_app_id"
             android:value="BC91FA3B" />

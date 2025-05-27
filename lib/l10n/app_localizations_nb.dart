@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -34,13 +36,15 @@ class SNb extends S {
   String get loginPageDisplay1 => 'Det kraftigste budskapet i verden';
 
   @override
-  String get loginPageDisplay2 => 'Se serier, programmer og filmer basert på kristne verdier';
+  String get loginPageDisplay2 =>
+      'Se serier, programmer og filmer basert på kristne verdier';
 
   @override
   String get kidsOnboardingTitle => 'Vi gjør Bibelens budskap levende!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Vår visjon er at barna skal oppleve Jesus som sin aller beste venn – resten av livet.';
+  String get kidsOnboardingSecondaryTitle =>
+      'Vår visjon er at barna skal oppleve Jesus som sin aller beste venn – resten av livet.';
 
   @override
   String get loginPageDisplay3 => 'Produsert av BCC Media';
@@ -55,7 +59,8 @@ class SNb extends S {
   String get faq => 'Ofte stilte spørsmål';
 
   @override
-  String get bccMediaCenter => 'BCC Media er en mediestiftelse i BCC-forbundet som produserer og distribuerer innhold med positive og kristne verdier.';
+  String get bccMediaCenter =>
+      'BCC Media er en mediestiftelse i BCC-forbundet som produserer og distribuerer innhold med positive og kristne verdier.';
 
   @override
   String get signInButton => 'Logg inn';
@@ -70,10 +75,12 @@ class SNb extends S {
   String get signUpTitle => 'Registrer deg';
 
   @override
-  String get signUpDescription => 'Få tilgang til mer innhold og bedre funksjoner ved å opprette en konto.';
+  String get signUpDescription =>
+      'Få tilgang til mer innhold og bedre funksjoner ved å opprette en konto.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Jeg bekrefter at jeg er 13 år eller eldre, og jeg godtar <a>Personvernerklæringen</a> og <a>Vilkår for bruk</a>.';
+  String get signUpAgreePrivacyPolicy =>
+      'Jeg bekrefter at jeg er 13 år eller eldre, og jeg godtar <a>Personvernerklæringen</a> og <a>Vilkår for bruk</a>.';
 
   @override
   String get setPassword => 'Nytt passord';
@@ -85,7 +92,8 @@ class SNb extends S {
   String get loggedOutTitle => 'Logget ut';
 
   @override
-  String get loggedOutMessage => 'Du har blitt logget ut. Vennligst logg inn på nytt.';
+  String get loggedOutMessage =>
+      'Du har blitt logget ut. Vennligst logg inn på nytt.';
 
   @override
   String get makeDonation => 'Gi en gave';
@@ -109,7 +117,8 @@ class SNb extends S {
   String get open => 'Åpne';
 
   @override
-  String get loginFailedCheckNetwork => 'Innlogging mislyktes. Sjekk nettverksforbindelsen og prøv igjen.';
+  String get loginFailedCheckNetwork =>
+      'Innlogging mislyktes. Sjekk nettverksforbindelsen og prøv igjen.';
 
   @override
   String get loginFailedTryAgain => 'Innlogging mislyktes. Prøv igjen senere.';
@@ -151,7 +160,8 @@ class SNb extends S {
   String get deviceInfo => 'Enhetsinformasjon';
 
   @override
-  String get contactIncludeDeviceInfo => 'Inkluder enhetsinformasjon for bedre støtte.';
+  String get contactIncludeDeviceInfo =>
+      'Inkluder enhetsinformasjon for bedre støtte.';
 
   @override
   String get contactSeeData => 'Klikk for å se data.';
@@ -196,7 +206,8 @@ class SNb extends S {
   String get deviceInfoUserId => 'Bruker-ID';
 
   @override
-  String get deviceInfoPageDesc => 'Meldingen din vil inneholde denne informasjonen for å hjelpe oss å gi bedre støtte.';
+  String get deviceInfoPageDesc =>
+      'Meldingen din vil inneholde denne informasjonen for å hjelpe oss å gi bedre støtte.';
 
   @override
   String get userVoice => 'Foreslå en funksjon';
@@ -208,7 +219,8 @@ class SNb extends S {
   String get cancelConfirmation => 'Er du sikker på at du vil avslutte?';
 
   @override
-  String get cancelConfirmationDescription => 'Alle ulagrede endringer vil gå tapt.';
+  String get cancelConfirmationDescription =>
+      'Alle ulagrede endringer vil gå tapt.';
 
   @override
   String get goBack => 'Gå tilbake';
@@ -291,7 +303,8 @@ class SNb extends S {
   String get tVLogin => 'TV Login';
 
   @override
-  String get tVLoginSuccessful => 'Du er nå logget inn, vennligst bekreft på TVen';
+  String get tVLoginSuccessful =>
+      'Du er nå logget inn, vennligst bekreft på TVen';
 
   @override
   String get seeMore => 'Se mer';
@@ -321,7 +334,8 @@ class SNb extends S {
   String get high => 'Høy';
 
   @override
-  String get emptySearch => 'Du kan søke i alt innhold fra BCC Media. Serier, filmer og episoder.';
+  String get emptySearch =>
+      'Du kan søke i alt innhold fra BCC Media. Serier, filmer og episoder.';
 
   @override
   String get back => 'Tilbake';
@@ -407,7 +421,8 @@ class SNb extends S {
   String get now => 'Nå';
 
   @override
-  String get debugInfoExplanation => 'Meldingen din vil inneholde denne informasjonen for å hjelpe oss å forstå problemet bedre.';
+  String get debugInfoExplanation =>
+      'Meldingen din vil inneholde denne informasjonen for å hjelpe oss å forstå problemet bedre.';
 
   @override
   String get send => 'Send';
@@ -419,13 +434,15 @@ class SNb extends S {
   String get thankYouSupportTitle => 'Takk for din tilbakemelding!';
 
   @override
-  String get thankYouSupportDescription => 'Vi setter pris på alle tilbakemeldinger og vi vil se på problemet så snart som mulig.';
+  String get thankYouSupportDescription =>
+      'Vi setter pris på alle tilbakemeldinger og vi vil se på problemet så snart som mulig.';
 
   @override
   String get sendFail => 'Kunne ikke sende meldingen din';
 
   @override
-  String get sendFailDescription => 'Noe gikk galt. Sjekk internettforbindelsen din og prøv igjen.';
+  String get sendFailDescription =>
+      'Noe gikk galt. Sjekk internettforbindelsen din og prøv igjen.';
 
   @override
   String get sendSuccessDescription => 'Vi setter pris på din tilbakemelding.';
@@ -492,7 +509,8 @@ class SNb extends S {
   String get appUpdateTitle => 'Krever oppdatering';
 
   @override
-  String get appUpdateRequest => 'Vennligst last ned den siste versjonen av appen for å få gleden av de siste funksjonene og feilrettingene.';
+  String get appUpdateRequest =>
+      'Vennligst last ned den siste versjonen av appen for å få gleden av de siste funksjonene og feilrettingene.';
 
   @override
   String get appUpdateAccepted => 'Oppdater';
@@ -542,7 +560,8 @@ class SNb extends S {
   String get subtitlesLanguage => 'Språk for undertekster';
 
   @override
-  String get removeFromRecentSearches => 'Vil du fjerne dette elementet fra nylige søk?';
+  String get removeFromRecentSearches =>
+      'Vil du fjerne dette elementet fra nylige søk?';
 
   @override
   String get noTransmissionToday => 'Ingen planlagte sendinger i dag';
@@ -578,16 +597,19 @@ class SNb extends S {
   String get tasksCompleted => 'oppgaver fullført';
 
   @override
-  String get studyCompleteTaskDescription => 'Fullfør oppgaver og få tilgang til relatert innhold';
+  String get studyCompleteTaskDescription =>
+      'Fullfør oppgaver og få tilgang til relatert innhold';
 
   @override
   String get discoverMore => 'Oppdag mer';
 
   @override
-  String get completePreviousTasks => 'Fullfør tidligere oppgaver for å låse opp';
+  String get completePreviousTasks =>
+      'Fullfør tidligere oppgaver for å låse opp';
 
   @override
-  String get studyDiscoverMoreDescription => 'Finn mer inspirasjon og innsikt fra relatert innhold';
+  String get studyDiscoverMoreDescription =>
+      'Finn mer inspirasjon og innsikt fra relatert innhold';
 
   @override
   String get watchAgain => 'Se igjen';
@@ -614,7 +636,8 @@ class SNb extends S {
   String get videoCompletedText => 'Gratulerer med å ha fullført videoen.';
 
   @override
-  String get achievementFirstDescription => 'Gratulerer med å ha fullført videoen og fått ditt første prestasjonsmerke.';
+  String get achievementFirstDescription =>
+      'Gratulerer med å ha fullført videoen og fått ditt første prestasjonsmerke.';
 
   @override
   String achievementStudyTopic(String name) {
@@ -656,7 +679,8 @@ class SNb extends S {
   }
 
   @override
-  String get passwordConditionComplexity => 'Må inneholde små bokstaver, store bokstaver og tall.';
+  String get passwordConditionComplexity =>
+      'Må inneholde små bokstaver, store bokstaver og tall.';
 
   @override
   String get oops => 'Ups!';
@@ -665,13 +689,15 @@ class SNb extends S {
   String get dontHaveAccess => 'Du har ikke tilgang til dette innholdet.';
 
   @override
-  String get notFound => 'Innholdet du leter etter ser ikke ut til å eksistere.';
+  String get notFound =>
+      'Innholdet du leter etter ser ikke ut til å eksistere.';
 
   @override
   String get mustBeLoggedIn => 'Du må være logget inn for å se dette innholdet';
 
   @override
-  String get plentyOfOtherContent => 'Fortvil ikke, det er fortsatt mye innhold du kan se!';
+  String get plentyOfOtherContent =>
+      'Fortvil ikke, det er fortsatt mye innhold du kan se!';
 
   @override
   String get notAchieved => 'Ikke oppnådd ennå';
@@ -686,7 +712,8 @@ class SNb extends S {
   String get didYouKnowTitle => 'Visste du?';
 
   @override
-  String get didYouKnowContent => 'Du kan legge til favorittprogrammene dine i «Min liste» ved å trykke på hjertet.';
+  String get didYouKnowContent =>
+      'Du kan legge til favorittprogrammene dine i «Min liste» ved å trykke på hjertet.';
 
   @override
   String get selectSeason => 'Velg sesong';
@@ -695,7 +722,8 @@ class SNb extends S {
   String get deleteMyAccount => 'Slett min konto';
 
   @override
-  String get iAmSureIWantToDelete => 'Jeg er sikker på at jeg vil slette min konto og mine data relatert til BCC Media appen.';
+  String get iAmSureIWantToDelete =>
+      'Jeg er sikker på at jeg vil slette min konto og mine data relatert til BCC Media appen.';
 
   @override
   String get areYouSure => 'Er du sikker?';
@@ -704,7 +732,8 @@ class SNb extends S {
   String get youCanContactUsAt => 'Du kan kontakte oss på';
 
   @override
-  String get biblekidsAbout => 'Bible Kids er et initiativ av BCC Media, en mediestiftelse i BCC-forbundet som produserer og distribuerer innhold med positive og kristne verdier.';
+  String get biblekidsAbout =>
+      'Bible Kids er et initiativ av BCC Media, en mediestiftelse i BCC-forbundet som produserer og distribuerer innhold med positive og kristne verdier.';
 
   @override
   String get askYourParents => 'Spør dine foresatte';
@@ -719,7 +748,8 @@ class SNb extends S {
   String get checkAnswerButton => 'Sjekk svar';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'Denne videoen er kun tilgjengelig for brukere som er logget inn.';
+  String get videoOnlyAccessibleToLoggedIn =>
+      'Denne videoen er kun tilgjengelig for brukere som er logget inn.';
 
   @override
   String get verifyYourAccount => 'Bekreft din konto';
@@ -728,7 +758,8 @@ class SNb extends S {
   String get weHaveSentAnEmailTo => 'Vi har sendt en e-post til';
 
   @override
-  String get clickTheLinkToVerify => 'Klikk på linken i e-posten for å bekrefte din konto.';
+  String get clickTheLinkToVerify =>
+      'Klikk på linken i e-posten for å bekrefte din konto.';
 
   @override
   String get openEmailApp => 'Åpne e-post appen';
@@ -743,22 +774,27 @@ class SNb extends S {
   String get verificationEmailSent => 'Bekreftelses e-post sendt';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'Hvis du fortsatt ikke har mottatt en e-post, vennligst kontakt støtte på';
+  String get ifYouDidntReceiveVerificationEmail =>
+      'Hvis du fortsatt ikke har mottatt en e-post, vennligst kontakt støtte på';
 
   @override
   String get accountCreated => 'Konto oprettet';
 
   @override
-  String get youCanNowUseYourAccount => 'Du kan nå bruke din konto og utforske et utvalg av oppbyggelig innhold.';
+  String get youCanNowUseYourAccount =>
+      'Du kan nå bruke din konto og utforske et utvalg av oppbyggelig innhold.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'Du kan nå logge inn på din konto og utforske et utvalg av oppbyggelig innhold.';
+  String get youCanNowLogInToYourAccount =>
+      'Du kan nå logge inn på din konto og utforske et utvalg av oppbyggelig innhold.';
 
   @override
-  String get accountDeletionExplanation => 'Du er i ferd med å be om å slette din konto hos BCC Media og alle dine data knyttet til denne appen.';
+  String get accountDeletionExplanation =>
+      'Du er i ferd med å be om å slette din konto hos BCC Media og alle dine data knyttet til denne appen.';
 
   @override
-  String get accountDeletionWarning => 'Dette er en handling som ikke kan gjøres om.';
+  String get accountDeletionWarning =>
+      'Dette er en handling som ikke kan gjøres om.';
 
   @override
   String accountDeletionTimeframe(int x) {
@@ -820,10 +856,12 @@ class SNb extends S {
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Det er ikke nok ledig plass på enheten din';
+  String get notEnoughAvailableSpace =>
+      'Det er ikke nok ledig plass på enheten din';
 
   @override
-  String get considerDeletingOtherVideos => 'Vurder å slette andre videoer du har lastet ned i appen.';
+  String get considerDeletingOtherVideos =>
+      'Vurder å slette andre videoer du har lastet ned i appen.';
 
   @override
   String theVideoFileSizeIs(String size) {
@@ -837,7 +875,8 @@ class SNb extends S {
   String get saveYourFavorites => 'Lagre favorittvideoene dine';
 
   @override
-  String get saveYourFavoritesDescription => 'Trykk på hjerteikonet på en video for å lagre den i profilen din.';
+  String get saveYourFavoritesDescription =>
+      'Trykk på hjerteikonet på en video for å lagre den i profilen din.';
 
   @override
   String get yourFavorites => 'Dine favoritter';
@@ -849,13 +888,15 @@ class SNb extends S {
   String get saveVideosForOfflineViewing => 'Lagre videoer for offline visning';
 
   @override
-  String get tapOnTheDownloadIcon => 'Trykk på nedlastingsikonet på en video for å laste ned og spille av uten internett.';
+  String get tapOnTheDownloadIcon =>
+      'Trykk på nedlastingsikonet på en video for å laste ned og spille av uten internett.';
 
   @override
   String get removeOfflineVideo => 'Vil du fjerne offline video?';
 
   @override
-  String get removeOfflineVideoDescription => 'Ved å fjerne denne videoen vil den ikke lenger være tilgjengelig uten en nettverkstilkobling.';
+  String get removeOfflineVideoDescription =>
+      'Ved å fjerne denne videoen vil den ikke lenger være tilgjengelig uten en nettverkstilkobling.';
 
   @override
   String get removeFromDeviceButton => 'Fjern fra enhet';
@@ -867,16 +908,20 @@ class SNb extends S {
   String get noInternetConnection => 'Ingen internettforbindelse';
 
   @override
-  String get noInternetConnectionDescription => 'Koble til internett for å få tilgang til alle videoer.';
+  String get noInternetConnectionDescription =>
+      'Koble til internett for å få tilgang til alle videoer.';
 
   @override
-  String get noInternetButDontWorry => 'Ingen internettforbindelse, men ta det rolig.';
+  String get noInternetButDontWorry =>
+      'Ingen internettforbindelse, men ta det rolig.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Her er alle videoene du har lastet ned til enheten din.';
+  String get hereAreAllTheVideosYouDownloaded =>
+      'Her er alle videoene du har lastet ned til enheten din.';
 
   @override
-  String get connectToExplore => 'Koble til internett for å få tilgang til alle videoer.';
+  String get connectToExplore =>
+      'Koble til internett for å få tilgang til alle videoer.';
 
   @override
   String get language => 'Språk';
@@ -896,7 +941,8 @@ class SNb extends S {
   String get subtitlesIncluded => 'Inkludert undertekster';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'Alle undertekster vil være tilgjengelig offline';
+  String get allSubtitlesWillBeAvailableOffline =>
+      'Alle undertekster vil være tilgjengelig offline';
 
   @override
   String get downloading => 'Laster ned';
@@ -946,7 +992,8 @@ class SNb extends S {
   String get preferredLanguages => 'Foretrukne språk';
 
   @override
-  String get contentLanguageExplanation => 'Endre rekkefølgen på språkene så de samsvarer med dine språkpreferanser for lyd og undertekst.';
+  String get contentLanguageExplanation =>
+      'Endre rekkefølgen på språkene så de samsvarer med dine språkpreferanser for lyd og undertekst.';
 
   @override
   String get otherLanguages => 'Andre språk';
@@ -967,13 +1014,15 @@ class SNb extends S {
   String get autoGenerated => 'Autogenerert';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'Transkripsjonene er automatisk generert og kan inneholde feil.';
+  String get shortsTranscriptionDisclaimer =>
+      'Transkripsjonene er automatisk generert og kan inneholde feil.';
 
   @override
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'Denne funksjonen er i betaversjon og er foreløpig ikke tilgjengelig for alle brukere. Rapporter eventuelle problemer eller tilbakemeldinger via «Kontakt»-knappen i innstillingene.';
+  String get betaExplanation =>
+      'Denne funksjonen er i betaversjon og er foreløpig ikke tilgjengelig for alle brukere. Rapporter eventuelle problemer eller tilbakemeldinger via «Kontakt»-knappen i innstillingene.';
 
   @override
   String get likedShorts => 'Likte shorts';
@@ -982,25 +1031,29 @@ class SNb extends S {
   String get saveYourFavoriteShorts => 'Lagre favorittvideoene dine';
 
   @override
-  String get featureNotAvailableYet => 'Denne funksjonen er ikke tilgjengelig på enheten din ennå. Prøv igjen senere.';
+  String get featureNotAvailableYet =>
+      'Denne funksjonen er ikke tilgjengelig på enheten din ennå. Prøv igjen senere.';
 
   @override
   String get newFeature => 'Ny funksjon';
 
   @override
-  String get shortsFeatureDescription => 'Oppdag korte og kraftige utdrag, og hopp rett inn i hele episoden.';
+  String get shortsFeatureDescription =>
+      'Oppdag korte og kraftige utdrag, og hopp rett inn i hele episoden.';
 
   @override
   String get likedAndSaved => 'Likt og lagret';
 
   @override
-  String get shortsLikedAndSavedDescription => 'Du finner alt du har likt i profilen din.';
+  String get shortsLikedAndSavedDescription =>
+      'Du finner alt du har likt i profilen din.';
 
   @override
   String get excerptFrom => 'Utdrag fra';
 
   @override
-  String get downloadedVideosGuideDescription => 'Du finner dine nedlastede videoer under «Min profil».';
+  String get downloadedVideosGuideDescription =>
+      'Du finner dine nedlastede videoer under «Min profil».';
 
   @override
   String get openStore => 'Åpne';
@@ -1018,7 +1071,8 @@ class SNb extends S {
   String get original => 'Original';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Åpne innstillinger for å endre tekstspråk';
+  String get openSettingsToChangeVideoLang =>
+      'Åpne innstillinger for å endre tekstspråk';
 
   @override
   String get somethingWentWrong => 'Noe gikk galt';
@@ -1065,10 +1119,12 @@ class SNb extends S {
   String get studyAllAnswersCorrectDescription => 'Bra jobbet!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Du bør kanskje lytte litt nøyere neste gang!';
+  String get studyNoAnswersCorrectDescription =>
+      'Du bør kanskje lytte litt nøyere neste gang!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Bra jobbet! Men det er fortsatt rom for forbedringer.';
+  String get studySomeAnswersCorrectDescription =>
+      'Bra jobbet! Men det er fortsatt rom for forbedringer.';
 
   @override
   String get studyAllQuestionsAnswered => 'Du svarte på alle spørsmålene';
@@ -1089,5 +1145,6 @@ class SNb extends S {
   String get notifications => 'Notifications';
 
   @override
-  String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
+  String get onlyShowContentWithPreferredLanguages =>
+      'Only show content with my preferred languages';
 }

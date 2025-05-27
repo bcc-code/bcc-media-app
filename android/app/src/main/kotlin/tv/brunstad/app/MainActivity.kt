@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.os.StrictMode
 import android.view.Window
+import io.flutter.BuildConfig
 import io.flutter.embedding.android.FlutterFragmentActivity
 import media.bcc.bccm_player.BccmPlayerPlugin
 

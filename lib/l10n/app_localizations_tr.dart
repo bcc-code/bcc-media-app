@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -34,13 +36,16 @@ class STr extends S {
   String get loginPageDisplay1 => 'Dünyadaki en güçlü mesaj';
 
   @override
-  String get loginPageDisplay2 => 'Hristiyan değerlerine dayalı diziler, şovlar ve filmler izleyin';
+  String get loginPageDisplay2 =>
+      'Hristiyan değerlerine dayalı diziler, şovlar ve filmler izleyin';
 
   @override
-  String get kidsOnboardingTitle => 'Kutsal Kitap\'ın mesajını hayata geçiriyoruz!';
+  String get kidsOnboardingTitle =>
+      'Kutsal Kitap\'ın mesajını hayata geçiriyoruz!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Vizyonumuz, çocukların İsa\'yı hayatlarının geri kalanı boyunca en iyi arkadaşları olarak deneyimlemeleridir.';
+  String get kidsOnboardingSecondaryTitle =>
+      'Vizyonumuz, çocukların İsa\'yı hayatlarının geri kalanı boyunca en iyi arkadaşları olarak deneyimlemeleridir.';
 
   @override
   String get loginPageDisplay3 => 'Yapımcı: BCC Media';
@@ -55,7 +60,8 @@ class STr extends S {
   String get faq => 'Sıkça Sorulan Sorular';
 
   @override
-  String get bccMediaCenter => 'BCC Media, BCC federasyonunda pozitif ve Hristiyan değerlere sahip içerik üreten ve dağıtan bir medya kuruluşudur.';
+  String get bccMediaCenter =>
+      'BCC Media, BCC federasyonunda pozitif ve Hristiyan değerlere sahip içerik üreten ve dağıtan bir medya kuruluşudur.';
 
   @override
   String get signInButton => 'Giriş';
@@ -70,10 +76,12 @@ class STr extends S {
   String get signUpTitle => 'Kaydolun';
 
   @override
-  String get signUpDescription => 'Bir hesap oluşturarak daha fazla içeriğe ve daha iyi özelliklere erişin.';
+  String get signUpDescription =>
+      'Bir hesap oluşturarak daha fazla içeriğe ve daha iyi özelliklere erişin.';
 
   @override
-  String get signUpAgreePrivacyPolicy => '13 yaşında veya daha büyük olduğumu ve <a>Gizlilik Politikası</a> ile <a>Kullanım Koşullarını</a> kabul ettiğimi onaylıyorum.';
+  String get signUpAgreePrivacyPolicy =>
+      '13 yaşında veya daha büyük olduğumu ve <a>Gizlilik Politikası</a> ile <a>Kullanım Koşullarını</a> kabul ettiğimi onaylıyorum.';
 
   @override
   String get setPassword => 'Şifre belirleme';
@@ -109,10 +117,12 @@ class STr extends S {
   String get open => 'Aç';
 
   @override
-  String get loginFailedCheckNetwork => 'Giriş Hatası Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.';
+  String get loginFailedCheckNetwork =>
+      'Giriş Hatası Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.';
 
   @override
-  String get loginFailedTryAgain => 'Giriş Hatası Lütfen daha sonra tekrar deneyiniz.';
+  String get loginFailedTryAgain =>
+      'Giriş Hatası Lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get soundLanguage => 'Ses dili';
@@ -124,7 +134,8 @@ class STr extends S {
   String get appLanguage => 'App dili';
 
   @override
-  String get checkNetwork => 'Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.';
+  String get checkNetwork =>
+      'Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.';
 
   @override
   String get tryAgain => 'Lütfen daha sonra tekrar deneyiniz.';
@@ -151,7 +162,8 @@ class STr extends S {
   String get deviceInfo => 'Cihaz bilgisi';
 
   @override
-  String get contactIncludeDeviceInfo => 'Daha iyi destek için cihaz bilgilerini ekleyin.';
+  String get contactIncludeDeviceInfo =>
+      'Daha iyi destek için cihaz bilgilerini ekleyin.';
 
   @override
   String get contactSeeData => 'Verileri görmek için tıklayın.';
@@ -196,7 +208,8 @@ class STr extends S {
   String get deviceInfoUserId => 'Kullanıcı Kimliği';
 
   @override
-  String get deviceInfoPageDesc => 'Mesajınız, daha iyi destek sağlamamıza yardımcı olmak için bu bilgileri içerecektir.';
+  String get deviceInfoPageDesc =>
+      'Mesajınız, daha iyi destek sağlamamıza yardımcı olmak için bu bilgileri içerecektir.';
 
   @override
   String get userVoice => 'Bir özellik önerin';
@@ -208,7 +221,8 @@ class STr extends S {
   String get cancelConfirmation => 'İptal etmek istediğinize emin misiniz?';
 
   @override
-  String get cancelConfirmationDescription => 'Kaydedilmemiş tüm değişiklikler kaybolacaktır.';
+  String get cancelConfirmationDescription =>
+      'Kaydedilmemiş tüm değişiklikler kaybolacaktır.';
 
   @override
   String get goBack => 'Geri';
@@ -321,7 +335,8 @@ class STr extends S {
   String get high => 'Yüksek';
 
   @override
-  String get emptySearch => 'BCC Media\'daki tüm içerikleri arayabilirsiniz. Diziler, videolar ve bölümler.';
+  String get emptySearch =>
+      'BCC Media\'daki tüm içerikleri arayabilirsiniz. Diziler, videolar ve bölümler.';
 
   @override
   String get back => 'Geri';
@@ -407,7 +422,8 @@ class STr extends S {
   String get now => 'Şimdi';
 
   @override
-  String get debugInfoExplanation => 'Mesajınız, sorunu daha iyi anlamamıza yardımcı olmak için bu bilgileri içerecektir.';
+  String get debugInfoExplanation =>
+      'Mesajınız, sorunu daha iyi anlamamıza yardımcı olmak için bu bilgileri içerecektir.';
 
   @override
   String get send => 'Gönder';
@@ -419,13 +435,15 @@ class STr extends S {
   String get thankYouSupportTitle => 'Geri bildiriminiz için teşekkür ederiz!';
 
   @override
-  String get thankYouSupportDescription => 'Tüm geri bildirimleri takdir ediyoruz ve sorunu en kısa sürede ele alacağız.';
+  String get thankYouSupportDescription =>
+      'Tüm geri bildirimleri takdir ediyoruz ve sorunu en kısa sürede ele alacağız.';
 
   @override
   String get sendFail => 'Mesajınız gönderilemedi';
 
   @override
-  String get sendFailDescription => 'Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edin ve tekrar deneyin.';
+  String get sendFailDescription =>
+      'Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edin ve tekrar deneyin.';
 
   @override
   String get sendSuccessDescription => 'Geribildirim için teşekkürler.';
@@ -492,7 +510,8 @@ class STr extends S {
   String get appUpdateTitle => 'Güncelleme gerekli';
 
   @override
-  String get appUpdateRequest => 'En yeni özelliklerin ve hata düzeltmelerinin keyfini çıkarmak için lütfen en son uygulamayı indirin.';
+  String get appUpdateRequest =>
+      'En yeni özelliklerin ve hata düzeltmelerinin keyfini çıkarmak için lütfen en son uygulamayı indirin.';
 
   @override
   String get appUpdateAccepted => 'Güncelleme';
@@ -542,7 +561,8 @@ class STr extends S {
   String get subtitlesLanguage => 'Altyazı dili';
 
   @override
-  String get removeFromRecentSearches => 'Bu öğeyi son aramalardan kaldırmak istiyor musunuz?';
+  String get removeFromRecentSearches =>
+      'Bu öğeyi son aramalardan kaldırmak istiyor musunuz?';
 
   @override
   String get noTransmissionToday => 'Bugün için planlanmış yayın yok';
@@ -551,7 +571,8 @@ class STr extends S {
   String get featured => 'Öne çıkan';
 
   @override
-  String get errorTryAgain => 'Bir şeyler yanlış oldu. Lütfen sonra tekrar deneyiniz.';
+  String get errorTryAgain =>
+      'Bir şeyler yanlış oldu. Lütfen sonra tekrar deneyiniz.';
 
   @override
   String get programsSection => 'Programlar';
@@ -578,16 +599,19 @@ class STr extends S {
   String get tasksCompleted => 'görevler tamamlandı';
 
   @override
-  String get studyCompleteTaskDescription => 'Görevleri tamamlayın ve ilgili kaynakları keşfedin';
+  String get studyCompleteTaskDescription =>
+      'Görevleri tamamlayın ve ilgili kaynakları keşfedin';
 
   @override
   String get discoverMore => 'Daha fazlasını keşfet';
 
   @override
-  String get completePreviousTasks => 'Kilidi açmak için önceki görevleri tamamlayın';
+  String get completePreviousTasks =>
+      'Kilidi açmak için önceki görevleri tamamlayın';
 
   @override
-  String get studyDiscoverMoreDescription => 'İlgili kaynaklardan daha fazla ilham ve fikir edinin';
+  String get studyDiscoverMoreDescription =>
+      'İlgili kaynaklardan daha fazla ilham ve fikir edinin';
 
   @override
   String get watchAgain => 'Tekrar izle';
@@ -611,10 +635,12 @@ class STr extends S {
   String get startStudy => 'Çalışmaya başla';
 
   @override
-  String get videoCompletedText => 'Videoyu tamamlamada harika bir iş çıkardınız.';
+  String get videoCompletedText =>
+      'Videoyu tamamlamada harika bir iş çıkardınız.';
 
   @override
-  String get achievementFirstDescription => 'Videoyu tamamlama ve ilk ilerleme başarınızı kazanma konusunda harika bir iş çıkardın.';
+  String get achievementFirstDescription =>
+      'Videoyu tamamlama ve ilk ilerleme başarınızı kazanma konusunda harika bir iş çıkardın.';
 
   @override
   String achievementStudyTopic(String name) {
@@ -656,7 +682,8 @@ class STr extends S {
   }
 
   @override
-  String get passwordConditionComplexity => 'Küçük harf, büyük harf ve rakam içermelidir.';
+  String get passwordConditionComplexity =>
+      'Küçük harf, büyük harf ve rakam içermelidir.';
 
   @override
   String get oops => 'Hata!';
@@ -671,7 +698,8 @@ class STr extends S {
   String get mustBeLoggedIn => 'Bu içeriği izlemek için giriş yapmalısınız';
 
   @override
-  String get plentyOfOtherContent => 'Endişelenmeyin, hala tadını çıkarabileceğiniz çok sayıda içerik var!';
+  String get plentyOfOtherContent =>
+      'Endişelenmeyin, hala tadını çıkarabileceğiniz çok sayıda içerik var!';
 
   @override
   String get notAchieved => 'Ulaşılamadı';
@@ -686,7 +714,8 @@ class STr extends S {
   String get didYouKnowTitle => 'Biliyor muydunuz?';
 
   @override
-  String get didYouKnowContent => 'Kalbe dokunarak favori programlarınızı \"Listem \"e ekleyebilirsiniz.';
+  String get didYouKnowContent =>
+      'Kalbe dokunarak favori programlarınızı \"Listem \"e ekleyebilirsiniz.';
 
   @override
   String get selectSeason => 'Sezon seçin';
@@ -695,16 +724,19 @@ class STr extends S {
   String get deleteMyAccount => 'Hesabımı sil';
 
   @override
-  String get iAmSureIWantToDelete => 'Hesabımı ve BCC Media uygulamasıyla ilgili verilerimi silmek istediğimden eminim.';
+  String get iAmSureIWantToDelete =>
+      'Hesabımı ve BCC Media uygulamasıyla ilgili verilerimi silmek istediğimden eminim.';
 
   @override
   String get areYouSure => 'Emin misin?';
 
   @override
-  String get youCanContactUsAt => 'Bizimle şu adresten iletişime geçebilirsiniz';
+  String get youCanContactUsAt =>
+      'Bizimle şu adresten iletişime geçebilirsiniz';
 
   @override
-  String get biblekidsAbout => 'BCC Media, BCC federasyonunda pozitif ve Hristiyan değerlere sahip içerik üreten ve dağıtan bir medya kuruluşudur.';
+  String get biblekidsAbout =>
+      'BCC Media, BCC federasyonunda pozitif ve Hristiyan değerlere sahip içerik üreten ve dağıtan bir medya kuruluşudur.';
 
   @override
   String get askYourParents => 'Ailenize sorun';
@@ -719,7 +751,8 @@ class STr extends S {
   String get checkAnswerButton => 'Cevabı kontrol edin';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'Bu videoya yalnızca uygulamaya giriş yapmış kullanıcılar erişebilir.';
+  String get videoOnlyAccessibleToLoggedIn =>
+      'Bu videoya yalnızca uygulamaya giriş yapmış kullanıcılar erişebilir.';
 
   @override
   String get verifyYourAccount => 'Hesabınızı doğrulayın';
@@ -728,7 +761,8 @@ class STr extends S {
   String get weHaveSentAnEmailTo => 'Aşağıdakilere bir e-posta gönderdik';
 
   @override
-  String get clickTheLinkToVerify => 'Hesabınızı doğrulamak için e-postadaki bağlantıya tıklayın.';
+  String get clickTheLinkToVerify =>
+      'Hesabınızı doğrulamak için e-postadaki bağlantıya tıklayın.';
 
   @override
   String get openEmailApp => 'E-posta uygulamasını açın';
@@ -743,19 +777,23 @@ class STr extends S {
   String get verificationEmailSent => 'Doğrulama e-postası gönderildi';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'Hala bir e-posta almadıysanız, lütfen şu adresten destek ekibiyle iletişime geçin';
+  String get ifYouDidntReceiveVerificationEmail =>
+      'Hala bir e-posta almadıysanız, lütfen şu adresten destek ekibiyle iletişime geçin';
 
   @override
   String get accountCreated => 'Hesap oluşturuldu';
 
   @override
-  String get youCanNowUseYourAccount => 'Artık hesabınızı kullanabilir ve çeşitli eğitici içerikleri keşfedebilirsiniz.';
+  String get youCanNowUseYourAccount =>
+      'Artık hesabınızı kullanabilir ve çeşitli eğitici içerikleri keşfedebilirsiniz.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'Artık hesabınıza giriş yapabilir ve çeşitli eğitici içerikleri keşfedebilirsiniz.';
+  String get youCanNowLogInToYourAccount =>
+      'Artık hesabınıza giriş yapabilir ve çeşitli eğitici içerikleri keşfedebilirsiniz.';
 
   @override
-  String get accountDeletionExplanation => 'BCC Media\'daki hesabınızı ve bu uygulamayla ilgili tüm verilerinizi silmeyi talep etmek üzeresiniz.';
+  String get accountDeletionExplanation =>
+      'BCC Media\'daki hesabınızı ve bu uygulamayla ilgili tüm verilerinizi silmeyi talep etmek üzeresiniz.';
 
   @override
   String get accountDeletionWarning => 'Bu geri alınamayacak bir eylemdir.';
@@ -820,10 +858,12 @@ class STr extends S {
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Cihazınızda yeterli kullanılabilir alan yok';
+  String get notEnoughAvailableSpace =>
+      'Cihazınızda yeterli kullanılabilir alan yok';
 
   @override
-  String get considerDeletingOtherVideos => 'Uygulamada indirdiğiniz diğer videoları silmeyi düşünün.';
+  String get considerDeletingOtherVideos =>
+      'Uygulamada indirdiğiniz diğer videoları silmeyi düşünün.';
 
   @override
   String theVideoFileSizeIs(String size) {
@@ -837,7 +877,8 @@ class STr extends S {
   String get saveYourFavorites => 'Favori videolarınızı kaydedin';
 
   @override
-  String get saveYourFavoritesDescription => 'Profilinize kaydetmek için bir videonun üzerindeki kalp simgesine dokunun.';
+  String get saveYourFavoritesDescription =>
+      'Profilinize kaydetmek için bir videonun üzerindeki kalp simgesine dokunun.';
 
   @override
   String get yourFavorites => 'Favorileriniz';
@@ -846,16 +887,19 @@ class STr extends S {
   String get downloaded => 'İndirildi';
 
   @override
-  String get saveVideosForOfflineViewing => 'Çevrimdışı görüntüleme için videoları kaydedin';
+  String get saveVideosForOfflineViewing =>
+      'Çevrimdışı görüntüleme için videoları kaydedin';
 
   @override
-  String get tapOnTheDownloadIcon => 'İndirmek ve çevrimdışıyken oynatmak için bir videonun üzerindeki indirme simgesine dokunun.';
+  String get tapOnTheDownloadIcon =>
+      'İndirmek ve çevrimdışıyken oynatmak için bir videonun üzerindeki indirme simgesine dokunun.';
 
   @override
   String get removeOfflineVideo => 'Çevrimdışı videoyu kaldırın?';
 
   @override
-  String get removeOfflineVideoDescription => 'Bu videoyu kaldırdığınızda artık bir ağ bağlantısı olmadan kullanılamayacaktır.';
+  String get removeOfflineVideoDescription =>
+      'Bu videoyu kaldırdığınızda artık bir ağ bağlantısı olmadan kullanılamayacaktır.';
 
   @override
   String get removeFromDeviceButton => 'Cihazdan çıkarın';
@@ -867,16 +911,20 @@ class STr extends S {
   String get noInternetConnection => 'İnternet bağlantısı yok';
 
   @override
-  String get noInternetConnectionDescription => 'Tüm videolara erişmek için internete bağlanın.';
+  String get noInternetConnectionDescription =>
+      'Tüm videolara erişmek için internete bağlanın.';
 
   @override
-  String get noInternetButDontWorry => 'İnternet bağlantısı yok, ama endişelenmeyin.';
+  String get noInternetButDontWorry =>
+      'İnternet bağlantısı yok, ama endişelenmeyin.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'İşte cihazınıza indirdiğiniz tüm videolar.';
+  String get hereAreAllTheVideosYouDownloaded =>
+      'İşte cihazınıza indirdiğiniz tüm videolar.';
 
   @override
-  String get connectToExplore => 'Tüm videoları keşfetmek için internete bağlanın.';
+  String get connectToExplore =>
+      'Tüm videoları keşfetmek için internete bağlanın.';
 
   @override
   String get language => 'Dil';
@@ -896,7 +944,8 @@ class STr extends S {
   String get subtitlesIncluded => 'Altyazılar dahil';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'Tüm altyazılar çevrimdışı olarak kullanılabilir';
+  String get allSubtitlesWillBeAvailableOffline =>
+      'Tüm altyazılar çevrimdışı olarak kullanılabilir';
 
   @override
   String get downloading => 'İndiriliyor';
@@ -946,7 +995,8 @@ class STr extends S {
   String get preferredLanguages => 'Seçilen Dil';
 
   @override
-  String get contentLanguageExplanation => 'Ses ve altyazı dili tercihinize uyması için dilleri yeniden sıralayın.';
+  String get contentLanguageExplanation =>
+      'Ses ve altyazı dili tercihinize uyması için dilleri yeniden sıralayın.';
 
   @override
   String get otherLanguages => 'Diğer diller';
@@ -967,13 +1017,15 @@ class STr extends S {
   String get autoGenerated => 'Otomatik oluşturulan';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'Transkripsiyonlar otomatik olarak oluşturulmuştur ve hatalar içerebilir.';
+  String get shortsTranscriptionDisclaimer =>
+      'Transkripsiyonlar otomatik olarak oluşturulmuştur ve hatalar içerebilir.';
 
   @override
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'Bu özellik beta aşamasındadır ve şu anda tüm kullanıcılar için yayınlanmamıştır. Lütfen herhangi bir sorunu veya geri bildirimi ayarlardaki \'İletişim\' düğmesi aracılığıyla bildirin.';
+  String get betaExplanation =>
+      'Bu özellik beta aşamasındadır ve şu anda tüm kullanıcılar için yayınlanmamıştır. Lütfen herhangi bir sorunu veya geri bildirimi ayarlardaki \'İletişim\' düğmesi aracılığıyla bildirin.';
 
   @override
   String get likedShorts => 'Beğenilen shortlar';
@@ -982,25 +1034,29 @@ class STr extends S {
   String get saveYourFavoriteShorts => 'En sevdiğiniz şortları kaydedin';
 
   @override
-  String get featureNotAvailableYet => 'Bu özellik henüz cihazınızda mevcut değil. Lütfen daha sonra tekrar deneyiniz.';
+  String get featureNotAvailableYet =>
+      'Bu özellik henüz cihazınızda mevcut değil. Lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get newFeature => 'Yeni özellik';
 
   @override
-  String get shortsFeatureDescription => 'Kısa ve güçlü alıntıları keşfedin ve doğrudan tam bölümüne atlayın.';
+  String get shortsFeatureDescription =>
+      'Kısa ve güçlü alıntıları keşfedin ve doğrudan tam bölümüne atlayın.';
 
   @override
   String get likedAndSaved => 'Beğenildi ve kaydedildi';
 
   @override
-  String get shortsLikedAndSavedDescription => 'Beğendiğiniz tüm şortları profilinizde bulabilirsiniz.';
+  String get shortsLikedAndSavedDescription =>
+      'Beğendiğiniz tüm şortları profilinizde bulabilirsiniz.';
 
   @override
   String get excerptFrom => 'Alıntı';
 
   @override
-  String get downloadedVideosGuideDescription => 'İndirdiğiniz videoları \"Profil\" altında bulabilirsiniz.';
+  String get downloadedVideosGuideDescription =>
+      'İndirdiğiniz videoları \"Profil\" altında bulabilirsiniz.';
 
   @override
   String get openStore => 'Açık mağaza';
@@ -1018,7 +1074,8 @@ class STr extends S {
   String get original => 'Orijinal';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Video metin dilini değiştirmek için ayarları açın';
+  String get openSettingsToChangeVideoLang =>
+      'Video metin dilini değiştirmek için ayarları açın';
 
   @override
   String get somethingWentWrong => 'Bir şeyler yanlış gitti.';
@@ -1048,7 +1105,8 @@ class STr extends S {
   String get answerTheQuiz => 'Testi cevaplayın';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Doğru cevap vererek puan kazanın';
+  String get studyAnswerTheQuizDescription =>
+      'Doğru cevap vererek puan kazanın';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
@@ -1065,10 +1123,12 @@ class STr extends S {
   String get studyAllAnswersCorrectDescription => 'Aferin!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Bir dahaki sefere biraz daha yakından dinleseniz iyi olur!';
+  String get studyNoAnswersCorrectDescription =>
+      'Bir dahaki sefere biraz daha yakından dinleseniz iyi olur!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Aferin! Ancak yine de iyileştirme için yer var.';
+  String get studySomeAnswersCorrectDescription =>
+      'Aferin! Ancak yine de iyileştirme için yer var.';
 
   @override
   String get studyAllQuestionsAnswered => 'Tüm soruları yanıtladınız';
@@ -1089,5 +1149,6 @@ class STr extends S {
   String get notifications => 'Notifications';
 
   @override
-  String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
+  String get onlyShowContentWithPreferredLanguages =>
+      'Only show content with my preferred languages';
 }

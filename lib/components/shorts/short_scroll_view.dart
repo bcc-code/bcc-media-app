@@ -281,6 +281,7 @@ class ShortScrollView extends HookConsumerWidget {
     return PreloadPageView.builder(
       scrollDirection: Axis.vertical,
       preloadPagesCount: playerCount > 1 ? 1 : 0,
+      pageSnapping: true,
       onPageChanged: (index) {
         final previous = shorts.value.elementAtOrNull(currentIndex.value)?.id;
         debugPrint('SHRT: nav $previous -> ${shorts.value.elementAtOrNull(index)?.id}');
@@ -296,7 +297,6 @@ class ShortScrollView extends HookConsumerWidget {
             ));
         setCurrentIndex(index);
       },
-      physics: const _CustomPageViewScrollPhysics(),
       itemBuilder: (context, index) {
         if (!isRouteActive) {
           return const SizedBox();
@@ -336,22 +336,6 @@ class ShortScrollView extends HookConsumerWidget {
       },
     );
   }
-}
-
-class _CustomPageViewScrollPhysics extends ScrollPhysics {
-  const _CustomPageViewScrollPhysics({super.parent});
-
-  @override
-  _CustomPageViewScrollPhysics applyTo(ScrollPhysics? ancestor) {
-    return _CustomPageViewScrollPhysics(parent: buildParent(ancestor)!);
-  }
-
-  @override
-  SpringDescription get spring => const SpringDescription(
-        mass: 100,
-        stiffness: 1,
-        damping: 1,
-      );
 }
 
 @riverpod

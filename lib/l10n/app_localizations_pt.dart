@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -34,13 +36,16 @@ class SPt extends S {
   String get loginPageDisplay1 => 'A mensagem mais poderosa do mundo';
 
   @override
-  String get loginPageDisplay2 => 'Assistir séries, programas e filmes baseados nos valores cristãos';
+  String get loginPageDisplay2 =>
+      'Assistir séries, programas e filmes baseados nos valores cristãos';
 
   @override
-  String get kidsOnboardingTitle => 'Nós trazemos a mensagem da Bíblia para a vida!';
+  String get kidsOnboardingTitle =>
+      'Nós trazemos a mensagem da Bíblia para a vida!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Nossa visão é que as crianças experimentem Jesus como seu melhor amigo - pelo resto de suas vidas.';
+  String get kidsOnboardingSecondaryTitle =>
+      'Nossa visão é que as crianças experimentem Jesus como seu melhor amigo - pelo resto de suas vidas.';
 
   @override
   String get loginPageDisplay3 => 'Produzido por BCC Mídia ';
@@ -55,7 +60,8 @@ class SPt extends S {
   String get faq => 'Perguntas frequentes';
 
   @override
-  String get bccMediaCenter => 'BCC Mídia é uma fundação de mídia da federação BCC que produz e distribui conteúdo com valores positivos e cristãos.';
+  String get bccMediaCenter =>
+      'BCC Mídia é uma fundação de mídia da federação BCC que produz e distribui conteúdo com valores positivos e cristãos.';
 
   @override
   String get signInButton => 'Entrar';
@@ -70,10 +76,12 @@ class SPt extends S {
   String get signUpTitle => 'Inscrever-se';
 
   @override
-  String get signUpDescription => 'Obtenha acesso a mais conteúdo e melhores recursos criando uma conta.';
+  String get signUpDescription =>
+      'Obtenha acesso a mais conteúdo e melhores recursos criando uma conta.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Certifico que tenho 13 anos de idade ou mais e que concordo com a <a>Política de Privacidade</a> e os <a>Termos de uso</a>.';
+  String get signUpAgreePrivacyPolicy =>
+      'Certifico que tenho 13 anos de idade ou mais e que concordo com a <a>Política de Privacidade</a> e os <a>Termos de uso</a>.';
 
   @override
   String get setPassword => 'Configurar senha';
@@ -85,7 +93,8 @@ class SPt extends S {
   String get loggedOutTitle => 'Desconectado';
 
   @override
-  String get loggedOutMessage => 'Você foi deslogado. Por favor, faça o login novamente.';
+  String get loggedOutMessage =>
+      'Você foi deslogado. Por favor, faça o login novamente.';
 
   @override
   String get makeDonation => 'Faça uma doação';
@@ -109,10 +118,12 @@ class SPt extends S {
   String get open => 'Abrir';
 
   @override
-  String get loginFailedCheckNetwork => 'Falha no login Verifique sua conexão de rede e tente novamente.';
+  String get loginFailedCheckNetwork =>
+      'Falha no login Verifique sua conexão de rede e tente novamente.';
 
   @override
-  String get loginFailedTryAgain => 'Falha no login Por favor tente novamente mais tarde.';
+  String get loginFailedTryAgain =>
+      'Falha no login Por favor tente novamente mais tarde.';
 
   @override
   String get soundLanguage => 'Linguagem sonora';
@@ -151,7 +162,8 @@ class SPt extends S {
   String get deviceInfo => 'Informação do dispositivo';
 
   @override
-  String get contactIncludeDeviceInfo => 'Inclua informações do dispositivo para melhor suporte.';
+  String get contactIncludeDeviceInfo =>
+      'Inclua informações do dispositivo para melhor suporte.';
 
   @override
   String get contactSeeData => 'Clique para ver os dados.';
@@ -196,7 +208,8 @@ class SPt extends S {
   String get deviceInfoUserId => 'ID do usuário';
 
   @override
-  String get deviceInfoPageDesc => 'Sua mensagem incluirá essas informações para nos ajudar a fornecer um melhor suporte.';
+  String get deviceInfoPageDesc =>
+      'Sua mensagem incluirá essas informações para nos ajudar a fornecer um melhor suporte.';
 
   @override
   String get userVoice => 'Sugerir um recurso';
@@ -208,7 +221,8 @@ class SPt extends S {
   String get cancelConfirmation => 'Tem certeza que deseja cancelar?';
 
   @override
-  String get cancelConfirmationDescription => 'Quaisquer alterações não salvas serão perdidas.';
+  String get cancelConfirmationDescription =>
+      'Quaisquer alterações não salvas serão perdidas.';
 
   @override
   String get goBack => 'Voltar';
@@ -321,7 +335,8 @@ class SPt extends S {
   String get high => 'Alto';
 
   @override
-  String get emptySearch => 'Você pode pesquisar todos os conteúdos de BCC Media. Séries, vídeos e episódios.';
+  String get emptySearch =>
+      'Você pode pesquisar todos os conteúdos de BCC Media. Séries, vídeos e episódios.';
 
   @override
   String get back => 'Voltar';
@@ -407,7 +422,8 @@ class SPt extends S {
   String get now => 'Agora';
 
   @override
-  String get debugInfoExplanation => 'Sua mensagem incluirá essas informações para nos ajudar a entender melhor o problema.';
+  String get debugInfoExplanation =>
+      'Sua mensagem incluirá essas informações para nos ajudar a entender melhor o problema.';
 
   @override
   String get send => 'Enviar';
@@ -419,13 +435,15 @@ class SPt extends S {
   String get thankYouSupportTitle => 'Obrigada pela sua avaliação!';
 
   @override
-  String get thankYouSupportDescription => 'Agradecemos todos os comentários e abordaremos o problema o mais rápido possível.';
+  String get thankYouSupportDescription =>
+      'Agradecemos todos os comentários e abordaremos o problema o mais rápido possível.';
 
   @override
   String get sendFail => 'Não foi possível enviar sua mensagem';
 
   @override
-  String get sendFailDescription => 'Algo deu errado. Verifique a sua conexão com a Internet e tente novamente.';
+  String get sendFailDescription =>
+      'Algo deu errado. Verifique a sua conexão com a Internet e tente novamente.';
 
   @override
   String get sendSuccessDescription => 'Agradecemos seus comentários.';
@@ -492,7 +510,8 @@ class SPt extends S {
   String get appUpdateTitle => 'Atualização necessária';
 
   @override
-  String get appUpdateRequest => 'Por favor, baixe o aplicativo mais recente para desfrutar de todos os recursos e correções de erros mais recentes.';
+  String get appUpdateRequest =>
+      'Por favor, baixe o aplicativo mais recente para desfrutar de todos os recursos e correções de erros mais recentes.';
 
   @override
   String get appUpdateAccepted => 'Atualizar';
@@ -542,7 +561,8 @@ class SPt extends S {
   String get subtitlesLanguage => 'Idioma das legendas';
 
   @override
-  String get removeFromRecentSearches => 'Deseja remover este elemento das buscas recentes?';
+  String get removeFromRecentSearches =>
+      'Deseja remover este elemento das buscas recentes?';
 
   @override
   String get noTransmissionToday => 'Nenhuma transmissão programada para hoje';
@@ -578,16 +598,19 @@ class SPt extends S {
   String get tasksCompleted => 'tarefas concluídas';
 
   @override
-  String get studyCompleteTaskDescription => 'Conclua tarefas e descubra recursos relacionados';
+  String get studyCompleteTaskDescription =>
+      'Conclua tarefas e descubra recursos relacionados';
 
   @override
   String get discoverMore => 'Descubra mais ';
 
   @override
-  String get completePreviousTasks => 'Complete as tarefas anteriores para desbloquear';
+  String get completePreviousTasks =>
+      'Complete as tarefas anteriores para desbloquear';
 
   @override
-  String get studyDiscoverMoreDescription => 'Encontre mais inspiração e conhecimentos de recursos relacionados';
+  String get studyDiscoverMoreDescription =>
+      'Encontre mais inspiração e conhecimentos de recursos relacionados';
 
   @override
   String get watchAgain => 'Ver de novo ';
@@ -614,7 +637,8 @@ class SPt extends S {
   String get videoCompletedText => 'Ótimo trabalho na conclusão do vídeo.';
 
   @override
-  String get achievementFirstDescription => 'Ótimo trabalho ao concluir o vídeo e obter sua primeira conquista de progresso.';
+  String get achievementFirstDescription =>
+      'Ótimo trabalho ao concluir o vídeo e obter sua primeira conquista de progresso.';
 
   @override
   String achievementStudyTopic(String name) {
@@ -656,7 +680,8 @@ class SPt extends S {
   }
 
   @override
-  String get passwordConditionComplexity => 'Deve conter minúsculas, maiúsculas e números.';
+  String get passwordConditionComplexity =>
+      'Deve conter minúsculas, maiúsculas e números.';
 
   @override
   String get oops => 'Oops! ';
@@ -668,10 +693,12 @@ class SPt extends S {
   String get notFound => 'O conteúdo que você procura parece não existir.';
 
   @override
-  String get mustBeLoggedIn => 'Você precisa estar logado para assistir a este conteúdo';
+  String get mustBeLoggedIn =>
+      'Você precisa estar logado para assistir a este conteúdo';
 
   @override
-  String get plentyOfOtherContent => 'Não se preocupe, ainda há muito conteúdo para aproveitar!';
+  String get plentyOfOtherContent =>
+      'Não se preocupe, ainda há muito conteúdo para aproveitar!';
 
   @override
   String get notAchieved => 'Não alcançado';
@@ -686,7 +713,8 @@ class SPt extends S {
   String get didYouKnowTitle => 'Você sabia?';
 
   @override
-  String get didYouKnowContent => 'Você pode adicionar seus programas favoritos à \"Minha lista\" tocando no coração';
+  String get didYouKnowContent =>
+      'Você pode adicionar seus programas favoritos à \"Minha lista\" tocando no coração';
 
   @override
   String get selectSeason => 'Selecione a temporada';
@@ -695,7 +723,8 @@ class SPt extends S {
   String get deleteMyAccount => 'Excluir minha conta';
 
   @override
-  String get iAmSureIWantToDelete => 'Tenho certeza de que quero excluir minha conta e meus dados relacionados ao aplicativo BCC Media.';
+  String get iAmSureIWantToDelete =>
+      'Tenho certeza de que quero excluir minha conta e meus dados relacionados ao aplicativo BCC Media.';
 
   @override
   String get areYouSure => 'Tem certeza?';
@@ -704,7 +733,8 @@ class SPt extends S {
   String get youCanContactUsAt => 'Você pode entrar em contato conosco em';
 
   @override
-  String get biblekidsAbout => 'Bible Kids é uma iniciativa de BCC Media, uma fundação de mídia dentro da Federação BCC que produz e distribui conteúdo com valores positivos e cristãos.';
+  String get biblekidsAbout =>
+      'Bible Kids é uma iniciativa de BCC Media, uma fundação de mídia dentro da Federação BCC que produz e distribui conteúdo com valores positivos e cristãos.';
 
   @override
   String get askYourParents => 'Pergunte aos seus pais';
@@ -719,7 +749,8 @@ class SPt extends S {
   String get checkAnswerButton => 'Checar resposta';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'Este vídeo é acessível apenas para usuários que estão logados no aplicativo.';
+  String get videoOnlyAccessibleToLoggedIn =>
+      'Este vídeo é acessível apenas para usuários que estão logados no aplicativo.';
 
   @override
   String get verifyYourAccount => 'Verifique sua conta';
@@ -728,7 +759,8 @@ class SPt extends S {
   String get weHaveSentAnEmailTo => 'Enviamos um e-mail para';
 
   @override
-  String get clickTheLinkToVerify => 'Clique no link no e-mail para verificar sua conta.';
+  String get clickTheLinkToVerify =>
+      'Clique no link no e-mail para verificar sua conta.';
 
   @override
   String get openEmailApp => 'Abra o aplicativo do e-mail';
@@ -743,22 +775,27 @@ class SPt extends S {
   String get verificationEmailSent => 'E-mail de verificação enviado';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'Se você ainda não recebeu um e-mail, entre em contato com o suporte em';
+  String get ifYouDidntReceiveVerificationEmail =>
+      'Se você ainda não recebeu um e-mail, entre em contato com o suporte em';
 
   @override
   String get accountCreated => 'Conta criada';
 
   @override
-  String get youCanNowUseYourAccount => 'Agora você pode usar sua conta e explorar uma variedade de conteúdos edificantes.';
+  String get youCanNowUseYourAccount =>
+      'Agora você pode usar sua conta e explorar uma variedade de conteúdos edificantes.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'Agora você pode fazer login em sua conta e explorar uma variedade de conteúdos edificantes.';
+  String get youCanNowLogInToYourAccount =>
+      'Agora você pode fazer login em sua conta e explorar uma variedade de conteúdos edificantes.';
 
   @override
-  String get accountDeletionExplanation => 'Você está prestes a solicitar a exclusão de sua conta da BCC Media e de todos os seus dados relacionados a este aplicativo.';
+  String get accountDeletionExplanation =>
+      'Você está prestes a solicitar a exclusão de sua conta da BCC Media e de todos os seus dados relacionados a este aplicativo.';
 
   @override
-  String get accountDeletionWarning => 'Esta é uma ação que não pode ser desfeita.';
+  String get accountDeletionWarning =>
+      'Esta é uma ação que não pode ser desfeita.';
 
   @override
   String accountDeletionTimeframe(int x) {
@@ -820,10 +857,12 @@ class SPt extends S {
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Não há espaço disponível suficiente no seu dispositivo';
+  String get notEnoughAvailableSpace =>
+      'Não há espaço disponível suficiente no seu dispositivo';
 
   @override
-  String get considerDeletingOtherVideos => 'Considere excluir outros vídeos baixados no aplicativo.';
+  String get considerDeletingOtherVideos =>
+      'Considere excluir outros vídeos baixados no aplicativo.';
 
   @override
   String theVideoFileSizeIs(String size) {
@@ -837,7 +876,8 @@ class SPt extends S {
   String get saveYourFavorites => 'Salve os seus vídeos favoritos';
 
   @override
-  String get saveYourFavoritesDescription => 'Toque no ícone de coração em um vídeo para salvá-lo em seu perfil.';
+  String get saveYourFavoritesDescription =>
+      'Toque no ícone de coração em um vídeo para salvá-lo em seu perfil.';
 
   @override
   String get yourFavorites => 'Seus favoritos';
@@ -846,16 +886,19 @@ class SPt extends S {
   String get downloaded => 'Baixado';
 
   @override
-  String get saveVideosForOfflineViewing => 'Salve vídeos para visualização off-line';
+  String get saveVideosForOfflineViewing =>
+      'Salve vídeos para visualização off-line';
 
   @override
-  String get tapOnTheDownloadIcon => 'Toque no ícone de download em um vídeo para baixar e reproduzir offline.';
+  String get tapOnTheDownloadIcon =>
+      'Toque no ícone de download em um vídeo para baixar e reproduzir offline.';
 
   @override
   String get removeOfflineVideo => 'Remover vídeo off-line?';
 
   @override
-  String get removeOfflineVideoDescription => 'Ao remover este vídeo ele não estará mais disponível sem uma conexão de rede.';
+  String get removeOfflineVideoDescription =>
+      'Ao remover este vídeo ele não estará mais disponível sem uma conexão de rede.';
 
   @override
   String get removeFromDeviceButton => 'Remover do dispositivo';
@@ -867,16 +910,20 @@ class SPt extends S {
   String get noInternetConnection => 'Sem conexão com a internet';
 
   @override
-  String get noInternetConnectionDescription => 'Conecte-se à internet para acessar todos os vídeos.';
+  String get noInternetConnectionDescription =>
+      'Conecte-se à internet para acessar todos os vídeos.';
 
   @override
-  String get noInternetButDontWorry => 'Sem conexão com a internet, mas não se preocupe.';
+  String get noInternetButDontWorry =>
+      'Sem conexão com a internet, mas não se preocupe.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Aqui estão todos os vídeos que você baixou para o seu dispositivo.';
+  String get hereAreAllTheVideosYouDownloaded =>
+      'Aqui estão todos os vídeos que você baixou para o seu dispositivo.';
 
   @override
-  String get connectToExplore => 'Conecte-se à internet para explorar todos os vídeos.';
+  String get connectToExplore =>
+      'Conecte-se à internet para explorar todos os vídeos.';
 
   @override
   String get language => 'Idiomas';
@@ -896,7 +943,8 @@ class SPt extends S {
   String get subtitlesIncluded => 'Legendas incluídas';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'Todas as legendas estarão disponíveis off-line';
+  String get allSubtitlesWillBeAvailableOffline =>
+      'Todas as legendas estarão disponíveis off-line';
 
   @override
   String get downloading => 'Baixando';
@@ -946,7 +994,8 @@ class SPt extends S {
   String get preferredLanguages => 'Idiomas preferidos';
 
   @override
-  String get contentLanguageExplanation => 'Reordene os idiomas para corresponder à sua preferência de idioma de áudio e legenda.';
+  String get contentLanguageExplanation =>
+      'Reordene os idiomas para corresponder à sua preferência de idioma de áudio e legenda.';
 
   @override
   String get otherLanguages => 'Outros idiomas';
@@ -967,13 +1016,15 @@ class SPt extends S {
   String get autoGenerated => 'Gerado automaticamente';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'As transcrições são geradas automaticamente e podem conter erros.';
+  String get shortsTranscriptionDisclaimer =>
+      'As transcrições são geradas automaticamente e podem conter erros.';
 
   @override
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'Esta funcionalidade está em versão beta e não está atualmente disponível para todos os usuários. Comunique quaisquer problemas ou comentários através do botão \"Contacto\" nas configurações.';
+  String get betaExplanation =>
+      'Esta funcionalidade está em versão beta e não está atualmente disponível para todos os usuários. Comunique quaisquer problemas ou comentários através do botão \"Contacto\" nas configurações.';
 
   @override
   String get likedShorts => 'Gostou dos vídeos';
@@ -982,25 +1033,29 @@ class SPt extends S {
   String get saveYourFavoriteShorts => 'Salve os seus vídeos favoritos';
 
   @override
-  String get featureNotAvailableYet => 'Esta funcionalidade ainda não está disponível no seu dispositivo. Por favor tente novamente mais tarde.';
+  String get featureNotAvailableYet =>
+      'Esta funcionalidade ainda não está disponível no seu dispositivo. Por favor tente novamente mais tarde.';
 
   @override
   String get newFeature => 'Nova funcionalidade';
 
   @override
-  String get shortsFeatureDescription => 'Descubra trechos curtos e poderosos e vá direto para o episódio completo.';
+  String get shortsFeatureDescription =>
+      'Descubra trechos curtos e poderosos e vá direto para o episódio completo.';
 
   @override
   String get likedAndSaved => 'Curtido e salvo';
 
   @override
-  String get shortsLikedAndSavedDescription => 'Você pode encontrar todos os seus vídeos favoritos em seu perfil.';
+  String get shortsLikedAndSavedDescription =>
+      'Você pode encontrar todos os seus vídeos favoritos em seu perfil.';
 
   @override
   String get excerptFrom => 'Excerto de';
 
   @override
-  String get downloadedVideosGuideDescription => 'Você pode encontrar seus vídeos baixados em \"Perfil\".';
+  String get downloadedVideosGuideDescription =>
+      'Você pode encontrar seus vídeos baixados em \"Perfil\".';
 
   @override
   String get openStore => 'Loja aberta';
@@ -1018,7 +1073,8 @@ class SPt extends S {
   String get original => 'Original';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Abra as configurações para alterar o idioma do texto do vídeo';
+  String get openSettingsToChangeVideoLang =>
+      'Abra as configurações para alterar o idioma do texto do vídeo';
 
   @override
   String get somethingWentWrong => 'Algo deu errado';
@@ -1048,7 +1104,8 @@ class SPt extends S {
   String get answerTheQuiz => 'Responda ao questionário';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Ganhe pontos respondendo corretamente';
+  String get studyAnswerTheQuizDescription =>
+      'Ganhe pontos respondendo corretamente';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
@@ -1065,10 +1122,12 @@ class SPt extends S {
   String get studyAllAnswersCorrectDescription => 'Muito bem!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'É melhor você ouvir com mais atenção da próxima vez!';
+  String get studyNoAnswersCorrectDescription =>
+      'É melhor você ouvir com mais atenção da próxima vez!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Muito bem! Mas ainda tens margem para melhorar.';
+  String get studySomeAnswersCorrectDescription =>
+      'Muito bem! Mas ainda tens margem para melhorar.';
 
   @override
   String get studyAllQuestionsAnswered => 'Respondeste a todas as perguntas';
@@ -1089,5 +1148,6 @@ class SPt extends S {
   String get notifications => 'Notificações';
 
   @override
-  String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
+  String get onlyShowContentWithPreferredLanguages =>
+      'Only show content with my preferred languages';
 }

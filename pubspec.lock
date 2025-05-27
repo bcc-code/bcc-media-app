@@ -50,10 +50,10 @@ packages:
     dependency: "direct main"
     description:
       name: app_links
-      sha256: "433df2e61b10519407475d7f69e470789d23d593f28224c38ba1068597be7950"
+      sha256: "85ed8fc1d25a76475914fff28cc994653bd900bc2c26e4b57a49e097febb54ba"
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.3"
+    version: "6.4.0"
   app_links_linux:
     dependency: transitive
     description:
@@ -1515,42 +1515,42 @@ packages:
     dependency: transitive
     description:
       name: rudder_plugin_android
-      sha256: dd1054dc7531cefbb8b3aea89a96e14b55672f8687eea2d7809892477a3952fa
+      sha256: fe8b6ba8b6dac04f5dbc8aefa5a7d6b87b3f56283bd1689ba401f7df57967da5
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "3.1.0"
   rudder_plugin_ios:
     dependency: transitive
     description:
       name: rudder_plugin_ios
-      sha256: bdadd15eb46dc0397472c13b9b42fe86771bfb0d7777aa828c38748d70c0b516
+      sha256: "5be06a2a7bc2da82c3d5e4255733703218bfa172b92152cf7fa0407bbd2ee94b"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "3.1.0"
   rudder_plugin_web:
     dependency: transitive
     description:
       name: rudder_plugin_web
-      sha256: "2926310424d5e296b83af86e675845b92af58ec24457ed7614950bb21e265453"
+      sha256: d0eae5307c82f11038a417a1a0bb471de1cd291696a9e114bbc086ad09f6fd6f
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "3.0.2"
   rudder_sdk_flutter:
     dependency: "direct main"
     description:
       name: rudder_sdk_flutter
-      sha256: aa59c81c5db3b2e28433be01664c70d8e478b68808a5f74a3120bc2f3b35ecfe
+      sha256: "6af0390205dbdbbe3b2d5af11bcc15457fdcb96bb97458ea125480bbb967455a"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "3.1.0"
   rudder_sdk_flutter_platform_interface:
     dependency: "direct main"
     description:
       name: rudder_sdk_flutter_platform_interface
-      sha256: "403d41755ca620bd93ef9de9914a7453d8f0e5b2a0a335e2d12041cabe2979c8"
+      sha256: "6bc000138df687c7f7d42f9bde40de44edd09ed97475d604713d11384ffb83ad"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0"
+    version: "3.1.0"
   rxdart:
     dependency: transitive
     description:
@@ -1571,10 +1571,10 @@ packages:
     dependency: "direct dev"
     description:
       name: sentry_dart_plugin
-      sha256: "5b33d2d1e7876c5ee09167e3554dc7ab793aaeb371da04a26df8f164c2ea4711"
+      sha256: "84436958fa9231e2e716be117a3b31695e54458b9f27039f76d14515e24248a6"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.4.1"
   sentry_flutter:
     dependency: "direct main"
     description:
@@ -1904,10 +1904,10 @@ packages:
     dependency: "direct main"
     description:
       name: unleash_proxy_client_flutter
-      sha256: b6232104cdf2f7895540d781627330048def8ec397db0a0f4aeb1e5a02795dfe
+      sha256: "020167df0604a7211538b428902df2c7c23de3f0fd5dc25e5783841c9454df6c"
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.2"
+    version: "1.9.6"
   url_launcher:
     dependency: "direct main"
     description:

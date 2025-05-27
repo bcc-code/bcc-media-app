@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -13,7 +15,8 @@ class SHu extends S {
   String get signInTooltip => 'További tartalmak megtekintéséhez jelentkezz be';
 
   @override
-  String get skipToPublicContent => 'Ugrás a nyilvános tartalom megtekintéséhez';
+  String get skipToPublicContent =>
+      'Ugrás a nyilvános tartalom megtekintéséhez';
 
   @override
   String get minutesShort => 'perc';
@@ -34,13 +37,15 @@ class SHu extends S {
   String get loginPageDisplay1 => 'A világ legerőteljesebb üzenete';
 
   @override
-  String get loginPageDisplay2 => 'Keresztény értékeken alapuló sorozatok, műsorok és filmek megtekintése';
+  String get loginPageDisplay2 =>
+      'Keresztény értékeken alapuló sorozatok, műsorok és filmek megtekintése';
 
   @override
   String get kidsOnboardingTitle => 'Életre keltjük a Biblia üzenetét!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Az a célunk, hogy a gyerekek megtapasztalják Jézust, mint a legjobb barátjukat - életük végéig.';
+  String get kidsOnboardingSecondaryTitle =>
+      'Az a célunk, hogy a gyerekek megtapasztalják Jézust, mint a legjobb barátjukat - életük végéig.';
 
   @override
   String get loginPageDisplay3 => 'Készítette a BCC Media';
@@ -55,7 +60,8 @@ class SHu extends S {
   String get faq => 'Gyakran ismételt kérdések';
 
   @override
-  String get bccMediaCenter => 'A BCC Media a BCC szövetség médiaalapítványa, amely pozitív és keresztény értékeket tartalmazó tartalmakat gyárt és terjeszt.';
+  String get bccMediaCenter =>
+      'A BCC Media a BCC szövetség médiaalapítványa, amely pozitív és keresztény értékeket tartalmazó tartalmakat gyárt és terjeszt.';
 
   @override
   String get signInButton => 'Bejelentkezés';
@@ -70,10 +76,12 @@ class SHu extends S {
   String get signUpTitle => 'Regisztráció';
 
   @override
-  String get signUpDescription => 'Hozzáférhetsz több tartalomhoz és jobb funkciókhoz fiók létrehozásával.';
+  String get signUpDescription =>
+      'Hozzáférhetsz több tartalomhoz és jobb funkciókhoz fiók létrehozásával.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Kijelentem, hogy betöltöttem a 13. életévemet, és elfogadom az <a>adatvédelmi szabályzatot</a> és a <a>felhasználási feltételeket</a>.';
+  String get signUpAgreePrivacyPolicy =>
+      'Kijelentem, hogy betöltöttem a 13. életévemet, és elfogadom az <a>adatvédelmi szabályzatot</a> és a <a>felhasználási feltételeket</a>.';
 
   @override
   String get setPassword => 'Jelszó létrehozása';
@@ -109,10 +117,12 @@ class SHu extends S {
   String get open => 'Megnyitás';
 
   @override
-  String get loginFailedCheckNetwork => 'Sikertelen bejelentkezés. Ellenőrizd a hálózati kapcsolatodat és próbáld újra.';
+  String get loginFailedCheckNetwork =>
+      'Sikertelen bejelentkezés. Ellenőrizd a hálózati kapcsolatodat és próbáld újra.';
 
   @override
-  String get loginFailedTryAgain => 'Sikertelen bejelentkezés. Próbáld újra később.';
+  String get loginFailedTryAgain =>
+      'Sikertelen bejelentkezés. Próbáld újra később.';
 
   @override
   String get soundLanguage => 'Hang nyelve';
@@ -124,7 +134,8 @@ class SHu extends S {
   String get appLanguage => 'App nyelve';
 
   @override
-  String get checkNetwork => 'Ellenőrizd a hálózati kapcsolatodat és próbáld újra.';
+  String get checkNetwork =>
+      'Ellenőrizd a hálózati kapcsolatodat és próbáld újra.';
 
   @override
   String get tryAgain => 'Próbáld újra később.';
@@ -151,7 +162,8 @@ class SHu extends S {
   String get deviceInfo => 'Eszköz információ';
 
   @override
-  String get contactIncludeDeviceInfo => 'Adj meg eszközinformációkat a jobb támogatás érdekében.';
+  String get contactIncludeDeviceInfo =>
+      'Adj meg eszközinformációkat a jobb támogatás érdekében.';
 
   @override
   String get contactSeeData => 'Kattints az adatok megtekintéséhez.';
@@ -196,7 +208,8 @@ class SHu extends S {
   String get deviceInfoUserId => 'Felhasználó azonosítója';
 
   @override
-  String get deviceInfoPageDesc => 'Az üzeneted tartalmazni fogja ezeket az információkat, hogy jobban megértsük a problémát.';
+  String get deviceInfoPageDesc =>
+      'Az üzeneted tartalmazni fogja ezeket az információkat, hogy jobban megértsük a problémát.';
 
   @override
   String get userVoice => 'Javasolj egy funkciót';
@@ -208,7 +221,8 @@ class SHu extends S {
   String get cancelConfirmation => 'Biztosan el akarod vetni?';
 
   @override
-  String get cancelConfirmationDescription => 'Minden el nem mentett változtatás elveszik.';
+  String get cancelConfirmationDescription =>
+      'Minden el nem mentett változtatás elveszik.';
 
   @override
   String get goBack => 'Vissza';
@@ -259,7 +273,8 @@ class SHu extends S {
   String get noResults => 'Nincs eredmény';
 
   @override
-  String get doYouWantCast => 'Szeretnéd ezt a videót Chromecast-on keresztül közvetíteni?';
+  String get doYouWantCast =>
+      'Szeretnéd ezt a videót Chromecast-on keresztül közvetíteni?';
 
   @override
   String get play => 'Lejátszás';
@@ -321,7 +336,8 @@ class SHu extends S {
   String get high => 'Magas';
 
   @override
-  String get emptySearch => 'A BCC Media összes tartalmában kereshetsz. Sorozatok, videók és epizódok.';
+  String get emptySearch =>
+      'A BCC Media összes tartalmában kereshetsz. Sorozatok, videók és epizódok.';
 
   @override
   String get back => 'Vissza';
@@ -407,7 +423,8 @@ class SHu extends S {
   String get now => 'Most';
 
   @override
-  String get debugInfoExplanation => 'Az üzeneted tartalmazni fogja ezeket az információkat, hogy jobban megértsük a problémát.';
+  String get debugInfoExplanation =>
+      'Az üzeneted tartalmazni fogja ezeket az információkat, hogy jobban megértsük a problémát.';
 
   @override
   String get send => 'Küldés';
@@ -419,13 +436,15 @@ class SHu extends S {
   String get thankYouSupportTitle => 'Köszönjük visszajelzésedet!';
 
   @override
-  String get thankYouSupportDescription => 'Nagyra értékeljük az összes visszajelzést, és a lehető leghamarabb megválaszoljuk a kérdést.';
+  String get thankYouSupportDescription =>
+      'Nagyra értékeljük az összes visszajelzést, és a lehető leghamarabb megválaszoljuk a kérdést.';
 
   @override
   String get sendFail => 'Nem sikerült elküldeni az üzenetedet';
 
   @override
-  String get sendFailDescription => 'Valami hiba történt. Ellenőrizd az internetkapcsolatodat, és próbáld meg újra.';
+  String get sendFailDescription =>
+      'Valami hiba történt. Ellenőrizd az internetkapcsolatodat, és próbáld meg újra.';
 
   @override
   String get sendSuccessDescription => 'Nagyra értékeljük visszajelzésedet.';
@@ -492,7 +511,8 @@ class SHu extends S {
   String get appUpdateTitle => 'Frissítés szükséges';
 
   @override
-  String get appUpdateRequest => 'Kérjük, töltsd le a legújabb alkalmazást, hogy élvezhesd a legújabb funkciókat és hibajavításokat.';
+  String get appUpdateRequest =>
+      'Kérjük, töltsd le a legújabb alkalmazást, hogy élvezhesd a legújabb funkciókat és hibajavításokat.';
 
   @override
   String get appUpdateAccepted => 'Frissítés';
@@ -542,7 +562,8 @@ class SHu extends S {
   String get subtitlesLanguage => 'Feliratok nyelve';
 
   @override
-  String get removeFromRecentSearches => 'Törölni szeretnéd ezt az elemet az utolsó keresésekből?';
+  String get removeFromRecentSearches =>
+      'Törölni szeretnéd ezt az elemet az utolsó keresésekből?';
 
   @override
   String get noTransmissionToday => 'Mai napra nincs tervezett adás';
@@ -578,16 +599,19 @@ class SHu extends S {
   String get tasksCompleted => 'feladatok elvégezve';
 
   @override
-  String get studyCompleteTaskDescription => 'Feladatok elvégzése és a kapcsolódó tartalom felfedezése';
+  String get studyCompleteTaskDescription =>
+      'Feladatok elvégzése és a kapcsolódó tartalom felfedezése';
 
   @override
   String get discoverMore => 'Fedezz fel többet';
 
   @override
-  String get completePreviousTasks => 'Fejezd be a korábbi feladatokat a feloldáshoz';
+  String get completePreviousTasks =>
+      'Fejezd be a korábbi feladatokat a feloldáshoz';
 
   @override
-  String get studyDiscoverMoreDescription => 'További inspiráció és betekintés kapcsolódó tartalmakból';
+  String get studyDiscoverMoreDescription =>
+      'További inspiráció és betekintés kapcsolódó tartalmakból';
 
   @override
   String get watchAgain => 'Nézd meg újra';
@@ -611,10 +635,12 @@ class SHu extends S {
   String get startStudy => 'Tanulmányozás megkezdése';
 
   @override
-  String get videoCompletedText => 'Nagyszerű munka a tanulmányi téma befejezésében.';
+  String get videoCompletedText =>
+      'Nagyszerű munka a tanulmányi téma befejezésében.';
 
   @override
-  String get achievementFirstDescription => 'Szép munka, hogy befejezted a videót és megszerezted az első előrehaladási eredményedet.';
+  String get achievementFirstDescription =>
+      'Szép munka, hogy befejezted a videót és megszerezted az első előrehaladási eredményedet.';
 
   @override
   String achievementStudyTopic(String name) {
@@ -656,7 +682,8 @@ class SHu extends S {
   }
 
   @override
-  String get passwordConditionComplexity => 'Kisbetűket, nagybetűket és számokat kell tartalmaznia.';
+  String get passwordConditionComplexity =>
+      'Kisbetűket, nagybetűket és számokat kell tartalmaznia.';
 
   @override
   String get oops => 'Hoppá!';
@@ -668,10 +695,12 @@ class SHu extends S {
   String get notFound => 'Úgy tűnik, hogy a keresett tartalom nem létezik.';
 
   @override
-  String get mustBeLoggedIn => 'Be kell jelentkezned, hogy megnézhesd ezt a tartalmat';
+  String get mustBeLoggedIn =>
+      'Be kell jelentkezned, hogy megnézhesd ezt a tartalmat';
 
   @override
-  String get plentyOfOtherContent => 'Ne aggódj, még rengeteg más tartalmat élvezhetsz!';
+  String get plentyOfOtherContent =>
+      'Ne aggódj, még rengeteg más tartalmat élvezhetsz!';
 
   @override
   String get notAchieved => 'Nem teljesült';
@@ -686,7 +715,8 @@ class SHu extends S {
   String get didYouKnowTitle => 'Tudtad?';
 
   @override
-  String get didYouKnowContent => 'A szívre koppintva hozzáadhatod kedvenc műsoraidat \"A listám”-hoz.';
+  String get didYouKnowContent =>
+      'A szívre koppintva hozzáadhatod kedvenc műsoraidat \"A listám”-hoz.';
 
   @override
   String get selectSeason => 'Évad kiválasztása';
@@ -695,7 +725,8 @@ class SHu extends S {
   String get deleteMyAccount => 'Fiókom törlése';
 
   @override
-  String get iAmSureIWantToDelete => 'Biztos vagyok benne, hogy törölni szeretném a fiókomat és a BCC Media alkalmazással kapcsolatos adataimat.';
+  String get iAmSureIWantToDelete =>
+      'Biztos vagyok benne, hogy törölni szeretném a fiókomat és a BCC Media alkalmazással kapcsolatos adataimat.';
 
   @override
   String get areYouSure => 'Biztos vagy ebben?';
@@ -704,7 +735,8 @@ class SHu extends S {
   String get youCanContactUsAt => 'Kapcsolatba léphetsz velünk az alábbi címen';
 
   @override
-  String get biblekidsAbout => 'A Bible Kids a BCC Media kezdeményezése, amely a BCC Szövetségen belül működő médiaalapítvány, amely pozitív és keresztény értékeket képviselő tartalmakat állít elő és terjeszt.';
+  String get biblekidsAbout =>
+      'A Bible Kids a BCC Media kezdeményezése, amely a BCC Szövetségen belül működő médiaalapítvány, amely pozitív és keresztény értékeket képviselő tartalmakat állít elő és terjeszt.';
 
   @override
   String get askYourParents => 'Kérdezd meg a szüleidet';
@@ -719,7 +751,8 @@ class SHu extends S {
   String get checkAnswerButton => 'Válasz ellenőrzése';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'Ez a videó csak bejelentkezett felhasználók számára érhető el.';
+  String get videoOnlyAccessibleToLoggedIn =>
+      'Ez a videó csak bejelentkezett felhasználók számára érhető el.';
 
   @override
   String get verifyYourAccount => 'Erősítsd meg a fiókodat';
@@ -728,7 +761,8 @@ class SHu extends S {
   String get weHaveSentAnEmailTo => 'Küldtünk egy e-mailt a következő címre';
 
   @override
-  String get clickTheLinkToVerify => 'Kattints az e-mailben található linkre a fiókod megerősítéséhez.';
+  String get clickTheLinkToVerify =>
+      'Kattints az e-mailben található linkre a fiókod megerősítéséhez.';
 
   @override
   String get openEmailApp => 'E-mail alkalmazás megnyitása';
@@ -743,22 +777,27 @@ class SHu extends S {
   String get verificationEmailSent => 'Megerősítő e-mail elküldve';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'Ha még mindig nem kaptál e-mailt, kérjük, vedd fel a kapcsolatot az ügyfélszolgálattal a következő címen';
+  String get ifYouDidntReceiveVerificationEmail =>
+      'Ha még mindig nem kaptál e-mailt, kérjük, vedd fel a kapcsolatot az ügyfélszolgálattal a következő címen';
 
   @override
   String get accountCreated => 'Fiók létrehozva';
 
   @override
-  String get youCanNowUseYourAccount => 'Most már használhatod a fiókodat, és felfedezheted a különböző építő tartalmakat.';
+  String get youCanNowUseYourAccount =>
+      'Most már használhatod a fiókodat, és felfedezheted a különböző építő tartalmakat.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'Most már bejelentkezhetsz a fiókodba, és felfedezheted a különböző építő tartalmakat.';
+  String get youCanNowLogInToYourAccount =>
+      'Most már bejelentkezhetsz a fiókodba, és felfedezheted a különböző építő tartalmakat.';
 
   @override
-  String get accountDeletionExplanation => 'Éppen kéred a BCC Media fiókod és az alkalmazással kapcsolatos összes adatod törlését.';
+  String get accountDeletionExplanation =>
+      'Éppen kéred a BCC Media fiókod és az alkalmazással kapcsolatos összes adatod törlését.';
 
   @override
-  String get accountDeletionWarning => 'Ezt a műveletet nem lehet visszafordítani.';
+  String get accountDeletionWarning =>
+      'Ezt a műveletet nem lehet visszafordítani.';
 
   @override
   String accountDeletionTimeframe(int x) {
@@ -823,7 +862,8 @@ class SHu extends S {
   String get notEnoughAvailableSpace => 'Nincs elég szabad hely az eszközön';
 
   @override
-  String get considerDeletingOtherVideos => 'Fontold meg az alkalmazásban letöltött egyéb videók törlését.';
+  String get considerDeletingOtherVideos =>
+      'Fontold meg az alkalmazásban letöltött egyéb videók törlését.';
 
   @override
   String theVideoFileSizeIs(String size) {
@@ -837,7 +877,8 @@ class SHu extends S {
   String get saveYourFavorites => 'Kedvenc videóid mentése';
 
   @override
-  String get saveYourFavoritesDescription => 'Koppints a szív ikonra egy videón, ha el szeretnéd menteni a profilodba.';
+  String get saveYourFavoritesDescription =>
+      'Koppints a szív ikonra egy videón, ha el szeretnéd menteni a profilodba.';
 
   @override
   String get yourFavorites => 'Kedvenceid';
@@ -846,16 +887,19 @@ class SHu extends S {
   String get downloaded => 'Letöltve';
 
   @override
-  String get saveVideosForOfflineViewing => 'Videók mentése offline megtekintéshez';
+  String get saveVideosForOfflineViewing =>
+      'Videók mentése offline megtekintéshez';
 
   @override
-  String get tapOnTheDownloadIcon => 'Koppints a letöltés ikonra egy videón, hogy letöltsd és lejátszd offline állapotban.';
+  String get tapOnTheDownloadIcon =>
+      'Koppints a letöltés ikonra egy videón, hogy letöltsd és lejátszd offline állapotban.';
 
   @override
   String get removeOfflineVideo => 'Offline videó eltávolítása?';
 
   @override
-  String get removeOfflineVideoDescription => 'A videó eltávolításával a továbbiakban nem lesz elérhető hálózati kapcsolat nélkül.';
+  String get removeOfflineVideoDescription =>
+      'A videó eltávolításával a továbbiakban nem lesz elérhető hálózati kapcsolat nélkül.';
 
   @override
   String get removeFromDeviceButton => 'Eltávolítás a készülékről';
@@ -867,16 +911,19 @@ class SHu extends S {
   String get noInternetConnection => 'Nincs internetkapcsolat';
 
   @override
-  String get noInternetConnectionDescription => 'Az összes videó eléréséhez csatlakozz az internethez.';
+  String get noInternetConnectionDescription =>
+      'Az összes videó eléréséhez csatlakozz az internethez.';
 
   @override
   String get noInternetButDontWorry => 'Nincs internetkapcsolat, de ne aggódj.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Itt találod az összes videót, amelyet letöltöttél a készülékedre.';
+  String get hereAreAllTheVideosYouDownloaded =>
+      'Itt találod az összes videót, amelyet letöltöttél a készülékedre.';
 
   @override
-  String get connectToExplore => 'Az összes videó felfedezéséhez csatlakozz az internethez.';
+  String get connectToExplore =>
+      'Az összes videó felfedezéséhez csatlakozz az internethez.';
 
   @override
   String get language => 'Nyelv';
@@ -896,7 +943,8 @@ class SHu extends S {
   String get subtitlesIncluded => 'Feliratozva';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'Minden felirat elérhető lesz offline';
+  String get allSubtitlesWillBeAvailableOffline =>
+      'Minden felirat elérhető lesz offline';
 
   @override
   String get downloading => 'Letöltés';
@@ -946,7 +994,8 @@ class SHu extends S {
   String get preferredLanguages => 'Elsődleges nyelvek';
 
   @override
-  String get contentLanguageExplanation => 'Rendezd át a nyelveket a kívánt hang- és feliratnyelvnek megfelelően.';
+  String get contentLanguageExplanation =>
+      'Rendezd át a nyelveket a kívánt hang- és feliratnyelvnek megfelelően.';
 
   @override
   String get otherLanguages => 'Más nyelvek';
@@ -967,13 +1016,15 @@ class SHu extends S {
   String get autoGenerated => 'Automatikusan generált';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'Az átiratok automatikusan generáltak és hibákat tartalmazhatnak.';
+  String get shortsTranscriptionDisclaimer =>
+      'Az átiratok automatikusan generáltak és hibákat tartalmazhatnak.';
 
   @override
   String get beta => 'Béta';
 
   @override
-  String get betaExplanation => 'Ez a funkció béta verzióban van, és jelenleg nem érhető el minden felhasználó számára. Kérjük, hogy bármilyen problémát vagy visszajelzést a beállításokban található \'Kapcsolat\' gombon keresztül jelezz.';
+  String get betaExplanation =>
+      'Ez a funkció béta verzióban van, és jelenleg nem érhető el minden felhasználó számára. Kérjük, hogy bármilyen problémát vagy visszajelzést a beállításokban található \'Kapcsolat\' gombon keresztül jelezz.';
 
   @override
   String get likedShorts => 'Like-olt shortok';
@@ -982,25 +1033,29 @@ class SHu extends S {
   String get saveYourFavoriteShorts => 'Kedvenc shortok mentése';
 
   @override
-  String get featureNotAvailableYet => 'Ez a funkció még nem érhető el a készülékeden. Próbáld újra később.';
+  String get featureNotAvailableYet =>
+      'Ez a funkció még nem érhető el a készülékeden. Próbáld újra később.';
 
   @override
   String get newFeature => 'Új funkció';
 
   @override
-  String get shortsFeatureDescription => 'Fedezz fel rövid és erőteljes kivonatokat és ugorj a teljes epizódra.';
+  String get shortsFeatureDescription =>
+      'Fedezz fel rövid és erőteljes kivonatokat és ugorj a teljes epizódra.';
 
   @override
   String get likedAndSaved => 'Kedvelt és elmentett';
 
   @override
-  String get shortsLikedAndSavedDescription => 'A profilodban megtalálhatod az összes kedvelt shortodat.';
+  String get shortsLikedAndSavedDescription =>
+      'A profilodban megtalálhatod az összes kedvelt shortodat.';
 
   @override
   String get excerptFrom => 'Részlet a';
 
   @override
-  String get downloadedVideosGuideDescription => 'A letöltött videókat a \"Profil\" menüpont alatt találod.';
+  String get downloadedVideosGuideDescription =>
+      'A letöltött videókat a \"Profil\" menüpont alatt találod.';
 
   @override
   String get openStore => 'App Store/Play Áruház megnyitása';
@@ -1018,7 +1073,8 @@ class SHu extends S {
   String get original => 'Eredeti';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Nyisd meg a beállításokat a videó szöveg nyelvének megváltoztatásához';
+  String get openSettingsToChangeVideoLang =>
+      'Nyisd meg a beállításokat a videó szöveg nyelvének megváltoztatásához';
 
   @override
   String get somethingWentWrong => 'Hiba lépett fel';
@@ -1048,7 +1104,8 @@ class SHu extends S {
   String get answerTheQuiz => 'Válaszolj a kvízre';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Szerezz pontokat a helyes válaszadással';
+  String get studyAnswerTheQuizDescription =>
+      'Szerezz pontokat a helyes válaszadással';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
@@ -1065,10 +1122,12 @@ class SHu extends S {
   String get studyAllAnswersCorrectDescription => 'Jól csináltad!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Legközelebb kicsit jobban figyelj!';
+  String get studyNoAnswersCorrectDescription =>
+      'Legközelebb kicsit jobban figyelj!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Jól csináltad! Ám még mindig van hová fejlődni.';
+  String get studySomeAnswersCorrectDescription =>
+      'Jól csináltad! Ám még mindig van hová fejlődni.';
 
   @override
   String get studyAllQuestionsAnswered => 'Minden kérdésre válaszoltál';
@@ -1089,5 +1148,6 @@ class SHu extends S {
   String get notifications => 'Notifications';
 
   @override
-  String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
+  String get onlyShowContentWithPreferredLanguages =>
+      'Only show content with my preferred languages';
 }

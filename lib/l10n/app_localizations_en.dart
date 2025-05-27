@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -34,13 +36,16 @@ class SEn extends S {
   String get loginPageDisplay1 => 'The most powerful\n message in the world';
 
   @override
-  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+  String get loginPageDisplay2 =>
+      'Watch series, shows and films based on Christian values';
 
   @override
-  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
+  String get kidsOnboardingTitle =>
+      'We bring the message of the Bible to life!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
+  String get kidsOnboardingSecondaryTitle =>
+      'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';
 
   @override
   String get loginPageDisplay3 => 'Produced by BCC Media';
@@ -55,7 +60,8 @@ class SEn extends S {
   String get faq => 'Frequently asked questions';
 
   @override
-  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
+  String get bccMediaCenter =>
+      'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
 
   @override
   String get signInButton => 'Sign in';
@@ -70,10 +76,12 @@ class SEn extends S {
   String get signUpTitle => 'Sign up';
 
   @override
-  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+  String get signUpDescription =>
+      'Get access to more content and better features by creating an account.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy =>
+      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
   String get setPassword => 'Set password';
@@ -85,7 +93,8 @@ class SEn extends S {
   String get loggedOutTitle => 'Logged out';
 
   @override
-  String get loggedOutMessage => 'You have been logged out. Please log in again.';
+  String get loggedOutMessage =>
+      'You have been logged out. Please log in again.';
 
   @override
   String get makeDonation => 'Make a donation';
@@ -109,7 +118,8 @@ class SEn extends S {
   String get open => 'Open';
 
   @override
-  String get loginFailedCheckNetwork => 'Login failed. Check your network connection and try again.';
+  String get loginFailedCheckNetwork =>
+      'Login failed. Check your network connection and try again.';
 
   @override
   String get loginFailedTryAgain => 'Login failed. Please try again later.';
@@ -151,7 +161,8 @@ class SEn extends S {
   String get deviceInfo => 'Device info';
 
   @override
-  String get contactIncludeDeviceInfo => 'Include device information for better support.';
+  String get contactIncludeDeviceInfo =>
+      'Include device information for better support.';
 
   @override
   String get contactSeeData => 'Click to see data.';
@@ -196,7 +207,8 @@ class SEn extends S {
   String get deviceInfoUserId => 'User ID';
 
   @override
-  String get deviceInfoPageDesc => 'Your message will include this information, to help us provide better support.';
+  String get deviceInfoPageDesc =>
+      'Your message will include this information, to help us provide better support.';
 
   @override
   String get userVoice => 'Suggest a feature';
@@ -208,7 +220,8 @@ class SEn extends S {
   String get cancelConfirmation => 'Are you sure you want to cancel?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription =>
+      'Any unsaved changes will be lost.';
 
   @override
   String get goBack => 'Go back';
@@ -321,7 +334,8 @@ class SEn extends S {
   String get high => 'High';
 
   @override
-  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
+  String get emptySearch =>
+      'You can search all content from BCC Media. Series, videos and episodes.';
 
   @override
   String get back => 'Back';
@@ -407,7 +421,8 @@ class SEn extends S {
   String get now => 'Now';
 
   @override
-  String get debugInfoExplanation => 'Your message will include this information, to help us better understand the issue.';
+  String get debugInfoExplanation =>
+      'Your message will include this information, to help us better understand the issue.';
 
   @override
   String get send => 'Send';
@@ -419,13 +434,15 @@ class SEn extends S {
   String get thankYouSupportTitle => 'Thank you for your feedback!';
 
   @override
-  String get thankYouSupportDescription => 'We appreciate all feedback and we will address the issue as soon as possible.';
+  String get thankYouSupportDescription =>
+      'We appreciate all feedback and we will address the issue as soon as possible.';
 
   @override
   String get sendFail => 'Couldn\'t send your message';
 
   @override
-  String get sendFailDescription => 'Something went wrong. Check your internet connection and try again.';
+  String get sendFailDescription =>
+      'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get sendSuccessDescription => 'We appreciate your feedback.';
@@ -492,7 +509,8 @@ class SEn extends S {
   String get appUpdateTitle => 'Update required';
 
   @override
-  String get appUpdateRequest => 'Please download the latest app to enjoy all the latest features and bug fixes.';
+  String get appUpdateRequest =>
+      'Please download the latest app to enjoy all the latest features and bug fixes.';
 
   @override
   String get appUpdateAccepted => 'Update';
@@ -542,7 +560,8 @@ class SEn extends S {
   String get subtitlesLanguage => 'Subtitles language';
 
   @override
-  String get removeFromRecentSearches => 'Do you want to remove this element from recent searches?';
+  String get removeFromRecentSearches =>
+      'Do you want to remove this element from recent searches?';
 
   @override
   String get noTransmissionToday => 'No scheduled transmission for today';
@@ -578,7 +597,8 @@ class SEn extends S {
   String get tasksCompleted => 'tasks completed';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get studyCompleteTaskDescription =>
+      'Complete tasks and discover related resources';
 
   @override
   String get discoverMore => 'Discover more';
@@ -587,7 +607,8 @@ class SEn extends S {
   String get completePreviousTasks => 'Complete previous tasks to unlock';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get studyDiscoverMoreDescription =>
+      'Find more inspiration and insight from related resources';
 
   @override
   String get watchAgain => 'Watch again';
@@ -614,7 +635,8 @@ class SEn extends S {
   String get videoCompletedText => 'Great job on completing the video.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription =>
+      'Great job on completing the video and earning your first progress achievement.';
 
   @override
   String achievementStudyTopic(String name) {
@@ -656,7 +678,8 @@ class SEn extends S {
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity =>
+      'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Oops!';
@@ -665,13 +688,15 @@ class SEn extends S {
   String get dontHaveAccess => 'You do not have access to this content.';
 
   @override
-  String get notFound => 'The content you are looking for doesn\'t seem to exist.';
+  String get notFound =>
+      'The content you are looking for doesn\'t seem to exist.';
 
   @override
   String get mustBeLoggedIn => 'You need to be logged in to watch this content';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent =>
+      'Don\'t worry, there\'s still plenty of content to enjoy!';
 
   @override
   String get notAchieved => 'Not achieved';
@@ -686,7 +711,8 @@ class SEn extends S {
   String get didYouKnowTitle => 'Did you know?';
 
   @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+  String get didYouKnowContent =>
+      'You can add your favorite shows to \"My List\" by tapping the heart.';
 
   @override
   String get selectSeason => 'Select season';
@@ -695,7 +721,8 @@ class SEn extends S {
   String get deleteMyAccount => 'Delete my account';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete =>
+      'I am sure I want to delete my account and my data related to the BCC Media app.';
 
   @override
   String get areYouSure => 'Are you sure?';
@@ -704,7 +731,8 @@ class SEn extends S {
   String get youCanContactUsAt => 'You can contact us at';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
+  String get biblekidsAbout =>
+      'Bible Kids is an initiative by BCC Media, a media foundation within the BCC Federation that produces and distributes content with positive and Christian values.';
 
   @override
   String get askYourParents => 'Ask your parents';
@@ -719,7 +747,8 @@ class SEn extends S {
   String get checkAnswerButton => 'Check answer';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'This video is only accessible to users that are logged in to the app.';
+  String get videoOnlyAccessibleToLoggedIn =>
+      'This video is only accessible to users that are logged in to the app.';
 
   @override
   String get verifyYourAccount => 'Verify your account';
@@ -728,7 +757,8 @@ class SEn extends S {
   String get weHaveSentAnEmailTo => 'We have sent an email to';
 
   @override
-  String get clickTheLinkToVerify => 'Click the link in the email to verify your account.';
+  String get clickTheLinkToVerify =>
+      'Click the link in the email to verify your account.';
 
   @override
   String get openEmailApp => 'Open email app';
@@ -743,22 +773,27 @@ class SEn extends S {
   String get verificationEmailSent => 'Verification email sent';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'If you still did not receive an email, please contact support at';
+  String get ifYouDidntReceiveVerificationEmail =>
+      'If you still did not receive an email, please contact support at';
 
   @override
   String get accountCreated => 'Account created';
 
   @override
-  String get youCanNowUseYourAccount => 'You can now use your account and explore a variety of edifying content.';
+  String get youCanNowUseYourAccount =>
+      'You can now use your account and explore a variety of edifying content.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'You can now log in to your account and explore a variety of edifying content.';
+  String get youCanNowLogInToYourAccount =>
+      'You can now log in to your account and explore a variety of edifying content.';
 
   @override
-  String get accountDeletionExplanation => 'You are about to request to delete your account with BCC Media and all your data related to this app.';
+  String get accountDeletionExplanation =>
+      'You are about to request to delete your account with BCC Media and all your data related to this app.';
 
   @override
-  String get accountDeletionWarning => 'This is an action that cannot be undone.';
+  String get accountDeletionWarning =>
+      'This is an action that cannot be undone.';
 
   @override
   String accountDeletionTimeframe(int x) {
@@ -820,10 +855,12 @@ class SEn extends S {
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Not enough available space on your device';
+  String get notEnoughAvailableSpace =>
+      'Not enough available space on your device';
 
   @override
-  String get considerDeletingOtherVideos => 'Consider deleting other videos you downloaded in the app.';
+  String get considerDeletingOtherVideos =>
+      'Consider deleting other videos you downloaded in the app.';
 
   @override
   String theVideoFileSizeIs(String size) {
@@ -837,7 +874,8 @@ class SEn extends S {
   String get saveYourFavorites => 'Save your favorite videos';
 
   @override
-  String get saveYourFavoritesDescription => 'Tap on the heart icon on a video to save it in your profile.';
+  String get saveYourFavoritesDescription =>
+      'Tap on the heart icon on a video to save it in your profile.';
 
   @override
   String get yourFavorites => 'Your favorites';
@@ -849,13 +887,15 @@ class SEn extends S {
   String get saveVideosForOfflineViewing => 'Save videos for offline viewing';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tap on the download icon on a video, to download and play while offline.';
+  String get tapOnTheDownloadIcon =>
+      'Tap on the download icon on a video, to download and play while offline.';
 
   @override
   String get removeOfflineVideo => 'Remove offline video?';
 
   @override
-  String get removeOfflineVideoDescription => 'By removing this video it will no longer be available without a network connection.';
+  String get removeOfflineVideoDescription =>
+      'By removing this video it will no longer be available without a network connection.';
 
   @override
   String get removeFromDeviceButton => 'Remove from device';
@@ -867,16 +907,20 @@ class SEn extends S {
   String get noInternetConnection => 'No internet connection';
 
   @override
-  String get noInternetConnectionDescription => 'Connect to the internet to access all videos.';
+  String get noInternetConnectionDescription =>
+      'Connect to the internet to access all videos.';
 
   @override
-  String get noInternetButDontWorry => 'No internet connection,\nbut don\'t worry.';
+  String get noInternetButDontWorry =>
+      'No internet connection,\nbut don\'t worry.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Here are all the videos you have downloaded to your device.';
+  String get hereAreAllTheVideosYouDownloaded =>
+      'Here are all the videos you have downloaded to your device.';
 
   @override
-  String get connectToExplore => 'Connect to the internet to explore all videos.';
+  String get connectToExplore =>
+      'Connect to the internet to explore all videos.';
 
   @override
   String get language => 'Language';
@@ -896,7 +940,8 @@ class SEn extends S {
   String get subtitlesIncluded => 'Subtitles included';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'All subtitles will be available offline';
+  String get allSubtitlesWillBeAvailableOffline =>
+      'All subtitles will be available offline';
 
   @override
   String get downloading => 'Downloading';
@@ -946,7 +991,8 @@ class SEn extends S {
   String get preferredLanguages => 'Preferred languages';
 
   @override
-  String get contentLanguageExplanation => 'Reorder the languages to match your preference for audio & subtitle language.';
+  String get contentLanguageExplanation =>
+      'Reorder the languages to match your preference for audio & subtitle language.';
 
   @override
   String get otherLanguages => 'Other languages';
@@ -967,13 +1013,15 @@ class SEn extends S {
   String get autoGenerated => 'Auto-generated';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'The transcriptions are auto-generated and might contain errors.';
+  String get shortsTranscriptionDisclaimer =>
+      'The transcriptions are auto-generated and might contain errors.';
 
   @override
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'This feature is in beta and is currently not released to all users. Please report any issues or feedback via the \'Contact\' button in settings.';
+  String get betaExplanation =>
+      'This feature is in beta and is currently not released to all users. Please report any issues or feedback via the \'Contact\' button in settings.';
 
   @override
   String get likedShorts => 'Liked shorts';
@@ -982,25 +1030,29 @@ class SEn extends S {
   String get saveYourFavoriteShorts => 'Save your favorite shorts';
 
   @override
-  String get featureNotAvailableYet => 'This feature is not available on your device yet. Please try again later.';
+  String get featureNotAvailableYet =>
+      'This feature is not available on your device yet. Please try again later.';
 
   @override
   String get newFeature => 'New feature';
 
   @override
-  String get shortsFeatureDescription => 'Discover short and powerful excerpts, and jump right into its full episode.';
+  String get shortsFeatureDescription =>
+      'Discover short and powerful excerpts, and jump right into its full episode.';
 
   @override
   String get likedAndSaved => 'Liked and saved';
 
   @override
-  String get shortsLikedAndSavedDescription => 'You can find all your liked shorts in your profile.';
+  String get shortsLikedAndSavedDescription =>
+      'You can find all your liked shorts in your profile.';
 
   @override
   String get excerptFrom => 'Excerpt from';
 
   @override
-  String get downloadedVideosGuideDescription => 'You can find your downloaded videos under \"Profile\".';
+  String get downloadedVideosGuideDescription =>
+      'You can find your downloaded videos under \"Profile\".';
 
   @override
   String get openStore => 'Open store';
@@ -1018,7 +1070,8 @@ class SEn extends S {
   String get original => 'Original';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open settings to change the video text language';
+  String get openSettingsToChangeVideoLang =>
+      'Open settings to change the video text language';
 
   @override
   String get somethingWentWrong => 'Something went wrong';
@@ -1048,7 +1101,8 @@ class SEn extends S {
   String get answerTheQuiz => 'Answer the quiz';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription =>
+      'Earn points by answering correctly';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
@@ -1065,10 +1119,12 @@ class SEn extends S {
   String get studyAllAnswersCorrectDescription => 'Well done!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription =>
+      'Better listen a bit closer next time!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription =>
+      'Well done! But still room for improvement.';
 
   @override
   String get studyAllQuestionsAnswered => 'You answered all questions';
@@ -1089,5 +1145,6 @@ class SEn extends S {
   String get notifications => 'Notifications';
 
   @override
-  String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
+  String get onlyShowContentWithPreferredLanguages =>
+      'Only show content with my preferred languages';
 }

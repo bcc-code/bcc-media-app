@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -34,13 +36,15 @@ class SDa extends S {
   String get loginPageDisplay1 => 'Det kraftigste budskab i verden';
 
   @override
-  String get loginPageDisplay2 => 'Se serier, shows og film baseret på kristne værdier';
+  String get loginPageDisplay2 =>
+      'Se serier, shows og film baseret på kristne værdier';
 
   @override
   String get kidsOnboardingTitle => 'Vi vækker Bibelens budskab til live!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Vores vision er at børnene skal opleve Jesus som deres allerbedste ven - for resten af deres liv.';
+  String get kidsOnboardingSecondaryTitle =>
+      'Vores vision er at børnene skal opleve Jesus som deres allerbedste ven - for resten af deres liv.';
 
   @override
   String get loginPageDisplay3 => 'Produceret af BCC Media';
@@ -55,7 +59,8 @@ class SDa extends S {
   String get faq => 'Ofte stillede spørgsmål';
 
   @override
-  String get bccMediaCenter => 'BCC Media er en mediefond i BCC-forbundet, der producerer og distribuerer indhold med positive og kristne værdier.';
+  String get bccMediaCenter =>
+      'BCC Media er en mediefond i BCC-forbundet, der producerer og distribuerer indhold med positive og kristne værdier.';
 
   @override
   String get signInButton => 'Log ind';
@@ -70,10 +75,12 @@ class SDa extends S {
   String get signUpTitle => 'Tilmeld dig';
 
   @override
-  String get signUpDescription => 'Få adgang til mere indhold og bedre funktioner ved at oprette en konto.';
+  String get signUpDescription =>
+      'Få adgang til mere indhold og bedre funktioner ved at oprette en konto.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Jeg bekræfter, at jeg er 13 år eller ældre, og jeg er indforstået med følgende  <a>Privatlivspolitik</a> og <a>Vilkår for brug</a>. ';
+  String get signUpAgreePrivacyPolicy =>
+      'Jeg bekræfter, at jeg er 13 år eller ældre, og jeg er indforstået med følgende  <a>Privatlivspolitik</a> og <a>Vilkår for brug</a>. ';
 
   @override
   String get setPassword => 'Skriv password';
@@ -85,7 +92,8 @@ class SDa extends S {
   String get loggedOutTitle => 'Logget ud';
 
   @override
-  String get loggedOutMessage => 'Du er blevet logget ud. Venligst log ind igen.';
+  String get loggedOutMessage =>
+      'Du er blevet logget ud. Venligst log ind igen.';
 
   @override
   String get makeDonation => 'Giv en donation';
@@ -109,7 +117,8 @@ class SDa extends S {
   String get open => 'Åben';
 
   @override
-  String get loginFailedCheckNetwork => 'Login mislykkedes. Tjek din netværksforbindelse, og prøv igen.';
+  String get loginFailedCheckNetwork =>
+      'Login mislykkedes. Tjek din netværksforbindelse, og prøv igen.';
 
   @override
   String get loginFailedTryAgain => 'Login mislykkedes. Prøv igen senere.';
@@ -151,7 +160,8 @@ class SDa extends S {
   String get deviceInfo => 'Info om enheden';
 
   @override
-  String get contactIncludeDeviceInfo => 'Inkluder enhedsoplysninger for bedre support';
+  String get contactIncludeDeviceInfo =>
+      'Inkluder enhedsoplysninger for bedre support';
 
   @override
   String get contactSeeData => 'Klik for at se data';
@@ -196,7 +206,8 @@ class SDa extends S {
   String get deviceInfoUserId => 'Bruger-ID';
 
   @override
-  String get deviceInfoPageDesc => 'Din besked vil indeholde disse oplysninger for at hjælpe os med at yde bedre support';
+  String get deviceInfoPageDesc =>
+      'Din besked vil indeholde disse oplysninger for at hjælpe os med at yde bedre support';
 
   @override
   String get userVoice => 'Foreslå en funktion';
@@ -208,7 +219,8 @@ class SDa extends S {
   String get cancelConfirmation => 'Er du sikker på at du vil annullere?';
 
   @override
-  String get cancelConfirmationDescription => 'Alle ændringer, der ikke er gemt, vil gå tabt.';
+  String get cancelConfirmationDescription =>
+      'Alle ændringer, der ikke er gemt, vil gå tabt.';
 
   @override
   String get goBack => 'Tilbage';
@@ -291,7 +303,8 @@ class SDa extends S {
   String get tVLogin => 'TV Login';
 
   @override
-  String get tVLoginSuccessful => 'Indlogningen lykkedes, bekræft venligst på TV.\n';
+  String get tVLoginSuccessful =>
+      'Indlogningen lykkedes, bekræft venligst på TV.\n';
 
   @override
   String get seeMore => 'Se mere';
@@ -321,7 +334,8 @@ class SDa extends S {
   String get high => 'Høj';
 
   @override
-  String get emptySearch => 'Du kan søge i alt indhold fra BCC Media. Serier, film og episoder.';
+  String get emptySearch =>
+      'Du kan søge i alt indhold fra BCC Media. Serier, film og episoder.';
 
   @override
   String get back => 'Tilbage';
@@ -407,7 +421,8 @@ class SDa extends S {
   String get now => 'Nu';
 
   @override
-  String get debugInfoExplanation => 'Din besked vil indeholde disse oplysninger for at hjælpe os med at forstå problemet bedre.';
+  String get debugInfoExplanation =>
+      'Din besked vil indeholde disse oplysninger for at hjælpe os med at forstå problemet bedre.';
 
   @override
   String get send => 'Send';
@@ -419,13 +434,15 @@ class SDa extends S {
   String get thankYouSupportTitle => 'Tak for din feedback!';
 
   @override
-  String get thankYouSupportDescription => 'Vi sætter pris på al feedback, og vi vil løse problemet så hurtigt som muligt.';
+  String get thankYouSupportDescription =>
+      'Vi sætter pris på al feedback, og vi vil løse problemet så hurtigt som muligt.';
 
   @override
   String get sendFail => 'Kunne ikke sende din besked';
 
   @override
-  String get sendFailDescription => 'Kunne gik galt. Tjek din internetforbindelse og prøv igen.';
+  String get sendFailDescription =>
+      'Kunne gik galt. Tjek din internetforbindelse og prøv igen.';
 
   @override
   String get sendSuccessDescription => 'Vi sætter pris på din feedback.';
@@ -492,7 +509,8 @@ class SDa extends S {
   String get appUpdateTitle => 'Opdatering nødvendig';
 
   @override
-  String get appUpdateRequest => 'Download venligst den seneste app for at tage alle de nyeste funktioner og fejlrettelser i brug.';
+  String get appUpdateRequest =>
+      'Download venligst den seneste app for at tage alle de nyeste funktioner og fejlrettelser i brug.';
 
   @override
   String get appUpdateAccepted => 'Opdater';
@@ -542,7 +560,8 @@ class SDa extends S {
   String get subtitlesLanguage => 'Undertekster';
 
   @override
-  String get removeFromRecentSearches => 'Vil du fjerne dette element fra de seneste søgninger?';
+  String get removeFromRecentSearches =>
+      'Vil du fjerne dette element fra de seneste søgninger?';
 
   @override
   String get noTransmissionToday => 'Ingen planlagt sending i dag\n';
@@ -578,16 +597,19 @@ class SDa extends S {
   String get tasksCompleted => 'Opgaver udført';
 
   @override
-  String get studyCompleteTaskDescription => 'Fuldfør opgaver og opdag relateret indhold';
+  String get studyCompleteTaskDescription =>
+      'Fuldfør opgaver og opdag relateret indhold';
 
   @override
   String get discoverMore => 'Opdag mere';
 
   @override
-  String get completePreviousTasks => 'Fuldfør tidligere opgaver for at låse op';
+  String get completePreviousTasks =>
+      'Fuldfør tidligere opgaver for at låse op';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find mere inspiration fra relateret indhold\n';
+  String get studyDiscoverMoreDescription =>
+      'Find mere inspiration fra relateret indhold\n';
 
   @override
   String get watchAgain => 'Se igen';
@@ -614,7 +636,8 @@ class SDa extends S {
   String get videoCompletedText => 'Godt arbejde med at se hele videoen.\n';
 
   @override
-  String get achievementFirstDescription => 'Godt arbejde med at se hele videoen og få din første streak.\n';
+  String get achievementFirstDescription =>
+      'Godt arbejde med at se hele videoen og få din første streak.\n';
 
   @override
   String achievementStudyTopic(String name) {
@@ -656,7 +679,8 @@ class SDa extends S {
   }
 
   @override
-  String get passwordConditionComplexity => 'Skal indeholde små bogstaver, store bogstaver og tal.';
+  String get passwordConditionComplexity =>
+      'Skal indeholde små bogstaver, store bogstaver og tal.';
 
   @override
   String get oops => 'Ups!';
@@ -665,13 +689,15 @@ class SDa extends S {
   String get dontHaveAccess => 'Du har ikke adgang til dette indhold';
 
   @override
-  String get notFound => 'Det indhold, du leder efter, ser ikke ud til at eksistere.';
+  String get notFound =>
+      'Det indhold, du leder efter, ser ikke ud til at eksistere.';
 
   @override
   String get mustBeLoggedIn => 'Du må være logget ind for at se dette indhold';
 
   @override
-  String get plentyOfOtherContent => 'Bare rolig, der er stadig masser af andet indhold at se!';
+  String get plentyOfOtherContent =>
+      'Bare rolig, der er stadig masser af andet indhold at se!';
 
   @override
   String get notAchieved => 'Ikke opnået';
@@ -686,7 +712,8 @@ class SDa extends S {
   String get didYouKnowTitle => 'Vidste du?';
 
   @override
-  String get didYouKnowContent => 'Du kan tilføje dine favoritudsendelser til \"Min liste\" ved at trykke på hjertet.';
+  String get didYouKnowContent =>
+      'Du kan tilføje dine favoritudsendelser til \"Min liste\" ved at trykke på hjertet.';
 
   @override
   String get selectSeason => 'Vælg sæson';
@@ -695,7 +722,8 @@ class SDa extends S {
   String get deleteMyAccount => 'Slet min konto';
 
   @override
-  String get iAmSureIWantToDelete => 'Jeg er sikker på, at jeg vil slette min konto og mine data i BCC Media-appen.';
+  String get iAmSureIWantToDelete =>
+      'Jeg er sikker på, at jeg vil slette min konto og mine data i BCC Media-appen.';
 
   @override
   String get areYouSure => 'Er du sikker?';
@@ -704,7 +732,8 @@ class SDa extends S {
   String get youCanContactUsAt => 'Du kan kontakte os på';
 
   @override
-  String get biblekidsAbout => 'Bible Kids er et initiativ fra BCC Media, en mediestiftelsen under BCC-forbundet, som producerer og distribuerer indhold med positive og kristne værdier.';
+  String get biblekidsAbout =>
+      'Bible Kids er et initiativ fra BCC Media, en mediestiftelsen under BCC-forbundet, som producerer og distribuerer indhold med positive og kristne værdier.';
 
   @override
   String get askYourParents => 'Spørg dine forældre';
@@ -719,7 +748,8 @@ class SDa extends S {
   String get checkAnswerButton => 'Se svar';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'Denne video er kun tilgængelig for brugere, der er logget ind i appen.';
+  String get videoOnlyAccessibleToLoggedIn =>
+      'Denne video er kun tilgængelig for brugere, der er logget ind i appen.';
 
   @override
   String get verifyYourAccount => 'Bekræft din konto';
@@ -728,7 +758,8 @@ class SDa extends S {
   String get weHaveSentAnEmailTo => 'Vi har sendt en e-mail til';
 
   @override
-  String get clickTheLinkToVerify => 'Klik på linket i e-mailen for at bekræfte din konto.';
+  String get clickTheLinkToVerify =>
+      'Klik på linket i e-mailen for at bekræfte din konto.';
 
   @override
   String get openEmailApp => 'Åbn e-mail-appen';
@@ -743,22 +774,27 @@ class SDa extends S {
   String get verificationEmailSent => 'Bekræftelses-e-mail sendt';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'Hvis du stadig ikke har modtaget en e-mail, bedes du kontakte support på';
+  String get ifYouDidntReceiveVerificationEmail =>
+      'Hvis du stadig ikke har modtaget en e-mail, bedes du kontakte support på';
 
   @override
   String get accountCreated => 'Brugerkonto oprettet';
 
   @override
-  String get youCanNowUseYourAccount => 'Du kan nu bruge din brugerkonto og udforske et udvalg af opbyggeligt indhold.';
+  String get youCanNowUseYourAccount =>
+      'Du kan nu bruge din brugerkonto og udforske et udvalg af opbyggeligt indhold.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'Du kan nu logge ind på din brugerkonto og udforske et udvalg af opbyggeligt indhold.';
+  String get youCanNowLogInToYourAccount =>
+      'Du kan nu logge ind på din brugerkonto og udforske et udvalg af opbyggeligt indhold.';
 
   @override
-  String get accountDeletionExplanation => 'Du er ved at anmode om at slette din konto hos BCC Media og alle dine data relateret til denne app.';
+  String get accountDeletionExplanation =>
+      'Du er ved at anmode om at slette din konto hos BCC Media og alle dine data relateret til denne app.';
 
   @override
-  String get accountDeletionWarning => 'Det er en handling, der ikke kan fortrydes.';
+  String get accountDeletionWarning =>
+      'Det er en handling, der ikke kan fortrydes.';
 
   @override
   String accountDeletionTimeframe(int x) {
@@ -823,7 +859,8 @@ class SDa extends S {
   String get notEnoughAvailableSpace => 'Ikke nok ledig plads på din enhed';
 
   @override
-  String get considerDeletingOtherVideos => 'Overvej at slette andre videoer, du har downloadet i appen.';
+  String get considerDeletingOtherVideos =>
+      'Overvej at slette andre videoer, du har downloadet i appen.';
 
   @override
   String theVideoFileSizeIs(String size) {
@@ -837,7 +874,8 @@ class SDa extends S {
   String get saveYourFavorites => 'Gem dine yndlingsvideoer';
 
   @override
-  String get saveYourFavoritesDescription => 'Tryk på hjerteikonet på en video for at gemme den i din profil.';
+  String get saveYourFavoritesDescription =>
+      'Tryk på hjerteikonet på en video for at gemme den i din profil.';
 
   @override
   String get yourFavorites => 'Mine favoritter';
@@ -849,13 +887,15 @@ class SDa extends S {
   String get saveVideosForOfflineViewing => 'Gem videoer til offlinevisning';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tryk på download-ikonet på en video for at downloade og afspille offline.';
+  String get tapOnTheDownloadIcon =>
+      'Tryk på download-ikonet på en video for at downloade og afspille offline.';
 
   @override
   String get removeOfflineVideo => 'Fjerne offline video?';
 
   @override
-  String get removeOfflineVideoDescription => 'Ved at fjerne denne video vil den ikke længere være tilgængelig uden en netværksforbindelse.';
+  String get removeOfflineVideoDescription =>
+      'Ved at fjerne denne video vil den ikke længere være tilgængelig uden en netværksforbindelse.';
 
   @override
   String get removeFromDeviceButton => 'Fjern fra enheden';
@@ -867,16 +907,20 @@ class SDa extends S {
   String get noInternetConnection => 'Ingen internetforbindelse';
 
   @override
-  String get noInternetConnectionDescription => 'Opret forbindelse til internettet for at få adgang til alle videoer.';
+  String get noInternetConnectionDescription =>
+      'Opret forbindelse til internettet for at få adgang til alle videoer.';
 
   @override
-  String get noInternetButDontWorry => 'Ingen internetforbindelse,\nmen bare rolig.';
+  String get noInternetButDontWorry =>
+      'Ingen internetforbindelse,\nmen bare rolig.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Her er alle de videoer, du har downloadet til din enhed.';
+  String get hereAreAllTheVideosYouDownloaded =>
+      'Her er alle de videoer, du har downloadet til din enhed.';
 
   @override
-  String get connectToExplore => 'Opret forbindelse til internettet for at udforske alle videoer.';
+  String get connectToExplore =>
+      'Opret forbindelse til internettet for at udforske alle videoer.';
 
   @override
   String get language => 'Sprog';
@@ -896,7 +940,8 @@ class SDa extends S {
   String get subtitlesIncluded => 'Undertekster inkluderet';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'Alle undertekster vil være tilgængelige offline';
+  String get allSubtitlesWillBeAvailableOffline =>
+      'Alle undertekster vil være tilgængelige offline';
 
   @override
   String get downloading => 'Downloader';
@@ -946,7 +991,8 @@ class SDa extends S {
   String get preferredLanguages => 'Foretrukne sprog';
 
   @override
-  String get contentLanguageExplanation => 'Omorganiser sprogene, så de passer til dine præferencer for lyd- og undertekstsprog.';
+  String get contentLanguageExplanation =>
+      'Omorganiser sprogene, så de passer til dine præferencer for lyd- og undertekstsprog.';
 
   @override
   String get otherLanguages => 'Andre sprog';
@@ -967,13 +1013,15 @@ class SDa extends S {
   String get autoGenerated => 'Autogenereret';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'Transskriptionerne er automatisk genereret og kan indeholde fejl.';
+  String get shortsTranscriptionDisclaimer =>
+      'Transskriptionerne er automatisk genereret og kan indeholde fejl.';
 
   @override
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'Denne funktion er under udvikling og er for øjeblikkt ikke udgivet til alle brugere. Rapporter venligst eventuelle fejl eller feedback via knappen \"Kontakt\" i indstillingerne.';
+  String get betaExplanation =>
+      'Denne funktion er under udvikling og er for øjeblikkt ikke udgivet til alle brugere. Rapporter venligst eventuelle fejl eller feedback via knappen \"Kontakt\" i indstillingerne.';
 
   @override
   String get likedShorts => 'Yndlingskortfilm';
@@ -982,25 +1030,29 @@ class SDa extends S {
   String get saveYourFavoriteShorts => 'Gem dine yndlingskortfilm';
 
   @override
-  String get featureNotAvailableYet => 'Denne funktion er ikke tilgængelig på din enhed endnu. Prøv venligst igen senere.';
+  String get featureNotAvailableYet =>
+      'Denne funktion er ikke tilgængelig på din enhed endnu. Prøv venligst igen senere.';
 
   @override
   String get newFeature => 'Ny funktion';
 
   @override
-  String get shortsFeatureDescription => 'Oplev korte og kraftfulde uddrag, og spring direkte til dens fulde episode.';
+  String get shortsFeatureDescription =>
+      'Oplev korte og kraftfulde uddrag, og spring direkte til dens fulde episode.';
 
   @override
   String get likedAndSaved => 'Synes om og gem';
 
   @override
-  String get shortsLikedAndSavedDescription => 'Du kan finde alle dine favoritkortfilm i din profil.';
+  String get shortsLikedAndSavedDescription =>
+      'Du kan finde alle dine favoritkortfilm i din profil.';
 
   @override
   String get excerptFrom => 'Uddrag fra';
 
   @override
-  String get downloadedVideosGuideDescription => 'Du kan finde dine downloadede videoer under \"Profil\".';
+  String get downloadedVideosGuideDescription =>
+      'Du kan finde dine downloadede videoer under \"Profil\".';
 
   @override
   String get openStore => 'Åbn';
@@ -1018,7 +1070,8 @@ class SDa extends S {
   String get original => 'Original';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Åbn indstillinger for at ændre sprog på underteksterne';
+  String get openSettingsToChangeVideoLang =>
+      'Åbn indstillinger for at ændre sprog på underteksterne';
 
   @override
   String get somethingWentWrong => 'Noget gik galt...';
@@ -1048,7 +1101,8 @@ class SDa extends S {
   String get answerTheQuiz => 'Answer the quiz';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription =>
+      'Earn points by answering correctly';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
@@ -1065,10 +1119,12 @@ class SDa extends S {
   String get studyAllAnswersCorrectDescription => 'Well done!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription =>
+      'Better listen a bit closer next time!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription =>
+      'Well done! But still room for improvement.';
 
   @override
   String get studyAllQuestionsAnswered => 'You answered all questions';
@@ -1089,5 +1145,6 @@ class SDa extends S {
   String get notifications => 'Notifications';
 
   @override
-  String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
+  String get onlyShowContentWithPreferredLanguages =>
+      'Only show content with my preferred languages';
 }

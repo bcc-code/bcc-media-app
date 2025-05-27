@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -34,13 +36,15 @@ class SFi extends S {
   String get loginPageDisplay1 => 'Kaikista maailman\n sanomista voimakkain';
 
   @override
-  String get loginPageDisplay2 => 'Katsele Kristillisten arvojen mukaisia videoita, esityksiä, ja sarjoja';
+  String get loginPageDisplay2 =>
+      'Katsele Kristillisten arvojen mukaisia videoita, esityksiä, ja sarjoja';
 
   @override
   String get kidsOnboardingTitle => 'Teemme Raamatun sanomasta elävää!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Haluamme että lapset saavat kokea Jeesuken parhaana ystävänään. Loppuelämäkseen.';
+  String get kidsOnboardingSecondaryTitle =>
+      'Haluamme että lapset saavat kokea Jeesuken parhaana ystävänään. Loppuelämäkseen.';
 
   @override
   String get loginPageDisplay3 => 'BCC Median tuottama';
@@ -55,7 +59,8 @@ class SFi extends S {
   String get faq => 'Usein kysyttyä';
 
   @override
-  String get bccMediaCenter => 'BCC Media on BCC Liiton mediayksikkö. Se tuottaa ja toimittaa positiivista Kristillisten arvojen mukaista sisältöä.';
+  String get bccMediaCenter =>
+      'BCC Media on BCC Liiton mediayksikkö. Se tuottaa ja toimittaa positiivista Kristillisten arvojen mukaista sisältöä.';
 
   @override
   String get signInButton => 'Kirjaudu sisään';
@@ -70,10 +75,12 @@ class SFi extends S {
   String get signUpTitle => 'Luo tunnus';
 
   @override
-  String get signUpDescription => 'Luomalla tunnuksen saat enemmän sisältöä ja paremmat ominaisuudet.';
+  String get signUpDescription =>
+      'Luomalla tunnuksen saat enemmän sisältöä ja paremmat ominaisuudet.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Voin osoittaa olevani vähintään 13 vuotias, ja hyväksyn <a>Tietosuojakäytännöt</a>sekä <a>Käyttöehdot</a>.';
+  String get signUpAgreePrivacyPolicy =>
+      'Voin osoittaa olevani vähintään 13 vuotias, ja hyväksyn <a>Tietosuojakäytännöt</a>sekä <a>Käyttöehdot</a>.';
 
   @override
   String get setPassword => 'Aseta salasana';
@@ -85,7 +92,8 @@ class SFi extends S {
   String get loggedOutTitle => 'Kirjautunut ulos';
 
   @override
-  String get loggedOutMessage => 'Et ole kirjautuneena. Kirjaudu sisään uudelleen.';
+  String get loggedOutMessage =>
+      'Et ole kirjautuneena. Kirjaudu sisään uudelleen.';
 
   @override
   String get makeDonation => 'Lahjoita rahaa';
@@ -109,10 +117,12 @@ class SFi extends S {
   String get open => 'Avaa';
 
   @override
-  String get loginFailedCheckNetwork => 'Kirjautuminen epäonnistui. Tarkista nettiyhteys ja koita uudelleen.';
+  String get loginFailedCheckNetwork =>
+      'Kirjautuminen epäonnistui. Tarkista nettiyhteys ja koita uudelleen.';
 
   @override
-  String get loginFailedTryAgain => 'Kirjautuminen epäonnistui. Yritä myöhemmin uudelleen.';
+  String get loginFailedTryAgain =>
+      'Kirjautuminen epäonnistui. Yritä myöhemmin uudelleen.';
 
   @override
   String get soundLanguage => 'Äänen kieli';
@@ -151,7 +161,8 @@ class SFi extends S {
   String get deviceInfo => 'Tietoa laitteesta';
 
   @override
-  String get contactIncludeDeviceInfo => 'Liitä mukaan laitteen tiedot paremman tuen saamiseksi.';
+  String get contactIncludeDeviceInfo =>
+      'Liitä mukaan laitteen tiedot paremman tuen saamiseksi.';
 
   @override
   String get contactSeeData => 'Tästä näet tiedot.';
@@ -196,7 +207,8 @@ class SFi extends S {
   String get deviceInfoUserId => 'Käyttäjätunniste';
 
   @override
-  String get deviceInfoPageDesc => 'Viestiin lisätään nämä tiedot. Ne auttavat meitä antamaan parempaa tukea.';
+  String get deviceInfoPageDesc =>
+      'Viestiin lisätään nämä tiedot. Ne auttavat meitä antamaan parempaa tukea.';
 
   @override
   String get userVoice => 'Ehdota ominaisuutta';
@@ -208,7 +220,8 @@ class SFi extends S {
   String get cancelConfirmation => 'Varmastiko haluat perua?';
 
   @override
-  String get cancelConfirmationDescription => 'Tallentamattomat muutokset katoavat.';
+  String get cancelConfirmationDescription =>
+      'Tallentamattomat muutokset katoavat.';
 
   @override
   String get goBack => 'Palaa';
@@ -291,7 +304,8 @@ class SFi extends S {
   String get tVLogin => 'Kirjaudu sisään televisiolla';
 
   @override
-  String get tVLoginSuccessful => 'Kirjautuminen onnistui. Vahvista televisiosta.';
+  String get tVLoginSuccessful =>
+      'Kirjautuminen onnistui. Vahvista televisiosta.';
 
   @override
   String get seeMore => 'Näytä lisää';
@@ -321,7 +335,8 @@ class SFi extends S {
   String get high => 'Laadukas';
 
   @override
-  String get emptySearch => 'Täältä voit hakea mitä tahansa BCC Median sisältöä; sarjoja, elokuvia, ja jaksoja.';
+  String get emptySearch =>
+      'Täältä voit hakea mitä tahansa BCC Median sisältöä; sarjoja, elokuvia, ja jaksoja.';
 
   @override
   String get back => 'Takaisin';
@@ -407,7 +422,8 @@ class SFi extends S {
   String get now => 'Nyt';
 
   @override
-  String get debugInfoExplanation => 'Palautteesi sisältää myös seuraavat tiedot, jotta ymmärrämme ongelman paremmin.';
+  String get debugInfoExplanation =>
+      'Palautteesi sisältää myös seuraavat tiedot, jotta ymmärrämme ongelman paremmin.';
 
   @override
   String get send => 'Lähetä';
@@ -419,13 +435,15 @@ class SFi extends S {
   String get thankYouSupportTitle => 'Kiitos palautteesta!';
 
   @override
-  String get thankYouSupportDescription => 'Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseksi.';
+  String get thankYouSupportDescription =>
+      'Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseksi.';
 
   @override
   String get sendFail => 'Lähettäminen epäonnistui';
 
   @override
-  String get sendFailDescription => 'Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.';
+  String get sendFailDescription =>
+      'Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.';
 
   @override
   String get sendSuccessDescription => 'Kiitos palautteesta.';
@@ -492,7 +510,8 @@ class SFi extends S {
   String get appUpdateTitle => 'Päivitys on tarpeen';
 
   @override
-  String get appUpdateRequest => 'Päivitä sovellus. Siinä on uusia ominaisuuksia ja vikoja on korjattu.';
+  String get appUpdateRequest =>
+      'Päivitä sovellus. Siinä on uusia ominaisuuksia ja vikoja on korjattu.';
 
   @override
   String get appUpdateAccepted => 'Päivitä';
@@ -542,7 +561,8 @@ class SFi extends S {
   String get subtitlesLanguage => 'Tekstityksen kieli';
 
   @override
-  String get removeFromRecentSearches => 'Haluatko poistaa tämän hakuhistoriasta?';
+  String get removeFromRecentSearches =>
+      'Haluatko poistaa tämän hakuhistoriasta?';
 
   @override
   String get noTransmissionToday => 'Tänään ei ole lähetystä';
@@ -578,7 +598,8 @@ class SFi extends S {
   String get tasksCompleted => 'tehtävää suoritettu';
 
   @override
-  String get studyCompleteTaskDescription => 'Suorita tehtäviä ja löydä siihen liittyvää sisältöä';
+  String get studyCompleteTaskDescription =>
+      'Suorita tehtäviä ja löydä siihen liittyvää sisältöä';
 
   @override
   String get discoverMore => 'Löydä lisää';
@@ -587,7 +608,8 @@ class SFi extends S {
   String get completePreviousTasks => 'Avaa suorittamalla edellinen tehtävä';
 
   @override
-  String get studyDiscoverMoreDescription => 'Löydä aiheeseen liittyvää inspiroivaa ja valaisevaa sisältöä';
+  String get studyDiscoverMoreDescription =>
+      'Löydä aiheeseen liittyvää inspiroivaa ja valaisevaa sisältöä';
 
   @override
   String get watchAgain => 'Katso uudelleen';
@@ -614,7 +636,8 @@ class SFi extends S {
   String get videoCompletedText => 'Hienoa, katsoit videon loppuun.';
 
   @override
-  String get achievementFirstDescription => 'Ensimmäinen saavutus - katsoit videon. Hieno homma!';
+  String get achievementFirstDescription =>
+      'Ensimmäinen saavutus - katsoit videon. Hieno homma!';
 
   @override
   String achievementStudyTopic(String name) {
@@ -656,7 +679,8 @@ class SFi extends S {
   }
 
   @override
-  String get passwordConditionComplexity => 'Täytyy sisältää isoja ja pieniä kirjaimia sekä numeroita.';
+  String get passwordConditionComplexity =>
+      'Täytyy sisältää isoja ja pieniä kirjaimia sekä numeroita.';
 
   @override
   String get oops => 'Hupsista!';
@@ -671,7 +695,8 @@ class SFi extends S {
   String get mustBeLoggedIn => 'Tämän katsominen vaatii kirjautumista';
 
   @override
-  String get plentyOfOtherContent => 'Mutta ei syytä huoleen. On edelleen paljon katsottavaa!';
+  String get plentyOfOtherContent =>
+      'Mutta ei syytä huoleen. On edelleen paljon katsottavaa!';
 
   @override
   String get notAchieved => 'Ei saavutettu';
@@ -686,7 +711,8 @@ class SFi extends S {
   String get didYouKnowTitle => 'Tiesitkö?';
 
   @override
-  String get didYouKnowContent => 'Sydäntä painamalla voit lisätä jakson \"Listaani\".';
+  String get didYouKnowContent =>
+      'Sydäntä painamalla voit lisätä jakson \"Listaani\".';
 
   @override
   String get selectSeason => 'Valitse tuotantokausi';
@@ -695,7 +721,8 @@ class SFi extends S {
   String get deleteMyAccount => 'Poista tilini';
 
   @override
-  String get iAmSureIWantToDelete => 'Aivan varmasti haluan poistaa tilini ja tietoni BCC Media sovelluksesta.';
+  String get iAmSureIWantToDelete =>
+      'Aivan varmasti haluan poistaa tilini ja tietoni BCC Media sovelluksesta.';
 
   @override
   String get areYouSure => 'Oletko varma?';
@@ -704,7 +731,8 @@ class SFi extends S {
   String get youCanContactUsAt => 'Yhteydenotot:';
 
   @override
-  String get biblekidsAbout => 'Bible Kids on BCC Median tuote. BCC Liiton alainen BCC Media tuottaa ja toimittaa positiivista Kristillisten arvojen mukaista sisältöä.';
+  String get biblekidsAbout =>
+      'Bible Kids on BCC Median tuote. BCC Liiton alainen BCC Media tuottaa ja toimittaa positiivista Kristillisten arvojen mukaista sisältöä.';
 
   @override
   String get askYourParents => 'Pyydä vanhempiasi';
@@ -719,7 +747,8 @@ class SFi extends S {
   String get checkAnswerButton => 'Tarkista vastaus';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'Tämä video näkyy vain sisäänkirjautuneille.';
+  String get videoOnlyAccessibleToLoggedIn =>
+      'Tämä video näkyy vain sisäänkirjautuneille.';
 
   @override
   String get verifyYourAccount => 'Vahvista tili';
@@ -743,19 +772,23 @@ class SFi extends S {
   String get verificationEmailSent => 'Vahvistussähköposti lähetetty';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'Jos et vieläkään saanut sähköpostia, ota meihin yhteyttä: ';
+  String get ifYouDidntReceiveVerificationEmail =>
+      'Jos et vieläkään saanut sähköpostia, ota meihin yhteyttä: ';
 
   @override
   String get accountCreated => 'Tili luotu';
 
   @override
-  String get youCanNowUseYourAccount => 'Tilin kautta voit nyt tutustua laajaan valikoimaan rakentavaa sisältöä.';
+  String get youCanNowUseYourAccount =>
+      'Tilin kautta voit nyt tutustua laajaan valikoimaan rakentavaa sisältöä.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'Voit nyt kirjautua sisään ja tutustua laajaan valikoimaan rakentavaa sisältöä.';
+  String get youCanNowLogInToYourAccount =>
+      'Voit nyt kirjautua sisään ja tutustua laajaan valikoimaan rakentavaa sisältöä.';
 
   @override
-  String get accountDeletionExplanation => 'Olet pyytämässä BCC Media -tilisi poistamista mukaanlukien kaikki sovelluksen tallentama tieto.';
+  String get accountDeletionExplanation =>
+      'Olet pyytämässä BCC Media -tilisi poistamista mukaanlukien kaikki sovelluksen tallentama tieto.';
 
   @override
   String get accountDeletionWarning => 'Tilin poistamista ei voi peruuttaa.';
@@ -823,7 +856,8 @@ class SFi extends S {
   String get notEnoughAvailableSpace => 'Laitteessa ei riitä enää tila';
 
   @override
-  String get considerDeletingOtherVideos => 'Harkitse muiden sovelluksesta lataamiesi videoiden poistamista.';
+  String get considerDeletingOtherVideos =>
+      'Harkitse muiden sovelluksesta lataamiesi videoiden poistamista.';
 
   @override
   String theVideoFileSizeIs(String size) {
@@ -837,7 +871,8 @@ class SFi extends S {
   String get saveYourFavorites => 'Tallenna suosikkivideosi';
 
   @override
-  String get saveYourFavoritesDescription => 'Napauta videon sydänkuvaketta tallentaaksesi sen profiiliisi.';
+  String get saveYourFavoritesDescription =>
+      'Napauta videon sydänkuvaketta tallentaaksesi sen profiiliisi.';
 
   @override
   String get yourFavorites => 'Suosikkini';
@@ -846,16 +881,19 @@ class SFi extends S {
   String get downloaded => 'Ladatut';
 
   @override
-  String get saveVideosForOfflineViewing => 'Tallenna videoita offline-katselua varten';
+  String get saveVideosForOfflineViewing =>
+      'Tallenna videoita offline-katselua varten';
 
   @override
-  String get tapOnTheDownloadIcon => 'Napauta videon latauskuvaketta ladataksesi ja toistaaksesi offline-tilassa.';
+  String get tapOnTheDownloadIcon =>
+      'Napauta videon latauskuvaketta ladataksesi ja toistaaksesi offline-tilassa.';
 
   @override
   String get removeOfflineVideo => 'Poistetaanko offline-video?';
 
   @override
-  String get removeOfflineVideoDescription => 'Kun poistat tämän videon, se ei ole enää saatavilla ilman verkkoyhteyttä.';
+  String get removeOfflineVideoDescription =>
+      'Kun poistat tämän videon, se ei ole enää saatavilla ilman verkkoyhteyttä.';
 
   @override
   String get removeFromDeviceButton => 'Poista laitteesta';
@@ -867,16 +905,19 @@ class SFi extends S {
   String get noInternetConnection => 'Ei Internet-yhteyttä';
 
   @override
-  String get noInternetConnectionDescription => 'Muodosta yhteys Internetiin nähdäksesi kaikki videot.';
+  String get noInternetConnectionDescription =>
+      'Muodosta yhteys Internetiin nähdäksesi kaikki videot.';
 
   @override
   String get noInternetButDontWorry => 'Ei Internet-yhteyttä, mutta älä huoli.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Tässä ovat kaikki lataamasi videot.';
+  String get hereAreAllTheVideosYouDownloaded =>
+      'Tässä ovat kaikki lataamasi videot.';
 
   @override
-  String get connectToExplore => 'Muodosta yhteys Internetiin nähdäksesi kaikki videot.';
+  String get connectToExplore =>
+      'Muodosta yhteys Internetiin nähdäksesi kaikki videot.';
 
   @override
   String get language => 'Kieli';
@@ -896,7 +937,8 @@ class SFi extends S {
   String get subtitlesIncluded => 'Tekstitykset on';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'Kaikki tekstitykset toimivat myös offline-tilassa';
+  String get allSubtitlesWillBeAvailableOffline =>
+      'Kaikki tekstitykset toimivat myös offline-tilassa';
 
   @override
   String get downloading => 'Ladataan';
@@ -946,7 +988,8 @@ class SFi extends S {
   String get preferredLanguages => 'Enisijaiset kielet';
 
   @override
-  String get contentLanguageExplanation => 'Järjestä kielet uudelleen vastaamaan haluamaasi äänen ja tekstityksen kieltä.';
+  String get contentLanguageExplanation =>
+      'Järjestä kielet uudelleen vastaamaan haluamaasi äänen ja tekstityksen kieltä.';
 
   @override
   String get otherLanguages => 'Muut kielet';
@@ -967,13 +1010,15 @@ class SFi extends S {
   String get autoGenerated => 'Automaattisesti luotu';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'Tekstitykset tuotetaan automaattisesti ja sisältävät virheitä.';
+  String get shortsTranscriptionDisclaimer =>
+      'Tekstitykset tuotetaan automaattisesti ja sisältävät virheitä.';
 
   @override
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'Tämä ominaisuus on beta-vaiheessa, eikä sitä ole tällä hetkellä julkaistu kaikille käyttäjille. Ilmoita ongelmista tai palautteesta \"Ota yhteyttä\" -painikkeen kautta asetuksissa.';
+  String get betaExplanation =>
+      'Tämä ominaisuus on beta-vaiheessa, eikä sitä ole tällä hetkellä julkaistu kaikille käyttäjille. Ilmoita ongelmista tai palautteesta \"Ota yhteyttä\" -painikkeen kautta asetuksissa.';
 
   @override
   String get likedShorts => 'Tykkäämäsi lyhytvideot';
@@ -982,25 +1027,29 @@ class SFi extends S {
   String get saveYourFavoriteShorts => 'Tallenna parhaat lyhytvideot';
 
   @override
-  String get featureNotAvailableYet => 'Tämä ominaisuus ei ole vielä käytettävissä laitteellasi. Yritä toiste uudelleen.';
+  String get featureNotAvailableYet =>
+      'Tämä ominaisuus ei ole vielä käytettävissä laitteellasi. Yritä toiste uudelleen.';
 
   @override
   String get newFeature => 'Uusi ominaisuus';
 
   @override
-  String get shortsFeatureDescription => 'Löydä lyhyitä ja tehokkaita pätkiä ja hyppää suoraan vastaavaan videoon.';
+  String get shortsFeatureDescription =>
+      'Löydä lyhyitä ja tehokkaita pätkiä ja hyppää suoraan vastaavaan videoon.';
 
   @override
   String get likedAndSaved => 'Tykätyt ja tallennetut';
 
   @override
-  String get shortsLikedAndSavedDescription => 'Löydät kaikki tykkäämäsi lyhytvideot profiilistasi.';
+  String get shortsLikedAndSavedDescription =>
+      'Löydät kaikki tykkäämäsi lyhytvideot profiilistasi.';
 
   @override
   String get excerptFrom => 'Ote filmistä';
 
   @override
-  String get downloadedVideosGuideDescription => 'Löydät lataamasi videot kohdasta \"Profiili\".';
+  String get downloadedVideosGuideDescription =>
+      'Löydät lataamasi videot kohdasta \"Profiili\".';
 
   @override
   String get openStore => 'Avaa kauppa';
@@ -1018,7 +1067,8 @@ class SFi extends S {
   String get original => 'Alkuperäinen';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Asetuksista voi vaihtaa videon tekstityskielen';
+  String get openSettingsToChangeVideoLang =>
+      'Asetuksista voi vaihtaa videon tekstityskielen';
 
   @override
   String get somethingWentWrong => 'Jokin meni pieleen';
@@ -1048,7 +1098,8 @@ class SFi extends S {
   String get answerTheQuiz => 'Answer the quiz';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription =>
+      'Earn points by answering correctly';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
@@ -1065,10 +1116,12 @@ class SFi extends S {
   String get studyAllAnswersCorrectDescription => 'Well done!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription =>
+      'Better listen a bit closer next time!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription =>
+      'Well done! But still room for improvement.';
 
   @override
   String get studyAllQuestionsAnswered => 'You answered all questions';
@@ -1089,5 +1142,6 @@ class SFi extends S {
   String get notifications => 'Notifications';
 
   @override
-  String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
+  String get onlyShowContentWithPreferredLanguages =>
+      'Only show content with my preferred languages';
 }

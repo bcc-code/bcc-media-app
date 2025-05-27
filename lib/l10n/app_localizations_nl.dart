@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -34,13 +36,16 @@ class SNl extends S {
   String get loginPageDisplay1 => 'De krachtigste boodschap in de wereld';
 
   @override
-  String get loginPageDisplay2 => 'Bekijk series, shows en films gebaseerd op Christelijke waarden';
+  String get loginPageDisplay2 =>
+      'Bekijk series, shows en films gebaseerd op Christelijke waarden';
 
   @override
-  String get kidsOnboardingTitle => 'Wij brengen de boodschap uit de Bijbel tot leven!';
+  String get kidsOnboardingTitle =>
+      'Wij brengen de boodschap uit de Bijbel tot leven!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Onze visie is dat de kinderen Jezus als hun beste vriend gaan ervaren - voor de rest van hun leven.';
+  String get kidsOnboardingSecondaryTitle =>
+      'Onze visie is dat de kinderen Jezus als hun beste vriend gaan ervaren - voor de rest van hun leven.';
 
   @override
   String get loginPageDisplay3 => 'Geproduceerd door BCC Media';
@@ -55,7 +60,8 @@ class SNl extends S {
   String get faq => 'Vaak gestelde vragen';
 
   @override
-  String get bccMediaCenter => 'BCC Media is een media-stichting binnen de BCC-federatie, welke content met positieve en christelijke waarden produceert en verspreidt.';
+  String get bccMediaCenter =>
+      'BCC Media is een media-stichting binnen de BCC-federatie, welke content met positieve en christelijke waarden produceert en verspreidt.';
 
   @override
   String get signInButton => 'Log in';
@@ -70,10 +76,12 @@ class SNl extends S {
   String get signUpTitle => 'Aanmelden';
 
   @override
-  String get signUpDescription => 'Krijg toegang tot meer content en betere functionaliteit door een account aan te maken.';
+  String get signUpDescription =>
+      'Krijg toegang tot meer content en betere functionaliteit door een account aan te maken.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Ik verklaar dat ik 13 jaar of ouder ben en dat ik akkoord ga met het <a>privacybeleid</a> en <a>de gebruiksvoorwaarden</a>.';
+  String get signUpAgreePrivacyPolicy =>
+      'Ik verklaar dat ik 13 jaar of ouder ben en dat ik akkoord ga met het <a>privacybeleid</a> en <a>de gebruiksvoorwaarden</a>.';
 
   @override
   String get setPassword => 'Stel een wachtwoord in';
@@ -109,10 +117,12 @@ class SNl extends S {
   String get open => 'Open';
 
   @override
-  String get loginFailedCheckNetwork => 'Inloggen mislukt Controleer je netwerkverbinding en probeer opnieuw';
+  String get loginFailedCheckNetwork =>
+      'Inloggen mislukt Controleer je netwerkverbinding en probeer opnieuw';
 
   @override
-  String get loginFailedTryAgain => 'Inloggen mislukt Probeer het later nog eens';
+  String get loginFailedTryAgain =>
+      'Inloggen mislukt Probeer het later nog eens';
 
   @override
   String get soundLanguage => 'Geluid taal';
@@ -124,7 +134,8 @@ class SNl extends S {
   String get appLanguage => 'App taal';
 
   @override
-  String get checkNetwork => 'Controleer je netwerkverbinding en probeer opnieuw';
+  String get checkNetwork =>
+      'Controleer je netwerkverbinding en probeer opnieuw';
 
   @override
   String get tryAgain => 'Probeer het later nog eens';
@@ -151,7 +162,8 @@ class SNl extends S {
   String get deviceInfo => 'Device info';
 
   @override
-  String get contactIncludeDeviceInfo => 'Voeg device informatie toe voor betere hulp.';
+  String get contactIncludeDeviceInfo =>
+      'Voeg device informatie toe voor betere hulp.';
 
   @override
   String get contactSeeData => 'Klik om de info te zien.';
@@ -196,7 +208,8 @@ class SNl extends S {
   String get deviceInfoUserId => 'User ID';
 
   @override
-  String get deviceInfoPageDesc => 'Je bericht zal deze informatie invoegen, zodat we beter hulp kunnen bieden.';
+  String get deviceInfoPageDesc =>
+      'Je bericht zal deze informatie invoegen, zodat we beter hulp kunnen bieden.';
 
   @override
   String get userVoice => 'Stel een feature voor';
@@ -208,7 +221,8 @@ class SNl extends S {
   String get cancelConfirmation => 'Weet u het zeker dat u wilt annuleren?';
 
   @override
-  String get cancelConfirmationDescription => 'Niet opgeslagen wijzigingen gaan verloren.';
+  String get cancelConfirmationDescription =>
+      'Niet opgeslagen wijzigingen gaan verloren.';
 
   @override
   String get goBack => 'Ga terug';
@@ -321,7 +335,8 @@ class SNl extends S {
   String get high => 'Hoog';
 
   @override
-  String get emptySearch => 'Je kunt zoeken in alle content van BCC Media. Series, video\'s en afleveringen.';
+  String get emptySearch =>
+      'Je kunt zoeken in alle content van BCC Media. Series, video\'s en afleveringen.';
 
   @override
   String get back => 'Terug';
@@ -407,7 +422,8 @@ class SNl extends S {
   String get now => 'Nu';
 
   @override
-  String get debugInfoExplanation => 'Je bericht zal deze informatie bevatten, om ons te helpen het probleem beter te begrijpen.';
+  String get debugInfoExplanation =>
+      'Je bericht zal deze informatie bevatten, om ons te helpen het probleem beter te begrijpen.';
 
   @override
   String get send => 'Verzenden';
@@ -419,13 +435,15 @@ class SNl extends S {
   String get thankYouSupportTitle => 'Bedankt voor je feedback!';
 
   @override
-  String get thankYouSupportDescription => 'We stellen alle feedback op prijs en gaan er zo snel mogelijk mee aan de slag.';
+  String get thankYouSupportDescription =>
+      'We stellen alle feedback op prijs en gaan er zo snel mogelijk mee aan de slag.';
 
   @override
   String get sendFail => 'Je bericht kon niet worden verzonden';
 
   @override
-  String get sendFailDescription => 'Er ging iets fout. Controleer je internet verbinding en probeer opnieuw.';
+  String get sendFailDescription =>
+      'Er ging iets fout. Controleer je internet verbinding en probeer opnieuw.';
 
   @override
   String get sendSuccessDescription => 'We stellen je feedback op prijs.';
@@ -492,7 +510,8 @@ class SNl extends S {
   String get appUpdateTitle => 'Update vereist';
 
   @override
-  String get appUpdateRequest => 'Download de laatste update voor nieuwe functionaliteiten en bugfixes.';
+  String get appUpdateRequest =>
+      'Download de laatste update voor nieuwe functionaliteiten en bugfixes.';
 
   @override
   String get appUpdateAccepted => 'Update';
@@ -542,7 +561,8 @@ class SNl extends S {
   String get subtitlesLanguage => 'Taal ondertiteling';
 
   @override
-  String get removeFromRecentSearches => 'Wil je dit onderdeel verwijderen uit het overzicht met recente zoekopdrachten?';
+  String get removeFromRecentSearches =>
+      'Wil je dit onderdeel verwijderen uit het overzicht met recente zoekopdrachten?';
 
   @override
   String get noTransmissionToday => 'Geen geplande uitzending voor vandaag';
@@ -551,7 +571,8 @@ class SNl extends S {
   String get featured => 'Aanbevolen';
 
   @override
-  String get errorTryAgain => 'Er is iets mis gegaan, probeer het later nog eens.';
+  String get errorTryAgain =>
+      'Er is iets mis gegaan, probeer het later nog eens.';
 
   @override
   String get programsSection => 'Programma\'s';
@@ -578,16 +599,19 @@ class SNl extends S {
   String get tasksCompleted => 'taken afgerond';
 
   @override
-  String get studyCompleteTaskDescription => 'Rond taken af en ontdek gerelateerde bronnen';
+  String get studyCompleteTaskDescription =>
+      'Rond taken af en ontdek gerelateerde bronnen';
 
   @override
   String get discoverMore => 'Ontdek meer';
 
   @override
-  String get completePreviousTasks => 'Voltooi de vorige taken om deze te kunnen openen';
+  String get completePreviousTasks =>
+      'Voltooi de vorige taken om deze te kunnen openen';
 
   @override
-  String get studyDiscoverMoreDescription => 'Ontdek meer inspiratie en inzicht vanuit gerelateerde bronnen';
+  String get studyDiscoverMoreDescription =>
+      'Ontdek meer inspiratie en inzicht vanuit gerelateerde bronnen';
 
   @override
   String get watchAgain => 'Nogmaals kijken';
@@ -614,7 +638,8 @@ class SNl extends S {
   String get videoCompletedText => 'Goed gedaan, video afgerond.';
 
   @override
-  String get achievementFirstDescription => 'Gefeliciteerd met het afronden van de video en het bereiken van je eerste doel.';
+  String get achievementFirstDescription =>
+      'Gefeliciteerd met het afronden van de video en het bereiken van je eerste doel.';
 
   @override
   String achievementStudyTopic(String name) {
@@ -656,7 +681,8 @@ class SNl extends S {
   }
 
   @override
-  String get passwordConditionComplexity => 'Moet kleine letters, hoofdletters en cijfers bevatten.';
+  String get passwordConditionComplexity =>
+      'Moet kleine letters, hoofdletters en cijfers bevatten.';
 
   @override
   String get oops => 'Oeps!';
@@ -668,10 +694,12 @@ class SNl extends S {
   String get notFound => 'De inhoud die je zoekt lijkt niet te bestaan.';
 
   @override
-  String get mustBeLoggedIn => 'Je moet ingelogd zijn om dit te kunnen bekijken';
+  String get mustBeLoggedIn =>
+      'Je moet ingelogd zijn om dit te kunnen bekijken';
 
   @override
-  String get plentyOfOtherContent => 'Geen zorgen, er is nog steeds veel content om van te genieten!';
+  String get plentyOfOtherContent =>
+      'Geen zorgen, er is nog steeds veel content om van te genieten!';
 
   @override
   String get notAchieved => 'Niet gehaald';
@@ -686,7 +714,8 @@ class SNl extends S {
   String get didYouKnowTitle => 'Wist je dat?';
 
   @override
-  String get didYouKnowContent => 'Je kunt je favoriete shows toevoegen aan \"Mijn lijst\" door op het hart te klikken.';
+  String get didYouKnowContent =>
+      'Je kunt je favoriete shows toevoegen aan \"Mijn lijst\" door op het hart te klikken.';
 
   @override
   String get selectSeason => 'Selecteer een seizoen';
@@ -695,7 +724,8 @@ class SNl extends S {
   String get deleteMyAccount => 'mijn account verwijderen';
 
   @override
-  String get iAmSureIWantToDelete => 'Ik weet zeker dat ik mijn account en mijn gegevens met betrekking tot de BCC Media app wil verwijderen.';
+  String get iAmSureIWantToDelete =>
+      'Ik weet zeker dat ik mijn account en mijn gegevens met betrekking tot de BCC Media app wil verwijderen.';
 
   @override
   String get areYouSure => 'Weet je het zeker?';
@@ -704,7 +734,8 @@ class SNl extends S {
   String get youCanContactUsAt => 'Neem contact op via';
 
   @override
-  String get biblekidsAbout => 'Bible Kids is een initiatief van BCC Media, een media stichting binnen de BCC Federatie die inhoud met positieve en christelijke waarden produceert en verspreidt.';
+  String get biblekidsAbout =>
+      'Bible Kids is een initiatief van BCC Media, een media stichting binnen de BCC Federatie die inhoud met positieve en christelijke waarden produceert en verspreidt.';
 
   @override
   String get askYourParents => 'Vraag je ouders';
@@ -719,7 +750,8 @@ class SNl extends S {
   String get checkAnswerButton => 'Controleer antwoord';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'Deze video is alleen beschikbaar voor ingelogde gebruikers.';
+  String get videoOnlyAccessibleToLoggedIn =>
+      'Deze video is alleen beschikbaar voor ingelogde gebruikers.';
 
   @override
   String get verifyYourAccount => 'Verifieer je account';
@@ -728,7 +760,8 @@ class SNl extends S {
   String get weHaveSentAnEmailTo => 'We hebben een email gestuurd naar';
 
   @override
-  String get clickTheLinkToVerify => 'Klik op de link in de e-mail om je account te verifiëren.';
+  String get clickTheLinkToVerify =>
+      'Klik op de link in de e-mail om je account te verifiëren.';
 
   @override
   String get openEmailApp => 'Open e-mail app';
@@ -743,22 +776,27 @@ class SNl extends S {
   String get verificationEmailSent => 'E-mail ter verificatie verzonden';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'Als je nog steeds geen e-mail hebt ontvangen, neem dan contact op via';
+  String get ifYouDidntReceiveVerificationEmail =>
+      'Als je nog steeds geen e-mail hebt ontvangen, neem dan contact op via';
 
   @override
   String get accountCreated => 'Account aangemaakt';
 
   @override
-  String get youCanNowUseYourAccount => 'Je kunt nu je account gebruiken en een heleboel opbouwende onderwerpen ontdekken.';
+  String get youCanNowUseYourAccount =>
+      'Je kunt nu je account gebruiken en een heleboel opbouwende onderwerpen ontdekken.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'Je kunt nu inloggen met je account en opbouwende onderwerpen ontdekken.';
+  String get youCanNowLogInToYourAccount =>
+      'Je kunt nu inloggen met je account en opbouwende onderwerpen ontdekken.';
 
   @override
-  String get accountDeletionExplanation => 'Je staat op het punt een verzoek in te dienen om je account bij BCC Media en al je gegevens met betrekking tot deze app te verwijderen.';
+  String get accountDeletionExplanation =>
+      'Je staat op het punt een verzoek in te dienen om je account bij BCC Media en al je gegevens met betrekking tot deze app te verwijderen.';
 
   @override
-  String get accountDeletionWarning => 'Dit is een actie die niet ongedaan kan worden gemaakt.';
+  String get accountDeletionWarning =>
+      'Dit is een actie die niet ongedaan kan worden gemaakt.';
 
   @override
   String accountDeletionTimeframe(int x) {
@@ -820,10 +858,12 @@ class SNl extends S {
   }
 
   @override
-  String get notEnoughAvailableSpace => 'Onvoldoende beschikbare ruimte op uw apparaat';
+  String get notEnoughAvailableSpace =>
+      'Onvoldoende beschikbare ruimte op uw apparaat';
 
   @override
-  String get considerDeletingOtherVideos => 'Overweeg om andere video\'s die je in de app hebt gedownload te verwijderen.';
+  String get considerDeletingOtherVideos =>
+      'Overweeg om andere video\'s die je in de app hebt gedownload te verwijderen.';
 
   @override
   String theVideoFileSizeIs(String size) {
@@ -837,7 +877,8 @@ class SNl extends S {
   String get saveYourFavorites => 'Je favoriete video\'s bewaren';
 
   @override
-  String get saveYourFavoritesDescription => 'Tik op het hartpictogram op een video om deze op te slaan in je profiel.';
+  String get saveYourFavoritesDescription =>
+      'Tik op het hartpictogram op een video om deze op te slaan in je profiel.';
 
   @override
   String get yourFavorites => 'Jouw favorieten';
@@ -846,16 +887,19 @@ class SNl extends S {
   String get downloaded => 'Gedownload';
 
   @override
-  String get saveVideosForOfflineViewing => 'Video\'s opslaan om offline te bekijken';
+  String get saveVideosForOfflineViewing =>
+      'Video\'s opslaan om offline te bekijken';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tik op het downloadpictogram op een video om deze te downloaden en offline af te spelen.';
+  String get tapOnTheDownloadIcon =>
+      'Tik op het downloadpictogram op een video om deze te downloaden en offline af te spelen.';
 
   @override
   String get removeOfflineVideo => 'Offline video verwijderen?';
 
   @override
-  String get removeOfflineVideoDescription => 'Door deze video te verwijderen zal hij niet langer beschikbaar zijn zonder netwerkverbinding.';
+  String get removeOfflineVideoDescription =>
+      'Door deze video te verwijderen zal hij niet langer beschikbaar zijn zonder netwerkverbinding.';
 
   @override
   String get removeFromDeviceButton => 'Verwijderen van apparaat';
@@ -867,16 +911,20 @@ class SNl extends S {
   String get noInternetConnection => 'Geen internetverbinding';
 
   @override
-  String get noInternetConnectionDescription => 'Maak verbinding met internet om toegang te krijgen tot alle video\'s.';
+  String get noInternetConnectionDescription =>
+      'Maak verbinding met internet om toegang te krijgen tot alle video\'s.';
 
   @override
-  String get noInternetButDontWorry => 'Geen internetverbinding, maar maak je geen zorgen.';
+  String get noInternetButDontWorry =>
+      'Geen internetverbinding, maar maak je geen zorgen.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Hier zijn alle video\'s die je naar je apparaat hebt gedownload.';
+  String get hereAreAllTheVideosYouDownloaded =>
+      'Hier zijn alle video\'s die je naar je apparaat hebt gedownload.';
 
   @override
-  String get connectToExplore => 'Maak verbinding met internet om alle video\'s te bekijken.';
+  String get connectToExplore =>
+      'Maak verbinding met internet om alle video\'s te bekijken.';
 
   @override
   String get language => 'Taal';
@@ -896,7 +944,8 @@ class SNl extends S {
   String get subtitlesIncluded => 'Inclusief ondertiteling';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'De ondertiteling zal offline beschikbaar zijn';
+  String get allSubtitlesWillBeAvailableOffline =>
+      'De ondertiteling zal offline beschikbaar zijn';
 
   @override
   String get downloading => 'Aan het downloaden';
@@ -946,7 +995,8 @@ class SNl extends S {
   String get preferredLanguages => 'Voorkeurstalen';
 
   @override
-  String get contentLanguageExplanation => 'Wijzig de volgorde van de talen naar je voorkeur voor geluid en ondertiteling.';
+  String get contentLanguageExplanation =>
+      'Wijzig de volgorde van de talen naar je voorkeur voor geluid en ondertiteling.';
 
   @override
   String get otherLanguages => 'Andere talen';
@@ -967,13 +1017,15 @@ class SNl extends S {
   String get autoGenerated => 'Automatisch gegenereerd';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'Transcripties zijn automatisch gegenereerd en kunnen daardoor fouten bevatten.';
+  String get shortsTranscriptionDisclaimer =>
+      'Transcripties zijn automatisch gegenereerd en kunnen daardoor fouten bevatten.';
 
   @override
   String get beta => 'Bèta';
 
   @override
-  String get betaExplanation => 'Deze functie is in bèta en is momenteel nog niet beschikbaar voor alle gebruikers. Meld problemen of feedback via de knop \'Contact\' in de instellingen.';
+  String get betaExplanation =>
+      'Deze functie is in bèta en is momenteel nog niet beschikbaar voor alle gebruikers. Meld problemen of feedback via de knop \'Contact\' in de instellingen.';
 
   @override
   String get likedShorts => 'Korte films die ik leuk vind';
@@ -982,31 +1034,36 @@ class SNl extends S {
   String get saveYourFavoriteShorts => 'Bewaar je favoriete korte films';
 
   @override
-  String get featureNotAvailableYet => 'Deze functie is nog niet beschikbaar op je apparaat. Probeer het later nog eens';
+  String get featureNotAvailableYet =>
+      'Deze functie is nog niet beschikbaar op je apparaat. Probeer het later nog eens';
 
   @override
   String get newFeature => 'Nieuwe functie';
 
   @override
-  String get shortsFeatureDescription => 'Ontdek korte en krachtige fragmenten en spring meteen naar de volledige aflevering.';
+  String get shortsFeatureDescription =>
+      'Ontdek korte en krachtige fragmenten en spring meteen naar de volledige aflevering.';
 
   @override
   String get likedAndSaved => 'Geliked en opgeslagen';
 
   @override
-  String get shortsLikedAndSavedDescription => 'Je kunt al je favoriete shorts vinden in je profiel.';
+  String get shortsLikedAndSavedDescription =>
+      'Je kunt al je favoriete shorts vinden in je profiel.';
 
   @override
   String get excerptFrom => 'Uittreksel uit';
 
   @override
-  String get downloadedVideosGuideDescription => 'Je gedownloade video\'s vind je onder \"Profiel\".';
+  String get downloadedVideosGuideDescription =>
+      'Je gedownloade video\'s vind je onder \"Profiel\".';
 
   @override
   String get openStore => 'Open store';
 
   @override
-  String get thisVideoCantBeDownloaded => 'Deze video kan niet worden gedownload.';
+  String get thisVideoCantBeDownloaded =>
+      'Deze video kan niet worden gedownload.';
 
   @override
   String get videoLanguage => 'Taal van de video';
@@ -1018,7 +1075,8 @@ class SNl extends S {
   String get original => 'Origineel';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Open instellingen om de taal van de videocontent te wijzigen';
+  String get openSettingsToChangeVideoLang =>
+      'Open instellingen om de taal van de videocontent te wijzigen';
 
   @override
   String get somethingWentWrong => 'Er ging iets fout';
@@ -1048,7 +1106,8 @@ class SNl extends S {
   String get answerTheQuiz => 'Beantwoord de quiz';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Verdien punten door correct te antwoorden';
+  String get studyAnswerTheQuizDescription =>
+      'Verdien punten door correct te antwoorden';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
@@ -1065,10 +1124,12 @@ class SNl extends S {
   String get studyAllAnswersCorrectDescription => 'Goed gedaan!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Volgende keer beter luisteren!';
+  String get studyNoAnswersCorrectDescription =>
+      'Volgende keer beter luisteren!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Goed gedaan! Maar nog steeds ruimte voor verbetering.';
+  String get studySomeAnswersCorrectDescription =>
+      'Goed gedaan! Maar nog steeds ruimte voor verbetering.';
 
   @override
   String get studyAllQuestionsAnswered => 'Je hebt alle vragen beantwoord';
@@ -1089,5 +1150,6 @@ class SNl extends S {
   String get notifications => 'Meldingen';
 
   @override
-  String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
+  String get onlyShowContentWithPreferredLanguages =>
+      'Only show content with my preferred languages';
 }

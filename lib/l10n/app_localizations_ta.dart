@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -34,13 +36,16 @@ class STa extends S {
   String get loginPageDisplay1 => 'உலகின் மிக சக்திவாய்ந்த\n செய்தி';
 
   @override
-  String get loginPageDisplay2 => 'கிறிஸ்தவ விழுமியங்களை அடிப்படையாகக் கொண்ட தொடர்கள், நிகழ்ச்சிகள் மற்றும் திரைப்படங்களைப் பாருங்கள்';
+  String get loginPageDisplay2 =>
+      'கிறிஸ்தவ விழுமியங்களை அடிப்படையாகக் கொண்ட தொடர்கள், நிகழ்ச்சிகள் மற்றும் திரைப்படங்களைப் பாருங்கள்';
 
   @override
-  String get kidsOnboardingTitle => 'பைபிளின் செய்தியை ஜீவனுள்ளதாகக் கொண்டு வருகிறோம்!';
+  String get kidsOnboardingTitle =>
+      'பைபிளின் செய்தியை ஜீவனுள்ளதாகக் கொண்டு வருகிறோம்!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'குழந்தைகள் இயேசுவைத் தங்களின் மிகச் சிறந்த நண்பராக அனுபவிப்பதே எங்கள் தரிசனம் - அவர்களின் வாழ்நாள் முழுவதும்.';
+  String get kidsOnboardingSecondaryTitle =>
+      'குழந்தைகள் இயேசுவைத் தங்களின் மிகச் சிறந்த நண்பராக அனுபவிப்பதே எங்கள் தரிசனம் - அவர்களின் வாழ்நாள் முழுவதும்.';
 
   @override
   String get loginPageDisplay3 => 'பிசிசி மீடியா தயாரித்தது';
@@ -55,7 +60,8 @@ class STa extends S {
   String get faq => 'அடிக்கடி கேட்கப்படும் கேள்விகள்';
 
   @override
-  String get bccMediaCenter => 'பிசிசி மீடியா என்பது பிசிசி கூட்டமைப்பில் உள்ள ஒரு ஊடக அறக்கட்டளையாகும், இது நேர்மறையான மற்றும் கிறிஸ்தவ மதிப்புகளுடன் உள்ளடக்கத்தை உருவாக்கி விநியோகிக்கிறது.';
+  String get bccMediaCenter =>
+      'பிசிசி மீடியா என்பது பிசிசி கூட்டமைப்பில் உள்ள ஒரு ஊடக அறக்கட்டளையாகும், இது நேர்மறையான மற்றும் கிறிஸ்தவ மதிப்புகளுடன் உள்ளடக்கத்தை உருவாக்கி விநியோகிக்கிறது.';
 
   @override
   String get signInButton => 'உள்நுழைக';
@@ -70,10 +76,12 @@ class STa extends S {
   String get signUpTitle => 'பதிவு செய்யவும்';
 
   @override
-  String get signUpDescription => 'கணக்கை உருவாக்குவதன் மூலம் கூடுதல் உள்ளடக்கம் மற்றும் சிறந்த அம்சங்களுக்கான அணுகலைப் பெறுங்கள்.';
+  String get signUpDescription =>
+      'கணக்கை உருவாக்குவதன் மூலம் கூடுதல் உள்ளடக்கம் மற்றும் சிறந்த அம்சங்களுக்கான அணுகலைப் பெறுங்கள்.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'எனக்கு 13 வயது அல்லது அதற்கு மேற்பட்ட வயது என்று சான்றளிக்கிறேன், மேலும் <a>தனியுரிமைக் கொள்கை</a> மற்றும் <a>பயன்பாட்டு விதிமுறைகளை</a>ஏற்கிறேன்.';
+  String get signUpAgreePrivacyPolicy =>
+      'எனக்கு 13 வயது அல்லது அதற்கு மேற்பட்ட வயது என்று சான்றளிக்கிறேன், மேலும் <a>தனியுரிமைக் கொள்கை</a> மற்றும் <a>பயன்பாட்டு விதிமுறைகளை</a>ஏற்கிறேன்.';
 
   @override
   String get setPassword => 'கடவுச்சொல்லை அமைக்கவும்';
@@ -85,7 +93,8 @@ class STa extends S {
   String get loggedOutTitle => 'வெளியேறியது';
 
   @override
-  String get loggedOutMessage => 'நீங்கள் வெளியேறிவிட்டீர்கள். மீண்டும் உள்நுழையவும்.';
+  String get loggedOutMessage =>
+      'நீங்கள் வெளியேறிவிட்டீர்கள். மீண்டும் உள்நுழையவும்.';
 
   @override
   String get makeDonation => 'நன்கொடை செலுத்தவும்';
@@ -109,10 +118,12 @@ class STa extends S {
   String get open => 'திற';
 
   @override
-  String get loginFailedCheckNetwork => 'உள்நுழைவு தோல்வியடைந்தது. உங்கள் நெட்வொர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயலவும்.';
+  String get loginFailedCheckNetwork =>
+      'உள்நுழைவு தோல்வியடைந்தது. உங்கள் நெட்வொர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயலவும்.';
 
   @override
-  String get loginFailedTryAgain => 'உள்நுழைவு தோல்வியடைந்தது. பிறகு முயற்சிக்கவும்.';
+  String get loginFailedTryAgain =>
+      'உள்நுழைவு தோல்வியடைந்தது. பிறகு முயற்சிக்கவும்.';
 
   @override
   String get soundLanguage => 'ஒலி மொழி';
@@ -124,7 +135,8 @@ class STa extends S {
   String get appLanguage => 'பயன்பாட்டு மொழி';
 
   @override
-  String get checkNetwork => 'உங்கள் நெட்வொர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயலவும்.';
+  String get checkNetwork =>
+      'உங்கள் நெட்வொர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயலவும்.';
 
   @override
   String get tryAgain => 'பிறகு முயற்சிக்கவும்.';
@@ -151,7 +163,8 @@ class STa extends S {
   String get deviceInfo => 'சாதனத் தகவல்';
 
   @override
-  String get contactIncludeDeviceInfo => 'சிறந்த ஆதரவுக்காக சாதனத் தகவலைச் சேர்க்கவும்.';
+  String get contactIncludeDeviceInfo =>
+      'சிறந்த ஆதரவுக்காக சாதனத் தகவலைச் சேர்க்கவும்.';
 
   @override
   String get contactSeeData => 'தரவைப் பார்க்க கிளிக் செய்யவும்.';
@@ -196,7 +209,8 @@ class STa extends S {
   String get deviceInfoUserId => 'பயனர் ஐடி';
 
   @override
-  String get deviceInfoPageDesc => 'சிறந்த ஆதரவை வழங்க எங்களுக்கு உதவ, உங்கள் செய்தியில் இந்தத் தகவல் இருக்கும்.';
+  String get deviceInfoPageDesc =>
+      'சிறந்த ஆதரவை வழங்க எங்களுக்கு உதவ, உங்கள் செய்தியில் இந்தத் தகவல் இருக்கும்.';
 
   @override
   String get userVoice => 'ஒரு அம்சத்தை பரிந்துரைக்கவும்';
@@ -208,7 +222,8 @@ class STa extends S {
   String get cancelConfirmation => 'நிச்சயமாக ரத்துசெய்ய விரும்புகிறீர்களா?';
 
   @override
-  String get cancelConfirmationDescription => 'சேமிக்கப்படாத மாற்றங்கள் அனைத்தும் இழக்கப்படும்.';
+  String get cancelConfirmationDescription =>
+      'சேமிக்கப்படாத மாற்றங்கள் அனைத்தும் இழக்கப்படும்.';
 
   @override
   String get goBack => 'திரும்பி போ';
@@ -291,7 +306,8 @@ class STa extends S {
   String get tVLogin => 'டிவி உள்நுழைவு';
 
   @override
-  String get tVLoginSuccessful => 'உள்நுழைவு வெற்றிகரமாக உள்ளது, தயவுசெய்து டிவியில் உறுதிப்படுத்தவும்.';
+  String get tVLoginSuccessful =>
+      'உள்நுழைவு வெற்றிகரமாக உள்ளது, தயவுசெய்து டிவியில் உறுதிப்படுத்தவும்.';
 
   @override
   String get seeMore => 'மேலும் பார்க்க';
@@ -321,7 +337,8 @@ class STa extends S {
   String get high => 'உயர் தரம்';
 
   @override
-  String get emptySearch => 'BCC மீடியாவிலிருந்து எல்லா உள்ளடக்கத்தையும் நீங்கள் தேடலாம். தொடர்கள், வீடியோக்கள் மற்றும் எபிசோடுகள்.';
+  String get emptySearch =>
+      'BCC மீடியாவிலிருந்து எல்லா உள்ளடக்கத்தையும் நீங்கள் தேடலாம். தொடர்கள், வீடியோக்கள் மற்றும் எபிசோடுகள்.';
 
   @override
   String get back => 'பின்செல்';
@@ -407,7 +424,8 @@ class STa extends S {
   String get now => 'இப்போது';
 
   @override
-  String get debugInfoExplanation => 'இந்தச் சிக்கலைச் சிறப்பாகப் புரிந்துகொள்ள உங்கள் செய்தியில் இந்தத் தகவல் இருக்கும்.';
+  String get debugInfoExplanation =>
+      'இந்தச் சிக்கலைச் சிறப்பாகப் புரிந்துகொள்ள உங்கள் செய்தியில் இந்தத் தகவல் இருக்கும்.';
 
   @override
   String get send => 'அனுப்பு';
@@ -419,16 +437,19 @@ class STa extends S {
   String get thankYouSupportTitle => 'உங்கள் கருத்துக்கு நன்றி!';
 
   @override
-  String get thankYouSupportDescription => 'அனைத்து கருத்துக்களையும் நாங்கள் பாராட்டுகிறோம், மேலும் விரைவில் சிக்கலைத் தீர்ப்போம்.';
+  String get thankYouSupportDescription =>
+      'அனைத்து கருத்துக்களையும் நாங்கள் பாராட்டுகிறோம், மேலும் விரைவில் சிக்கலைத் தீர்ப்போம்.';
 
   @override
   String get sendFail => 'உங்கள் செய்தியை அனுப்ப முடியவில்லை';
 
   @override
-  String get sendFailDescription => 'ஏதோ தவறு நடந்துவிட்டது. உங்கள் இணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.';
+  String get sendFailDescription =>
+      'ஏதோ தவறு நடந்துவிட்டது. உங்கள் இணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.';
 
   @override
-  String get sendSuccessDescription => 'உங்கள் கருத்தை நாங்கள் பாராட்டுகிறோம்.';
+  String get sendSuccessDescription =>
+      'உங்கள் கருத்தை நாங்கள் பாராட்டுகிறோம்.';
 
   @override
   String get today => 'இன்று';
@@ -492,7 +513,8 @@ class STa extends S {
   String get appUpdateTitle => 'புதுப்பித்தல் தேவை';
 
   @override
-  String get appUpdateRequest => 'அனைத்து சமீபத்திய அம்சங்களையும் பிழை திருத்தங்களையும் அனுபவிக்க சமீபத்திய செயலியை பதிவிறக்கவும்.';
+  String get appUpdateRequest =>
+      'அனைத்து சமீபத்திய அம்சங்களையும் பிழை திருத்தங்களையும் அனுபவிக்க சமீபத்திய செயலியை பதிவிறக்கவும்.';
 
   @override
   String get appUpdateAccepted => 'புதுப்பிக்கவும்';
@@ -542,7 +564,8 @@ class STa extends S {
   String get subtitlesLanguage => 'வசன மொழி';
 
   @override
-  String get removeFromRecentSearches => 'சமீபத்திய தேடல்களில் இருந்து இந்த உறுப்பை அகற்ற விரும்புகிறீர்களா?';
+  String get removeFromRecentSearches =>
+      'சமீபத்திய தேடல்களில் இருந்து இந்த உறுப்பை அகற்ற விரும்புகிறீர்களா?';
 
   @override
   String get noTransmissionToday => 'இன்று திட்டமிடப்பட்ட ஒளிபரப்பு இல்லை';
@@ -551,13 +574,15 @@ class STa extends S {
   String get featured => 'இடம்பெற்றது';
 
   @override
-  String get errorTryAgain => 'ஏதோ தவறு நடந்துவிட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.';
+  String get errorTryAgain =>
+      'ஏதோ தவறு நடந்துவிட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.';
 
   @override
   String get programsSection => 'நிகழ்ச்சிகள்';
 
   @override
-  String get noPlannedEvents => 'இந்த நாளில் எந்த நிகழ்வுகளும் திட்டமிடப்படவில்லை';
+  String get noPlannedEvents =>
+      'இந்த நாளில் எந்த நிகழ்வுகளும் திட்டமிடப்படவில்லை';
 
   @override
   String get watchNow => 'இப்பொழுது பார்';
@@ -578,7 +603,8 @@ class STa extends S {
   String get tasksCompleted => 'பணிகள் முடிக்கப்பட்டன';
 
   @override
-  String get studyCompleteTaskDescription => 'பணிகளை முடித்து, தொடர்புடைய ஆதாரங்களைக் கண்டறியவும்';
+  String get studyCompleteTaskDescription =>
+      'பணிகளை முடித்து, தொடர்புடைய ஆதாரங்களைக் கண்டறியவும்';
 
   @override
   String get discoverMore => 'மேலும் கண்டறியவும்';
@@ -587,7 +613,8 @@ class STa extends S {
   String get completePreviousTasks => 'திறக்க முந்தைய பணிகளை முடிக்கவும்';
 
   @override
-  String get studyDiscoverMoreDescription => 'தொடர்புடைய ஆதாரங்களில் இருந்து மேலும் உத்வேகம் மற்றும் நுண்ணறிவைக் கண்டறியவும்';
+  String get studyDiscoverMoreDescription =>
+      'தொடர்புடைய ஆதாரங்களில் இருந்து மேலும் உத்வேகம் மற்றும் நுண்ணறிவைக் கண்டறியவும்';
 
   @override
   String get watchAgain => 'மீண்டும் பார்க்கவும்';
@@ -614,7 +641,8 @@ class STa extends S {
   String get videoCompletedText => 'காணொளியை நிறைவு செய்ததில் சிறப்பான பணி.';
 
   @override
-  String get achievementFirstDescription => 'வீடியோவை நிறைவுசெய்து உங்களின் முதல் முன்னேற்றச் சாதனையைப் பெற்றதில் சிறந்த வேலை.';
+  String get achievementFirstDescription =>
+      'வீடியோவை நிறைவுசெய்து உங்களின் முதல் முன்னேற்றச் சாதனையைப் பெற்றதில் சிறந்த வேலை.';
 
   @override
   String achievementStudyTopic(String name) {
@@ -656,7 +684,8 @@ class STa extends S {
   }
 
   @override
-  String get passwordConditionComplexity => 'சிறிய எழுத்து, பெரிய எழுத்து மற்றும் எண்களைக் கொண்டிருக்க வேண்டும்.';
+  String get passwordConditionComplexity =>
+      'சிறிய எழுத்து, பெரிய எழுத்து மற்றும் எண்களைக் கொண்டிருக்க வேண்டும்.';
 
   @override
   String get oops => 'அச்சச்சோ!';
@@ -668,10 +697,12 @@ class STa extends S {
   String get notFound => 'நீங்கள் தேடும் உள்ளடக்கம் இருப்பதாகத் தெரியவில்லை.';
 
   @override
-  String get mustBeLoggedIn => 'இந்த உள்ளடக்கத்தைப் பார்க்க நீங்கள் உள்நுழைந்திருக்க வேண்டும்';
+  String get mustBeLoggedIn =>
+      'இந்த உள்ளடக்கத்தைப் பார்க்க நீங்கள் உள்நுழைந்திருக்க வேண்டும்';
 
   @override
-  String get plentyOfOtherContent => 'கவலைப்பட வேண்டாம், ரசிக்க இன்னும் நிறைய உள்ளடக்கம் உள்ளது!';
+  String get plentyOfOtherContent =>
+      'கவலைப்பட வேண்டாம், ரசிக்க இன்னும் நிறைய உள்ளடக்கம் உள்ளது!';
 
   @override
   String get notAchieved => 'அடையவில்லை';
@@ -686,7 +717,8 @@ class STa extends S {
   String get didYouKnowTitle => 'உனக்கு தெரியுமா?';
 
   @override
-  String get didYouKnowContent => 'இதய சின்னத்தை தட்டுவதன் மூலம் உங்களுக்குப் பிடித்த நிகழ்ச்சிகளை \"எனது பட்டியலில்\" சேர்க்கலாம்.';
+  String get didYouKnowContent =>
+      'இதய சின்னத்தை தட்டுவதன் மூலம் உங்களுக்குப் பிடித்த நிகழ்ச்சிகளை \"எனது பட்டியலில்\" சேர்க்கலாம்.';
 
   @override
   String get selectSeason => 'சீசனை தேர்ந்தெடுக்கவும்';
@@ -695,7 +727,8 @@ class STa extends S {
   String get deleteMyAccount => 'எனது கணக்கை நீக்கு';
 
   @override
-  String get iAmSureIWantToDelete => 'எனது கணக்கையும் BCC மீடியா செயலியுடன் தொடர்புடைய எனது தரவையும் நீக்க விரும்புகிறேன்.';
+  String get iAmSureIWantToDelete =>
+      'எனது கணக்கையும் BCC மீடியா செயலியுடன் தொடர்புடைய எனது தரவையும் நீக்க விரும்புகிறேன்.';
 
   @override
   String get areYouSure => 'நீ சொல்வது உறுதியா?';
@@ -704,7 +737,8 @@ class STa extends S {
   String get youCanContactUsAt => 'நீங்கள் எங்களை தொடர்பு கொள்ளலாம்';
 
   @override
-  String get biblekidsAbout => 'பைபிள் கிட்ஸ் என்பது பிசிசி மீடியாவின் முன்முயற்சியாகும், இது பிசிசி கூட்டமைப்பிற்குள் உள்ள ஒரு ஊடக அறக்கட்டளையாகும், இது நேர்மறையான மற்றும் கிறிஸ்தவ மதிப்புகளுடன் உள்ளடக்கத்தை உருவாக்கி விநியோகிக்கிறது.';
+  String get biblekidsAbout =>
+      'பைபிள் கிட்ஸ் என்பது பிசிசி மீடியாவின் முன்முயற்சியாகும், இது பிசிசி கூட்டமைப்பிற்குள் உள்ள ஒரு ஊடக அறக்கட்டளையாகும், இது நேர்மறையான மற்றும் கிறிஸ்தவ மதிப்புகளுடன் உள்ளடக்கத்தை உருவாக்கி விநியோகிக்கிறது.';
 
   @override
   String get askYourParents => 'உங்கள் பெற்றோரிடம் கேளுங்கள்';
@@ -719,7 +753,8 @@ class STa extends S {
   String get checkAnswerButton => 'பதிலைச் சரிபார்க்கவும்';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'செயலியில் உள்நுழைந்துள்ள பயனர்கள் மட்டுமே இந்த வீடியோவை அணுக முடியும்.';
+  String get videoOnlyAccessibleToLoggedIn =>
+      'செயலியில் உள்நுழைந்துள்ள பயனர்கள் மட்டுமே இந்த வீடியோவை அணுக முடியும்.';
 
   @override
   String get verifyYourAccount => 'உங்கள் கணக்கை சரிபார்க்கவும்';
@@ -728,7 +763,8 @@ class STa extends S {
   String get weHaveSentAnEmailTo => 'மின்னஞ்சல் அனுப்பியுள்ளோம்';
 
   @override
-  String get clickTheLinkToVerify => 'உங்கள் கணக்கைச் சரிபார்க்க மின்னஞ்சலில் உள்ள இணைப்பைக் கிளிக் செய்யவும்.';
+  String get clickTheLinkToVerify =>
+      'உங்கள் கணக்கைச் சரிபார்க்க மின்னஞ்சலில் உள்ள இணைப்பைக் கிளிக் செய்யவும்.';
 
   @override
   String get openEmailApp => 'மின்னஞ்சல் செயலியை திறக்கவும்';
@@ -737,25 +773,30 @@ class STa extends S {
   String get resendEmail => 'மின்னஞ்சலை மீண்டும் அனுப்பவும்';
 
   @override
-  String get noMailAppsDescription => 'மின்னஞ்சல் செயலிகள் எதுவும் நிறுவப்படவில்லை';
+  String get noMailAppsDescription =>
+      'மின்னஞ்சல் செயலிகள் எதுவும் நிறுவப்படவில்லை';
 
   @override
   String get verificationEmailSent => 'சரிபார்ப்பு மின்னஞ்சல் அனுப்பப்பட்டது';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'நீங்கள் இன்னும் மின்னஞ்சலைப் பெறவில்லை என்றால், தயவுசெய்து ஆதரவைத் தொடர்புகொள்ளவும்';
+  String get ifYouDidntReceiveVerificationEmail =>
+      'நீங்கள் இன்னும் மின்னஞ்சலைப் பெறவில்லை என்றால், தயவுசெய்து ஆதரவைத் தொடர்புகொள்ளவும்';
 
   @override
   String get accountCreated => 'கணக்கு உருவாக்கப்பட்டது';
 
   @override
-  String get youCanNowUseYourAccount => 'நீங்கள் இப்போது உங்கள் கணக்கைப் பயன்படுத்தி பல்வேறு பக்திவிருத்தியான உள்ளடக்கத்தை ஆராயலாம்.';
+  String get youCanNowUseYourAccount =>
+      'நீங்கள் இப்போது உங்கள் கணக்கைப் பயன்படுத்தி பல்வேறு பக்திவிருத்தியான உள்ளடக்கத்தை ஆராயலாம்.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'நீங்கள் இப்போது உங்கள் கணக்கில் உள்நுழைந்து பல்வேறு பக்திவிருத்தியான உள்ளடக்கத்தை ஆராயலாம்.';
+  String get youCanNowLogInToYourAccount =>
+      'நீங்கள் இப்போது உங்கள் கணக்கில் உள்நுழைந்து பல்வேறு பக்திவிருத்தியான உள்ளடக்கத்தை ஆராயலாம்.';
 
   @override
-  String get accountDeletionExplanation => 'BCC மீடியாவில் உள்ள உங்கள் கணக்கையும் இந்த செயலியுடன் தொடர்புடைய எல்லா தரவையும் நீக்கக் கோர உள்ளீர்கள்.';
+  String get accountDeletionExplanation =>
+      'BCC மீடியாவில் உள்ள உங்கள் கணக்கையும் இந்த செயலியுடன் தொடர்புடைய எல்லா தரவையும் நீக்கக் கோர உள்ளீர்கள்.';
 
   @override
   String get accountDeletionWarning => 'இது செயல்தவிர்க்க முடியாத செயல்.';
@@ -780,7 +821,8 @@ class STa extends S {
   String get playGame => 'விளையாட்டு விளையாடு';
 
   @override
-  String get tvScanQr => 'குறியீட்டை ஸ்கேன் செய்து உங்கள் ஃபோன் மூலம் உள்நுழையவும்';
+  String get tvScanQr =>
+      'குறியீட்டை ஸ்கேன் செய்து உங்கள் ஃபோன் மூலம் உள்நுழையவும்';
 
   @override
   String tvEnterCode(String url, String code) {
@@ -823,7 +865,8 @@ class STa extends S {
   String get notEnoughAvailableSpace => 'உங்கள் சாதனத்தில் போதுமான இடம் இல்லை';
 
   @override
-  String get considerDeletingOtherVideos => 'செயலியில் நீங்கள் பதிவிறக்கிய பிற வீடியோக்களை நீக்குவதைக் கவனியுங்கள்.';
+  String get considerDeletingOtherVideos =>
+      'செயலியில் நீங்கள் பதிவிறக்கிய பிற வீடியோக்களை நீக்குவதைக் கவனியுங்கள்.';
 
   @override
   String theVideoFileSizeIs(String size) {
@@ -837,7 +880,8 @@ class STa extends S {
   String get saveYourFavorites => 'உங்களுக்கு பிடித்த வீடியோக்களை சேமிக்கவும்';
 
   @override
-  String get saveYourFavoritesDescription => 'வீடியோவை உங்கள் சுயவிவரத்தில் சேமிக்க, அதில் உள்ள இதய ஐகானைத் தட்டவும்.';
+  String get saveYourFavoritesDescription =>
+      'வீடியோவை உங்கள் சுயவிவரத்தில் சேமிக்க, அதில் உள்ள இதய ஐகானைத் தட்டவும்.';
 
   @override
   String get yourFavorites => 'உங்களுக்கு பிடித்தவை';
@@ -846,16 +890,19 @@ class STa extends S {
   String get downloaded => 'பதிவிறக்கம் செய்யப்பட்டது';
 
   @override
-  String get saveVideosForOfflineViewing => 'ஆஃப்லைனில் பார்க்க வீடியோக்களை சேமிக்கவும்';
+  String get saveVideosForOfflineViewing =>
+      'ஆஃப்லைனில் பார்க்க வீடியோக்களை சேமிக்கவும்';
 
   @override
-  String get tapOnTheDownloadIcon => 'ஆஃப்லைனில் இருக்கும் போது பதிவிறக்கம் செய்து பிளே செய்ய, வீடியோவில் உள்ள பதிவிறக்க ஐகானைத் தட்டவும்.';
+  String get tapOnTheDownloadIcon =>
+      'ஆஃப்லைனில் இருக்கும் போது பதிவிறக்கம் செய்து பிளே செய்ய, வீடியோவில் உள்ள பதிவிறக்க ஐகானைத் தட்டவும்.';
 
   @override
   String get removeOfflineVideo => 'ஆஃப்லைன் வீடியோவை அகற்றவா?';
 
   @override
-  String get removeOfflineVideoDescription => 'இந்த வீடியோவை அகற்றினால், நெட்வொர்க் இணைப்பு இல்லாமல் அது இனி கிடைக்காது.';
+  String get removeOfflineVideoDescription =>
+      'இந்த வீடியோவை அகற்றினால், நெட்வொர்க் இணைப்பு இல்லாமல் அது இனி கிடைக்காது.';
 
   @override
   String get removeFromDeviceButton => 'சாதனத்திலிருந்து அகற்று';
@@ -867,16 +914,20 @@ class STa extends S {
   String get noInternetConnection => 'இணைய இணைப்பு இல்லை';
 
   @override
-  String get noInternetConnectionDescription => 'அனைத்து வீடியோக்களையும் அணுக இணையத்துடன் இணைக்கவும்.';
+  String get noInternetConnectionDescription =>
+      'அனைத்து வீடியோக்களையும் அணுக இணையத்துடன் இணைக்கவும்.';
 
   @override
-  String get noInternetButDontWorry => 'இணைய இணைப்பு இல்லை,\nஆனால் கவலைப்பட வேண்டாம்.';
+  String get noInternetButDontWorry =>
+      'இணைய இணைப்பு இல்லை,\nஆனால் கவலைப்பட வேண்டாம்.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'உங்கள் சாதனத்தில் நீங்கள் பதிவிறக்கிய அனைத்து வீடியோக்களும் இதோ.';
+  String get hereAreAllTheVideosYouDownloaded =>
+      'உங்கள் சாதனத்தில் நீங்கள் பதிவிறக்கிய அனைத்து வீடியோக்களும் இதோ.';
 
   @override
-  String get connectToExplore => 'அனைத்து வீடியோக்களையும் ஆராய இணையத்துடன் இணைக்கவும்.';
+  String get connectToExplore =>
+      'அனைத்து வீடியோக்களையும் ஆராய இணையத்துடன் இணைக்கவும்.';
 
   @override
   String get language => 'மொழி';
@@ -896,7 +947,8 @@ class STa extends S {
   String get subtitlesIncluded => 'வசனங்கள் சேர்க்கப்பட்டுள்ளன';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'அனைத்து வசனங்களும் ஆஃப்லைனில் கிடைக்கும்';
+  String get allSubtitlesWillBeAvailableOffline =>
+      'அனைத்து வசனங்களும் ஆஃப்லைனில் கிடைக்கும்';
 
   @override
   String get downloading => 'பதிவிறக்குகிறது';
@@ -946,7 +998,8 @@ class STa extends S {
   String get preferredLanguages => 'விருப்பமான மொழிகள்';
 
   @override
-  String get contentLanguageExplanation => 'ஆடியோ மற்றும் வசன மொழிக்கான உங்கள் விருப்பத்துடன் பொருந்துமாறு மொழிகளை மறுவரிசைப்படுத்தவும்.';
+  String get contentLanguageExplanation =>
+      'ஆடியோ மற்றும் வசன மொழிக்கான உங்கள் விருப்பத்துடன் பொருந்துமாறு மொழிகளை மறுவரிசைப்படுத்தவும்.';
 
   @override
   String get otherLanguages => 'பிற மொழிகள்';
@@ -967,40 +1020,47 @@ class STa extends S {
   String get autoGenerated => 'தானாக உருவாக்கப்பட்டவை';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'The transcriptions are auto-generated and might contain errors.';
+  String get shortsTranscriptionDisclaimer =>
+      'The transcriptions are auto-generated and might contain errors.';
 
   @override
   String get beta => 'பீட்டா';
 
   @override
-  String get betaExplanation => 'இந்த அம்சம் பீட்டாவில் உள்ளது மற்றும் தற்போது அனைத்து பயனர்களுக்கும் வெளியிடப்படவில்லை. அமைப்புகளில் உள்ள \'தொடர்பு\' பொத்தான் மூலம் ஏதேனும் சிக்கல்கள் அல்லது கருத்துகளைப் புகாரளிக்கவும்.';
+  String get betaExplanation =>
+      'இந்த அம்சம் பீட்டாவில் உள்ளது மற்றும் தற்போது அனைத்து பயனர்களுக்கும் வெளியிடப்படவில்லை. அமைப்புகளில் உள்ள \'தொடர்பு\' பொத்தான் மூலம் ஏதேனும் சிக்கல்கள் அல்லது கருத்துகளைப் புகாரளிக்கவும்.';
 
   @override
   String get likedShorts => 'பிடித்த ஷார்ட்ஸ்';
 
   @override
-  String get saveYourFavoriteShorts => 'உங்களுக்கு பிடித்த ஷார்ட்ஸ்களை சேமிக்கவும்';
+  String get saveYourFavoriteShorts =>
+      'உங்களுக்கு பிடித்த ஷார்ட்ஸ்களை சேமிக்கவும்';
 
   @override
-  String get featureNotAvailableYet => 'இந்த அம்சம் உங்கள் சாதனத்தில் இன்னும் கிடைக்கவில்லை. பிறகு முயற்சிக்கவும்.';
+  String get featureNotAvailableYet =>
+      'இந்த அம்சம் உங்கள் சாதனத்தில் இன்னும் கிடைக்கவில்லை. பிறகு முயற்சிக்கவும்.';
 
   @override
   String get newFeature => 'புதிய அம்சம்';
 
   @override
-  String get shortsFeatureDescription => 'குறுகிய மற்றும் வல்லமையான பகுதிகளைக் கண்டறிந்து, அதன் முழு எபிசோடிற்கு செல்லவும்.';
+  String get shortsFeatureDescription =>
+      'குறுகிய மற்றும் வல்லமையான பகுதிகளைக் கண்டறிந்து, அதன் முழு எபிசோடிற்கு செல்லவும்.';
 
   @override
   String get likedAndSaved => 'பிடித்தவை மற்றும் சேமித்தவை';
 
   @override
-  String get shortsLikedAndSavedDescription => 'நீங்கள் விரும்பிய அனைத்து ஷார்ட்ஸ்களையும் உங்கள் சுயவிவரத்தில் காணலாம்.';
+  String get shortsLikedAndSavedDescription =>
+      'நீங்கள் விரும்பிய அனைத்து ஷார்ட்ஸ்களையும் உங்கள் சுயவிவரத்தில் காணலாம்.';
 
   @override
   String get excerptFrom => 'Excerpt from';
 
   @override
-  String get downloadedVideosGuideDescription => 'நீங்கள் பதிவிறக்கிய வீடியோக்களை \"சுயவிவரம்\" என்பதன் கீழ் காணலாம்.';
+  String get downloadedVideosGuideDescription =>
+      'நீங்கள் பதிவிறக்கிய வீடியோக்களை \"சுயவிவரம்\" என்பதன் கீழ் காணலாம்.';
 
   @override
   String get openStore => 'Store - ஐ திறக்கவும்';
@@ -1018,7 +1078,8 @@ class STa extends S {
   String get original => 'அசல்';
 
   @override
-  String get openSettingsToChangeVideoLang => 'வீடியோ உரை மொழியை மாற்ற அமைப்புகளைத் திறக்கவும்';
+  String get openSettingsToChangeVideoLang =>
+      'வீடியோ உரை மொழியை மாற்ற அமைப்புகளைத் திறக்கவும்';
 
   @override
   String get somethingWentWrong => 'ஏதோ தவறு நடந்துவிட்டது';
@@ -1048,7 +1109,8 @@ class STa extends S {
   String get answerTheQuiz => 'Answer the quiz';
 
   @override
-  String get studyAnswerTheQuizDescription => 'Earn points by answering correctly';
+  String get studyAnswerTheQuizDescription =>
+      'Earn points by answering correctly';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
@@ -1065,10 +1127,12 @@ class STa extends S {
   String get studyAllAnswersCorrectDescription => 'Well done!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Better listen a bit closer next time!';
+  String get studyNoAnswersCorrectDescription =>
+      'Better listen a bit closer next time!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Well done! But still room for improvement.';
+  String get studySomeAnswersCorrectDescription =>
+      'Well done! But still room for improvement.';
 
   @override
   String get studyAllQuestionsAnswered => 'You answered all questions';
@@ -1089,5 +1153,6 @@ class STa extends S {
   String get notifications => 'Notifications';
 
   @override
-  String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
+  String get onlyShowContentWithPreferredLanguages =>
+      'Only show content with my preferred languages';
 }

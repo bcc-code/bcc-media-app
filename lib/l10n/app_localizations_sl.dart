@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -34,13 +36,15 @@ class SSl extends S {
   String get loginPageDisplay1 => 'Najmočnejše sporočilo na svetu';
 
   @override
-  String get loginPageDisplay2 => 'Oglej si serije in filme, narejene na podlagi krščanskih vrednot';
+  String get loginPageDisplay2 =>
+      'Oglej si serije in filme, narejene na podlagi krščanskih vrednot';
 
   @override
   String get kidsOnboardingTitle => 'Oznanilo Svetega pisma oživimo!';
 
   @override
-  String get kidsOnboardingSecondaryTitle => 'Naša vizija je, da otroci doživijo Jezusa kot najboljšega prijatelja - do konca življenja.';
+  String get kidsOnboardingSecondaryTitle =>
+      'Naša vizija je, da otroci doživijo Jezusa kot najboljšega prijatelja - do konca življenja.';
 
   @override
   String get loginPageDisplay3 => 'Produkcija: BCC Media';
@@ -55,7 +59,8 @@ class SSl extends S {
   String get faq => 'Pogosta vprašanja';
 
   @override
-  String get bccMediaCenter => 'BCC Media je medijska fundacija v BCC zvezi, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.';
+  String get bccMediaCenter =>
+      'BCC Media je medijska fundacija v BCC zvezi, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.';
 
   @override
   String get signInButton => 'Vpis';
@@ -70,10 +75,12 @@ class SSl extends S {
   String get signUpTitle => 'Prijavi se';
 
   @override
-  String get signUpDescription => 'Z ustvarjenim računom dobiš dostop do več vsebin in boljših funkcij.';
+  String get signUpDescription =>
+      'Z ustvarjenim računom dobiš dostop do več vsebin in boljših funkcij.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'Potrjujem, da sem star 13 let ali več ter da se strinjam s <a>pravilnikom o zasebnosti</a> in <a>pogoji uporabe</a>.';
+  String get signUpAgreePrivacyPolicy =>
+      'Potrjujem, da sem star 13 let ali več ter da se strinjam s <a>pravilnikom o zasebnosti</a> in <a>pogoji uporabe</a>.';
 
   @override
   String get setPassword => 'Nastavi geslo';
@@ -109,10 +116,12 @@ class SSl extends S {
   String get open => 'Odpri';
 
   @override
-  String get loginFailedCheckNetwork => 'Prijava ni uspela. Preverite svojo internetno povezavo in poskusite znova.';
+  String get loginFailedCheckNetwork =>
+      'Prijava ni uspela. Preverite svojo internetno povezavo in poskusite znova.';
 
   @override
-  String get loginFailedTryAgain => 'Prijava ni uspela. Prosim, poskusite znova kasneje.';
+  String get loginFailedTryAgain =>
+      'Prijava ni uspela. Prosim, poskusite znova kasneje.';
 
   @override
   String get soundLanguage => 'Jezik zvoka';
@@ -124,7 +133,8 @@ class SSl extends S {
   String get appLanguage => 'Jezik aplikacije';
 
   @override
-  String get checkNetwork => 'Preverite svojo internetno povezavo in poskusite znova.';
+  String get checkNetwork =>
+      'Preverite svojo internetno povezavo in poskusite znova.';
 
   @override
   String get tryAgain => 'Prosim, poskusite znova kasneje.';
@@ -151,7 +161,8 @@ class SSl extends S {
   String get deviceInfo => 'Informacije o napravi';
 
   @override
-  String get contactIncludeDeviceInfo => 'Za boljšo podporo vključi informacije o napravi.';
+  String get contactIncludeDeviceInfo =>
+      'Za boljšo podporo vključi informacije o napravi.';
 
   @override
   String get contactSeeData => 'Klikni za ogled podatkov.';
@@ -196,7 +207,8 @@ class SSl extends S {
   String get deviceInfoUserId => 'User ID';
 
   @override
-  String get deviceInfoPageDesc => 'Tvoje sporočilo bo vsebovalo to informacijo. To nam bo omogočilo lažjo pomoč.';
+  String get deviceInfoPageDesc =>
+      'Tvoje sporočilo bo vsebovalo to informacijo. To nam bo omogočilo lažjo pomoč.';
 
   @override
   String get userVoice => 'Predlagaj funkcijo';
@@ -208,7 +220,8 @@ class SSl extends S {
   String get cancelConfirmation => 'Ali si prepričan, da želiš preklicati?';
 
   @override
-  String get cancelConfirmationDescription => 'Neshranjene spremembe bodo izgubljene.';
+  String get cancelConfirmationDescription =>
+      'Neshranjene spremembe bodo izgubljene.';
 
   @override
   String get goBack => 'Nazaj';
@@ -291,7 +304,8 @@ class SSl extends S {
   String get tVLogin => 'TV prijava';
 
   @override
-  String get tVLoginSuccessful => 'Prijava je bila uspešna, prosim potrdite jo na TV.';
+  String get tVLoginSuccessful =>
+      'Prijava je bila uspešna, prosim potrdite jo na TV.';
 
   @override
   String get seeMore => 'Več';
@@ -321,7 +335,8 @@ class SSl extends S {
   String get high => 'Visoka';
 
   @override
-  String get emptySearch => 'Iščeš lahko po vsej vsebini BCC Media. Serije, filme in dele.';
+  String get emptySearch =>
+      'Iščeš lahko po vsej vsebini BCC Media. Serije, filme in dele.';
 
   @override
   String get back => 'Nazaj';
@@ -407,7 +422,8 @@ class SSl extends S {
   String get now => 'Zdaj';
 
   @override
-  String get debugInfoExplanation => 'Tvoje sporočilo bo vsebovalo to informacijo. To nam bo pomagalo, da bomo bolje razumeli težavo.';
+  String get debugInfoExplanation =>
+      'Tvoje sporočilo bo vsebovalo to informacijo. To nam bo pomagalo, da bomo bolje razumeli težavo.';
 
   @override
   String get send => 'Pošlji';
@@ -419,13 +435,15 @@ class SSl extends S {
   String get thankYouSupportTitle => 'Hvala za povratno sporočilo!';
 
   @override
-  String get thankYouSupportDescription => 'Cenimo vsa povratna sporočila in težave bomo rešili v najkrajšem možnem času.';
+  String get thankYouSupportDescription =>
+      'Cenimo vsa povratna sporočila in težave bomo rešili v najkrajšem možnem času.';
 
   @override
   String get sendFail => 'Sporočila ni bilo mogoče poslati';
 
   @override
-  String get sendFailDescription => 'Nekaj je šlo narobe. Preveri svojo internetno povezavo in poskusi znova.';
+  String get sendFailDescription =>
+      'Nekaj je šlo narobe. Preveri svojo internetno povezavo in poskusi znova.';
 
   @override
   String get sendSuccessDescription => 'Cenimo tvojo povratno informacijo.';
@@ -492,7 +510,8 @@ class SSl extends S {
   String get appUpdateTitle => 'Potrebna posodobitev';
 
   @override
-  String get appUpdateRequest => 'Prosim prenesi zadnjo verzijo aplikacije, da dobiš najnovejše dodatke in izboljšave.';
+  String get appUpdateRequest =>
+      'Prosim prenesi zadnjo verzijo aplikacije, da dobiš najnovejše dodatke in izboljšave.';
 
   @override
   String get appUpdateAccepted => 'Posodobitev';
@@ -542,7 +561,8 @@ class SSl extends S {
   String get subtitlesLanguage => 'Jezik podnapisov';
 
   @override
-  String get removeFromRecentSearches => 'Ali želite odstraniti ta element iz nedavnih iskanj?';
+  String get removeFromRecentSearches =>
+      'Ali želite odstraniti ta element iz nedavnih iskanj?';
 
   @override
   String get noTransmissionToday => 'Danes ni načrtovanih prenosov';
@@ -578,16 +598,19 @@ class SSl extends S {
   String get tasksCompleted => 'naloge opravljene';
 
   @override
-  String get studyCompleteTaskDescription => 'Dokončaj naloge in odkrij s tem povezane vire';
+  String get studyCompleteTaskDescription =>
+      'Dokončaj naloge in odkrij s tem povezane vire';
 
   @override
   String get discoverMore => 'Odkrij več';
 
   @override
-  String get completePreviousTasks => 'Da odkleneš, moraš dokončati prejšnje naloge';
+  String get completePreviousTasks =>
+      'Da odkleneš, moraš dokončati prejšnje naloge';
 
   @override
-  String get studyDiscoverMoreDescription => 'Najdi več navdiha in vpogleda iz povezanih virov';
+  String get studyDiscoverMoreDescription =>
+      'Najdi več navdiha in vpogleda iz povezanih virov';
 
   @override
   String get watchAgain => 'Poglej znova';
@@ -614,7 +637,8 @@ class SSl extends S {
   String get videoCompletedText => 'Bravo! Prišel si do konca videoposnetka.';
 
   @override
-  String get achievementFirstDescription => 'Bravo! Prišel si do konca videoposnetka in zaslužil svoj prvi dosežek.';
+  String get achievementFirstDescription =>
+      'Bravo! Prišel si do konca videoposnetka in zaslužil svoj prvi dosežek.';
 
   @override
   String achievementStudyTopic(String name) {
@@ -656,7 +680,8 @@ class SSl extends S {
   }
 
   @override
-  String get passwordConditionComplexity => 'Vsebovati mora male in velike črke ter številke.';
+  String get passwordConditionComplexity =>
+      'Vsebovati mora male in velike črke ter številke.';
 
   @override
   String get oops => 'Oops!';
@@ -671,7 +696,8 @@ class SSl extends S {
   String get mustBeLoggedIn => 'Za ogled te vsebine moraš biti prijavljen';
 
   @override
-  String get plentyOfOtherContent => 'Brez skrbi, na voljo je dovolj druge vsebine!';
+  String get plentyOfOtherContent =>
+      'Brez skrbi, na voljo je dovolj druge vsebine!';
 
   @override
   String get notAchieved => 'Ni dosežen';
@@ -686,7 +712,8 @@ class SSl extends S {
   String get didYouKnowTitle => 'Ali si vedel?';
 
   @override
-  String get didYouKnowContent => 'S klikom na srce lahko dodaš svoje najljubše serije na \"Moj seznam\".';
+  String get didYouKnowContent =>
+      'S klikom na srce lahko dodaš svoje najljubše serije na \"Moj seznam\".';
 
   @override
   String get selectSeason => 'Izberi sezono';
@@ -695,7 +722,8 @@ class SSl extends S {
   String get deleteMyAccount => 'Izbriši moj račun';
 
   @override
-  String get iAmSureIWantToDelete => 'Prepričan sem, da želim izbrisati svoj račun in podatke, povezane z aplikacijo BCC Media.';
+  String get iAmSureIWantToDelete =>
+      'Prepričan sem, da želim izbrisati svoj račun in podatke, povezane z aplikacijo BCC Media.';
 
   @override
   String get areYouSure => 'Si prepričan?';
@@ -704,7 +732,8 @@ class SSl extends S {
   String get youCanContactUsAt => 'Z nami lahko vzpostaviš stik na';
 
   @override
-  String get biblekidsAbout => 'BCC Media je iniciativa BCC zveze, medijske fundacije, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.';
+  String get biblekidsAbout =>
+      'BCC Media je iniciativa BCC zveze, medijske fundacije, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.';
 
   @override
   String get askYourParents => 'Vprašaj starše';
@@ -719,7 +748,8 @@ class SSl extends S {
   String get checkAnswerButton => 'Preveri odgovor';
 
   @override
-  String get videoOnlyAccessibleToLoggedIn => 'Ta video je na voljo samo prijavljenim uporabnikom.';
+  String get videoOnlyAccessibleToLoggedIn =>
+      'Ta video je na voljo samo prijavljenim uporabnikom.';
 
   @override
   String get verifyYourAccount => 'Potrdi svoj račun';
@@ -728,7 +758,8 @@ class SSl extends S {
   String get weHaveSentAnEmailTo => 'Pošto smo poslali na';
 
   @override
-  String get clickTheLinkToVerify => 'Klikni na povezavo v elektronski pošti, da potrdiš svoj račun.';
+  String get clickTheLinkToVerify =>
+      'Klikni na povezavo v elektronski pošti, da potrdiš svoj račun.';
 
   @override
   String get openEmailApp => 'Odpri pošto';
@@ -743,22 +774,27 @@ class SSl extends S {
   String get verificationEmailSent => 'Poslana pošta za potrditev';
 
   @override
-  String get ifYouDidntReceiveVerificationEmail => 'Če še vedno nisi prejel pošte, kontaktiraj podporo na';
+  String get ifYouDidntReceiveVerificationEmail =>
+      'Če še vedno nisi prejel pošte, kontaktiraj podporo na';
 
   @override
   String get accountCreated => 'Račun je ustvarjen';
 
   @override
-  String get youCanNowUseYourAccount => 'Sedaj lahko uporabiš svoj račun in raziščeš različne izgrajujoče vsebine.';
+  String get youCanNowUseYourAccount =>
+      'Sedaj lahko uporabiš svoj račun in raziščeš različne izgrajujoče vsebine.';
 
   @override
-  String get youCanNowLogInToYourAccount => 'Sedaj se lahko vpišeš v svoj račun in raziščeš različne izgrajujoče vsebine.';
+  String get youCanNowLogInToYourAccount =>
+      'Sedaj se lahko vpišeš v svoj račun in raziščeš različne izgrajujoče vsebine.';
 
   @override
-  String get accountDeletionExplanation => 'Zaprosil boš za izbris svojega računa v BCC Media in vseh povezanih podatkov.';
+  String get accountDeletionExplanation =>
+      'Zaprosil boš za izbris svojega računa v BCC Media in vseh povezanih podatkov.';
 
   @override
-  String get accountDeletionWarning => 'To dejanje ne more biti razveljavljeno.';
+  String get accountDeletionWarning =>
+      'To dejanje ne more biti razveljavljeno.';
 
   @override
   String accountDeletionTimeframe(int x) {
@@ -823,7 +859,8 @@ class SSl extends S {
   String get notEnoughAvailableSpace => 'Ni dovolj prostora na tvoji napravi';
 
   @override
-  String get considerDeletingOtherVideos => 'Razmisli o izbrisu drugih videoposnetkov, ki si jih prenesel iz aplikacije.';
+  String get considerDeletingOtherVideos =>
+      'Razmisli o izbrisu drugih videoposnetkov, ki si jih prenesel iz aplikacije.';
 
   @override
   String theVideoFileSizeIs(String size) {
@@ -837,7 +874,8 @@ class SSl extends S {
   String get saveYourFavorites => 'Shrani svoje priljubljene videe';
 
   @override
-  String get saveYourFavoritesDescription => 'Pritisni ikono srca, da shraniš video v svoj profil.';
+  String get saveYourFavoritesDescription =>
+      'Pritisni ikono srca, da shraniš video v svoj profil.';
 
   @override
   String get yourFavorites => 'Tvoje priljubljene';
@@ -846,16 +884,19 @@ class SSl extends S {
   String get downloaded => 'Preneseno';
 
   @override
-  String get saveVideosForOfflineViewing => 'Shrani videe za ogled brez povezave';
+  String get saveVideosForOfflineViewing =>
+      'Shrani videe za ogled brez povezave';
 
   @override
-  String get tapOnTheDownloadIcon => 'Tapni ikono za prenos na videoposnetku, da ga preneseš in predvajaš brez povezave.';
+  String get tapOnTheDownloadIcon =>
+      'Tapni ikono za prenos na videoposnetku, da ga preneseš in predvajaš brez povezave.';
 
   @override
   String get removeOfflineVideo => 'Odstrani videoposnetek brez povezave?';
 
   @override
-  String get removeOfflineVideoDescription => 'Če odstraniš ta videoposnetek ne bo več na voljo brez omrežne povezave.';
+  String get removeOfflineVideoDescription =>
+      'Če odstraniš ta videoposnetek ne bo več na voljo brez omrežne povezave.';
 
   @override
   String get removeFromDeviceButton => 'Odstrani iz naprave';
@@ -867,16 +908,19 @@ class SSl extends S {
   String get noInternetConnection => 'Brez internetne povezave';
 
   @override
-  String get noInternetConnectionDescription => 'Za dostop do vseh videoposnetkov se poveži z internetom.';
+  String get noInternetConnectionDescription =>
+      'Za dostop do vseh videoposnetkov se poveži z internetom.';
 
   @override
   String get noInternetButDontWorry => 'Ni povezave, ampak ne skrbi.';
 
   @override
-  String get hereAreAllTheVideosYouDownloaded => 'Tukaj so vsi videi, ki si jih prenesel na svojo napravo.';
+  String get hereAreAllTheVideosYouDownloaded =>
+      'Tukaj so vsi videi, ki si jih prenesel na svojo napravo.';
 
   @override
-  String get connectToExplore => 'Poveži se z internetom, da raziščeš vse videe.';
+  String get connectToExplore =>
+      'Poveži se z internetom, da raziščeš vse videe.';
 
   @override
   String get language => 'Jezik';
@@ -896,7 +940,8 @@ class SSl extends S {
   String get subtitlesIncluded => 'Podnapisi so vključeni';
 
   @override
-  String get allSubtitlesWillBeAvailableOffline => 'Vsi podnapisi bodo na voljo brez povezave';
+  String get allSubtitlesWillBeAvailableOffline =>
+      'Vsi podnapisi bodo na voljo brez povezave';
 
   @override
   String get downloading => 'Prenašam';
@@ -946,7 +991,8 @@ class SSl extends S {
   String get preferredLanguages => 'Izbran jezik';
 
   @override
-  String get contentLanguageExplanation => 'Spremeni vrstni red jezikov tako, da bo ustrezal tvojim željam glede jezika zvoka in podnapisov.';
+  String get contentLanguageExplanation =>
+      'Spremeni vrstni red jezikov tako, da bo ustrezal tvojim željam glede jezika zvoka in podnapisov.';
 
   @override
   String get otherLanguages => 'Drugi jeziki';
@@ -967,13 +1013,15 @@ class SSl extends S {
   String get autoGenerated => 'Samodejno ustvarjeno';
 
   @override
-  String get shortsTranscriptionDisclaimer => 'Prepisi so ustvarjeni samodejno in lahko vsebujejo napake.';
+  String get shortsTranscriptionDisclaimer =>
+      'Prepisi so ustvarjeni samodejno in lahko vsebujejo napake.';
 
   @override
   String get beta => 'Beta';
 
   @override
-  String get betaExplanation => 'Ta funkcija je v beta različici in trenutno ni na voljo vsem uporabnikom. Morebitne težave ali povratne informacije sporočite prek gumba \"Kontakt\" v nastavitvah.';
+  String get betaExplanation =>
+      'Ta funkcija je v beta različici in trenutno ni na voljo vsem uporabnikom. Morebitne težave ali povratne informacije sporočite prek gumba \"Kontakt\" v nastavitvah.';
 
   @override
   String get likedShorts => 'Priljubljeni kratki filmi';
@@ -982,31 +1030,36 @@ class SSl extends S {
   String get saveYourFavoriteShorts => 'Shrani svoje priljubljene kratke filme';
 
   @override
-  String get featureNotAvailableYet => 'Ta funkcija v vaši napravi še ni na voljo. Prosim, poskusite znova kasneje.';
+  String get featureNotAvailableYet =>
+      'Ta funkcija v vaši napravi še ni na voljo. Prosim, poskusite znova kasneje.';
 
   @override
   String get newFeature => 'Nova funkcija';
 
   @override
-  String get shortsFeatureDescription => 'Odkrij kratke in močne izseke ter skoči v celotno epizodo.';
+  String get shortsFeatureDescription =>
+      'Odkrij kratke in močne izseke ter skoči v celotno epizodo.';
 
   @override
   String get likedAndSaved => 'Všečkano in shranjeno';
 
   @override
-  String get shortsLikedAndSavedDescription => 'Vse priljubljene kratke filme lahko najdeš v svojem profilu.';
+  String get shortsLikedAndSavedDescription =>
+      'Vse priljubljene kratke filme lahko najdeš v svojem profilu.';
 
   @override
   String get excerptFrom => 'Odlomek iz';
 
   @override
-  String get downloadedVideosGuideDescription => 'Prenesene videoposnetke lahko najdeš v razdelku \"Profil\".';
+  String get downloadedVideosGuideDescription =>
+      'Prenesene videoposnetke lahko najdeš v razdelku \"Profil\".';
 
   @override
   String get openStore => 'Odpri trgovino';
 
   @override
-  String get thisVideoCantBeDownloaded => 'Tega videoposnetka ni mogoče prenesti.';
+  String get thisVideoCantBeDownloaded =>
+      'Tega videoposnetka ni mogoče prenesti.';
 
   @override
   String get videoLanguage => 'Jezik videoposnetka';
@@ -1018,7 +1071,8 @@ class SSl extends S {
   String get original => 'Izvirnik';
 
   @override
-  String get openSettingsToChangeVideoLang => 'Odpri nastavitve in spremeni jezik besedila videoposnetka';
+  String get openSettingsToChangeVideoLang =>
+      'Odpri nastavitve in spremeni jezik besedila videoposnetka';
 
   @override
   String get somethingWentWrong => 'Nekaj je šlo narobe';
@@ -1048,7 +1102,8 @@ class SSl extends S {
   String get answerTheQuiz => 'Odgovori na kviz';
 
   @override
-  String get studyAnswerTheQuizDescription => 'S pravilnim odgovorom dobiš točke';
+  String get studyAnswerTheQuizDescription =>
+      'S pravilnim odgovorom dobiš točke';
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
@@ -1065,10 +1120,12 @@ class SSl extends S {
   String get studyAllAnswersCorrectDescription => 'Odlično!';
 
   @override
-  String get studyNoAnswersCorrectDescription => 'Naslednjič raje prisluhni malo bolj pozorno!';
+  String get studyNoAnswersCorrectDescription =>
+      'Naslednjič raje prisluhni malo bolj pozorno!';
 
   @override
-  String get studySomeAnswersCorrectDescription => 'Odlično! A lahko si še boljši.';
+  String get studySomeAnswersCorrectDescription =>
+      'Odlično! A lahko si še boljši.';
 
   @override
   String get studyAllQuestionsAnswered => 'Odgovoril si na vsa vprašanja';
@@ -1083,11 +1140,13 @@ class SSl extends S {
   String get kidsNotificationReminderCtaLong => 'Vklop opomnikov';
 
   @override
-  String get kidsNotificationReminderTitle => 'Vsak dan si oglej videoposnetek!';
+  String get kidsNotificationReminderTitle =>
+      'Vsak dan si oglej videoposnetek!';
 
   @override
   String get notifications => 'Obvestila';
 
   @override
-  String get onlyShowContentWithPreferredLanguages => 'Only show content with my preferred languages';
+  String get onlyShowContentWithPreferredLanguages =>
+      'Only show content with my preferred languages';
 }

@@ -133,7 +133,7 @@ PODS:
     - nanopb/encode (= 3.30910.0)
   - nanopb/decode (3.30910.0)
   - nanopb/encode (3.30910.0)
-  - open_mail_app (0.0.1):
+  - open_mail_app_plus (0.0.1):
     - Flutter
   - package_info_plus (0.4.5):
     - Flutter
@@ -197,7 +197,7 @@ DEPENDENCIES:
   - flutter_to_airplay (from `.symlinks/plugins/flutter_to_airplay/ios`)
   - google-cast-sdk (= 4.8.3)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
-  - open_mail_app (from `.symlinks/plugins/open_mail_app/ios`)
+  - open_mail_app_plus (from `.symlinks/plugins/open_mail_app_plus/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - restart_app (from `.symlinks/plugins/restart_app/ios`)
@@ -274,8 +274,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_to_airplay/ios"
   integration_test:
     :path: ".symlinks/plugins/integration_test/ios"
-  open_mail_app:
-    :path: ".symlinks/plugins/open_mail_app/ios"
+  open_mail_app_plus:
+    :path: ".symlinks/plugins/open_mail_app_plus/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
@@ -307,7 +307,7 @@ CHECKOUT OPTIONS:
     :tag: 11.6.0
 
 SPEC CHECKSUMS:
-  app_links: 3da4c36b46cac3bf24eb897f1a6ce80bda109874
+  app_links: 76b66b60cc809390ca1ad69bfd66b998d2387ac7
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   bccm_player: c92df494481d9bea042861ef336c9a70caf9dd9e
   cloud_firestore: 9aa00dac1dc5d3cc93c8cb6515056b038779e06a
@@ -342,7 +342,7 @@ SPEC CHECKSUMS:
   leveldb-library: cc8b8f8e013647a295ad3f8cd2ddf49a6f19be19
   MetricsReporter: 364b98791e868b10e9d512eb50af28d8c11e5cdb
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
-  open_mail_app: 06d5a4162866388a92b1df3deb96e56be20cf45c
+  open_mail_app_plus: 6b06ef9915403f20b72c728cc264322efacdcb9a
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
