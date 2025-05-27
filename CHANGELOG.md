@@ -1,4 +1,17 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.28+2500038-kids...v) (2025-05-26)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.30+2500040-kids...v) (2025-05-27)
+
+
+
+## [5.1.30+2500040-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.29+2500039-kids...v5.1.30+2500040-kids) (2025-05-27)
+
+
+### Bug Fixes
+
+* **kids:** enable impeller? ([87f843a](https://github.com/bcc-code/bcc-media-app/commit/87f843ae8098a1e1c42a4ef2d7ad62a24240fab8))
+
+
+
+## [5.1.29+2500039-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.28+2500038-kids...v5.1.29+2500039-kids) (2025-05-26)
 
 
 ### Bug Fixes
