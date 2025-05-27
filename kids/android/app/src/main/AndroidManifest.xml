@@ -53,11 +53,6 @@
                 android:value="false" />
         </activity>
 
-        <!-- Impeller causes performance issues and stuttering -->
-        <meta-data
-            android:name="io.flutter.embedding.android.EnableImpeller"
-            android:value="false" />
-
         <meta-data
             android:name="cast_app_id"
             android:value="5313A795" />
