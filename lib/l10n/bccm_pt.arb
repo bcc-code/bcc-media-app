@@ -1501,5 +1501,9 @@
   "notifications": "Notificações",
   "@notifications": {
     "description": "Shown alongside a toggle switch in the Bible Kids settings."
+  },
+  "onlyShowContentWithPreferredLanguages": "Mostrar apenas conteúdos com os meus idiomas preferidos",
+  "@onlyShowContentWithPreferredLanguages": {
+    "description": "Shown alongside a toggle switch in settings."
   }
 }
