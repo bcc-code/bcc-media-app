@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:kids/app_root_inner.dart';
 import 'package:kids/components/splash_video.dart';
 import 'package:kids/router/router.dart';
@@ -59,7 +60,10 @@ class AppRoot extends ConsumerWidget {
                 title: 'Bible Kids',
                 routerDelegate: appRouter.delegate(
                   deepLinkBuilder: (_) => const DeepLink.path('/'),
-                  navigatorObservers: () => [AnalyticsNavigatorObserver()],
+                  navigatorObservers: () => [
+                    AnalyticsNavigatorObserver(),
+                    SentryNavigatorObserver(),
+                  ],
                 ),
                 routeInformationParser: appRouter.defaultRouteParser(includePrefixMatches: true),
                 builder: (BuildContext context, Widget? child) {
