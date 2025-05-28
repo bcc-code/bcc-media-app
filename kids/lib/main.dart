@@ -35,6 +35,12 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import './firebase_options.dart';
 import 'package:universal_io/io.dart';
 
+String getSentryEnvironment() {
+  final platform = Platform.operatingSystem;
+  final environment = FlavorConfig.current.environment;
+  return '${platform}_$environment';
+}
+
 Future<void> main() async {
   FlavorConfig.register(
     FlavorConfig(
@@ -79,6 +85,7 @@ Future<void> $main({
 }) async {
   await SentryFlutter.init((options) {
     options.dsn = Env.sentryDsnKids;
+    options.environment = getSentryEnvironment();
     options.tracesSampleRate = 0.5;
     options.profilesSampleRate = 0.5;
     options.beforeSend = (event, hint) {
