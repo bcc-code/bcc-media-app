@@ -1,0 +1,11 @@
+-dontwarn com.sun.jna.FunctionMapper
+-dontwarn com.sun.jna.JNIEnv
+-dontwarn com.sun.jna.Library
+-dontwarn com.sun.jna.Native
+-dontwarn com.sun.jna.Platform
+-dontwarn edu.umd.cs.findbugs.annotations.SuppressFBWarnings
+-dontwarn java.lang.instrument.ClassDefinition
+-dontwarn java.lang.instrument.UnmodifiableClassException
+-dontwarn java.lang.management.ManagementFactory
+-dontwarn java.lang.management.RuntimeMXBean
+-dontwarn org.mockito.internal.creation.bytebuddy.inject.MockMethodDispatcher
