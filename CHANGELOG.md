@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.31+2500041-kids...v) (2025-05-28)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.82+2300242...v) (2025-05-28)
+
+
+
+## [5.6.82+2300242](https://github.com/bcc-code/bcc-media-app/compare/v5.1.31+2500041-kids...v5.6.82+2300242) (2025-05-28)
+
+
+### Bug Fixes
+
+* **bccm:** scroll snapping ([c031c46](https://github.com/bcc-code/bcc-media-app/commit/c031c46c7bb349596e88d9e9e46ee8c01278c612))
 
 
 
