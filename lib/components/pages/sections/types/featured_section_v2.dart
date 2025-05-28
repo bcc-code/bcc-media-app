@@ -47,7 +47,7 @@ class FeaturedSectionV2 extends ConsumerWidget {
     return AspectRatio(
       aspectRatio: 358 / 240,
       child: PageView.builder(
-        physics: const _CustomPageViewScrollPhysics(),
+        pageSnapping: true,
         controller: PageController(viewportFraction: viewportFraction),
         itemCount: sectionItems.length,
         itemBuilder: (context, index) {
