@@ -1,4 +1,17 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.29+2500039-kids...v) (2025-05-27)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.31+2500041-kids...v) (2025-05-28)
+
+
+
+## [5.1.31+2500041-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.30+2500040-kids...v5.1.31+2500041-kids) (2025-05-28)
+
+
+### Bug Fixes
+
+* **kids:** sentry environments ([ad8e0a8](https://github.com/bcc-code/bcc-media-app/commit/ad8e0a8026591e4fb0c164d4365e8ecc130850fa))
+
+
+
+## [5.1.30+2500040-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.29+2500039-kids...v5.1.30+2500040-kids) (2025-05-27)
 
 
 ### Bug Fixes
