@@ -87,5 +87,7 @@
 	</array>
 	<key>cast_app_id</key>
 	<string>5313A795</string>
+	<key>FlutterDeepLinkingEnabled</key>
+	<false/>
 </dict>
 </plist>
