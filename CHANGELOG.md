@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.32+2500042-kids...v) (2025-05-30)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.33+2500043-kids...v) (2025-05-30)
+
+
+
+## [5.1.33+2500043-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.32+2500042-kids...v5.1.33+2500043-kids) (2025-05-30)
+
+
+### Features
+
+* **kids:** make deeplinks work ([b7d90fe](https://github.com/bcc-code/bcc-media-app/commit/b7d90fec3717ad0091e50e1fb923a2b3f01ef967))
 
 
 
