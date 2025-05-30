@@ -140,6 +140,7 @@ class EpisodeScreenRoute extends _i16.PageRouteInfo<EpisodeScreenRouteArgs> {
             playlistId: playlistId,
             cursor: cursor,
           ),
+          rawPathParams: {'episodeId': id},
           rawQueryParams: {
             'shuffle': shuffle,
             'playlistId': playlistId,
@@ -153,7 +154,15 @@ class EpisodeScreenRoute extends _i16.PageRouteInfo<EpisodeScreenRouteArgs> {
   static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<EpisodeScreenRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final queryParams = data.queryParams;
+      final args = data.argsAs<EpisodeScreenRouteArgs>(
+          orElse: () => EpisodeScreenRouteArgs(
+                id: pathParams.getString('episodeId'),
+                shuffle: queryParams.optBool('shuffle'),
+                playlistId: queryParams.optString('playlistId'),
+                cursor: queryParams.optString('cursor'),
+              ));
       return _i6.EpisodeScreen(
         key: args.key,
         id: args.id,

@@ -17,7 +17,7 @@ import 'package:kids/helpers/transitions.dart';
 class EpisodeScreen extends HookConsumerWidget {
   const EpisodeScreen({
     super.key,
-    required this.id,
+    @PathParam('episodeId') required this.id,
     @QueryParam() this.shuffle,
     @QueryParam() this.playlistId,
     @QueryParam() this.cursor,

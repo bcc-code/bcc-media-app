@@ -23,10 +23,10 @@ dependencies:
   js: ^0.7.1
   http: ^1.4.0
   json_annotation: ^4.9.0
-  json_serializable: ^6.9.5
-  mockito: ^5.4.6
+  json_serializable: ^6.8.0
+  mockito: ^5.4.4
   flutter_svg: ^2.1.0
-  auto_route: ^9.3.0+1
+  auto_route: 9.2.2
   bccm_player:
     path: ../submodules/bccm_player
   riverpod: ^2.6.1
@@ -112,10 +112,10 @@ dev_dependencies:
     sdk: flutter
   build_runner: ^2.4.15
   flutter_lints: ^5.0.0
-  auto_route_generator: ^9.3.1
-  freezed: ^2.5.8
+  auto_route_generator: 9.0.0
+  freezed: 2.5.7
   custom_lint: any
-  riverpod_generator: ^2.6.4
+  riverpod_generator: ^2.4.2
   riverpod_lint: any
   flutter_launcher_icons: ^0.14.3
   flutter_native_splash: ^2.4.6
