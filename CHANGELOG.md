@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.31+2500041-kids...v) (2025-05-28)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.32+2500042-kids...v) (2025-05-30)
+
+
+
+## [5.1.32+2500042-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.82+2300242...v5.1.32+2500042-kids) (2025-05-30)
+
+
+### Bug Fixes
+
+* **kids:** try deeplink on ios ([287d618](https://github.com/bcc-code/bcc-media-app/commit/287d618a7e2c32f2ccd5611fafaa41204bac1a11))
+* **kids:** try to add deep linking to ios ([547379e](https://github.com/bcc-code/bcc-media-app/commit/547379e60010bcef56e8c6a3fa3bf80a5f7516f4))
+
+
+
+## [5.6.82+2300242](https://github.com/bcc-code/bcc-media-app/compare/v5.1.31+2500041-kids...v5.6.82+2300242) (2025-05-28)
 
 
 ### Bug Fixes
