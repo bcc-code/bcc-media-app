@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.33+2500043-kids...v) (2025-05-30)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.34+2500044-kids...v) (2025-05-30)
+
+
+
+## [5.1.34+2500044-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.33+2500043-kids...v5.1.34+2500044-kids) (2025-05-30)
+
+
+### Bug Fixes
+
+* **kids:** try to fix deep linking ([754dd7d](https://github.com/bcc-code/bcc-media-app/commit/754dd7df9039feffa87649d6755d67206030a0e9))
 
 
 
