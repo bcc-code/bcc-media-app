@@ -28,9 +28,14 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         CupertinoRoute(
+          path: '/init',
+          page: InitScreenRoute.page,
+          initial: true,
+          meta: const {RouteMetaConstants.analyticsName: 'init'},
+        ),
+        CupertinoRoute(
           path: '/',
           page: HomeScreenRoute.page,
-          initial: true,
           meta: const {RouteMetaConstants.analyticsName: 'home'},
         ),
         CustomRoute(

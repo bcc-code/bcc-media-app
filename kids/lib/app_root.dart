@@ -59,7 +59,7 @@ class AppRoot extends ConsumerWidget {
                 debugShowCheckedModeBanner: false,
                 title: 'Bible Kids',
                 routerDelegate: appRouter.delegate(
-                  deepLinkBuilder: (_) => const DeepLink.path('/'),
+                  deepLinkBuilder: (_) => const DeepLink.path('/init'),
                   navigatorObservers: () => [
                     AnalyticsNavigatorObserver(),
                     SentryNavigatorObserver(),
