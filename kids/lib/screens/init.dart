@@ -26,6 +26,8 @@ class _InitScreenState extends ConsumerState<InitScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     continueNavigation();
+    // Initialize notification listeners etc.
+    globalEventBus.fire(AppReadyEvent());
   }
 
   Future<void> continueNavigation({Uri? deepLinkUri}) async {
