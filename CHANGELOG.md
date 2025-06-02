@@ -1,12 +1,9 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.35+2500045-kids...v) (2025-06-02)
-
-
-
-## [5.1.35+2500045-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.34+2500044-kids...v5.1.35+2500045-kids) (2025-06-02)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.34+2500044-kids...v) (2025-06-02)
 
 
 ### Bug Fixes
 
+* **kids:** increase build heap size for java ([245c9eb](https://github.com/bcc-code/bcc-media-app/commit/245c9eb0836539254c6f899fe3168d6e51311bdb))
 * **kids:** make sure to get initial deep link on app start ([8f5fb54](https://github.com/bcc-code/bcc-media-app/commit/8f5fb54f88c8b84bfb8b790f505939b70a26b87b))
 
 
