@@ -67,14 +67,24 @@ class NotificationPrompt extends HookConsumerWidget {
                       return;
                     }
 
+                    final anonymousId = await ref.read(analyticsProvider).getAnonymousId();
+
                     switch (permissions.authorizationStatus) {
                       case AuthorizationStatus.authorized:
                         debugPrint('notification permission status: accepted');
                         analytics.notificationPromptAccepted(NotificationPromptAcceptedEvent());
+                        analytics.notificationsStatus(NotificationsStatusEvent(
+                          recipientId: anonymousId,
+                          enabled: true,
+                        ));
                         settings.setNotificationsEnabled(true);
                       case AuthorizationStatus.denied:
                         debugPrint('notification permission status: denied');
                         analytics.notificationPromptDenied(NotificationPromptDeniedEvent());
+                        analytics.notificationsStatus(NotificationsStatusEvent(
+                          recipientId: anonymousId,
+                          enabled: false,
+                        ));
                         settings.setNotificationsEnabled(false);
                       case AuthorizationStatus.notDetermined:
                         debugPrint('notification permission status: not determined');

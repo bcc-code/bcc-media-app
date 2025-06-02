@@ -13,6 +13,7 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/providers/notifications.dart';
 import 'package:bccm_core/firebase.dart';
 import 'package:brunstadtv_app/theme/bccm_gradients.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -157,6 +158,32 @@ Future<void> $main({
       // Enable getting content only in preferred languages by default
       if (settings.onlyPreferredLanguagesContentEnabled == null) {
         await providerContainer.read(settingsProvider.notifier).setOnlyPreferredLanguagesContentEnabled(true).timeout(const Duration(seconds: 2));
+      }
+
+      // Send notifications status event
+      final notifications = providerContainer.read(notificationServiceProvider);
+      final notificationPermissions = await notifications.getAuthorizationStatus().timeout(const Duration(seconds: 2));
+      final anonymousId = await providerContainer.read(analyticsProvider).getAnonymousId().timeout(const Duration(seconds: 2));
+      switch (notificationPermissions) {
+        case AuthorizationStatus.authorized:
+          providerContainer.read(analyticsProvider).notificationsStatus(
+                NotificationsStatusEvent(
+                  recipientId: anonymousId,
+                  enabled: true,
+                ),
+              );
+          break;
+        case AuthorizationStatus.denied:
+          providerContainer.read(analyticsProvider).notificationsStatus(
+                NotificationsStatusEvent(
+                  recipientId: anonymousId,
+                  enabled: false,
+                ),
+              );
+          break;
+        default:
+          debugPrint('Unknown notification permissions: $notificationPermissions');
+          break;
       }
     });
 
