@@ -1,4 +1,17 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.34+2500044-kids...v) (2025-06-02)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.36+2500046-kids...v) (2025-06-02)
+
+
+
+## [5.1.36+2500046-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.35+2500045-kids...v5.1.36+2500046-kids) (2025-06-02)
+
+
+### Features
+
+* **kids:** add notifications_status event ([72a78a1](https://github.com/bcc-code/bcc-media-app/commit/72a78a193228834459639420245afdfec03e8686))
+
+
+
+## [5.1.35+2500045-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.34+2500044-kids...v5.1.35+2500045-kids) (2025-06-02)
 
 
 ### Bug Fixes
