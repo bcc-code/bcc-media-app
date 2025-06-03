@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.36+2500046-kids...v) (2025-06-02)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.37+2500047-kids...v) (2025-06-03)
+
+
+
+## [5.1.37+2500047-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.36+2500046-kids...v5.1.37+2500047-kids) (2025-06-03)
+
+
+### Bug Fixes
+
+* **kids:** always send notifications status + prompt if notification setting is turned on ([2389aeb](https://github.com/bcc-code/bcc-media-app/commit/2389aeb212cdd7074241b5cb6361f993b392656b))
 
 
 
