@@ -1,12 +1,10 @@
 import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:bccm_core/design_system.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/router/router.gr.dart';
-import 'package:brunstadtv_app/l10n/app_localizations.dart';
 
 @RoutePage()
 class InitScreen extends ConsumerStatefulWidget {

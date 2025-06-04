@@ -1,6 +1,7 @@
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
+import 'package:kids/components/page/sections/default_grid_section.dart';
 import 'package:kids/components/page/sections/poster_section.dart';
 
 class SectionRenderer extends StatelessWidget {
@@ -20,6 +21,12 @@ class SectionRenderer extends StatelessWidget {
     if (posterSection != null) {
       return PosterSection(posterSection);
     }
+
+    final defaultGridSection = section.asOrNull<Fragment$Section$$DefaultGridSection>();
+    if (defaultGridSection != null) {
+      return DefaultGridSection(defaultGridSection);
+    }
+
     return null;
   }
 
