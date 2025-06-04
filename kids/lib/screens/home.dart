@@ -51,7 +51,7 @@ class HomeScreen extends HookConsumerWidget {
     final design = DesignSystem.of(context);
     final bp = ResponsiveBreakpoints.of(context);
     final double basePadding = bp.smallerThan(TABLET) ? 20 : 48;
-    final double logoHeight = bp.smallerThan(TABLET) ? 28 : 32;
+    final double logoHeight = bp.smallerThan(TABLET) ? 28 : 48;
     final scrollController = useScrollController();
     final isCasting = useListenableSelector(BccmPlayerController.primary, () => BccmPlayerController.primary.isChromecast);
 
@@ -63,6 +63,7 @@ class HomeScreen extends HookConsumerWidget {
             : Column(
                 children: [
                   SafeArea(
+                    bottom: false,
                     maintainBottomViewPadding: true,
                     child: SizedBox(
                       height: bp.smallerThan(TABLET) ? 88 : 168,
@@ -130,7 +131,7 @@ class HomeScreen extends HookConsumerWidget {
                           primary: true,
                           scrollDirection: Axis.horizontal,
                           slivers: [
-                            SliverSafeArea(sliver: SliverPadding(padding: EdgeInsets.only(left: basePadding))),
+                            SliverSafeArea(sliver: SliverPadding(padding: EdgeInsets.only(left: basePadding)), right: false),
                             if (pageResult.connectionState == ConnectionState.waiting)
                               const SliverFillRemaining(hasScrollBody: true, child: Center(child: LoadingIndicator()))
                             else if (page == null || pageResult.hasError)
@@ -151,7 +152,7 @@ class HomeScreen extends HookConsumerWidget {
                                   return SectionRenderer(section: section, index: index, pageCode: page.code);
                                 },
                               ),
-                            SliverSafeArea(sliver: SliverPadding(padding: EdgeInsets.only(right: basePadding))),
+                            SliverSafeArea(sliver: SliverPadding(padding: EdgeInsets.only(right: basePadding)), left: false),
                           ],
                         ),
                       ),
