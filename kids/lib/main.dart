@@ -174,6 +174,7 @@ Future<void> $main({
               );
           break;
         case AuthorizationStatus.denied:
+        case AuthorizationStatus.notDetermined:
           providerContainer.read(analyticsProvider).notificationsStatus(
                 NotificationsStatusEvent(
                   recipientId: anonymousId,

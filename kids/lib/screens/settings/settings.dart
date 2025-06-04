@@ -3,6 +3,7 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -174,7 +175,21 @@ class SettingsScreen extends HookConsumerWidget {
                                       },
                                       rightWidget: ToggleSwitch(
                                         controller: notificationEnabledController,
-                                        onChanged: (value) {
+                                        onChanged: (value) async {
+                                          final notifSetting = ref.read(settingsProvider).notificationsEnabled;
+                                          if (value == true && notifSetting == null) {
+                                            final permission = await ref.read(notificationServiceProvider).requestPermissionAndSetup();
+                                            switch (permission?.authorizationStatus) {
+                                              case AuthorizationStatus.authorized:
+                                                ref.read(analyticsProvider).notificationPromptAccepted(NotificationPromptAcceptedEvent());
+                                                break;
+                                              case AuthorizationStatus.denied:
+                                                ref.read(analyticsProvider).notificationPromptDenied(NotificationPromptDeniedEvent());
+                                                break;
+                                              default:
+                                            }
+                                          }
+
                                           ref.read(settingsProvider.notifier).setNotificationsEnabled(value);
                                           ref.read(analyticsProvider).notificationsSettingToggled(
                                                 NotificationsSettingToggledEvent(enabled: value),

@@ -65,8 +65,6 @@ class _LoadingWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const LoadingIndicator(),
-            const SizedBox(height: 12),
-            Text(S.of(context).loading, style: DesignSystem.of(context).textStyles.body2),
           ],
         ),
       ),
