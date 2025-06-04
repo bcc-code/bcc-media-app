@@ -1133,18 +1133,18 @@ class SNb extends S {
   String get studyAllQuestionsAnsweredDescription => 'Bra jobbet!';
 
   @override
-  String get kidsNotificationReminderCtaShort => 'Turn on';
+  String get kidsNotificationReminderCtaShort => 'Slå på';
 
   @override
-  String get kidsNotificationReminderCtaLong => 'Turn on reminders';
+  String get kidsNotificationReminderCtaLong => 'Slå på påminnelser';
 
   @override
-  String get kidsNotificationReminderTitle => 'Watch a video every day!';
+  String get kidsNotificationReminderTitle => 'Se en video hver dag!';
 
   @override
-  String get notifications => 'Notifications';
+  String get notifications => 'Varsler';
 
   @override
   String get onlyShowContentWithPreferredLanguages =>
-      'Only show content with my preferred languages';
+      'Vis kun innhold på mine foretrukne språk';
 }

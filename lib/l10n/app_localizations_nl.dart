@@ -1151,5 +1151,5 @@ class SNl extends S {
 
   @override
   String get onlyShowContentWithPreferredLanguages =>
-      'Only show content with my preferred languages';
+      'Toon alleen inhoud in mijn voorkeurstalen';
 }
