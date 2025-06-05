@@ -62,66 +62,6 @@ class HomeScreen extends HookConsumerWidget {
             ? Container(color: Colors.white)
             : Column(
                 children: [
-                  SafeArea(
-                    bottom: false,
-                    maintainBottomViewPadding: true,
-                    child: SizedBox(
-                      height: bp.smallerThan(TABLET) ? 88 : 168,
-                      child: Center(
-                        child: Row(
-                          children: [
-                            SizedBox(width: basePadding),
-                            design.buttons
-                                .responsive(
-                                  onPressed: () {
-                                    context.router.pushNamed('/settings');
-                                  },
-                                  labelText: '',
-                                  image: SvgPicture.string(SvgIcons.profile),
-                                )
-                                .animate()
-                                .scale(curve: Curves.easeOutBack, duration: 600.ms)
-                                .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
-                            const Spacer(),
-                            Image.asset('assets/flavors/prod/logo_neg.png', height: logoHeight)
-                                .animate()
-                                .slideY(begin: 4, curve: Curves.easeOutExpo, duration: 1000.ms, delay: 300.ms)
-                                .scale(begin: const Offset(0.5, 0.5))
-                                .rotate(begin: 0.05)
-                                .fadeIn(),
-                            const Spacer(),
-                            if (isCasting) ...[
-                              design.buttons
-                                  .responsive(
-                                    variant: ButtonVariant.secondary,
-                                    onPressed: () {
-                                      BccmPlayerInterface.instance.openExpandedCastController();
-                                    },
-                                    labelText: '',
-                                    image: SvgPicture.string(SvgIcons.cast),
-                                  )
-                                  .animate()
-                                  .scale(curve: Curves.easeOutBack, duration: 600.ms)
-                                  .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
-                              SizedBox(width: basePadding),
-                            ],
-                            design.buttons
-                                .responsive(
-                                  onPressed: () {
-                                    context.router.pushNamed('/search');
-                                  },
-                                  labelText: '',
-                                  image: SvgPicture.string(SvgIcons.search),
-                                )
-                                .animate()
-                                .scale(curve: Curves.easeOutBack, duration: 600.ms)
-                                .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
-                            SizedBox(width: basePadding),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
                   Expanded(
                     child: InheritedData<ScrollController>(
                       inheritedData: scrollController,
@@ -129,14 +69,77 @@ class HomeScreen extends HookConsumerWidget {
                         controller: scrollController,
                         child: CustomScrollView(
                           primary: true,
-                          scrollDirection: Axis.horizontal,
+                          scrollDirection: Axis.vertical,
                           slivers: [
-                            SliverSafeArea(sliver: SliverPadding(padding: EdgeInsets.only(left: basePadding)), right: false),
+                            // Header
+                            SliverToBoxAdapter(
+                              child: SafeArea(
+                                bottom: false,
+                                maintainBottomViewPadding: true,
+                                child: Container(
+                                  color: Colors.white,
+                                  height: bp.smallerThan(TABLET) ? 88 : 168,
+                                  child: Center(
+                                    child: Row(
+                                      children: [
+                                        SizedBox(width: basePadding),
+                                        design.buttons
+                                            .responsive(
+                                              onPressed: () {
+                                                context.router.pushNamed('/settings');
+                                              },
+                                              labelText: '',
+                                              image: SvgPicture.string(SvgIcons.profile),
+                                            )
+                                            .animate()
+                                            .scale(curve: Curves.easeOutBack, duration: 600.ms)
+                                            .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
+                                        const Spacer(),
+                                        Image.asset('assets/flavors/prod/logo_neg.png', height: logoHeight)
+                                            .animate()
+                                            .slideY(begin: 4, curve: Curves.easeOutExpo, duration: 1000.ms, delay: 300.ms)
+                                            .scale(begin: const Offset(0.5, 0.5))
+                                            .rotate(begin: 0.05)
+                                            .fadeIn(),
+                                        const Spacer(),
+                                        if (isCasting) ...[
+                                          design.buttons
+                                              .responsive(
+                                                variant: ButtonVariant.secondary,
+                                                onPressed: () {
+                                                  BccmPlayerInterface.instance.openExpandedCastController();
+                                                },
+                                                labelText: '',
+                                                image: SvgPicture.string(SvgIcons.cast),
+                                              )
+                                              .animate()
+                                              .scale(curve: Curves.easeOutBack, duration: 600.ms)
+                                              .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
+                                          SizedBox(width: basePadding),
+                                        ],
+                                        design.buttons
+                                            .responsive(
+                                              onPressed: () {
+                                                context.router.pushNamed('/search');
+                                              },
+                                              labelText: '',
+                                              image: SvgPicture.string(SvgIcons.search),
+                                            )
+                                            .animate()
+                                            .scale(curve: Curves.easeOutBack, duration: 600.ms)
+                                            .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
+                                        SizedBox(width: basePadding),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                             if (pageResult.connectionState == ConnectionState.waiting)
-                              const SliverFillRemaining(hasScrollBody: true, child: Center(child: LoadingIndicator()))
+                              const SliverFillRemaining(hasScrollBody: false, child: Center(child: LoadingIndicator()))
                             else if (page == null || pageResult.hasError)
                               SliverFillRemaining(
-                                hasScrollBody: true,
+                                hasScrollBody: false,
                                 child: ErrorGeneric(
                                   onRetry: () async {
                                     reloadAppConfig.value = true;
@@ -145,20 +148,35 @@ class HomeScreen extends HookConsumerWidget {
                                 ),
                               )
                             else
+                              // Content
                               SliverList.builder(
                                 itemCount: page.sections.items.length,
                                 itemBuilder: (context, index) {
                                   final section = page.sections.items[index];
-                                  return SectionRenderer(section: section, index: index, pageCode: page.code);
+                                  return Padding(
+                                    padding: EdgeInsets.only(
+                                      top: index == 0 ? 0 : basePadding * 2,
+                                      bottom: index == page.sections.items.length - 1 ? basePadding : 0,
+                                    ),
+                                    child: LayoutBuilder(
+                                      builder: (context, constraints) {
+                                        return SizedBox(
+                                          width: constraints.maxWidth,
+                                          child: SectionRenderer(section: section, index: index, pageCode: page.code),
+                                        );
+                                      },
+                                    ),
+                                  );
                                 },
                               ),
-                            SliverSafeArea(sliver: SliverPadding(padding: EdgeInsets.only(right: basePadding)), left: false),
+                            SliverPadding(
+                              padding: EdgeInsets.only(bottom: basePadding),
+                            ),
                           ],
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(height: basePadding),
                 ],
               ),
       ),

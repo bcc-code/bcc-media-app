@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kids/components/misc/horizontal_slider.dart';
 import 'package:kids/components/notification_prompt.dart';
 import 'package:kids/components/thumbnails/posters/playlist_poster_large.dart';
 import 'package:kids/components/thumbnails/posters/poster_large.dart';
@@ -96,19 +97,19 @@ class PosterSection extends HookConsumerWidget {
       notificationPromptPosition,
     ]);
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: finalItems.mapIndexed((index, child) {
-        return Padding(
-          padding: EdgeInsets.only(right: index < finalItems.length - 1 ? sectionSpacing : 0),
-          child: child
-              .animate()
-              .slideX(begin: 1, curve: Curves.easeOutExpo, duration: 2000.ms)
-              .scale(begin: const Offset(0.8, 0.8))
-              .rotate(begin: 0.03)
-              .fadeIn(delay: (index * 50).ms),
-        );
-      }).toList(),
+    return HorizontalSlider(
+      height: bp.smallerThan(TABLET) ? 250 : 300,
+      itemCount: finalItems.length,
+      gap: sectionSpacing,
+      itemBuilder: (context, index) {
+        final child = finalItems[index];
+        return child
+            .animate()
+            .slideX(begin: 1, curve: Curves.easeOutExpo, duration: 2000.ms)
+            .scale(begin: const Offset(0.8, 0.8))
+            .rotate(begin: 0.03)
+            .fadeIn();
+      },
     );
   }
 
