@@ -1,5 +1,5 @@
 {
-  "loadingContent": "Laster innhold",
+  "loadingContent": "Laster innhold!",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
   },
