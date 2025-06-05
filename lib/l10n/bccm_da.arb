@@ -87,7 +87,7 @@
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "Jeg bekræfter, at jeg er 13 år eller ældre, og jeg er indforstået med følgende  <a>Privatlivspolitik</a> og <a>Vilkår for brug</a>. ",
+  "signUpAgreePrivacyPolicy": "Jeg bekræfter, at jeg er 13 år eller ældre, og jeg er indforstået med følgende  &lt;a>Privatlivspolitik&lt;/a> og &lt;a>Vilkår for brug&lt;/a>. ",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
@@ -103,7 +103,7 @@
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Du er blevet logget ud. Venligst log ind igen.",
+  "loggedOutMessage": "Du er logget ud. Prøv at logge ind igen",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
@@ -135,11 +135,11 @@
   "@open": {
     "description": "Open button"
   },
-  "loginFailedCheckNetwork": "Login mislykkedes. Tjek din netværksforbindelse, og prøv igen.",
+  "loginFailedCheckNetwork": "Login fejlede Tjek din netværksforbindelse, og prøv igen.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "Login mislykkedes. Prøv igen senere.",
+  "loginFailedTryAgain": "Login fejlede Prøv igen senere.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
@@ -363,7 +363,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "Du kan ikke have mere end {elementCount} elementer i kø.",
+  "queueLimitMessage": "Du kan ikke have mere end '{'0'}' elementer i listen.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -420,7 +420,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Du kan søge i alt indhold fra BCC Media. Serier, film og episoder.",
+  "emptySearch": "Du kan søge i alt indhold fra BCC Media.  Serier, videoer og episoder.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -488,7 +488,7 @@
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{charsLeft} af {charsTotal} tegn tilbage",
+  "charactersLimit": "'{'0'}' af '{'1'}' tegn tilbage \n",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -564,7 +564,7 @@
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Kunne gik galt. Tjek din internetforbindelse og prøv igen.",
+  "sendFailDescription": "Noget gik galt... Tjek din netværksforbindelse, og prøv igen.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
@@ -580,7 +580,7 @@
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Tilgængelig {date}\n",
+  "availableFrom": "Tilgængelig '{'0'}'",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -605,7 +605,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Tv-guidens tidsplan er i din lokale tid: {timeZone}",
+  "timezoneInformation": "Tv-guidens tidsplan er i din lokale tid: '{'0'}'",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -682,7 +682,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Del fra {time}",
+  "shareTime": "Del fra tidspunkt '{'0'}'\n",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -695,7 +695,7 @@
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "privacyPolicy": "Fortrolighedspolitik",
+  "privacyPolicy": "Privacy Policy",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
@@ -827,7 +827,7 @@
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Godt arbejdet med at udføre temaet {name}",
+  "achievementStudyTopic": "Godt arbejde med at gennemføre temaet '{'name'}'",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -836,7 +836,7 @@
       }
     }
   },
-  "videoCount": "{count} film",
+  "videoCount": "{count} Film",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -845,7 +845,7 @@
       }
     }
   },
-  "taskCount": "{count} opgaver\n",
+  "taskCount": "{count} Opgaver",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -854,7 +854,7 @@
       }
     }
   },
-  "posterCount": "{count} plakater\n",
+  "posterCount": "{count} Plakater",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -863,7 +863,7 @@
       }
     }
   },
-  "resourceCount": "{count} indhold\n",
+  "resourceCount": "'{'count'}' Indhold\n",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -884,7 +884,7 @@
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "passwordConditionLength": "Mindst {n} tegn",
+  "passwordConditionLength": "Mindst '{'n'}' tegn",
   "@passwordConditionLength": {
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
@@ -1033,7 +1033,7 @@
   "@accountDeletionWarning": {
     "description": "Shown on the account deletion page."
   },
-  "accountDeletionTimeframe": "Din brugerkonto vil blive slettet inden for {x} arbejdsdage.",
+  "accountDeletionTimeframe": "Din brugerkonto vil blive slettet inden for '{'x'}' arbejdsdage.",
   "@accountDeletionTimeframe": {
     "description": "Shown on the account deletion page. KEEP THE {x} IN YOUR SENTENCE AS IS! It will become a number, e.g. 7.",
     "placeholders": {
@@ -1046,7 +1046,7 @@
   "@accountDeletionTitle": {
     "description": "Title of the account deletion page."
   },
-  "accountDeletionSuccess": "Anmodning om at slette din brugerkonto gennemført. Du vil modtage en e-mail på {email}. For at bekræfte din identitet har vi brug for, at du svarer på den e-mail for at fortsætte med at slette din brugerkonto.",
+  "accountDeletionSuccess": "Anmodning om sletning af konto vellykket. Du vil modtage en e-mail på {email}. For at bekræfte din identitet har vi brug for, at du svarer på e-mailen for at fortsætte med sletningen.",
   "@accountDeletionSuccess": {
     "description": "KEEP THE {email} IN YOUR SENTENCE AS IS!! It becomes an email address. Description shown when the user has successfully requested to delete their account.",
     "placeholders": {
@@ -1067,7 +1067,7 @@
   "@tvScanQr": {
     "description": "Title on the login screen for TVs"
   },
-  "tvEnterCode": "Eller gå til {url} og indtast koden: {code}",
+  "tvEnterCode": "Eller gå til %@ og indtast koden  %@:  ",
   "@tvEnterCode": {
     "description": "IMPORTANT: {url} and {code} will be automatically replaced with the url and code, so these must NOT be changed! Context: The login screen on TVs.",
     "placeholders": {
@@ -1115,7 +1115,7 @@
   "@downloadButton": {
     "description": "Button text, a button to download the episode to make it available for offline playback."
   },
-  "audioNotAvailableInLanguage": "Lyd ikke tilgængelig på {lang}",
+  "audioNotAvailableInLanguage": "Lyd ikke tilgængelig på '{'lang'}'",
   "@audioNotAvailableInLanguage": {
     "description": "IMPORTANT: {lang} will automatically be replaced with a language. You must include {lang} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1132,7 +1132,7 @@
   "@considerDeletingOtherVideos": {
     "description": "Shown when you try to download an episode, but there is not enough space on your device."
   },
-  "theVideoFileSizeIs": "Videofilens størrelse er {size}.",
+  "theVideoFileSizeIs": "Videofilens størrelse er '{'size'}'.",
   "@theVideoFileSizeIs": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1209,7 +1209,7 @@
   "@language": {
     "description": "A label when selecting a language to download."
   },
-  "estimatedFileSize": "Anslået filstørrelse: {size}",
+  "estimatedFileSize": "Anslået filstørrelse: '{'size'}'",
   "@estimatedFileSize": {
     "description": "IMPORTANT: {size} will automatically be replaced with the file size (e.g. 200 MB). You must include {size} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1258,7 +1258,7 @@
   "@removing": {
     "description": "Generic status label. Used e.g. for downloads that are being deleted right now."
   },
-  "expiresIn": "Udløber om {time}",
+  "expiresIn": "Udløber om '{'time'}'",
   "@expiresIn": {
     "description": "IMPORTANT: You must include {time} exactly as it is, but you can move it around in the sentence if needed. {time} will automatically be replaced with the time left (e.g. 1 day). ",
     "placeholders": {
@@ -1335,7 +1335,7 @@
   "@beta": {
     "description": "'Beta' features are only available to a selection of users."
   },
-  "betaExplanation": "Denne funktion er under udvikling og er for øjeblikkt ikke udgivet til alle brugere. Rapporter venligst eventuelle fejl eller feedback via knappen \"Kontakt\" i indstillingerne.",
+  "betaExplanation": "Denne funktion er i beta og er i øjeblikket ikke frigivet til alle brugere. Rapporter eventuelle problemer eller feedback via knappen \"Kontakt\" i indstillingerne.",
   "@betaExplanation": {
     "description": "Shown in a popup on beta features."
   },
@@ -1347,7 +1347,7 @@
   "@saveYourFavoriteShorts": {
     "description": "Shown in the 'liked shorts' box when you dont have any favorites saved yet."
   },
-  "featureNotAvailableYet": "Denne funktion er ikke tilgængelig på din enhed endnu. Prøv venligst igen senere.",
+  "featureNotAvailableYet": "Denne funktion er ikke tilgængelig på din enhed endnu. Prøv venligst igen senere. Prøv igen senere.",
   "@featureNotAvailableYet": {
     "description": "Shown when you try to access a feature that is not available yet, e.g. because it is still in beta."
   },
@@ -1407,7 +1407,7 @@
   "@all": {
     "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
   },
-  "countItems": "{x} elementer",
+  "countItems": "Elementer",
   "@countItems": {
     "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1416,7 +1416,7 @@
       }
     }
   },
-  "skipTo": "Gå til {chapter}",
+  "skipTo": "Spring til {chapter}",
   "@skipTo": {
     "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1424,5 +1424,86 @@
         "type": "String"
       }
     }
+  },
+  "bmmBibleStudyTitle": "Dine bibelstudier",
+  "@bmmBibleStudyTitle": {
+    "description": "The title shown on the Bible Study widget."
+  },
+  "bmmBibleStudyPoints": "'{'0'}' points",
+  "@bmmBibleStudyPoints": {
+    "description": "The users total points in the Bible Study widget. It is shown underneath the title in the widget.",
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "answerTheQuiz": "Svar på quizzen",
+  "@answerTheQuiz": {
+    "description": "Button text on the Bible Study quiz button."
+  },
+  "studyAnswerTheQuizDescription": "Optjen point ved at svare rigtigt",
+  "@studyAnswerTheQuizDescription": {
+    "description": "Description shown on the Bible Study quiz button."
+  },
+  "studySomeAnswersCorrect": "Du fik {correct} af {total} rigtige svar",
+  "@studySomeAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done.",
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "studyAllAnswersCorrect": "Du har svaret rigtigt på alle spørgsmål",
+  "@studyAllAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done and all answers were correct."
+  },
+  "studyNoAnswersCorrect": "Du har ingen rigtige svar",
+  "@studyNoAnswersCorrect": {
+    "description": "Title shown on the Bible Study quiz button after quiz is done and no answers were correct."
+  },
+  "studyAllAnswersCorrectDescription": "Godt klaret!",
+  "@studyAllAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and all answers were correct."
+  },
+  "studyNoAnswersCorrectDescription": "Du må hellere lytte lidt bedre efter næste gang!",
+  "@studyNoAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and no answers were correct."
+  },
+  "studySomeAnswersCorrectDescription": "Godt klaret! Men der er stadig plads til forbedringer.",
+  "@studySomeAnswersCorrectDescription": {
+    "description": "Description shown on the Bible Study quiz button after quiz is done and some answers were correct."
+  },
+  "studyAllQuestionsAnswered": "Du har besvaret alle spørgsmål",
+  "@studyAllQuestionsAnswered": {
+    "description": "Title shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct."
+  },
+  "studyAllQuestionsAnsweredDescription": "Godt klaret!",
+  "@studyAllQuestionsAnsweredDescription": {
+    "description": "Description shown on the Bible Study quiz button after all questions were answered, but we don't know if you got all answers correct."
+  },
+  "kidsNotificationReminderCtaShort": "Skru på",
+  "@kidsNotificationReminderCtaShort": {
+    "description": "Short button text on the notification reminder widget in the Bible Kids app."
+  },
+  "kidsNotificationReminderCtaLong": "",
+  "@kidsNotificationReminderCtaLong": {
+    "description": "Long button text on the notification reminder widget in the Bible Kids app."
+  },
+  "kidsNotificationReminderTitle": "",
+  "@kidsNotificationReminderTitle": {
+    "description": "Title shown on the notification reminder widget in the Bible Kids app."
+  },
+  "notifications": "",
+  "@notifications": {
+    "description": "Shown alongside a toggle switch in the Bible Kids settings."
+  },
+  "onlyShowContentWithPreferredLanguages": "",
+  "@onlyShowContentWithPreferredLanguages": {
+    "description": "Shown alongside a toggle switch in settings."
   }
 }
