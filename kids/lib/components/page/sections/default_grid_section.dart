@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/grid/episode_grid.dart';
 import 'package:kids/router/router.gr.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class DefaultGridSection extends HookConsumerWidget {
   final Fragment$Section$$DefaultGridSection data;
@@ -14,6 +15,10 @@ class DefaultGridSection extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final bp = ResponsiveBreakpoints.of(context);
+    final safePadding = MediaQuery.of(context).padding;
+    final double basePadding = bp.smallerThan(TABLET) ? 20 : 48;
+
     final episodeItems = useMemoized(() {
       return data.items.items
           .map((item) => EpisodeGridItem(
@@ -25,12 +30,18 @@ class DefaultGridSection extends HookConsumerWidget {
           .toList();
     });
 
-    return EpisodeGrid(
-        items: episodeItems,
-        onTap: (episode, index, key) {
-          if (!context.mounted) return;
-          context.router.push(EpisodeScreenRoute(id: episode.id));
-          CustomHapticFeedback.mediumImpact();
-        });
+    return Padding(
+      padding: EdgeInsets.only(
+        left: safePadding.left + basePadding,
+        right: safePadding.right + basePadding,
+      ),
+      child: EpisodeGrid(
+          items: episodeItems,
+          onTap: (episode, index, key) {
+            if (!context.mounted) return;
+            context.router.push(EpisodeScreenRoute(id: episode.id));
+            CustomHapticFeedback.mediumImpact();
+          }),
+    );
   }
 }

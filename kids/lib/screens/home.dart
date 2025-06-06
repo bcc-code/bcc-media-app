@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
@@ -52,7 +51,6 @@ class HomeScreen extends HookConsumerWidget {
     final bp = ResponsiveBreakpoints.of(context);
     final double basePadding = bp.smallerThan(TABLET) ? 20 : 48;
     final double logoHeight = bp.smallerThan(TABLET) ? 28 : 48;
-    final scrollController = useScrollController();
     final isCasting = useListenableSelector(BccmPlayerController.primary, () => BccmPlayerController.primary.isChromecast);
 
     return OrientationBuilder(
@@ -60,123 +58,102 @@ class HomeScreen extends HookConsumerWidget {
         resizeToAvoidBottomInset: false,
         body: orientation == Orientation.portrait
             ? Container(color: Colors.white)
-            : Column(
-                children: [
-                  Expanded(
-                    child: InheritedData<ScrollController>(
-                      inheritedData: scrollController,
-                      builder: (context) => PrimaryScrollController(
-                        controller: scrollController,
-                        child: CustomScrollView(
-                          primary: true,
-                          scrollDirection: Axis.vertical,
-                          slivers: [
-                            // Header
-                            SliverToBoxAdapter(
-                              child: SafeArea(
-                                bottom: false,
-                                maintainBottomViewPadding: true,
-                                child: Container(
-                                  color: Colors.white,
-                                  height: bp.smallerThan(TABLET) ? 88 : 168,
-                                  child: Center(
-                                    child: Row(
-                                      children: [
-                                        SizedBox(width: basePadding),
-                                        design.buttons
-                                            .responsive(
-                                              onPressed: () {
-                                                context.router.pushNamed('/settings');
-                                              },
-                                              labelText: '',
-                                              image: SvgPicture.string(SvgIcons.profile),
-                                            )
-                                            .animate()
-                                            .scale(curve: Curves.easeOutBack, duration: 600.ms)
-                                            .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
-                                        const Spacer(),
-                                        Image.asset('assets/flavors/prod/logo_neg.png', height: logoHeight)
-                                            .animate()
-                                            .slideY(begin: 4, curve: Curves.easeOutExpo, duration: 1000.ms, delay: 300.ms)
-                                            .scale(begin: const Offset(0.5, 0.5))
-                                            .rotate(begin: 0.05)
-                                            .fadeIn(),
-                                        const Spacer(),
-                                        if (isCasting) ...[
-                                          design.buttons
-                                              .responsive(
-                                                variant: ButtonVariant.secondary,
-                                                onPressed: () {
-                                                  BccmPlayerInterface.instance.openExpandedCastController();
-                                                },
-                                                labelText: '',
-                                                image: SvgPicture.string(SvgIcons.cast),
-                                              )
-                                              .animate()
-                                              .scale(curve: Curves.easeOutBack, duration: 600.ms)
-                                              .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
-                                          SizedBox(width: basePadding),
-                                        ],
-                                        design.buttons
-                                            .responsive(
-                                              onPressed: () {
-                                                context.router.pushNamed('/search');
-                                              },
-                                              labelText: '',
-                                              image: SvgPicture.string(SvgIcons.search),
-                                            )
-                                            .animate()
-                                            .scale(curve: Curves.easeOutBack, duration: 600.ms)
-                                            .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
-                                        SizedBox(width: basePadding),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            if (pageResult.connectionState == ConnectionState.waiting)
-                              const SliverFillRemaining(hasScrollBody: false, child: Center(child: LoadingIndicator()))
-                            else if (page == null || pageResult.hasError)
-                              SliverFillRemaining(
-                                hasScrollBody: false,
-                                child: ErrorGeneric(
-                                  onRetry: () async {
-                                    reloadAppConfig.value = true;
-                                    reloadKey.value = UniqueKey();
+            : CustomScrollView(
+                primary: true,
+                scrollDirection: Axis.vertical,
+                slivers: [
+                  SliverSafeArea(
+                    bottom: false,
+                    top: false,
+                    sliver: SliverToBoxAdapter(
+                      child: Container(
+                        color: Colors.white,
+                        height: bp.smallerThan(TABLET) ? 88 : 168,
+                        padding: EdgeInsets.only(left: basePadding, right: basePadding),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            design.buttons
+                                .responsive(
+                                  onPressed: () {
+                                    context.router.pushNamed('/settings');
                                   },
-                                ),
-                              )
-                            else
-                              // Content
-                              SliverList.builder(
-                                itemCount: page.sections.items.length,
-                                itemBuilder: (context, index) {
-                                  final section = page.sections.items[index];
-                                  return Padding(
-                                    padding: EdgeInsets.only(
-                                      top: index == 0 ? 0 : basePadding * 2,
-                                      bottom: index == page.sections.items.length - 1 ? basePadding : 0,
-                                    ),
-                                    child: LayoutBuilder(
-                                      builder: (context, constraints) {
-                                        return SizedBox(
-                                          width: constraints.maxWidth,
-                                          child: SectionRenderer(section: section, index: index, pageCode: page.code),
-                                        );
-                                      },
-                                    ),
-                                  );
-                                },
-                              ),
-                            SliverPadding(
-                              padding: EdgeInsets.only(bottom: basePadding),
-                            ),
+                                  labelText: '',
+                                  image: SvgPicture.string(SvgIcons.profile),
+                                )
+                                .animate()
+                                .scale(curve: Curves.easeOutBack, duration: 600.ms)
+                                .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
+                            Image.asset('assets/flavors/prod/logo_neg.png', height: logoHeight)
+                                .animate()
+                                .slideY(begin: 4, curve: Curves.easeOutExpo, duration: 1000.ms, delay: 300.ms)
+                                .scale(begin: const Offset(0.5, 0.5))
+                                .rotate(begin: 0.05)
+                                .fadeIn(),
+                            if (isCasting) ...[
+                              design.buttons
+                                  .responsive(
+                                    variant: ButtonVariant.secondary,
+                                    onPressed: () {
+                                      BccmPlayerInterface.instance.openExpandedCastController();
+                                    },
+                                    labelText: '',
+                                    image: SvgPicture.string(SvgIcons.cast),
+                                  )
+                                  .animate()
+                                  .scale(curve: Curves.easeOutBack, duration: 600.ms)
+                                  .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
+                            ],
+                            design.buttons
+                                .responsive(
+                                  onPressed: () {
+                                    context.router.pushNamed('/search');
+                                  },
+                                  labelText: '',
+                                  image: SvgPicture.string(SvgIcons.search),
+                                )
+                                .animate()
+                                .scale(curve: Curves.easeOutBack, duration: 600.ms)
+                                .rotate(begin: -0.5, end: 0, curve: Curves.easeOutExpo, duration: 1000.ms),
                           ],
                         ),
                       ),
                     ),
                   ),
+                  if (pageResult.connectionState == ConnectionState.waiting)
+                    const SliverFillRemaining(hasScrollBody: false, child: Center(child: LoadingIndicator()))
+                  else if (page == null || pageResult.hasError)
+                    SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: ErrorGeneric(
+                        onRetry: () async {
+                          reloadAppConfig.value = true;
+                          reloadKey.value = UniqueKey();
+                        },
+                      ),
+                    )
+                  else
+                    SliverList.builder(
+                      itemCount: page.sections.items.length,
+                      itemBuilder: (context, index) {
+                        final section = page.sections.items[index];
+                        return Container(
+                          padding: EdgeInsets.only(
+                            top: index == 0 ? 0 : basePadding * 2,
+                            bottom: index == page.sections.items.length - 1 ? basePadding : 0,
+                          ),
+                          child: LayoutBuilder(
+                            builder: (context, constraints) {
+                              return SizedBox(
+                                width: constraints.maxWidth,
+                                child: SectionRenderer(section: section, index: index, pageCode: page.code),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
                 ],
               ),
       ),

@@ -97,18 +97,33 @@ class PosterSection extends HookConsumerWidget {
       notificationPromptPosition,
     ]);
 
+    final animationController = useAnimationController(
+      duration: const Duration(milliseconds: 2000),
+    );
+
+    useEffect(() {
+      animationController.forward();
+      return null;
+    }, []);
+
     return HorizontalSlider(
       height: bp.smallerThan(TABLET) ? 250 : 300,
       itemCount: finalItems.length,
       gap: sectionSpacing,
       itemBuilder: (context, index) {
         final child = finalItems[index];
-        return child
-            .animate()
-            .slideX(begin: 1, curve: Curves.easeOutExpo, duration: 2000.ms)
-            .scale(begin: const Offset(0.8, 0.8))
-            .rotate(begin: 0.03)
-            .fadeIn();
+        return AnimatedBuilder(
+          animation: animationController,
+          builder: (context, _) {
+            final animValue = animationController.value;
+            return child
+                .animate(value: animValue)
+                .slideX(begin: 1, curve: Curves.easeOutExpo, duration: 2000.ms)
+                .scale(begin: const Offset(0.8, 0.8))
+                .rotate(begin: 0.03)
+                .fadeIn(delay: (index * 50).ms);
+          },
+        );
       },
     );
   }

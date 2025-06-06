@@ -1,6 +1,7 @@
 import 'package:bccm_core/bccm_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class HorizontalSlider extends HookWidget {
   final int itemCount;
@@ -52,6 +53,10 @@ class HorizontalSlider extends HookWidget {
       if (actualController.hasClients) onScrollChanged();
     });
 
+    final bp = ResponsiveBreakpoints.of(context);
+    final safePadding = MediaQuery.of(context).padding;
+    final double basePadding = bp.smallerThan(TABLET) ? 20 : 48;
+
     return LayoutBuilder(
       builder: (context, constraints) => ConstrainedBox(
         constraints: BoxConstraints(minHeight: 0, maxHeight: height),
@@ -69,7 +74,14 @@ class HorizontalSlider extends HookWidget {
             itemBuilder: (BuildContext context, int index) {
               return ConstrainedBox(
                 constraints: BoxConstraints(minHeight: 0, maxHeight: height),
-                child: Container(margin: EdgeInsets.only(right: index == itemCount - 1 ? 0 : gap), child: itemBuilder(context, index)),
+                child: Container(
+                  margin: EdgeInsets.only(right: index == itemCount - 1 ? 0 : gap),
+                  padding: EdgeInsets.only(
+                    left: index == 0 ? safePadding.left + basePadding : 0,
+                    right: index == itemCount - 1 ? safePadding.right + basePadding : 0,
+                  ),
+                  child: itemBuilder(context, index),
+                ),
               );
             },
           ),
