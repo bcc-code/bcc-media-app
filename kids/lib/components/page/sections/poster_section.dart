@@ -107,7 +107,7 @@ class PosterSection extends HookConsumerWidget {
     }, []);
 
     return HorizontalSlider(
-      height: bp.smallerThan(TABLET) ? 250 : 300,
+      height: bp.screenWidth * 0.6,
       itemCount: finalItems.length,
       gap: sectionSpacing,
       itemBuilder: (context, index) {
