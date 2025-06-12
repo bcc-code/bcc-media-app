@@ -28,7 +28,7 @@ class DefaultGridSection extends HookConsumerWidget {
                 duration: item.item.asOrNull<Fragment$GridSectionItem$item$$Episode>()?.duration,
               ))
           .toList();
-    });
+    }, [data.items.items.length]);
 
     return Padding(
       padding: EdgeInsets.only(

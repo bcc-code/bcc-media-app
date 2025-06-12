@@ -8,37 +8,34 @@ class SectionRenderer extends StatelessWidget {
   const SectionRenderer({
     super.key,
     required this.section,
-    required this.pageCode,
-    required this.index,
+    this.extraItems,
   });
 
   final Fragment$Section section;
-  final String? pageCode;
-  final int index;
+  final List<Fragment$ItemSectionItem>? extraItems;
 
-  Widget? getWidget() {
+  @override
+  Widget build(BuildContext context) {
+    if (section.asOrNull<Fragment$ItemSection>()?.items.items.isEmpty == true) {
+      return const SizedBox.shrink();
+    }
+
     final posterSection = section.asOrNull<Fragment$Section$$PosterSection>();
     if (posterSection != null) {
       return PosterSection(posterSection);
     }
 
-    final defaultGridSection = section.asOrNull<Fragment$Section$$DefaultGridSection>();
+    var defaultGridSection = section.asOrNull<Fragment$Section$$DefaultGridSection>();
     if (defaultGridSection != null) {
+      defaultGridSection = defaultGridSection.copyWith(
+        items: defaultGridSection.items.copyWith(items: [
+          ...defaultGridSection.items.items,
+          ...(extraItems?.whereType<Fragment$Section$$DefaultGridSection$items$items>().toList() ?? [])
+        ]),
+      );
       return DefaultGridSection(defaultGridSection);
     }
 
-    return null;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final widget = getWidget();
-    if (widget != null) {
-      return SectionAnalytics(
-        data: SectionAnalyticsData(id: section.id, position: index, type: section.$__typename, name: section.title, pageCode: pageCode),
-        builder: (context) => widget,
-      );
-    }
     return const SizedBox.shrink();
   }
 }
