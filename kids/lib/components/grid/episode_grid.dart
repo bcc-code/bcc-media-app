@@ -1,6 +1,7 @@
 import 'package:brunstadtv_app/components/misc/custom_grid_view.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:brunstadtv_app/helpers/episode_state.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:collection/collection.dart';
@@ -19,12 +20,14 @@ class EpisodeGridItem {
   final String title;
   final String? image;
   final int? duration;
+  final String? publishDate;
 
   EpisodeGridItem({
     required this.id,
     required this.title,
     required this.image,
     required this.duration,
+    this.publishDate,
   });
 
   factory EpisodeGridItem.fromFragment(Fragment$KidsEpisodeThumbnail e) {
@@ -33,6 +36,7 @@ class EpisodeGridItem {
       title: e.title,
       image: e.image,
       duration: e.duration,
+      publishDate: e.publishDate,
     );
   }
 }
@@ -137,6 +141,12 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
                           right: bp.smallerThan(TABLET) ? 8 : 16,
                           child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
                         ),
+                      if (isNewEpisode(item.publishDate, false))
+                        Positioned(
+                          bottom: bp.smallerThan(TABLET) ? 8 : 16,
+                          left: bp.smallerThan(TABLET) ? 8 : 16,
+                          child: _NewButton(small: bp.smallerThan(TABLET)),
+                        ),
                     ],
                   ),
                 ),
@@ -177,6 +187,52 @@ class _DurationButton extends StatelessWidget {
       shadowColor: design.colors.label1.withOpacity(0.2),
       sideColor: const Color(0xFFE9ECF4),
       labelText: '${Duration(seconds: duration).inMinutes} ${S.of(context).minutesShort}',
+      labelTextStyle: design.textStyles.title2,
+      elevationHeight: 2,
+      iconSize: 0,
+      height: 40,
+      paddings: const ButtonPaddings(
+        fromLabelToSide: 20,
+        fromLabelToSideWhenAlone: 20,
+        fromIconToLabel: 20,
+        fromIconToSide: 20,
+        fromIconToSideWhenAlone: 20,
+      ),
+    );
+    return IgnorePointer(
+      child: small
+          ? durationButton.copyWith(
+              height: 28,
+              labelTextStyle: design.textStyles.title3,
+              paddings: const ButtonPaddings(
+                fromLabelToSide: 12,
+                fromLabelToSideWhenAlone: 12,
+                fromIconToLabel: 12,
+                fromIconToSide: 12,
+                fromIconToSideWhenAlone: 12,
+              ),
+            )
+          : durationButton,
+    );
+  }
+}
+
+class _NewButton extends StatelessWidget {
+  const _NewButton({
+    required this.small,
+  });
+
+  final bool small;
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+    final durationButton = Button.raw(
+      color: design.colors.tint1,
+      activeColor: design.colors.tint1Dark,
+      shadowColor: design.colors.label1.withOpacity(0.2),
+      sideColor: design.colors.tint1Dark,
+      labelText: S.of(context).newEpisode,
       labelTextStyle: design.textStyles.title2,
       elevationHeight: 2,
       iconSize: 0,
