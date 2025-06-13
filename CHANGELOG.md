@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.38+2500048-kids...v) (2025-06-05)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.39+2500049-kids...v) (2025-06-13)
+
+
+
+## [5.1.39+2500049-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.38+2500048-kids...v5.1.39+2500049-kids) (2025-06-13)
+
+
+### Bug Fixes
+
+* **kids:** prevent constant reloading of homepage ([3e60445](https://github.com/bcc-code/bcc-media-app/commit/3e60445ef04e057ff40930936cdcdf96cacb2a98))
 
 
 
