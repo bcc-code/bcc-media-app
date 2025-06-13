@@ -97,11 +97,12 @@ class HomeScreen extends HookConsumerWidget {
     }
 
     loadMoreBottomSectionItems() async {
+      final sectionId = page?.sections.items.last.id;
+      if (sectionId == null) return;
+      if (paginationMap.value[sectionId]?.reachedMax == true) return;
+
       loadingBottomSectionItems.value = true;
       await tryCatchRecordErrorAsync(() async {
-        final sectionId = page?.sections.items.last.id;
-        if (sectionId == null) return;
-        if (paginationMap.value[sectionId]?.reachedMax == true) return;
         await loadMoreItemsForSection(sectionId);
       });
       if (!context.mounted) return;
