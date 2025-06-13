@@ -7,6 +7,7 @@ import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/models/pagination_status.dart';
 import 'package:collection/collection.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -52,8 +53,12 @@ class HomeScreen extends HookConsumerWidget {
     final pageResult = useFuture(pageFuture);
     final page = pageResult.data;
 
-    ref.listen(featureFlagVariantListProvider, (_, __) {
-      reloadKey.value = UniqueKey();
+    ref.listen(settingsProvider.select((settings) => settings.appLanguage), (_, __) {
+      // Workaround. Wait a bit for feature flags to be updated,
+      // so that the correct content is loaded.
+      Future.delayed(const Duration(milliseconds: 1000), () {
+        reloadKey.value = UniqueKey();
+      });
     });
 
     final design = DesignSystem.of(context);

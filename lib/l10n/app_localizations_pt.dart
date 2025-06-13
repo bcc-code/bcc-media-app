@@ -1149,5 +1149,5 @@ class SPt extends S {
 
   @override
   String get onlyShowContentWithPreferredLanguages =>
-      'Only show content with my preferred languages';
+      'Mostrar apenas conteúdos com os meus idiomas preferidos';
 }

@@ -1154,5 +1154,5 @@ class SRo extends S {
 
   @override
   String get onlyShowContentWithPreferredLanguages =>
-      'Only show content with my preferred languages';
+      'Afișează numai conținutul în limbile mele preferate';
 }

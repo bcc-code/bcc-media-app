@@ -1,4 +1,27 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.37+2500047-kids...v) (2025-06-03)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.39+2500049-kids...v) (2025-06-13)
+
+
+
+## [5.1.39+2500049-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.38+2500048-kids...v5.1.39+2500049-kids) (2025-06-13)
+
+
+### Bug Fixes
+
+* **kids:** prevent constant reloading of homepage ([3e60445](https://github.com/bcc-code/bcc-media-app/commit/3e60445ef04e057ff40930936cdcdf96cacb2a98))
+
+
+
+## [5.1.38+2500048-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.37+2500047-kids...v5.1.38+2500048-kids) (2025-06-05)
+
+
+### Bug Fixes
+
+* **kids:** skip splash video on problematic video codec devices ([90f0609](https://github.com/bcc-code/bcc-media-app/commit/90f0609b40a8c63e40f6f2dd283c1d82fe80179b))
+
+
+### Features
+
+* update localizations ([43cc4a6](https://github.com/bcc-code/bcc-media-app/commit/43cc4a606bae8d541dbc2cdccb70ff5f37732442))
 
 
 
