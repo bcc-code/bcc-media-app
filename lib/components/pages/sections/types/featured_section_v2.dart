@@ -178,19 +178,3 @@ class _FeaturedItem extends StatelessWidget {
     );
   }
 }
-
-class _CustomPageViewScrollPhysics extends ScrollPhysics {
-  const _CustomPageViewScrollPhysics({super.parent});
-
-  @override
-  _CustomPageViewScrollPhysics applyTo(ScrollPhysics? ancestor) {
-    return _CustomPageViewScrollPhysics(parent: buildParent(ancestor)!);
-  }
-
-  @override
-  SpringDescription get spring => const SpringDescription(
-        mass: 100,
-        stiffness: 1,
-        damping: 1,
-      );
-}

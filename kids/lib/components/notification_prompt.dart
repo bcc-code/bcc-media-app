@@ -56,7 +56,7 @@ class NotificationPrompt extends HookConsumerWidget {
                 ),
                 design.buttons.responsive(
                   variant: ButtonVariant.primary,
-                  labelText: isSmall ? S.of(context).kidsNotificationReminderCtaShort : S.of(context).kidsNotificationReminderCtaLong,
+                  labelText: S.of(context).kidsNotificationReminderCtaShort,
                   onPressed: () async {
                     final analytics = ref.read(analyticsProvider);
                     final settings = ref.read(settingsProvider.notifier);
