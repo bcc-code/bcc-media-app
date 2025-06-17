@@ -96,10 +96,3 @@ bump-kids: ## Bumps the version in kids/pubspec.yaml
 	echo "Bumped version to $${NEW_VERSION}"; \
 	git add kids/pubspec.yaml; \
 	git commit -m "chore: bump kids version to $${NEW_VERSION}"
-
-crowdin-download: ## Download translations from crowdin and generate l10n files
-	crowdin download --token=$$(cat .crowdin-token)
-	flutter gen-l10n
-
-crowdin-upload: ## Upload source strings to crowdin
-	crowdin upload --token=$$(cat .crowdin-token)

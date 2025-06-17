@@ -1,4 +1,4 @@
-ma# Maestro UI Tests
+# Maestro UI Tests
 
 We are using [Maestro](https://maestro.mobile.dev/), which allows us to use a normal build of the app to test the most critical user flows, e.g. logging in and playing content.
 The tests run during the CI pipeline for the app (except those with the `no-cloud` tag in its yml file)
