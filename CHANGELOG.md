@@ -1,4 +1,26 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.39+2500049-kids...v) (2025-06-13)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.40+2500050-kids...v) (2025-06-17)
+
+
+
+## [5.1.40+2500050-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.1.39+2500049-kids...v5.1.40+2500050-kids) (2025-06-17)
+
+
+### Bug Fixes
+
+* **kids:** don't send accept sub lang in gql headers ([33d5070](https://github.com/bcc-code/bcc-media-app/commit/33d507072f5e7510759cd8588d98cb327e73632b))
+* **kids:** dynamic poster section height ([93811b3](https://github.com/bcc-code/bcc-media-app/commit/93811b384ae3269c8c314e0719b425e513794f75))
+* **kids:** optimize pagination ([d81ae1d](https://github.com/bcc-code/bcc-media-app/commit/d81ae1db294a04c03a7c8065fb4b2aec2f14558d))
+* **kids:** safearea fixes on new home page ([b4443a0](https://github.com/bcc-code/bcc-media-app/commit/b4443a0145ba6fbbe967a70d003f4484f8c2b46b))
+
+
+### Features
+
+* **kids:** almost make new design work ([ac2ee41](https://github.com/bcc-code/bcc-media-app/commit/ac2ee4121dbffea074f77bd7c88e7fa049ea29c0))
+* **kids:** animate poster slider only on first mount ([5568312](https://github.com/bcc-code/bcc-media-app/commit/5568312f1420f6be876b727a915d74008ef1bc3c))
+* **kids:** move navigation and logo to top ([db7badf](https://github.com/bcc-code/bcc-media-app/commit/db7badf3f04bb9bcae1eb7f3dd873bd1fcc73ba0))
+* **kids:** new episode badge ([d30d62d](https://github.com/bcc-code/bcc-media-app/commit/d30d62d0925de1086d67475107fad101e73dc8b6))
+* **kids:** start adding new section type for home page ([2e99740](https://github.com/bcc-code/bcc-media-app/commit/2e99740857c6627ba2fc578affe029effabcee08))
+* pagination ([5df7e9f](https://github.com/bcc-code/bcc-media-app/commit/5df7e9f7ea7a8613a2dfc26b2bdaccecfe85dafe))
 
 
 
