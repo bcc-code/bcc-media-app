@@ -1,12 +1,9 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.83+2300243...v) (2025-06-17)
-
-
-
-## [5.6.83+2300243](https://github.com/bcc-code/bcc-media-app/compare/v5.1.40+2500050-kids...v5.6.83+2300243) (2025-06-17)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.40+2500050-kids...v) (2025-06-17)
 
 
 ### Bug Fixes
 
+* **build:** change maestro config ([5726d14](https://github.com/bcc-code/bcc-media-app/commit/5726d14824e058f29684556c26d11aaac0a66345))
 * **my-list:** set large pagination amount to prevent disappearing items ([2a6aec0](https://github.com/bcc-code/bcc-media-app/commit/2a6aec0afa07f68241c99b10a16633918cc226ad))
 
 
