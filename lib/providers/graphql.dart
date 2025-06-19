@@ -78,7 +78,6 @@ class _ApiHttpClient extends BaseClient {
       sessionId: settings.sessionId,
       searchSessionId: settings.searchSessionId.toString(),
     ).toMap();
-    debugPrint('sessionId: ${settings.sessionId}, searchSessionId: ${settings.searchSessionId}');
     request.headers.addAll(headers);
     return _client.send(request);
   }
