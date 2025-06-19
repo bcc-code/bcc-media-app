@@ -1,6 +1,5 @@
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
-import 'package:brunstadtv_app/providers/session.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -64,7 +63,6 @@ class _ApiHttpClient extends BaseClient {
     final featureFlagVariants = ref.read(featureFlagVariantListProvider);
     final os = Platform.isIOS ? 'iOS' : 'Android';
     final osVersion = getOsVersion(ref.read(deviceInfoProvider));
-    final session = ref.read(sessionProvider);
     final headers = BccmGraphqlHeaders(
       acceptLanguage: [settings.appLanguage.languageCode],
       acceptAudioLanguage: settings.audioLanguages,
@@ -77,9 +75,10 @@ class _ApiHttpClient extends BaseClient {
       osVersion: osVersion,
       isTablet: isTablet,
       onlyPreferredLanguagesContent: settings.onlyPreferredLanguagesContentEnabled,
-      sessionId: session.sessionId,
-      searchSessionId: session.searchSessionId,
+      sessionId: settings.sessionId,
+      searchSessionId: settings.searchSessionId.toString(),
     ).toMap();
+    debugPrint('sessionId: ${settings.sessionId}, searchSessionId: ${settings.searchSessionId}');
     request.headers.addAll(headers);
     return _client.send(request);
   }

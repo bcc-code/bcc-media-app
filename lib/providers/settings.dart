@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
+import 'package:unleash_proxy_client_flutter/id_generator.dart';
 
 import '../flavors.dart';
 import '../models/offline/download_quality.dart';
@@ -22,7 +23,8 @@ class Settings with _$Settings implements CommonSettings {
     String? downloadAudioLanguage,
     DownloadQuality? downloadQuality,
     String? analyticsId,
-    int? sessionId,
+    String? sessionId,
+    String? searchSessionId,
     String? envOverride,
     bool? isBetaTester,
     bool? useNativePlayer,
@@ -61,7 +63,8 @@ class SettingsService extends StateNotifier<Settings> {
       envOverride: prefs.getString(PrefKeys.envOverride),
       isBetaTester: prefs.getBool(PrefKeys.isBetaTester),
       useNativePlayer: prefs.getBool(PrefKeys.useNativePlayer),
-      sessionId: (DateTime.now().millisecondsSinceEpoch / 1000).round(),
+      sessionId: generateId(),
+      searchSessionId: generateId(),
       extraUsergroups: prefs.getStringList(PrefKeys.extraUsergroups) ?? [],
       notificationsEnabled: prefs.getBool(PrefKeys.notificationsEnabled),
       onlyPreferredLanguagesContentEnabled: prefs.getBool(PrefKeys.onlyPreferredLanguagesContentEnabled),
@@ -97,9 +100,15 @@ class SettingsService extends StateNotifier<Settings> {
   }
 
   void refreshSessionId() {
-    final newSessionId = (DateTime.now().millisecondsSinceEpoch / 1000).round();
+    final newSessionId = generateId();
     debugPrint('Session_id: ${state.sessionId} -> $newSessionId');
     state = state.copyWith(sessionId: newSessionId);
+  }
+
+  void refreshSearchSessionId() {
+    final newSessionId = generateId();
+    debugPrint('Search_session_id: ${state.searchSessionId} -> $newSessionId');
+    state = state.copyWith(searchSessionId: newSessionId);
   }
 
   Future<void> setSubtitleLanguages(List<String> languageCodes) async {
