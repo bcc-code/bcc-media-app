@@ -1155,4 +1155,10 @@ class STa extends S {
   @override
   String get onlyShowContentWithPreferredLanguages =>
       'Only show content with my preferred languages';
+
+  @override
+  String get kidsLogInWithBCCTitle => 'Log in with your BCC account';
+
+  @override
+  String get kidsLoggedInWithBCCTitle => 'Signed in with BCC';
 }
