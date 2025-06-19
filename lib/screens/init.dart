@@ -6,9 +6,11 @@ import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/providers/session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:unleash_proxy_client_flutter/id_generator.dart';
 import '../components/offline/offline_home.dart';
 import '../components/status/loading_indicator.dart';
 import '../helpers/constants.dart';
@@ -70,6 +72,12 @@ class _InitScreenState extends ConsumerState<InitScreen> {
     if (hasEverLoggedIn == null) {
       ref.read(sharedPreferencesProvider).setBool(PrefKeys.hasEverLoggedIn, false);
     }
+
+    if (!mounted) return;
+    ref.read(sessionProvider.notifier).state = Session(
+      sessionId: generateId(),
+      searchSessionId: generateId(),
+    );
 
     continueNavigation();
     globalEventBus.fire(AppReadyEvent());
