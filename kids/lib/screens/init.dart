@@ -17,8 +17,6 @@ class InitScreen extends ConsumerStatefulWidget {
 }
 
 class _InitScreenState extends ConsumerState<InitScreen> {
-  Future<void>? authFuture;
-
   @override
   void initState() {
     super.initState();
@@ -26,10 +24,7 @@ class _InitScreenState extends ConsumerState<InitScreen> {
 
   void load() async {
     if (!mounted) return;
-    setState(() {
-      authFuture = ref.read(authStateProvider.notifier).initialize();
-    });
-    await authFuture;
+    await ref.read(authStateProvider.notifier).initialize();
     await tryCatchRecordErrorAsync(() async {
       await ref.read(featureFlagsProvider.notifier).activateFeatureFlags().timeout(const Duration(seconds: 2));
     });
