@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kids/components/buttons/button.dart';
 import 'package:kids/components/buttons/button_base.dart';
 import 'package:kids/components/buttons/stack_close_button.dart';
 import 'package:kids/components/settings/setting_list.dart';
@@ -126,6 +128,10 @@ class SettingsScreen extends HookConsumerWidget {
                                   padding: EdgeInsets.symmetric(vertical: spacingBetweenSections),
                                   child: const DonationButton(),
                                 ),
+                                if (ref.read(featureFlagsProvider).kidsAuth) ...[
+                                  AuthenticationButton(),
+                                  SizedBox(height: spacingBetweenSections),
+                                ],
                                 SettingList(
                                   items: [
                                     SettingListItem(
@@ -267,9 +273,7 @@ class SettingsScreen extends HookConsumerWidget {
 }
 
 class DonationButton extends StatelessWidget {
-  const DonationButton({
-    super.key,
-  });
+  const DonationButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -282,7 +286,7 @@ class DonationButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
       color: design.colors.tint1,
       activeColor: design.colors.tint1,
-      shadowColor: design.colors.label1.withOpacity(0.1),
+      shadowColor: design.colors.label1.withValues(alpha: 0.1),
       sideColor: const Color(0xFFF1B826),
       onPressed: () => launchUrlString(
         'https://www.paypal.com/donate/?hosted_button_id=M5HU747LQCRQC',
@@ -338,6 +342,70 @@ class DonationButton extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class AuthenticationButton extends HookConsumerWidget {
+  const AuthenticationButton({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
+    final bp = ResponsiveBreakpoints.of(context);
+    final isSmall = bp.smallerThan(TABLET);
+
+    return SettingList(
+      items: [
+        if (!ref.watch(authStateProvider).isLoggedIn)
+          SettingListItem(
+            title: S.of(context).kidsLogInWithBCCTitle,
+            onPressed: () async {
+              final success = await ref.read(authStateProvider.notifier).login();
+              if (!success) return;
+              await tryCatchRecordErrorAsync(() async {
+                await ref.read(featureFlagsProvider.notifier).activateFeatureFlags().timeout(const Duration(seconds: 2));
+              });
+              ref.invalidate(appConfigFutureProvider);
+            },
+            rightWidget: SvgPicture.string(
+              SvgIcons.logoBCC,
+              height: isSmall ? 24 : 44,
+              width: isSmall ? 24 : 44,
+            ),
+          ),
+        if (ref.watch(authStateProvider).isLoggedIn)
+          SettingListItem(
+            title: S.of(context).kidsLoggedInWithBCCTitle,
+            subtitle: ref.read(authStateProvider).user?.email,
+            onPressed: () async {},
+            rightWidget: Button.raw(
+              color: design.colors.background1,
+              activeColor: design.colors.background1,
+              shadowColor: design.colors.label1.withValues(alpha: 0.2),
+              sideColor: const Color(0xFFE9ECF4),
+              labelText: S.of(context).logOutButton,
+              labelTextStyle: design.textStyles.title2,
+              elevationHeight: 2,
+              iconSize: 0,
+              height: 40,
+              paddings: const ButtonPaddings(
+                fromLabelToSide: 20,
+                fromLabelToSideWhenAlone: 20,
+                fromIconToLabel: 20,
+                fromIconToSide: 20,
+                fromIconToSideWhenAlone: 20,
+              ),
+              onPressed: () async {
+                await ref.read(authStateProvider.notifier).logout(manual: true);
+                await tryCatchRecordErrorAsync(() async {
+                  await ref.read(featureFlagsProvider.notifier).activateFeatureFlags().timeout(const Duration(seconds: 2));
+                });
+                ref.invalidate(appConfigFutureProvider);
+              },
+            ),
+          ),
+      ],
     );
   }
 }
