@@ -1,4 +1,24 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.40+2500050-kids...v) (2025-06-17)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.84+2300244...v) (2025-06-20)
+
+
+
+## [5.6.84+2300244](https://github.com/bcc-code/bcc-media-app/compare/v5.6.83+2300243...v5.6.84+2300244) (2025-06-20)
+
+
+### Bug Fixes
+
+* remove debug print ([907464f](https://github.com/bcc-code/bcc-media-app/commit/907464f5090c49e2a8573d51f97564c82a347551))
+* remove unnecessary toString ([63689df](https://github.com/bcc-code/bcc-media-app/commit/63689dfb48597bd0a9d3e9b1eb93f22885d4b37f))
+* **search:** simplify session id ([82ae7bd](https://github.com/bcc-code/bcc-media-app/commit/82ae7bdc3ae4750e70a277bf795b8a8eab8ee467))
+
+
+### Features
+
+* **search:** add session ids ([55a638b](https://github.com/bcc-code/bcc-media-app/commit/55a638b8b46b2f87218d4fcdc67adeb267cee2df))
+
+
+
+## [5.6.83+2300243](https://github.com/bcc-code/bcc-media-app/compare/v5.1.40+2500050-kids...v5.6.83+2300243) (2025-06-17)
 
 
 ### Bug Fixes
