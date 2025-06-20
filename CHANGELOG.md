@@ -1,4 +1,21 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.84+2300244...v) (2025-06-20)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.41+2500051-kids...v) (2025-06-20)
+
+
+
+## [5.1.41+2500051-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.84+2300244...v5.1.41+2500051-kids) (2025-06-20)
+
+
+### Bug Fixes
+
+* **auth:** check apns token before deleting notif token ([dd849e0](https://github.com/bcc-code/bcc-media-app/commit/dd849e08d86ed5c295149b6fba7e9f86cfe8105b))
+* **kids-auth:** init auth at startup ([21870a6](https://github.com/bcc-code/bcc-media-app/commit/21870a6a5e4b2be9b95b6676b8cc0a4bb77fd5c1))
+* **kids-auth:** remove unnecessary state ([9427ed4](https://github.com/bcc-code/bcc-media-app/commit/9427ed4e101ea7806d5c8cd93680f89ec9168bd2))
+
+
+### Features
+
+* **kids-auth:** add auth UI ([1ce972a](https://github.com/bcc-code/bcc-media-app/commit/1ce972af4d0d2fe62011676ed39d571be885c31c))
+* **kids-auth:** l10n ([2c1d15f](https://github.com/bcc-code/bcc-media-app/commit/2c1d15fc18964fdc67f711cabea97829e79a478a))
 
 
 
