@@ -22,7 +22,8 @@ mixin _$Settings {
   String? get downloadAudioLanguage => throw _privateConstructorUsedError;
   DownloadQuality? get downloadQuality => throw _privateConstructorUsedError;
   String? get analyticsId => throw _privateConstructorUsedError;
-  int? get sessionId => throw _privateConstructorUsedError;
+  String? get sessionId => throw _privateConstructorUsedError;
+  String? get searchSessionId => throw _privateConstructorUsedError;
   String? get envOverride => throw _privateConstructorUsedError;
   bool? get isBetaTester => throw _privateConstructorUsedError;
   bool? get useNativePlayer => throw _privateConstructorUsedError;
@@ -50,7 +51,8 @@ abstract class $SettingsCopyWith<$Res> {
       String? downloadAudioLanguage,
       DownloadQuality? downloadQuality,
       String? analyticsId,
-      int? sessionId,
+      String? sessionId,
+      String? searchSessionId,
       String? envOverride,
       bool? isBetaTester,
       bool? useNativePlayer,
@@ -81,6 +83,7 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
     Object? downloadQuality = freezed,
     Object? analyticsId = freezed,
     Object? sessionId = freezed,
+    Object? searchSessionId = freezed,
     Object? envOverride = freezed,
     Object? isBetaTester = freezed,
     Object? useNativePlayer = freezed,
@@ -116,7 +119,11 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
       sessionId: freezed == sessionId
           ? _value.sessionId
           : sessionId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
+      searchSessionId: freezed == searchSessionId
+          ? _value.searchSessionId
+          : searchSessionId // ignore: cast_nullable_to_non_nullable
+              as String?,
       envOverride: freezed == envOverride
           ? _value.envOverride
           : envOverride // ignore: cast_nullable_to_non_nullable
@@ -161,7 +168,8 @@ abstract class _$$SettingsImplCopyWith<$Res>
       String? downloadAudioLanguage,
       DownloadQuality? downloadQuality,
       String? analyticsId,
-      int? sessionId,
+      String? sessionId,
+      String? searchSessionId,
       String? envOverride,
       bool? isBetaTester,
       bool? useNativePlayer,
@@ -190,6 +198,7 @@ class __$$SettingsImplCopyWithImpl<$Res>
     Object? downloadQuality = freezed,
     Object? analyticsId = freezed,
     Object? sessionId = freezed,
+    Object? searchSessionId = freezed,
     Object? envOverride = freezed,
     Object? isBetaTester = freezed,
     Object? useNativePlayer = freezed,
@@ -225,7 +234,11 @@ class __$$SettingsImplCopyWithImpl<$Res>
       sessionId: freezed == sessionId
           ? _value.sessionId
           : sessionId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
+      searchSessionId: freezed == searchSessionId
+          ? _value.searchSessionId
+          : searchSessionId // ignore: cast_nullable_to_non_nullable
+              as String?,
       envOverride: freezed == envOverride
           ? _value.envOverride
           : envOverride // ignore: cast_nullable_to_non_nullable
@@ -266,6 +279,7 @@ class _$SettingsImpl implements _Settings {
       this.downloadQuality,
       this.analyticsId,
       this.sessionId,
+      this.searchSessionId,
       this.envOverride,
       this.isBetaTester,
       this.useNativePlayer,
@@ -304,7 +318,9 @@ class _$SettingsImpl implements _Settings {
   @override
   final String? analyticsId;
   @override
-  final int? sessionId;
+  final String? sessionId;
+  @override
+  final String? searchSessionId;
   @override
   final String? envOverride;
   @override
@@ -327,7 +343,7 @@ class _$SettingsImpl implements _Settings {
 
   @override
   String toString() {
-    return 'Settings(appLanguage: $appLanguage, audioLanguages: $audioLanguages, subtitleLanguages: $subtitleLanguages, downloadAudioLanguage: $downloadAudioLanguage, downloadQuality: $downloadQuality, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride, isBetaTester: $isBetaTester, useNativePlayer: $useNativePlayer, extraUsergroups: $extraUsergroups, notificationsEnabled: $notificationsEnabled, onlyPreferredLanguagesContentEnabled: $onlyPreferredLanguagesContentEnabled)';
+    return 'Settings(appLanguage: $appLanguage, audioLanguages: $audioLanguages, subtitleLanguages: $subtitleLanguages, downloadAudioLanguage: $downloadAudioLanguage, downloadQuality: $downloadQuality, analyticsId: $analyticsId, sessionId: $sessionId, searchSessionId: $searchSessionId, envOverride: $envOverride, isBetaTester: $isBetaTester, useNativePlayer: $useNativePlayer, extraUsergroups: $extraUsergroups, notificationsEnabled: $notificationsEnabled, onlyPreferredLanguagesContentEnabled: $onlyPreferredLanguagesContentEnabled)';
   }
 
   @override
@@ -349,6 +365,8 @@ class _$SettingsImpl implements _Settings {
                 other.analyticsId == analyticsId) &&
             (identical(other.sessionId, sessionId) ||
                 other.sessionId == sessionId) &&
+            (identical(other.searchSessionId, searchSessionId) ||
+                other.searchSessionId == searchSessionId) &&
             (identical(other.envOverride, envOverride) ||
                 other.envOverride == envOverride) &&
             (identical(other.isBetaTester, isBetaTester) ||
@@ -375,6 +393,7 @@ class _$SettingsImpl implements _Settings {
       downloadQuality,
       analyticsId,
       sessionId,
+      searchSessionId,
       envOverride,
       isBetaTester,
       useNativePlayer,
@@ -399,7 +418,8 @@ abstract class _Settings implements Settings {
       final String? downloadAudioLanguage,
       final DownloadQuality? downloadQuality,
       final String? analyticsId,
-      final int? sessionId,
+      final String? sessionId,
+      final String? searchSessionId,
       final String? envOverride,
       final bool? isBetaTester,
       final bool? useNativePlayer,
@@ -420,7 +440,9 @@ abstract class _Settings implements Settings {
   @override
   String? get analyticsId;
   @override
-  int? get sessionId;
+  String? get sessionId;
+  @override
+  String? get searchSessionId;
   @override
   String? get envOverride;
   @override

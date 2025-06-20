@@ -75,6 +75,8 @@ class _ApiHttpClient extends BaseClient {
       osVersion: osVersion,
       isTablet: isTablet,
       onlyPreferredLanguagesContent: settings.onlyPreferredLanguagesContentEnabled,
+      sessionId: settings.sessionId,
+      searchSessionId: settings.searchSessionId,
     ).toMap();
     request.headers.addAll(headers);
     return _client.send(request);
