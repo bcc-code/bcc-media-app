@@ -2210,6 +2210,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Only show content with my preferred languages'**
   String get onlyShowContentWithPreferredLanguages;
+
+  /// Title shown on the login button on the Bible Kids settings page.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in with your BCC account'**
+  String get kidsLogInWithBCCTitle;
+
+  /// Title shown on the login button on the Bible Kids settings page when the user is logged in.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in with BCC'**
+  String get kidsLoggedInWithBCCTitle;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

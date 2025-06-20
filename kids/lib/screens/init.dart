@@ -1,7 +1,9 @@
 import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/router/router.gr.dart';
@@ -20,12 +22,23 @@ class _InitScreenState extends ConsumerState<InitScreen> {
     super.initState();
   }
 
+  void load() async {
+    if (!mounted) return;
+    await ref.read(authStateProvider.notifier).initialize();
+    await tryCatchRecordErrorAsync(() async {
+      await ref.read(featureFlagsProvider.notifier).activateFeatureFlags().timeout(const Duration(seconds: 2));
+    });
+    if (!mounted) return;
+    ref.invalidate(appConfigFutureProvider);
+
+    continueNavigation();
+    globalEventBus.fire(AppReadyEvent());
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    continueNavigation();
-    // Initialize notification listeners etc.
-    globalEventBus.fire(AppReadyEvent());
+    load();
   }
 
   Future<void> continueNavigation({Uri? deepLinkUri}) async {

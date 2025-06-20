@@ -101,11 +101,23 @@ class _ItemRenderer extends HookWidget {
                         // If there is a right widget, make the text 2/3 of the row, otherwise 1/2
                         Expanded(
                           flex: item.rightWidget != null ? 2 : 1,
-                          child: Text(
-                            item.title,
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                            style: small ? design.textStyles.title2 : design.textStyles.title1,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                item.title,
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                                style: small ? design.textStyles.title2 : design.textStyles.title1,
+                              ),
+                              if (item.subtitle != null)
+                                Text(
+                                  item.subtitle!,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: (small ? design.textStyles.body2 : design.textStyles.body1).copyWith(color: design.colors.label1),
+                                )
+                            ],
                           ),
                         ),
                         // If there is a right widget, make it 1/3 of the row, otherwise 1/2
@@ -148,6 +160,7 @@ class _ItemRenderer extends HookWidget {
 
 class SettingListItem {
   final String title;
+  final String? subtitle;
   final VoidCallback onPressed;
   final String? rightText;
   bool disabled;
@@ -156,6 +169,7 @@ class SettingListItem {
   SettingListItem({
     required this.title,
     required this.onPressed,
+    this.subtitle,
     this.disabled = false,
     this.rightText,
     this.rightWidget,

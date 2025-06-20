@@ -6,6 +6,7 @@ import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/models/feature_flags.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -31,10 +32,15 @@ final authStateProviderOverride = authStateProvider.overrideWith((ref) {
       auth0Domain: Env.auth0Domain,
       scopes: Env.auth0Scopes,
       isTv: ref.watch(isAndroidTvProvider),
-      onSignout: () {
+      onSignout: () async {
         ref.read(analyticsProvider).reset();
         if (FlavorConfig.current.enableNotifications) {
-          ref.read(notificationServiceProvider).deleteToken();
+          try {
+            await FirebaseMessaging.instance.getToken();
+            ref.read(notificationServiceProvider).deleteToken();
+          } catch (e) {
+            debugPrint('Failed to delete token: $e');
+          }
         }
         ref.read(settingsProvider.notifier).setAnalyticsId(null);
         ref.read(settingsProvider.notifier).refreshSessionId();

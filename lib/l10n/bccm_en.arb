@@ -1505,5 +1505,13 @@
   "onlyShowContentWithPreferredLanguages": "Only show content with my preferred languages",
   "@onlyShowContentWithPreferredLanguages": {
     "description": "Shown alongside a toggle switch in settings."
+  },
+  "kidsLogInWithBCCTitle": "Log in with your BCC account",
+  "@kidsLogInWithBCCTitle": {
+    "description": "Title shown on the login button on the Bible Kids settings page."
+  },
+  "kidsLoggedInWithBCCTitle": "Signed in with BCC",
+  "@kidsLoggedInWithBCCTitle": {
+    "description": "Title shown on the login button on the Bible Kids settings page when the user is logged in."
   }
 }
