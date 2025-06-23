@@ -56,7 +56,7 @@ class MetadataExtraConstants {
 }
 
 class AppNames {
-  static const bccmAndroidTv = 'bccm-Androidtv';
+  static const bccmAndroidTv = 'bccm-androidtv';
   static const bccmMobile = 'bccm-mobile';
   static const bccmWeb = 'bccm-web';
   static const kidsMobile = 'kids-mobile';

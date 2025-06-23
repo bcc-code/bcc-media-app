@@ -1,6 +1,7 @@
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/main.dart';
 import 'package:brunstadtv_app/env/prod/firebase_options.dart' as prod_firebase;
 import 'package:brunstadtv_app/theme/bccm_gradients.dart';
@@ -12,7 +13,7 @@ import 'l10n/app_localizations.dart';
 Future<void> main() async {
   FlavorConfig.register(
     FlavorConfig(
-      applicationCode: 'btv',
+      applicationCode: AppNames.bccmMobile,
       flavor: Flavor.bccmedia,
       environment: EnvironmentOverride.prod,
       firebaseOptions: prod_firebase.DefaultFirebaseOptions.currentPlatform,
