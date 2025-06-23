@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.41+2500051-kids...v) (2025-06-20)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.85+2300245...v) (2025-06-23)
+
+
+
+## [5.6.85+2300245](https://github.com/bcc-code/bcc-media-app/compare/v5.1.41+2500051-kids...v5.6.85+2300245) (2025-06-23)
+
+
+### Bug Fixes
+
+* change applicationCode ([8613345](https://github.com/bcc-code/bcc-media-app/commit/8613345d1171bd7e254fe6f75a2f3b5b43fcd21a))
 
 
 
