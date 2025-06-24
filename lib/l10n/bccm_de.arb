@@ -1501,5 +1501,17 @@
   "notifications": "Benachrichtigungen",
   "@notifications": {
     "description": "Shown alongside a toggle switch in the Bible Kids settings."
+  },
+  "onlyShowContentWithPreferredLanguages": "Nur Inhalte in meinen bevorzugten Sprachen anzeigen",
+  "@onlyShowContentWithPreferredLanguages": {
+    "description": "Shown alongside a toggle switch in settings."
+  },
+  "kidsLogInWithBCCTitle": "Melde dich mit deinem BCC-Konto an",
+  "@kidsLogInWithBCCTitle": {
+    "description": "Title shown on the login button on the Bible Kids settings page."
+  },
+  "kidsLoggedInWithBCCTitle": "Angemeldet mit BCC",
+  "@kidsLoggedInWithBCCTitle": {
+    "description": "Title shown on the login button on the Bible Kids settings page when the user is logged in."
   }
 }
