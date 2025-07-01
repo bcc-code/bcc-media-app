@@ -181,6 +181,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
                       SentryNavigatorObserver(),
                     ],
                   ),
+                  onNavigationNotification: _defaultOnNavigationNotification,
                   routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
                   builder: (BuildContext context, Widget? child) {
                     return ResponsiveBreakpoints.builder(
@@ -199,5 +200,24 @@ class _AppRootState extends ConsumerState<AppRoot> {
         ),
       ),
     );
+  }
+}
+
+// Workaround for back button closing the app on android
+// https://github.com/Milad-Akarie/auto_route_library/issues/2059#issuecomment-2434908775
+bool _defaultOnNavigationNotification(NavigationNotification _) {
+  switch (WidgetsBinding.instance.lifecycleState) {
+    case null:
+    case AppLifecycleState.detached:
+    case AppLifecycleState.inactive:
+      // Avoid updating the engine when the app isn't ready.
+      return true;
+    case AppLifecycleState.resumed:
+    case AppLifecycleState.hidden:
+    case AppLifecycleState.paused:
+      SystemNavigator.setFrameworkHandlesBack(true);
+
+      /// This must be `true` instead of `notification.canHandlePop`, otherwise application closes on back gesture.
+      return true;
   }
 }
