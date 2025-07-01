@@ -14,6 +14,7 @@ class EpisodeListEpisode extends ConsumerWidget {
     required this.title,
     this.image,
     this.showTitle,
+    this.seasonTitle,
     required this.ageRating,
     required this.duration,
     this.showSecondaryTitle = true,
@@ -25,6 +26,7 @@ class EpisodeListEpisode extends ConsumerWidget {
   final String title;
   final String? image;
   final String? showTitle;
+  final String? seasonTitle;
   final String ageRating;
   final int duration;
   final bool showSecondaryTitle;
@@ -73,14 +75,29 @@ class EpisodeListEpisode extends ConsumerWidget {
                     ),
                   ),
                 ),
-                if (showSecondaryTitle && showTitle != null)
+                if (showSecondaryTitle && (showTitle != null || seasonTitle != null))
                   Container(
                     margin: const EdgeInsets.only(bottom: 4),
-                    child: Text(
-                      showTitle!,
-                      style: design.textStyles.caption2.copyWith(color: design.colors.tint1),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    child: Row(
+                      spacing: 4,
+                      children: [
+                        if (showTitle != null)
+                          Text(
+                            showTitle!,
+                            style: design.textStyles.caption2.copyWith(color: design.colors.tint1),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        if (seasonTitle != null)
+                          Expanded(
+                            child: Text(
+                              seasonTitle!,
+                              style: design.textStyles.caption2,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                      ],
                     ),
                   ),
                 Row(
