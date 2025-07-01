@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.86+2300246...v) (2025-07-01)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.87+2300247...v) (2025-07-01)
+
+
+
+## [5.6.87+2300247](https://github.com/bcc-code/bcc-media-app/compare/v5.6.86+2300246...v5.6.87+2300247) (2025-07-01)
+
+
+### Bug Fixes
+
+* prevent app from closing when swiping back on android ([6f53109](https://github.com/bcc-code/bcc-media-app/commit/6f5310990fd8f3d5dfb72b730926a6b40912b38a))
 
 
 
