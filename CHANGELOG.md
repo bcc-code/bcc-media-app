@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.42+2500052-kids...v) (2025-06-30)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.86+2300246...v) (2025-07-01)
+
+
+
+## [5.6.86+2300246](https://github.com/bcc-code/bcc-media-app/compare/v5.1.42+2500052-kids...v5.6.86+2300246) (2025-07-01)
+
+
+### Bug Fixes
+
+* **l10n:** update localization files ([a037eb5](https://github.com/bcc-code/bcc-media-app/commit/a037eb5a687f9ea53a1ad5f133cc6fc169cb8ea9))
+
+
+### Features
+
+* **search:** show season title for episodes in search results ([d3c9038](https://github.com/bcc-code/bcc-media-app/commit/d3c9038d8ce951d7e3e86496157fda282a14c52f))
 
 
 
