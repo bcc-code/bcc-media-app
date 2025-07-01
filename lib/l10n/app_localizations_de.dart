@@ -1158,11 +1158,11 @@ class SDe extends S {
 
   @override
   String get onlyShowContentWithPreferredLanguages =>
-      'Only show content with my preferred languages';
+      'Nur Inhalte in meinen bevorzugten Sprachen anzeigen';
 
   @override
-  String get kidsLogInWithBCCTitle => 'Log in with your BCC account';
+  String get kidsLogInWithBCCTitle => 'Melde dich mit deinem BCC-Konto an';
 
   @override
-  String get kidsLoggedInWithBCCTitle => 'Signed in with BCC';
+  String get kidsLoggedInWithBCCTitle => 'Angemeldet mit BCC';
 }

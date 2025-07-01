@@ -1157,8 +1157,8 @@ class SRo extends S {
       'Afișează numai conținutul în limbile mele preferate';
 
   @override
-  String get kidsLogInWithBCCTitle => 'Log in with your BCC account';
+  String get kidsLogInWithBCCTitle => 'Conectează-te cu contul tău BCC';
 
   @override
-  String get kidsLoggedInWithBCCTitle => 'Signed in with BCC';
+  String get kidsLoggedInWithBCCTitle => 'Conectat cu BCC';
 }

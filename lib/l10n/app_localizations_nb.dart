@@ -1149,8 +1149,8 @@ class SNb extends S {
       'Vis kun innhold på mine foretrukne språk';
 
   @override
-  String get kidsLogInWithBCCTitle => 'Log in with your BCC account';
+  String get kidsLogInWithBCCTitle => 'Logg inn med din BCC-konto';
 
   @override
-  String get kidsLoggedInWithBCCTitle => 'Signed in with BCC';
+  String get kidsLoggedInWithBCCTitle => 'Innlogget med BCC';
 }
