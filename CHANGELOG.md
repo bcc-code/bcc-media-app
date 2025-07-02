@@ -1,4 +1,17 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.86+2300246...v) (2025-07-01)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.43+2500053-kids...v) (2025-07-02)
+
+
+
+## [5.1.43+2500053-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.87+2300247...v5.1.43+2500053-kids) (2025-07-02)
+
+
+### Bug Fixes
+
+* **kids:** feature flag for donation button ([e0a6100](https://github.com/bcc-code/bcc-media-app/commit/e0a61000a140ab41f6895aab9b04f6a06cb36e4c))
+
+
+
+## [5.6.87+2300247](https://github.com/bcc-code/bcc-media-app/compare/v5.6.86+2300246...v5.6.87+2300247) (2025-07-01)
 
 
 ### Bug Fixes
