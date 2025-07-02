@@ -43,6 +43,7 @@ mixin _$FeatureFlags {
       throw _privateConstructorUsedError;
   int? get kidsNotificationPromptAfterDismissalCount =>
       throw _privateConstructorUsedError;
+  bool get kidsDonationLink => throw _privateConstructorUsedError;
 
   /// Serializes this FeatureFlags to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -79,7 +80,8 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       bool kidsNotificationPrompt,
       int? kidsNotificationPromptPosition,
       bool kidsNotificationPromptAfterDismissal,
-      int? kidsNotificationPromptAfterDismissalCount});
+      int? kidsNotificationPromptAfterDismissalCount,
+      bool kidsDonationLink});
 }
 
 /// @nodoc
@@ -116,6 +118,7 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? kidsNotificationPromptPosition = freezed,
     Object? kidsNotificationPromptAfterDismissal = null,
     Object? kidsNotificationPromptAfterDismissalCount = freezed,
+    Object? kidsDonationLink = null,
   }) {
     return _then(_value.copyWith(
       variants: null == variants
@@ -196,6 +199,10 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
           ? _value.kidsNotificationPromptAfterDismissalCount
           : kidsNotificationPromptAfterDismissalCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      kidsDonationLink: null == kidsDonationLink
+          ? _value.kidsDonationLink
+          : kidsDonationLink // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -227,7 +234,8 @@ abstract class _$$FeatureFlagsImplCopyWith<$Res>
       bool kidsNotificationPrompt,
       int? kidsNotificationPromptPosition,
       bool kidsNotificationPromptAfterDismissal,
-      int? kidsNotificationPromptAfterDismissalCount});
+      int? kidsNotificationPromptAfterDismissalCount,
+      bool kidsDonationLink});
 }
 
 /// @nodoc
@@ -262,6 +270,7 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
     Object? kidsNotificationPromptPosition = freezed,
     Object? kidsNotificationPromptAfterDismissal = null,
     Object? kidsNotificationPromptAfterDismissalCount = freezed,
+    Object? kidsDonationLink = null,
   }) {
     return _then(_$FeatureFlagsImpl(
       variants: null == variants
@@ -342,6 +351,10 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
           ? _value.kidsNotificationPromptAfterDismissalCount
           : kidsNotificationPromptAfterDismissalCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      kidsDonationLink: null == kidsDonationLink
+          ? _value.kidsDonationLink
+          : kidsDonationLink // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -368,7 +381,8 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
       this.kidsNotificationPrompt = false,
       this.kidsNotificationPromptPosition,
       this.kidsNotificationPromptAfterDismissal = false,
-      this.kidsNotificationPromptAfterDismissalCount})
+      this.kidsNotificationPromptAfterDismissalCount,
+      this.kidsDonationLink = false})
       : _variants = variants,
         super._();
 
@@ -438,10 +452,13 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   final bool kidsNotificationPromptAfterDismissal;
   @override
   final int? kidsNotificationPromptAfterDismissalCount;
+  @override
+  @JsonKey()
+  final bool kidsDonationLink;
 
   @override
   String toString() {
-    return 'FeatureFlags(variants: $variants, kidsAuth: $kidsAuth, publicSignup: $publicSignup, socialSignup: $socialSignup, shorts: $shorts, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, skipToChapter: $skipToChapter, bccmAudioTest: $bccmAudioTest, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider, showBmmStreak: $showBmmStreak, kidsMoreNorwegianContent: $kidsMoreNorwegianContent, kidsNotificationPrompt: $kidsNotificationPrompt, kidsNotificationPromptPosition: $kidsNotificationPromptPosition, kidsNotificationPromptAfterDismissal: $kidsNotificationPromptAfterDismissal, kidsNotificationPromptAfterDismissalCount: $kidsNotificationPromptAfterDismissalCount)';
+    return 'FeatureFlags(variants: $variants, kidsAuth: $kidsAuth, publicSignup: $publicSignup, socialSignup: $socialSignup, shorts: $shorts, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, skipToChapter: $skipToChapter, bccmAudioTest: $bccmAudioTest, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider, showBmmStreak: $showBmmStreak, kidsMoreNorwegianContent: $kidsMoreNorwegianContent, kidsNotificationPrompt: $kidsNotificationPrompt, kidsNotificationPromptPosition: $kidsNotificationPromptPosition, kidsNotificationPromptAfterDismissal: $kidsNotificationPromptAfterDismissal, kidsNotificationPromptAfterDismissalCount: $kidsNotificationPromptAfterDismissalCount, kidsDonationLink: $kidsDonationLink)';
   }
 
   @override
@@ -491,7 +508,9 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
             (identical(other.kidsNotificationPromptAfterDismissalCount,
                     kidsNotificationPromptAfterDismissalCount) ||
                 other.kidsNotificationPromptAfterDismissalCount ==
-                    kidsNotificationPromptAfterDismissalCount));
+                    kidsNotificationPromptAfterDismissalCount) &&
+            (identical(other.kidsDonationLink, kidsDonationLink) ||
+                other.kidsDonationLink == kidsDonationLink));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -516,7 +535,8 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
         kidsNotificationPrompt,
         kidsNotificationPromptPosition,
         kidsNotificationPromptAfterDismissal,
-        kidsNotificationPromptAfterDismissalCount
+        kidsNotificationPromptAfterDismissalCount,
+        kidsDonationLink
       ]);
 
   /// Create a copy of FeatureFlags
@@ -537,26 +557,26 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
 
 abstract class _FeatureFlags extends FeatureFlags {
   const factory _FeatureFlags(
-          {final List<String> variants,
-          final bool kidsAuth,
-          final bool publicSignup,
-          final bool socialSignup,
-          final bool shorts,
-          final bool shortsHideBeta,
-          final bool shortsGuide,
-          final bool disableNpawShorts,
-          final bool skipToChapter,
-          final bool bccmAudioTest,
-          final bool shortsWithScores,
-          final bool elasticSearch,
-          final bool chapterSlider,
-          final bool showBmmStreak,
-          final bool kidsMoreNorwegianContent,
-          final bool kidsNotificationPrompt,
-          final int? kidsNotificationPromptPosition,
-          final bool kidsNotificationPromptAfterDismissal,
-          final int? kidsNotificationPromptAfterDismissalCount}) =
-      _$FeatureFlagsImpl;
+      {final List<String> variants,
+      final bool kidsAuth,
+      final bool publicSignup,
+      final bool socialSignup,
+      final bool shorts,
+      final bool shortsHideBeta,
+      final bool shortsGuide,
+      final bool disableNpawShorts,
+      final bool skipToChapter,
+      final bool bccmAudioTest,
+      final bool shortsWithScores,
+      final bool elasticSearch,
+      final bool chapterSlider,
+      final bool showBmmStreak,
+      final bool kidsMoreNorwegianContent,
+      final bool kidsNotificationPrompt,
+      final int? kidsNotificationPromptPosition,
+      final bool kidsNotificationPromptAfterDismissal,
+      final int? kidsNotificationPromptAfterDismissalCount,
+      final bool kidsDonationLink}) = _$FeatureFlagsImpl;
   const _FeatureFlags._() : super._();
 
   factory _FeatureFlags.fromJson(Map<String, dynamic> json) =
@@ -600,6 +620,8 @@ abstract class _FeatureFlags extends FeatureFlags {
   bool get kidsNotificationPromptAfterDismissal;
   @override
   int? get kidsNotificationPromptAfterDismissalCount;
+  @override
+  bool get kidsDonationLink;
 
   /// Create a copy of FeatureFlags
   /// with the given fields replaced by the non-null parameter values.

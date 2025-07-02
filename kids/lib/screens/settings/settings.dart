@@ -124,11 +124,12 @@ class SettingsScreen extends HookConsumerWidget {
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: spacingBetweenSections),
-                                  child: const DonationButton(),
-                                ),
-                                if (ref.read(featureFlagsProvider).kidsAuth) ...[
+                                SizedBox(height: spacingBetweenSections),
+                                if (ref.watch(featureFlagsProvider.select((ff) => ff.kidsDonationLink))) ...[
+                                  const DonationButton(),
+                                  SizedBox(height: spacingBetweenSections),
+                                ],
+                                if (ref.watch(featureFlagsProvider.select((ff) => ff.kidsAuth))) ...[
                                   AuthenticationButton(),
                                   SizedBox(height: spacingBetweenSections),
                                 ],
