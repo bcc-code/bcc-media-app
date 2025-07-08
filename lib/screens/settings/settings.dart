@@ -99,7 +99,13 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                               backgroundColor: design.colors.background1,
                             ),
                           ),
-                          Text(user.name, style: design.textStyles.title3.copyWith(color: design.colors.label1))
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(user.name, style: design.textStyles.title3.copyWith(color: design.colors.label1)),
+                              if (user.email != null) Text(user.email!, style: design.textStyles.body2),
+                            ],
+                          ),
                         ]),
                       )
                     else
@@ -140,6 +146,19 @@ class _SettingsState extends ConsumerState<SettingsScreen> {
                                   settings.subtitleLanguages.isEmpty ? S.of(context).none : getLanguageName(settings.subtitleLanguages.firstOrNull),
                               onPressed: () {
                                 context.router.push(const SubtitleLanguageScreenRoute());
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 24),
+                        SettingList(
+                          buttons: [
+                            ToggleButton(
+                              optionName: S.of(context).onlyShowContentWithPreferredLanguages,
+                              value: settings.onlyPreferredLanguagesContentEnabled ?? false,
+                              onPressed: () {
+                                ref.read(settingsProvider.notifier).setOnlyPreferredLanguagesContentEnabled(
+                                    settings.onlyPreferredLanguagesContentEnabled == null ? true : !settings.onlyPreferredLanguagesContentEnabled!);
                               },
                             ),
                           ],
