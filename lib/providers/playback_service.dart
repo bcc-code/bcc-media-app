@@ -228,7 +228,6 @@ class PlaybackService {
               ),
             )
         ],
-        hideQualitySelector: true,
       ),
     );
   }
