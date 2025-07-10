@@ -86,7 +86,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
             ? ExtendedNetworkImageProvider(
                 artworkUri,
                 cache: true,
-                cacheKey: PermanentCacheManager().config.cacheKey,
+                imageCacheName: PermanentCacheManager().config.cacheKey,
                 cacheMaxAge: PermanentCacheManager().config.stalePeriod,
               )
             : null,

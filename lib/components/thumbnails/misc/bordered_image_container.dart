@@ -60,7 +60,7 @@ class BorderedImageContainer extends StatelessWidget {
                           ? ExtendedNetworkImageProvider(
                               imageUri.toString(),
                               cache: true,
-                              cacheKey: PermanentCacheManager().config.cacheKey,
+                              imageCacheName: PermanentCacheManager().config.cacheKey,
                               cacheMaxAge: PermanentCacheManager().config.stalePeriod,
                             )
                           : networkImageWithRetryAndResize(
