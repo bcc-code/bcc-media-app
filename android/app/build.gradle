@@ -54,7 +54,7 @@ android {
     defaultConfig {
         applicationId 'tv.brunstad.app'
         minSdkVersion 24
-        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
@@ -111,7 +111,6 @@ repositories {
 dependencies {
     def youboraVersion = '6.8.0'
     implementation "com.nicepeopleatwork:youboralib:$youboraVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     /*implementation 'com.google.android.exoplayer:exoplayer:2.18.1'*/
     testImplementation 'junit:junit:4.13.2'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
