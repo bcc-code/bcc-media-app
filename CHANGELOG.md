@@ -1,12 +1,9 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.88+2300248...v) (2025-07-10)
-
-
-
-## [5.6.88+2300248](https://github.com/bcc-code/bcc-media-app/compare/v5.1.43+2500053-kids...v5.6.88+2300248) (2025-07-10)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.43+2500053-kids...v) (2025-07-10)
 
 
 ### Bug Fixes
 
+* **build:** increase jvm memory to try to fix android build ([a8e1c03](https://github.com/bcc-code/bcc-media-app/commit/a8e1c032f6755722a054ff9d9b7eb9a007633bc6))
 * **build:** set target android skd to 35 ([27db5b1](https://github.com/bcc-code/bcc-media-app/commit/27db5b1a0833c77a16ef80440513c6b51b6473e4))
 * change order of languages ([33c13ad](https://github.com/bcc-code/bcc-media-app/commit/33c13adba683e15d96d25c1600241dd9a451242f))
 * don't use same cache key for all downloaded video thumbnails ([82d9c0a](https://github.com/bcc-code/bcc-media-app/commit/82d9c0a9b14c438870796ed54ea1981089919b8d))
