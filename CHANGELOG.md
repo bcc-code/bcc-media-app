@@ -1,4 +1,25 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.87+2300247...v) (2025-07-02)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.88+2300248...v) (2025-07-10)
+
+
+
+## [5.6.88+2300248](https://github.com/bcc-code/bcc-media-app/compare/v5.1.43+2500053-kids...v5.6.88+2300248) (2025-07-10)
+
+
+### Bug Fixes
+
+* **build:** set target android skd to 35 ([27db5b1](https://github.com/bcc-code/bcc-media-app/commit/27db5b1a0833c77a16ef80440513c6b51b6473e4))
+* change order of languages ([33c13ad](https://github.com/bcc-code/bcc-media-app/commit/33c13adba683e15d96d25c1600241dd9a451242f))
+* don't use same cache key for all downloaded video thumbnails ([82d9c0a](https://github.com/bcc-code/bcc-media-app/commit/82d9c0a9b14c438870796ed54ea1981089919b8d))
+* ignore codegen in git diffs ([a05e136](https://github.com/bcc-code/bcc-media-app/commit/a05e1361b8ea1404c8b2f4c915ca1eb85c3e8252))
+* **player:** reduce default skip time in player ([bba1ef4](https://github.com/bcc-code/bcc-media-app/commit/bba1ef420b12dd453e4887ca7fa125bd3d97527f))
+* roll submodule ([373372b](https://github.com/bcc-code/bcc-media-app/commit/373372bb09f2bf31346b38bb096702919754a31a))
+* **settings:** add setting to only show content in preferred langs ([1fb229b](https://github.com/bcc-code/bcc-media-app/commit/1fb229b27e09dc6c020ebc7e384bf574d0f732a5))
+* show duration in episode info ([96750b2](https://github.com/bcc-code/bcc-media-app/commit/96750b26d9f7e197927953bd1081580bf4d8f72d))
+* show quality selector ([9b9f165](https://github.com/bcc-code/bcc-media-app/commit/9b9f165f0e646aa3a757af57f3132774b02a587b))
+
+
+
+## [5.1.43+2500053-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.87+2300247...v5.1.43+2500053-kids) (2025-07-02)
 
 
 ### Bug Fixes
