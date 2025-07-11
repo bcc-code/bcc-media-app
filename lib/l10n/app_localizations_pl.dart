@@ -1139,24 +1139,24 @@ class SPl extends S {
   String get studyAllQuestionsAnsweredDescription => 'Dobra robota!';
 
   @override
-  String get kidsNotificationReminderCtaShort => 'Turn on';
+  String get kidsNotificationReminderCtaShort => 'Włącz';
 
   @override
-  String get kidsNotificationReminderCtaLong => 'Turn on reminders';
+  String get kidsNotificationReminderCtaLong => 'Włącz przypomnienia';
 
   @override
-  String get kidsNotificationReminderTitle => 'Watch a video every day!';
+  String get kidsNotificationReminderTitle => 'Oglądaj filmik codziennie!';
 
   @override
-  String get notifications => 'Notifications';
+  String get notifications => 'Powiadomienia';
 
   @override
   String get onlyShowContentWithPreferredLanguages =>
-      'Only show content with my preferred languages';
+      'Pokaż tylko treści w moich preferowanych językach';
 
   @override
-  String get kidsLogInWithBCCTitle => 'Log in with your BCC account';
+  String get kidsLogInWithBCCTitle => 'Zaloguj się na swoje konto BCC';
 
   @override
-  String get kidsLoggedInWithBCCTitle => 'Signed in with BCC';
+  String get kidsLoggedInWithBCCTitle => 'Zalogowano się za pomocą konta BCC';
 }

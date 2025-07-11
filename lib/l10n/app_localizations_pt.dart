@@ -1152,8 +1152,8 @@ class SPt extends S {
       'Mostrar apenas conteúdos com os meus idiomas preferidos';
 
   @override
-  String get kidsLogInWithBCCTitle => 'Log in with your BCC account';
+  String get kidsLogInWithBCCTitle => 'Faça o login com a sua conta BCC';
 
   @override
-  String get kidsLoggedInWithBCCTitle => 'Signed in with BCC';
+  String get kidsLoggedInWithBCCTitle => 'Assinado com BCC';
 }
