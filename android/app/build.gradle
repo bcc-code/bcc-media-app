@@ -105,13 +105,12 @@ flutter {
 }
 
 repositories {
-    maven { url 'https://npaw.jfrog.io/artifactory/youbora/' }
+    maven { url "https://artifact.plugin.npaw.com/artifactory/plugins/android" }
 }
 
 dependencies {
-    def youboraVersion = '6.8.0'
-    implementation "com.nicepeopleatwork:youboralib:$youboraVersion"
-    /*implementation 'com.google.android.exoplayer:exoplayer:2.18.1'*/
+    def npawVersion = "7.3.10"
+    implementation "com.npaw.plugin:plugin:$npawVersion"
     testImplementation 'junit:junit:4.13.2'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
 }
