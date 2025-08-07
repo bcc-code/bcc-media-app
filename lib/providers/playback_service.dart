@@ -5,6 +5,7 @@ import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:bmm_api/bmm_api.dart';
 import 'package:brunstadtv_app/api/bmm.dart';
+import 'package:brunstadtv_app/components/player/audio_only_button.dart';
 import 'package:brunstadtv_app/components/player/custom_cast_player.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
@@ -214,7 +215,7 @@ class PlaybackService {
         additionalActionsBuilder: (context) => [
           if (Platform.isIOS)
             Padding(
-              padding: const EdgeInsets.only(bottom: 3, right: 4),
+              padding: const EdgeInsets.only(bottom: 3, right: 6),
               child: Transform.scale(
                 scale: 0.8,
                 child: const AirPlayRoutePickerView(
@@ -226,7 +227,11 @@ class PlaybackService {
                   backgroundColor: Colors.transparent,
                 ),
               ),
-            )
+            ),
+          Padding(
+            padding: const EdgeInsets.only(top: 3),
+            child: AudioOnlyButton(),
+          ),
         ],
       ),
     );

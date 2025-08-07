@@ -12,12 +12,14 @@ import 'package:brunstadtv_app/components/episode/episode_collection.dart';
 import 'package:brunstadtv_app/components/episode/episode_info.dart';
 import 'package:brunstadtv_app/components/episode/episode_related.dart';
 import 'package:brunstadtv_app/components/episode/episode_season.dart';
+import 'package:brunstadtv_app/components/player/audio_only_player.dart';
 import 'package:brunstadtv_app/components/player/player_poster.dart';
 import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/components/episode/episode_share_sheet.dart';
 import 'package:brunstadtv_app/components/video/center_extra_slot.dart';
+import 'package:brunstadtv_app/providers/audio_only_provider.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
@@ -27,6 +29,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
+import 'package:flutter_to_airplay/flutter_to_airplay.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -298,7 +301,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
           controlsConfig: defaultViewConfig.controlsConfig.copyWith(
             extraSettingsBuilder: (context) {
               return [
-                if (languages.whereNotNull().isNotEmpty)
+                if (languages.nonNulls.isNotEmpty)
                   VideoLanguageSettings(
                     episode: episode,
                     languages: languages.toList(),
@@ -419,7 +422,12 @@ class _EpisodeDisplay extends HookConsumerWidget {
                   MediaQuery.removePadding(
                     context: context,
                     removeBottom: true,
-                    child: BccmPlayerView.withViewController(viewController),
+                    child: AnimatedSize(
+                        duration: const Duration(milliseconds: 800),
+                        curve: Curves.easeOutExpo,
+                        child: ref.watch(audioOnlyProvider)
+                            ? AudioOnlyPlayer(viewController: viewController)
+                            : BccmPlayerView.withViewController(viewController)),
                   ),
                 AnimatedSize(
                   duration: const Duration(milliseconds: 800),

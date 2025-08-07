@@ -149,6 +149,10 @@ class _AppRootState extends ConsumerState<AppRoot> {
             playerTheme: BccmPlayerThemeData(
               controls: BccmControlsThemeData(
                 settingsListTextStyle: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
+                durationTextStyle: DesignSystem.of(context).textStyles.caption2.copyWith(
+                  color: DesignSystem.of(context).colors.label2,
+                  fontFeatures: [FontFeature.tabularFigures()],
+                ),
               ),
             ),
             child: GraphQLProvider(

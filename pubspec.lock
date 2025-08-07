@@ -252,7 +252,7 @@ packages:
     source: hosted
     version: "0.4.2"
   clock:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: clock
       sha256: fddb70d9b5277016c77a80201021d40a2247104d9f4aa7bab7157b7e3f05b84b
@@ -260,7 +260,7 @@ packages:
     source: hosted
     version: "1.1.2"
   cloud_firestore:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: cloud_firestore
       sha256: a5c28d51ab20ce65db9d9dbeed4a1a825730c2a91a31eb6a6c97dc5d82c6cfd9
@@ -300,7 +300,7 @@ packages:
     source: hosted
     version: "1.19.1"
   connectivity_plus:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: connectivity_plus
       sha256: "8a68739d3ee113e51ad35583fdf9ab82c55d09d693d3c39da1aebab87c938412"
@@ -347,14 +347,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      sha256: ba631d1c7f7bef6b729a622b7b752645a2d076dba9976925b8f25725a30e1ee6
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.8"
   custom_lint:
     dependency: "direct dev"
     description:
@@ -561,7 +553,7 @@ packages:
     source: hosted
     version: "4.5.2"
   flutter_appauth:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_appauth
       sha256: "84e8753fe20864da241892823ff7dbd252baa34f1649d6feb48118e8ae829ed1"
@@ -675,7 +667,7 @@ packages:
     source: hosted
     version: "2.6.1"
   flutter_secure_storage:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_secure_storage
       sha256: "9cad52d75ebc511adfae3d447d5d13da15a55a92c9410e50f67335b6d21d16ea"
@@ -746,14 +738,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.17"
-  flutter_svg_provider:
-    dependency: "direct main"
-    description:
-      name: flutter_svg_provider
-      sha256: cda47ab350671ba51ae4605d48f4c82fa5a2c399d22ebda367c1b407234c5048
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.7"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -773,22 +757,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_widget_from_html_core:
-    dependency: "direct main"
-    description:
-      name: flutter_widget_from_html_core
-      sha256: b1048fd119a14762e2361bd057da608148a895477846d6149109b2151d2f7abf
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.15.2"
-  focus_debugger:
-    dependency: "direct main"
-    description:
-      name: focus_debugger
-      sha256: "14c9e0030c9129c36eaa4a82bc3abede97b3f2893e63b65ea29d58e8d9053332"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.2"
   focusable_control_builder:
     dependency: "direct main"
     description:
@@ -1064,23 +1032,15 @@ packages:
     source: hosted
     version: "0.7.1"
   json_annotation:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: json_annotation
       sha256: "1ce844379ca14835a50d2f019a3099f419082cfdd231cd86a142af94dd5c6bb1"
       url: "https://pub.dev"
     source: hosted
     version: "4.9.0"
-  json_serializable:
-    dependency: "direct main"
-    description:
-      name: json_serializable
-      sha256: c2fcb3920cf2b6ae6845954186420fca40bc0a8abcc84903b7801f17d7050d7c
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.9.0"
   jwt_decoder:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: jwt_decoder
       sha256: "54774aebf83f2923b99e6416b4ea915d47af3bde56884eb622de85feabbc559f"
@@ -1183,14 +1143,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-  mockito:
-    dependency: "direct main"
-    description:
-      name: mockito
-      sha256: f99d8d072e249f719a5531735d146d8cf04c580d93920b04de75bef6dfb2daf6
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.4.5"
   modal_bottom_sheet:
     dependency: "direct main"
     description:
@@ -1423,22 +1375,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
-  qr:
-    dependency: transitive
-    description:
-      name: qr
-      sha256: "5a1d2586170e172b8a8c8470bbbffd5eb0cd38a66c0d77155ea138d3af3a4445"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.2"
-  qr_flutter:
-    dependency: "direct main"
-    description:
-      name: qr_flutter
-      sha256: "5095f0fc6e3f71d08adef8feccc8cea4f12eec18a2e31c2e8d82cb6019f4b097"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.0"
   quiver:
     dependency: transitive
     description:
@@ -1536,7 +1472,7 @@ packages:
     source: hosted
     version: "3.0.2"
   rudder_sdk_flutter:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: rudder_sdk_flutter
       sha256: "6af0390205dbdbbe3b2d5af11bcc15457fdcb96bb97458ea125480bbb967455a"
@@ -1544,7 +1480,7 @@ packages:
     source: hosted
     version: "3.1.0"
   rudder_sdk_flutter_platform_interface:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: rudder_sdk_flutter_platform_interface
       sha256: "6bc000138df687c7f7d42f9bde40de44edd09ed97475d604713d11384ffb83ad"
@@ -1679,14 +1615,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
-  simple_gesture_detector:
-    dependency: transitive
-    description:
-      name: simple_gesture_detector
-      sha256: ba2cd5af24ff20a0b8d609cec3f40e5b0744d2a71804a2616ae086b9c19d19a3
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.1"
   simple_shadow:
     dependency: "direct main"
     description:
@@ -1708,14 +1636,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
-  source_helper:
-    dependency: transitive
-    description:
-      name: source_helper
-      sha256: "86d247119aedce8e63f4751bd9626fc9613255935558447569ad42f9f5b48b3c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.3.5"
   source_span:
     dependency: transitive
     description:
@@ -1821,7 +1741,7 @@ packages:
     source: hosted
     version: "0.3.1"
   synchronized:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: synchronized
       sha256: "69fe30f3a8b04a0be0c15ae6490fc859a78ef4c43ae2dd5e8a623d45bfcf9225"
@@ -1836,14 +1756,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
-  table_calendar:
-    dependency: "direct main"
-    description:
-      name: table_calendar
-      sha256: "0c0c6219878b363a2d5f40c7afb159d845f253d061dc3c822aa0d5fe0f721982"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.2.0"
   term_glyph:
     dependency: transitive
     description:
@@ -2013,7 +1925,7 @@ packages:
     source: hosted
     version: "2.1.4"
   vibration:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: vibration
       sha256: "3b08a0579c2f9c18d5d78cb5c74f1005f731e02eeca6d72561a2e8059bf98ec3"
@@ -2028,14 +1940,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.3"
-  visibility_detector:
-    dependency: "direct main"
-    description:
-      name: visibility_detector
-      sha256: dd5cc11e13494f432d15939c3aa8ae76844c42b723398643ce9addb88a5ed420
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.0+2"
   vm_service:
     dependency: transitive
     description:
@@ -2109,7 +2013,7 @@ packages:
     source: hosted
     version: "4.10.0"
   webview_flutter_android:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: webview_flutter_android
       sha256: "5568f17a9c25c0fdd0737900fa1c2d1fee2d780bc212d9aec10c2d1f48ef0f59"
@@ -2125,7 +2029,7 @@ packages:
     source: hosted
     version: "2.10.0"
   webview_flutter_wkwebview:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: webview_flutter_wkwebview
       sha256: "4adc14ea9a770cc9e2c8f1ac734536bd40e82615bd0fa6b94be10982de656cc7"
