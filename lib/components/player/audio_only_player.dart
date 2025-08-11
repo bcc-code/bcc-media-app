@@ -4,7 +4,6 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/controls.dart';
 import 'package:brunstadtv_app/components/player/audio_only_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AudioOnlyPlayer extends HookConsumerWidget {
@@ -21,15 +20,6 @@ class AudioOnlyPlayer extends HookConsumerWidget {
     final playerState = viewController.playerController.value;
     final currentPlaybackPosition = playerState.playbackPositionMs;
     final duration = playerState.currentMediaItem?.metadata?.durationMs;
-    final tracksFuture = useFuture(viewController.playerController.getTracks());
-
-    final tracks = tracksFuture.data?.audioTracks;
-
-    useEffect(() {
-      debugPrint('tracks: ${tracks?.map((t) {
-        return t?.isSelected;
-      })}');
-    }, [tracks?.length]);
 
     return Container(
       padding: EdgeInsets.all(8),
