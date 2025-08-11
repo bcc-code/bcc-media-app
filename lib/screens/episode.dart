@@ -48,7 +48,7 @@ class EpisodeScreen extends _EpisodeScreenImplementation {
   const EpisodeScreen({
     super.key,
     @PathParam() required super.episodeId,
-    @QueryParam() super.autoplay,
+    @QueryParam() super.autoplay = true,
     @QueryParam('t') super.queryParamStartPositionSeconds,
     @QueryParam('hide_bottom_section') super.hideBottomSection,
     @QueryParam('collectionId') super.collectionId,
@@ -60,7 +60,7 @@ class CollectionEpisodeScreen extends _EpisodeScreenImplementation {
   const CollectionEpisodeScreen({
     super.key,
     @PathParam() required super.episodeId,
-    @QueryParam() super.autoplay,
+    @QueryParam() super.autoplay = true,
     @QueryParam('t') super.queryParamStartPositionSeconds,
     @QueryParam('hide_bottom_section') super.hideBottomSection,
     @PathParam('collectionId') super.collectionId,
@@ -77,7 +77,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
   const _EpisodeScreenImplementation({
     super.key,
     required this.episodeId,
-    this.autoplay = true,
+    this.autoplay,
     this.queryParamStartPositionSeconds,
     this.hideBottomSection,
     this.collectionId,
