@@ -77,7 +77,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
   const _EpisodeScreenImplementation({
     super.key,
     required this.episodeId,
-    this.autoplay,
+    this.autoplay = true,
     this.queryParamStartPositionSeconds,
     this.hideBottomSection,
     this.collectionId,
