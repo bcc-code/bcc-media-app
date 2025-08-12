@@ -9,6 +9,7 @@
 * **player:** show correct playback speed in video settings ([b4abb7a](https://github.com/bcc-code/bcc-media-app/commit/b4abb7a898f1068ac7ceaa3d12a574b679901bb4))
 * roll bccm_flutter submodule ([dd72671](https://github.com/bcc-code/bcc-media-app/commit/dd7267134c67cacfd2a48f4fda77e87b0e912518))
 * **tests:** switch player assertion ([56832ef](https://github.com/bcc-code/bcc-media-app/commit/56832efa6d76b41cc1fd77f48313149fe4d78ba2))
+* **tests:** try fixing login flow ([88fd512](https://github.com/bcc-code/bcc-media-app/commit/88fd5123efb104098fc9823a99d7fe4a8d38246d))
 
 
 ### Features
