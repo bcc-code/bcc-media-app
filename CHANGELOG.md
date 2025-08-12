@@ -1,4 +1,27 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.43+2500053-kids...v) (2025-07-10)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.89+2300249...v) (2025-08-12)
+
+
+
+## [5.6.89+2300249](https://github.com/bcc-code/bcc-media-app/compare/v5.6.88+2300248...v5.6.89+2300249) (2025-08-12)
+
+
+### Bug Fixes
+
+* **episode:** autoplay by default ([d34472f](https://github.com/bcc-code/bcc-media-app/commit/d34472f5108bc88dfae36e61780ba405a07fdbb0))
+* **episode:** set autoplay to true by default ([489cebc](https://github.com/bcc-code/bcc-media-app/commit/489cebc131c801f2b29bab8b889a640084986a07))
+* generate localizations ([0a1d2a0](https://github.com/bcc-code/bcc-media-app/commit/0a1d2a038ce0c893e37e2a572811b94c2fd7e31b))
+* **player:** show correct playback speed in video settings ([b4abb7a](https://github.com/bcc-code/bcc-media-app/commit/b4abb7a898f1068ac7ceaa3d12a574b679901bb4))
+* roll bccm_flutter submodule ([dd72671](https://github.com/bcc-code/bcc-media-app/commit/dd7267134c67cacfd2a48f4fda77e87b0e912518))
+
+
+### Features
+
+* audio-only player ([f66b2b7](https://github.com/bcc-code/bcc-media-app/commit/f66b2b7806ec9cf0042d1e96263154912f3383ce))
+* **kids:** add single maestro test ([e05d854](https://github.com/bcc-code/bcc-media-app/commit/e05d8549b37d1f7c38c4a4fcd1401e5fd727ae62))
+
+
+
+## [5.6.88+2300248](https://github.com/bcc-code/bcc-media-app/compare/v5.1.43+2500053-kids...v5.6.88+2300248) (2025-07-10)
 
 
 ### Bug Fixes
