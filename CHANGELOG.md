@@ -1,8 +1,4 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.89+2300249...v) (2025-08-12)
-
-
-
-## [5.6.89+2300249](https://github.com/bcc-code/bcc-media-app/compare/v5.6.88+2300248...v5.6.89+2300249) (2025-08-12)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.88+2300248...v) (2025-08-12)
 
 
 ### Bug Fixes
@@ -12,6 +8,7 @@
 * generate localizations ([0a1d2a0](https://github.com/bcc-code/bcc-media-app/commit/0a1d2a038ce0c893e37e2a572811b94c2fd7e31b))
 * **player:** show correct playback speed in video settings ([b4abb7a](https://github.com/bcc-code/bcc-media-app/commit/b4abb7a898f1068ac7ceaa3d12a574b679901bb4))
 * roll bccm_flutter submodule ([dd72671](https://github.com/bcc-code/bcc-media-app/commit/dd7267134c67cacfd2a48f4fda77e87b0e912518))
+* **tests:** switch player assertion ([56832ef](https://github.com/bcc-code/bcc-media-app/commit/56832efa6d76b41cc1fd77f48313149fe4d78ba2))
 
 
 ### Features
