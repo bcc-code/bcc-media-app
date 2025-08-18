@@ -76,7 +76,7 @@ dependencies:
     path: submodules/bccm_flutter/bccm_core
   auto_size_text: ^3.0.0
   webview_flutter: ^4.10.0
-  sentry_flutter: ^8.14.2
+  sentry_flutter: ^9.6.0
   bmm_api:
     path: submodules/bccm_flutter/bmm_api/src
   built_collection: ^5.1.1
