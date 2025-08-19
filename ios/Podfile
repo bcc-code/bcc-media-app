@@ -42,7 +42,7 @@ target 'Runner' do
 
   pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '11.6.0'
   pod 'google-cast-sdk', '4.8.3'
-  pod 'NpawPluginPkg', '7.3.5'
+  pod 'NpawPluginPkg', '7.3.6'
 end
 
 post_install do |installer|

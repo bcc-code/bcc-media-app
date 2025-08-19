@@ -10,7 +10,7 @@ PODS:
   - bccm_player (0.0.1):
     - Flutter
     - google-cast-sdk (= 4.8.3)
-    - NpawPluginPkg (= 7.3.5)
+    - NpawPluginPkg (= 7.3.6)
     - Protobuf (~> 3.13)
   - cloud_firestore (5.6.1):
     - Firebase/Firestore (= 11.6.0)
@@ -133,7 +133,7 @@ PODS:
     - nanopb/encode (= 3.30910.0)
   - nanopb/decode (3.30910.0)
   - nanopb/encode (3.30910.0)
-  - NpawPluginPkg (7.3.5):
+  - NpawPluginPkg (7.3.6):
     - GCDWebServer (= 3.5.9)
   - open_mail_app_plus (0.0.1):
     - Flutter
@@ -193,7 +193,7 @@ DEPENDENCIES:
   - flutter_to_airplay (from `.symlinks/plugins/flutter_to_airplay/ios`)
   - google-cast-sdk (= 4.8.3)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
-  - NpawPluginPkg (= 7.3.5)
+  - NpawPluginPkg (= 7.3.6)
   - open_mail_app_plus (from `.symlinks/plugins/open_mail_app_plus/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -307,7 +307,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   app_links: 76b66b60cc809390ca1ad69bfd66b998d2387ac7
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
-  bccm_player: f274d12c6f500772f480e7fe20131bd107abe832
+  bccm_player: 2feedff021cdc577dbe81cb93f909db733d17d66
   cloud_firestore: 9aa00dac1dc5d3cc93c8cb6515056b038779e06a
   connectivity_plus: 2256d3e20624a7749ed21653aafe291a46446fee
   device_info_plus: 21fcca2080fbcd348be798aa36c3e5ed849eefbe
@@ -341,7 +341,7 @@ SPEC CHECKSUMS:
   leveldb-library: cc8b8f8e013647a295ad3f8cd2ddf49a6f19be19
   MetricsReporter: 364b98791e868b10e9d512eb50af28d8c11e5cdb
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
-  NpawPluginPkg: bc0775933c90be220393691604d9124c810308b1
+  NpawPluginPkg: 8c758cbac896f97980065f7b9fff1f62fb093004
   open_mail_app_plus: 6b06ef9915403f20b72c728cc264322efacdcb9a
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
@@ -362,6 +362,6 @@ SPEC CHECKSUMS:
   wakelock_plus: 04623e3f525556020ebd4034310f20fe7fda8b49
   webview_flutter_wkwebview: 44d4dee7d7056d5ad185d25b38404436d56c547c
 
-PODFILE CHECKSUM: 51e4e671ccada2ca42ec3621f72ce672c71d815f
+PODFILE CHECKSUM: 3309e78930e9d3945e111487efc0e9bbea71bf19
 
 COCOAPODS: 1.16.2
