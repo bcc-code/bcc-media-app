@@ -26,7 +26,7 @@
     },
     {
       "path": "../bcc-connect-live/flutter",
-      "name": "live: app"
+      "name": "live: mobile"
     },
     {
       "path": "../bcc-connect-live/web",

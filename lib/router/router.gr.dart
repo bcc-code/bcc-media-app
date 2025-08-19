@@ -289,7 +289,7 @@ class CollectionEpisodeScreenRoute
   CollectionEpisodeScreenRoute({
     _i38.Key? key,
     required String episodeId,
-    bool? autoplay,
+    bool? autoplay = true,
     int? queryParamStartPositionSeconds,
     bool? hideBottomSection,
     String? collectionId,
@@ -326,7 +326,10 @@ class CollectionEpisodeScreenRoute
       final args = data.argsAs<CollectionEpisodeScreenRouteArgs>(
           orElse: () => CollectionEpisodeScreenRouteArgs(
                 episodeId: pathParams.getString('episodeId'),
-                autoplay: queryParams.optBool('autoplay'),
+                autoplay: queryParams.optBool(
+                  'autoplay',
+                  true,
+                ),
                 queryParamStartPositionSeconds: queryParams.optInt('t'),
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
                 collectionId: pathParams.optString('collectionId'),
@@ -347,7 +350,7 @@ class CollectionEpisodeScreenRouteArgs {
   const CollectionEpisodeScreenRouteArgs({
     this.key,
     required this.episodeId,
-    this.autoplay,
+    this.autoplay = true,
     this.queryParamStartPositionSeconds,
     this.hideBottomSection,
     this.collectionId,
@@ -485,7 +488,7 @@ class EpisodeScreenRoute extends _i36.PageRouteInfo<EpisodeScreenRouteArgs> {
   EpisodeScreenRoute({
     _i38.Key? key,
     required String episodeId,
-    bool? autoplay,
+    bool? autoplay = true,
     int? queryParamStartPositionSeconds,
     bool? hideBottomSection,
     String? collectionId,
@@ -520,7 +523,10 @@ class EpisodeScreenRoute extends _i36.PageRouteInfo<EpisodeScreenRouteArgs> {
       final args = data.argsAs<EpisodeScreenRouteArgs>(
           orElse: () => EpisodeScreenRouteArgs(
                 episodeId: pathParams.getString('episodeId'),
-                autoplay: queryParams.optBool('autoplay'),
+                autoplay: queryParams.optBool(
+                  'autoplay',
+                  true,
+                ),
                 queryParamStartPositionSeconds: queryParams.optInt('t'),
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
                 collectionId: queryParams.optString('collectionId'),
@@ -541,7 +547,7 @@ class EpisodeScreenRouteArgs {
   const EpisodeScreenRouteArgs({
     this.key,
     required this.episodeId,
-    this.autoplay,
+    this.autoplay = true,
     this.queryParamStartPositionSeconds,
     this.hideBottomSection,
     this.collectionId,
