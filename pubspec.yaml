@@ -26,6 +26,8 @@ dependencies:
   provider: ^6.1.2
   js: ^0.7.1
   http: ^1.2.2
+  json_annotation: ^4.9.0
+  json_serializable: ^6.8.0
   flutter_svg: ^2.0.10+1
   auto_route: ^9.2.2
   bccm_player:
