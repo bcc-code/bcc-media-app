@@ -10,9 +10,8 @@ PODS:
   - bccm_player (0.0.1):
     - Flutter
     - google-cast-sdk (= 4.8.3)
+    - NpawPluginPkg (= 7.3.6)
     - Protobuf (~> 3.13)
-    - YouboraAVPlayerAdapter (= 6.6.8)
-    - YouboraLib (= 6.6.22)
   - cloud_firestore (5.6.1):
     - Firebase/Firestore (= 11.6.0)
     - firebase_core
@@ -93,6 +92,7 @@ PODS:
     - Flutter
   - flutter_to_airplay (0.0.1):
     - Flutter
+  - GCDWebServer (3.5.9)
   - google-cast-sdk (4.8.3):
     - Protobuf (~> 3.13)
   - GoogleDataTransport (10.1.0):
@@ -133,6 +133,8 @@ PODS:
     - nanopb/encode (= 3.30910.0)
   - nanopb/decode (3.30910.0)
   - nanopb/encode (3.30910.0)
+  - NpawPluginPkg (7.3.6):
+    - GCDWebServer (= 3.5.9)
   - open_mail_app_plus (0.0.1):
     - Flutter
   - package_info_plus (0.4.5):
@@ -173,12 +175,6 @@ PODS:
   - webview_flutter_wkwebview (0.0.1):
     - Flutter
     - FlutterMacOS
-  - YouboraAVPlayerAdapter (6.6.8):
-    - YouboraAVPlayerAdapter/Default (= 6.6.8)
-    - YouboraLib (~> 6.5)
-  - YouboraAVPlayerAdapter/Default (6.6.8):
-    - YouboraLib (~> 6.5)
-  - YouboraLib (6.6.22)
 
 DEPENDENCIES:
   - app_links (from `.symlinks/plugins/app_links/ios`)
@@ -197,6 +193,7 @@ DEPENDENCIES:
   - flutter_to_airplay (from `.symlinks/plugins/flutter_to_airplay/ios`)
   - google-cast-sdk (= 4.8.3)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - NpawPluginPkg (= 7.3.6)
   - open_mail_app_plus (from `.symlinks/plugins/open_mail_app_plus/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -212,6 +209,9 @@ DEPENDENCIES:
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/darwin`)
 
 SPEC REPOS:
+  https://repo.plugin.npaw.com/release/plugin-ios-cocoapods.git:
+    - GCDWebServer
+    - NpawPluginPkg
   trunk:
     - AppAuth
     - Firebase
@@ -239,8 +239,6 @@ SPEC REPOS:
     - Rudder
     - RudderKit
     - Sentry
-    - YouboraAVPlayerAdapter
-    - YouboraLib
 
 EXTERNAL SOURCES:
   app_links:
@@ -309,7 +307,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   app_links: 76b66b60cc809390ca1ad69bfd66b998d2387ac7
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
-  bccm_player: c92df494481d9bea042861ef336c9a70caf9dd9e
+  bccm_player: 2feedff021cdc577dbe81cb93f909db733d17d66
   cloud_firestore: 9aa00dac1dc5d3cc93c8cb6515056b038779e06a
   connectivity_plus: 2256d3e20624a7749ed21653aafe291a46446fee
   device_info_plus: 21fcca2080fbcd348be798aa36c3e5ed849eefbe
@@ -335,6 +333,7 @@ SPEC CHECKSUMS:
   flutter_native_splash: 6cad9122ea0fad137d23137dd14b937f3e90b145
   flutter_secure_storage: 1ed9476fba7e7a782b22888f956cce43e2c62f13
   flutter_to_airplay: 8ed587ac4b07d167184d2977a8a406383ce5c371
+  GCDWebServer: baef69ed4f6f8bd69b2be47e08797ab1b8cbad29
   google-cast-sdk: 1fb6724e94cc5ff23b359176e0cf6360586bb97a
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
@@ -342,6 +341,7 @@ SPEC CHECKSUMS:
   leveldb-library: cc8b8f8e013647a295ad3f8cd2ddf49a6f19be19
   MetricsReporter: 364b98791e868b10e9d512eb50af28d8c11e5cdb
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
+  NpawPluginPkg: 8c758cbac896f97980065f7b9fff1f62fb093004
   open_mail_app_plus: 6b06ef9915403f20b72c728cc264322efacdcb9a
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
@@ -361,9 +361,7 @@ SPEC CHECKSUMS:
   vibration: 8e2f50fc35bb736f9eecb7dd9f7047fbb6a6e888
   wakelock_plus: 04623e3f525556020ebd4034310f20fe7fda8b49
   webview_flutter_wkwebview: 44d4dee7d7056d5ad185d25b38404436d56c547c
-  YouboraAVPlayerAdapter: bc898a61e09c667202a77491b677a42dfa0adc04
-  YouboraLib: fc65b030ac93499f8beb3f5daa10deb3879fb2d2
 
-PODFILE CHECKSUM: 47fee756e81104b18078da47df9713161c7db0d1
+PODFILE CHECKSUM: 3309e78930e9d3945e111487efc0e9bbea71bf19
 
 COCOAPODS: 1.16.2
