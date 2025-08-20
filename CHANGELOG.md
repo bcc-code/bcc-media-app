@@ -1,8 +1,4 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.44+2500054-kids...v) (2025-08-20)
-
-
-
-## [5.1.44+2500054-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.89+2300249...v5.1.44+2500054-kids) (2025-08-20)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.89+2300249...v) (2025-08-20)
 
 
 ### Bug Fixes
