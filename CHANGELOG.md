@@ -1,4 +1,28 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.88+2300248...v) (2025-08-12)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.44+2500054-kids...v) (2025-08-20)
+
+
+
+## [5.1.44+2500054-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.89+2300249...v5.1.44+2500054-kids) (2025-08-20)
+
+
+### Bug Fixes
+
+* **android:** update npaw plugin ([7ae4da9](https://github.com/bcc-code/bcc-media-app/commit/7ae4da9610be7fb9d6830a903ea98971b355809a))
+* **mini-player:** hide progressbar when hiding miniplayer ([7d88de9](https://github.com/bcc-code/bcc-media-app/commit/7d88de95c0cadadcd0f263dea1dfebd7f5b65eeb))
+* roll player module ([89ce0c4](https://github.com/bcc-code/bcc-media-app/commit/89ce0c491a5f696fb087916260a5efc001279beb))
+* roll submodule ([d72490f](https://github.com/bcc-code/bcc-media-app/commit/d72490f042b9ea94647edf996aed3b18cc8bf979))
+* **settings:** prevent deleting all content languages ([8f8521c](https://github.com/bcc-code/bcc-media-app/commit/8f8521ce85a38cf924b08b45a1a1ba948cfbfbb8))
+* stop mini player when opening shorts page ([f9a1f29](https://github.com/bcc-code/bcc-media-app/commit/f9a1f294c5e248242d898469bbf1b900cc92c53f))
+* update npaw ios plugin ([6b2a2d4](https://github.com/bcc-code/bcc-media-app/commit/6b2a2d4c337b510a6c33be5c795190560aa9658e))
+
+
+### Features
+
+* **ios:** update npaw plugin ([451b6f7](https://github.com/bcc-code/bcc-media-app/commit/451b6f7866ecf5a9654b935af4e22c23241ff38e))
+
+
+
+## [5.6.89+2300249](https://github.com/bcc-code/bcc-media-app/compare/v5.6.88+2300248...v5.6.89+2300249) (2025-08-12)
 
 
 ### Bug Fixes
