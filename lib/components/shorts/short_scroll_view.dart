@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/platform.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/components/shorts/short_view.dart';
 import 'package:brunstadtv_app/components/status/error_adaptive.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
@@ -141,6 +142,7 @@ class ShortScrollView extends HookConsumerWidget {
     useEffect(() {
       isRouteActiveRef.value = isRouteActive;
       if (isRouteActive) {
+        BccmPlayerController.primary.pause();
         debugPrint('SHRT: shorts view became active, playing');
         final player = shortControllers[currentIndex.value % playerCount].player;
         if (player.value.isInitialized) {
