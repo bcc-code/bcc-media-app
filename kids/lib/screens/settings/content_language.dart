@@ -168,18 +168,20 @@ class ContentLanguageList extends HookConsumerWidget {
                 },
                 children: <Widget>[
                   for (int index = 0; index < selected.length; index++)
-                    _CustomReorderableItem(
-                      key: Key(selected[index]),
-                      index: index,
-                      animate: !dontAnimate.value.contains(selected[index]),
-                      title: languages[selected[index]]!.nativeName,
-                      enableDrag: selected.length > 1,
-                      onDelete: () {
-                        selected.removeAt(index);
-                        setLanguages(selected);
-                        dontAnimate.value = [];
-                      },
-                    ),
+                    if (languages[selected[index]] != null)
+                      _CustomReorderableItem(
+                        key: Key(selected[index]),
+                        index: index,
+                        animate: !dontAnimate.value.contains(selected[index]),
+                        title: languages[selected[index]]!.nativeName,
+                        enableDrag: selected.length > 1,
+                        enableDelete: selected.length > 1,
+                        onDelete: () {
+                          selected.removeAt(index);
+                          setLanguages(selected);
+                          dontAnimate.value = [];
+                        },
+                      ),
                 ],
                 onReorderStart: (index) {
                   CustomHapticFeedback.heavyImpact();
@@ -220,6 +222,7 @@ class _CustomReorderableItem extends StatelessWidget {
   final Function onDelete;
   final bool animate;
   final bool enableDrag;
+  final bool enableDelete;
 
   const _CustomReorderableItem({
     required Key key,
@@ -228,6 +231,7 @@ class _CustomReorderableItem extends StatelessWidget {
     required this.onDelete,
     required this.animate,
     this.enableDrag = true,
+    this.enableDelete = true,
   }) : super(key: key);
 
   void doNothing(BuildContext context) {}
@@ -266,6 +270,7 @@ class _CustomReorderableItem extends StatelessWidget {
                   ),
             Slidable(
               key: ValueKey(title),
+              enabled: enableDelete,
               endActionPane: ActionPane(
                 dismissible: DismissiblePane(
                   onDismissed: () {
