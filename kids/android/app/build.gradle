@@ -84,6 +84,12 @@ flutter {
     source '../..'
 }
 
+repositories {
+    maven { url "https://artifact.plugin.npaw.com/artifactory/plugins/android" }
+}
+
 dependencies {
+    def npawVersion = "7.3.10"
+    implementation "com.npaw.plugin:plugin:$npawVersion"
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
 }
