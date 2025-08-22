@@ -48,7 +48,6 @@ Future<void> $main({
       options.tracesSampleRate = 0.5;
       options.profilesSampleRate = 0.5;
       options.replay.onErrorSampleRate = 1.0;
-      options.enableLogs = true;
       options.beforeSend = (event, hint) {
         // Filter out network related errors to prevent noise in Sentry
         if (event.throwable is SocketException ||
