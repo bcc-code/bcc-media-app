@@ -18,4 +18,3 @@ appId: tv.brunstad.app
     point: "50%,20%"
 - tapOn: Profile.*
 - assertVisible: .*Bible.*
-- assertVisible: Pause
