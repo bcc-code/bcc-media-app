@@ -1,4 +1,18 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.89+2300249...v) (2025-08-20)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.90+2300250...v) (2025-08-26)
+
+
+
+## [5.6.90+2300250](https://github.com/bcc-code/bcc-media-app/compare/v5.1.44+2500054-kids...v5.6.90+2300250) (2025-08-26)
+
+
+### Bug Fixes
+
+* **sentry:** try to improve sentry integration ([ff9601d](https://github.com/bcc-code/bcc-media-app/commit/ff9601d28b6af19c714579305e6b3135edab378f))
+* **sentry:** undo logs integration ([86fd322](https://github.com/bcc-code/bcc-media-app/commit/86fd322d7c9464052d5ac6bb8690ef2119cf21eb))
+
+
+
+## [5.1.44+2500054-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.89+2300249...v5.1.44+2500054-kids) (2025-08-20)
 
 
 ### Bug Fixes
