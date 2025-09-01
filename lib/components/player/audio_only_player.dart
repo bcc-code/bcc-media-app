@@ -21,30 +21,54 @@ class AudioOnlyPlayer extends HookConsumerWidget {
     final currentPlaybackPosition = playerState.playbackPositionMs;
     final duration = playerState.currentMediaItem?.metadata?.durationMs;
 
-    return Container(
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: design.colors.background1,
-        backgroundBlendMode: BlendMode.multiply,
-      ),
-      child: Row(
-        children: [
-          PlayPauseButton(
-            player: viewController.playerController,
-            iconSize: 40,
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: design.colors.background1,
+            backgroundBlendMode: BlendMode.multiply,
           ),
-          if (currentPlaybackPosition != null && duration != null)
-            Text(
-              '${getFormattedDuration((currentPlaybackPosition / 1000).toInt())} / ${getFormattedDuration((duration / 1000).toInt())}',
-              style: design.textStyles.caption2.copyWith(
-                color: design.colors.label2,
-                fontFeatures: [FontFeature.tabularFigures()],
+          child: Row(
+            children: [
+              PlayPauseButton(
+                player: viewController.playerController,
+                iconSize: 40,
               ),
+              if (currentPlaybackPosition != null && duration != null)
+                Text(
+                  '${getFormattedDuration((currentPlaybackPosition / 1000).toInt())} / ${getFormattedDuration((duration / 1000).toInt())}',
+                  style: design.textStyles.caption2.copyWith(
+                    color: design.colors.label2,
+                    fontFeatures: [FontFeature.tabularFigures()],
+                  ),
+                ),
+              const Spacer(),
+              AudioOnlyButton(),
+            ],
+          ),
+        ),
+        Positioned(
+          bottom: -8,
+          left: 0,
+          right: 0,
+          child: SliderTheme(
+            data: SliderThemeData(
+              trackHeight: 4,
+              trackShape: RectangularSliderTrackShape(),
+              thumbColor: Colors.transparent,
             ),
-          const Spacer(),
-          AudioOnlyButton(),
-        ],
-      ),
+            child: Slider(
+              padding: EdgeInsets.all(0),
+              max: duration ?? 0,
+              value: currentPlaybackPosition?.toDouble() ?? 0,
+              onChanged: (value) {
+                viewController.playerController.seekTo(Duration(milliseconds: value.toInt()));
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
