@@ -1,4 +1,24 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.44+2500054-kids...v) (2025-08-26)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.92+2300252...v) (2025-09-03)
+
+
+
+## [5.6.92+2300252](https://github.com/bcc-code/bcc-media-app/compare/v5.6.91+2300251...v5.6.92+2300252) (2025-09-03)
+
+
+### Bug Fixes
+
+* **download:** show dialog when no more space ([2491414](https://github.com/bcc-code/bcc-media-app/commit/2491414bc84e9c694ab6b515f0f3f86b55ad3a46))
+* **mini-player:** add player track ([3eb4ed0](https://github.com/bcc-code/bcc-media-app/commit/3eb4ed04304f606f462b8d4f2ff01bb14c780150))
+* roll submodule ([9d8a02b](https://github.com/bcc-code/bcc-media-app/commit/9d8a02b08e0c058eb91fdceb08ebd3062506a534))
+
+
+### Features
+
+* **shorts:** double tap to like ([7d9f0c8](https://github.com/bcc-code/bcc-media-app/commit/7d9f0c846ff8ad768c4226b6b697c15711f8f6f5))
+
+
+
+## [5.6.91+2300251](https://github.com/bcc-code/bcc-media-app/compare/v5.1.44+2500054-kids...v5.6.91+2300251) (2025-08-26)
 
 
 ### Bug Fixes
