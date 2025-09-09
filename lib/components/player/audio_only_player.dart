@@ -9,10 +9,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class AudioOnlyPlayer extends HookConsumerWidget {
   const AudioOnlyPlayer({
     required this.viewController,
+    required this.disableToggle,
     super.key,
   });
 
   final BccmPlayerViewController viewController;
+  final bool disableToggle;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,7 +46,7 @@ class AudioOnlyPlayer extends HookConsumerWidget {
                   ),
                 ),
               const Spacer(),
-              AudioOnlyButton(),
+              if (!disableToggle) AudioOnlyButton(),
             ],
           ),
         ),

@@ -389,6 +389,14 @@ class _EpisodeDisplay extends HookConsumerWidget {
 
     final playerError = useListenableSelector(viewController.playerController, () => viewController.playerController.value.error);
 
+    final forceAudioOnly = useState(false);
+    useEffect(() {
+      final isAudio = episode.streams.firstWhereOrNull((stream) => stream.primaryMediaType == Enum$PrimaryMediaType.audio) != null;
+      if (isAudio) {
+        forceAudioOnly.value = true;
+      }
+    }, [episode.streams]);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -424,8 +432,8 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     child: AnimatedSize(
                         duration: const Duration(milliseconds: 800),
                         curve: Curves.easeOutExpo,
-                        child: ref.watch(audioOnlyProvider)
-                            ? AudioOnlyPlayer(viewController: viewController)
+                        child: ref.watch(audioOnlyProvider) || forceAudioOnly.value
+                            ? AudioOnlyPlayer(viewController: viewController, disableToggle: forceAudioOnly.value)
                             : BccmPlayerView.withViewController(viewController)),
                   ),
                 AnimatedSize(
