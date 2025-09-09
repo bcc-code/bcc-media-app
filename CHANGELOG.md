@@ -1,4 +1,14 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.92+2300252...v) (2025-09-03)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.93+2300253...v) (2025-09-09)
+
+
+
+## [5.6.93+2300253](https://github.com/bcc-code/bcc-media-app/compare/v5.6.92+2300252...v5.6.93+2300253) (2025-09-09)
+
+
+### Bug Fixes
+
+* **episode:** force audio-only player if primary media type is audio ([532a56c](https://github.com/bcc-code/bcc-media-app/commit/532a56cbee6983800830d27f7855408c6e5c4b94))
+* roll submodule ([e4f9b8c](https://github.com/bcc-code/bcc-media-app/commit/e4f9b8cd921f5ae519ba0d43c4f9bdded1936682))
 
 
 
