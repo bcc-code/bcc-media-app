@@ -43,6 +43,10 @@
     {
       "path": "../bcc-media-tvos",
       "name": "bccm: tvos"
+    },
+    {
+      "path": "../bcc-media-play/flutter",
+      "name": "play: mobile"
     }
   ],
   "settings": {
