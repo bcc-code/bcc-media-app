@@ -30,7 +30,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "media.bcc.kids"
-    compileSdk 35
+    compileSdk 36
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -82,7 +82,10 @@ android {
 
 flutter {
     source '../..'
+    target 'lib/main.dart'
 }
+
+android.defaultConfig.targetSdkVersion = 36
 
 repositories {
     maven { url "https://artifact.plugin.npaw.com/artifactory/plugins/android" }
