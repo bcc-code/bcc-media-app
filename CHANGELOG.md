@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.93+2300253...v) (2025-09-09)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.94+2300254...v) (2025-10-20)
+
+
+
+## [5.6.94+2300254](https://github.com/bcc-code/bcc-media-app/compare/v5.6.93+2300253...v5.6.94+2300254) (2025-10-20)
+
+
+### Features
+
+* add play to vsc workspace ([97a68c5](https://github.com/bcc-code/bcc-media-app/commit/97a68c5ee8e02509c786d69250d65435d3715071))
 
 
 
