@@ -50,6 +50,7 @@ android {
         applicationId "media.bcc.kids"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        targetSdkVersion 36
         minSdkVersion 24
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
@@ -82,10 +83,7 @@ android {
 
 flutter {
     source '../..'
-    target 'lib/main.dart'
 }
-
-android.defaultConfig.targetSdkVersion = 36
 
 repositories {
     maven { url "https://artifact.plugin.npaw.com/artifactory/plugins/android" }
