@@ -1144,24 +1144,25 @@ class SFr extends S {
   String get studyAllQuestionsAnsweredDescription => 'Bien joué !';
 
   @override
-  String get kidsNotificationReminderCtaShort => 'Turn on';
+  String get kidsNotificationReminderCtaShort => 'Activer';
 
   @override
-  String get kidsNotificationReminderCtaLong => 'Turn on reminders';
+  String get kidsNotificationReminderCtaLong => 'Activer les rappels';
 
   @override
-  String get kidsNotificationReminderTitle => 'Watch a video every day!';
+  String get kidsNotificationReminderTitle =>
+      'Regardez une vidéo chaque jour !';
 
   @override
   String get notifications => 'Notifications';
 
   @override
   String get onlyShowContentWithPreferredLanguages =>
-      'Only show content with my preferred languages';
+      'Afficher uniquement le contenu dans mes langues préférées';
 
   @override
-  String get kidsLogInWithBCCTitle => 'Log in with your BCC account';
+  String get kidsLogInWithBCCTitle => 'Connectez-vous avec votre compte BCC';
 
   @override
-  String get kidsLoggedInWithBCCTitle => 'Signed in with BCC';
+  String get kidsLoggedInWithBCCTitle => 'Connecté avec BCC';
 }

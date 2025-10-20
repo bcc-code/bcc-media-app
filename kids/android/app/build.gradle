@@ -30,7 +30,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "media.bcc.kids"
-    compileSdk 35
+    compileSdk 36
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -50,6 +50,7 @@ android {
         applicationId "media.bcc.kids"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        targetSdkVersion 36
         minSdkVersion 24
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
