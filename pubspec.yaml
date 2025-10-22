@@ -63,7 +63,7 @@ dependencies:
   focusable_control_builder: ^1.0.2+1
   flutter_to_airplay:
     git:
-      url: https://github.com/andreasgangso/flutter_to_airplay.git
+      url: https://github.com/sifferhans/flutter_to_airplay.git
       ref: fix/remove-unused-mux
   flutter_cache_manager: ^3.4.1
   extended_image: ^9.1.0

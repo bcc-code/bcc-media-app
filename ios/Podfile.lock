@@ -327,7 +327,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: efc0946fc756e4d22d8113f7c761948120322e8c
   FirebaseMessaging: e1aca1fcc23e8b9eddb0e33f375ff90944623021
   FirebaseSharedSwift: a4e5dfca3e210633bb3a3dfb94176c019211948b
-  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   flutter_appauth: 273bf736e38f7d85000b1a9ac15ace5800c277f2
   flutter_local_notifications: ad39620c743ea4c15127860f4b5641649a988100
   flutter_native_splash: 6cad9122ea0fad137d23137dd14b937f3e90b145
