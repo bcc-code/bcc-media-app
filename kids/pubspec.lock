@@ -777,10 +777,10 @@ packages:
     description:
       path: "."
       ref: "fix/remove-unused-mux"
-      resolved-ref: "4cf70781497b9a488d30ee3e7c343726d66bbe80"
-      url: "https://github.com/andreasgangso/flutter_to_airplay.git"
+      resolved-ref: "82675b29f7fa6aeb76bfbb76ffa678d21a162e59"
+      url: "https://github.com/sifferhans/flutter_to_airplay.git"
     source: git
-    version: "2.0.4"
+    version: "2.1.0"
   flutter_web_plugins:
     dependency: "direct main"
     description: flutter
