@@ -1,4 +1,13 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.95+2300255...v) (2025-12-18)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.96+2300256...v) (2025-12-18)
+
+
+
+## [5.6.96+2300256](https://github.com/bcc-code/bcc-media-app/compare/v5.6.95+2300255...v5.6.96+2300256) (2025-12-18)
+
+
+### Reverts
+
+* Revert "Attempt to fix /r/code not working" ([18f0ce7](https://github.com/bcc-code/bcc-media-app/commit/18f0ce7a532b058fd1ef9d63ac56e58b61c47a41))
 
 
 
