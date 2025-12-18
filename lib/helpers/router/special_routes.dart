@@ -25,42 +25,40 @@ class BccmSpecialRoutesHandler implements SpecialRoutesHandler {
       return true;
     }
 
-    bool handleRedirect() {
+    Future<bool> handleRedirect() async {
       final code = uri.pathSegments.elementAtOrNull(1);
       if (code == null) {
         throw Exception("Couldn't handle /r/ special route, missing path segments. Path: $path");
       }
-      getBccmRedirectUri(code: code, gqlClient: ref.read(bccmGraphQLProvider)).then((value) {
-        if (value != null) {
-          launchUrl(value, mode: LaunchMode.externalApplication);
-        } else {
-          FlutterError.reportError(FlutterErrorDetails(
-            exception: Exception('Could not get uri for redirect code: $code'),
-            stack: StackTrace.current,
-            library: 'BccmSpecialRoutesHandler',
-            context: ErrorDescription('While handling redirect code'),
-          ));
-        }
-      });
+      final value = await getBccmRedirectUri(code: code, gqlClient: ref.read(bccmGraphQLProvider));
+      if (value != null) {
+        await launchUrl(value, mode: LaunchMode.externalApplication);
+      } else {
+        FlutterError.reportError(FlutterErrorDetails(
+          exception: Exception('Could not get uri for redirect code: $code'),
+          stack: StackTrace.current,
+          library: 'BccmSpecialRoutesHandler',
+          context: ErrorDescription('While handling redirect code'),
+        ));
+      }
       return true;
     }
 
-    bool handleLegacy({required bool isSeriesId}) {
+    Future<bool> handleLegacy({required bool isSeriesId}) async {
       final legacyIdString = uri.pathSegments.elementAtOrNull(1);
       final legacyId = int.tryParse(legacyIdString ?? '');
       if (legacyId == null) {
         debugPrint("Couldn't handle legacy program/series route, missing valid path segments. Path: $path");
         return false;
       }
-      final newIdFuture = ref.read(apiProvider).legacyIdLookup(
+      final router = context.router;
+      final newId = await ref.read(apiProvider).legacyIdLookup(
             legacyEpisodeId: isSeriesId ? legacyId : null,
             legacyProgramId: isSeriesId ? null : legacyId,
           );
-      newIdFuture.then((newId) {
-        if (newId != null) {
-          context.router.navigateNamedFromRoot('/episode/$newId?${uri.query}');
-        }
-      });
+      if (newId != null) {
+        router.navigateNamedFromRoot('/episode/$newId?${uri.query}');
+      }
       return true;
     }
 
