@@ -28,6 +28,8 @@ class PrefKeys {
   static const notificationsEnabled = 'notifications_enabled';
   static const onlyPreferredLanguagesContentEnabled = 'only_preferred_languages_content_enabled';
   static const audioOnly = 'audio_only';
+  static const pendingDeepLink = 'pending_deep_link';
+  static const pendingDeepLinkTimestamp = 'pending_deep_link_timestamp';
 }
 
 final webEnvUrls = <String, String>{

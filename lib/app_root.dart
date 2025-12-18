@@ -4,6 +4,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/app_root_inner.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/router.dart';
 import 'package:brunstadtv_app/screens/onboarding/email_verification.dart';
@@ -79,6 +80,25 @@ class _AppRootState extends ConsumerState<AppRoot> {
     }
     analytics.identify(next.user!, me.analytics.anonymousId);
     ref.read(settingsProvider.notifier).setAnalyticsId(me.analytics.anonymousId);
+
+    // Process pending deep link if stored and not expired (5 minute limit)
+    final prefs = ref.read(sharedPreferencesProvider);
+    final pendingDeepLink = prefs.getString(PrefKeys.pendingDeepLink);
+    final pendingTimestamp = prefs.getInt(PrefKeys.pendingDeepLinkTimestamp);
+    prefs.remove(PrefKeys.pendingDeepLink);
+    prefs.remove(PrefKeys.pendingDeepLinkTimestamp);
+
+    if (pendingDeepLink != null && pendingTimestamp != null) {
+      final storedTime = DateTime.fromMillisecondsSinceEpoch(pendingTimestamp);
+      final isWithinFiveMinutes = DateTime.now().difference(storedTime).inMinutes < 5;
+      if (isWithinFiveMinutes) {
+        final rootRouter = globalNavigatorKey.currentContext?.router.root;
+        rootRouter?.navigateNamedFromRoot(
+          uriStringWithoutHost(Uri.parse(pendingDeepLink)),
+          onFailure: (_) {},
+        );
+      }
+    }
   }
 
   /// Opens the signup screen, so that the user can complete the registration process.

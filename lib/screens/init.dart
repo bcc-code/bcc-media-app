@@ -81,7 +81,10 @@ class _InitScreenState extends ConsumerState<InitScreen> {
     final deepLinkUri = await tryCatchRecordErrorAsync(() => AppLinks().getLatestLink());
     if (!mounted) return;
     final router = context.router;
-    if (deepLinkUri != null && !deepLinkUri.path.contains('init')) {
+    final isLoggedIn = ref.read(authStateProvider).isLoggedIn;
+    final hasDeepLink = deepLinkUri != null && !deepLinkUri.path.contains('init');
+
+    if (hasDeepLink && isLoggedIn) {
       router.replaceAll([const TabsRootScreenRoute()]);
       router.navigateNamedFromRoot(
         uriStringWithoutHost(deepLinkUri),
@@ -91,7 +94,12 @@ class _InitScreenState extends ConsumerState<InitScreen> {
       );
       return;
     }
-    final isLoggedIn = ref.read(authStateProvider).isLoggedIn;
+
+    if (hasDeepLink && !isLoggedIn) {
+      final prefs = ref.read(sharedPreferencesProvider);
+      prefs.setString(PrefKeys.pendingDeepLink, deepLinkUri.toString());
+      prefs.setInt(PrefKeys.pendingDeepLinkTimestamp, DateTime.now().millisecondsSinceEpoch);
+    }
     final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingCompleted) == true;
     final hasEverLoggedIn = ref.read(sharedPreferencesProvider).getBool(PrefKeys.hasEverLoggedIn) == true;
 
