@@ -11,7 +11,7 @@ project 'Runner', {
 }
 
 source 'https://cdn.cocoapods.org/'
-source 'https://repo.plugin.npaw.com/release/plugin-ios-cocoapods.git'
+source 'http://bitbucket.org/npaw/plugin-ios-cocoapods.git'
 
 def flutter_root
   generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)

@@ -11,7 +11,7 @@ project 'Runner', {
 }
 
 source 'https://cdn.cocoapods.org/'
-source 'https://repo.plugin.npaw.com/release/plugin-ios-cocoapods.git'
+source 'http://bitbucket.org/npaw/plugin-ios-cocoapods.git'
 
 def flutter_root
   generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
@@ -40,7 +40,7 @@ target 'Runner' do
     inherit! :complete
   end
 
-  pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '11.6.0'
+  pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '11.15.0'
   pod 'google-cast-sdk', '4.8.3'
   pod 'NpawPluginPkg', '7.3.6'
 end

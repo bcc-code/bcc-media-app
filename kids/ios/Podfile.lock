@@ -212,7 +212,7 @@ DEPENDENCIES:
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/darwin`)
 
 SPEC REPOS:
-  https://repo.plugin.npaw.com/release/plugin-ios-cocoapods.git:
+  http://bitbucket.org/npaw/plugin-ios-cocoapods.git:
     - GCDWebServer
     - NpawPluginPkg
   trunk:
