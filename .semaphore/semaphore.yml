@@ -1,0 +1,110 @@
+version: v1.0
+name: Build and deploy
+
+agent:
+  machine:
+    type: f1-standard-4
+    os_image: ubuntu2404
+
+global_job_config:
+  env_vars:
+    - name: FLUTTER_VERSION
+      value: 3.32.0
+
+# Step 1: BCCM Android only. Kids Android, BCCM iOS, Kids iOS will be added
+# in subsequent steps once this path is green.
+
+blocks:
+  - name: Prep bccm version
+    dependencies: []
+    task:
+      secrets:
+        - name: android-play-store-api
+      jobs:
+        - name: Compute bccm versionCode
+          commands:
+            - checkout
+            - sem-version ruby 3.2
+            - cp /home/semaphore/google-play-service-account.json android/fastlane/google-play-service-account.json
+            - cd android
+            - bundle install
+            - bundle exec fastlane next_version_code
+            - export BUILD_NUMBER=$(cat fastlane/.next_version_code)
+            - test -n "$BUILD_NUMBER" && test "$BUILD_NUMBER" -gt 0
+            - echo "$BUILD_NUMBER" > /tmp/bccm_build_number
+            - artifact push workflow /tmp/bccm_build_number -d bccm_build_number
+
+  - name: Build bccm Android
+    dependencies: [Prep bccm version]
+    task:
+      secrets:
+        - name: brunstadtv-env
+        - name: android-keystore-bccm
+      prologue:
+        commands:
+          - checkout
+          - git submodule update --init --recursive
+          - cp /home/semaphore/env.dart lib/env/.env.dart
+          - sem-version java 17
+          - cache restore flutter-sdk-linux-$FLUTTER_VERSION
+          - |
+            if [ ! -d "$HOME/flutter" ]; then
+              wget -q https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz -O /tmp/flutter.tar.xz
+              tar xf /tmp/flutter.tar.xz -C $HOME
+            fi
+          - cache store flutter-sdk-linux-$FLUTTER_VERSION $HOME/flutter
+          - export PATH="$HOME/flutter/bin:$PATH"
+          - flutter --version
+          - export ANDROID_HOME="$HOME/android-sdk"
+          - cache restore android-sdk
+          - |
+            if [ ! -d "$ANDROID_HOME/platforms/android-36" ]; then
+              mkdir -p "$ANDROID_HOME/cmdline-tools"
+              curl -sSL -o /tmp/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+              unzip -q /tmp/cmdline-tools.zip -d "$ANDROID_HOME/cmdline-tools"
+              mv "$ANDROID_HOME/cmdline-tools/cmdline-tools" "$ANDROID_HOME/cmdline-tools/latest"
+              yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
+              "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+            fi
+          - cache store android-sdk $ANDROID_HOME
+          - export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+      jobs:
+        - name: Build AAB
+          commands:
+            - artifact pull workflow bccm_build_number
+            - export BUILD_NUMBER=$(cat bccm_build_number)
+            - echo "Building with versionCode=$BUILD_NUMBER"
+            - keystore_path="$(pwd)/android/app/upload-keystore.jks"
+            - echo "$KEYSTORE_FILE" | base64 -d > "$keystore_path"
+            - |
+              cat > android/key.properties << EOF
+              storePassword=$KEYSTORE_PASSWORD
+              keyPassword=$KEY_PASSWORD
+              keyAlias=$KEY_ALIAS
+              storeFile=$keystore_path
+              EOF
+            - cache restore pub-linux-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),pub-linux-$(checksum pubspec.yaml),pub-linux
+            - make pubgetall
+            - cache store pub-linux-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml) $HOME/.pub-cache
+            - flutter build appbundle --release --flavor prod -t lib/main_prod.dart --build-number=$BUILD_NUMBER
+            - artifact push workflow build/app/outputs/bundle/prodRelease/app-prod-release.aab -d bccm.aab
+
+  - name: Deploy bccm Android
+    dependencies: [Build bccm Android]
+    run:
+      when: "branch = 'master'"
+    task:
+      secrets:
+        - name: android-play-store-api
+      jobs:
+        - name: Upload to Play (internal + beta)
+          commands:
+            - checkout
+            - sem-version ruby 3.2
+            - cp /home/semaphore/google-play-service-account.json android/fastlane/google-play-service-account.json
+            - mkdir -p build/app/outputs/bundle/prodRelease
+            - artifact pull workflow bccm.aab
+            - mv bccm.aab build/app/outputs/bundle/prodRelease/app-prod-release.aab
+            - cd android
+            - bundle install
+            - bundle exec fastlane upload

@@ -1,0 +1,70 @@
+default_platform(:android)
+
+PACKAGE_NAME = 'media.bcc.kids'
+AAB_PATH = '../build/app/outputs/bundle/release/app-release.aab'
+JSON_KEY = 'fastlane/google-play-service-account.json'
+
+platform :android do
+  desc "Write next versionCode (max of all uploaded AABs/APKs + 1) to fastlane/.next_version_code"
+  lane :next_version_code do
+    # Play Console is the source of truth for versionCode. Query every version
+    # ever uploaded — once a release is superseded, its code disappears from
+    # track listings but Google still considers it used and will reject reuse.
+    require 'supply'
+    require 'supply/options'
+    require 'supply/client'
+
+    Supply.config = FastlaneCore::Configuration.create(
+      Supply::Options.available_options,
+      {
+        package_name: PACKAGE_NAME,
+        json_key: File.join(__dir__, 'google-play-service-account.json'),
+        track: 'internal'
+      }
+    )
+
+    client = Supply::Client.make_from_config
+    client.begin_edit(package_name: PACKAGE_NAME)
+    codes = []
+    begin
+      codes.concat(Array(client.aab_version_codes))
+      codes.concat(Array(client.apks_version_codes))
+    ensure
+      client.abort_current_edit
+    end
+
+    codes = codes.compact.map(&:to_i)
+    next_code = (codes.max || 0) + 1
+    UI.message "Found #{codes.size} previously uploaded version codes (max=#{codes.max || 'none'})"
+    UI.message "Next versionCode for #{PACKAGE_NAME}: #{next_code}"
+    File.write(File.join(__dir__, '.next_version_code'), next_code.to_s)
+  end
+
+  desc "Upload AAB to internal and promote to beta"
+  lane :upload do
+    upload_to_play_store(
+      package_name: PACKAGE_NAME,
+      track: 'internal',
+      aab: AAB_PATH,
+      json_key: JSON_KEY,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      skip_upload_metadata: true,
+      skip_upload_apk: true
+    )
+
+    upload_to_play_store(
+      package_name: PACKAGE_NAME,
+      track: 'internal',
+      track_promote_to: 'beta',
+      json_key: JSON_KEY,
+      skip_upload_aab: true,
+      skip_upload_apk: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      skip_upload_metadata: true
+    )
+  end
+end

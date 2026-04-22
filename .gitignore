@@ -67,3 +67,13 @@ ios/Runner/GoogleService-Info.plist
 **/dgph
 
 .crowdin-token
+
+# Fastlane
+**/fastlane/.next_version_code
+**/fastlane/google-play-service-account.json
+**/fastlane/report.xml
+**/fastlane/README.md
+
+# Android signing (CI-injected)
+**/android/key.properties
+**/android/app/upload-keystore.jks
