@@ -97,6 +97,8 @@ blocks:
             - mkdir -p build/app/outputs/bundle/prodRelease
             - artifact pull workflow bccm.aab
             - mv bccm.aab build/app/outputs/bundle/prodRelease/app-prod-release.aab
+            - artifact pull workflow bccm_build_number
+            - export BUILD_NUMBER=$(cat bccm_build_number)
             - cd android
             - bundle install
             - bundle exec fastlane upload

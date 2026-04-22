@@ -40,8 +40,11 @@ platform :android do
     File.write(File.join(__dir__, '.next_version_code'), next_code.to_s)
   end
 
-  desc "Upload AAB to internal and promote to beta"
+  desc "Upload AAB to internal and promote to beta (Open testing)"
   lane :upload do
+    build_number = ENV['BUILD_NUMBER']
+    UI.user_error!('BUILD_NUMBER env var is required to promote a specific release to Open testing') if build_number.nil? || build_number.empty?
+
     upload_to_play_store(
       package_name: PACKAGE_NAME,
       track: 'internal',
@@ -54,11 +57,14 @@ platform :android do
       skip_upload_apk: true
     )
 
-    # Promote the just-uploaded release from internal to beta in the same run.
+    # Promote the just-uploaded release from internal to beta (Open testing).
+    # Pass version_code explicitly so supply doesn't silently no-op when it
+    # can't auto-detect the source release in a fresh edit.
     upload_to_play_store(
       package_name: PACKAGE_NAME,
       track: 'internal',
       track_promote_to: 'beta',
+      version_code: build_number.to_i,
       json_key: JSON_KEY,
       skip_upload_aab: true,
       skip_upload_apk: true,
