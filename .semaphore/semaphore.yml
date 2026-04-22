@@ -25,6 +25,8 @@ blocks:
             - test -n "$BUILD_NUMBER" && test "$BUILD_NUMBER" -gt 0
             - echo "$BUILD_NUMBER" > /tmp/bccm_build_number
             - artifact push workflow /tmp/bccm_build_number -d bccm_build_number
+      secrets:
+        - name: android-play-store-api-linux
   - name: Build bccm Android
     dependencies:
       - Prep bccm version
@@ -77,6 +79,9 @@ blocks:
             - cache store pub-linux-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml) $HOME/.pub-cache
             - flutter build appbundle --release --flavor prod -t lib/main_prod.dart --build-number=$BUILD_NUMBER
             - artifact push workflow build/app/outputs/bundle/prodRelease/app-prod-release.aab -d bccm.aab
+      secrets:
+        - name: android-keystore-bcc-media-apps
+        - name: android-play-store-api
   - name: Deploy bccm Android
     dependencies:
       - Build bccm Android
@@ -95,3 +100,5 @@ blocks:
             - cd android
             - bundle install
             - bundle exec fastlane upload
+      secrets:
+        - name: android-play-store-api
