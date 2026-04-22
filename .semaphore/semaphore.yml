@@ -101,4 +101,4 @@ blocks:
             - bundle install
             - bundle exec fastlane upload
       secrets:
-        - name: android-play-store-api
+        - name: android-play-store-api-linux
