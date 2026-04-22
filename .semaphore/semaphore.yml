@@ -1,25 +1,17 @@
 version: v1.0
 name: Build and deploy
-
 agent:
   machine:
     type: f1-standard-4
     os_image: ubuntu2404
-
 global_job_config:
   env_vars:
     - name: FLUTTER_VERSION
       value: 3.32.0
-
-# Step 1: BCCM Android only. Kids Android, BCCM iOS, Kids iOS will be added
-# in subsequent steps once this path is green.
-
 blocks:
   - name: Prep bccm version
     dependencies: []
     task:
-      secrets:
-        - name: android-play-store-api
       jobs:
         - name: Compute bccm versionCode
           commands:
@@ -33,13 +25,10 @@ blocks:
             - test -n "$BUILD_NUMBER" && test "$BUILD_NUMBER" -gt 0
             - echo "$BUILD_NUMBER" > /tmp/bccm_build_number
             - artifact push workflow /tmp/bccm_build_number -d bccm_build_number
-
   - name: Build bccm Android
-    dependencies: [Prep bccm version]
+    dependencies:
+      - Prep bccm version
     task:
-      secrets:
-        - name: brunstadtv-env
-        - name: android-keystore-bccm
       prologue:
         commands:
           - checkout
@@ -53,7 +42,7 @@ blocks:
               tar xf /tmp/flutter.tar.xz -C $HOME
             fi
           - cache store flutter-sdk-linux-$FLUTTER_VERSION $HOME/flutter
-          - export PATH="$HOME/flutter/bin:$PATH"
+          - 'export PATH="$HOME/flutter/bin:$PATH"'
           - flutter --version
           - export ANDROID_HOME="$HOME/android-sdk"
           - cache restore android-sdk
@@ -67,7 +56,7 @@ blocks:
               "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-36" "build-tools;36.0.0"
             fi
           - cache store android-sdk $ANDROID_HOME
-          - export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+          - 'export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"'
       jobs:
         - name: Build AAB
           commands:
@@ -83,19 +72,17 @@ blocks:
               keyAlias=$KEY_ALIAS
               storeFile=$keystore_path
               EOF
-            - cache restore pub-linux-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),pub-linux-$(checksum pubspec.yaml),pub-linux
+            - 'cache restore pub-linux-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),pub-linux-$(checksum pubspec.yaml),pub-linux'
             - make pubgetall
             - cache store pub-linux-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml) $HOME/.pub-cache
             - flutter build appbundle --release --flavor prod -t lib/main_prod.dart --build-number=$BUILD_NUMBER
             - artifact push workflow build/app/outputs/bundle/prodRelease/app-prod-release.aab -d bccm.aab
-
   - name: Deploy bccm Android
-    dependencies: [Build bccm Android]
+    dependencies:
+      - Build bccm Android
     run:
-      when: "branch = 'master'"
+      when: branch = 'master'
     task:
-      secrets:
-        - name: android-play-store-api
       jobs:
         - name: Upload to Play (internal + beta)
           commands:
