@@ -47,6 +47,10 @@
     {
       "path": "../bcc-media-play/flutter",
       "name": "play: mobile"
+    },
+    {
+      "path": "../bcc-media-play/web",
+      "name": "play: web"
     }
   ],
   "settings": {
@@ -58,7 +62,9 @@
     "graphql-config.load.rootDir": "submodules/bccm_flutter/bccm_core",
     "dart.lineLength": 150,
     "[dart]": {
-      "editor.rulers": [150]
+      "editor.rulers": [
+        150
+      ]
     }
   }
 }
