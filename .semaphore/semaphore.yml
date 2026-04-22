@@ -81,6 +81,7 @@ blocks:
             - artifact push workflow build/app/outputs/bundle/prodRelease/app-prod-release.aab -d bccm.aab
       secrets:
         - name: android-keystore-bcc-media-apps
+        - name: env.dart
   - name: Deploy bccm Android
     dependencies:
       - Build bccm Android
