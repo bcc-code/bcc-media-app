@@ -27,6 +27,8 @@ blocks:
             - artifact push workflow /tmp/bccm_build_number -d bccm_build_number
       secrets:
         - name: android-play-store-api-linux
+    run:
+      when: branch = 'master'
   - name: Build bccm Android
     dependencies:
       - Prep bccm version
