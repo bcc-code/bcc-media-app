@@ -86,6 +86,7 @@ dependencies:
 
 dependency_overrides:
   js: ^0.7.1
+  analyzer_plugin: 0.13.4
 
 dev_dependencies:
   integration_test:
