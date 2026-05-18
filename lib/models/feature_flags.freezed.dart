@@ -31,7 +31,6 @@ mixin _$FeatureFlags {
   bool get shortsGuide => throw _privateConstructorUsedError;
   bool get disableNpawShorts => throw _privateConstructorUsedError;
   bool get skipToChapter => throw _privateConstructorUsedError;
-  bool get bccmAudioTest => throw _privateConstructorUsedError;
   bool get shortsWithScores => throw _privateConstructorUsedError;
   bool get elasticSearch => throw _privateConstructorUsedError;
   bool get chapterSlider => throw _privateConstructorUsedError;
@@ -71,7 +70,6 @@ abstract class $FeatureFlagsCopyWith<$Res> {
       bool shortsGuide,
       bool disableNpawShorts,
       bool skipToChapter,
-      bool bccmAudioTest,
       bool shortsWithScores,
       bool elasticSearch,
       bool chapterSlider,
@@ -108,7 +106,6 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? shortsGuide = null,
     Object? disableNpawShorts = null,
     Object? skipToChapter = null,
-    Object? bccmAudioTest = null,
     Object? shortsWithScores = null,
     Object? elasticSearch = null,
     Object? chapterSlider = null,
@@ -156,10 +153,6 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
       skipToChapter: null == skipToChapter
           ? _value.skipToChapter
           : skipToChapter // ignore: cast_nullable_to_non_nullable
-              as bool,
-      bccmAudioTest: null == bccmAudioTest
-          ? _value.bccmAudioTest
-          : bccmAudioTest // ignore: cast_nullable_to_non_nullable
               as bool,
       shortsWithScores: null == shortsWithScores
           ? _value.shortsWithScores
@@ -225,7 +218,6 @@ abstract class _$$FeatureFlagsImplCopyWith<$Res>
       bool shortsGuide,
       bool disableNpawShorts,
       bool skipToChapter,
-      bool bccmAudioTest,
       bool shortsWithScores,
       bool elasticSearch,
       bool chapterSlider,
@@ -260,7 +252,6 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
     Object? shortsGuide = null,
     Object? disableNpawShorts = null,
     Object? skipToChapter = null,
-    Object? bccmAudioTest = null,
     Object? shortsWithScores = null,
     Object? elasticSearch = null,
     Object? chapterSlider = null,
@@ -308,10 +299,6 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
       skipToChapter: null == skipToChapter
           ? _value.skipToChapter
           : skipToChapter // ignore: cast_nullable_to_non_nullable
-              as bool,
-      bccmAudioTest: null == bccmAudioTest
-          ? _value.bccmAudioTest
-          : bccmAudioTest // ignore: cast_nullable_to_non_nullable
               as bool,
       shortsWithScores: null == shortsWithScores
           ? _value.shortsWithScores
@@ -372,7 +359,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
       this.shortsGuide = false,
       this.disableNpawShorts = false,
       this.skipToChapter = false,
-      this.bccmAudioTest = false,
       this.shortsWithScores = false,
       this.elasticSearch = false,
       this.chapterSlider = false,
@@ -426,9 +412,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   final bool skipToChapter;
   @override
   @JsonKey()
-  final bool bccmAudioTest;
-  @override
-  @JsonKey()
   final bool shortsWithScores;
   @override
   @JsonKey()
@@ -458,7 +441,7 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
 
   @override
   String toString() {
-    return 'FeatureFlags(variants: $variants, kidsAuth: $kidsAuth, publicSignup: $publicSignup, socialSignup: $socialSignup, shorts: $shorts, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, skipToChapter: $skipToChapter, bccmAudioTest: $bccmAudioTest, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider, showBmmStreak: $showBmmStreak, kidsMoreNorwegianContent: $kidsMoreNorwegianContent, kidsNotificationPrompt: $kidsNotificationPrompt, kidsNotificationPromptPosition: $kidsNotificationPromptPosition, kidsNotificationPromptAfterDismissal: $kidsNotificationPromptAfterDismissal, kidsNotificationPromptAfterDismissalCount: $kidsNotificationPromptAfterDismissalCount, kidsDonationLink: $kidsDonationLink)';
+    return 'FeatureFlags(variants: $variants, kidsAuth: $kidsAuth, publicSignup: $publicSignup, socialSignup: $socialSignup, shorts: $shorts, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, skipToChapter: $skipToChapter, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider, showBmmStreak: $showBmmStreak, kidsMoreNorwegianContent: $kidsMoreNorwegianContent, kidsNotificationPrompt: $kidsNotificationPrompt, kidsNotificationPromptPosition: $kidsNotificationPromptPosition, kidsNotificationPromptAfterDismissal: $kidsNotificationPromptAfterDismissal, kidsNotificationPromptAfterDismissalCount: $kidsNotificationPromptAfterDismissalCount, kidsDonationLink: $kidsDonationLink)';
   }
 
   @override
@@ -482,8 +465,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
                 other.disableNpawShorts == disableNpawShorts) &&
             (identical(other.skipToChapter, skipToChapter) ||
                 other.skipToChapter == skipToChapter) &&
-            (identical(other.bccmAudioTest, bccmAudioTest) ||
-                other.bccmAudioTest == bccmAudioTest) &&
             (identical(other.shortsWithScores, shortsWithScores) ||
                 other.shortsWithScores == shortsWithScores) &&
             (identical(other.elasticSearch, elasticSearch) ||
@@ -526,7 +507,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
         shortsGuide,
         disableNpawShorts,
         skipToChapter,
-        bccmAudioTest,
         shortsWithScores,
         elasticSearch,
         chapterSlider,
@@ -566,7 +546,6 @@ abstract class _FeatureFlags extends FeatureFlags {
       final bool shortsGuide,
       final bool disableNpawShorts,
       final bool skipToChapter,
-      final bool bccmAudioTest,
       final bool shortsWithScores,
       final bool elasticSearch,
       final bool chapterSlider,
@@ -600,8 +579,6 @@ abstract class _FeatureFlags extends FeatureFlags {
   bool get disableNpawShorts;
   @override
   bool get skipToChapter;
-  @override
-  bool get bccmAudioTest;
   @override
   bool get shortsWithScores;
   @override
