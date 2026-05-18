@@ -209,6 +209,7 @@ class AppRouter extends RootStackRouter {
             _collectionEpisodeScreenRoute,
             _pageScreenRoute,
             _showScreenRoute,
+            _playlistRoute,
           ],
         ),
         CustomRoute(
@@ -224,6 +225,7 @@ class AppRouter extends RootStackRouter {
             ),
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
+            _playlistRoute,
           ],
         ),
         CustomRoute(
@@ -241,19 +243,7 @@ class AppRouter extends RootStackRouter {
             _episodeScreenRoute,
             _collectionEpisodeScreenRoute,
             _shortScreenRoute('shorts/'),
-          ],
-        ),
-        CustomRoute(
-          page: AudioWrapperScreenRoute.page,
-          path: 'audio-test',
-          maintainState: true,
-          children: [
-            CupertinoRoute(
-              page: AudioScreenRoute.page,
-              path: '',
-              meta: const {RouteMetaConstants.navTabRoute: true},
-            ),
-            _audioPlaylistRoute,
+            _playlistRoute,
           ],
         ),
         CustomRoute(
@@ -272,6 +262,7 @@ class AppRouter extends RootStackRouter {
             _contributorScreenRoute,
             _pageScreenRoute,
             _showScreenRoute,
+            _playlistRoute,
           ],
         ),
       ],
@@ -317,10 +308,10 @@ final _showScreenRoute = CupertinoRoute(
   meta: const {RouteMetaConstants.analyticsName: 'show'},
 );
 
-final _audioPlaylistRoute = CupertinoRoute(
-  page: AudioPlaylistScreenRoute.page,
-  path: 'playlist/:playlistId',
-  meta: const {RouteMetaConstants.analyticsName: 'audio-playlist'},
+final _playlistRoute = CupertinoRoute(
+  page: PlaylistScreenRoute.page,
+  path: 'playlist/:id',
+  meta: const {RouteMetaConstants.analyticsName: 'playlist'},
 );
 
 // Empty routes
@@ -337,11 +328,6 @@ class TabsWrapperScreen extends AutoRouter {
 @RoutePage()
 class HomeWrapperScreen extends AutoRouter {
   const HomeWrapperScreen({super.key});
-}
-
-@RoutePage()
-class AudioWrapperScreen extends AutoRouter {
-  const AudioWrapperScreen({super.key});
 }
 
 @RoutePage()
