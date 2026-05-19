@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/app_bar_with_scroll_to_top.dart';
 import 'package:brunstadtv_app/components/misc/horizontal_slider.dart';
@@ -255,6 +256,7 @@ class ProfileScreen extends HookConsumerWidget {
             SliverToBoxAdapter(
               child: DownloadedVideosSection(key: downloadedKey),
             ),
+          if (kDebugMode) const SliverToBoxAdapter(child: _DevPlaylistOpener()),
           const SliverToBoxAdapter(child: SizedBox(height: 32)),
         ],
       ),
@@ -425,6 +427,49 @@ class _FavoriteItemClickWrapper extends ConsumerWidget {
           }
         },
         child: child,
+      ),
+    );
+  }
+}
+
+// DEV: temporary affordance to open a playlist by ID without a section to click.
+class _DevPlaylistOpener extends HookWidget {
+  const _DevPlaylistOpener();
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = useTextEditingController();
+    final design = DesignSystem.of(context);
+    open() {
+      final id = controller.text.trim();
+      if (id.isEmpty) return;
+      context.router.push(PlaylistScreenRoute(id: id));
+    }
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Dev: open playlist', style: design.textStyles.caption1),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: controller,
+                  decoration: const InputDecoration(hintText: 'Playlist ID'),
+                  onSubmitted: (_) => open(),
+                ),
+              ),
+              const SizedBox(width: 8),
+              design.buttons.small(
+                onPressed: open,
+                labelText: 'Open',
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
