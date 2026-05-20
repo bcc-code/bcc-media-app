@@ -25,13 +25,24 @@ class PlaylistScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
-    final playlistFuture = useMemoized(
+    final initialFuture = useMemoized(
       () => _loadAllItems(ref.read(bccmGraphQLProvider), id),
       [id],
     );
-    final snapshot = useFuture(playlistFuture);
+    final playlistFuture = useState(initialFuture);
+    useEffect(() {
+      playlistFuture.value = initialFuture;
+      return null;
+    }, [initialFuture]);
+    final snapshot = useFuture(playlistFuture.value);
 
-    if (snapshot.connectionState == ConnectionState.waiting) {
+    Future<void> refresh() async {
+      final next = _loadAllItems(ref.read(bccmGraphQLProvider), id);
+      playlistFuture.value = next;
+      await next;
+    }
+
+    if (snapshot.data == null && snapshot.connectionState == ConnectionState.waiting) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
@@ -50,8 +61,11 @@ class PlaylistScreen extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(),
-      body: CustomScrollView(
-        slivers: [
+      body: RefreshIndicator(
+        onRefresh: refresh,
+        child: CustomScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          slivers: [
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
@@ -96,25 +110,29 @@ class PlaylistScreen extends HookConsumerWidget {
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, i) {
-                final item = items[i];
-                VoidCallback onTap;
-                if (item is Query$GetPlaylist$playlist$items$items$$Episode) {
-                  onTap = () => _playEpisode(ref, item, episodes);
-                } else if (item is Query$GetPlaylist$playlist$items$items$$Short) {
-                  onTap = () => context.router.push(ShortScreenRoute(id: item.id));
-                } else {
-                  onTap = () {};
-                }
-                return _PlaylistItemRow(item: item, onTap: onTap);
-              },
-              childCount: items.length,
+          SliverList.separated(
+            itemCount: items.length,
+            itemBuilder: (context, i) {
+              final item = items[i];
+              VoidCallback onTap;
+              if (item is Query$GetPlaylist$playlist$items$items$$Episode) {
+                onTap = () => _playEpisode(ref, item, episodes);
+              } else if (item is Query$GetPlaylist$playlist$items$items$$Short) {
+                onTap = () => context.router.push(ShortScreenRoute(id: item.id));
+              } else {
+                onTap = () {};
+              }
+              return _PlaylistItemRow(item: item, onTap: onTap);
+            },
+            separatorBuilder: (context, _) => Divider(
+              height: 1,
+              thickness: 1,
+              color: design.colors.separatorOnLight,
             ),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 32)),
         ],
+        ),
       ),
     );
   }
