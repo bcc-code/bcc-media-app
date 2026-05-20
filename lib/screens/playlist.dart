@@ -10,6 +10,7 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -25,11 +26,7 @@ class PlaylistScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
     final playlistFuture = useMemoized(
-      () => ref.read(bccmGraphQLProvider).query$GetPlaylist(
-            Options$Query$GetPlaylist(
-              variables: Variables$Query$GetPlaylist(id: id, first: 1000),
-            ),
-          ),
+      () => _loadAllItems(ref.read(bccmGraphQLProvider), id),
       [id],
     );
     final snapshot = useFuture(playlistFuture);
@@ -38,15 +35,16 @@ class PlaylistScreen extends HookConsumerWidget {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
-    final playlist = snapshot.data?.parsedData?.playlist;
-    if (playlist == null) {
+    final loaded = snapshot.data;
+    if (loaded == null) {
       return Scaffold(
         appBar: AppBar(),
         body: const Center(child: Text('Playlist not found')),
       );
     }
 
-    final items = playlist.items.items;
+    final playlist = loaded.playlist;
+    final items = loaded.items;
     final episodes = items.whereType<Query$GetPlaylist$playlist$items$items$$Episode>().toList();
     final totalSeconds = episodes.fold<int>(0, (sum, e) => sum + e.duration);
 
@@ -76,7 +74,7 @@ class PlaylistScreen extends HookConsumerWidget {
                   ],
                   const SizedBox(height: 6),
                   Text(
-                    _formatSubtitle(playlist.items.total, totalSeconds),
+                    _formatSubtitle(loaded.total, totalSeconds),
                     style: design.textStyles.caption1.copyWith(color: design.colors.label3),
                   ),
                   const SizedBox(height: 24),
@@ -174,6 +172,31 @@ class PlaylistScreen extends HookConsumerWidget {
     );
   }
 
+  static Future<_LoadedPlaylist?> _loadAllItems(GraphQLClient client, String id) async {
+    Future<Query$GetPlaylist$playlist?> fetchPage(String? cursor) async {
+      final res = await client.query$GetPlaylist(
+        Options$Query$GetPlaylist(
+          variables: Variables$Query$GetPlaylist(id: id, first: 100, cursor: cursor),
+        ),
+      );
+      return res.parsedData?.playlist;
+    }
+
+    final first = await fetchPage(null);
+    if (first == null) return null;
+
+    final items = [...first.items.items];
+    String? cursor = first.items.hasNext ? first.items.nextCursor : null;
+    while (cursor != null && items.length < 5000) {
+      final next = await fetchPage(cursor);
+      if (next == null) break;
+      items.addAll(next.items.items);
+      cursor = next.items.hasNext ? next.items.nextCursor : null;
+    }
+
+    return _LoadedPlaylist(playlist: first, items: items, total: first.items.total);
+  }
+
   static String _formatSubtitle(int itemCount, int totalSeconds) {
     final parts = <String>['$itemCount items'];
     if (totalSeconds > 0) {
@@ -187,6 +210,13 @@ class PlaylistScreen extends HookConsumerWidget {
     }
     return parts.join('  •  ');
   }
+}
+
+class _LoadedPlaylist {
+  _LoadedPlaylist({required this.playlist, required this.items, required this.total});
+  final Query$GetPlaylist$playlist playlist;
+  final List<Query$GetPlaylist$playlist$items$items> items;
+  final int total;
 }
 
 class _Cover extends StatelessWidget {

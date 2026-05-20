@@ -58,6 +58,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     final artworkUri = player.currentMediaItem?.metadata?.artworkUri;
     final playbackState = player.playbackState;
     final offlineVideo = player.currentMediaItem?.isOffline;
+    final queue = BccmPlayerInterface.instance.primaryController.queue;
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -80,32 +81,39 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
           }
         }
       },
-      child: MiniPlayer(
-        key: WidgetKeys.bottomSheetMiniPlayer,
-        playerController: BccmPlayerInterface.instance.primaryController,
-        titleKey: WidgetKeys.miniPlayerTitle,
-        secondaryTitle: artist,
-        title: title ?? '',
-        artwork: artworkUri != null && (ref.watch(isOfflineProvider) || offlineVideo == true)
-            ? ExtendedNetworkImageProvider(
-                artworkUri,
-                cache: true,
-                imageCacheName: PermanentCacheManager().config.cacheKey,
-                cacheMaxAge: PermanentCacheManager().config.stalePeriod,
-              )
-            : null,
-        artworkUri: artworkUri ?? '',
-        playSemanticLabel: S.of(context).play,
-        pauseSemanticLabel: S.of(context).pause,
-        isPlaying: playbackState == PlaybackState.playing,
-        onPlayTap: () {
-          BccmPlayerInterface.instance.play(player.playerId);
-        },
-        onPauseTap: () {
-          BccmPlayerInterface.instance.pause(player.playerId);
-        },
-        onCloseTap: () {
-          BccmPlayerInterface.instance.stop(player.playerId, true);
+      child: ValueListenableBuilder<List<MediaItem>>(
+        valueListenable: queue.nextUp,
+        builder: (context, nextUp, _) {
+          final hasQueue = nextUp.isNotEmpty;
+          return MiniPlayer(
+            key: WidgetKeys.bottomSheetMiniPlayer,
+            playerController: BccmPlayerInterface.instance.primaryController,
+            titleKey: WidgetKeys.miniPlayerTitle,
+            secondaryTitle: artist,
+            title: title ?? '',
+            artwork: artworkUri != null && (ref.watch(isOfflineProvider) || offlineVideo == true)
+                ? ExtendedNetworkImageProvider(
+                    artworkUri,
+                    cache: true,
+                    imageCacheName: PermanentCacheManager().config.cacheKey,
+                    cacheMaxAge: PermanentCacheManager().config.stalePeriod,
+                  )
+                : null,
+            artworkUri: artworkUri ?? '',
+            playSemanticLabel: S.of(context).play,
+            pauseSemanticLabel: S.of(context).pause,
+            isPlaying: playbackState == PlaybackState.playing,
+            onPlayTap: () {
+              BccmPlayerInterface.instance.play(player.playerId);
+            },
+            onPauseTap: () {
+              BccmPlayerInterface.instance.pause(player.playerId);
+            },
+            hideCloseButton: hasQueue,
+            onCloseTap: () {
+              BccmPlayerInterface.instance.stop(player.playerId, true);
+            },
+          );
         },
       ),
     );
