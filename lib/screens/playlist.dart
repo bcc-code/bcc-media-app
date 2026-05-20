@@ -66,72 +66,72 @@ class PlaylistScreen extends HookConsumerWidget {
         child: CustomScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-              child: Column(
-                children: [
-                  _Cover(imageUrl: playlist.image),
-                  const SizedBox(height: 24),
-                  Text(
-                    playlist.title,
-                    style: design.textStyles.title1,
-                    textAlign: TextAlign.center,
-                  ),
-                  if (playlist.description != null && playlist.description!.isNotEmpty) ...[
-                    const SizedBox(height: 3),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+                child: Column(
+                  children: [
+                    _Cover(imageUrl: playlist.image),
+                    const SizedBox(height: 24),
                     Text(
-                      playlist.description!,
-                      style: design.textStyles.body2,
+                      playlist.title,
+                      style: design.textStyles.title1,
                       textAlign: TextAlign.center,
                     ),
-                  ],
-                  const SizedBox(height: 6),
-                  Text(
-                    _formatSubtitle(loaded.total, totalSeconds),
-                    style: design.textStyles.caption1.copyWith(color: design.colors.label3),
-                  ),
-                  const SizedBox(height: 24),
-                  SizedBox(
-                    width: double.infinity,
-                    child: design.buttons.large(
-                      labelText: 'Shuffle',
-                      variant: ButtonVariant.primary,
-                      image: SvgPicture.string(
-                        SvgIcons.play,
-                        height: 20,
-                        colorFilter: ColorFilter.mode(design.colors.onTint, BlendMode.srcIn),
+                    if (playlist.description != null && playlist.description!.isNotEmpty) ...[
+                      const SizedBox(height: 3),
+                      Text(
+                        playlist.description!,
+                        style: design.textStyles.body2,
+                        textAlign: TextAlign.center,
                       ),
-                      disabled: episodes.isEmpty,
-                      onPressed: () => _shuffle(ref, episodes),
+                    ],
+                    const SizedBox(height: 6),
+                    Text(
+                      _formatSubtitle(loaded.total, totalSeconds),
+                      style: design.textStyles.caption1.copyWith(color: design.colors.label3),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 24),
+                    SizedBox(
+                      width: double.infinity,
+                      child: design.buttons.large(
+                        labelText: 'Shuffle',
+                        variant: ButtonVariant.primary,
+                        image: SvgPicture.string(
+                          SvgIcons.play,
+                          height: 20,
+                          colorFilter: ColorFilter.mode(design.colors.onTint, BlendMode.srcIn),
+                        ),
+                        disabled: episodes.isEmpty,
+                        onPressed: () => _shuffle(ref, episodes),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          SliverList.separated(
-            itemCount: items.length,
-            itemBuilder: (context, i) {
-              final item = items[i];
-              VoidCallback onTap;
-              if (item is Query$GetPlaylist$playlist$items$items$$Episode) {
-                onTap = () => _playEpisode(ref, item, episodes);
-              } else if (item is Query$GetPlaylist$playlist$items$items$$Short) {
-                onTap = () => context.router.push(ShortScreenRoute(id: item.id));
-              } else {
-                onTap = () {};
-              }
-              return _PlaylistItemRow(item: item, onTap: onTap);
-            },
-            separatorBuilder: (context, _) => Divider(
-              height: 1,
-              thickness: 1,
-              color: design.colors.separatorOnLight,
+            SliverList.separated(
+              itemCount: items.length,
+              itemBuilder: (context, i) {
+                final item = items[i];
+                VoidCallback onTap;
+                if (item is Query$GetPlaylist$playlist$items$items$$Episode) {
+                  onTap = () => _playEpisode(ref, item, episodes);
+                } else if (item is Query$GetPlaylist$playlist$items$items$$Short) {
+                  onTap = () => context.router.push(ShortScreenRoute(id: item.id));
+                } else {
+                  onTap = () {};
+                }
+                return _PlaylistItemRow(item: item, onTap: onTap);
+              },
+              separatorBuilder: (context, _) => Divider(
+                height: 1,
+                thickness: 1,
+                color: design.colors.separatorOnLight,
+              ),
             ),
-          ),
-          const SliverToBoxAdapter(child: SizedBox(height: 32)),
-        ],
+            const SliverToBoxAdapter(child: SizedBox(height: 32)),
+          ],
         ),
       ),
     );
@@ -287,8 +287,8 @@ class _PlaylistItemRow extends ConsumerWidget {
       title = i.title;
       final songNames = i.songs.map((s) => s.title).join(', ');
       final contributorNames = i.contributors.map((c) => c.person.name).join(', ');
-      final combined = '$songNames $contributorNames'.trim();
-      subtitle = combined.isNotEmpty ? combined : null;
+      final parts = [songNames, contributorNames].where((p) => p.isNotEmpty);
+      subtitle = parts.isEmpty ? null : parts.join(' - ');
     } else if (i is Query$GetPlaylist$playlist$items$items$$Short) {
       itemId = i.id;
       title = i.title;
