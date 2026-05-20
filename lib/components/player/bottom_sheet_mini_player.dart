@@ -109,7 +109,6 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
             onPauseTap: () {
               BccmPlayerInterface.instance.pause(player.playerId);
             },
-            hideCloseButton: hasQueue,
             onCloseTap: () {
               BccmPlayerInterface.instance.stop(player.playerId, true);
             },

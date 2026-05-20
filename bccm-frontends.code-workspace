@@ -25,6 +25,10 @@
       "name": "bccm: web",
     },
     {
+      "path": "../bcc-media-platform/admin-web",
+      "name": "bccm: admin"
+    },
+    {
       "path": "../bcc-connect-live/flutter",
       "name": "live: mobile"
     },
