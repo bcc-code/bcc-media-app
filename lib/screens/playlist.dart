@@ -313,20 +313,29 @@ class _PlaylistItemRow extends ConsumerWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                if (isPlaying) ...[
-                  SvgPicture.string(
-                    SvgIcons.audioPlaying,
-                    height: 10,
-                    colorFilter: ColorFilter.mode(design.colors.tint1, BlendMode.srcIn),
+                ClipRect(
+                  child: AnimatedAlign(
+                    duration: const Duration(milliseconds: 250),
+                    curve: Curves.easeOutCubic,
+                    alignment: Alignment.centerLeft,
+                    widthFactor: isPlaying ? 1.0 : 0.0,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 6),
+                      child: SvgPicture.string(
+                        SvgIcons.audioPlaying,
+                        height: 10,
+                        colorFilter: ColorFilter.mode(design.colors.tint1, BlendMode.srcIn),
+                      ),
+                    ),
                   ),
-                  const SizedBox(width: 6),
-                ],
+                ),
                 Expanded(
-                  child: Text(
-                    title,
+                  child: AnimatedDefaultTextStyle(
+                    duration: const Duration(milliseconds: 200),
                     style: design.textStyles.title3.copyWith(color: titleColor),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
+                    child: Text(title),
                   ),
                 ),
               ],
