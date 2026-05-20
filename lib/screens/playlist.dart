@@ -5,7 +5,9 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
+import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -27,7 +29,7 @@ class PlaylistScreen extends HookConsumerWidget {
     final playlistFuture = useMemoized(
       () => ref.read(bccmGraphQLProvider).query$GetPlaylist(
             Options$Query$GetPlaylist(
-              variables: Variables$Query$GetPlaylist(id: id, first: 100),
+              variables: Variables$Query$GetPlaylist(id: id, first: 1000),
             ),
           ),
       [id],
@@ -66,15 +68,17 @@ class PlaylistScreen extends HookConsumerWidget {
                     style: design.textStyles.title1,
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 3),
-                  Text(
-                    playlist.description ?? '',
-                    style: design.textStyles.body2,
-                    textAlign: TextAlign.center,
-                  ),
+                  if (playlist.description != null && playlist.description!.isNotEmpty) ...[
+                    const SizedBox(height: 3),
+                    Text(
+                      playlist.description!,
+                      style: design.textStyles.body2,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                   const SizedBox(height: 6),
                   Text(
-                    _formatSubtitle(items.length, totalSeconds),
+                    _formatSubtitle(playlist.items.total, totalSeconds),
                     style: design.textStyles.caption1.copyWith(color: design.colors.label3),
                   ),
                   const SizedBox(height: 24),
@@ -89,7 +93,7 @@ class PlaylistScreen extends HookConsumerWidget {
                         colorFilter: ColorFilter.mode(design.colors.onTint, BlendMode.srcIn),
                       ),
                       disabled: episodes.isEmpty,
-                      onPressed: () => _shuffle(context, episodes),
+                      onPressed: () => _shuffle(ref, episodes),
                     ),
                   ),
                 ],
@@ -108,10 +112,18 @@ class PlaylistScreen extends HookConsumerWidget {
     );
   }
 
-  void _shuffle(BuildContext context, List<Query$GetPlaylist$playlist$items$items$$Episode> episodes) {
+  Future<void> _shuffle(WidgetRef ref, List<Query$GetPlaylist$playlist$items$items$$Episode> episodes) async {
     if (episodes.isEmpty) return;
     final pick = episodes[Random().nextInt(episodes.length)];
-    context.router.push(EpisodeScreenRoute(episodeId: pick.id, autoplay: true));
+    final episode = await ref.read(apiProvider).fetchEpisode(pick.id);
+    if (episode == null) return;
+    final playerId = ref.read(primaryPlayerProvider)?.playerId;
+    if (playerId == null) return;
+    await ref.read(playbackServiceProvider).playEpisode(
+          playerId: playerId,
+          episode: episode,
+          autoplay: true,
+        );
   }
 
   static String _formatSubtitle(int itemCount, int totalSeconds) {
@@ -178,11 +190,20 @@ class _PlaylistItemRow extends ConsumerWidget {
       itemId = i.id;
       title = i.title;
       final songNames = i.songs.map((s) => s.title).join(', ');
-      final songContributors = i.songs.expand((s) => s.contributors).map((c) => c.person.name).toSet().join(', ');
-      final contributorNames = songContributors.isNotEmpty ? songContributors : i.contributors.map((c) => c.person.name).join(', ');
+      final contributorNames = i.contributors.map((c) => c.person.name).join(', ');
       final combined = '$songNames $contributorNames'.trim();
-      subtitle = combined.isNotEmpty ? combined : (i.description.isNotEmpty ? i.description : null);
-      onTap = () => context.router.push(EpisodeScreenRoute(episodeId: i.id));
+      subtitle = combined.isNotEmpty ? combined : null;
+      onTap = () async {
+        final episode = await ref.read(apiProvider).fetchEpisode(i.id);
+        if (episode == null) return;
+        final playerId = ref.read(primaryPlayerProvider)?.playerId;
+        if (playerId == null) return;
+        await ref.read(playbackServiceProvider).playEpisode(
+              playerId: playerId,
+              episode: episode,
+              autoplay: true,
+            );
+      };
     } else if (i is Query$GetPlaylist$playlist$items$items$$Short) {
       itemId = i.id;
       title = i.title;
