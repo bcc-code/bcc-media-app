@@ -1,11 +1,9 @@
-import 'dart:math';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/platform.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
-import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -102,7 +100,18 @@ class PlaylistScreen extends HookConsumerWidget {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              (context, i) => _PlaylistItemRow(item: items[i]),
+              (context, i) {
+                final item = items[i];
+                VoidCallback onTap;
+                if (item is Query$GetPlaylist$playlist$items$items$$Episode) {
+                  onTap = () => _playEpisode(ref, item, episodes);
+                } else if (item is Query$GetPlaylist$playlist$items$items$$Short) {
+                  onTap = () => context.router.push(ShortScreenRoute(id: item.id));
+                } else {
+                  onTap = () {};
+                }
+                return _PlaylistItemRow(item: item, onTap: onTap);
+              },
               childCount: items.length,
             ),
           ),
@@ -112,18 +121,57 @@ class PlaylistScreen extends HookConsumerWidget {
     );
   }
 
-  Future<void> _shuffle(WidgetRef ref, List<Query$GetPlaylist$playlist$items$items$$Episode> episodes) async {
-    if (episodes.isEmpty) return;
-    final pick = episodes[Random().nextInt(episodes.length)];
-    final episode = await ref.read(apiProvider).fetchEpisode(pick.id);
-    if (episode == null) return;
+  String? _currentVideoLanguageCode(WidgetRef ref) {
+    return ref.read(primaryPlayerProvider)?.currentMediaItem?.metadata?.extras?['videoLanguage']?.toString();
+  }
+
+  Future<void> _playEpisode(
+    WidgetRef ref,
+    Query$GetPlaylist$playlist$items$items$$Episode tapped,
+    List<Query$GetPlaylist$playlist$items$items$$Episode> episodes,
+  ) async {
     final playerId = ref.read(primaryPlayerProvider)?.playerId;
     if (playerId == null) return;
-    await ref.read(playbackServiceProvider).playEpisode(
-          playerId: playerId,
-          episode: episode,
-          autoplay: true,
-        );
+    final playbackService = ref.read(playbackServiceProvider);
+    final videoLanguageCode = _currentVideoLanguageCode(ref);
+
+    final tappedIndex = episodes.indexWhere((e) => e.id == tapped.id);
+    final nextUp = tappedIndex >= 0 ? episodes.skip(tappedIndex + 1) : episodes;
+    final nextUpMediaItems = nextUp.map((e) => playbackService.mapEpisode(e, playlistId: id, videoLanguageCode: videoLanguageCode)).toList();
+
+    await BccmPlayerController.primary.queue.setShuffleEnabled(false);
+    await BccmPlayerController.primary.queue.setNextUp(nextUpMediaItems);
+
+    await playbackService.playEpisode(
+      playerId: playerId,
+      episode: tapped,
+      autoplay: true,
+      playlistId: id,
+      videoLanguageCode: videoLanguageCode,
+    );
+  }
+
+  Future<void> _shuffle(WidgetRef ref, List<Query$GetPlaylist$playlist$items$items$$Episode> episodes) async {
+    if (episodes.isEmpty) return;
+    final playerId = ref.read(primaryPlayerProvider)?.playerId;
+    if (playerId == null) return;
+    final playbackService = ref.read(playbackServiceProvider);
+    final videoLanguageCode = _currentVideoLanguageCode(ref);
+
+    final shuffled = [...episodes]..shuffle();
+    final pick = shuffled.first;
+    final rest = shuffled.skip(1).map((e) => playbackService.mapEpisode(e, playlistId: id, videoLanguageCode: videoLanguageCode)).toList();
+
+    await BccmPlayerController.primary.queue.setShuffleEnabled(true);
+    await BccmPlayerController.primary.queue.setNextUp(rest);
+
+    await playbackService.playEpisode(
+      playerId: playerId,
+      episode: pick,
+      autoplay: true,
+      playlistId: id,
+      videoLanguageCode: videoLanguageCode,
+    );
   }
 
   static String _formatSubtitle(int itemCount, int totalSeconds) {
@@ -173,9 +221,10 @@ class _Cover extends StatelessWidget {
 }
 
 class _PlaylistItemRow extends ConsumerWidget {
-  const _PlaylistItemRow({required this.item});
+  const _PlaylistItemRow({required this.item, required this.onTap});
 
   final Query$GetPlaylist$playlist$items$items item;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -183,7 +232,6 @@ class _PlaylistItemRow extends ConsumerWidget {
     String title;
     String? subtitle;
     String itemId;
-    VoidCallback onTap;
 
     final i = item;
     if (i is Query$GetPlaylist$playlist$items$items$$Episode) {
@@ -193,22 +241,10 @@ class _PlaylistItemRow extends ConsumerWidget {
       final contributorNames = i.contributors.map((c) => c.person.name).join(', ');
       final combined = '$songNames $contributorNames'.trim();
       subtitle = combined.isNotEmpty ? combined : null;
-      onTap = () async {
-        final episode = await ref.read(apiProvider).fetchEpisode(i.id);
-        if (episode == null) return;
-        final playerId = ref.read(primaryPlayerProvider)?.playerId;
-        if (playerId == null) return;
-        await ref.read(playbackServiceProvider).playEpisode(
-              playerId: playerId,
-              episode: episode,
-              autoplay: true,
-            );
-      };
     } else if (i is Query$GetPlaylist$playlist$items$items$$Short) {
       itemId = i.id;
       title = i.title;
       subtitle = 'Short';
-      onTap = () => context.router.push(ShortScreenRoute(id: i.id));
     } else {
       return const SizedBox.shrink();
     }
