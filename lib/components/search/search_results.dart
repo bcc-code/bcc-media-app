@@ -142,6 +142,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
                                     duration: e.duration,
                                     image: e.image,
                                     showTitle: e.showTitle,
+                                    seasonTitle: e.seasonTitle,
                                   ),
                                 ),
                               ),

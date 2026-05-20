@@ -5,7 +5,7 @@ import 'package:bccm_core/design_system.dart';
 //listFrame.dart
 
 class SettingList extends StatelessWidget {
-  final List<OptionButton> buttons;
+  final List<SettingsButton> buttons;
 
   const SettingList({super.key, required this.buttons});
 
@@ -38,7 +38,11 @@ class SettingList extends StatelessWidget {
   }
 }
 
-class OptionButton extends HookWidget {
+abstract class SettingsButton extends HookWidget {
+  const SettingsButton({super.key});
+}
+
+class OptionButton extends SettingsButton {
   final String optionName;
   final String? currentSelection;
   final VoidCallback onPressed;
@@ -87,6 +91,59 @@ class OptionButton extends HookWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ToggleButton extends SettingsButton {
+  final String optionName;
+  final bool value;
+  final VoidCallback onPressed;
+
+  const ToggleButton({
+    super.key,
+    required this.optionName,
+    required this.value,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onPressed,
+      child: Container(
+        height: 56,
+        padding: const EdgeInsets.only(left: 16, right: 16),
+        child: Row(
+          children: [
+            Flexible(
+              fit: FlexFit.tight,
+              child: Text(
+                optionName,
+                style: DesignSystem.of(context).textStyles.title3,
+              ),
+            ),
+            Switch(
+              value: value,
+              onChanged: (_) {
+                onPressed();
+              },
+              trackOutlineColor: WidgetStateProperty.resolveWith<Color>((states) {
+                return design.colors.separator2;
+              }),
+              trackColor: WidgetStateProperty.resolveWith<Color>((states) {
+                if (states.contains(WidgetState.selected)) {
+                  return design.colors.tint1;
+                }
+                return design.colors.background1;
+              }),
+            ),
+          ],
         ),
       ),
     );

@@ -3,6 +3,7 @@ import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/controls.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -15,7 +16,7 @@ class PlayerScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final player = BccmPlayerController.primary;
-    final mediaItem = player.value.currentMediaItem;
+    final mediaItem = ref.watch(primaryPlayerProvider.select((s) => s?.currentMediaItem));
     final design = DesignSystem.of(context);
 
     if (mediaItem == null) {

@@ -34,6 +34,7 @@ FeatureFlags getBaseFeatureFlags() {
     kidsMoreNorwegianContent: false,
     kidsNotificationPrompt: false,
     kidsNotificationPromptAfterDismissal: false,
+    kidsDonationLink: false,
   );
 }
 
@@ -86,6 +87,7 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         kidsNotificationPromptAfterDismissal: _verifyToggle(unleash, 'kids-notification-prompt-reminders-after-dismissal'),
         kidsNotificationPromptAfterDismissalCount:
             int.tryParse(unleash.getVariant('kids-notification-prompt-reminders-after-dismissal').payload?.value ?? ''),
+        kidsDonationLink: _verifyToggle(unleash, 'kids-donation-link'),
       ),
     );
 

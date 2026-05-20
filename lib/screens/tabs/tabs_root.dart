@@ -175,6 +175,9 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
         return true;
       }
     }
+    if (currentRouteMatch.name == ShortsScreenRoute.name) {
+      return true;
+    }
     return false;
   }
 

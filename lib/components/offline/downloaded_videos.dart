@@ -14,6 +14,7 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
@@ -84,6 +85,35 @@ class _DownloadedContent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final design = DesignSystem.of(context);
+    useEffect(() {
+      final sub = DownloaderInterface.instance.events.downloadFailed.listen((event) {
+        if (!context.mounted) return;
+        if (event.error == null) return;
+
+        final isIOSStorageSpaceError = event.error!.contains('CoreMediaErrorDomain error 28');
+        final title = isIOSStorageSpaceError ? S.of(context).notEnoughAvailableSpace : S.of(context).anErrorOccurred;
+        final description =
+            isIOSStorageSpaceError ? S.of(context).considerDeletingOtherVideos : '\n\n${S.of(context).technicalDetails}: ${event.error}';
+        showDialog(
+            context: context,
+            builder: (context) => TwoActionGenericDialog(
+                  title: title,
+                  description: description,
+                  firstButtonText: S.of(context).ok,
+                  secondButtonText: S.of(context).tryAgainButton,
+                  titleStyle: design.textStyles.title2.copyWith(color: design.colors.onTint),
+                  descriptionStyle: design.textStyles.body2.copyWith(color: design.colors.label3),
+                  onSecondButtonPressed: (context) {
+                    Navigator.maybePop(context);
+                    ref.read(downloadsProvider.notifier).retryDownload(event.key);
+                  },
+                ));
+      });
+
+      return sub.cancel;
+    });
+
     return SectionAnalytics(
       data: const SectionAnalyticsData(
         id: 'downloaded',

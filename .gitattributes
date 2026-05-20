@@ -1,1 +1,4 @@
 web/lib/generated/* linguist-generated=true
+lib/l10n/app_localizations_*.dart linguist-generated=true
+lib/**/*.freezed.dart linguist-generated=true
+lib/**/*.g.dart linguist-generated=true

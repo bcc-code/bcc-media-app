@@ -1,0 +1,6 @@
+appId: media.bcc.kids
+---
+- runScript: ../scripts/init.js
+- launchApp:
+    permissions:
+      all: allow

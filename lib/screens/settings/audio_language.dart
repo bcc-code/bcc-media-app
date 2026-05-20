@@ -28,7 +28,7 @@ class AudioLanguageScreen extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: OptionList<String>(
-                optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
+                optionData: appLanuageCodes.map((l) => Option(id: l, title: languages[l]!.nativeName, subTitle: languages[l]!.englishName)).toList(),
                 currentSelection: ref.watch(settingsProvider).audioLanguages.firstOrNull,
                 backgroundColor: Colors.transparent,
                 onSelectionChange: (code) {

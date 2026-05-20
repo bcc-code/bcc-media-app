@@ -1,0 +1,14 @@
+appId: media.bcc.kids
+---
+- runFlow: subflows/init.yml
+- launchApp: media.bcc.kids
+- openLink: "media.bcc.kids:///episode/951"
+- tapOn:
+    text: Open
+    optional: true
+- assertNotVisible:
+    id: player_pause_button
+- tapOn:
+    point: "50%,50%"
+- assertVisible:
+    id: player_pause_button

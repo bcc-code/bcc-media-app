@@ -44,7 +44,11 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
       curve: Curves.easeOutQuart,
       alignment: Alignment.topCenter,
       heightFactor: widget.hidden ? 0 : 1,
-      child: widget.hidden || player == null ? _buildDummy() : _buildMiniPlayer(player),
+      child: widget.hidden
+          ? const SizedBox.shrink()
+          : player == null
+              ? _buildDummy()
+              : _buildMiniPlayer(player),
     );
   }
 
@@ -86,7 +90,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
             ? ExtendedNetworkImageProvider(
                 artworkUri,
                 cache: true,
-                cacheKey: PermanentCacheManager().config.cacheKey,
+                imageCacheName: PermanentCacheManager().config.cacheKey,
                 cacheMaxAge: PermanentCacheManager().config.stalePeriod,
               )
             : null,

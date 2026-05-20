@@ -16,8 +16,6 @@ extension DownloadQualityTranslations on DownloadQuality {
         return strings.medium;
       case DownloadQuality.high:
         return strings.high;
-      default:
-        return '?';
     }
   }
 }
@@ -39,8 +37,6 @@ extension DownloadStatusTranslations on DownloadStatus {
         return strings.queued;
       case DownloadStatus.removing:
         return strings.removing;
-      default:
-        return '?';
     }
   }
 }

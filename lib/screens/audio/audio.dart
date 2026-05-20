@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:bmm_api/bmm_api.dart';
 import 'package:brunstadtv_app/api/bmm.dart';
 import 'package:brunstadtv_app/app_bar_with_scroll_to_top.dart';
@@ -546,8 +547,15 @@ class TrackRenderer extends HookConsumerWidget {
     final design = DesignSystem.of(context);
     final bmmApi = ref.read(bmmApiProvider);
     final coverUrl = bmmApi.protectedUrl(track.meta.attachedPicture);
+    final isActiveTrack =
+        ref.watch(primaryPlayerProvider.select((value) => value?.currentMediaItem?.metadata?.extras?['npaw.content.id'] == track.id.toString()));
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        color: isActiveTrack ? design.colors.background2 : null,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -571,7 +579,7 @@ class TrackRenderer extends HookConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  track.title != '' ? track.title! : track.meta.artist!,
+                  track.title != null && track.title!.isNotEmpty ? track.title! : track.meta.artist ?? '',
                   style: design.textStyles.title3,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -585,9 +593,12 @@ class TrackRenderer extends HookConsumerWidget {
                           '${getSongbookShortName(track.songbookRelations!.first.name)} ${track.songbookRelations!.first.id}',
                           style: design.textStyles.caption1.copyWith(color: design.colors.label3),
                         ),
-                      Text(
-                        track.meta.artist ?? '',
-                        style: design.textStyles.caption1.copyWith(overflow: TextOverflow.ellipsis),
+                      Expanded(
+                        child: Text(
+                          track.meta.artist ?? '',
+                          style: design.textStyles.caption1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ],
                   ),

@@ -3,5 +3,4 @@ template-arb-file: bccm_en.arb
 output-localization-file: app_localizations.dart
 output-class: S
 output-dir: lib/l10n
-synthetic-package: false
 nullable-getter: false

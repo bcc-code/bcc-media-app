@@ -93,9 +93,10 @@ class EpisodeInfo extends HookConsumerWidget {
                         effects: const [],
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
+                          spacing: 8,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 3, right: 4),
+                              padding: const EdgeInsets.only(top: 3),
                               child: FeatureBadge(
                                 label: getFormattedAgeRating(episode.ageRating),
                                 color: design.colors.background2,
@@ -111,6 +112,7 @@ class EpisodeInfo extends HookConsumerWidget {
                                   ),
                                 ),
                               ),
+                            Text(getFormattedDuration(episode.duration), style: design.textStyles.caption1.copyWith(color: design.colors.label3)),
                           ],
                         ),
                       ),

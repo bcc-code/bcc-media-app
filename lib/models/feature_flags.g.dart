@@ -34,6 +34,7 @@ _$FeatureFlagsImpl _$$FeatureFlagsImplFromJson(Map<String, dynamic> json) =>
           json['kidsNotificationPromptAfterDismissal'] as bool? ?? false,
       kidsNotificationPromptAfterDismissalCount:
           (json['kidsNotificationPromptAfterDismissalCount'] as num?)?.toInt(),
+      kidsDonationLink: json['kidsDonationLink'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
@@ -59,4 +60,5 @@ Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
           instance.kidsNotificationPromptAfterDismissal,
       'kidsNotificationPromptAfterDismissalCount':
           instance.kidsNotificationPromptAfterDismissalCount,
+      'kidsDonationLink': instance.kidsDonationLink,
     };

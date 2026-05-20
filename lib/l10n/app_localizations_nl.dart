@@ -1154,8 +1154,8 @@ class SNl extends S {
       'Toon alleen inhoud in mijn voorkeurstalen';
 
   @override
-  String get kidsLogInWithBCCTitle => 'Log in with your BCC account';
+  String get kidsLogInWithBCCTitle => 'Log in met je BCC-account';
 
   @override
-  String get kidsLoggedInWithBCCTitle => 'Signed in with BCC';
+  String get kidsLoggedInWithBCCTitle => 'Ingelogd met BCC';
 }

@@ -4,6 +4,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/app_root_inner.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/app_theme.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/router.dart';
 import 'package:brunstadtv_app/screens/onboarding/email_verification.dart';
@@ -79,6 +80,25 @@ class _AppRootState extends ConsumerState<AppRoot> {
     }
     analytics.identify(next.user!, me.analytics.anonymousId);
     ref.read(settingsProvider.notifier).setAnalyticsId(me.analytics.anonymousId);
+
+    // Process pending deep link if stored and not expired (5 minute limit)
+    final prefs = ref.read(sharedPreferencesProvider);
+    final pendingDeepLink = prefs.getString(PrefKeys.pendingDeepLink);
+    final pendingTimestamp = prefs.getInt(PrefKeys.pendingDeepLinkTimestamp);
+    prefs.remove(PrefKeys.pendingDeepLink);
+    prefs.remove(PrefKeys.pendingDeepLinkTimestamp);
+
+    if (pendingDeepLink != null && pendingTimestamp != null) {
+      final storedTime = DateTime.fromMillisecondsSinceEpoch(pendingTimestamp);
+      final isWithinFiveMinutes = DateTime.now().difference(storedTime).inMinutes < 5;
+      if (isWithinFiveMinutes) {
+        final rootRouter = globalNavigatorKey.currentContext?.router.root;
+        rootRouter?.navigateNamedFromRoot(
+          uriStringWithoutHost(Uri.parse(pendingDeepLink)),
+          onFailure: (_) {},
+        );
+      }
+    }
   }
 
   /// Opens the signup screen, so that the user can complete the registration process.
@@ -149,6 +169,10 @@ class _AppRootState extends ConsumerState<AppRoot> {
             playerTheme: BccmPlayerThemeData(
               controls: BccmControlsThemeData(
                 settingsListTextStyle: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
+                durationTextStyle: DesignSystem.of(context).textStyles.caption2.copyWith(
+                  color: DesignSystem.of(context).colors.label2,
+                  fontFeatures: [FontFeature.tabularFigures()],
+                ),
               ),
             ),
             child: GraphQLProvider(
@@ -181,6 +205,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
                       SentryNavigatorObserver(),
                     ],
                   ),
+                  onNavigationNotification: _defaultOnNavigationNotification,
                   routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
                   builder: (BuildContext context, Widget? child) {
                     return ResponsiveBreakpoints.builder(
@@ -199,5 +224,24 @@ class _AppRootState extends ConsumerState<AppRoot> {
         ),
       ),
     );
+  }
+}
+
+// Workaround for back button closing the app on android
+// https://github.com/Milad-Akarie/auto_route_library/issues/2059#issuecomment-2434908775
+bool _defaultOnNavigationNotification(NavigationNotification _) {
+  switch (WidgetsBinding.instance.lifecycleState) {
+    case null:
+    case AppLifecycleState.detached:
+    case AppLifecycleState.inactive:
+      // Avoid updating the engine when the app isn't ready.
+      return true;
+    case AppLifecycleState.resumed:
+    case AppLifecycleState.hidden:
+    case AppLifecycleState.paused:
+      SystemNavigator.setFrameworkHandlesBack(true);
+
+      /// This must be `true` instead of `notification.canHandlePop`, otherwise application closes on back gesture.
+      return true;
   }
 }

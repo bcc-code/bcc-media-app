@@ -20,6 +20,7 @@ import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -104,6 +105,40 @@ class ShortView extends HookConsumerWidget {
       BccmPlayerController.primary.stop(reset: true);
     }
 
+    final inMyList = useState(short?.inMyList ?? false);
+
+    void onFavoriteTapped() {
+      if (short == null) return;
+      ref.read(analyticsProvider).interaction(InteractionEvent(
+            interaction: 'favorite',
+            pageCode: 'shorts',
+            contextElementType: 'short',
+            contextElementId: short!.id,
+          ));
+      if (inMyList.value) {
+        ref.read(bccmGraphQLProvider).mutate$removeEntryFromMyList(
+              Options$Mutation$removeEntryFromMyList(
+                variables: Variables$Mutation$removeEntryFromMyList(entryId: short!.id),
+              ),
+            );
+      } else {
+        ref.read(bccmGraphQLProvider).mutate$addShortToMyList(
+              Options$Mutation$addShortToMyList(
+                variables: Variables$Mutation$addShortToMyList(shortId: short!.id),
+              ),
+            );
+      }
+      inMyList.value = !inMyList.value;
+      if (inMyList.value) {
+        final hasShownGuide = ref.read(sharedPreferencesProvider).getBool(PrefKeys.likedShortsGuideShown) ?? false;
+        if (hasShownGuide) return;
+        ref.read(sharedPreferencesProvider).setBool(PrefKeys.likedShortsGuideShown, true);
+        ref.read(analyticsProvider).guideShown(const GuideShownEvent(guide: 'liked-shorts'));
+        createFavoriteShortsGuide(context).show(context: context, rootOverlay: true);
+        videoController.pause();
+      }
+    }
+
     return GestureDetector(
       onLongPress: () {
         debugPrint('SHRT: longpress');
@@ -179,6 +214,10 @@ class ShortView extends HookConsumerWidget {
         playIconAnimation.value = 1.0;
         await Future.delayed(500.ms);
         playIconAnimation.reverse(from: 1.0);
+      },
+      onDoubleTap: () {
+        HapticFeedback.lightImpact();
+        onFavoriteTapped();
       },
       child: Semantics(
         value: buildSemantics(),
@@ -277,9 +316,11 @@ class ShortView extends HookConsumerWidget {
                               short: short,
                               onMuteRequested: onMuteRequested,
                               muted: muted,
+                              inMyList: inMyList,
                               videoController: videoController,
                               tabOpenAnimation: tabOpenAnimation,
                               onSourceTapped: onSourceTapped,
+                              onFavoriteTapped: onFavoriteTapped,
                             ),
                           ),
                         ],
@@ -495,22 +536,25 @@ class ShortActions extends HookConsumerWidget {
     required this.short,
     required this.onMuteRequested,
     required this.muted,
+    required this.inMyList,
     required this.videoController,
     required this.tabOpenAnimation,
     required this.onSourceTapped,
+    required this.onFavoriteTapped,
   });
 
   final Fragment$Short? short;
   final void Function(bool p1) onMuteRequested;
   final void Function() onSourceTapped;
+  final void Function() onFavoriteTapped;
   final bool muted;
+  final ValueNotifier<bool> inMyList;
   final BccmPlayerController? videoController;
   final Animation<double>? tabOpenAnimation;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
-    final inMyList = useState(short?.inMyList ?? false);
     final initialAnimation = useAnimationController();
 
     useEffect(() {
@@ -551,41 +595,7 @@ class ShortActions extends HookConsumerWidget {
           padding: const EdgeInsets.only(bottom: 12),
           child: design.buttons.large(
             variant: ButtonVariant.secondary,
-            onPressed: () {
-              if (short == null) return;
-              ref.read(analyticsProvider).interaction(InteractionEvent(
-                    interaction: 'favorite',
-                    pageCode: 'shorts',
-                    contextElementType: 'short',
-                    contextElementId: short!.id,
-                  ));
-              if (inMyList.value) {
-                ref.read(bccmGraphQLProvider).mutate$removeEntryFromMyList(
-                      Options$Mutation$removeEntryFromMyList(
-                        variables: Variables$Mutation$removeEntryFromMyList(
-                          entryId: short!.id,
-                        ),
-                      ),
-                    );
-              } else {
-                ref.read(bccmGraphQLProvider).mutate$addShortToMyList(
-                      Options$Mutation$addShortToMyList(
-                        variables: Variables$Mutation$addShortToMyList(
-                          shortId: short!.id,
-                        ),
-                      ),
-                    );
-              }
-              inMyList.value = !inMyList.value;
-              if (inMyList.value) {
-                final hasShownGuide = ref.read(sharedPreferencesProvider).getBool(PrefKeys.likedShortsGuideShown) ?? false;
-                if (hasShownGuide) return;
-                ref.read(sharedPreferencesProvider).setBool(PrefKeys.likedShortsGuideShown, true);
-                ref.read(analyticsProvider).guideShown(const GuideShownEvent(guide: 'liked-shorts'));
-                createFavoriteShortsGuide(context).show(context: context, rootOverlay: true);
-                videoController?.pause();
-              }
-            },
+            onPressed: onFavoriteTapped,
             imagePosition: ButtonImagePosition.right,
             image: inMyList.value
                 ? SvgPicture.string(

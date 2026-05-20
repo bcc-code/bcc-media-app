@@ -27,6 +27,9 @@ class PrefKeys {
   static const notificationPromptLastDismissedAt = 'notification_prompt_last_dismissed_at';
   static const notificationsEnabled = 'notifications_enabled';
   static const onlyPreferredLanguagesContentEnabled = 'only_preferred_languages_content_enabled';
+  static const audioOnly = 'audio_only';
+  static const pendingDeepLink = 'pending_deep_link';
+  static const pendingDeepLinkTimestamp = 'pending_deep_link_timestamp';
 }
 
 final webEnvUrls = <String, String>{
@@ -56,7 +59,7 @@ class MetadataExtraConstants {
 }
 
 class AppNames {
-  static const bccmAndroidTv = 'bccm-Androidtv';
+  static const bccmAndroidTv = 'bccm-androidtv';
   static const bccmMobile = 'bccm-mobile';
   static const bccmWeb = 'bccm-web';
   static const kidsMobile = 'kids-mobile';

@@ -3,8 +3,11 @@ appId: tv.brunstad.app
 - runScript: scripts/.env.js
 - runFlow: subflows/init.yml
 # Login
-- stopApp: tv.brunstad.app
-- runFlow: subflows/login.yml
+- retry:
+    maxRetries: 3
+    commands:
+      - stopApp: tv.brunstad.app
+      - runFlow: subflows/login.yml
 
 # STOPPED TESTS
 # ---

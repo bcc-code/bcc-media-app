@@ -42,16 +42,19 @@ class PlayerControls extends HookWidget {
         Positioned(
           top: 16,
           right: 16,
-          child: design.buttons.small(
-            variant: ButtonVariant.secondary,
-            onPressed: () {
-              BccmPlayerInterface.instance.openCastDialog();
-            },
-            image: SvgPicture.string(
-              SvgIcons.cast,
-              colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
+          child: Semantics(
+            identifier: 'player_cast_button',
+            child: design.buttons.small(
+              variant: ButtonVariant.secondary,
+              onPressed: () {
+                BccmPlayerInterface.instance.openCastDialog();
+              },
+              image: SvgPicture.string(
+                SvgIcons.cast,
+                colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
+              ),
+              labelText: '',
             ),
-            labelText: '',
           ),
         ),
         Align(
@@ -76,32 +79,38 @@ class PlayerControls extends HookWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 24),
                     child: playbackState == PlaybackState.playing
-                        ? design.buttons.small(
-                            variant: ButtonVariant.secondary,
-                            onPressed: () {
-                              viewController.playerController.pause();
-                            },
-                            image: SvgPicture.string(
-                              SvgIcons.pause,
-                              colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
+                        ? Semantics(
+                            identifier: 'player_pause_button',
+                            child: design.buttons.small(
+                              variant: ButtonVariant.secondary,
+                              onPressed: () {
+                                viewController.playerController.pause();
+                              },
+                              image: SvgPicture.string(
+                                SvgIcons.pause,
+                                colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
+                              ),
+                              labelText: '',
                             ),
-                            labelText: '',
                           )
-                        : design.buttons.small(
-                            variant: ButtonVariant.secondary,
-                            onPressed: () {
-                              if (viewController.playerController.value.currentMediaItem != null &&
-                                  viewController.playerController.value.error == null) {
-                                viewController.playerController.play();
-                              } else {
-                                onPlayRequestedWithoutVideo();
-                              }
-                            },
-                            image: SvgPicture.string(
-                              SvgIcons.play,
-                              colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
+                        : Semantics(
+                            identifier: 'player_play_button',
+                            child: design.buttons.small(
+                              variant: ButtonVariant.secondary,
+                              onPressed: () {
+                                if (viewController.playerController.value.currentMediaItem != null &&
+                                    viewController.playerController.value.error == null) {
+                                  viewController.playerController.play();
+                                } else {
+                                  onPlayRequestedWithoutVideo();
+                                }
+                              },
+                              image: SvgPicture.string(
+                                SvgIcons.play,
+                                colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
+                              ),
+                              labelText: '',
                             ),
-                            labelText: '',
                           ),
                   ),
                   Expanded(

@@ -1,4 +1,178 @@
-# [](https://github.com/bcc-code/bcc-media-app/compare/v5.1.41+2500051-kids...v) (2025-06-20)
+# [](https://github.com/bcc-code/bcc-media-app/compare/v5.6.97+2300257...v) (2025-12-19)
+
+
+
+## [5.6.97+2300257](https://github.com/bcc-code/bcc-media-app/compare/v5.6.96+2300256...v5.6.97+2300257) (2025-12-19)
+
+
+
+## [5.6.96+2300256](https://github.com/bcc-code/bcc-media-app/compare/v5.6.95+2300255...v5.6.96+2300256) (2025-12-18)
+
+
+### Reverts
+
+* Revert "Attempt to fix /r/code not working" ([18f0ce7](https://github.com/bcc-code/bcc-media-app/commit/18f0ce7a532b058fd1ef9d63ac56e58b61c47a41))
+
+
+
+## [5.6.95+2300255](https://github.com/bcc-code/bcc-media-app/compare/v5.1.45+2500055-kids...v5.6.95+2300255) (2025-12-18)
+
+
+
+## [5.1.45+2500055-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.94+2300254...v5.1.45+2500055-kids) (2025-10-20)
+
+
+
+## [5.6.94+2300254](https://github.com/bcc-code/bcc-media-app/compare/v5.6.93+2300253...v5.6.94+2300254) (2025-10-20)
+
+
+### Features
+
+* add play to vsc workspace ([97a68c5](https://github.com/bcc-code/bcc-media-app/commit/97a68c5ee8e02509c786d69250d65435d3715071))
+
+
+
+## [5.6.93+2300253](https://github.com/bcc-code/bcc-media-app/compare/v5.6.92+2300252...v5.6.93+2300253) (2025-09-09)
+
+
+### Bug Fixes
+
+* **episode:** force audio-only player if primary media type is audio ([532a56c](https://github.com/bcc-code/bcc-media-app/commit/532a56cbee6983800830d27f7855408c6e5c4b94))
+* roll submodule ([e4f9b8c](https://github.com/bcc-code/bcc-media-app/commit/e4f9b8cd921f5ae519ba0d43c4f9bdded1936682))
+
+
+
+## [5.6.92+2300252](https://github.com/bcc-code/bcc-media-app/compare/v5.6.91+2300251...v5.6.92+2300252) (2025-09-03)
+
+
+### Bug Fixes
+
+* **download:** show dialog when no more space ([2491414](https://github.com/bcc-code/bcc-media-app/commit/2491414bc84e9c694ab6b515f0f3f86b55ad3a46))
+* **mini-player:** add player track ([3eb4ed0](https://github.com/bcc-code/bcc-media-app/commit/3eb4ed04304f606f462b8d4f2ff01bb14c780150))
+* roll submodule ([9d8a02b](https://github.com/bcc-code/bcc-media-app/commit/9d8a02b08e0c058eb91fdceb08ebd3062506a534))
+
+
+### Features
+
+* **shorts:** double tap to like ([7d9f0c8](https://github.com/bcc-code/bcc-media-app/commit/7d9f0c846ff8ad768c4226b6b697c15711f8f6f5))
+
+
+
+## [5.6.91+2300251](https://github.com/bcc-code/bcc-media-app/compare/v5.1.44+2500054-kids...v5.6.91+2300251) (2025-08-26)
+
+
+### Bug Fixes
+
+* make test work pls ([e122199](https://github.com/bcc-code/bcc-media-app/commit/e1221995c800ecd0fcb215a617b209ed0664e2f7))
+* **sentry:** try to improve sentry integration ([ff9601d](https://github.com/bcc-code/bcc-media-app/commit/ff9601d28b6af19c714579305e6b3135edab378f))
+* **sentry:** undo logs integration ([86fd322](https://github.com/bcc-code/bcc-media-app/commit/86fd322d7c9464052d5ac6bb8690ef2119cf21eb))
+* try to make tests work again ([99dcae8](https://github.com/bcc-code/bcc-media-app/commit/99dcae8c0aa7e3d79698c150f94ce6f4ab6a5bb0))
+
+
+
+## [5.1.44+2500054-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.89+2300249...v5.1.44+2500054-kids) (2025-08-20)
+
+
+### Bug Fixes
+
+* **android:** update npaw plugin ([7ae4da9](https://github.com/bcc-code/bcc-media-app/commit/7ae4da9610be7fb9d6830a903ea98971b355809a))
+* **mini-player:** hide progressbar when hiding miniplayer ([7d88de9](https://github.com/bcc-code/bcc-media-app/commit/7d88de95c0cadadcd0f263dea1dfebd7f5b65eeb))
+* roll player module ([89ce0c4](https://github.com/bcc-code/bcc-media-app/commit/89ce0c491a5f696fb087916260a5efc001279beb))
+* roll submodule ([d72490f](https://github.com/bcc-code/bcc-media-app/commit/d72490f042b9ea94647edf996aed3b18cc8bf979))
+* **settings:** prevent deleting all content languages ([8f8521c](https://github.com/bcc-code/bcc-media-app/commit/8f8521ce85a38cf924b08b45a1a1ba948cfbfbb8))
+* stop mini player when opening shorts page ([f9a1f29](https://github.com/bcc-code/bcc-media-app/commit/f9a1f294c5e248242d898469bbf1b900cc92c53f))
+* update npaw ios plugin ([6b2a2d4](https://github.com/bcc-code/bcc-media-app/commit/6b2a2d4c337b510a6c33be5c795190560aa9658e))
+
+
+### Features
+
+* **ios:** update npaw plugin ([451b6f7](https://github.com/bcc-code/bcc-media-app/commit/451b6f7866ecf5a9654b935af4e22c23241ff38e))
+
+
+
+## [5.6.89+2300249](https://github.com/bcc-code/bcc-media-app/compare/v5.6.88+2300248...v5.6.89+2300249) (2025-08-12)
+
+
+### Bug Fixes
+
+* **episode:** autoplay by default ([d34472f](https://github.com/bcc-code/bcc-media-app/commit/d34472f5108bc88dfae36e61780ba405a07fdbb0))
+* **episode:** set autoplay to true by default ([489cebc](https://github.com/bcc-code/bcc-media-app/commit/489cebc131c801f2b29bab8b889a640084986a07))
+* generate localizations ([0a1d2a0](https://github.com/bcc-code/bcc-media-app/commit/0a1d2a038ce0c893e37e2a572811b94c2fd7e31b))
+* **player:** show correct playback speed in video settings ([b4abb7a](https://github.com/bcc-code/bcc-media-app/commit/b4abb7a898f1068ac7ceaa3d12a574b679901bb4))
+* roll bccm_flutter submodule ([dd72671](https://github.com/bcc-code/bcc-media-app/commit/dd7267134c67cacfd2a48f4fda77e87b0e912518))
+* **tests:** switch player assertion ([56832ef](https://github.com/bcc-code/bcc-media-app/commit/56832efa6d76b41cc1fd77f48313149fe4d78ba2))
+* **tests:** try fixing login flow ([88fd512](https://github.com/bcc-code/bcc-media-app/commit/88fd5123efb104098fc9823a99d7fe4a8d38246d))
+
+
+### Features
+
+* audio-only player ([f66b2b7](https://github.com/bcc-code/bcc-media-app/commit/f66b2b7806ec9cf0042d1e96263154912f3383ce))
+* **kids:** add single maestro test ([e05d854](https://github.com/bcc-code/bcc-media-app/commit/e05d8549b37d1f7c38c4a4fcd1401e5fd727ae62))
+
+
+
+## [5.6.88+2300248](https://github.com/bcc-code/bcc-media-app/compare/v5.1.43+2500053-kids...v5.6.88+2300248) (2025-07-10)
+
+
+### Bug Fixes
+
+* **build:** increase jvm memory to try to fix android build ([a8e1c03](https://github.com/bcc-code/bcc-media-app/commit/a8e1c032f6755722a054ff9d9b7eb9a007633bc6))
+* **build:** set target android skd to 35 ([27db5b1](https://github.com/bcc-code/bcc-media-app/commit/27db5b1a0833c77a16ef80440513c6b51b6473e4))
+* change order of languages ([33c13ad](https://github.com/bcc-code/bcc-media-app/commit/33c13adba683e15d96d25c1600241dd9a451242f))
+* don't use same cache key for all downloaded video thumbnails ([82d9c0a](https://github.com/bcc-code/bcc-media-app/commit/82d9c0a9b14c438870796ed54ea1981089919b8d))
+* ignore codegen in git diffs ([a05e136](https://github.com/bcc-code/bcc-media-app/commit/a05e1361b8ea1404c8b2f4c915ca1eb85c3e8252))
+* **player:** reduce default skip time in player ([bba1ef4](https://github.com/bcc-code/bcc-media-app/commit/bba1ef420b12dd453e4887ca7fa125bd3d97527f))
+* roll submodule ([373372b](https://github.com/bcc-code/bcc-media-app/commit/373372bb09f2bf31346b38bb096702919754a31a))
+* **settings:** add setting to only show content in preferred langs ([1fb229b](https://github.com/bcc-code/bcc-media-app/commit/1fb229b27e09dc6c020ebc7e384bf574d0f732a5))
+* show duration in episode info ([96750b2](https://github.com/bcc-code/bcc-media-app/commit/96750b26d9f7e197927953bd1081580bf4d8f72d))
+* show quality selector ([9b9f165](https://github.com/bcc-code/bcc-media-app/commit/9b9f165f0e646aa3a757af57f3132774b02a587b))
+
+
+
+## [5.1.43+2500053-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.87+2300247...v5.1.43+2500053-kids) (2025-07-02)
+
+
+### Bug Fixes
+
+* **kids:** feature flag for donation button ([e0a6100](https://github.com/bcc-code/bcc-media-app/commit/e0a61000a140ab41f6895aab9b04f6a06cb36e4c))
+* **kids:** try to improve build speed ([fd3a14d](https://github.com/bcc-code/bcc-media-app/commit/fd3a14df0535b90c6f1f4d57ac189c440900eb4c))
+
+
+
+## [5.6.87+2300247](https://github.com/bcc-code/bcc-media-app/compare/v5.6.86+2300246...v5.6.87+2300247) (2025-07-01)
+
+
+### Bug Fixes
+
+* **build:** try optimizing build on android ([d6cefc3](https://github.com/bcc-code/bcc-media-app/commit/d6cefc3bfb22a2a9d34ad8f4a183d19d9ce12162))
+* prevent app from closing when swiping back on android ([6f53109](https://github.com/bcc-code/bcc-media-app/commit/6f5310990fd8f3d5dfb72b730926a6b40912b38a))
+
+
+
+## [5.6.86+2300246](https://github.com/bcc-code/bcc-media-app/compare/v5.1.42+2500052-kids...v5.6.86+2300246) (2025-07-01)
+
+
+### Bug Fixes
+
+* **l10n:** update localization files ([a037eb5](https://github.com/bcc-code/bcc-media-app/commit/a037eb5a687f9ea53a1ad5f133cc6fc169cb8ea9))
+
+
+### Features
+
+* **search:** show season title for episodes in search results ([d3c9038](https://github.com/bcc-code/bcc-media-app/commit/d3c9038d8ce951d7e3e86496157fda282a14c52f))
+
+
+
+## [5.1.42+2500052-kids](https://github.com/bcc-code/bcc-media-app/compare/v5.6.85+2300245...v5.1.42+2500052-kids) (2025-06-30)
+
+
+
+## [5.6.85+2300245](https://github.com/bcc-code/bcc-media-app/compare/v5.1.41+2500051-kids...v5.6.85+2300245) (2025-06-23)
+
+
+### Bug Fixes
+
+* change applicationCode ([8613345](https://github.com/bcc-code/bcc-media-app/commit/8613345d1171bd7e254fe6f75a2f3b5b43fcd21a))
 
 
 
