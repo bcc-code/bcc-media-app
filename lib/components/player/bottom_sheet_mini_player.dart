@@ -84,7 +84,6 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
       child: ValueListenableBuilder<List<MediaItem>>(
         valueListenable: queue.nextUp,
         builder: (context, nextUp, _) {
-          final hasQueue = nextUp.isNotEmpty;
           return MiniPlayer(
             key: WidgetKeys.bottomSheetMiniPlayer,
             playerController: BccmPlayerInterface.instance.primaryController,
