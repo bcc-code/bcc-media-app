@@ -70,134 +70,150 @@ class AudioOnlyPlayer extends HookConsumerWidget {
                   ),
                 ),
               ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 64),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: AspectRatio(
-                        aspectRatio: 1,
-                        child: hasArtwork
-                            ? DecoratedBox(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(14),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withValues(alpha: 0.45),
-                                      blurRadius: 24,
-                                      offset: const Offset(0, 8),
-                                    ),
-                                  ],
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(14),
-                                  child: LayoutBuilder(
-                                    builder: (context, constraints) {
-                                      return FadeInImage(
-                                        fit: BoxFit.cover,
-                                        placeholder: MemoryImage(kTransparentImage),
-                                        image: networkImageWithRetryAndResize(
-                                          imageUrl: artworkUri,
-                                          cacheHeight: (constraints.maxHeight * MediaQuery.devicePixelRatioOf(context)).round(),
-                                        ),
-                                        imageErrorBuilder: imageErrorBuilder,
-                                        fadeInDuration: const Duration(milliseconds: 150),
-                                      );
-                                    },
+            // Middle band: cover (Expanded) + play/skip row, stacked vertically with no overlap
+            Positioned(
+              top: 24,
+              bottom: 74,
+              left: 0,
+              right: 0,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                child: Column(
+                  spacing: 16,
+                  children: [
+                    Expanded(
+                      child: Center(
+                        child: AspectRatio(
+                          aspectRatio: 1,
+                          child: hasArtwork
+                              ? DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withValues(alpha: 0.45),
+                                        blurRadius: 24,
+                                        offset: const Offset(0, 8),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              )
-                            : const SizedBox.shrink(),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TimeSkipButton(
-                        forwardRewindDurationSec: forwardRewindDurationSec,
-                        onPressed: () => timeline.scrubToRelative(-forwardRewindDurationSec * 1000),
-                        icon: const Icon(Icons.replay),
-                      ),
-                      const SizedBox(width: 28),
-                      PlayPauseButton(
-                        player: viewController.playerController,
-                      ),
-                      const SizedBox(width: 28),
-                      TimeSkipButton(
-                        forwardRewindDurationSec: forwardRewindDurationSec,
-                        onPressed: () => timeline.scrubToRelative(forwardRewindDurationSec * 1000),
-                        icon: Transform(
-                          alignment: Alignment.center,
-                          transform: Matrix4.rotationY(pi),
-                          child: const Icon(Icons.replay),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(14),
+                                    child: LayoutBuilder(
+                                      builder: (context, constraints) {
+                                        return FadeInImage(
+                                          fit: BoxFit.cover,
+                                          placeholder: MemoryImage(kTransparentImage),
+                                          image: networkImageWithRetryAndResize(
+                                            imageUrl: artworkUri,
+                                            cacheHeight: (constraints.maxHeight * MediaQuery.devicePixelRatioOf(context)).round(),
+                                          ),
+                                          imageErrorBuilder: imageErrorBuilder,
+                                          fadeInDuration: const Duration(milliseconds: 150),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              top: 12,
-              right: 14,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (controlsTheme != null && !disableToggle) const SizedBox(width: 4),
-                  if (!disableToggle)
-                    Theme(
-                      data: Theme.of(context).copyWith(
-                        iconButtonTheme: IconButtonThemeData(
-                          style: IconButton.styleFrom(
-                            padding: const EdgeInsets.all(8),
-                            minimumSize: Size.zero,
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 24),
+                          child: TimeSkipButton(
+                            forwardRewindDurationSec: forwardRewindDurationSec,
+                            onPressed: () => timeline.scrubToRelative(-forwardRewindDurationSec * 1000),
+                            icon: const Icon(Icons.replay),
                           ),
                         ),
-                      ),
-                      child: const AudioOnlyButton(),
-                    ),
-                  if (controlsTheme != null)
-                    SettingsButton(
-                      viewController: viewController,
-                      controlsTheme: controlsTheme,
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      iconSize: 24,
-                      removePadding: true,
-                    ),
-                ],
-              ),
-            ),
-            if (!isLive)
-              Positioned(
-                bottom: 16,
-                left: 12,
-                right: 12,
-                child: SmoothVideoProgress(
-                  controller: viewController.playerController,
-                  builder: (context, position, duration, child) {
-                    final durationMs = duration.inMilliseconds.toDouble();
-                    final positionMsLocal = position.inMilliseconds.toDouble().clamp(0.0, durationMs);
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (durationMs > 0)
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 6),
-                            child: Text(
-                              '${getFormattedDuration(position.inSeconds)} / ${getFormattedDuration(duration.inSeconds)}',
-                              style: design.textStyles.caption2.copyWith(
-                                color: design.colors.label1,
-                                fontFeatures: [FontFeature.tabularFigures()],
-                              ),
+                        PlayPauseButton(
+                          player: viewController.playerController,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 24),
+                          child: TimeSkipButton(
+                            forwardRewindDurationSec: forwardRewindDurationSec,
+                            onPressed: () => timeline.scrubToRelative(forwardRewindDurationSec * 1000),
+                            icon: Transform(
+                              alignment: Alignment.center,
+                              transform: Matrix4.rotationY(pi),
+                              child: const Icon(Icons.replay),
                             ),
                           ),
-                        if (controlsTheme?.progressBarTheme != null)
-                          SliderTheme(
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // Top bar: settings (mirrors default_controls.dart:46-85)
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                alignment: Alignment.topRight,
+                height: 50,
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (controlsTheme != null)
+                      SettingsButton(
+                        viewController: viewController,
+                        padding: const EdgeInsets.only(top: 12, bottom: 24, left: 24, right: 10),
+                        controlsTheme: controlsTheme,
+                        removePadding: true,
+                      ),
+                  ],
+                ),
+              ),
+            ),
+            // Bottom: duration + additionalActions + fullscreen, slider (mirrors default_controls.dart:86-168)
+            Container(
+              alignment: Alignment.bottomLeft,
+              padding: const EdgeInsets.only(left: 12, right: 12),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    height: 42,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        if (!isLive)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8, left: 13),
+                            child: Text(
+                              '${getFormattedDuration(timeline.seeking ? (timeline.currentScrub / 1000).toInt() : (timeline.actualTimeMs / 1000).toInt())} / ${getFormattedDuration((timeline.duration / 1000).toInt())}',
+                              style: controlsTheme?.durationTextStyle,
+                            ),
+                          ),
+                        const Spacer(),
+                        if (!disableToggle)
+                          const Padding(
+                            padding: EdgeInsets.only(right: 4),
+                            child: AudioOnlyButton(),
+                          ),
+                      ],
+                    ),
+                  ),
+                  if (!isLive)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: SmoothVideoProgress(
+                        controller: viewController.playerController,
+                        builder: (context, position, duration, child) {
+                          final durationMs = duration.inMilliseconds.toDouble();
+                          final positionMsLocal = position.inMilliseconds.toDouble().clamp(0.0, durationMs);
+                          if (controlsTheme?.progressBarTheme == null) return const SizedBox.shrink();
+                          return SliderTheme(
                             data: controlsTheme!.progressBarTheme!,
                             child: SizedBox(
                               height: 16,
@@ -208,12 +224,13 @@ class AudioOnlyPlayer extends HookConsumerWidget {
                                     durationMs > 0 ? (value) => viewController.playerController.seekTo(Duration(milliseconds: value.toInt())) : null,
                               ),
                             ),
-                          ),
-                      ],
-                    );
-                  },
-                ),
+                          );
+                        },
+                      ),
+                    ),
+                ],
               ),
+            ),
           ],
         ),
       ),
