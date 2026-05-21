@@ -33,7 +33,7 @@ class AudioOnlyPlayer extends HookConsumerWidget {
     const forwardRewindDurationSec = 15;
 
     return AspectRatio(
-      aspectRatio: 16 / 9,
+      aspectRatio: 4 / 3,
       child: Container(
         color: design.colors.background2,
         child: Stack(
@@ -77,7 +77,7 @@ class AudioOnlyPlayer extends HookConsumerWidget {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      padding: const EdgeInsets.symmetric(vertical: 20),
                       child: AspectRatio(
                         aspectRatio: 1,
                         child: hasArtwork
@@ -121,12 +121,10 @@ class AudioOnlyPlayer extends HookConsumerWidget {
                         forwardRewindDurationSec: forwardRewindDurationSec,
                         onPressed: () => timeline.scrubToRelative(-forwardRewindDurationSec * 1000),
                         icon: const Icon(Icons.replay),
-                        iconSize: 32,
                       ),
                       const SizedBox(width: 28),
                       PlayPauseButton(
                         player: viewController.playerController,
-                        iconSize: 48,
                       ),
                       const SizedBox(width: 28),
                       TimeSkipButton(
@@ -137,7 +135,6 @@ class AudioOnlyPlayer extends HookConsumerWidget {
                           transform: Matrix4.rotationY(pi),
                           child: const Icon(Icons.replay),
                         ),
-                        iconSize: 32,
                       ),
                     ],
                   ),
