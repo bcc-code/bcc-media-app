@@ -845,6 +845,60 @@ class SNb extends S {
   String get ageRatingAll => 'Alle';
 
   @override
+  String get episodeDescription => 'Beskrivelse';
+
+  @override
+  String get songs => 'Sanger';
+
+  @override
+  String get contributors => 'Bidragsytere';
+
+  @override
+  String get contributionTypeLyricist => 'Tekstforfatter';
+
+  @override
+  String get contributionTypeArranger => 'Arrangør';
+
+  @override
+  String get contributionTypeSinger => 'Sanger';
+
+  @override
+  String get contributionTypeSpeaker => 'Taler';
+
+  @override
+  String get contributionTypeComposer => 'Komponist';
+
+  @override
+  String get contributionTypeSoloist => 'Solist';
+
+  @override
+  String get contributionTypePerformer => 'Utøver';
+
+  @override
+  String get contributionTypeTranslator => 'Oversetter';
+
+  @override
+  String get contributionTypeDirector => 'Regissør';
+
+  @override
+  String get contributionTypeProducer => 'Produsent';
+
+  @override
+  String get contributionTypeScriptwriter => 'Manusforfatter';
+
+  @override
+  String get contributionTypeActor => 'Skuespiller';
+
+  @override
+  String get contributionTypeVoiceActor => 'Stemmeskuespiller';
+
+  @override
+  String get contributionTypeOther => 'Annet';
+
+  @override
+  String get copyright => 'Opphavsrett';
+
+  @override
   String get offline => 'Offline';
 
   @override

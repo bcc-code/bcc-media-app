@@ -1107,6 +1107,78 @@
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
+  "episodeDescription": "Beskrivelse",
+  "@episodeDescription": {
+    "description": "Section header in the 'details' tab for the description of the episode itself."
+  },
+  "songs": "Sanger",
+  "@songs": {
+    "description": "Section header in the 'details' tab listing the songs performed in an episode."
+  },
+  "contributors": "Bidragsytere",
+  "@contributors": {
+    "description": "Section header in the 'details' tab listing the contributors (composer, singer, etc.) of an episode."
+  },
+  "contributionTypeLyricist": "Tekstforfatter",
+  "@contributionTypeLyricist": {
+    "description": "Label for contributors who wrote the lyrics of a song. Used in the 'details' tab. Followed by names: 'Lyricist: ...'."
+  },
+  "contributionTypeArranger": "Arrangør",
+  "@contributionTypeArranger": {
+    "description": "Label for contributors who arranged the music of a song. Used in the 'details' tab."
+  },
+  "contributionTypeSinger": "Sanger",
+  "@contributionTypeSinger": {
+    "description": "Label for contributors who sang in a song. Used in the 'details' tab."
+  },
+  "contributionTypeSpeaker": "Taler",
+  "@contributionTypeSpeaker": {
+    "description": "Label for contributors who spoke (as opposed to sang) in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeComposer": "Komponist",
+  "@contributionTypeComposer": {
+    "description": "Label for contributors who composed the music of a song. Used in the 'details' tab."
+  },
+  "contributionTypeSoloist": "Solist",
+  "@contributionTypeSoloist": {
+    "description": "Label for the solo performer in a song. Used in the 'details' tab."
+  },
+  "contributionTypePerformer": "Utøver",
+  "@contributionTypePerformer": {
+    "description": "Label for a performer in a song or episode (generic). Used in the 'details' tab."
+  },
+  "contributionTypeTranslator": "Oversetter",
+  "@contributionTypeTranslator": {
+    "description": "Label for contributors who translated the lyrics or content. Used in the 'details' tab."
+  },
+  "contributionTypeDirector": "Regissør",
+  "@contributionTypeDirector": {
+    "description": "Label for the director of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeProducer": "Produsent",
+  "@contributionTypeProducer": {
+    "description": "Label for the producer of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeScriptwriter": "Manusforfatter",
+  "@contributionTypeScriptwriter": {
+    "description": "Label for the scriptwriter of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeActor": "Skuespiller",
+  "@contributionTypeActor": {
+    "description": "Label for actors in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeVoiceActor": "Stemmeskuespiller",
+  "@contributionTypeVoiceActor": {
+    "description": "Label for voice actors in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeOther": "Annet",
+  "@contributionTypeOther": {
+    "description": "Label for contributors with an unspecified or unusual role. Used in the 'details' tab."
+  },
+  "copyright": "Opphavsrett",
+  "@copyright": {
+    "description": "Section header in the 'details' tab showing the copyright holder of an episode."
+  },
   "offline": "Offline",
   "@offline": {
     "description": "Status indicator, indicating that you are offline; not connected to the internet."

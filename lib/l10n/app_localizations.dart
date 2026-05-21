@@ -1677,6 +1677,114 @@ abstract class S {
   /// **'All'**
   String get ageRatingAll;
 
+  /// Section header in the 'details' tab for the description of the episode itself.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get episodeDescription;
+
+  /// Section header in the 'details' tab listing the songs performed in an episode.
+  ///
+  /// In en, this message translates to:
+  /// **'Songs'**
+  String get songs;
+
+  /// Section header in the 'details' tab listing the contributors (composer, singer, etc.) of an episode.
+  ///
+  /// In en, this message translates to:
+  /// **'Contributors'**
+  String get contributors;
+
+  /// Label for contributors who wrote the lyrics of a song. Used in the 'details' tab. Followed by names: 'Lyricist: ...'.
+  ///
+  /// In en, this message translates to:
+  /// **'Lyricist'**
+  String get contributionTypeLyricist;
+
+  /// Label for contributors who arranged the music of a song. Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Arranger'**
+  String get contributionTypeArranger;
+
+  /// Label for contributors who sang in a song. Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Singer'**
+  String get contributionTypeSinger;
+
+  /// Label for contributors who spoke (as opposed to sang) in an episode. Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Speaker'**
+  String get contributionTypeSpeaker;
+
+  /// Label for contributors who composed the music of a song. Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Composer'**
+  String get contributionTypeComposer;
+
+  /// Label for the solo performer in a song. Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Soloist'**
+  String get contributionTypeSoloist;
+
+  /// Label for a performer in a song or episode (generic). Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Performer'**
+  String get contributionTypePerformer;
+
+  /// Label for contributors who translated the lyrics or content. Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Translator'**
+  String get contributionTypeTranslator;
+
+  /// Label for the director of an episode. Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Director'**
+  String get contributionTypeDirector;
+
+  /// Label for the producer of an episode. Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Producer'**
+  String get contributionTypeProducer;
+
+  /// Label for the scriptwriter of an episode. Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Scriptwriter'**
+  String get contributionTypeScriptwriter;
+
+  /// Label for actors in an episode. Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Actor'**
+  String get contributionTypeActor;
+
+  /// Label for voice actors in an episode. Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice actor'**
+  String get contributionTypeVoiceActor;
+
+  /// Label for contributors with an unspecified or unusual role. Used in the 'details' tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get contributionTypeOther;
+
+  /// Section header in the 'details' tab showing the copyright holder of an episode.
+  ///
+  /// In en, this message translates to:
+  /// **'Copyright'**
+  String get copyright;
+
   /// Status indicator, indicating that you are offline; not connected to the internet.
   ///
   /// In en, this message translates to:

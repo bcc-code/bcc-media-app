@@ -1107,6 +1107,78 @@
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
+  "episodeDescription": "Description",
+  "@episodeDescription": {
+    "description": "Section header in the 'details' tab for the description of the episode itself."
+  },
+  "songs": "Songs",
+  "@songs": {
+    "description": "Section header in the 'details' tab listing the songs performed in an episode."
+  },
+  "contributors": "Contributors",
+  "@contributors": {
+    "description": "Section header in the 'details' tab listing the contributors (composer, singer, etc.) of an episode."
+  },
+  "contributionTypeLyricist": "Lyricist",
+  "@contributionTypeLyricist": {
+    "description": "Label for contributors who wrote the lyrics of a song. Used in the 'details' tab. Followed by names: 'Lyricist: ...'."
+  },
+  "contributionTypeArranger": "Arranger",
+  "@contributionTypeArranger": {
+    "description": "Label for contributors who arranged the music of a song. Used in the 'details' tab."
+  },
+  "contributionTypeSinger": "Singer",
+  "@contributionTypeSinger": {
+    "description": "Label for contributors who sang in a song. Used in the 'details' tab."
+  },
+  "contributionTypeSpeaker": "Speaker",
+  "@contributionTypeSpeaker": {
+    "description": "Label for contributors who spoke (as opposed to sang) in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeComposer": "Composer",
+  "@contributionTypeComposer": {
+    "description": "Label for contributors who composed the music of a song. Used in the 'details' tab."
+  },
+  "contributionTypeSoloist": "Soloist",
+  "@contributionTypeSoloist": {
+    "description": "Label for the solo performer in a song. Used in the 'details' tab."
+  },
+  "contributionTypePerformer": "Performer",
+  "@contributionTypePerformer": {
+    "description": "Label for a performer in a song or episode (generic). Used in the 'details' tab."
+  },
+  "contributionTypeTranslator": "Translator",
+  "@contributionTypeTranslator": {
+    "description": "Label for contributors who translated the lyrics or content. Used in the 'details' tab."
+  },
+  "contributionTypeDirector": "Director",
+  "@contributionTypeDirector": {
+    "description": "Label for the director of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeProducer": "Producer",
+  "@contributionTypeProducer": {
+    "description": "Label for the producer of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeScriptwriter": "Scriptwriter",
+  "@contributionTypeScriptwriter": {
+    "description": "Label for the scriptwriter of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeActor": "Actor",
+  "@contributionTypeActor": {
+    "description": "Label for actors in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeVoiceActor": "Voice actor",
+  "@contributionTypeVoiceActor": {
+    "description": "Label for voice actors in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeOther": "Other",
+  "@contributionTypeOther": {
+    "description": "Label for contributors with an unspecified or unusual role. Used in the 'details' tab."
+  },
+  "copyright": "Copyright",
+  "@copyright": {
+    "description": "Section header in the 'details' tab showing the copyright holder of an episode."
+  },
   "offline": "Offline",
   "@offline": {
     "description": "Status indicator, indicating that you are offline; not connected to the internet."

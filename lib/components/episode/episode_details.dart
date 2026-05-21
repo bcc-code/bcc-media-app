@@ -6,6 +6,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+String _labelForContributionType(BuildContext context, Enum$ContributionTypeCode code) {
+  final s = S.of(context);
+  switch (code) {
+    case Enum$ContributionTypeCode.LYRICIST:
+      return s.contributionTypeLyricist;
+    case Enum$ContributionTypeCode.ARRANGER:
+      return s.contributionTypeArranger;
+    case Enum$ContributionTypeCode.SINGER:
+      return s.contributionTypeSinger;
+    case Enum$ContributionTypeCode.SPEAKER:
+      return s.contributionTypeSpeaker;
+    case Enum$ContributionTypeCode.COMPOSER:
+      return s.contributionTypeComposer;
+    case Enum$ContributionTypeCode.SOLOIST:
+      return s.contributionTypeSoloist;
+    case Enum$ContributionTypeCode.PERFORMER:
+      return s.contributionTypePerformer;
+    case Enum$ContributionTypeCode.TRANSLATOR:
+      return s.contributionTypeTranslator;
+    case Enum$ContributionTypeCode.DIRECTOR:
+      return s.contributionTypeDirector;
+    case Enum$ContributionTypeCode.PRODUCER:
+      return s.contributionTypeProducer;
+    case Enum$ContributionTypeCode.SCRIPTWRITER:
+      return s.contributionTypeScriptwriter;
+    case Enum$ContributionTypeCode.ACTOR:
+      return s.contributionTypeActor;
+    case Enum$ContributionTypeCode.VOICEACTOR:
+      return s.contributionTypeVoiceActor;
+    case Enum$ContributionTypeCode.OTHER:
+      return s.contributionTypeOther;
+    case Enum$ContributionTypeCode.$unknown:
+      return s.contributionTypeOther;
+  }
+}
+
 class _InfoItem extends StatelessWidget {
   const _InfoItem({required this.title, required this.text});
 
@@ -100,6 +136,29 @@ class _EpisodeDetailsState extends ConsumerState<EpisodeDetails> {
           final publishDate = DateTime.tryParse(episode.publishDate);
           final availableTo = DateTime.tryParse(episode.availableTo);
 
+          String contributorsToText(
+            Iterable<({String name, List<Enum$ContributionTypeCode> types})> contributors, {
+            String linePrefix = '',
+          }) {
+            final byType = <Enum$ContributionTypeCode, Set<String>>{};
+            for (final contributor in contributors) {
+              for (final type in contributor.types) {
+                byType.putIfAbsent(type, () => <String>{}).add(contributor.name);
+              }
+            }
+            return byType.entries.map((entry) => '$linePrefix${_labelForContributionType(context, entry.key)}: ${entry.value.join(', ')}').join('\n');
+          }
+
+          final contributorsText = contributorsToText([
+            ...episode.contributors.map((c) => (name: c.person.name, types: c.contributionTypes)),
+            ...episode.songs.expand((s) => s.contributors).map((c) => (name: c.person.name, types: c.contributionTypes)),
+          ]);
+
+          final songsText = episode.songs.map((song) {
+            final collection = song.collection.title;
+            return collection.isEmpty ? song.title : '${song.title} ($collection)';
+          }).join('\n');
+
           return Container(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -107,11 +166,19 @@ class _EpisodeDetailsState extends ConsumerState<EpisodeDetails> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (episode.season != null)
+                if (episode.description.isNotEmpty)
+                  _InfoItem(
+                    title: S.of(context).episodeDescription,
+                    text: episode.description,
+                  ),
+                if (episode.season != null && episode.season!.$show.description.isNotEmpty)
                   _InfoItem(
                     title: S.of(context).showDescription,
                     text: episode.season!.$show.description,
                   ),
+                if (songsText.isNotEmpty) _InfoItem(title: S.of(context).songs, text: songsText),
+                if (contributorsText.isNotEmpty) _InfoItem(title: S.of(context).contributors, text: contributorsText),
+                if (episode.copyrightHolder != null) _InfoItem(title: S.of(context).copyright, text: episode.copyrightHolder!.name),
                 if (publishDate != null)
                   _InfoItem(
                     title: S.of(context).releaseDate,
