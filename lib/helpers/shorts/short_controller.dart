@@ -9,7 +9,7 @@ import 'package:brunstadtv_app/helpers/shorts/short_analytics.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide RepeatMode;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:universal_io/io.dart';
 import 'package:unleash_proxy_client_flutter/id_generator.dart';
