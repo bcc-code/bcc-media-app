@@ -172,6 +172,7 @@ blocks:
             - make pubgetall
             - cache store pub-macos-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml) $HOME/.pub-cache
             - 'cache restore cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock),cocoapods-$(checksum ios/Podfile.lock),cocoapods'
+            - 'export DART_VM_OPTIONS="--old_gen_heap_size=6144"'
             - flutter build ipa --release --flavor prod -t lib/main_prod.dart --build-number=$BUILD_NUMBER --export-options-plist=ios/ExportOptions.plist
             - cache store cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock) ~/Library/Caches/CocoaPods ios/Pods
             - artifact push workflow build/ios/ipa/bccm.ipa -d bccm.ipa
