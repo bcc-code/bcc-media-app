@@ -122,7 +122,7 @@ blocks:
             - echo "$BUILD_NUMBER" > /tmp/bccm_ios_build_number
             - artifact push workflow /tmp/bccm_ios_build_number -d bccm_ios_build_number
       secrets:
-        - name: ios-app-store-connect-api
+        - name: ios-testflight-api
   - name: Build bccm iOS
     dependencies:
       - Prep bccm iOS version
@@ -176,7 +176,7 @@ blocks:
             - cache store cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock) ~/Library/Caches/CocoaPods ios/Pods
             - artifact push workflow build/ios/ipa/bccm.ipa -d bccm.ipa
       secrets:
-        - name: ios-signing-certs-bcc-media-apps
+        - name: ios-signing-certs
         - name: env.dart
   - name: Deploy bccm iOS
     dependencies:
@@ -196,4 +196,4 @@ blocks:
             - bundle install
             - bundle exec fastlane testflight
       secrets:
-        - name: ios-app-store-connect-api
+        - name: ios-testflight-api
