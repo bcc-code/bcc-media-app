@@ -126,11 +126,11 @@ blocks:
   - name: Build bccm iOS
     dependencies:
       - Prep bccm iOS version
-    agent:
-      machine:
-        type: a2-standard-4
-        os_image: macos-xcode26
     task:
+      agent:
+        machine:
+          type: a2-standard-4
+          os_image: macos-xcode26
       prologue:
         commands:
           - checkout
