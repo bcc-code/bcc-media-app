@@ -37,7 +37,7 @@ blocks:
         commands:
           - checkout
           - git submodule update --init --recursive
-          - cp /home/semaphore/env.dart lib/env/.env.dart
+          - echo "$BCCMEDIA_ENV_DART_BASE64" | base64 -d > lib/env/.env.dart
           - sem-version java 17
           - cache restore flutter-sdk-linux-$FLUTTER_VERSION
           - |
@@ -83,7 +83,7 @@ blocks:
             - artifact push workflow build/app/outputs/bundle/prodRelease/app-prod-release.aab -d bccm.aab
       secrets:
         - name: android-keystore-bcc-media-apps
-        - name: env.dart
+        - name: bccmedia-env-dart
   - name: Deploy bccm Android
     dependencies:
       - Build bccm Android
@@ -135,7 +135,7 @@ blocks:
         commands:
           - checkout
           - git submodule update --init --recursive
-          - cp /Users/semaphore/env.dart lib/env/.env.dart
+          - echo "$BCCMEDIA_ENV_DART_BASE64" | base64 -d > lib/env/.env.dart
           - cache restore flutter-sdk-macos-$FLUTTER_VERSION
           - |
             if [ ! -d "$HOME/flutter" ]; then
@@ -177,7 +177,7 @@ blocks:
             - artifact push workflow build/ios/ipa/bccm.ipa -d bccm.ipa
       secrets:
         - name: ios-signing-certs
-        - name: env.dart
+        - name: bccmedia-env-dart
   - name: Deploy bccm iOS
     dependencies:
       - Build bccm iOS
