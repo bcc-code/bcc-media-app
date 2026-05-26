@@ -122,7 +122,7 @@ blocks:
             - echo "$BUILD_NUMBER" > /tmp/bccm_ios_build_number
             - artifact push workflow /tmp/bccm_ios_build_number -d bccm_ios_build_number
       secrets:
-        - name: ios-testflight-api
+        - name: bccmedia-testflight-api
   - name: Build bccm iOS
     dependencies:
       - Prep bccm iOS version
@@ -196,4 +196,4 @@ blocks:
             - bundle install
             - bundle exec fastlane testflight
       secrets:
-        - name: ios-testflight-api
+        - name: bccmedia-testflight-api
