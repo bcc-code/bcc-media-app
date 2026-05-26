@@ -108,15 +108,12 @@ blocks:
         - name: android-play-store-api-linux
   - name: Prep bccm iOS version
     dependencies: []
-    agent:
-      machine:
-        type: a2-standard-4
-        os_image: macos-xcode26
     task:
       jobs:
         - name: Compute bccm iOS build number
           commands:
             - checkout
+            - sem-version ruby 3.2
             - cd ios
             - bundle install
             - bundle exec fastlane next_build_number
@@ -186,15 +183,12 @@ blocks:
       - Build bccm iOS
     run:
       when: branch = 'master'
-    agent:
-      machine:
-        type: a2-standard-4
-        os_image: macos-xcode26
     task:
       jobs:
         - name: Upload to TestFlight (internal + Beta)
           commands:
             - checkout
+            - sem-version ruby 3.2
             - mkdir -p build/ios/ipa
             - artifact pull workflow bccm.ipa
             - mv bccm.ipa build/ios/ipa/bccm.ipa
