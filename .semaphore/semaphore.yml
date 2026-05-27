@@ -161,9 +161,12 @@ blocks:
             - 'security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain-db'
             - 'export CODE_SIGN_IDENTITY=$(security find-identity -v -p codesigning | grep -o ''"[^"]*"'' | head -1 | tr -d ''"'')'
             - 'echo "Signing identity: $CODE_SIGN_IDENTITY"'
-            - mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
-            - echo "$PROVISIONING_PROFILE_BASE64" | base64 -d > "$HOME/Library/MobileDevice/Provisioning Profiles/profile.mobileprovision"
-            - export PROVISIONING_PROFILE_UUID=$(security cms -D -i "$HOME/Library/MobileDevice/Provisioning Profiles/profile.mobileprovision" | grep -A 1 "UUID" | grep -o '<string>.*</string>' | sed 's/<string>\(.*\)<\/string>/\1/')
+            # Xcode 16+ reads installed profiles from Developer/Xcode/UserData; the build/archive
+            # phase still reads the legacy MobileDevice path, so install into both.
+            - mkdir -p "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles" "$HOME/Library/MobileDevice/Provisioning Profiles"
+            - echo "$PROVISIONING_PROFILE_BASE64" | base64 -d > "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/profile.mobileprovision"
+            - cp "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/profile.mobileprovision" "$HOME/Library/MobileDevice/Provisioning Profiles/profile.mobileprovision"
+            - export PROVISIONING_PROFILE_UUID=$(security cms -D -i "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/profile.mobileprovision" | grep -A 1 "UUID" | grep -o '<string>.*</string>' | sed 's/<string>\(.*\)<\/string>/\1/')
             - 'echo "Provisioning profile UUID: $PROVISIONING_PROFILE_UUID"'
             - echo "CODE_SIGN_STYLE = Manual" >> ios/Flutter/Release.xcconfig
             - echo "PROVISIONING_PROFILE = $PROVISIONING_PROFILE_UUID" >> ios/Flutter/Release.xcconfig
