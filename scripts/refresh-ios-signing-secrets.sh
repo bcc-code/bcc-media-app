@@ -135,11 +135,15 @@ if [ ! -s "$P12_FILE" ]; then
   exit 1
 fi
 
-# Verify our cert ended up in the .p12.
-openssl pkcs12 -in "$P12_FILE" -nokeys -passin pass:"$P12_PASSWORD" 2>/dev/null \
+# Verify our cert ended up in the .p12 (advisory only — must never abort the upload).
+# 'security export' writes legacy-encrypted PKCS#12, so OpenSSL 3.x needs -legacy to
+# read it; older LibreSSL rejects that flag. Try both, and swallow any failure so a
+# read error here can't kill the script before the secret is pushed.
+P12_FIRST_SHA1=$( { openssl pkcs12 -in "$P12_FILE" -nokeys -legacy -passin pass:"$P12_PASSWORD" 2>/dev/null \
+  || openssl pkcs12 -in "$P12_FILE" -nokeys -passin pass:"$P12_PASSWORD" 2>/dev/null; } \
   | openssl x509 -noout -fingerprint -sha1 2>/dev/null \
-  | sed 's/.*=//; s/://g' | tr 'A-F' 'a-f' > "$WORK_DIR/p12_first_sha1"
-if ! grep -q "$CERT_SHA1" "$WORK_DIR/p12_first_sha1"; then
+  | sed 's/.*=//; s/://g' | tr 'A-F' 'a-f' || true )
+if [ -n "$P12_FIRST_SHA1" ] && ! printf '%s' "$P12_FIRST_SHA1" | grep -q "$CERT_SHA1"; then
   echo "warning: first cert in .p12 doesn't match expected SHA1." >&2
   echo "         The .p12 contains every codesigning identity in login.keychain-db" >&2
   echo "         (that's how 'security export' works). The build keychain on CI" >&2
