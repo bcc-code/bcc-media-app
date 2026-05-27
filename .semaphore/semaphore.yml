@@ -154,6 +154,11 @@ blocks:
             - echo "$CERTIFICATE_P12_BASE64" | base64 -d > /tmp/certificate.p12
             - security create-keychain -p "" build.keychain
             - security import /tmp/certificate.p12 -k ~/Library/Keychains/build.keychain-db -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+            # The .p12 holds only the leaf cert + key. Import the Apple WWDR G3 intermediate
+            # (issuer of our Apple Distribution cert) so the chain validates and the identity
+            # shows up as valid in `security find-identity -v`; otherwise CODE_SIGN_IDENTITY is empty.
+            - curl -fsSL https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer -o /tmp/AppleWWDRCAG3.cer
+            - security import /tmp/AppleWWDRCAG3.cer -k ~/Library/Keychains/build.keychain-db -T /usr/bin/codesign || true
             - security list-keychains -s ~/Library/Keychains/build.keychain-db
             - security default-keychain -s ~/Library/Keychains/build.keychain-db
             - security unlock-keychain -p "" ~/Library/Keychains/build.keychain-db
