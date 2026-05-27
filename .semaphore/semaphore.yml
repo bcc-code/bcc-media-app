@@ -166,6 +166,22 @@ blocks:
             - 'security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain-db'
             - 'export CODE_SIGN_IDENTITY=$(security find-identity -v -p codesigning | grep -o ''"[^"]*"'' | head -1 | tr -d ''"'')'
             - 'echo "Signing identity: $CODE_SIGN_IDENTITY"'
+            # Fail fast (with diagnostics) if no valid signing identity was found, instead of
+            # wasting a ~6 min archive that only dies at the export step.
+            - |
+              if [ -z "$CODE_SIGN_IDENTITY" ]; then
+                echo "ERROR: no valid code-signing identity in build.keychain."
+                echo "--- codesigning identities (valid + invalid) ---"
+                security find-identity -p codesigning ~/Library/Keychains/build.keychain-db || true
+                echo "--- WWDR intermediates in build.keychain ---"
+                security find-certificate -a -c "Worldwide Developer Relations" ~/Library/Keychains/build.keychain-db | grep labl || true
+                echo "--- keychain search list ---"
+                security list-keychains
+                echo "--- distribution cert trust check ---"
+                security find-certificate -c "Apple Distribution" -p ~/Library/Keychains/build.keychain-db > /tmp/leaf.pem 2>/dev/null || true
+                security verify-cert -c /tmp/leaf.pem -p codeSign 2>&1 || true
+                exit 1
+              fi
             # Xcode 16+ reads installed profiles from Developer/Xcode/UserData; the build/archive
             # phase still reads the legacy MobileDevice path, so install into both.
             - mkdir -p "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles" "$HOME/Library/MobileDevice/Provisioning Profiles"
