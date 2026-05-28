@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Refresh the Semaphore `ios-signing-certs` org secret from the cert +
+# Refresh the Semaphore iOS signing org secret from the cert +
 # provisioning profile that `fastlane match` installs.
 #
 # Run this locally on a Mac with Xcode signing access. Re-run whenever
@@ -8,23 +8,51 @@
 #
 # Prereqs:
 #   - You can run `bundle exec fastlane match appstore --readonly`
-#     from ios/. The Matchfile / env vars (MATCH_GIT_URL, MATCH_PASSWORD,
-#     etc.) need to be set up however your team configures match.
+#     from ios/ (or kids/ios/). The Matchfile / env vars (MATCH_GIT_URL,
+#     MATCH_PASSWORD, etc.) need to be set up however your team configures match.
 #   - `sem` CLI is signed in to the BCC Semaphore org with rights to
 #     replace org secrets.
 #
 # Usage:
-#   scripts/refresh-ios-signing-secrets.sh
+#   scripts/refresh-ios-signing-secrets.sh [bccm|kids]
+#     bccm (default): refreshes `ios-signing-certs` for tv.brunstad.app
+#     kids:           refreshes `kids-ios-signing-certs` for media.bcc.kids
+#
+# Note: the Android keystore secrets (`android-keystore-bcc-media-apps`,
+# `kids-android-keystore`) are one-time setup, not periodic refreshes. To
+# create them, run (after generating each app's upload keystore):
+#
+#   sem create secret kids-android-keystore \
+#     -e KEYSTORE_FILE="$(base64 -i kids-upload-keystore.jks)" \
+#     -e KEYSTORE_PASSWORD=... \
+#     -e KEY_PASSWORD=... \
+#     -e KEY_ALIAS=...
 #
 set -euo pipefail
 
-APP_IDENTIFIER="tv.brunstad.app"
+FLAVOR="${1:-bccm}"
+case "$FLAVOR" in
+  bccm)
+    APP_IDENTIFIER="tv.brunstad.app"
+    SECRET_NAME="ios-signing-certs"
+    IOS_DIR="ios"
+    ;;
+  kids)
+    APP_IDENTIFIER="media.bcc.kids"
+    SECRET_NAME="kids-ios-signing-certs"
+    IOS_DIR="kids/ios"
+    ;;
+  *)
+    echo "error: unknown flavor '$FLAVOR' (expected: bccm | kids)" >&2
+    exit 2
+    ;;
+esac
+
 TEAM_ID="6734NUF6AV"
-SECRET_NAME="ios-signing-certs"
 MATCH_TYPE="appstore"
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$REPO_ROOT/ios"
+cd "$REPO_ROOT/$IOS_DIR"
 
 for bin in bundle sem security base64 openssl plutil; do
   command -v "$bin" >/dev/null 2>&1 || { echo "error: missing '$bin' in PATH" >&2; exit 1; }
@@ -92,14 +120,14 @@ echo "==> Profile name:    $PROFILE_NAME"
 echo "==> Profile UUID:    $PROFILE_UUID"
 echo "==> Profile expires: $PROFILE_EXP"
 
-EXPECTED_NAME=$(/usr/libexec/PlistBuddy -c "Print :provisioningProfiles:$APP_IDENTIFIER" "$REPO_ROOT/ios/ExportOptions.plist" 2>/dev/null || true)
+EXPECTED_NAME=$(/usr/libexec/PlistBuddy -c "Print :provisioningProfiles:$APP_IDENTIFIER" "$REPO_ROOT/$IOS_DIR/ExportOptions.plist" 2>/dev/null || true)
 if [ -n "$EXPECTED_NAME" ] && [ "$EXPECTED_NAME" != "$PROFILE_NAME" ]; then
   echo
-  echo "WARNING: ios/ExportOptions.plist expects profile name:"
+  echo "WARNING: $IOS_DIR/ExportOptions.plist expects profile name:"
   echo "           '$EXPECTED_NAME'"
   echo "         but match installed:"
   echo "           '$PROFILE_NAME'"
-  echo "         Update ExportOptions.plist (or change the profile name in match)"
+  echo "         Update $IOS_DIR/ExportOptions.plist (or change the profile name in match)"
   echo "         and commit before re-running the pipeline, or xcodebuild's"
   echo "         export step will fail with 'no profiles matching ... installed'."
   echo

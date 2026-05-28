@@ -1,0 +1,23 @@
+version: v1.0
+name: Promote kids Android to Production
+agent:
+  machine:
+    type: f1-standard-4
+    os_image: ubuntu2404
+blocks:
+  - name: Promote AAB beta to production
+    task:
+      jobs:
+        - name: Promote on Play Store
+          commands:
+            - checkout
+            - sem-version ruby 3.2
+            - cp /home/semaphore/google-play-service-account.json kids/android/fastlane/google-play-service-account.json
+            - artifact pull workflow kids_build_number
+            - export BUILD_NUMBER=$(cat kids_build_number)
+            - test -n "$BUILD_NUMBER" && test "$BUILD_NUMBER" -gt 0
+            - cd kids/android
+            - bundle install
+            - bundle exec fastlane promote_to_production
+      secrets:
+        - name: android-play-store-api-linux
