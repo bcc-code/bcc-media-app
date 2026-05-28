@@ -37,7 +37,7 @@ blocks:
         commands:
           - checkout
           - git submodule update --init --recursive
-          - cp /home/semaphore/env.dart lib/env/.env.dart
+          - echo "$BCCMEDIA_ENV_DART_BASE64" | base64 -d > lib/env/.env.dart
           - sem-version java 17
           - cache restore flutter-sdk-linux-$FLUTTER_VERSION
           - |
@@ -83,7 +83,7 @@ blocks:
             - artifact push workflow build/app/outputs/bundle/prodRelease/app-prod-release.aab -d bccm.aab
       secrets:
         - name: android-keystore-bcc-media-apps
-        - name: env.dart
+        - name: bccmedia-env-dart
   - name: Deploy bccm Android
     dependencies:
       - Build bccm Android
@@ -106,3 +106,131 @@ blocks:
             - bundle exec fastlane upload
       secrets:
         - name: android-play-store-api-linux
+  - name: Prep bccm iOS version
+    dependencies: []
+    task:
+      jobs:
+        - name: Compute bccm iOS build number
+          commands:
+            - checkout
+            - sem-version ruby 3.2
+            - cd ios
+            - bundle install
+            - bundle exec fastlane next_build_number
+            - export BUILD_NUMBER=$(cat fastlane/.next_build_number)
+            - test -n "$BUILD_NUMBER" && test "$BUILD_NUMBER" -gt 0
+            - echo "$BUILD_NUMBER" > /tmp/bccm_ios_build_number
+            - artifact push workflow /tmp/bccm_ios_build_number -d bccm_ios_build_number
+      secrets:
+        - name: bccmedia-testflight-api
+  - name: Build bccm iOS
+    dependencies:
+      - Prep bccm iOS version
+    task:
+      agent:
+        machine:
+          type: a2-standard-4
+          os_image: macos-xcode26
+      prologue:
+        commands:
+          - checkout
+          - git submodule update --init --recursive
+          - echo "$BCCMEDIA_ENV_DART_BASE64" | base64 -d > lib/env/.env.dart
+          - cache restore flutter-sdk-macos-$FLUTTER_VERSION
+          - |
+            if [ ! -d "$HOME/flutter" ]; then
+              curl -sSL -o /tmp/flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_${FLUTTER_VERSION}-stable.tar.xz
+              tar xf /tmp/flutter.tar.xz -C $HOME
+            fi
+          - cache store flutter-sdk-macos-$FLUTTER_VERSION $HOME/flutter
+          - 'export PATH="$HOME/flutter/bin:$PATH"'
+          - flutter --version
+      jobs:
+        - name: Build IPA
+          commands:
+            - artifact pull workflow bccm_ios_build_number
+            - export BUILD_NUMBER=$(cat bccm_ios_build_number)
+            - echo "Building with iOS build number=$BUILD_NUMBER"
+            - echo "$CERTIFICATE_P12_BASE64" | base64 -d > /tmp/certificate.p12
+            - security create-keychain -p "" build.keychain
+            - security import /tmp/certificate.p12 -k ~/Library/Keychains/build.keychain-db -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+            # The .p12 holds only the leaf cert + key. Import the Apple WWDR G3 intermediate
+            # (issuer of our Apple Distribution cert) so the chain validates and the identity
+            # shows up as valid in `security find-identity -v`; otherwise CODE_SIGN_IDENTITY is empty.
+            - curl -fsSL https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer -o /tmp/AppleWWDRCAG3.cer
+            - security import /tmp/AppleWWDRCAG3.cer -k ~/Library/Keychains/build.keychain-db -T /usr/bin/codesign || true
+            - security list-keychains -s ~/Library/Keychains/build.keychain-db
+            - security default-keychain -s ~/Library/Keychains/build.keychain-db
+            - security unlock-keychain -p "" ~/Library/Keychains/build.keychain-db
+            - security set-keychain-settings ~/Library/Keychains/build.keychain-db
+            - 'security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain-db'
+            - 'export CODE_SIGN_IDENTITY=$(security find-identity -v -p codesigning | grep -o ''"[^"]*"'' | head -1 | tr -d ''"'')'
+            - 'echo "Signing identity: $CODE_SIGN_IDENTITY"'
+            # Fail fast (with diagnostics) if no valid signing identity was found, instead of
+            # wasting a ~6 min archive that only dies at the export step.
+            - |
+              if [ -z "$CODE_SIGN_IDENTITY" ]; then
+                echo "ERROR: no valid code-signing identity in build.keychain."
+                echo "--- codesigning identities (valid + invalid) ---"
+                security find-identity -p codesigning ~/Library/Keychains/build.keychain-db || true
+                echo "--- WWDR intermediates in build.keychain ---"
+                security find-certificate -a -c "Worldwide Developer Relations" ~/Library/Keychains/build.keychain-db | grep labl || true
+                echo "--- keychain search list ---"
+                security list-keychains
+                echo "--- distribution cert trust check ---"
+                security find-certificate -c "Apple Distribution" -p ~/Library/Keychains/build.keychain-db > /tmp/leaf.pem 2>/dev/null || true
+                security verify-cert -c /tmp/leaf.pem -p codeSign 2>&1 || true
+                exit 1
+              fi
+            # Xcode 16+ reads installed profiles from Developer/Xcode/UserData; the build/archive
+            # phase still reads the legacy MobileDevice path, so install into both.
+            - mkdir -p "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles" "$HOME/Library/MobileDevice/Provisioning Profiles"
+            - echo "$PROVISIONING_PROFILE_BASE64" | base64 -d > "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/profile.mobileprovision"
+            - cp "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/profile.mobileprovision" "$HOME/Library/MobileDevice/Provisioning Profiles/profile.mobileprovision"
+            - export PROVISIONING_PROFILE_UUID=$(security cms -D -i "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/profile.mobileprovision" | grep -A 1 "UUID" | grep -o '<string>.*</string>' | sed 's/<string>\(.*\)<\/string>/\1/')
+            - 'echo "Provisioning profile UUID: $PROVISIONING_PROFILE_UUID"'
+            - echo "CODE_SIGN_STYLE = Manual" >> ios/Flutter/Release.xcconfig
+            - echo "PROVISIONING_PROFILE = $PROVISIONING_PROFILE_UUID" >> ios/Flutter/Release.xcconfig
+            - echo "CODE_SIGN_IDENTITY = $CODE_SIGN_IDENTITY" >> ios/Flutter/Release.xcconfig
+            - 'cache restore pub-macos-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),pub-macos-$(checksum pubspec.yaml),pub-macos'
+            - make pubgetall
+            - cache store pub-macos-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml) $HOME/.pub-cache
+            - 'cache restore cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock),cocoapods-$(checksum ios/Podfile.lock),cocoapods'
+            - 'export DART_VM_OPTIONS="--old_gen_heap_size=6144"'
+            - flutter build ipa --release --flavor prod -t lib/main_prod.dart --build-number=$BUILD_NUMBER --export-options-plist=ios/ExportOptions.plist
+            - cache store cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock) ios/Pods
+            # flutter names the IPA after the app (not "bccm.ipa", and possibly with a
+            # space), so normalize it to a stable name the artifact + deploy job rely on.
+            - |
+              shopt -s nullglob
+              ipas=(build/ios/ipa/*.ipa)
+              echo "Built IPA(s): ${ipas[*]:-<none>}"
+              if [ ${#ipas[@]} -eq 0 ]; then echo "ERROR: no .ipa produced by flutter build ipa"; exit 1; fi
+              [ "${ipas[0]}" = build/ios/ipa/bccm.ipa ] || mv "${ipas[0]}" build/ios/ipa/bccm.ipa
+            - artifact push workflow build/ios/ipa/bccm.ipa -d bccm.ipa
+      secrets:
+        - name: ios-signing-certs
+        - name: bccmedia-env-dart
+  - name: Deploy bccm iOS
+    dependencies:
+      - Build bccm iOS
+    run:
+      when: branch = 'master'
+    task:
+      agent:
+        machine:
+          type: a2-standard-4
+          os_image: macos-xcode26
+      jobs:
+        - name: Upload to TestFlight (internal + Beta)
+          commands:
+            - checkout
+            - sem-version ruby 3.2
+            - mkdir -p build/ios/ipa
+            - artifact pull workflow bccm.ipa
+            - mv bccm.ipa build/ios/ipa/bccm.ipa
+            - cd ios
+            - bundle install
+            - bundle exec fastlane testflight
+      secrets:
+        - name: bccmedia-testflight-api

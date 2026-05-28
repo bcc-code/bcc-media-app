@@ -11,7 +11,7 @@
     <key>provisioningProfiles</key>
     <dict>
         <key>tv.brunstad.app</key>
-        <string>BCC Media AppStore</string>
+        <string>match AppStore tv.brunstad.app</string>
     </dict>
     <key>stripSwiftSymbols</key>
     <true/>
