@@ -12,7 +12,8 @@ part of 'feature_flags.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 FeatureFlags _$FeatureFlagsFromJson(Map<String, dynamic> json) {
   return _FeatureFlags.fromJson(json);
@@ -57,29 +58,31 @@ mixin _$FeatureFlags {
 /// @nodoc
 abstract class $FeatureFlagsCopyWith<$Res> {
   factory $FeatureFlagsCopyWith(
-          FeatureFlags value, $Res Function(FeatureFlags) then) =
-      _$FeatureFlagsCopyWithImpl<$Res, FeatureFlags>;
+    FeatureFlags value,
+    $Res Function(FeatureFlags) then,
+  ) = _$FeatureFlagsCopyWithImpl<$Res, FeatureFlags>;
   @useResult
-  $Res call(
-      {List<String> variants,
-      bool kidsAuth,
-      bool publicSignup,
-      bool socialSignup,
-      bool shorts,
-      bool shortsHideBeta,
-      bool shortsGuide,
-      bool disableNpawShorts,
-      bool skipToChapter,
-      bool shortsWithScores,
-      bool elasticSearch,
-      bool chapterSlider,
-      bool showBmmStreak,
-      bool kidsMoreNorwegianContent,
-      bool kidsNotificationPrompt,
-      int? kidsNotificationPromptPosition,
-      bool kidsNotificationPromptAfterDismissal,
-      int? kidsNotificationPromptAfterDismissalCount,
-      bool kidsDonationLink});
+  $Res call({
+    List<String> variants,
+    bool kidsAuth,
+    bool publicSignup,
+    bool socialSignup,
+    bool shorts,
+    bool shortsHideBeta,
+    bool shortsGuide,
+    bool disableNpawShorts,
+    bool skipToChapter,
+    bool shortsWithScores,
+    bool elasticSearch,
+    bool chapterSlider,
+    bool showBmmStreak,
+    bool kidsMoreNorwegianContent,
+    bool kidsNotificationPrompt,
+    int? kidsNotificationPromptPosition,
+    bool kidsNotificationPromptAfterDismissal,
+    int? kidsNotificationPromptAfterDismissalCount,
+    bool kidsDonationLink,
+  });
 }
 
 /// @nodoc
@@ -117,86 +120,90 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? kidsNotificationPromptAfterDismissalCount = freezed,
     Object? kidsDonationLink = null,
   }) {
-    return _then(_value.copyWith(
-      variants: null == variants
-          ? _value.variants
-          : variants // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      kidsAuth: null == kidsAuth
-          ? _value.kidsAuth
-          : kidsAuth // ignore: cast_nullable_to_non_nullable
-              as bool,
-      publicSignup: null == publicSignup
-          ? _value.publicSignup
-          : publicSignup // ignore: cast_nullable_to_non_nullable
-              as bool,
-      socialSignup: null == socialSignup
-          ? _value.socialSignup
-          : socialSignup // ignore: cast_nullable_to_non_nullable
-              as bool,
-      shorts: null == shorts
-          ? _value.shorts
-          : shorts // ignore: cast_nullable_to_non_nullable
-              as bool,
-      shortsHideBeta: null == shortsHideBeta
-          ? _value.shortsHideBeta
-          : shortsHideBeta // ignore: cast_nullable_to_non_nullable
-              as bool,
-      shortsGuide: null == shortsGuide
-          ? _value.shortsGuide
-          : shortsGuide // ignore: cast_nullable_to_non_nullable
-              as bool,
-      disableNpawShorts: null == disableNpawShorts
-          ? _value.disableNpawShorts
-          : disableNpawShorts // ignore: cast_nullable_to_non_nullable
-              as bool,
-      skipToChapter: null == skipToChapter
-          ? _value.skipToChapter
-          : skipToChapter // ignore: cast_nullable_to_non_nullable
-              as bool,
-      shortsWithScores: null == shortsWithScores
-          ? _value.shortsWithScores
-          : shortsWithScores // ignore: cast_nullable_to_non_nullable
-              as bool,
-      elasticSearch: null == elasticSearch
-          ? _value.elasticSearch
-          : elasticSearch // ignore: cast_nullable_to_non_nullable
-              as bool,
-      chapterSlider: null == chapterSlider
-          ? _value.chapterSlider
-          : chapterSlider // ignore: cast_nullable_to_non_nullable
-              as bool,
-      showBmmStreak: null == showBmmStreak
-          ? _value.showBmmStreak
-          : showBmmStreak // ignore: cast_nullable_to_non_nullable
-              as bool,
-      kidsMoreNorwegianContent: null == kidsMoreNorwegianContent
-          ? _value.kidsMoreNorwegianContent
-          : kidsMoreNorwegianContent // ignore: cast_nullable_to_non_nullable
-              as bool,
-      kidsNotificationPrompt: null == kidsNotificationPrompt
-          ? _value.kidsNotificationPrompt
-          : kidsNotificationPrompt // ignore: cast_nullable_to_non_nullable
-              as bool,
-      kidsNotificationPromptPosition: freezed == kidsNotificationPromptPosition
-          ? _value.kidsNotificationPromptPosition
-          : kidsNotificationPromptPosition // ignore: cast_nullable_to_non_nullable
-              as int?,
-      kidsNotificationPromptAfterDismissal: null ==
-              kidsNotificationPromptAfterDismissal
-          ? _value.kidsNotificationPromptAfterDismissal
-          : kidsNotificationPromptAfterDismissal // ignore: cast_nullable_to_non_nullable
-              as bool,
-      kidsNotificationPromptAfterDismissalCount: freezed ==
-              kidsNotificationPromptAfterDismissalCount
-          ? _value.kidsNotificationPromptAfterDismissalCount
-          : kidsNotificationPromptAfterDismissalCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      kidsDonationLink: null == kidsDonationLink
-          ? _value.kidsDonationLink
-          : kidsDonationLink // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            variants: null == variants
+                ? _value.variants
+                : variants // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            kidsAuth: null == kidsAuth
+                ? _value.kidsAuth
+                : kidsAuth // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            publicSignup: null == publicSignup
+                ? _value.publicSignup
+                : publicSignup // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            socialSignup: null == socialSignup
+                ? _value.socialSignup
+                : socialSignup // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            shorts: null == shorts
+                ? _value.shorts
+                : shorts // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            shortsHideBeta: null == shortsHideBeta
+                ? _value.shortsHideBeta
+                : shortsHideBeta // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            shortsGuide: null == shortsGuide
+                ? _value.shortsGuide
+                : shortsGuide // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            disableNpawShorts: null == disableNpawShorts
+                ? _value.disableNpawShorts
+                : disableNpawShorts // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            skipToChapter: null == skipToChapter
+                ? _value.skipToChapter
+                : skipToChapter // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            shortsWithScores: null == shortsWithScores
+                ? _value.shortsWithScores
+                : shortsWithScores // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            elasticSearch: null == elasticSearch
+                ? _value.elasticSearch
+                : elasticSearch // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            chapterSlider: null == chapterSlider
+                ? _value.chapterSlider
+                : chapterSlider // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            showBmmStreak: null == showBmmStreak
+                ? _value.showBmmStreak
+                : showBmmStreak // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            kidsMoreNorwegianContent: null == kidsMoreNorwegianContent
+                ? _value.kidsMoreNorwegianContent
+                : kidsMoreNorwegianContent // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            kidsNotificationPrompt: null == kidsNotificationPrompt
+                ? _value.kidsNotificationPrompt
+                : kidsNotificationPrompt // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            kidsNotificationPromptPosition:
+                freezed == kidsNotificationPromptPosition
+                ? _value.kidsNotificationPromptPosition
+                : kidsNotificationPromptPosition // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            kidsNotificationPromptAfterDismissal:
+                null == kidsNotificationPromptAfterDismissal
+                ? _value.kidsNotificationPromptAfterDismissal
+                : kidsNotificationPromptAfterDismissal // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            kidsNotificationPromptAfterDismissalCount:
+                freezed == kidsNotificationPromptAfterDismissalCount
+                ? _value.kidsNotificationPromptAfterDismissalCount
+                : kidsNotificationPromptAfterDismissalCount // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            kidsDonationLink: null == kidsDonationLink
+                ? _value.kidsDonationLink
+                : kidsDonationLink // ignore: cast_nullable_to_non_nullable
+                      as bool,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -204,30 +211,32 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
 abstract class _$$FeatureFlagsImplCopyWith<$Res>
     implements $FeatureFlagsCopyWith<$Res> {
   factory _$$FeatureFlagsImplCopyWith(
-          _$FeatureFlagsImpl value, $Res Function(_$FeatureFlagsImpl) then) =
-      __$$FeatureFlagsImplCopyWithImpl<$Res>;
+    _$FeatureFlagsImpl value,
+    $Res Function(_$FeatureFlagsImpl) then,
+  ) = __$$FeatureFlagsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<String> variants,
-      bool kidsAuth,
-      bool publicSignup,
-      bool socialSignup,
-      bool shorts,
-      bool shortsHideBeta,
-      bool shortsGuide,
-      bool disableNpawShorts,
-      bool skipToChapter,
-      bool shortsWithScores,
-      bool elasticSearch,
-      bool chapterSlider,
-      bool showBmmStreak,
-      bool kidsMoreNorwegianContent,
-      bool kidsNotificationPrompt,
-      int? kidsNotificationPromptPosition,
-      bool kidsNotificationPromptAfterDismissal,
-      int? kidsNotificationPromptAfterDismissalCount,
-      bool kidsDonationLink});
+  $Res call({
+    List<String> variants,
+    bool kidsAuth,
+    bool publicSignup,
+    bool socialSignup,
+    bool shorts,
+    bool shortsHideBeta,
+    bool shortsGuide,
+    bool disableNpawShorts,
+    bool skipToChapter,
+    bool shortsWithScores,
+    bool elasticSearch,
+    bool chapterSlider,
+    bool showBmmStreak,
+    bool kidsMoreNorwegianContent,
+    bool kidsNotificationPrompt,
+    int? kidsNotificationPromptPosition,
+    bool kidsNotificationPromptAfterDismissal,
+    int? kidsNotificationPromptAfterDismissalCount,
+    bool kidsDonationLink,
+  });
 }
 
 /// @nodoc
@@ -235,8 +244,9 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
     extends _$FeatureFlagsCopyWithImpl<$Res, _$FeatureFlagsImpl>
     implements _$$FeatureFlagsImplCopyWith<$Res> {
   __$$FeatureFlagsImplCopyWithImpl(
-      _$FeatureFlagsImpl _value, $Res Function(_$FeatureFlagsImpl) _then)
-      : super(_value, _then);
+    _$FeatureFlagsImpl _value,
+    $Res Function(_$FeatureFlagsImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of FeatureFlags
   /// with the given fields replaced by the non-null parameter values.
@@ -263,114 +273,117 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
     Object? kidsNotificationPromptAfterDismissalCount = freezed,
     Object? kidsDonationLink = null,
   }) {
-    return _then(_$FeatureFlagsImpl(
-      variants: null == variants
-          ? _value._variants
-          : variants // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      kidsAuth: null == kidsAuth
-          ? _value.kidsAuth
-          : kidsAuth // ignore: cast_nullable_to_non_nullable
-              as bool,
-      publicSignup: null == publicSignup
-          ? _value.publicSignup
-          : publicSignup // ignore: cast_nullable_to_non_nullable
-              as bool,
-      socialSignup: null == socialSignup
-          ? _value.socialSignup
-          : socialSignup // ignore: cast_nullable_to_non_nullable
-              as bool,
-      shorts: null == shorts
-          ? _value.shorts
-          : shorts // ignore: cast_nullable_to_non_nullable
-              as bool,
-      shortsHideBeta: null == shortsHideBeta
-          ? _value.shortsHideBeta
-          : shortsHideBeta // ignore: cast_nullable_to_non_nullable
-              as bool,
-      shortsGuide: null == shortsGuide
-          ? _value.shortsGuide
-          : shortsGuide // ignore: cast_nullable_to_non_nullable
-              as bool,
-      disableNpawShorts: null == disableNpawShorts
-          ? _value.disableNpawShorts
-          : disableNpawShorts // ignore: cast_nullable_to_non_nullable
-              as bool,
-      skipToChapter: null == skipToChapter
-          ? _value.skipToChapter
-          : skipToChapter // ignore: cast_nullable_to_non_nullable
-              as bool,
-      shortsWithScores: null == shortsWithScores
-          ? _value.shortsWithScores
-          : shortsWithScores // ignore: cast_nullable_to_non_nullable
-              as bool,
-      elasticSearch: null == elasticSearch
-          ? _value.elasticSearch
-          : elasticSearch // ignore: cast_nullable_to_non_nullable
-              as bool,
-      chapterSlider: null == chapterSlider
-          ? _value.chapterSlider
-          : chapterSlider // ignore: cast_nullable_to_non_nullable
-              as bool,
-      showBmmStreak: null == showBmmStreak
-          ? _value.showBmmStreak
-          : showBmmStreak // ignore: cast_nullable_to_non_nullable
-              as bool,
-      kidsMoreNorwegianContent: null == kidsMoreNorwegianContent
-          ? _value.kidsMoreNorwegianContent
-          : kidsMoreNorwegianContent // ignore: cast_nullable_to_non_nullable
-              as bool,
-      kidsNotificationPrompt: null == kidsNotificationPrompt
-          ? _value.kidsNotificationPrompt
-          : kidsNotificationPrompt // ignore: cast_nullable_to_non_nullable
-              as bool,
-      kidsNotificationPromptPosition: freezed == kidsNotificationPromptPosition
-          ? _value.kidsNotificationPromptPosition
-          : kidsNotificationPromptPosition // ignore: cast_nullable_to_non_nullable
-              as int?,
-      kidsNotificationPromptAfterDismissal: null ==
-              kidsNotificationPromptAfterDismissal
-          ? _value.kidsNotificationPromptAfterDismissal
-          : kidsNotificationPromptAfterDismissal // ignore: cast_nullable_to_non_nullable
-              as bool,
-      kidsNotificationPromptAfterDismissalCount: freezed ==
-              kidsNotificationPromptAfterDismissalCount
-          ? _value.kidsNotificationPromptAfterDismissalCount
-          : kidsNotificationPromptAfterDismissalCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      kidsDonationLink: null == kidsDonationLink
-          ? _value.kidsDonationLink
-          : kidsDonationLink // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$FeatureFlagsImpl(
+        variants: null == variants
+            ? _value._variants
+            : variants // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        kidsAuth: null == kidsAuth
+            ? _value.kidsAuth
+            : kidsAuth // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        publicSignup: null == publicSignup
+            ? _value.publicSignup
+            : publicSignup // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        socialSignup: null == socialSignup
+            ? _value.socialSignup
+            : socialSignup // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        shorts: null == shorts
+            ? _value.shorts
+            : shorts // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        shortsHideBeta: null == shortsHideBeta
+            ? _value.shortsHideBeta
+            : shortsHideBeta // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        shortsGuide: null == shortsGuide
+            ? _value.shortsGuide
+            : shortsGuide // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        disableNpawShorts: null == disableNpawShorts
+            ? _value.disableNpawShorts
+            : disableNpawShorts // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        skipToChapter: null == skipToChapter
+            ? _value.skipToChapter
+            : skipToChapter // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        shortsWithScores: null == shortsWithScores
+            ? _value.shortsWithScores
+            : shortsWithScores // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        elasticSearch: null == elasticSearch
+            ? _value.elasticSearch
+            : elasticSearch // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        chapterSlider: null == chapterSlider
+            ? _value.chapterSlider
+            : chapterSlider // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        showBmmStreak: null == showBmmStreak
+            ? _value.showBmmStreak
+            : showBmmStreak // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        kidsMoreNorwegianContent: null == kidsMoreNorwegianContent
+            ? _value.kidsMoreNorwegianContent
+            : kidsMoreNorwegianContent // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        kidsNotificationPrompt: null == kidsNotificationPrompt
+            ? _value.kidsNotificationPrompt
+            : kidsNotificationPrompt // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        kidsNotificationPromptPosition:
+            freezed == kidsNotificationPromptPosition
+            ? _value.kidsNotificationPromptPosition
+            : kidsNotificationPromptPosition // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        kidsNotificationPromptAfterDismissal:
+            null == kidsNotificationPromptAfterDismissal
+            ? _value.kidsNotificationPromptAfterDismissal
+            : kidsNotificationPromptAfterDismissal // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        kidsNotificationPromptAfterDismissalCount:
+            freezed == kidsNotificationPromptAfterDismissalCount
+            ? _value.kidsNotificationPromptAfterDismissalCount
+            : kidsNotificationPromptAfterDismissalCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        kidsDonationLink: null == kidsDonationLink
+            ? _value.kidsDonationLink
+            : kidsDonationLink // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$FeatureFlagsImpl extends _FeatureFlags {
-  const _$FeatureFlagsImpl(
-      {final List<String> variants = const [],
-      this.kidsAuth = false,
-      this.publicSignup = false,
-      this.socialSignup = false,
-      this.shorts = false,
-      this.shortsHideBeta = false,
-      this.shortsGuide = false,
-      this.disableNpawShorts = false,
-      this.skipToChapter = false,
-      this.shortsWithScores = false,
-      this.elasticSearch = false,
-      this.chapterSlider = false,
-      this.showBmmStreak = false,
-      this.kidsMoreNorwegianContent = false,
-      this.kidsNotificationPrompt = false,
-      this.kidsNotificationPromptPosition,
-      this.kidsNotificationPromptAfterDismissal = false,
-      this.kidsNotificationPromptAfterDismissalCount,
-      this.kidsDonationLink = false})
-      : _variants = variants,
-        super._();
+  const _$FeatureFlagsImpl({
+    final List<String> variants = const [],
+    this.kidsAuth = false,
+    this.publicSignup = false,
+    this.socialSignup = false,
+    this.shorts = false,
+    this.shortsHideBeta = false,
+    this.shortsGuide = false,
+    this.disableNpawShorts = false,
+    this.skipToChapter = false,
+    this.shortsWithScores = false,
+    this.elasticSearch = false,
+    this.chapterSlider = false,
+    this.showBmmStreak = false,
+    this.kidsMoreNorwegianContent = false,
+    this.kidsNotificationPrompt = false,
+    this.kidsNotificationPromptPosition,
+    this.kidsNotificationPromptAfterDismissal = false,
+    this.kidsNotificationPromptAfterDismissalCount,
+    this.kidsDonationLink = false,
+  }) : _variants = variants,
+       super._();
 
   factory _$FeatureFlagsImpl.fromJson(Map<String, dynamic> json) =>
       _$$FeatureFlagsImplFromJson(json);
@@ -384,7 +397,7 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
     return EqualUnmodifiableListView(_variants);
   }
 
-// For kids-mobile
+  // For kids-mobile
   @override
   @JsonKey()
   final bool kidsAuth;
@@ -394,7 +407,7 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   @override
   @JsonKey()
   final bool socialSignup;
-// For bccm-mobile
+  // For bccm-mobile
   @override
   @JsonKey()
   final bool shorts;
@@ -474,20 +487,28 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
             (identical(other.showBmmStreak, showBmmStreak) ||
                 other.showBmmStreak == showBmmStreak) &&
             (identical(
-                    other.kidsMoreNorwegianContent, kidsMoreNorwegianContent) ||
+                  other.kidsMoreNorwegianContent,
+                  kidsMoreNorwegianContent,
+                ) ||
                 other.kidsMoreNorwegianContent == kidsMoreNorwegianContent) &&
             (identical(other.kidsNotificationPrompt, kidsNotificationPrompt) ||
                 other.kidsNotificationPrompt == kidsNotificationPrompt) &&
-            (identical(other.kidsNotificationPromptPosition,
-                    kidsNotificationPromptPosition) ||
+            (identical(
+                  other.kidsNotificationPromptPosition,
+                  kidsNotificationPromptPosition,
+                ) ||
                 other.kidsNotificationPromptPosition ==
                     kidsNotificationPromptPosition) &&
-            (identical(other.kidsNotificationPromptAfterDismissal,
-                    kidsNotificationPromptAfterDismissal) ||
+            (identical(
+                  other.kidsNotificationPromptAfterDismissal,
+                  kidsNotificationPromptAfterDismissal,
+                ) ||
                 other.kidsNotificationPromptAfterDismissal ==
                     kidsNotificationPromptAfterDismissal) &&
-            (identical(other.kidsNotificationPromptAfterDismissalCount,
-                    kidsNotificationPromptAfterDismissalCount) ||
+            (identical(
+                  other.kidsNotificationPromptAfterDismissalCount,
+                  kidsNotificationPromptAfterDismissalCount,
+                ) ||
                 other.kidsNotificationPromptAfterDismissalCount ==
                     kidsNotificationPromptAfterDismissalCount) &&
             (identical(other.kidsDonationLink, kidsDonationLink) ||
@@ -497,27 +518,27 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
-        runtimeType,
-        const DeepCollectionEquality().hash(_variants),
-        kidsAuth,
-        publicSignup,
-        socialSignup,
-        shorts,
-        shortsHideBeta,
-        shortsGuide,
-        disableNpawShorts,
-        skipToChapter,
-        shortsWithScores,
-        elasticSearch,
-        chapterSlider,
-        showBmmStreak,
-        kidsMoreNorwegianContent,
-        kidsNotificationPrompt,
-        kidsNotificationPromptPosition,
-        kidsNotificationPromptAfterDismissal,
-        kidsNotificationPromptAfterDismissalCount,
-        kidsDonationLink
-      ]);
+    runtimeType,
+    const DeepCollectionEquality().hash(_variants),
+    kidsAuth,
+    publicSignup,
+    socialSignup,
+    shorts,
+    shortsHideBeta,
+    shortsGuide,
+    disableNpawShorts,
+    skipToChapter,
+    shortsWithScores,
+    elasticSearch,
+    chapterSlider,
+    showBmmStreak,
+    kidsMoreNorwegianContent,
+    kidsNotificationPrompt,
+    kidsNotificationPromptPosition,
+    kidsNotificationPromptAfterDismissal,
+    kidsNotificationPromptAfterDismissalCount,
+    kidsDonationLink,
+  ]);
 
   /// Create a copy of FeatureFlags
   /// with the given fields replaced by the non-null parameter values.
@@ -529,33 +550,32 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FeatureFlagsImplToJson(
-      this,
-    );
+    return _$$FeatureFlagsImplToJson(this);
   }
 }
 
 abstract class _FeatureFlags extends FeatureFlags {
-  const factory _FeatureFlags(
-      {final List<String> variants,
-      final bool kidsAuth,
-      final bool publicSignup,
-      final bool socialSignup,
-      final bool shorts,
-      final bool shortsHideBeta,
-      final bool shortsGuide,
-      final bool disableNpawShorts,
-      final bool skipToChapter,
-      final bool shortsWithScores,
-      final bool elasticSearch,
-      final bool chapterSlider,
-      final bool showBmmStreak,
-      final bool kidsMoreNorwegianContent,
-      final bool kidsNotificationPrompt,
-      final int? kidsNotificationPromptPosition,
-      final bool kidsNotificationPromptAfterDismissal,
-      final int? kidsNotificationPromptAfterDismissalCount,
-      final bool kidsDonationLink}) = _$FeatureFlagsImpl;
+  const factory _FeatureFlags({
+    final List<String> variants,
+    final bool kidsAuth,
+    final bool publicSignup,
+    final bool socialSignup,
+    final bool shorts,
+    final bool shortsHideBeta,
+    final bool shortsGuide,
+    final bool disableNpawShorts,
+    final bool skipToChapter,
+    final bool shortsWithScores,
+    final bool elasticSearch,
+    final bool chapterSlider,
+    final bool showBmmStreak,
+    final bool kidsMoreNorwegianContent,
+    final bool kidsNotificationPrompt,
+    final int? kidsNotificationPromptPosition,
+    final bool kidsNotificationPromptAfterDismissal,
+    final int? kidsNotificationPromptAfterDismissalCount,
+    final bool kidsDonationLink,
+  }) = _$FeatureFlagsImpl;
   const _FeatureFlags._() : super._();
 
   factory _FeatureFlags.fromJson(Map<String, dynamic> json) =

@@ -12,7 +12,8 @@ part of 'season_episode_list.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$SeasonEpisodeListEpisodeData {
@@ -26,27 +27,33 @@ mixin _$SeasonEpisodeListEpisodeData {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   $SeasonEpisodeListEpisodeDataCopyWith<SeasonEpisodeListEpisodeData>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SeasonEpisodeListEpisodeDataCopyWith<$Res> {
   factory $SeasonEpisodeListEpisodeDataCopyWith(
-          SeasonEpisodeListEpisodeData value,
-          $Res Function(SeasonEpisodeListEpisodeData) then) =
-      _$SeasonEpisodeListEpisodeDataCopyWithImpl<$Res,
-          SeasonEpisodeListEpisodeData>;
+    SeasonEpisodeListEpisodeData value,
+    $Res Function(SeasonEpisodeListEpisodeData) then,
+  ) =
+      _$SeasonEpisodeListEpisodeDataCopyWithImpl<
+        $Res,
+        SeasonEpisodeListEpisodeData
+      >;
   @useResult
-  $Res call(
-      {Fragment$SeasonListEpisode episode,
-      int? seasonNumber,
-      Fragment$LessonProgressOverview? lessonProgressOverview,
-      bool? highlighted});
+  $Res call({
+    Fragment$SeasonListEpisode episode,
+    int? seasonNumber,
+    Fragment$LessonProgressOverview? lessonProgressOverview,
+    bool? highlighted,
+  });
 }
 
 /// @nodoc
-class _$SeasonEpisodeListEpisodeDataCopyWithImpl<$Res,
-        $Val extends SeasonEpisodeListEpisodeData>
+class _$SeasonEpisodeListEpisodeDataCopyWithImpl<
+  $Res,
+  $Val extends SeasonEpisodeListEpisodeData
+>
     implements $SeasonEpisodeListEpisodeDataCopyWith<$Res> {
   _$SeasonEpisodeListEpisodeDataCopyWithImpl(this._value, this._then);
 
@@ -65,24 +72,27 @@ class _$SeasonEpisodeListEpisodeDataCopyWithImpl<$Res,
     Object? lessonProgressOverview = freezed,
     Object? highlighted = freezed,
   }) {
-    return _then(_value.copyWith(
-      episode: null == episode
-          ? _value.episode
-          : episode // ignore: cast_nullable_to_non_nullable
-              as Fragment$SeasonListEpisode,
-      seasonNumber: freezed == seasonNumber
-          ? _value.seasonNumber
-          : seasonNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
-      lessonProgressOverview: freezed == lessonProgressOverview
-          ? _value.lessonProgressOverview
-          : lessonProgressOverview // ignore: cast_nullable_to_non_nullable
-              as Fragment$LessonProgressOverview?,
-      highlighted: freezed == highlighted
-          ? _value.highlighted
-          : highlighted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            episode: null == episode
+                ? _value.episode
+                : episode // ignore: cast_nullable_to_non_nullable
+                      as Fragment$SeasonListEpisode,
+            seasonNumber: freezed == seasonNumber
+                ? _value.seasonNumber
+                : seasonNumber // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            lessonProgressOverview: freezed == lessonProgressOverview
+                ? _value.lessonProgressOverview
+                : lessonProgressOverview // ignore: cast_nullable_to_non_nullable
+                      as Fragment$LessonProgressOverview?,
+            highlighted: freezed == highlighted
+                ? _value.highlighted
+                : highlighted // ignore: cast_nullable_to_non_nullable
+                      as bool?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -90,27 +100,31 @@ class _$SeasonEpisodeListEpisodeDataCopyWithImpl<$Res,
 abstract class _$$SeasonEpisodeListEpisodeDataImplCopyWith<$Res>
     implements $SeasonEpisodeListEpisodeDataCopyWith<$Res> {
   factory _$$SeasonEpisodeListEpisodeDataImplCopyWith(
-          _$SeasonEpisodeListEpisodeDataImpl value,
-          $Res Function(_$SeasonEpisodeListEpisodeDataImpl) then) =
-      __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl<$Res>;
+    _$SeasonEpisodeListEpisodeDataImpl value,
+    $Res Function(_$SeasonEpisodeListEpisodeDataImpl) then,
+  ) = __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Fragment$SeasonListEpisode episode,
-      int? seasonNumber,
-      Fragment$LessonProgressOverview? lessonProgressOverview,
-      bool? highlighted});
+  $Res call({
+    Fragment$SeasonListEpisode episode,
+    int? seasonNumber,
+    Fragment$LessonProgressOverview? lessonProgressOverview,
+    bool? highlighted,
+  });
 }
 
 /// @nodoc
 class __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl<$Res>
-    extends _$SeasonEpisodeListEpisodeDataCopyWithImpl<$Res,
-        _$SeasonEpisodeListEpisodeDataImpl>
+    extends
+        _$SeasonEpisodeListEpisodeDataCopyWithImpl<
+          $Res,
+          _$SeasonEpisodeListEpisodeDataImpl
+        >
     implements _$$SeasonEpisodeListEpisodeDataImplCopyWith<$Res> {
   __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl(
-      _$SeasonEpisodeListEpisodeDataImpl _value,
-      $Res Function(_$SeasonEpisodeListEpisodeDataImpl) _then)
-      : super(_value, _then);
+    _$SeasonEpisodeListEpisodeDataImpl _value,
+    $Res Function(_$SeasonEpisodeListEpisodeDataImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of SeasonEpisodeListEpisodeData
   /// with the given fields replaced by the non-null parameter values.
@@ -122,24 +136,26 @@ class __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl<$Res>
     Object? lessonProgressOverview = freezed,
     Object? highlighted = freezed,
   }) {
-    return _then(_$SeasonEpisodeListEpisodeDataImpl(
-      episode: null == episode
-          ? _value.episode
-          : episode // ignore: cast_nullable_to_non_nullable
-              as Fragment$SeasonListEpisode,
-      seasonNumber: freezed == seasonNumber
-          ? _value.seasonNumber
-          : seasonNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
-      lessonProgressOverview: freezed == lessonProgressOverview
-          ? _value.lessonProgressOverview
-          : lessonProgressOverview // ignore: cast_nullable_to_non_nullable
-              as Fragment$LessonProgressOverview?,
-      highlighted: freezed == highlighted
-          ? _value.highlighted
-          : highlighted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _$SeasonEpisodeListEpisodeDataImpl(
+        episode: null == episode
+            ? _value.episode
+            : episode // ignore: cast_nullable_to_non_nullable
+                  as Fragment$SeasonListEpisode,
+        seasonNumber: freezed == seasonNumber
+            ? _value.seasonNumber
+            : seasonNumber // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        lessonProgressOverview: freezed == lessonProgressOverview
+            ? _value.lessonProgressOverview
+            : lessonProgressOverview // ignore: cast_nullable_to_non_nullable
+                  as Fragment$LessonProgressOverview?,
+        highlighted: freezed == highlighted
+            ? _value.highlighted
+            : highlighted // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }
 
@@ -147,11 +163,12 @@ class __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl<$Res>
 
 class _$SeasonEpisodeListEpisodeDataImpl
     implements _SeasonEpisodeListEpisodeData {
-  const _$SeasonEpisodeListEpisodeDataImpl(
-      {required this.episode,
-      this.seasonNumber,
-      this.lessonProgressOverview,
-      this.highlighted});
+  const _$SeasonEpisodeListEpisodeDataImpl({
+    required this.episode,
+    this.seasonNumber,
+    this.lessonProgressOverview,
+    this.highlighted,
+  });
 
   @override
   final Fragment$SeasonListEpisode episode;
@@ -183,7 +200,12 @@ class _$SeasonEpisodeListEpisodeDataImpl
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, episode, seasonNumber, lessonProgressOverview, highlighted);
+    runtimeType,
+    episode,
+    seasonNumber,
+    lessonProgressOverview,
+    highlighted,
+  );
 
   /// Create a copy of SeasonEpisodeListEpisodeData
   /// with the given fields replaced by the non-null parameter values.
@@ -191,18 +213,22 @@ class _$SeasonEpisodeListEpisodeDataImpl
   @override
   @pragma('vm:prefer-inline')
   _$$SeasonEpisodeListEpisodeDataImplCopyWith<
-          _$SeasonEpisodeListEpisodeDataImpl>
-      get copyWith => __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl<
-          _$SeasonEpisodeListEpisodeDataImpl>(this, _$identity);
+    _$SeasonEpisodeListEpisodeDataImpl
+  >
+  get copyWith =>
+      __$$SeasonEpisodeListEpisodeDataImplCopyWithImpl<
+        _$SeasonEpisodeListEpisodeDataImpl
+      >(this, _$identity);
 }
 
 abstract class _SeasonEpisodeListEpisodeData
     implements SeasonEpisodeListEpisodeData {
-  const factory _SeasonEpisodeListEpisodeData(
-      {required final Fragment$SeasonListEpisode episode,
-      final int? seasonNumber,
-      final Fragment$LessonProgressOverview? lessonProgressOverview,
-      final bool? highlighted}) = _$SeasonEpisodeListEpisodeDataImpl;
+  const factory _SeasonEpisodeListEpisodeData({
+    required final Fragment$SeasonListEpisode episode,
+    final int? seasonNumber,
+    final Fragment$LessonProgressOverview? lessonProgressOverview,
+    final bool? highlighted,
+  }) = _$SeasonEpisodeListEpisodeDataImpl;
 
   @override
   Fragment$SeasonListEpisode get episode;
@@ -218,6 +244,7 @@ abstract class _SeasonEpisodeListEpisodeData
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SeasonEpisodeListEpisodeDataImplCopyWith<
-          _$SeasonEpisodeListEpisodeDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
+    _$SeasonEpisodeListEpisodeDataImpl
+  >
+  get copyWith => throw _privateConstructorUsedError;
 }

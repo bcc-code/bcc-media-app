@@ -12,7 +12,8 @@ part of 'survey.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 CompletedSurveys _$CompletedSurveysFromJson(Map<String, dynamic> json) {
   return _CompletedSurveys.fromJson(json);
@@ -36,8 +37,9 @@ mixin _$CompletedSurveys {
 /// @nodoc
 abstract class $CompletedSurveysCopyWith<$Res> {
   factory $CompletedSurveysCopyWith(
-          CompletedSurveys value, $Res Function(CompletedSurveys) then) =
-      _$CompletedSurveysCopyWithImpl<$Res, CompletedSurveys>;
+    CompletedSurveys value,
+    $Res Function(CompletedSurveys) then,
+  ) = _$CompletedSurveysCopyWithImpl<$Res, CompletedSurveys>;
   @useResult
   $Res call({List<CompletedSurvey> completedSurveys});
 }
@@ -56,24 +58,26 @@ class _$CompletedSurveysCopyWithImpl<$Res, $Val extends CompletedSurveys>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? completedSurveys = null,
-  }) {
-    return _then(_value.copyWith(
-      completedSurveys: null == completedSurveys
-          ? _value.completedSurveys
-          : completedSurveys // ignore: cast_nullable_to_non_nullable
-              as List<CompletedSurvey>,
-    ) as $Val);
+  $Res call({Object? completedSurveys = null}) {
+    return _then(
+      _value.copyWith(
+            completedSurveys: null == completedSurveys
+                ? _value.completedSurveys
+                : completedSurveys // ignore: cast_nullable_to_non_nullable
+                      as List<CompletedSurvey>,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$CompletedSurveysImplCopyWith<$Res>
     implements $CompletedSurveysCopyWith<$Res> {
-  factory _$$CompletedSurveysImplCopyWith(_$CompletedSurveysImpl value,
-          $Res Function(_$CompletedSurveysImpl) then) =
-      __$$CompletedSurveysImplCopyWithImpl<$Res>;
+  factory _$$CompletedSurveysImplCopyWith(
+    _$CompletedSurveysImpl value,
+    $Res Function(_$CompletedSurveysImpl) then,
+  ) = __$$CompletedSurveysImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<CompletedSurvey> completedSurveys});
@@ -83,23 +87,24 @@ abstract class _$$CompletedSurveysImplCopyWith<$Res>
 class __$$CompletedSurveysImplCopyWithImpl<$Res>
     extends _$CompletedSurveysCopyWithImpl<$Res, _$CompletedSurveysImpl>
     implements _$$CompletedSurveysImplCopyWith<$Res> {
-  __$$CompletedSurveysImplCopyWithImpl(_$CompletedSurveysImpl _value,
-      $Res Function(_$CompletedSurveysImpl) _then)
-      : super(_value, _then);
+  __$$CompletedSurveysImplCopyWithImpl(
+    _$CompletedSurveysImpl _value,
+    $Res Function(_$CompletedSurveysImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of CompletedSurveys
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? completedSurveys = null,
-  }) {
-    return _then(_$CompletedSurveysImpl(
-      null == completedSurveys
-          ? _value._completedSurveys
-          : completedSurveys // ignore: cast_nullable_to_non_nullable
-              as List<CompletedSurvey>,
-    ));
+  $Res call({Object? completedSurveys = null}) {
+    return _then(
+      _$CompletedSurveysImpl(
+        null == completedSurveys
+            ? _value._completedSurveys
+            : completedSurveys // ignore: cast_nullable_to_non_nullable
+                  as List<CompletedSurvey>,
+      ),
+    );
   }
 }
 
@@ -107,7 +112,7 @@ class __$$CompletedSurveysImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CompletedSurveysImpl implements _CompletedSurveys {
   const _$CompletedSurveysImpl(final List<CompletedSurvey> completedSurveys)
-      : _completedSurveys = completedSurveys;
+    : _completedSurveys = completedSurveys;
 
   factory _$CompletedSurveysImpl.fromJson(Map<String, dynamic> json) =>
       _$$CompletedSurveysImplFromJson(json);
@@ -131,14 +136,18 @@ class _$CompletedSurveysImpl implements _CompletedSurveys {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CompletedSurveysImpl &&
-            const DeepCollectionEquality()
-                .equals(other._completedSurveys, _completedSurveys));
+            const DeepCollectionEquality().equals(
+              other._completedSurveys,
+              _completedSurveys,
+            ));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_completedSurveys));
+    runtimeType,
+    const DeepCollectionEquality().hash(_completedSurveys),
+  );
 
   /// Create a copy of CompletedSurveys
   /// with the given fields replaced by the non-null parameter values.
@@ -147,19 +156,20 @@ class _$CompletedSurveysImpl implements _CompletedSurveys {
   @pragma('vm:prefer-inline')
   _$$CompletedSurveysImplCopyWith<_$CompletedSurveysImpl> get copyWith =>
       __$$CompletedSurveysImplCopyWithImpl<_$CompletedSurveysImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CompletedSurveysImplToJson(
-      this,
-    );
+    return _$$CompletedSurveysImplToJson(this);
   }
 }
 
 abstract class _CompletedSurveys implements CompletedSurveys {
   const factory _CompletedSurveys(
-      final List<CompletedSurvey> completedSurveys) = _$CompletedSurveysImpl;
+    final List<CompletedSurvey> completedSurveys,
+  ) = _$CompletedSurveysImpl;
 
   factory _CompletedSurveys.fromJson(Map<String, dynamic> json) =
       _$CompletedSurveysImpl.fromJson;
@@ -197,8 +207,9 @@ mixin _$CompletedSurvey {
 /// @nodoc
 abstract class $CompletedSurveyCopyWith<$Res> {
   factory $CompletedSurveyCopyWith(
-          CompletedSurvey value, $Res Function(CompletedSurvey) then) =
-      _$CompletedSurveyCopyWithImpl<$Res, CompletedSurvey>;
+    CompletedSurvey value,
+    $Res Function(CompletedSurvey) then,
+  ) = _$CompletedSurveyCopyWithImpl<$Res, CompletedSurvey>;
   @useResult
   $Res call({String id, DateTime expiry});
 }
@@ -217,29 +228,30 @@ class _$CompletedSurveyCopyWithImpl<$Res, $Val extends CompletedSurvey>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? expiry = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      expiry: null == expiry
-          ? _value.expiry
-          : expiry // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ) as $Val);
+  $Res call({Object? id = null, Object? expiry = null}) {
+    return _then(
+      _value.copyWith(
+            id: null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as String,
+            expiry: null == expiry
+                ? _value.expiry
+                : expiry // ignore: cast_nullable_to_non_nullable
+                      as DateTime,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$CompletedSurveyImplCopyWith<$Res>
     implements $CompletedSurveyCopyWith<$Res> {
-  factory _$$CompletedSurveyImplCopyWith(_$CompletedSurveyImpl value,
-          $Res Function(_$CompletedSurveyImpl) then) =
-      __$$CompletedSurveyImplCopyWithImpl<$Res>;
+  factory _$$CompletedSurveyImplCopyWith(
+    _$CompletedSurveyImpl value,
+    $Res Function(_$CompletedSurveyImpl) then,
+  ) = __$$CompletedSurveyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, DateTime expiry});
@@ -250,27 +262,27 @@ class __$$CompletedSurveyImplCopyWithImpl<$Res>
     extends _$CompletedSurveyCopyWithImpl<$Res, _$CompletedSurveyImpl>
     implements _$$CompletedSurveyImplCopyWith<$Res> {
   __$$CompletedSurveyImplCopyWithImpl(
-      _$CompletedSurveyImpl _value, $Res Function(_$CompletedSurveyImpl) _then)
-      : super(_value, _then);
+    _$CompletedSurveyImpl _value,
+    $Res Function(_$CompletedSurveyImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of CompletedSurvey
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? expiry = null,
-  }) {
-    return _then(_$CompletedSurveyImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      expiry: null == expiry
-          ? _value.expiry
-          : expiry // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
+  $Res call({Object? id = null, Object? expiry = null}) {
+    return _then(
+      _$CompletedSurveyImpl(
+        id: null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        expiry: null == expiry
+            ? _value.expiry
+            : expiry // ignore: cast_nullable_to_non_nullable
+                  as DateTime,
+      ),
+    );
   }
 }
 
@@ -312,20 +324,21 @@ class _$CompletedSurveyImpl implements _CompletedSurvey {
   @pragma('vm:prefer-inline')
   _$$CompletedSurveyImplCopyWith<_$CompletedSurveyImpl> get copyWith =>
       __$$CompletedSurveyImplCopyWithImpl<_$CompletedSurveyImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CompletedSurveyImplToJson(
-      this,
-    );
+    return _$$CompletedSurveyImplToJson(this);
   }
 }
 
 abstract class _CompletedSurvey implements CompletedSurvey {
-  const factory _CompletedSurvey(
-      {required final String id,
-      required final DateTime expiry}) = _$CompletedSurveyImpl;
+  const factory _CompletedSurvey({
+    required final String id,
+    required final DateTime expiry,
+  }) = _$CompletedSurveyImpl;
 
   factory _CompletedSurvey.fromJson(Map<String, dynamic> json) =
       _$CompletedSurveyImpl.fromJson;

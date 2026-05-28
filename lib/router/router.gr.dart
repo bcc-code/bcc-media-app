@@ -712,7 +712,7 @@ class PrivacyPolicyScreenRoute extends _i35.PageRouteInfo<void> {
 /// [_i22.ProfileScreen]
 class ProfileScreenRoute extends _i35.PageRouteInfo<ProfileScreenRouteArgs> {
   ProfileScreenRoute({
-    _i37.Key? key,
+    _i36.Key? key,
     String? scroll,
     List<_i35.PageRouteInfo>? children,
   }) : super(
@@ -740,7 +740,7 @@ class ProfileScreenRoute extends _i35.PageRouteInfo<ProfileScreenRouteArgs> {
 class ProfileScreenRouteArgs {
   const ProfileScreenRouteArgs({this.key, this.scroll});
 
-  final _i37.Key? key;
+  final _i36.Key? key;
 
   final String? scroll;
 

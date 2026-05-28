@@ -12,7 +12,8 @@ part of 'settings.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$Settings {
@@ -44,21 +45,22 @@ abstract class $SettingsCopyWith<$Res> {
   factory $SettingsCopyWith(Settings value, $Res Function(Settings) then) =
       _$SettingsCopyWithImpl<$Res, Settings>;
   @useResult
-  $Res call(
-      {Locale appLanguage,
-      List<String> audioLanguages,
-      List<String> subtitleLanguages,
-      String? downloadAudioLanguage,
-      DownloadQuality? downloadQuality,
-      String? analyticsId,
-      String? sessionId,
-      String? searchSessionId,
-      String? envOverride,
-      bool? isBetaTester,
-      bool? useNativePlayer,
-      List<String> extraUsergroups,
-      bool? notificationsEnabled,
-      bool? onlyPreferredLanguagesContentEnabled});
+  $Res call({
+    Locale appLanguage,
+    List<String> audioLanguages,
+    List<String> subtitleLanguages,
+    String? downloadAudioLanguage,
+    DownloadQuality? downloadQuality,
+    String? analyticsId,
+    String? sessionId,
+    String? searchSessionId,
+    String? envOverride,
+    bool? isBetaTester,
+    bool? useNativePlayer,
+    List<String> extraUsergroups,
+    bool? notificationsEnabled,
+    bool? onlyPreferredLanguagesContentEnabled,
+  });
 }
 
 /// @nodoc
@@ -91,65 +93,68 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
     Object? notificationsEnabled = freezed,
     Object? onlyPreferredLanguagesContentEnabled = freezed,
   }) {
-    return _then(_value.copyWith(
-      appLanguage: null == appLanguage
-          ? _value.appLanguage
-          : appLanguage // ignore: cast_nullable_to_non_nullable
-              as Locale,
-      audioLanguages: null == audioLanguages
-          ? _value.audioLanguages
-          : audioLanguages // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      subtitleLanguages: null == subtitleLanguages
-          ? _value.subtitleLanguages
-          : subtitleLanguages // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      downloadAudioLanguage: freezed == downloadAudioLanguage
-          ? _value.downloadAudioLanguage
-          : downloadAudioLanguage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      downloadQuality: freezed == downloadQuality
-          ? _value.downloadQuality
-          : downloadQuality // ignore: cast_nullable_to_non_nullable
-              as DownloadQuality?,
-      analyticsId: freezed == analyticsId
-          ? _value.analyticsId
-          : analyticsId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      sessionId: freezed == sessionId
-          ? _value.sessionId
-          : sessionId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      searchSessionId: freezed == searchSessionId
-          ? _value.searchSessionId
-          : searchSessionId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      envOverride: freezed == envOverride
-          ? _value.envOverride
-          : envOverride // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isBetaTester: freezed == isBetaTester
-          ? _value.isBetaTester
-          : isBetaTester // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      useNativePlayer: freezed == useNativePlayer
-          ? _value.useNativePlayer
-          : useNativePlayer // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      extraUsergroups: null == extraUsergroups
-          ? _value.extraUsergroups
-          : extraUsergroups // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      notificationsEnabled: freezed == notificationsEnabled
-          ? _value.notificationsEnabled
-          : notificationsEnabled // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      onlyPreferredLanguagesContentEnabled: freezed ==
-              onlyPreferredLanguagesContentEnabled
-          ? _value.onlyPreferredLanguagesContentEnabled
-          : onlyPreferredLanguagesContentEnabled // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            appLanguage: null == appLanguage
+                ? _value.appLanguage
+                : appLanguage // ignore: cast_nullable_to_non_nullable
+                      as Locale,
+            audioLanguages: null == audioLanguages
+                ? _value.audioLanguages
+                : audioLanguages // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            subtitleLanguages: null == subtitleLanguages
+                ? _value.subtitleLanguages
+                : subtitleLanguages // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            downloadAudioLanguage: freezed == downloadAudioLanguage
+                ? _value.downloadAudioLanguage
+                : downloadAudioLanguage // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            downloadQuality: freezed == downloadQuality
+                ? _value.downloadQuality
+                : downloadQuality // ignore: cast_nullable_to_non_nullable
+                      as DownloadQuality?,
+            analyticsId: freezed == analyticsId
+                ? _value.analyticsId
+                : analyticsId // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            sessionId: freezed == sessionId
+                ? _value.sessionId
+                : sessionId // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            searchSessionId: freezed == searchSessionId
+                ? _value.searchSessionId
+                : searchSessionId // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            envOverride: freezed == envOverride
+                ? _value.envOverride
+                : envOverride // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            isBetaTester: freezed == isBetaTester
+                ? _value.isBetaTester
+                : isBetaTester // ignore: cast_nullable_to_non_nullable
+                      as bool?,
+            useNativePlayer: freezed == useNativePlayer
+                ? _value.useNativePlayer
+                : useNativePlayer // ignore: cast_nullable_to_non_nullable
+                      as bool?,
+            extraUsergroups: null == extraUsergroups
+                ? _value.extraUsergroups
+                : extraUsergroups // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            notificationsEnabled: freezed == notificationsEnabled
+                ? _value.notificationsEnabled
+                : notificationsEnabled // ignore: cast_nullable_to_non_nullable
+                      as bool?,
+            onlyPreferredLanguagesContentEnabled:
+                freezed == onlyPreferredLanguagesContentEnabled
+                ? _value.onlyPreferredLanguagesContentEnabled
+                : onlyPreferredLanguagesContentEnabled // ignore: cast_nullable_to_non_nullable
+                      as bool?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -157,25 +162,27 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
 abstract class _$$SettingsImplCopyWith<$Res>
     implements $SettingsCopyWith<$Res> {
   factory _$$SettingsImplCopyWith(
-          _$SettingsImpl value, $Res Function(_$SettingsImpl) then) =
-      __$$SettingsImplCopyWithImpl<$Res>;
+    _$SettingsImpl value,
+    $Res Function(_$SettingsImpl) then,
+  ) = __$$SettingsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Locale appLanguage,
-      List<String> audioLanguages,
-      List<String> subtitleLanguages,
-      String? downloadAudioLanguage,
-      DownloadQuality? downloadQuality,
-      String? analyticsId,
-      String? sessionId,
-      String? searchSessionId,
-      String? envOverride,
-      bool? isBetaTester,
-      bool? useNativePlayer,
-      List<String> extraUsergroups,
-      bool? notificationsEnabled,
-      bool? onlyPreferredLanguagesContentEnabled});
+  $Res call({
+    Locale appLanguage,
+    List<String> audioLanguages,
+    List<String> subtitleLanguages,
+    String? downloadAudioLanguage,
+    DownloadQuality? downloadQuality,
+    String? analyticsId,
+    String? sessionId,
+    String? searchSessionId,
+    String? envOverride,
+    bool? isBetaTester,
+    bool? useNativePlayer,
+    List<String> extraUsergroups,
+    bool? notificationsEnabled,
+    bool? onlyPreferredLanguagesContentEnabled,
+  });
 }
 
 /// @nodoc
@@ -183,8 +190,9 @@ class __$$SettingsImplCopyWithImpl<$Res>
     extends _$SettingsCopyWithImpl<$Res, _$SettingsImpl>
     implements _$$SettingsImplCopyWith<$Res> {
   __$$SettingsImplCopyWithImpl(
-      _$SettingsImpl _value, $Res Function(_$SettingsImpl) _then)
-      : super(_value, _then);
+    _$SettingsImpl _value,
+    $Res Function(_$SettingsImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of Settings
   /// with the given fields replaced by the non-null parameter values.
@@ -206,89 +214,91 @@ class __$$SettingsImplCopyWithImpl<$Res>
     Object? notificationsEnabled = freezed,
     Object? onlyPreferredLanguagesContentEnabled = freezed,
   }) {
-    return _then(_$SettingsImpl(
-      appLanguage: null == appLanguage
-          ? _value.appLanguage
-          : appLanguage // ignore: cast_nullable_to_non_nullable
-              as Locale,
-      audioLanguages: null == audioLanguages
-          ? _value._audioLanguages
-          : audioLanguages // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      subtitleLanguages: null == subtitleLanguages
-          ? _value._subtitleLanguages
-          : subtitleLanguages // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      downloadAudioLanguage: freezed == downloadAudioLanguage
-          ? _value.downloadAudioLanguage
-          : downloadAudioLanguage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      downloadQuality: freezed == downloadQuality
-          ? _value.downloadQuality
-          : downloadQuality // ignore: cast_nullable_to_non_nullable
-              as DownloadQuality?,
-      analyticsId: freezed == analyticsId
-          ? _value.analyticsId
-          : analyticsId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      sessionId: freezed == sessionId
-          ? _value.sessionId
-          : sessionId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      searchSessionId: freezed == searchSessionId
-          ? _value.searchSessionId
-          : searchSessionId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      envOverride: freezed == envOverride
-          ? _value.envOverride
-          : envOverride // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isBetaTester: freezed == isBetaTester
-          ? _value.isBetaTester
-          : isBetaTester // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      useNativePlayer: freezed == useNativePlayer
-          ? _value.useNativePlayer
-          : useNativePlayer // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      extraUsergroups: null == extraUsergroups
-          ? _value._extraUsergroups
-          : extraUsergroups // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      notificationsEnabled: freezed == notificationsEnabled
-          ? _value.notificationsEnabled
-          : notificationsEnabled // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      onlyPreferredLanguagesContentEnabled: freezed ==
-              onlyPreferredLanguagesContentEnabled
-          ? _value.onlyPreferredLanguagesContentEnabled
-          : onlyPreferredLanguagesContentEnabled // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _$SettingsImpl(
+        appLanguage: null == appLanguage
+            ? _value.appLanguage
+            : appLanguage // ignore: cast_nullable_to_non_nullable
+                  as Locale,
+        audioLanguages: null == audioLanguages
+            ? _value._audioLanguages
+            : audioLanguages // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        subtitleLanguages: null == subtitleLanguages
+            ? _value._subtitleLanguages
+            : subtitleLanguages // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        downloadAudioLanguage: freezed == downloadAudioLanguage
+            ? _value.downloadAudioLanguage
+            : downloadAudioLanguage // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        downloadQuality: freezed == downloadQuality
+            ? _value.downloadQuality
+            : downloadQuality // ignore: cast_nullable_to_non_nullable
+                  as DownloadQuality?,
+        analyticsId: freezed == analyticsId
+            ? _value.analyticsId
+            : analyticsId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        sessionId: freezed == sessionId
+            ? _value.sessionId
+            : sessionId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        searchSessionId: freezed == searchSessionId
+            ? _value.searchSessionId
+            : searchSessionId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        envOverride: freezed == envOverride
+            ? _value.envOverride
+            : envOverride // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        isBetaTester: freezed == isBetaTester
+            ? _value.isBetaTester
+            : isBetaTester // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        useNativePlayer: freezed == useNativePlayer
+            ? _value.useNativePlayer
+            : useNativePlayer // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        extraUsergroups: null == extraUsergroups
+            ? _value._extraUsergroups
+            : extraUsergroups // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        notificationsEnabled: freezed == notificationsEnabled
+            ? _value.notificationsEnabled
+            : notificationsEnabled // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        onlyPreferredLanguagesContentEnabled:
+            freezed == onlyPreferredLanguagesContentEnabled
+            ? _value.onlyPreferredLanguagesContentEnabled
+            : onlyPreferredLanguagesContentEnabled // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$SettingsImpl implements _Settings {
-  const _$SettingsImpl(
-      {required this.appLanguage,
-      final List<String> audioLanguages = const [],
-      final List<String> subtitleLanguages = const [],
-      this.downloadAudioLanguage,
-      this.downloadQuality,
-      this.analyticsId,
-      this.sessionId,
-      this.searchSessionId,
-      this.envOverride,
-      this.isBetaTester,
-      this.useNativePlayer,
-      final List<String> extraUsergroups = const [],
-      this.notificationsEnabled,
-      this.onlyPreferredLanguagesContentEnabled})
-      : _audioLanguages = audioLanguages,
-        _subtitleLanguages = subtitleLanguages,
-        _extraUsergroups = extraUsergroups;
+  const _$SettingsImpl({
+    required this.appLanguage,
+    final List<String> audioLanguages = const [],
+    final List<String> subtitleLanguages = const [],
+    this.downloadAudioLanguage,
+    this.downloadQuality,
+    this.analyticsId,
+    this.sessionId,
+    this.searchSessionId,
+    this.envOverride,
+    this.isBetaTester,
+    this.useNativePlayer,
+    final List<String> extraUsergroups = const [],
+    this.notificationsEnabled,
+    this.onlyPreferredLanguagesContentEnabled,
+  }) : _audioLanguages = audioLanguages,
+       _subtitleLanguages = subtitleLanguages,
+       _extraUsergroups = extraUsergroups;
 
   @override
   final Locale appLanguage;
@@ -353,10 +363,14 @@ class _$SettingsImpl implements _Settings {
             other is _$SettingsImpl &&
             (identical(other.appLanguage, appLanguage) ||
                 other.appLanguage == appLanguage) &&
-            const DeepCollectionEquality()
-                .equals(other._audioLanguages, _audioLanguages) &&
-            const DeepCollectionEquality()
-                .equals(other._subtitleLanguages, _subtitleLanguages) &&
+            const DeepCollectionEquality().equals(
+              other._audioLanguages,
+              _audioLanguages,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._subtitleLanguages,
+              _subtitleLanguages,
+            ) &&
             (identical(other.downloadAudioLanguage, downloadAudioLanguage) ||
                 other.downloadAudioLanguage == downloadAudioLanguage) &&
             (identical(other.downloadQuality, downloadQuality) ||
@@ -373,33 +387,38 @@ class _$SettingsImpl implements _Settings {
                 other.isBetaTester == isBetaTester) &&
             (identical(other.useNativePlayer, useNativePlayer) ||
                 other.useNativePlayer == useNativePlayer) &&
-            const DeepCollectionEquality()
-                .equals(other._extraUsergroups, _extraUsergroups) &&
+            const DeepCollectionEquality().equals(
+              other._extraUsergroups,
+              _extraUsergroups,
+            ) &&
             (identical(other.notificationsEnabled, notificationsEnabled) ||
                 other.notificationsEnabled == notificationsEnabled) &&
-            (identical(other.onlyPreferredLanguagesContentEnabled,
-                    onlyPreferredLanguagesContentEnabled) ||
+            (identical(
+                  other.onlyPreferredLanguagesContentEnabled,
+                  onlyPreferredLanguagesContentEnabled,
+                ) ||
                 other.onlyPreferredLanguagesContentEnabled ==
                     onlyPreferredLanguagesContentEnabled));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      appLanguage,
-      const DeepCollectionEquality().hash(_audioLanguages),
-      const DeepCollectionEquality().hash(_subtitleLanguages),
-      downloadAudioLanguage,
-      downloadQuality,
-      analyticsId,
-      sessionId,
-      searchSessionId,
-      envOverride,
-      isBetaTester,
-      useNativePlayer,
-      const DeepCollectionEquality().hash(_extraUsergroups),
-      notificationsEnabled,
-      onlyPreferredLanguagesContentEnabled);
+    runtimeType,
+    appLanguage,
+    const DeepCollectionEquality().hash(_audioLanguages),
+    const DeepCollectionEquality().hash(_subtitleLanguages),
+    downloadAudioLanguage,
+    downloadQuality,
+    analyticsId,
+    sessionId,
+    searchSessionId,
+    envOverride,
+    isBetaTester,
+    useNativePlayer,
+    const DeepCollectionEquality().hash(_extraUsergroups),
+    notificationsEnabled,
+    onlyPreferredLanguagesContentEnabled,
+  );
 
   /// Create a copy of Settings
   /// with the given fields replaced by the non-null parameter values.
@@ -411,21 +430,22 @@ class _$SettingsImpl implements _Settings {
 }
 
 abstract class _Settings implements Settings {
-  const factory _Settings(
-      {required final Locale appLanguage,
-      final List<String> audioLanguages,
-      final List<String> subtitleLanguages,
-      final String? downloadAudioLanguage,
-      final DownloadQuality? downloadQuality,
-      final String? analyticsId,
-      final String? sessionId,
-      final String? searchSessionId,
-      final String? envOverride,
-      final bool? isBetaTester,
-      final bool? useNativePlayer,
-      final List<String> extraUsergroups,
-      final bool? notificationsEnabled,
-      final bool? onlyPreferredLanguagesContentEnabled}) = _$SettingsImpl;
+  const factory _Settings({
+    required final Locale appLanguage,
+    final List<String> audioLanguages,
+    final List<String> subtitleLanguages,
+    final String? downloadAudioLanguage,
+    final DownloadQuality? downloadQuality,
+    final String? analyticsId,
+    final String? sessionId,
+    final String? searchSessionId,
+    final String? envOverride,
+    final bool? isBetaTester,
+    final bool? useNativePlayer,
+    final List<String> extraUsergroups,
+    final bool? notificationsEnabled,
+    final bool? onlyPreferredLanguagesContentEnabled,
+  }) = _$SettingsImpl;
 
   @override
   Locale get appLanguage;
