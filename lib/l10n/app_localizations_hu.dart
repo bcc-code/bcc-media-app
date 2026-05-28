@@ -902,6 +902,30 @@ class SHu extends S {
   String get copyright => 'Copyright';
 
   @override
+  String get playlistNotFound => 'Playlist not found';
+
+  @override
+  String get shuffle => 'Shuffle';
+
+  @override
+  String playlistItemCount(int count) {
+    return '$count items';
+  }
+
+  @override
+  String playlistDurationHoursMinutes(int hours, int minutes) {
+    return '${hours}h ${minutes}m';
+  }
+
+  @override
+  String playlistDurationMinutes(int minutes) {
+    return '${minutes}m';
+  }
+
+  @override
+  String get contentTypeShort => 'Short';
+
+  @override
   String get offline => 'Offline';
 
   @override
@@ -1190,24 +1214,24 @@ class SHu extends S {
   String get studyAllQuestionsAnsweredDescription => 'Jól csináltad!';
 
   @override
-  String get kidsNotificationReminderCtaShort => 'Turn on';
+  String get kidsNotificationReminderCtaShort => 'Bekapcsolás';
 
   @override
-  String get kidsNotificationReminderCtaLong => 'Turn on reminders';
+  String get kidsNotificationReminderCtaLong => 'Emlékeztetők bekapcsolása';
 
   @override
-  String get kidsNotificationReminderTitle => 'Watch a video every day!';
+  String get kidsNotificationReminderTitle => 'Nézz meg egy videót minden nap!';
 
   @override
-  String get notifications => 'Notifications';
+  String get notifications => 'Értesítések';
 
   @override
   String get onlyShowContentWithPreferredLanguages =>
-      'Only show content with my preferred languages';
+      'Csak a preferált nyelveimen mutasd a tartalmakat';
 
   @override
-  String get kidsLogInWithBCCTitle => 'Log in with your BCC account';
+  String get kidsLogInWithBCCTitle => 'Jelentkezz be a BCC felhasználóddal';
 
   @override
-  String get kidsLoggedInWithBCCTitle => 'Signed in with BCC';
+  String get kidsLoggedInWithBCCTitle => 'BCC felhasználóval bejelentkezve';
 }

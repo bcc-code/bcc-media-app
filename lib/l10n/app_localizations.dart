@@ -79,7 +79,7 @@ import 'app_localizations_tr.dart';
 /// property.
 abstract class S {
   S(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -101,11 +101,11 @@ abstract class S {
   /// of delegates is preferred or required.
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
@@ -126,7 +126,7 @@ abstract class S {
     Locale('ru'),
     Locale('sl'),
     Locale('ta'),
-    Locale('tr')
+    Locale('tr'),
   ];
 
   /// Text displayed when page content is loading.
@@ -1785,6 +1785,42 @@ abstract class S {
   /// **'Copyright'**
   String get copyright;
 
+  /// Error message shown when a playlist cannot be loaded or does not exist.
+  ///
+  /// In en, this message translates to:
+  /// **'Playlist not found'**
+  String get playlistNotFound;
+
+  /// Button label. Plays the items of a playlist in a random order.
+  ///
+  /// In en, this message translates to:
+  /// **'Shuffle'**
+  String get shuffle;
+
+  /// REMEMBER: Include, but do not translate the variable {count}. Keep it very short. Number of items in a playlist (episodes + shorts combined).
+  ///
+  /// In en, this message translates to:
+  /// **'{count} items'**
+  String playlistItemCount(int count);
+
+  /// REMEMBER: Include, but do not translate the variables {hours} and {minutes}. Keep it very short. Total duration of a playlist when it is one hour or longer (e.g. '2h 15m').
+  ///
+  /// In en, this message translates to:
+  /// **'{hours}h {minutes}m'**
+  String playlistDurationHoursMinutes(int hours, int minutes);
+
+  /// REMEMBER: Include, but do not translate the variable {minutes}. Keep it very short. Total duration of a playlist when it is under an hour (e.g. '45m').
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes}m'**
+  String playlistDurationMinutes(int minutes);
+
+  /// Label identifying that a single item is a 'Short' (a short vertical video, similar to YouTube Shorts / Instagram Reels). Used as a subtitle/badge on items in lists.
+  ///
+  /// In en, this message translates to:
+  /// **'Short'**
+  String get contentTypeShort;
+
   /// Status indicator, indicating that you are offline; not connected to the internet.
   ///
   /// In en, this message translates to:
@@ -2342,25 +2378,25 @@ class _SDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => <String>[
-        'bg',
-        'da',
-        'de',
-        'en',
-        'es',
-        'fi',
-        'fr',
-        'hu',
-        'it',
-        'nb',
-        'nl',
-        'pl',
-        'pt',
-        'ro',
-        'ru',
-        'sl',
-        'ta',
-        'tr'
-      ].contains(locale.languageCode);
+    'bg',
+    'da',
+    'de',
+    'en',
+    'es',
+    'fi',
+    'fr',
+    'hu',
+    'it',
+    'nb',
+    'nl',
+    'pl',
+    'pt',
+    'ro',
+    'ru',
+    'sl',
+    'ta',
+    'tr',
+  ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SDelegate old) => false;
@@ -2408,8 +2444,9 @@ S lookupS(Locale locale) {
   }
 
   throw FlutterError(
-      'S.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'S.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.',
+  );
 }

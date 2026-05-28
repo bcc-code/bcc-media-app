@@ -5,6 +5,7 @@ import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +51,7 @@ class PlaylistScreen extends HookConsumerWidget {
     if (loaded == null) {
       return Scaffold(
         appBar: AppBar(),
-        body: const Center(child: Text('Playlist not found')),
+        body: Center(child: Text(S.of(context).playlistNotFound)),
       );
     }
 
@@ -88,14 +89,14 @@ class PlaylistScreen extends HookConsumerWidget {
                     ],
                     const SizedBox(height: 6),
                     Text(
-                      _formatSubtitle(loaded.total, totalSeconds),
+                      _formatSubtitle(context, loaded.total, totalSeconds),
                       style: design.textStyles.caption1.copyWith(color: design.colors.label3),
                     ),
                     const SizedBox(height: 24),
                     SizedBox(
                       width: double.infinity,
                       child: design.buttons.large(
-                        labelText: 'Shuffle',
+                        labelText: S.of(context).shuffle,
                         variant: ButtonVariant.primary,
                         image: SvgPicture.string(
                           SvgIcons.play,
@@ -215,15 +216,16 @@ class PlaylistScreen extends HookConsumerWidget {
     return _LoadedPlaylist(playlist: first, items: items, total: first.items.total);
   }
 
-  static String _formatSubtitle(int itemCount, int totalSeconds) {
-    final parts = <String>['$itemCount items'];
+  static String _formatSubtitle(BuildContext context, int itemCount, int totalSeconds) {
+    final s = S.of(context);
+    final parts = <String>[s.playlistItemCount(itemCount)];
     if (totalSeconds > 0) {
       final hours = totalSeconds ~/ 3600;
       final minutes = (totalSeconds % 3600) ~/ 60;
       if (hours > 0) {
-        parts.add('${hours}h ${minutes}m');
+        parts.add(s.playlistDurationHoursMinutes(hours, minutes));
       } else {
-        parts.add('${minutes}m');
+        parts.add(s.playlistDurationMinutes(minutes));
       }
     }
     return parts.join('  •  ');
@@ -292,7 +294,7 @@ class _PlaylistItemRow extends ConsumerWidget {
     } else if (i is Query$GetPlaylist$playlist$items$items$$Short) {
       itemId = i.id;
       title = i.title;
-      subtitle = 'Short';
+      subtitle = S.of(context).contentTypeShort;
     } else {
       return const SizedBox.shrink();
     }

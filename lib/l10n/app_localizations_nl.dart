@@ -901,6 +901,30 @@ class SNl extends S {
   String get copyright => 'Copyright';
 
   @override
+  String get playlistNotFound => 'Playlist not found';
+
+  @override
+  String get shuffle => 'Shuffle';
+
+  @override
+  String playlistItemCount(int count) {
+    return '$count items';
+  }
+
+  @override
+  String playlistDurationHoursMinutes(int hours, int minutes) {
+    return '${hours}h ${minutes}m';
+  }
+
+  @override
+  String playlistDurationMinutes(int minutes) {
+    return '${minutes}m';
+  }
+
+  @override
+  String get contentTypeShort => 'Short';
+
+  @override
   String get offline => 'Offline';
 
   @override

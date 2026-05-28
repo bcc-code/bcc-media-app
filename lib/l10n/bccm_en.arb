@@ -1179,6 +1179,48 @@
   "@copyright": {
     "description": "Section header in the 'details' tab showing the copyright holder of an episode."
   },
+  "playlistNotFound": "Playlist not found",
+  "@playlistNotFound": {
+    "description": "Error message shown when a playlist cannot be loaded or does not exist."
+  },
+  "shuffle": "Shuffle",
+  "@shuffle": {
+    "description": "Button label. Plays the items of a playlist in a random order."
+  },
+  "playlistItemCount": "{count} items",
+  "@playlistItemCount": {
+    "description": "REMEMBER: Include, but do not translate the variable {count}. Keep it very short. Number of items in a playlist (episodes + shorts combined).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playlistDurationHoursMinutes": "{hours}h {minutes}m",
+  "@playlistDurationHoursMinutes": {
+    "description": "REMEMBER: Include, but do not translate the variables {hours} and {minutes}. Keep it very short. Total duration of a playlist when it is one hour or longer (e.g. '2h 15m').",
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "playlistDurationMinutes": "{minutes}m",
+  "@playlistDurationMinutes": {
+    "description": "REMEMBER: Include, but do not translate the variable {minutes}. Keep it very short. Total duration of a playlist when it is under an hour (e.g. '45m').",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "contentTypeShort": "Short",
+  "@contentTypeShort": {
+    "description": "Label identifying that a single item is a 'Short' (a short vertical video, similar to YouTube Shorts / Instagram Reels). Used as a subtitle/badge on items in lists."
+  },
   "offline": "Offline",
   "@offline": {
     "description": "Status indicator, indicating that you are offline; not connected to the internet."
