@@ -234,3 +234,8 @@ blocks:
             - bundle exec fastlane testflight
       secrets:
         - name: bccmedia-testflight-api
+promotions:
+  - name: Promote Android to Production
+    pipeline_file: promote-android-prod.yml
+  - name: Promote iOS to App Store
+    pipeline_file: promote-ios-prod.yml

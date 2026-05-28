@@ -1,0 +1,24 @@
+version: v1.0
+name: Promote iOS to App Store
+agent:
+  machine:
+    type: a2-standard-4
+    os_image: macos-xcode26
+blocks:
+  - name: Submit TestFlight build to App Store
+    task:
+      jobs:
+        - name: Promote on App Store Connect
+          commands:
+            - checkout
+            - sem-version ruby 3.2
+            - artifact pull workflow bccm_ios_build_number
+            - export BUILD_NUMBER=$(cat bccm_ios_build_number)
+            - test -n "$BUILD_NUMBER" && test "$BUILD_NUMBER" -gt 0
+            - export APP_VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}' | cut -d+ -f1)
+            - test -n "$APP_VERSION"
+            - cd ios
+            - bundle install
+            - bundle exec fastlane promote_to_app_store
+      secrets:
+        - name: bccmedia-testflight-api
