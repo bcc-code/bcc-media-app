@@ -137,7 +137,7 @@ PODS:
     - Flutter
   - PromisesObjC (2.4.0)
   - Protobuf (3.29.6)
-  - restart_app (1.7.3):
+  - restart_app (1.8.3):
     - Flutter
   - Rudder (1.32.0)
   - rudder_plugin_ios (0.0.1):
@@ -329,7 +329,7 @@ SPEC CHECKSUMS:
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   Protobuf: 8d5596f7468be5400861a6bbfb2dfe9d0d1cde34
-  restart_app: 0714144901e260eae68f7afc2fc4aacc1a323ad2
+  restart_app: 7ae91f45705765b4d0042da3a160b72a9927fcd8
   Rudder: fcd39cc69aeb05880a789b6ffdaf4ea93f6448a2
   rudder_plugin_ios: 6eee402f8e5f8d701896d4febf0e10d7d631a91f
   Sentry: de29b881e83bd91cf99a927f82f1fd86bfb39db2
