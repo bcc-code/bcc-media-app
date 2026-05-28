@@ -41,7 +41,7 @@ platform :ios do
       team_id: APPLE_TEAM_ID,
       ipa: '../build/ios/ipa/bccm.ipa',
       distribute_external: true,
-      groups: ['Beta'],
+      groups: ['Open beta'],
       skip_waiting_for_build_processing: false,
       changelog: 'Automated build from master'
     )
