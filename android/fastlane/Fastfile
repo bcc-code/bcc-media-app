@@ -63,7 +63,7 @@ platform :android do
     upload_to_play_store(
       package_name: PACKAGE_NAME,
       track: 'internal',
-      track_promote_to: 'beta',
+      track_promote_to: 'open-beta',
       version_code: build_number.to_i,
       json_key: JSON_KEY,
       skip_upload_aab: true,
@@ -82,7 +82,7 @@ platform :android do
 
     upload_to_play_store(
       package_name: PACKAGE_NAME,
-      track: 'beta',
+      track: 'open-beta',
       track_promote_to: 'production',
       version_code: build_number.to_i,
       rollout: '1.0',
