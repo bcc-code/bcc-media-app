@@ -7,7 +7,7 @@ agent:
 global_job_config:
   env_vars:
     - name: FLUTTER_VERSION
-      value: 3.32.0
+      value: 3.44.0
 # Each block is gated with change_in() so a PR that only touches kids/ skips
 # the bccm builds and vice versa. lib/, pubspec.yaml, submodules/, Makefile,
 # and .semaphore/ are shared infra — a change there triggers BOTH apps. kids

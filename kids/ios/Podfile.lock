@@ -71,7 +71,7 @@ PODS:
     - GCDWebServer (= 3.5.9)
   - open_mail_app_plus (0.0.1):
     - Flutter
-  - Protobuf (3.29.5)
+  - Protobuf (3.29.6)
   - soundpool (0.0.1):
     - Flutter
   - vibration (1.7.5):
@@ -167,7 +167,7 @@ SPEC CHECKSUMS:
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   NpawPluginPkg: 8c758cbac896f97980065f7b9fff1f62fb093004
   open_mail_app_plus: 6b06ef9915403f20b72c728cc264322efacdcb9a
-  Protobuf: 164aea2ae380c3951abdc3e195220c01d17400e0
+  Protobuf: 8d5596f7468be5400861a6bbfb2dfe9d0d1cde34
   soundpool: cbfc34dbc42a1bb19426aaccf20e9cdd250b45e5
   vibration: 8e2f50fc35bb736f9eecb7dd9f7047fbb6a6e888
 
