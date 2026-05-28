@@ -74,4 +74,25 @@ platform :android do
       skip_upload_metadata: true
     )
   end
+
+  desc "Promote an existing beta-track release to production (100% rollout)"
+  lane :promote_to_production do
+    build_number = ENV['BUILD_NUMBER']
+    UI.user_error!('BUILD_NUMBER env var is required to promote a specific release to production') if build_number.nil? || build_number.empty?
+
+    upload_to_play_store(
+      package_name: PACKAGE_NAME,
+      track: 'beta',
+      track_promote_to: 'production',
+      version_code: build_number.to_i,
+      rollout: '1.0',
+      json_key: JSON_KEY,
+      skip_upload_aab: true,
+      skip_upload_apk: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      skip_upload_metadata: true
+    )
+  end
 end
