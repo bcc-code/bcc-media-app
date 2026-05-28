@@ -203,11 +203,15 @@ blocks:
             - echo "CODE_SIGN_STYLE = Manual" >> ios/Flutter/Release.xcconfig
             - echo "PROVISIONING_PROFILE = $PROVISIONING_PROFILE_UUID" >> ios/Flutter/Release.xcconfig
             - echo "CODE_SIGN_IDENTITY = $CODE_SIGN_IDENTITY" >> ios/Flutter/Release.xcconfig
+            # Raise the Dart VM heap for the whole job. `flutter pub get` itself
+            # OOMs with the default ~2 GB heap (the front_end blows up while
+            # formatting a tokenize error from flutter_tools.snapshot), and the
+            # later `flutter build ipa` also needs the bigger heap.
+            - 'export DART_VM_OPTIONS="--old_gen_heap_size=6144"'
             - 'cache restore pub-macos-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),pub-macos-$(checksum pubspec.yaml),pub-macos'
             - make pubgetall
             - cache store pub-macos-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml) $HOME/.pub-cache
             - 'cache restore cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock),cocoapods-$(checksum ios/Podfile.lock),cocoapods'
-            - 'export DART_VM_OPTIONS="--old_gen_heap_size=6144"'
             - flutter build ipa --release --flavor prod -t lib/main_prod.dart --build-number=$BUILD_NUMBER --export-options-plist=ios/ExportOptions.plist
             - cache store cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock) ios/Pods
             # flutter names the IPA after the app (not "bccm.ipa", and possibly with a
@@ -426,12 +430,16 @@ blocks:
             - echo "CODE_SIGN_STYLE = Manual" >> kids/ios/Flutter/Release.xcconfig
             - echo "PROVISIONING_PROFILE = $PROVISIONING_PROFILE_UUID" >> kids/ios/Flutter/Release.xcconfig
             - echo "CODE_SIGN_IDENTITY = $CODE_SIGN_IDENTITY" >> kids/ios/Flutter/Release.xcconfig
+            # Raise the Dart VM heap for the whole job. `flutter pub get` itself
+            # OOMs with the default ~2 GB heap (the front_end blows up while
+            # formatting a tokenize error from flutter_tools.snapshot), and the
+            # later `flutter build ipa` also needs the bigger heap.
+            - 'export DART_VM_OPTIONS="--old_gen_heap_size=6144"'
             - 'cache restore pub-macos-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/pubspec.yaml),pub-macos-kids-$(checksum kids/pubspec.yaml),pub-macos-kids'
             - make pubgetall
             - cache store pub-macos-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/pubspec.yaml) $HOME/.pub-cache
             - 'cache restore cocoapods-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/ios/Podfile.lock),cocoapods-kids-$(checksum kids/ios/Podfile.lock),cocoapods-kids'
             - (cd kids/ios && pod repo update)
-            - 'export DART_VM_OPTIONS="--old_gen_heap_size=6144"'
             - cd kids
             - flutter build ipa --release -t lib/main.dart --build-number=$BUILD_NUMBER --export-options-plist=ios/ExportOptions.plist
             - cd ..
