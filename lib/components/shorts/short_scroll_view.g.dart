@@ -12,14 +12,14 @@ String _$wakeLockCountHash() => r'c1e1fc37ac3f770c568304e29ea863d971bebd3e';
 @ProviderFor(WakeLockCount)
 final wakeLockCountProvider =
     AutoDisposeNotifierProvider<WakeLockCount, int>.internal(
-  WakeLockCount.new,
-  name: r'wakeLockCountProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$wakeLockCountHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      WakeLockCount.new,
+      name: r'wakeLockCountProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$wakeLockCountHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$WakeLockCount = AutoDisposeNotifier<int>;
 // ignore_for_file: type=lint

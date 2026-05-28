@@ -842,6 +842,84 @@ class SFi extends S {
   String get ageRatingAll => 'Ei ikärajaa';
 
   @override
+  String get episodeDescription => 'Description';
+
+  @override
+  String get songs => 'Songs';
+
+  @override
+  String get contributors => 'Contributors';
+
+  @override
+  String get contributionTypeLyricist => 'Lyricist';
+
+  @override
+  String get contributionTypeArranger => 'Arranger';
+
+  @override
+  String get contributionTypeSinger => 'Singer';
+
+  @override
+  String get contributionTypeSpeaker => 'Speaker';
+
+  @override
+  String get contributionTypeComposer => 'Composer';
+
+  @override
+  String get contributionTypeSoloist => 'Soloist';
+
+  @override
+  String get contributionTypePerformer => 'Performer';
+
+  @override
+  String get contributionTypeTranslator => 'Translator';
+
+  @override
+  String get contributionTypeDirector => 'Director';
+
+  @override
+  String get contributionTypeProducer => 'Producer';
+
+  @override
+  String get contributionTypeScriptwriter => 'Scriptwriter';
+
+  @override
+  String get contributionTypeActor => 'Actor';
+
+  @override
+  String get contributionTypeVoiceActor => 'Voice actor';
+
+  @override
+  String get contributionTypeOther => 'Other';
+
+  @override
+  String get copyright => 'Copyright';
+
+  @override
+  String get playlistNotFound => 'Playlist not found';
+
+  @override
+  String get shuffle => 'Shuffle';
+
+  @override
+  String playlistItemCount(int count) {
+    return '$count items';
+  }
+
+  @override
+  String playlistDurationHoursMinutes(int hours, int minutes) {
+    return '${hours}h ${minutes}m';
+  }
+
+  @override
+  String playlistDurationMinutes(int minutes) {
+    return '${minutes}m';
+  }
+
+  @override
+  String get contentTypeShort => 'Short';
+
+  @override
   String get offline => 'Offline';
 
   @override

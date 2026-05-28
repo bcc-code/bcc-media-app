@@ -303,4 +303,10 @@ class SvgIcons {
 <rect x="14.1693" y="11.6668" width="3.33333" height="5" stroke="white" stroke-width="1.66667"/>
 </svg>
 ''';
+
+  static const audioPlaying = '''
+<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.2002 9.55075e-05L10.2529 10.0341L8.20112 10.0426L8.14843 0.00853015L10.2002 9.55075e-05ZM6.09035 2.52775L6.12994 10.0677L4.0782 10.0761L4.03861 2.53619L6.09035 2.52775ZM2.05181 4.86957L2.07982 10.2035L0.0280762 10.2119L6.80996e-05 4.878L2.05181 4.86957Z" fill="#7AAFE3"/>
+</svg>
+''';
 }

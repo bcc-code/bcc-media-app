@@ -114,6 +114,11 @@ Future<dynamic>? _navigateToItem(BuildContext context, Object item, {String? col
     ));
   }
 
+  final playlistItem = item.asOrNull<Fragment$NavigatablePlaylist>();
+  if (playlistItem != null) {
+    return overrideAwareNavigation(navigationOverride, router, PlaylistScreenRoute(id: playlistItem.id));
+  }
+
   final showItem = item.asOrNull<Fragment$NavigatableShow>();
   if (showItem != null) {
     return overrideAwareNavigation(navigationOverride, router, ShowScreenRoute(showId: showItem.id));

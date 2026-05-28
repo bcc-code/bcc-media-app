@@ -43,10 +43,7 @@ const kProfileScrollQueryDownloaded = 'downloaded';
 
 @RoutePage()
 class ProfileScreen extends HookConsumerWidget {
-  const ProfileScreen({
-    super.key,
-    @QueryParam('scroll') this.scroll,
-  });
+  const ProfileScreen({super.key, @QueryParam('scroll') this.scroll});
 
   final String? scroll;
 
@@ -109,10 +106,7 @@ class ProfileScreen extends HookConsumerWidget {
       appBar: AppBarWithScrollToTop(
         scrollController: scrollController,
         child: AppBar(
-          title: Image(
-            image: FlavorConfig.current.bccmImages!.logo,
-            height: FlavorConfig.current.bccmImages!.logoHeight,
-          ),
+          title: Image(image: FlavorConfig.current.bccmImages!.logo, height: FlavorConfig.current.bccmImages!.logoHeight),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 16.0),
@@ -137,10 +131,7 @@ class ProfileScreen extends HookConsumerWidget {
                   if (user != null)
                     Padding(
                       padding: const EdgeInsets.only(top: 12),
-                      child: Text(
-                        user.name,
-                        style: design.textStyles.headline2,
-                      ),
+                      child: Text(user.name, style: design.textStyles.headline2),
                     )
                   else if (ref.watch(authEnabledProvider))
                     Padding(
@@ -162,11 +153,7 @@ class ProfileScreen extends HookConsumerWidget {
                         context.router.pushNamed('/settings');
                       },
                       labelText: S.of(context).settings,
-                      image: SvgPicture.string(
-                        SvgIcons.settings,
-                        height: 20,
-                        colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn),
-                      ),
+                      image: SvgPicture.string(SvgIcons.settings, height: 20, colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn)),
                     ),
                   ),
                 ],
@@ -181,8 +168,9 @@ class ProfileScreen extends HookConsumerWidget {
                   future: myListFuture.value,
                   builder: (context, snapshot) {
                     Widget child = const SizedBox.shrink();
-                    final items =
-                        snapshot.data?.parsedData?.myList.entries.items.where((el) => el.item is Fragment$MyListEntry$item$$Episode).toList();
+                    final items = snapshot.data?.parsedData?.myList.entries.items
+                        .where((el) => el.item is Fragment$MyListEntry$item$$Episode)
+                        .toList();
                     if (snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                       child = const SizedBox(height: 250, child: LoadingGeneric());
                     } else if (snapshot.hasError || items == null) {
@@ -192,10 +180,7 @@ class ProfileScreen extends HookConsumerWidget {
                         padding: const EdgeInsets.all(16),
                         width: double.infinity,
                         child: EmptyInfo(
-                          icon: SvgPicture.string(
-                            SvgIcons.heartFilled,
-                            height: 36,
-                          ),
+                          icon: SvgPicture.string(SvgIcons.heartFilled, height: 36),
                           title: S.of(context).saveYourFavorites,
                           details: S.of(context).saveYourFavoritesDescription,
                         ),
@@ -203,10 +188,7 @@ class ProfileScreen extends HookConsumerWidget {
                     } else {
                       child = _EpisodeFavorites(items);
                     }
-                    return AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 250),
-                      child: child,
-                    );
+                    return AnimatedSwitcher(duration: const Duration(milliseconds: 250), child: child);
                   },
                 ),
               ),
@@ -220,8 +202,9 @@ class ProfileScreen extends HookConsumerWidget {
                     future: myListFuture.value,
                     builder: (context, snapshot) {
                       Widget child = const SizedBox.shrink();
-                      final items =
-                          snapshot.data?.parsedData?.myList.entries.items.where((el) => el.item is Fragment$MyListEntry$item$$Short).toList();
+                      final items = snapshot.data?.parsedData?.myList.entries.items
+                          .where((el) => el.item is Fragment$MyListEntry$item$$Short)
+                          .toList();
                       if (snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                         child = const SizedBox(height: 250, child: LoadingGeneric());
                       } else if (snapshot.hasError || items == null) {
@@ -231,10 +214,7 @@ class ProfileScreen extends HookConsumerWidget {
                           padding: const EdgeInsets.all(16),
                           width: double.infinity,
                           child: EmptyInfo(
-                            icon: SvgPicture.string(
-                              SvgIcons.heartFilled,
-                              height: 36,
-                            ),
+                            icon: SvgPicture.string(SvgIcons.heartFilled, height: 36),
                             title: S.of(context).saveYourFavoriteShorts,
                             details: S.of(context).saveYourFavoritesDescription,
                           ),
@@ -242,19 +222,14 @@ class ProfileScreen extends HookConsumerWidget {
                       } else {
                         child = _ShortFavorites(items);
                       }
-                      return AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 250),
-                        child: child,
-                      );
+                      return AnimatedSwitcher(duration: const Duration(milliseconds: 250), child: child);
                     },
                   ),
                 ),
               ),
           ],
           if (downloadedVideosCount > 0 || ref.watch(downloadsEnabledProvider))
-            SliverToBoxAdapter(
-              child: DownloadedVideosSection(key: downloadedKey),
-            ),
+            SliverToBoxAdapter(child: DownloadedVideosSection(key: downloadedKey)),
           const SliverToBoxAdapter(child: SizedBox(height: 32)),
         ],
       ),
@@ -268,12 +243,7 @@ class _ShortFavorites extends HookConsumerWidget {
   final List<Fragment$MyListEntry> items;
 
   EpisodeThumbnailData getEpisodeThumbnailData(Fragment$MyListEntry$item$$Short short) {
-    return EpisodeThumbnailData(
-      title: '',
-      duration: null,
-      image: short.image,
-      locked: false,
-    );
+    return EpisodeThumbnailData(title: '', duration: null, image: short.image, locked: false);
   }
 
   @override
@@ -293,25 +263,19 @@ class _ShortFavorites extends HookConsumerWidget {
         final item = shortItems.elementAt(index);
         return _FavoriteItemClickWrapper(
           item: item,
-          analytics: SectionItemAnalyticsData(
-            id: item.id,
-            name: item.title,
-            type: item.$__typename,
-            position: index,
-          ),
+          analytics: SectionItemAnalyticsData(id: item.id, name: item.title, type: item.$__typename, position: index),
           child: Align(
             alignment: Alignment.topCenter,
             child: ConstrainedBox(
               constraints: BoxConstraints.tightFor(height: thumbnailHeight),
               child: Stack(
                 children: [
-                  EpisodeThumbnail.withSize(
-                    episode: getEpisodeThumbnailData(item),
-                    imageSize: Size(thumbnailWidth, thumbnailHeight),
-                  ),
+                  EpisodeThumbnail.withSize(episode: getEpisodeThumbnailData(item), imageSize: Size(thumbnailWidth, thumbnailHeight)),
                   Positioned.fill(child: Container(color: design.colors.background1.withOpacity(0.3))),
                   Positioned.fill(
-                    child: Center(child: SimpleShadow(offset: const Offset(0, 0), child: SvgPicture.string(SvgIcons.play, height: 24))),
+                    child: Center(
+                      child: SimpleShadow(offset: const Offset(0, 0), child: SvgPicture.string(SvgIcons.play, height: 24)),
+                    ),
                   ),
                 ],
               ),
@@ -341,17 +305,13 @@ class _EpisodeFavorites extends HookConsumerWidget {
 
   StreamSubscription setEpisodeProgressUpdateSubscription(ValueNotifier<List<Fragment$MyListEntry>> myListEntries) {
     return globalEventBus.on<WatchProgressUpdatedEvent>().listen((event) async {
-      myListEntries.value = myListEntries.value.map(
-        (entry) {
-          final episodeItem = entry.item.asOrNull<Fragment$MyListEntry$item$$Episode>();
-          if (episodeItem != null && episodeItem.id == event.episodeId) {
-            return entry.copyWith(
-              item: episodeItem.copyWith(progress: event.progress),
-            );
-          }
-          return entry;
-        },
-      ).toList();
+      myListEntries.value = myListEntries.value.map((entry) {
+        final episodeItem = entry.item.asOrNull<Fragment$MyListEntry$item$$Episode>();
+        if (episodeItem != null && episodeItem.id == event.episodeId) {
+          return entry.copyWith(item: episodeItem.copyWith(progress: event.progress));
+        }
+        return entry;
+      }).toList();
     });
   }
 
@@ -375,17 +335,8 @@ class _EpisodeFavorites extends HookConsumerWidget {
       children: episodeItems.mapIndexed((index, item) {
         return _FavoriteItemClickWrapper(
           item: item,
-          analytics: SectionItemAnalyticsData(
-            id: item.id,
-            name: item.title,
-            type: item.$__typename,
-            position: index,
-          ),
-          child: ThumbnailGridEpisode(
-            episode: getEpisodeThumbnailData(item),
-            showSecondaryTitle: false,
-            aspectRatio: 16 / 9,
-          ),
+          analytics: SectionItemAnalyticsData(id: item.id, name: item.title, type: item.$__typename, position: index),
+          child: ThumbnailGridEpisode(episode: getEpisodeThumbnailData(item), showSecondaryTitle: false, aspectRatio: 16 / 9),
         );
       }).toList(),
     );

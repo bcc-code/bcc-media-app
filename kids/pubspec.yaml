@@ -8,7 +8,8 @@ publish_to: "none" # prevent pub.dev
 version: 5.1.45+2500055
 
 environment:
-  sdk: ">=3.1.0 <4.0.0"
+  sdk: ">=3.8.0 <4.0.0"
+  flutter: ">=3.35.0"
 
 dependencies:
   flutter:

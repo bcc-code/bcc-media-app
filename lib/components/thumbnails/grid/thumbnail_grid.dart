@@ -8,6 +8,7 @@ import '../../../models/episode_thumbnail_data.dart';
 import '../../misc/custom_grid_view.dart';
 import '../../pages/sections/section_item_click_wrapper.dart';
 import 'thumbnail_grid_episode.dart';
+import 'thumbnail_grid_playlist.dart';
 import 'thumbnail_grid_show.dart';
 
 class ThumbnailGrid extends ConsumerWidget {
@@ -72,13 +73,20 @@ class ThumbnailGrid extends ConsumerWidget {
         aspectRatio: aspectRatio,
       );
     }
+    var playlist = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Playlist>();
+    if (playlist != null) {
+      return ThumbnailGridPlaylist(sectionItem: sectionItem);
+    }
     return const SizedBox();
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final items = sectionItems
-        .where((element) => element.item is Fragment$GridSectionItem$item$$Episode || element.item is Fragment$GridSectionItem$item$$Show)
+        .where((element) =>
+            element.item is Fragment$GridSectionItem$item$$Episode ||
+            element.item is Fragment$GridSectionItem$item$$Show ||
+            element.item is Fragment$GridSectionItem$item$$Playlist)
         .toList();
 
     return CustomGridView(

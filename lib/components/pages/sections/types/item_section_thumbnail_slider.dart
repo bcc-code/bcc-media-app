@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../models/episode_thumbnail_data.dart';
 import '../../../thumbnails/slider/thumbnail_slider_episode.dart';
+import '../../../thumbnails/slider/thumbnail_slider_playlist.dart';
 import '../../../thumbnails/slider/thumbnail_slider_show.dart';
 import '../section_item_click_wrapper.dart';
 
@@ -85,6 +86,7 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
         final episodeThumbnailData = getEpisodeThumbnailData(item);
         final showItem = item.item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
         final shortItem = item.item.asOrNull<Fragment$ItemSectionItem$item$$Short>();
+        final playlistItem = item.item.asOrNull<Fragment$ItemSectionItem$item$$Playlist>();
         Widget? sectionItemWidget;
         if (showItem != null) {
           sectionItemWidget = ThumbnailSliderShow(
@@ -96,6 +98,11 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
         } else if (shortItem != null && item.image != null) {
           sectionItemWidget = ThumbnailSliderShort(
             image: item.image!,
+            imageSize: responsiveSize,
+          );
+        } else if (playlistItem != null) {
+          sectionItemWidget = ThumbnailSliderPlaylist(
+            sectionItem: item,
             imageSize: responsiveSize,
           );
         } else if (episodeThumbnailData != null) {

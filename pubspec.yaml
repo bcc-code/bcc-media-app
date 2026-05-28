@@ -11,7 +11,8 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 5.6.97+2300257
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=3.8.0 <4.0.0"
+  flutter: ">=3.35.0"
 
 dependencies:
   flutter:
@@ -78,7 +79,7 @@ dependencies:
     path: submodules/bccm_flutter/bccm_core
   auto_size_text: ^3.0.0
   webview_flutter: ^4.10.0
-  sentry_flutter: ^9.6.0
+  sentry_flutter: ^9.20.0
   bmm_api:
     path: submodules/bccm_flutter/bmm_api/src
   built_collection: ^5.1.1
@@ -86,6 +87,7 @@ dependencies:
 
 dependency_overrides:
   js: ^0.7.1
+  analyzer_plugin: 0.13.4
 
 dev_dependencies:
   integration_test:

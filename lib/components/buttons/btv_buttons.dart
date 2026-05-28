@@ -77,25 +77,19 @@ class BtvButton extends StatelessWidget {
     final disabledTextColor = design.colors.label4;
     final safeTextStyle = textStyle ?? design.textStyles.button2;
 
-    onPressed() {
-      this.onPressed();
+    handlePressed() {
+      onPressed();
       CustomHapticFeedback.lightImpact();
     }
 
     return IgnorePointer(
       ignoring: disabled,
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: onPressed,
-        child: FocusableControlBuilder(
-          autoFocus: autofocus ?? false,
-          cursor: SystemMouseCursors.click,
-          actions: {
-            ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) {
-              return onPressed();
-            }),
-          },
-          builder: (_, state) => AnimatedContainer(
+      child: FocusableControlBuilder(
+        autoFocus: autofocus ?? false,
+        cursor: SystemMouseCursors.click,
+        hitTestBehavior: HitTestBehavior.opaque,
+        onPressed: handlePressed,
+        builder: (_, state) => AnimatedContainer(
             duration: const Duration(milliseconds: 100),
             curve: Curves.easeOut,
             padding: labelText != null ? padding : const EdgeInsets.all(12),
@@ -144,7 +138,6 @@ class BtvButton extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
