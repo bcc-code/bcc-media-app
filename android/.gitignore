@@ -1,5 +1,6 @@
 gradle-wrapper.jar
 /.gradle
+gradle/gradle-daemon-jvm.properties
 /captures/
 /gradlew
 /gradlew.bat
