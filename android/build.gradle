@@ -26,6 +26,29 @@ rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
+
+// Align JVM targets for plugin subprojects. Some plugins (e.g. rudder_plugin_android)
+// only set Java's targetCompatibility but leave Kotlin's default to the toolchain JVM,
+// which trips Kotlin 2.x's strict JVM target validation on CI (Java 17).
+// Must be registered before evaluationDependsOn below.
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            project.android {
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_11
+                    targetCompatibility JavaVersion.VERSION_11
+                }
+            }
+            project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+                kotlinOptions {
+                    jvmTarget = '11'
+                }
+            }
+        }
+    }
+}
+
 subprojects {
     project.evaluationDependsOn(':app')
 }
