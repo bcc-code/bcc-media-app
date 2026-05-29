@@ -43,7 +43,11 @@ dependencies:
   image: ^4.5.4
   responsive_framework: ^1.5.1
   intl: ^0.20.2
-  focusable_control_builder: ^1.0.2+1
+  # Pinned below 1.1.0: that release made FocusableControlBuilder's internal
+  # GestureDetector always register onTapDown/Up/Cancel (to track isPressed),
+  # which makes it win the gesture arena and starves outer GestureDetectors —
+  # breaking ButtonBase's tap-down press handling.
+  focusable_control_builder: ">=1.0.2 <1.1.0"
   flutter_image: ^4.1.13
   async: ^2.13.0
   markdown: ^7.3.0

@@ -61,7 +61,8 @@ dependencies:
   riverpod_annotation: ^2.5.3
   responsive_framework: ^1.5.1
   intl: ^0.20.2
-  focusable_control_builder: ^1.0.2+1
+  # See kids/pubspec.yaml for why this is pinned below 1.1.0.
+  focusable_control_builder: ">=1.0.2 <1.1.0"
   flutter_to_airplay:
     git:
       url: https://github.com/sifferhans/flutter_to_airplay.git
