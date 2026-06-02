@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
@@ -48,6 +50,12 @@ extension on Settings {
 
 final _defaultLanguage = Intl.defaultLocale ?? FlavorConfig.current.defaultLanguage;
 
+String _generateNumericSessionId() {
+  final ms = DateTime.now().millisecondsSinceEpoch;
+  final suffix = Random().nextInt(10000).toString().padLeft(4, '0');
+  return '$ms$suffix';
+}
+
 class SettingsService extends StateNotifier<Settings> {
   final Ref ref;
 
@@ -63,7 +71,7 @@ class SettingsService extends StateNotifier<Settings> {
       envOverride: prefs.getString(PrefKeys.envOverride),
       isBetaTester: prefs.getBool(PrefKeys.isBetaTester),
       useNativePlayer: prefs.getBool(PrefKeys.useNativePlayer),
-      sessionId: generateId(),
+      sessionId: _generateNumericSessionId(),
       searchSessionId: generateId(),
       extraUsergroups: prefs.getStringList(PrefKeys.extraUsergroups) ?? [],
       notificationsEnabled: prefs.getBool(PrefKeys.notificationsEnabled),
@@ -100,7 +108,7 @@ class SettingsService extends StateNotifier<Settings> {
   }
 
   void refreshSessionId() {
-    final newSessionId = generateId();
+    final newSessionId = _generateNumericSessionId();
     debugPrint('Session_id: ${state.sessionId} -> $newSessionId');
     state = state.copyWith(sessionId: newSessionId);
   }
