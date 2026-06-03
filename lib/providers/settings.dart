@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bccm_core/platform.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
@@ -50,12 +48,6 @@ extension on Settings {
 
 final _defaultLanguage = Intl.defaultLocale ?? FlavorConfig.current.defaultLanguage;
 
-String _generateNumericSessionId() {
-  final ms = DateTime.now().millisecondsSinceEpoch;
-  final suffix = Random().nextInt(10000).toString().padLeft(4, '0');
-  return '$ms$suffix';
-}
-
 class SettingsService extends StateNotifier<Settings> {
   final Ref ref;
 
@@ -71,7 +63,7 @@ class SettingsService extends StateNotifier<Settings> {
       envOverride: prefs.getString(PrefKeys.envOverride),
       isBetaTester: prefs.getBool(PrefKeys.isBetaTester),
       useNativePlayer: prefs.getBool(PrefKeys.useNativePlayer),
-      sessionId: _generateNumericSessionId(),
+      sessionId: generateId(),
       searchSessionId: generateId(),
       extraUsergroups: prefs.getStringList(PrefKeys.extraUsergroups) ?? [],
       notificationsEnabled: prefs.getBool(PrefKeys.notificationsEnabled),
@@ -85,11 +77,7 @@ class SettingsService extends StateNotifier<Settings> {
     ref.read(sharedPreferencesProvider).setString(PrefKeys.appLanguage, code);
     state = state.copyWith(appLanguage: getLocale(code) ?? Locale(_defaultLanguage));
     if (sendAnalytics) {
-      ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
-            languageFrom: previous,
-            languageTo: code,
-            languageChangeType: 'app',
-          ));
+      ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(languageFrom: previous, languageTo: code, languageChangeType: 'app'));
     }
   }
 
@@ -100,15 +88,13 @@ class SettingsService extends StateNotifier<Settings> {
     ref.read(sharedPreferencesProvider).setString(PrefKeys.audioLanguage, languageCodes.join(','));
     state = state.copyWith(audioLanguages: languageCodes);
 
-    ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
-          languageFrom: previous.join(','),
-          languageTo: languageCodes.join(','),
-          languageChangeType: 'audio',
-        ));
+    ref
+        .read(analyticsProvider)
+        .languageChanged(LanguageChangedEvent(languageFrom: previous.join(','), languageTo: languageCodes.join(','), languageChangeType: 'audio'));
   }
 
   void refreshSessionId() {
-    final newSessionId = _generateNumericSessionId();
+    final newSessionId = generateId();
     debugPrint('Session_id: ${state.sessionId} -> $newSessionId');
     state = state.copyWith(sessionId: newSessionId);
   }
