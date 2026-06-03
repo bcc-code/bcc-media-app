@@ -38,16 +38,13 @@ String getSentryEnvironment() {
 
 /// This function is called from the flavor-specific entrypoints
 /// E.g. main_dev.dart, main_prod.dart
-Future<void> $main({
-  List<Override>? providerOverrides,
-}) async {
+Future<void> $main({List<Override>? providerOverrides}) async {
   await SentryFlutter.init(
     (options) {
       options.dsn = Env.sentryDsn;
       options.environment = getSentryEnvironment();
       options.tracesSampleRate = 0.5;
       options.profilesSampleRate = 0.5;
-      options.replay.onErrorSampleRate = 1.0;
       options.beforeSend = (event, hint) {
         // Filter out network related errors to prevent noise in Sentry
         if (event.throwable is SocketException ||
@@ -73,10 +70,7 @@ Future<void> $main({
       await setDefaults();
 
       if (FlavorConfig.current.firebaseOptions != null) {
-        await initFirebase(
-          FlavorConfig.current.firebaseOptions!,
-          onFirebaseBackgroundMessage: onFirebaseBackgroundMessage,
-        );
+        await initFirebase(FlavorConfig.current.firebaseOptions!, onFirebaseBackgroundMessage: onFirebaseBackgroundMessage);
       }
 
       // Initialize bccm_player
@@ -95,16 +89,11 @@ Future<void> $main({
         featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
         notificationServiceProviderOverride: notificationServiceProviderOverride,
       );
-      final providerContainer = await initProviderContainer([
-        ...coreOverrides,
-        if (providerOverrides != null) ...providerOverrides,
-      ]);
+      final providerContainer = await initProviderContainer([...coreOverrides, if (providerOverrides != null) ...providerOverrides]);
 
       final app = UncontrolledProviderScope(
         container: providerContainer,
-        child: AppRoot(
-          appRouter: appRouter,
-        ),
+        child: AppRoot(appRouter: appRouter),
       );
       Widget maybeWrappedApp;
       if (kDebugMode && !kIsWeb) {
@@ -136,9 +125,7 @@ Future setDefaults() async {
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   // How much space all bitmaps collectively can take up in memory.
   // The default is 100MiB, as of flutter 3.7. This lowers it to 50MiB.
