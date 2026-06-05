@@ -13,7 +13,13 @@ analyzer:
   errors:
     body_might_complete_normally_nullable: ignore
   exclude:
-    [lib/**.freezed.dart, lib/**.g.dart, lib/**.graphql.dart, lib/l10n/**.dart]
+    [
+      lib/**.freezed.dart,
+      lib/**.g.dart,
+      lib/**.graphql.dart,
+      lib/l10n/**.dart,
+      build/**,
+    ]
 
 linter:
   # The lint rules applied to this project can be customized in the
@@ -30,6 +36,7 @@ linter:
   rules:
     avoid_print: false # Uncomment to disable the `avoid_print` rule
     prefer_single_quotes: true # Uncomment to enable the `prefer_single_quotes` rule
+
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
