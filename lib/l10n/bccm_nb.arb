@@ -1179,7 +1179,7 @@
   "@copyright": {
     "description": "Section header in the 'details' tab showing the copyright holder of an episode."
   },
-  "playlistNotFound": "Spillelisten ble ikke funnet",
+  "playlistNotFound": "Spilleliste ikke funnet",
   "@playlistNotFound": {
     "description": "Error message shown when a playlist cannot be loaded or does not exist."
   },
@@ -1187,7 +1187,7 @@
   "@shuffle": {
     "description": "Button label. Plays the items of a playlist in a random order."
   },
-  "playlistItemCount": "{count} elementer",
+  "playlistItemCount": "{count} gjenstander",
   "@playlistItemCount": {
     "description": "REMEMBER: Include, but do not translate the variable {count}. Keep it very short. Number of items in a playlist (episodes + shorts combined).",
     "placeholders": {
@@ -1196,9 +1196,9 @@
       }
     }
   },
-  "playlistDurationHoursMinutes": "{hours} t {minutes} min",
+  "playlistDurationHoursMinutes": "{hours}t {minutes}m",
   "@playlistDurationHoursMinutes": {
-    "description": "REMEMBER: Include, but do not translate the variables {hours} and {minutes}. Keep it very short. Total duration of a playlist when it is one hour or longer (e.g. '2t 15min').",
+    "description": "REMEMBER: Include, but do not translate the variables {hours} and {minutes}. Keep it very short. Total duration of a playlist when it is one hour or longer (e.g. '2h 15m').",
     "placeholders": {
       "hours": {
         "type": "int"
@@ -1208,16 +1208,16 @@
       }
     }
   },
-  "playlistDurationMinutes": "{minutes} min",
+  "playlistDurationMinutes": "{minutes}m",
   "@playlistDurationMinutes": {
-    "description": "REMEMBER: Include, but do not translate the variable {minutes}. Keep it very short. Total duration of a playlist when it is under an hour (e.g. '45min').",
+    "description": "REMEMBER: Include, but do not translate the variable {minutes}. Keep it very short. Total duration of a playlist when it is under an hour (e.g. '45m').",
     "placeholders": {
       "minutes": {
         "type": "int"
       }
     }
   },
-  "contentTypeShort": "Shorts",
+  "contentTypeShort": "Kort",
   "@contentTypeShort": {
     "description": "Label identifying that a single item is a 'Short' (a short vertical video, similar to YouTube Shorts / Instagram Reels). Used as a subtitle/badge on items in lists."
   },
