@@ -1107,6 +1107,120 @@
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
+  "episodeDescription": "Beschrijving",
+  "@episodeDescription": {
+    "description": "Section header in the 'details' tab for the description of the episode itself."
+  },
+  "songs": "Liederen",
+  "@songs": {
+    "description": "Section header in the 'details' tab listing the songs performed in an episode."
+  },
+  "contributors": "Bijdragers",
+  "@contributors": {
+    "description": "Section header in the 'details' tab listing the contributors (composer, singer, etc.) of an episode."
+  },
+  "contributionTypeLyricist": "Schrijver",
+  "@contributionTypeLyricist": {
+    "description": "Label for contributors who wrote the lyrics of a song. Used in the 'details' tab. Followed by names: 'Lyricist: ...'."
+  },
+  "contributionTypeArranger": "Arrangeur",
+  "@contributionTypeArranger": {
+    "description": "Label for contributors who arranged the music of a song. Used in the 'details' tab."
+  },
+  "contributionTypeSinger": "Zanger",
+  "@contributionTypeSinger": {
+    "description": "Label for contributors who sang in a song. Used in the 'details' tab."
+  },
+  "contributionTypeSpeaker": "Spreker",
+  "@contributionTypeSpeaker": {
+    "description": "Label for contributors who spoke (as opposed to sang) in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeComposer": "Componist",
+  "@contributionTypeComposer": {
+    "description": "Label for contributors who composed the music of a song. Used in the 'details' tab."
+  },
+  "contributionTypeSoloist": "Solist",
+  "@contributionTypeSoloist": {
+    "description": "Label for the solo performer in a song. Used in the 'details' tab."
+  },
+  "contributionTypePerformer": "Performer",
+  "@contributionTypePerformer": {
+    "description": "Label for a performer in a song or episode (generic). Used in the 'details' tab."
+  },
+  "contributionTypeTranslator": "Vertaler",
+  "@contributionTypeTranslator": {
+    "description": "Label for contributors who translated the lyrics or content. Used in the 'details' tab."
+  },
+  "contributionTypeDirector": "Regisseur",
+  "@contributionTypeDirector": {
+    "description": "Label for the director of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeProducer": "Producent",
+  "@contributionTypeProducer": {
+    "description": "Label for the producer of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeScriptwriter": "Scriptschrijver",
+  "@contributionTypeScriptwriter": {
+    "description": "Label for the scriptwriter of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeActor": "Acteur",
+  "@contributionTypeActor": {
+    "description": "Label for actors in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeVoiceActor": "Stemacteur",
+  "@contributionTypeVoiceActor": {
+    "description": "Label for voice actors in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeOther": "Overig",
+  "@contributionTypeOther": {
+    "description": "Label for contributors with an unspecified or unusual role. Used in the 'details' tab."
+  },
+  "copyright": "Auteursrecht",
+  "@copyright": {
+    "description": "Section header in the 'details' tab showing the copyright holder of an episode."
+  },
+  "playlistNotFound": "Afspeellijst niet gevonden",
+  "@playlistNotFound": {
+    "description": "Error message shown when a playlist cannot be loaded or does not exist."
+  },
+  "shuffle": "Shuffle",
+  "@shuffle": {
+    "description": "Button label. Plays the items of a playlist in a random order."
+  },
+  "playlistItemCount": "{count} items",
+  "@playlistItemCount": {
+    "description": "REMEMBER: Include, but do not translate the variable {count}. Keep it very short. Number of items in a playlist (episodes + shorts combined).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playlistDurationHoursMinutes": "{hours}h {minutes}m",
+  "@playlistDurationHoursMinutes": {
+    "description": "REMEMBER: Include, but do not translate the variables {hours} and {minutes}. Keep it very short. Total duration of a playlist when it is one hour or longer (e.g. '2h 15m').",
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "playlistDurationMinutes": "{minutes}m",
+  "@playlistDurationMinutes": {
+    "description": "REMEMBER: Include, but do not translate the variable {minutes}. Keep it very short. Total duration of a playlist when it is under an hour (e.g. '45m').",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "contentTypeShort": "Short",
+  "@contentTypeShort": {
+    "description": "Label identifying that a single item is a 'Short' (a short vertical video, similar to YouTube Shorts / Instagram Reels). Used as a subtitle/badge on items in lists."
+  },
   "offline": "Offline",
   "@offline": {
     "description": "Status indicator, indicating that you are offline; not connected to the internet."
