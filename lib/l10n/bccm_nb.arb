@@ -1217,7 +1217,7 @@
       }
     }
   },
-  "contentTypeShort": "Kort",
+  "contentTypeShort": "Short",
   "@contentTypeShort": {
     "description": "Label identifying that a single item is a 'Short' (a short vertical video, similar to YouTube Shorts / Instagram Reels). Used as a subtitle/badge on items in lists."
   },
