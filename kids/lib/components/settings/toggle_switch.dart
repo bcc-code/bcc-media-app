@@ -8,11 +8,7 @@ import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class ToggleSwitch extends StatelessWidget {
-  const ToggleSwitch({
-    super.key,
-    required this.controller,
-    this.onChanged,
-  });
+  const ToggleSwitch({super.key, required this.controller, this.onChanged});
 
   final ValueNotifier<bool> controller;
   final Function(dynamic)? onChanged;
@@ -33,28 +29,17 @@ class ToggleSwitch extends StatelessWidget {
       inactiveColor: design.colors.separatorOnLight,
       width: isSmall ? 50 : 77,
       height: isSmall ? 32 : 44,
-      borderRadius: BorderRadius.circular(100),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
       thumb: Container(
         child: _childWrap(
           builder: (child) {
-            return Platform.isAndroid
-                ? child
-                : _InnerShadow(
-                    offset: const Offset(0, -2),
-                    color: Colors.black.withOpacity(0.2),
-                    child: child,
-                  );
+            return Platform.isAndroid ? child : _InnerShadow(offset: const Offset(0, -2), color: Colors.black.withOpacity(0.2), child: child);
           },
           child: Container(
             margin: isSmall ? const EdgeInsets.all(2) : const EdgeInsets.all(4),
             decoration: BoxDecoration(
               color: design.colors.background1,
-              boxShadow: [
-                BoxShadow(
-                  color: Color.fromRGBO(4, 18, 52, 0.2),
-                  offset: const Offset(0, 2),
-                ),
-              ],
+              boxShadow: [BoxShadow(color: Color.fromRGBO(4, 18, 52, 0.2), offset: const Offset(0, 2))],
               borderRadius: BorderRadius.circular(100),
             ),
           ),
@@ -64,19 +49,12 @@ class ToggleSwitch extends StatelessWidget {
   }
 }
 
-Widget _childWrap({
-  required Widget Function(Widget child) builder,
-  required Widget child,
-}) {
+Widget _childWrap({required Widget Function(Widget child) builder, required Widget child}) {
   return builder(child);
 }
 
 class _InnerShadow extends SingleChildRenderObjectWidget {
-  const _InnerShadow({
-    required this.color,
-    required this.offset,
-    super.child,
-  });
+  const _InnerShadow({required this.color, required this.offset, super.child});
 
   final Color color;
   final Offset offset;
@@ -116,12 +94,7 @@ class _RenderInnerShadowSkia extends RenderProxyBox {
     if (child == null) return;
 
     final Rect rectOuter = offset & size;
-    final Rect rectInner = Rect.fromLTWH(
-      offset.dx,
-      offset.dy,
-      size.width - offset.dx,
-      size.height - offset.dy,
-    );
+    final Rect rectInner = Rect.fromLTWH(offset.dx, offset.dy, size.width - offset.dx, size.height - offset.dy);
     final Canvas canvas = context.canvas..saveLayer(rectOuter, Paint());
     context.paintChild(child!, offset);
     final Paint shadowPaint = Paint()
@@ -151,12 +124,7 @@ class _RenderInnerShadow extends RenderProxyBox {
     if (child == null) return;
 
     final Rect rectOuter = offset & size;
-    final Rect rectInner = Rect.fromLTWH(
-      offset.dx,
-      offset.dy,
-      size.width - shadowOffset.dx,
-      size.height,
-    );
+    final Rect rectInner = Rect.fromLTWH(offset.dx, offset.dy, size.width - shadowOffset.dx, size.height);
     final Canvas canvas = context.canvas..saveLayer(rectOuter, Paint());
     context.paintChild(child!, offset);
     final Paint shadowPaint = Paint()..colorFilter = ColorFilter.mode(color, BlendMode.srcOut);
@@ -169,10 +137,7 @@ class _RenderInnerShadow extends RenderProxyBox {
     // Only happens on impeller.
     context.canvas.drawPoints(
       PointMode.points,
-      [
-        rectInner.bottomLeft,
-        rectInner.bottomRight,
-      ],
+      [rectInner.bottomLeft, rectInner.bottomRight],
       Paint()
         ..strokeWidth = 4
         ..color = Colors.white,

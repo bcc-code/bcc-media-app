@@ -77,11 +77,7 @@ class SettingsService extends StateNotifier<Settings> {
     ref.read(sharedPreferencesProvider).setString(PrefKeys.appLanguage, code);
     state = state.copyWith(appLanguage: getLocale(code) ?? Locale(_defaultLanguage));
     if (sendAnalytics) {
-      ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
-            languageFrom: previous,
-            languageTo: code,
-            languageChangeType: 'app',
-          ));
+      ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(languageFrom: previous, languageTo: code, languageChangeType: 'app'));
     }
   }
 
@@ -92,11 +88,9 @@ class SettingsService extends StateNotifier<Settings> {
     ref.read(sharedPreferencesProvider).setString(PrefKeys.audioLanguage, languageCodes.join(','));
     state = state.copyWith(audioLanguages: languageCodes);
 
-    ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
-          languageFrom: previous.join(','),
-          languageTo: languageCodes.join(','),
-          languageChangeType: 'audio',
-        ));
+    ref
+        .read(analyticsProvider)
+        .languageChanged(LanguageChangedEvent(languageFrom: previous.join(','), languageTo: languageCodes.join(','), languageChangeType: 'audio'));
   }
 
   void refreshSessionId() {

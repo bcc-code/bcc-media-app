@@ -11,7 +11,7 @@
     <key>provisioningProfiles</key>
     <dict>
         <key>media.bcc.kids</key>
-        <string>Bible Kids AppStore</string>
+        <string>match AppStore media.bcc.kids</string>
     </dict>
     <key>stripSwiftSymbols</key>
     <true/>
