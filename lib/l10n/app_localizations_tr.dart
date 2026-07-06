@@ -489,6 +489,11 @@ class STr extends S {
   String get comingSoon => 'Yakında geliyor';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'Yeni';
 
   @override

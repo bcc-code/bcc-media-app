@@ -490,6 +490,11 @@ class SHu extends S {
   String get comingSoon => 'Hamarosan';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'Új';
 
   @override

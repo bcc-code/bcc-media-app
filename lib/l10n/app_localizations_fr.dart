@@ -491,6 +491,11 @@ class SFr extends S {
   String get comingSoon => 'Bientôt disponible';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'Nouveau';
 
   @override

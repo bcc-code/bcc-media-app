@@ -490,6 +490,11 @@ class SPl extends S {
   String get comingSoon => 'Dostępne wkrótce';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'Nowy';
 
   @override

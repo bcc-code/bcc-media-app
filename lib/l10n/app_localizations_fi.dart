@@ -489,6 +489,11 @@ class SFi extends S {
   String get comingSoon => 'Tulossa pian';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'Uutta';
 
   @override

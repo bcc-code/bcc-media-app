@@ -489,6 +489,11 @@ class SSl extends S {
   String get comingSoon => 'Pride kmalu';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'Novo';
 
   @override

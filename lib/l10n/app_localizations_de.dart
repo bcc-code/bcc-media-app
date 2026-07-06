@@ -495,6 +495,11 @@ class SDe extends S {
   String get comingSoon => 'Kommt in Kürze';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'Neu';
 
   @override

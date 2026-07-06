@@ -7,10 +7,13 @@ import 'package:bccm_core/design_system.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:focusable_control_builder/focusable_control_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kids/components/buttons/button.dart';
+import 'package:kids/helpers/svg_icons.dart';
 import 'package:kids/helpers/transitions.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:universal_io/io.dart';
@@ -22,31 +25,15 @@ class EpisodeGridItem {
   final int? duration;
   final String? publishDate;
 
-  EpisodeGridItem({
-    required this.id,
-    required this.title,
-    required this.image,
-    required this.duration,
-    this.publishDate,
-  });
+  EpisodeGridItem({required this.id, required this.title, required this.image, required this.duration, this.publishDate});
 
   factory EpisodeGridItem.fromFragment(Fragment$KidsEpisodeThumbnail e) {
-    return EpisodeGridItem(
-      id: e.id,
-      title: e.title,
-      image: e.image,
-      duration: e.duration,
-      publishDate: e.publishDate,
-    );
+    return EpisodeGridItem(id: e.id, title: e.title, image: e.image, duration: e.duration, publishDate: e.publishDate);
   }
 }
 
 class EpisodeGrid extends StatelessWidget {
-  const EpisodeGrid({
-    super.key,
-    required this.items,
-    required this.onTap,
-  });
+  const EpisodeGrid({super.key, required this.items, required this.onTap});
 
   final List<EpisodeGridItem> items;
   final void Function(EpisodeGridItem item, int index, GlobalKey morphKey) onTap;
@@ -69,13 +56,7 @@ class EpisodeGrid extends StatelessWidget {
 }
 
 class EpisodeGridItemRenderer extends HookConsumerWidget {
-  const EpisodeGridItemRenderer(
-    this.item, {
-    super.key,
-    required this.onPressed,
-    this.hideTitle = false,
-    this.overlayBuilder,
-  });
+  const EpisodeGridItemRenderer(this.item, {super.key, required this.onPressed, this.hideTitle = false, this.overlayBuilder});
 
   final EpisodeGridItem item;
   final void Function(GlobalKey) onPressed;
@@ -88,20 +69,28 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
     final bp = ResponsiveBreakpoints.of(context);
     final morphKey = useMemoized(() => GlobalKey(), []);
     final borderRadius = BorderRadius.circular(bp.smallerThan(TABLET) ? 16 : 24);
+    final upcoming = isUnavailable(item.publishDate);
+    final publishDateTime = item.publishDate != null ? DateTime.tryParse(item.publishDate!) : null;
+    final upcomingLabel = publishDateTime != null
+        ? S.of(context).comingOnDate(DateFormat.MMMMd(Localizations.localeOf(context).toLanguageTag()).format(publishDateTime))
+        : S.of(context).comingSoon;
 
     onPressedLocal() {
+      if (upcoming) return;
       onPressed(morphKey);
       CustomHapticFeedback.mediumImpact();
     }
 
     return FocusableControlBuilder(
-      cursor: SystemMouseCursors.click,
+      cursor: upcoming ? SystemMouseCursors.basic : SystemMouseCursors.click,
       actions: {
-        ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (intent) {
-          return onPressedLocal();
-        }),
+        ActivateIntent: CallbackAction<ActivateIntent>(
+          onInvoke: (intent) {
+            return onPressedLocal();
+          },
+        ),
       },
-      onPressed: onPressedLocal,
+      onPressed: upcoming ? null : onPressedLocal,
       builder: (context, control) => Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,13 +124,25 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
                         )
                       else
                         Container(color: design.colors.separator2),
-                      if (item.duration != null)
+                      if (upcoming) ...[
+                        Positioned.fill(child: Container(color: Colors.black.withOpacity(0.45))),
+                        Positioned.fill(
+                          child: Center(child: _ClockBadge(small: bp.smallerThan(TABLET))),
+                        ),
+                      ],
+                      if (item.duration != null && !upcoming)
                         Positioned(
                           bottom: bp.smallerThan(TABLET) ? 8 : 16,
                           right: bp.smallerThan(TABLET) ? 8 : 16,
                           child: _DurationButton(item.duration!, small: bp.smallerThan(TABLET)),
                         ),
-                      if (isNewEpisode(item.publishDate, false))
+                      if (upcoming)
+                        Positioned(
+                          bottom: bp.smallerThan(TABLET) ? 8 : 16,
+                          left: bp.smallerThan(TABLET) ? 8 : 16,
+                          child: _UpcomingButton(small: bp.smallerThan(TABLET), label: upcomingLabel),
+                        )
+                      else if (isNewEpisode(item.publishDate, false))
                         Positioned(
                           bottom: bp.smallerThan(TABLET) ? 8 : 16,
                           left: bp.smallerThan(TABLET) ? 8 : 16,
@@ -170,10 +171,7 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
 }
 
 class _DurationButton extends StatelessWidget {
-  const _DurationButton(
-    this.duration, {
-    required this.small,
-  });
+  const _DurationButton(this.duration, {required this.small});
 
   final int duration;
   final bool small;
@@ -217,10 +215,69 @@ class _DurationButton extends StatelessWidget {
   }
 }
 
+class _ClockBadge extends StatelessWidget {
+  const _ClockBadge({required this.small});
+
+  final bool small;
+
+  @override
+  Widget build(BuildContext context) {
+    final iconSize = small ? 40.0 : 56.0;
+    return SizedBox(
+      width: iconSize,
+      height: iconSize,
+      child: SvgPicture.string(SvgIcons.clock, colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.9), BlendMode.srcIn)),
+    );
+  }
+}
+
+class _UpcomingButton extends StatelessWidget {
+  const _UpcomingButton({required this.small, required this.label});
+
+  final bool small;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+    final upcomingButton = Button.raw(
+      color: design.colors.background2,
+      activeColor: design.colors.background2,
+      shadowColor: design.colors.label1.withOpacity(0.2),
+      sideColor: design.colors.separator2,
+      labelText: label,
+      labelTextStyle: design.textStyles.title2,
+      elevationHeight: 2,
+      iconSize: 0,
+      height: 40,
+      paddings: const ButtonPaddings(
+        fromLabelToSide: 20,
+        fromLabelToSideWhenAlone: 20,
+        fromIconToLabel: 20,
+        fromIconToSide: 20,
+        fromIconToSideWhenAlone: 20,
+      ),
+    );
+    return IgnorePointer(
+      child: small
+          ? upcomingButton.copyWith(
+              height: 28,
+              labelTextStyle: design.textStyles.title3,
+              paddings: const ButtonPaddings(
+                fromLabelToSide: 12,
+                fromLabelToSideWhenAlone: 12,
+                fromIconToLabel: 12,
+                fromIconToSide: 12,
+                fromIconToSideWhenAlone: 12,
+              ),
+            )
+          : upcomingButton,
+    );
+  }
+}
+
 class _NewButton extends StatelessWidget {
-  const _NewButton({
-    required this.small,
-  });
+  const _NewButton({required this.small});
 
   final bool small;
 
