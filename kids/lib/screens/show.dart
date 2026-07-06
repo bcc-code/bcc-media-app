@@ -19,10 +19,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
 class ShowScreen extends HookConsumerWidget {
-  const ShowScreen({
-    super.key,
-    @PathParam('showId') required this.showId,
-  });
+  const ShowScreen({super.key, @PathParam('showId') required this.showId});
 
   final String showId;
 
@@ -77,8 +74,10 @@ class ShowScreen extends HookConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(showQuery.result.parsedData!.$show.title, style: titleStyle),
-                              Text('${showQuery.result.parsedData!.$show.episodeCount} ${S.of(context).episodes.toLowerCase()}',
-                                  style: design.textStyles.body2),
+                              Text(
+                                '${showQuery.result.parsedData!.$show.episodeCount} ${S.of(context).episodes.toLowerCase()}',
+                                style: design.textStyles.body2,
+                              ),
                             ],
                           ),
                         const Spacer(),
@@ -90,13 +89,8 @@ class ShowScreen extends HookConsumerWidget {
                             context.router.push(EpisodeScreenRoute(id: randomEpisode.id, shuffle: true));
                           },
                           labelText: S.of(context).playRandom,
-                          image: SizedBox(
-                            height: 24,
-                            child: Center(
-                              child: SvgPicture.string(SvgIcons.play),
-                            ),
-                          ),
-                        )
+                          image: SizedBox(height: 24, child: Center(child: SvgPicture.string(SvgIcons.play))),
+                        ),
                       ],
                     ),
                   ),
@@ -114,23 +108,19 @@ class ShowScreen extends HookConsumerWidget {
                         onTap: (item, index, morphKey) {
                           currentMorphKey = morphKey;
                           context.router.push(EpisodeScreenRoute(id: item.id));
-                          ref.read(analyticsProvider).sectionItemClicked(context,
-                              sectionAnalyticsOverride: SectionAnalyticsData(
-                                id: 'ShowEpisodes-$showId',
-                                position: 0,
-                                type: 'ShowEpisodes',
-                              ),
-                              itemAnalyticsOverride: SectionItemAnalyticsData(
-                                position: index,
-                                type: 'Episode',
-                                id: item.id,
-                              ));
+                          ref
+                              .read(analyticsProvider)
+                              .sectionItemClicked(
+                                context,
+                                sectionAnalyticsOverride: SectionAnalyticsData(id: 'ShowEpisodes-$showId', position: 0, type: 'ShowEpisodes'),
+                                itemAnalyticsOverride: SectionItemAnalyticsData(position: index, type: 'Episode', id: item.id),
+                              );
                         },
                         items: episodes,
                       ),
                     ),
                   ),
-                )
+                ),
             ],
           ),
           const StackCloseButton(),
