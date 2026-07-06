@@ -63,7 +63,7 @@
   "@faq": {
     "description": "Long title of the FAQ page."
   },
-  "bccMediaCenter": "BCC Media ist eine Medienstiftung im BCC-Verbund, welche Inhalte mit positiven und christlichen Werten produziert und verbreitet.",
+  "bccMediaCenter": "BCC Media ist eine Medienstiftung im BCC-Verbund, die Inhalte mit positiven und christlichen Werten produziert und verbreitet.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -203,7 +203,7 @@
   "@contactName": {
     "description": "Label for name field in contact support page"
   },
-  "contactNameHint": "Geb deinen Namen ein",
+  "contactNameHint": "Gib deinen Namen ein",
   "@contactNameHint": {
     "description": "Hint text for name field in contact support page"
   },
@@ -807,7 +807,7 @@
   "@studyLessonCompleted": {
     "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
   },
-  "studyLessonsCompleted": "Lektion abgeschlossen",
+  "studyLessonsCompleted": "Lektionen abgeschlossen",
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
@@ -872,7 +872,7 @@
       }
     }
   },
-  "continueButton": "Weiter",
+  "continueButton": "Fortsetzen",
   "@continueButton": {
     "description": "Generic button text."
   },
@@ -957,7 +957,7 @@
   "@youCanContactUsAt": {
     "description": "Sentence with contact info after (don't end with a space). Example usage: You can contact us at support@bcc.media."
   },
-  "biblekidsAbout": "BCC Media ist eine Medienstiftung im BCC-Verbund, welche Inhalte mit positiven und christlichen Werten produziert und verbreitet.",
+  "biblekidsAbout": "Bible Kids ist eine Initiative von BCC-Media, eine Medienstiftung im BCC-Verbund, die Inhalte mit positiven und christlichen Werten produziert und verbreitet.",
   "@biblekidsAbout": {
     "description": "Shown on about page"
   },
@@ -1005,7 +1005,7 @@
   "@noMailAppsDescription": {
     "description": "Shown when you click a 'open email app' button. Description when no email apps are installed on the device."
   },
-  "verificationEmailSent": "Bestätigungs-E-Mail gesendet",
+  "verificationEmailSent": "Bestätigungsmail gesendet",
   "@verificationEmailSent": {
     "description": "Shown when the user has requested a new verification email."
   },
@@ -1021,7 +1021,7 @@
   "@youCanNowUseYourAccount": {
     "description": "Shown when the user has successfully completed account setup."
   },
-  "youCanNowLogInToYourAccount": "Du kannst jetzt dein Konto verwenden und eine Vielzahl erbaulicher Inhalte erkunden.",
+  "youCanNowLogInToYourAccount": "Du kannst dich jetzt an deinem Konto anmelden und eine Vielzahl erbaulicher Inhalte erkunden.",
   "@youCanNowLogInToYourAccount": {
     "description": "Shown when the user has successfully completed account setup (a variant text when you need to log in first)."
   },
@@ -1087,7 +1087,7 @@
   "@removeWatchProgress": {
     "description": "Shown when holding on an episode in the 'continue watching' section."
   },
-  "showDescription": "Sendungsbeschreibung",
+  "showDescription": "Beschreibung anzeigen",
   "@showDescription": {
     "description": "IMPORTANT!! This is NOT 'show' as in 'display'. This is 'show' as in 'a TV show'!!"
   },
@@ -1106,6 +1106,120 @@
   "ageRatingAll": "Alle",
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
+  },
+  "episodeDescription": "Beschreibung",
+  "@episodeDescription": {
+    "description": "Section header in the 'details' tab for the description of the episode itself."
+  },
+  "songs": "Lieder",
+  "@songs": {
+    "description": "Section header in the 'details' tab listing the songs performed in an episode."
+  },
+  "contributors": "Mitwirkende",
+  "@contributors": {
+    "description": "Section header in the 'details' tab listing the contributors (composer, singer, etc.) of an episode."
+  },
+  "contributionTypeLyricist": "Verfasser",
+  "@contributionTypeLyricist": {
+    "description": "Label for contributors who wrote the lyrics of a song. Used in the 'details' tab. Followed by names: 'Lyricist: ...'."
+  },
+  "contributionTypeArranger": "Arrangeur",
+  "@contributionTypeArranger": {
+    "description": "Label for contributors who arranged the music of a song. Used in the 'details' tab."
+  },
+  "contributionTypeSinger": "Sänger",
+  "@contributionTypeSinger": {
+    "description": "Label for contributors who sang in a song. Used in the 'details' tab."
+  },
+  "contributionTypeSpeaker": "Redner",
+  "@contributionTypeSpeaker": {
+    "description": "Label for contributors who spoke (as opposed to sang) in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeComposer": "Komponist",
+  "@contributionTypeComposer": {
+    "description": "Label for contributors who composed the music of a song. Used in the 'details' tab."
+  },
+  "contributionTypeSoloist": "Solist",
+  "@contributionTypeSoloist": {
+    "description": "Label for the solo performer in a song. Used in the 'details' tab."
+  },
+  "contributionTypePerformer": "Interpret",
+  "@contributionTypePerformer": {
+    "description": "Label for a performer in a song or episode (generic). Used in the 'details' tab."
+  },
+  "contributionTypeTranslator": "Übersetzer",
+  "@contributionTypeTranslator": {
+    "description": "Label for contributors who translated the lyrics or content. Used in the 'details' tab."
+  },
+  "contributionTypeDirector": "Regisseur",
+  "@contributionTypeDirector": {
+    "description": "Label for the director of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeProducer": "Produzent",
+  "@contributionTypeProducer": {
+    "description": "Label for the producer of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeScriptwriter": "Drehbuchautor",
+  "@contributionTypeScriptwriter": {
+    "description": "Label for the scriptwriter of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeActor": "Schauspieler",
+  "@contributionTypeActor": {
+    "description": "Label for actors in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeVoiceActor": "Synchronsprecher",
+  "@contributionTypeVoiceActor": {
+    "description": "Label for voice actors in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeOther": "Andere",
+  "@contributionTypeOther": {
+    "description": "Label for contributors with an unspecified or unusual role. Used in the 'details' tab."
+  },
+  "copyright": "Copyright",
+  "@copyright": {
+    "description": "Section header in the 'details' tab showing the copyright holder of an episode."
+  },
+  "playlistNotFound": "Playlist nicht gefunden",
+  "@playlistNotFound": {
+    "description": "Error message shown when a playlist cannot be loaded or does not exist."
+  },
+  "shuffle": "Shuffle",
+  "@shuffle": {
+    "description": "Button label. Plays the items of a playlist in a random order."
+  },
+  "playlistItemCount": "{count} Objekte",
+  "@playlistItemCount": {
+    "description": "REMEMBER: Include, but do not translate the variable {count}. Keep it very short. Number of items in a playlist (episodes + shorts combined).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playlistDurationHoursMinutes": "{hours}h {minutes}m",
+  "@playlistDurationHoursMinutes": {
+    "description": "REMEMBER: Include, but do not translate the variables {hours} and {minutes}. Keep it very short. Total duration of a playlist when it is one hour or longer (e.g. '2h 15m').",
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "playlistDurationMinutes": "{minutes}m",
+  "@playlistDurationMinutes": {
+    "description": "REMEMBER: Include, but do not translate the variable {minutes}. Keep it very short. Total duration of a playlist when it is under an hour (e.g. '45m').",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "contentTypeShort": "Kurz",
+  "@contentTypeShort": {
+    "description": "Label identifying that a single item is a 'Short' (a short vertical video, similar to YouTube Shorts / Instagram Reels). Used as a subtitle/badge on items in lists."
   },
   "offline": "Offline",
   "@offline": {
@@ -1193,7 +1307,7 @@
   "@noInternetConnectionDescription": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
-  "noInternetButDontWorry": "Keine Internetverbindung, \naber keine Sorge.",
+  "noInternetButDontWorry": "Keine Internetverbindung, aber keine Sorge.",
   "@noInternetButDontWorry": {
     "description": "Shown when you are offline, but you have downloaded some videos. (There will be another sentence after this: 'Here are all the videos you have downloaded to your device.')"
   },
@@ -1201,7 +1315,7 @@
   "@hereAreAllTheVideosYouDownloaded": {
     "description": "Shown when you are offline, but you have downloaded some videos."
   },
-  "connectToExplore": "Stelle eine Verbindung zum Internet her, um auf alle Videos zuzugreifen.",
+  "connectToExplore": "Stelle eine Verbindung zum Internet her, um alle Videos zu entdecken.",
   "@connectToExplore": {
     "description": "Shown when you are offline, and the app cannot connect to the internet."
   },
@@ -1375,7 +1489,7 @@
   "@downloadedVideosGuideDescription": {
     "description": "Shown when you have downloaded a video for the first time."
   },
-  "openStore": "Öffnen",
+  "openStore": "Store öffnen",
   "@openStore": {
     "description": "A button to open play store / app store."
   },
@@ -1446,7 +1560,7 @@
   "@studyAnswerTheQuizDescription": {
     "description": "Description shown on the Bible Study quiz button."
   },
-  "studySomeAnswersCorrect": "Du hast {correct} von {total} richtig beantwortet.",
+  "studySomeAnswersCorrect": "Du hast {correct} von {total} richtig beantwortet",
   "@studySomeAnswersCorrect": {
     "description": "Title shown on the Bible Study quiz button after quiz is done.",
     "placeholders": {

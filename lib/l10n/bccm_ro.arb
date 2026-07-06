@@ -91,7 +91,7 @@
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
-  "setPassword": "Setează-ți parola",
+  "setPassword": "Alege parola",
   "@setPassword": {
     "description": "Title for the 'Set password' page of the signup process."
   },
@@ -1106,6 +1106,120 @@
   "ageRatingAll": "Tot",
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
+  },
+  "episodeDescription": "Descriere",
+  "@episodeDescription": {
+    "description": "Section header in the 'details' tab for the description of the episode itself."
+  },
+  "songs": "Cântări",
+  "@songs": {
+    "description": "Section header in the 'details' tab listing the songs performed in an episode."
+  },
+  "contributors": "Contribuitori",
+  "@contributors": {
+    "description": "Section header in the 'details' tab listing the contributors (composer, singer, etc.) of an episode."
+  },
+  "contributionTypeLyricist": "Scriitor",
+  "@contributionTypeLyricist": {
+    "description": "Label for contributors who wrote the lyrics of a song. Used in the 'details' tab. Followed by names: 'Lyricist: ...'."
+  },
+  "contributionTypeArranger": "Aranjor",
+  "@contributionTypeArranger": {
+    "description": "Label for contributors who arranged the music of a song. Used in the 'details' tab."
+  },
+  "contributionTypeSinger": "Cântăreț",
+  "@contributionTypeSinger": {
+    "description": "Label for contributors who sang in a song. Used in the 'details' tab."
+  },
+  "contributionTypeSpeaker": "Vorbitor",
+  "@contributionTypeSpeaker": {
+    "description": "Label for contributors who spoke (as opposed to sang) in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeComposer": "Compozitor",
+  "@contributionTypeComposer": {
+    "description": "Label for contributors who composed the music of a song. Used in the 'details' tab."
+  },
+  "contributionTypeSoloist": "Solist",
+  "@contributionTypeSoloist": {
+    "description": "Label for the solo performer in a song. Used in the 'details' tab."
+  },
+  "contributionTypePerformer": "Interpret",
+  "@contributionTypePerformer": {
+    "description": "Label for a performer in a song or episode (generic). Used in the 'details' tab."
+  },
+  "contributionTypeTranslator": "Traducător",
+  "@contributionTypeTranslator": {
+    "description": "Label for contributors who translated the lyrics or content. Used in the 'details' tab."
+  },
+  "contributionTypeDirector": "Director",
+  "@contributionTypeDirector": {
+    "description": "Label for the director of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeProducer": "Producător",
+  "@contributionTypeProducer": {
+    "description": "Label for the producer of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeScriptwriter": "Scenarist",
+  "@contributionTypeScriptwriter": {
+    "description": "Label for the scriptwriter of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeActor": "Actor",
+  "@contributionTypeActor": {
+    "description": "Label for actors in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeVoiceActor": "Actor de dublaj",
+  "@contributionTypeVoiceActor": {
+    "description": "Label for voice actors in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeOther": "Altele",
+  "@contributionTypeOther": {
+    "description": "Label for contributors with an unspecified or unusual role. Used in the 'details' tab."
+  },
+  "copyright": "Drepturi de autor",
+  "@copyright": {
+    "description": "Section header in the 'details' tab showing the copyright holder of an episode."
+  },
+  "playlistNotFound": "Lista de redare nu a fost găsită",
+  "@playlistNotFound": {
+    "description": "Error message shown when a playlist cannot be loaded or does not exist."
+  },
+  "shuffle": "Amestecă ordinea",
+  "@shuffle": {
+    "description": "Button label. Plays the items of a playlist in a random order."
+  },
+  "playlistItemCount": "{count} elemente",
+  "@playlistItemCount": {
+    "description": "REMEMBER: Include, but do not translate the variable {count}. Keep it very short. Number of items in a playlist (episodes + shorts combined).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playlistDurationHoursMinutes": "{hours}h {minutes}m",
+  "@playlistDurationHoursMinutes": {
+    "description": "REMEMBER: Include, but do not translate the variables {hours} and {minutes}. Keep it very short. Total duration of a playlist when it is one hour or longer (e.g. '2h 15m').",
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "playlistDurationMinutes": "{minutes}m",
+  "@playlistDurationMinutes": {
+    "description": "REMEMBER: Include, but do not translate the variable {minutes}. Keep it very short. Total duration of a playlist when it is under an hour (e.g. '45m').",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "contentTypeShort": "Scurt",
+  "@contentTypeShort": {
+    "description": "Label identifying that a single item is a 'Short' (a short vertical video, similar to YouTube Shorts / Instagram Reels). Used as a subtitle/badge on items in lists."
   },
   "offline": "Offline",
   "@offline": {
