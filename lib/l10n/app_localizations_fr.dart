@@ -854,65 +854,65 @@ class SFr extends S {
   String get episodeDescription => 'Description';
 
   @override
-  String get songs => 'Songs';
+  String get songs => 'Chants';
 
   @override
-  String get contributors => 'Contributors';
+  String get contributors => 'Contributeurs';
 
   @override
-  String get contributionTypeLyricist => 'Lyricist';
+  String get contributionTypeLyricist => 'Interprète';
 
   @override
-  String get contributionTypeArranger => 'Arranger';
+  String get contributionTypeArranger => 'Arrangeur';
 
   @override
-  String get contributionTypeSinger => 'Singer';
+  String get contributionTypeSinger => 'Chanteur';
 
   @override
-  String get contributionTypeSpeaker => 'Speaker';
+  String get contributionTypeSpeaker => 'Animateur';
 
   @override
-  String get contributionTypeComposer => 'Composer';
+  String get contributionTypeComposer => 'Compositeur';
 
   @override
-  String get contributionTypeSoloist => 'Soloist';
+  String get contributionTypeSoloist => 'Soliste';
 
   @override
-  String get contributionTypePerformer => 'Performer';
+  String get contributionTypePerformer => 'Artiste';
 
   @override
-  String get contributionTypeTranslator => 'Translator';
+  String get contributionTypeTranslator => 'Traducteur';
 
   @override
-  String get contributionTypeDirector => 'Director';
+  String get contributionTypeDirector => 'Directeur';
 
   @override
-  String get contributionTypeProducer => 'Producer';
+  String get contributionTypeProducer => 'Producteur';
 
   @override
-  String get contributionTypeScriptwriter => 'Scriptwriter';
+  String get contributionTypeScriptwriter => 'Scénariste';
 
   @override
-  String get contributionTypeActor => 'Actor';
+  String get contributionTypeActor => 'Acteur';
 
   @override
-  String get contributionTypeVoiceActor => 'Voice actor';
+  String get contributionTypeVoiceActor => 'Doubleur';
 
   @override
-  String get contributionTypeOther => 'Other';
+  String get contributionTypeOther => 'Autre';
 
   @override
-  String get copyright => 'Copyright';
+  String get copyright => 'Droits d\'auteur';
 
   @override
-  String get playlistNotFound => 'Playlist not found';
+  String get playlistNotFound => 'Playlist introuvable';
 
   @override
-  String get shuffle => 'Shuffle';
+  String get shuffle => 'Aléatoire';
 
   @override
   String playlistItemCount(int count) {
-    return '$count items';
+    return '$count éléments';
   }
 
   @override

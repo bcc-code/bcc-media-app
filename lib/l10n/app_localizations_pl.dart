@@ -849,82 +849,82 @@ class SPl extends S {
   String get ageRatingAll => 'Wszyscy';
 
   @override
-  String get episodeDescription => 'Description';
+  String get episodeDescription => 'Opis';
 
   @override
-  String get songs => 'Songs';
+  String get songs => 'Piosenki';
 
   @override
-  String get contributors => 'Contributors';
+  String get contributors => 'Autorzy';
 
   @override
-  String get contributionTypeLyricist => 'Lyricist';
+  String get contributionTypeLyricist => 'Autor tekstu';
 
   @override
-  String get contributionTypeArranger => 'Arranger';
+  String get contributionTypeArranger => 'Aranżer';
 
   @override
-  String get contributionTypeSinger => 'Singer';
+  String get contributionTypeSinger => 'Śpiewak';
 
   @override
-  String get contributionTypeSpeaker => 'Speaker';
+  String get contributionTypeSpeaker => 'Mówca';
 
   @override
-  String get contributionTypeComposer => 'Composer';
+  String get contributionTypeComposer => 'Kompozytor';
 
   @override
-  String get contributionTypeSoloist => 'Soloist';
+  String get contributionTypeSoloist => 'Solista';
 
   @override
-  String get contributionTypePerformer => 'Performer';
+  String get contributionTypePerformer => 'Wykonawca';
 
   @override
-  String get contributionTypeTranslator => 'Translator';
+  String get contributionTypeTranslator => 'Tłumacz';
 
   @override
-  String get contributionTypeDirector => 'Director';
+  String get contributionTypeDirector => 'Reżyser';
 
   @override
-  String get contributionTypeProducer => 'Producer';
+  String get contributionTypeProducer => 'Producent';
 
   @override
-  String get contributionTypeScriptwriter => 'Scriptwriter';
+  String get contributionTypeScriptwriter => 'Scenarzysta';
 
   @override
-  String get contributionTypeActor => 'Actor';
+  String get contributionTypeActor => 'Aktor';
 
   @override
-  String get contributionTypeVoiceActor => 'Voice actor';
+  String get contributionTypeVoiceActor => 'Aktor głosowy';
 
   @override
-  String get contributionTypeOther => 'Other';
+  String get contributionTypeOther => 'Inne';
 
   @override
-  String get copyright => 'Copyright';
+  String get copyright => 'Prawa autorskie';
 
   @override
-  String get playlistNotFound => 'Playlist not found';
+  String get playlistNotFound => 'Nie znaleziono playlisty';
 
   @override
-  String get shuffle => 'Shuffle';
+  String get shuffle => 'Losowo';
 
   @override
   String playlistItemCount(int count) {
-    return '$count items';
+    return '$count pozycji';
   }
 
   @override
   String playlistDurationHoursMinutes(int hours, int minutes) {
-    return '${hours}h ${minutes}m';
+    return '${hours}godz ${minutes}min';
   }
 
   @override
   String playlistDurationMinutes(int minutes) {
-    return '${minutes}m';
+    return '${minutes}min';
   }
 
   @override
-  String get contentTypeShort => 'Short';
+  String get contentTypeShort => 'Krótki';
 
   @override
   String get offline => 'Offline';

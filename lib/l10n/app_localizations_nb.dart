@@ -899,28 +899,28 @@ class SNb extends S {
   String get copyright => 'Opphavsrett';
 
   @override
-  String get playlistNotFound => 'Spillelisten ble ikke funnet';
+  String get playlistNotFound => 'Spilleliste ikke funnet';
 
   @override
   String get shuffle => 'Tilfeldig';
 
   @override
   String playlistItemCount(int count) {
-    return '$count elementer';
+    return '$count gjenstander';
   }
 
   @override
   String playlistDurationHoursMinutes(int hours, int minutes) {
-    return '$hours t $minutes min';
+    return '${hours}t ${minutes}m';
   }
 
   @override
   String playlistDurationMinutes(int minutes) {
-    return '$minutes min';
+    return '${minutes}m';
   }
 
   @override
-  String get contentTypeShort => 'Shorts';
+  String get contentTypeShort => 'Short';
 
   @override
   String get offline => 'Offline';

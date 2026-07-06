@@ -85,7 +85,7 @@ class SRo extends S {
       'Certific că am vârsta de 13 ani sau mai mult și sunt de acord cu <a>Politica de confidențialitate</a> și <a>Termenii de utilizare</a>.';
 
   @override
-  String get setPassword => 'Setează-ți parola';
+  String get setPassword => 'Alege parola';
 
   @override
   String get tryAgainButton => 'Încearcă din nou';
@@ -850,68 +850,68 @@ class SRo extends S {
   String get ageRatingAll => 'Tot';
 
   @override
-  String get episodeDescription => 'Description';
+  String get episodeDescription => 'Descriere';
 
   @override
-  String get songs => 'Songs';
+  String get songs => 'Cântări';
 
   @override
-  String get contributors => 'Contributors';
+  String get contributors => 'Contribuitori';
 
   @override
-  String get contributionTypeLyricist => 'Lyricist';
+  String get contributionTypeLyricist => 'Scriitor';
 
   @override
-  String get contributionTypeArranger => 'Arranger';
+  String get contributionTypeArranger => 'Aranjor';
 
   @override
-  String get contributionTypeSinger => 'Singer';
+  String get contributionTypeSinger => 'Cântăreț';
 
   @override
-  String get contributionTypeSpeaker => 'Speaker';
+  String get contributionTypeSpeaker => 'Vorbitor';
 
   @override
-  String get contributionTypeComposer => 'Composer';
+  String get contributionTypeComposer => 'Compozitor';
 
   @override
-  String get contributionTypeSoloist => 'Soloist';
+  String get contributionTypeSoloist => 'Solist';
 
   @override
-  String get contributionTypePerformer => 'Performer';
+  String get contributionTypePerformer => 'Interpret';
 
   @override
-  String get contributionTypeTranslator => 'Translator';
+  String get contributionTypeTranslator => 'Traducător';
 
   @override
   String get contributionTypeDirector => 'Director';
 
   @override
-  String get contributionTypeProducer => 'Producer';
+  String get contributionTypeProducer => 'Producător';
 
   @override
-  String get contributionTypeScriptwriter => 'Scriptwriter';
+  String get contributionTypeScriptwriter => 'Scenarist';
 
   @override
   String get contributionTypeActor => 'Actor';
 
   @override
-  String get contributionTypeVoiceActor => 'Voice actor';
+  String get contributionTypeVoiceActor => 'Actor de dublaj';
 
   @override
-  String get contributionTypeOther => 'Other';
+  String get contributionTypeOther => 'Altele';
 
   @override
-  String get copyright => 'Copyright';
+  String get copyright => 'Drepturi de autor';
 
   @override
-  String get playlistNotFound => 'Playlist not found';
+  String get playlistNotFound => 'Lista de redare nu a fost găsită';
 
   @override
-  String get shuffle => 'Shuffle';
+  String get shuffle => 'Amestecă ordinea';
 
   @override
   String playlistItemCount(int count) {
-    return '$count items';
+    return '$count elemente';
   }
 
   @override
@@ -925,7 +925,7 @@ class SRo extends S {
   }
 
   @override
-  String get contentTypeShort => 'Short';
+  String get contentTypeShort => 'Scurt';
 
   @override
   String get offline => 'Offline';

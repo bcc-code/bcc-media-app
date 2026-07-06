@@ -62,7 +62,7 @@ class SDe extends S {
 
   @override
   String get bccMediaCenter =>
-      'BCC Media ist eine Medienstiftung im BCC-Verbund, welche Inhalte mit positiven und christlichen Werten produziert und verbreitet.';
+      'BCC Media ist eine Medienstiftung im BCC-Verbund, die Inhalte mit positiven und christlichen Werten produziert und verbreitet.';
 
   @override
   String get signInButton => 'Einloggen';
@@ -175,7 +175,7 @@ class SDe extends S {
   String get contactName => 'Name';
 
   @override
-  String get contactNameHint => 'Geb deinen Namen ein';
+  String get contactNameHint => 'Gib deinen Namen ein';
 
   @override
   String get contactEmail => 'Deine E-Mail-Adresse';
@@ -632,7 +632,7 @@ class SDe extends S {
   String get studyLessonCompleted => 'Lektion abgeschlossen';
 
   @override
-  String get studyLessonsCompleted => 'Lektion abgeschlossen';
+  String get studyLessonsCompleted => 'Lektionen abgeschlossen';
 
   @override
   String get continueStudy => 'Bibelstudium fortsetzen';
@@ -673,7 +673,7 @@ class SDe extends S {
   }
 
   @override
-  String get continueButton => 'Weiter';
+  String get continueButton => 'Fortsetzen';
 
   @override
   String get registerButton => 'Registrieren';
@@ -741,7 +741,7 @@ class SDe extends S {
 
   @override
   String get biblekidsAbout =>
-      'BCC Media ist eine Medienstiftung im BCC-Verbund, welche Inhalte mit positiven und christlichen Werten produziert und verbreitet.';
+      'Bible Kids ist eine Initiative von BCC-Media, eine Medienstiftung im BCC-Verbund, die Inhalte mit positiven und christlichen Werten produziert und verbreitet.';
 
   @override
   String get askYourParents => 'Frage deine Eltern';
@@ -779,7 +779,7 @@ class SDe extends S {
   String get noMailAppsDescription => 'Keine Mail-Apps installiert';
 
   @override
-  String get verificationEmailSent => 'Bestätigungs-E-Mail gesendet';
+  String get verificationEmailSent => 'Bestätigungsmail gesendet';
 
   @override
   String get ifYouDidntReceiveVerificationEmail =>
@@ -794,7 +794,7 @@ class SDe extends S {
 
   @override
   String get youCanNowLogInToYourAccount =>
-      'Du kannst jetzt dein Konto verwenden und eine Vielzahl erbaulicher Inhalte erkunden.';
+      'Du kannst dich jetzt an deinem Konto anmelden und eine Vielzahl erbaulicher Inhalte erkunden.';
 
   @override
   String get accountDeletionExplanation =>
@@ -838,7 +838,7 @@ class SDe extends S {
   String get removeWatchProgress => 'Wiedergabeliste entfernen';
 
   @override
-  String get showDescription => 'Sendungsbeschreibung';
+  String get showDescription => 'Beschreibung anzeigen';
 
   @override
   String get releaseDate => 'Veröffentlichungsdatum';
@@ -853,68 +853,68 @@ class SDe extends S {
   String get ageRatingAll => 'Alle';
 
   @override
-  String get episodeDescription => 'Description';
+  String get episodeDescription => 'Beschreibung';
 
   @override
-  String get songs => 'Songs';
+  String get songs => 'Lieder';
 
   @override
-  String get contributors => 'Contributors';
+  String get contributors => 'Mitwirkende';
 
   @override
-  String get contributionTypeLyricist => 'Lyricist';
+  String get contributionTypeLyricist => 'Verfasser';
 
   @override
-  String get contributionTypeArranger => 'Arranger';
+  String get contributionTypeArranger => 'Arrangeur';
 
   @override
-  String get contributionTypeSinger => 'Singer';
+  String get contributionTypeSinger => 'Sänger';
 
   @override
-  String get contributionTypeSpeaker => 'Speaker';
+  String get contributionTypeSpeaker => 'Redner';
 
   @override
-  String get contributionTypeComposer => 'Composer';
+  String get contributionTypeComposer => 'Komponist';
 
   @override
-  String get contributionTypeSoloist => 'Soloist';
+  String get contributionTypeSoloist => 'Solist';
 
   @override
-  String get contributionTypePerformer => 'Performer';
+  String get contributionTypePerformer => 'Interpret';
 
   @override
-  String get contributionTypeTranslator => 'Translator';
+  String get contributionTypeTranslator => 'Übersetzer';
 
   @override
-  String get contributionTypeDirector => 'Director';
+  String get contributionTypeDirector => 'Regisseur';
 
   @override
-  String get contributionTypeProducer => 'Producer';
+  String get contributionTypeProducer => 'Produzent';
 
   @override
-  String get contributionTypeScriptwriter => 'Scriptwriter';
+  String get contributionTypeScriptwriter => 'Drehbuchautor';
 
   @override
-  String get contributionTypeActor => 'Actor';
+  String get contributionTypeActor => 'Schauspieler';
 
   @override
-  String get contributionTypeVoiceActor => 'Voice actor';
+  String get contributionTypeVoiceActor => 'Synchronsprecher';
 
   @override
-  String get contributionTypeOther => 'Other';
+  String get contributionTypeOther => 'Andere';
 
   @override
   String get copyright => 'Copyright';
 
   @override
-  String get playlistNotFound => 'Playlist not found';
+  String get playlistNotFound => 'Playlist nicht gefunden';
 
   @override
   String get shuffle => 'Shuffle';
 
   @override
   String playlistItemCount(int count) {
-    return '$count items';
+    return '$count Objekte';
   }
 
   @override
@@ -928,7 +928,7 @@ class SDe extends S {
   }
 
   @override
-  String get contentTypeShort => 'Short';
+  String get contentTypeShort => 'Kurz';
 
   @override
   String get offline => 'Offline';
@@ -1000,7 +1000,7 @@ class SDe extends S {
 
   @override
   String get noInternetButDontWorry =>
-      'Keine Internetverbindung, \naber keine Sorge.';
+      'Keine Internetverbindung, aber keine Sorge.';
 
   @override
   String get hereAreAllTheVideosYouDownloaded =>
@@ -1008,7 +1008,7 @@ class SDe extends S {
 
   @override
   String get connectToExplore =>
-      'Stelle eine Verbindung zum Internet her, um auf alle Videos zuzugreifen.';
+      'Stelle eine Verbindung zum Internet her, um alle Videos zu entdecken.';
 
   @override
   String get language => 'Sprache';
@@ -1143,7 +1143,7 @@ class SDe extends S {
       'Deine heruntergeladenen Videos findest du unter „Profil“.';
 
   @override
-  String get openStore => 'Öffnen';
+  String get openStore => 'Store öffnen';
 
   @override
   String get thisVideoCantBeDownloaded =>
@@ -1195,7 +1195,7 @@ class SDe extends S {
 
   @override
   String studySomeAnswersCorrect(int correct, int total) {
-    return 'Du hast $correct von $total richtig beantwortet.';
+    return 'Du hast $correct von $total richtig beantwortet';
   }
 
   @override

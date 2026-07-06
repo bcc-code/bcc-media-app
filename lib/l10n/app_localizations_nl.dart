@@ -847,61 +847,61 @@ class SNl extends S {
   String get ageRatingAll => 'Alle';
 
   @override
-  String get episodeDescription => 'Description';
+  String get episodeDescription => 'Beschrijving';
 
   @override
-  String get songs => 'Songs';
+  String get songs => 'Liederen';
 
   @override
-  String get contributors => 'Contributors';
+  String get contributors => 'Bijdragers';
 
   @override
-  String get contributionTypeLyricist => 'Lyricist';
+  String get contributionTypeLyricist => 'Schrijver';
 
   @override
-  String get contributionTypeArranger => 'Arranger';
+  String get contributionTypeArranger => 'Arrangeur';
 
   @override
-  String get contributionTypeSinger => 'Singer';
+  String get contributionTypeSinger => 'Zanger';
 
   @override
-  String get contributionTypeSpeaker => 'Speaker';
+  String get contributionTypeSpeaker => 'Spreker';
 
   @override
-  String get contributionTypeComposer => 'Composer';
+  String get contributionTypeComposer => 'Componist';
 
   @override
-  String get contributionTypeSoloist => 'Soloist';
+  String get contributionTypeSoloist => 'Solist';
 
   @override
   String get contributionTypePerformer => 'Performer';
 
   @override
-  String get contributionTypeTranslator => 'Translator';
+  String get contributionTypeTranslator => 'Vertaler';
 
   @override
-  String get contributionTypeDirector => 'Director';
+  String get contributionTypeDirector => 'Regisseur';
 
   @override
-  String get contributionTypeProducer => 'Producer';
+  String get contributionTypeProducer => 'Producent';
 
   @override
-  String get contributionTypeScriptwriter => 'Scriptwriter';
+  String get contributionTypeScriptwriter => 'Scriptschrijver';
 
   @override
-  String get contributionTypeActor => 'Actor';
+  String get contributionTypeActor => 'Acteur';
 
   @override
-  String get contributionTypeVoiceActor => 'Voice actor';
+  String get contributionTypeVoiceActor => 'Stemacteur';
 
   @override
-  String get contributionTypeOther => 'Other';
+  String get contributionTypeOther => 'Overig';
 
   @override
-  String get copyright => 'Copyright';
+  String get copyright => 'Auteursrecht';
 
   @override
-  String get playlistNotFound => 'Playlist not found';
+  String get playlistNotFound => 'Afspeellijst niet gevonden';
 
   @override
   String get shuffle => 'Shuffle';
