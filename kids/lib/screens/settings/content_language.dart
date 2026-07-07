@@ -192,9 +192,6 @@ class ContentLanguageList extends HookConsumerWidget {
                   CustomHapticFeedback.heavyImpact();
                 },
                 onReorderItem: (oldIndex, newIndex) {
-                  if (oldIndex < newIndex) {
-                    newIndex -= 1;
-                  }
                   final String item = selected.removeAt(oldIndex);
                   selected.insert(newIndex, item);
                   setLanguages(selected);
