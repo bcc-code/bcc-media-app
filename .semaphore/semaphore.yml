@@ -48,7 +48,9 @@ blocks:
           - sem-version java 17
           - cache restore flutter-sdk-linux-$FLUTTER_VERSION
           - |
-            if [ ! -d "$HOME/flutter" ]; then
+            INSTALLED_FLUTTER=$(grep -o '"frameworkVersion":[^,]*' "$HOME/flutter/bin/cache/flutter.version.json" 2>/dev/null | grep -o '[0-9][0-9.]*')
+            if [ ! -x "$HOME/flutter/bin/flutter" ] || [ "$INSTALLED_FLUTTER" != "$FLUTTER_VERSION" ]; then
+              rm -rf "$HOME/flutter"
               wget -q https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz -O /tmp/flutter.tar.xz
               tar xf /tmp/flutter.tar.xz -C $HOME
             fi
@@ -83,7 +85,7 @@ blocks:
               keyAlias=$KEY_ALIAS
               storeFile=$keystore_path
               EOF
-            - 'cache restore pub-linux-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),pub-linux-$(checksum pubspec.yaml),pub-linux'
+            - "cache restore pub-linux-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),pub-linux-$(checksum pubspec.yaml),pub-linux"
             - make pubgetall
             - cache store pub-linux-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml) $HOME/.pub-cache
             - flutter build appbundle --release --flavor prod -t lib/main_prod.dart --build-number=$BUILD_NUMBER
@@ -149,7 +151,9 @@ blocks:
           - echo "$BCCMEDIA_ENV_DART_BASE64" | base64 -d > lib/env/.env.dart
           - cache restore flutter-sdk-macos-$FLUTTER_VERSION
           - |
-            if [ ! -d "$HOME/flutter" ]; then
+            INSTALLED_FLUTTER=$(grep -o '"frameworkVersion":[^,]*' "$HOME/flutter/bin/cache/flutter.version.json" 2>/dev/null | grep -o '[0-9][0-9.]*')
+            if [ ! -x "$HOME/flutter/bin/flutter" ] || [ "$INSTALLED_FLUTTER" != "$FLUTTER_VERSION" ]; then
+              rm -rf "$HOME/flutter"
               curl -sSL -o /tmp/flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_${FLUTTER_VERSION}-stable.tar.xz
               tar xf /tmp/flutter.tar.xz -C $HOME
             fi
@@ -208,10 +212,10 @@ blocks:
             # formatting a tokenize error from flutter_tools.snapshot), and the
             # later `flutter build ipa` also needs the bigger heap.
             - 'export DART_VM_OPTIONS="--old_gen_heap_size=6144"'
-            - 'cache restore pub-macos-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),pub-macos-$(checksum pubspec.yaml),pub-macos'
+            - "cache restore pub-macos-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),pub-macos-$(checksum pubspec.yaml),pub-macos"
             - make pubgetall
             - cache store pub-macos-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml) $HOME/.pub-cache
-            - 'cache restore cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock),cocoapods-$(checksum ios/Podfile.lock),cocoapods'
+            - "cache restore cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock),cocoapods-$(checksum ios/Podfile.lock),cocoapods"
             - flutter build ipa --release --flavor prod -t lib/main_prod.dart --build-number=$BUILD_NUMBER --export-options-plist=ios/ExportOptions.plist
             - cache store cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock) ios/Pods
             # flutter names the IPA after the app (not "bccm.ipa", and possibly with a
@@ -283,7 +287,9 @@ blocks:
           - sem-version java 17
           - cache restore flutter-sdk-linux-$FLUTTER_VERSION
           - |
-            if [ ! -d "$HOME/flutter" ]; then
+            INSTALLED_FLUTTER=$(grep -o '"frameworkVersion":[^,]*' "$HOME/flutter/bin/cache/flutter.version.json" 2>/dev/null | grep -o '[0-9][0-9.]*')
+            if [ ! -x "$HOME/flutter/bin/flutter" ] || [ "$INSTALLED_FLUTTER" != "$FLUTTER_VERSION" ]; then
+              rm -rf "$HOME/flutter"
               wget -q https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz -O /tmp/flutter.tar.xz
               tar xf /tmp/flutter.tar.xz -C $HOME
             fi
@@ -318,7 +324,7 @@ blocks:
               keyAlias=$KEY_ALIAS
               storeFile=$keystore_path
               EOF
-            - 'cache restore pub-linux-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/pubspec.yaml),pub-linux-kids-$(checksum kids/pubspec.yaml),pub-linux-kids'
+            - "cache restore pub-linux-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/pubspec.yaml),pub-linux-kids-$(checksum kids/pubspec.yaml),pub-linux-kids"
             - make pubgetall
             - cache store pub-linux-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/pubspec.yaml) $HOME/.pub-cache
             - cd kids
@@ -391,7 +397,9 @@ blocks:
           - echo "$BCCMEDIA_ENV_DART_BASE64" | base64 -d > lib/env/.env.dart
           - cache restore flutter-sdk-macos-$FLUTTER_VERSION
           - |
-            if [ ! -d "$HOME/flutter" ]; then
+            INSTALLED_FLUTTER=$(grep -o '"frameworkVersion":[^,]*' "$HOME/flutter/bin/cache/flutter.version.json" 2>/dev/null | grep -o '[0-9][0-9.]*')
+            if [ ! -x "$HOME/flutter/bin/flutter" ] || [ "$INSTALLED_FLUTTER" != "$FLUTTER_VERSION" ]; then
+              rm -rf "$HOME/flutter"
               curl -sSL -o /tmp/flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_${FLUTTER_VERSION}-stable.tar.xz
               tar xf /tmp/flutter.tar.xz -C $HOME
             fi
@@ -435,10 +443,10 @@ blocks:
             # formatting a tokenize error from flutter_tools.snapshot), and the
             # later `flutter build ipa` also needs the bigger heap.
             - 'export DART_VM_OPTIONS="--old_gen_heap_size=6144"'
-            - 'cache restore pub-macos-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/pubspec.yaml),pub-macos-kids-$(checksum kids/pubspec.yaml),pub-macos-kids'
+            - "cache restore pub-macos-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/pubspec.yaml),pub-macos-kids-$(checksum kids/pubspec.yaml),pub-macos-kids"
             - make pubgetall
             - cache store pub-macos-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/pubspec.yaml) $HOME/.pub-cache
-            - 'cache restore cocoapods-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/ios/Podfile.lock),cocoapods-kids-$(checksum kids/ios/Podfile.lock),cocoapods-kids'
+            - "cache restore cocoapods-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/ios/Podfile.lock),cocoapods-kids-$(checksum kids/ios/Podfile.lock),cocoapods-kids"
             - (cd kids/ios && pod repo update)
             - cd kids
             - flutter build ipa --release -t lib/main.dart --build-number=$BUILD_NUMBER --export-options-plist=ios/ExportOptions.plist
