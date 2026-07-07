@@ -488,6 +488,11 @@ class SDa extends S {
   String get comingSoon => 'Kommer snart';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'Ny';
 
   @override

@@ -45,10 +45,11 @@ class ContentLanguageScreen extends HookConsumerWidget {
                           children: [
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: basePadding,
-                                  top: bp.smallerThan(TABLET) ? 12 : 16,
-                                  right: basePadding,
-                                  bottom: (bp.smallerThan(TABLET) ? 12 : 16) + 24),
+                                left: basePadding,
+                                top: bp.smallerThan(TABLET) ? 12 : 16,
+                                right: basePadding,
+                                bottom: (bp.smallerThan(TABLET) ? 12 : 16) + 24,
+                              ),
                               child: Center(
                                 child: Text(
                                   S.of(context).contentLanguage,
@@ -81,23 +82,24 @@ class ContentLanguageScreen extends HookConsumerWidget {
                                 children: [
                                   Expanded(
                                     child: design.buttons.small(
-                                        variant: ButtonVariant.secondary,
-                                        onPressed: () {
-                                          showGeneralDialog(
-                                            transitionBuilder: CustomTransitionsBuilders.slideUp(),
-                                            transitionDuration: 500.ms,
-                                            context: context,
-                                            barrierColor: Colors.transparent,
-                                            routeSettings: const RouteSettings(name: 'content-language-add'),
-                                            pageBuilder: (context, a, b) => const LanguageListDialog(),
-                                          );
-                                        },
-                                        labelText: S.of(context).addLanguage,
-                                        image: SvgPicture.string(SvgIcons.add)),
+                                      variant: ButtonVariant.secondary,
+                                      onPressed: () {
+                                        showGeneralDialog(
+                                          transitionBuilder: CustomTransitionsBuilders.slideUp(),
+                                          transitionDuration: 500.ms,
+                                          context: context,
+                                          barrierColor: Colors.transparent,
+                                          routeSettings: const RouteSettings(name: 'content-language-add'),
+                                          pageBuilder: (context, a, b) => const LanguageListDialog(),
+                                        );
+                                      },
+                                      labelText: S.of(context).addLanguage,
+                                      image: SvgPicture.string(SvgIcons.add),
+                                    ),
                                   ),
                                 ],
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -120,7 +122,10 @@ class ContentLanguageList extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
-    final selected = List<String>.from(ref.watch(settingsProvider).audioLanguages);
+    // Only keep known language codes so list indices stay contiguous. A stray
+    // unknown code (e.g. "null") would otherwise be hidden but keep its index,
+    // desyncing the reorderable list and making it unremovable.
+    final selected = ref.watch(settingsProvider).audioLanguages.where((c) => languages[c] != null).toList();
     final dontAnimate = useState(selected);
 
     setLanguages(List<String> languages) {
@@ -157,10 +162,7 @@ class ContentLanguageList extends HookConsumerWidget {
                           shadowColor: design.colors.label1.withOpacity(0.1),
                           sideColor: const Color(0xFFE9ECF4),
                           borderRadius: BorderRadius.circular(24),
-                          builder: (context, pressed) => ClipRRect(
-                            borderRadius: BorderRadius.circular(24),
-                            child: child,
-                          ),
+                          builder: (context, pressed) => ClipRRect(borderRadius: BorderRadius.circular(24), child: child),
                         ),
                       ),
                     ),
@@ -189,10 +191,7 @@ class ContentLanguageList extends HookConsumerWidget {
                 onReorderEnd: (index) {
                   CustomHapticFeedback.heavyImpact();
                 },
-                onReorder: (oldIndex, newIndex) {
-                  if (oldIndex < newIndex) {
-                    newIndex -= 1;
-                  }
+                onReorderItem: (oldIndex, newIndex) {
                   final String item = selected.removeAt(oldIndex);
                   selected.insert(newIndex, item);
                   setLanguages(selected);
@@ -204,10 +203,7 @@ class ContentLanguageList extends HookConsumerWidget {
                 top: 53 * index.toDouble() - 1,
                 left: 20,
                 right: 20,
-                child: SizedBox(
-                  height: 1,
-                  child: Container(color: design.colors.separatorOnLight),
-                ),
+                child: SizedBox(height: 1, child: Container(color: design.colors.separatorOnLight)),
               ),
           ],
         ),
@@ -250,7 +246,7 @@ class _CustomReorderableItem extends StatelessWidget {
           curve: Curves.easeOutExpo,
           begin: SlideEffect.neutralValue.copyWith(dx: -1),
           end: SlideEffect.neutralValue.copyWith(dx: 0),
-        )
+        ),
       ],
       onInit: (c) {
         if (!animate) {
@@ -261,13 +257,7 @@ class _CustomReorderableItem extends StatelessWidget {
         constraints: index == 0 ? const BoxConstraints(minHeight: 52) : const BoxConstraints(minHeight: 53),
         child: Column(
           children: [
-            index == 0
-                ? const SizedBox(
-                    height: 0,
-                  )
-                : const SizedBox(
-                    height: 1,
-                  ),
+            index == 0 ? const SizedBox(height: 0) : const SizedBox(height: 1),
             Slidable(
               key: ValueKey(title),
               enabled: enableDelete,
@@ -288,12 +278,7 @@ class _CustomReorderableItem extends StatelessWidget {
                     },
                     backgroundColor: design.colors.tint1,
                     foregroundColor: design.colors.label1,
-                    child: Text(
-                      S.of(context).remove,
-                      style: design.textStyles.title2,
-                      maxLines: 1,
-                      overflow: TextOverflow.visible,
-                    ),
+                    child: Text(S.of(context).remove, style: design.textStyles.title2, maxLines: 1, overflow: TextOverflow.visible),
                   ),
                 ],
               ),
@@ -309,26 +294,17 @@ class _CustomReorderableItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                          width: 28,
-                          child: Text(
-                            (index + 1).toString(),
-                            style: design.textStyles.body2.copyWith(color: design.colors.label1),
-                          )),
+                        width: 28,
+                        child: Text((index + 1).toString(), style: design.textStyles.body2.copyWith(color: design.colors.label1)),
+                      ),
                       Expanded(
-                        child: Text(
-                          title,
-                          style: design.textStyles.body2.copyWith(color: design.colors.label1),
-                        ),
+                        child: Text(title, style: design.textStyles.body2.copyWith(color: design.colors.label1)),
                       ),
                       ReorderableDragStartListener(
                         index: index,
                         enabled: enableDrag,
-                        child: SvgPicture.string(
-                          SvgIcons.holding,
-                          width: 18,
-                          height: 10,
-                        ),
-                      )
+                        child: SvgPicture.string(SvgIcons.holding, width: 18, height: 10),
+                      ),
                     ],
                   ),
                 ),

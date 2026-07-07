@@ -488,6 +488,11 @@ class SNb extends S {
   String get comingSoon => 'Kommer snart';
 
   @override
+  String comingOnDate(String date) {
+    return 'Kommer $date';
+  }
+
+  @override
   String get newEpisode => 'Ny';
 
   @override

@@ -5,6 +5,7 @@ import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/helpers/analytics.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
+import 'package:brunstadtv_app/helpers/episode_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:collection/collection.dart';
@@ -68,38 +69,28 @@ class PosterSection extends HookConsumerWidget {
         final twoWeeks = 14 * 24 * 60 * 60 * 1000;
         shouldShowPrompt.value = DateTime.now().millisecondsSinceEpoch - lastDismissedAt >= twoWeeks;
       }
-    }, [
-      notificationPromptEnabled,
-      notificationPromptPosition,
-      showAfterDismissal,
-      showAfterDismissalCount,
-      notificationsEnabledSetting,
-    ]);
+    }, [notificationPromptEnabled, notificationPromptPosition, showAfterDismissal, showAfterDismissalCount, notificationsEnabledSetting]);
 
     final List<Widget> finalItems = useMemoized(() {
       final items = List<Widget>.from(posterItems);
 
       if (shouldShowPrompt.value && notificationPromptEnabled && notificationPromptPosition != null && notificationPromptPosition < items.length) {
-        items.insert(notificationPromptPosition, SizedBox(
-          child: NotificationPrompt(
-            onDismiss: () {
-              shouldShowPrompt.value = false;
-            },
+        items.insert(
+          notificationPromptPosition,
+          SizedBox(
+            child: NotificationPrompt(
+              onDismiss: () {
+                shouldShowPrompt.value = false;
+              },
+            ),
           ),
-        ));
+        );
       }
 
       return items;
-    }, [
-      posterItems,
-      shouldShowPrompt.value,
-      notificationPromptEnabled,
-      notificationPromptPosition,
-    ]);
+    }, [posterItems, shouldShowPrompt.value, notificationPromptEnabled, notificationPromptPosition]);
 
-    final animationController = useAnimationController(
-      duration: const Duration(milliseconds: 2000),
-    );
+    final animationController = useAnimationController(duration: const Duration(milliseconds: 2000));
 
     useEffect(() {
       animationController.forward();
@@ -139,10 +130,10 @@ class PosterSection extends HookConsumerWidget {
               item: playlistItem,
               onPressed: () => ref.read(analyticsProvider).sectionItemClicked(context),
               onPlayPressed: () async {
-                final episodeIds = await ref.read(bccmGraphQLProvider).query$GetManyEpisodeIdsForPlaylist(
-                      Options$Query$GetManyEpisodeIdsForPlaylist(
-                        variables: Variables$Query$GetManyEpisodeIdsForPlaylist(id: item.id),
-                      ),
+                final episodeIds = await ref
+                    .read(bccmGraphQLProvider)
+                    .query$GetManyEpisodeIdsForPlaylist(
+                      Options$Query$GetManyEpisodeIdsForPlaylist(variables: Variables$Query$GetManyEpisodeIdsForPlaylist(id: item.id)),
                     );
                 if (!context.mounted) return;
                 final items = episodeIds.parsedData?.playlist.items.items
@@ -150,9 +141,7 @@ class PosterSection extends HookConsumerWidget {
                     .toList();
                 if (items != null && items.isNotEmpty) {
                   final randomEpisode = items[Random().nextInt(items.length)];
-                  context.router.push(
-                    EpisodeScreenRoute(id: randomEpisode.id, cursor: randomEpisode.cursor),
-                  );
+                  context.router.push(EpisodeScreenRoute(id: randomEpisode.id, cursor: randomEpisode.cursor));
                 }
               },
             );
@@ -160,24 +149,22 @@ class PosterSection extends HookConsumerWidget {
 
           final showItem = item.item.asOrNull<Fragment$Section$$PosterSection$items$items$item$$Show>();
           if (showItem != null) {
-            final publishDate = DateTime.tryParse(showItem.seasons.items.firstOrNull?.episodes.items.firstOrNull?.publishDate ?? '');
+            final publishDate = showItem.seasons.items.firstOrNull?.episodes.items.firstOrNull?.publishDate;
 
             return PosterLarge(
               image: item.image,
-              hasNewEpisodes: publishDate != null ? DateTime.now().difference(publishDate).inDays <= 7 : false,
+              hasNewEpisodes: !isUnavailable(publishDate) && isNewEpisode(publishDate, false),
               onPressed: () => ref.read(analyticsProvider).sectionItemClicked(context),
               onPlayPressed: () async {
-                final result = await ref.read(bccmGraphQLProvider).query$getDefaultEpisodeForShow(
-                      Options$Query$getDefaultEpisodeForShow(
-                        variables: Variables$Query$getDefaultEpisodeForShow(showId: item.id),
-                      ),
+                final result = await ref
+                    .read(bccmGraphQLProvider)
+                    .query$getDefaultEpisodeForShow(
+                      Options$Query$getDefaultEpisodeForShow(variables: Variables$Query$getDefaultEpisodeForShow(showId: item.id)),
                     );
                 if (!context.mounted) return;
                 final episodeId = result.parsedData?.$show.defaultEpisode.id;
                 if (episodeId != null) {
-                  context.router.push(
-                    EpisodeScreenRoute(id: episodeId),
-                  );
+                  context.router.push(EpisodeScreenRoute(id: episodeId));
                 }
               },
               routeSettings: RouteSettings(

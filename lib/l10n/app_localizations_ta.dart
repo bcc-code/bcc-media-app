@@ -492,6 +492,11 @@ class STa extends S {
   String get comingSoon => 'விரைவில் வரும்';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'புதியது';
 
   @override

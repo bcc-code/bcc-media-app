@@ -489,6 +489,11 @@ class SNl extends S {
   String get comingSoon => 'Komt binnenkort';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'Nieuw';
 
   @override

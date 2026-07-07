@@ -491,6 +491,11 @@ class SEs extends S {
   String get comingSoon => 'Próximamente';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'Nuevo';
 
   @override

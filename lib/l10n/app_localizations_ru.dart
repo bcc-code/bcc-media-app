@@ -489,6 +489,11 @@ class SRu extends S {
   String get comingSoon => 'Уже скоро';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'Новое';
 
   @override

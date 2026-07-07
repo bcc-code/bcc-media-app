@@ -489,6 +489,11 @@ class SPt extends S {
   String get comingSoon => 'Em breve';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'Novo';
 
   @override

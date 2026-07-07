@@ -1041,6 +1041,12 @@ abstract class S {
   /// **'Coming soon'**
   String get comingSoon;
 
+  /// Short. Used in buttons, badges, etc to indicate the date an item becomes available.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming {date}'**
+  String comingOnDate(String date);
+
   /// Generic, short. Used in buttons, badges, etc to indicate that an item was recently published.
   ///
   /// In en, this message translates to:

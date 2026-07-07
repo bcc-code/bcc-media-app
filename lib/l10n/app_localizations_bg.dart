@@ -488,6 +488,11 @@ class SBg extends S {
   String get comingSoon => 'Coming soon';
 
   @override
+  String comingOnDate(String date) {
+    return 'Coming $date';
+  }
+
+  @override
   String get newEpisode => 'New';
 
   @override
