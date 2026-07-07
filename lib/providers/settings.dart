@@ -48,15 +48,22 @@ extension on Settings {
 
 final _defaultLanguage = Intl.defaultLocale ?? FlavorConfig.current.defaultLanguage;
 
+/// Removes empty/whitespace and unknown language codes (e.g. a stray "null"
+/// left over from earlier bugs) that would otherwise be unremovable in the UI.
+List<String> sanitizeLanguageCodes(List<String> codes) {
+  return codes.map((c) => c.trim()).where((c) => languages[c] != null).toList();
+}
+
 class SettingsService extends StateNotifier<Settings> {
   final Ref ref;
 
   SettingsService(this.ref) : super(Settings(appLanguage: Locale(_defaultLanguage))) {
     var prefs = ref.read(sharedPreferencesProvider);
+    final audioLanguages = sanitizeLanguageCodes((prefs.getString(PrefKeys.audioLanguage) ?? _defaultLanguage).split(','));
     state = state.copyWith(
       appLanguage: Locale(prefs.getString(PrefKeys.appLanguage) ?? _defaultLanguage),
-      audioLanguages: (prefs.getString(PrefKeys.audioLanguage) ?? _defaultLanguage).split(','),
-      subtitleLanguages: prefs.getString(PrefKeys.subtitleLanguage)?.split(',') ?? [],
+      audioLanguages: audioLanguages.isNotEmpty ? audioLanguages : [_defaultLanguage],
+      subtitleLanguages: sanitizeLanguageCodes(prefs.getString(PrefKeys.subtitleLanguage)?.split(',') ?? []),
       downloadAudioLanguage: prefs.getString(PrefKeys.downloadAudioLanguage),
       downloadQuality: DownloadQuality.values.firstWhereOrNull((element) => element.index == prefs.getInt(PrefKeys.downloadQuality)),
       analyticsId: prefs.getString(PrefKeys.analyticsId),
@@ -83,6 +90,7 @@ class SettingsService extends StateNotifier<Settings> {
 
   Future<void> setAudioLanguages(List<String> languageCodes) async {
     //if (const DeepCollectionEquality().equals(state.audioLanguages, languageCodes)) return;
+    languageCodes = sanitizeLanguageCodes(languageCodes);
     final previous = state.audioLanguages;
 
     ref.read(sharedPreferencesProvider).setString(PrefKeys.audioLanguage, languageCodes.join(','));
@@ -106,6 +114,7 @@ class SettingsService extends StateNotifier<Settings> {
   }
 
   Future<void> setSubtitleLanguages(List<String> languageCodes) async {
+    languageCodes = sanitizeLanguageCodes(languageCodes);
     var prefs = ref.read(sharedPreferencesProvider);
     if (languageCodes.isEmpty) {
       prefs.remove(PrefKeys.subtitleLanguage);
