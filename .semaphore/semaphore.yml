@@ -219,6 +219,10 @@ blocks:
             - make pubgetall
             - cache store pub-macos-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml) $HOME/.pub-cache
             - "cache restore cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock),cocoapods-$(checksum ios/Podfile.lock),cocoapods"
+            # Clear stale SwiftPM binary-artifact cache. An interrupted earlier run can leave a
+            # partial .xcframework.zip in the agent's persistent cache, and SwiftPM then refuses
+            # to re-download it ("already exists in file system"). Safe: it just re-downloads.
+            - rm -rf "$HOME/Library/Caches/org.swift.swiftpm"
             - flutter build ipa --release --flavor prod -t lib/main_prod.dart --build-number=$BUILD_NUMBER --export-options-plist=ios/ExportOptions.plist
             - cache store cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock) ios/Pods
             # flutter names the IPA after the app (not "bccm.ipa", and possibly with a
@@ -455,6 +459,10 @@ blocks:
             - "cache restore cocoapods-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/ios/Podfile.lock),cocoapods-kids-$(checksum kids/ios/Podfile.lock),cocoapods-kids"
             - (cd kids/ios && pod repo update)
             - cd kids
+            # Clear stale SwiftPM binary-artifact cache. An interrupted earlier run can leave a
+            # partial .xcframework.zip in the agent's persistent cache, and SwiftPM then refuses
+            # to re-download it ("already exists in file system"). Safe: it just re-downloads.
+            - rm -rf "$HOME/Library/Caches/org.swift.swiftpm"
             - flutter build ipa --release -t lib/main.dart --build-number=$BUILD_NUMBER --export-options-plist=ios/ExportOptions.plist
             - cd ..
             - cache store cocoapods-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/ios/Podfile.lock) kids/ios/Pods
