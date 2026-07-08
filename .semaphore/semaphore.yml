@@ -46,30 +46,10 @@ blocks:
           - git submodule update --init --recursive
           - echo "$BCCMEDIA_ENV_DART_BASE64" | base64 -d > lib/env/.env.dart
           - sem-version java 17
-          - cache restore flutter-sdk-linux-$FLUTTER_VERSION
-          - |
-            INSTALLED_FLUTTER=$(grep -o '"frameworkVersion":[^,]*' "$HOME/flutter/bin/cache/flutter.version.json" 2>/dev/null | grep -o '[0-9][0-9.]*')
-            if [ ! -x "$HOME/flutter/bin/flutter" ] || [ "$INSTALLED_FLUTTER" != "$FLUTTER_VERSION" ]; then
-              rm -rf "$HOME/flutter"
-              wget -q https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz -O /tmp/flutter.tar.xz
-              tar xf /tmp/flutter.tar.xz -C $HOME
-              cache delete flutter-sdk-linux-$FLUTTER_VERSION
-            fi
-          - cache store flutter-sdk-linux-$FLUTTER_VERSION $HOME/flutter
+          - bash .semaphore/scripts/install-flutter.sh
           - 'export PATH="$HOME/flutter/bin:$PATH"'
-          - flutter --version
           - export ANDROID_HOME="$HOME/android-sdk"
-          - cache restore android-sdk
-          - |
-            if [ ! -d "$ANDROID_HOME/platforms/android-36" ]; then
-              mkdir -p "$ANDROID_HOME/cmdline-tools"
-              curl -sSL -o /tmp/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
-              unzip -q /tmp/cmdline-tools.zip -d "$ANDROID_HOME/cmdline-tools"
-              mv "$ANDROID_HOME/cmdline-tools/cmdline-tools" "$ANDROID_HOME/cmdline-tools/latest"
-              yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
-              "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-36" "build-tools;36.0.0"
-            fi
-          - cache store android-sdk $ANDROID_HOME
+          - bash .semaphore/scripts/install-android-sdk.sh
           - 'export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"'
       jobs:
         - name: Build AAB
@@ -150,66 +130,15 @@ blocks:
           - checkout
           - git submodule update --init --recursive
           - echo "$BCCMEDIA_ENV_DART_BASE64" | base64 -d > lib/env/.env.dart
-          - cache restore flutter-sdk-macos-$FLUTTER_VERSION
-          - |
-            INSTALLED_FLUTTER=$(grep -o '"frameworkVersion":[^,]*' "$HOME/flutter/bin/cache/flutter.version.json" 2>/dev/null | grep -o '[0-9][0-9.]*')
-            if [ ! -x "$HOME/flutter/bin/flutter" ] || [ "$INSTALLED_FLUTTER" != "$FLUTTER_VERSION" ]; then
-              rm -rf "$HOME/flutter"
-              if [ "$(uname -m)" = "arm64" ]; then FLUTTER_ARCH="_arm64"; else FLUTTER_ARCH=""; fi
-              curl -sSL -o /tmp/flutter.zip https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos${FLUTTER_ARCH}_${FLUTTER_VERSION}-stable.zip
-              unzip -q /tmp/flutter.zip -d "$HOME"
-              cache delete flutter-sdk-macos-$FLUTTER_VERSION
-            fi
-          - cache store flutter-sdk-macos-$FLUTTER_VERSION $HOME/flutter
+          - bash .semaphore/scripts/install-flutter.sh
           - 'export PATH="$HOME/flutter/bin:$PATH"'
-          - flutter --version
       jobs:
         - name: Build IPA
           commands:
             - artifact pull workflow bccm_ios_build_number
             - export BUILD_NUMBER=$(cat bccm_ios_build_number)
             - echo "Building with iOS build number=$BUILD_NUMBER"
-            - echo "$CERTIFICATE_P12_BASE64" | base64 -d > /tmp/certificate.p12
-            - security create-keychain -p "" build.keychain
-            - security import /tmp/certificate.p12 -k ~/Library/Keychains/build.keychain-db -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
-            # The .p12 holds only the leaf cert + key. Import the Apple WWDR G3 intermediate
-            # (issuer of our Apple Distribution cert) so the chain validates and the identity
-            # shows up as valid in `security find-identity -v`; otherwise CODE_SIGN_IDENTITY is empty.
-            - curl -fsSL https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer -o /tmp/AppleWWDRCAG3.cer
-            - security import /tmp/AppleWWDRCAG3.cer -k ~/Library/Keychains/build.keychain-db -T /usr/bin/codesign || true
-            - security list-keychains -s ~/Library/Keychains/build.keychain-db
-            - security default-keychain -s ~/Library/Keychains/build.keychain-db
-            - security unlock-keychain -p "" ~/Library/Keychains/build.keychain-db
-            - security set-keychain-settings ~/Library/Keychains/build.keychain-db
-            - 'security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain-db'
-            - 'export CODE_SIGN_IDENTITY=$(security find-identity -v -p codesigning | grep -o ''"[^"]*"'' | head -1 | tr -d ''"'')'
-            - 'echo "Signing identity: $CODE_SIGN_IDENTITY"'
-            # Fail fast (with diagnostics) if no valid signing identity was found, instead of
-            # wasting a ~6 min archive that only dies at the export step.
-            - |
-              if [ -z "$CODE_SIGN_IDENTITY" ]; then
-                echo "ERROR: no valid code-signing identity in build.keychain."
-                echo "--- codesigning identities (valid + invalid) ---"
-                security find-identity -p codesigning ~/Library/Keychains/build.keychain-db || true
-                echo "--- WWDR intermediates in build.keychain ---"
-                security find-certificate -a -c "Worldwide Developer Relations" ~/Library/Keychains/build.keychain-db | grep labl || true
-                echo "--- keychain search list ---"
-                security list-keychains
-                echo "--- distribution cert trust check ---"
-                security find-certificate -c "Apple Distribution" -p ~/Library/Keychains/build.keychain-db > /tmp/leaf.pem 2>/dev/null || true
-                security verify-cert -c /tmp/leaf.pem -p codeSign 2>&1 || true
-                exit 1
-              fi
-            # Xcode 16+ reads installed profiles from Developer/Xcode/UserData; the build/archive
-            # phase still reads the legacy MobileDevice path, so install into both.
-            - mkdir -p "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles" "$HOME/Library/MobileDevice/Provisioning Profiles"
-            - echo "$PROVISIONING_PROFILE_BASE64" | base64 -d > "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/profile.mobileprovision"
-            - cp "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/profile.mobileprovision" "$HOME/Library/MobileDevice/Provisioning Profiles/profile.mobileprovision"
-            - export PROVISIONING_PROFILE_UUID=$(security cms -D -i "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/profile.mobileprovision" | grep -A 1 "UUID" | grep -o '<string>.*</string>' | sed 's/<string>\(.*\)<\/string>/\1/')
-            - 'echo "Provisioning profile UUID: $PROVISIONING_PROFILE_UUID"'
-            - echo "CODE_SIGN_STYLE = Manual" >> ios/Flutter/Release.xcconfig
-            - echo "PROVISIONING_PROFILE = $PROVISIONING_PROFILE_UUID" >> ios/Flutter/Release.xcconfig
-            - echo "CODE_SIGN_IDENTITY = $CODE_SIGN_IDENTITY" >> ios/Flutter/Release.xcconfig
+            - bash .semaphore/scripts/setup-ios-signing.sh ios/Flutter/Release.xcconfig
             # Raise the Dart VM heap for the whole job. `flutter pub get` itself
             # OOMs with the default ~2 GB heap (the front_end blows up while
             # formatting a tokenize error from flutter_tools.snapshot), and the
@@ -219,20 +148,7 @@ blocks:
             - make pubgetall
             - cache store pub-macos-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml) $HOME/.pub-cache
             - "cache restore cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock),cocoapods-$(checksum ios/Podfile.lock),cocoapods"
-            # SwiftPM's binary-artifact downloads (Firebase/gRPC/Sentry from dl.google.com) are
-            # flaky: a network hiccup mid-download leaves a partial artifact dir, then SwiftPM
-            # aborts with "already exists in file system". Retry the build, wiping the SwiftPM
-            # cache before each attempt so every try starts from a clean, conflict-free state.
-            - |
-              attempt=0
-              until [ $attempt -ge 3 ]; do
-                rm -rf "$HOME/Library/Caches/org.swift.swiftpm"
-                flutter build ipa --release --flavor prod -t lib/main_prod.dart --build-number=$BUILD_NUMBER --export-options-plist=ios/ExportOptions.plist && break
-                attempt=$((attempt + 1))
-                echo "flutter build ipa failed (attempt $attempt/3); cleared SwiftPM cache, retrying in 20s..."
-                sleep 20
-              done
-              [ $attempt -lt 3 ]
+            - bash .semaphore/scripts/build-ipa.sh lib/main_prod.dart prod
             - cache store cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock) ios/Pods
             # flutter names the IPA after the app (not "bccm.ipa", and possibly with a
             # space), so normalize it to a stable name the artifact + deploy job rely on.
@@ -301,30 +217,10 @@ blocks:
           - git submodule update --init --recursive
           - echo "$BCCMEDIA_ENV_DART_BASE64" | base64 -d > lib/env/.env.dart
           - sem-version java 17
-          - cache restore flutter-sdk-linux-$FLUTTER_VERSION
-          - |
-            INSTALLED_FLUTTER=$(grep -o '"frameworkVersion":[^,]*' "$HOME/flutter/bin/cache/flutter.version.json" 2>/dev/null | grep -o '[0-9][0-9.]*')
-            if [ ! -x "$HOME/flutter/bin/flutter" ] || [ "$INSTALLED_FLUTTER" != "$FLUTTER_VERSION" ]; then
-              rm -rf "$HOME/flutter"
-              wget -q https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz -O /tmp/flutter.tar.xz
-              tar xf /tmp/flutter.tar.xz -C $HOME
-              cache delete flutter-sdk-linux-$FLUTTER_VERSION
-            fi
-          - cache store flutter-sdk-linux-$FLUTTER_VERSION $HOME/flutter
+          - bash .semaphore/scripts/install-flutter.sh
           - 'export PATH="$HOME/flutter/bin:$PATH"'
-          - flutter --version
           - export ANDROID_HOME="$HOME/android-sdk"
-          - cache restore android-sdk
-          - |
-            if [ ! -d "$ANDROID_HOME/platforms/android-36" ]; then
-              mkdir -p "$ANDROID_HOME/cmdline-tools"
-              curl -sSL -o /tmp/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
-              unzip -q /tmp/cmdline-tools.zip -d "$ANDROID_HOME/cmdline-tools"
-              mv "$ANDROID_HOME/cmdline-tools/cmdline-tools" "$ANDROID_HOME/cmdline-tools/latest"
-              yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
-              "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-36" "build-tools;36.0.0"
-            fi
-          - cache store android-sdk $ANDROID_HOME
+          - bash .semaphore/scripts/install-android-sdk.sh
           - 'export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"'
       jobs:
         - name: Build AAB
@@ -412,51 +308,15 @@ blocks:
           - checkout
           - git submodule update --init --recursive
           - echo "$BCCMEDIA_ENV_DART_BASE64" | base64 -d > lib/env/.env.dart
-          - cache restore flutter-sdk-macos-$FLUTTER_VERSION
-          - |
-            INSTALLED_FLUTTER=$(grep -o '"frameworkVersion":[^,]*' "$HOME/flutter/bin/cache/flutter.version.json" 2>/dev/null | grep -o '[0-9][0-9.]*')
-            if [ ! -x "$HOME/flutter/bin/flutter" ] || [ "$INSTALLED_FLUTTER" != "$FLUTTER_VERSION" ]; then
-              rm -rf "$HOME/flutter"
-              if [ "$(uname -m)" = "arm64" ]; then FLUTTER_ARCH="_arm64"; else FLUTTER_ARCH=""; fi
-              curl -sSL -o /tmp/flutter.zip https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos${FLUTTER_ARCH}_${FLUTTER_VERSION}-stable.zip
-              unzip -q /tmp/flutter.zip -d "$HOME"
-              cache delete flutter-sdk-macos-$FLUTTER_VERSION
-            fi
-          - cache store flutter-sdk-macos-$FLUTTER_VERSION $HOME/flutter
+          - bash .semaphore/scripts/install-flutter.sh
           - 'export PATH="$HOME/flutter/bin:$PATH"'
-          - flutter --version
       jobs:
         - name: Build IPA
           commands:
             - artifact pull workflow kids_ios_build_number
             - export BUILD_NUMBER=$(cat kids_ios_build_number)
             - echo "Building with iOS build number=$BUILD_NUMBER"
-            - echo "$CERTIFICATE_P12_BASE64" | base64 -d > /tmp/certificate.p12
-            - security create-keychain -p "" build.keychain
-            - security import /tmp/certificate.p12 -k ~/Library/Keychains/build.keychain-db -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
-            - curl -fsSL https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer -o /tmp/AppleWWDRCAG3.cer
-            - security import /tmp/AppleWWDRCAG3.cer -k ~/Library/Keychains/build.keychain-db -T /usr/bin/codesign || true
-            - security list-keychains -s ~/Library/Keychains/build.keychain-db
-            - security default-keychain -s ~/Library/Keychains/build.keychain-db
-            - security unlock-keychain -p "" ~/Library/Keychains/build.keychain-db
-            - security set-keychain-settings ~/Library/Keychains/build.keychain-db
-            - 'security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain-db'
-            - 'export CODE_SIGN_IDENTITY=$(security find-identity -v -p codesigning | grep -o ''"[^"]*"'' | head -1 | tr -d ''"'')'
-            - 'echo "Signing identity: $CODE_SIGN_IDENTITY"'
-            - |
-              if [ -z "$CODE_SIGN_IDENTITY" ]; then
-                echo "ERROR: no valid code-signing identity in build.keychain."
-                security find-identity -p codesigning ~/Library/Keychains/build.keychain-db || true
-                exit 1
-              fi
-            - mkdir -p "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles" "$HOME/Library/MobileDevice/Provisioning Profiles"
-            - echo "$PROVISIONING_PROFILE_BASE64" | base64 -d > "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/profile.mobileprovision"
-            - cp "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/profile.mobileprovision" "$HOME/Library/MobileDevice/Provisioning Profiles/profile.mobileprovision"
-            - export PROVISIONING_PROFILE_UUID=$(security cms -D -i "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/profile.mobileprovision" | grep -A 1 "UUID" | grep -o '<string>.*</string>' | sed 's/<string>\(.*\)<\/string>/\1/')
-            - 'echo "Provisioning profile UUID: $PROVISIONING_PROFILE_UUID"'
-            - echo "CODE_SIGN_STYLE = Manual" >> kids/ios/Flutter/Release.xcconfig
-            - echo "PROVISIONING_PROFILE = $PROVISIONING_PROFILE_UUID" >> kids/ios/Flutter/Release.xcconfig
-            - echo "CODE_SIGN_IDENTITY = $CODE_SIGN_IDENTITY" >> kids/ios/Flutter/Release.xcconfig
+            - bash .semaphore/scripts/setup-ios-signing.sh kids/ios/Flutter/Release.xcconfig
             # Raise the Dart VM heap for the whole job. `flutter pub get` itself
             # OOMs with the default ~2 GB heap (the front_end blows up while
             # formatting a tokenize error from flutter_tools.snapshot), and the
@@ -468,20 +328,7 @@ blocks:
             - "cache restore cocoapods-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/ios/Podfile.lock),cocoapods-kids-$(checksum kids/ios/Podfile.lock),cocoapods-kids"
             - (cd kids/ios && pod repo update)
             - cd kids
-            # SwiftPM's binary-artifact downloads (Firebase/gRPC/Sentry from dl.google.com) are
-            # flaky: a network hiccup mid-download leaves a partial artifact dir, then SwiftPM
-            # aborts with "already exists in file system". Retry the build, wiping the SwiftPM
-            # cache before each attempt so every try starts from a clean, conflict-free state.
-            - |
-              attempt=0
-              until [ $attempt -ge 3 ]; do
-                rm -rf "$HOME/Library/Caches/org.swift.swiftpm"
-                flutter build ipa --release -t lib/main.dart --build-number=$BUILD_NUMBER --export-options-plist=ios/ExportOptions.plist && break
-                attempt=$((attempt + 1))
-                echo "flutter build ipa failed (attempt $attempt/3); cleared SwiftPM cache, retrying in 20s..."
-                sleep 20
-              done
-              [ $attempt -lt 3 ]
+            - bash ../.semaphore/scripts/build-ipa.sh lib/main.dart
             - cd ..
             - cache store cocoapods-kids-$SEMAPHORE_GIT_BRANCH-$(checksum kids/ios/Podfile.lock) kids/ios/Pods
             - |
