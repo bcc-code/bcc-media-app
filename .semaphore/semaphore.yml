@@ -53,6 +53,7 @@ blocks:
               rm -rf "$HOME/flutter"
               wget -q https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz -O /tmp/flutter.tar.xz
               tar xf /tmp/flutter.tar.xz -C $HOME
+              cache delete flutter-sdk-linux-$FLUTTER_VERSION
             fi
           - cache store flutter-sdk-linux-$FLUTTER_VERSION $HOME/flutter
           - 'export PATH="$HOME/flutter/bin:$PATH"'
@@ -154,8 +155,10 @@ blocks:
             INSTALLED_FLUTTER=$(grep -o '"frameworkVersion":[^,]*' "$HOME/flutter/bin/cache/flutter.version.json" 2>/dev/null | grep -o '[0-9][0-9.]*')
             if [ ! -x "$HOME/flutter/bin/flutter" ] || [ "$INSTALLED_FLUTTER" != "$FLUTTER_VERSION" ]; then
               rm -rf "$HOME/flutter"
-              curl -sSL -o /tmp/flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_${FLUTTER_VERSION}-stable.tar.xz
-              tar xf /tmp/flutter.tar.xz -C $HOME
+              if [ "$(uname -m)" = "arm64" ]; then FLUTTER_ARCH="_arm64"; else FLUTTER_ARCH=""; fi
+              curl -sSL -o /tmp/flutter.zip https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos${FLUTTER_ARCH}_${FLUTTER_VERSION}-stable.zip
+              unzip -q /tmp/flutter.zip -d "$HOME"
+              cache delete flutter-sdk-macos-$FLUTTER_VERSION
             fi
           - cache store flutter-sdk-macos-$FLUTTER_VERSION $HOME/flutter
           - 'export PATH="$HOME/flutter/bin:$PATH"'
@@ -292,6 +295,7 @@ blocks:
               rm -rf "$HOME/flutter"
               wget -q https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz -O /tmp/flutter.tar.xz
               tar xf /tmp/flutter.tar.xz -C $HOME
+              cache delete flutter-sdk-linux-$FLUTTER_VERSION
             fi
           - cache store flutter-sdk-linux-$FLUTTER_VERSION $HOME/flutter
           - 'export PATH="$HOME/flutter/bin:$PATH"'
@@ -400,8 +404,10 @@ blocks:
             INSTALLED_FLUTTER=$(grep -o '"frameworkVersion":[^,]*' "$HOME/flutter/bin/cache/flutter.version.json" 2>/dev/null | grep -o '[0-9][0-9.]*')
             if [ ! -x "$HOME/flutter/bin/flutter" ] || [ "$INSTALLED_FLUTTER" != "$FLUTTER_VERSION" ]; then
               rm -rf "$HOME/flutter"
-              curl -sSL -o /tmp/flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_${FLUTTER_VERSION}-stable.tar.xz
-              tar xf /tmp/flutter.tar.xz -C $HOME
+              if [ "$(uname -m)" = "arm64" ]; then FLUTTER_ARCH="_arm64"; else FLUTTER_ARCH=""; fi
+              curl -sSL -o /tmp/flutter.zip https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos${FLUTTER_ARCH}_${FLUTTER_VERSION}-stable.zip
+              unzip -q /tmp/flutter.zip -d "$HOME"
+              cache delete flutter-sdk-macos-$FLUTTER_VERSION
             fi
           - cache store flutter-sdk-macos-$FLUTTER_VERSION $HOME/flutter
           - 'export PATH="$HOME/flutter/bin:$PATH"'
