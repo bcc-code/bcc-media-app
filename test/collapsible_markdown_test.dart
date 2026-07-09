@@ -32,7 +32,7 @@ Some very long description that should be collapsed''',
   
   Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text
   
-  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text'''
+  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text  Some very long simple plain text''',
 ];
 
 void main() {
@@ -47,21 +47,21 @@ void main() {
 Future<void> testHeight(String content, WidgetTester t) async {
   final key = GlobalKey();
 
-  await t.pumpWidget(DesignSystem(
-    designSystem: BccMediaDesignSystem(),
-    builder: (context) => MaterialApp(
-      locale: const Locale('en'),
-      localizationsDelegates: S.localizationsDelegates,
-      home: Scaffold(
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CollapsableMarkdown(key: key, text: content, maxLines: 2),
-          ],
+  await t.pumpWidget(
+    DesignSystem(
+      designSystem: BccMediaDesignSystem(),
+      builder: (context) => MaterialApp(
+        locale: const Locale('en'),
+        localizationsDelegates: S.localizationsDelegates,
+        home: Scaffold(
+          body: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [CollapsableMarkdown(key: key, text: content, maxLines: 2)],
+          ),
         ),
       ),
     ),
-  ));
+  );
 
   await t.pumpAndSettle();
 
@@ -69,9 +69,5 @@ Future<void> testHeight(String content, WidgetTester t) async {
 
   // check widget width and height
   final size = t.getSize(find.byKey(key));
-  expect(
-    size.height,
-    lessThanOrEqualTo(68),
-    reason: content,
-  );
+  expect(size.height, lessThanOrEqualTo(68), reason: content);
 }

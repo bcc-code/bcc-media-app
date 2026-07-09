@@ -24,10 +24,7 @@ void main() {
     // Build the widget
     await tester.pumpWidget(
       ProviderScope(
-        child: AchievementShareRender(
-          achievement: mockAchievement,
-          imageBytes: kTransparentImage,
-        ),
+        child: AchievementShareRender(achievement: mockAchievement, imageBytes: kTransparentImage),
       ),
     );
 
