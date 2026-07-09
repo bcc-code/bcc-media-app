@@ -14,6 +14,31 @@ global_job_config:
 # also depends on lib/ directly because kids/pubspec.yaml uses
 # `brunstadtv_app: path: ../`.
 blocks:
+  - name: Test
+    dependencies: []
+    # Runs whenever Dart code, tests, or shared deps change. Gates the build
+    # blocks below so broken code never reaches a build/deploy. Native-only
+    # changes (/android/, /ios/) skip this block; Semaphore treats a skipped
+    # dependency as satisfied, so those builds still run.
+    run:
+      when: "change_in(['/lib/', '/test/', '/pubspec.yaml', '/pubspec.lock', '/submodules/', '/Makefile', '/.semaphore/'], {default_branch: 'master', pipeline_file: 'ignore'})"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - git submodule update --init --recursive
+          - echo "$BCCMEDIA_ENV_DART_BASE64" | base64 -d > lib/env/.env.dart
+          - bash .semaphore/scripts/install-flutter.sh
+          - 'export PATH="$HOME/flutter/bin:$PATH"'
+      jobs:
+        - name: flutter test
+          commands:
+            - "cache restore pub-linux-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),pub-linux-$(checksum pubspec.yaml),pub-linux"
+            - make pubgetall
+            - cache store pub-linux-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml) $HOME/.pub-cache
+            - flutter test
+      secrets:
+        - name: bccmedia-env-dart
   - name: Prep bccm version
     dependencies: []
     run:
@@ -37,6 +62,7 @@ blocks:
   - name: Build bccm Android
     dependencies:
       - Prep bccm version
+      - Test
     run:
       when: "change_in(['/lib/', '/android/', '/pubspec.yaml', '/pubspec.lock', '/submodules/', '/Makefile', '/.semaphore/'], {default_branch: 'master', pipeline_file: 'ignore'})"
     task:
@@ -118,6 +144,7 @@ blocks:
   - name: Build bccm iOS
     dependencies:
       - Prep bccm iOS version
+      - Test
     run:
       when: "change_in(['/lib/', '/ios/', '/pubspec.yaml', '/pubspec.lock', '/submodules/', '/Makefile', '/.semaphore/'], {default_branch: 'master', pipeline_file: 'ignore'})"
     task:
@@ -208,6 +235,7 @@ blocks:
   - name: Build kids Android
     dependencies:
       - Prep kids version
+      - Test
     run:
       when: "change_in(['/kids/', '/lib/', '/pubspec.yaml', '/pubspec.lock', '/submodules/', '/Makefile', '/.semaphore/'], {default_branch: 'master', pipeline_file: 'ignore'})"
     task:
@@ -296,6 +324,7 @@ blocks:
   - name: Build kids iOS
     dependencies:
       - Prep kids iOS version
+      - Test
     run:
       when: "change_in(['/kids/', '/lib/', '/pubspec.yaml', '/pubspec.lock', '/submodules/', '/Makefile', '/.semaphore/'], {default_branch: 'master', pipeline_file: 'ignore'})"
     task:
