@@ -970,6 +970,9 @@ class SEs extends S {
   String get yourFavorites => 'Favoritos';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Descargado';
 
   @override

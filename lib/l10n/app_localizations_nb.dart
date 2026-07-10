@@ -965,6 +965,9 @@ class SNb extends S {
   String get yourFavorites => 'Dine favoritter';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Nedlastet';
 
   @override

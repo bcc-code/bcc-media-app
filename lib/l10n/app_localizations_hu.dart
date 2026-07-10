@@ -967,6 +967,9 @@ class SHu extends S {
   String get yourFavorites => 'Kedvenceid';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Letöltve';
 
   @override

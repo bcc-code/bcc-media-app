@@ -973,6 +973,9 @@ class SDe extends S {
   String get yourFavorites => 'Deine Favoriten';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Heruntergeladen';
 
   @override

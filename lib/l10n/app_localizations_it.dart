@@ -966,6 +966,9 @@ class SIt extends S {
   String get yourFavorites => 'I tuoi preferiti';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Scaricato';
 
   @override

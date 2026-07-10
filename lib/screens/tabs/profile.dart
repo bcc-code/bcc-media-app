@@ -168,8 +168,12 @@ class ProfileScreen extends HookConsumerWidget {
                   future: myListFuture.value,
                   builder: (context, snapshot) {
                     Widget child = const SizedBox.shrink();
+                    // A null `item` means the favorited entry is no longer available
+                    // (e.g. the episode was unpublished — the API returns the entry with
+                    // item == null plus an "item is not published" error). We keep these
+                    // and render them as an "unavailable" card instead of silently dropping them.
                     final items = snapshot.data?.parsedData?.myList.entries.items
-                        .where((el) => el.item is Fragment$MyListEntry$item$$Episode)
+                        .where((el) => el.item is Fragment$MyListEntry$item$$Episode || el.item == null)
                         .toList();
                     if (snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                       child = const SizedBox(height: 250, child: LoadingGeneric());
@@ -328,17 +332,64 @@ class _EpisodeFavorites extends HookConsumerWidget {
       return subscription.cancel;
     }, []);
 
-    final episodeItems = myListEntries.value.map((item) => item.item).whereType<Fragment$MyListEntry$item$$Episode>();
+    final entries = myListEntries.value.where((e) => e.item == null || e.item is Fragment$MyListEntry$item$$Episode);
     return CustomGridView(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      children: episodeItems.mapIndexed((index, item) {
+      children: entries.mapIndexed((index, entry) {
+        final item = entry.item.asOrNull<Fragment$MyListEntry$item$$Episode>();
+        if (item == null) {
+          // The episode this entry pointed to is no longer available.
+          return const _UnavailableFavorite();
+        }
         return _FavoriteItemClickWrapper(
           item: item,
           analytics: SectionItemAnalyticsData(id: item.id, name: item.title, type: item.$__typename, position: index),
           child: ThumbnailGridEpisode(episode: getEpisodeThumbnailData(item), showSecondaryTitle: false, aspectRatio: 16 / 9),
         );
       }).toList(),
+    );
+  }
+}
+
+/// A placeholder card shown in the favorites grid when a favorited episode is
+/// no longer available (e.g. it was unpublished). Mirrors [ThumbnailGridEpisode]'s
+/// layout so it lines up with the surrounding cards.
+class _UnavailableFavorite extends StatelessWidget {
+  const _UnavailableFavorite();
+
+  @override
+  Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(bottom: 4),
+          child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Container(
+              decoration: BoxDecoration(
+                color: design.colors.background2,
+                borderRadius: BorderRadius.circular(6),
+                border: Border.all(width: 1, color: design.colors.onTint.withOpacity(0.1)),
+              ),
+              child: Center(
+                child: SvgPicture.string(SvgIcons.infoCircle, height: 24, colorFilter: ColorFilter.mode(design.colors.label3, BlendMode.srcIn)),
+              ),
+            ),
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(bottom: 2),
+          child: Text(
+            S.of(context).episodeUnavailable,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: design.textStyles.caption1.copyWith(color: design.colors.label3),
+          ),
+        ),
+      ],
     );
   }
 }

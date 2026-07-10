@@ -966,6 +966,9 @@ class SPt extends S {
   String get yourFavorites => 'Seus favoritos';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Baixado';
 
   @override

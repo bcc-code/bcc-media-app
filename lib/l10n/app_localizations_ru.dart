@@ -967,6 +967,9 @@ class SRu extends S {
   String get yourFavorites => 'Избранное';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Загружено';
 
   @override

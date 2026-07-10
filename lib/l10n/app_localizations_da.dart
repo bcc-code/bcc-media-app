@@ -964,6 +964,9 @@ class SDa extends S {
   String get yourFavorites => 'Mine favoritter';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Downloaded';
 
   @override

@@ -961,6 +961,9 @@ class SFi extends S {
   String get yourFavorites => 'Suosikkini';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Ladatut';
 
   @override

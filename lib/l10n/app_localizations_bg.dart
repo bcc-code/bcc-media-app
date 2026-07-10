@@ -964,6 +964,9 @@ class SBg extends S {
   String get yourFavorites => 'Your favorites';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Downloaded';
 
   @override

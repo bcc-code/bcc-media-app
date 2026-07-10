@@ -967,6 +967,9 @@ class SNl extends S {
   String get yourFavorites => 'Jouw favorieten';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Gedownload';
 
   @override

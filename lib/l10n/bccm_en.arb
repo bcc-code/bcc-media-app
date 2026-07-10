@@ -1280,6 +1280,10 @@
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
+  "episodeUnavailable": "Episode unavailable",
+  "@episodeUnavailable": {
+    "description": "Shown on a favorited item's card when the episode is no longer available, e.g. because it was unpublished."
+  },
   "downloaded": "Downloaded",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."

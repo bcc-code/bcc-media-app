@@ -1887,6 +1887,12 @@ abstract class S {
   /// **'Your favorites'**
   String get yourFavorites;
 
+  /// Shown on a favorited item's card when the episode is no longer available, e.g. because it was unpublished.
+  ///
+  /// In en, this message translates to:
+  /// **'Episode unavailable'**
+  String get episodeUnavailable;
+
   /// Shown as a title for the 'downloaded' section in the profile tab.
   ///
   /// In en, this message translates to:

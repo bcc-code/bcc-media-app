@@ -970,6 +970,9 @@ class SRo extends S {
   String get yourFavorites => 'Favoritele mele';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Descărcate';
 
   @override

@@ -971,6 +971,9 @@ class SFr extends S {
   String get yourFavorites => 'Vos favoris';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Téléchargé';
 
   @override

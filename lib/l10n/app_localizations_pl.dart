@@ -969,6 +969,9 @@ class SPl extends S {
   String get yourFavorites => 'Twoje ulubione';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Pobrane';
 
   @override

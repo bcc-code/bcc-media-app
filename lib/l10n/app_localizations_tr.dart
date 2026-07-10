@@ -967,6 +967,9 @@ class STr extends S {
   String get yourFavorites => 'Favorileriniz';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'İndirildi';
 
   @override

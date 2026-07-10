@@ -964,6 +964,9 @@ class SSl extends S {
   String get yourFavorites => 'Tvoje priljubljene';
 
   @override
+  String get episodeUnavailable => 'Episode unavailable';
+
+  @override
   String get downloaded => 'Preneseno';
 
   @override
