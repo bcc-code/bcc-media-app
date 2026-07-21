@@ -17,10 +17,7 @@ class MessageSection extends StatelessWidget {
     }
     return Column(
       children: section.messages!.map((messageData) {
-        return Container(
-          margin: messageData != section.messages!.last ? const EdgeInsets.only(bottom: 16) : null,
-          child: _MessageItem(messageData),
-        );
+        return Container(margin: messageData != section.messages!.last ? const EdgeInsets.only(bottom: 16) : null, child: _MessageItem(messageData));
       }).toList(),
     );
   }
@@ -40,11 +37,11 @@ class _MessageItem extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(12),
-      margin: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: getColorFromHex(data.style.background),
         border: borderColor != null ? Border.all(color: borderColor) : null,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: MarkdownBody(
         data: data.content,
