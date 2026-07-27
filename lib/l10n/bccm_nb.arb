@@ -630,6 +630,15 @@
   "@comingSoon": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
   },
+  "comingOnDate": "Kommer {date}",
+  "@comingOnDate": {
+    "description": "Short. Used in buttons, badges, etc to indicate the date an item becomes available.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "newEpisode": "Ny",
   "@newEpisode": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
