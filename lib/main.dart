@@ -117,8 +117,11 @@ Future<void> $main({List<Override>? providerOverrides}) async {
 Future setDefaults() async {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.transparent,
+      // statusBarColor/systemNavigationBarColor are ignored on Android at targetSdk >= 35
+      // (edge-to-edge is enforced) and only produce engine warnings, so they are not set here.
+      // Icon brightness is still honoured, and the app's UI is dark.
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarIconBrightness: Brightness.light,
       systemNavigationBarContrastEnforced: false,
     ),
   );

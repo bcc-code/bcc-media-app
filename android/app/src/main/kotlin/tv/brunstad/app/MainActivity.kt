@@ -1,6 +1,5 @@
 package tv.brunstad.app
 
-import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -20,7 +19,6 @@ class MainActivity : FlutterFragmentActivity() {
         requestWindowFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
     }
 
-    @SuppressLint("MissingSuperCall")
     override fun onPictureInPictureModeChanged(
         isInPictureInPictureMode: Boolean,
         newConfig: Configuration
@@ -31,9 +29,7 @@ class MainActivity : FlutterFragmentActivity() {
         bccmPlayer?.handleOnPictureInPictureModeChanged(isInPictureInPictureMode, newConfig)
     }
 
-    override fun onBackPressed() {
-        if (!BccmPlayerPlugin.handleOnBackPressed(this)) {
-            super.onBackPressed()
-        }
-    }
+    // No onBackPressed() override: android:enableOnBackInvokedCallback="true" means it is never
+    // called on API 33+, so BccmPlayerPlugin.handleOnBackPressed was dead code. The plugin now
+    // registers its own OnBackPressedCallback while the fullscreen overlay is up.
 }
