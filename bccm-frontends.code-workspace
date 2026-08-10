@@ -22,7 +22,7 @@
     },
     {
       "path": "../bcc-media-platform/web",
-      "name": "bccm: web",
+      "name": "bccm: web"
     },
     {
       "path": "../bcc-media-platform/admin-web",
@@ -58,7 +58,28 @@
     }
   ],
   "settings": {
+    // Most folders above are subfolders of a repo (play/*, live/*, platform/*,
+    // bccm_flutter/*). Without this they are silently skipped in Source Control.
+    // Overrides the global "never" in user settings.
+    "git.openRepositoryInParentFolders": "always",
     "git.autoRepositoryDetection": "subFolders",
+    "git.repositoryScanMaxDepth": 1,
+    // Keep build output out of Source Control: flutter/build/ios/SourcePackages
+    // holds ~17 SPM checkouts (GoogleAppMeasurement, flutterfire, leveldb, ...).
+    "git.repositoryScanIgnoredFolders": [
+      "node_modules",
+      "build",
+      "Pods",
+      "DerivedData",
+      "SourcePackages",
+      ".dart_tool",
+      ".symlinks",
+      ".build",
+      "vendor",
+      ".next",
+      ".nuxt",
+      ".output"
+    ],
     "files.associations": {
       ".env.dart": "dart",
       ".env.dart.template": "dart"
