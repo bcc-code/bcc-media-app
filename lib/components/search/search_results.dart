@@ -34,9 +34,6 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
         _resultFuture = debouncer.run(() {
           final searchResultFuture = client
               .query$Search(Options$Query$Search(variables: Variables$Query$Search(queryString: widget.searchInput)))
-              .catchError((error) {
-                throw error;
-              })
               .then((value) {
                 if (value.exception != null) {
                   throw value.exception!;

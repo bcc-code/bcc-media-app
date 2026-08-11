@@ -19,6 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../helpers/insets.dart';
 import '../../models/offline/download_quality.dart';
@@ -231,7 +232,8 @@ class EpisodeDownloadSheet extends HookConsumerWidget {
           return;
         }
       } catch (e) {
-        print(e);
+        // Not fatal: if we can't determine free disk space we just skip the warning and download anyway.
+        Sentry.captureException(e, stackTrace: StackTrace.current);
       }
 
       downloadFuture.value = () async {
