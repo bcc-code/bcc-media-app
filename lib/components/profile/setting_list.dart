@@ -67,7 +67,7 @@ class OptionButton extends SettingsButton {
         child: Container(
           height: 56,
           padding: const EdgeInsets.only(left: 16, right: 16),
-          foregroundDecoration: BoxDecoration(color: hovering.value ? design.colors.onTint.withOpacity(0.05) : null),
+          foregroundDecoration: BoxDecoration(color: hovering.value ? design.colors.onTint.withValues(alpha: 0.05) : null),
           child: Row(
             children: [
               Flexible(

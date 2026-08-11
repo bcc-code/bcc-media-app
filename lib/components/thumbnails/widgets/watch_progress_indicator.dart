@@ -20,7 +20,7 @@ class WatchProgressIndicator extends StatelessWidget {
     return Container(
       height: 12,
       decoration: BoxDecoration(
-        color: DesignSystem.of(context).colors.background1.withOpacity(0.7),
+        color: DesignSystem.of(context).colors.background1.withValues(alpha: 0.7),
         borderRadius: BorderRadius.circular(2),
       ),
       child: Row(

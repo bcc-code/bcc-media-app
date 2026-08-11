@@ -109,15 +109,15 @@ class ButtonBase extends HookConsumerWidget {
                   ? null
                   : [
                       BoxShadow(
-                        color: design.colors.label1.withOpacity(0.1 * transition),
+                        color: design.colors.label1.withValues(alpha: 0.1 * transition),
                         offset: Offset(0, limitedShadowHeight * 2),
                         spreadRadius: 0,
                         blurRadius: 12,
                       ),
                       BoxShadow(
                         color: shadowColor != null
-                            ? shadowColor!.withOpacity(shadowColor!.opacity * transition)
-                            : design.colors.label1.withOpacity(0.1 * transition),
+                            ? shadowColor!.withValues(alpha: shadowColor!.opacity * transition)
+                            : design.colors.label1.withValues(alpha: 0.1 * transition),
                         offset: Offset(0, limitedShadowHeight * transition),
                         blurRadius: 0,
                       ),
@@ -129,7 +129,7 @@ class ButtonBase extends HookConsumerWidget {
                     ? child
                     : _InnerShadow(
                         offset: pressed.value ? const Offset(0, 0) : Offset(0, -elevationHeight * transition),
-                        color: sideColor != null ? sideColor! : Colors.black.withOpacity(0.1),
+                        color: sideColor != null ? sideColor! : Colors.black.withValues(alpha: 0.1),
                         child: child,
                       );
               },

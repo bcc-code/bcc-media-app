@@ -159,7 +159,7 @@ class ContentLanguageList extends HookConsumerWidget {
                           onPressed: () {},
                           color: ColorTween(begin: design.colors.background2, end: design.colors.background1).animate(curvedAnimation).value!,
                           activeColor: design.colors.background1,
-                          shadowColor: design.colors.label1.withOpacity(0.1),
+                          shadowColor: design.colors.label1.withValues(alpha: 0.1),
                           sideColor: const Color(0xFFE9ECF4),
                           borderRadius: BorderRadius.circular(24),
                           builder: (context, pressed) => ClipRRect(borderRadius: BorderRadius.circular(24), child: child),

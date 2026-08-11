@@ -271,7 +271,7 @@ class _ShortFavorites extends HookConsumerWidget {
               child: Stack(
                 children: [
                   EpisodeThumbnail.withSize(episode: getEpisodeThumbnailData(item), imageSize: Size(thumbnailWidth, thumbnailHeight)),
-                  Positioned.fill(child: Container(color: design.colors.background1.withOpacity(0.3))),
+                  Positioned.fill(child: Container(color: design.colors.background1.withValues(alpha: 0.3))),
                   Positioned.fill(
                     child: Center(
                       child: SimpleShadow(offset: const Offset(0, 0), child: SvgPicture.string(SvgIcons.play, height: 24)),

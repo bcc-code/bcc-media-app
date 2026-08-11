@@ -139,7 +139,7 @@ class PosterLarge extends HookWidget {
               simpleFutureBuilder(
                   future: navigationFuture.value!,
                   loading: () => Positioned.fill(
-                      child: Container(color: design.colors.background1.withOpacity(0.5), child: const Center(child: LoadingIndicator()))),
+                      child: Container(color: design.colors.background1.withValues(alpha: 0.5), child: const Center(child: LoadingIndicator()))),
                   error: (e) => const SizedBox.shrink(),
                   noData: () => const SizedBox.shrink(),
                   ready: (d) => const SizedBox.shrink()),

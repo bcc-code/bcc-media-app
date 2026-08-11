@@ -10,7 +10,7 @@ class WatchedBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       decoration: BoxDecoration(
-        color: DesignSystem.of(context).colors.background1.withOpacity(0.7),
+        color: DesignSystem.of(context).colors.background1.withValues(alpha: 0.7),
         borderRadius: BorderRadius.circular(2),
       ),
       child: Image.asset('assets/icons/Seen.png'),

@@ -90,7 +90,7 @@ class PlaylistPosterLarge extends HookConsumerWidget {
                 return LinearGradient(
                   begin: const Alignment(0.00, -1.00),
                   end: const Alignment(0, 1),
-                  colors: [const Color(0xFF051335).withOpacity(0.6), Colors.transparent],
+                  colors: [const Color(0xFF051335).withValues(alpha: 0.6), Colors.transparent],
                 ).createShader(bounds);
               },
               blendMode: BlendMode.srcATop,
@@ -140,7 +140,7 @@ class PlaylistPosterLarge extends HookConsumerWidget {
                   future: navigationFuture.value!,
                   loading: () => Positioned.fill(
                         child: Container(
-                          color: design.colors.background1.withOpacity(0.5),
+                          color: design.colors.background1.withValues(alpha: 0.5),
                           child: const Center(child: LoadingIndicator()),
                         ),
                       ),

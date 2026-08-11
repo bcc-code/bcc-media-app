@@ -31,7 +31,7 @@ class ThumbnailSliderShort extends StatelessWidget {
                 height: imageSize.height,
                 child: BorderedImageContainer(imageUrl: image, useCache: false),
               ),
-              Positioned.fill(child: Container(color: design.colors.background1.withOpacity(0.3))),
+              Positioned.fill(child: Container(color: design.colors.background1.withValues(alpha: 0.3))),
               Positioned.fill(
                 child: Center(child: SimpleShadow(offset: const Offset(0, 0), child: SvgPicture.string(SvgIcons.play, height: 24))),
               ),

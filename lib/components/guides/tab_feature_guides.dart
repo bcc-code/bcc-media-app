@@ -168,7 +168,7 @@ class FeatureGuideOverlay extends HookWidget {
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                         BoxShadow(
-                          color: design.colors.background1.withOpacity(0.7),
+                          color: design.colors.background1.withValues(alpha: 0.7),
                           blurRadius: 10,
                           offset: const Offset(0, 10),
                         ),
@@ -212,7 +212,7 @@ class FeatureGuideOverlay extends HookWidget {
                         borderRadius: BorderRadius.circular(8),
                         boxShadow: [
                           BoxShadow(
-                            color: design.colors.background1.withOpacity(0.7),
+                            color: design.colors.background1.withValues(alpha: 0.7),
                             blurRadius: 10,
                             offset: const Offset(0, 10),
                           ),

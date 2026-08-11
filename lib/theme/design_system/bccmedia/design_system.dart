@@ -39,8 +39,8 @@ class BccMediaDesignSystem extends DesignSystemData {
         ),
         fontFamily: 'Barlow',
         canvasColor: colors.background1,
-        highlightColor: colors.background2.withOpacity(0.5),
-        splashColor: colors.background2.withOpacity(1),
+        highlightColor: colors.background2.withValues(alpha: 0.5),
+        splashColor: colors.background2.withValues(alpha: 1),
         sliderTheme: SliderThemeData(inactiveTrackColor: colors.separatorOnLight),
         progressIndicatorTheme: ProgressIndicatorThemeData(
           color: colors.tint1,

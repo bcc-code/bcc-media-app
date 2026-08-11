@@ -63,7 +63,7 @@ class KidsSearchBar extends HookWidget {
               borderRadius: BorderRadius.circular(100),
               color: ColorTween(begin: design.colors.background2, end: design.colors.background1).evaluate(animation)!,
               activeColor: design.colors.background1,
-              shadowColor: design.colors.label1.withOpacity(0.2),
+              shadowColor: design.colors.label1.withValues(alpha: 0.2),
               sideColor: const Color(0xFFE9ECF4),
               onPressed: () {
                 focusNode.requestFocus();
@@ -125,7 +125,7 @@ class KidsSearchBar extends HookWidget {
                           child: Button.rawSmall(
                             color: design.colors.background1,
                             activeColor: design.colors.background1,
-                            shadowColor: design.colors.label1.withOpacity(0.2),
+                            shadowColor: design.colors.label1.withValues(alpha: 0.2),
                             labelTextStyle: const TextStyle(),
                             sideColor: const Color(0xFFE9ECF4),
                             labelText: '',

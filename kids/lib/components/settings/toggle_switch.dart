@@ -33,7 +33,7 @@ class ToggleSwitch extends StatelessWidget {
       thumb: Container(
         child: _childWrap(
           builder: (child) {
-            return Platform.isAndroid ? child : _InnerShadow(offset: const Offset(0, -2), color: Colors.black.withOpacity(0.2), child: child);
+            return Platform.isAndroid ? child : _InnerShadow(offset: const Offset(0, -2), color: Colors.black.withValues(alpha: 0.2), child: child);
           },
           child: Container(
             margin: isSmall ? const EdgeInsets.all(2) : const EdgeInsets.all(4),

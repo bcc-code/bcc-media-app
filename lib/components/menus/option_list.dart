@@ -109,8 +109,9 @@ class _OptionListOption<T> extends HookWidget {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  color:
-                      option.disabled ? backgroundColor : backgroundColor.withOpacity(clampDouble(backgroundColor.opacity - opacityReduction, 0, 1)),
+                  color: option.disabled
+                      ? backgroundColor
+                      : backgroundColor.withValues(alpha: clampDouble(backgroundColor.a - opacityReduction, 0, 1)),
                 ),
                 child: Container(
                   padding: const EdgeInsets.all(16),

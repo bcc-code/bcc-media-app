@@ -45,7 +45,7 @@ class EpisodeChapters extends HookWidget {
                   overlay: isActive(c)
                       ? Positioned.fill(
                           child:
-                              Container(color: design.colors.onTint.withOpacity(0.1)).animate().fadeIn(curve: Curves.easeOutExpo, duration: 500.ms),
+                              Container(color: design.colors.onTint.withValues(alpha: 0.1)).animate().fadeIn(curve: Curves.easeOutExpo, duration: 500.ms),
                         )
                       : null,
                   icon: Container(

@@ -18,9 +18,7 @@ class PulseCircle extends AnimatedWidget {
             child: Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(
-                  0.1 * (1 - curved.value),
-                ),
+                color: Colors.white.withValues(alpha: 0.1 * (1 - curved.value)),
               ),
             ),
           ),

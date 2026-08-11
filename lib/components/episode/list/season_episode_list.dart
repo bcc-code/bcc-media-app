@@ -90,7 +90,7 @@ class _Episode extends StatelessWidget {
           Positioned.fill(
             child: Container(
               decoration:
-                  BoxDecoration(border: Border(left: BorderSide(color: design.colors.tint2, width: 4)), color: design.colors.tint2.withOpacity(0.1)),
+                  BoxDecoration(border: Border(left: BorderSide(color: design.colors.tint2, width: 4)), color: design.colors.tint2.withValues(alpha: 0.1)),
             ),
           ),
         Container(

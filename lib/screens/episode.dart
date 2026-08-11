@@ -467,7 +467,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                   child: AnimatedContainer(
                     duration: showLoadingOverlay ? Duration.zero : const Duration(milliseconds: 600),
                     curve: Curves.easeOutExpo,
-                    color: DesignSystem.of(context).colors.background2.withOpacity(showLoadingOverlay ? 1 : 0),
+                    color: DesignSystem.of(context).colors.background2.withValues(alpha: showLoadingOverlay ? 1 : 0),
                     child: Center(
                       child: showLoadingOverlay ? const LoadingIndicator() : null,
                     ),
