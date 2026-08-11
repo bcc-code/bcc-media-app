@@ -18,24 +18,23 @@ class MainJsChannel implements WebViewJsHandler {
     final ref = ProviderScope.containerOf(context, listen: false);
     final channel = MainJsChannel._(router: context.router, ref: ref, enableAuth: enableAuth);
     manager.js.registerHandler('main', channel);
-    manager.initialUri = manager.initialUri.replace(queryParameters: {
-      ...manager.initialUri.queryParameters,
-      'webview_delayed_type': 'flutter_webview_manager',
-    });
+    manager.initialUri = manager.initialUri.replace(
+      queryParameters: {...manager.initialUri.queryParameters, 'webview_delayed_type': 'flutter_webview_manager'},
+    );
   }
 
   get supportedFeatures => {
-        'navigate': true,
-        'push': true,
-        'exit': true,
-        'get_access_token': enableAuth,
-        'get_locale': true,
-        'share_image': true,
-        'share': true,
-        'haptic_feedback': true,
-        'launch_url': true,
-        'get_supported_features': true,
-      };
+    'navigate': true,
+    'push': true,
+    'exit': true,
+    'get_access_token': enableAuth,
+    'get_locale': true,
+    'share_image': true,
+    'share': true,
+    'haptic_feedback': true,
+    'launch_url': true,
+    'get_supported_features': true,
+  };
 
   @override
   Object? handleMessage(List<dynamic> arguments) {
@@ -77,7 +76,7 @@ class MainJsChannel implements WebViewJsHandler {
   }
 
   Future _launchUrl(List<dynamic> arguments) async {
-    if (arguments[1]! is String) {
+    if (arguments[1] is! String) {
       throw Exception('Tried to launch with invalid argument: ${arguments[1]}');
     }
     final url = arguments[1] as String;
