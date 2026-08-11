@@ -69,7 +69,7 @@ class SearchScreen extends HookConsumerWidget {
         searchText.value = null;
       });
       return listener.cancel;
-    });
+    }, const []);
 
     Widget getMainWidget() {
       if (searchText.value?.isEmpty == true && focusing.value) {
