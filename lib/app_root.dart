@@ -13,6 +13,7 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,10 +48,11 @@ class _AppRootState extends ConsumerState<AppRoot> {
     authSubscription = ref.listenManual<AuthState>(authStateProvider, onAuthChanged);
 
     for (var image in FlavorConfig.current.bccmImages!) {
-      precacheImage(
-        image,
-        context,
-      ).then((value) => print('precache succeeded for $image.')).catchError((e) => print('precache failed for $image. Error: $e'));
+      precacheImage(image, context).catchError((e) {
+        if (kDebugMode) {
+          print('precache failed for $image. Error: $e');
+        }
+      });
     }
   }
 
