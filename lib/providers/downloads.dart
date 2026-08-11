@@ -43,7 +43,7 @@ class DownloadsNotifier extends AsyncNotifier<List<Download>> {
     if (state.value == null) return;
     final existingIndex = state.value!.indexWhere((element) => element.key == event.key);
     if (existingIndex == -1) return;
-    state = AsyncValue.data(state.value!..removeAt(existingIndex));
+    state = AsyncValue.data([...state.value!]..removeAt(existingIndex));
   }
 
   void _onDownloadFailed(DownloadFailedEvent event) {}
