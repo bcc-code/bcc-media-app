@@ -52,9 +52,9 @@ class DownloadsNotifier extends AsyncNotifier<List<Download>> {
     if (state.value == null) return;
     final existingIndex = state.value!.indexWhere((element) => element.key == event.download.key);
     if (existingIndex == -1) {
-      state = AsyncValue.data(state.value!..add(event.download));
+      state = AsyncValue.data([...state.value!, event.download]);
     } else {
-      state = AsyncValue.data(state.value!..[existingIndex] = event.download);
+      state = AsyncValue.data([...state.value!]..[existingIndex] = event.download);
     }
   }
 
