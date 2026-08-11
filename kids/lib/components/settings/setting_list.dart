@@ -89,7 +89,7 @@ class _ItemRenderer extends HookWidget {
                 decoration: BoxDecoration(
                   color: item.disabled
                       ? defaultBackgroundColor
-                      : defaultBackgroundColor.withValues(alpha: clampDouble(defaultBackgroundColor.opacity - opacityReduction, 0, 1)),
+                      : defaultBackgroundColor.withValues(alpha: clampDouble(defaultBackgroundColor.a - opacityReduction, 0, 1)),
                 ),
                 child: Container(
                   padding: small ? const EdgeInsets.symmetric(horizontal: 20, vertical: 16) : const EdgeInsets.all(24),

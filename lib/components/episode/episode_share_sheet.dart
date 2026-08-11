@@ -36,12 +36,18 @@ class _ShareEpisodeSheetState extends ConsumerState<EpisodeShareSheet> {
       Option(
         id: 'fromStart',
         title: S.of(context).shareStart,
-        icon: SvgPicture.string(SvgIcons.share, color: DesignSystem.of(context).colors.onTint),
+        icon: SvgPicture.string(
+          SvgIcons.share,
+          colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.onTint, BlendMode.srcIn),
+        ),
       ),
       Option(
         id: 'fromTime',
         title: S.of(context).shareTime(getFormattedDuration(widget.currentPosSeconds, padFirstSegment: true)),
-        icon: SvgPicture.string(SvgIcons.location, color: DesignSystem.of(context).colors.onTint),
+        icon: SvgPicture.string(
+          SvgIcons.location,
+          colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.onTint, BlendMode.srcIn),
+        ),
       ),
     ];
     if (loading) {

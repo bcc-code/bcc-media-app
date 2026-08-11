@@ -98,7 +98,7 @@ class _GenericCardMiniState extends State<GenericCardMini> {
                   padding: const EdgeInsets.only(left: 20),
                   child: SvgPicture.string(
                     SvgIcons.chevronRight,
-                    color: design.colors.label3,
+                    colorFilter: ColorFilter.mode(design.colors.label3, BlendMode.srcIn),
                     width: 9,
                     height: 17,
                   ),

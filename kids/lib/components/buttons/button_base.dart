@@ -116,7 +116,7 @@ class ButtonBase extends HookConsumerWidget {
                       ),
                       BoxShadow(
                         color: shadowColor != null
-                            ? shadowColor!.withValues(alpha: shadowColor!.opacity * transition)
+                            ? shadowColor!.withValues(alpha: shadowColor!.a * transition)
                             : design.colors.label1.withValues(alpha: 0.1 * transition),
                         offset: Offset(0, limitedShadowHeight * transition),
                         blurRadius: 0,
