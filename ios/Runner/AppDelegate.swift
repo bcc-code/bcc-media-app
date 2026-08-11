@@ -3,20 +3,20 @@ import FirebaseCore
 import FirebaseMessaging
 import Flutter
 import UIKit
+import UserNotifications
 
 @main
-@objc class AppDelegate: FlutterAppDelegate {
-    override func applicationDidBecomeActive(_ application: UIApplication) {
-        UIApplication.shared.applicationIconBadgeNumber = 0
-    }
-
+@objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
     override func application(_ application: UIApplication,
                               didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         FirebaseApp.configure()
-        GeneratedPluginRegistrant.register(with: self)
         let flutterResult = super.application(application, didFinishLaunchingWithOptions: launchOptions)
         return flutterResult
+    }
+
+    func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
+        GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
     }
 
     func fetchCurrentVC(_ viewController: UIViewController?) -> UIViewController? {
@@ -38,5 +38,18 @@ import UIKit
     // For background notifications, call the API inside the UIApplicationDelegate or NSApplicationDelegate method:
     override func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         Messaging.serviceExtension().exportDeliveryMetricsToBigQuery(withMessageInfo: userInfo)
+    }
+}
+
+// Under the UIScene lifecycle the app delegate no longer receives
+// applicationDidBecomeActive, so the badge reset lives here instead.
+class SceneDelegate: FlutterSceneDelegate {
+    override func sceneDidBecomeActive(_ scene: UIScene) {
+        super.sceneDidBecomeActive(scene)
+        if #available(iOS 16.0, *) {
+            UNUserNotificationCenter.current().setBadgeCount(0)
+        } else {
+            UIApplication.shared.applicationIconBadgeNumber = 0
+        }
     }
 }

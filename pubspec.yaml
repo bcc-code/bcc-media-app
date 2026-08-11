@@ -112,6 +112,12 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  config:
+    # We migrated to the UIScene lifecycle manually (see ios/Runner/AppDelegate.swift and the
+    # UIApplicationSceneManifest key in the Info-*.plist files). Flutter's migrator only looks at
+    # ios/Runner/Info.plist, which doesn't exist here because of our per-configuration plists, so it
+    # keeps warning even though the migration is done.
+    enable-uiscene-migration: false
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
