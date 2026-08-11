@@ -90,14 +90,17 @@ class _PageRendererImpl extends HookConsumerWidget {
               id: sectionId, offset: sectionPagination.currentOffset, first: kItemsToFetchForPagination)));
       final items = result.parsedData?.section.asOrNull<Fragment$ItemSection>()?.items.items;
 
+      // Assign a new map rather than mutating the existing one: useState only notifies when
+      // `value` is set to something that isn't equal to the old value, and mutating in place
+      // leaves the same instance behind, so no rebuild would be scheduled.
       if (items == null || items.isEmpty) {
         sectionPagination.reachedMax = true;
-        paginationMap.value[sectionId] = sectionPagination;
+        paginationMap.value = {...paginationMap.value, sectionId: sectionPagination};
         return;
       }
       sectionPagination.items.addAll(items);
       sectionPagination.currentOffset += kItemsToFetchForPagination;
-      paginationMap.value[sectionId] = sectionPagination;
+      paginationMap.value = {...paginationMap.value, sectionId: sectionPagination};
     }
 
     loadMoreBottomSectionItems() async {
