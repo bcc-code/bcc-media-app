@@ -7,6 +7,7 @@ import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/models/offline/download_additional_data.dart';
 import 'package:bccm_core/bccm_core.dart';
 import 'package:brunstadtv_app/providers/availability.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final downloadsEnabledProvider = Provider<bool>((ref) {
@@ -24,7 +25,9 @@ class DownloadsNotifier extends AsyncNotifier<List<Download>> {
 
   Future<void> removeDownload(String key) async {
     if (recentlyRemoved[key] == true) {
-      print('Already removing $key');
+      if (kDebugMode) {
+        print('Already removing $key');
+      }
       return;
     }
     recentlyRemoved[key] = true;
@@ -60,10 +63,7 @@ class DownloadsNotifier extends AsyncNotifier<List<Download>> {
       final skipAvailabilityCheck = ref.read(isOfflineProvider) || !ref.read(authStateProvider).isLoggedIn;
       final episodeId = download.config.typedAdditionalData.episodeId;
       final availability = episodeId == null || skipAvailabilityCheck ? null : ref.read(episodeAvailabilityProvider(episodeId)).valueOrNull;
-      final expiresAt = getEarliestNullableDateTime([
-        download.config.typedAdditionalData.expiresAt,
-        availability?.availableTo,
-      ]);
+      final expiresAt = getEarliestNullableDateTime([download.config.typedAdditionalData.expiresAt, availability?.availableTo]);
       if (availability?.errorCode == ApiErrorCodes.noAccess ||
           availability?.errorCode == ApiErrorCodes.notPublished ||
           expiresAt != null && expiresAt.isBefore(DateTime.now())) {

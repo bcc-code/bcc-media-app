@@ -65,9 +65,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
         description: S.of(context).shortsFeatureDescription,
         onContinue: () {
           if (!context.mounted) return;
-          context.navigateTo(const ShortsWrapperScreenRoute(
-            children: [ShortsScreenRoute()],
-          ));
+          context.navigateTo(const ShortsWrapperScreenRoute(children: [ShortsScreenRoute()]));
         },
       );
 
@@ -77,7 +75,9 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
 
   @override
   void didChangeTabRoute(TabPageRoute previousRoute) {
-    print('Changed to settings tab from ${previousRoute.name}');
+    if (kDebugMode) {
+      print('Changed to settings tab from ${previousRoute.name}');
+    }
   }
 
   onTabTap(BuildContext context, int index) {
@@ -128,9 +128,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       } else if (tabId == TabId.search) {
         pageCode = value.application.searchPage?.code;
       }
-      ref.read(analyticsProvider).screen(tabInfo.analyticsName, properties: {
-        if (pageCode != null) 'pageCode': pageCode,
-      });
+      ref.read(analyticsProvider).screen(tabInfo.analyticsName, properties: {if (pageCode != null) 'pageCode': pageCode});
     });
   }
 
@@ -145,9 +143,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     }
 
     final String? currentMediaItemEpisodeId = ref.watch(
-      primaryPlayerProvider.select(
-        (player) => player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>(),
-      ),
+      primaryPlayerProvider.select((player) => player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>()),
     );
 
     if (ref.watch(primaryPlayerProvider)?.currentMediaItem == null) {
@@ -209,7 +205,10 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
               child: Builder(
                 builder: (context) => Scaffold(
                   appBar: kIsWeb ? WebAppBar(tabsRouter: tabsRouter, onTabTap: (i) => onTabTap(context, i)) : null,
-                  body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
+                  body: Padding(
+                    padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight),
+                    child: child,
+                  ),
                   bottomSheet: Container(
                     color: DesignSystem.of(context).colors.background1, // Fix gap between prompts and miniPlayer due to antialiasing issue
                     child: Column(
@@ -220,12 +219,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
                       ],
                     ),
                   ),
-                  bottomNavigationBar: kIsWeb
-                      ? null
-                      : CustomNavTabBar(
-                          tabsRouter: tabsRouter,
-                          onTabTap: (i) => onTabTap(context, i),
-                        ),
+                  bottomNavigationBar: kIsWeb ? null : CustomNavTabBar(tabsRouter: tabsRouter, onTabTap: (i) => onTabTap(context, i)),
                 ),
               ),
             ),

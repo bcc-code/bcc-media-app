@@ -55,14 +55,13 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
       });
       return flags;
     }
-    ref.listen(
-      unleashContextProvider,
-      (previous, next) async {
-        final context = await next;
+    ref.listen(unleashContextProvider, (previous, next) async {
+      final context = await next;
+      if (kDebugMode) {
         print('unleash context: ${context.toMap()}');
-        unleash.updateContext(context);
-      },
-    );
+      }
+      unleash.updateContext(context);
+    });
 
     final value = getBaseFeatureFlags().mergeWithTrueAlwaysWins(
       FeatureFlags(
@@ -83,8 +82,9 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
         kidsNotificationPrompt: _verifyToggle(unleash, 'kids-notification-prompt'),
         kidsNotificationPromptPosition: int.tryParse(unleash.getVariant('kids-notification-prompt').payload?.value ?? ''),
         kidsNotificationPromptAfterDismissal: _verifyToggle(unleash, 'kids-notification-prompt-reminders-after-dismissal'),
-        kidsNotificationPromptAfterDismissalCount:
-            int.tryParse(unleash.getVariant('kids-notification-prompt-reminders-after-dismissal').payload?.value ?? ''),
+        kidsNotificationPromptAfterDismissalCount: int.tryParse(
+          unleash.getVariant('kids-notification-prompt-reminders-after-dismissal').payload?.value ?? '',
+        ),
         kidsDonationLink: _verifyToggle(unleash, 'kids-donation-link'),
       ),
     );
@@ -116,20 +116,14 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
       clientKey: Env.unleashClientKey,
       appName: FlavorConfig.current.applicationCode,
       refreshInterval: 60,
-      customHeaders: {
-        'UNLEASH-APPNAME': Env.unleashAppName,
-      },
+      customHeaders: {'UNLEASH-APPNAME': Env.unleashAppName},
     );
     final context = await ref.read(unleashContextProvider);
     unleash.updateContext(context);
     unleash.on(
       'error',
       (err) => FlutterError.reportError(
-        FlutterErrorDetails(
-          exception: Exception(err),
-          context: ErrorDescription('Unleash got error $err'),
-          stack: StackTrace.current,
-        ),
+        FlutterErrorDetails(exception: Exception(err), context: ErrorDescription('Unleash got error $err'), stack: StackTrace.current),
       ),
     );
     unleash.on('update', onUnleashUpdate);
