@@ -18,14 +18,12 @@ import '../models/feature_flags.dart';
 FeatureFlags getBaseFeatureFlags() {
   return FeatureFlags(
     variants: [],
-    kidsAuth: FlavorConfig.current.flavor != Flavor.kids,
     publicSignup: false,
     socialSignup: false,
     shorts: false,
     shortsHideBeta: false,
     shortsGuide: false,
     disableNpawShorts: false,
-    skipToChapter: false,
     shortsWithScores: false,
     elasticSearch: false,
     chapterSlider: false,
@@ -66,14 +64,12 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     final value = getBaseFeatureFlags().mergeWithTrueAlwaysWins(
       FeatureFlags(
         variants: _mapVariants(unleash.toggles),
-        kidsAuth: _verifyToggle(unleash, 'kids-auth'),
         publicSignup: _verifyToggle(unleash, 'public-signup'),
         socialSignup: _verifyToggle(unleash, 'social-signup'),
         shorts: _verifyToggle(unleash, 'shorts'),
         shortsHideBeta: _verifyToggle(unleash, 'shorts-hide-beta'),
         shortsGuide: _verifyToggle(unleash, 'shorts-guide'),
         disableNpawShorts: _verifyToggle(unleash, 'disable-npaw-shorts'),
-        skipToChapter: _verifyToggle(unleash, 'skip-to-chapter'),
         shortsWithScores: _verifyToggle(unleash, 'shorts-with-scores3'),
         elasticSearch: _verifyToggle(unleash, 'elastic-search'),
         chapterSlider: _verifyToggle(unleash, 'chapter-slider'),

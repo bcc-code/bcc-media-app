@@ -129,10 +129,8 @@ class SettingsScreen extends HookConsumerWidget {
                                   const DonationButton(),
                                   SizedBox(height: spacingBetweenSections),
                                 ],
-                                if (ref.watch(featureFlagsProvider.select((ff) => ff.kidsAuth))) ...[
-                                  AuthenticationButton(),
-                                  SizedBox(height: spacingBetweenSections),
-                                ],
+                                AuthenticationButton(),
+                                SizedBox(height: spacingBetweenSections),
                                 SettingList(
                                   items: [
                                     SettingListItem(

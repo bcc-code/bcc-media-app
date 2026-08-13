@@ -232,7 +232,6 @@ Future<ProviderContainer> initProviderContainer(List<Override> overrides) async 
   providerContainer.read(analyticsProvider);
   providerContainer.read(deepLinkServiceProvider);
   providerContainer.read(notificationServiceProvider);
-  providerContainer.read(kidsAuthFeatureFlagListener);
   await providerContainer.read(playbackServiceProvider).init();
   return providerContainer;
 }

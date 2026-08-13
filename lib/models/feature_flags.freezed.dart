@@ -23,7 +23,6 @@ FeatureFlags _$FeatureFlagsFromJson(Map<String, dynamic> json) {
 mixin _$FeatureFlags {
   List<String> get variants =>
       throw _privateConstructorUsedError; // For kids-mobile
-  bool get kidsAuth => throw _privateConstructorUsedError;
   bool get publicSignup => throw _privateConstructorUsedError;
   bool get socialSignup =>
       throw _privateConstructorUsedError; // For bccm-mobile
@@ -31,7 +30,6 @@ mixin _$FeatureFlags {
   bool get shortsHideBeta => throw _privateConstructorUsedError;
   bool get shortsGuide => throw _privateConstructorUsedError;
   bool get disableNpawShorts => throw _privateConstructorUsedError;
-  bool get skipToChapter => throw _privateConstructorUsedError;
   bool get shortsWithScores => throw _privateConstructorUsedError;
   bool get elasticSearch => throw _privateConstructorUsedError;
   bool get chapterSlider => throw _privateConstructorUsedError;
@@ -64,14 +62,12 @@ abstract class $FeatureFlagsCopyWith<$Res> {
   @useResult
   $Res call({
     List<String> variants,
-    bool kidsAuth,
     bool publicSignup,
     bool socialSignup,
     bool shorts,
     bool shortsHideBeta,
     bool shortsGuide,
     bool disableNpawShorts,
-    bool skipToChapter,
     bool shortsWithScores,
     bool elasticSearch,
     bool chapterSlider,
@@ -101,14 +97,12 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
   @override
   $Res call({
     Object? variants = null,
-    Object? kidsAuth = null,
     Object? publicSignup = null,
     Object? socialSignup = null,
     Object? shorts = null,
     Object? shortsHideBeta = null,
     Object? shortsGuide = null,
     Object? disableNpawShorts = null,
-    Object? skipToChapter = null,
     Object? shortsWithScores = null,
     Object? elasticSearch = null,
     Object? chapterSlider = null,
@@ -126,10 +120,6 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
                 ? _value.variants
                 : variants // ignore: cast_nullable_to_non_nullable
                       as List<String>,
-            kidsAuth: null == kidsAuth
-                ? _value.kidsAuth
-                : kidsAuth // ignore: cast_nullable_to_non_nullable
-                      as bool,
             publicSignup: null == publicSignup
                 ? _value.publicSignup
                 : publicSignup // ignore: cast_nullable_to_non_nullable
@@ -153,10 +143,6 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
             disableNpawShorts: null == disableNpawShorts
                 ? _value.disableNpawShorts
                 : disableNpawShorts // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            skipToChapter: null == skipToChapter
-                ? _value.skipToChapter
-                : skipToChapter // ignore: cast_nullable_to_non_nullable
                       as bool,
             shortsWithScores: null == shortsWithScores
                 ? _value.shortsWithScores
@@ -218,14 +204,12 @@ abstract class _$$FeatureFlagsImplCopyWith<$Res>
   @useResult
   $Res call({
     List<String> variants,
-    bool kidsAuth,
     bool publicSignup,
     bool socialSignup,
     bool shorts,
     bool shortsHideBeta,
     bool shortsGuide,
     bool disableNpawShorts,
-    bool skipToChapter,
     bool shortsWithScores,
     bool elasticSearch,
     bool chapterSlider,
@@ -254,14 +238,12 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? variants = null,
-    Object? kidsAuth = null,
     Object? publicSignup = null,
     Object? socialSignup = null,
     Object? shorts = null,
     Object? shortsHideBeta = null,
     Object? shortsGuide = null,
     Object? disableNpawShorts = null,
-    Object? skipToChapter = null,
     Object? shortsWithScores = null,
     Object? elasticSearch = null,
     Object? chapterSlider = null,
@@ -279,10 +261,6 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
             ? _value._variants
             : variants // ignore: cast_nullable_to_non_nullable
                   as List<String>,
-        kidsAuth: null == kidsAuth
-            ? _value.kidsAuth
-            : kidsAuth // ignore: cast_nullable_to_non_nullable
-                  as bool,
         publicSignup: null == publicSignup
             ? _value.publicSignup
             : publicSignup // ignore: cast_nullable_to_non_nullable
@@ -306,10 +284,6 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
         disableNpawShorts: null == disableNpawShorts
             ? _value.disableNpawShorts
             : disableNpawShorts // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        skipToChapter: null == skipToChapter
-            ? _value.skipToChapter
-            : skipToChapter // ignore: cast_nullable_to_non_nullable
                   as bool,
         shortsWithScores: null == shortsWithScores
             ? _value.shortsWithScores
@@ -364,14 +338,12 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
 class _$FeatureFlagsImpl extends _FeatureFlags {
   const _$FeatureFlagsImpl({
     final List<String> variants = const [],
-    this.kidsAuth = false,
     this.publicSignup = false,
     this.socialSignup = false,
     this.shorts = false,
     this.shortsHideBeta = false,
     this.shortsGuide = false,
     this.disableNpawShorts = false,
-    this.skipToChapter = false,
     this.shortsWithScores = false,
     this.elasticSearch = false,
     this.chapterSlider = false,
@@ -400,9 +372,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   // For kids-mobile
   @override
   @JsonKey()
-  final bool kidsAuth;
-  @override
-  @JsonKey()
   final bool publicSignup;
   @override
   @JsonKey()
@@ -420,9 +389,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   @override
   @JsonKey()
   final bool disableNpawShorts;
-  @override
-  @JsonKey()
-  final bool skipToChapter;
   @override
   @JsonKey()
   final bool shortsWithScores;
@@ -454,7 +420,7 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
 
   @override
   String toString() {
-    return 'FeatureFlags(variants: $variants, kidsAuth: $kidsAuth, publicSignup: $publicSignup, socialSignup: $socialSignup, shorts: $shorts, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, skipToChapter: $skipToChapter, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider, showBmmStreak: $showBmmStreak, kidsMoreNorwegianContent: $kidsMoreNorwegianContent, kidsNotificationPrompt: $kidsNotificationPrompt, kidsNotificationPromptPosition: $kidsNotificationPromptPosition, kidsNotificationPromptAfterDismissal: $kidsNotificationPromptAfterDismissal, kidsNotificationPromptAfterDismissalCount: $kidsNotificationPromptAfterDismissalCount, kidsDonationLink: $kidsDonationLink)';
+    return 'FeatureFlags(variants: $variants, publicSignup: $publicSignup, socialSignup: $socialSignup, shorts: $shorts, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider, showBmmStreak: $showBmmStreak, kidsMoreNorwegianContent: $kidsMoreNorwegianContent, kidsNotificationPrompt: $kidsNotificationPrompt, kidsNotificationPromptPosition: $kidsNotificationPromptPosition, kidsNotificationPromptAfterDismissal: $kidsNotificationPromptAfterDismissal, kidsNotificationPromptAfterDismissalCount: $kidsNotificationPromptAfterDismissalCount, kidsDonationLink: $kidsDonationLink)';
   }
 
   @override
@@ -463,8 +429,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
         (other.runtimeType == runtimeType &&
             other is _$FeatureFlagsImpl &&
             const DeepCollectionEquality().equals(other._variants, _variants) &&
-            (identical(other.kidsAuth, kidsAuth) ||
-                other.kidsAuth == kidsAuth) &&
             (identical(other.publicSignup, publicSignup) ||
                 other.publicSignup == publicSignup) &&
             (identical(other.socialSignup, socialSignup) ||
@@ -476,8 +440,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
                 other.shortsGuide == shortsGuide) &&
             (identical(other.disableNpawShorts, disableNpawShorts) ||
                 other.disableNpawShorts == disableNpawShorts) &&
-            (identical(other.skipToChapter, skipToChapter) ||
-                other.skipToChapter == skipToChapter) &&
             (identical(other.shortsWithScores, shortsWithScores) ||
                 other.shortsWithScores == shortsWithScores) &&
             (identical(other.elasticSearch, elasticSearch) ||
@@ -517,17 +479,15 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hashAll([
+  int get hashCode => Object.hash(
     runtimeType,
     const DeepCollectionEquality().hash(_variants),
-    kidsAuth,
     publicSignup,
     socialSignup,
     shorts,
     shortsHideBeta,
     shortsGuide,
     disableNpawShorts,
-    skipToChapter,
     shortsWithScores,
     elasticSearch,
     chapterSlider,
@@ -538,7 +498,7 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
     kidsNotificationPromptAfterDismissal,
     kidsNotificationPromptAfterDismissalCount,
     kidsDonationLink,
-  ]);
+  );
 
   /// Create a copy of FeatureFlags
   /// with the given fields replaced by the non-null parameter values.
@@ -557,14 +517,12 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
 abstract class _FeatureFlags extends FeatureFlags {
   const factory _FeatureFlags({
     final List<String> variants,
-    final bool kidsAuth,
     final bool publicSignup,
     final bool socialSignup,
     final bool shorts,
     final bool shortsHideBeta,
     final bool shortsGuide,
     final bool disableNpawShorts,
-    final bool skipToChapter,
     final bool shortsWithScores,
     final bool elasticSearch,
     final bool chapterSlider,
@@ -584,8 +542,6 @@ abstract class _FeatureFlags extends FeatureFlags {
   @override
   List<String> get variants; // For kids-mobile
   @override
-  bool get kidsAuth;
-  @override
   bool get publicSignup;
   @override
   bool get socialSignup; // For bccm-mobile
@@ -597,8 +553,6 @@ abstract class _FeatureFlags extends FeatureFlags {
   bool get shortsGuide;
   @override
   bool get disableNpawShorts;
-  @override
-  bool get skipToChapter;
   @override
   bool get shortsWithScores;
   @override
