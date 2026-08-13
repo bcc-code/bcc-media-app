@@ -30,11 +30,6 @@ mixin _$FeatureFlags {
   bool get shortsHideBeta => throw _privateConstructorUsedError;
   bool get shortsGuide => throw _privateConstructorUsedError;
   bool get disableNpawShorts => throw _privateConstructorUsedError;
-  bool get shortsWithScores => throw _privateConstructorUsedError;
-  bool get elasticSearch => throw _privateConstructorUsedError;
-  bool get chapterSlider => throw _privateConstructorUsedError;
-  bool get showBmmStreak => throw _privateConstructorUsedError;
-  bool get kidsMoreNorwegianContent => throw _privateConstructorUsedError;
   bool get kidsNotificationPrompt => throw _privateConstructorUsedError;
   int? get kidsNotificationPromptPosition => throw _privateConstructorUsedError;
   bool get kidsNotificationPromptAfterDismissal =>
@@ -68,11 +63,6 @@ abstract class $FeatureFlagsCopyWith<$Res> {
     bool shortsHideBeta,
     bool shortsGuide,
     bool disableNpawShorts,
-    bool shortsWithScores,
-    bool elasticSearch,
-    bool chapterSlider,
-    bool showBmmStreak,
-    bool kidsMoreNorwegianContent,
     bool kidsNotificationPrompt,
     int? kidsNotificationPromptPosition,
     bool kidsNotificationPromptAfterDismissal,
@@ -103,11 +93,6 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
     Object? shortsHideBeta = null,
     Object? shortsGuide = null,
     Object? disableNpawShorts = null,
-    Object? shortsWithScores = null,
-    Object? elasticSearch = null,
-    Object? chapterSlider = null,
-    Object? showBmmStreak = null,
-    Object? kidsMoreNorwegianContent = null,
     Object? kidsNotificationPrompt = null,
     Object? kidsNotificationPromptPosition = freezed,
     Object? kidsNotificationPromptAfterDismissal = null,
@@ -143,26 +128,6 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
             disableNpawShorts: null == disableNpawShorts
                 ? _value.disableNpawShorts
                 : disableNpawShorts // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            shortsWithScores: null == shortsWithScores
-                ? _value.shortsWithScores
-                : shortsWithScores // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            elasticSearch: null == elasticSearch
-                ? _value.elasticSearch
-                : elasticSearch // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            chapterSlider: null == chapterSlider
-                ? _value.chapterSlider
-                : chapterSlider // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            showBmmStreak: null == showBmmStreak
-                ? _value.showBmmStreak
-                : showBmmStreak // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            kidsMoreNorwegianContent: null == kidsMoreNorwegianContent
-                ? _value.kidsMoreNorwegianContent
-                : kidsMoreNorwegianContent // ignore: cast_nullable_to_non_nullable
                       as bool,
             kidsNotificationPrompt: null == kidsNotificationPrompt
                 ? _value.kidsNotificationPrompt
@@ -210,11 +175,6 @@ abstract class _$$FeatureFlagsImplCopyWith<$Res>
     bool shortsHideBeta,
     bool shortsGuide,
     bool disableNpawShorts,
-    bool shortsWithScores,
-    bool elasticSearch,
-    bool chapterSlider,
-    bool showBmmStreak,
-    bool kidsMoreNorwegianContent,
     bool kidsNotificationPrompt,
     int? kidsNotificationPromptPosition,
     bool kidsNotificationPromptAfterDismissal,
@@ -244,11 +204,6 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
     Object? shortsHideBeta = null,
     Object? shortsGuide = null,
     Object? disableNpawShorts = null,
-    Object? shortsWithScores = null,
-    Object? elasticSearch = null,
-    Object? chapterSlider = null,
-    Object? showBmmStreak = null,
-    Object? kidsMoreNorwegianContent = null,
     Object? kidsNotificationPrompt = null,
     Object? kidsNotificationPromptPosition = freezed,
     Object? kidsNotificationPromptAfterDismissal = null,
@@ -284,26 +239,6 @@ class __$$FeatureFlagsImplCopyWithImpl<$Res>
         disableNpawShorts: null == disableNpawShorts
             ? _value.disableNpawShorts
             : disableNpawShorts // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        shortsWithScores: null == shortsWithScores
-            ? _value.shortsWithScores
-            : shortsWithScores // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        elasticSearch: null == elasticSearch
-            ? _value.elasticSearch
-            : elasticSearch // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        chapterSlider: null == chapterSlider
-            ? _value.chapterSlider
-            : chapterSlider // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        showBmmStreak: null == showBmmStreak
-            ? _value.showBmmStreak
-            : showBmmStreak // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        kidsMoreNorwegianContent: null == kidsMoreNorwegianContent
-            ? _value.kidsMoreNorwegianContent
-            : kidsMoreNorwegianContent // ignore: cast_nullable_to_non_nullable
                   as bool,
         kidsNotificationPrompt: null == kidsNotificationPrompt
             ? _value.kidsNotificationPrompt
@@ -344,11 +279,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
     this.shortsHideBeta = false,
     this.shortsGuide = false,
     this.disableNpawShorts = false,
-    this.shortsWithScores = false,
-    this.elasticSearch = false,
-    this.chapterSlider = false,
-    this.showBmmStreak = false,
-    this.kidsMoreNorwegianContent = false,
     this.kidsNotificationPrompt = false,
     this.kidsNotificationPromptPosition,
     this.kidsNotificationPromptAfterDismissal = false,
@@ -391,21 +321,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
   final bool disableNpawShorts;
   @override
   @JsonKey()
-  final bool shortsWithScores;
-  @override
-  @JsonKey()
-  final bool elasticSearch;
-  @override
-  @JsonKey()
-  final bool chapterSlider;
-  @override
-  @JsonKey()
-  final bool showBmmStreak;
-  @override
-  @JsonKey()
-  final bool kidsMoreNorwegianContent;
-  @override
-  @JsonKey()
   final bool kidsNotificationPrompt;
   @override
   final int? kidsNotificationPromptPosition;
@@ -420,7 +335,7 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
 
   @override
   String toString() {
-    return 'FeatureFlags(variants: $variants, publicSignup: $publicSignup, socialSignup: $socialSignup, shorts: $shorts, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, shortsWithScores: $shortsWithScores, elasticSearch: $elasticSearch, chapterSlider: $chapterSlider, showBmmStreak: $showBmmStreak, kidsMoreNorwegianContent: $kidsMoreNorwegianContent, kidsNotificationPrompt: $kidsNotificationPrompt, kidsNotificationPromptPosition: $kidsNotificationPromptPosition, kidsNotificationPromptAfterDismissal: $kidsNotificationPromptAfterDismissal, kidsNotificationPromptAfterDismissalCount: $kidsNotificationPromptAfterDismissalCount, kidsDonationLink: $kidsDonationLink)';
+    return 'FeatureFlags(variants: $variants, publicSignup: $publicSignup, socialSignup: $socialSignup, shorts: $shorts, shortsHideBeta: $shortsHideBeta, shortsGuide: $shortsGuide, disableNpawShorts: $disableNpawShorts, kidsNotificationPrompt: $kidsNotificationPrompt, kidsNotificationPromptPosition: $kidsNotificationPromptPosition, kidsNotificationPromptAfterDismissal: $kidsNotificationPromptAfterDismissal, kidsNotificationPromptAfterDismissalCount: $kidsNotificationPromptAfterDismissalCount, kidsDonationLink: $kidsDonationLink)';
   }
 
   @override
@@ -440,19 +355,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
                 other.shortsGuide == shortsGuide) &&
             (identical(other.disableNpawShorts, disableNpawShorts) ||
                 other.disableNpawShorts == disableNpawShorts) &&
-            (identical(other.shortsWithScores, shortsWithScores) ||
-                other.shortsWithScores == shortsWithScores) &&
-            (identical(other.elasticSearch, elasticSearch) ||
-                other.elasticSearch == elasticSearch) &&
-            (identical(other.chapterSlider, chapterSlider) ||
-                other.chapterSlider == chapterSlider) &&
-            (identical(other.showBmmStreak, showBmmStreak) ||
-                other.showBmmStreak == showBmmStreak) &&
-            (identical(
-                  other.kidsMoreNorwegianContent,
-                  kidsMoreNorwegianContent,
-                ) ||
-                other.kidsMoreNorwegianContent == kidsMoreNorwegianContent) &&
             (identical(other.kidsNotificationPrompt, kidsNotificationPrompt) ||
                 other.kidsNotificationPrompt == kidsNotificationPrompt) &&
             (identical(
@@ -488,11 +390,6 @@ class _$FeatureFlagsImpl extends _FeatureFlags {
     shortsHideBeta,
     shortsGuide,
     disableNpawShorts,
-    shortsWithScores,
-    elasticSearch,
-    chapterSlider,
-    showBmmStreak,
-    kidsMoreNorwegianContent,
     kidsNotificationPrompt,
     kidsNotificationPromptPosition,
     kidsNotificationPromptAfterDismissal,
@@ -523,11 +420,6 @@ abstract class _FeatureFlags extends FeatureFlags {
     final bool shortsHideBeta,
     final bool shortsGuide,
     final bool disableNpawShorts,
-    final bool shortsWithScores,
-    final bool elasticSearch,
-    final bool chapterSlider,
-    final bool showBmmStreak,
-    final bool kidsMoreNorwegianContent,
     final bool kidsNotificationPrompt,
     final int? kidsNotificationPromptPosition,
     final bool kidsNotificationPromptAfterDismissal,
@@ -553,16 +445,6 @@ abstract class _FeatureFlags extends FeatureFlags {
   bool get shortsGuide;
   @override
   bool get disableNpawShorts;
-  @override
-  bool get shortsWithScores;
-  @override
-  bool get elasticSearch;
-  @override
-  bool get chapterSlider;
-  @override
-  bool get showBmmStreak;
-  @override
-  bool get kidsMoreNorwegianContent;
   @override
   bool get kidsNotificationPrompt;
   @override
