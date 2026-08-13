@@ -1,9 +1,8 @@
 import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/components/menus/bottom_sheet_select.dart';
 import 'package:bccm_core/bccm_core.dart';
-import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:brunstadtv_app/components/profile/technical_details_sheet.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -13,6 +12,8 @@ import 'package:restart_app/restart_app.dart';
 import '../../helpers/constants.dart';
 import 'package:bccm_core/design_system.dart';
 import '../menus/option_list.dart';
+
+String _onOff(bool? value) => value == true ? 'On' : 'Off';
 
 class DeveloperOptionsTrigger extends HookWidget {
   const DeveloperOptionsTrigger({super.key, required this.child});
@@ -45,86 +46,40 @@ class DeveloperOptions extends ConsumerWidget {
   const DeveloperOptions({super.key});
 
   void showOverrideEnvModal(BuildContext context, WidgetRef ref) {
-    var currentEnvOverride = ref.read(sharedPreferencesProvider).getString(PrefKeys.envOverride);
-    // ignore: use_build_context_synchronously
-    showDialog(
+    final currentEnvOverride = ref.read(sharedPreferencesProvider).getString(PrefKeys.envOverride) ?? 'none';
+    showModalBottomSheet(
       useRootNavigator: true,
       context: context,
       builder: (context) {
-        return SimpleDialog(
-          title: Text(
-            'Choose environment override',
-            style: DesignSystem.of(context).textStyles.title3,
+        return BottomSheetSelect<String>(
+          title: 'Override environment',
+          description: Container(
+            margin: const EdgeInsets.only(bottom: 24),
+            child: Text('The app will restart.', textAlign: TextAlign.center, style: DesignSystem.of(context).textStyles.caption1),
           ),
-          children: ['none', EnvironmentOverride.dev, EnvironmentOverride.sta, EnvironmentOverride.prod]
-              .map((env) => SimpleDialogOption(
-                    onPressed: () async {
-                      if (env == 'none') {
-                        await ref.read(sharedPreferencesProvider).remove(PrefKeys.envOverride);
-                        Restart.restartApp();
-                        return;
-                      }
-                      await ref.read(sharedPreferencesProvider).setString(PrefKeys.envOverride, env);
-                      Restart.restartApp();
-                    },
-                    child: currentEnvOverride != env
-                        ? Text(env)
-                        : Text(
-                            env,
-                            style: DesignSystem.of(context).textStyles.body1.copyWith(fontWeight: FontWeight.bold),
-                          ),
-                  ))
-              .toList(),
+          selectedId: currentEnvOverride,
+          items: [
+            Option(id: 'none', title: 'None (default)'),
+            Option(id: EnvironmentOverride.dev, title: 'Dev'),
+            Option(id: EnvironmentOverride.sta, title: 'Staging'),
+            Option(id: EnvironmentOverride.prod, title: 'Production'),
+          ],
+          onSelectionChanged: (env) async {
+            if (env == 'none') {
+              await ref.read(sharedPreferencesProvider).remove(PrefKeys.envOverride);
+            } else {
+              await ref.read(sharedPreferencesProvider).setString(PrefKeys.envOverride, env);
+            }
+            Restart.restartApp();
+          },
         );
-      },
-    );
-  }
-
-  void showTechnicalDetails(BuildContext context, WidgetRef ref) async {
-    var auth = ref.read(authStateProvider);
-    var settings = ref.read(settingsProvider);
-    var notificationService = ref.read(notificationServiceProvider);
-    showDialog(
-      useRootNavigator: true,
-      context: context,
-      builder: (context) {
-        return Consumer(builder: (context, ref, child) {
-          return SimpleDialog(
-            title: Text(
-              'Technical details',
-              style: DesignSystem.of(context).textStyles.title3,
-            ),
-            children: [
-              SelectionArea(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16),
-                  alignment: Alignment.topLeft,
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    const Text('idToken: '),
-                    TextField(controller: TextEditingController()..text = auth.idToken.toString()),
-                    const Text('accessToken: '),
-                    TextField(controller: TextEditingController()..text = auth.auth0AccessToken.toString()),
-                    const Text('fcmToken: '),
-                    TextField(
-                        controller: TextEditingController()
-                          ..text = notificationService.asOrNull<FcmNotificationService>()?.fcmToken.toString() ?? 'disabled'),
-                    const SizedBox(height: 8),
-                    Text('auth.expiresAt: ${auth.expiresAt}'),
-                    Text('session_id: ${settings.sessionId}'),
-                    Text('analytics_id (private): ${settings.analyticsId}'),
-                    Text('featureFlags: ${ref.watch(featureFlagsProvider)}'),
-                  ]),
-                ),
-              )
-            ],
-          );
-        });
       },
     );
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsProvider);
     return BottomSheetSelect<String>(
       title: 'Developer options',
       selectedId: 'fromStart',
@@ -132,8 +87,8 @@ class DeveloperOptions extends ConsumerWidget {
         Option(id: 'override_env', title: 'Override environment'),
         Option(id: 'show_technical_details', title: 'Show technical details'),
         Option(id: 'reset_settings', title: 'Reset settings'),
-        Option(id: 'toggle_native_player', title: 'Use native player: ${ref.watch(settingsProvider).useNativePlayer}'),
-        Option(id: 'toggle_betatester', title: 'Betatester mode: ${ref.watch(settingsProvider).isBetaTester}'),
+        Option(id: 'toggle_native_player', title: 'Use native player: ${_onOff(settings.useNativePlayer)}'),
+        Option(id: 'toggle_betatester', title: 'Betatester mode: ${_onOff(settings.isBetaTester)}'),
       ],
       popOnChange: false,
       showSelection: false,
@@ -144,7 +99,7 @@ class DeveloperOptions extends ConsumerWidget {
               showOverrideEnvModal(context, ref);
               break;
             case 'show_technical_details':
-              showTechnicalDetails(context, ref);
+              showTechnicalDetailsSheet(context);
               break;
             case 'reset_settings':
               ref.read(sharedPreferencesProvider).clear();
