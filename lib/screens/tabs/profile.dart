@@ -28,6 +28,7 @@ import 'package:simple_shadow/simple_shadow.dart';
 
 import '../../components/misc/custom_grid_view.dart';
 import '../../components/offline/downloaded_videos.dart';
+import '../../helpers/unavailable_entry_bottom_sheet.dart';
 import '../../helpers/watch_progress_bottom_sheet.dart';
 import '../../components/status/error_generic.dart';
 import '../../components/status/loading_generic.dart';
@@ -40,6 +41,13 @@ import 'package:bccm_core/design_system.dart';
 
 const kProfileScrollQueryLikedShorts = 'liked_shorts';
 const kProfileScrollQueryDownloaded = 'downloaded';
+
+/// Episodes, plus any entry that is no longer available. Unavailable entries carry
+/// no type information (the item is null), so they all end up in the favorites grid
+/// rather than the shorts row — hence the type-neutral copy on [_UnavailableFavorite].
+bool _belongsInFavoritesGrid(Fragment$MyListEntry entry) {
+  return entry.item is Fragment$MyListEntry$item$$Episode || (!entry.available && entry.title != null);
+}
 
 @RoutePage()
 class ProfileScreen extends HookConsumerWidget {
@@ -168,13 +176,13 @@ class ProfileScreen extends HookConsumerWidget {
                   future: myListFuture.value,
                   builder: (context, snapshot) {
                     Widget child = const SizedBox.shrink();
-                    // A null `item` means the favorited entry is no longer available
+                    // `available == false` means the favorited entry is no longer available
                     // (e.g. the episode was unpublished — the API returns the entry with
-                    // item == null plus an "item is not published" error). We keep these
-                    // and render them as an "unavailable" card instead of silently dropping them.
-                    final items = snapshot.data?.parsedData?.myList.entries.items
-                        .where((el) => el.item is Fragment$MyListEntry$item$$Episode || el.item == null)
-                        .toList();
+                    // item == null plus an "item is not published" error). We keep these and
+                    // render them as an "unavailable" card instead of silently dropping them.
+                    // A null entry title means the item was deleted outright, so there's
+                    // nothing meaningful to show — those are still dropped.
+                    final items = snapshot.data?.parsedData?.myList.entries.items.where(_belongsInFavoritesGrid).toList();
                     if (snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                       child = const SizedBox(height: 250, child: LoadingGeneric());
                     } else if (snapshot.hasError || items == null) {
@@ -332,15 +340,19 @@ class _EpisodeFavorites extends HookConsumerWidget {
       return subscription.cancel;
     }, []);
 
-    final entries = myListEntries.value.where((e) => e.item == null || e.item is Fragment$MyListEntry$item$$Episode);
+    void removeEntry(String entryId) {
+      myListEntries.value = myListEntries.value.where((e) => e.id != entryId).toList();
+    }
+
+    final entries = myListEntries.value.where(_belongsInFavoritesGrid);
     return CustomGridView(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       children: entries.mapIndexed((index, entry) {
         final item = entry.item.asOrNull<Fragment$MyListEntry$item$$Episode>();
         if (item == null) {
-          // The episode this entry pointed to is no longer available.
-          return const _UnavailableFavorite();
+          // The item this entry pointed to is no longer available.
+          return _UnavailableFavorite(entry: entry, onRemoved: () => removeEntry(entry.id));
         }
         return _FavoriteItemClickWrapper(
           item: item,
@@ -352,44 +364,65 @@ class _EpisodeFavorites extends HookConsumerWidget {
   }
 }
 
-/// A placeholder card shown in the favorites grid when a favorited episode is
-/// no longer available (e.g. it was unpublished). Mirrors [ThumbnailGridEpisode]'s
-/// layout so it lines up with the surrounding cards.
-class _UnavailableFavorite extends StatelessWidget {
-  const _UnavailableFavorite();
+/// A placeholder card shown in the favorites grid when a favorited item is no longer
+/// available (e.g. it was unpublished). The entry still carries the item's title, but
+/// no image — `UserCollectionEntry` has no thumbnail field — so the artwork is replaced
+/// by a plain box. Mirrors [ThumbnailGridEpisode]'s layout so it lines up with the
+/// surrounding cards. Tapping it explains the situation and offers to remove the entry.
+class _UnavailableFavorite extends ConsumerWidget {
+  const _UnavailableFavorite({required this.entry, required this.onRemoved});
+
+  final Fragment$MyListEntry entry;
+  final void Function() onRemoved;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final design = DesignSystem.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          margin: const EdgeInsets.only(bottom: 4),
-          child: AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Container(
-              decoration: BoxDecoration(
-                color: design.colors.background2,
-                borderRadius: BorderRadius.circular(6),
-                border: Border.all(width: 1, color: design.colors.onTint.withOpacity(0.1)),
-              ),
-              child: Center(
-                child: SvgPicture.string(SvgIcons.infoCircle, height: 24, colorFilter: ColorFilter.mode(design.colors.label3, BlendMode.srcIn)),
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => showUnavailableEntryBottomSheet(context, ref, entryId: entry.id, onRemoved: onRemoved),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 4),
+            child: AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: design.colors.background2,
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(width: 1, color: design.colors.onTint.withOpacity(0.1)),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.string(SvgIcons.cameraOff, height: 24, colorFilter: ColorFilter.mode(design.colors.label3, BlendMode.srcIn)),
+                    Container(
+                      margin: const EdgeInsets.only(top: 6),
+                      child: Text(
+                        S.of(context).unavailable,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: design.textStyles.caption1.copyWith(color: design.colors.label3),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(bottom: 2),
-          child: Text(
-            S.of(context).episodeUnavailable,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: design.textStyles.caption1.copyWith(color: design.colors.label3),
+          Container(
+            margin: const EdgeInsets.only(bottom: 2),
+            child: Text(
+              entry.title!,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: design.textStyles.caption1.copyWith(color: design.colors.label1),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

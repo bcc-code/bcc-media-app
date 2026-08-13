@@ -296,6 +296,14 @@ class SvgIcons {
 </svg>
 ''';
 
+  static const cameraOff = '''
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 3.33325V16.6663H0V3.33325H15ZM1.66699 15.0002H13.333V5.00024H1.66699V15.0002Z" fill="white"/>
+<path d="M14.9375 9.99992L19.1042 5.83325V14.1666L14.9375 9.99992Z" stroke="white" stroke-width="1.66667" stroke-linejoin="bevel"/>
+<path d="M1.25 18.75L18.75 1.25" stroke="white" stroke-width="1.66667" stroke-linecap="round"/>
+</svg>
+''';
+
   static const headset = '''
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M17.5 17.5V5.83333C17.5 3.99238 16.0076 2.5 14.1667 2.5H5.83333C3.99238 2.5 2.5 3.99238 2.5 5.83333V17.5" stroke="white" stroke-width="1.66667"/>

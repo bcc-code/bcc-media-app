@@ -1280,6 +1280,22 @@
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
+  "unavailable": "Utilgjengelig",
+  "@unavailable": {
+    "description": "Short label shown inside a favorited item's thumbnail when the video is no longer available, e.g. because it was unpublished."
+  },
+  "noLongerAvailable": "Ikke lenger tilgjengelig",
+  "@noLongerAvailable": {
+    "description": "Title of the bottom sheet shown when tapping a favorited item that is no longer available."
+  },
+  "noLongerAvailableDescription": "Denne videoen er ikke lenger tilgjengelig. Den kan ha blitt avpublisert eller fjernet.",
+  "@noLongerAvailableDescription": {
+    "description": "Explanation shown in the bottom sheet when tapping a favorited item that is no longer available."
+  },
+  "removeFromFavorites": "Fjern fra favoritter",
+  "@removeFromFavorites": {
+    "description": "Action in the bottom sheet for removing an unavailable item from the user's favorites."
+  },
   "downloaded": "Nedlastet",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."

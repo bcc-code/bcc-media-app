@@ -970,7 +970,17 @@ class STa extends S {
   String get yourFavorites => 'உங்களுக்கு பிடித்தவை';
 
   @override
-  String get episodeUnavailable => 'Episode unavailable';
+  String get unavailable => 'Unavailable';
+
+  @override
+  String get noLongerAvailable => 'No longer available';
+
+  @override
+  String get noLongerAvailableDescription =>
+      'This video is no longer available. It may have been unpublished or removed.';
+
+  @override
+  String get removeFromFavorites => 'Remove from favorites';
 
   @override
   String get downloaded => 'பதிவிறக்கம் செய்யப்பட்டது';
