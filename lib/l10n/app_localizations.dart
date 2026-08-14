@@ -1887,6 +1887,30 @@ abstract class S {
   /// **'Your favorites'**
   String get yourFavorites;
 
+  /// Short label shown inside a favorited item's thumbnail when the video is no longer available, e.g. because it was unpublished.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable'**
+  String get unavailable;
+
+  /// Title of the bottom sheet shown when tapping a favorited item that is no longer available.
+  ///
+  /// In en, this message translates to:
+  /// **'No longer available'**
+  String get noLongerAvailable;
+
+  /// Explanation shown in the bottom sheet when tapping a favorited item that is no longer available.
+  ///
+  /// In en, this message translates to:
+  /// **'This video is no longer available. It may have been unpublished or removed.'**
+  String get noLongerAvailableDescription;
+
+  /// Action in the bottom sheet for removing an unavailable item from the user's favorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from favorites'**
+  String get removeFromFavorites;
+
   /// Shown as a title for the 'downloaded' section in the profile tab.
   ///
   /// In en, this message translates to:

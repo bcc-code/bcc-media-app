@@ -965,6 +965,19 @@ class SNb extends S {
   String get yourFavorites => 'Dine favoritter';
 
   @override
+  String get unavailable => 'Utilgjengelig';
+
+  @override
+  String get noLongerAvailable => 'Ikke lenger tilgjengelig';
+
+  @override
+  String get noLongerAvailableDescription =>
+      'Denne videoen er ikke lenger tilgjengelig. Den kan ha blitt avpublisert eller fjernet.';
+
+  @override
+  String get removeFromFavorites => 'Fjern fra favoritter';
+
+  @override
   String get downloaded => 'Nedlastet';
 
   @override

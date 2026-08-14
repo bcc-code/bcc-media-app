@@ -9,6 +9,7 @@ import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/pages/sections/section_with_header.dart';
 import 'package:brunstadtv_app/components/profile/avatar.dart';
 import 'package:brunstadtv_app/components/profile/empty_info.dart';
+import 'package:brunstadtv_app/components/profile/unavailable_favorite.dart';
 import 'package:brunstadtv_app/components/thumbnails/episode_thumbnail.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/providers/auth.dart';
@@ -40,6 +41,13 @@ import 'package:bccm_core/design_system.dart';
 
 const kProfileScrollQueryLikedShorts = 'liked_shorts';
 const kProfileScrollQueryDownloaded = 'downloaded';
+
+/// Episodes, plus any entry that is no longer available. Unavailable entries carry
+/// no type information (the item is null), so they all end up in the favorites grid
+/// rather than the shorts row — hence the type-neutral copy on [UnavailableFavorite].
+bool belongsInFavoritesGrid(Fragment$MyListEntry entry) {
+  return entry.item is Fragment$MyListEntry$item$$Episode || (!entry.available && entry.title != null);
+}
 
 @RoutePage()
 class ProfileScreen extends HookConsumerWidget {
@@ -168,9 +176,13 @@ class ProfileScreen extends HookConsumerWidget {
                   future: myListFuture.value,
                   builder: (context, snapshot) {
                     Widget child = const SizedBox.shrink();
-                    final items = snapshot.data?.parsedData?.myList.entries.items
-                        .where((el) => el.item is Fragment$MyListEntry$item$$Episode)
-                        .toList();
+                    // `available == false` means the favorited entry is no longer available
+                    // (e.g. the episode was unpublished — the API returns the entry with
+                    // item == null plus an "item is not published" error). We keep these and
+                    // render them as an "unavailable" card instead of silently dropping them.
+                    // A null entry title means the item was deleted outright, so there's
+                    // nothing meaningful to show — those are still dropped.
+                    final items = snapshot.data?.parsedData?.myList.entries.items.where(belongsInFavoritesGrid).toList();
                     if (snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                       child = const SizedBox(height: 250, child: LoadingGeneric());
                     } else if (snapshot.hasError || items == null) {
@@ -328,11 +340,20 @@ class _EpisodeFavorites extends HookConsumerWidget {
       return subscription.cancel;
     }, []);
 
-    final episodeItems = myListEntries.value.map((item) => item.item).whereType<Fragment$MyListEntry$item$$Episode>();
+    void removeEntry(String entryId) {
+      myListEntries.value = myListEntries.value.where((e) => e.id != entryId).toList();
+    }
+
+    final entries = myListEntries.value.where(belongsInFavoritesGrid);
     return CustomGridView(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      children: episodeItems.mapIndexed((index, item) {
+      children: entries.mapIndexed((index, entry) {
+        final item = entry.item.asOrNull<Fragment$MyListEntry$item$$Episode>();
+        if (item == null) {
+          // The item this entry pointed to is no longer available.
+          return UnavailableFavorite(entry: entry, onRemoved: () => removeEntry(entry.id));
+        }
         return _FavoriteItemClickWrapper(
           item: item,
           analytics: SectionItemAnalyticsData(id: item.id, name: item.title, type: item.$__typename, position: index),

@@ -973,6 +973,19 @@ class SDe extends S {
   String get yourFavorites => 'Deine Favoriten';
 
   @override
+  String get unavailable => 'Unavailable';
+
+  @override
+  String get noLongerAvailable => 'No longer available';
+
+  @override
+  String get noLongerAvailableDescription =>
+      'This video is no longer available. It may have been unpublished or removed.';
+
+  @override
+  String get removeFromFavorites => 'Remove from favorites';
+
+  @override
   String get downloaded => 'Heruntergeladen';
 
   @override
