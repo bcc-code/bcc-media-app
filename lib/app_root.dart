@@ -13,6 +13,7 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,9 +48,11 @@ class _AppRootState extends ConsumerState<AppRoot> {
     authSubscription = ref.listenManual<AuthState>(authStateProvider, onAuthChanged);
 
     for (var image in FlavorConfig.current.bccmImages!) {
-      precacheImage(image, context)
-          .then((value) => print('precache succeeded for $image.'))
-          .catchError((e) => print('precache failed for $image. Error: $e'));
+      precacheImage(image, context).catchError((e) {
+        if (kDebugMode) {
+          print('precache failed for $image. Error: $e');
+        }
+      });
     }
   }
 
@@ -58,10 +61,9 @@ class _AppRootState extends ConsumerState<AppRoot> {
     if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
       final rootRouter = globalNavigatorKey.currentContext?.router.root;
       rootRouter?.navigate(OnboardingScreenRoute());
-      ref.read(analyticsProvider).log(LogEvent(
-            name: 'sent to login screen',
-            message: 'user was sent to login screen from the AppRoot widgets onAuthChanged method.',
-          ));
+      ref
+          .read(analyticsProvider)
+          .log(LogEvent(name: 'sent to login screen', message: 'user was sent to login screen from the AppRoot widgets onAuthChanged method.'));
       return;
     }
     if (next.auth0AccessToken == null || next.user == null) return;
@@ -93,10 +95,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
       final isWithinFiveMinutes = DateTime.now().difference(storedTime).inMinutes < 5;
       if (isWithinFiveMinutes) {
         final rootRouter = globalNavigatorKey.currentContext?.router.root;
-        rootRouter?.navigateNamedFromRoot(
-          uriStringWithoutHost(Uri.parse(pendingDeepLink)),
-          onFailure: (_) {},
-        );
+        rootRouter?.navigateNamedFromRoot(uriStringWithoutHost(Uri.parse(pendingDeepLink)), onFailure: (_) {});
       }
     }
   }
@@ -119,12 +118,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
     final me = await ref.read(meProvider.future);
     if (mounted && me?.me.completedRegistration == false) {
       ref.read(authStateProvider.notifier).logout();
-      ref.read(analyticsProvider).log(LogEvent(
-            name: 'logout',
-            pageCode: 'app root',
-            message: 'continueSignup()',
-            meta: {'manual': true},
-          ));
+      ref.read(analyticsProvider).log(LogEvent(name: 'logout', pageCode: 'app root', message: 'continueSignup()', meta: {'manual': true}));
     }
   }
 
@@ -139,12 +133,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
     );
     if (mounted && ref.read(meProvider).valueOrNull?.me.emailVerified != true) {
       ref.read(authStateProvider.notifier).logout();
-      ref.read(analyticsProvider).log(LogEvent(
-            name: 'logout',
-            pageCode: 'app root',
-            message: 'showVerifyEmail()',
-            meta: {'manual': true},
-          ));
+      ref.read(analyticsProvider).log(LogEvent(name: 'logout', pageCode: 'app root', message: 'showVerifyEmail()', meta: {'manual': true}));
     }
   }
 
@@ -158,9 +147,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
   @override
   Widget build(BuildContext context) {
     return Shortcuts(
-      shortcuts: <LogicalKeySet, Intent>{
-        LogicalKeySet(LogicalKeyboardKey.select): const ActivateIntent(),
-      },
+      shortcuts: <LogicalKeySet, Intent>{LogicalKeySet(LogicalKeyboardKey.select): const ActivateIntent()},
       child: DesignSystem(
         designSystem: FlavorConfig.current.designSystem(),
         builder: (context) => AppTheme(
@@ -169,10 +156,9 @@ class _AppRootState extends ConsumerState<AppRoot> {
             playerTheme: BccmPlayerThemeData(
               controls: BccmControlsThemeData(
                 settingsListTextStyle: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
-                durationTextStyle: DesignSystem.of(context).textStyles.caption2.copyWith(
-                  color: DesignSystem.of(context).colors.label2,
-                  fontFeatures: [FontFeature.tabularFigures()],
-                ),
+                durationTextStyle: DesignSystem.of(
+                  context,
+                ).textStyles.caption2.copyWith(color: DesignSystem.of(context).colors.label2, fontFeatures: [FontFeature.tabularFigures()]),
               ),
             ),
             child: GraphQLProvider(
@@ -191,7 +177,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
                     return Locale(FlavorConfig.current.defaultLanguage);
                   },
                   supportedLocales: S.supportedLocales,
-                  locale: ref.watch(settingsProvider).appLanguage,
+                  locale: ref.watch(settingsProvider.select((s) => s.appLanguage)),
                   theme: ThemeData(),
                   darkTheme: DesignSystem.of(context).materialThemeData,
                   themeMode: ThemeMode.dark,
@@ -199,11 +185,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
                   title: 'BCC Media',
                   routerDelegate: widget.appRouter.delegate(
                     deepLinkBuilder: (_) => const DeepLink.path('/init'),
-                    navigatorObservers: () => [
-                      AnalyticsNavigatorObserver(),
-                      AutoRouteObserver(),
-                      SentryNavigatorObserver(),
-                    ],
+                    navigatorObservers: () => [AnalyticsNavigatorObserver(), AutoRouteObserver(), SentryNavigatorObserver()],
                   ),
                   onNavigationNotification: _defaultOnNavigationNotification,
                   routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),

@@ -125,7 +125,7 @@ class EpisodeGridItemRenderer extends HookConsumerWidget {
                       else
                         Container(color: design.colors.separator2),
                       if (upcoming) ...[
-                        Positioned.fill(child: Container(color: Colors.black.withOpacity(0.45))),
+                        Positioned.fill(child: Container(color: Colors.black.withValues(alpha: 0.45))),
                         Positioned.fill(
                           child: Center(child: _ClockBadge(small: bp.smallerThan(TABLET))),
                         ),
@@ -182,7 +182,7 @@ class _DurationButton extends StatelessWidget {
     final durationButton = Button.raw(
       color: design.colors.background1,
       activeColor: design.colors.background1,
-      shadowColor: design.colors.label1.withOpacity(0.2),
+      shadowColor: design.colors.label1.withValues(alpha: 0.2),
       sideColor: const Color(0xFFE9ECF4),
       labelText: '${Duration(seconds: duration).inMinutes} ${S.of(context).minutesShort}',
       labelTextStyle: design.textStyles.title2,
@@ -226,7 +226,7 @@ class _ClockBadge extends StatelessWidget {
     return SizedBox(
       width: iconSize,
       height: iconSize,
-      child: SvgPicture.string(SvgIcons.clock, colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.9), BlendMode.srcIn)),
+      child: SvgPicture.string(SvgIcons.clock, colorFilter: ColorFilter.mode(Colors.white.withValues(alpha: 0.9), BlendMode.srcIn)),
     );
   }
 }
@@ -243,7 +243,7 @@ class _UpcomingButton extends StatelessWidget {
     final upcomingButton = Button.raw(
       color: design.colors.background2,
       activeColor: design.colors.background2,
-      shadowColor: design.colors.label1.withOpacity(0.2),
+      shadowColor: design.colors.label1.withValues(alpha: 0.2),
       sideColor: design.colors.separator2,
       labelText: label,
       labelTextStyle: design.textStyles.title2,
@@ -287,7 +287,7 @@ class _NewButton extends StatelessWidget {
     final durationButton = Button.raw(
       color: design.colors.tint1,
       activeColor: design.colors.tint1Dark,
-      shadowColor: design.colors.label1.withOpacity(0.2),
+      shadowColor: design.colors.label1.withValues(alpha: 0.2),
       sideColor: design.colors.tint1Dark,
       labelText: S.of(context).newEpisode,
       labelTextStyle: design.textStyles.title2,

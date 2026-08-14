@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/components/status/loading_generic.dart';
 import 'package:bccm_core/platform.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -90,14 +91,17 @@ class _PageRendererImpl extends HookConsumerWidget {
               id: sectionId, offset: sectionPagination.currentOffset, first: kItemsToFetchForPagination)));
       final items = result.parsedData?.section.asOrNull<Fragment$ItemSection>()?.items.items;
 
+      // Assign a new map rather than mutating the existing one: useState only notifies when
+      // `value` is set to something that isn't equal to the old value, and mutating in place
+      // leaves the same instance behind, so no rebuild would be scheduled.
       if (items == null || items.isEmpty) {
         sectionPagination.reachedMax = true;
-        paginationMap.value[sectionId] = sectionPagination;
+        paginationMap.value = {...paginationMap.value, sectionId: sectionPagination};
         return;
       }
       sectionPagination.items.addAll(items);
       sectionPagination.currentOffset += kItemsToFetchForPagination;
-      paginationMap.value[sectionId] = sectionPagination;
+      paginationMap.value = {...paginationMap.value, sectionId: sectionPagination};
     }
 
     loadMoreBottomSectionItems() async {
@@ -138,7 +142,7 @@ class _PageRendererImpl extends HookConsumerWidget {
           },
           child: ListView.builder(
             controller: scrollController,
-            cacheExtent: mediaQueryData.size.height * 0.3,
+            scrollCacheExtent: ScrollCacheExtent.pixels(mediaQueryData.size.height * 0.3),
             physics: const AlwaysScrollableScrollPhysics(),
             semanticChildCount: sectionItems.length,
             itemCount: sectionItems.length + 1,

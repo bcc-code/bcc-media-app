@@ -44,7 +44,7 @@ class OnboardingButtons extends HookConsumerWidget {
               if (loginSnapshot.connectionState == ConnectionState.waiting)
                 Positioned.fill(
                   child: Container(
-                    color: Colors.black.withOpacity(0.5),
+                    color: Colors.black.withValues(alpha: 0.5),
                     child: const Center(
                       child: LoadingIndicator(),
                     ),

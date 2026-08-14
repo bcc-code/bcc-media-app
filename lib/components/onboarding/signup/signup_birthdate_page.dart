@@ -78,7 +78,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
               children: [
                 Switch.adaptive(
                   key: WidgetKeys.privacyPolicyAgreeSwitch,
-                  activeColor: Platform.isIOS ? design.colors.tint1 : null,
+                  activeThumbColor: Platform.isIOS ? design.colors.tint1 : null,
                   value: privacyPolicyAgreed.value,
                   onChanged: (value) => privacyPolicyAgreed.value = value,
                 ),

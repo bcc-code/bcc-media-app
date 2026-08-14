@@ -15,10 +15,10 @@ class OfflineBadge extends StatelessWidget {
       icon: SvgPicture.string(
         SvgIcons.play,
         height: 8,
-        colorFilter: ColorFilter.mode(design.colors.onTint.withOpacity(0.3), BlendMode.srcIn),
+        colorFilter: ColorFilter.mode(design.colors.onTint.withValues(alpha: 0.3), BlendMode.srcIn),
       ),
       label: S.of(context).offline.toUpperCase(),
-      color: design.colors.onTint.withOpacity(0.2),
+      color: design.colors.onTint.withValues(alpha: 0.2),
     );
   }
 }

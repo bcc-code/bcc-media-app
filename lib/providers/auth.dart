@@ -3,18 +3,11 @@ import 'package:bccm_core/platform.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/models/feature_flags.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-final kidsAuthFeatureFlagListener = Provider<void>((ref) {
-  ref.listen<FeatureFlags>(featureFlagsProvider, (previous, next) {
-    ref.read(authEnabledProvider.notifier).state = next.kidsAuth;
-  });
-});
 
 final authEnabledProvider = StateProvider<bool>((ref) {
   return true;

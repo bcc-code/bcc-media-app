@@ -63,8 +63,8 @@ class PlayerControls extends HookWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  design.colors.label1.withOpacity(0.0),
-                  Colors.black.withOpacity(0.6),
+                  design.colors.label1.withValues(alpha: 0.0),
+                  Colors.black.withValues(alpha: 0.6),
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -248,7 +248,7 @@ class Timeline extends HookWidget {
                       child: Container(
                         height: 16.0,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white.withValues(alpha: 0.5),
                           borderRadius: BorderRadius.circular(28.0),
                         ),
                       ),

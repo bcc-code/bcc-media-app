@@ -41,8 +41,8 @@ class BibleKidsDesignSystem extends DesignSystemData {
         ),
         fontFamily: 'Noto Sans',
         canvasColor: colors.background1,
-        highlightColor: colors.background2.withOpacity(0.5),
-        splashColor: colors.background2.withOpacity(1),
+        highlightColor: colors.background2.withValues(alpha: 0.5),
+        splashColor: colors.background2.withValues(alpha: 1),
         progressIndicatorTheme: ProgressIndicatorThemeData(
           color: colors.tint1,
         ),
@@ -254,7 +254,7 @@ class BibleKidsButtons extends DesignSystemButtons {
       icon: image,
       labelText: labelText,
       onPressed: onPressed,
-      shadowColor: colors.label1.withOpacity(0.1),
+      shadowColor: colors.label1.withValues(alpha: 0.1),
       sideColor: const Color(0xFFF1B826),
       labelTextStyle: textStyles.headline3,
     );
@@ -263,7 +263,7 @@ class BibleKidsButtons extends DesignSystemButtons {
       ButtonVariant.secondary => button.copyWith(
           color: colors.background1,
           activeColor: colors.background1,
-          shadowColor: colors.label1.withOpacity(0.2),
+          shadowColor: colors.label1.withValues(alpha: 0.2),
           sideColor: const Color(0xFFE9ECF4),
         ),
       _ => button
@@ -308,7 +308,7 @@ class BibleKidsButtons extends DesignSystemButtons {
       icon: image,
       labelText: labelText,
       onPressed: onPressed,
-      shadowColor: colors.label1.withOpacity(0.1),
+      shadowColor: colors.label1.withValues(alpha: 0.1),
       sideColor: const Color(0xFFF1B826),
       labelTextStyle: textStyles.title2,
     );
@@ -317,7 +317,7 @@ class BibleKidsButtons extends DesignSystemButtons {
       ButtonVariant.secondary => button.copyWith(
           color: colors.background1,
           activeColor: colors.background1,
-          shadowColor: colors.label1.withOpacity(0.2),
+          shadowColor: colors.label1.withValues(alpha: 0.2),
           sideColor: const Color(0xFFE9ECF4),
         ),
       _ => button

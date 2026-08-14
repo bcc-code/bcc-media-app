@@ -36,7 +36,7 @@ class TabSwitcher extends HookWidget {
             activeColor: design.colors.tint1,
             labelText: ' ',
             onPressed: () {},
-            shadowColor: design.colors.label1.withOpacity(0.1),
+            shadowColor: design.colors.label1.withValues(alpha: 0.1),
             sideColor: const Color(0xFFF1B826),
             labelTextStyle: design.textStyles.title2,
           )
@@ -46,7 +46,7 @@ class TabSwitcher extends HookWidget {
             activeColor: design.colors.tint1,
             labelText: ' ',
             onPressed: () {},
-            shadowColor: design.colors.label1.withOpacity(0.1),
+            shadowColor: design.colors.label1.withValues(alpha: 0.1),
             sideColor: const Color(0xFFF1B826),
             labelTextStyle: design.textStyles.headline3,
           );

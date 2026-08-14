@@ -237,7 +237,7 @@ class ShortView extends HookConsumerWidget {
               Positioned.fill(
                 child: Container(
                   padding: const EdgeInsets.only(top: 48),
-                  color: Colors.black.withOpacity(0.5),
+                  color: Colors.black.withValues(alpha: 0.5),
                   child: ShortErrorView(
                     title: S.of(context).somethingWentWrong,
                     onRetry: onReloadRequested,
@@ -270,8 +270,8 @@ class ShortView extends HookConsumerWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.black.withOpacity(0.0),
-                      design.colors.background1.withOpacity(0.8),
+                      Colors.black.withValues(alpha: 0.0),
+                      design.colors.background1.withValues(alpha: 0.8),
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,

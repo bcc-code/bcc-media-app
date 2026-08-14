@@ -125,7 +125,7 @@ class ContactPublicInputPage extends HookWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Switch.adaptive(
-                      activeColor: Platform.isIOS ? design.colors.tint1 : null,
+                      activeThumbColor: Platform.isIOS ? design.colors.tint1 : null,
                       value: includeDeviceInfo.value,
                       onChanged: (value) => includeDeviceInfoChange(value),
                     ),

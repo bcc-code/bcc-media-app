@@ -18,19 +18,12 @@ import '../models/feature_flags.dart';
 FeatureFlags getBaseFeatureFlags() {
   return FeatureFlags(
     variants: [],
-    kidsAuth: FlavorConfig.current.flavor != Flavor.kids,
     publicSignup: false,
     socialSignup: false,
     shorts: false,
     shortsHideBeta: false,
     shortsGuide: false,
     disableNpawShorts: false,
-    skipToChapter: false,
-    shortsWithScores: false,
-    elasticSearch: false,
-    chapterSlider: false,
-    showBmmStreak: false,
-    kidsMoreNorwegianContent: false,
     kidsNotificationPrompt: false,
     kidsNotificationPromptAfterDismissal: false,
     kidsDonationLink: false,
@@ -55,36 +48,29 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
       });
       return flags;
     }
-    ref.listen(
-      unleashContextProvider,
-      (previous, next) async {
-        final context = await next;
+    ref.listen(unleashContextProvider, (previous, next) async {
+      final context = await next;
+      if (kDebugMode) {
         print('unleash context: ${context.toMap()}');
-        unleash.updateContext(context);
-      },
-    );
+      }
+      unleash.updateContext(context);
+    });
 
     final value = getBaseFeatureFlags().mergeWithTrueAlwaysWins(
       FeatureFlags(
         variants: _mapVariants(unleash.toggles),
-        kidsAuth: _verifyToggle(unleash, 'kids-auth'),
         publicSignup: _verifyToggle(unleash, 'public-signup'),
         socialSignup: _verifyToggle(unleash, 'social-signup'),
         shorts: _verifyToggle(unleash, 'shorts'),
         shortsHideBeta: _verifyToggle(unleash, 'shorts-hide-beta'),
         shortsGuide: _verifyToggle(unleash, 'shorts-guide'),
         disableNpawShorts: _verifyToggle(unleash, 'disable-npaw-shorts'),
-        skipToChapter: _verifyToggle(unleash, 'skip-to-chapter'),
-        shortsWithScores: _verifyToggle(unleash, 'shorts-with-scores3'),
-        elasticSearch: _verifyToggle(unleash, 'elastic-search'),
-        chapterSlider: _verifyToggle(unleash, 'chapter-slider'),
-        showBmmStreak: _verifyToggle(unleash, 'show-bmm-streak'),
-        kidsMoreNorwegianContent: _verifyToggle(unleash, 'kids-more-norwegian-content'),
         kidsNotificationPrompt: _verifyToggle(unleash, 'kids-notification-prompt'),
         kidsNotificationPromptPosition: int.tryParse(unleash.getVariant('kids-notification-prompt').payload?.value ?? ''),
         kidsNotificationPromptAfterDismissal: _verifyToggle(unleash, 'kids-notification-prompt-reminders-after-dismissal'),
-        kidsNotificationPromptAfterDismissalCount:
-            int.tryParse(unleash.getVariant('kids-notification-prompt-reminders-after-dismissal').payload?.value ?? ''),
+        kidsNotificationPromptAfterDismissalCount: int.tryParse(
+          unleash.getVariant('kids-notification-prompt-reminders-after-dismissal').payload?.value ?? '',
+        ),
         kidsDonationLink: _verifyToggle(unleash, 'kids-donation-link'),
       ),
     );
@@ -116,20 +102,14 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
       clientKey: Env.unleashClientKey,
       appName: FlavorConfig.current.applicationCode,
       refreshInterval: 60,
-      customHeaders: {
-        'UNLEASH-APPNAME': Env.unleashAppName,
-      },
+      customHeaders: {'UNLEASH-APPNAME': Env.unleashAppName},
     );
     final context = await ref.read(unleashContextProvider);
     unleash.updateContext(context);
     unleash.on(
       'error',
       (err) => FlutterError.reportError(
-        FlutterErrorDetails(
-          exception: Exception(err),
-          context: ErrorDescription('Unleash got error $err'),
-          stack: StackTrace.current,
-        ),
+        FlutterErrorDetails(exception: Exception(err), context: ErrorDescription('Unleash got error $err'), stack: StackTrace.current),
       ),
     );
     unleash.on('update', onUnleashUpdate);

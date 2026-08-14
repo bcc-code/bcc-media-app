@@ -93,7 +93,7 @@ class _ProgramState extends ConsumerState<_Program> {
                           future: navigationFuture!,
                           loading: () => Positioned.fill(
                               child: Container(
-                                  color: DesignSystem.of(context).colors.background1.withOpacity(0.5),
+                                  color: DesignSystem.of(context).colors.background1.withValues(alpha: 0.5),
                                   child: const Center(child: LoadingIndicator()))),
                           error: (e) => const SizedBox.shrink(),
                           noData: () => const SizedBox.shrink(),

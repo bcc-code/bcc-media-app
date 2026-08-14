@@ -57,7 +57,7 @@ class _VideoQualityScreenState extends State<VideoQualityScreen> {
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(6),
             child: Divider(
-              color: DesignSystem.of(context).colors.separatorOnLight.withOpacity(0.3),
+              color: DesignSystem.of(context).colors.separatorOnLight.withValues(alpha: 0.3),
               height: 1,
             ),
           ),

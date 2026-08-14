@@ -26,7 +26,7 @@ class KidsPlayerError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: DesignSystem.of(context).colors.background1.withOpacity(0.95),
+      color: DesignSystem.of(context).colors.background1.withValues(alpha: 0.95),
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

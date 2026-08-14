@@ -18,7 +18,6 @@ import 'package:brunstadtv_app/components/misc/parental_gate.dart';
 import 'package:brunstadtv_app/components/status/error_generic.dart';
 import 'package:brunstadtv_app/components/status/loading_indicator.dart';
 import 'package:brunstadtv_app/components/episode/episode_share_sheet.dart';
-import 'package:brunstadtv_app/components/video/center_extra_slot.dart';
 import 'package:brunstadtv_app/providers/audio_only_provider.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -308,7 +307,6 @@ class _EpisodeDisplay extends HookConsumerWidget {
               ];
             },
             topRightNextToSettingsSlot: languages.length < 2 ? null : (context) => const MultiVideoLangNotice(),
-            centerExtraSlot: (context) => CenterExtraSlot(episode: episode),
           ),
         ),
       );
@@ -467,7 +465,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                   child: AnimatedContainer(
                     duration: showLoadingOverlay ? Duration.zero : const Duration(milliseconds: 600),
                     curve: Curves.easeOutExpo,
-                    color: DesignSystem.of(context).colors.background2.withOpacity(showLoadingOverlay ? 1 : 0),
+                    color: DesignSystem.of(context).colors.background2.withValues(alpha: showLoadingOverlay ? 1 : 0),
                     child: Center(
                       child: showLoadingOverlay ? const LoadingIndicator() : null,
                     ),

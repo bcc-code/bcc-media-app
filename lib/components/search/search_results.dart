@@ -31,30 +31,20 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
     final analytics = ref.read(analyticsProvider);
     if (widget.searchInput != '') {
       setState(() {
-        _resultFuture = debouncer.run(
-          () {
-            final searchResultFuture = client
-                .query$Search(
-              Options$Query$Search(
-                variables: Variables$Query$Search(queryString: widget.searchInput),
-              ),
-            )
-                .onError((error, stackTrace) {
-              throw Error();
-            }).then(
-              (value) {
+        _resultFuture = debouncer.run(() {
+          final searchResultFuture = client
+              .query$Search(Options$Query$Search(variables: Variables$Query$Search(queryString: widget.searchInput)))
+              .then((value) {
                 if (value.exception != null) {
                   throw value.exception!;
                 }
                 return value.parsedData?.search;
-              },
-            );
+              });
 
-            sendSearchPerformedAnalytics(analytics, searchResultFuture);
+          sendSearchPerformedAnalytics(analytics, searchResultFuture);
 
-            return searchResultFuture;
-          },
-        );
+          return searchResultFuture;
+        });
       });
     }
   }
@@ -63,11 +53,13 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
     final searchStopwatch = Stopwatch()..start();
     searchResultFuture.then((searchResult) {
       searchStopwatch.stop();
-      analytics.searchPerformed(SearchPerformedEvent(
-        searchText: widget.searchInput,
-        searchLatency: searchStopwatch.elapsedMilliseconds,
-        searchResultCount: searchResult?.hits ?? 0,
-      ));
+      analytics.searchPerformed(
+        SearchPerformedEvent(
+          searchText: widget.searchInput,
+          searchLatency: searchStopwatch.elapsedMilliseconds,
+          searchResultCount: searchResult?.hits ?? 0,
+        ),
+      );
     });
   }
 
@@ -93,12 +85,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
         future: _resultFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: SizedBox.square(
-                dimension: 50,
-                child: CircularProgressIndicator(),
-              ),
-            );
+            return const Center(child: SizedBox.square(dimension: 50, child: CircularProgressIndicator()));
           }
           if (snapshot.hasData) {
             var searchResults = snapshot.data!.result;
@@ -115,10 +102,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
                     Container(
                       padding: const EdgeInsets.only(top: 12, right: kIsWeb ? 80 : 16, left: kIsWeb ? 80 : 16),
                       margin: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        S.of(context).episodes,
-                        style: DesignSystem.of(context).textStyles.title2,
-                      ),
+                      child: Text(S.of(context).episodes, style: DesignSystem.of(context).textStyles.title2),
                     ),
                   if (episodes.isNotEmpty)
                     Padding(
@@ -156,28 +140,23 @@ class _SearchResultsPageState extends ConsumerState<SearchResults> {
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           }
-          return const Center(
-            child: SizedBox.square(
-              dimension: 50,
-              child: CircularProgressIndicator(),
-            ),
-          );
+          return const Center(child: SizedBox.square(dimension: 50, child: CircularProgressIndicator()));
         },
       ),
     );
   }
 
   Widget _getNoResultsInfoWidget(context) => Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset('assets/icons/Search_Default.png', width: 80, height: 80, fit: BoxFit.fill),
-            Text(
-              S.of(context).noResults,
-              textAlign: TextAlign.center,
-              style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
-            )
-          ],
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Image.asset('assets/icons/Search_Default.png', width: 80, height: 80, fit: BoxFit.fill),
+        Text(
+          S.of(context).noResults,
+          textAlign: TextAlign.center,
+          style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
         ),
-      );
+      ],
+    ),
+  );
 }

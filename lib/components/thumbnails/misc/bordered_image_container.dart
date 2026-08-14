@@ -37,7 +37,7 @@ class BorderedImageContainer extends StatelessWidget {
         borderRadius: borderRadius ?? BorderRadius.circular(6),
         border: Border.all(
           width: 1,
-          color: DesignSystem.of(context).colors.onTint.withOpacity(0.1),
+          color: DesignSystem.of(context).colors.onTint.withValues(alpha: 0.1),
         ),
       ),
       child: LayoutBuilder(

@@ -98,7 +98,7 @@ class BtvButton extends StatelessWidget {
               border: state.isFocused
                   ? Border.all(
                       width: 1,
-                      color: design.colors.onTint.withOpacity(1),
+                      color: design.colors.onTint.withValues(alpha: 1),
                     )
                   : null,
             ),
