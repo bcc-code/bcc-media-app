@@ -1280,6 +1280,22 @@
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
+  "unavailable": "Indisponible",
+  "@unavailable": {
+    "description": "Short label shown inside a favorited item's thumbnail when the video is no longer available, e.g. because it was unpublished."
+  },
+  "noLongerAvailable": "N’est plus disponible",
+  "@noLongerAvailable": {
+    "description": "Title of the bottom sheet shown when tapping a favorited item that is no longer available."
+  },
+  "noLongerAvailableDescription": "Cette vidéo n’est plus disponible. Il se peut qu'elle n'ait pas été publiée ou qu'elle ait été supprimée.",
+  "@noLongerAvailableDescription": {
+    "description": "Explanation shown in the bottom sheet when tapping a favorited item that is no longer available."
+  },
+  "removeFromFavorites": "Supprimer des favoris",
+  "@removeFromFavorites": {
+    "description": "Action in the bottom sheet for removing an unavailable item from the user's favorites."
+  },
   "downloaded": "Téléchargé",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."
