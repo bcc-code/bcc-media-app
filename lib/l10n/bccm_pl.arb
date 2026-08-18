@@ -1280,6 +1280,22 @@
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
   },
+  "unavailable": "Niedostępne",
+  "@unavailable": {
+    "description": "Short label shown inside a favorited item's thumbnail when the video is no longer available, e.g. because it was unpublished."
+  },
+  "noLongerAvailable": "Nie jest już dostępne",
+  "@noLongerAvailable": {
+    "description": "Title of the bottom sheet shown when tapping a favorited item that is no longer available."
+  },
+  "noLongerAvailableDescription": "Ten film nie jest już dostępny Być może został on zablokowany lub usunięty.",
+  "@noLongerAvailableDescription": {
+    "description": "Explanation shown in the bottom sheet when tapping a favorited item that is no longer available."
+  },
+  "removeFromFavorites": "Usuń z ulubionych",
+  "@removeFromFavorites": {
+    "description": "Action in the bottom sheet for removing an unavailable item from the user's favorites."
+  },
   "downloaded": "Pobrane",
   "@downloaded": {
     "description": "Shown as a title for the 'downloaded' section in the profile tab."
