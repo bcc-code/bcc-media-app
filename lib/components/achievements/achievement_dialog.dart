@@ -72,10 +72,12 @@ class _AchievementDialogState extends ConsumerState<AchievementDialog> {
 
                       if (image != null) {
                         final file = XFile.fromData(image, mimeType: 'image/png');
-                        Share.shareXFiles(
-                          [file],
-                          text: '''I've unlocked this achievement badge in the BCC Media app.\nhttps://app.bcc.media/studies''',
-                          sharePositionOrigin: sharePositionOrigin,
+                        SharePlus.instance.share(
+                          ShareParams(
+                            files: [file],
+                            text: '''I've unlocked this achievement badge in the BCC Media app.\nhttps://app.bcc.media/studies''',
+                            sharePositionOrigin: sharePositionOrigin,
+                          ),
                         );
                       }
                       setState(() {

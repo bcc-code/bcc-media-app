@@ -23,7 +23,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:share_plus/share_plus.dart';
 
 @RoutePage()
 class ShowScreen extends HookConsumerWidget {
@@ -100,7 +99,7 @@ class ShowScreen extends HookConsumerWidget {
           actions: [
             GestureDetector(
               onTap: () {
-                Share().shareUrl(
+                shareUrl(
                   'https://app.bcc.media/show/$showId',
                   sharePositionOrigin: iPadSharePositionOrigin(context),
                 );

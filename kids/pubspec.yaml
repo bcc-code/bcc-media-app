@@ -31,7 +31,7 @@ dependencies:
   graphql_flutter: ^5.3.0
   firebase_core: ^3.13.1
   firebase_messaging: ^15.2.6
-  device_info_plus: ^11.4.0
+  device_info_plus: ^12.1.0
   url_launcher: ^6.3.1
   modal_bottom_sheet: ^3.0.0
   shimmer: ^3.0.0

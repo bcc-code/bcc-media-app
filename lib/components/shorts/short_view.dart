@@ -26,7 +26,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:share_plus/share_plus.dart';
 
 class ShortView extends HookConsumerWidget {
   const ShortView({
@@ -625,7 +624,7 @@ class ShortActions extends HookConsumerWidget {
                   ));
               if (short == null) return;
               final shortUrl = 'https://app.bcc.media/shorts/${short!.id}';
-              await Share().shareUrl(
+              await shareUrl(
                 shortUrl,
                 title: short!.title,
                 sharePositionOrigin: iPadSharePositionOrigin(context),

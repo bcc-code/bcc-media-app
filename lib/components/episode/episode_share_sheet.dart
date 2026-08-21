@@ -10,7 +10,6 @@ import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:share_plus/share_plus.dart';
 import '../../helpers/share_extension/share_extension.dart';
 
 class EpisodeShareSheet extends ConsumerStatefulWidget {
@@ -94,7 +93,7 @@ class _ShareEpisodeSheetState extends ConsumerState<EpisodeShareSheet> {
 
           final navigator = Navigator.of(context);
           try {
-            await Share().shareUrl(
+            await shareUrl(
               episodeUrl,
               sharePositionOrigin: iPadSharePositionOrigin(context),
             );

@@ -203,7 +203,7 @@ class MainJsChannel implements WebViewJsHandler {
       if (arguments.length > 2 && arguments[2] is String) {
         subject = arguments[2] as String;
       }
-      await Share.share(text, subject: subject, sharePositionOrigin: iPadSharePositionOrigin(context));
+      await SharePlus.instance.share(ShareParams(text: text, subject: subject, sharePositionOrigin: iPadSharePositionOrigin(context)));
       return true;
     }
     Sentry.captureException(Exception('share: Invalid argument: ${arguments[1]}'), stackTrace: StackTrace.current);
