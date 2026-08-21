@@ -1,12 +1,12 @@
 buildscript {
-    ext.kotlin_version = '2.1.0'
+    ext.kotlin_version = '2.2.21'
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.10.0'
+        classpath 'com.android.tools.build:gradle:8.13.2'
         // START: FlutterFire Configuration
         classpath 'com.google.gms:google-services:4.3.14'
         classpath 'com.google.firebase:perf-plugin:1.4.1'
@@ -39,6 +39,13 @@ subprojects {
                     sourceCompatibility JavaVersion.VERSION_11
                     targetCompatibility JavaVersion.VERSION_11
                 }
+            }
+            // Some plugins still declare an old compileSdk (flutter_appauth 7.x is on 31).
+            // AGP 8.13 fails the build when a transitive androidx artifact requires a higher
+            // one, so pull plugin subprojects up to the app's compileSdk. Can be removed once
+            // every plugin compiles against 34+ (flutter_appauth >=10 does).
+            if (project.name != 'app') {
+                project.android.compileSdk 36
             }
             project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
                 kotlinOptions {
