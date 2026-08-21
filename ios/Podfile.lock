@@ -28,8 +28,6 @@ PODS:
   - open_mail_app_plus (0.0.1):
     - Flutter
   - Protobuf (3.29.6)
-  - vibration (1.7.5):
-    - Flutter
 
 DEPENDENCIES:
   - bccm_player (from `.symlinks/plugins/bccm_player/ios`)
@@ -41,7 +39,6 @@ DEPENDENCIES:
   - google-cast-sdk (= 4.8.3)
   - NpawPluginPkg (= 7.3.6)
   - open_mail_app_plus (from `.symlinks/plugins/open_mail_app_plus/ios`)
-  - vibration (from `.symlinks/plugins/vibration/ios`)
 
 SPEC REPOS:
   http://bitbucket.org/npaw/plugin-ios-cocoapods.git:
@@ -67,8 +64,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_to_airplay/ios"
   open_mail_app_plus:
     :path: ".symlinks/plugins/open_mail_app_plus/ios"
-  vibration:
-    :path: ".symlinks/plugins/vibration/ios"
 
 SPEC CHECKSUMS:
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
@@ -83,7 +78,6 @@ SPEC CHECKSUMS:
   NpawPluginPkg: 8c758cbac896f97980065f7b9fff1f62fb093004
   open_mail_app_plus: 6b06ef9915403f20b72c728cc264322efacdcb9a
   Protobuf: 8d5596f7468be5400861a6bbfb2dfe9d0d1cde34
-  vibration: 8e2f50fc35bb736f9eecb7dd9f7047fbb6a6e888
 
 PODFILE CHECKSUM: 6543d7971afd8a451d04d2405a4b0ec1055c10d2
 

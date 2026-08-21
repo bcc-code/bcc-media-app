@@ -30,8 +30,6 @@ PODS:
   - Protobuf (3.29.6)
   - soundpool (0.0.1):
     - Flutter
-  - vibration (1.7.5):
-    - Flutter
 
 DEPENDENCIES:
   - bccm_player (from `.symlinks/plugins/bccm_player/ios`)
@@ -44,7 +42,6 @@ DEPENDENCIES:
   - NpawPluginPkg (= 7.3.6)
   - open_mail_app_plus (from `.symlinks/plugins/open_mail_app_plus/ios`)
   - soundpool (from `.symlinks/plugins/soundpool/ios`)
-  - vibration (from `.symlinks/plugins/vibration/ios`)
 
 SPEC REPOS:
   http://bitbucket.org/npaw/plugin-ios-cocoapods.git:
@@ -72,8 +69,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/open_mail_app_plus/ios"
   soundpool:
     :path: ".symlinks/plugins/soundpool/ios"
-  vibration:
-    :path: ".symlinks/plugins/vibration/ios"
 
 SPEC CHECKSUMS:
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
@@ -89,7 +84,6 @@ SPEC CHECKSUMS:
   open_mail_app_plus: 6b06ef9915403f20b72c728cc264322efacdcb9a
   Protobuf: 8d5596f7468be5400861a6bbfb2dfe9d0d1cde34
   soundpool: cbfc34dbc42a1bb19426aaccf20e9cdd250b45e5
-  vibration: 8e2f50fc35bb736f9eecb7dd9f7047fbb6a6e888
 
 PODFILE CHECKSUM: 12775d2e0ffd7c6331ae3b2b580f9899d1d76ab1
 

@@ -28,7 +28,7 @@ dependencies:
   flutter_riverpod: ^2.6.1
   collection: ^1.19.1
   graphql: ^5.2.1
-  graphql_flutter: ^5.2.0
+  graphql_flutter: ^5.3.0
   firebase_core: ^3.13.1
   firebase_messaging: ^15.2.6
   device_info_plus: ^11.4.0
@@ -36,9 +36,9 @@ dependencies:
   modal_bottom_sheet: ^3.0.0
   shimmer: ^3.0.0
   flutter_markdown: ^0.7.7+1
-  app_links: ^6.4.0
+  app_links: ^7.2.1
   universal_io: ^2.2.2
-  flutter_hooks: ^0.20.5
+  flutter_hooks: ^0.21.3
   hooks_riverpod: ^2.6.1
   image: ^4.5.4
   responsive_framework: ^1.5.1
@@ -69,13 +69,16 @@ dependencies:
   flutter_advanced_switch: ^3.1.0
 
 dependency_overrides:
+  # Load-bearing: flutter_secure_storage_web 1.2.1 (via flutter_secure_storage 9.x) wants
+  # js ^0.6.3, while bccm_player's web interop wants ^0.7.1. Removable once
+  # flutter_secure_storage moves to 10/11, or bccm_player migrates to dart:js_interop.
   js: ^0.7.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.4.15
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   auto_route_generator: ^9.0.0
   freezed: ^2.5.7
   custom_lint: any
