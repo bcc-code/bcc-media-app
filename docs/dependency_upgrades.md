@@ -60,6 +60,16 @@ cd kids && flutter build ios --simulator --debug
   `flutter_launcher_icons-prod.yaml` exists and `android/app/src/dev/res/` has no
   mipmaps, so `assembleDevDebug` dies on `resource mipmap/ic_launcher not found`.
   Verify Gate-A-type changes against `prod`.
+- **A poisoned Semaphore SDK cache can serve the wrong Flutter.** The key
+  `flutter-sdk-macos-3.44.0` once contained Flutter **3.41.9** (revision `00b0c91f06`),
+  while the Linux key of the same name correctly held 3.44.0 (`559ffa3f75`) — so the
+  Android jobs passed and only iOS failed. It surfaced as a pub error that named
+  `app_links`, not the SDK:
+  `Because app_links 7.2.1 requires Flutter SDK version >=3.44.0 [...] version solving failed`.
+  **Always read the `flutter --version` line that `install-flutter.sh` prints** before
+  believing `FLUTTER_VERSION`. `install-flutter.sh` now asserts the built tool's version
+  against `FLUTTER_VERSION`, reinstalls once, and fails loudly rather than continuing on
+  the wrong SDK — but a stale key still has to be dropped with `cache delete` once.
 - **`flutter analyze` counts include `bmm_api`.** 82 of the main app's ~87 warnings are
   pre-existing `unused_import`s in generated OpenAPI client code under
   `submodules/bccm_flutter/bmm_api`. They drown out real findings; worth excluding.
@@ -96,10 +106,17 @@ Two things surfaced here:
 
 ### Gate B — SDK floors
 
-`sdk: ">=3.11.0 <4.0.0"`, `flutter: ">=3.41.6"` in all three app/lib pubspecs. That's the
-highest floor anything on the roadmap needs (share_plus 13 / package_info_plus 10 /
-device_info_plus 13). **`bmm_flutter_app` still declares `sdk: ^3.8.0` and will fail to
-resolve** until it matches.
+`sdk: ">=3.12.0 <4.0.0"`, `flutter: ">=3.44.0"` in all three app/lib pubspecs, matching
+the `FLUTTER_VERSION` pinned in `.semaphore/semaphore.yml`. **`bmm_flutter_app` still
+declares `sdk: ^3.8.0` and will fail to resolve** until it matches.
+
+These floors were initially set to `>=3.11.0` / `>=3.41.6`, derived from share_plus 13 /
+package_info_plus 10 / device_info_plus 13. That was **wrong**: `app_links` 7.2.1 requires
+`sdk: ^3.12.0` and `flutter: ">=3.44.0"`, and nobody re-derived the floor after the trivial
+batch raised the bar. **When bumping anything, re-check the floor of every package in the
+batch, not just the ones you reasoned about up front** — a too-low declared floor doesn't
+just under-document, it stops pub from producing a clear error and you get a confusing
+transitive failure instead (see the next gotcha).
 
 ### Trivial batch
 
