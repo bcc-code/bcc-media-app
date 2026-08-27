@@ -127,14 +127,14 @@ packages:
       path: "submodules/bccm_flutter/bccm_core"
       relative: true
     source: path
-    version: "1.1.1"
+    version: "1.1.2"
   bccm_player:
     dependency: "direct main"
     description:
       path: "submodules/bccm_player"
       relative: true
     source: path
-    version: "1.2.1"
+    version: "1.2.2"
   bmm_api:
     dependency: "direct main"
     description:
