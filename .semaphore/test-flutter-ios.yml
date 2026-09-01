@@ -1,0 +1,46 @@
+version: v1.0
+name: Test bccm iOS
+agent:
+  machine:
+    type: a2-standard-4
+    os_image: macos-xcode26
+global_job_config:
+  env_vars:
+    - name: FLUTTER_VERSION
+      value: 3.44.0
+blocks:
+  - name: Test bccm iOS
+    task:
+      agent:
+        machine:
+          type: a2-standard-4
+          os_image: macos-xcode26
+      prologue:
+        commands:
+          - checkout
+          - git submodule update --init --recursive
+          - echo "$BCCMEDIA_ENV_DART_BASE64" | base64 -d > lib/env/.env.dart
+          - bash .semaphore/scripts/install-flutter.sh
+          - 'export PATH="$HOME/flutter/bin:$PATH"'
+      jobs:
+        - name: Run Maestro UI tests
+          commands:
+            # Same heap bump as Build bccm iOS: `flutter pub get` OOMs on the
+            # default ~2 GB heap, and ci.sh runs a full simulator build.
+            - 'export DART_VM_OPTIONS="--old_gen_heap_size=6144"'
+            - "cache restore pub-macos-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),pub-macos-$(checksum pubspec.yaml),pub-macos"
+            - make pubgetall
+            - cache store pub-macos-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml) $HOME/.pub-cache
+            - "cache restore cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock),cocoapods-$(checksum ios/Podfile.lock),cocoapods"
+            # ci.sh reads these bare names; the secrets expose them BCCMEDIA_-prefixed.
+            # LOGIN_* feed the envsubst that generates flows/scripts/.env.js — without
+            # them the login flow types empty credentials and every flow fails.
+            - export MAESTRO_API_KEY="$BCCMEDIA_DEVICECLOUD_API_KEY"
+            - export LOGIN_EMAIL="$BCCMEDIA_MAESTRO_LOGIN_EMAIL"
+            - export LOGIN_PASSWORD="$BCCMEDIA_MAESTRO_LOGIN_PASSWORD"
+            - (cd .maestro && ./ci.sh)
+            - cache store cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock) ios/Pods
+      secrets:
+        - name: bccmedia-env-dart
+        - name: bccmedia-devicecloud
+        - name: bccmedia-maestro-login

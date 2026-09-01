@@ -5,33 +5,52 @@ appId: tv.brunstad.app
     clearState: true
 - runScript: scripts/.env.js
 - runFlow: subflows/init.yml
+# Opening a link into a stopped app races two things a retry recovers from: iOS may
+# not have refreshed its apple-app-site-association after the clearState above and
+# hands the URL to Safari, or the app wins the launch and drops the link, landing on
+# Home. Together those failed ~50% of runs before these retries.
 # Legacy URLs
-- stopApp: tv.brunstad.app
-- openLink: "https://brunstad.tv/series/10"
-- assertVisible: .*Mette.*
+- retry:
+    maxRetries: 2
+    commands:
+      - stopApp: tv.brunstad.app
+      - openLink: "https://brunstad.tv/series/10"
+      - assertVisible: .*Mette.*
 # Stopped 1
-- stopApp: tv.brunstad.app
-- openLink: "https://app.bcc.media/episode/769"
-- assertVisible: .*Joseph.*
+- retry:
+    maxRetries: 2
+    commands:
+      - stopApp: tv.brunstad.app
+      - openLink: "https://app.bcc.media/episode/769"
+      - assertVisible: .*Joseph.*
 # Stopped 2
-- stopApp: tv.brunstad.app
-- openLink: "https://app.bcc.media/episode/51/769"
-- assertVisible: .*Joseph.*
+- retry:
+    maxRetries: 2
+    commands:
+      - stopApp: tv.brunstad.app
+      - openLink: "https://app.bcc.media/episode/51/769"
+      - assertVisible: .*Joseph.*
 # Stopped 3
-- stopApp: tv.brunstad.app
-- openLink: "https://app.bcc.media/search"
-- assertVisible: Search
-- tapOn:
-    text: Search
-    index: 0
-- tapOn:
-    text: Search
-    index: 0
-- assertVisible: You can search.*
+- retry:
+    maxRetries: 2
+    commands:
+      - stopApp: tv.brunstad.app
+      - openLink: "https://app.bcc.media/search"
+      - assertVisible: Search
+      - tapOn:
+          text: Search
+          index: 0
+      - tapOn:
+          text: Search
+          index: 0
+      - assertVisible: You can search.*
 # Stopped 4
-- stopApp: tv.brunstad.app
-- openLink: "https://app.bcc.media/show/81"
-- assertVisible: .*Leo.*
+- retry:
+    maxRetries: 2
+    commands:
+      - stopApp: tv.brunstad.app
+      - openLink: "https://app.bcc.media/show/81"
+      - assertVisible: .*Leo.*
 # Backgrounded 1
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/episode/769"

@@ -3,7 +3,10 @@ set -e
 set -x
 
 #install maestro
-export MAESTRO_VERSION=1.39.7; curl -Ls "https://get.maestro.mobile.dev" | bash
+# 2.1.0+ is required: earlier versions cannot see inside the auth web view on iOS 26,
+# which makes the login flow unrunnable. 2.8.0 is the newest version DeviceCloud
+# supports, so bumping past it needs a check against their supported-versions list.
+export MAESTRO_VERSION=2.8.0; curl -Ls "https://get.maestro.mobile.dev" | bash
 export PATH="$PATH":"$HOME/.maestro/bin"
 
 #install devicecloud cli

@@ -10,11 +10,12 @@ This means you need a Mac to run the flows.
 
 1. Install [Maestro](https://maestro.mobile.dev/getting-started/installing-maestro/).
 2. Run `make ios-setup`, which will do an ios build of the app and install it on the simulator.
-3. Create flows/scripts/.env.js based on the [.env.js.template](flows/scripts/.env.js.template).
-4. Run tests
-   - Run e.g. `make debug FLOW=flows/1_play-shorts.yml` to run a flow.
+3. Run tests
+   - Run e.g. `make debug FLOW=flows/1_play-episode.yml` to run a flow.
    - Run `make test` to run the whole suite
-   - You can run any maestro command, but include `-e PLATFORM=ios`. Example: `maestro test -c -e PLATFORM=ios flows/1_play-shorts.yml`.
+   - You can run any maestro command, but include `-e PLATFORM=ios`. Example: `maestro test -c -e PLATFORM=ios flows/1_play-episode.yml`.
+
+No credentials are needed: unlike the parent app's flows, none of the kids flows log in.
 
 ### Quick ADR about maestro vs appium/flutter
 
