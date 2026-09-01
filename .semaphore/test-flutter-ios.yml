@@ -38,9 +38,8 @@ blocks:
             - export MAESTRO_API_KEY="$BCCMEDIA_DEVICECLOUD_API_KEY"
             - export LOGIN_EMAIL="$BCCMEDIA_MAESTRO_LOGIN_EMAIL"
             - export LOGIN_PASSWORD="$BCCMEDIA_MAESTRO_LOGIN_PASSWORD"
-            - cd .maestro
-            - ./ci.sh
-            - cache store cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock) ../ios/Pods
+            - (cd .maestro && ./ci.sh)
+            - cache store cocoapods-$SEMAPHORE_GIT_BRANCH-$(checksum ios/Podfile.lock) ios/Pods
       secrets:
         - name: bccmedia-env-dart
         - name: bccmedia-devicecloud
