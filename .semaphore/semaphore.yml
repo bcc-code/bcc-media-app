@@ -397,6 +397,8 @@ blocks:
       secrets:
         - name: bccmedia-testflight-api
 promotions:
+  - name: Run bccm iOS UI tests
+    pipeline_file: test-flutter-ios.yml
   - name: Promote Android to Production
     pipeline_file: promote-android-prod.yml
   - name: Promote iOS to App Store
