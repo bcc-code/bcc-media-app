@@ -3,7 +3,82 @@ default_platform(:ios)
 APPLE_TEAM_ID = '6734NUF6AV'
 APP_IDENTIFIER = 'tv.brunstad.app'
 
+def pubspec_marketing_version
+  pubspec = File.expand_path('../../pubspec.yaml', __dir__)
+  line = File.readlines(pubspec).find { |l| l =~ /^version:\s*/ }
+  UI.user_error!("Could not find `version:` in #{pubspec}") if line.nil?
+  line.sub(/^version:\s*/, '').strip.split('+').first
+end
+
+# Every version this app has ever used: App Store version records in any state, plus
+# every TestFlight train.
+#
+# Deliberately *not* a judgement about which versions are still open. Apple closes a
+# version's TestFlight train once that version is submitted, and no field in the API
+# reports it — a spent version keeps reading as an open App Store record while altool
+# rejects every build under it (90186 "train is closed" / 90062 "must contain a higher
+# version than the previously approved version"). Modelling Apple's state machine does
+# not work; a version that has been used at all is simply spent.
+def used_versions(app)
+  appstore = app.get_app_store_versions
+  appstore.each do |v|
+    UI.message("  App Store #{v.version_string} — appStoreState=#{v.app_store_state.inspect} " \
+               "appVersionState=#{v.respond_to?(:app_version_state) ? v.app_version_state.inspect : 'n/a'}")
+  end
+
+  trains = Spaceship::ConnectAPI
+           .get_pre_release_versions(filter: { app: app.id })
+           .all_pages
+           .flat_map(&:to_models)
+  trains.each { |t| UI.message("  TestFlight train #{t.version} (#{t.platform})") }
+
+  # Anything not plain dotted-numeric would blow up Gem::Version in the lane.
+  (appstore.map(&:version_string) + trains.map(&:version))
+    .compact.uniq.select { |v| v =~ /\A\d+(\.\d+)*\z/ }
+rescue => e
+  # Falling back to a guess is how a closed version reaches a build; one rerun is
+  # cheaper than a build+upload cycle on a dead version.
+  UI.user_error!("Could not enumerate versions from App Store Connect: #{e.message}")
+end
+
+def next_patch(version)
+  major, minor, patch = version.split('.').map(&:to_i)
+  "#{major}.#{minor || 0}.#{(patch || 0) + 1}"
+end
+
 platform :ios do
+  desc "Write the next unused marketing version to fastlane/.next_app_version"
+  lane :next_app_version do
+    # Authenticates spaceship for the App Store Connect queries below.
+    app_store_connect_api_key(
+      key_id: ENV['BCCMEDIA_APP_STORE_CONNECT_KEY_ID'],
+      issuer_id: ENV['BCCMEDIA_APP_STORE_CONNECT_ISSUER_ID'],
+      key_content: ENV['BCCMEDIA_APP_STORE_CONNECT_KEY_CONTENT_BASE64'],
+      is_key_content_base64: true,
+      in_house: false
+    )
+
+    floor = pubspec_marketing_version # pubspec is a floor, not the shipped value
+    UI.message("pubspec marketing version (floor): #{floor}")
+
+    app = Spaceship::ConnectAPI::App.find(APP_IDENTIFIER)
+    UI.user_error!("App #{APP_IDENTIFIER} not found on App Store Connect") if app.nil?
+
+    UI.message('Versions already used on App Store Connect:')
+    highest = used_versions(app).max_by { |v| Gem::Version.new(v) }
+    UI.message("highest version already used: #{highest || '<none>'}")
+
+    version = floor
+    if highest && Gem::Version.new(version) <= Gem::Version.new(highest)
+      version = next_patch(highest)
+      UI.important("pubspec #{floor} is at or below the highest used version #{highest}; using #{version} instead. Raise the floor in pubspec.yaml if you want a different version.")
+    end
+
+    UI.success("Marketing version for this build: #{version}")
+    File.write(File.join(__dir__, '.next_app_version'), version)
+  end
+
+
   desc "Write next TestFlight build number (max across all versions + 1) to fastlane/.next_build_number"
   lane :next_build_number do
     api_key = app_store_connect_api_key(

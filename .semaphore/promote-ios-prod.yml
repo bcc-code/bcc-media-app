@@ -15,7 +15,11 @@ blocks:
             - artifact pull workflow bccm_ios_build_number
             - export BUILD_NUMBER=$(cat bccm_ios_build_number)
             - test -n "$BUILD_NUMBER" && test "$BUILD_NUMBER" -gt 0
-            - export APP_VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}' | cut -d+ -f1)
+            # Must be the version the build was uploaded under, which CI resolved from
+            # App Store Connect — pubspec.yaml is only a floor, so reading it here would
+            # promote a version that was never on TestFlight.
+            - artifact pull workflow bccm_app_version
+            - export APP_VERSION=$(cat bccm_app_version)
             - test -n "$APP_VERSION"
             - cd ios
             - bundle install
