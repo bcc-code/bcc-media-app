@@ -73,7 +73,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   bccm_player: 2feedff021cdc577dbe81cb93f909db733d17d66
-  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  Flutter: 71a624a5bc0c04062bf19101d501e466baf2fb47
   flutter_appauth: 273bf736e38f7d85000b1a9ac15ace5800c277f2
   flutter_local_notifications: ad39620c743ea4c15127860f4b5641649a988100
   flutter_secure_storage: 1ed9476fba7e7a782b22888f956cce43e2c62f13
@@ -85,6 +85,6 @@ SPEC CHECKSUMS:
   Protobuf: 8d5596f7468be5400861a6bbfb2dfe9d0d1cde34
   soundpool: cbfc34dbc42a1bb19426aaccf20e9cdd250b45e5
 
-PODFILE CHECKSUM: 12775d2e0ffd7c6331ae3b2b580f9899d1d76ab1
+PODFILE CHECKSUM: c11a3098c8b648872868b298e0f1d9cd98fc87b9
 
 COCOAPODS: 1.16.2
