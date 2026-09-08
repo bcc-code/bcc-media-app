@@ -7,10 +7,9 @@ Update it as batches land.
 
 Last updated: 2026-09-08.
 
-## Codegen breaks above Flutter 3.44 (2026-09-08)
+## Codegen is blocked, and the way out is Flutter 3.47 (2026-09-08)
 
-**This is a local-SDK problem, not an absolute block.** `build_runner` fails on Flutter
-**3.47.2** and works on Flutter **3.44.0** — the version this project actually pins.
+`build_runner` fails on Flutter **3.47.2**:
 
 ```
 Exception: Missing implementation of visitDotShorthandPropertyAccess
@@ -21,35 +20,52 @@ The `analyzer` our generators resolve (7.7.1) tops out at language **3.9.0**. Do
 shorthand is Dart 3.13 syntax, so when the resolver walks Flutter's own framework source
 it hits a node it cannot represent and summary linking throws. Every Flutter app resolves
 that file, which is why it reproduced identically in `bcc-media-play` and
-`bcc-connect-live` — same machine, same too-new SDK, not three independent bugs.
+`bcc-connect-live` — one cause, not three bugs.
 
-|                                                                | Dart   | dot-shorthands in framework | codegen |
-| -------------------------------------------------------------- | ------ | --------------------------- | ------- |
-| Flutter **3.44.0** — `FLUTTER_VERSION`, and our declared floor | 3.12.0 | **0**                       | works   |
-| Flutter **3.47.2**                                             | 3.13.2 | 2                           | throws  |
+|                                                        | Dart   | dot-shorthands in framework | codegen |
+| ------------------------------------------------------ | ------ | --------------------------- | ------- |
+| Flutter **3.44.0** — current `FLUTTER_VERSION` and floor | 3.12.0 | **0**                       | works   |
+| Flutter **3.47.2** — where we are going                 | 3.13.2 | 2                           | throws  |
 
 At tag `3.44.0`, `packages/flutter/lib/src/animation/animation_controller.dart` reads
 `_AnimationDirection _direction;`. On 3.47.2 the same field is
 `_AnimationDirection _direction = .forward;`.
 
-**The fix that works today: match the pin.** Put the local SDK back on 3.44.0. Adopting
-`fvm` with an `.fvmrc` is worth doing at the same time, so the local SDK cannot silently
-drift past `FLUTTER_VERSION` again — that drift is the whole bug.
+### Decision: target 3.47, do not go back to 3.44
 
-So the codegen cluster is **not an emergency**; it is what buys us Flutter 3.47+. Left
-alone, everything still generates on the pinned SDK.
+Pinning the local SDK back to 3.44.0 does restore codegen, and it is the correct
+emergency lever if someone is stuck. It is **not** the plan, because it is a dead end:
 
-**`flutter analyze` keeps working either way**, which is why this is easy to misread as
-repo-specific. It uses the analyzer bundled with the Dart SDK; `build_runner` uses
-`package:analyzer` from pub. Same project, two different analyzers, only one of them
-broken.
+> **`freezed` 4.0.x is the only freezed that reaches `analyzer` 13, and it requires
+> `sdk: >=3.13.0`. Flutter 3.44 ships Dart 3.12.0.**
 
-Two details worth knowing before you reproduce it:
+There is no freezed with analyzer 13 *and* Dart 3.12, so the codegen cluster can never
+land on 3.44. Moving to 3.47 and doing the cluster are the same project.
 
-- **`graphql_codegen` is not the problem** — it processes all 56 inputs fine. The throw
-  comes from the resolver-backed builders (freezed / json_serializable / riverpod) that
-  need `package:analyzer` to model the SDK.
-- **The failing run still deletes first.** `--delete-conflicting-outputs` removed all 97
+Two consequences to plan around:
+
+- **No stopgap.** Codegen stays broken until the cluster lands, so any change needing
+  regeneration is blocked meanwhile. This is a deadline, not extra scope.
+- **No staging.** The cluster bump and the SDK floor bump are one atomic PR. On the 3.44
+  path they could have been landed piecemeal with codegen working throughout; not here.
+
+### The app itself is already 3.47-ready
+
+Measured on 3.47.2, current tree: `flutter analyze` reports **0 errors** and
+`flutter test` is **113/113 green**. The only deprecations are four infos —
+`offset`→`cursor` (`kids/lib/screens/home.dart`, `lib/components/pages/page_renderer.dart`),
+one `withOpacity`, and the known `dart:html`. So the framework side of the SDK bump is
+close to free; the work is the toolchain, not the app.
+
+### Also true regardless of SDK
+
+- **`flutter analyze` keeps working**, which is why this is easy to misread as
+  repo-specific. It uses the analyzer bundled with the Dart SDK; `build_runner` uses
+  `package:analyzer` from pub. Same project, two analyzers, only one of them broken.
+- **`graphql_codegen` is not the failing builder** — it processes all 56 inputs fine. The
+  throw comes from the resolver-backed builders (freezed / json_serializable / riverpod)
+  that need `package:analyzer` to model the SDK.
+- **A failing run still deletes first.** `--delete-conflicting-outputs` removed all 97
   outputs in `bccm_core`, wrote none back, then hung rather than exiting. Expect a wiped
   tree and recover with `git checkout -- .` (instant, because they are committed).
 
@@ -57,18 +73,18 @@ Two details worth knowing before you reproduce it:
 
 Every row must hold at once; the resolved `analyzer` is the intersection.
 
-| Package                 | Target       | analyzer constraint              | Forces at runtime                                      |
-| ----------------------- | ------------ | -------------------------------- | ------------------------------------------------------ |
-| `build_runner`          | `^2.16.0`    | `>=13.3.0 <15.0.0`               | `build ^4.0.9`                                         |
-| `mockito`               | `5.8.1`      | `>=13.3.0 <15.0.0` ← **floor**   | —                                                      |
-| `auto_route_generator`  | `10.6.0`     | `>=10.0.0 <14.0.0` ← **ceiling** | `auto_route ^11.1.0`                                   |
-| `freezed`               | `4.0.1`      | `>=13.0.0 <15.0.0`               | `freezed_annotation 3.1.0` (exact)                     |
-| `json_serializable`     | `6.14.1`     | `>=10.0.0 <15.0.0`               | `json_annotation >=4.12.0 <4.13.0`                     |
-| `graphql_codegen`       | `3.0.2`      | none — only `build ^4.0.1`       | —                                                      |
-| `source_gen`            | `4.2.4`      | `>=8.1.1 <15.0.0`                | — (**do not take 4.3.0**, see below)                   |
-| `riverpod_generator`    | _dropped_    | `^13.0.0`                        | `riverpod_annotation 4.0.7` → `riverpod 3.4.3` (exact) |
-| `riverpod_lint`         | _dropped_    | `>=13.0.0 <15.0.0`               | `riverpod 3.4.3`, `analysis_server_plugin ^0.3.0`      |
-| **resolved `analyzer`** | **`13.3.x`** | intersection                     | —                                                      |
+| Package                 | Target       | analyzer constraint              | Dart floor      | Forces at runtime                                      |
+| ----------------------- | ------------ | -------------------------------- | --------------- | ------------------------------------------------------ |
+| `build_runner`          | `^2.16.0`    | `>=13.3.0 <15.0.0`               | `^3.11.0`       | `build ^4.0.9`                                         |
+| `mockito`               | `5.8.1`      | `>=13.3.0 <15.0.0` ← **floor**   | `^3.7.0`        | —                                                      |
+| `auto_route_generator`  | `10.6.0`     | `>=10.0.0 <14.0.0` ← **ceiling** | `>=3.4.0`       | `auto_route ^11.1.0`                                   |
+| `freezed`               | `4.0.1`      | `>=13.0.0 <15.0.0`               | **`>=3.13.0`**  | `freezed_annotation 3.1.0` (exact)                     |
+| `json_serializable`     | `6.14.1`     | `>=10.0.0 <15.0.0`               | `^3.9.0`        | `json_annotation >=4.12.0 <4.13.0`                     |
+| `graphql_codegen`       | `3.0.2`      | none — only `build ^4.0.1`       | `>=3.8.0`       | —                                                      |
+| `source_gen`            | `4.2.4`      | `>=8.1.1 <15.0.0`                | `^3.11.0`       | — (**do not take 4.3.0**, see below)                   |
+| `riverpod_generator`    | _dropped_    | `^13.0.0`                        | —               | `riverpod_annotation 4.0.7` → `riverpod 3.4.3` (exact) |
+| `riverpod_lint`         | _dropped_    | `>=13.0.0 <15.0.0`               | —               | `riverpod 3.4.3`, `analysis_server_plugin ^0.3.0`      |
+| **resolved**            | —            | **`analyzer 13.3.x`**            | **Dart 3.13**   | → **Flutter 3.47+**                                    |
 
 Things this makes visible that were not obvious from the changelogs:
 
@@ -82,6 +98,10 @@ Things this makes visible that were not obvious from the changelogs:
   auto_route major non-optional.
 - **Do not let `source_gen` float to 4.3.0** — it requires `analyzer >=14.0.0` and would
   fight the ceiling. Pin `4.2.4`.
+- **`freezed` 4 is what forces the SDK bump.** It is the only freezed reaching analyzer 13
+  and it declares `sdk: >=3.13.0`, i.e. Flutter 3.47+. `freezed` 2.5.8 is `analyzer <8` and
+  3.2.5 is `analyzer <11`, so neither can share a graph with analyzer 13. This one
+  constraint is why the cluster and the Flutter upgrade are a single change.
 
 **Overriding `analyzer` alone does not work** (solver- and compiler-verified). With
 `analyzer: ^9.0.0` forced, `build`, `build_resolvers` and `dart_style` all fail to compile
@@ -99,6 +119,20 @@ Blockers to delete during the cutover:
   for `analysis_server_plugin`, so `analysis_options.yaml` will need new wiring then
 - both: `riverpod_generator` and `riverpod_annotation` — removable, one annotation
 - `bcc-media-play` and `bcc-connect-live` have no lint stack at all, so they are simpler
+
+SDK floors and CI pins to move in the same PR (Flutter 3.44.0 → 3.47.x):
+
+- `sdk: ">=3.12.0 <4.0.0"` → `">=3.13.0 <4.0.0"` and `flutter: ">=3.44.0"` → `">=3.47.0"`
+  in all four pubspecs: root, `kids`, `bccm_core`, `bccm_player`
+- `FLUTTER_VERSION` in `.semaphore/semaphore.yml`
+- `flutter-version: 3.44.0` in **both** GitHub workflows —
+  `bccm-flutter/.github/workflows/test.yml` and `bccm-player/.github/workflows/test.yml`
+- `bcc-media-play` and `bcc-connect-live` track `main` unpinned and will break on their
+  next `pub get`, now on a **Dart floor** rather than just a package version. Pin them or
+  move them in the same wave.
+- New `FLUTTER_VERSION` means a new Semaphore cache key. The poisoned-cache failure mode
+  is under Gotchas; `install-flutter.sh` now asserts the built tool's version, so it
+  should fail loudly rather than silently serve the wrong SDK.
 
 ## Why this is more involved than it looks
 
@@ -216,6 +250,9 @@ Two things surfaced here:
 floors. `bccm_player/example` (`sdk: ">=3.0.0"`) and `bmm_api/src` (`sdk: ">=2.15.0"`)
 still lag; neither ships.
 
+**These move again in the codegen cutover** — to `sdk: ">=3.13.0"` / `flutter: ">=3.47.0"`,
+because `freezed` 4 requires Dart 3.13. Checklist under the toolchain matrix.
+
 These floors were initially set to `>=3.11.0` / `>=3.41.6`, derived from share_plus 13 /
 package_info_plus 10 / device_info_plus 13. That was **wrong**: `app_links` 7.2.1 requires
 `sdk: ^3.12.0` and `flutter: ">=3.44.0"`, and nobody re-derived the floor after the trivial
@@ -272,8 +309,9 @@ Ordering reflects the corrections below, not the original guess.
 3. **`flutter_local_notifications` 17→22** — v20 converted `initialize`, `show`,
    `zonedSchedule`, `cancel` from positional to named params. Two files in core. Needs
    Java 11+ (already have it).
-4. **Codegen cluster, all at once — this is what unlocks Flutter 3.47+.** Not urgent
-   while the local SDK matches `FLUTTER_VERSION`; see the top section.
+4. **Codegen cluster + Flutter 3.47, one atomic PR — BLOCKING.** Nothing regenerates
+   until this lands, and it cannot be split: `freezed` 4 needs Dart 3.13. See the top
+   section for the decision and the matrix for why.
    `build_runner` → 2.16, `build` → 4.x, `analyzer` 7 → **13.3.x** (not 14 — see the
    matrix, `auto_route_generator` caps it at `<14`), `graphql_codegen` 1 → 3,
    `json_serializable` → 6.14, `json_annotation` → 4.12, `mockito` → 5.8,
@@ -408,12 +446,18 @@ and `bccm_core` is the real work.
 
 Suggested order overall:
 
-1. Put the local SDK back on `FLUTTER_VERSION` (3.44.0) — codegen works again, today.
-2. Prep PR A (freezed syntax, 49 classes) and prep PR B (drop riverpod codegen). Both
-   land on current versions, no regeneration, `bccm_player` → `bccm_core` → apps.
-3. The cutover: bump the cluster, take `auto_route` 11, regenerate everything, verify per
-   "Verifying a batch". This is also the PR that lets the SDK move to 3.47+.
-4. `riverpod` 2→3 whenever it suits, independently.
+1. Prep PR A (freezed syntax, 49 classes) and prep PR B (drop riverpod codegen). Both
+   land on current versions with **no regeneration**, so they are verifiable today on
+   3.47 with `flutter analyze` + `flutter test` despite codegen being down. Order:
+   `bccm_player` → `bccm_core` → apps.
+2. The cutover: bump the cluster, take `auto_route` 11, raise the SDK floors and CI pins
+   to 3.47, regenerate everything, verify per "Verifying a batch". One PR, must land
+   green — see the checklist under the matrix.
+3. `riverpod` 2→3 whenever it suits, independently.
+
+Anyone who gets genuinely stuck before step 2 lands can pin their local SDK to 3.44.0 as
+an emergency lever — codegen works there. It is a personal unblock, not a project
+direction; the floors and CI stay pointed at 3.47.
 
 ### Sizing (re-measured 2026-09-08, generated files excluded)
 
@@ -441,8 +485,18 @@ invisible to the compiler: all providers now filter updates with `==` instead of
 identity, notifiers are recreated on every provider rebuild, and `StreamProvider` pauses
 when unlistened. `bccm_core`'s 7 `StreamProvider`s change timing.
 
-**freezed 2→4** is `class X with _$X` → `abstract class X with _$X`, 49 classes, 41 of
-them in `bccm_core`. See the note in "Constraint facts" about landing these early.
+**freezed 2→4** is smaller than a two-major jump suggests. Only two breaking changes
+touch us:
+
+- Classes must be `abstract`, `sealed`, or manually implement `_$X` (freezed 3.0.0) —
+  `class X with _$X` → `abstract class X with _$X`, 49 classes, 41 in `bccm_core`. This is
+  prep PR A; see "Constraint facts" for why it can land early.
+- `final` inside constructor parameters is gone (freezed 4.0.0, because Dart 3.13 removed
+  the syntax), which also stops `@unfreezed` defining immutable fields. **We have zero
+  `@unfreezed` and zero instances**, so this is a no-op.
+
+`when`/`map` were removed in 3.0.0 but **restored in 3.1.0**, so the widely-cited
+"freezed 3 deletes when/map" break does not apply at 4.0.1.
 
 **auto_route 9→11** has a narrow surface, and it is narrowest here: **zero**
 `AutoRouteGuard`s and zero uses of `redirect(` in this repo, `kids` or `bccm_core` — both
