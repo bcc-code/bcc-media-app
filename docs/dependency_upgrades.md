@@ -429,14 +429,38 @@ drop `riverpod_generator` and `riverpod_annotation`, and drop `riverpod_lint` +
 `custom_lint`. **riverpod 2→3 then stops being a prerequisite for anything** and becomes
 independently schedulable.
 
-**Dropping the two lint packages costs nothing, because they never ran.** `custom_lint` is
-a plugin host: it only loads if `analysis_options.yaml` registers it under
-`analyzer: plugins:`. **No `analysis_options.yaml` in any of the four repos has a
-`plugins:` entry**, so `riverpod_lint` 2.6.4 has never produced a single diagnostic here.
-`custom_lint: any` + `riverpod_lint: any` + the `analyzer_plugin: 0.13.4` override are
-dead weight whose only live effect is pinning `analyzer` to 7.x. If riverpod lints are
-actually wanted, that is a separate, deliberate piece of work — add `riverpod_lint` 3.x
-*and* the `plugins:` wiring after the riverpod 3 migration.
+**Dropping the two lint packages costs nothing.** Two independent reasons, both checked:
+
+1. **They were never switched on.** `custom_lint` is a plugin *host* that only loads when
+   `analysis_options.yaml` registers it under `analyzer: plugins:` (its own README states
+   this). **None of the 8 `analysis_options.yaml` files across the four repos has a
+   `plugins:` entry**, the only `include:` is `flutter_lints/flutter.yaml` (no plugins),
+   and nothing in `Makefile`, Semaphore or any GitHub workflow runs `dart run custom_lint`.
+   Git history agrees: `custom_lint` was never registered — the only `plugins:` entry this
+   repo ever had was `flutter_hooks_lint_plugin` (added 2023-02, removed 2024-04).
+2. **They would not work anyway on Dart 3.13.** Wiring `plugins: - custom_lint` back in and
+   planting deliberate violations (`avoid_public_notifier_properties`, then
+   `prefer_final_provider`) produced **no** riverpod diagnostics, via `flutter analyze` or
+   `dart run custom_lint` directly — even though `riverpod_lint` 2.6.4 is a correctly
+   registered plugin (`custom_lint_builder: ^0.7.0`). It resolves `analyzer` 7.x, held
+   there by the `analyzer_plugin: 0.13.4` override, and 7.x cannot parse Dart 3.13. **The
+   lint stack is dead for the same root cause as codegen**, and it fails silently rather
+   than erroring.
+
+So `custom_lint: any` + `riverpod_lint: any` + the `analyzer_plugin: 0.13.4` override are
+dead weight whose only live effect is pinning `analyzer` to 7.x — the very thing blocking
+the cutover.
+
+Re-adopting riverpod lints later is **not** "put the `plugins:` line back". Wiring it in
+today also emits:
+
+> `warning • Support for legacy plugins is deprecated, and will be removed in an upcoming
+> version of Dart` — `analysis_options_deprecated_plugins`
+
+The legacy analyzer-plugin system that `custom_lint` uses is on its way out; the
+replacement is `analysis_server_plugin`, which is exactly what `riverpod_lint` 3.x moved
+to. So it is a deliberate piece of work after riverpod 3: `riverpod_lint` 3.x on the new
+plugin system, not the old wiring.
 
 ### High
 
