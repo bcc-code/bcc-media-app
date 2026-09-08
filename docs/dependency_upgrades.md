@@ -7,40 +7,51 @@ Update it as batches land.
 
 Last updated: 2026-09-08.
 
-## Codegen is blocked outright (2026-09-08)
+## Codegen breaks above Flutter 3.44 (2026-09-08)
 
-`build_runner` no longer runs in **any** of our Flutter repos on Flutter 3.47.2:
+**This is a local-SDK problem, not an absolute block.** `build_runner` fails on Flutter
+**3.47.2** and works on Flutter **3.44.0** — the version this project actually pins.
 
 ```
 Exception: Missing implementation of visitDotShorthandPropertyAccess
 W SDK language version 3.13.0 is newer than `analyzer` language version 3.9.0
 ```
 
-`flutter/lib/src/animation/animation_controller.dart:451` now reads
-`_AnimationDirection _direction = .forward;`. That is Dart dot-shorthand, and the
-`analyzer` 7.6.0 our generators resolve cannot represent it, so summary linking throws.
-Every Flutter app resolves that file — reproduced identically in `bcc-media-play` and
-`bcc-connect-live`, with a clean tree, on a cold build.
+The `analyzer` our generators resolve (7.7.1) tops out at language **3.9.0**. Dot
+shorthand is Dart 3.13 syntax, so when the resolver walks Flutter's own framework source
+it hits a node it cannot represent and summary linking throws. Every Flutter app resolves
+that file, which is why it reproduced identically in `bcc-media-play` and
+`bcc-connect-live` — same machine, same too-new SDK, not three independent bugs.
 
-**`flutter analyze` still works**, which is why this is easy to misread as repo-specific.
-It uses the analyzer bundled with the Dart SDK; `build_runner` uses `package:analyzer`
-from pub. Same project, two different analyzers, only one of them broken.
+|                                                                | Dart   | dot-shorthands in framework | codegen |
+| -------------------------------------------------------------- | ------ | --------------------------- | ------- |
+| Flutter **3.44.0** — `FLUTTER_VERSION`, and our declared floor | 3.12.0 | **0**                       | works   |
+| Flutter **3.47.2**                                             | 3.13.2 | 2                           | throws  |
 
-This moves the "Codegen cluster" (Remaining work, item 4) from Medium to **blocking**:
-no generated file in any of the six packages can be regenerated until it lands. Generated
-files are committed everywhere and nothing is gitignored, so existing code still builds —
-but any change requiring regeneration is stuck.
+At tag `3.44.0`, `packages/flutter/lib/src/animation/animation_controller.dart` reads
+`_AnimationDirection _direction;`. On 3.47.2 the same field is
+`_AnimationDirection _direction = .forward;`.
 
-Re-confirmed by running it in `bccm_core`, same two messages verbatim. Two details worth
-knowing before you try it yourself:
+**The fix that works today: match the pin.** Put the local SDK back on 3.44.0. Adopting
+`fvm` with an `.fvmrc` is worth doing at the same time, so the local SDK cannot silently
+drift past `FLUTTER_VERSION` again — that drift is the whole bug.
+
+So the codegen cluster is **not an emergency**; it is what buys us Flutter 3.47+. Left
+alone, everything still generates on the pinned SDK.
+
+**`flutter analyze` keeps working either way**, which is why this is easy to misread as
+repo-specific. It uses the analyzer bundled with the Dart SDK; `build_runner` uses
+`package:analyzer` from pub. Same project, two different analyzers, only one of them
+broken.
+
+Two details worth knowing before you reproduce it:
 
 - **`graphql_codegen` is not the problem** — it processes all 56 inputs fine. The throw
   comes from the resolver-backed builders (freezed / json_serializable / riverpod) that
   need `package:analyzer` to model the SDK.
-- **The run still deletes first.** `--delete-conflicting-outputs` removed all 97 outputs,
-  then aborted without writing any back, and the process hung rather than exiting. Expect
-  a wiped tree and recover with `git checkout -- .` (which is instant, because they are
-  committed).
+- **The failing run still deletes first.** `--delete-conflicting-outputs` removed all 97
+  outputs in `bccm_core`, wrote none back, then hung rather than exiting. Expect a wiped
+  tree and recover with `git checkout -- .` (instant, because they are committed).
 
 ## Toolchain compatibility matrix
 
@@ -49,19 +60,28 @@ Every row must hold at once; the resolved `analyzer` is the intersection.
 | Package                 | Target       | analyzer constraint              | Forces at runtime                                      |
 | ----------------------- | ------------ | -------------------------------- | ------------------------------------------------------ |
 | `build_runner`          | `^2.16.0`    | `>=13.3.0 <15.0.0`               | `build ^4.0.9`                                         |
+| `mockito`               | `5.8.1`      | `>=13.3.0 <15.0.0` ← **floor**   | —                                                      |
 | `auto_route_generator`  | `10.6.0`     | `>=10.0.0 <14.0.0` ← **ceiling** | `auto_route ^11.1.0`                                   |
 | `freezed`               | `4.0.1`      | `>=13.0.0 <15.0.0`               | `freezed_annotation 3.1.0` (exact)                     |
-| `riverpod_generator`    | `4.0.9`      | `>=13.0.0 <15.0.0`               | `riverpod_annotation 4.0.7` → `riverpod 3.4.3` (exact) |
-| `riverpod_lint`         | `3.1.9`      | `>=13.0.0 <15.0.0`               | `riverpod 3.4.3`, `analysis_server_plugin ^0.3.0`      |
-| `source_gen`            | `^4.2.4`     | `>=8.1.1 <15.0.0`                | —                                                      |
+| `json_serializable`     | `6.14.1`     | `>=10.0.0 <15.0.0`               | `json_annotation >=4.12.0 <4.13.0`                     |
+| `graphql_codegen`       | `3.0.2`      | none — only `build ^4.0.1`       | —                                                      |
+| `source_gen`            | `4.2.4`      | `>=8.1.1 <15.0.0`                | — (**do not take 4.3.0**, see below)                   |
+| `riverpod_generator`    | _dropped_    | `^13.0.0`                        | `riverpod_annotation 4.0.7` → `riverpod 3.4.3` (exact) |
+| `riverpod_lint`         | _dropped_    | `>=13.0.0 <15.0.0`               | `riverpod 3.4.3`, `analysis_server_plugin ^0.3.0`      |
 | **resolved `analyzer`** | **`13.3.x`** | intersection                     | —                                                      |
 
-Two things this makes visible that were not obvious from the changelogs:
+Things this makes visible that were not obvious from the changelogs:
 
-- **`build_runner` >= 2.15.2 is what forces `analyzer >=13.3.0`** — that is the release
-  that understands the current SDK. Below it, no override helps.
-- **`auto_route_generator` sets the ceiling at `<14`**, so the usable window is one minor
-  wide. It also pulls `auto_route` **11**, not 10.
+- **`analyzer` 13.0.0 and up already speak Dart 3.13** (`_currentVersion = '3.13.0'` in
+  `lib/src/dart/analysis/experiments.g.dart`; 7.7.1 says `3.9.0`). So the `<14` ceiling
+  costs us nothing — the whole 13.x line clears the SDK. 14.3.0 is at `3.14.0`.
+- **The window is exactly `13.3.x`**: `mockito` 5.8 and `build_runner` 2.16 set the floor
+  at `>=13.3.0`, `auto_route_generator` 10.6 sets the ceiling at `<14`.
+- **`auto_route_generator` 10.6.0 is the only release that reaches analyzer 13** (10.5.0
+  is `>=9 <11`), and it pulls `auto_route` **11**, not 10. That is what makes the
+  auto_route major non-optional.
+- **Do not let `source_gen` float to 4.3.0** — it requires `analyzer >=14.0.0` and would
+  fight the ceiling. Pin `4.2.4`.
 
 **Overriding `analyzer` alone does not work** (solver- and compiler-verified). With
 `analyzer: ^9.0.0` forced, `build`, `build_resolvers` and `dart_style` all fail to compile
@@ -74,8 +94,10 @@ Blockers to delete during the cutover:
 
 - this repo: `analyzer_plugin: 0.13.4` in `dependency_overrides`
 - `kids`: direct `analyzer: ^7.3.0`
-- both: `custom_lint: any` and `riverpod_lint: any` — `riverpod_lint` 3 drops
-  `custom_lint` for `analysis_server_plugin`, so `analysis_options.yaml` needs new wiring
+- both: `custom_lint: any` and `riverpod_lint: any` — dropped outright for now (see
+  "Dropping riverpod codegen"). When `riverpod_lint` 3 comes back it drops `custom_lint`
+  for `analysis_server_plugin`, so `analysis_options.yaml` will need new wiring then
+- both: `riverpod_generator` and `riverpod_annotation` — removable, one annotation
 - `bcc-media-play` and `bcc-connect-live` have no lint stack at all, so they are simpler
 
 ## Why this is more involved than it looks
@@ -250,15 +272,48 @@ Ordering reflects the corrections below, not the original guess.
 3. **`flutter_local_notifications` 17→22** — v20 converted `initialize`, `show`,
    `zonedSchedule`, `cancel` from positional to named params. Two files in core. Needs
    Java 11+ (already have it).
-4. **Codegen cluster, all at once — now BLOCKING, see "Codegen is blocked" above.**
+4. **Codegen cluster, all at once — this is what unlocks Flutter 3.47+.** Not urgent
+   while the local SDK matches `FLUTTER_VERSION`; see the top section.
    `build_runner` → 2.16, `build` → 4.x, `analyzer` 7 → **13.3.x** (not 14 — see the
    matrix, `auto_route_generator` caps it at `<14`), `graphql_codegen` 1 → 3,
    `json_serializable` → 6.14, `json_annotation` → 4.12, `mockito` → 5.8,
-   `freezed` 2 → **4** (not 3). `build_resolvers`,
+   `freezed` 2 → **4** (not 3), `source_gen` held at 4.2.4. `build_resolvers`,
    `build_runner_core` and `flutter_secure_storage_macos` are all **discontinued**.
    Regenerates all 56 `.graphql.dart` files. Currently pinned by
    `analyzer_plugin: 0.13.4` in the main app's `dependency_overrides`, which exists
    because `custom_lint` 0.7.3 / `riverpod_lint` 2.6.4 cap analyzer at 7.x.
+
+   **It does not drag riverpod 3 with it** — see "Dropping riverpod codegen" below. It
+   does force **freezed 4** and **auto_route 11**, because those generators are the only
+   ones that reach analyzer 13.
+
+   Two prep PRs can land ahead of it, needing no version bump and no regeneration:
+   - **A — freezed syntax, 49 classes.** `class X with _$X` → `abstract class X with _$X`.
+     Verified that freezed 2.5.8 generates for the new form (see Constraint facts), so
+     existing generated files stay valid and this is an analyze-and-test PR.
+   - **B — drop riverpod codegen**, which also removes the `analyzer_plugin` override and
+     kids' direct `analyzer`.
+
+   That leaves the cutover itself as version bumps + the auto_route 11 API changes +
+   regenerate.
+
+### Dropping riverpod codegen (unblocks item 4 from item 7)
+
+`riverpod_generator` is the only thing in the cluster that drags in `riverpod` 3.4.3
+(via `riverpod_annotation` 4.0.7, an exact pin). We use it for **one annotation**:
+
+- `lib/components/shorts/short_scroll_view.dart:343` — `@riverpod class WakeLockCount`,
+  a notifier with `int build() => 0` plus `increment()`/`decrement()`. Hand-writing it
+  against riverpod 2 is roughly ten lines.
+- `bccm_core`'s only `riverpod_annotation` import
+  (`src/features/providers/connectivity_provider.dart`) is **unused** — that file uses
+  plain `Provider.autoDispose` / `StreamProvider.autoDispose`. Just delete the import.
+
+So: hand-write that notifier, drop `riverpod_generator` and `riverpod_annotation`, and
+drop `riverpod_lint` + `custom_lint` (lint-only, and the reason `analyzer_plugin` is
+overridden). **riverpod 2→3 then stops being a prerequisite for anything** and becomes
+independently schedulable. Re-add `riverpod_lint` 3.x after that migration, when it no
+longer conflicts.
 
 ### High
 
@@ -271,16 +326,23 @@ Ordering reflects the corrections below, not the original guess.
    carefully. Also merges the iOS/macOS impls into `flutter_secure_storage_darwin`.
    Unblocks: the `js` override, and device_info_plus 13 / package_info_plus 10 /
    share_plus 13.
-6. **`auto_route` 9→11** — `AutoRouteGuard.redirect` → `redirectUntil` (now returns
-   `void`); `pushNamed`/`replaceNamed`/`navigateNamed`/`popForced` deleted in favour of
-   `pushPath`/`replacePath`/`navigatePath`/`pop`; **deep links now navigate instead of
-   push by default**, which is the sneaky one given `/r/`, `/tvlogin` and the legacy
-   routes go through `helpers/router/special_routes.dart`. Core barely uses auto_route
-   (5 refs); the apps do — 39 `@RoutePage` + 62 imports in the main app, 16 + 28 in kids.
+6. **`auto_route` 9→11 — not optional, and not separable from item 4.**
+   `auto_route_generator` 10.6.0 is the only release reaching analyzer 13, and it pulls
+   `auto_route ^11.1.0`, so this lands _with_ the codegen cutover rather than after it.
+   Changes: `AutoRouteGuard.redirect` → `redirectUntil` (now returns `void`) — **we have
+   zero guards**, they live in `bcc-media-play` and `bcc-connect-live`, so that part is
+   theirs; `pushNamed`/`replaceNamed`/`navigateNamed`/`popForced` deleted in favour of
+   `pushPath`/`replacePath`/`navigatePath`/`pop` (6 call sites here: 4 main app, 2 kids);
+   and **deep links now navigate instead of push by default**, which is the sneaky one
+   given `/r/`, `/tvlogin` and the legacy routes go through
+   `helpers/router/special_routes.dart`. Core barely uses auto_route (5 files); the apps
+   do — 39 `@RoutePage` + 62 imports in the main app, 16 + 28 in kids.
 
-### Blocked on other repos
+### Independently schedulable
 
-7. **riverpod 2→3** — the big one; the codegen cluster partly waits on it.
+7. **riverpod 2→3** — the big one, but **no longer on the critical path.** Once
+   `riverpod_generator` is dropped (see above), nothing in the codegen cluster needs
+   riverpod 3, so this can be scheduled on its own merits.
    - `StateProvider` / `StateNotifierProvider` move to `legacy.dart` imports. Real
      declaration counts are small — see the sizing table below; graph-wide it is 8 + 8.
      (Do **not** count these with a bare `grep StateProvider`: `authStateProvider` is a
@@ -291,9 +353,10 @@ Ordering reflects the corrections below, not the original guess.
    - **Behavioural** changes: notifiers recreate on every provider rebuild,
      `StreamProvider` pauses when unlistened, providers auto-retry on failure. Core has
      7 `StreamProvider`s whose timing will change.
-   - `riverpod_lint` 3.1.8 pins `riverpod` 3.4.2 exactly and **drops `custom_lint`** for
-     the native `analysis_server_plugin`. So `custom_lint: any` comes out of dev deps and
-     `analysis_options.yaml` needs new plugin wiring.
+   - `riverpod_lint` 3.1.9 pins `riverpod` 3.4.3 exactly and **drops `custom_lint`** for
+     the native `analysis_server_plugin`. Since we drop both lints ahead of the cutover,
+     this becomes a re-adoption step here: `analysis_options.yaml` needs new plugin wiring
+     when `riverpod_lint` 3 comes back.
    - **Prerequisite: `bccm_player` goes first.** 50 `StateNotifier` refs, 4 imports of the
      legacy `state_notifier` / `flutter_state_notifier` packages, and `riverpod ^2.6.1` /
      `freezed ^2.3.2` as _runtime_ deps. Its SDK floors are current (`>=3.12.0` /
@@ -326,8 +389,9 @@ Ordering reflects the corrections below, not the original guess.
 ## Migration order for the codegen cluster
 
 Dictated by the runtime pins, not preference. `bccm_player` and `bccm_core` pin
-`freezed_annotation`, `riverpod` and `auto_route` as **runtime** deps, and pub resolves
-one version of each across the whole graph — so no app can move until both have.
+`freezed_annotation` and `auto_route` as **runtime** deps, and pub resolves one version of
+each across the whole graph — so no app can move until both have. (`riverpod` is also a
+runtime pin, but it no longer moves with this cluster.)
 
 ```
 bccm_player  →  bccm_core  →  brunstadtv_app + kids  →  bcc-media-play  →  bcc-connect-live
@@ -338,8 +402,18 @@ package against a real app before publishing it. `bcc-media-play/flutter/pubspec
 already has the pattern commented out in its `dependency_overrides` block.
 
 Start with `bccm_player`. It has 284 Dart tests and a GitHub Actions workflow enforcing
-them — by a wide margin the strongest safety net in the graph, and the riverpod surface
-that all four apps consume.
+them — by a wide margin the strongest safety net in the graph. Its freezed surface is
+also already converted (2 classes, both `abstract class`), so for prep PR A it is a no-op
+and `bccm_core` is the real work.
+
+Suggested order overall:
+
+1. Put the local SDK back on `FLUTTER_VERSION` (3.44.0) — codegen works again, today.
+2. Prep PR A (freezed syntax, 49 classes) and prep PR B (drop riverpod codegen). Both
+   land on current versions, no regeneration, `bccm_player` → `bccm_core` → apps.
+3. The cutover: bump the cluster, take `auto_route` 11, regenerate everything, verify per
+   "Verifying a batch". This is also the PR that lets the SDK move to 3.47+.
+4. `riverpod` 2→3 whenever it suits, independently.
 
 ### Sizing (re-measured 2026-09-08, generated files excluded)
 
@@ -429,11 +503,17 @@ graph entirely — "whose version ceiling was blocking other tooling" — which 
 the ceiling the `analyzer_plugin: 0.13.4` override exists to work around. That override
 should come out with this batch.
 
-**Not yet verified — check before planning:**
+**Resolved 2026-09-08 — `freezed` 2.5.8 _does_ generate for the v3-style declaration.**
 
-- Whether `freezed` 2.5.x can still _generate_ for the v3-style
-  `abstract class X with _$X` declaration. `bccm_player` is already written that way on
-  `freezed ^2.3.2` and compiles, so the syntax is at least tolerated. If generation also
-  works, `bccm_core`'s 41 class conversions can land ahead of the cutover as an
-  independent low-risk PR, which is most of the freezed work de-risked. Cannot be tested
-  until codegen runs again.
+Tested directly: a clean pure-Dart package (no Flutter, so the SDK-resolution bug cannot
+interfere) on `freezed: 2.5.8` with `abstract class Thing with _$Thing` generates correct
+output, byte-comparable in structure to the non-abstract form.
+
+Note that `bccm_player` was _not_ evidence for this, despite being written that way — its
+committed `.freezed.dart` files were last generated in Oct 2024, and the `abstract class`
+change landed May 2025 (`fd6b62c`). They compile because the generated mixin does not care
+about the declaration keyword; nobody had regenerated since.
+
+Consequence: the 49-class conversion (41 in `bccm_core`) is an **independent, low-risk PR
+that can land now**, on the current `freezed 2.5.8`, with no regeneration required — which
+de-risks most of the freezed work ahead of the cutover.
