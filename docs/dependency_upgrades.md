@@ -5,20 +5,88 @@ dependency graph) up to date. Written mid-effort — the "Remaining work" sectio
 the roadmap, and the "Constraint facts" section is the evidence behind the ordering.
 Update it as batches land.
 
-Last updated: 2026-08-21.
+Last updated: 2026-09-08.
+
+## Codegen is blocked outright (2026-09-08)
+
+`build_runner` no longer runs in **any** of our Flutter repos on Flutter 3.47.2:
+
+```
+Exception: Missing implementation of visitDotShorthandPropertyAccess
+W SDK language version 3.13.0 is newer than `analyzer` language version 3.9.0
+```
+
+`flutter/lib/src/animation/animation_controller.dart:451` now reads
+`_AnimationDirection _direction = .forward;`. That is Dart dot-shorthand, and the
+`analyzer` 7.6.0 our generators resolve cannot represent it, so summary linking throws.
+Every Flutter app resolves that file — reproduced identically in `bcc-media-play` and
+`bcc-connect-live`, with a clean tree, on a cold build.
+
+**`flutter analyze` still works**, which is why this is easy to misread as repo-specific.
+It uses the analyzer bundled with the Dart SDK; `build_runner` uses `package:analyzer`
+from pub. Same project, two different analyzers, only one of them broken.
+
+This moves the "Codegen cluster" (Remaining work, item 4) from Medium to **blocking**:
+no generated file in any of the six packages can be regenerated until it lands. Generated
+files are committed everywhere and nothing is gitignored, so existing code still builds —
+but any change requiring regeneration is stuck.
+
+## Toolchain compatibility matrix
+
+Every row must hold at once; the resolved `analyzer` is the intersection.
+
+| Package                 | Target       | analyzer constraint              | Forces at runtime                                      |
+| ----------------------- | ------------ | -------------------------------- | ------------------------------------------------------ |
+| `build_runner`          | `^2.16.0`    | `>=13.3.0 <15.0.0`               | `build ^4.0.9`                                         |
+| `auto_route_generator`  | `10.6.0`     | `>=10.0.0 <14.0.0` ← **ceiling** | `auto_route ^11.1.0`                                   |
+| `freezed`               | `4.0.1`      | `>=13.0.0 <15.0.0`               | `freezed_annotation 3.1.0` (exact)                     |
+| `riverpod_generator`    | `4.0.9`      | `>=13.0.0 <15.0.0`               | `riverpod_annotation 4.0.7` → `riverpod 3.4.3` (exact) |
+| `riverpod_lint`         | `3.1.9`      | `>=13.0.0 <15.0.0`               | `riverpod 3.4.3`, `analysis_server_plugin ^0.3.0`      |
+| `source_gen`            | `^4.2.4`     | `>=8.1.1 <15.0.0`                | —                                                      |
+| **resolved `analyzer`** | **`13.3.x`** | intersection                     | —                                                      |
+
+Two things this makes visible that were not obvious from the changelogs:
+
+- **`build_runner` >= 2.15.2 is what forces `analyzer >=13.3.0`** — that is the release
+  that understands the current SDK. Below it, no override helps.
+- **`auto_route_generator` sets the ceiling at `<14`**, so the usable window is one minor
+  wide. It also pulls `auto_route` **11**, not 10.
+
+**Overriding `analyzer` alone does not work** (solver- and compiler-verified). With
+`analyzer: ^9.0.0` forced, `build`, `build_resolvers` and `dart_style` all fail to compile
+against removed APIs — `ErrorType`, `errorCode`, `definingCompilationUnit`. Bumping
+`build_runner` alone fails earlier, at resolution: `auto_route_generator 9.3.1` pins
+`build ^2.4.2` while `build_runner >=2.15.3` needs `build ^4.0.9`. The cluster moves
+together or not at all.
+
+Blockers to delete during the cutover:
+
+- this repo: `analyzer_plugin: 0.13.4` in `dependency_overrides`
+- `kids`: direct `analyzer: ^7.3.0`
+- both: `custom_lint: any` and `riverpod_lint: any` — `riverpod_lint` 3 drops
+  `custom_lint` for `analysis_server_plugin`, so `analysis_options.yaml` needs new wiring
+- `bcc-media-play` and `bcc-connect-live` have no lint stack at all, so they are simpler
 
 ## Why this is more involved than it looks
 
-`bccm_core` is not upgraded in isolation. Four packages resolve as one graph, and
+`bccm_core` is not upgraded in isolation. Six packages resolve as one graph, and
 pub allows exactly one version of each package across all of them — so anything
-that leaks into the public surface (riverpod, freezed) has to move everywhere at once.
+that leaks into the public surface (riverpod, freezed, auto_route) has to move
+everywhere at once.
 
-| Package                           | How it consumes `bccm_core`                  | Notes                                                            |
-| --------------------------------- | -------------------------------------------- | ---------------------------------------------------------------- |
-| `brunstadtv_app` (this repo)      | `path: submodules/bccm_flutter/bccm_core`    |                                                                  |
-| `kids`                            | `path: ../submodules/bccm_flutter/bccm_core` |                                                                  |
-| `bmm_flutter_app` (separate repo) | **`git: ref: main`**                         | Unpinned — every push to `bccm-flutter` main hits it immediately |
-| `bccm_player`                     | Not a consumer, but shares the graph         | Pins `riverpod` and `freezed` as _runtime_ deps                  |
+| Package                            | `bccm_core`                                  | `bccm_player`                     | Notes                                                          |
+| ---------------------------------- | -------------------------------------------- | --------------------------------- | -------------------------------------------------------------- |
+| `brunstadtv_app` (this repo)       | `path: submodules/bccm_flutter/bccm_core`    | `path: submodules/bccm_player`    |                                                                |
+| `kids`                             | `path: ../submodules/bccm_flutter/bccm_core` | `path: ../submodules/bccm_player` |                                                                |
+| `bcc-media-play` (separate repo)   | **`git: ref: main`**                         | **`git: ref: main`**              | Unpinned on **both**                                           |
+| `bcc-connect-live` (separate repo) | **`git: ref: main`**                         | **`git: ref: main`**              | Unpinned on **both**                                           |
+| `bmm_flutter_app` (separate repo)  | **`git: ref: main`**                         | —                                 | Unpinned                                                       |
+| `bccm_player`                      | Not a consumer, but shares the graph         | —                                 | Pins `riverpod`, `freezed`, `state_notifier` as _runtime_ deps |
+
+**Three separate repos track `main` unpinned on the shared packages**, not one. The
+moment this migration lands on `bccm-player` or `bccm-flutter` main, `bcc-media-play`,
+`bcc-connect-live` and `bmm_flutter_app` all break on their next `pub get` — without any
+change of their own. Pin them, or migrate them in the same wave.
 
 Two structural problems worth fixing independently of any version bump:
 
@@ -162,9 +230,11 @@ Ordering reflects the corrections below, not the original guess.
 3. **`flutter_local_notifications` 17→22** — v20 converted `initialize`, `show`,
    `zonedSchedule`, `cancel` from positional to named params. Two files in core. Needs
    Java 11+ (already have it).
-4. **Codegen cluster, all at once** — `build_runner` → 2.16, `build` → 4.x,
-   `analyzer` 7 → 14, `graphql_codegen` 1 → 3, `json_serializable` → 6.14,
-   `json_annotation` → 4.12, `mockito` → 5.8, `freezed` 2 → 3. `build_resolvers`,
+4. **Codegen cluster, all at once — now BLOCKING, see "Codegen is blocked" above.**
+   `build_runner` → 2.16, `build` → 4.x, `analyzer` 7 → **13.3.x** (not 14 — see the
+   matrix, `auto_route_generator` caps it at `<14`), `graphql_codegen` 1 → 3,
+   `json_serializable` → 6.14, `json_annotation` → 4.12, `mockito` → 5.8,
+   `freezed` 2 → **4** (not 3). `build_resolvers`,
    `build_runner_core` and `flutter_secure_storage_macos` are all **discontinued**.
    Regenerates all 56 `.graphql.dart` files. Currently pinned by
    `analyzer_plugin: 0.13.4` in the main app's `dependency_overrides`, which exists
@@ -229,6 +299,67 @@ Ordering reflects the corrections below, not the original guess.
 - `kids/android/app/build.gradle` sets `targetSdkVersion` twice (36, then
   `flutter.targetSdkVersion`).
 
+## Migration order for the codegen cluster
+
+Dictated by the runtime pins, not preference. `bccm_player` and `bccm_core` pin
+`freezed_annotation`, `riverpod` and `auto_route` as **runtime** deps, and pub resolves
+one version of each across the whole graph — so no app can move until both have.
+
+```
+bccm_player  →  bccm_core  →  brunstadtv_app + kids  →  bcc-media-play  →  bcc-connect-live
+                                                     ( bmm_flutter_app — pin it first )
+```
+
+Break the chicken-and-egg with `dependency_overrides` + local paths: validate a migrated
+package against a real app before publishing it. `bcc-media-play/flutter/pubspec.yaml`
+already has the pattern commented out in its `dependency_overrides` block.
+
+Start with `bccm_player`. It has 284 Dart tests and a GitHub Actions workflow enforcing
+them — by a wide margin the strongest safety net in the graph, and the riverpod surface
+that all four apps consume.
+
+### Sizing (measured 2026-09-08, generated files excluded)
+
+| Repo               | `@freezed` v2-style | `StateNotifierProvider` | `StateProvider` | `.valueOrNull` | `.autoDispose` | `@RoutePage` |
+| ------------------ | ------------------- | ----------------------- | --------------- | -------------- | -------------- | ------------ |
+| `bccm_player`      | 0 (2 already v3)    | 5                       | 0               | 0              | 0              | 0            |
+| `bccm_core`        | **38**              | 1                       | 4               | 4              | 2              | 0            |
+| `brunstadtv_app`   | 5                   | 2                       | 2               | 21             | 2              | 39           |
+| `kids`             | 0                   | 0                       | 0               | 0              | 0              | 16           |
+| `bcc-media-play`   | 2                   | 1                       | 0               | 2              | 0              | 20           |
+| `bcc-connect-live` | 1                   | 1                       | 1               | 24             | 13             | 25           |
+
+Zero occurrences anywhere of `Ref` subclasses (`FutureProviderRef` etc.) or
+`ProviderObserver` — both riverpod 3 breaking changes are no-ops for us.
+
+### What each piece actually involves
+
+**riverpod 2→3 is smaller than its reputation.** `StateNotifierProvider` and
+`StateProvider` are _moved to `legacy.dart`_, not removed — an import change, ~14 sites.
+`.valueOrNull` → `.value` is mechanical, ~51 sites. The real risk is behavioural and
+invisible to the compiler: all providers now filter updates with `==` instead of
+identity, notifiers are recreated on every provider rebuild, and `StreamProvider` pauses
+when unlistened. `bccm_core`'s 7 `StreamProvider`s change timing.
+
+**freezed 2→4** is `class X with _$X` → `abstract class X with _$X`, 48 classes, 38 of
+them in `bccm_core`. See the note in "Constraint facts" about landing these early.
+
+**auto_route 9→11** has a narrow surface here: 2 `AutoRouteGuard`s, zero uses of
+`redirect(`, 7 `*Named(` calls. The sneaky one is deep links defaulting to navigate
+instead of push — relevant to `helpers/router/special_routes.dart`.
+
+### One more gotcha, specific to this batch
+
+Generated files are committed in every repo and nothing is gitignored. That is what made
+recovery trivial when `--delete-conflicting-outputs` wiped them during investigation —
+but it also means `build_runner` **prompts on stdin** on every cold build:
+
+> Found N declared outputs which already exist on disk. Delete these files?
+
+In a non-interactive shell that prompt blocks **forever**, with no output and flat CPU —
+it looks exactly like a slow build. Always pass `--delete-conflicting-outputs`, and run
+from a real terminal or with `< /dev/null` (which fails loudly instead of hanging).
+
 ## Constraint facts
 
 Anything marked **solver-verified** came from an actual `pub get` failure, so it's
@@ -255,9 +386,25 @@ originally-published changelog summaries were wrong or misleading more than once
   migrating `bccm_player` off `package:js`. It \_was* safely removable from `bccm_core`
   itself, since `dependency_overrides` only apply to the root package.
 
+**Resolved 2026-09-08 — freezed and the riverpod 3 lint stack _can_ coexist.**
+
+The concern below was real for freezed **3**, and disappears at freezed **4**:
+
+- `freezed 3.2.5` → `analyzer >=9.0.0 <11.0.0` (the conflict as originally described)
+- `freezed 4.0.1` → `analyzer >=13.0.0 <15.0.0`
+- `riverpod_lint 3.1.9` → `analyzer >=13.0.0 <15.0.0`
+
+So target **freezed 4**, not 3, and the back half of this roadmap keeps its ordering.
+Related: `riverpod` 3.4.3's changelog notes it dropped `analyzer` from its own dependency
+graph entirely — "whose version ceiling was blocking other tooling" — which is precisely
+the ceiling the `analyzer_plugin: 0.13.4` override exists to work around. That override
+should come out with this batch.
+
 **Not yet verified — check before planning:**
 
-- pub.dev lists `freezed` 3.2.5 as requiring `analyzer >=9.0.0 <11.0.0`, while
-  `riverpod_lint` 3.1.8 requires `analyzer ^13`. If accurate, **freezed 3 and the
-  riverpod 3 lint stack cannot coexist**, which would reorder the back half of this
-  roadmap. Worth a throwaway resolution attempt to confirm.
+- Whether `freezed` 2.5.x can still _generate_ for the v3-style
+  `abstract class X with _$X` declaration. `bccm_player` is already written that way on
+  `freezed ^2.3.2` and compiles, so the syntax is at least tolerated. If generation also
+  works, `bccm_core`'s 38 class conversions can land ahead of the cutover as an
+  independent low-risk PR, which is most of the freezed work de-risked. Cannot be tested
+  until codegen runs again.
