@@ -289,6 +289,71 @@ share_plus needed a real code migration off the deprecated `Share` API (6 sites)
 `lib/helpers/share_extension/` conditional export. `Share` still exists in 12 but is gone
 in 13, so 13 is now a pure version bump for us.
 
+### Prep PR A — freezed abstract-class syntax (landed 2026-09-08)
+
+All **49** `@freezed` classes converted from `class X with _$X` to
+`abstract class X with _$X`, across all four repos. Zero v2-style declarations remain
+anywhere.
+
+| Repo               | Classes | PR   |
+| ------------------ | ------- | ---- |
+| `bccm_core`        | 41      | #14  |
+| `brunstadtv_app`   | 5       | #644 |
+| `bcc-media-play`   | 2       | #26  |
+| `bcc-connect-live` | 1       | #179 |
+| `bccm_player`      | 0       | already converted |
+| `kids`             | 0       | none present |
+
+No regeneration was required — the generated mixin does not depend on the declaration
+keyword, so the committed `.freezed.dart` files stayed valid. Verified: `bccm_core`
+analyze clean + 68/68 tests; main app 132 issues (unchanged baseline, 0 errors) + 113/113;
+`bcc-media-play` 103/103; `bcc-connect-live` 99/99.
+
+None of the 49 were unions (each has one public factory plus `fromJson` where serialized),
+so `abstract` was correct throughout and nothing needed `sealed`. Nothing hand-extends or
+implements these types.
+
+Worth knowing *why* this is safe, since it looks like a visibility change: freezed 2's
+generated mixin gives every field a **concrete** getter body of
+`throw _privateConstructorUsedError`, which is why the class compiled as non-abstract.
+`abstract` only forbids calling a *generative* constructor, and construction goes through
+`const factory X(...) = _X`, which is legal on an abstract class. It removes the ability
+to hold a bare instance whose every getter throws — a compile error instead of a runtime
+one. That is exactly why freezed 3 made the keyword mandatory.
+
+### The iOS Podfile deployment-target hack (removed 2026-09-08)
+
+Simulator builds started failing on Flutter 3.47 with ~50 Swift errors of the form
+`'AnyCancellable' is only available in iOS 13.0 or newer`, all in `bccm_player`.
+
+Cause was a stale `post_install` hook in `ios/Podfile` and `kids/ios/Podfile`:
+
+```ruby
+if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 12.0
+  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+end
+```
+
+Flutter's `podhelper.rb` **deletes** `IPHONEOS_DEPLOYMENT_TARGET` from pod targets so they
+inherit the higher value from Runner (`platform :ios, '15.0'`). The hook then read the
+absent key as `nil`, and `nil.to_f` is `0.0` — which is `< 12.0` — so it wrote `12.0` back
+onto every pod Flutter had just cleared. 153 pod targets sat at 12.0 against 36 at 15.0;
+`bccm_player` compiled at iOS 12 despite its podspec asking for 13.0.
+
+**This is the second instance of the same pattern as the analyzer break: a workaround that
+was harmless on 3.44 and actively wrong on 3.47.** The threshold in `podhelper.rb` moved:
+
+| Flutter | `inherit_deployment_target` | Effect on `bccm_player` (podspec 13.0) |
+| ------- | --------------------------- | -------------------------------------- |
+| 3.44.0  | `... < 13`                  | 13 is not < 13 → key kept at 13.0, fine |
+| 3.47.2  | `... < 15`                  | 13 < 15 → key deleted → hook wrote 12.0 |
+
+Fix was to delete the loop from both Podfiles; pods now inherit 15.0. Expect more of these
+during the cutover — grep for old `post_install` workarounds before blaming new code.
+
+The same commit normalised five stale `IPHONEOS_DEPLOYMENT_TARGET = 14.0` entries in
+`ios/Runner.xcodeproj` up to 15.0.
+
 ## Remaining work
 
 Ordering reflects the corrections below, not the original guess.
@@ -297,11 +362,9 @@ Ordering reflects the corrections below, not the original guess.
 
 1. **Firebase as one unit** — `firebase_core` 3→4, `firebase_messaging` 15→16,
    `cloud_firestore` 5→6. Pulls firebase-ios-sdk 12 and Android BoM 34. Our floors
-   (both Podfiles `platform :ios, '15.0'`, minSdk 24) already clear it — but the main
-   app's `ios/Runner.xcodeproj` still carries a stale `IPHONEOS_DEPLOYMENT_TARGET = 14.0`
-   on at least one configuration; normalise it to 15.0 first. Risk is native build, not
-   Dart. Also raise the `ios/Podfile` `post_install` hook, which still only floors pods
-   at 12.0.
+   (both Podfiles `platform :ios, '15.0'`, `Runner.xcodeproj` now uniformly 15.0,
+   minSdk 24) already clear it. Risk is native build, not Dart. The old `post_install`
+   deployment-target hook that would have fought this is already gone — see Done.
 2. **`flutter_appauth` 7→12** — only real API change is 8.0.0 replacing
    `preferEphemeralSession` with an `externalUserAgent` enum. One file
    (`auth_state_notifier_mobile.dart`), but it's the login path — needs device testing on
@@ -325,12 +388,10 @@ Ordering reflects the corrections below, not the original guess.
    does force **freezed 4** and **auto_route 11**, because those generators are the only
    ones that reach analyzer 13.
 
-   Two prep PRs can land ahead of it, needing no version bump and no regeneration:
-   - **A — freezed syntax, 49 classes.** `class X with _$X` → `abstract class X with _$X`.
-     Verified that freezed 2.5.8 generates for the new form (see Constraint facts), so
-     existing generated files stay valid and this is an analyze-and-test PR.
-   - **B — drop riverpod codegen**, which also removes the `analyzer_plugin` override and
-     kids' direct `analyzer`.
+   Two prep PRs land ahead of it, needing no version bump and no regeneration:
+   - **A — freezed syntax, 49 classes. ✅ DONE** (2026-09-08, see Done above).
+   - **B — drop riverpod codegen.** Not started. Also removes the `analyzer_plugin`
+     override and kids' direct `analyzer`.
 
    That leaves the cutover itself as version bumps + the auto_route 11 API changes +
    regenerate.
@@ -347,11 +408,35 @@ Ordering reflects the corrections below, not the original guess.
   (`src/features/providers/connectivity_provider.dart`) is **unused** — that file uses
   plain `Provider.autoDispose` / `StreamProvider.autoDispose`. Just delete the import.
 
-So: hand-write that notifier, drop `riverpod_generator` and `riverpod_annotation`, and
-drop `riverpod_lint` + `custom_lint` (lint-only, and the reason `analyzer_plugin` is
-overridden). **riverpod 2→3 then stops being a prerequisite for anything** and becomes
-independently schedulable. Re-add `riverpod_lint` 3.x after that migration, when it no
-longer conflicts.
+The generated provider is a plain `AutoDisposeNotifierProvider`, which riverpod 2 already
+has, so the hand-written replacement is a near-copy and every call site
+(`ref.read(wakeLockCountProvider.notifier)`, `ref.listen(...)`) is untouched:
+
+```dart
+final wakeLockCountProvider =
+    NotifierProvider.autoDispose<WakeLockCount, int>(WakeLockCount.new);
+
+class WakeLockCount extends AutoDisposeNotifier<int> {
+  @override
+  int build() => 0;
+  void increment() => state++;
+  void decrement() => state--;
+}
+```
+
+So: hand-write that notifier, delete `short_scroll_view.g.dart` and its `part` directive,
+drop `riverpod_generator` and `riverpod_annotation`, and drop `riverpod_lint` +
+`custom_lint`. **riverpod 2→3 then stops being a prerequisite for anything** and becomes
+independently schedulable.
+
+**Dropping the two lint packages costs nothing, because they never ran.** `custom_lint` is
+a plugin host: it only loads if `analysis_options.yaml` registers it under
+`analyzer: plugins:`. **No `analysis_options.yaml` in any of the four repos has a
+`plugins:` entry**, so `riverpod_lint` 2.6.4 has never produced a single diagnostic here.
+`custom_lint: any` + `riverpod_lint: any` + the `analyzer_plugin: 0.13.4` override are
+dead weight whose only live effect is pinning `analyzer` to 7.x. If riverpod lints are
+actually wanted, that is a separate, deliberate piece of work — add `riverpod_lint` 3.x
+*and* the `plugins:` wiring after the riverpod 3 migration.
 
 ### High
 
@@ -440,16 +525,15 @@ package against a real app before publishing it. `bcc-media-play/flutter/pubspec
 already has the pattern commented out in its `dependency_overrides` block.
 
 Start with `bccm_player`. It has 284 Dart tests and a GitHub Actions workflow enforcing
-them — by a wide margin the strongest safety net in the graph. Its freezed surface is
-also already converted (2 classes, both `abstract class`), so for prep PR A it is a no-op
-and `bccm_core` is the real work.
+them — by a wide margin the strongest safety net in the graph, so it is the right place to
+shake out each step before the other repos see it.
 
 Suggested order overall:
 
-1. Prep PR A (freezed syntax, 49 classes) and prep PR B (drop riverpod codegen). Both
-   land on current versions with **no regeneration**, so they are verifiable today on
-   3.47 with `flutter analyze` + `flutter test` despite codegen being down. Order:
-   `bccm_player` → `bccm_core` → apps.
+1. Prep PR A (freezed syntax, 49 classes) — **✅ done 2026-09-08** — and prep PR B (drop
+   riverpod codegen), **not started**. Both land on current versions with **no
+   regeneration**, so they are verifiable today on 3.47 with `flutter analyze` +
+   `flutter test` despite codegen being down. Order: `bccm_player` → `bccm_core` → apps.
 2. The cutover: bump the cluster, take `auto_route` 11, raise the SDK floors and CI pins
    to 3.47, regenerate everything, verify per "Verifying a batch". One PR, must land
    green — see the checklist under the matrix.
@@ -466,12 +550,15 @@ direction; the floors and CI stay pointed at 3.47.
 
 | Repo               | `@freezed` v2-style | `StateNotifierProvider` | `StateProvider` | `.valueOrNull` | `.autoDispose` | `@RoutePage` |
 | ------------------ | ------------------- | ----------------------- | --------------- | -------------- | -------------- | ------------ |
-| `bccm_player`      | 0 (2 already v3)    | 5                       | 0               | 0              | 0              | 0            |
-| `bccm_core`        | **41**              | 1                       | 4               | 4              | 2              | 0            |
-| `brunstadtv_app`   | 5                   | 2                       | 3               | 21             | 2              | 39           |
+| `bccm_player`      | 0 (was 0)           | 5                       | 0               | 0              | 0              | 0            |
+| `bccm_core`        | 0 (was 41)          | 1                       | 4               | 4              | 2              | 0            |
+| `brunstadtv_app`   | 0 (was 5)           | 2                       | 3               | 21             | 2              | 39           |
 | `kids`             | 0                   | 0                       | 0               | 0              | 0              | 16           |
-| `bcc-media-play`   | 2                   | 1                       | 0               | 2              | 0              | 20           |
-| `bcc-connect-live` | 1                   | 1                       | 1               | 24             | 13             | 25           |
+| `bcc-media-play`   | 0 (was 2)           | 1                       | 0               | 2              | 0              | 20           |
+| `bcc-connect-live` | 0 (was 1)           | 1                       | 1               | 24             | 13             | 25           |
+
+The `@freezed` column is zero because prep PR A landed; the "was" figures are what it
+converted. Every other column is still outstanding.
 
 Zero occurrences anywhere of `Ref` subclasses (`FutureProviderRef` etc.) or
 `ProviderObserver` — both riverpod 3 breaking changes are no-ops for us.
@@ -489,8 +576,8 @@ when unlistened. `bccm_core`'s 7 `StreamProvider`s change timing.
 touch us:
 
 - Classes must be `abstract`, `sealed`, or manually implement `_$X` (freezed 3.0.0) —
-  `class X with _$X` → `abstract class X with _$X`, 49 classes, 41 in `bccm_core`. This is
-  prep PR A; see "Constraint facts" for why it can land early.
+  `class X with _$X` → `abstract class X with _$X`, 49 classes, 41 in `bccm_core`.
+  **Already done** — prep PR A landed 2026-09-08, so the cutover carries none of this.
 - `final` inside constructor parameters is gone (freezed 4.0.0, because Dart 3.13 removed
   the syntax), which also stops `@unfreezed` defining immutable fields. **We have zero
   `@unfreezed` and zero instances**, so this is a no-op.
@@ -568,6 +655,6 @@ committed `.freezed.dart` files were last generated in Oct 2024, and the `abstra
 change landed May 2025 (`fd6b62c`). They compile because the generated mixin does not care
 about the declaration keyword; nobody had regenerated since.
 
-Consequence: the 49-class conversion (41 in `bccm_core`) is an **independent, low-risk PR
-that can land now**, on the current `freezed 2.5.8`, with no regeneration required — which
-de-risks most of the freezed work ahead of the cutover.
+Consequence: the 49-class conversion (41 in `bccm_core`) was an **independent, low-risk PR
+landed on the current `freezed 2.5.8`** with no regeneration required — which took most of
+the freezed work out of the cutover. ✅ Done 2026-09-08.
