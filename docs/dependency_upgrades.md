@@ -31,6 +31,17 @@ no generated file in any of the six packages can be regenerated until it lands. 
 files are committed everywhere and nothing is gitignored, so existing code still builds —
 but any change requiring regeneration is stuck.
 
+Re-confirmed by running it in `bccm_core`, same two messages verbatim. Two details worth
+knowing before you try it yourself:
+
+- **`graphql_codegen` is not the problem** — it processes all 56 inputs fine. The throw
+  comes from the resolver-backed builders (freezed / json_serializable / riverpod) that
+  need `package:analyzer` to model the SDK.
+- **The run still deletes first.** `--delete-conflicting-outputs` removed all 97 outputs,
+  then aborted without writing any back, and the process hung rather than exiting. Expect
+  a wiped tree and recover with `git checkout -- .` (which is instant, because they are
+  committed).
+
 ## Toolchain compatibility matrix
 
 Every row must hold at once; the resolved `analyzer` is the intersection.
@@ -140,10 +151,10 @@ cd kids && flutter build ios --simulator --debug
   believing `FLUTTER_VERSION`. `install-flutter.sh` now asserts the built tool's version
   against `FLUTTER_VERSION`, reinstalls once, and fails loudly rather than continuing on
   the wrong SDK — but a stale key still has to be dropped with `cache delete` once.
-- **`flutter analyze` counts are dominated by pre-existing noise.** 82 of the main app's
-  ~87 warnings are `unused_import`s in generated OpenAPI client code — none of them from
-  this effort. Exclude generated code before reading a warning count as a regression
-  signal.
+- **`flutter analyze` counts are dominated by pre-existing noise.** Of 132 issues, 87 are
+  warnings and 82 of those come from generated OpenAPI client code (75 `unused_import`,
+  7 `unused_element_parameter`) — none from this effort. Only 50 issues are outside it.
+  Exclude generated code before reading a count as a regression signal.
 
 ## Done
 
@@ -177,8 +188,11 @@ Two things surfaced here:
 
 ### Gate B — SDK floors
 
-`sdk: ">=3.12.0 <4.0.0"`, `flutter: ">=3.44.0"` in all three app/lib pubspecs, matching
-the `FLUTTER_VERSION` pinned in `.semaphore/semaphore.yml`.
+`sdk: ">=3.12.0 <4.0.0"`, `flutter: ">=3.44.0"` in all four app/lib pubspecs (root,
+`kids`, `bccm_core`, `bccm_player`), matching the `FLUTTER_VERSION` pinned in
+`.semaphore/semaphore.yml`. `bcc-media-play` and `bcc-connect-live` are on the same
+floors. `bccm_player/example` (`sdk: ">=3.0.0"`) and `bmm_api/src` (`sdk: ">=2.15.0"`)
+still lag; neither ships.
 
 These floors were initially set to `>=3.11.0` / `>=3.41.6`, derived from share_plus 13 /
 package_info_plus 10 / device_info_plus 13. That was **wrong**: `app_links` 7.2.1 requires
@@ -202,7 +216,8 @@ removed unused `clock` · removed the main app's unused direct `js` dep.
   `example/`.
 - flutter_lints 6 added 32 infos in the main app, all from just two rules:
   `strict_top_level_inference` (19) and `use_null_aware_elements` (13). No warnings, no
-  errors, no deprecations from any upgraded package.
+  errors, no deprecations from any upgraded package. (Now 20 + 14 as code has been added
+  since — the rules, not the bump, are the source.)
 
 ### Low batch (partial — see re-ranking below)
 
@@ -223,8 +238,11 @@ Ordering reflects the corrections below, not the original guess.
 
 1. **Firebase as one unit** — `firebase_core` 3→4, `firebase_messaging` 15→16,
    `cloud_firestore` 5→6. Pulls firebase-ios-sdk 12 and Android BoM 34. Our floors
-   (iOS 15, minSdk 24) already clear it. Risk is native build, not Dart. Also bump the
-   `ios/Podfile` `post_install` hook that still forces pods below 12.0 up to 12.0.
+   (both Podfiles `platform :ios, '15.0'`, minSdk 24) already clear it — but the main
+   app's `ios/Runner.xcodeproj` still carries a stale `IPHONEOS_DEPLOYMENT_TARGET = 14.0`
+   on at least one configuration; normalise it to 15.0 first. Risk is native build, not
+   Dart. Also raise the `ios/Podfile` `post_install` hook, which still only floors pods
+   at 12.0.
 2. **`flutter_appauth` 7→12** — only real API change is 8.0.0 replacing
    `preferEphemeralSession` with an `externalUserAgent` enum. One file
    (`auth_state_notifier_mobile.dart`), but it's the login path — needs device testing on
@@ -263,10 +281,12 @@ Ordering reflects the corrections below, not the original guess.
 ### Blocked on other repos
 
 7. **riverpod 2→3** — the big one; the codegen cluster partly waits on it.
-   - `StateProvider` / `StateNotifierProvider` move to `legacy.dart` imports. Counts:
-     core 10 + 12, main app **52** `StateProvider` + 7 `StateNotifier`, kids 10. The
-     `legacy.dart` import is a valid cheap first pass.
-   - All `Ref` subclasses removed (we're nearly clean: 0 in core, 2 in the main app).
+   - `StateProvider` / `StateNotifierProvider` move to `legacy.dart` imports. Real
+     declaration counts are small — see the sizing table below; graph-wide it is 8 + 8.
+     (Do **not** count these with a bare `grep StateProvider`: `authStateProvider` is a
+     substring match and inflates the main app from 3 to ~52.) The `legacy.dart` import
+     is a valid cheap first pass.
+   - All `Ref` subclasses removed — we have zero, so this is a no-op.
    - `Provider.autoDispose()` → `Provider(isAutoDispose: true)`.
    - **Behavioural** changes: notifiers recreate on every provider rebuild,
      `StreamProvider` pauses when unlistened, providers auto-retry on failure. Core has
@@ -275,9 +295,9 @@ Ordering reflects the corrections below, not the original guess.
      the native `analysis_server_plugin`. So `custom_lint: any` comes out of dev deps and
      `analysis_options.yaml` needs new plugin wiring.
    - **Prerequisite: `bccm_player` goes first.** 50 `StateNotifier` refs, 4 imports of the
-     legacy `state_notifier` / `flutter_state_notifier` packages, `riverpod` and `freezed`
-     as runtime deps, `sdk: ">=3.0.0"`, `flutter: ">=2.5.0"`, `flutter_lints ^4`,
-     `pigeon ^22`. Oldest thing in the graph.
+     legacy `state_notifier` / `flutter_state_notifier` packages, and `riverpod ^2.6.1` /
+     `freezed ^2.3.2` as _runtime_ deps. Its SDK floors are current (`>=3.12.0` /
+     `>=3.44.0`); what is still old is the dev stack — `flutter_lints ^4`, `pigeon ^22`.
 
 ### Also outstanding, lower priority
 
@@ -297,7 +317,9 @@ Ordering reflects the corrections below, not the original guess.
 - `bccm_player` uses `package:js` with `@JS()` annotations for its web interop; should
   move to `dart:js_interop` / `package:web`. `lib/helpers/share_extension/share_extension_web.dart`
   still uses `dart:html`.
-- `gql_dedupe_link` is stuck on `2.0.4-alpha`.
+- `gql_dedupe_link` resolves to `2.0.4-alpha`, pulled in transitively by `graphql` 5.2.4.
+  Upstream is on `4.0.0` stable, so this is our constraint, not an abandoned package —
+  re-check when `graphql` moves.
 - `kids/android/app/build.gradle` sets `targetSdkVersion` twice (36, then
   `flutter.targetSdkVersion`).
 
@@ -319,13 +341,16 @@ Start with `bccm_player`. It has 284 Dart tests and a GitHub Actions workflow en
 them — by a wide margin the strongest safety net in the graph, and the riverpod surface
 that all four apps consume.
 
-### Sizing (measured 2026-09-08, generated files excluded)
+### Sizing (re-measured 2026-09-08, generated files excluded)
+
+`@freezed` / `StateProvider` / `StateNotifierProvider` are **declaration** counts;
+`.valueOrNull`, `.autoDispose` and `@RoutePage` are occurrences.
 
 | Repo               | `@freezed` v2-style | `StateNotifierProvider` | `StateProvider` | `.valueOrNull` | `.autoDispose` | `@RoutePage` |
 | ------------------ | ------------------- | ----------------------- | --------------- | -------------- | -------------- | ------------ |
 | `bccm_player`      | 0 (2 already v3)    | 5                       | 0               | 0              | 0              | 0            |
-| `bccm_core`        | **38**              | 1                       | 4               | 4              | 2              | 0            |
-| `brunstadtv_app`   | 5                   | 2                       | 2               | 21             | 2              | 39           |
+| `bccm_core`        | **41**              | 1                       | 4               | 4              | 2              | 0            |
+| `brunstadtv_app`   | 5                   | 2                       | 3               | 21             | 2              | 39           |
 | `kids`             | 0                   | 0                       | 0               | 0              | 0              | 16           |
 | `bcc-media-play`   | 2                   | 1                       | 0               | 2              | 0              | 20           |
 | `bcc-connect-live` | 1                   | 1                       | 1               | 24             | 13             | 25           |
@@ -336,18 +361,21 @@ Zero occurrences anywhere of `Ref` subclasses (`FutureProviderRef` etc.) or
 ### What each piece actually involves
 
 **riverpod 2→3 is smaller than its reputation.** `StateNotifierProvider` and
-`StateProvider` are _moved to `legacy.dart`_, not removed — an import change, ~14 sites.
+`StateProvider` are _moved to `legacy.dart`_, not removed — an import change, 16 declarations.
 `.valueOrNull` → `.value` is mechanical, ~51 sites. The real risk is behavioural and
 invisible to the compiler: all providers now filter updates with `==` instead of
 identity, notifiers are recreated on every provider rebuild, and `StreamProvider` pauses
 when unlistened. `bccm_core`'s 7 `StreamProvider`s change timing.
 
-**freezed 2→4** is `class X with _$X` → `abstract class X with _$X`, 48 classes, 38 of
+**freezed 2→4** is `class X with _$X` → `abstract class X with _$X`, 49 classes, 41 of
 them in `bccm_core`. See the note in "Constraint facts" about landing these early.
 
-**auto_route 9→11** has a narrow surface here: 2 `AutoRouteGuard`s, zero uses of
-`redirect(`, 7 `*Named(` calls. The sneaky one is deep links defaulting to navigate
-instead of push — relevant to `helpers/router/special_routes.dart`.
+**auto_route 9→11** has a narrow surface, and it is narrowest here: **zero**
+`AutoRouteGuard`s and zero uses of `redirect(` in this repo, `kids` or `bccm_core` — both
+guards live in `bcc-media-play` and `bcc-connect-live`, so `redirectUntil` is their
+migration, not ours. `*Named(` is 7 graph-wide (4 main app, 2 kids, 1 `bcc-media-play`).
+The sneaky one for us is deep links defaulting to navigate instead of push — relevant to
+`helpers/router/special_routes.dart`.
 
 ### One more gotcha, specific to this batch
 
@@ -406,6 +434,6 @@ should come out with this batch.
 - Whether `freezed` 2.5.x can still _generate_ for the v3-style
   `abstract class X with _$X` declaration. `bccm_player` is already written that way on
   `freezed ^2.3.2` and compiles, so the syntax is at least tolerated. If generation also
-  works, `bccm_core`'s 38 class conversions can land ahead of the cutover as an
+  works, `bccm_core`'s 41 class conversions can land ahead of the cutover as an
   independent low-risk PR, which is most of the freezed work de-risked. Cannot be tested
   until codegen runs again.
