@@ -15,7 +15,7 @@ import '../models/offline/download_quality.dart';
 part 'settings.freezed.dart';
 
 @freezed
-class Settings with _$Settings implements CommonSettings {
+abstract class Settings with _$Settings implements CommonSettings {
   const factory Settings({
     required Locale appLanguage,
     @Default([]) List<String> audioLanguages,
