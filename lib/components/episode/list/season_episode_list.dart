@@ -64,7 +64,7 @@ class SeasonEpisodeList extends StatelessWidget {
 }
 
 @freezed
-class SeasonEpisodeListEpisodeData with _$SeasonEpisodeListEpisodeData {
+abstract class SeasonEpisodeListEpisodeData with _$SeasonEpisodeListEpisodeData {
   const factory SeasonEpisodeListEpisodeData({
     required Fragment$SeasonListEpisode episode,
     int? seasonNumber,
