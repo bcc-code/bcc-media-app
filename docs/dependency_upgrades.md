@@ -80,20 +80,22 @@ everywhere at once.
 | `kids`                             | `path: ../submodules/bccm_flutter/bccm_core` | `path: ../submodules/bccm_player` |                                                                |
 | `bcc-media-play` (separate repo)   | **`git: ref: main`**                         | **`git: ref: main`**              | Unpinned on **both**                                           |
 | `bcc-connect-live` (separate repo) | **`git: ref: main`**                         | **`git: ref: main`**              | Unpinned on **both**                                           |
-| `bmm_flutter_app` (separate repo)  | **`git: ref: main`**                         | —                                 | Unpinned                                                       |
 | `bccm_player`                      | Not a consumer, but shares the graph         | —                                 | Pins `riverpod`, `freezed`, `state_notifier` as _runtime_ deps |
 
-**Three separate repos track `main` unpinned on the shared packages**, not one. The
-moment this migration lands on `bccm-player` or `bccm-flutter` main, `bcc-media-play`,
-`bcc-connect-live` and `bmm_flutter_app` all break on their next `pub get` — without any
-change of their own. Pin them, or migrate them in the same wave.
+**Two separate repos track `main` unpinned on the shared packages.** The moment this
+migration lands on `bccm-player` or `bccm-flutter` main, `bcc-media-play` and
+`bcc-connect-live` both break on their next `pub get` — without any change of their own.
+Pin them, or migrate them in the same wave.
 
 Two structural problems worth fixing independently of any version bump:
 
-- **`bmm_flutter_app` tracks `main` with no pin.** `bccm_core` has a version and a
+- **Consumers track `main` with no pin.** `bccm_core` has a version and a
   `CHANGELOG.md` that aren't really used. Tag releases and let consumers opt in.
-- **No CI for `bccm_core`.** The `bccm-flutter` repo has no workflows at all, and this
-  repo only has docs + Phrase. Nothing verifies core before it reaches three apps.
+- **CI covers each package alone, never the graph.** `bccm-flutter` and `bccm_player`
+  each run `flutter analyze` + `flutter test` on PRs and pushes to `main`, and this
+  repo's Semaphore `Test` block runs `flutter test` whenever `/submodules/` changes — but
+  that block only runs _this_ app's `test/`. Nothing resolves core against all four
+  consuming apps, which is exactly what a shared-graph bump breaks.
 
 ## Verifying a batch
 
@@ -138,9 +140,10 @@ cd kids && flutter build ios --simulator --debug
   believing `FLUTTER_VERSION`. `install-flutter.sh` now asserts the built tool's version
   against `FLUTTER_VERSION`, reinstalls once, and fails loudly rather than continuing on
   the wrong SDK — but a stale key still has to be dropped with `cache delete` once.
-- **`flutter analyze` counts include `bmm_api`.** 82 of the main app's ~87 warnings are
-  pre-existing `unused_import`s in generated OpenAPI client code under
-  `submodules/bccm_flutter/bmm_api`. They drown out real findings; worth excluding.
+- **`flutter analyze` counts are dominated by pre-existing noise.** 82 of the main app's
+  ~87 warnings are `unused_import`s in generated OpenAPI client code — none of them from
+  this effort. Exclude generated code before reading a warning count as a regression
+  signal.
 
 ## Done
 
@@ -175,8 +178,7 @@ Two things surfaced here:
 ### Gate B — SDK floors
 
 `sdk: ">=3.12.0 <4.0.0"`, `flutter: ">=3.44.0"` in all three app/lib pubspecs, matching
-the `FLUTTER_VERSION` pinned in `.semaphore/semaphore.yml`. **`bmm_flutter_app` still
-declares `sdk: ^3.8.0` and will fail to resolve** until it matches.
+the `FLUTTER_VERSION` pinned in `.semaphore/semaphore.yml`.
 
 These floors were initially set to `>=3.11.0` / `>=3.41.6`, derived from share_plus 13 /
 package_info_plus 10 / device_info_plus 13. That was **wrong**: `app_links` 7.2.1 requires
@@ -307,7 +309,6 @@ one version of each across the whole graph — so no app can move until both hav
 
 ```
 bccm_player  →  bccm_core  →  brunstadtv_app + kids  →  bcc-media-play  →  bcc-connect-live
-                                                     ( bmm_flutter_app — pin it first )
 ```
 
 Break the chicken-and-egg with `dependency_overrides` + local paths: validate a migrated
