@@ -6,8 +6,8 @@ part of 'feature_flags.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FeatureFlagsImpl _$$FeatureFlagsImplFromJson(Map<String, dynamic> json) =>
-    _$FeatureFlagsImpl(
+_FeatureFlags _$FeatureFlagsFromJson(Map<String, dynamic> json) =>
+    _FeatureFlags(
       variants:
           (json['variants'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -29,7 +29,7 @@ _$FeatureFlagsImpl _$$FeatureFlagsImplFromJson(Map<String, dynamic> json) =>
       kidsDonationLink: json['kidsDonationLink'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$FeatureFlagsImplToJson(_$FeatureFlagsImpl instance) =>
+Map<String, dynamic> _$FeatureFlagsToJson(_FeatureFlags instance) =>
     <String, dynamic>{
       'variants': instance.variants,
       'publicSignup': instance.publicSignup,
