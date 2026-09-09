@@ -5,73 +5,40 @@ dependency graph) up to date. Written mid-effort — the "Remaining work" sectio
 the roadmap, and the "Constraint facts" section is the evidence behind the ordering.
 Update it as batches land.
 
-Last updated: 2026-09-08.
+Last updated: 2026-09-09.
 
-## Codegen is blocked, and the way out is Flutter 3.47 (2026-09-08)
+## Status (2026-09-09)
 
-`build_runner` fails on Flutter **3.47.2**:
+**Codegen works again. The cluster landed and the SDK is on Flutter 3.47.2.**
+
+`bccm_player` 2.0.0, `bccm_core` 2.0.0 and `brunstadtv_app`/`kids` are all merged on
+`main`/`master`, resolving at `analyzer 13.3.0`, with `build_runner` running normally.
+
+**Two consumers are on a timer.** `bcc-media-play` and `bcc-connect-live` still track
+`git: ref: main` and are only resolving because their committed lockfiles pin the
+*pre-cutover* commit. CI stays green until someone runs `pub upgrade`, adds a dependency,
+or resolves without the lock — then:
 
 ```
-Exception: Missing implementation of visitDotShorthandPropertyAccess
-W SDK language version 3.13.0 is newer than `analyzer` language version 3.9.0
+Because play depends on bccm_core from git which depends on freezed_annotation ^3.1.0,
+freezed_annotation ^3.1.0 is required.
+So, because play depends on freezed_annotation ^2.4.4, version solving failed.
 ```
 
-The `analyzer` our generators resolve (7.7.1) tops out at language **3.9.0**. Dot
-shorthand is Dart 3.13 syntax, so when the resolver walks Flutter's own framework source
-it hits a node it cannot represent and summary linking throws. Every Flutter app resolves
-that file, which is why it reproduced identically in `bcc-media-play` and
-`bcc-connect-live` — one cause, not three bugs.
+Migrate them soon; the failure will otherwise surface later, to whoever next touches those
+repos, disconnected from the change that caused it.
 
-|                                                        | Dart   | dot-shorthands in framework | codegen |
-| ------------------------------------------------------ | ------ | --------------------------- | ------- |
-| Flutter **3.44.0** — current `FLUTTER_VERSION` and floor | 3.12.0 | **0**                       | works   |
-| Flutter **3.47.2** — where we are going                 | 3.13.2 | 2                           | throws  |
-
-At tag `3.44.0`, `packages/flutter/lib/src/animation/animation_controller.dart` reads
-`_AnimationDirection _direction;`. On 3.47.2 the same field is
-`_AnimationDirection _direction = .forward;`.
-
-### Decision: target 3.47, do not go back to 3.44
-
-Pinning the local SDK back to 3.44.0 does restore codegen, and it is the correct
-emergency lever if someone is stuck. It is **not** the plan, because it is a dead end:
-
-> **`freezed` 4.0.x is the only freezed that reaches `analyzer` 13, and it requires
-> `sdk: >=3.13.0`. Flutter 3.44 ships Dart 3.12.0.**
-
-There is no freezed with analyzer 13 *and* Dart 3.12, so the codegen cluster can never
-land on 3.44. Moving to 3.47 and doing the cluster are the same project.
-
-Two consequences to plan around:
-
-- **No stopgap.** Codegen stays broken until the cluster lands, so any change needing
-  regeneration is blocked meanwhile. This is a deadline, not extra scope.
-- **No staging.** The cluster bump and the SDK floor bump are one atomic PR. On the 3.44
-  path they could have been landed piecemeal with codegen working throughout; not here.
-
-### The app itself is already 3.47-ready
-
-Measured on 3.47.2, current tree: `flutter analyze` reports **0 errors** and
-`flutter test` is **113/113 green**. The only deprecations are four infos —
-`offset`→`cursor` (`kids/lib/screens/home.dart`, `lib/components/pages/page_renderer.dart`),
-one `withOpacity`, and the known `dart:html`. So the framework side of the SDK bump is
-close to free; the work is the toolchain, not the app.
-
-### Also true regardless of SDK
-
-- **`flutter analyze` keeps working**, which is why this is easy to misread as
-  repo-specific. It uses the analyzer bundled with the Dart SDK; `build_runner` uses
-  `package:analyzer` from pub. Same project, two analyzers, only one of them broken.
-- **`graphql_codegen` is not the failing builder** — it processes all 56 inputs fine. The
-  throw comes from the resolver-backed builders (freezed / json_serializable / riverpod)
-  that need `package:analyzer` to model the SDK.
-- **A failing run still deletes first.** `--delete-conflicting-outputs` removed all 97
-  outputs in `bccm_core`, wrote none back, then hung rather than exiting. Expect a wiped
-  tree and recover with `git checkout -- .` (instant, because they are committed).
+Still outstanding after that: Firebase, `flutter_appauth`, `flutter_local_notifications`,
+`flutter_secure_storage` (the two-release one), and riverpod 2→3.
 
 ## Toolchain compatibility matrix
 
-Every row must hold at once; the resolved `analyzer` is the intersection.
+**Landed 2026-09-09** — kept because it is the map for migrating the two remaining
+consumers, and the constraints still bind. Every row must hold at once; the resolved
+`analyzer` is the intersection.
+
+One row the original matrix missed: **`pigeon`** (dev dep of `bccm_player`) also caps
+`analyzer`, at `<8` up to 22.x. The floor for analyzer 13 is **27.3.1**.
 
 | Package                 | Target       | analyzer constraint              | Dart floor      | Forces at runtime                                      |
 | ----------------------- | ------------ | -------------------------------- | --------------- | ------------------------------------------------------ |
@@ -175,7 +142,7 @@ make pubgetall     # NOT per-package `flutter pub get` — see gotcha below
 flutter analyze && flutter test                     # main app
 cd kids && flutter analyze                          # kids (no test dir)
 cd submodules/bccm_flutter/bccm_core && flutter analyze && flutter test
-dart run build_runner build --delete-conflicting-outputs   # core AND main app
+dart run build_runner build   # core AND main app
 git status --short   # generated files should show NO diff unless intended
 flutter build apk --flavor prod --debug -t lib/main_prod.dart
 cd kids && flutter build apk --debug
@@ -252,8 +219,9 @@ Two things surfaced here:
 floors. `bccm_player/example` (`sdk: ">=3.0.0"`) and `bmm_api/src` (`sdk: ">=2.15.0"`)
 still lag; neither ships.
 
-**These move again in the codegen cutover** — to `sdk: ">=3.13.0"` / `flutter: ">=3.47.0"`,
-because `freezed` 4 requires Dart 3.13. Checklist under the toolchain matrix.
+**These moved again in the cutover** (2026-09-09) to `sdk: ">=3.13.0"` /
+`flutter: ">=3.47.0"`, because `freezed` 4 requires Dart 3.13, along with
+`FLUTTER_VERSION` and both GitHub workflows to 3.47.2.
 
 These floors were initially set to `>=3.11.0` / `>=3.41.6`, derived from share_plus 13 /
 package_info_plus 10 / device_info_plus 13. That was **wrong**: `app_links` 7.2.1 requires
@@ -405,6 +373,52 @@ replacement is `analysis_server_plugin`, which is exactly what `riverpod_lint` 3
 to. So it is a deliberate piece of work after riverpod 3: `riverpod_lint` 3.x on the new
 plugin system, not the old wiring.
 
+### Codegen cluster + Flutter 3.47 — the cutover (landed 2026-09-09)
+
+The atomic PR. `bccm_player` 2.0.0 (#87), `bccm_core` 2.0.0 (#16), `brunstadtv_app`+`kids`
+(#646). Resolves at **`analyzer 13.3.0`** exactly as predicted, with `source_gen`
+backtracking to 4.2.4 rather than taking 4.3.0.
+
+Landed: `build_runner` 2.16.1 · `build` 4.0.11 · `freezed` 4.0.1 ·
+`freezed_annotation` 3.1.0 · `mockito` 5.8.1 · `graphql_codegen` 3.0.2 ·
+`json_serializable` 6.14.1 · `json_annotation` 4.12.0 · `auto_route` 11.1.0 ·
+`auto_route_generator` 10.6.0 · `pigeon` 28.0.0 · SDK floors to 3.13.0/3.47.0 ·
+`FLUTTER_VERSION` and both GitHub workflows to 3.47.2. `freezed` also moved out of
+`bccm_player`'s **runtime** deps into dev deps, where a generator belongs.
+
+Verified: `bccm_player` clean + 284/284 · `bccm_core` clean + 68/68 · main app 132 issues
+(unchanged baseline, 0 errors) + 113/113 · kids 10 issues (baseline) · Android and iOS
+simulator builds for both apps. Manually smoke-tested on Android and iOS.
+
+**Three things the plan did not predict:**
+
+- **`pigeon` blocked resolution.** `bccm_player` pinned `pigeon ^22.3.0`, which caps
+  `analyzer <8`. The floor for analyzer 13 is **27.3.1**; went to `^28.0.0`. Pigeon is a
+  standalone CLI (`make pigeons`), not a `build_runner` builder, so nothing regenerated —
+  but **its committed output is now six majors behind the generator**, and the next
+  `make pigeons` will produce a large Dart/Kotlin/Swift diff. Do that on its own.
+- **freezed 4 broke a mockito fake.** Freezed 2 put `DiagnosticableTreeMixin` only on the
+  concrete impl; freezed 4 hoists it onto the generated *mixin*, so a freezed type's
+  interface now requires `toString({DiagnosticLevel minLevel})` — which mockito's
+  `SmartFake` cannot satisfy:
+  `'SmartFake.toString' isn't a valid concrete implementation of '_$PlayerState.toString'`.
+  There is **no opt-out**: freezed enables this whenever `DiagnosticableTreeMixin` is
+  importable in that library (`freezed/lib/src/models.dart:1571`), with no build.yaml or
+  annotation toggle, and mockito's `unsupportedMembers` does not help (it only covers
+  unknown return types like type variables). Here the fix was trivial —
+  `MockSpec<PlayerStateNotifier>` was generated but referenced nowhere, so the spec was
+  deleted. **Anywhere a freezed type is genuinely mocked, this needs a hand-written fake.**
+- **`auto_route` 11 deprecated more than the docs suggested.** Beyond the 6 predicted
+  `pushNamed` → `pushPath` renames (identical signatures), there were 66 uses of
+  `durationInMilliseconds`/`reverseDurationInMilliseconds` → `duration:`/`reverseDuration:
+  const Duration(...)` across both `router.dart` files, plus one `pathParams` → `params`.
+
+**Deep links turned out to be a non-event.** The doc had flagged auto_route 11's
+navigate-instead-of-push default as the sneaky risk. In practice `navigateNamedFromRoot`
+is *our own* extension in `bccm_core/lib/src/utils/router_utils.dart`, already calling
+`root.matcher.match(...)` + `navigateAll(...)` — i.e. already navigate semantics. It
+needed no change.
+
 ### The iOS Podfile deployment-target hack (removed 2026-09-08)
 
 Simulator builds started failing on Flutter 3.47 with ~50 Swift errors of the form
@@ -456,29 +470,26 @@ Ordering reflects the corrections below, not the original guess.
 3. **`flutter_local_notifications` 17→22** — v20 converted `initialize`, `show`,
    `zonedSchedule`, `cancel` from positional to named params. Two files in core. Needs
    Java 11+ (already have it).
-4. **Codegen cluster + Flutter 3.47, one atomic PR — BLOCKING.** Nothing regenerates
-   until this lands, and it cannot be split: `freezed` 4 needs Dart 3.13. See the top
-   section for the decision and the matrix for why.
-   `build_runner` → 2.16, `build` → 4.x, `analyzer` 7 → **13.3.x** (not 14 — see the
-   matrix, `auto_route_generator` caps it at `<14`), `graphql_codegen` 1 → 3,
-   `json_serializable` → 6.14, `json_annotation` → 4.12, `mockito` → 5.8,
-   `freezed` 2 → **4** (not 3), `source_gen` held at 4.2.4. `build_resolvers`,
-   `build_runner_core` and `flutter_secure_storage_macos` are all **discontinued**.
-   Regenerates all 56 `.graphql.dart` files. Currently pinned by
-   `analyzer_plugin: 0.13.4` in the main app's `dependency_overrides`, which exists
-   because `custom_lint` 0.7.3 / `riverpod_lint` 2.6.4 cap analyzer at 7.x.
+4. **Migrate `bcc-media-play` and `bcc-connect-live` — do this first.** ✅ The cutover
+   itself is done (see Done); these two are the leftover. They track `git: ref: main` and
+   are only resolving because their committed lockfiles pin the pre-cutover commit, so
+   they are broken-but-quiet — see Status at the top for the exact solver error.
 
-   **It does not drag riverpod 3 with it** — see "Dropping riverpod codegen" below. It
-   does force **freezed 4** and **auto_route 11**, because those generators are the only
-   ones that reach analyzer 13.
+   Per repo: same version bumps as the cutover, SDK floors to 3.13.0/3.47.0, and the
+   `auto_route` 11 renames. Measured surface:
 
-   Two prep PRs land ahead of it, needing no version bump and no regeneration:
-   - **A — freezed syntax, 49 classes. ✅ DONE** (2026-09-08, see Done above).
-   - **B — drop riverpod codegen. ✅ DONE** (2026-09-08). Also removed the
-     `analyzer_plugin` override and kids' direct `analyzer`.
+   | | `bcc-media-play` | `bcc-connect-live` |
+   | ------------------- | ---------------- | ------------------ |
+   | `pushNamed` sites   | 1                | 0                  |
+   | `@RoutePage`        | 20               | 25                 |
+   | `AutoRouteGuard`    | 1                | 1                  |
+   | freezed classes     | 2 (already abstract) | 1 (already abstract) |
 
-   That leaves the cutover itself as version bumps + the auto_route 11 API changes +
-   regenerate.
+   **`AutoRouteGuard.redirect` → `redirectUntil` is theirs, not ours** — both guards live
+   in these two repos. Neither has a lint stack, so they are otherwise simpler.
+
+   While here: consider pinning them to a tag instead of `ref: main`, so the next
+   graph-wide bump does not silently arm the same trap.
 
 ### High
 
@@ -491,17 +502,10 @@ Ordering reflects the corrections below, not the original guess.
    carefully. Also merges the iOS/macOS impls into `flutter_secure_storage_darwin`.
    Unblocks: the `js` override, and device_info_plus 13 / package_info_plus 10 /
    share_plus 13.
-6. **`auto_route` 9→11 — not optional, and not separable from item 4.**
-   `auto_route_generator` 10.6.0 is the only release reaching analyzer 13, and it pulls
-   `auto_route ^11.1.0`, so this lands _with_ the codegen cutover rather than after it.
-   Changes: `AutoRouteGuard.redirect` → `redirectUntil` (now returns `void`) — **we have
-   zero guards**, they live in `bcc-media-play` and `bcc-connect-live`, so that part is
-   theirs; `pushNamed`/`replaceNamed`/`navigateNamed`/`popForced` deleted in favour of
-   `pushPath`/`replacePath`/`navigatePath`/`pop` (6 call sites here: 4 main app, 2 kids);
-   and **deep links now navigate instead of push by default**, which is the sneaky one
-   given `/r/`, `/tvlogin` and the legacy routes go through
-   `helpers/router/special_routes.dart`. Core barely uses auto_route (5 files); the apps
-   do — 39 `@RoutePage` + 62 imports in the main app, 16 + 28 in kids.
+6. **`auto_route` 9→11 — ✅ done for this repo** (landed with the cutover; see Done).
+   Still to do in `bcc-media-play` and `bcc-connect-live` — item 4. The part that is
+   genuinely theirs is `AutoRouteGuard.redirect` → `redirectUntil` (now returns `void`),
+   since both guards live there.
 
 ### Independently schedulable
 
@@ -646,9 +650,9 @@ Suggested order overall:
    so they were verifiable on 3.47 with `flutter analyze` + `flutter test` despite codegen
    being down.
 2. The cutover: bump the cluster, take `auto_route` 11, raise the SDK floors and CI pins
-   to 3.47, regenerate everything, verify per "Verifying a batch". One PR, must land
-   green — see the checklist under the matrix.
-3. `riverpod` 2→3 whenever it suits, independently.
+   to 3.47, regenerate everything. **✅ done 2026-09-09.**
+3. `bcc-media-play`, then `bcc-connect-live` — **next**, see Remaining work item 4.
+4. `riverpod` 2→3 whenever it suits, independently.
 
 Anyone who gets genuinely stuck before step 2 lands can pin their local SDK to 3.44.0 as
 an emergency lever — codegen works there. It is a personal unblock, not a project
@@ -708,17 +712,21 @@ migration, not ours. `*Named(` is 7 graph-wide (4 main app, 2 kids, 1 `bcc-media
 The sneaky one for us is deep links defaulting to navigate instead of push — relevant to
 `helpers/router/special_routes.dart`.
 
-### One more gotcha, specific to this batch
+### `--delete-conflicting-outputs` is gone (build_runner 2.16)
 
-Generated files are committed in every repo and nothing is gitignored. That is what made
-recovery trivial when `--delete-conflicting-outputs` wiped them during investigation —
-but it also means `build_runner` **prompts on stdin** on every cold build:
+**Obsolete as of the cutover.** `build_runner` 2.16 removed the flag — it warns
+`These options have been removed and were ignored` — and no longer prompts on stdin.
+Just run `dart run build_runner build`.
+
+Kept for history, because it cost real time on the old toolchain: generated files are
+committed in every repo and nothing is gitignored, so on build_runner 2.5 a cold build
+would **prompt on stdin** —
 
 > Found N declared outputs which already exist on disk. Delete these files?
 
-In a non-interactive shell that prompt blocks **forever**, with no output and flat CPU —
-it looks exactly like a slow build. Always pass `--delete-conflicting-outputs`, and run
-from a real terminal or with `< /dev/null` (which fails loudly instead of hanging).
+— and in a non-interactive shell that prompt blocked forever with flat CPU, looking
+exactly like a slow build. The committed-generated-files part still matters: it is why
+`git checkout -- .` instantly recovers a build that deleted its outputs and then died.
 
 ## Constraint facts
 
