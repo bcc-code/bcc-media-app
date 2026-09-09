@@ -100,7 +100,7 @@ class SignupScreen extends HookConsumerWidget {
           final user = ref.read(authStateProvider).user;
           if (user != null) {
             context.router.popUntil((route) => false);
-            context.router.pushNamed('/');
+            context.router.pushPath('/');
           }
         }
       }

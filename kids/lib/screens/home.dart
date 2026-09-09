@@ -158,7 +158,7 @@ class HomeScreen extends HookConsumerWidget {
                               design.buttons
                                   .responsive(
                                     onPressed: () {
-                                      context.router.pushNamed('/settings');
+                                      context.router.pushPath('/settings');
                                     },
                                     labelText: '',
                                     image: SvgPicture.string(SvgIcons.profile),
@@ -189,7 +189,7 @@ class HomeScreen extends HookConsumerWidget {
                               design.buttons
                                   .responsive(
                                     onPressed: () {
-                                      context.router.pushNamed('/search');
+                                      context.router.pushPath('/search');
                                     },
                                     labelText: '',
                                     image: SvgPicture.string(SvgIcons.search),

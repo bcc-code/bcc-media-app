@@ -158,7 +158,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     }
 
     if (currentRouteMatch.name == EpisodeScreenRoute.name) {
-      final currentEpisodePageArgsId = currentRouteMatch.pathParams.optString('episodeId');
+      final currentEpisodePageArgsId = currentRouteMatch.params.optString('episodeId');
       final autoplayQueryParam = currentRouteMatch.queryParams.get('autoplay', false);
       final currentEpisodePageArgsAutoplay =
           (autoplayQueryParam == true) || (autoplayQueryParam is String && autoplayQueryParam.toLowerCase() == 'true');

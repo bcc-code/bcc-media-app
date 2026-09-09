@@ -8,8 +8,8 @@ publish_to: "none" # prevent pub.dev
 version: 5.1.45+2500055
 
 environment:
-  sdk: ">=3.12.0 <4.0.0"
-  flutter: ">=3.44.0"
+  sdk: ">=3.13.0 <4.0.0"
+  flutter: ">=3.47.0"
 
 dependencies:
   flutter:
@@ -21,7 +21,7 @@ dependencies:
   provider: ^6.1.5
   http: ^1.4.0
   flutter_svg: ^2.1.0
-  auto_route: ^9.3.0
+  auto_route: ^11.1.0
   bccm_player:
     path: ../submodules/bccm_player
   riverpod: ^2.6.1
@@ -77,10 +77,10 @@ dependency_overrides:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.4.15
+  build_runner: ^2.16.0
   flutter_lints: ^6.0.0
-  auto_route_generator: ^9.0.0
-  freezed: ^2.5.7
+  auto_route_generator: ^10.6.0
+  freezed: ^4.0.1
   flutter_launcher_icons: ^0.14.3
   flutter_native_splash: ^2.4.6
   sentry_dart_plugin: ^3.1.1
