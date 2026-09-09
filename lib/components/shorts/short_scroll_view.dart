@@ -15,11 +15,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:preload_page_view/preload_page_view.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:universal_io/io.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
-part 'short_scroll_view.g.dart';
 
 class ShortScrollView extends HookConsumerWidget {
   const ShortScrollView({
@@ -340,8 +338,9 @@ class ShortScrollView extends HookConsumerWidget {
   }
 }
 
-@riverpod
-class WakeLockCount extends _$WakeLockCount {
+final wakeLockCountProvider = NotifierProvider.autoDispose<WakeLockCount, int>(WakeLockCount.new, name: 'wakeLockCountProvider');
+
+class WakeLockCount extends AutoDisposeNotifier<int> {
   @override
   int build() => 0;
 

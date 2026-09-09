@@ -57,7 +57,6 @@ dependencies:
   open_mail_app_plus: ^0.0.2
   unleash_proxy_client_flutter: ^1.9.6
   html: ^0.15.4
-  riverpod_annotation: ^2.5.3
   responsive_framework: ^1.5.1
   intl: ^0.20.2
   # See kids/pubspec.yaml for why this is pinned below 1.1.0.
@@ -90,7 +89,6 @@ dependency_overrides:
   # js ^0.6.3, while bccm_player's web interop wants ^0.7.1. Removable once
   # flutter_secure_storage moves to 10/11, or bccm_player migrates to dart:js_interop.
   js: ^0.7.1
-  analyzer_plugin: 0.13.4
 
 dev_dependencies:
   integration_test:
@@ -101,9 +99,6 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   freezed: ^2.5.7
   graphql_codegen: ^1.0.1
-  custom_lint: any
-  riverpod_generator: ^2.4.2
-  riverpod_lint: any
   flutter_launcher_icons: ^0.14.1
   flutter_native_splash: ^2.4.1
   auto_route_generator: ^9.0.0
