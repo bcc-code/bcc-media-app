@@ -110,15 +110,17 @@ against removed APIs — `ErrorType`, `errorCode`, `definingCompilationUnit`. Bu
 `build ^2.4.2` while `build_runner >=2.15.3` needs `build ^4.0.9`. The cluster moves
 together or not at all.
 
-Blockers to delete during the cutover:
+Analyzer pins blocking the cutover — **all already removed by prep PR B**, listed here
+because they are the things that would otherwise pin `analyzer` at 7.x:
 
-- this repo: `analyzer_plugin: 0.13.4` in `dependency_overrides`
-- `kids`: direct `analyzer: ^7.3.0`
-- both: `custom_lint: any` and `riverpod_lint: any` — dropped outright for now (see
-  "Dropping riverpod codegen"). When `riverpod_lint` 3 comes back it drops `custom_lint`
-  for `analysis_server_plugin`, so `analysis_options.yaml` will need new wiring then
-- both: `riverpod_generator` and `riverpod_annotation` — removable, one annotation
-- `bcc-media-play` and `bcc-connect-live` have no lint stack at all, so they are simpler
+- ~~this repo: `analyzer_plugin: 0.13.4` in `dependency_overrides`~~ ✅ removed
+- ~~`kids`: direct `analyzer: ^7.3.0`~~ ✅ removed
+- ~~both: `custom_lint: any` and `riverpod_lint: any`~~ ✅ removed
+- ~~both: `riverpod_generator` and `riverpod_annotation`~~ ✅ removed (also from
+  `bcc-media-play` and `bcc-connect-live`, where they were unused)
+
+**The remaining analyzer cap is `freezed` 2.5.8 (`analyzer <8.0.0`)**, and only the
+cutover itself lifts it. The `js: ^0.7.1` override stays — still load-bearing.
 
 SDK floors and CI pins to move in the same PR (Flutter 3.44.0 → 3.47.x):
 
@@ -321,6 +323,88 @@ generated mixin gives every field a **concrete** getter body of
 to hold a bare instance whose every getter throws — a compile error instead of a runtime
 one. That is exactly why freezed 3 made the keyword mandatory.
 
+### Dropping riverpod codegen — prep PR B (✅ done 2026-09-08)
+
+`riverpod_generator` was the only thing in the cluster dragging in `riverpod` 3.4.3
+(via `riverpod_annotation` 4.0.7, an exact pin). It was used for **one annotation**:
+
+- `lib/components/shorts/short_scroll_view.dart:343` — `@riverpod class WakeLockCount`,
+  a notifier with `int build() => 0` plus `increment()`/`decrement()`. Hand-writing it
+  against riverpod 2 is roughly ten lines.
+- `bccm_core`'s only `riverpod_annotation` import
+  (`src/features/providers/connectivity_provider.dart`) is **unused** — that file uses
+  plain `Provider.autoDispose` / `StreamProvider.autoDispose`. Just delete the import.
+
+The generated provider was a plain `AutoDisposeNotifierProvider`, which riverpod 2 already
+has, so the replacement is a near-copy — type-identical, `name:` preserved for devtools,
+and every call site (`ref.read(wakeLockCountProvider.notifier)`, `ref.listen(...)`)
+untouched:
+
+```dart
+final wakeLockCountProvider =
+    NotifierProvider.autoDispose<WakeLockCount, int>(WakeLockCount.new, name: 'wakeLockCountProvider');
+
+class WakeLockCount extends AutoDisposeNotifier<int> {
+  @override
+  int build() => 0;
+  void increment() => state++;
+  void decrement() => state--;
+}
+```
+
+What landed: that notifier hand-written, `short_scroll_view.g.dart` and its `part`
+directive deleted, `riverpod_generator` + `riverpod_annotation` dropped, `riverpod_lint` +
+`custom_lint` dropped, the `analyzer_plugin: 0.13.4` override removed, and kids' direct
+`analyzer: ^7.3.0` removed. `riverpod_generator` was also dead weight in `bcc-media-play`
+and `bcc-connect-live` (neither had an annotation) and came out of both.
+
+**riverpod 2→3 no longer gates anything** and is independently schedulable.
+
+Two things worth knowing about the result:
+
+- **It does not free the analyzer by itself.** `analyzer` still resolves to 7.6.0/7.7.1,
+  because `freezed` 2.5.8 caps it at `<8.0.0`. Removing the lint stack removed one cap;
+  only the cutover lifts the other. What PR B bought is the decoupling, not the analyzer.
+- **It added 2 sites to the eventual riverpod 3 rename** — see the debt note in item 7.
+  The `@riverpod` form it replaced was already riverpod 3's class-based syntax.
+
+Verified across all five packages, every baseline matched: `bccm_core` no issues + 68/68 ·
+main app 132 issues + 113/113 · kids 10 issues · `bcc-media-play` 13 issues + 103/103 ·
+`bcc-connect-live` 1 issue + 99/99. Resolved with `make pubgetall`.
+
+**Dropping the two lint packages costs nothing.** Two independent reasons, both checked:
+
+1. **They were never switched on.** `custom_lint` is a plugin *host* that only loads when
+   `analysis_options.yaml` registers it under `analyzer: plugins:` (its own README states
+   this). **None of the 8 `analysis_options.yaml` files across the four repos has a
+   `plugins:` entry**, the only `include:` is `flutter_lints/flutter.yaml` (no plugins),
+   and nothing in `Makefile`, Semaphore or any GitHub workflow runs `dart run custom_lint`.
+   Git history agrees: `custom_lint` was never registered — the only `plugins:` entry this
+   repo ever had was `flutter_hooks_lint_plugin` (added 2023-02, removed 2024-04).
+2. **They would not work anyway on Dart 3.13.** Wiring `plugins: - custom_lint` back in and
+   planting deliberate violations (`avoid_public_notifier_properties`, then
+   `prefer_final_provider`) produced **no** riverpod diagnostics, via `flutter analyze` or
+   `dart run custom_lint` directly — even though `riverpod_lint` 2.6.4 is a correctly
+   registered plugin (`custom_lint_builder: ^0.7.0`). It resolves `analyzer` 7.x, held
+   there by the `analyzer_plugin: 0.13.4` override, and 7.x cannot parse Dart 3.13. **The
+   lint stack is dead for the same root cause as codegen**, and it fails silently rather
+   than erroring.
+
+So `custom_lint: any` + `riverpod_lint: any` + the `analyzer_plugin: 0.13.4` override are
+dead weight whose only live effect is pinning `analyzer` to 7.x — the very thing blocking
+the cutover.
+
+Re-adopting riverpod lints later is **not** "put the `plugins:` line back". Wiring it in
+today also emits:
+
+> `warning • Support for legacy plugins is deprecated, and will be removed in an upcoming
+> version of Dart` — `analysis_options_deprecated_plugins`
+
+The legacy analyzer-plugin system that `custom_lint` uses is on its way out; the
+replacement is `analysis_server_plugin`, which is exactly what `riverpod_lint` 3.x moved
+to. So it is a deliberate piece of work after riverpod 3: `riverpod_lint` 3.x on the new
+plugin system, not the old wiring.
+
 ### The iOS Podfile deployment-target hack (removed 2026-09-08)
 
 Simulator builds started failing on Flutter 3.47 with ~50 Swift errors of the form
@@ -390,77 +474,11 @@ Ordering reflects the corrections below, not the original guess.
 
    Two prep PRs land ahead of it, needing no version bump and no regeneration:
    - **A — freezed syntax, 49 classes. ✅ DONE** (2026-09-08, see Done above).
-   - **B — drop riverpod codegen.** Not started. Also removes the `analyzer_plugin`
-     override and kids' direct `analyzer`.
+   - **B — drop riverpod codegen. ✅ DONE** (2026-09-08). Also removed the
+     `analyzer_plugin` override and kids' direct `analyzer`.
 
    That leaves the cutover itself as version bumps + the auto_route 11 API changes +
    regenerate.
-
-### Dropping riverpod codegen (unblocks item 4 from item 7)
-
-`riverpod_generator` is the only thing in the cluster that drags in `riverpod` 3.4.3
-(via `riverpod_annotation` 4.0.7, an exact pin). We use it for **one annotation**:
-
-- `lib/components/shorts/short_scroll_view.dart:343` — `@riverpod class WakeLockCount`,
-  a notifier with `int build() => 0` plus `increment()`/`decrement()`. Hand-writing it
-  against riverpod 2 is roughly ten lines.
-- `bccm_core`'s only `riverpod_annotation` import
-  (`src/features/providers/connectivity_provider.dart`) is **unused** — that file uses
-  plain `Provider.autoDispose` / `StreamProvider.autoDispose`. Just delete the import.
-
-The generated provider is a plain `AutoDisposeNotifierProvider`, which riverpod 2 already
-has, so the hand-written replacement is a near-copy and every call site
-(`ref.read(wakeLockCountProvider.notifier)`, `ref.listen(...)`) is untouched:
-
-```dart
-final wakeLockCountProvider =
-    NotifierProvider.autoDispose<WakeLockCount, int>(WakeLockCount.new);
-
-class WakeLockCount extends AutoDisposeNotifier<int> {
-  @override
-  int build() => 0;
-  void increment() => state++;
-  void decrement() => state--;
-}
-```
-
-So: hand-write that notifier, delete `short_scroll_view.g.dart` and its `part` directive,
-drop `riverpod_generator` and `riverpod_annotation`, and drop `riverpod_lint` +
-`custom_lint`. **riverpod 2→3 then stops being a prerequisite for anything** and becomes
-independently schedulable.
-
-**Dropping the two lint packages costs nothing.** Two independent reasons, both checked:
-
-1. **They were never switched on.** `custom_lint` is a plugin *host* that only loads when
-   `analysis_options.yaml` registers it under `analyzer: plugins:` (its own README states
-   this). **None of the 8 `analysis_options.yaml` files across the four repos has a
-   `plugins:` entry**, the only `include:` is `flutter_lints/flutter.yaml` (no plugins),
-   and nothing in `Makefile`, Semaphore or any GitHub workflow runs `dart run custom_lint`.
-   Git history agrees: `custom_lint` was never registered — the only `plugins:` entry this
-   repo ever had was `flutter_hooks_lint_plugin` (added 2023-02, removed 2024-04).
-2. **They would not work anyway on Dart 3.13.** Wiring `plugins: - custom_lint` back in and
-   planting deliberate violations (`avoid_public_notifier_properties`, then
-   `prefer_final_provider`) produced **no** riverpod diagnostics, via `flutter analyze` or
-   `dart run custom_lint` directly — even though `riverpod_lint` 2.6.4 is a correctly
-   registered plugin (`custom_lint_builder: ^0.7.0`). It resolves `analyzer` 7.x, held
-   there by the `analyzer_plugin: 0.13.4` override, and 7.x cannot parse Dart 3.13. **The
-   lint stack is dead for the same root cause as codegen**, and it fails silently rather
-   than erroring.
-
-So `custom_lint: any` + `riverpod_lint: any` + the `analyzer_plugin: 0.13.4` override are
-dead weight whose only live effect is pinning `analyzer` to 7.x — the very thing blocking
-the cutover.
-
-Re-adopting riverpod lints later is **not** "put the `plugins:` line back". Wiring it in
-today also emits:
-
-> `warning • Support for legacy plugins is deprecated, and will be removed in an upcoming
-> version of Dart` — `analysis_options_deprecated_plugins`
-
-The legacy analyzer-plugin system that `custom_lint` uses is on its way out; the
-replacement is `analysis_server_plugin`, which is exactly what `riverpod_lint` 3.x moved
-to. So it is a deliberate piece of work after riverpod 3: `riverpod_lint` 3.x on the new
-plugin system, not the old wiring.
 
 ### High
 
@@ -487,27 +505,96 @@ plugin system, not the old wiring.
 
 ### Independently schedulable
 
-7. **riverpod 2→3** — the big one, but **no longer on the critical path.** Once
-   `riverpod_generator` is dropped (see above), nothing in the codegen cluster needs
-   riverpod 3, so this can be scheduled on its own merits.
-   - `StateProvider` / `StateNotifierProvider` move to `legacy.dart` imports. Real
-     declaration counts are small — see the sizing table below; graph-wide it is 8 + 8.
-     (Do **not** count these with a bare `grep StateProvider`: `authStateProvider` is a
-     substring match and inflates the main app from 3 to ~52.) The `legacy.dart` import
-     is a valid cheap first pass.
-   - All `Ref` subclasses removed — we have zero, so this is a no-op.
-   - `Provider.autoDispose()` → `Provider(isAutoDispose: true)`.
-   - **Behavioural** changes: notifiers recreate on every provider rebuild,
-     `StreamProvider` pauses when unlistened, providers auto-retry on failure. Core has
-     7 `StreamProvider`s whose timing will change.
-   - `riverpod_lint` 3.1.9 pins `riverpod` 3.4.3 exactly and **drops `custom_lint`** for
-     the native `analysis_server_plugin`. Since we drop both lints ahead of the cutover,
-     this becomes a re-adoption step here: `analysis_options.yaml` needs new plugin wiring
-     when `riverpod_lint` 3 comes back.
-   - **Prerequisite: `bccm_player` goes first.** 50 `StateNotifier` refs, 4 imports of the
-     legacy `state_notifier` / `flutter_state_notifier` packages, and `riverpod ^2.6.1` /
-     `freezed ^2.3.2` as _runtime_ deps. Its SDK floors are current (`>=3.12.0` /
-     `>=3.44.0`); what is still old is the dev stack — `flutter_lints ^4`, `pigeon ^22`.
+7. **riverpod 2→3** — **no longer on the critical path.** Once `riverpod_generator` is
+   dropped (prep PR B), nothing in the codegen cluster needs riverpod 3, so this is
+   scheduled on its own merits.
+
+   Everything below is checked against the official guide,
+   <https://riverpod.dev/docs/3.0_migration>, and against riverpod 3.4.3's source where
+   the guide is silent. Earlier revisions of this section were written from changelogs and
+   were wrong in two places — noted inline.
+
+   **Mechanical (compiler catches these):**
+
+   - `StateProvider` / `StateNotifierProvider` / `ChangeNotifierProvider` move to
+     `legacy.dart` imports — not removed. Declaration counts are small (sizing table
+     below; graph-wide 8 + 8, and zero `ChangeNotifierProvider`). The `legacy.dart` import
+     is a valid cheap first pass. Do **not** count these with a bare `grep StateProvider`:
+     `authStateProvider` is a substring match and inflates the main app from 3 to ~52.
+   - **The `AutoDispose` prefix is gone.** `AutoDisposeNotifier`, `AutoDisposeProvider`
+     etc. are unified into `Notifier`, `Provider`. The guide's advice is a case-sensitive
+     replace of `AutoDispose` → empty string. Confirmed against 3.4.3: the public
+     `AutoDisposeNotifier` class is absent; only an `@internal`
+     `AutoDisposeNotifierProviderBuilder` remains, and `isAutoDispose` is a real
+     constructor parameter. Surface: **21 sites**, and they are lopsided —
+
+     | Repo               | `AutoDisposeXxx` | `.autoDispose` | total |
+     | ------------------ | ---------------- | -------------- | ----- |
+     | `bcc-connect-live` | 2                | 13             | 15    |
+     | `brunstadtv_app`   | 1                | 3              | 4     |
+     | `bccm_core`        | 0                | 2              | 2     |
+     | others             | 0                | 0              | 0     |
+
+   - `Ref` loses its type parameter, and all `Ref` subclasses (`ProviderRef`,
+     `FutureProviderRef`, …) are removed — **we have zero, so this is a no-op**. Beware a
+     false positive: `extension ScheduleProviderRefreshX on Ref` in `bccm_core` and
+     `bcc-connect-live` matches a naive `ProviderRef` grep but is an extension *on* `Ref`.
+   - `ProviderRef.state` → `Notifier.state`, `Ref.listenSelf` → `Notifier.listenSelf`,
+     `FutureProviderRef.future` → `AsyncNotifier.future`. Zero uses of any.
+   - `FamilyNotifier` / `FamilyAsyncNotifier` / `FamilyStreamNotifier` are removed, folded
+     into `Notifier` / `AsyncNotifier` / `StreamNotifier` with the family parameter moving
+     from `build()` to the constructor. Zero uses.
+   - `ProviderObserver` takes a single `ProviderObserverContext` instead of separate
+     container/provider parameters. Zero uses — `bccm_core`'s `analytics_observer.dart` is
+     an auto_route `AutoRouteObserver`, not a riverpod one.
+
+   **Behavioural (compiler catches none of these — this is the real work):**
+
+   - **`UnmountedRefException`.** Using a `Ref` after its provider is disposed now throws;
+     async gaps must be guarded with `ref.mounted`. We currently have **zero** `ref.mounted`
+     guards against **927** `ref.read`/`watch`/`listen`/`invalidate`/`refresh` calls
+     (main app 385, `bcc-connect-live` 249, `bcc-media-play` 162, kids 90, core 41). Not
+     every call sits after an `await`, but this needs a real audit, not a replace.
+     **This is the single largest risk in the riverpod 3 migration and earlier revisions of
+     this doc did not mention it at all.**
+   - **`ProviderException` wrapping.** Provider failures are wrapped, so `catch` sites
+     become `on ProviderException catch (e)` with `e.exception` unwrapped. `AsyncValue`
+     error checking is unchanged.
+   - **Out-of-view providers pause by default**, controlled per-consumer via `TickerMode`.
+     (An earlier revision said "`StreamProvider` pauses when unlistened" — that is wrong;
+     the behaviour is broader and not StreamProvider-specific.) `bccm_core`'s 7
+     `StreamProvider`s are still the things whose timing changes most.
+   - **Providers auto-retry on failure** by default. Opt out globally on
+     `ProviderScope`/`ProviderContainer` with `retry: (retryCount, error) => null`, or
+     per-provider via the `retry` parameter.
+   - **All providers filter updates with `==`** rather than a mix of `==` and `identical`.
+     `StreamProvider` values are now equality-filtered; override `updateShouldNotify`
+     where that matters.
+   - (An earlier revision claimed "notifiers recreate on every provider rebuild". That
+     appears nowhere in the migration guide — treat it as unfounded unless someone
+     reproduces it.)
+
+   **Debt prep PR B deliberately took on.** The hand-written `wakeLockCountProvider` uses
+   `NotifierProvider.autoDispose` + `AutoDisposeNotifier`, so it is 2 of the 21 rename
+   sites above. The generated `@riverpod class WakeLockCount extends _$WakeLockCount` it
+   replaced was *already* riverpod 3's class-based generator syntax and would have needed
+   no change. This was the right trade — it removes riverpod 3 as a forcing constraint on
+   an atomic cutover — but it is a real two-line cost, and unavoidable, since riverpod 2
+   has no spelling matching riverpod 3's naming.
+
+   **Re-adopting the lints is a separate task.** `riverpod_lint` 3.1.9 pins `riverpod`
+   3.4.3 exactly and drops `custom_lint` for the native `analysis_server_plugin`. Since
+   prep PR B removed both lint packages (see "Dropping riverpod codegen" — they never ran,
+   and do not work on Dart 3.13 anyway), bringing lints back means `riverpod_lint` 3.x
+   *plus* new `analysis_options.yaml` wiring on the new plugin system.
+
+   **Prerequisite: `bccm_player` goes first.** 50 `StateNotifier` refs, 4 imports of the
+   legacy `state_notifier` / `flutter_state_notifier` packages, and `riverpod ^2.6.1` /
+   `freezed ^2.3.2` as _runtime_ deps. Its SDK floors are current (`>=3.12.0` /
+   `>=3.44.0`); what is still old is the dev stack — `flutter_lints ^4`, `pigeon ^22`.
+
+   **New in 3.0, not required:** mutations and offline persistence, both experimental,
+   behind separate imports.
 
 ### Also outstanding, lower priority
 
@@ -554,10 +641,10 @@ shake out each step before the other repos see it.
 
 Suggested order overall:
 
-1. Prep PR A (freezed syntax, 49 classes) — **✅ done 2026-09-08** — and prep PR B (drop
-   riverpod codegen), **not started**. Both land on current versions with **no
-   regeneration**, so they are verifiable today on 3.47 with `flutter analyze` +
-   `flutter test` despite codegen being down. Order: `bccm_player` → `bccm_core` → apps.
+1. Prep PR A (freezed syntax, 49 classes) and prep PR B (drop riverpod codegen) —
+   **both ✅ done 2026-09-08**. Both landed on current versions with **no regeneration**,
+   so they were verifiable on 3.47 with `flutter analyze` + `flutter test` despite codegen
+   being down.
 2. The cutover: bump the cluster, take `auto_route` 11, raise the SDK floors and CI pins
    to 3.47, regenerate everything, verify per "Verifying a batch". One PR, must land
    green — see the checklist under the matrix.
@@ -589,12 +676,17 @@ Zero occurrences anywhere of `Ref` subclasses (`FutureProviderRef` etc.) or
 
 ### What each piece actually involves
 
-**riverpod 2→3 is smaller than its reputation.** `StateNotifierProvider` and
-`StateProvider` are _moved to `legacy.dart`_, not removed — an import change, 16 declarations.
-`.valueOrNull` → `.value` is mechanical, ~51 sites. The real risk is behavioural and
-invisible to the compiler: all providers now filter updates with `==` instead of
-identity, notifiers are recreated on every provider rebuild, and `StreamProvider` pauses
-when unlistened. `bccm_core`'s 7 `StreamProvider`s change timing.
+**riverpod 2→3 has a small mechanical surface and a large behavioural one.** The
+mechanical part really is minor: `StateNotifierProvider` / `StateProvider` move to
+`legacy.dart` (16 declarations), `.valueOrNull` → `.value` (~51 sites), and the
+`AutoDispose` prefix drops (21 sites, 15 of them in `bcc-connect-live`). Zero `Ref`
+subclasses, zero `ProviderObserver`, zero family notifiers.
+
+The behavioural part is where the work is, and none of it is compiler-visible:
+`UnmountedRefException` on post-dispose `Ref` use (927 `ref.*` calls, **0** `ref.mounted`
+guards today), `ProviderException` wrapping at catch sites, out-of-view providers pausing
+by default, auto-retry on failure, and `==` update filtering everywhere. `bccm_core`'s 7
+`StreamProvider`s change timing. See item 7 for the detail and the sources.
 
 **freezed 2→4** is smaller than a two-major jump suggests. Only two breaking changes
 touch us:
