@@ -88,7 +88,7 @@ class WebAppBar extends ConsumerWidget implements PreferredSizeWidget {
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () {
-                context.router.pushNamed('/profile');
+                context.router.pushPath('/profile');
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 32, top: 12, bottom: 12, right: kIsWeb ? 80 : 18),

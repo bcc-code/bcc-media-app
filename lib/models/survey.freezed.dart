@@ -1,6 +1,6 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint
+// coverage:ignore-file
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'survey.dart';
@@ -9,349 +9,556 @@ part of 'survey.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
-CompletedSurveys _$CompletedSurveysFromJson(Map<String, dynamic> json) {
-  return _CompletedSurveys.fromJson(json);
-}
 
 /// @nodoc
 mixin _$CompletedSurveys {
-  List<CompletedSurvey> get completedSurveys =>
-      throw _privateConstructorUsedError;
+
+ List<CompletedSurvey> get completedSurveys;
+/// Create a copy of CompletedSurveys
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CompletedSurveysCopyWith<CompletedSurveys> get copyWith => _$CompletedSurveysCopyWithImpl<CompletedSurveys>(this as CompletedSurveys, _$identity);
 
   /// Serializes this CompletedSurveys to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of CompletedSurveys
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CompletedSurveysCopyWith<CompletedSurveys> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  final _this = this as CompletedSurveys;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletedSurveys&&const DeepCollectionEquality().equals(other.completedSurveys, _this.completedSurveys));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as CompletedSurveys;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.completedSurveys));
+}
+
+@override
+String toString() {
+  final _this = this as CompletedSurveys;
+  return 'CompletedSurveys(completedSurveys: ${_this.completedSurveys})';
+}
+
+
 }
 
 /// @nodoc
-abstract class $CompletedSurveysCopyWith<$Res> {
-  factory $CompletedSurveysCopyWith(
-    CompletedSurveys value,
-    $Res Function(CompletedSurveys) then,
-  ) = _$CompletedSurveysCopyWithImpl<$Res, CompletedSurveys>;
-  @useResult
-  $Res call({List<CompletedSurvey> completedSurveys});
-}
+abstract mixin class $CompletedSurveysCopyWith<$Res>  {
+  factory $CompletedSurveysCopyWith(CompletedSurveys value, $Res Function(CompletedSurveys) _then) = _$CompletedSurveysCopyWithImpl;
+@useResult
+$Res call({
+ List<CompletedSurvey> completedSurveys
+});
 
+
+
+
+}
 /// @nodoc
-class _$CompletedSurveysCopyWithImpl<$Res, $Val extends CompletedSurveys>
+class _$CompletedSurveysCopyWithImpl<$Res>
     implements $CompletedSurveysCopyWith<$Res> {
-  _$CompletedSurveysCopyWithImpl(this._value, this._then);
+  _$CompletedSurveysCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final CompletedSurveys _self;
+  final $Res Function(CompletedSurveys) _then;
 
-  /// Create a copy of CompletedSurveys
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? completedSurveys = null}) {
-    return _then(
-      _value.copyWith(
-            completedSurveys: null == completedSurveys
-                ? _value.completedSurveys
-                : completedSurveys // ignore: cast_nullable_to_non_nullable
-                      as List<CompletedSurvey>,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of CompletedSurveys
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? completedSurveys = null,}) {
+  return _then(CompletedSurveys(
+null == completedSurveys ? _self.completedSurveys : completedSurveys // ignore: cast_nullable_to_non_nullable
+as List<CompletedSurvey>,
+  ));
 }
 
-/// @nodoc
-abstract class _$$CompletedSurveysImplCopyWith<$Res>
-    implements $CompletedSurveysCopyWith<$Res> {
-  factory _$$CompletedSurveysImplCopyWith(
-    _$CompletedSurveysImpl value,
-    $Res Function(_$CompletedSurveysImpl) then,
-  ) = __$$CompletedSurveysImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<CompletedSurvey> completedSurveys});
 }
 
-/// @nodoc
-class __$$CompletedSurveysImplCopyWithImpl<$Res>
-    extends _$CompletedSurveysCopyWithImpl<$Res, _$CompletedSurveysImpl>
-    implements _$$CompletedSurveysImplCopyWith<$Res> {
-  __$$CompletedSurveysImplCopyWithImpl(
-    _$CompletedSurveysImpl _value,
-    $Res Function(_$CompletedSurveysImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of CompletedSurveys
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? completedSurveys = null}) {
-    return _then(
-      _$CompletedSurveysImpl(
-        null == completedSurveys
-            ? _value._completedSurveys
-            : completedSurveys // ignore: cast_nullable_to_non_nullable
-                  as List<CompletedSurvey>,
-      ),
-    );
-  }
+/// Adds pattern-matching-related methods to [CompletedSurveys].
+extension CompletedSurveysPatterns on CompletedSurveys {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CompletedSurveys value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CompletedSurveys() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CompletedSurveys value)  $default,){
+final _that = this;
+switch (_that) {
+case _CompletedSurveys():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CompletedSurveys value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CompletedSurveys() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<CompletedSurvey> completedSurveys)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CompletedSurveys() when $default != null:
+return $default(_that.completedSurveys);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<CompletedSurvey> completedSurveys)  $default,) {final _that = this;
+switch (_that) {
+case _CompletedSurveys():
+return $default(_that.completedSurveys);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<CompletedSurvey> completedSurveys)?  $default,) {final _that = this;
+switch (_that) {
+case _CompletedSurveys() when $default != null:
+return $default(_that.completedSurveys);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CompletedSurveysImpl implements _CompletedSurveys {
-  const _$CompletedSurveysImpl(final List<CompletedSurvey> completedSurveys)
-    : _completedSurveys = completedSurveys;
 
-  factory _$CompletedSurveysImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CompletedSurveysImplFromJson(json);
+class _CompletedSurveys implements CompletedSurveys {
+  const _CompletedSurveys( List<CompletedSurvey> completedSurveys): _completedSurveys = completedSurveys;
+  factory _CompletedSurveys.fromJson(Map<String, dynamic> json) => _$CompletedSurveysFromJson(json);
 
-  final List<CompletedSurvey> _completedSurveys;
-  @override
-  List<CompletedSurvey> get completedSurveys {
-    if (_completedSurveys is EqualUnmodifiableListView)
-      return _completedSurveys;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_completedSurveys);
-  }
+ final  List<CompletedSurvey> _completedSurveys;
+@override List<CompletedSurvey> get completedSurveys {
+  if (_completedSurveys is EqualUnmodifiableListView) return _completedSurveys;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_completedSurveys);
+}
 
-  @override
-  String toString() {
+
+/// Create a copy of CompletedSurveys
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CompletedSurveysCopyWith<_CompletedSurveys> get copyWith => __$CompletedSurveysCopyWithImpl<_CompletedSurveys>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$CompletedSurveysToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletedSurveys&&const DeepCollectionEquality().equals(other.completedSurveys, _completedSurveys));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_completedSurveys));
+}
+
+@override
+String toString() {
     return 'CompletedSurveys(completedSurveys: $completedSurveys)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CompletedSurveysImpl &&
-            const DeepCollectionEquality().equals(
-              other._completedSurveys,
-              _completedSurveys,
-            ));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_completedSurveys),
-  );
-
-  /// Create a copy of CompletedSurveys
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CompletedSurveysImplCopyWith<_$CompletedSurveysImpl> get copyWith =>
-      __$$CompletedSurveysImplCopyWithImpl<_$CompletedSurveysImpl>(
-        this,
-        _$identity,
-      );
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CompletedSurveysImplToJson(this);
-  }
 }
 
-abstract class _CompletedSurveys implements CompletedSurveys {
-  const factory _CompletedSurveys(
-    final List<CompletedSurvey> completedSurveys,
-  ) = _$CompletedSurveysImpl;
 
-  factory _CompletedSurveys.fromJson(Map<String, dynamic> json) =
-      _$CompletedSurveysImpl.fromJson;
-
-  @override
-  List<CompletedSurvey> get completedSurveys;
-
-  /// Create a copy of CompletedSurveys
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CompletedSurveysImplCopyWith<_$CompletedSurveysImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
-CompletedSurvey _$CompletedSurveyFromJson(Map<String, dynamic> json) {
-  return _CompletedSurvey.fromJson(json);
+/// @nodoc
+abstract mixin class _$CompletedSurveysCopyWith<$Res> implements $CompletedSurveysCopyWith<$Res> {
+  factory _$CompletedSurveysCopyWith(_CompletedSurveys value, $Res Function(_CompletedSurveys) _then) = __$CompletedSurveysCopyWithImpl;
+@override @useResult
+$Res call({
+ List<CompletedSurvey> completedSurveys
+});
+
+
+
+
 }
+/// @nodoc
+class __$CompletedSurveysCopyWithImpl<$Res>
+    implements _$CompletedSurveysCopyWith<$Res> {
+  __$CompletedSurveysCopyWithImpl(this._self, this._then);
+
+  final _CompletedSurveys _self;
+  final $Res Function(_CompletedSurveys) _then;
+
+/// Create a copy of CompletedSurveys
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? completedSurveys = null,}) {
+  return _then(_CompletedSurveys(
+null == completedSurveys ? _self._completedSurveys : completedSurveys // ignore: cast_nullable_to_non_nullable
+as List<CompletedSurvey>,
+  ));
+}
+
+
+}
+
 
 /// @nodoc
 mixin _$CompletedSurvey {
-  String get id => throw _privateConstructorUsedError;
-  DateTime get expiry => throw _privateConstructorUsedError;
+
+ String get id; DateTime get expiry;
+/// Create a copy of CompletedSurvey
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CompletedSurveyCopyWith<CompletedSurvey> get copyWith => _$CompletedSurveyCopyWithImpl<CompletedSurvey>(this as CompletedSurvey, _$identity);
 
   /// Serializes this CompletedSurvey to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of CompletedSurvey
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CompletedSurveyCopyWith<CompletedSurvey> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  final _this = this as CompletedSurvey;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletedSurvey&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.expiry, _this.expiry) || other.expiry == _this.expiry));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as CompletedSurvey;
+  return Object.hash(runtimeType,_this.id,_this.expiry);
+}
+
+@override
+String toString() {
+  final _this = this as CompletedSurvey;
+  return 'CompletedSurvey(id: ${_this.id}, expiry: ${_this.expiry})';
+}
+
+
 }
 
 /// @nodoc
-abstract class $CompletedSurveyCopyWith<$Res> {
-  factory $CompletedSurveyCopyWith(
-    CompletedSurvey value,
-    $Res Function(CompletedSurvey) then,
-  ) = _$CompletedSurveyCopyWithImpl<$Res, CompletedSurvey>;
-  @useResult
-  $Res call({String id, DateTime expiry});
-}
+abstract mixin class $CompletedSurveyCopyWith<$Res>  {
+  factory $CompletedSurveyCopyWith(CompletedSurvey value, $Res Function(CompletedSurvey) _then) = _$CompletedSurveyCopyWithImpl;
+@useResult
+$Res call({
+ String id, DateTime expiry
+});
 
+
+
+
+}
 /// @nodoc
-class _$CompletedSurveyCopyWithImpl<$Res, $Val extends CompletedSurvey>
+class _$CompletedSurveyCopyWithImpl<$Res>
     implements $CompletedSurveyCopyWith<$Res> {
-  _$CompletedSurveyCopyWithImpl(this._value, this._then);
+  _$CompletedSurveyCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final CompletedSurvey _self;
+  final $Res Function(CompletedSurvey) _then;
 
-  /// Create a copy of CompletedSurvey
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? id = null, Object? expiry = null}) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            expiry: null == expiry
-                ? _value.expiry
-                : expiry // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of CompletedSurvey
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? expiry = null,}) {
+  return _then(CompletedSurvey(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,expiry: null == expiry ? _self.expiry : expiry // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
 }
 
-/// @nodoc
-abstract class _$$CompletedSurveyImplCopyWith<$Res>
-    implements $CompletedSurveyCopyWith<$Res> {
-  factory _$$CompletedSurveyImplCopyWith(
-    _$CompletedSurveyImpl value,
-    $Res Function(_$CompletedSurveyImpl) then,
-  ) = __$$CompletedSurveyImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String id, DateTime expiry});
 }
 
-/// @nodoc
-class __$$CompletedSurveyImplCopyWithImpl<$Res>
-    extends _$CompletedSurveyCopyWithImpl<$Res, _$CompletedSurveyImpl>
-    implements _$$CompletedSurveyImplCopyWith<$Res> {
-  __$$CompletedSurveyImplCopyWithImpl(
-    _$CompletedSurveyImpl _value,
-    $Res Function(_$CompletedSurveyImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of CompletedSurvey
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? id = null, Object? expiry = null}) {
-    return _then(
-      _$CompletedSurveyImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        expiry: null == expiry
-            ? _value.expiry
-            : expiry // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-      ),
-    );
-  }
+/// Adds pattern-matching-related methods to [CompletedSurvey].
+extension CompletedSurveyPatterns on CompletedSurvey {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CompletedSurvey value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CompletedSurvey() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CompletedSurvey value)  $default,){
+final _that = this;
+switch (_that) {
+case _CompletedSurvey():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CompletedSurvey value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CompletedSurvey() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  DateTime expiry)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CompletedSurvey() when $default != null:
+return $default(_that.id,_that.expiry);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  DateTime expiry)  $default,) {final _that = this;
+switch (_that) {
+case _CompletedSurvey():
+return $default(_that.id,_that.expiry);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  DateTime expiry)?  $default,) {final _that = this;
+switch (_that) {
+case _CompletedSurvey() when $default != null:
+return $default(_that.id,_that.expiry);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CompletedSurveyImpl implements _CompletedSurvey {
-  const _$CompletedSurveyImpl({required this.id, required this.expiry});
 
-  factory _$CompletedSurveyImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CompletedSurveyImplFromJson(json);
+class _CompletedSurvey implements CompletedSurvey {
+  const _CompletedSurvey({required this.id, required this.expiry});
+  factory _CompletedSurvey.fromJson(Map<String, dynamic> json) => _$CompletedSurveyFromJson(json);
 
-  @override
-  final String id;
-  @override
-  final DateTime expiry;
+@override final  String id;
+@override final  DateTime expiry;
 
-  @override
-  String toString() {
+/// Create a copy of CompletedSurvey
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CompletedSurveyCopyWith<_CompletedSurvey> get copyWith => __$CompletedSurveyCopyWithImpl<_CompletedSurvey>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$CompletedSurveyToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletedSurvey&&(identical(other.id, id) || other.id == id)&&(identical(other.expiry, expiry) || other.expiry == expiry));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,id,expiry);
+}
+
+@override
+String toString() {
     return 'CompletedSurvey(id: $id, expiry: $expiry)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CompletedSurveyImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.expiry, expiry) || other.expiry == expiry));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, expiry);
-
-  /// Create a copy of CompletedSurvey
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CompletedSurveyImplCopyWith<_$CompletedSurveyImpl> get copyWith =>
-      __$$CompletedSurveyImplCopyWithImpl<_$CompletedSurveyImpl>(
-        this,
-        _$identity,
-      );
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CompletedSurveyImplToJson(this);
-  }
 }
 
-abstract class _CompletedSurvey implements CompletedSurvey {
-  const factory _CompletedSurvey({
-    required final String id,
-    required final DateTime expiry,
-  }) = _$CompletedSurveyImpl;
 
-  factory _CompletedSurvey.fromJson(Map<String, dynamic> json) =
-      _$CompletedSurveyImpl.fromJson;
-
-  @override
-  String get id;
-  @override
-  DateTime get expiry;
-
-  /// Create a copy of CompletedSurvey
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CompletedSurveyImplCopyWith<_$CompletedSurveyImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+abstract mixin class _$CompletedSurveyCopyWith<$Res> implements $CompletedSurveyCopyWith<$Res> {
+  factory _$CompletedSurveyCopyWith(_CompletedSurvey value, $Res Function(_CompletedSurvey) _then) = __$CompletedSurveyCopyWithImpl;
+@override @useResult
+$Res call({
+ String id, DateTime expiry
+});
+
+
+
+
+}
+/// @nodoc
+class __$CompletedSurveyCopyWithImpl<$Res>
+    implements _$CompletedSurveyCopyWith<$Res> {
+  __$CompletedSurveyCopyWithImpl(this._self, this._then);
+
+  final _CompletedSurvey _self;
+  final $Res Function(_CompletedSurvey) _then;
+
+/// Create a copy of CompletedSurvey
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? expiry = null,}) {
+  return _then(_CompletedSurvey(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,expiry: null == expiry ? _self.expiry : expiry // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
+}
+
+
+}
+
+// dart format on

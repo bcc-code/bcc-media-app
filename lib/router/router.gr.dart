@@ -121,6 +121,16 @@ class AchievementGroupScreenRouteArgs {
   String toString() {
     return 'AchievementGroupScreenRouteArgs{key: $key, groupId: $groupId}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! AchievementGroupScreenRouteArgs) return false;
+    return key == other.key && groupId == other.groupId;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ groupId.hashCode;
 }
 
 /// generated route for
@@ -256,6 +266,28 @@ class CollectionEpisodeScreenRouteArgs {
   String toString() {
     return 'CollectionEpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPositionSeconds: $queryParamStartPositionSeconds, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CollectionEpisodeScreenRouteArgs) return false;
+    return key == other.key &&
+        episodeId == other.episodeId &&
+        autoplay == other.autoplay &&
+        queryParamStartPositionSeconds ==
+            other.queryParamStartPositionSeconds &&
+        hideBottomSection == other.hideBottomSection &&
+        collectionId == other.collectionId;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      episodeId.hashCode ^
+      autoplay.hashCode ^
+      queryParamStartPositionSeconds.hashCode ^
+      hideBottomSection.hashCode ^
+      collectionId.hashCode;
 }
 
 /// generated route for
@@ -332,6 +364,16 @@ class ContributorScreenRouteArgs {
   String toString() {
     return 'ContributorScreenRouteArgs{key: $key, personId: $personId}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ContributorScreenRouteArgs) return false;
+    return key == other.key && personId == other.personId;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ personId.hashCode;
 }
 
 /// generated route for
@@ -435,6 +477,28 @@ class EpisodeScreenRouteArgs {
   String toString() {
     return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPositionSeconds: $queryParamStartPositionSeconds, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! EpisodeScreenRouteArgs) return false;
+    return key == other.key &&
+        episodeId == other.episodeId &&
+        autoplay == other.autoplay &&
+        queryParamStartPositionSeconds ==
+            other.queryParamStartPositionSeconds &&
+        hideBottomSection == other.hideBottomSection &&
+        collectionId == other.collectionId;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      episodeId.hashCode ^
+      autoplay.hashCode ^
+      queryParamStartPositionSeconds.hashCode ^
+      hideBottomSection.hashCode ^
+      collectionId.hashCode;
 }
 
 /// generated route for
@@ -501,6 +565,16 @@ class HomeScreenRouteArgs {
   String toString() {
     return 'HomeScreenRouteArgs{key: $key}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! HomeScreenRouteArgs) return false;
+    return key == other.key;
+  }
+
+  @override
+  int get hashCode => key.hashCode;
 }
 
 /// generated route for
@@ -591,6 +665,18 @@ class OnboardingScreenRouteArgs {
   String toString() {
     return 'OnboardingScreenRouteArgs{key: $key, loginError: $loginError, auto: $auto}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! OnboardingScreenRouteArgs) return false;
+    return key == other.key &&
+        loginError == other.loginError &&
+        auto == other.auto;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ loginError.hashCode ^ auto.hashCode;
 }
 
 /// generated route for
@@ -633,6 +719,16 @@ class PageScreenRouteArgs {
   String toString() {
     return 'PageScreenRouteArgs{key: $key, pageCode: $pageCode}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PageScreenRouteArgs) return false;
+    return key == other.key && pageCode == other.pageCode;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ pageCode.hashCode;
 }
 
 /// generated route for
@@ -690,6 +786,16 @@ class PlaylistScreenRouteArgs {
   String toString() {
     return 'PlaylistScreenRouteArgs{key: $key, id: $id}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PlaylistScreenRouteArgs) return false;
+    return key == other.key && id == other.id;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ id.hashCode;
 }
 
 /// generated route for
@@ -748,6 +854,16 @@ class ProfileScreenRouteArgs {
   String toString() {
     return 'ProfileScreenRouteArgs{key: $key, scroll: $scroll}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ProfileScreenRouteArgs) return false;
+    return key == other.key && scroll == other.scroll;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ scroll.hashCode;
 }
 
 /// generated route for
@@ -806,6 +922,16 @@ class SearchScreenRouteArgs {
   String toString() {
     return 'SearchScreenRouteArgs{key: $key, queryParam: $queryParam}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SearchScreenRouteArgs) return false;
+    return key == other.key && queryParam == other.queryParam;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ queryParam.hashCode;
 }
 
 /// generated route for
@@ -879,6 +1005,16 @@ class ShortScreenRouteArgs {
   String toString() {
     return 'ShortScreenRouteArgs{key: $key, id: $id}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ShortScreenRouteArgs) return false;
+    return key == other.key && id == other.id;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ id.hashCode;
 }
 
 /// generated route for
@@ -953,6 +1089,16 @@ class ShowScreenRouteArgs {
   String toString() {
     return 'ShowScreenRouteArgs{key: $key, showId: $showId}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ShowScreenRouteArgs) return false;
+    return key == other.key && showId == other.showId;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ showId.hashCode;
 }
 
 /// generated route for
@@ -1021,6 +1167,18 @@ class StudyScreenRouteArgs {
   String toString() {
     return 'StudyScreenRouteArgs{key: $key, episodeId: $episodeId, lessonId: $lessonId}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! StudyScreenRouteArgs) return false;
+    return key == other.key &&
+        episodeId == other.episodeId &&
+        lessonId == other.lessonId;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ episodeId.hashCode ^ lessonId.hashCode;
 }
 
 /// generated route for
@@ -1144,4 +1302,14 @@ class WebviewScreenRouteArgs {
   String toString() {
     return 'WebviewScreenRouteArgs{key: $key, redirectCode: $redirectCode}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! WebviewScreenRouteArgs) return false;
+    return key == other.key && redirectCode == other.redirectCode;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ redirectCode.hashCode;
 }

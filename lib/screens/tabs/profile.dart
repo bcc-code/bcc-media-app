@@ -158,7 +158,7 @@ class ProfileScreen extends HookConsumerWidget {
                           return;
                         }
                         if (!context.mounted) return;
-                        context.router.pushNamed('/settings');
+                        context.router.pushPath('/settings');
                       },
                       labelText: S.of(context).settings,
                       image: SvgPicture.string(SvgIcons.settings, height: 20, colorFilter: ColorFilter.mode(design.colors.label1, BlendMode.srcIn)),

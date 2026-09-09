@@ -120,7 +120,7 @@ class MainJsChannel implements WebViewJsHandler {
 
   Future _push(List<dynamic> arguments) async {
     if (arguments[1] is String) {
-      return router.pushNamed(arguments[1], includePrefixMatches: true);
+      return router.pushPath(arguments[1], includePrefixMatches: true);
     }
     throw Exception('Tried to push with invalid argument: ${arguments[1]}');
   }
