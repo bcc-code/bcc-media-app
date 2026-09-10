@@ -5,7 +5,7 @@ dependency graph) up to date. Written mid-effort — the "Remaining work" sectio
 the roadmap, and the "Constraint facts" section is the evidence behind the ordering.
 Update it as batches land.
 
-Last updated: 2026-09-09.
+Last updated: 2026-09-10.
 
 ## Status (2026-09-09)
 
@@ -14,21 +14,15 @@ Last updated: 2026-09-09.
 `bccm_player` 2.0.0, `bccm_core` 2.0.0 and `brunstadtv_app`/`kids` are all merged on
 `main`/`master`, resolving at `analyzer 13.3.0`, with `build_runner` running normally.
 
-**Two consumers are on a timer.** `bcc-media-play` and `bcc-connect-live` still track
-`git: ref: main` and are only resolving because their committed lockfiles pin the
-*pre-cutover* commit. CI stays green until someone runs `pub upgrade`, adds a dependency,
-or resolves without the lock — then:
+`bcc-media-play` and `bcc-connect-live` are migrated too (2026-09-10) — both resolve at
+`analyzer 13.3.0` against post-cutover `bccm_core`, both at their analyze baselines with
+tests and Android/iOS builds green. **The whole graph is on the new toolchain.**
 
-```
-Because play depends on bccm_core from git which depends on freezed_annotation ^3.1.0,
-freezed_annotation ^3.1.0 is required.
-So, because play depends on freezed_annotation ^2.4.4, version solving failed.
-```
+They still track `git: ref: main`, so the next graph-wide bump will arm the same trap:
+they break only when something forces a re-resolve, which means the failure surfaces late
+and far from its cause. Pinning them to a tag is the fix — see Remaining work.
 
-Migrate them soon; the failure will otherwise surface later, to whoever next touches those
-repos, disconnected from the change that caused it.
-
-Still outstanding after that: Firebase, `flutter_appauth`, `flutter_local_notifications`,
+Still outstanding: Firebase, `flutter_appauth`, `flutter_local_notifications`,
 `flutter_secure_storage` (the two-release one), and riverpod 2→3.
 
 ## Toolchain compatibility matrix
@@ -419,6 +413,30 @@ is *our own* extension in `bccm_core/lib/src/utils/router_utils.dart`, already c
 `root.matcher.match(...)` + `navigateAll(...)` — i.e. already navigate semantics. It
 needed no change.
 
+### Consumer repos migrated (2026-09-10)
+
+`bcc-media-play` and `bcc-connect-live` brought onto the new toolchain. Same bumps as the
+cutover, SDK floors to 3.13.0/3.47.0, `FLUTTER_VERSION` to 3.47.2. Both resolve at
+`analyzer 13.3.0`. Verified: `bcc-media-play` 13 issues (baseline) + 103/103,
+`bcc-connect-live` 1 issue (baseline) + 99/99, Android and iOS simulator builds for both.
+
+Smaller than the table suggested:
+
+- **`AutoRouteGuard` needed no change in either repo.** Both `AuthGuard`s implement
+  `onNavigation`, not `redirect`, so `redirectUntil` never applied. The doc had this
+  listed as "theirs, not ours" — it was in fact nobody's.
+- **`pushNamed` → `pushPath`: 1 site total** (`bcc-media-play/lib/utils/main_js_channel.dart`).
+- Two more auto_route 11 deprecations in `bcc-connect-live`:
+  `durationInMilliseconds`/`reverseDurationInMilliseconds` again, plus
+  **`animatePageTransition: false` → `duration: Duration.zero`** on
+  `AutoTabsRouter.tabBar` (`lib/screens/tv/tv_tabs.dart`). Exactly equivalent — the
+  constructor does `duration ?? (animatePageTransition ? null : Duration.zero)`.
+- **`bcc-media-play`'s CI was already on Flutter 3.47.2** while its pubspec floor said
+  `>=3.44.0`, so codegen would already have been broken in that pipeline.
+- **The Gradle-clean gotcha fired again.** `bcc-media-play` failed with
+  `GeneratedPluginRegistrant.java:99: cannot find symbol`; `flutter clean` fixed it.
+  Third time this session an existing note in here saved a wrong diagnosis.
+
 ### The iOS Podfile deployment-target hack (removed 2026-09-08)
 
 Simulator builds started failing on Flutter 3.47 with ~50 Swift errors of the form
@@ -470,26 +488,15 @@ Ordering reflects the corrections below, not the original guess.
 3. **`flutter_local_notifications` 17→22** — v20 converted `initialize`, `show`,
    `zonedSchedule`, `cancel` from positional to named params. Two files in core. Needs
    Java 11+ (already have it).
-4. **Migrate `bcc-media-play` and `bcc-connect-live` — do this first.** ✅ The cutover
-   itself is done (see Done); these two are the leftover. They track `git: ref: main` and
-   are only resolving because their committed lockfiles pin the pre-cutover commit, so
-   they are broken-but-quiet — see Status at the top for the exact solver error.
+4. **Pin `bcc-media-play` and `bcc-connect-live` to tags instead of `ref: main`.** Their
+   migration is ✅ done (2026-09-10, see Done); this is the leftover structural fix.
+   Both consume `bccm_core` and `bccm_player` as `git: ref: main` with committed
+   lockfiles, so a breaking change upstream does not fail them at merge time — it fails
+   whenever something next forces a re-resolve. That is exactly how the cutover played
+   out: they kept resolving against the pre-cutover commit until `pub upgrade` was run.
 
-   Per repo: same version bumps as the cutover, SDK floors to 3.13.0/3.47.0, and the
-   `auto_route` 11 renames. Measured surface:
-
-   | | `bcc-media-play` | `bcc-connect-live` |
-   | ------------------- | ---------------- | ------------------ |
-   | `pushNamed` sites   | 1                | 0                  |
-   | `@RoutePage`        | 20               | 25                 |
-   | `AutoRouteGuard`    | 1                | 1                  |
-   | freezed classes     | 2 (already abstract) | 1 (already abstract) |
-
-   **`AutoRouteGuard.redirect` → `redirectUntil` is theirs, not ours** — both guards live
-   in these two repos. Neither has a lint stack, so they are otherwise simpler.
-
-   While here: consider pinning them to a tag instead of `ref: main`, so the next
-   graph-wide bump does not silently arm the same trap.
+   Pair it with the `CHANGELOG.md`/version discipline noted under "Why this is more
+   involved than it looks" — the versions only mean something if consumers opt in.
 
 ### High
 
