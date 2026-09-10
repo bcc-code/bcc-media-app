@@ -81,6 +81,11 @@ class BibleKidsDesignSystem extends DesignSystemData {
 }
 
 class _Colors extends DesignSystemColors {
+  static const _messageText = Color(0xFF041234);
+  static const _messageInfo = Color(0xFF2F6FED);
+  static const _messageWarning = Color(0xFFF2AE00);
+  static const _messageError = Color(0xFFE63C62);
+
   _Colors()
       : super(
           tint1: const Color(0xFFFDCA4E),
@@ -96,6 +101,26 @@ class _Colors extends DesignSystemColors {
           background2: const Color(0xFFEFF3F9),
           separatorOnLight: const Color(0x1A051335),
           separator2: const Color(0xFFE9ECF4),
+          messages: const DesignSystemMessageColors(
+            info: MessageColors(
+              background: Color.fromRGBO(47, 111, 237, 0.10),
+              border: _messageInfo,
+              text: _messageText,
+              accent: _messageInfo,
+            ),
+            warning: MessageColors(
+              background: Color.fromRGBO(242, 174, 0, 0.14),
+              border: _messageWarning,
+              text: _messageText,
+              accent: _messageWarning,
+            ),
+            error: MessageColors(
+              background: Color.fromRGBO(230, 60, 98, 0.10),
+              border: _messageError,
+              text: _messageText,
+              accent: _messageError,
+            ),
+          ),
         );
 }
 
