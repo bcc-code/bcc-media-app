@@ -1,19 +1,10 @@
 PODS:
-  - AppAuth (1.7.5):
-    - AppAuth/Core (= 1.7.5)
-    - AppAuth/ExternalUserAgent (= 1.7.5)
-  - AppAuth/Core (1.7.5)
-  - AppAuth/ExternalUserAgent (1.7.5):
-    - AppAuth/Core
   - bccm_player (0.0.1):
     - Flutter
     - google-cast-sdk (= 4.8.3)
     - NpawPluginPkg (= 7.3.6)
     - Protobuf (~> 3.13)
   - Flutter (1.0.0)
-  - flutter_appauth (0.0.1):
-    - AppAuth (= 1.7.5)
-    - Flutter
   - flutter_local_notifications (0.0.1):
     - Flutter
   - flutter_secure_storage (6.0.0):
@@ -32,7 +23,6 @@ PODS:
 DEPENDENCIES:
   - bccm_player (from `.symlinks/plugins/bccm_player/ios`)
   - Flutter (from `Flutter`)
-  - flutter_appauth (from `.symlinks/plugins/flutter_appauth/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_to_airplay (from `.symlinks/plugins/flutter_to_airplay/ios`)
@@ -45,7 +35,6 @@ SPEC REPOS:
     - GCDWebServer
     - NpawPluginPkg
   trunk:
-    - AppAuth
     - google-cast-sdk
     - Protobuf
 
@@ -54,8 +43,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/bccm_player/ios"
   Flutter:
     :path: Flutter
-  flutter_appauth:
-    :path: ".symlinks/plugins/flutter_appauth/ios"
   flutter_local_notifications:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_secure_storage:
@@ -66,10 +53,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/open_mail_app_plus/ios"
 
 SPEC CHECKSUMS:
-  AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   bccm_player: 2feedff021cdc577dbe81cb93f909db733d17d66
   Flutter: 71a624a5bc0c04062bf19101d501e466baf2fb47
-  flutter_appauth: 273bf736e38f7d85000b1a9ac15ace5800c277f2
   flutter_local_notifications: ad39620c743ea4c15127860f4b5641649a988100
   flutter_secure_storage: 1ed9476fba7e7a782b22888f956cce43e2c62f13
   flutter_to_airplay: 8ed587ac4b07d167184d2977a8a406383ce5c371
@@ -81,4 +66,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: eadeee952f49f6c4b5e651d743c0dacbff4819db
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.17.0
