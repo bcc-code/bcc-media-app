@@ -36,11 +36,13 @@ subprojects {
                     targetCompatibility JavaVersion.VERSION_11
                 }
             }
-            // Some plugins still declare an old compileSdk (flutter_appauth 7.x is on 31).
-            // AGP 8.13 fails the build when a transitive androidx artifact requires a higher
-            // one, so pull plugin subprojects up to the app's compileSdk. Can be removed once
-            // every plugin compiles against 34+ (flutter_appauth >=10 does).
-            if (project.name != 'app') {
+            // soundpool (the hohoins fork, kids-only) still compiles against android-31,
+            // and AGP fails the build when a transitive androidx artifact requires 34+.
+            // Narrowed from the old blanket clamp on every plugin, which existed for
+            // flutter_appauth 7.x and would otherwise hold plugins below the compileSdk
+            // they now need (flutter_secure_storage 11 wants 37). Remove once soundpool
+            // is forked forward or replaced.
+            if (project.name == 'soundpool') {
                 project.android.compileSdk 36
             }
             project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {

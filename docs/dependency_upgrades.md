@@ -437,6 +437,38 @@ Smaller than the table suggested:
   `GeneratedPluginRegistrant.java:99: cannot find symbol`; `flutter clean` fixed it.
   Third time this session an existing note in here saved a wrong diagnosis.
 
+### `flutter_appauth` 7→12 + Gate A clamp narrowed (2026-09-10)
+
+`flutter_appauth` and `flutter_appauth_platform_interface` both 7.0.1 → 12.1.0 in
+`bccm_core` — they must move together, 12.1.0 pins the interface to `^12.1.0`.
+
+**Zero source changes.** The migration note everyone cites — 8.0.0 replacing
+`preferEphemeralSession` with the `externalUserAgent` enum — **does not apply to us**;
+`preferEphemeralSession` appears nowhere in the graph. The two call sites (`TokenRequest`,
+`AuthorizationTokenRequest`) compile untouched. Floors are fine: 12.0.0 wants Flutter
+3.38.1 / Dart 3.10 (we are on 3.47.2 / 3.13), Android 24 ✓, iOS 13 ✓.
+
+**The Gate A `compileSdk` clamp is now narrowed, not deleted.** Removing it outright is
+what the old note promised, and it works for the main app — but **kids still fails**, on
+`soundpool` (the `hohoins` git fork, kids-only) which compiles against android-31. So:
+
+- main app: blanket clamp **removed**
+- kids: replaced with a clamp on `soundpool` alone
+
+That matters for item 5: the blanket version would have silently held
+`flutter_secure_storage` 11 below the `compileSdk 37` it requires. A per-plugin clamp
+does not. Remove the kids one once `soundpool` is forked forward or replaced.
+
+Verified: `bccm_core` clean + 68/68 · main app Android + iOS sim · kids Android + iOS sim,
+kids analyze at its 10-issue baseline.
+
+**Not verified: login itself.** Neither analyze nor the unit tests exercise a real Auth0
+round-trip. Needs device testing on both flavors — sign-in, sign-out, refresh, and the
+`signedOutManually` prompt path. Also new in appauth 11: Android throws a
+`PlatformException` with code `null_activity` when the Flutter activity is detached. Our
+handler branches only on `FlutterAppAuthOAuthError.invalidGrant`, so `null_activity` falls
+through to "retry later" — plausible, but nobody has exercised it.
+
 ### The iOS Podfile deployment-target hack (removed 2026-09-08)
 
 Simulator builds started failing on Flutter 3.47 with ~50 Swift errors of the form
@@ -481,10 +513,10 @@ Ordering reflects the corrections below, not the original guess.
    (both Podfiles `platform :ios, '15.0'`, `Runner.xcodeproj` now uniformly 15.0,
    minSdk 24) already clear it. Risk is native build, not Dart. The old `post_install`
    deployment-target hook that would have fought this is already gone — see Done.
-2. **`flutter_appauth` 7→12** — only real API change is 8.0.0 replacing
-   `preferEphemeralSession` with an `externalUserAgent` enum. One file
-   (`auth_state_notifier_mobile.dart`), but it's the login path — needs device testing on
-   both flavors. Also lets us delete the Gate A `compileSdk` workaround.
+2. **`flutter_appauth` 7→12 — ✅ done 2026-09-10** (see Done). The Gate A clamp it was
+   blocking is now narrowed to `soundpool` in kids and gone from the main app, so
+   `compileSdk 37` is available for item 5.
+
 3. **`flutter_local_notifications` 17→22** — v20 converted `initialize`, `show`,
    `zonedSchedule`, `cancel` from positional to named params. Two files in core. Needs
    Java 11+ (already have it).
@@ -500,15 +532,44 @@ Ordering reflects the corrections below, not the original guess.
 
 ### High
 
-5. **`flutter_secure_storage` 9→11 — can log out the entire user base.** We use both
-   `encryptedSharedPreferences: true` and `sharedPreferencesName: 'auth'`
-   (`auth_state_notifier_mobile.dart`), and **v11 removed both**. The changelog is
-   explicit that you must ship v10 first, which performs the automatic data migration.
-   Jumping 9→11 directly makes Android refresh tokens unreadable. This is a
-   **two-release migration with a soak period**, and it's the item to plan around most
-   carefully. Also merges the iOS/macOS impls into `flutter_secure_storage_darwin`.
+5. **`flutter_secure_storage` 9→10→11 — can log out the entire user base.** Verified
+   against the 10.0.0 and 11.0.0 changelogs, not just release notes.
+
+   **v10 must ship and be launched on device before v11.** v11 states plainly: *"Any data
+   saved using deprecated algorithms or features will be unusable after this upgrade. If
+   you used a version prior to v10, upgrade to v10 first so existing data is migrated."*
+   v10 does the migration on first launch via `migrateOnAlgorithmChange: true` (default):
+   `RSA_ECB_PKCS1Padding` → `RSA_ECB_OAEPwithSHA_256andMGF1Padding`,
+   `AES_CBC_PKCS7Padding` → `AES_GCM_NoPadding`, and EncryptedSharedPreferences → custom
+   cipher storage. The soak is therefore not a formality — it is waiting for the install
+   base to actually open a v10 build. Anyone going 9.x → 11 in one step loses their
+   refresh token.
+
+   v11 then removes `encryptedSharedPreferences` and `sharedPreferencesName`
+   (→ `storageNamespace`), both of which we set in `auth_state_notifier_mobile.dart`.
+
+   Three things that are easy to miss:
+
+   - **v11 needs `compileSdk 37`; we are on 36.** The Gate A block that would have
+     silently clamped it is ✅ handled (item 2) — gone from the main app, narrowed to
+     `soundpool` in kids. Raising the app's own `compileSdk` to 37 is still to do.
+   - **v10 flips `resetOnError` to `true` by default** and we set it nowhere. "Reset"
+     means discarding stored credentials. Given this app's history of users being logged
+     out on every launch, decide this deliberately rather than inheriting it.
+   - **v10 merges iOS/macOS into `flutter_secure_storage_darwin`** and can *"remove keys
+     regardless of synchronizable state or accessibility constraints"*. That is exactly
+     what `_iosCredentialVariants` works around today. Read the comments in
+     `auth_state_notifier_mobile.dart` before touching it — they are the most carefully
+     reasoned code in the auth path, and they were written after real incidents.
+
+   Floors are fine: minSdk 24 ✓ (v11 needs 24), iOS 15 ✓ (v10 needs 12).
+
    Unblocks: the `js` override, and device_info_plus 13 / package_info_plus 10 /
    share_plus 13.
+
+   Suggested order: appauth → secure_storage 10, ship, soak (do Firebase /
+   local_notifications / riverpod 3 meanwhile) → secure_storage 11 + `compileSdk 37`.
+
 6. **`auto_route` 9→11 — ✅ done for this repo** (landed with the cutover; see Done).
    Still to do in `bcc-media-play` and `bcc-connect-live` — item 4. The part that is
    genuinely theirs is `AutoRouteGuard.redirect` → `redirectUntil` (now returns `void`),

@@ -127,7 +127,7 @@ packages:
       path: "submodules/bccm_flutter/bccm_core"
       relative: true
     source: path
-    version: "2.0.0"
+    version: "2.1.1"
   bccm_player:
     dependency: "direct main"
     description:
@@ -503,18 +503,18 @@ packages:
     dependency: transitive
     description:
       name: flutter_appauth
-      sha256: "84e8753fe20864da241892823ff7dbd252baa34f1649d6feb48118e8ae829ed1"
+      sha256: "9bacc200937c61c7ed4e64ecee3fc0d4042133405a00b56de8fbe401aa16d228"
       url: "https://pub.dev"
     source: hosted
-    version: "7.0.1"
+    version: "12.1.0"
   flutter_appauth_platform_interface:
     dependency: transitive
     description:
       name: flutter_appauth_platform_interface
-      sha256: "0959824b401f3ee209c869734252bd5d4d4aab804b019c03815c56e3b9a4bc34"
+      sha256: c88f8edf43bf3b2c8fed73a04ba78309f00c549306a27f5ef818d767701a6eb6
       url: "https://pub.dev"
     source: hosted
-    version: "7.0.1"
+    version: "12.1.0"
   flutter_cache_manager:
     dependency: "direct main"
     description:
