@@ -3,11 +3,6 @@ import 'dart:ui';
 import 'package:bccm_core/design_system.dart';
 
 class BccMediaColors extends DesignSystemColors {
-  static const _messageText = Color(0xffFEFEFE);
-  static const _messageInfo = Color(0xff6EB0E6);
-  static const _messageWarning = Color(0xffF2AE00);
-  static const _messageError = Color(0xffE63C62);
-
   BccMediaColors()
     : super(
         tint1: const Color(0xff6EB0E6),
@@ -24,9 +19,24 @@ class BccMediaColors extends DesignSystemColors {
         separatorOnLight: const Color.fromRGBO(204, 221, 255, 0.1),
         separator2: const Color.fromRGBO(204, 221, 255, 0.1),
         messages: const DesignSystemMessageColors(
-          info: MessageColors(background: Color.fromRGBO(110, 176, 230, 0.12), border: _messageInfo, text: _messageText, accent: _messageInfo),
-          warning: MessageColors(background: Color.fromRGBO(242, 174, 0, 0.12), border: _messageWarning, text: _messageText, accent: _messageWarning),
-          error: MessageColors(background: Color.fromRGBO(230, 60, 98, 0.12), border: _messageError, text: _messageText, accent: _messageError),
+          info: MessageColors(
+            background: Color.fromRGBO(22, 50, 74, 1),
+            border: Color.fromRGBO(22, 50, 74, 1),
+            text: Color.fromRGBO(228, 241, 251, 1),
+            accent: Color.fromRGBO(110, 176, 230, 1),
+          ),
+          warning: MessageColors(
+            background: Color.fromRGBO(61, 36, 0, 1),
+            border: Color.fromRGBO(61, 36, 0, 1),
+            text: Color.fromRGBO(252, 233, 199, 1),
+            accent: Color.fromRGBO(251, 191, 36, 1),
+          ),
+          error: MessageColors(
+            background: Color.fromRGBO(58, 15, 18, 1),
+            border: Color.fromRGBO(58, 15, 18, 1),
+            text: Color.fromRGBO(255, 222, 224, 1),
+            accent: Color.fromRGBO(255, 131, 140, 1),
+          ),
         ),
       );
 }
