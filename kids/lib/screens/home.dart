@@ -54,7 +54,7 @@ class HomeScreen extends HookConsumerWidget {
     final page = pageResult.data;
 
     // Refetch content when app language changes
-    ref.listen(settingsProvider.select((settings) => settings.appLanguage), (_, __) {
+    ref.listen(settingsProvider.select((settings) => settings.appLanguage), (_, _) {
       // Workaround. Wait a bit for feature flags to be updated,
       // so that the correct content is loaded.
       Future.delayed(const Duration(milliseconds: 1000), () {
@@ -63,7 +63,7 @@ class HomeScreen extends HookConsumerWidget {
     });
 
     // Refetch content when auth state changes
-    ref.listen(authStateProvider.select((s) => s.isLoggedIn), (_, __) {
+    ref.listen(authStateProvider.select((s) => s.isLoggedIn), (_, _) {
       reloadKey.value = UniqueKey();
     });
 

@@ -89,7 +89,7 @@ Future<void> $main({List<Override>? providerOverrides}) async {
         featureFlagVariantListProviderOverride: featureFlagVariantListProviderOverride,
         notificationServiceProviderOverride: notificationServiceProviderOverride,
       );
-      final providerContainer = await initProviderContainer([...coreOverrides, if (providerOverrides != null) ...providerOverrides]);
+      final providerContainer = await initProviderContainer([...coreOverrides, ...?providerOverrides]);
 
       final app = UncontrolledProviderScope(
         container: providerContainer,

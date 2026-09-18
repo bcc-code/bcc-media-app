@@ -132,7 +132,7 @@ Future<void> $main({
     );
     final providerContainer = await initProviderContainer([
       ...coreOverrides,
-      if (providerOverrides != null) ...providerOverrides,
+      ...?providerOverrides,
     ]);
 
     final app = UncontrolledProviderScope(

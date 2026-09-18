@@ -29,7 +29,7 @@ class _AppSubtitleLanguageState extends ConsumerState<SubtitleLanguageScreen> {
       selected = id;
     });
     ref.read(settingsProvider.notifier).setSubtitleLanguages([
-      if (id != null) id,
+      ?id,
     ]);
     ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
           languageFrom: selected,

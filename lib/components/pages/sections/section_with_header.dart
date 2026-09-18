@@ -36,7 +36,7 @@ class SectionWithHeader extends StatelessWidget {
                     style: DesignSystem.of(context).textStyles.title2,
                   ),
                 ),
-                if (rightSlot != null) rightSlot!
+                ?rightSlot
               ],
             ),
           ),

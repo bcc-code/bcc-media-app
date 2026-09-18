@@ -288,7 +288,7 @@ final _contributorScreenRoute = CupertinoRoute(
   meta: const {RouteMetaConstants.analyticsName: 'contributor'},
 );
 
-_shortScreenRoute(String pathPrefix) => CupertinoRoute(
+CupertinoRoute<dynamic> _shortScreenRoute(String pathPrefix) => CupertinoRoute(
       page: ShortScreenRoute.page,
       path: '$pathPrefix:id',
       usesPathAsKey: true,

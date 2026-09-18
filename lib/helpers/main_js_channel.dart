@@ -37,7 +37,7 @@ class MainJsChannel implements WebViewJsHandler {
     );
   }
 
-  get supportedFeatures => {
+  Map<String, bool> get supportedFeatures => {
     'navigate': true,
     'push': true,
     'exit': true,

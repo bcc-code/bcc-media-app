@@ -371,7 +371,7 @@ class _FavoriteItemClickWrapper extends ConsumerWidget {
   final SectionItemAnalyticsData analytics;
   final Widget child;
 
-  onTap(BuildContext context, WidgetRef ref) {
+  void onTap(BuildContext context, WidgetRef ref) {
     final episodeItem = item.asOrNull<Fragment$MyListEntry$item$$Episode>();
     if (episodeItem != null) {
       context.navigateTo(EpisodeScreenRoute(episodeId: episodeItem.id));

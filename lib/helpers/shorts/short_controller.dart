@@ -131,7 +131,7 @@ class ShortController {
     return stream;
   }
 
-  onPlayerStateChanged() {
+  void onPlayerStateChanged() {
     final gql = ref.read(bccmGraphQLProvider);
     final coreAnalytics = ref.read(analyticsProvider);
     final s = currentShort;

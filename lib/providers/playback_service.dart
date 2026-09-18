@@ -188,8 +188,8 @@ class PlaybackService {
         extras: {
           'id': episode.id.toString(),
           if (stream.videoLanguage != null) 'videoLanguage': toThreeLetterLanguageCode(stream.videoLanguage!),
-          if (collectionId != null) 'context.collectionId': collectionId,
-          if (playlistId != null) 'context.playlistId': playlistId,
+          'context.collectionId': ?collectionId,
+          'context.playlistId': ?playlistId,
           'context.cursor': episode.cursor,
           'npaw.content.id': episode.id,
           'npaw.content.tvShow': episode.season?.$show.id,

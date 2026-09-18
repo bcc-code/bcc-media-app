@@ -142,13 +142,13 @@ class FeatureFlagsNotifier extends FeatureFlagsNotifierBase {
     _handleUpdate();
   }
 
-  _handleUpdate() {
+  void _handleUpdate() {
     final unleash = this.unleash;
     if (unleash == null) return;
     ref.invalidateSelf();
   }
 
-  _saveCache(FeatureFlags flags) {
+  void _saveCache(FeatureFlags flags) {
     final json = flags.toJson();
     ref.read(sharedPreferencesProvider).setString(PrefKeys.featureFlags, jsonEncode(json));
   }
