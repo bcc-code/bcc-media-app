@@ -7,8 +7,6 @@ PODS:
   - Flutter (1.0.0)
   - flutter_local_notifications (0.0.1):
     - Flutter
-  - flutter_secure_storage (6.0.0):
-    - Flutter
   - flutter_to_airplay (0.0.1):
     - Flutter
   - GCDWebServer (3.5.9)
@@ -26,7 +24,6 @@ DEPENDENCIES:
   - bccm_player (from `.symlinks/plugins/bccm_player/ios`)
   - Flutter (from `Flutter`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
-  - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_to_airplay (from `.symlinks/plugins/flutter_to_airplay/ios`)
   - google-cast-sdk (= 4.8.3)
   - NpawPluginPkg (= 7.3.6)
@@ -48,8 +45,6 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_local_notifications:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
-  flutter_secure_storage:
-    :path: ".symlinks/plugins/flutter_secure_storage/ios"
   flutter_to_airplay:
     :path: ".symlinks/plugins/flutter_to_airplay/ios"
   open_mail_app_plus:
@@ -61,7 +56,6 @@ SPEC CHECKSUMS:
   bccm_player: 2feedff021cdc577dbe81cb93f909db733d17d66
   Flutter: 71a624a5bc0c04062bf19101d501e466baf2fb47
   flutter_local_notifications: ad39620c743ea4c15127860f4b5641649a988100
-  flutter_secure_storage: 1ed9476fba7e7a782b22888f956cce43e2c62f13
   flutter_to_airplay: 8ed587ac4b07d167184d2977a8a406383ce5c371
   GCDWebServer: baef69ed4f6f8bd69b2be47e08797ab1b8cbad29
   google-cast-sdk: 1fb6724e94cc5ff23b359176e0cf6360586bb97a

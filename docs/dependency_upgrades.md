@@ -462,12 +462,77 @@ does not. Remove the kids one once `soundpool` is forked forward or replaced.
 Verified: `bccm_core` clean + 68/68 · main app Android + iOS sim · kids Android + iOS sim,
 kids analyze at its 10-issue baseline.
 
-**Not verified: login itself.** Neither analyze nor the unit tests exercise a real Auth0
-round-trip. Needs device testing on both flavors — sign-in, sign-out, refresh, and the
-`signedOutManually` prompt path. Also new in appauth 11: Android throws a
-`PlatformException` with code `null_activity` when the Flutter activity is detached. Our
-handler branches only on `FlutterAppAuthOAuthError.invalidGrant`, so `null_activity` falls
-through to "retry later" — plausible, but nobody has exercised it.
+**Login verified on device** (2026-09-10), no problems. Worth remembering that neither
+analyze nor the unit tests cover an Auth0 round-trip, so this was manual. One path still
+unexercised: appauth 11 added an Android `PlatformException` with code `null_activity`
+when the Flutter activity is detached. Our handler branches only on
+`FlutterAppAuthOAuthError.invalidGrant`, so `null_activity` falls through to
+"retry later" — plausible, but untested.
+
+### `flutter_secure_storage` 9→10 (landed 2026-09-10) — step 1 of 3
+
+`bccm_core` 9.2.2 → 10.3.1. Pulls in `flutter_secure_storage_darwin` and drops the
+discontinued `flutter_secure_storage_macos`. **This is the release that must soak** — v10
+migrates each user's credentials on first launch, so v11 cannot ship until the install
+base has opened a v10 build.
+
+**Options: both risky defaults left alone, deliberately.**
+
+- `encryptedSharedPreferences: true` **removed** — v10 ignores the parameter outright
+  ("Remove this parameter - it will be ignored") and migrates Jetpack ESP data to its own
+  ciphers on first access. On failure it logs "Migration failed. Falling back to
+  EncryptedSharedPreferences" and keeps the old store, so it is not destructive.
+- `resetOnError` left at its new default **true**. It erases on unrecoverable errors,
+  which matches the reasoning already behind `kMinimumCredentialsTTL`: a permanently dead
+  token is worse than a re-login.
+- `migrateWithBackup` left at **false**. **Do not set it true here** — it sounds safer and
+  is not. It skips the direct ESP migration (`FlutterSecureStorage.java:206`) in favour of
+  step 7/8 of the backup-protected path (`:1476`), which is only reached via `migrateData`
+  from a *cipher key-mismatch handler*. A user whose data is still in ESP may never
+  trigger a mismatch, so their data would never migrate at all.
+
+**`sharedPreferencesName` → `storageNamespace` is NOT a rename. It is step 2, and it needs
+its own release.** From `FlutterSecureStorageConfig.java`:
+
+| | `sharedPreferencesName: 'auth'` | `storageNamespace: 'auth'` |
+| ------------------------ | ------------------------------- | ------------------------------ |
+| data prefs               | `auth`                          | `auth` — same                  |
+| wrapped-key prefs        | `FlutterSecureKeyStorage`       | `FlutterSecureKeyStorage:auth` |
+| KeyStore alias suffix    | `""`                            | `.auth`                        |
+
+The ciphertext stays put and is found; the AES key that decrypts it moves. Nothing
+migrates across the change — the only migrations are ESP→cipher and algorithm changes, and
+`NamespacedConfigSource`'s "legacy fallback" covers **config markers only, read-only**. So
+the plugin reads data it cannot decrypt, and `resetOnError` erases it. Dropping the
+parameter entirely is equally bad: the default `DEFAULT_PREF_NAME` is `FlutterSecureStorage`,
+which moves the data prefs instead.
+
+Step 2 must therefore read with the legacy options and rewrite under the namespace, while
+v10 still exposes both. Step 3 (v11) then removes the dead parameter and raises
+`compileSdk` to 37.
+
+**Third instance of the blanket-workaround pattern.** v10's Java moved to 17, and the Gate A
+`afterEvaluate` block forced every plugin subproject to Java 11 — so the build failed with
+`pattern matching in instanceof is not supported in -source 11`. Fixed by **aligning
+everything at 17** (all four gradle files, app included) rather than narrowing again: 17 is
+the JDK CI runs, and the block's original complaint was a Kotlin/Java target *mismatch*,
+which aligning up resolves more directly than dragging plugins down.
+
+**The `js` override is gone.** `flutter_secure_storage_web` 2.1.1 no longer depends on `js`,
+so the conflict that made it load-bearing is resolved; `js 0.7.2` resolves naturally from
+`bccm_player`'s own constraint. Both `dependency_overrides` blocks are now empty and
+deleted outright.
+
+`auth_test.dart`'s `kExpectedAndroidOptions` caught the options change, as designed. Its
+comment now records the two specific ways to orphan every credential on disk.
+
+Verified: `bccm_core` clean + 68/68 · main app 135 issues (baseline 132 + the 3 known
+GraphQL `'style'` deprecations, 0 errors) + 113/113 · kids 10 at baseline · Android and
+iOS simulator builds for both apps.
+
+**Not verified: the migration itself.** No test or build exercises a real v9→v10 upgrade
+on a device with existing credentials. That needs a manual check — install a 9.x build,
+sign in, upgrade in place, confirm the session survives — on Android especially.
 
 ### The iOS Podfile deployment-target hack (removed 2026-09-08)
 
@@ -567,8 +632,9 @@ Ordering reflects the corrections below, not the original guess.
    Unblocks: the `js` override, and device_info_plus 13 / package_info_plus 10 /
    share_plus 13.
 
-   Suggested order: appauth → secure_storage 10, ship, soak (do Firebase /
-   local_notifications / riverpod 3 meanwhile) → secure_storage 11 + `compileSdk 37`.
+   Order: appauth ✅ → **secure_storage 10 ✅ (2026-09-10, see Done)** → ship + soak (do
+   Firebase / local_notifications / riverpod 3 meanwhile) → **namespace migration on v10**
+   → secure_storage 11 + `compileSdk 37`.
 
 6. **`auto_route` 9→11 — ✅ done for this repo** (landed with the cutover; see Done).
    Still to do in `bcc-media-play` and `bcc-connect-live` — item 4. The part that is

@@ -27,22 +27,24 @@ subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
 
-// Align JVM targets for plugin subprojects. Some plugins (e.g. rudder_plugin_android)
-// only set Java's targetCompatibility but leave Kotlin's default to the toolchain JVM,
-// which trips Kotlin 2.x's strict JVM target validation on CI (Java 17).
+// Align JVM targets for plugin subprojects at 17 (the JDK CI runs). Some plugins
+// (e.g. rudder_plugin_android) only set Java's targetCompatibility and leave Kotlin's
+// default to the toolchain JVM, which trips Kotlin 2.x's strict JVM target validation.
+// Aligned at 17 rather than 11 deliberately: pinning down broke flutter_secure_storage 10,
+// whose Java source uses 17 features. Do not lower this to accommodate one plugin.
 // Must be registered before evaluationDependsOn below.
 subprojects {
     afterEvaluate { project ->
         if (project.hasProperty('android')) {
             project.android {
                 compileOptions {
-                    sourceCompatibility JavaVersion.VERSION_11
-                    targetCompatibility JavaVersion.VERSION_11
+                    sourceCompatibility JavaVersion.VERSION_17
+                    targetCompatibility JavaVersion.VERSION_17
                 }
             }
             project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
                 kotlinOptions {
-                    jvmTarget = '11'
+                    jvmTarget = '17'
                 }
             }
         }
