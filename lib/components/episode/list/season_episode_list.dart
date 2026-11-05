@@ -9,6 +9,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../../env/env.dart';
 import '../../../helpers/episode_state.dart';
+import '../../../helpers/router/router_utils.dart';
 import '../../../models/breakpoints.dart';
 import 'package:bccm_core/design_system.dart';
 import 'package:bccm_core/bccm_core.dart';
@@ -52,6 +53,11 @@ class SeasonEpisodeList extends StatelessWidget {
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () {
+                final overrideUrl = ep.episode.overrideUrl;
+                if (overrideUrl != null && overrideUrl.isNotEmpty) {
+                  openUrl(context, overrideUrl);
+                  return;
+                }
                 onEpisodeTap(index, ep.episode.id);
               },
               child: _Episode(data: ep),
