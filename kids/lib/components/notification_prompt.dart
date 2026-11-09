@@ -79,6 +79,7 @@ class NotificationPrompt extends HookConsumerWidget {
                         ));
                         settings.setNotificationsEnabled(true);
                       case AuthorizationStatus.denied:
+                      case AuthorizationStatus.deniedPermanently:
                         debugPrint('notification permission status: denied');
                         analytics.notificationPromptDenied(NotificationPromptDeniedEvent());
                         analytics.notificationsStatus(NotificationsStatusEvent(
