@@ -504,7 +504,7 @@
   "@thankYou": {
     "description": "Title in upload success page"
   },
-  "thankYouForContribution": "Köszönjük a hozzájárulásodat!",
+  "thankYouForContribution": "Köszönjük a közreműködést!",
   "@thankYouForContribution": {
     "description": "Title in upload success page"
   },
@@ -629,6 +629,15 @@
   "comingSoon": "Hamarosan",
   "@comingSoon": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
+  },
+  "comingOnDate": "{date}-ban/ben érkezik",
+  "@comingOnDate": {
+    "description": "Short. Used in buttons, badges, etc to indicate the date an item becomes available.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
   },
   "newEpisode": "Új",
   "@newEpisode": {
@@ -827,7 +836,7 @@
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Nagyszerű munka a tanulmányi téma befejezésében {name}",
+  "achievementStudyTopic": "Nagyszerű munka a {name} tanulmányi téma befejezésében",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -836,7 +845,7 @@
       }
     }
   },
-  "videoCount": "{count} videók",
+  "videoCount": "{count} videó",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -845,7 +854,7 @@
       }
     }
   },
-  "taskCount": "{count} feladatok",
+  "taskCount": "{count} feladat",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -854,7 +863,7 @@
       }
     }
   },
-  "posterCount": "{count} plakátok",
+  "posterCount": "{count} plakát",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -863,7 +872,7 @@
       }
     }
   },
-  "resourceCount": "{count} források",
+  "resourceCount": "{count} forrás",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -1107,6 +1116,120 @@
   "@ageRatingAll": {
     "description": "Used for age ratings! Short, means 'all ages'. Used like this: Age rating: All."
   },
+  "episodeDescription": "Leírás",
+  "@episodeDescription": {
+    "description": "Section header in the 'details' tab for the description of the episode itself."
+  },
+  "songs": "Énekek",
+  "@songs": {
+    "description": "Section header in the 'details' tab listing the songs performed in an episode."
+  },
+  "contributors": "Közreműködők",
+  "@contributors": {
+    "description": "Section header in the 'details' tab listing the contributors (composer, singer, etc.) of an episode."
+  },
+  "contributionTypeLyricist": "Szövegíró",
+  "@contributionTypeLyricist": {
+    "description": "Label for contributors who wrote the lyrics of a song. Used in the 'details' tab. Followed by names: 'Lyricist: ...'."
+  },
+  "contributionTypeArranger": "Hangszerelő",
+  "@contributionTypeArranger": {
+    "description": "Label for contributors who arranged the music of a song. Used in the 'details' tab."
+  },
+  "contributionTypeSinger": "Énekes",
+  "@contributionTypeSinger": {
+    "description": "Label for contributors who sang in a song. Used in the 'details' tab."
+  },
+  "contributionTypeSpeaker": "Beszélő",
+  "@contributionTypeSpeaker": {
+    "description": "Label for contributors who spoke (as opposed to sang) in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeComposer": "Zeneszerző",
+  "@contributionTypeComposer": {
+    "description": "Label for contributors who composed the music of a song. Used in the 'details' tab."
+  },
+  "contributionTypeSoloist": "Szólista",
+  "@contributionTypeSoloist": {
+    "description": "Label for the solo performer in a song. Used in the 'details' tab."
+  },
+  "contributionTypePerformer": "Előadó",
+  "@contributionTypePerformer": {
+    "description": "Label for a performer in a song or episode (generic). Used in the 'details' tab."
+  },
+  "contributionTypeTranslator": "Fordító",
+  "@contributionTypeTranslator": {
+    "description": "Label for contributors who translated the lyrics or content. Used in the 'details' tab."
+  },
+  "contributionTypeDirector": "Rendező",
+  "@contributionTypeDirector": {
+    "description": "Label for the director of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeProducer": "Producer",
+  "@contributionTypeProducer": {
+    "description": "Label for the producer of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeScriptwriter": "Forgatókönyvíró",
+  "@contributionTypeScriptwriter": {
+    "description": "Label for the scriptwriter of an episode. Used in the 'details' tab."
+  },
+  "contributionTypeActor": "Színész",
+  "@contributionTypeActor": {
+    "description": "Label for actors in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeVoiceActor": "Szinkronszínész",
+  "@contributionTypeVoiceActor": {
+    "description": "Label for voice actors in an episode. Used in the 'details' tab."
+  },
+  "contributionTypeOther": "Egyéb",
+  "@contributionTypeOther": {
+    "description": "Label for contributors with an unspecified or unusual role. Used in the 'details' tab."
+  },
+  "copyright": "Szerzői jog",
+  "@copyright": {
+    "description": "Section header in the 'details' tab showing the copyright holder of an episode."
+  },
+  "playlistNotFound": "A lejátszási lista nem található",
+  "@playlistNotFound": {
+    "description": "Error message shown when a playlist cannot be loaded or does not exist."
+  },
+  "shuffle": "Keverés",
+  "@shuffle": {
+    "description": "Button label. Plays the items of a playlist in a random order."
+  },
+  "playlistItemCount": "{count} tétel",
+  "@playlistItemCount": {
+    "description": "REMEMBER: Include, but do not translate the variable {count}. Keep it very short. Number of items in a playlist (episodes + shorts combined).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playlistDurationHoursMinutes": "{hours}ó {minutes}p",
+  "@playlistDurationHoursMinutes": {
+    "description": "REMEMBER: Include, but do not translate the variables {hours} and {minutes}. Keep it very short. Total duration of a playlist when it is one hour or longer (e.g. '2h 15m').",
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "playlistDurationMinutes": "{minutes}p",
+  "@playlistDurationMinutes": {
+    "description": "REMEMBER: Include, but do not translate the variable {minutes}. Keep it very short. Total duration of a playlist when it is under an hour (e.g. '45m').",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "contentTypeShort": "Short",
+  "@contentTypeShort": {
+    "description": "Label identifying that a single item is a 'Short' (a short vertical video, similar to YouTube Shorts / Instagram Reels). Used as a subtitle/badge on items in lists."
+  },
   "offline": "Offline",
   "@offline": {
     "description": "Status indicator, indicating that you are offline; not connected to the internet."
@@ -1156,6 +1279,22 @@
   "yourFavorites": "Kedvenceid",
   "@yourFavorites": {
     "description": "Shown as a title for the 'favorites' section in the profile tab."
+  },
+  "unavailable": "Nem elérhető",
+  "@unavailable": {
+    "description": "Short label shown inside a favorited item's thumbnail when the video is no longer available, e.g. because it was unpublished."
+  },
+  "noLongerAvailable": "Már nem elérhető",
+  "@noLongerAvailable": {
+    "description": "Title of the bottom sheet shown when tapping a favorited item that is no longer available."
+  },
+  "noLongerAvailableDescription": "Ez a videó már nem elérhető Elképzelhető, hogy a tartalmat eltávolították, vagy már nem nyilvános.",
+  "@noLongerAvailableDescription": {
+    "description": "Explanation shown in the bottom sheet when tapping a favorited item that is no longer available."
+  },
+  "removeFromFavorites": "Eltávolítás a kedvencekből",
+  "@removeFromFavorites": {
+    "description": "Action in the bottom sheet for removing an unavailable item from the user's favorites."
   },
   "downloaded": "Letöltve",
   "@downloaded": {
@@ -1407,7 +1546,7 @@
   "@all": {
     "description": "This is a short title on a tab that shows all items within a collection. I.e. no filter."
   },
-  "countItems": "{x} tételek",
+  "countItems": "{x} tétel",
   "@countItems": {
     "description": "IMPORTANT: {x} will automatically be replaced with a number. You must include {x} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
@@ -1416,7 +1555,7 @@
       }
     }
   },
-  "skipTo": "Ugrás a {chapter}",
+  "skipTo": "Ugrás ide: {chapter}",
   "@skipTo": {
     "description": "IMPORTANT: {chapter} will automatically be replaced with the chapter name. You must include {chapter} exactly as it is, but you can move it around in the sentence if needed.",
     "placeholders": {
