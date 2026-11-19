@@ -68,12 +68,6 @@ dependencies:
   sentry_flutter: ^9.6.0
   flutter_advanced_switch: ^3.1.0
 
-dependency_overrides:
-  # Load-bearing: flutter_secure_storage_web 1.2.1 (via flutter_secure_storage 9.x) wants
-  # js ^0.6.3, while bccm_player's web interop wants ^0.7.1. Removable once
-  # flutter_secure_storage moves to 10/11, or bccm_player migrates to dart:js_interop.
-  js: ^0.7.1
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
