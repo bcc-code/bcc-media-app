@@ -62,7 +62,15 @@ Future<dynamic>? openUrl(BuildContext context, String url) {
   final uri = Uri.tryParse(url);
   if (uri == null) return null;
   if (uri.scheme.isEmpty) {
-    return context.router.root.navigateNamedFromRoot(url);
+    // Navigate within the current tab (like other item taps), so Back returns to where the
+    // user was. Paths the tab can't show (e.g. another tab) are navigated to from the root.
+    // Routes inside a tab are relative, so they only match without the leading slash.
+    final router = context.router;
+    final relativePath = url.startsWith('/') ? url.substring(1) : url;
+    if (!router.isRoot && relativePath.isNotEmpty && router.matcher.match(relativePath) != null) {
+      return router.navigatePath(relativePath);
+    }
+    return router.root.navigateNamedFromRoot(url);
   }
   return launchUrlString(url, mode: LaunchMode.externalApplication);
 }
