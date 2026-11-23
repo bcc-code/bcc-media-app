@@ -13,6 +13,7 @@ import 'package:brunstadtv_app/components/thumbnails/slider/thumbnail_slider.dar
 import 'package:brunstadtv_app/components/thumbnails/slider/thumbnail_slider_episode.dart';
 import 'package:brunstadtv_app/helpers/episode_state.dart';
 import 'package:brunstadtv_app/helpers/insets.dart';
+import 'package:brunstadtv_app/helpers/router/router_utils.dart';
 import 'package:brunstadtv_app/helpers/share_extension/share_extension.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/models/episode_thumbnail_data.dart';
@@ -219,6 +220,11 @@ class ShowScreen extends HookConsumerWidget {
                                           return GestureDetector(
                                             onTap: () {
                                               if (episode.locked) return;
+                                              final overrideUrl = episode.overrideUrl;
+                                              if (overrideUrl != null && overrideUrl.isNotEmpty) {
+                                                openUrl(context, overrideUrl);
+                                                return;
+                                              }
 
                                               context.router.push(EpisodeScreenRoute(episodeId: episode.id));
                                               ref.read(analyticsProvider).sectionItemClicked(

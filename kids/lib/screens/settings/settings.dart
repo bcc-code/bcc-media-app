@@ -189,6 +189,7 @@ class SettingsScreen extends HookConsumerWidget {
                                                 ref.read(analyticsProvider).notificationPromptAccepted(NotificationPromptAcceptedEvent());
                                                 break;
                                               case AuthorizationStatus.denied:
+                                              case AuthorizationStatus.deniedPermanently:
                                                 ref.read(analyticsProvider).notificationPromptDenied(NotificationPromptDeniedEvent());
                                                 break;
                                               default:

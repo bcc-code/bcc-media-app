@@ -56,6 +56,17 @@ Future<bool>? navigateToStudyTopic(BuildContext context, String topicId) async {
   return true;
 }
 
+/// Opens [url] in-app if it's a relative path (e.g. "/episode/123"), otherwise hands it to the OS,
+/// so universal/app links open the corresponding app.
+Future<dynamic>? openUrl(BuildContext context, String url) {
+  final uri = Uri.tryParse(url);
+  if (uri == null) return null;
+  if (uri.scheme.isEmpty) {
+    return context.router.root.navigateNamedFromRoot(url);
+  }
+  return launchUrlString(url, mode: LaunchMode.externalApplication);
+}
+
 Future overrideAwareNavigation(NavigationOverride? override, StackRouter router, PageRouteInfo<dynamic> route) {
   if (override?.pushInsteadOfReplace == true) {
     return router.push(route);
@@ -89,6 +100,10 @@ Future<dynamic>? _navigateToItem(BuildContext context, Object item, {String? col
     if (episodeItem.locked) {
       debugPrint('bccm: warning, tried to navigate to locked episode ${episodeItem.id} ${StackTrace.current}');
       return null;
+    }
+    final overrideUrl = episodeItem.overrideUrl;
+    if (overrideUrl != null && overrideUrl.isNotEmpty) {
+      return openUrl(context, overrideUrl);
     }
     return overrideAwareNavigation(
         navigationOverride,
@@ -131,12 +146,7 @@ Future<dynamic>? _navigateToItem(BuildContext context, Object item, {String? col
 
   final linkItem = item.asOrNull<Fragment$NavigatableLink>();
   if (linkItem != null) {
-    final uri = Uri.tryParse(linkItem.url);
-    if (uri == null) return null;
-    if (uri.scheme.isEmpty) {
-      return context.router.root.navigateNamedFromRoot(linkItem.url);
-    }
-    return launchUrlString(linkItem.url, mode: LaunchMode.externalApplication);
+    return openUrl(context, linkItem.url);
   }
 
   final gameItem = item.asOrNull<Fragment$NavigatableGame>();
