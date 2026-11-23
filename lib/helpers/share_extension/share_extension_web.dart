@@ -10,6 +10,6 @@ Future<void> shareUrl(
 }) async {
   html.window.navigator.share({
     'url': url,
-    if (title != null) 'title': title,
+    'title': ?title,
   });
 }

@@ -36,7 +36,7 @@ class UnavailableFavorite extends ConsumerWidget {
                 decoration: BoxDecoration(
                   color: design.colors.background2,
                   borderRadius: BorderRadius.circular(6),
-                  border: Border.all(width: 1, color: design.colors.onTint.withOpacity(0.1)),
+                  border: Border.all(width: 1, color: design.colors.onTint.withValues(alpha: 0.1)),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

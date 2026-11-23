@@ -13,7 +13,7 @@ class BmmAchievementSection extends StatelessWidget {
 
   const BmmAchievementSection(this.data, {super.key});
 
-  onAchievementTapped(BuildContext context, AchievementModel item) async {
+  Future<void> onAchievementTapped(BuildContext context, AchievementModel item) async {
     final id = item.id;
     if (id != null) {
       openBmmPage('/achievement/$id');

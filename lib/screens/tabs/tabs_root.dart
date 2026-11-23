@@ -80,7 +80,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     }
   }
 
-  onTabTap(BuildContext context, int index) {
+  void onTabTap(BuildContext context, int index) {
     final tabsRouter = AutoTabsRouter.of(context);
     final tabId = ref.read(currentTabIdsProvider).elementAtOrNull(index);
     // here we switch between tabs
@@ -128,7 +128,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       } else if (tabId == TabId.search) {
         pageCode = value.application.searchPage?.code;
       }
-      ref.read(analyticsProvider).screen(tabInfo.analyticsName, properties: {if (pageCode != null) 'pageCode': pageCode});
+      ref.read(analyticsProvider).screen(tabInfo.analyticsName, properties: {'pageCode': ?pageCode});
     });
   }
 

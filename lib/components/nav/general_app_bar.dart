@@ -24,7 +24,7 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
             Expanded(
               child: Row(children: leftActions),
             ),
-            if (title != null) title!,
+            ?title,
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,

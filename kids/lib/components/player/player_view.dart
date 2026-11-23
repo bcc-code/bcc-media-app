@@ -764,7 +764,7 @@ class PlayerEpisodes extends HookConsumerWidget {
   }
 }
 
-filterAndOrderTracksBasedOnLanguageList(List<String> languages, List<Track?> tracks) {
+List<Track> filterAndOrderTracksBasedOnLanguageList(List<String> languages, List<Track?> tracks) {
   return languages.fold<List<Track>>(
     [],
     (previousValue, language) => previousValue

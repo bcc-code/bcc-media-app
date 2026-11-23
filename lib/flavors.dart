@@ -113,7 +113,7 @@ class FlavorConfig {
   static FlavorConfig? _current;
   static FlavorConfig get current => _current!;
 
-  static register(FlavorConfig flavorConfig) {
+  static void register(FlavorConfig flavorConfig) {
     assert(_current == null, 'Flavor Config was already set!');
     _current = flavorConfig;
   }

@@ -17,12 +17,12 @@ class TypedAdditionalData {
     DateTime? downloadedAt,
     String? downloadedBy,
   }) : _map = {
-          if (episodeId != null) 'episode_id': episodeId,
-          if (artworkUri != null) 'artwork_uri': artworkUri,
+          'episode_id': ?episodeId,
+          'artwork_uri': ?artworkUri,
           if (durationMs != null) 'duration_ms': durationMs.toString(),
           if (expiresAt != null) 'expires_at': expiresAt.toIso8601String(),
           if (downloadedAt != null) 'downloaded_at': downloadedAt.toIso8601String(),
-          if (downloadedBy != null) 'downloaded_by': downloadedBy,
+          'downloaded_by': ?downloadedBy,
         };
 
   String? get episodeId => _map['episode_id'];

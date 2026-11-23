@@ -248,7 +248,7 @@ class _DownloadSectionItemClickWrapper extends ConsumerWidget {
   final SectionItemAnalyticsData analytics;
   final Widget child;
 
-  onTap(BuildContext context, WidgetRef ref) {
+  void onTap(BuildContext context, WidgetRef ref) {
     ref.read(playbackServiceProvider).openFullscreen(context).then((_) {
       if (BccmPlayerController.primary.value.currentMediaItem?.isOffline == true) {
         BccmPlayerController.primary.stop(reset: false);

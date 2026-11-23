@@ -132,7 +132,7 @@ Future<void> $main({
     );
     final providerContainer = await initProviderContainer([
       ...coreOverrides,
-      if (providerOverrides != null) ...providerOverrides,
+      ...?providerOverrides,
     ]);
 
     final app = UncontrolledProviderScope(
@@ -174,6 +174,7 @@ Future<void> $main({
               );
           break;
         case AuthorizationStatus.denied:
+        case AuthorizationStatus.deniedPermanently:
         case AuthorizationStatus.notDetermined:
           providerContainer.read(analyticsProvider).notificationsStatus(
                 NotificationsStatusEvent(

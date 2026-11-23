@@ -43,7 +43,7 @@ class DialogWithImage extends StatelessWidget {
                 ),
               ),
             const SizedBox(height: 24),
-            if (slotBeforeDismissButton != null) slotBeforeDismissButton!,
+            ?slotBeforeDismissButton,
             SizedBox(
               width: double.infinity,
               child: DesignSystem.of(context).buttons.large(
