@@ -62,7 +62,12 @@ Future<dynamic>? openUrl(BuildContext context, String url) {
   final uri = Uri.tryParse(url);
   if (uri == null) return null;
   if (uri.scheme.isEmpty) {
-    return context.router.root.navigateNamedFromRoot(url);
+    final router = context.router;
+    final relativePath = url.startsWith('/') ? url.substring(1) : url;
+    if (!router.isRoot && relativePath.isNotEmpty && router.matcher.match(relativePath) != null) {
+      return router.navigatePath(relativePath);
+    }
+    return router.root.navigateNamedFromRoot(url);
   }
   return launchUrlString(url, mode: LaunchMode.externalApplication);
 }
